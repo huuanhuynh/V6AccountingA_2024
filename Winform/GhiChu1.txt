@@ -1,0 +1,156 @@
+codeform, định nghĩa:(field:ngay_ct1;textv:Từ ngày;textE:From;where_field:ngay_ct;type:D;loai_key:10;oper:and
+;sqltype:smalldatetime;limitchar:ABCabc123;defaultValue:m_ngay_ct1;notempty:1....)
+.........
+Get nhiều dòng, tạo filterLine...
+filterLine DateTime luon check?
+
+Lấy keys theo controls đã tạo.
+nếu loại key 10: where_field (oper:and) value
+nếu loại key 21: gom giá trị vào danh sách theo key1  => where_field??? (oper:in) (list)
+
+
+
+
+
+
+ham luu am/ad
+status 
+0 trong			 bam moi
+1 2 moi/ sua	luu am,ad khi them sua ct
+				bam luu ->3
+3 hoan thanh /view, F9 dong ban ->0 (hoi truoc khi dong)
+
+
+Fix so_du load
+Check allow license khi bấm nút login.
+AddLastError
+GridView format builder.x
+
+Check admin showmenu ViewData
+Đánh dấu menu đang có đối tượng _|
+GridView Cell painting event.
+
+Quan ly nhan su
+
+Export excel error out of memory 65,536
+
+Sửa datetimepick gõ ngày 31 
+
+DATABASE config stt+ip+dbname
+V6Client V6Online checkcode Name,Allow,CheckCode
+V6User password UserName+Pass
+		codeUser UserName+Pass+IsAdmin
+
+Ghi lai he thong Phim tat.
+	Ctrl + Enter: Nhận
+	Esc			: Đóng, quay ra
+	F3F3F3		: Bật chức năng ẩn
+V6VvarTextBox:
+	F5 			: Thực hiện lookup, tìm giá trị cho nội dung đang có.
+	Ctrl + Q 	: Chuyển đổi nhanh AutocompleteMode.
+V6ColorDataGridview:
+	Ctrl + S 	: Lọc dữ liệu theo trường
+	Ctrl + Shift + S: Bỏ lọc dữ liệu theo trường.
+	Ctrl + F	: Tìm kiếm trên gridview.
+	
+V6Menu
+	Ctrl + Up/Down	: Thay đổi lựa chọn menu cấp một.
+	Ctrl + Left/Right:Thay đổi lựa chọn menu cấp hai (tab).
+	Alt + Up/Down	: Thay đổi lựa chọn menu cấp 3.
+	Alt + Left/Right: Thay đổi lựa chọn tab bên trong màn hình chứng từ.
+	
+	Ctrl + Alt + I	: Get codeform info.
+	
+tag info:
+readonly,enable,disable,invisible
+var cancelall = tagString.Contains(";cancelall;");
+                var canceldata = tagString.Contains(";canceldata;");
+                var cancelset = tagString.Contains(";cancelset;");
+
+Viet lai service.
+To màu vị trí có cùng mã vt.
+C0303048,2ALKH Danh muc khach hang
+Quan ly kho kệ. 
+Dãy ABCD
+Kệ	|_A1, A2, A3
+Tầng	|_A101, ...
+
+Cập nhập tức thời thông tin người dùng, phân quyền... => check quyền sẽ tải lại User.
+
+Capnhap gia tri tuc thoi cua bang he thong. !!!!! Chua co gi.
+ALIM2XLS FILTER MACT.
+
+giai thich *Tat ca + alpost.TenPost++
+xy ly numbertext box khi go bo phan le theo decimalplaces.
+
+su kien tu click vao datepick
+hd_details bi day ra xa
+;vvar lay brothers ham getdata rieng
+Nâng cấp V6Sync
+
+
+Hdocument:
+Màu đường kẻ chưa theo thuộc tính. Chưa có kiểu đường kẻ.
+Nút  chữ lớn lên, nhỏ lại.
+Kẻ ô từng phần trong chi tiết (left right top bottom)
+phần khó. định dạng cho dữ liệu trong chi tiết. vd: "{DonGia:0,00}đ"
+
+
+
+
+
+
+
+TreeListView Auto.
+Gán được các cấp group
+Gán data sẽ tự động thêm theo cấp.
+Khi thay đổi các group thì cập nhập lại?
+
+> BackGround
+> Data chứa dữ liệu?
+	> AddData
+	> SetData
+> View cập nhập theo data.???
+> Data cập nhập theo view?
+	> xóa trên view. Data xóa theo > mỗi dòng trên view sẽ chứa đối tượng 1 dòng data.
+> Đổi group name, thêm group lever
+
+
+tinywebapp@hotmail.com/TWAhotmail.com
+
+Nâng cấp summary gridview (không cộng lại)
+
+Thong tin dinh nghia trong altt.
+Bật để sử dụng Transaction Isolation level
+ 
+USE AdventureWorks2012;  
+USE master;  
+GO  
+ALTER DATABASE AdventureWorks2012  
+SET ALLOW_SNAPSHOT_ISOLATION ON;  
+GO  
+-- Check the state of the snapshot_isolation_framework  lẽ16089
+-- in the database.  
+SELECT name, snapshot_isolation_state,   
+    snapshot_isolation_state_desc AS description  
+FROM sys.databases  
+WHERE name = N'AdventureWorks2012';  
+GO  
+
+Sử dụng Isolation level
+
+SET DA
+USE AdventureWorks2012;  
+GO  
+SET TRANSACTION ISOLATION LEVEL {REPEATABLE READ | SERIALIZABLE}[;]
+GO  
+BEGIN TRANSACTION;  
+GO  
+SELECT *   
+    FROM HumanResources.EmployeePayHistory;  
+GO  
+SELECT *   
+    FROM HumanResources.Department;  
+GO  
+COMMIT TRANSACTION;  
+GO  

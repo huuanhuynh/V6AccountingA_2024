@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EB0FBA48-DD14-4250-BDB1-5DCEB83F4307}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>V6Soft.Accounting.Sales</RootNamespace>
+    <AssemblyName>v6accsa</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    
+    
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>..\..\..\Lib\DapperDotNet\Dapper NET45\bin\Release\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="V6cmeh">
+      <HintPath>..\..\..\Common\V6Common_ExceptionHandling\bin\Release\V6cmeh.dll</HintPath>
+    </Reference>
+    <Reference Include="V6cmlg">
+      <HintPath>..\..\..\Common\V6Common_Logging\bin\Release\V6cmlg.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dealers\DirectShipmentDataDealer.cs" />
+    <Compile Include="Dealers\PaymentMethodDataDealer.cs" />
+    <Compile Include="Dealers\ShippingMethodDataDealer.cs" />
+    <Compile Include="Dealers\IPaymentMethodDataDealer.cs" />
+    <Compile Include="Dealers\IShippingMethodDataDealer.cs" />
+    <Compile Include="Dealers\IShipmentDataDealer.cs" />
+    <Compile Include="Extensions\ModelConverter.cs" />
+    <Compile Include="Farmers\IPaymentMethodDataFarmer.cs" />
+    <Compile Include="Farmers\IShippingMethodDataFarmer.cs" />
+    <Compile Include="Farmers\IShipmentDataFarmer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\V6Common_Utils\V6Common_Utils.csproj">
+      <Project>{6052e170-f511-47ac-b457-214e633c7d1c}</Project>
+      <Name>V6Common_Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\V6Models_Accounting\V6Models_Accounting.csproj">
+      <Project>{8fad678c-2fe7-4c59-a8a0-c8da26b2541c}</Project>
+      <Name>V6Models_Accounting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\V6Models_Core\V6Models_Core.csproj">
+      <Project>{60febabd-51b1-44f9-be94-f753d1f85c04}</Project>
+      <Name>V6Models_Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\V6Accounting_Common\V6Accounting_Common.csproj">
+      <Project>{14ac1fd0-127c-4914-837b-7c9dee8b9038}</Project>
+      <Name>V6Accounting_Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

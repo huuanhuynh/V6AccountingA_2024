@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BA518E0D-956C-4125-81CE-6C0CA86C2786}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>V6Soft.Common.ModelFactory</RootNamespace>
+    <AssemblyName>v6cmmf</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    
+    
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\v6cmmf.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CompareOperator.cs" />
+    <Compile Include="Constants\DefinitionName.cs" />
+    <Compile Include="Constants\Names.cs" />
+    <Compile Include="DefinitionExceptions.cs" />
+    <Compile Include="DynamicModel.cs" />
+    <Compile Include="Factories\DynamicModelFactory.cs" />
+    <Compile Include="Factories\SqlQueryBuilder.cs" />
+    <Compile Include="Factories\SqlQueryFactory.cs" />
+    <Compile Include="FieldConstraints.cs" />
+    <Compile Include="ModelFieldDefinitionList.cs" />
+    <Compile Include="ModelMap.cs" />
+    <Compile Include="NameMapping.cs" />
+    <Compile Include="SearchCriterion.cs" />
+    <Compile Include="Validators\DefaultFieldValidator.cs" />
+    <Compile Include="Validators\IDynamicModelValidator.cs" />
+    <Compile Include="Validators\IModelValidator.cs" />
+    <Compile Include="Managers\IModelDefinitionManager.cs" />
+    <Compile Include="FieldMapping.cs" />
+    <Compile Include="Managers\XmlParseExtensions.cs" />
+    <Compile Include="ModelDefinition.cs" />
+    <Compile Include="Managers\DbModelDefinitionManager.cs" />
+    <Compile Include="ModelField.cs" />
+    <Compile Include="ModelFieldDefinition.cs" />
+    <Compile Include="RuntimeModel.cs" />
+    <Compile Include="Factories\RuntimeModelFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\V6Common_Utils\V6Common_Utils.csproj">
+      <Project>{6052e170-f511-47ac-b457-214e633c7d1c}</Project>
+      <Name>V6Common_Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,365 @@
+﻿namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
+{
+    partial class LoHangChangeCode
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radDoiMaLoVaNgay = new System.Windows.Forms.RadioButton();
+            this.radDoiMaLo = new System.Windows.Forms.RadioButton();
+            this.radDoiNGay = new System.Windows.Forms.RadioButton();
+            this.txtOldCode = new V6Controls.V6VvarTextBox();
+            this.txtName = new V6Controls.V6ColorTextBox();
+            this.txtNgayHHSD = new V6Controls.V6DateTimeColor();
+            this.txtNgayHHSDmoi = new V6Controls.V6DateTimeColor();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtMaVt = new V6Controls.V6ColorTextBox();
+            this.txtNewCode = new V6Controls.V6ColorTextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnHuy = new System.Windows.Forms.Button();
+            this.btnNhan = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.AccessibleName = "groupBox1";
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.radDoiMaLoVaNgay);
+            this.groupBox1.Controls.Add(this.radDoiMaLo);
+            this.groupBox1.Controls.Add(this.radDoiNGay);
+            this.groupBox1.Controls.Add(this.txtOldCode);
+            this.groupBox1.Controls.Add(this.txtName);
+            this.groupBox1.Controls.Add(this.txtNgayHHSD);
+            this.groupBox1.Controls.Add(this.txtNgayHHSDmoi);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.txtMaVt);
+            this.groupBox1.Controls.Add(this.txtNewCode);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(2, 1);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(816, 141);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            // 
+            // radDoiMaLoVaNgay
+            // 
+            this.radDoiMaLoVaNgay.AutoSize = true;
+            this.radDoiMaLoVaNgay.Location = new System.Drawing.Point(292, 15);
+            this.radDoiMaLoVaNgay.Name = "radDoiMaLoVaNgay";
+            this.radDoiMaLoVaNgay.Size = new System.Drawing.Size(110, 17);
+            this.radDoiMaLoVaNgay.TabIndex = 3;
+            this.radDoiMaLoVaNgay.Text = "Đổi mã lô và HSD";
+            this.radDoiMaLoVaNgay.UseVisualStyleBackColor = true;
+            this.radDoiMaLoVaNgay.CheckedChanged += new System.EventHandler(this.rads_CheckedChanged);
+            // 
+            // radDoiMaLo
+            // 
+            this.radDoiMaLo.AutoSize = true;
+            this.radDoiMaLo.Location = new System.Drawing.Point(217, 15);
+            this.radDoiMaLo.Name = "radDoiMaLo";
+            this.radDoiMaLo.Size = new System.Drawing.Size(69, 17);
+            this.radDoiMaLo.TabIndex = 2;
+            this.radDoiMaLo.Text = "Đổi mã lô";
+            this.radDoiMaLo.UseVisualStyleBackColor = true;
+            this.radDoiMaLo.CheckedChanged += new System.EventHandler(this.rads_CheckedChanged);
+            // 
+            // radDoiNGay
+            // 
+            this.radDoiNGay.AutoSize = true;
+            this.radDoiNGay.Location = new System.Drawing.Point(118, 15);
+            this.radDoiNGay.Name = "radDoiNGay";
+            this.radDoiNGay.Size = new System.Drawing.Size(93, 17);
+            this.radDoiNGay.TabIndex = 1;
+            this.radDoiNGay.Text = "Đổi ngày HSD";
+            this.radDoiNGay.UseVisualStyleBackColor = true;
+            this.radDoiNGay.CheckedChanged += new System.EventHandler(this.rads_CheckedChanged);
+            // 
+            // txtOldCode
+            // 
+            this.txtOldCode.AccessibleName = "MA_LO";
+            this.txtOldCode.BackColor = System.Drawing.SystemColors.Window;
+            this.txtOldCode.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtOldCode.Enabled = false;
+            this.txtOldCode.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtOldCode.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtOldCode.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtOldCode.HoverColor = System.Drawing.Color.Yellow;
+            this.txtOldCode.LeaveColor = System.Drawing.Color.White;
+            this.txtOldCode.Location = new System.Drawing.Point(134, 46);
+            this.txtOldCode.Name = "txtOldCode";
+            this.txtOldCode.Size = new System.Drawing.Size(144, 20);
+            this.txtOldCode.TabIndex = 5;
+            this.txtOldCode.VVar = "ma_kh";
+            // 
+            // txtName
+            // 
+            this.txtName.AccessibleName = "SO_LOSX";
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtName.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtName.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtName.Enabled = false;
+            this.txtName.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtName.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtName.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtName.HoverColor = System.Drawing.Color.Yellow;
+            this.txtName.LeaveColor = System.Drawing.Color.White;
+            this.txtName.Location = new System.Drawing.Point(285, 46);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtName.Name = "txtName";
+            this.txtName.ReadOnly = true;
+            this.txtName.Size = new System.Drawing.Size(487, 20);
+            this.txtName.TabIndex = 6;
+            // 
+            // txtNgayHHSD
+            // 
+            this.txtNgayHHSD.AccessibleName = "NGAY_HHSD";
+            this.txtNgayHHSD.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtNgayHHSD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNgayHHSD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNgayHHSD.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNgayHHSD.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNgayHHSD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNgayHHSD.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNgayHHSD.LeaveColor = System.Drawing.Color.White;
+            this.txtNgayHHSD.Location = new System.Drawing.Point(426, 75);
+            this.txtNgayHHSD.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNgayHHSD.Name = "txtNgayHHSD";
+            this.txtNgayHHSD.ReadOnly = true;
+            this.txtNgayHHSD.Size = new System.Drawing.Size(144, 20);
+            this.txtNgayHHSD.StringValue = "__/__/____";
+            this.txtNgayHHSD.TabIndex = 12;
+            this.txtNgayHHSD.Text = "__/__/____";
+            // 
+            // txtNgayHHSDmoi
+            // 
+            this.txtNgayHHSDmoi.AccessibleName = "";
+            this.txtNgayHHSDmoi.BackColor = System.Drawing.Color.White;
+            this.txtNgayHHSDmoi.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNgayHHSDmoi.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNgayHHSDmoi.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNgayHHSDmoi.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNgayHHSDmoi.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNgayHHSDmoi.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNgayHHSDmoi.LeaveColor = System.Drawing.Color.White;
+            this.txtNgayHHSDmoi.Location = new System.Drawing.Point(134, 104);
+            this.txtNgayHHSDmoi.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNgayHHSDmoi.Name = "txtNgayHHSDmoi";
+            this.txtNgayHHSDmoi.Size = new System.Drawing.Size(144, 20);
+            this.txtNgayHHSDmoi.StringValue = "__/__/____";
+            this.txtNgayHHSDmoi.TabIndex = 10;
+            this.txtNgayHHSDmoi.Text = "__/__/____";
+            // 
+            // label5
+            // 
+            this.label5.AccessibleDescription = "ten_kh";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(303, 78);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Ngày hết HSD";
+            // 
+            // txtMaVt
+            // 
+            this.txtMaVt.AccessibleName = "MA_VT";
+            this.txtMaVt.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtMaVt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaVt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMaVt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaVt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaVt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaVt.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaVt.LeaveColor = System.Drawing.Color.White;
+            this.txtMaVt.Location = new System.Drawing.Point(426, 103);
+            this.txtMaVt.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMaVt.Name = "txtMaVt";
+            this.txtMaVt.ReadOnly = true;
+            this.txtMaVt.Size = new System.Drawing.Size(144, 20);
+            this.txtMaVt.TabIndex = 14;
+            // 
+            // txtNewCode
+            // 
+            this.txtNewCode.AccessibleName = "";
+            this.txtNewCode.BackColor = System.Drawing.Color.White;
+            this.txtNewCode.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNewCode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNewCode.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNewCode.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNewCode.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNewCode.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNewCode.LeaveColor = System.Drawing.Color.White;
+            this.txtNewCode.Location = new System.Drawing.Point(134, 74);
+            this.txtNewCode.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNewCode.Name = "txtNewCode";
+            this.txtNewCode.Size = new System.Drawing.Size(144, 20);
+            this.txtNewCode.TabIndex = 8;
+            // 
+            // label6
+            // 
+            this.label6.AccessibleDescription = "ten_kh";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(303, 107);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Mã vật tư";
+            // 
+            // label4
+            // 
+            this.label4.AccessibleDescription = "ten_kh";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 107);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(95, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Ngày hết HSD mới";
+            // 
+            // label2
+            // 
+            this.label2.AccessibleDescription = "ten_kh";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(11, 78);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Mã mới";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 17);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Tùy chọn";
+            // 
+            // label1
+            // 
+            this.label1.AccessibleDescription = "ma_kh";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 46);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Mã hiện tại";
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.AccessibleDescription = "REPORTB00005";
+            this.btnHuy.AccessibleName = "";
+            this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel;
+            this.btnHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnHuy.Location = new System.Drawing.Point(100, 161);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(88, 40);
+            this.btnHuy.TabIndex = 7;
+            this.btnHuy.Text = "&Hủy";
+            this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            // 
+            // btnNhan
+            // 
+            this.btnNhan.AccessibleDescription = "REPORTB00004";
+            this.btnNhan.AccessibleName = "";
+            this.btnNhan.Image = global::V6ControlManager.Properties.Resources.Apply;
+            this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNhan.Location = new System.Drawing.Point(12, 161);
+            this.btnNhan.Name = "btnNhan";
+            this.btnNhan.Size = new System.Drawing.Size(88, 40);
+            this.btnNhan.TabIndex = 6;
+            this.btnNhan.Text = "&Nhận";
+            this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNhan.UseVisualStyleBackColor = true;
+            this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
+            // 
+            // LoHangChangeCode
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(820, 218);
+            this.Controls.Add(this.btnHuy);
+            this.Controls.Add(this.btnNhan);
+            this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "LoHangChangeCode";
+            this.Text = "Đổi mã lô - hạn sử dụng";
+            this.Load += new System.EventHandler(this.Form_Load);
+            this.Controls.SetChildIndex(this.groupBox1, 0);
+            this.Controls.SetChildIndex(this.btnNhan, 0);
+            this.Controls.SetChildIndex(this.btnHuy, 0);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radDoiMaLoVaNgay;
+        private System.Windows.Forms.RadioButton radDoiMaLo;
+        private System.Windows.Forms.RadioButton radDoiNGay;
+        private V6Controls.V6VvarTextBox txtOldCode;
+        private V6Controls.V6ColorTextBox txtName;
+        private V6Controls.V6ColorTextBox txtNewCode;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private V6Controls.V6DateTimeColor txtNgayHHSDmoi;
+        private System.Windows.Forms.Label label4;
+        private V6Controls.V6DateTimeColor txtNgayHHSD;
+        private System.Windows.Forms.Label label5;
+        private V6Controls.V6ColorTextBox txtMaVt;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnHuy;
+        private System.Windows.Forms.Button btnNhan;
+    }
+}

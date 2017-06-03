@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    
+    
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{44128A99-8AC7-4472-BECB-9D7E6A7472CA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>V6Accounting_EntityFramework</RootNamespace>
+    <AssemblyName>V6Accounting_EntityFramework</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Abbpkh.cs" />
+    <Compile Include="Entities\Abhd.cs" />
+    <Compile Include="Entities\Abhdkh.cs" />
+    <Compile Include="Entities\ABkh.cs" />
+    <Compile Include="Entities\Abkhovvkh.cs" />
+    <Compile Include="Entities\Abku.cs" />
+    <Compile Include="Entities\ABlkct.cs" />
+    <Compile Include="Entities\ABlo.cs" />
+    <Compile Include="Entities\ABntxt.cs" />
+    <Compile Include="Entities\Abphi.cs" />
+    <Compile Include="Entities\ABSPDD.cs" />
+    <Compile Include="Entities\AbTD.cs" />
+    <Compile Include="Entities\AbTD2.cs" />
+    <Compile Include="Entities\AbTD3.cs" />
+    <Compile Include="Entities\ABtk.cs" />
+    <Compile Include="Entities\ABtknt.cs" />
+    <Compile Include="Entities\ABvitri.cs" />
+    <Compile Include="Entities\ABvt.cs" />
+    <Compile Include="Entities\ABvt13.cs" />
+    <Compile Include="Entities\ABvv.cs" />
+    <Compile Include="Entities\Abvvkh.cs" />
+    <Compile Include="Entities\ACKU.cs" />
+    <Compile Include="Entities\ACvv.cs" />
+    <Compile Include="Entities\AD11.cs" />
+    <Compile Include="Entities\AD21.cs" />
+    <Compile Include="Entities\AD29.cs" />
+    <Compile Include="Entities\AD31.cs" />
+    <Compile Include="Entities\AD32.cs" />
+    <Compile Include="Entities\AD39.cs" />
+    <Compile Include="Entities\AD41.cs" />
+    <Compile Include="Entities\AD42.cs" />
+    <Compile Include="Entities\AD46.cs" />
+    <Compile Include="Entities\AD47.cs" />
+    <Compile Include="Entities\AD51.cs" />
+    <Compile Include="Entities\AD52.cs" />
+    <Compile Include="Entities\AD56.cs" />
+    <Compile Include="Entities\AD57.cs" />
+    <Compile Include="Entities\AD71.cs" />
+    <Compile Include="Entities\AD72.cs" />
+    <Compile Include="Entities\AD73.cs" />
+    <Compile Include="Entities\AD74.cs" />
+    <Compile Include="Entities\AD76.cs" />
+    <Compile Include="Entities\AD81.cs" />
+    <Compile Include="Entities\AD81CT.cs" />
+    <Compile Include="Entities\AD81CT0.cs" />
+    <Compile Include="Entities\AD84.cs" />
+    <Compile Include="Entities\AD85.cs" />
+    <Compile Include="Entities\AD86.cs" />
+    <Compile Include="Entities\AD91.cs" />
+    <Compile Include="Entities\AD92.cs" />
+    <Compile Include="Entities\ADALCC.cs" />
+    <Compile Include="Entities\ADALT.cs" />
+    <Compile Include="Entities\ADBPCC.cs" />
+    <Compile Include="Entities\ADBPT.cs" />
+    <Compile Include="Entities\ADCTCC.cs" />
+    <Compile Include="Entities\ADCTCCBP.cs" />
+    <Compile Include="Entities\ADCTT.cs" />
+    <Compile Include="Entities\ADCTTSBP.cs" />
+    <Compile Include="Entities\ADHSCC.cs" />
+    <Compile Include="Entities\ADHST.cs" />
+    <Compile Include="Entities\ADKHT.cs" />
+    <Compile Include="Entities\ADPBCC.cs" />
+    <Compile Include="Entities\ADSLCC.cs" />
+    <Compile Include="Entities\ADSLT.cs" />
+    <Compile Include="Entities\ADThue43.cs" />
+    <Compile Include="Entities\Agltc1.cs" />
+    <Compile Include="Entities\Agltc2.cs" />
+    <Compile Include="Entities\Agltc3.cs" />
+    <Compile Include="Entities\Agltc4.cs" />
+    <Compile Include="Entities\Agltc5.cs" />
+    <Compile Include="Entities\Agltc6.cs" />
+    <Compile Include="Entities\Agltc8.cs" />
+    <Compile Include="Entities\AKhungCK.cs" />
+    <Compile Include="Entities\AKhungCkCt.cs" />
+    <Compile Include="Entities\Albp.cs" />
+    <Compile Include="Entities\Albpcc.cs" />
+    <Compile Include="Entities\Albpht.cs" />
+    <Compile Include="Entities\Albpt.cs" />
+    <Compile Include="Entities\Alcc.cs" />
+    <Compile Include="Entities\Alck.cs" />
+    <Compile Include="Entities\ALck2.cs" />
+    <Compile Include="Entities\ALCKM.cs" />
+    <Compile Include="Entities\ALCKMCt.cs" />
+    <Compile Include="Entities\Alcltg.cs" />
+    <Compile Include="Entities\Alct.cs" />
+    <Compile Include="Entities\Alctct.cs" />
+    <Compile Include="Entities\Alcthd.cs" />
+    <Compile Include="Entities\Aldmpbct.cs" />
+    <Compile Include="Entities\Aldmpbph.cs" />
+    <Compile Include="Entities\Aldmvt.cs" />
+    <Compile Include="Entities\Aldmvtct.cs" />
+    <Compile Include="Entities\Aldvc.cs" />
+    <Compile Include="Entities\Aldvt.cs" />
+    <Compile Include="Entities\ALgia.cs" />
+    <Compile Include="Entities\ALgia2.cs" />
+    <Compile Include="Entities\ALGIA200.cs" />
+    <Compile Include="Entities\ALgiavon.cs" />
+    <Compile Include="Entities\ALgiavon3.cs" />
+    <Compile Include="Entities\ALgiavv.cs" />
+    <Compile Include="Entities\Alhd.cs" />
+    <Compile Include="Entities\Alhttt.cs" />
+    <Compile Include="Entities\Alhtvc.cs" />
+    <Compile Include="Entities\ALkc.cs" />
+    <Compile Include="Entities\Alkh.cs" />
+    <Compile Include="Entities\Alkho.cs" />
+    <Compile Include="Entities\AlkhTG.cs" />
+    <Compile Include="Entities\ALKMB.cs" />
+    <Compile Include="Entities\ALKMBCt.cs" />
+    <Compile Include="Entities\ALKMM.cs" />
+    <Compile Include="Entities\ALKMMCt.cs" />
+    <Compile Include="Entities\Alku.cs" />
+    <Compile Include="Entities\Allnx.cs" />
+    <Compile Include="Entities\Allo.cs" />
+    <Compile Include="Entities\ALloaicc.cs" />
+    <Compile Include="Entities\Alloaick.cs" />
+    <Compile Include="Entities\Alloaivc.cs" />
+    <Compile Include="Entities\ALloaivt.cs" />
+    <Compile Include="Entities\Almagd.cs" />
+    <Compile Include="Entities\Almagia.cs" />
+    <Compile Include="Entities\ALMAUHD.cs" />
+    <Compile Include="Entities\ALnhCC.cs" />
+    <Compile Include="Entities\ALnhdvc.cs" />
+    <Compile Include="Entities\ALnhhd.cs" />
+    <Compile Include="Entities\ALnhkh.cs" />
+    <Compile Include="Entities\Alnhkh2.cs" />
+    <Compile Include="Entities\Alnhku.cs" />
+    <Compile Include="Entities\Alnhphi.cs" />
+    <Compile Include="Entities\ALnht.cs" />
+    <Compile Include="Entities\ALnhtk.cs" />
+    <Compile Include="Entities\ALnhtk0.cs" />
+    <Compile Include="Entities\ALnhvt.cs" />
+    <Compile Include="Entities\Alnhvt2.cs" />
+    <Compile Include="Entities\Alnhvv.cs" />
+    <Compile Include="Entities\ALnhytcp.cs" />
+    <Compile Include="Entities\ALnk.cs" />
+    <Compile Include="Entities\Alnt.cs" />
+    <Compile Include="Entities\Alnv.cs" />
+    <Compile Include="Entities\Alnvien.cs" />
+    <Compile Include="Entities\ALpb.cs" />
+    <Compile Include="Entities\ALpb1.cs" />
+    <Compile Include="Entities\Alphi.cs" />
+    <Compile Include="Entities\Alphuong.cs" />
+    <Compile Include="Entities\ALplcc.cs" />
+    <Compile Include="Entities\ALplt.cs" />
+    <Compile Include="Entities\ALpost.cs" />
+    <Compile Include="Entities\ALqddvt.cs" />
+    <Compile Include="Entities\Alqg.cs" />
+    <Compile Include="Entities\Alql.cs" />
+    <Compile Include="Entities\Alquan.cs" />
+    <Compile Include="Entities\ALstt.cs" />
+    <Compile Include="Entities\Alt.cs" />
+    <Compile Include="Entities\Altd.cs" />
+    <Compile Include="Entities\Altd2.cs" />
+    <Compile Include="Entities\Altd3.cs" />
+    <Compile Include="Entities\ALtgcc.cs" />
+    <Compile Include="Entities\ALtgnt.cs" />
+    <Compile Include="Entities\ALtgt.cs" />
+    <Compile Include="Entities\ALTHAU.cs" />
+    <Compile Include="Entities\ALTHAUCT.cs" />
+    <Compile Include="Entities\Althue.cs" />
+    <Compile Include="Entities\Altinh.cs" />
+    <Compile Include="Entities\Altk0.cs" />
+    <Compile Include="Entities\Altk1.cs" />
+    <Compile Include="Entities\Altk2.cs" />
+    <Compile Include="Entities\ALtklkKU.cs" />
+    <Compile Include="Entities\ALtklkvv.cs" />
+    <Compile Include="Entities\ALtknh.cs" />
+    <Compile Include="Entities\Altt.cs" />
+    <Compile Include="Entities\ALttvt.cs" />
+    <Compile Include="Entities\Alvc.cs" />
+    <Compile Include="Entities\ALvitri.cs" />
+    <Compile Include="Entities\ALvt.cs" />
+    <Compile Include="Entities\ALvttg.cs" />
+    <Compile Include="Entities\Alvv.cs" />
+    <Compile Include="Entities\Alytcp.cs" />
+    <Compile Include="Entities\AM11.cs" />
+    <Compile Include="Entities\AM21.cs" />
+    <Compile Include="Entities\AM29.cs" />
+    <Compile Include="Entities\AM31.cs" />
+    <Compile Include="Entities\AM32.cs" />
+    <Compile Include="Entities\AM39.cs" />
+    <Compile Include="Entities\AM41.cs" />
+    <Compile Include="Entities\AM42.cs" />
+    <Compile Include="Entities\AM46.cs" />
+    <Compile Include="Entities\AM47.cs" />
+    <Compile Include="Entities\AM51.cs" />
+    <Compile Include="Entities\AM52.cs" />
+    <Compile Include="Entities\AM56.cs" />
+    <Compile Include="Entities\AM57.cs" />
+    <Compile Include="Entities\AM71.cs" />
+    <Compile Include="Entities\AM72.cs" />
+    <Compile Include="Entities\AM73.cs" />
+    <Compile Include="Entities\AM74.cs" />
+    <Compile Include="Entities\AM76.cs" />
+    <Compile Include="Entities\AM81.cs" />
+    <Compile Include="Entities\AM84.cs" />
+    <Compile Include="Entities\AM85.cs" />
+    <Compile Include="Entities\AM86.cs" />
+    <Compile Include="Entities\AM91.cs" />
+    <Compile Include="Entities\AM92.cs" />
+    <Compile Include="Entities\ARA00.cs" />
+    <Compile Include="Entities\ARBCGT.cs" />
+    <Compile Include="Entities\ARctg.cs" />
+    <Compile Include="Entities\ARctgs01.cs" />
+    <Compile Include="Entities\ARI70.cs" />
+    <Compile Include="Entities\ARS20.cs" />
+    <Compile Include="Entities\ARS21.cs" />
+    <Compile Include="Entities\ARS30.cs" />
+    <Compile Include="Entities\ARS31.cs" />
+    <Compile Include="Entities\ARS90.cs" />
+    <Compile Include="Entities\ARV20.cs" />
+    <Compile Include="Entities\ARV30.cs" />
+    <Compile Include="Entities\CorpLan.cs" />
+    <Compile Include="Entities\CorpLan1.cs" />
+    <Compile Include="Entities\CorpLan2.cs" />
+    <Compile Include="Entities\CorpLang.cs" />
+    <Compile Include="Entities\Corpuser.cs" />
+    <Compile Include="Entities\dtproperty.cs" />
+    <Compile Include="Entities\D_AD11.cs" />
+    <Compile Include="Entities\D_AD21.cs" />
+    <Compile Include="Entities\D_AD29.cs" />
+    <Compile Include="Entities\D_AD31.cs" />
+    <Compile Include="Entities\D_AD32.cs" />
+    <Compile Include="Entities\D_AD39.cs" />
+    <Compile Include="Entities\D_AD41.cs" />
+    <Compile Include="Entities\D_AD46.cs" />
+    <Compile Include="Entities\D_AD51.cs" />
+    <Compile Include="Entities\D_AD56.cs" />
+    <Compile Include="Entities\D_AD71.cs" />
+    <Compile Include="Entities\D_AD72.cs" />
+    <Compile Include="Entities\D_AD73.cs" />
+    <Compile Include="Entities\D_AD74.cs" />
+    <Compile Include="Entities\D_AD76.cs" />
+    <Compile Include="Entities\D_AD81.cs" />
+    <Compile Include="Entities\D_AD84.cs" />
+    <Compile Include="Entities\D_AD85.cs" />
+    <Compile Include="Entities\D_AD86.cs" />
+    <Compile Include="Entities\D_AM76.cs" />
+    <Compile Include="Entities\D_AM81.cs" />
+    <Compile Include="Entities\Menu.cs" />
+    <Compile Include="Entities\ModelDefinition.cs" />
+    <Compile Include="Entities\V6AccountingContext.cs" />
+    <Compile Include="Entities\v6bak.cs" />
+    <Compile Include="Entities\V6Lookup.cs" />
+    <Compile Include="Entities\V6Menu.cs" />
+    <Compile Include="Entities\V6option.cs" />
+    <Compile Include="Entities\V6rights.cs" />
+    <Compile Include="Entities\V6user.cs" />
+    <Compile Include="Entities\VCOMMENT.cs" />
+    <Compile Include="GenericDataFarmer.cs" />
+    <Compile Include="IGenericRepository.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\V6Common_Utils\V6Common_Utils.csproj">
+      <Project>{6052E170-F511-47AC-B457-214E633C7D1C}</Project>
+      <Name>V6Common_Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

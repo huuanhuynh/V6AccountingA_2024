@@ -1,0 +1,104 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using V6Init;
+
+namespace V6ControlManager.FormManager.ReportManager.Filter
+{
+    public partial class AINSD1 : FilterBase
+    {
+        public AINSD1()
+        {
+            InitializeComponent();
+
+            F3 = false;
+            F5 = false;
+
+            TxtMakho.VvarTextBox.Text = (V6Setting.M_Ma_kho ?? "").Trim();
+            
+            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            
+
+            txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
+            if (V6Login.MadvcsCount <= 1)
+            {
+                txtMaDvcs.Enabled = false;
+            }
+
+            SetHideFields("V");
+        }
+
+        public void SetHideFields(string lang)
+        {
+            _hideFields = new SortedDictionary<string, string>();
+            if (lang == "V")
+            {
+                _hideFields = new SortedDictionary<string, string>();
+                _hideFields.Add("TAG", "TAG");
+              
+            }
+            else
+            {
+                
+            }
+            _hideFields.Add("TIEN_NT_N", "TIEN_NT_N");
+            _hideFields.Add("TIEN_NT_X", "TIEN_NT_X");
+            _hideFields.Add("DU_DAU_NT", "DU_DAU_NT");
+            _hideFields.Add("DU_CUOI_NT", "DU_CUOI_NT");
+        }
+
+        /// <summary>
+        /// Lay cac tham so cho procedure
+        /// </summary>
+        /// <returns>cKey</returns>
+        public override List<SqlParameter> GetFilterParameters()
+        {
+               
+           
+            //@ma_vt VARCHAR(50),
+            //@ma_kho VARCHAR(50),
+            //@ngay_ct2 SMALLDATETIME,
+            //@ma_dvcs VARCHAR(50)
+
+            if (TxtMavt.VvarTextBox.Text.Trim() == "")
+            {
+                throw new Exception("Chưa chọn mã vật tư!");
+            }
+
+            if (TxtMakho.VvarTextBox.Text != "")
+            {
+                V6Setting.M_Ma_kho = TxtMakho.VvarTextBox.Text;
+            }
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            
+
+            var result = new List<SqlParameter>();
+
+            if (TxtMavt.IsSelected)
+                result.Add(new SqlParameter("@ma_vt", TxtMavt.VvarTextBox.Text.Trim()));
+            else
+                result.Add(new SqlParameter("@ma_vt", "%"));
+
+
+            if (TxtMakho.IsSelected)
+                result.Add(new SqlParameter("@ma_kho", TxtMakho.VvarTextBox.Text.Trim()+"%"));
+            else
+                result.Add(new SqlParameter("@ma_kho", "%"));
+
+
+            result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            
+            if (txtMaDvcs.IsSelected)
+                result.Add(new SqlParameter("@ma_dvcs", txtMaDvcs.VvarTextBox.Text.Trim() + "%"));
+            else
+                result.Add(new SqlParameter("@ma_dvcs", "%"));
+
+           
+          
+
+            return result;
+        }
+
+        
+    }
+}

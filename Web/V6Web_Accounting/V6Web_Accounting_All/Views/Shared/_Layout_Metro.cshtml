@@ -1,0 +1,81 @@
+﻿@using V6Soft.Web.Accounting.Constants;
+@using V6Soft.Web.Accounting.HtmlExtensions;
+@using V6Soft.Web.Common.HtmlExtensions;
+
+@using BundleNames = V6Soft.Web.Accounting.Constants.Names.Bundles;
+@using WebViews = V6Soft.Web.Accounting.Constants.Views;
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js" data-ng-app="MetronicApp"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js" data-ng-app="MetronicApp"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" data-ng-app="app">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    @*<title data-ng-bind="'Metronic AngularJS | ' + $state.current.data.pageTitle"></title>*@
+    <title data-ng-bind="$state.current.data.pageTitle + ' | V6 Accounting'"></title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    @*<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />*@
+    @Styles.Render(BundleNames.Styles.Core)
+
+    <!-- BEGIN DYMANICLY LOADED CSS FILES(all plugin and page related styles must be loaded between GLOBAL and THEME css files ) -->
+    <link id="ng_load_plugins_before" />
+    <!-- END DYMANICLY LOADED CSS FILES -->
+    <!-- BEGIN THEME STYLES -->
+    @Styles.Render(BundleNames.Styles.Theme)
+    <!-- END THEME STYLES -->
+
+</head>
+<body ng-controller="AppController" class="page-on-load page-md page-header-menu-fixed">
+    <!-- BEGIN PAGE SPINNER -->
+    <div ng-spinner-bar class="page-spinner-bar">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+    <!-- END PAGE SPINNER -->
+    <!-- BEGIN HEADER -->
+    <div data-ng-include="'Home/Header'" data-ng-controller="HeaderController" class="page-header">
+    </div>
+    <!-- END HEADER -->
+
+    <div class="clearfix">
+    </div>
+
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+
+        <!-- BEGIN PAGE HEAD -->
+        <div data-ng-include="'Home/PageHead'" data-ng-controller="PageHeadController" class="page-head">
+        </div>
+        <!-- END PAGE HEAD -->
+        <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+            <div class="container">
+                <!-- BEGIN ACTUAL CONTENT -->
+                <div ui-view class="fade-in-up">
+                </div>
+                <!-- END ACTUAL CONTENT -->
+            </div>
+        </div>
+        <!-- END PAGE CONTENT -->
+
+    </div>
+    <!-- END CONTAINER -->
+    <!-- BEGIN FOOTER -->
+    <div data-ng-include="'Home/Footer'" data-ng-controller="FooterController">
+    </div>
+    <!-- END FOOTER -->
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time)
+        <a><span ng-bind-html="$scope.field | uibTypeaheadHighlight:query"></span></a>
+        -->
+    
+    @Html.Partial(WebViews.Scripts)
+</body>
+</html>

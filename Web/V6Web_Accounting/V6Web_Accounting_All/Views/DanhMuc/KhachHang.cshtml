@@ -1,0 +1,172 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DanhMuc KhachHang</title>
+    <link href="~/Content/css/V6.css" rel="stylesheet" />
+    <link href="~/Content/css/V6WebControls.css" rel="stylesheet" />
+    <link href="~/Content/css/V6AutoCorrect.css" rel="stylesheet" />
+    <link href="~/Content/css/pure-min0.css" rel="stylesheet" />
+
+    <link href="~/Content/css/themes/jquery-ui/redmond/jquery-ui.theme.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/core/jquery/jquery-2.1.0.min.js"></script>
+    <script src="~/Scripts/lib/jquery-ui/jquery-ui-1.10.4.min.js"></script>
+
+    <script src="~/Scripts/lib/CryptoJSv3.1.2/rollups/aes.js"></script>
+    <script src="~/Scripts/lib/CryptoJSv3.1.2/components/mode-ecb.js"></script>
+    <script src="~/Scripts/lib/CryptoJSv3.1.2/components/pad-ansix923.js"></script>
+
+    <script src="~/Scripts/app/controls/V6Functions.js"></script>
+    <script src="~/Scripts/app/controls/V6Tab.js"></script>
+    <script src="~/Scripts/app/controls/v6autocorrect.js"></script>
+
+    <link rel="shortcut icon" href="~/V6Soft.ico" />
+
+   
+
+    <style type="text/css">
+        #ui-datepicker-div {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div> 
+        <h1 style="text-align:center" id="title">Thông tin khách hàng</h1>
+        <form id="frmKhachHang" class="form">
+            <div id="Panel1" style="margin-top:4px;" class="biggroup normalsize borderconer bluebackground">
+
+                <div id="ad11" style="float:left;width:600px;" class="">
+                    <label for="GroupCode">Mã khách hàng</label>
+                    <input type="text" v6type="field" valuetype="s" id="Code" index="1" style="width:300px;"
+                            class="v6Star v6Uppercase v6checkexist" modelindex="0"/><br />
+
+                    <label for="Name">Tên khách hàng</label>
+                    <input type="text" v6type="field" valuetype="s" id="Name" index="2" style="width:300px;" /><br />
+                    <label for=" OtherName">Tên 2</label>
+                    <input type="text" v6type="field" valuetype="s" id="OtherName" index="3" style="width:300px;" /><br />
+                </div>
+                <div id="am11" style="width:350px;float:left;" class="">
+                    <span>Mã nhóm</span>
+                    <input type="text" v6type="field" valuetype="s" id="GroupCode" class="v6Star v6Uppercase v6autocorrect" value=""
+                           modelindex="1" fieldname="Code" outfields="Code,Name" />       <br />
+                    <span>Mã số thế</span>
+                    <input type="text" v6type="field" valuetype="s" id="TaxCode" class="" value=""
+                           modelindex="1" fieldname="Code" outfields="Code,Name" />       <br />
+                    <span>Địa chỉ</span>
+                    <input type="text" v6type="field" valuetype="s" id="Address" class="" value=""
+                           modelindex="1" fieldname="Code" outfields="Code,Name" />       <br />
+                </div>
+            </div>
+
+            <div id="Tab" class="tabsbutton">
+                <span id="Span1" tabid="0" class="active-tab-btn">Thông tin chính</span>
+                <span id="Span2" tabid="1">Thông tin công nợ</span>
+                <span id="Span3" tabid="2" title="Hướng dẫn sử dụng trang. Nếu bạn còn lúng túng trong cách sử dụng thì bạn nên xem qua trang hướng đẫn này!">Hướng dẫn</span>
+            </div>
+            <div id="Tab_content" class="biggroup tab-content bluebackground" style="height:300px;">
+
+                <div class="tab-pane show" id="Tab_0">
+                    <div id="tab0_contents" class="normalsize">
+                        <div id="tab0_left" style="float:left;width:350px;">
+                            <span>Điện thoại</span>      <input type="text" v6type="field" valuetype="s" id="DeskPhone" class="" value="" />
+                            <span>Fax</span>   <input type="text" v6type="field" valuetype="i" id="Fax" class="" />
+                            <span>Email</span>     <input type="text" v6type="field" valuetype="s" id="Email" />
+                            <span>Trang chủ</span>     <input type="text" v6type="field" valuetype="s" id="Homepage" />
+                            <span>Đối tác</span>     <input type="text" v6type="field" valuetype="s" id="Contact" />
+                            <span>Nhóm khách 1</span>    <input type="text" v6type="field" valuetype="s" id="Group1" class="v6Uppercase" value="" />
+                            <span>Nhóm khách 2</span>    <input type="text" v6type="field" valuetype="s" id="Group2" class="" />
+                            <span>Nhóm khách 3</span>    <input type="text" v6type="field" valuetype="s" id="Group3" class="" />
+                        </div>
+
+                        <div id="tab0_right" style="width:350px;float:left;">
+                            <span>Ông bà</span>  <input type="text" v6type="field" valuetype="s" id="MrMrs" />   <br />
+                            <span>Bộ phận</span>  <input type="text" v6type="field" valuetype="s" id="DivisionName" />   <br />
+                            <span>Điện thoại dđ</span>  <input type="text" v6type="field" valuetype="s" id="Cellphone" />   <br />
+                            <span>Tài khoản</span>     <input type="text" valuetype="s" v6type="field" id="LiabilitiesAccount" />    <br />
+                            <span>Ngân hàng</span>     <input type="text" valuetype="s" v6type="field" id="Bank" />    <br />
+                            <span>Tài khoản NH</span>     <input type="text" valuetype="s" v6type="field" id="BankAccount" />    <br />
+                            <span>Ghi chú</span>     <input type="text" valuetype="s" v6type="field" id="Note" />    <br />
+                            
+                            
+                            <br />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="Tab_1">
+                    <div id="tab1_contents" class="normalsize" style="height:350px;">
+                        <div id="tab1_left" style="width:350px;float:left;">
+                            <span>Mã nhân viên bán</span><input type="text" v6type="field" valuetype="s" id="Employee" class="v6Uppercase" value="" />   <br />
+                            <span>Dư ngoại tệ 13</span>     <input type="text" v6type="field" valuetype="m" id="ForeignMoney" class="v6Number" decimal="," decimalplace="2"></input>
+                            <span>Dư 13</span>     <input type="text" v6type="field" valuetype="m" id="MoneyDu13" class="v6Number" decimal="," decimalplace="2"></input>
+                            <span>Mã HTTT</span>     <input type="text" valuetype="s" v6type="field" id="PaymentMethodCode" />    <br />
+                            <span>t_tien_cn</span>     <input type="text" valuetype="m" v6type="field" id="TTienCn" class="v6Number" decimal="," decimalplace="2" />    <br />
+                            <span>t_tien_hd</span>     <input type="text" valuetype="m" v6type="field" id="TTienHd" class="v6Number" decimal="," decimalplace="2" />    <br />
+
+                            <span>Ngày giới hạn</span>  <input type="text" v6type="field" valuetype="date" id="RestrictionDate" class="v6Date" value="" /><br />
+                            
+
+                        </div>
+                        <div id="tab1_right" style="width:350px;float:left;">
+                                                        
+                            <span>Là khách hàng</span>   <input type="checkbox" v6type="field" valuetype="b" id="IsCustomer" /><br />
+                            <span>Là nhà c.cấp</span>   <input type="checkbox" v6type="field" valuetype="b" id="IsProvider" /><br />
+                            <span>Là nhân viên</span>   <input type="checkbox" v6type="field" valuetype="b" id="IsEmployee" /><br />
+
+                            <span>Số nhà</span>   <input type="text" v6type="field" valuetype="s" id="HomeNumber" /><br />
+                            <span>Mã Phường</span>   <input type="text" v6type="field" valuetype="s" id="Ward" /><br />
+                            <span>Mã Tỉnh</span>   <input type="text" v6type="field" valuetype="s" id="Province" /><br />
+                            <span>Mã Quận</span>   <input type="text" v6type="field" valuetype="s" id="District" /><br />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="Tab_2" class="tab-pane" tabid="2">
+                    <div id="tab2_help" class="pagehelp" style="width:970px;height:1024px;">
+                        <h3 style="text-align:center">Chưa có hướng dẫn</h3>
+                        <div id="help_content" style="text-align:justify">
+                            <h4>Chưa có dữ liệu.</h4>
+                            <p>
+                                Nodata!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+        
+        <div id="button" class="commandbutton">
+            <span id="buttonAdd" formid="frmKhachHang"
+                  modelindex="0"
+                  url="../Customer/CustomerApi/AddModel">Add</span>
+            <span id="button2">Command 2</span>
+            <span id="button3">Hướng dẫn</span>
+        </div>
+    
+        
+    </div>
+    
+    <script src="~/Scripts/lib/jquery.mousewheel.js"></script>
+
+    <script src="~/Scripts/app/controls/V6ControlsEvent.js"></script>
+    <script src="~/Scripts/app/controls/V6Popup.js"></script>
+    
+    <script src="~/Scripts/app/controls/V6Number.js"></script>
+    <script src="~/Scripts/app/controls/V6WebControls.js"></script>
+
+    <script src="~/Scripts/app/AddEditModel.js"></script>
+
+    
+</body>
+</html>

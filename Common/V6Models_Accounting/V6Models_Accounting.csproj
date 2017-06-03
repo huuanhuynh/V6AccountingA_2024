@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8FAD678C-2FE7-4C59-A8A0-C8DA26B2541C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>V6Soft.Models.Accounting</RootNamespace>
+    <AssemblyName>v6moacc</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\v6moacc.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DTO\AccountType.cs" />
+    <Compile Include="DTO\Ad81.cs" />
+    <Compile Include="DTO\Alct.cs" />
+    <Compile Include="DTO\Alct1.cs" />
+    <Compile Include="DTO\Alnt.cs" />
+    <Compile Include="DTO\AlPost.cs" />
+    <Compile Include="DTO\BankAccount.cs" />
+    <Compile Include="DTO\BoPhanCongCu.cs" />
+    <Compile Include="DTO\BoPhanSuDungCongCu.cs" />
+    <Compile Include="DTO\BranchUnit.cs" />
+    <Compile Include="DTO\Capital.cs" />
+    <Compile Include="DTO\CheckTonXuatAm.cs" />
+    <Compile Include="DTO\ChungTu.cs" />
+    <Compile Include="DTO\CongCu.cs" />
+    <Compile Include="DTO\Customer.cs" />
+    <Compile Include="DTO\CustomerGroup.cs" />
+    <Compile Include="DTO\CustomerPriceGroup.cs" />
+    <Compile Include="DTO\DanhMucKhoHang.cs" />
+    <Compile Include="DTO\Department.cs" />
+    <Compile Include="DTO\Discount.cs" />
+    <Compile Include="DTO\DiscountType.cs" />
+    <Compile Include="DTO\District.cs" />
+    <Compile Include="DTO\ErrorCode.cs" />
+    <Compile Include="DTO\ForeignCurrency.cs" />
+    <Compile Include="DTO\ForeignExchangeRate.cs" />
+    <Compile Include="DTO\GetCheckVC.cs" />
+    <Compile Include="DTO\GetGiaBan.cs" />
+    <Compile Include="DTO\GetLoDate.cs" />
+    <Compile Include="DTO\GetLoDate13.cs" />
+    <Compile Include="DTO\GettingCheckVcSave.cs" />
+    <Compile Include="DTO\GettingKieuPostInInvoiceBase.cs" />
+    <Compile Include="DTO\Indenture.cs" />
+    <Compile Include="DTO\IndentureGroup.cs" />
+    <Compile Include="DTO\IntermediateProduct.cs" />
+    <Compile Include="DTO\InvoiceTemplate.cs" />
+    <Compile Include="DTO\KhachHang.cs" />
+    <Compile Include="DTO\LoaiCongCu.cs" />
+    <Compile Include="DTO\LoaiNhapXuat.cs" />
+    <Compile Include="DTO\LoaiVanChuyen.cs" />
+    <Compile Include="DTO\Location.cs" />
+    <Compile Include="DTO\LoginRequestModel.cs" />
+    <Compile Include="DTO\LyDoTangGiamCongCu.cs" />
+    <Compile Include="DTO\Material.cs" />
+    <Compile Include="DTO\MaterialGroup.cs" />
+    <Compile Include="DTO\MaterialPriceGroup.cs" />
+    <Compile Include="DTO\MaterialType.cs" />
+    <Compile Include="DTO\MeasurementConversion.cs" />
+    <Compile Include="DTO\MeasurementUnit.cs" />
+    <Compile Include="DTO\MenuRequestModel.cs" />
+    <Compile Include="DTO\Merchandise.cs" />
+    <Compile Include="DTO\ModifiedHinhThucVanChuyen.cs" />
+    <Compile Include="DTO\Nation.cs" />
+    <Compile Include="DTO\NhanVien.cs" />
+    <Compile Include="DTO\NhapXuat.cs" />
+    <Compile Include="DTO\NhomCongCu.cs" />
+    <Compile Include="DTO\NhomDonVi.cs" />
+    <Compile Include="DTO\NhomHopDong.cs" />
+    <Compile Include="DTO\NhomKhachHang.cs" />
+    <Compile Include="DTO\NhomNhaCungCap.cs" />
+    <Compile Include="DTO\NhomPhi.cs" />
+    <Compile Include="DTO\NhomTaiKhoan.cs" />
+    <Compile Include="DTO\PaymentMethod.cs" />
+    <Compile Include="DTO\PhanBo.cs" />
+    <Compile Include="DTO\PhanLoaiCongCu.cs" />
+    <Compile Include="DTO\PhanLoaiTaiSan.cs" />
+    <Compile Include="DTO\PhanNhomCongCu.cs" />
+    <Compile Include="DTO\PhanNhomTieuKhoan.cs" />
+    <Compile Include="DTO\PriceCode.cs" />
+    <Compile Include="DTO\Province.cs" />
+    <Compile Include="DTO\Receipt.cs" />
+    <Compile Include="DTO\ReceiptDetail.cs" />
+    <Compile Include="DTO\V6SelectModel.cs" />
+    <Compile Include="DTO\ServiceStatus.cs" />
+    <Compile Include="DTO\ServiceType.cs" />
+    <Compile Include="DTO\Shipment.cs" />
+    <Compile Include="DTO\ShippingMethod.cs" />
+    <Compile Include="DTO\TaiKhoan.cs" />
+    <Compile Include="DTO\Tax.cs" />
+    <Compile Include="DTO\TinhTrangVatTu.cs" />
+    <Compile Include="DTO\V6Account.cs" />
+    <Compile Include="DTO\V6Option.cs" />
+    <Compile Include="DTO\Ward.cs" />
+    <Compile Include="DTO\Warehouse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AccountType\AccountTypeListItem.cs" />
+    <Compile Include="ViewModels\AccountType\ModifiedAccountType.cs" />
+    <Compile Include="ViewModels\Account\AccountDetail.cs" />
+    <Compile Include="ViewModels\Account\AccountListItem.cs" />
+    <Compile Include="ViewModels\BankAccount\BankAccountDetail.cs" />
+    <Compile Include="ViewModels\BankAccount\BankAccountListItem.cs" />
+    <Compile Include="ViewModels\BoPhanSuDungCongCu\BoPhanSuDungCongCuItem.cs" />
+    <Compile Include="ViewModels\BoPhanSuDungCongCu\ModifiedBoPhanSuDungCongCu.cs" />
+    <Compile Include="ViewModels\BranchUnit\BranchUnitListItem.cs" />
+    <Compile Include="ViewModels\BranchUnit\BranchUnitListItemDetail.cs" />
+    <Compile Include="ViewModels\Capital\CapitalDetail.cs" />
+    <Compile Include="ViewModels\Capital\CapitalListItem.cs" />
+    <Compile Include="ViewModels\CustomerGroup\CustomerGroupDetail.cs" />
+    <Compile Include="ViewModels\CustomerGroup\CustomerGroupListItem.cs" />
+    <Compile Include="ViewModels\CustomerPriceGroup\CustomerPriceGroupDetail.cs" />
+    <Compile Include="ViewModels\CustomerPriceGroup\CustomerPriceGroupListItem.cs" />
+    <Compile Include="ViewModels\Customer\CustomerDetail.cs" />
+    <Compile Include="ViewModels\Customer\CustomerListItem.cs" />
+    <Compile Include="ViewModels\Department\DepartmentDetail.cs" />
+    <Compile Include="ViewModels\Department\DepartmentListItem.cs" />
+    <Compile Include="ViewModels\DiscountType\DiscountTypeDetail.cs" />
+    <Compile Include="ViewModels\DiscountType\DiscountTypeListItem.cs" />
+    <Compile Include="ViewModels\Discount\DiscountDetail.cs" />
+    <Compile Include="ViewModels\Discount\DiscountListItem.cs" />
+    <Compile Include="ViewModels\District\DistrictDetail.cs" />
+    <Compile Include="ViewModels\District\DistrictListItem.cs" />
+    <Compile Include="ViewModels\Employee\EmployeeDetail.cs" />
+    <Compile Include="ViewModels\Employee\EmployeeListItem.cs" />
+    <Compile Include="ViewModels\EquipmentChangedReason\EquipmentChangedReasonDetail.cs" />
+    <Compile Include="ViewModels\EquipmentChangedReason\EquipmentChangedReasonListItem.cs" />
+    <Compile Include="ViewModels\EquipmentType\EquipmentTypeDetails.cs" />
+    <Compile Include="ViewModels\EquipmentType\EquipmentTypeListItem.cs" />
+    <Compile Include="ViewModels\ForeignCurrency\ForeignCurrencyDetail.cs" />
+    <Compile Include="ViewModels\ForeignCurrency\ForeignCurrencyListItem.cs" />
+    <Compile Include="ViewModels\ForeignExchangeRate\ForeignExchangeRateDetail.cs" />
+    <Compile Include="ViewModels\ForeignExchangeRate\ForeignExchangeRateListItem.cs" />
+    <Compile Include="ViewModels\IndentureGroup\IndentureGroupDetail.cs" />
+    <Compile Include="ViewModels\IndentureGroup\IndentureGroupListItem.cs" />
+    <Compile Include="ViewModels\Indenture\IndentureDetail.cs" />
+    <Compile Include="ViewModels\Indenture\IndentureListItem.cs" />
+    <Compile Include="ViewModels\IntermediateProduct\IntermediateProductDetail.cs" />
+    <Compile Include="ViewModels\IntermediateProduct\IntermediateProductListItem.cs" />
+    <Compile Include="ViewModels\InvoiceTemplate\InvoiceTemplateDetail.cs" />
+    <Compile Include="ViewModels\InvoiceTemplate\InvoiceTemplateListItem.cs" />
+    <Compile Include="ViewModels\LoaiNhapXuat\LoaiNhapXuatItem.cs" />
+    <Compile Include="ViewModels\LoaiNhapXuat\ModifiedLoaiNhapXuat.cs" />
+    <Compile Include="ViewModels\Location\LocationDetail.cs" />
+    <Compile Include="ViewModels\Location\LocationListItem.cs" />
+    <Compile Include="ViewModels\LoginInfo\LoginInfoViewModel.cs" />
+    <Compile Include="ViewModels\MaterialGroup\MaterialGroupDetail.cs" />
+    <Compile Include="ViewModels\MaterialGroup\MaterialGroupListItem.cs" />
+    <Compile Include="ViewModels\MaterialPriceGroup\MaterialPriceGroupDetail.cs" />
+    <Compile Include="ViewModels\MaterialPriceGroup\MaterialPriceGroupListItem.cs" />
+    <Compile Include="ViewModels\MaterialType\MaterialTypeDetail.cs" />
+    <Compile Include="ViewModels\MaterialType\MaterialTypeItem.cs" />
+    <Compile Include="ViewModels\Material\MaterialDetail.cs" />
+    <Compile Include="ViewModels\Material\MaterialListItem.cs" />
+    <Compile Include="ViewModels\MeasurementConversion\MeasurementConversionDetail.cs" />
+    <Compile Include="ViewModels\MeasurementConversion\MeasurementConversionListItem.cs" />
+    <Compile Include="ViewModels\MeasurementUnit\MeasurementUnitDetail.cs" />
+    <Compile Include="ViewModels\MeasurementUnit\MeasurementUnitListItem.cs" />
+    <Compile Include="ViewModels\Merchandise\MerchandiseDetail.cs" />
+    <Compile Include="ViewModels\Merchandise\MerchandiseListItem.cs" />
+    <Compile Include="ViewModels\Nation\NationDetail.cs" />
+    <Compile Include="ViewModels\Nation\NationListItem.cs" />
+    <Compile Include="ViewModels\PaymentMethod\PaymentMethodDetail.cs" />
+    <Compile Include="ViewModels\PaymentMethod\PaymentMethodListItem.cs" />
+    <Compile Include="ViewModels\PhanNhomCongCu\ModifiedPhanNhomCongCu.cs" />
+    <Compile Include="ViewModels\PhanNhomCongCu\PhanNhomCongCuItem.cs" />
+    <Compile Include="ViewModels\PhanNhomTieuKhoan\ModifiedPhanNhomTieuKhoan.cs" />
+    <Compile Include="ViewModels\PhanNhomTieuKhoan\PhanNhomTieuKhoanItem.cs" />
+    <Compile Include="ViewModels\PriceCode\PriceCodeDetail.cs" />
+    <Compile Include="ViewModels\PriceCode\PriceCodeListItem.cs" />
+    <Compile Include="ViewModels\Province\ProvinceDetail.cs" />
+    <Compile Include="ViewModels\Province\ProvinceListItem.cs" />
+    <Compile Include="ViewModels\ServiceStatus\ServiceStatusDetail.cs" />
+    <Compile Include="ViewModels\ServiceStatus\ServiceStatusListItem.cs" />
+    <Compile Include="ViewModels\ServiceType\ServiceTypeDetail.cs" />
+    <Compile Include="ViewModels\ServiceType\ServiceTypeListItem.cs" />
+    <Compile Include="ViewModels\Shipment\ShipmentDetail.cs" />
+    <Compile Include="ViewModels\Shipment\ShipmentListItem.cs" />
+    <Compile Include="ViewModels\ShippingMethod\ShippingMethodDetail.cs" />
+    <Compile Include="ViewModels\ShippingMethod\ShippingMethodListItem.cs" />
+    <Compile Include="ViewModels\SubAccount\SubAccountDetail.cs" />
+    <Compile Include="ViewModels\SubAccount\SubAccountListItem.cs" />
+    <Compile Include="ViewModels\Tax\TaxDetail.cs" />
+    <Compile Include="ViewModels\Tax\TaxListItem.cs" />
+    <Compile Include="ViewModels\User\UserDetail.cs" />
+    <Compile Include="ViewModels\User\UserListItem.cs" />
+    <Compile Include="ViewModels\V6Option\V6OptionDetail.cs" />
+    <Compile Include="ViewModels\V6Option\V6OptionListItem.cs" />
+    <Compile Include="ViewModels\Ward\WardDetail.cs" />
+    <Compile Include="ViewModels\Ward\WardListItem.cs" />
+    <Compile Include="ViewModels\Warehouse\WarehouseDetail.cs" />
+    <Compile Include="ViewModels\Warehouse\WarehouseListItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\V6Models_Core\V6Models_Core.csproj">
+      <Project>{60febabd-51b1-44f9-be94-f753d1f85c04}</Project>
+      <Name>V6Models_Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

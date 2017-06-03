@@ -1,0 +1,79 @@
+﻿@using V6Soft.Common.Utils.StringExtensions;
+@using V6Soft.Web.Common.HttpExtensions;
+
+@using FieldIndex = V6Soft.Models.Core.Constants.DefinitionIndex.Field;
+
+@model V6Soft.Models.Core.PagedList<V6Soft.Models.Core.V6Model>
+
+@{
+    ViewBag.Title = "Customer Groups";
+    // TO DO: Should be loaded from user settings.
+    var columns =
+        new List<FieldIndex>() { FieldIndex.Code, FieldIndex.Name, FieldIndex.Status };
+}
+
+
+<aside id="page-settings"
+       data-title="@ViewBag.Title"
+       data-module-name="customer"
+       data-api-name="getgroups"></aside>
+
+<section ng-controller="dynModelCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                We're using <a class="alert-link" href="http://tablesorter.com/docs/">Tablesorter 2.0</a> for the sort function on the tables. Read the documentation for more customization options or feel free to use something else!
+            </div>
+        </div>
+    </div><!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add new</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <table data-v6-dynamic-table class="table table-bordered table-hover table-striped tablesorter">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="(index, name) in columns">
+                                {{name}} <i ng-if="col.isSortable" class="fa fa-sort"></i>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="items == null"><td colspan="{{columns.length}}">No data to display</td></tr>
+
+                        <tr ng-repeat="item in items" data-id="{{item.id}}">
+                            <td ng-repeat="(index, name) in columns">{{item.fields[index]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- /.col-lg-12 -->
+    </div><!-- /.row -->
+</section>
+
+
+@helper DeclareScripts()
+{
+    <script src="@Url.Content("~/Base/R/Scripts/Constants.js")"></script>
+    <script src="@Url.Content("~/Base/R/Scripts/DynamicModel/Model.js")"></script>
+    <script src="@Url.Content("~/Base/R/Scripts/DynamicModel/Service.js")"></script>
+    <script src="@Url.Content("~/Base/R/Scripts/DynamicModel/Controller.js")"></script>
+    <script src="@Url.Content("~/Base/R/Scripts/DynamicModel/TableDir.js")"></script>
+    <script src="@Url.Content("~/Base/R/Scripts/module_starter.js")"></script>
+}
+
+@if (Request.IsPjaxRequest())
+{
+    @DeclareScripts()
+}
+else
+{
+    @section scripts {
+        @DeclareScripts()
+    }
+}

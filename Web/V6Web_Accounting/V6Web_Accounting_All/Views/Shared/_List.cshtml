@@ -1,0 +1,76 @@
+﻿@using V6Soft.Common.Utils.StringExtensions;
+@using V6Soft.Web.Common.HttpExtensions;
+@using V6Soft.Web.Accounting.HtmlExtensions;
+
+@using FieldIndex = V6Soft.Models.Core.Constants.DefinitionIndex.Field;
+
+@model V6Soft.Web.Common.Models.DynamicTableModel
+
+@{
+    // TO DO: Should be loaded from user settings.
+    var columns = Model.Columns.ToString(",");
+}
+
+
+<aside id="page-settings"
+       data-title="@ViewBag.Title"
+       @foreach (var p in Model.Settings)
+       {
+           @Html.Raw(string.Format("data-{0}='{1}' ",
+                     p.Key, p.Value))
+       }
+       ></aside>
+@Html.BuildSettingsElement(Model.Settings)
+
+<section ng-controller="dynListCtrl">
+    @* // TODO: Notification module
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-info alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    We're using <a class="alert-link" href="http://tablesorter.com/docs/">Tablesorter 2.0</a> for the sort function on the tables. Read the documentation for more customization options or feel free to use something else!
+                </div>
+            </div>
+        </div><!-- /.row -->
+    *@
+    <div class="row">
+        <div class="col-lg-12">
+            <a type="button" class="btn btn-success"
+               href="@Model.Settings["add-url"]">
+                <i class="fa fa-plus"></i> Add new
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <table data-v6-dynamic-table
+                       data-column-fields="@columns.ToLower()"
+                       data-column-labels="@columns"
+                       class="table table-bordered table-hover table-striped tablesorter">
+                    <thead>
+                        <tr>
+                            @foreach (string colName in Model.Columns)
+                            {
+                                <th>
+                                    @colName <i class="fa fa-sort"></i>
+                                </th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="items == null"><td colspan="{{columns.length}}">No data to display</td></tr>
+
+                        <tr ng-repeat="item in items" data-id="{{item.id}}">
+                            <td ng-repeat="(index, name) in fields" ng-cloak>
+                                <a href="@Model.Settings["edit-url"]?uid={{item['uid']}}">
+                                    {{item[name]}}
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- /.col-lg-12 -->
+    </div><!-- /.row -->
+</section>

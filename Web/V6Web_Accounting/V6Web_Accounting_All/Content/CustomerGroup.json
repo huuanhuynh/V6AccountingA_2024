@@ -1,0 +1,9 @@
+﻿{
+  "items" : [
+    {"id" :"1", "cell" :["EDDD73E0-F2D7-E311-A867-74867A4FDBAD", "HNTN", "Khách hàng tiềm năng Hà Nội", "true"]},
+    {"id" :"2", "cell" :["EFDD73E0-F2D7-E311-A867-74867A4FDBAD", "HNKT", "Khách hàng thân thiết Hà Nội", "true"]},
+    {"id" :"3", "cell" :["EFDD73E0-F2D7-E311-A867-74867A4FDBAD", "HNTT", "Khách hàng tiềm năng Sài Gòn", "true"]},
+    {"id" :"4", "cell" :["F0DD73E0-F2D7-E311-A867-74867A4FDBAD", "SGTN", "Khách hàng khó tính Sài Gòn", "false"]}, 
+    {"id" :"5", "cell" :["F1DD73E0-F2D7-E311-A867-74867A4FDBAD", "SGKT", "Khách hàng thân thiết Sài Gòn", "true"]}
+  ]
+}

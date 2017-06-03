@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3C04822C-9747-40D1-A0F4-B538554DA81B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>V6Soft.Dealers.Accounting.Assistant</RootNamespace>
+    <AssemblyName>V6dlras</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    
+    
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="V6cmeh">
+      <HintPath>..\..\Common\V6Common_ExceptionHandling\obj\Release\V6cmeh.dll</HintPath>
+    </Reference>
+    <Reference Include="V6cmlg">
+      <HintPath>..\..\Common\V6Common_Logging\bin\Release\V6cmlg.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\V6Common_Utils\V6Common_Utils.csproj">
+      <Project>{6052e170-f511-47ac-b457-214e633c7d1c}</Project>
+      <Name>V6Common_Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\V6Models_Accounting\V6Models_Accounting.csproj">
+      <Project>{8fad678c-2fe7-4c59-a8a0-c8da26b2541c}</Project>
+      <Name>V6Models_Accounting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\V6Models_Core\V6Models_Core.csproj">
+      <Project>{60febabd-51b1-44f9-be94-f753d1f85c04}</Project>
+      <Name>V6Models_Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\V6Interfaces_Assistant\V6Interfaces_Assistant.csproj">
+      <Project>{9932e2bc-3abe-43d3-8f40-4a0427ccc9eb}</Project>
+      <Name>V6Interfaces_Assistant</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\V6Services_Common\V6Services_Common.csproj">
+      <Project>{316c4b01-a317-43d8-aae8-7b4067f8dca0}</Project>
+      <Name>V6Services_Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

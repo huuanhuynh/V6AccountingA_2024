@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{470AFD0C-9CC8-4CA1-8998-584A80775BD7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>V6ReportControls</RootNamespace>
+    <AssemblyName>V6ReportControls</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Web.Services\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataGridViewPrinter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FilterLineDateTimeNullable.cs" />
+    <Compile Include="FilterLineDateTimeNullable.Designer.cs">
+      <DependentUpon>FilterLineDateTimeNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterLineDateTimeTextBox.cs" />
+    <Compile Include="FilterLineDateTimeTextBox.Designer.cs">
+      <DependentUpon>FilterLineDateTimeTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterLineBase.cs" />
+    <Compile Include="FilterLineBase.Designer.cs">
+      <DependentUpon>FilterLineBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterLineNumberTextBox.cs" />
+    <Compile Include="FilterLineNumberTextBox.Designer.cs">
+      <DependentUpon>FilterLineNumberTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterLineVvarTextBox.cs" />
+    <Compile Include="FilterLineVvarTextBox.Designer.cs">
+      <DependentUpon>FilterLineVvarTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterLineDynamic.cs" />
+    <Compile Include="FilterLineDynamic.Designer.cs">
+      <DependentUpon>FilterLineDynamic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelFilter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FilterLineDateTimeNullable.resx">
+      <DependentUpon>FilterLineDateTimeNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterLineDateTimeTextBox.resx">
+      <DependentUpon>FilterLineDateTimeTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterLineBase.resx">
+      <DependentUpon>FilterLineBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterLineNumberTextBox.resx">
+      <DependentUpon>FilterLineNumberTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterLineVvarTextBox.resx">
+      <DependentUpon>FilterLineVvarTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterLineDynamic.resx">
+      <DependentUpon>FilterLineDynamic.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\V6Controls\V6Controls\V6Controls.csproj">
+      <Project>{311B600D-E1AE-4172-9CC6-1A24DBCD67C2}</Project>
+      <Name>V6Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\V6Tools\V6Tools\V6Tools.csproj">
+      <Project>{4f797e67-948d-4eec-acd7-758028e9166f}</Project>
+      <Name>V6Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\V6Init\V6Init.csproj">
+      <Project>{da123b95-f8bc-4fe0-bcc9-8a47d3da1cd3}</Project>
+      <Name>V6Init</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\V6SqlConnect\V6SqlConnect.csproj">
+      <Project>{170de623-8de2-411c-8a9e-0738b8f5bd15}</Project>
+      <Name>V6SqlConnect</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\V6Structs\V6Structs.csproj">
+      <Project>{910141A1-9FC5-4A44-B682-425100FE9023}</Project>
+      <Name>V6Structs</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ReportL\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

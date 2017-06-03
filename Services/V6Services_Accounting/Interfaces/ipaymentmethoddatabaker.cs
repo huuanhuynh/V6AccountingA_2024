@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using V6Soft.Common.ModelFactory;
+
+using FieldIndex = V6Soft.Models.Core.Constants.DefinitionIndex.Field;
+
+namespace V6Soft.Services.Accounting.Interfaces
+{
+    public interface IPaymentMethodDataBaker
+    {
+        bool AddPaymentMethod(DynamicModel addedPaymentMethod);
+        bool ModifyPaymentMethod(DynamicModel modifiedPaymentMethod);
+        bool RemovePaymentMethod(Guid uid);
+        DynamicModel GetPaymentMethod(Guid uid, IList<string> outputFields);
+
+        DynamicModel GetPaymentMethod(string code, IList<string> outputFields);
+
+        IList<DynamicModel> SearchPaymentMethod(IList<string> outputFields,
+            IList<SearchCriterion> criteria, ushort pageIndex, ushort pageSize,
+            out ulong total);
+    }
+}

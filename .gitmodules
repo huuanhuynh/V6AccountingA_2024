@@ -1,0 +1,3 @@
+[submodule "Web/MixERP_Accounting"]
+	path = Web/MixERP_Accounting
+	url = https://github.com/mixerp/mixerp.git

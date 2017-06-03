@@ -1,0 +1,437 @@
+﻿@{
+    Layout = null;
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel='stylesheet' href='@Url.Content("~/Scripts/lib/webix/webix.css")' type='text/css'>
+    <script src='@Url.Content("~/Scripts/core/jquery/jquery-2.1.0.min.js")' type='text/javascript' charset='utf-8'></script>
+    <script src='@Url.Content("~/Scripts/lib/webix//webix.js")' type='text/javascript' charset='utf-8'></script>
+</head>
+<body>
+<script type='text/javascript' charset='utf-8'>
+    webix.ui({
+        view: "window",
+        id: "winLookup",
+        width: 500,
+        position: "center",
+        modal: true,
+        head: {
+            view: "toolbar", cols: [
+                { view: "label", id: 'winLookupTitle', label: "Look up window" },
+                { view: "button", label: 'X', width: 50, align: 'right', click: "$$('winLookup').hide();" }
+            ]
+        },
+        body: {
+            view: "datatable",
+            columns:
+            [
+                { id: "rank", header: "", css: "rank", width: 50, sort: "int" },
+                { id: "title", header: "Film title", width: 200, sort: "string" },
+                { id: "year", header: "Released", width: 80, sort: "int" },
+                { id: "votes", header: "Votes", width: 100, sort: "int" }
+            ],
+            select: "row",
+            autoheight: true,
+            autowidth: true,
+            data: []
+        }
+    });
+    var fnPopupLookup = function (lookupKey, headerText, tableCols) {
+        var $$winLookup = $$('winLookup'),
+            $$lookupTable = $$winLookup.getBody();
+        //$$winLookup.getHead().setHTML(headerText);
+        $$('winLookupTitle').setHTML(headerText);
+        $$lookupTable.refreshColumns(tableCols);
+        //$$lookupTable.load(tableValUrl, 'json');
+        $$winLookup.show();
+    };
+    var gridDataTable =
+    {
+        view: 'datatable',
+        columns: [
+            { id: "rank", header: "", css: "rank" },
+            { id: "title", header: "Film title" },
+            { id: "year", header: "Released" },
+            { id: "votes", header: "Votes" }
+        ],
+        autoheight: true,
+        autowidth: true,
+        data:
+        [
+            { id: 1, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 2, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 3, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 4, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 5, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 5, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 6, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 8, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 9, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 10, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 11, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 12, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 13, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 14, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 15, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 16, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 17, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 18, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 19, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 20, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 21, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 22, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 21, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 22, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 23, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 24, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 25, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 26, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 27, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 28, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 29, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 30, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 31, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 32, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 33, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 34, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 },
+            { id: 35, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating: 9.2, rank: 1 },
+            { id: 36, title: "The Godfather", year: 1972, votes: 511495, rating: 9.2, rank: 2 }
+        ]
+    };
+    var gridCells =
+    [
+        // Tab 'Chi tiết'
+        {
+            header: 'Chi tiết',
+            body: {
+                rows:
+                [
+                    {
+                        view: 'form', scroll: true,
+                        height: 300,
+                        elements: [
+                            {
+                                cols: [
+                                    { view: 'text' },
+                                    { view: 'text' },
+                                    { view: 'text' },
+                                    { view: 'text' },
+                                    { view: 'text' },
+                                    { view: 'text' },
+                                    { view: 'text' },
+                                    { view: 'text' },
+                                    { view: 'text' },
+                                    { view: 'text' },
+                                    { view: 'text' }
+                                ]
+                            },
+                            gridDataTable
+                        ]
+                    }
+                ]
+            }
+        },
+        // Tab 'Khác'
+        {
+            header: 'Khác',
+            body: {}
+        }
+    ];
+    var mainForm = {
+        view: 'form',
+        width: '100%',
+        elements: [
+            {
+                rows: [
+                    // Row 'section 1'
+                    {
+                        cols: [
+                            {
+                                view: "fieldset",
+                                body:
+                                {
+                                    rows:
+                                    [
+                                        {
+                                            cols:
+                                            [
+                                                { id: "ch1", view: 'text', label: 'Số phiếu' },
+                                                { view: 'datepicker', label: 'Ngày hạch toán', width: 268, labelWidth: 115, disabled: false }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: null },
+                                                { view: 'datepicker', label: 'Ngày lập hóa đơn', labelWidth: 125, width: 277, disabled: false }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                view: "fieldset",
+                                body: {
+                                    rows:
+                                    [
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'text', label: 'Mã nx(tk nợ)', width: 300, labelWidth: 95 },
+                                                { view: 'text', label: 'BP/NV', width: 180, labelWidth: 60 },
+                                                { view: 'text', width: 110 }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'text', label: 'Người mua', width: 300, labelWidth: 95 },
+                                                { view: 'text', label: 'Số Seri', width: 180, labelWidth: 60 }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    // Row 'Ma khách hàng'
+                    {
+                        cols: [
+                            {
+                                view: "fieldset",
+                                body:
+                                {
+                                    rows: [
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'text', label: 'Mã KH', width: 250 },
+                                                { view: 'text', placeholder: "Kiểm tra mã khách" }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'text', label: 'Địa chỉ', placeholder: "Địa chỉ khách hàng" },
+                                                { view: 'text', width: 150 }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'text', label: 'Diễn giải' }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'text', label: 'HTTT' },
+                                                { view: 'text', label: 'Mã giá' },
+                                                { view: 'text', label: 'Hạn TT' }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                view: "fieldset",
+                                body: {
+                                    rows: [
+                                        {
+                                            cols: [
+                                                { view: 'label', label: 'Chiết khấu', width: 85 },
+                                                { view: 'checkbox', width: 25 },
+                                                { view: 'label', label: 'Chung' }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'select', options: ['VND', 'USD', 'ERO'], label: 'Tỷ giá', width: 185 },
+                                                { view: 'text', width: 150, disabled: true }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: null }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: null }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    //Row 'Tabs'    ('(..)')
+                    {
+                        view: 'tabview',
+                        id: 'tabview',
+                        cells: gridCells
+                    },
+                    //Row 'Footer'
+                    {
+                        cols: [
+                            {
+                                view: "fieldset",
+                                body:
+                                {
+                                    rows:
+                                    [
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'label', label: '0' },
+                                                { view: 'button', value: "Chức năng" },
+                                                { view: 'button', value: "Chọn PX" },
+                                                { view: 'text', disabled: true }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'checkbox', width: 25 },
+                                                { view: 'label', label: 'Sửa tiền' },
+                                                { view: 'label', label: 'Tiền vốn', width: 150 }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'checkbox', width: 25 },
+                                                { view: 'label', label: 'Chiết khấu', width: 75 },
+                                                { view: 'text', Width: 75, disabled: true },
+                                                { view: 'text', label: 'Tk ck', labelAlign: 'center', labelWidth: 50 },
+                                                { view: 'text', label: 'Tk gt', labelAlign: 'center', labelWidth: 50 }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'label', label: 'Mã thuế', width: 60, labelAlign: 'right' },
+                                                { view: 'text' },
+                                                { view: 'text', width: 140 },
+                                                { view: 'label', label: 'Tk thuế', width: 60 },
+                                                { view: 'checkbox', labelAlign: 'center', width: 25 },
+                                                { view: 'text', width: 85 },
+                                                { view: 'text', width: 85 }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'select', options: ['1 - Cập nhật tất cả'], label: 'Trạng thái', width: 300 },
+                                                { view: 'checkbox', width: 50},
+                                                { view: 'label', label: 'Thuế đầu vào' }
+                                            ]
+                                        },
+                                      
+                                    ]
+                                }
+                            },
+                            {
+                                view: "fieldset",
+                                body: {
+                                    rows:
+                                    [
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'text', label: 'Tiền hàng', width: 237, disabled: false },
+                                                { view: 'text', label: 'Tiền hàng', width: 237, disabled: false }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'text', label: 'Tiền giảm', width: 237 },
+                                                { view: 'text', label: 'Tiền giảm', width: 237 }
+                                            ]
+                                        },
+                                        {
+                                            cols: [
+                                                { view: 'label', label: 'Tiền ck', width: 60 },
+                                                { view: 'checkbox', width: 20 },
+                                                { view: 'label', label: 'Sửa', width: 30 },
+                                                { view: 'text', width: 130 },
+                                                { view: 'label', label: 'Tiền ck', width: 60 },
+                                                { view: 'checkbox', width: 20 },
+                                                { view: 'label', label: 'Sửa', width: 30 },
+                                                { view: 'text', width: 130 }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'label', label: 'Tiền thuế', width: 70 },
+                                                { view: 'checkbox', width: 20 },
+                                                { view: 'label', label: 'Sửa', width: 30 },
+                                                { view: 'text', width: 120 },
+                                                { view: 'label', label: 'Tiền thuế', width: 70 },
+                                                { view: 'checkbox', width: 20 },
+                                                { view: 'label', label: 'Sửa', width: 30 },
+                                                { view: 'text', width: 120 }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                { view: 'text', label: 'Tổng TT', width: 237 },
+                                                { view: 'text', label: 'Tổng TT', width: 237 }
+                                            ]
+                                        },
+                                        {
+                                            cols:
+                                            [
+                                                {
+                                                    view: null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    };
+</script>
+<script type='text/javascript' charset='utf-8'>
+    webix.ui({
+     //   responsive: true,
+        width: '100%',
+        type: 'wide', cols: [
+            { width: 5 }, // Padding left
+            {
+                type: 'wide', rows: [
+                    { height: 5 }, // Padding top
+                    {
+                        multi: true,
+                        view: 'accordion', type: 'wide',
+                        rows:
+                        [
+                            {
+                                view: 'accordion',
+                                type: 'wide',
+                                cols: [
+                                    { body: mainForm }
+                                ]
+                            }
+                        ]
+                    },
+                    { height: 5 } // Padding bottom
+                ]
+            },
+            { width: 5 } // Padding right
+        ]
+    });
+</script>
+</body>

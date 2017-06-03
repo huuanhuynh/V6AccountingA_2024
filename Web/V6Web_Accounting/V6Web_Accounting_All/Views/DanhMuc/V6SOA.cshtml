@@ -1,0 +1,820 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DanhMuc KhachHang</title>
+    <link href="~/Content/css/V6.css" rel="stylesheet" />
+    <link href="~/Content/css/V6WebControls.css" rel="stylesheet" />
+    <link href="~/Content/css/V6AutoCorrect.css" rel="stylesheet" />
+    <link href="~/Content/css/pure-min0.css" rel="stylesheet" />
+
+    <link href="~/Content/css/themes/jquery-ui/redmond/jquery-ui.theme.min.css" rel="stylesheet" />
+    <link href="~/Content/css/helper/jqGrid/ui.jqgrid.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/core/jquery/jquery-2.1.0.min.js"></script>
+    <script src="~/Scripts/lib/jquery-ui/jquery-ui-1.10.4.min.js"></script>
+    <script src="~/Scripts/lib/jqGrid/jquery.jqGrid.min.js"></script>
+    <script src="~/Scripts/lib/jqGrid/i18n/grid.locale-vi.js"></script>
+
+    <script src="~/Scripts/lib/CryptoJSv3.1.2/rollups/aes.js"></script>
+    <script src="~/Scripts/lib/CryptoJSv3.1.2/components/mode-ecb.js"></script>
+    <script src="~/Scripts/lib/CryptoJSv3.1.2/components/pad-ansix923.js"></script>
+
+    <script src="~/Scripts/app/controls/V6Functions.js"></script>
+    <script src="~/Scripts/app/controls/V6Tab.js"></script>
+    <script src="~/Scripts/app/controls/v6autocorrect.js"></script>
+
+    <link rel="shortcut icon" href="~/V6Soft.ico" />
+
+   
+
+    <style type="text/css">
+        #ui-datepicker-div {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 style="text-align:center" id="title">V6SOA</h1>
+        <form id="formMain" runat="server" action="V6SOA.aspx">
+
+            <div id="MAINFORM">
+                <div id="messageBox">
+                    <span id="messageText"></span>
+                </div>
+                <div id="statusBox">
+                    <span id="statusText"></span>
+                </div>
+
+                <div class="Blank"></div>
+                <div id="Amtab" class="tabsbutton">
+                    <span id="Span1" tabid="0" class="active-tab-btn">Thông tin chính</span>
+                    <span id="Span2" tabid="1">Thông tin thêm</span>
+                    <span id="Span3" tabid="2" title="Hướng dẫn sử dụng trang. Nếu bạn còn lúng túng trong cách sử dụng thì bạn nên xem qua trang hướng đẫn này!">Hướng dẫn</span>
+                </div>
+                <div id="Amtab_content" class="AM tab-content bluebackground" style="height:110px;">
+
+                    <div class="tab-pane show" id="Amtab_0">
+                        <div id="AMgeneral" class="size110" style="height:110px;">
+                            <div id="am11" style="width:250px;float:left;">
+                                <span>Số hóa đơn</span>      <input type="text" id="SO_CT" class="v6Star v6Uppercase" value="1" />       <br />
+                                <span>Số sê ri</span>    <input type="text" id="SO_SERI" class="v6Uppercase" value="SOA" />   <br />
+                                <span>Ngày hạch toán</span>    <input type="text" id="NGAY_CT" class="v6Date" />              <br />
+                                <span>Ngày lập hóa đơn</span>   <input type="text" id="NGAY_LCT" class="v6Date" />
+
+                            </div>
+
+                            <div id="am12" style="width:250px;float:left;">
+                                <span>Mã Khách</span>
+                                <input type="text" id="MA_KH" class="v6vVarTextBox v6Uppercase V6HAutoCorrect" field="ma_kh" seek="10" autocomplete="off"
+                                       vvar="ma_kh" looks="TEN_KH,txt__ma_kh__DIA_CHI,txt__ma_kh__MA_SO_THUE" />   <br />
+                                <span id="TEN_KH" style="width:250px;float:none;">TEN_KH</span>         <br />
+                                <span>Địa chỉ</span>    <input type="text" id="txt__ma_kh__DIA_CHI" readonly="readonly" />  <br />
+                                <span> Mã số thuế</span><input type="text" id="txt__ma_kh__MA_SO_THUE" readonly="readonly" /><br />
+                                <br />
+
+
+                            </div>
+
+                            <div id="am13" style="width:250px;float:left;">
+                                <span>Mã nhập xuất</span>   <input type="text" id="MA_NX" class="v6vVarTextBox v6Star v6Uppercase" vvar="ma_nx" /><br />
+                                <span>Ông bà</span> <input type="text" id="ONG_BA" />   <br />
+                                <span>DIA_CHI</span><input type="text" id="DIA_CHI" />  <br />
+
+                            </div>
+
+                            <div id="amh1" style="width:250px;height:80px;float:left;display:none;">
+                                <span>Ma_gd</span>
+                                <input type="hidden" id="MA_GD" class="v6Uppercase" value="1" />
+                                <span>Ma_ct</span>
+                                <input type="hidden" id="MA_CT" class="v6Uppercase" value="SOA" />
+                                <span>Ma_nk</span>
+                                <input type="hidden" id="MA_NK" class="v6Uppercase" value="SOA" />
+                                <span>Tài khoản công nợ</span>
+                                <input type="hidden" id="TK_CN" class="v6Uppercase" value="1" />
+
+                            </div>
+
+                            <div id="am14" style="width:250px;float:left;">
+                                <span>BP/NV</span>  <input type="text" id="MA_BP" class="v6vVarTextBox v6Uppercase" vvar="ma_bp" />  <br />
+                                <span>Nhân viên</span><input type="text" id="MA_NV" class="v6vVarTextBox v6Uppercase" vvar="MA_NV" /><br />
+                                <span>Loại ck</span>
+                                <input type="text" id="LOAI_CK" title="0 chi tiết, 1 chung" style="width:20px"
+                                       onkeypress="return LimitCharOnKeyPress(this, event, '01')"
+                                       onclick="ChangeCharOnClick(this,'01')" />
+                                <label style="position:absolute">0 chi tiết, 1 chung</label>    <br />
+                                <span>
+                                    Tỷ giá <input type="button" id="MA_NT" class="v6Uppercase" value="VND" style="width:50px;"
+                                                  onclick="GetALMA_NT(true)" />
+                                </span>
+                                <input type="text" id="TY_GIA" class="v6Number" decimalplace="2" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="Amtab_1">
+                        <div id="AMshowhide" class="size110" style="height:110px;">
+                            <div id="DivKhach" style="width:250px;float:left;">
+
+                                <span>Diễn giải:</span>
+                                <input type="text" id="DIEN_GIAI" />
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="Amtab_2" class="tab-pane" tabid="2">
+                        <div id="DivHD1" class="pagehelp"
+                             style="width:980px;height:610px;">
+                            <h2 style="text-align:center">Chưa có hướng dẫn</h2>
+                            <div style="text-align:justify">
+                                <h4>Tạo một bản dữ liệu (phiếu, chứng từ) mới.</h4>
+                                <p>
+                                    <span>&nbsp;&nbsp;&nbsp;</span>
+                                    Nếu mới mở trang, trên thanh công cụ ở đầu trang sẽ có nút "Tạo mới" đang hiển thị.
+                                    Hãy bấm vào đó.<br />
+                                    <span>&nbsp;&nbsp;&nbsp;</span>
+                                    Nếu đang làm một công việc dở dang và nút "Tạo mới"
+                                    chưa được hiển thị hãy hoàn thành công việc trước! (nhấn "Nhận" hoặc "Hủy"). Sau đó nút
+                                    "Tạo mới" sẽ hiển thị. Bấm "Tạo mới"!<br />
+                                    <span>&nbsp;&nbsp;&nbsp;</span>
+                                    Nếu không nằm trong các trường hợp trên, chương trình có thể đã có lỗi. Hãy tắt và mở lại trang!
+                                </p>
+                                <h4>Thêm một dòng mới.</h4>
+                                <p>
+                                    <span>&nbsp;&nbsp;&nbsp;</span>
+                                    Để thêm một dòng dữ liệu mới. Bạn hãy chọn tab "Thông tin chi tiết". Bên dưới
+                                    bảng dữ liệu bạn hãy bấm nút thêm. Một dòng mới sẽ được thêm vào bảng dữ liệu.
+                                    Bây giờ bạn hãy nhập các chi tiết vào các ô nhập trong vùng phát sáng màu vàng!
+                                </p>
+                                <h4>Tùm lum tùm la tùm bậy tùm bạ.</h4>
+                                <p>
+                                    <span>&nbsp;&nbsp;&nbsp;</span>
+                                    Tùm lum tùm la tùm bậy tùm bạ
+                                </p>
+                                <h4>Đóng hướng dẫn này để tiếp tục làm việc.</h4>
+                                <p>
+                                    <span>&nbsp;&nbsp;&nbsp;</span>
+                                    Chọn một thẻ khác ngay bên trái thẻ "Hướng dẫn" này.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ADgeneral" class="AD biggroup size75 borderconer bluebackground" style="height:80px;margin-top:4px;">
+                    <div id="ad11" style="float:left;width:200px;">
+                        <span>Mã vật tư</span>
+                        <input type="text" id="MA_VT" class="v6vVarTextBox v6Star v6Uppercase V6HAutoCorrect" autocomplete="off" field="ma_vt" seek="10" vvar="ma_vt" looks="lbl__ma_vt__TEN_VT,MA_KHO,DVT" />
+                        <br />
+                        <span>Tồn đầu</span>    <input type="text" id="TON_DAU" class="v6Number" readonly="readonly" /><br />
+
+
+                        <label id="lbl__ma_vt__TEN_VT" class="v6Lable" style="width:500px;"></label>
+
+                    </div>
+
+                    <div id="ad12" style="float:left;width:200px;">
+                        <span>ĐVT1</span> <input type="text" id="DVT1" />
+                        <input type="hidden" id="DVT" />
+                        <input type="hidden" id="HE_SO1" />
+
+                        <span>Mã kho I</span>
+                        <input type="text" id="MA_KHO_I" class="v6vVarTextBox v6Star v6Uppercase" vvar="ma_kho" looks="lbl__ma_kho__TEN_KHO" />
+                        <input type="hidden" id="MA_KHO" />
+                        <br />
+                        <span id="lbl__ma_kho__TEN_KHO" class="v6Lable" style="width:500px"></span>
+
+                    </div>
+
+                    <div id="ad13" style="width:200px;float:left;">
+                        <span>Số lượng 1</span>
+                        <input type="text" id="SO_LUONG1" value="0" class="v6Number" decimalplace="3" />
+                        <input type="hidden" id="SO_LUONG" value="0" /><br />
+
+                        <span>Mã giá</span>     <input type="text" id="MA_GIA" class="v6vVarTextBox V6HAutoCorrect v6Uppercase" vvar="ma_gia" />
+                    </div>
+
+                    <div id="ad14" style="width:200px;float:left;">
+                        <span id="lblGIA_NT21">Giá bán</span><input type="text" id="GIA_NT21" class="v6Number" decimal="," thousand=" " decimalplace="2" />
+                        <input type="hidden" id="GIA_NT2" />   <br />
+                        <span id="lblGIA21">Giá 21</span>   <input type="text" id="GIA21" class="v6Number v6ReadOnly" decsym="." />
+                        <input type="hidden" id="GIA2" />
+
+
+                    </div>
+
+                    <div id="ad15" style="width:200px;float:left;">
+                        <span id="lblTIEN_NT2">Tiền nt2</span><input type="text" id="TIEN_NT2" class="v6Number" /><br />
+                        <span id="lblTIEN2">Tiền 2</span>   <input type="text" id="TIEN2" class="v6Number" /> <br />
+                        <span style="width:auto;float:right;">&nbsp;chi tiết khác</span>
+                        <span id="ADClicker" onclick="ShowHide('ADshowhide','ADClicker')"
+                              style="width:auto;color:Blue;border-bottom-style:solid;cursor:pointer;float:right;">Hiện</span>
+                    </div>
+                </div>
+
+                <div id="DivADShowHideContainer" class="AD" style="width:224px;height:2px;margin:0px auto">
+
+                    <div id="ADshowhide" class="biggroup size110 adshowhide" style="display:none;border-width:2px;">
+                        <div id="ADhidetitle" style="width:100%!important;height:21px;background-color:#DDDDFF;margin-bottom:10px;float:none;">
+                            <span style="float:left;">Chi tiết hàng</span>
+                            <img src="Images/close_xp.PNG" alt="Đóng" style="cursor:pointer;float:right;margin:0px;"
+                                 onclick="Hide('ADshowhide','ADClicker')" />
+                        </div>
+
+                        <div id="ADhide" style="display:none;">
+                            <span>STT_REC 0</span>
+                            <input type="text" id="STT_REC0" readonly="readonly" />
+                        </div>
+
+                        <div id="DivAD3" style="float:left;width:250px;height:140px;">
+
+                            <span>Mã vị trí</span>
+                            <input type="text" id="MA_VITRI" class="v6vVarTextBox v6Uppercase" vvar="ma_vitri" looks="txt__ma_vitri__TEN_VITRI" />
+                            <br />
+                            <span>Tên vị trí</span>
+                            <input type="text" id="txt__ma_vitri__TEN_VITRI" readonly="readonly" />
+                            <span>Mã vụ việc i</span>
+                            <input type="text" id="MA_VV_I" class="v6vVarTextBox v6Uppercase" vvar="ma_vv" />
+                            <br />
+                            <span>Giá nt</span>
+                            <input type="text" id="GIA_NT" class="v6Number" />
+                            <br />
+
+
+
+
+                        </div>
+                        <div id="DivAD4Tien" style="float:left;width:250px;height:140px;">
+
+                            <span>SỐ KHUNG</span>
+                            <input type="text" id="SO_KHUNG" />
+                            <br />
+                            <span>SỐ MÁY</span>
+                            <input type="text" id="SO_MAY" />
+                            <br />
+
+                            <span>Giá 2 (hidden)</span>
+                            <br />
+
+
+                        </div>
+
+                        <br />
+                        <div id="DivAD5" style="float:left;width:250px;height:120px;">
+                            <span>Chiếc khấu nt</span><input type="text" id="CK_NT" class="v6Number" decimalplace="2" /><br />
+                            <span id="lblCK">Chiếc khấu</span><input type="text" id="CK" class="v6Number" decimalplace="2" readonly="readonly" /><br />
+                            <span>STT_REC_PN</span><input type="text" id="STT_REC_PN" /><br />
+                            <span>STT_REC0PN</span><input type="text" id="STT_REC0PN" />
+                        </div>
+                        <div id="DivAD6" style="float:left;width:250px;height:120px;">
+                            <span>THUE</span>
+                            <input type="text" id="THUE" class="v6Number" readonly="readonly" />
+                            <br />
+                            <span>THUE_NT</span>
+                            <input type="text" id="THUE_NT" class="v6Number" readonly="readonly" />
+                            <br />
+                            <span>Tài khoản vt</span>
+                            <input type="text" id="TK_VT" class="v6vVarTextBox" vvar="tk" />
+                            <br />
+                            <span>Tài khoản GV</span>
+                            <input type="text" id="TK_GV" class="v6vVarTextBox" vvar="tk" />
+                            <br />
+                            <span>Tài khoản DT</span>
+                            <input type="text" id="TK_DT" class="v6vVarTextBox" vvar="tk" />
+                            <br />
+                            <span>MA_TD_I</span>
+                            <input type="text" id="MA_TD_I" class="v6Uppercase" />
+
+                        </div>
+                        <br />
+                        <div id="DynamicContainer" style="width:600px;height:auto;overflow:auto;">
+                            <div id="DynamicContent" style="width:auto;">
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div id="huuantab1" class="tabsbutton">
+                    <span id="tbtn0" tabid="0" class="active-tab-btn">Thông tin chi tiết</span>
+                    <span id="tbtn1" tabid="1">Thu tiền</span>
+                    <span id="tbtn2" tabid="2">Thông tin khách hàng - xe</span>
+                    <span id="tbtn3" tabid="3">Thông tin viết hóa đơn</span>
+                </div>
+                <div id="huuantab1_content" class="AD tab-content bluebackground" style="height:200px;">
+                    <div class="tab-pane show" id="huuantab1_0" tabid="0">
+                        <div id="bodygrid" class="" style="clear:both">
+                            <div id="V6jsGridContainer" style="height:auto;width:auto;">
+                                <!--append in js-->
+                            </div>
+                            <input type="hidden" id="vVar" />
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="huuantab1_1" tabid="1">
+                        <div class="size110" style="width:900px;height:auto;">
+                            <div id="Div1" style="width:250px;height:auto;float:left;">
+                                <span>Ngày thu</span>
+                                <input type="text" id="NGAY_CT4" class="v6Date" />
+                                <br />
+                                <span>Cty trả góp</span>
+                                <input type="text" id="MA_KH3" class="v6vVarTextBox v6Uppercase" vvar="ma_kh" />
+                                <br />
+                                <span>Tiền trả góp</span>
+                                <input type="text" id="T_TIEN_NT5" class="v6Number" />
+                                <input type="hidden" id="T_TIEN5" />
+                                <br />
+                                <span>Còn nợ</span>
+                                <input type="text" id="SL_UD1" class="v6Number" />
+                                <br />
+                                <span>Ghi chú</span>
+                                <input type="text" id="GHI_CHU01" />
+                            </div>
+                            <div id="Div2" style="width:600px;height:auto;float:left;">
+
+                                <input type="text" id="MA_NT01" class="v6vVarTextBox" vvar="MA_NT" />
+                                <input type="text" id="TY_GIA01" class="v6Number" />
+                                <input type="text" id="TTIEN_NT01" class="v6Number" />
+                                <input type="text" id="TTIEN01" class="v6Number" />
+                                <br />
+
+                                <input type="text" id="MA_NT02" class="v6vVarTextBox" vvar="MA_NT" />
+                                <input type="text" id="TY_GIA02" class="v6Number" />
+                                <input type="text" id="TTIEN_NT02" class="v6Number" />
+                                <input type="text" id="TTIEN02" class="v6Number" />
+                                <br />
+
+                                <input type="text" id="MA_NT03" class="v6vVarTextBox" vvar="MA_NT" />
+                                <input type="text" id="TY_GIA03" class="v6Number" />
+                                <input type="text" id="TTIEN_NT03" class="v6Number" />
+                                <input type="text" id="TTIEN03" />
+                                <br />
+
+                                <input type="text" id="MA_NT04" class="v6vVarTextBox" vvar="MA_NT" />
+                                <input type="text" id="TY_GIA04" class="v6Number" />
+                                <input type="text" id="TTIEN_NT04" class="v6Number" />
+                                <input type="text" id="TTIEN04" class="v6Number" />
+                                <br />
+                                <span><b>Thu tiền:</b></span>
+                                <input type="text" id="T_TIEN_NT4" readonly="readonly" />
+                                <input type="text" id="T_TIEN4" readonly="readonly" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="huuantab1_2" tabid="2">
+                        <div class="size110" style="width:1000px;height:auto;">
+                            <div id="Div3" style="width:250px;height:auto;float:left;">
+                                <span>Số nhà</span>
+                                <input type="text" id="TT_SONHA" />
+                                <br />
+                                <span>Phường/xã</span>
+                                <input type="text" id="MA_PHUONG" />
+                                <br />
+                                <span>Quận/Huyện</span>
+                                <input type="text" id="MA_QUAN" />
+                                <br />
+                                <span>Tỉnh/Thành</span>
+                                <input type="text" id="MA_TINH" />
+                                <br />
+                                <span>Di động</span>
+                                <input type="text" id="DT_DD" />
+                                <br />
+                                <span>Điện thoại</span>
+                                <input type="text" id="DIEN_THOAI" />
+                                <br />
+                                <span>Ghi chú</span>
+                                <input type="text" id="GHI_CHU02" />
+
+                            </div>
+                            <div id="Div10" style="width:250px;height:auto;float:left;">
+                                <span>Ngày sinh</span>
+                                <input type="text" id="NGAY_SINH" />
+                                <br />
+                                <span>Năm sinh</span>
+                                <input type="text" id="NAM_SINH" />
+                                <br />
+                                <span>Giới tính</span>
+                                <input type="text" id="TT_NAMNU" />
+                                <br />
+                                <span>Số CMND</span>
+                                <input type="text" id="SO_CMND" />
+                                <br />
+                                <span>Ngày CMND</span>
+                                <input type="text" id="NGAY_CMND" />
+                                <br />
+                                <span>Nơi CMND</span>
+                                <input type="text" id="NOI_CMND" />
+
+                            </div>
+                            <div id="Div4" style="width:250px;height:auto;float:left;">
+                                <span>Số xe</span>
+                                <input type="text" id="TT_SOXE" />
+                                <br />
+                                <span>Số khung</span>
+                                <input type="text" id="TT_SOKHUNG" />
+                                <br />
+                                <span>Số máy</span>
+                                <input type="text" id="TT_SOMAY" />
+                                <br />
+                                <span>Ngày mua</span>
+                                <input type="text" id="TT_NGAYMUA" />
+                                <br />
+                                <span>Nơi mua</span>
+                                <input type="text" id="MA_TD3PH" /><input type="text" id="TT_NOIMUA" />
+                                <br />
+                                <span>Ngày giao</span>
+                                <input type="text" id="NGAY_GIAO" class="v6Date" />
+                                <br />
+
+                            </div>
+                            <div id="Div7" style="width:250px;height:auto;float:left;">
+                                <span>Loại xe</span>
+                                <input type="text" id="MA_SPPH" />
+                                <br />
+                                <span>Màu xe</span>
+                                <input type="text" id="MA_TD2PH" />
+                                <br />
+                                <span>Giờ vào ra</span><br />
+                                <input type="text" id="TT_GIOVAO" />
+                                <input type="text" id="TT_GIORA" />
+                                <br />
+                                <span>KM đi</span>
+                                <input type="text" id="TT_KMDI" />
+                                <br />
+                                <span>Lần kt</span>
+                                <input type="text" id="TT_LANKT" />
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="huuantab1_3" tabid="3">
+                        <div class="size110" style="width:900px;height:auto;">
+                            <span>Người mua</span>
+                            <input type="text" style="width:200px;" />
+                            <br />
+                            <span>Địa chỉ</span>
+                            <input type="text" style="width:250px;" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="AMgeneral2" class="AM biggroup size110 borderconer bluebackground" style="height:190px;margin-top:5px;">
+                    <div id="am21" style="width:250px;height:130px;float:left;">
+                        <span>Tổng số dòng</span>
+                        <input type="text" id="T_SO_DONG" class="v6Number" decimalplace="0" readonly="readonly" /><br />
+                        <span>Phần trăm ck <input type="checkbox" id="SUA_PTCK" name="SUA_PTCK" style="float:right;margin-top:7px;white-space:normal" /></span>
+                        <input type="text" id="PT_CK" readonly="readonly" /><br />
+                        <span>
+                            Mã thuế
+                            <input type="text" id="MA_THUE" class="v6vVarTextBox v6Uppercase" vvar="ma_thue" looks="THUE_SUAT,TK_THUE_CO"
+                                   style="width:45px;" />
+                        </span>
+                        <input type="text" id="THUE_SUAT" style="width:80px;" readonly="readonly"
+                               onkeypress="return LimitNumberKeyPress(event);" />&nbsp;%
+                        <br />
+                        <span style="width:60px;">Trạng thái</span>
+                        <input type="text" id="KIEU_POST" value="1" title="1: CN, 0: Chưa CN, 2: Chỉ CN vào kho"
+                               style="width:20px;"
+                               onclick="ChangeCharOnClick(this,'102')"
+                               onkeypress="return LimitCharOnKeyPress(this, event, '102')" />&nbsp; 1: CN, 0: Chưa CN, 2: Chỉ CN vào kho
+
+                    </div>
+                    <div id="am22" style="width:240px;height:130px;float:left;">
+                        <span>Tổng số lượng</span>
+                        <input type="text" id="T_SO_LUONG" class="v6Number" decimalplace="2" readonly="readonly" />
+                        <br />
+                        <span>Tk ck</span>
+                        <input type="text" id="TK_CK" class="v6vVarTextBox" vvar="tk" />
+                        <br />
+                        <span>Tk gt</span>
+                        <input type="text" id="TK_GG" class="v6vVarTextBox" vvar="tk" />
+                        <br />
+                        <span>Tk thuế nợ <input type="checkbox" id="Checkbox1" style="float:right;margin-top:7px;white-space:normal" /></span>
+                        <input type="text" id="TK_THUE_NO" />
+                        <br />
+                        <span>Tk thuế có</span>
+                        <input type="text" id="TK_THUE_CO" />
+                        <br />
+
+                    </div>
+                    <div id="DivTTien" class="tien-input number-group" style="width:380px;height:150px;float:right;">
+                        <div style="float:left;">
+                            <span>Tiền hàng</span><input type="text" id="T_TIEN_NT2" class="v6Number" decimalplace="2" readonly="readonly" /><br />
+                            <span>Tiền giảm</span><input type="text" id="T_GG_NT" class="v6Number" decimalplace="2" /><br />
+                            <span>Tiền ck <input type="checkbox" id="SUA_CK" name="SUA_CK" style="float:right;margin-top:7px;white-space:normal" /></span>
+                            <input type="text" id="T_CK_NT" class="v6Number" decimalplace="2" readonly="readonly" /><br />
+                            <span>Tiền thuế <input type="checkbox" id="SUA_THUE" name="SUA_THUE" style="float:right;margin-top:7px;white-space:normal" /></span>
+                            <input type="text" id="T_THUE_NT" class="v6Number" decimalplace="2" readonly="readonly" /><br />
+                            <span>Tổng tt nt</span>
+                            <input type="text" id="T_TT_NT" class="v6Number" decimalplace="2" readonly="readonly"
+                                   onkeypress="return LimitNumberKeyPress(event);" />
+                        </div>
+
+                        <div id="DivTienVND" style="float:left;display:block;margin-left:9px;">
+                            <input type="text" id="T_TIEN2" class="v6Number" decimalplace="2" readonly="readonly" /><br />
+                            <input type="text" id="T_GG" class="v6Number" decimalplace="2" readonly="readonly" /><br />
+                            <input type="text" id="T_CK" class="v6Number" decimalplace="2" readonly="readonly" /><br />
+                            <input type="text" id="T_THUE" class="v6Number" decimalplace="2" readonly="readonly" /><br />
+                            <input type="text" id="T_TT" class="v6Number" decimalplace="2" readonly="readonly" />
+                        </div>
+                    </div>
+                    <div style="width:990px;height:35px;float:left;">
+                        <span id="DOCSOTIEN_NT" style="width:890px;float:right;text-align:right;"></span>
+                        <span id="DOCSOTIEN_VND" style="width:890px;float:right;text-align:right;color:#888888;"></span>
+                    </div>
+                </div>
+
+                <div id="CommandButton" class="CommandButton">
+                    <div id="ButtonContainer">
+                        <input type="button" id="btnLuu" value="Nhận" onclick="LuuPhieu();" disabled="disabled" />
+                        <input type="button" id="btnMoi" value="Tạo mới" onclick="TaoMoi();" disabled="disabled" />
+                        <input type="button" id="btnCopy" value="Sao chép" disabled="disabled" />
+                        <input type="button" id="btnIn" value="In" disabled="disabled" />
+                        <input type="button" id="btnHuy" value="Hủy" disabled="disabled" />
+                        <input type="button" id="btnSua" value="Sửa" disabled="disabled" />
+                        <input type="button" id="btnXoa" value="Xóa" disabled="disabled" />
+
+                        <input type="button" id="btnXemT" value="<" disabled="disabled" />
+                        <input type="button" id="btnXem" value="Xem" disabled="disabled" />
+                        <input type="button" id="btnXemS" value=">" disabled="disabled" />
+                        <input type="button" id="btnTim" value="Tìm" disabled="disabled" />
+
+                        <input type="button" id="btnTest" value="Test"
+                               onclick="ShowDialog('SelectBox')" />
+                    </div>
+                </div>
+
+                <div id="DivHidden" class="biggroup" style="width:900px;height:200px;border:1px solid #000;display:none;">
+                    <div id="DivSTT_REC" style="width:250px;height:150px;float:left;">
+                        <span>STT_REC</span>
+                        <asp:TextBox ID="STT_REC" ClientIDMode="Static" runat="server" ReadOnly="true"></asp:TextBox>
+                        <br />
+                        <span>_STT_REC</span>
+                        <asp:TextBox ID="_STT_REC" ClientIDMode="Static" runat="server" ReadOnly="true"></asp:TextBox>
+                    </div>
+                    <div id="HIDDEN" style="width:250px;height:150px;float:left;">
+                        <!-- Thay type="text" bằng type="text" -->
+                        USER_ID0
+                        <input type="text" id="USER_ID0" name="USER_ID0" clientidmode="Static" value="" runat="server" readonly="readonly" />
+                        <br />
+                        USER_ID2
+                        <input type="text" id="USER_ID2" name="USER_ID2" clientidmode="Static" value="" runat="server" readonly="readonly" />
+                        <br />
+                        <input type="text" id="USER_ID2_TEMP" name="USER_ID2_TEMP" clientidmode="Static" value="" runat="server" readonly="readonly" />
+                        <!--
+                    Lưu ý: Các giá trị DATE2, TIME2, USER_ID2 là hiện tại chứ không phải giá trị trong csdl!
+                    -->
+                        <input type="text" id="DATE0" name="DATE0" clientidmode="Static" value="" runat="server" readonly="readonly" />
+                        <input type="text" id="TIME0" name="TIME0" clientidmode="Static" value="" runat="server" readonly="readonly" />
+                    </div>
+                </div>
+
+
+            </div>
+        </form>
+
+        <form id="PopupForm" action="V6SOA.aspx">
+
+            <div id="mbox" class="V6Dialog" style="width:400px;height:auto; background-color:White;padding:5px;">
+                <div id="Div6" class="V6DialogHeader" style="width:400px!important;height:21px;background-color:#DDDDFF;margin-bottom:10px;float:none;">
+                    <span id="mboxTitle" style="float:left;">Thông báo</span>
+                    <img src="Images/close_xp.PNG" alt="Đóng" style="cursor:pointer;float:right;margin:0px;"
+                         class="V6DialogClose" />
+                </div>
+                <div id="Div8" class="bd">
+                    <div id="Div5" class="size110" style="width:400px;height:auto;">
+                        <table width="100%">
+                            <tr>
+                                <td>
+                                    <div id="mboxText" style="width:360px;height:auto;">Câu thông báo đặt vào đây.</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    <input type="button" class="V6DialogClose" value="Đóng" />
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="SelectBox" class="V6Dialog" style="width:400px;height:auto; background-color:White;padding:5px;">
+                <div id="Div11" class="V6DialogHeader" style="width:400px!important;height:21px;background-color:#DDDDFF;margin-bottom:10px;float:none;">
+                    <span id="SelectTitle" style="float:left;">Lựa chọn</span>
+                    <img src="Images/close_xp.PNG" alt="Đóng" class="V6DialogClose" style="cursor:pointer;float:right;margin:0px;"
+                         onclick="SelectBoxCancel()" />
+                </div>
+                <div id="Div20">
+                    <input type="hidden" id="SelectInput" />
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <script type="text/javascript" language="javascript">
+                                    function SelectListDbClick() {
+                                        SelectBoxOk();
+                                    }
+                                    function SelectBoxCancel() {
+                                        var cid = gV("SelectInput");
+                                        gE(cid).focus();
+                                    }
+                                    function SelectListKeyDown(event) {
+                                        var code = null;
+                                        if (window.event) { code = window.event.keyCode; } else { code = event.which; }
+                                        //var character = String.fromCharCode(code);
+                                        if (code == 13) {
+                                            SelectBoxOk();
+                                        }
+                                        if (code == 27) {
+                                            CloseDialog("SelectBox");
+                                            SelectBoxCancel();
+                                        }
+
+                                        if (event.preventDefault) {
+                                            event.preventDefault();
+                                        } else {
+                                            event.returnValue = false;
+                                        }
+                                    }
+                                </script>
+                                <select id="SelectList" onkeydown="SelectListKeyDown(event);" ondblclick="SelectListDbClick()" size="6" style="width:394px;">
+                                    <option value="HOP">Hộp</option>
+                                    <option>text2</option>
+                                    <option>text3</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <input type="button" class="" value="Nhận" onclick="SelectBoxOk()" />
+                                <input type="button" class="V6DialogClose" value="Hủy" onclick="SelectBoxCancel()" />
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+        </form>
+
+
+        <form id="TimForm" action="V6SOA.aspx">
+            <div id="TimPopup">
+                <div id="TimDialog" class="V6Dialog" style="width:800px;height:auto;background-color:White;padding:5px;" ">
+            <div id=" header2" class="V6DialogHeader" style="width:800px!important;height:21px;background-color:#DDDDFF;margin-bottom:10px;float:none;">
+                    <span style="float:left;">Lọc chứng từ</span>
+                    <img src="Images/close_xp.PNG" alt="Đóng" class="V6DialogClose" style="cursor:pointer;float:right;margin:0px;" />
+                </div>
+                <div id="TimBody" class="bd">
+                    <div id="TimFilter" class="size110" style="width:800px;height:auto;">
+                        <fieldset id="Fieldset1" title="TimG1" class="size110">
+                            <legend>Thông tin chung</legend>
+                            <div id="Div12" style="width:260px;height:auto;float:left;">
+                                <span>Từ ngày</span><input type="text" id="txtTimTUNGAY" class="v6Date" /><br />
+                                <span>Đến ngày</span><input type="text" id="txtTimDENNGAY" class="v6Date" /><br />
+
+                                <span>Ctừ từ số</span><input type="text" id="txtCT_TUSO" /> ><br />
+                                <span>đến số</span><input type="text" id="txtCT_DENSO" /><br />
+
+                                <span>Mã bp</span> <input type="text" id="txtTimMA_BP" class="V6HAutoCorrect" vvar="ma_bp" /><br />
+                                <span>Mã Đvị</span> <input type="text" id="txtTimMA_DVCS" class="V6HAutoCorrect" vvar="ma_dvcs" /><br />
+                            </div>
+                            <div id="Div13" style="width:255px;height:auto;float:left;">
+                                <span>Số ct</span> <input type="text" id="txtTimSO_CT" /> <br />
+                                <span>TK nợ</span> <input type="text" id="txtTimTK_THUE_NO" class="V6HAutoCorrect" vvar="TK" /> <br />
+                                <span>TK thuế</span> <input type="text" id="txtTimTK_THUE_CO" class="V6HAutoCorrect" vvar="TK" /> <br />
+                                <span>Mã thuế</span> <input type="text" id="txtTimMA_THUE" class="V6HAutoCorrect" vvar="TK" /><br />
+
+                                <span>Mã t.toán</span> <input type="text" id="txtTimMA_HTTT" class="V6HAutoCorrect" vvar="ma_httt" /> <br />
+                                <span>Mã n.viên</span> <input type="text" id="txtTimMA_NVIEN" class="V6HAutoCorrect" vvar="ma_nvien" /> <br />
+
+                            </div>
+                            <div id="Div9" style="width:255px;height:auto;float:left;">
+                                <span>Số tiền từ</span> <input type="text" id="txtTimTIEN_TU" class="v6Number" decimalplace="2" /> <br />
+                                <span>đến</span> <input type="text" id="txtTimTIEN_DEN" class="v6Number" /> <br />
+
+                                <span>Loại ĐC</span> <input type="text" id="txtTimLOAI_DC" /> <br />
+                                <span>Loai CT</span> <input type="text" id="txtTimLOAI_CT0" />
+                                <span>Mã kh</span> <input type="text" id="txtTimMA_KH" class="V6HAutoCorrect" vvar="ma_kh" /><br />
+                                <span>Người mua</span> <input type="text" id="txtTimONG_BA" /> <br />
+                            </div>
+                            <div id="Div16" style="width:770px;height:auto;float:left;">
+                                <span>Diễn giải chứa</span> <input type="text" id="txtTimDIEN_GIAI" style="width:650px;" />
+                            </div>
+                        </fieldset>
+                        <fieldset id="Fieldset2" title="TimG2" class="size110">
+                            <legend>Thông tin chi tiết</legend>
+                            <div id="Div14" style="width:260px;height:auto;float:left;">
+                                <span>Mã kho</span><input type="text" id="txtTimMA_KHO_I" class="v6vVarTextBox V6HAutoCorrect" vvar="MA_KHO" /><br />
+                                <span>Mã vật tư</span><input type="text" id="txtTimMA_VT" /><br />
+
+                                <span>Mã vụ việc</span><input type="text" id="txtTimMA_VV_I" class="V6HAutoCorrect" vvar="ma_vv" /><br />
+                                <span>Mã hợp đồng</span><input type="text" id="txtTimMA_HD" class="V6HAutoCorrect" vvar="ma_hd" /><br />
+                                <span>Mã khế ước</span><input type="text" id="txtTimMA_KU" class="V6HAutoCorrect" vvar="ma_ku" /><br />
+                                <span>Mã vị trí</span><input type="text" id="txtTimMA_VITRI" class="V6HAutoCorrect" vvar="ma_vitri" />
+
+                            </div>
+                            <div id="Div15" style="width:255px;height:auto;float:left;">
+                                <span>TK doanh thu</span><input type="text" id="txtTimKT_DT" /><br />
+                                <span>TK giá vốn</span><input type="text" id="txtTimTK_GV" /><br />
+                                <span>TK vật tư</span><input type="text" id="txtTimTK_VT" /><br />
+
+                                <span>Mã phí</span><input type="text" id="txtTimMA_PHI" class="V6HAutoCorrect" vvar="ma_phi" /><br />
+                                <span>Mã BPHT</span><input type="text" id="txtTimMA_BPHT" class="V6HAutoCorrect" vvar="ma_bpht" /><br />
+                                <span>Mã sp</span><input type="text" id="txtTimMA_SP" />
+                            </div>
+                            <div id="Div17" style="width:255px;height:auto;float:left;">
+                                <span>Mã lô</span><input type="text" id="txtTimMA_LO" class="V6HAutoCorrect" vvar="ma_lo" /><br />
+                                <span>Mã tự ĐN</span><input type="text" id="txtTimMA_TD1" /><br />
+                                <span>Mã tự ĐN 2</span><input type="text" id="txtTimMA_TD2" /><br />
+                                <span>Mã tự ĐN 3</span><input type="text" id="txtTimMA_TD3" /><br />
+
+                                <span>Số khung</span><input type="text" id="txtTimSO_KHUNG" /><br />
+                                <span>Số máy</span><input type="text" id="txtTimSO_MAY" />
+                            </div>
+                        </fieldset>
+                        <fieldset id="Fieldset3" class="size110">
+                            <legend>Tùy chọn</legend>
+                            <div id="Div18" style="width:260px;height:auto;float:left;">
+                                <span>Lọc theo nsd</span>
+                                <input type="text" id="txtTimNSD"
+                                       onkeypress="return LimitCharOnKeyPress(this, event, '01')"
+                                       onclick="ChangeCharOnClick(this,'01')" /><br />
+                                <span>Trạng thái</span>
+                                <input type="text" id="txtTimSTATUS" title="*:tất cả, 1:CN, 0:Chưa CN, 2:Chỉ CN vào kho"
+                                       onkeypress="return LimitCharOnKeyPress(this, event, '01')"
+                                       onclick="ChangeCharOnClick(this,'01')" />
+                            </div>
+                            <div id="Div19" style="width:260px;height:auto;float:left;">
+                                <span>Nhóm vật tư 1</span><input type="text" id="txtTimNH_VT1"
+                                                                 class="v6vVarTextBox" vvar="nh_vt" /><br />
+                                <span>Nhóm vật tư 2</span><input type="text" id="txtTimNH_VT2"
+                                                                 class="v6vVarTextBox" vvar="nh_vt" /><br />
+                                <span>Nhóm vật tư 3</span><input type="text" id="txtTimNH_VT3"
+                                                                 class="v6vVarTextBox" vvar="nh_vt" />
+                            </div>
+                        </fieldset>
+
+                        <div id="TimFilterButton">
+                            <input type="button" id="btnTimNhan" value="Nhận" />
+                            <input type="button" id="btnTimHuy" class="V6DialogClose" value="Hủy" />
+                        </div>
+                    </div>
+
+                    <div id="TimGrid" style="width:800px;display:none;">
+
+                        <div id="TimGrid1C">
+                            <table id="TimGrid1"></table>
+                            <div id="TimPager1"></div>
+                        </div>
+
+                        <div id="TimGridButton">
+                            <input type="button" id="btnTimNhanG" value="Nhận" />
+                            <input type="button" id="btnTimHuyG" value="Lọc lại" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </form>
+        
+    </div>
+    
+    <script src="~/Scripts/lib/jquery.mousewheel.js"></script>
+
+    <script src="~/Scripts/app/controls/V6ControlsEvent.js"></script>
+    <script src="~/Scripts/app/controls/V6Popup.js"></script>
+    
+    <script src="~/Scripts/app/controls/V6Number.js"></script>
+    <script src="~/Scripts/app/controls/V6WebControls.js"></script>
+
+
+    <script src="~/Scripts/app/controls/DocSo.js"></script>
+    <script src="~/Scripts/app/controls/V6SOA.js"></script>
+
+    <script type="text/javascript" language="javascript">
+        loadGridView("AD81", 'V6jsGridContainer', 'V6DetailGrid', 'abcckControlID', true);
+
+    </script>
+
+    <script src="~/Scripts/app/AddEditModel.js"></script>
+
+    
+</body>
+</html>

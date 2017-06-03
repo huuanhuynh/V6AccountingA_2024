@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{702C3620-05F7-4CB9-A964-32AE64649EDB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tools</RootNamespace>
+    <AssemblyName>Tools</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>VSoft.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormConvertTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConvertTable.Designer.cs">
+      <DependentUpon>FormConvertTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDBF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDBF.Designer.cs">
+      <DependentUpon>FormDBF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModelHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModelHelp.Designer.cs">
+      <DependentUpon>FormModelHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormHuuanEditText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHuuanEditText.Designer.cs">
+      <DependentUpon>FormHuuanEditText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModelHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModelHelper.Designer.cs">
+      <DependentUpon>FormModelHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormZip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormZip.Designer.cs">
+      <DependentUpon>FormZip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAllMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAllMain.Designer.cs">
+      <DependentUpon>FormAllMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolExportSqlToExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolExportSqlToExcel.Designer.cs">
+      <DependentUpon>ToolExportSqlToExcel.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormAllMain.resx">
+      <DependentUpon>FormAllMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConvertTable.resx">
+      <DependentUpon>FormConvertTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDBF.resx">
+      <DependentUpon>FormDBF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModelHelp.resx">
+      <DependentUpon>FormModelHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHuuanEditText.resx">
+      <DependentUpon>FormHuuanEditText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModelHelper.resx">
+      <DependentUpon>FormModelHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormZip.resx">
+      <DependentUpon>FormZip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="ToolExportSqlToExcel.resx">
+      <DependentUpon>ToolExportSqlToExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\V6Tools\V6Tools.csproj">
+      <Project>{4f797e67-948d-4eec-acd7-758028e9166f}</Project>
+      <Name>V6Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="VSoft.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="V6AccountingBusiness" GeneratedClassName="app">
+  <Profiles />
+  <Settings>
+    <Setting Name="SettingA" Type="System.String" Scope="User">
+      <Value Profile="(Default)">A</Value>
+    </Setting>
+    <Setting Name="SettingB" Type="System.String" Scope="User">
+      <Value Profile="(Default)">B</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

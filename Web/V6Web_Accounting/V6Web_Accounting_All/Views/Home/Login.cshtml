@@ -1,0 +1,47 @@
+﻿@{
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel='stylesheet' href='@Url.Content("~/Scripts/lib/webix/webix.css")' type='text/css'>
+    <script src='@Url.Content("~/Scripts/core/jquery/jquery-2.1.0.min.js")' type='text/javascript' charset='utf-8'></script>
+    <script src='@Url.Content("~/Scripts/lib/webix//webix.js")' type='text/javascript' charset='utf-8'></script>
+    <link href="~/Content/css/Login.css" rel="stylesheet" />
+</head>
+<body>
+ <div class="container">
+      <div id="login">
+        <h2><span class="fontawesome-lock"></span>Sign In</h2>
+          <div data-view="form" class="formlogin" data-width="550">
+                  <div data-view="text" data-label="User name" data-width="300"></div>
+                  <div data-view="text" data-label="Password"  data-width="300"></div>
+                  <div data-view="combo" data-label="Agrent" data-width="300">
+                      <config stack="options">
+                          <li id="1">Item 1</li>
+                          <li id="2">Item 2</li>
+                      </config>
+                  </div>
+                  <div data-view="combo" data-label="Module" data-value="Accouting" data-width="300">
+                      <config stack="options">
+                          <li id="1">Accouting</li>
+                          <li id="2">Item 2</li>
+                      </config>
+                  </div>
+                  <div data-view="combo" data-label="Language" data-value="Vietnamse" data-width="300">
+                      <config stack="options">
+                          <li id="1">Vietnamse</li>
+                          <li id="2">Item 2</li>
+                      </config>
+                  </div>
+                  <div data-view="cols">
+                      <div data-view="button" data-value="Login" data-width="260"></div>
+                      <div data-view="button" data-value="Cancel" data-width="260"></div>
+                      </div>
+
+          </div>
+      </div> <!-- end login -->
+    </div>
+</body>
+<script type="text/javascript" charset="utf-8">
+    webix.ready(function () {webix.markup.init()});
+</script>

@@ -1,0 +1,75 @@
+﻿
+<table id="tblData"></table>
+<div id="tblDataPager"></div>
+
+<script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $("#tblData").jqGrid({
+                url: '@Url.Content("~/Customer/GroupApi/GetGroups")',
+                mtype: "GET",
+                datatype: "json",
+                page: 1,
+                jsonReader: {
+                    repeatitems: false,
+                    root: function (data) { return V6Util.unsecureArray(data.items); },
+                    page: function (data) { return data.pageIndex; }, // current page
+                    total: function (data) { return Math.ceil(data.total / data.pageSize); }, // number of pages
+                    records: function (data) { return data.total; } // number of records
+                },
+                colModel: [
+                    {
+                        key: true,
+                        name: 'uid',
+                        hidden: true
+                    },
+                    {
+                        label: "Mã",
+                        //sorttype: 'integer',
+                        name: 'code',
+                        width: 75
+                    },
+                    {
+                        label: "Tên",
+                        sorttype: 'string',
+                        name: 'name',
+                        width: 100
+                    },
+                    {
+                        label: "Trạng thái",
+                        sorttype: 'string',
+                        name: 'status',
+                        width: 50
+                    }
+                ],
+				//loadonce: true,
+				viewrecords: true,
+                width: 950,
+                height: 250,
+                rowNum: 10,
+                multiselect: false,
+                pager: "#tblDataPager",
+                ondblClickRow: function (id) {
+                    window.location.href = "/accounting/Customer/Group/Edit?uid=" + id;
+                },
+            });
+			// activate the toolbar searching
+            $('#tblData').jqGrid('filterToolbar'); // Uncomment to enable filtering
+            $('#tblData').jqGrid('navGrid', "#tblDataPager", {
+                search: false, // show search button on the toolbar
+                add: false,
+                edit: false,
+                del: true,
+                refresh: true
+            },
+            {},
+            {},
+            // for deleting
+            {
+                url: '@Url.Content("~/Customer/GroupApi/TrashCustomerGroup")',
+            });
+
+        });
+
+</script>

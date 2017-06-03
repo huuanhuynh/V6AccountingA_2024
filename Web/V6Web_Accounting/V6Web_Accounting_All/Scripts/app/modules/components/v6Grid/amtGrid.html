@@ -1,0 +1,29 @@
+﻿<div ng-transclude></div>
+<div k-header-template
+     class="k-header k-grid-toolbar">
+    <select kendo-multi-select-box
+            k-ng-model="selectedColumnTitles"
+            k-options="selectedColumnsOptions"
+            k-on-change="onSelectedColumnsChange()"
+            class="column-selector pull-left"
+            ng-disabled="!onShowSelectedColumnsOptions()" k-rebind="rebind"></select>
+    <div class="pull-right">
+        <span ng-repeat="command in commands">
+
+            <a class="k-button pull-right btn-default" ui-sref="{{command.route}}" ng-bind="command.title" ng-if="command.type ==='route' && !command.isDisabled"></a>
+
+            <a class="k-button pull-right btn-default" ng-bind="command.title" ng-if="command.type ==='route' && command.isDisabled" ng-disabled="command.isDisabled"></a>
+
+            <button class="k-button pull-right btn-default" ng-click="customCommandClick(command.onClick)" ng-bind="command.title" ng-if="command.type==='click'" ng-disabled="command.isDisabled"></button>
+
+            <button class="k-button pull-right btn-default" ng-click="$eval(command.gridClick)" ng-bind="command.title" ng-if="command.type==='gridClick'" ng-disabled="command.isDisabled"></button>
+        </span>
+    </div>
+</div>
+<kendo-grid id="grid" k-options="options" class="amt-grid" k-rebind="rebind">
+
+</kendo-grid>
+<div ng-hide="hasData">
+    No records
+</div>
+<span id="popupNotification"></span>

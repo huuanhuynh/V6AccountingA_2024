@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1CDE2EA5-A0F2-4136-8DC3-1511233FF0EE}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>V6Soft.Web.Accounting</RootNamespace>
+    <AssemblyName>V6Web_Accounting</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    
+    
+    <WebGreaseLibPath>..\..\..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="V6cmlg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd5f0561c9cfe1ae, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Common\V6Common_Logging\bin\Release\V6cmlg.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\..\..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application\MenuModule.cs" />
+    <Compile Include="Application\ModuleRegistrator.cs" />
+    <Compile Include="Application\V6AccountingWebApplication.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Configs\BundleConfig.cs" />
+    <Compile Include="Constants\Names.cs" />
+    <Compile Include="Constants\UrlPatterns.cs" />
+    <Compile Include="Constants\Views.cs" />
+    <Compile Include="Controllers\AssistantController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MenuApiController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extensions\HtmlExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configs\FilterConfig.cs" />
+    <Compile Include="Configs\RouteConfig.cs" />
+    <Compile Include="Configs\WebApiConfig.cs" />
+    <Content Include="Content\css\layout\structure.css">
+      <DependentUpon>structure.scss</DependentUpon>
+    </Content>
+    <Content Include="Global.asax" />
+    <Content Include="packages.config" />
+    <Content Include="Scripts\global\2_app.js" />
+    <Content Include="Scripts\modules\Menu\controllers\MenuTreeCtrl.js" />
+    <Content Include="Scripts\modules\Menu\controllers\SubMenuItemsCtrl.js" />
+    <Content Include="Scripts\modules\Menu\models\MenuItem.js" />
+    <Content Include="Scripts\modules\Menu\directives\MenuTreeDir.js" />
+    <Content Include="Scripts\global\1_Constants.js" />
+    <Content Include="Scripts\kickstarter.js" />
+    <Content Include="Scripts\modules\Menu\module_starter.js" />
+    <Content Include="Scripts\modules\Menu\services\MenuSvc.js" />
+    <Content Include="Scripts\modules\Menu\directives\SubMenuItemsDir.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Assistant\DistrictList.cshtml" />
+    <Content Include="Views\Assistant\ProvinceList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\" />
+    <Folder Include="Content\css\themes\" />
+    <Folder Include="Content\images\icons\" />
+    <Folder Include="mod\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\V6Common_ModelFactory\V6Common_ModelFactory.csproj">
+      <Project>{ba518e0d-956c-4125-81ce-6c0ca86c2786}</Project>
+      <Name>V6Common_ModelFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\V6Common_Utils\V6Common_Utils.csproj">
+      <Project>{6052e170-f511-47ac-b457-214e633c7d1c}</Project>
+      <Name>V6Common_Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\V6Models_Accounting\V6Models_Accounting.csproj">
+      <Project>{8fad678c-2fe7-4c59-a8a0-c8da26b2541c}</Project>
+      <Name>V6Models_Accounting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\V6Models_Core\V6Models_Core.csproj">
+      <Project>{60febabd-51b1-44f9-be94-f753d1f85c04}</Project>
+      <Name>V6Models_Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Lib\MvcCodeRouting\src\MvcCodeRouting.Web.Http.WebHost\MvcCodeRouting.Web.Http.WebHost.csproj">
+      <Project>{cc6f1081-86c9-4b3f-a6eb-b6003dce83a4}</Project>
+      <Name>MvcCodeRouting.Web.Http.WebHost</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Lib\MvcCodeRouting\src\MvcCodeRouting.Web.Http\MvcCodeRouting.Web.Http.csproj">
+      <Project>{1047c724-56f3-4791-9b07-eee2cb5c45b7}</Project>
+      <Name>MvcCodeRouting.Web.Http</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Lib\MvcCodeRouting\src\MvcCodeRouting\MvcCodeRouting.csproj">
+      <Project>{94d52e7e-6949-439f-80ed-212daa85db6c}</Project>
+      <Name>MvcCodeRouting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\V6Interfaces_Assistant\V6Interfaces_Assistant.csproj">
+      <Project>{9932e2bc-3abe-43d3-8f40-4a0427ccc9eb}</Project>
+      <Name>V6Interfaces_Assistant</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\V6Interfaces_Customer\V6Interfaces_Customer.csproj">
+      <Project>{91838479-3903-479f-85e8-7f70c170e8e2}</Project>
+      <Name>V6Interfaces_Customer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\V6ServiceClients_Assistant\V6ServiceClients_Assistant.csproj">
+      <Project>{3c04822c-9747-40d1-a0f4-b538554da81b}</Project>
+      <Name>V6ServiceClients_Assistant</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\V6ServiceClients_Customer\V6ServiceClients_Customer.csproj">
+      <Project>{7a03587f-0b2f-483b-9d76-66fa6fc68323}</Project>
+      <Name>V6ServiceClients_Customer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\V6Services_Common\V6Services_Common.csproj">
+      <Project>{316c4b01-a317-43d8-aae8-7b4067f8dca0}</Project>
+      <Name>V6Services_Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\V6Web_Common\V6Web_Common.csproj">
+      <Project>{7d7f610e-c0f5-4f12-a30b-2a89cd616a74}</Project>
+      <Name>V6Web_Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\V6Web_Mod_Base\V6Web_Mod_Base.csproj">
+      <Project>{ac8471e8-9ca3-4c1a-b169-aaf3d21fada5}</Project>
+      <Name>V6Web_Mod_Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\V6Web_Mod_Customer\V6Web_Mod_Customer.csproj">
+      <Project>{014b958e-bb5e-40a5-898f-4bb2b5d96c78}</Project>
+      <Name>V6Web_Mod_Customer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\V6Web_Mod_Resources\V6Web_Mod_Resources.csproj">
+      <Project>{4b378c69-0439-43b9-95c0-0c44201496d8}</Project>
+      <Name>V6Web_Mod_Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Navigation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Menu\ViewSubItems.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Breadcrumbs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\layout\structure.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Template\SubMenuPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Scripts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Template\Menu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Template\DynamicList.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6559</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/Accounting</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

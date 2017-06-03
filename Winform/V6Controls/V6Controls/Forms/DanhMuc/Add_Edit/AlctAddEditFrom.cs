@@ -1,0 +1,74 @@
+﻿using System;
+using System.Windows.Forms;
+using V6AccountingBusiness.Invoices;
+using V6Init;
+using V6Structs;
+using V6Tools;
+
+namespace V6Controls.Forms.DanhMuc.Add_Edit
+{
+    public partial class AlctAddEditFrom : AddEditControlVirtual
+    {
+        private bool _ready;
+        public AlctAddEditFrom()
+        {
+            InitializeComponent();
+        }
+
+        private void KhachHangFrom_Load(object sender, EventArgs e)
+        {
+            LoadAlpost();
+            txtMaCt.Focus();
+            _ready = true;
+        }
+
+        public override void DoBeforeEdit()
+        {
+            //var v = Categories.IsExistOneCode_List("ABKH,ARA00,ARI70", "Ma_kh", txtMaCt.Text);
+            //txtMaCt.Enabled = !v;
+        }
+
+        public override void ValidateData()
+        {
+            if (Mode != V6Mode.Add) return;
+            if(txtMaCt.Text.Trim()=="") throw new Exception("Chưa nhập mã chứng từ!");
+        }
+
+        private void LoadAlpost()
+        {
+            try
+            {
+                var mact = txtMaCt.Text;
+                var Invoice = new V6InvoiceBase(mact);
+                cboKieuPost.ValueMember = "kieu_post";
+                cboKieuPost.DisplayMember = V6Setting.Language == "V" ? "Ten_post" : "Ten_post2";
+                cboKieuPost.DataSource = Invoice.AlPost;
+                cboKieuPost.ValueMember = "kieu_post";
+                cboKieuPost.DisplayMember = V6Setting.Language == "V" ? "Ten_post" : "Ten_post2";
+
+                cboKieuPost.SelectedValue = txtTrangThaiNgamDinh.Text.Trim();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".LoadAlpost " + ex.Message);
+            }
+        }
+
+        private void cboKieuPost_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_ready)
+                {
+                    txtTrangThaiNgamDinh.Text = cboKieuPost.SelectedValue.ToString().Trim();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".cboKieuPost_SelectedIndexChanged " + ex.Message, Application.ProductName);
+            }
+        }
+  
+
+        }
+}

@@ -1,0 +1,27 @@
+﻿{
+  "schema": {
+    "namespace": "V6Soft.Accounting.Farmers.EnFw.Entities",
+    "xmlns": "http://schemas.microsoft.com/ado/2009/11/edm",
+    "entityType": [
+      {
+        "name": "Abbpkh",
+        "property": [
+          {
+            "name": "nam",
+            "type": "Edm.Decimal",
+            "precision": "18",
+            "scale": "2",
+            "nullable": "false"
+          }
+        ],
+        "key": {
+          "propertyRef": [
+            {
+              "name": "nam"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

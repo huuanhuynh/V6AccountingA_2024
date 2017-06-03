@@ -1,0 +1,116 @@
+﻿@using V6Soft.Common.Utils.StringExtensions;
+@using V6Soft.Web.Common.HtmlExtensions;
+@using V6Soft.Web.Accounting.HtmlExtensions;
+@using V6Soft.Web.Common.Models;
+
+@using HtmlElemNames = V6Soft.Web.Common.Constants.Names.HtmlElements;
+@using FieldIndex = V6Soft.Models.Core.Constants.DefinitionIndex.Field;
+@using F = V6Soft.Common.ModelFactory.Constants.DefinitionName.Fields;
+
+
+@model V6Soft.Web.Common.Models.DynamicFormViewModel
+
+@{
+    ViewBag.Title = "Customer Groups";
+    int i = 0;
+}
+
+<section ng-controller="dynFormCtrl">
+    @Html.BuildSettingsElement(Model.Settings)
+
+    <button class="btn btn-primary" ng-disabled="frmEdit.$invalid"
+            ng-click="submitForm(frmEdit.$valid)">
+        Save
+    </button>
+    <hr />
+    @{
+        DynamicFieldViewModel field;
+        string formId = "frmEdit", fieldId;
+    }
+    <form role="tabpanel" class="form-horizontal ng-pristine ng-valid ng-valid-required" id="@formId" name="@formId" novalidate="">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#Basic" aria-controls="profile" role="tab" data-toggle="tab">Basic</a>
+            </li>
+            <li role="presentation">
+                <a href="#Advanced" aria-controls="profile" role="tab" data-toggle="tab">Advanced</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <section class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="Basic">
+                <input id="frmEdit:UID" name="uid" ng-init="dynModel.uid='eddd73e0-f2d7-e311-a867-74867a4fdbad'" ng-model="dynModel.uid" type="hidden" value="eddd73e0-f2d7-e311-a867-74867a4fdbad" class="ng-pristine ng-valid">
+                @{
+                    field = Model[F.Code];
+                    fieldId = Html.FieldId(formId, field);
+                }
+                <div class="form-group" ng-class="@Html.ErrorClass(field)">
+                    <label for="@fieldId" class="col-sm-2 control-label @Html.RequiredClass(field)">
+                        @field.Label
+                    </label>
+                    <div class="col-sm-5">
+                        @Html.BuildHtmlElement("input", field,
+                            new { id = fieldId, @class = "form-control", type = "text" }
+                        )
+                    </div>
+                </div>
+
+                @{
+                    field = Model[F.Name];
+                    fieldId = Html.FieldId(formId, field);
+                }
+                <div class="form-group" ng-class="@Html.ErrorClass(field)">
+                    <label for="@fieldId" class="col-sm-2 control-label @Html.RequiredClass(field)">
+                        @field.Label
+                    </label>
+                    <div class="col-sm-5">
+                        @Html.BuildHtmlElement("input", field,
+                            new { id = fieldId, @class = "form-control", type = "text" }
+                        )
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="Advanced">
+                @{
+                    field = Model[F.Status];
+                    fieldId = Html.FieldId(formId, field);
+                }
+                <div class="form-group" ng-class="@Html.ErrorClass(field)">
+                    <label for="@fieldId" class="col-sm-2 control-label @Html.RequiredClass(field)">
+                        @field.Label
+                    </label>
+                    <div class="col-sm-5">
+                        @Html.BuildHtmlElement("input", field, new { id = fieldId, type = "checkbox" },
+                            "<div class=\"checkbox\">", "</div>"
+                        )
+                    </div>
+                </div>
+
+                @{
+                    field = Model[F.Note];
+                    fieldId = Html.FieldId(formId, field);
+                }
+                <div class="form-group" ng-class="@Html.ErrorClass(field)">
+                    <label for="@fieldId" class="col-sm-2 control-label @Html.RequiredClass(field)">
+                        @field.Label
+                    </label>
+                    <div class="col-sm-5">
+                        @Html.BuildHtmlElement("textarea", field,
+                            new { id = fieldId, @class = "form-control" }
+                        )
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </form>
+
+    <hr />
+    <button class="btn btn-primary" ng-disabled="frmEdit.$invalid"
+            ng-click="submitForm(frmEdit.$valid)">
+        Save
+    </button>
+</section>

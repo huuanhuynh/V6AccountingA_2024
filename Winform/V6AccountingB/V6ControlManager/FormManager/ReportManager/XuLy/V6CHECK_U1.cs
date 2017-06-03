@@ -1,0 +1,268 @@
+﻿using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Reflection;
+using System.Threading;
+using System.Windows.Forms;
+using V6AccountingBusiness;
+using V6ControlManager.FormManager.ChungTuManager;
+using V6Controls;
+using V6Controls.Forms;
+using V6Init;
+using V6SqlConnect;
+using V6Tools;
+using Timer = System.Windows.Forms.Timer;
+
+namespace V6ControlManager.FormManager.ReportManager.XuLy
+{
+    public partial class V6CHECK_U1 : XuLyBase0
+    {
+        public V6CHECK_U1()
+        {
+            InitializeComponent();
+        }
+
+        public V6CHECK_U1(string itemId, string program, string reportProcedure, string reportFile, string text)
+            : base(itemId, program, reportProcedure, reportFile, text, true)
+        {
+            InitializeComponent();
+            MyInit();
+        }
+
+        private void MyInit()
+        {
+            try
+            {
+                dateNgay_ct1.Value = dateNgay_ct1.Value.AddMonths(-1);
+                LoadCombobox();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".Init", ex);
+            }
+        }
+
+        public override void SetStatus2Text()
+        {
+            V6ControlFormHelper.SetStatusText2("Kiểm tra số liệu. F3 sửa");
+        }
+
+        private void LoadCombobox()
+        {
+            try
+            {
+                cboProcList.ValueMember = "proc";
+                cboProcList.DisplayMember = V6Setting.IsVietnamese ? "ten" : "ten2";
+                cboProcList.DataSource = V6BusinessHelper.SelectTable("V6Check_Data");
+                cboProcList.ValueMember = "proc";
+                cboProcList.DisplayMember = V6Setting.IsVietnamese ? "ten" : "ten2";
+                cboProcList.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        
+        protected override void Nhan()
+        {
+            try
+            {
+                if (_executing)
+                {
+                    V6ControlFormHelper.ShowMainMessage(V6Text.Executing);
+                    return;
+                }
+
+                Lock();
+                tabControl1.TabPages.Clear();
+
+                CheckForIllegalCrossThreadCalls = false;
+                Thread T = new Thread(ExecProc);
+                T.IsBackground = true;
+                T.Start();
+
+                Timer timerRunAll = new Timer();
+                timerRunAll.Interval = 100;
+                timerRunAll.Tick += timerRunAll_Tick;
+                _success = false;
+                _executing = true;
+                timerRunAll.Start();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".Nhan", ex);
+            }
+        }
+
+        private string _error = "";
+        private string _selectedProc = "";
+        private void ExecProc()
+        {
+            try
+            {
+                _message = "";
+                if (string.IsNullOrEmpty(_selectedProc))
+                {
+                    throw new Exception("Empty Proc.");
+                }
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("Ngay_ct1", dateNgay_ct1.Value.Date), 
+                    new SqlParameter("Ngay_ct2", dateNgay_ct2.Value.Date), 
+                };
+                //_ds = V6BusinessHelper.ExecuteProcedure("V6CHECK_U1", plist);
+                _ds = SqlHelper.ExecuteDataset(DatabaseConfig.ConnectionString, CommandType.StoredProcedure,
+                    _selectedProc, 600, plist);
+
+                _executing = false;
+                _success = true;
+            }
+            catch (Exception ex)
+            {
+                _error = _message + " " + ex.Message;
+                _success = false;
+                _executing = false;
+            }
+        }
+
+        private void Lock()
+        {
+            dateNgay_ct1.ReadOnly = true;
+            dateNgay_ct2.ReadOnly = true;
+            cboProcList.Enabled = false;
+        }
+
+        private void UnLock()
+        {
+            dateNgay_ct1.ReadOnly = false;
+            dateNgay_ct2.ReadOnly = false;
+            cboProcList.Enabled = true;
+        }
+
+        private void timerRunAll_Tick(object sender, EventArgs e)
+        {
+            if (_success)
+            {
+                ((Timer)sender).Stop();
+                btnNhan.Image = btnNhanImage;
+                ii = 0;
+                UnLock();
+                try
+                {
+                    ViewDataSet();
+                    DoAfterExecuteSuccess();
+                    V6ControlFormHelper.ShowMainMessage(lblTen.Text + " " + V6Text.Finish + " " + _message);
+
+                    _success = false;
+                }
+                catch (Exception ex)
+                {
+                    ((Timer)sender).Stop();
+                    _success = false;
+                    this.ShowErrorException(GetType() + ".Timer_Success", ex);
+                }
+            }
+            else if (_executing)
+            {
+                btnNhan.Image = waitingImages.Images[ii];
+                ii++;
+                if (ii >= waitingImages.Images.Count) ii = 0;
+            }
+            else
+            {
+                ((Timer)sender).Stop();
+                btnNhan.Image = btnNhanImage;
+                this.ShowErrorMessage(_error);
+                UnLock();
+            }
+        }
+
+        private void ViewDataSet()
+        {
+            try
+            {
+                if (_ds == null || _ds.Tables.Count == 0) return;
+                for (int i = 0; i < _ds.Tables.Count; i++)
+                {
+                    var table = _ds.Tables[i];
+                    //if (string.IsNullOrEmpty(table.TableName))
+                    table.TableName = "Data" + (1+i);
+                    AddTab(table);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        private void AddTab(DataTable table)
+        {
+            TabPage tab = new TabPage(table.TableName);
+            var grid = new V6ColorDataGridView();
+            grid.Dock = DockStyle.Fill;
+            grid.AllowUserToAddRows = false;
+            grid.AllowUserToDeleteRows = false;
+            grid.ReadOnly = true;
+
+            tab.Controls.Add(grid);
+            grid.DataSource = table;
+            tabControl1.TabPages.Add(tab);
+            grid.KeyDown += grid_KeyDown;
+        }
+
+        void grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            DataGridView grid = sender as DataGridView;
+            if (grid != null && grid.CurrentRow != null)
+            {
+                if (e.KeyCode == Keys.F3)
+                {
+                    var selectedMaCt = grid.CurrentRow.Cells["Ma_ct"].Value.ToString();
+                    var selectedSttRec = grid.CurrentRow.Cells["Stt_rec"].Value.ToString();
+                    if (selectedMaCt == "INF")// phiếu nhập điều chuyển
+                    {
+                        selectedMaCt = "IXB"; // phiếu xuất điều chuyển
+                        selectedSttRec = selectedSttRec.Left(10) + selectedMaCt;
+                    }
+
+                    var alctRow = V6BusinessHelper.Select("Alct", "ten_ct,ten_ct2,m_phdbf,m_ctdbf",
+                                "ma_CT = '" + selectedMaCt + "'").Data.Rows[0];
+                    var amName = alctRow["m_phdbf"].ToString().Trim();
+                    var adName = alctRow["m_ctdbf"].ToString().Trim();
+                    var fText = (alctRow[V6Setting.IsVietnamese ? "ten_ct" : "ten_ct2"] ?? "").ToString().Trim();
+                    if (amName != "" && adName != "")
+                    {
+                        var f = new V6Form
+                        {
+                            WindowState = FormWindowState.Maximized,
+                            Text = fText
+                        };
+
+                        var hoaDonForm = ChungTuF3.GetChungTuControl(selectedMaCt, Name, selectedSttRec);
+                        hoaDonForm.Dock = DockStyle.Fill;
+                        f.Controls.Add(hoaDonForm);
+
+                        f.ShowDialog();
+                    }
+                }
+            }
+        }
+
+        private void cboProcList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _selectedProc = cboProcList.SelectedValue.ToString().Trim();
+                lblTen.Text = cboProcList.Text;
+            }
+            catch (Exception ex)
+            {
+                _selectedProc = null;
+                this.WriteExLog(GetType() + ".cboProcList_Select", ex);
+            }
+        }
+    }
+}

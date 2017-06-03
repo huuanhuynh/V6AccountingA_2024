@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2ABB1E81-90C6-4F9E-B1E6-1867E9EB69DF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>V6Soft.Services.Assistant</RootNamespace>
+    <AssemblyName>V6AssistantSvc</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    
+    
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
+    <Reference Include="V6cmlg">
+      <HintPath>..\..\Common\V6Common_Logging\bin\Release\V6cmlg.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssistantWindowsService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Constants\ServiceConfig.cs" />
+    <Compile Include="DataBakers\AssistantDataBaker.cs" />
+    <Compile Include="DataFarmers\AssistantDataFarmer.cs" />
+    <Compile Include="Extensions\Translator.cs" />
+    <Compile Include="Interfaces\IAssistantDataBaker.cs" />
+    <Compile Include="Interfaces\IAssistantDataFarmer.cs" />
+    <Compile Include="Interfaces\IAssistantService.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceImpl\AssistantService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\V6Common_ModelFactory\V6Common_ModelFactory.csproj">
+      <Project>{ba518e0d-956c-4125-81ce-6c0ca86c2786}</Project>
+      <Name>V6Common_ModelFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\V6Common_Utils\V6Common_Utils.csproj">
+      <Project>{6052e170-f511-47ac-b457-214e633c7d1c}</Project>
+      <Name>V6Common_Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\V6Models_Accounting\V6Models_Accounting.csproj">
+      <Project>{8fad678c-2fe7-4c59-a8a0-c8da26b2541c}</Project>
+      <Name>V6Models_Accounting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\V6Models_Core\V6Models_Core.csproj">
+      <Project>{60febabd-51b1-44f9-be94-f753d1f85c04}</Project>
+      <Name>V6Models_Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\V6Services_Common\V6Services_Common.csproj">
+      <Project>{316c4b01-a317-43d8-aae8-7b4067f8dca0}</Project>
+      <Name>V6Services_Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\V6Services_WcfCommon\V6Services_WcfCommon.csproj">
+      <Project>{e6bd041c-6e61-4442-bc93-982258310dba}</Project>
+      <Name>V6Services_WcfCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

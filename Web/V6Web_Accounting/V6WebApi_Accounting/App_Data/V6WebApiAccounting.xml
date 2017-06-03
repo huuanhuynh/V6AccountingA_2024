@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>V6WebApi_Accounting</name>
+    </assembly>
+    <members>
+        <member name="T:V6Soft.WebApi.Accounting.App_Start.BreezeWebApiConfig">
+            <summary>
+             Inserts the Breeze Web API controller route at the front of all Web API routes
+            </summary>
+            <remarks>
+             This class is discovered and run during startup; see
+             http://blogs.msdn.com/b/davidebb/archive/2010/10/11/light-up-your-nupacks-with-startup-code-and-webactivator.aspx
+            </remarks>
+        </member>
+        <member name="M:V6Soft.WebApi.Accounting.Controllers.Invoices.InvoiceBaseController.GetTyGia(System.String,System.String)">
+            <summary>
+            Lấy tỷ giá ngoại tệ.
+            </summary>
+            <param name="mact"></param>
+            <param name="ngayct">Định dạng dd/MM/yyyy</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

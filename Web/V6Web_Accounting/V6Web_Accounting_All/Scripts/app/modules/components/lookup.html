@@ -1,0 +1,27 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <button class="btn btn-success" ng-click="model.onClick()"><i class="glyphicon glyphicon-search"></i></button>
+    </div>
+</div>
+
+<form class="form-horizontal"></form>
+<div class="form-group">
+    <label class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+        <p class="form-control-static">{{model.selectedItem.name}}</p>
+    </div>
+    <label class="col-sm-2 control-label">Age</label>
+    <div class="col-sm-10">
+        <p class="form-control-static">{{model.selectedItem.age}}</p>
+    </div>
+    <label class="col-sm-2 control-label">Birthday</label>
+    <div class="col-sm-10">
+        <p class="form-control-static">{{model.selectedItem.birthday | date: 'dd-MM-yyyy'}}</p>
+    </div>
+    <label class="col-sm-2 control-label">Gender</label>
+    <div class="col-sm-10">
+        <p class="form-control-static">{{model.selectedItem.gender}}</p>
+    </div>
+
+</div>
+

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6Server", "V6Server\V6Server.csproj", "{196EC71D-0EB1-4490-B33E-F6D4C00F1CB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6Init", "..\V6AccountingB\V6Init\V6Init.csproj", "{DA123B95-F8BC-4FE0-BCC9-8A47D3DA1CD3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{196EC71D-0EB1-4490-B33E-F6D4C00F1CB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{196EC71D-0EB1-4490-B33E-F6D4C00F1CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{196EC71D-0EB1-4490-B33E-F6D4C00F1CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{196EC71D-0EB1-4490-B33E-F6D4C00F1CB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA123B95-F8BC-4FE0-BCC9-8A47D3DA1CD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA123B95-F8BC-4FE0-BCC9-8A47D3DA1CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA123B95-F8BC-4FE0-BCC9-8A47D3DA1CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA123B95-F8BC-4FE0-BCC9-8A47D3DA1CD3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

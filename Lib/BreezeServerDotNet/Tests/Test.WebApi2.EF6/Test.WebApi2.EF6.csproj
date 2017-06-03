@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CE268289-FBB0-4362-9C11-FA26645D1D69}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Test_WebApi2</RootNamespace>
+    <AssemblyName>Test_WebApi2.EF6</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>2</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.OData, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.OData.5.2.2\lib\net45\System.Web.Http.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <HintPath>..\..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\BreezeConfig.cs" />
+    <Compile Include="Controllers\MetadataTestController.cs" />
+    <Compile Include="Controllers\InheritanceController.cs" />
+    <Compile Include="Controllers\NorthwindIBDoNotSaveContext.cs" />
+    <Compile Include="Controllers\NorthwindNHConfig.cs" />
+    <Compile Include="Controllers\NorthwindNHContext.cs" />
+    <Compile Include="Controllers\ProduceNHConfig.cs" />
+    <Compile Include="Controllers\ProduceNHContext.cs" />
+    <Compile Include="Controllers\ProduceTPHController.cs" />
+    <Compile Include="Controllers\NonEFModels.cs" />
+    <Compile Include="Controllers\NonEFModelController.cs" />
+    <Compile Include="Controllers\NorthwindIBModelController.cs" />
+    <Compile Include="Controllers\TestConfigController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\metadata.codefirst_provider.json" />
+    <Content Include="App_Data\metadata.databasefirst_new.json" />
+    <None Include="App_Data\metadata.json" />
+    <Content Include="breezeTests\.gitignore" />
+    <Content Include="breezeTests\breeze\breeze.base.debug.js" />
+    <Content Include="breezeTests\breeze\breeze.base.min.js" />
+    <Content Include="breezeTests\breeze\breeze.bridge.angular.js" />
+    <Content Include="breezeTests\breeze\breeze.dataService.mongo.js" />
+    <Content Include="breezeTests\breeze\breeze.debug.js" />
+    <Content Include="breezeTests\breeze\breeze.min.js" />
+    <Content Include="breezeTests\breeze\breeze.modelLibrary.backbone.js" />
+    <Content Include="breezeTests\Index.net.aspx" />
+    <Content Include="breezeTests\internal\ajaxAdapterTests.js" />
+    <Content Include="breezeTests\internal\attachTests.js" />
+    <Content Include="breezeTests\internal\classRewriteTests.js" />
+    <Content Include="breezeTests\internal\complexTypeTests.js" />
+    <Content Include="breezeTests\internal\entityManagerTests.js" />
+    <Content Include="breezeTests\internal\entityTests.js" />
+    <Content Include="breezeTests\internal\inheritBillingTests.js" />
+    <Content Include="breezeTests\internal\inheritProduceTests.js" />
+    <Content Include="breezeTests\internal\koSpecificTests.js" />
+    <Content Include="breezeTests\internal\metadataTests.js" />
+    <Content Include="breezeTests\internal\miscTests.js" />
+    <Content Include="breezeTests\internal\mongoAnyAllTests.js" />
+    <Content Include="breezeTests\internal\mongoSpecificTests.js" />
+    <Content Include="breezeTests\internal\notrackingTests.js" />
+    <Content Include="breezeTests\internal\paramTests.js" />
+    <Content Include="breezeTests\internal\predicateTests.js" />
+    <Content Include="breezeTests\internal\queryAnyAllTests.js" />
+    <Content Include="breezeTests\internal\queryCtorTests.js" />
+    <Content Include="breezeTests\internal\queryDatatypeTests.js" />
+    <Content Include="breezeTests\internal\queryLocalTests.js" />
+    <Content Include="breezeTests\internal\queryNamedTests.js" />
+    <Content Include="breezeTests\internal\queryNonEFTests.js" />
+    <Content Include="breezeTests\internal\queryRawOdataTests.js" />
+    <Content Include="breezeTests\internal\querySelectTests.js" />
+    <Content Include="breezeTests\internal\queryTests.js" />
+    <Content Include="breezeTests\internal\saveInterceptorTests.js" />
+    <Content Include="breezeTests\internal\saveTests.js" />
+    <Content Include="breezeTests\internal\saveTransactionTests.js" />
+    <Content Include="breezeTests\internal\testFns.js" />
+    <Content Include="breezeTests\internal\validateEntityTests.js" />
+    <Content Include="breezeTests\internal\validateTests.js" />
+    <Content Include="breezeTests\vendor\almond.js" />
+    <Content Include="breezeTests\vendor\angular-mocks.js" />
+    <Content Include="breezeTests\vendor\angular.js" />
+    <Content Include="breezeTests\vendor\angular.min.js" />
+    <Content Include="breezeTests\vendor\backbone.js" />
+    <Content Include="breezeTests\vendor\backbone.min.js" />
+    <Content Include="breezeTests\vendor\changesets.js" />
+    <Content Include="breezeTests\vendor\datajs-1.1.1.js" />
+    <Content Include="breezeTests\vendor\datajs-1.1.1.min.js" />
+    <Content Include="breezeTests\vendor\datajs-1.1.2.js" />
+    <Content Include="breezeTests\vendor\datajs-1.1.2.min.js" />
+    <None Include="breezeTests\vendor\jquery-2.0.3.intellisense.js" />
+    <Content Include="breezeTests\vendor\jquery-2.0.3.js" />
+    <Content Include="breezeTests\vendor\jquery-2.0.3.min.js" />
+    <Content Include="breezeTests\vendor\knockout-2.3.0.debug.js" />
+    <Content Include="breezeTests\vendor\knockout-2.3.0.js" />
+    <Content Include="breezeTests\vendor\lodash.js" />
+    <Content Include="breezeTests\vendor\lodash.min.js" />
+    <Content Include="breezeTests\vendor\modernizr-2.0.6-development-only.js" />
+    <Content Include="breezeTests\vendor\ngMidwayTester.js" />
+    <Content Include="breezeTests\vendor\q.js" />
+    <Content Include="breezeTests\vendor\q.min.js" />
+    <Content Include="breezeTests\vendor\qunit-1.17.1.css" />
+    <Content Include="breezeTests\vendor\qunit-1.17.1.js" />
+    <Content Include="breezeTests\vendor\r.js" />
+    <Content Include="breezeTests\vendor\require.js" />
+    <Content Include="breezeTests\vendor\sinon.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="TestApp\TestApp.html" />
+    <Content Include="TestApp\dataservice.js" />
+    <Content Include="TestApp\viewModel.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="App_Data\metadata.nhibernate.json" />
+    <Content Include="App_Data\metadata.oracle_edmx.json" />
+    <None Include="App_Data\metadataTest.json" />
+    <Content Include="breezeTests\internal\sampleMetadata.json" />
+    <Content Include="breezeTests\vendor\angular.min.js.map" />
+    <Content Include="breezeTests\vendor\jquery-2.0.3.min.map" />
+    <Content Include="breezeTests\vendor\q.README.md" />
+    <Content Include="breezeTests\vendor\README.md" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Breeze.ContextProvider.NH\Breeze.ContextProvider.NH.csproj">
+      <Project>{15246b9c-5558-4bce-894f-52c4f785bbcc}</Project>
+      <Name>Breeze.ContextProvider.NH</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Breeze.ContextProvider\Breeze.ContextProvider.csproj">
+      <Project>{3E6C8FE4-65BD-4B16-8182-3714B3EC602C}</Project>
+      <Name>Breeze.ContextProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Breeze.ContextProvider.EF6\Breeze.ContextProvider.EF6.csproj">
+      <Project>{be6f3a72-1b22-4e1e-8dde-ac65c3093a55}</Project>
+      <Name>Breeze.ContextProvider.EF6</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Breeze.WebApi2\Breeze.WebApi2.csproj">
+      <Project>{ab54c69a-14c0-4e60-9dd4-cbea3685c7dd}</Project>
+      <Name>Breeze.WebApi2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model_Inheritance.EF6\Model_Inheritance.EF6.csproj">
+      <Project>{6ca2f9ec-22d8-41d8-b029-193252acb802}</Project>
+      <Name>Model_Inheritance.EF6</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model_NorthwindIB_CF.EF6\Model_NorthwindIB_CF.EF6.csproj">
+      <Project>{763b4341-7a4e-4880-a4e2-31aadc05f1ad}</Project>
+      <Name>Model_NorthwindIB_CF.EF6</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model_NorthwindIB_EDMX_2012.EF6\Model_NorthwindIB_EDMX_2012.EF6.csproj">
+      <Project>{deadb93b-f375-42b7-b41c-9d02d3199e77}</Project>
+      <Name>Model_NorthwindIB_EDMX_2012.EF6</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model_NorthwindIB_NH\Model_NorthwindIB_NH.csproj">
+      <Project>{afc1c3a8-40d5-4db3-82be-19730091a4f2}</Project>
+      <Name>Model_NorthwindIB_NH</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model_Produce_NH\Model_Produce_NH.csproj">
+      <Project>{a8e227ae-1b18-4d25-9887-398fb0d7832b}</Project>
+      <Name>Model_Produce_NH</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model_TPH.EF6\Model_TPH.EF6.csproj">
+      <Project>{73bb1c2b-bf56-4257-a3dc-56fe5163d2af}</Project>
+      <Name>Model_TPH.EF6</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model_TPT.EF6\Model_TPT.EF6.csproj">
+      <Project>{0f11f026-78db-4b99-92c8-7b37ce997162}</Project>
+      <Name>Model_TPT.EF6</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OData-debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>7149</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:7149/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

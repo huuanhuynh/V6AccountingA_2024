@@ -1,0 +1,17 @@
+﻿@using System.Text;
+
+@{
+    const int TotalGridColumns = 12, // Bootstrap Grid supports 12 columns
+        Columns = 3; // EDIT this to change number of columns to display menu items
+    string cssClass = "col-lg-" + TotalGridColumns / Columns;
+}
+
+<div ng-controller="subMenuItemsCtrl" class="row">
+    <div data-v6-sub-menu data-display-columns="@Columns" class="@cssClass">
+        <a href="{{item.route}}" title="{{item.description}}"
+           class="btn btn-primary btn-block menu-item--in-page" data-pjax>
+            <i class="{{item.icon || 'fa fa-database fa-fw'}}"></i> {{item.label || '&nbsp;'}}
+        </a>
+    </div>
+</div>
+

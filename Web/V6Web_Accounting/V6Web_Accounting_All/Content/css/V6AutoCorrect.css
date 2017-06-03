@@ -1,0 +1,55 @@
+﻿.v6autocorrect
+{
+}
+.v6autocorrect-list
+{	
+	border-left:1px solid rgb(200,200,200);
+	border-bottom:1px solid rgb(200,200,200);
+	width:350px;background-color:White;
+	padding:0px 0px 5px 5px;
+	position:absolute;
+	display:none;
+	z-index:100;
+}
+.v6autocorrect-list h4
+{	
+	margin:0;	
+	white-space:nowrap;
+}
+.v6autocorrect-list ul
+{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+.v6autocorrect-list ul li
+{
+	white-space:nowrap;
+}
+.v6autocorrect-list ul li:hover
+{
+	background-color:yellow;
+}
+.v6autocorrect-list ul li.selected
+{
+	color:White;
+	background-color:Blue;
+}
+.v6autocorrect-list ul li lable
+{
+	width:120px;
+	float:left;
+}
+.v6autocorrect-list ul li.selected lable
+{
+	color:White;
+	background-color:Blue;
+}
+
+.show{display:block}
+.hide{display:none}
+.hightline
+{
+	color:Red;
+	background-color:Yellow;
+}

@@ -1,0 +1,30 @@
+﻿@using V6Soft.Models.Core;
+
+@model IList<MenuItem>
+
+@{
+    const int TotalGridColumns = 12; // Bootstrap Grid supports 12 columns
+    const int Columns = 3; // EDIT this to change number of columns to display menu items
+    MenuItem item;
+    string route, icon, cssClass;
+}
+
+@for (int i = 0; i <= Model.Count - Columns; i += Columns)
+{
+    <div class="row">
+    @for (int j = 0; j < Columns; j++)
+    {
+        item = Model[i+j];
+        route = item.Route == null ? "#" : Url.Content(item.Route);
+        icon = item.Icon ?? "fa fa-database fa-fw";
+        cssClass = string.Format("col-lg-{0}", TotalGridColumns / Columns);
+    
+        <div class="@cssClass">
+            <a href="@route" title="@item.Description" data-pjax
+               class="btn btn-primary btn-block menu-item--in-page">
+                <i class="@icon"></i> @item.Label
+            </a>
+        </div>
+    }
+    </div>
+}

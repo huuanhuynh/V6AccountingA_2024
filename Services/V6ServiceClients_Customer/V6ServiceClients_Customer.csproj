@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A03587F-0B2F-483B-9D76-66FA6FC68323}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>V6Soft.ServiceClients.Accounting.Customer</RootNamespace>
+    <AssemblyName>V6sclcu</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    
+    
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="V6cmeh">
+      <HintPath>..\..\Common\V6Common_ExceptionHandling\obj\Release\V6cmeh.dll</HintPath>
+    </Reference>
+    <Reference Include="V6cmlg">
+      <HintPath>..\..\Common\V6Common_Logging\bin\Release\V6cmlg.dll</HintPath>
+    </Reference>
+    <Reference Include="V6cmmf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c92418067d2a1c7a, processorArchitecture=MSIL" />
+    <Reference Include="V6moco, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c92418067d2a1c7a, processorArchitecture=MSIL" />
+    <Reference Include="V6sccm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c92418067d2a1c7a, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\Values.cs" />
+    <Compile Include="DataDealers\CustomerDataDealer.cs" />
+    <Compile Include="DataDealers\MenuDataDealer.cs" />
+    <Compile Include="DataDealers\ModelDefinitionDataDealer.cs" />
+    <Compile Include="Extensions\Translator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\CustomerService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DefinitionService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\MenuService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\PaymentMethodService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Service References\CustomerService\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerService\service11.wsdl" />
+    <None Include="Service References\CustomerService\service22.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerService\service23.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerService\V6Soft.Common.ModelFactory.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerService\V6Soft.Models.Core.Constants.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerService\V6Soft.ServiceClients.Accounting.Customer.CustomerService.AddModelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CustomerService\V6Soft.ServiceClients.Accounting.Customer.CustomerService.GetModelsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CustomerService\V6Soft.ServiceClients.Accounting.Customer.CustomerService.ModifyModelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CustomerService\V6Soft.ServiceClients.Accounting.Customer.CustomerService.RemoveModelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CustomerService\V6Soft.Services.Common.Constants.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerService\V6Soft.Services.Wcf.Common.Models.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DefinitionService\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DefinitionService\service.wsdl" />
+    <None Include="Service References\DefinitionService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DefinitionService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DefinitionService\V6Soft.Common.ModelFactory.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DefinitionService\V6Soft.ServiceClients.Accounting.Customer.DefinitionService.GetModelDefinitionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DefinitionService\V6Soft.Services.Wcf.Common.Models.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MenuService\service.wsdl" />
+    <None Include="Service References\MenuService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MenuService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MenuService\V6Soft.Models.Core.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MenuService\V6Soft.Services.Common.Constants.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MenuService\V6Soft.Services.Wcf.Common.Models.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PaymentMethodService\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PaymentMethodService\service.wsdl" />
+    <None Include="Service References\PaymentMethodService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PaymentMethodService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PaymentMethodService\V6Soft.Common.ModelFactory.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PaymentMethodService\V6Soft.Models.Core.Constants.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PaymentMethodService\V6Soft.ServiceClients.Accounting.Customer.PaymentMethodService.AddModelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PaymentMethodService\V6Soft.ServiceClients.Accounting.Customer.PaymentMethodService.GetModelsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PaymentMethodService\V6Soft.ServiceClients.Accounting.Customer.PaymentMethodService.ModifyModelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PaymentMethodService\V6Soft.ServiceClients.Accounting.Customer.PaymentMethodService.RemoveModelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PaymentMethodService\V6Soft.ServiceClients.Accounting.Customer.PaymentMethodService.RuntimeModelDC.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PaymentMethodService\V6Soft.Services.Common.Constants.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PaymentMethodService\V6Soft.Services.Wcf.Common.Models.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\V6Common_ModelFactory\V6Common_ModelFactory.csproj">
+      <Project>{ba518e0d-956c-4125-81ce-6c0ca86c2786}</Project>
+      <Name>V6Common_ModelFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\V6Common_Utils\V6Common_Utils.csproj">
+      <Project>{6052e170-f511-47ac-b457-214e633c7d1c}</Project>
+      <Name>V6Common_Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\V6Models_Accounting\V6Models_Accounting.csproj">
+      <Project>{8fad678c-2fe7-4c59-a8a0-c8da26b2541c}</Project>
+      <Name>V6Models_Accounting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\V6Models_Core\V6Models_Core.csproj">
+      <Project>{60febabd-51b1-44f9-be94-f753d1f85c04}</Project>
+      <Name>V6Models_Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\V6Interfaces_Customer\V6Interfaces_Customer.csproj">
+      <Project>{91838479-3903-479f-85e8-7f70c170e8e2}</Project>
+      <Name>V6Interfaces_Customer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\V6Services_Common\V6Services_Common.csproj">
+      <Project>{316c4b01-a317-43d8-aae8-7b4067f8dca0}</Project>
+      <Name>V6Services_Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CustomerService\" />
+    <WCFMetadataStorage Include="Service References\DefinitionService\" />
+    <WCFMetadataStorage Include="Service References\MenuService\" />
+    <WCFMetadataStorage Include="Service References\PaymentMethodService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CustomerService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CustomerService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CustomerService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DefinitionService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DefinitionService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DefinitionService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MenuService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MenuService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MenuService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PaymentMethodService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PaymentMethodService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PaymentMethodService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

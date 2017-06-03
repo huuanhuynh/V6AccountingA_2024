@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/V6Soft.Services.Common.Constants" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/V6Soft.Models.Core.Constants" />
+  <xs:complexType name="RuntimeModelDC">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Fields" nillable="true" type="q1:ArrayOfanyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RuntimeModelDC" nillable="true" type="tns:RuntimeModelDC" />
+  <xs:complexType name="OperationFault">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/V6Soft.Services.Common.Constants" minOccurs="0" name="ErrorCodes" nillable="true" type="q2:ArrayOfErrorCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationFault" nillable="true" type="tns:OperationFault" />
+  <xs:complexType name="ConstraintViolationFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperationFault">
+        <xs:sequence>
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/V6Soft.Models.Core.Constants" minOccurs="0" name="ModelIndeses" nillable="true" type="q3:ArrayOfDefinitionIndex.Model" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ConstraintViolationFault" nillable="true" type="tns:ConstraintViolationFault" />
+  <xs:complexType name="ArrayOfDynamicModelDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DynamicModelDC" nillable="true" type="tns:DynamicModelDC" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDynamicModelDC" nillable="true" type="tns:ArrayOfDynamicModelDC" />
+  <xs:complexType name="DynamicModelDC">
+    <xs:sequence>
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Fields" nillable="true" type="q4:ArrayOfKeyValueOfstringanyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DynamicModelDC" nillable="true" type="tns:DynamicModelDC" />
+</xs:schema>

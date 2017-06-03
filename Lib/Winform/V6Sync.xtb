@@ -1,0 +1,41 @@
+<?xml version="1.0" standalone="yes"?>
+<V6Sync>
+  <ServerList>
+    <Stt>1</Stt>
+    <Server>V6TUANMH1</Server>
+    <Database>VIETHA16</Database>
+    <Run>1</Run>
+    <mdbxml>xml.xml</mdbxml>
+    <sqlxml>sql.xml</sqlxml>
+    <sqlxml2>sql2.xml</sqlxml2>
+    <sqlxml3>sql3.xml</sqlxml3>
+    <vpn_subfolder>V6BACKUP/TEST</vpn_subfolder>
+    <mdbWhere>[dorel]=0 and fileno &lt;&gt; ''</mdbWhere>
+    <sqlWhere>[dorel]=1</sqlWhere>
+    <mdbCode>U</mdbCode>
+    <sqlCode>A</sqlCode>
+    <options>\r0</options>
+    <Status>V6TUANMH1, 1, </Status>
+    <Ecommand>q0p/rBunSl3UHO/0XRPZu/db1b8vNdP3CmwlhhJca3emLR1DX2lUHlcfKHgJKw59CXrduKeZZrb12HAEkkhizA==</Ecommand>
+    <Type>3</Type>
+  </ServerList>
+  <ServerList>
+    <Stt>2</Stt>
+    <Server>V6TUANMH1</Server>
+    <Database>V6KD36TP</Database>
+    <Run>0</Run>
+    <mdbxml>SendSmsSetting.ini</mdbxml>
+    <sqlxml>sql.xml</sqlxml>
+    <sqlxml2>sql2.xml</sqlxml2>
+    <sqlxml3>sql3.xml</sqlxml3>
+    <vpn_subfolder>V6BACKUP/TEST</vpn_subfolder>
+    <mdbWhere />
+    <sqlWhere />
+    <mdbCode>U</mdbCode>
+    <sqlCode>A</sqlCode>
+    <options>\r0</options>
+    <Status>V6TUANMH1, 1, </Status>
+    <Ecommand>q0p/rBunSl3UHO/0XRPZu/db1b8vNdP3CmwlhhJca3emLR1DX2lUHlcfKHgJKw59CXrduKeZZrb12HAEkkhizA==</Ecommand>
+    <Type>0</Type>
+  </ServerList>
+</V6Sync>

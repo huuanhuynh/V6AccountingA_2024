@@ -1,0 +1,85 @@
+<?xml version="1.0" standalone="yes"?>
+<Config>
+  <DatabaseList>
+    <Stt>1</Stt>
+    <Server>192.168.1.99\SQLSERVER2K8</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Database>VIETHA16</Database>
+    <Database2>VIETHA16</Database2>
+    <UserId>sa</UserId>
+    <UserId2>sa</UserId2>
+    <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
+    <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>Dữ liệu 2016</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>0</Run>
+    <Type>0</Type>
+    <Key>n3RNqI9XXEog0njmmdo/yUZAoF2wV8KJ9/oYAJ0sJzOOqrvhZwsS+Q==</Key>
+  </DatabaseList>
+  <DatabaseList>
+    <Stt>2</Stt>
+    <Server>192.168.1.99\SQLSERVER2K8</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Database>VIETHA16_CUST</Database>
+    <Database2>VIETHA16_CUST</Database2>
+    <UserId>sa</UserId>
+    <UserId2>sa</UserId2>
+    <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
+    <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>Dữ liệu TEST</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>TDGEME1hgGcg0njmmdo/yUZAoF2wV8KJ9/oYAJ0sJzOQvdT7BIVU7A==</Key>
+  </DatabaseList>
+  <DatabaseList>
+    <Stt>3</Stt>
+    <Server>192.168.1.99\SQLSERVER2K8</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Database>HAITRIEU16</Database>
+    <Database2>HAITRIEU16</Database2>
+    <UserId>sa</UserId>
+    <UserId2>sa</UserId2>
+    <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
+    <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>HẢI TRIỀU</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>OC1Rf9DFiPYg0njmmdo/yUZAoF2wV8KJ7Cc53EhXYIWeA/UGIqfCrw==</Key>
+  </DatabaseList>
+  <DatabaseList>
+    <Stt>4</Stt>
+    <Server>192.168.1.99\SQLSERVER2K8</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Database>HOANGPHIEN17</Database>
+    <Database2>HOANGPHIEN17</Database2>
+    <UserId>sa</UserId>
+    <UserId2>sa</UserId2>
+    <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
+    <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>HOÀNG PHIÊN</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>SmCUKiZWc9og0njmmdo/yUZAoF2wV8KJgZxSbqmuYTvkBoyvF9044A==</Key>
+  </DatabaseList>
+  <ServerConfig>
+    <ServerName>HUUANV6</ServerName>
+    <ServerIP>192.168.1.141</ServerIP>
+    <CheckServer>0</CheckServer>
+    <PasswordV6>Ai0I9gx1t2OUAygIZXqi4g==</PasswordV6>
+  </ServerConfig>
+</Config>

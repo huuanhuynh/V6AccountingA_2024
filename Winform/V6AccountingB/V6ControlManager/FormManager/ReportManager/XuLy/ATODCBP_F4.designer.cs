@@ -1,0 +1,498 @@
+﻿namespace V6ControlManager.FormManager.ReportManager.XuLy
+{
+    partial class ATODCBP_F4
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.timerViewReport = new System.Windows.Forms.Timer(this.components);
+            this.txtSo_the_cc = new V6Controls.V6VvarTextBox();
+            this.v6Label1 = new V6Controls.V6Label();
+            this.txtNam = new V6Controls.V6NumberTextBox();
+            this.txtThang1 = new V6Controls.V6NumberTextBox();
+            this.v6Label9 = new V6Controls.V6Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.v6Label2 = new V6Controls.V6Label();
+            this.TxtMa_bp = new V6Controls.V6VvarTextBox();
+            this.TxtTk_cc = new V6Controls.V6VvarTextBox();
+            this.v6Label4 = new V6Controls.V6Label();
+            this.txtMaCt = new V6Controls.V6ColorTextBox();
+            this.txtCC0 = new V6Controls.V6NumberTextBox();
+            this.v6Label3 = new V6Controls.V6Label();
+            this.txtTk_pb = new V6Controls.V6VvarTextBox();
+            this.v6Label5 = new V6Controls.V6Label();
+            this.TxtTk_cp = new V6Controls.V6VvarTextBox();
+            this.btnHuy = new System.Windows.Forms.Button();
+            this.btnNhan = new System.Windows.Forms.Button();
+            this.txtten_tk_cp = new V6Controls.V6LabelTextBox();
+            this.txtten_tk_pb = new V6Controls.V6LabelTextBox();
+            this.txtten_tk_cc = new V6Controls.V6LabelTextBox();
+            this.txtten_bp = new V6Controls.V6LabelTextBox();
+            this.txtten_ts = new V6Controls.V6LabelTextBox();
+            this.SuspendLayout();
+            // 
+            // timerViewReport
+            // 
+            this.timerViewReport.Interval = 333;
+            // 
+            // txtSo_the_cc
+            // 
+            this.txtSo_the_cc.AccessibleName = "so_the_cc";
+            this.txtSo_the_cc.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtSo_the_cc.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSo_the_cc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSo_the_cc.BrotherFields = "TEN_CC";
+            this.txtSo_the_cc.CheckNotEmpty = true;
+            this.txtSo_the_cc.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSo_the_cc.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSo_the_cc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSo_the_cc.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSo_the_cc.LeaveColor = System.Drawing.Color.White;
+            this.txtSo_the_cc.Location = new System.Drawing.Point(106, 7);
+            this.txtSo_the_cc.Name = "txtSo_the_cc";
+            this.txtSo_the_cc.ReadOnly = true;
+            this.txtSo_the_cc.Size = new System.Drawing.Size(147, 20);
+            this.txtSo_the_cc.TabIndex = 0;
+            this.txtSo_the_cc.TabStop = false;
+            this.txtSo_the_cc.VVar = "ma_sonb";
+            // 
+            // v6Label1
+            // 
+            this.v6Label1.AccessibleDescription = "XULYL00113";
+            this.v6Label1.AutoSize = true;
+            this.v6Label1.Location = new System.Drawing.Point(9, 10);
+            this.v6Label1.Name = "v6Label1";
+            this.v6Label1.Size = new System.Drawing.Size(54, 13);
+            this.v6Label1.TabIndex = 8;
+            this.v6Label1.Text = "Mã CCDC";
+            // 
+            // txtNam
+            // 
+            this.txtNam.AccessibleName = "NAM";
+            this.txtNam.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNam.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNam.DecimalPlaces = 0;
+            this.txtNam.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNam.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNam.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNam.LeaveColor = System.Drawing.Color.White;
+            this.txtNam.Location = new System.Drawing.Point(106, 33);
+            this.txtNam.MaxLength = 4;
+            this.txtNam.MaxNumLength = 4;
+            this.txtNam.Name = "txtNam";
+            this.txtNam.Size = new System.Drawing.Size(146, 20);
+            this.txtNam.TabIndex = 2;
+            this.txtNam.Text = "0";
+            this.txtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNam.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // txtThang1
+            // 
+            this.txtThang1.AccessibleName = "KY";
+            this.txtThang1.BackColor = System.Drawing.SystemColors.Window;
+            this.txtThang1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtThang1.DecimalPlaces = 0;
+            this.txtThang1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtThang1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtThang1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtThang1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtThang1.LeaveColor = System.Drawing.Color.White;
+            this.txtThang1.Location = new System.Drawing.Point(106, 57);
+            this.txtThang1.MaxLength = 2;
+            this.txtThang1.MaxNumLength = 2;
+            this.txtThang1.Name = "txtThang1";
+            this.txtThang1.Size = new System.Drawing.Size(146, 20);
+            this.txtThang1.TabIndex = 3;
+            this.txtThang1.Text = "0";
+            this.txtThang1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtThang1.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtThang1.TextChanged += new System.EventHandler(this.txtThang12_TextChanged);
+            this.txtThang1.Leave += new System.EventHandler(this.txtThang1_Leave);
+            // 
+            // v6Label9
+            // 
+            this.v6Label9.AccessibleDescription = "XULYL00009";
+            this.v6Label9.AutoSize = true;
+            this.v6Label9.Location = new System.Drawing.Point(9, 36);
+            this.v6Label9.Name = "v6Label9";
+            this.v6Label9.Size = new System.Drawing.Size(29, 13);
+            this.v6Label9.TabIndex = 39;
+            this.v6Label9.Text = "Năm";
+            // 
+            // label1
+            // 
+            this.label1.AccessibleDescription = "XULYL00010";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(19, 13);
+            this.label1.TabIndex = 37;
+            this.label1.Text = "Kỳ";
+            // 
+            // v6Label2
+            // 
+            this.v6Label2.AccessibleDescription = "XULYL00114";
+            this.v6Label2.AutoSize = true;
+            this.v6Label2.Location = new System.Drawing.Point(9, 84);
+            this.v6Label2.Name = "v6Label2";
+            this.v6Label2.Size = new System.Drawing.Size(81, 13);
+            this.v6Label2.TabIndex = 41;
+            this.v6Label2.Text = "Mã bộ phận CC";
+            // 
+            // TxtMa_bp
+            // 
+            this.TxtMa_bp.AccessibleName = "MA_BP";
+            this.TxtMa_bp.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtMa_bp.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtMa_bp.BrotherFields = "TEN_BP";
+            this.TxtMa_bp.CheckNotEmpty = true;
+            this.TxtMa_bp.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtMa_bp.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtMa_bp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtMa_bp.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtMa_bp.LeaveColor = System.Drawing.Color.White;
+            this.TxtMa_bp.Location = new System.Drawing.Point(106, 83);
+            this.TxtMa_bp.Name = "TxtMa_bp";
+            this.TxtMa_bp.Size = new System.Drawing.Size(146, 20);
+            this.TxtMa_bp.TabIndex = 4;
+            this.TxtMa_bp.VVar = "MA_BPCC";
+            // 
+            // TxtTk_cc
+            // 
+            this.TxtTk_cc.AccessibleName = "TK_CC";
+            this.TxtTk_cc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtTk_cc.BackColor = System.Drawing.Color.White;
+            this.TxtTk_cc.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtTk_cc.BrotherFields = "";
+            this.TxtTk_cc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtTk_cc.CheckNotEmpty = true;
+            this.TxtTk_cc.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtTk_cc.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtTk_cc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtTk_cc.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtTk_cc.LeaveColor = System.Drawing.Color.White;
+            this.TxtTk_cc.Location = new System.Drawing.Point(106, 109);
+            this.TxtTk_cc.Name = "TxtTk_cc";
+            this.TxtTk_cc.Size = new System.Drawing.Size(146, 20);
+            this.TxtTk_cc.TabIndex = 5;
+            this.TxtTk_cc.VVar = "TK";
+            this.TxtTk_cc.Leave += new System.EventHandler(this.TxtTk_ts_Leave);
+            // 
+            // v6Label4
+            // 
+            this.v6Label4.AccessibleDescription = "XULYL00115";
+            this.v6Label4.AutoSize = true;
+            this.v6Label4.Location = new System.Drawing.Point(9, 109);
+            this.v6Label4.Name = "v6Label4";
+            this.v6Label4.Size = new System.Drawing.Size(53, 13);
+            this.v6Label4.TabIndex = 43;
+            this.v6Label4.Text = "TK CCDC";
+            // 
+            // txtMaCt
+            // 
+            this.txtMaCt.AccessibleName = "MA_CT";
+            this.txtMaCt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMaCt.BackColor = System.Drawing.Color.White;
+            this.txtMaCt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaCt.Enabled = false;
+            this.txtMaCt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaCt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaCt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaCt.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaCt.LeaveColor = System.Drawing.Color.White;
+            this.txtMaCt.Location = new System.Drawing.Point(428, 51);
+            this.txtMaCt.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMaCt.Name = "txtMaCt";
+            this.txtMaCt.Size = new System.Drawing.Size(50, 20);
+            this.txtMaCt.TabIndex = 60;
+            this.txtMaCt.Visible = false;
+            // 
+            // txtCC0
+            // 
+            this.txtCC0.AccessibleName = "CC0";
+            this.txtCC0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCC0.BackColor = System.Drawing.Color.White;
+            this.txtCC0.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtCC0.DecimalPlaces = 0;
+            this.txtCC0.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtCC0.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtCC0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtCC0.HoverColor = System.Drawing.Color.Yellow;
+            this.txtCC0.LeaveColor = System.Drawing.Color.White;
+            this.txtCC0.Location = new System.Drawing.Point(385, 51);
+            this.txtCC0.Name = "txtCC0";
+            this.txtCC0.Size = new System.Drawing.Size(16, 20);
+            this.txtCC0.TabIndex = 59;
+            this.txtCC0.Tag = "cancelset";
+            this.txtCC0.Text = "1";
+            this.txtCC0.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCC0.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtCC0.Visible = false;
+            // 
+            // v6Label3
+            // 
+            this.v6Label3.AccessibleDescription = "XULYL00116";
+            this.v6Label3.AutoSize = true;
+            this.v6Label3.Location = new System.Drawing.Point(9, 135);
+            this.v6Label3.Name = "v6Label3";
+            this.v6Label3.Size = new System.Drawing.Size(63, 13);
+            this.v6Label3.TabIndex = 62;
+            this.v6Label3.Text = "TK phân bổ";
+            // 
+            // txtTk_pb
+            // 
+            this.txtTk_pb.AccessibleName = "TK_PB";
+            this.txtTk_pb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTk_pb.BackColor = System.Drawing.Color.White;
+            this.txtTk_pb.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTk_pb.BrotherFields = "";
+            this.txtTk_pb.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtTk_pb.CheckNotEmpty = true;
+            this.txtTk_pb.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTk_pb.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTk_pb.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTk_pb.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTk_pb.LeaveColor = System.Drawing.Color.White;
+            this.txtTk_pb.Location = new System.Drawing.Point(106, 135);
+            this.txtTk_pb.Name = "txtTk_pb";
+            this.txtTk_pb.Size = new System.Drawing.Size(146, 20);
+            this.txtTk_pb.TabIndex = 6;
+            this.txtTk_pb.VVar = "TK";
+            this.txtTk_pb.Leave += new System.EventHandler(this.txtTk_kh_Leave);
+            // 
+            // v6Label5
+            // 
+            this.v6Label5.AccessibleDescription = "XULYL00024";
+            this.v6Label5.AutoSize = true;
+            this.v6Label5.Location = new System.Drawing.Point(10, 161);
+            this.v6Label5.Name = "v6Label5";
+            this.v6Label5.Size = new System.Drawing.Size(57, 13);
+            this.v6Label5.TabIndex = 64;
+            this.v6Label5.Text = "TK chi phí";
+            // 
+            // TxtTk_cp
+            // 
+            this.TxtTk_cp.AccessibleName = "TK_CP";
+            this.TxtTk_cp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtTk_cp.BackColor = System.Drawing.Color.White;
+            this.TxtTk_cp.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtTk_cp.BrotherFields = "";
+            this.TxtTk_cp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtTk_cp.CheckNotEmpty = true;
+            this.TxtTk_cp.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtTk_cp.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtTk_cp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtTk_cp.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtTk_cp.LeaveColor = System.Drawing.Color.White;
+            this.TxtTk_cp.Location = new System.Drawing.Point(106, 161);
+            this.TxtTk_cp.Name = "TxtTk_cp";
+            this.TxtTk_cp.Size = new System.Drawing.Size(146, 20);
+            this.TxtTk_cp.TabIndex = 7;
+            this.TxtTk_cp.VVar = "TK";
+            this.TxtTk_cp.Leave += new System.EventHandler(this.TxtTk_cp_Leave);
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.AccessibleDescription = "REPORTB00005";
+            this.btnHuy.AccessibleName = "";
+            this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel;
+            this.btnHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnHuy.Location = new System.Drawing.Point(94, 208);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(88, 40);
+            this.btnHuy.TabIndex = 16;
+            this.btnHuy.Text = "&Hủy";
+            this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            // 
+            // btnNhan
+            // 
+            this.btnNhan.AccessibleDescription = "REPORTB00004";
+            this.btnNhan.AccessibleName = "";
+            this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNhan.Image = global::V6ControlManager.Properties.Resources.Apply;
+            this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNhan.Location = new System.Drawing.Point(6, 208);
+            this.btnNhan.Name = "btnNhan";
+            this.btnNhan.Size = new System.Drawing.Size(88, 40);
+            this.btnNhan.TabIndex = 8;
+            this.btnNhan.Text = "&Nhận";
+            this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNhan.UseVisualStyleBackColor = true;
+            this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
+            // 
+            // txtten_tk_cp
+            // 
+            this.txtten_tk_cp.AccessibleName = "ten_tk_cp";
+            this.txtten_tk_cp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtten_tk_cp.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtten_tk_cp.Location = new System.Drawing.Point(263, 165);
+            this.txtten_tk_cp.Name = "txtten_tk_cp";
+            this.txtten_tk_cp.ReadOnly = true;
+            this.txtten_tk_cp.Size = new System.Drawing.Size(367, 13);
+            this.txtten_tk_cp.TabIndex = 83;
+            this.txtten_tk_cp.TabStop = false;
+            this.txtten_tk_cp.Tag = "readonly";
+            // 
+            // txtten_tk_pb
+            // 
+            this.txtten_tk_pb.AccessibleName = "ten_tk_pb";
+            this.txtten_tk_pb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtten_tk_pb.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtten_tk_pb.Location = new System.Drawing.Point(263, 139);
+            this.txtten_tk_pb.Name = "txtten_tk_pb";
+            this.txtten_tk_pb.ReadOnly = true;
+            this.txtten_tk_pb.Size = new System.Drawing.Size(367, 13);
+            this.txtten_tk_pb.TabIndex = 82;
+            this.txtten_tk_pb.TabStop = false;
+            this.txtten_tk_pb.Tag = "readonly";
+            // 
+            // txtten_tk_cc
+            // 
+            this.txtten_tk_cc.AccessibleName = "ten_tk_cc";
+            this.txtten_tk_cc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtten_tk_cc.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtten_tk_cc.Location = new System.Drawing.Point(263, 114);
+            this.txtten_tk_cc.Name = "txtten_tk_cc";
+            this.txtten_tk_cc.ReadOnly = true;
+            this.txtten_tk_cc.Size = new System.Drawing.Size(367, 13);
+            this.txtten_tk_cc.TabIndex = 81;
+            this.txtten_tk_cc.TabStop = false;
+            this.txtten_tk_cc.Tag = "readonly";
+            // 
+            // txtten_bp
+            // 
+            this.txtten_bp.AccessibleName = "ten_bp";
+            this.txtten_bp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtten_bp.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtten_bp.Location = new System.Drawing.Point(263, 87);
+            this.txtten_bp.Name = "txtten_bp";
+            this.txtten_bp.ReadOnly = true;
+            this.txtten_bp.Size = new System.Drawing.Size(367, 13);
+            this.txtten_bp.TabIndex = 80;
+            this.txtten_bp.TabStop = false;
+            this.txtten_bp.Tag = "readonly";
+            // 
+            // txtten_ts
+            // 
+            this.txtten_ts.AccessibleName = "ten_ts";
+            this.txtten_ts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtten_ts.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtten_ts.Location = new System.Drawing.Point(263, 10);
+            this.txtten_ts.Name = "txtten_ts";
+            this.txtten_ts.ReadOnly = true;
+            this.txtten_ts.Size = new System.Drawing.Size(367, 13);
+            this.txtten_ts.TabIndex = 79;
+            this.txtten_ts.TabStop = false;
+            this.txtten_ts.Tag = "readonly";
+            // 
+            // ATODCBP_F4
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtten_tk_cp);
+            this.Controls.Add(this.txtten_tk_pb);
+            this.Controls.Add(this.txtten_tk_cc);
+            this.Controls.Add(this.txtten_bp);
+            this.Controls.Add(this.txtten_ts);
+            this.Controls.Add(this.v6Label5);
+            this.Controls.Add(this.TxtTk_cp);
+            this.Controls.Add(this.v6Label3);
+            this.Controls.Add(this.txtTk_pb);
+            this.Controls.Add(this.txtMaCt);
+            this.Controls.Add(this.txtCC0);
+            this.Controls.Add(this.v6Label4);
+            this.Controls.Add(this.TxtTk_cc);
+            this.Controls.Add(this.v6Label2);
+            this.Controls.Add(this.TxtMa_bp);
+            this.Controls.Add(this.txtNam);
+            this.Controls.Add(this.txtThang1);
+            this.Controls.Add(this.v6Label9);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtSo_the_cc);
+            this.Controls.Add(this.v6Label1);
+            this.Controls.Add(this.btnHuy);
+            this.Controls.Add(this.btnNhan);
+            this.Name = "ATODCBP_F4";
+            this.Size = new System.Drawing.Size(638, 260);
+            this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Timer timerViewReport;
+        protected System.Windows.Forms.Button btnNhan;
+        protected System.Windows.Forms.Button btnHuy;
+        private V6Controls.V6VvarTextBox txtSo_the_cc;
+        private V6Controls.V6Label v6Label1;
+        private V6Controls.V6NumberTextBox txtNam;
+        private V6Controls.V6NumberTextBox txtThang1;
+        private V6Controls.V6Label v6Label9;
+        private System.Windows.Forms.Label label1;
+        private V6Controls.V6Label v6Label2;
+        private V6Controls.V6VvarTextBox TxtMa_bp;
+        private V6Controls.V6VvarTextBox TxtTk_cc;
+        private V6Controls.V6Label v6Label4;
+        private V6Controls.V6ColorTextBox txtMaCt;
+        private V6Controls.V6NumberTextBox txtCC0;
+        private V6Controls.V6Label v6Label3;
+        private V6Controls.V6VvarTextBox txtTk_pb;
+        private V6Controls.V6Label v6Label5;
+        private V6Controls.V6VvarTextBox TxtTk_cp;
+        private V6Controls.V6LabelTextBox txtten_tk_cp;
+        private V6Controls.V6LabelTextBox txtten_tk_pb;
+        private V6Controls.V6LabelTextBox txtten_tk_cc;
+        private V6Controls.V6LabelTextBox txtten_bp;
+        private V6Controls.V6LabelTextBox txtten_ts;
+
+
+
+
+    }
+}

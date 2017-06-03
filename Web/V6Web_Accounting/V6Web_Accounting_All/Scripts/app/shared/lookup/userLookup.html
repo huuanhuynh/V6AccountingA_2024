@@ -1,0 +1,20 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">User Look up!</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <kendo-grid options="model.mainGridOptions">
+            </kendo-grid>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-disabled="!model.selectedItem" ng-click="model.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="model.cancel()">Cancel</button>
+</div>
+
+
+
+
+

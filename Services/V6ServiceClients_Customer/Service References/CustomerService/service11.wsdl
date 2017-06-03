@@ -1,0 +1,529 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CustomerService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_ICustomerService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
+        </msb:BinaryEncoding>
+        <wsam:Addressing>
+          <wsp:Policy>
+            <wsam:AnonymousResponses>
+            </wsam:AnonymousResponses>
+          </wsp:Policy>
+        </wsam:Addressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/V6Soft.Services.Common.Constants" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/V6Soft.Models.Core.Constants" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/V6Soft.Common.ModelFactory" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="AddModelRequest">
+    <wsdl:part name="parameters" element="tns:AddModelRequest" />
+  </wsdl:message>
+  <wsdl:message name="AddModelResponse">
+    <wsdl:part name="parameters" element="tns:AddModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_AddCustomerGroup_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q1:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_AddCustomerGroup_ConstraintViolationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q2:ConstraintViolationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_AddCustomer_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q3:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_AddCustomer_ConstraintViolationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q4:ConstraintViolationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_AddModelItem_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q5:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_AddModelItem_ConstraintViolationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q6:ConstraintViolationFault" />
+  </wsdl:message>
+  <wsdl:message name="ModifyModelRequest">
+    <wsdl:part name="parameters" element="tns:ModifyModelRequest" />
+  </wsdl:message>
+  <wsdl:message name="ModifyModelResponse">
+    <wsdl:part name="parameters" element="tns:ModifyModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_ModifyCustomerGroup_ConstraintViolationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q7:ConstraintViolationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_ModifyCustomerGroup_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q8:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_ModifyCustomer_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q9:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_ModifyCustomer_ConstraintViolationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q10:ConstraintViolationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_ModifyModelItem_ConstraintViolationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q11:ConstraintViolationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_ModifyModelItem_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q12:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="RemoveModelRequest">
+    <wsdl:part name="parameters" element="tns:RemoveModelRequest" />
+  </wsdl:message>
+  <wsdl:message name="RemoveModelResponse">
+    <wsdl:part name="parameters" element="tns:RemoveModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_RemoveCustomerGroup_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q13:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_RemoveCustomer_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q14:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_RemoveModelItem_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q15:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_TrashCustomerGroup_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q16:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_TrashCustomer_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q17:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_TrashModelItem_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q18:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="GetModelsRequest">
+    <wsdl:part name="parameters" element="tns:GetModelsRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetModelsResponse">
+    <wsdl:part name="parameters" element="tns:GetModelsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_GetCustomerGroups_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q19:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_GetCustomers_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q20:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_GetModelItems_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q21:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_GetCustomerGroup_ByUID_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q22:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_GetCustomer_ByUID_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q23:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_GetModelItem_ByUID_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q24:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_GetCustomerGroup_ByCode_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q25:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_GetCustomer_ByCode_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q26:OperationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerService_GetModelItem_ByCode_OperationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/V6Soft.Services.Wcf.Common.Models" name="detail" element="q27:OperationFault" />
+  </wsdl:message>
+  <wsdl:portType name="ICustomerService">
+    <wsdl:operation name="AddCustomerGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/AddCustomerGroup" name="AddModelRequest" message="tns:AddModelRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/AddCustomerGroupResponse" name="AddModelResponse" message="tns:AddModelResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/AddCustomerGroupOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_AddCustomerGroup_OperationFaultFault_FaultMessage" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/AddCustomerGroupConstraintViolationFaultFault" name="ConstraintViolationFaultFault" message="tns:ICustomerService_AddCustomerGroup_ConstraintViolationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCustomer">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/AddCustomer" name="AddModelRequest" message="tns:AddModelRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/AddCustomerResponse" name="AddModelResponse" message="tns:AddModelResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/AddCustomerOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_AddCustomer_OperationFaultFault_FaultMessage" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/AddCustomerConstraintViolationFaultFault" name="ConstraintViolationFaultFault" message="tns:ICustomerService_AddCustomer_ConstraintViolationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddModelItem">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/AddModelItem" name="AddModelRequest" message="tns:AddModelRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/AddModelItemResponse" name="AddModelResponse" message="tns:AddModelResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/AddModelItemOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_AddModelItem_OperationFaultFault_FaultMessage" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/AddModelItemConstraintViolationFaultFault" name="ConstraintViolationFaultFault" message="tns:ICustomerService_AddModelItem_ConstraintViolationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyCustomerGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/ModifyCustomerGroup" name="ModifyModelRequest" message="tns:ModifyModelRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/ModifyCustomerGroupResponse" name="ModifyModelResponse" message="tns:ModifyModelResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/ModifyCustomerGroupConstraintViolationFaultFault" name="ConstraintViolationFaultFault" message="tns:ICustomerService_ModifyCustomerGroup_ConstraintViolationFaultFault_FaultMessage" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/ModifyCustomerGroupOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_ModifyCustomerGroup_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyCustomer">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/ModifyCustomer" name="ModifyModelRequest" message="tns:ModifyModelRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/ModifyCustomerResponse" name="ModifyModelResponse" message="tns:ModifyModelResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/ModifyCustomerOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_ModifyCustomer_OperationFaultFault_FaultMessage" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/ModifyCustomerConstraintViolationFaultFault" name="ConstraintViolationFaultFault" message="tns:ICustomerService_ModifyCustomer_ConstraintViolationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyModelItem">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/ModifyModelItem" name="ModifyModelRequest" message="tns:ModifyModelRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/ModifyModelItemResponse" name="ModifyModelResponse" message="tns:ModifyModelResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/ModifyModelItemConstraintViolationFaultFault" name="ConstraintViolationFaultFault" message="tns:ICustomerService_ModifyModelItem_ConstraintViolationFaultFault_FaultMessage" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/ModifyModelItemOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_ModifyModelItem_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCustomerGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/RemoveCustomerGroup" name="RemoveModelRequest" message="tns:RemoveModelRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/RemoveCustomerGroupResponse" name="RemoveModelResponse" message="tns:RemoveModelResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/RemoveCustomerGroupOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_RemoveCustomerGroup_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCustomer">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/RemoveCustomer" name="RemoveModelRequest" message="tns:RemoveModelRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/RemoveCustomerResponse" name="RemoveModelResponse" message="tns:RemoveModelResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/RemoveCustomerOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_RemoveCustomer_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveModelItem">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/RemoveModelItem" name="RemoveModelRequest" message="tns:RemoveModelRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/RemoveModelItemResponse" name="RemoveModelResponse" message="tns:RemoveModelResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/RemoveModelItemOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_RemoveModelItem_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TrashCustomerGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/TrashCustomerGroup" name="RemoveModelRequest" message="tns:RemoveModelRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/TrashCustomerGroupResponse" name="RemoveModelResponse" message="tns:RemoveModelResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/TrashCustomerGroupOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_TrashCustomerGroup_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TrashCustomer">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/TrashCustomer" name="RemoveModelRequest" message="tns:RemoveModelRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/TrashCustomerResponse" name="RemoveModelResponse" message="tns:RemoveModelResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/TrashCustomerOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_TrashCustomer_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TrashModelItem">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/TrashModelItem" name="RemoveModelRequest" message="tns:RemoveModelRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/TrashModelItemResponse" name="RemoveModelResponse" message="tns:RemoveModelResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/TrashModelItemOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_TrashModelItem_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerGroups">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/GetCustomerGroups" name="GetModelsRequest" message="tns:GetModelsRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/GetCustomerGroupsResponse" name="GetModelsResponse" message="tns:GetModelsResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/GetCustomerGroupsOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_GetCustomerGroups_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomers">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/GetCustomers" name="GetModelsRequest" message="tns:GetModelsRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/GetCustomersResponse" name="GetModelsResponse" message="tns:GetModelsResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/GetCustomersOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_GetCustomers_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModelItems">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/GetModelItems" name="GetModelsRequest" message="tns:GetModelsRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/GetModelItemsResponse" name="GetModelsResponse" message="tns:GetModelsResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/GetModelItemsOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_GetModelItems_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerGroup_ByUID">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/GetCustomerGroup_ByUID" name="GetModelsRequest" message="tns:GetModelsRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/GetCustomerGroup_ByUIDResponse" name="GetModelsResponse" message="tns:GetModelsResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/GetCustomerGroup_ByUIDOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_GetCustomerGroup_ByUID_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomer_ByUID">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/GetCustomer_ByUID" name="GetModelsRequest" message="tns:GetModelsRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/GetCustomer_ByUIDResponse" name="GetModelsResponse" message="tns:GetModelsResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/GetCustomer_ByUIDOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_GetCustomer_ByUID_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModelItem_ByUID">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/GetModelItem_ByUID" name="GetModelsRequest" message="tns:GetModelsRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/GetModelItem_ByUIDResponse" name="GetModelsResponse" message="tns:GetModelsResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/GetModelItem_ByUIDOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_GetModelItem_ByUID_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerGroup_ByCode">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/GetCustomerGroup_ByCode" name="GetModelsRequest" message="tns:GetModelsRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/GetCustomerGroup_ByCodeResponse" name="GetModelsResponse" message="tns:GetModelsResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/GetCustomerGroup_ByCodeOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_GetCustomerGroup_ByCode_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomer_ByCode">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/GetCustomer_ByCode" name="GetModelsRequest" message="tns:GetModelsRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/GetCustomer_ByCodeResponse" name="GetModelsResponse" message="tns:GetModelsResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/GetCustomer_ByCodeOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_GetCustomer_ByCode_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModelItem_ByCode">
+      <wsdl:input wsam:Action="http://tempuri.org/ICustomerService/GetModelItem_ByCode" name="GetModelsRequest" message="tns:GetModelsRequest" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICustomerService/GetModelItem_ByCodeResponse" name="GetModelsResponse" message="tns:GetModelsResponse" />
+      <wsdl:fault wsam:Action="http://tempuri.org/ICustomerService/GetModelItem_ByCodeOperationFaultFault" name="OperationFaultFault" message="tns:ICustomerService_GetModelItem_ByCode_OperationFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_ICustomerService" type="tns:ICustomerService">
+    <wsp:PolicyReference URI="#NetTcpBinding_ICustomerService_policy">
+    </wsp:PolicyReference>
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="AddCustomerGroup">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/AddCustomerGroup" style="document" />
+      <wsdl:input name="AddModelRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddModelResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ConstraintViolationFaultFault">
+        <soap12:fault use="literal" name="ConstraintViolationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddCustomer">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/AddCustomer" style="document" />
+      <wsdl:input name="AddModelRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddModelResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ConstraintViolationFaultFault">
+        <soap12:fault use="literal" name="ConstraintViolationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddModelItem">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/AddModelItem" style="document" />
+      <wsdl:input name="AddModelRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddModelResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ConstraintViolationFaultFault">
+        <soap12:fault use="literal" name="ConstraintViolationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyCustomerGroup">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/ModifyCustomerGroup" style="document" />
+      <wsdl:input name="ModifyModelRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ModifyModelResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ConstraintViolationFaultFault">
+        <soap12:fault use="literal" name="ConstraintViolationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyCustomer">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/ModifyCustomer" style="document" />
+      <wsdl:input name="ModifyModelRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ModifyModelResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ConstraintViolationFaultFault">
+        <soap12:fault use="literal" name="ConstraintViolationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyModelItem">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/ModifyModelItem" style="document" />
+      <wsdl:input name="ModifyModelRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ModifyModelResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ConstraintViolationFaultFault">
+        <soap12:fault use="literal" name="ConstraintViolationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCustomerGroup">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/RemoveCustomerGroup" style="document" />
+      <wsdl:input name="RemoveModelRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RemoveModelResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCustomer">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/RemoveCustomer" style="document" />
+      <wsdl:input name="RemoveModelRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RemoveModelResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveModelItem">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/RemoveModelItem" style="document" />
+      <wsdl:input name="RemoveModelRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RemoveModelResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TrashCustomerGroup">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/TrashCustomerGroup" style="document" />
+      <wsdl:input name="RemoveModelRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RemoveModelResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TrashCustomer">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/TrashCustomer" style="document" />
+      <wsdl:input name="RemoveModelRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RemoveModelResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TrashModelItem">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/TrashModelItem" style="document" />
+      <wsdl:input name="RemoveModelRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RemoveModelResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerGroups">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/GetCustomerGroups" style="document" />
+      <wsdl:input name="GetModelsRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetModelsResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomers">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/GetCustomers" style="document" />
+      <wsdl:input name="GetModelsRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetModelsResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetModelItems">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/GetModelItems" style="document" />
+      <wsdl:input name="GetModelsRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetModelsResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerGroup_ByUID">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/GetCustomerGroup_ByUID" style="document" />
+      <wsdl:input name="GetModelsRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetModelsResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomer_ByUID">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/GetCustomer_ByUID" style="document" />
+      <wsdl:input name="GetModelsRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetModelsResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetModelItem_ByUID">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/GetModelItem_ByUID" style="document" />
+      <wsdl:input name="GetModelsRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetModelsResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerGroup_ByCode">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/GetCustomerGroup_ByCode" style="document" />
+      <wsdl:input name="GetModelsRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetModelsResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomer_ByCode">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/GetCustomer_ByCode" style="document" />
+      <wsdl:input name="GetModelsRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetModelsResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetModelItem_ByCode">
+      <soap12:operation soapAction="http://tempuri.org/ICustomerService/GetModelItem_ByCode" style="document" />
+      <wsdl:input name="GetModelsRequest">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetModelsResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OperationFaultFault">
+        <soap12:fault use="literal" name="OperationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CustomerService">
+    <wsdl:port name="NetTcpBinding_ICustomerService" binding="tns:NetTcpBinding_ICustomerService">
+      <soap12:address location="net.tcp://localhost:14228/" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:14228/</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

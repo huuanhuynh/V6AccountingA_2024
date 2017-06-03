@@ -1,0 +1,14 @@
+﻿@using V6Soft.Web.Common.HttpExtensions;
+
+@{
+    // If this is not a PJAX request, return full view with layout,
+    // otherwise returns partial view.
+    if (Request.IsAjaxRequest())
+    {
+        Layout = null;
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout_Metro.cshtml";
+    }
+}

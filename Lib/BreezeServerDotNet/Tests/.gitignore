@@ -1,0 +1,7 @@
+#Don't check in; copy fresh from source each time
+breeze*.js
+ngMidwayTester.js
+
+#Don't check in 
+vendor
+tests

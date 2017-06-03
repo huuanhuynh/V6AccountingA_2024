@@ -1,0 +1,48 @@
+﻿.v6Number
+{
+	text-align:right;
+}
+.v6num-panel
+{
+	background-color:White;
+	border:1px solid black;
+	display:none;
+	position:absolute;
+	z-index:999;
+}
+.v6num-panel ul
+{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+.v6num-panel ul li
+{
+	white-space:nowrap;
+}
+.v6num-panel ul li:hover
+{
+	background-color:yellow;
+}
+.v6num-panel ul li.selected
+{
+	color:White;
+	background-color:Blue;
+}
+.v6Color input[type=text]{}
+.v6Text
+{
+}
+.v6Lable{}
+
+.v6NumberUpDown{}
+.v6vVarTextBox
+{
+}
+.v6Star{}
+.v6Uppercase
+{
+	text-transform:uppercase;
+}
+.v6Date{}
+.v6ReadOnly{}

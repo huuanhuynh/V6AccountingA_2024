@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A4C4E0EC-E72F-43B8-90C3-96F928280DCF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>H_Controls</RootNamespace>
+    <AssemblyName>H_Controls</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseUserControl.Designer.cs">
+      <DependentUpon>BaseUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OnOffButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\OnOffButton.Designer.cs">
+      <DependentUpon>OnOffButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PagingGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PagingGridView.Designer.cs">
+      <DependentUpon>PagingGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ButtonL.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\GridViewSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GridViewSummary.designer.cs">
+      <DependentUpon>GridViewSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HaColorDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\LookupComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\LabelH.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\LookupTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\FilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\FilterForm.designer.cs">
+      <DependentUpon>FilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\FilterLineBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\FilterLineBase.designer.cs">
+      <DependentUpon>FilterLineBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\FilterLineDateTimeNullable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\FilterLineDateTimeNullable.designer.cs">
+      <DependentUpon>FilterLineDateTimeNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\FilterLineDateTimeTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\FilterLineDateTimeTextBox.designer.cs">
+      <DependentUpon>FilterLineDateTimeTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\FilterLineDynamic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\FilterLineDynamic.designer.cs">
+      <DependentUpon>FilterLineDynamic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\FilterLineNumberTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\FilterLineNumberTextBox.designer.cs">
+      <DependentUpon>FilterLineNumberTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\FilterLineVvarTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\FilterLineVvarTextBox.designer.cs">
+      <DependentUpon>FilterLineVvarTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Lookup\Filter\PanelFilter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Lookup\LookupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Lookup\LookupForm.Designer.cs">
+      <DependentUpon>LookupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DateTimePick.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Functions.cs" />
+    <Compile Include="HaControlSetting.cs" />
+    <Compile Include="Handler.cs" />
+    <Compile Include="HControlHelper.cs" />
+    <Compile Include="Controls\MenuControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MenuControl.designer.cs">
+      <DependentUpon>MenuControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResizeMode.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Enum.cs" />
+    <Compile Include="FormS2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormS2.Designer.cs">
+      <DependentUpon>FormS2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormS.Designer.cs">
+      <DependentUpon>FormS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="H_SelectPicbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="H_SelectPicbox.Designer.cs">
+      <DependentUpon>H_SelectPicbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ShardowFormPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShardowFormPopup.Designer.cs">
+      <DependentUpon>ShardowFormPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CheckTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ColorGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ColorTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DateTimeColor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\IndexComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NumberTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HMessage.cs" />
+    <Compile Include="HMessageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HMessageForm.designer.cs">
+      <DependentUpon>HMessageForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseUserControl.resx">
+      <DependentUpon>BaseUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\OnOffButton.resx">
+      <DependentUpon>OnOffButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PagingGridView.resx">
+      <DependentUpon>PagingGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ButtonL.resx">
+      <DependentUpon>ButtonL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GridViewSummary.resx">
+      <DependentUpon>GridViewSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\HaColorDataGridView.resx">
+      <DependentUpon>HaColorDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LookupComboBox.resx">
+      <DependentUpon>LookupComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LookupTextBox.resx">
+      <DependentUpon>LookupTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Lookup\Filter\FilterForm.resx">
+      <DependentUpon>FilterForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Lookup\Filter\FilterLineBase.resx">
+      <DependentUpon>FilterLineBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Lookup\Filter\FilterLineDateTimeNullable.resx">
+      <DependentUpon>FilterLineDateTimeNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Lookup\Filter\FilterLineDateTimeTextBox.resx">
+      <DependentUpon>FilterLineDateTimeTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Lookup\Filter\FilterLineDynamic.resx">
+      <DependentUpon>FilterLineDynamic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Lookup\Filter\FilterLineNumberTextBox.resx">
+      <DependentUpon>FilterLineNumberTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Lookup\Filter\FilterLineVvarTextBox.resx">
+      <DependentUpon>FilterLineVvarTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Lookup\LookupForm.resx">
+      <DependentUpon>LookupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DateTimePick.resx">
+      <DependentUpon>DateTimePick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormS2.resx">
+      <DependentUpon>FormS2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormS.resx">
+      <DependentUpon>FormS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="H_SelectPicbox.resx">
+      <DependentUpon>H_SelectPicbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MenuControl.resx">
+      <DependentUpon>MenuControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShardowFormPopup.resx">
+      <DependentUpon>ShardowFormPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CheckTextBox.resx">
+      <DependentUpon>CheckTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ColorGridView.resx">
+      <DependentUpon>ColorGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ColorTextBox.resx">
+      <DependentUpon>ColorTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DateTimeColor.resx">
+      <DependentUpon>DateTimeColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NumberTextBox.resx">
+      <DependentUpon>NumberTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HMessageForm.resx">
+      <DependentUpon>HMessageForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoSignal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\Lookup\Editor\" />
+    <Folder Include="DataAccess\" />
+    <Folder Include="Structs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\UltrasoundM1\slprojectUltrasoundM1\H_DatabaseAccess\H_DatabaseAccess.csproj">
+      <Project>{A834C9BF-E5EF-4ACD-9E98-DE4A63440FA2}</Project>
+      <Name>H_DatabaseAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HaUtility\H_Utility.csproj">
+      <Project>{0A11F974-1C92-457B-837A-911A8EF85055}</Project>
+      <Name>H_Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Error_48x48_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Info_48x48_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Question2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Warning_48x48_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\searchblack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Refreshblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refreshgreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\searchblue.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

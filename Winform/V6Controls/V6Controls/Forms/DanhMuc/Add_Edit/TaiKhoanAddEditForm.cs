@@ -1,0 +1,67 @@
+﻿using System;
+using V6AccountingBusiness;
+using V6Structs;
+
+namespace V6Controls.Forms.DanhMuc.Add_Edit
+{
+    public partial class TaiKhoanAddEditForm : AddEditControlVirtual
+    {
+        public TaiKhoanAddEditForm()
+        {
+            InitializeComponent();
+        }
+        public override void DoBeforeEdit()
+        {
+            var v = Categories.IsExistOneCode_List("ABKH,ARA00", "Tk", TxtTk.Text);
+            TxtTk.Enabled = !v;
+        }
+
+        public override void FixFormData()
+        {
+            if (TxtTk_me.Text.Trim() != "")
+            {
+                txtLoai_tk.Value = 1;
+            }
+            else
+            {
+                txtLoai_tk.Value = 0;
+            }
+        }
+
+        public override void ValidateData()
+        {
+            var errors = "";
+            if (TxtTk.Text.Trim() == "")
+                errors += "Chưa nhập TK !\r\n";
+            if (TxtTen_tk.Text.Trim() == "")
+                errors += "Chưa nhập tên !\r\n";
+
+            if (TxtTk_me.Text.Trim() != "")
+            {
+                var check_tk_me = Categories.IsExistOneCode_List("ABKH,ARA00", "Tk", TxtTk_me.Text.Trim());
+                if (check_tk_me)
+                    errors += "Tài khoản mẹ đã có phát sinh !\r\n";
+            }
+
+           
+            if (Mode == V6Mode.Edit)
+            {
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "TK",
+                 TxtTk.Text.Trim(), DataOld["TK"].ToString());
+                if (!b)
+                    throw new Exception("Không được sửa mã đã tồn tại: "
+                                                    + "TK = " + TxtTk.Text.Trim());
+            }
+            else if (Mode == V6Mode.Add)
+            {
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "TK",
+                 TxtTk.Text.Trim(), TxtTk.Text.Trim());
+                if (!b)
+                    throw new Exception("Không được thêm mã đã tồn tại: "
+                                                    + "TK = " + TxtTk.Text.Trim());
+            }
+
+            if (errors.Length > 0) throw new Exception(errors);
+        }
+    }
+}

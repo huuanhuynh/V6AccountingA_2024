@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<!DOCTYPE html>
+<html>
+<head>
+   <title>MvcCodeRouting Samples</title>
+   <link href="<%: Url.Content("~/Content/Site.css")%>" rel="stylesheet" type="text/css" />
+</head>
+<body>
+   <div id="header">
+      <a href="<%: Url.Action("", "~~Home") %>">Home</a> - 
+      <a href="<%: Url.Action("", "~~User") %>">Users</a> -
+      <a href="<%: Url.Action("", "~~Account") %>">Account</a> - 
+      <a href="<%: Url.Action("", "~~Admin") %>">Admin</a> - 
+      <a href="<%: Url.HttpRouteUrl(null, new { controller = "~~Api" })%>">API</a> -
+      <a href="<%: Url.Content("~/routes.axd")%>">Routes</a>
+
+      <%: Html.Action("LogOnStatus", "~~Account")%>
+   </div>
+   <div id="content">
+      <asp:ContentPlaceHolder ID="content" runat="server"/>
+   </div>
+   <div id="footer">
+      <% Html.RenderPartial("UrlGenerationSamples"); %>
+   </div>
+</body>
+</html>
