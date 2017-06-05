@@ -1958,10 +1958,21 @@ namespace V6Controls.Forms
                                 else
                                 {
                                     num.MaxNumLength = structTable[NAME].MaxNumLength;
-                                    //num.MaxLength = num.MaxNumLength;
+
                                     num.MaxNumDecimal = structTable[NAME].MaxNumDecimal;
                                     num.DecimalPlaces = structTable[NAME].MaxNumDecimal;
                                 }
+
+                                int tempMaxLength = 0;
+                                var num_MaxNumLength = structTable[NAME].MaxNumLength;
+                                tempMaxLength += num_MaxNumLength;
+                                var temp3 = (int)Math.Ceiling((decimal)tempMaxLength / 3);
+                                if (temp3 > 0) tempMaxLength += temp3 - 1;
+
+                                var num_MaxNumDecimal = structTable[NAME].MaxNumDecimal;
+                                if(num_MaxNumDecimal>0) tempMaxLength += (num_MaxNumDecimal + 1);
+
+                                num.MaxLength = tempMaxLength;
                             }
                             catch
                             {

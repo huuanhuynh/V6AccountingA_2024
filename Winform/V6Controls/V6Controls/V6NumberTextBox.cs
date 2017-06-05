@@ -345,6 +345,7 @@ namespace V6Controls
         {
             try
             {
+                int dotIndex = StringValue.IndexOf(_system_decimal_symbol, StringComparison.Ordinal);
                 //var sls = SelectionStart;
                 var right = TextLength - SelectionStart;
 
@@ -354,7 +355,7 @@ namespace V6Controls
                 {
                     StringValue = StringValue.Remove(i, l);
                 }
-                else if (i > 0)
+                else if (i > 0 && i != dotIndex+1)
                 {
                     StringValue = StringValue.Remove(i - 1, 1);
                 }
@@ -365,7 +366,16 @@ namespace V6Controls
                 //    if (i2 < i) i2 = GetRealSelectionIndex(++sls);
                 //    else i2 = GetRealSelectionIndex(--sls);
                 //}
-                SelectionStart = TextLength-right;
+                if (dotIndex > 0 && i > dotIndex)
+                {
+                    var temp = TextLength - right;
+                    if (temp > 0) temp--;
+                    SelectionStart = temp;
+                }
+                else
+                {
+                    SelectionStart = TextLength - right;
+                }
 
                 if (Value == 0) SelectionStart = 1;
             }
@@ -422,15 +432,26 @@ namespace V6Controls
         {
             if (true || StringValue.Length < MaxLength || (MaxLength==1 && !string.IsNullOrEmpty(LimitCharacters)))
             {
-                if (MaxLength == 1 && !string.IsNullOrEmpty(LimitCharacters))
-                {
-                    StringValue = "";
-                }
+                int dotIndex = StringValue.IndexOf(_system_decimal_symbol, StringComparison.Ordinal);
                 //int sls = SelectionStart;
                 int right = TextLength - SelectionStart;
                 int i = GetRealSelectionIndex();
                 int l = GetRealSelectionLength();
-                int dotIndex = StringValue.IndexOf(_system_decimal_symbol, StringComparison.Ordinal);
+
+                if (MaxLength == 1)// && !string.IsNullOrEmpty(LimitCharacters))
+                {
+                    StringValue = "";
+                }
+                else if (TextLength >= MaxLength && dotIndex<0)
+                {
+                    return;
+                }
+                else if (dotIndex > 0 && ((TextLength >= MaxLength && i<=dotIndex) || SelectionStart == TextLength))
+                {
+                    return;
+                }
+                
+                
                 try
                 {
                     if (i <= StringValue.Length)

@@ -749,5 +749,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 panelControls.Left = 1;
             }
         }
+
+        public void SetStruct(V6TableStruct tableStruct)
+        {
+            try
+            {
+                V6ControlFormHelper.SetFormStruct(panel0, tableStruct);
+                V6ControlFormHelper.SetFormStruct(panelControls, tableStruct);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".SetStruct " + Name, ex);
+            }
+        }
     }
 }
