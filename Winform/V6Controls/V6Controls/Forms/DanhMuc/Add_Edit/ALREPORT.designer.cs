@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.v6VvarTextBox2 = new V6Controls.V6VvarTextBox();
             this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
@@ -42,6 +41,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnBoSung = new System.Windows.Forms.Button();
             this.txtDONVITINH = new V6Controls.V6NumberTextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.ChkF7 = new V6Controls.V6CheckBox();
@@ -63,8 +63,6 @@
             this.label46 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnBoSung = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -275,6 +273,21 @@
             this.tabPage1.Size = new System.Drawing.Size(796, 331);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
+            // 
+            // btnBoSung
+            // 
+            this.btnBoSung.AccessibleDescription = "ADDEDITB00007";
+            this.btnBoSung.AccessibleName = "";
+            this.btnBoSung.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBoSung.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBoSung.Location = new System.Drawing.Point(566, 267);
+            this.btnBoSung.Name = "btnBoSung";
+            this.btnBoSung.Size = new System.Drawing.Size(202, 29);
+            this.btnBoSung.TabIndex = 73;
+            this.btnBoSung.Text = "Chi tiết FILTER";
+            this.btnBoSung.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBoSung.UseVisualStyleBackColor = true;
+            this.btnBoSung.Click += new System.EventHandler(this.btnBoSung_Click);
             // 
             // txtDONVITINH
             // 
@@ -570,21 +583,6 @@
             this.tabPage2.Text = "Thông tin ngầm định";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnBoSung
-            // 
-            this.btnBoSung.AccessibleDescription = "ADDEDITB00007";
-            this.btnBoSung.AccessibleName = "";
-            this.btnBoSung.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnBoSung.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBoSung.Location = new System.Drawing.Point(566, 267);
-            this.btnBoSung.Name = "btnBoSung";
-            this.btnBoSung.Size = new System.Drawing.Size(202, 29);
-            this.btnBoSung.TabIndex = 73;
-            this.btnBoSung.Text = "Chi tiết FILTER";
-            this.btnBoSung.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBoSung.UseVisualStyleBackColor = true;
-            this.btnBoSung.Click += new System.EventHandler(this.btnBoSung_Click);
-            // 
             // ALREPORT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -619,7 +617,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label7;
         private V6ColorTextBox v6ColorTextBox2;
         private System.Windows.Forms.Label label5;

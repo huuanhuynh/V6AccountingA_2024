@@ -6,6 +6,7 @@ using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6RptEditor;
 using V6Structs;
 using V6Tools.V6Convert;
 
@@ -78,10 +79,47 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             //Lọc dữ liệu chưa hoàn tất trong ngày.
             var whereAM = string.Format("Ngay_Ct='{0}' and MA_KHOPH = '{1}' and status in ('1','2') ",
                 day.ToString("yyyyMMdd"), Ma_kho);
-            if (V6Options.V6OptionValues.ContainsKey("M_SOC_GET_ALL_DATE") && V6Options.V6OptionValues["M_SOC_GET_ALL_DATE"] == "1")
+            if (V6Options.V6OptionValues.ContainsKey("M_SOC_GET_ALL_DATE"))
             {
-                whereAM = string.Format("MA_KHOPH = '{1}' and status in ('1','2') ",
-                    null, Ma_kho);
+                switch (V6Options.V6OptionValues["M_SOC_GET_ALL_DATE"].Trim())
+                {
+                    case "0":
+                        // Lọc tất cả trong ngày
+                        whereAM = string.Format("Ngay_Ct='{0}' and MA_KHOPH = '{1}' and status in ('1','2') ",
+                        day.ToString("yyyyMMdd"), Ma_kho);
+                        break;
+                    case "1":
+                        // Lọc tất cả
+                        whereAM = string.Format("MA_KHOPH = '{1}' and status in ('1','2') ",
+                            null, Ma_kho);
+                        break;
+                    case "2":
+                        // Tuanmh Lọc chứng từ có ngày lớn nhất cho 1 vị trí - lấy status=1,2
+                        whereAM = string.Format("MA_KHOPH = '{1}' and status in ('1','2') " +
+                                                "and dbo.VFV_D2S(ngay_ct)+MA_KHOPH in (select dbo.VFV_D2S(max(ngay_ct))+MA_KHOPH from AM83 " +
+                                                " where (MA_KHOPH = '{1}' and status in ('1','2')) group by MA_KHOPH) ",
+                            null, Ma_kho);
+                        break;
+                    case "3":
+                        // Lọc chứng từ có ngày lớn nhất cho 1 vị trí - lấy status=1,2,3
+                        whereAM = string.Format("MA_KHOPH = '{1}' and status in ('1','2','3') " +
+                                                "and dbo.VFV_D2S(ngay_ct)+MA_KHOPH in (select dbo.VFV_D2S(max(ngay_ct))+MA_KHOPH from AM83 " +
+                                                " where (MA_KHOPH = '{1}' and status in ('1','2','3')) group by MA_KHOPH) ",
+                            null, Ma_kho);
+                        break;
+                    case "4":
+                        //  Lọc tất cả trong ngày
+                        whereAM = string.Format("Ngay_Ct='{0}' and MA_KHOPH = '{1}' and status in ('1','2','3') ",
+                        day.ToString("yyyyMMdd"), Ma_kho);
+                        break;
+                    case "5":
+                        //  Lọc tất cả 
+                        whereAM = string.Format("MA_KHOPH = '{1}' and status in ('1','2','3') ",
+                        null, Ma_kho);
+                        break;
+                        
+                }
+               
             }
             
             var whereAD = "";

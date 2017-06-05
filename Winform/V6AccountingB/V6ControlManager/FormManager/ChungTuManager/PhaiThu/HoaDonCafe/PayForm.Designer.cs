@@ -207,12 +207,13 @@
             // 
             this.button1.AccessibleDescription = "REPORTB00005";
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(3, 88);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(77, 29);
+            this.button1.Size = new System.Drawing.Size(102, 29);
             this.button1.TabIndex = 9;
             this.button1.TabStop = false;
-            this.button1.Text = "50.000";
+            this.button1.Text = "50.000 (F1)";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -221,12 +222,13 @@
             // 
             this.button2.AccessibleDescription = "REPORTB00005";
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(82, 88);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(106, 88);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(77, 29);
+            this.button2.Size = new System.Drawing.Size(99, 29);
             this.button2.TabIndex = 10;
             this.button2.TabStop = false;
-            this.button2.Text = "100.000";
+            this.button2.Text = "100.000 (F2)";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -235,12 +237,13 @@
             // 
             this.button3.AccessibleDescription = "REPORTB00005";
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(3, 118);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(77, 29);
+            this.button3.Size = new System.Drawing.Size(102, 29);
             this.button3.TabIndex = 11;
             this.button3.TabStop = false;
-            this.button3.Text = "200.000";
+            this.button3.Text = "200.000 (F3)";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -249,12 +252,13 @@
             // 
             this.button4.AccessibleDescription = "REPORTB00005";
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(82, 118);
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(106, 118);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(77, 29);
+            this.button4.Size = new System.Drawing.Size(99, 29);
             this.button4.TabIndex = 12;
             this.button4.TabStop = false;
-            this.button4.Text = "500.000";
+            this.button4.Text = "500.000 (F4)";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);

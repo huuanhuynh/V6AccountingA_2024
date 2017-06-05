@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using V6AccountingBusiness;
 using V6Structs;
 namespace V6Controls.Forms.DanhMuc.Add_Edit
@@ -34,6 +35,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 errors += "Chưa nhập mã!\r\n";
             
             if (errors.Length > 0) throw new Exception(errors);
+        }
+
+        public override SortedDictionary<string, object> GetData()
+        {
+            var data = base.GetData();
+            data["UID_CT"] = ParentData["UID"];
+            return data;
         }
 
     }

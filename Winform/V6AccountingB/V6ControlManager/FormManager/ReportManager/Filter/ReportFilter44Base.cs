@@ -161,7 +161,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 {
                     var line = control as FilterLineDynamic;
                     if (line == null) continue;
-                    if (line.DefineInfo.Key1 != parameterName) continue;
+                    if (line.DefineInfo.Key1.ToUpper() != parameterName.ToUpper()) continue;
 
                     if (line.CheckNotEmpty && line.StringValue == "")
                     {
@@ -293,7 +293,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 {
                     var line = control as FilterLineDynamic;
                     if (line == null) continue;
-                    if (line.DefineInfo.Key2 != parameterName) continue;
+                    if (line.DefineInfo.Key2.ToUpper() != parameterName.ToUpper()) continue;
 
                     if (line.CheckNotEmpty && line.StringValue == "")
                     {
@@ -500,7 +500,19 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                             var line = control as FilterLineDynamic;
                             if (line != null && line.FieldName.ToUpper() == di.Field.ToUpper())
                             {
-                                RptExtraParameters[di.Name] = line.ObjectValue;
+                                if (line.IsSelected)
+                                {
+                                    RptExtraParameters[di.Name] = line.ObjectValue;
+                                }
+                                else
+                                {
+                                    if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                                        RptExtraParameters[di.Name] = 0;
+                                    else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                                        RptExtraParameters[di.Name] = new DateTime(1900, 1, 1);
+                                    else
+                                        RptExtraParameters[di.Name] = "";
+                                }
                                 break;
                             }
                         }
@@ -513,9 +525,26 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                             if (line != null && line.FieldName.ToUpper() == di.Field.ToUpper())
                             {
                                 var vvar_data = line._vtextBox.Data;
+                                if (line.IsSelected==false)
+                                {
+                                    vvar_data = null;
+                                }
+
                                 if (vvar_data != null && vvar_data.Table.Columns.Contains(di.Fname))
                                 {
-                                    RptExtraParameters[di.Name] = vvar_data[di.Fname];
+                                    if (line.IsSelected)
+                                    {
+                                        RptExtraParameters[di.Name] = vvar_data[di.Fname];
+                                    }
+                                    else
+                                    {
+                                        if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                                            RptExtraParameters[di.Name] = 0;
+                                        else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                                            RptExtraParameters[di.Name] = new DateTime(1900, 1, 1);
+                                        else
+                                            RptExtraParameters[di.Name] = "";
+                                    }
                                 }
                                 else
                                 {

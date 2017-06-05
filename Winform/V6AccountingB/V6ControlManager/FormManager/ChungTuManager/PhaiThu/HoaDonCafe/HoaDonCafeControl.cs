@@ -3214,7 +3214,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         txtMadvcs.Text = V6Login.Madvcs;
                 }
             }
-            
+           //Tuanmh 04/06/2017 ma_kh in alvitri
+            if (MA_VITRIPH != "")
+            {
+                var alvitri = V6BusinessHelper.Select("ALVITRI", "MA_KH", "MA_VITRI = '" + MA_VITRIPH.Trim() + "'");
+                if (alvitri.TotalRows > 0)
+                {
+                    if (!string.IsNullOrEmpty(alvitri.Data.Rows[0]["MA_KH"].ToString()))
+                    {
+                        txtMaKh.Text = alvitri.Data.Rows[0]["MA_KH"].ToString().Trim();
+                        XuLyChonMaKhachHang();
+
+                    }
+                }
+            }
             //M_Ma_nk
             Txtma_nk.Text = Invoice.Alct.Rows[0]["M_MA_NK"].ToString().Trim();
             //txtLoaiPhieu.Text = "1";
