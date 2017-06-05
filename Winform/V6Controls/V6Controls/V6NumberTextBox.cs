@@ -390,6 +390,7 @@ namespace V6Controls
         {
             try
             {
+                int dotIndex = StringValue.IndexOf(_system_decimal_symbol, StringComparison.Ordinal);
                 var sls = SelectionStart;
                 int beforeLength = TextLength;
                 int right = TextLength - SelectionStart;
@@ -399,19 +400,27 @@ namespace V6Controls
 
                 if (L > 0)
                 {
-                    StringValue = StringValue.Remove(i, L);//L
+                    StringValue = _stringValue.Remove(i, L);//L
                 }
-                else if (i < _stringValue.Length && _stringValue.Length > 0)
+                else if (i < _stringValue.Length && _stringValue.Length > 0)// && i != dotIndex)
                 {
+                    if(_stringValue[i].ToString() != _system_decimal_symbol)//Không được xóa dấu .
                     StringValue = _stringValue.Remove(i, 1);
                 }
-                //Giữ nguyên vị trí sls
-                var i2 = GetRealSelectionIndex(sls);
-                while (!Equals(i2, i))
+
+                var afterLength = TextLength;
+                if (beforeLength - afterLength == 2)
                 {
-                    if (i2 < i) i2 = GetRealSelectionIndex(++sls);
-                    else i2 = GetRealSelectionIndex(--sls);
+                    sls--;
                 }
+                //Giữ nguyên vị trí sls
+                //var i2 = GetRealSelectionIndex(sls);
+                //while (!Equals(i2, i))
+                //{
+                //    if (i2 < i) i2 = GetRealSelectionIndex(++sls);
+                //    else i2 = GetRealSelectionIndex(--sls);
+                //}
+                if (sls > TextLength) sls = TextLength;
                 SelectionStart = sls;
 
                 //if (Value == 0 && TextLength == 1) SelectionStart = 1;

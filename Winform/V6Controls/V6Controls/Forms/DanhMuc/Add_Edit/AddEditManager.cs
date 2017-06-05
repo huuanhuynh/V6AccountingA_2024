@@ -469,6 +469,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Hrlstethnic:
                     FormControl = new ThongTinDanTocForm();
                     break;
+                case V6TableName.Alreport1:
+                    FormControl = new ALREPORT1();
+                    break;
+                case V6TableName.Alreport:
+                    FormControl = new ALREPORT();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException("AddEditManager.InitControl tableName");
             }

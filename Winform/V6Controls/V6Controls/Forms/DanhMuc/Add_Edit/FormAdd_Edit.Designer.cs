@@ -48,7 +48,7 @@
             // 
             // btnInfos
             // 
-            this.btnInfos.AccessibleDescription = "ADDEDITL00003";
+            this.btnInfos.AccessibleDescription = "ADDEDITB00003";
             this.btnInfos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInfos.Location = new System.Drawing.Point(275, 229);
             this.btnInfos.Name = "btnInfos";
