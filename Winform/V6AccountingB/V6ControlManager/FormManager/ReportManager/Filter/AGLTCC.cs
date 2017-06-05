@@ -104,7 +104,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
             
             int luyke =chk_Luy_ke.Checked ? 1 : 0;
-            var ma_dvcs = txtMaDvcs.IsSelected ? txtMaDvcs.StringValue.Trim() + "%" : "%";
 
         var result = new List<SqlParameter>
             {
@@ -114,7 +113,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 new SqlParameter("@Ngay_ct2", txtNgay_ct2.Value.ToString("yyyyMMdd")),
                 new SqlParameter("@Ngay_ct3", txtNgay_ct3.Value.ToString("yyyyMMdd")),
                 new SqlParameter("@Ngay_ct4", txtNgay_ct4.Value.ToString("yyyyMMdd")),
-                new SqlParameter("@Ma_dvcs", ma_dvcs),
+                new SqlParameter("@Ma_dvcs", txtMaDvcs.StringValue.Trim() + "%"),
                 new SqlParameter("@Luyke", luyke),
                 new SqlParameter("@Mau", maubc),
                 new SqlParameter("@Advance", ""),

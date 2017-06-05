@@ -21,8 +21,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 txtMaDvcs.Enabled = false;
             }
-
-            TxtLoai_bc.Text = "1";
+            String1 = TxtLoai_bc.Text.Trim();
+            TxtLoai_bc.Text = "1"; 
             chkGiamTru.Checked = true;
 
             Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
@@ -100,7 +100,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_KHO","MA_DVCS","MA_BP", "MA_KH", "MA_VV", "MA_NX", "MA_VT","MA_NVIEN"
+                "MA_KHO","MA_DVCS","MA_BP", "MA_KH", "MA_VV", "MA_NX", "MA_VT","MA_NVIEN","MA_BPHT"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {

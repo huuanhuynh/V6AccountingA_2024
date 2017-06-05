@@ -55,6 +55,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             if (errors.Length > 0) throw new Exception(errors);
         }
 
-     
+        private void txtMaCong_MouseLeave(object sender, EventArgs e)
+        {
+            if (txtMaCong.Text == "")
+            {
+                txtten_kh.Text = "";
+            }
+        }
     }
 }

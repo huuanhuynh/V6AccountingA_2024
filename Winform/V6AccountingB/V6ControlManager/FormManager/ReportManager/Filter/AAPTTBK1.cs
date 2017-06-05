@@ -32,6 +32,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             Txtnh_kh4.VvarTextBox.SetInitFilter("loai_nh=4");
             Txtnh_kh5.VvarTextBox.SetInitFilter("loai_nh=5");
             Txtnh_kh6.VvarTextBox.SetInitFilter("loai_nh=6");
+
+            Txtnh_vt1.VvarTextBox.SetInitFilter("loai_nh=1");
+            Txtnh_vt2.VvarTextBox.SetInitFilter("loai_nh=2");
+            Txtnh_vt3.VvarTextBox.SetInitFilter("loai_nh=3");
+            Txtnh_vt4.VvarTextBox.SetInitFilter("loai_nh=4");
+            Txtnh_vt5.VvarTextBox.SetInitFilter("loai_nh=5");
+            Txtnh_vt6.VvarTextBox.SetInitFilter("loai_nh=6");
             SetHideFields("V");
         }
 

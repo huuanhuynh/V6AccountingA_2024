@@ -15,13 +15,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
         private readonly Control _excel2;
         private DataSet _ds;
-        private readonly string _file_xml;
 
-        public AlbcExcel2EditorForm(Control excel2, string file_xml)
+        public AlbcExcel2EditorForm(Control excel2)
         {
             InitializeComponent();
             _excel2 = excel2;
-            _file_xml = file_xml;
             Read();
         }
 
@@ -93,49 +91,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.ShowErrorException(GetType() + ".Write", ex);
-            }
-        }
-
-        private void WriteToFile()
-        {
-            try
-            {
-                //var saveFile = V6ControlFormHelper.ChooseSaveFile("Xml|*.xml");
-                var saveFile = new SaveFileDialog
-                {
-                    Filter = "XML files (*.Xml)|*.xml",
-                    Title = "Xuất XML.",
-                    FileName = _file_xml
-                };
-                if (saveFile.ShowDialog() == DialogResult.OK)
-                {
-                    if (string.IsNullOrEmpty(saveFile.FileName)) return;
-                    FileStream fs = new FileStream(saveFile.FileName, FileMode.Create);
-                    _ds.WriteXml(fs);
-                    fs.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                V6ControlFormHelper.ShowErrorException(GetType() + ".WriteToFile", ex);
-            }
-        }
-
-        private void LoadFromFile()
-        {
-            try
-            {
-                var openFile = V6ControlFormHelper.ChooseOpenFile("Xml|*.xml");
-                if (string.IsNullOrEmpty(openFile)) return;
-                FileStream fs = new FileStream(openFile, FileMode.Open);
-                _ds.Clear();
-                _ds.ReadXml(fs);
-                fs.Close();
-            }
-            catch (Exception ex)
-            {
-                V6ControlFormHelper.ShowErrorException(GetType() + ".LoadFromFile", ex);
+                V6ControlFormHelper.ShowErrorMessage("Write xml error: " + ex.Message);
             }
         }
 
@@ -148,16 +104,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         private void btnHuy_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void btnXuatXml_Click(object sender, EventArgs e)
-        {
-            WriteToFile();
-        }
-
-        private void btnNhapXml_Click(object sender, EventArgs e)
-        {
-            LoadFromFile();
         }
 
     }

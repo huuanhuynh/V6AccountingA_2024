@@ -129,8 +129,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }, and);
             var key2 = GetFilterStringByFields(new List<string>()
             {
-                //"NH_VT1","NH_VT2","NH_VT3", "MA_QG", "MA_NSX", "TK_VT"
-                ""
+                "NH_VV1", "NH_VV2", "NH_VV3",
             }, and);
 
             if (!string.IsNullOrEmpty(key0))
@@ -156,7 +155,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (!string.IsNullOrEmpty(key2))
             {
-                //  cKey = cKey + string.Format(" and ma_vt in (select ma_vt from alvt where {0} )", key2);
+                cKey = cKey + string.Format(" and ma_vv in (select ma_vv from alvv where {0} )", key2);
             }
 
             int Detail=1;

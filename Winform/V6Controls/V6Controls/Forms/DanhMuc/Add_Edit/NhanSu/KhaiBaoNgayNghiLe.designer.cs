@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtNgay = new V6Controls.V6DateTimePick();
             this.txtten_kh = new V6Controls.V6LabelTextBox();
             this.txtMaCong = new V6Controls.V6VvarTextBox();
             this.TXTHE_SO = new V6Controls.V6NumberTextBox();
@@ -41,7 +42,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtNgay = new V6Controls.V6DateTimePick();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,10 +71,27 @@
             this.groupBox1.TabIndex = 83;
             this.groupBox1.TabStop = false;
             // 
+            // txtNgay
+            // 
+            this.txtNgay.AccessibleName = "ngay";
+            this.txtNgay.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNgay.CustomFormat = "dd/MM/yyyy";
+            this.txtNgay.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNgay.ForeColorDisabled = System.Drawing.Color.DarkGray;
+            this.txtNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.txtNgay.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNgay.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtNgay.LeaveColor = System.Drawing.Color.White;
+            this.txtNgay.Location = new System.Drawing.Point(187, 18);
+            this.txtNgay.Name = "txtNgay";
+            this.txtNgay.Size = new System.Drawing.Size(134, 23);
+            this.txtNgay.TabIndex = 0;
+            this.txtNgay.Value = new System.DateTime(2017, 3, 20, 0, 0, 0, 0);
+            // 
             // txtten_kh
             // 
             this.txtten_kh.AccessibleName = "ten_cong";
-            this.txtten_kh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtten_kh.BackColor = System.Drawing.SystemColors.Control;
             this.txtten_kh.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtten_kh.Location = new System.Drawing.Point(245, 50);
             this.txtten_kh.Name = "txtten_kh";
@@ -101,6 +118,7 @@
             this.txtMaCong.Size = new System.Drawing.Size(52, 23);
             this.txtMaCong.TabIndex = 1;
             this.txtMaCong.VVar = "MA_cong";
+            this.txtMaCong.MouseLeave += new System.EventHandler(this.txtMaCong_MouseLeave);
             // 
             // TXTHE_SO
             // 
@@ -237,25 +255,6 @@
             this.label5.Size = new System.Drawing.Size(103, 17);
             this.label5.TabIndex = 87;
             this.label5.Text = "Mã công đi làm";
-            // 
-            // txtNgay
-            // 
-            this.txtNgay.AccessibleName = "ngay";
-            this.txtNgay.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNgay.CustomFormat = "dd/MM/yyyy";
-            this.txtNgay.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNgay.ForeColorDisabled = System.Drawing.Color.DarkGray;
-            this.txtNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtNgay.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNgay.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtNgay.LeaveColor = System.Drawing.Color.White;
-            this.txtNgay.Location = new System.Drawing.Point(187, 18);
-            this.txtNgay.Name = "txtNgay";
-            this.txtNgay.ReadOnly = false;
-            this.txtNgay.Size = new System.Drawing.Size(134, 23);
-            this.txtNgay.TabIndex = 0;
-            this.txtNgay.TextTitle = null;
-            this.txtNgay.Value = new System.DateTime(2017, 3, 20, 0, 0, 0, 0);
             // 
             // KhaiBaoNgayNghiLe
             // 

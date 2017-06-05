@@ -343,9 +343,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            
-            if (txtMaDvcs.Text.Trim() == "") errors += "Chưa nhập mã đơn vị!\r\n";
-            if (txtMaKh.Text.Trim() == "") errors += "Chưa nhập mã khách hàng!\r\n";
+
+            if (txtMaKh.Text + txtLNH_KH1.Text + txtLNH_KH2.Text
+                + txtLNH_KH3.Text + txtLNH_KH4.Text + txtLNH_KH5.Text + txtLNH_KH6.Text + txtMaDvcs.Text == "")
+            {
+                errors += "Chưa nhập thông tin khuyến mãi!\r\n";
+            }
+
             if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
             {
                 errors += "Chưa hoàn tất chi tiết!\r\n";
@@ -545,6 +549,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 txtt_sl1.Value = 0;
                 txtt_sl2.Value = 0;
+            }
+        }
+
+        private void txtMaDvcs_MouseHover(object sender, EventArgs e)
+        {
+            if (txtMaDvcs.Text == "")
+            {
+                lblTenDvcs.Text = "";
             }
         }
 

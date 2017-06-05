@@ -26,13 +26,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-
+            
             RptExtraParameters = new SortedDictionary<string, object>();
-            RptExtraParameters.Add("NGAY_CT1", V6Setting.M_SV_DATE);
-            RptExtraParameters.Add("NGAY_CT2", V6Setting.M_SV_DATE);
-
-
-            RptExtraParameters.Add("MA_KHO", "");
+            RptExtraParameters.Add("NGAY_CT1", V6Setting.M_ngay_ct1);
+            RptExtraParameters.Add("NGAY_CT2", V6Setting.M_ngay_ct2);
+            RptExtraParameters.Add("MA_KHO",String1);
             RptExtraParameters.Add("MA_VT", ma_vt_filterLine.VvarTextBox.Text.Trim());
 
 

@@ -79,6 +79,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
 
             RptExtraParameters.Add("MA_KHO", TxtMakho.IsSelected ? TxtMakho.VvarTextBox.Text.Trim() : "");
+            String1 = TxtMakho.IsSelected ? TxtMakho.VvarTextBox.Text.Trim() : "";
+
             //_parameters.Add("MA_VT", TxtMa_vt.IsSelected ? TxtMakho.VvarTextBox.Text.Trim() : "");
 
             var result = new List<SqlParameter>();
