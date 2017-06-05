@@ -861,7 +861,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 detail3.AddControl(control);
             }
 
-            //V6ControlFormHelper.SetFormStruct (detail3, Invoice.AD3Struct);
             detail3.SetStruct(Invoice.AD3Struct);
             detail3.MODE = detail3.MODE;
             V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView3, _alct3Dic, _maNt, _mMaNt0);

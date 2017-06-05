@@ -559,7 +559,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 detail1.AddControl(control);
             }
             
-            V6ControlFormHelper.SetFormStruct(detail1, Invoice.ADStruct);
+            detail1.SetStruct(Invoice.ADStruct);
             detail1.MODE = detail1.MODE;
             V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView1, _alct1Dic, _maNt, _mMaNt0);
         }

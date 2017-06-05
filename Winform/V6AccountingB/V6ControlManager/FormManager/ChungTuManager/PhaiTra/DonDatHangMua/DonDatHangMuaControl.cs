@@ -365,7 +365,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 detail1.AddControl(control);
             }
             
-            V6ControlFormHelper.SetFormStruct(detail1, Invoice.ADStruct);
+            detail1.SetStruct(Invoice.ADStruct);
             detail1.MODE = detail1.MODE;
             V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView1, _alct1Dic, _maNt, _mMaNt0);
         }
@@ -561,7 +561,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 detail2.AddControl(control);                
             }
 
-            V6ControlFormHelper.SetFormStruct(detail2, Invoice.AD2Struct);
+            detail2.SetStruct(Invoice.AD2Struct);
             detail2.MODE = detail2.MODE;
             V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView2, _alct2Dic, _maNt, _mMaNt0);
         }
