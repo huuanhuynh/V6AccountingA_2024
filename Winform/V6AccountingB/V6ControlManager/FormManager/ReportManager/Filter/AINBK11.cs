@@ -194,6 +194,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             ctDenSo.Enabled = !chkLike.Checked;
         }
 
-        
+        private void AINBK11_Load(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

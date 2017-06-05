@@ -30,6 +30,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             Txtnh_kh4.VvarTextBox.SetInitFilter("loai_nh=4");
             Txtnh_kh5.VvarTextBox.SetInitFilter("loai_nh=5");
             Txtnh_kh6.VvarTextBox.SetInitFilter("loai_nh=6");
+
             Txtnh_vt1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_vt2.VvarTextBox.SetInitFilter("loai_nh=2");
             Txtnh_vt3.VvarTextBox.SetInitFilter("loai_nh=3");
@@ -85,7 +86,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-               "MA_VT","MA_KHO","MA_DVCS","MA_BP", "MA_KH", "MA_VV", "MA_NX","MA_NVIEN","MA_CT"
+               "MA_VT","MA_KHO","MA_DVCS","MA_BP", "MA_KH", "MA_VV", "MA_NX","MA_NVIEN","MA_CT","MA_BPHT"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {

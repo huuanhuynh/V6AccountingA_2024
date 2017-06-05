@@ -612,6 +612,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMaDvcs.Size = new System.Drawing.Size(109, 23);
             this.txtMaDvcs.TabIndex = 0;
             this.txtMaDvcs.VVar = "MA_DVCS";
+            this.txtMaDvcs.MouseHover += new System.EventHandler(this.txtMaDvcs_MouseHover);
             // 
             // label4
             // 

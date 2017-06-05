@@ -24,7 +24,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             chkGiamTru.Checked = true;
             String1 = txtLoaiBaoCao.Text;
             String2 = txtChiTietTheo.Text;
-
+            SetHideFields("V");
             Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
             Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
@@ -32,8 +32,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             Txtnh_kh5.VvarTextBox.SetInitFilter("loai_nh=5");
             Txtnh_kh6.VvarTextBox.SetInitFilter("loai_nh=6");
 
-
-            SetHideFields("V");
+            Txtnh_vt1.VvarTextBox.SetInitFilter("loai_nh=1");
+            Txtnh_vt2.VvarTextBox.SetInitFilter("loai_nh=2");
+            Txtnh_vt3.VvarTextBox.SetInitFilter("loai_nh=3");
+            Txtnh_vt4.VvarTextBox.SetInitFilter("loai_nh=4");
+            Txtnh_vt5.VvarTextBox.SetInitFilter("loai_nh=5");
+            Txtnh_vt6.VvarTextBox.SetInitFilter("loai_nh=6");
+            
         }
 
         public void SetHideFields(string lang)
@@ -72,54 +77,55 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             result.Add(new SqlParameter("@ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
             result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Loai_bc", (int)txtLoaiBaoCao.Value));
+            result.Add(new SqlParameter("@Ct_theo", (int)txtChiTietTheo.Value));
+            result.Add(new SqlParameter("@giam_tru", chkGiamTru.Checked ? 1 : 0));
+           
 
-            
 
 
             var and = radAnd.Checked;
-            
+
             var cKey = "";
-          
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_KHO","MA_DVCS","MA_BP", "MA_KH", "MA_VV", "MA_NX","MA_NVIEN","MA_VT"
+                "MA_KHO","MA_DVCS","MA_BP", "MA_KH", "MA_VV", "MA_NX", "MA_VT","MA_NVIEN","MA_BPHT"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {
-                "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6"
+                 "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6"
             }, and);
             var key2 = GetFilterStringByFields(new List<string>()
             {
-                  "NH_VT1","NH_VT2","NH_VT3","NH_VT4","NH_VT5","NH_VT6","MA_QG", "MA_NSX", "TK_VT"
+               "NH_VT1","NH_VT2","NH_VT3","NH_VT4","NH_VT5","NH_VT6", "MA_QG", "MA_NSX", "TK_VT"
             }, and);
+
             if (!string.IsNullOrEmpty(key0))
             {
                 if (and)
                 {
-                    cKey =  string.Format("(1=1 AND {0})", key0);
+                    cKey += string.Format("(1=1 AND {0})", key0);
                 }
                 else
                 {
-                    cKey =  string.Format("(1=2 OR {0})", key0);
+                    cKey += string.Format("(1=2 OR {0})", key0);
                 }
             }
             else
             {
-                cKey = "";
+                cKey = "1=1";
             }
 
             if (!string.IsNullOrEmpty(key1))
             {
                 cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0} )", key1);
             }
+
             if (!string.IsNullOrEmpty(key2))
             {
                 cKey = cKey + string.Format(" and ma_vt in (select ma_vt from alvt where {0} )", key2);
             }
-            result.Add(new SqlParameter("@Loai_bc", (int)txtLoaiBaoCao.Value));
-            result.Add(new SqlParameter("@Ct_theo", (int)txtChiTietTheo.Value));
-            result.Add(new SqlParameter("@giam_tru", chkGiamTru.Checked ? 1 : 0));
             result.Add(new SqlParameter("@advance", cKey));
 
             return result;

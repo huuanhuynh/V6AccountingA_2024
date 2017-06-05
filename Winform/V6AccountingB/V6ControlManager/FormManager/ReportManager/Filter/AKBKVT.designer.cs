@@ -520,7 +520,7 @@
             this.Txttype.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.Txttype.HoverColor = System.Drawing.Color.Yellow;
             this.Txttype.LeaveColor = System.Drawing.Color.White;
-            this.Txttype.LimitCharacters = "*10";
+            this.Txttype.LimitCharacters = "*12";
             this.Txttype.Location = new System.Drawing.Point(100, 55);
             this.Txttype.MaxLength = 1;
             this.Txttype.Name = "Txttype";

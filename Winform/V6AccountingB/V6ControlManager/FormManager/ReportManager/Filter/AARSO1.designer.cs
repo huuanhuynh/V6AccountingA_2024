@@ -54,7 +54,7 @@
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 48);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
-            this.txtMaDvcs.TabIndex = 3;
+            this.txtMaDvcs.TabIndex = 0;
             this.txtMaDvcs.Vvar = "MA_DVCS";
             // 
             // groupBox1
@@ -111,7 +111,7 @@
             this.dateNgay_ct1.Location = new System.Drawing.Point(120, 3);
             this.dateNgay_ct1.Name = "dateNgay_ct1";
             this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct1.TabIndex = 1;
+            this.dateNgay_ct1.TabIndex = 0;
             // 
             // dateNgay_ct2
             // 
@@ -126,7 +126,7 @@
             this.dateNgay_ct2.Location = new System.Drawing.Point(120, 29);
             this.dateNgay_ct2.Name = "dateNgay_ct2";
             this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct2.TabIndex = 3;
+            this.dateNgay_ct2.TabIndex = 1;
             // 
             // label1
             // 
@@ -171,7 +171,7 @@
             this.TxtTk.Location = new System.Drawing.Point(120, 59);
             this.TxtTk.Name = "TxtTk";
             this.TxtTk.Size = new System.Drawing.Size(132, 20);
-            this.TxtTk.TabIndex = 3;
+            this.TxtTk.TabIndex = 2;
             this.TxtTk.VVar = "TK";
             // 
             // v6Label1
@@ -198,7 +198,7 @@
             this.TxtMa_kh.Location = new System.Drawing.Point(120, 85);
             this.TxtMa_kh.Name = "TxtMa_kh";
             this.TxtMa_kh.Size = new System.Drawing.Size(132, 20);
-            this.TxtMa_kh.TabIndex = 4;
+            this.TxtMa_kh.TabIndex = 3;
             this.TxtMa_kh.VVar = "MA_KH";
             // 
             // Chk_Chitiet
@@ -208,7 +208,7 @@
             this.Chk_Chitiet.Location = new System.Drawing.Point(120, 117);
             this.Chk_Chitiet.Name = "Chk_Chitiet";
             this.Chk_Chitiet.Size = new System.Drawing.Size(106, 17);
-            this.Chk_Chitiet.TabIndex = 5;
+            this.Chk_Chitiet.TabIndex = 4;
             this.Chk_Chitiet.Text = "Chi tiết hàng hóa";
             this.Chk_Chitiet.UseVisualStyleBackColor = true;
             // 

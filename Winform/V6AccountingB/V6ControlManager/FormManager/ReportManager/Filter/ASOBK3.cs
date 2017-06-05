@@ -103,6 +103,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 case "4":
                     _pGroup = "MA_NX";
                     break;
+                case "5":
+                    _pGroup = "MA_NVIEN";
+                    break;
+                case "6":
+                    _pGroup = "MA_BPHT";
+                    break;
+                case "7":
+                    _pGroup = "MA_DVCS";
+                    break;
             }
             var result = new List<SqlParameter>();
             result.Add(new SqlParameter("@ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
@@ -117,7 +126,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_KHO","MA_DVCS","MA_BP", "MA_KH", "MA_VV", "MA_NX", "MA_VT","MA_NVIEN"
+                "MA_KHO","MA_DVCS","MA_BP", "MA_KH", "MA_VV", "MA_NX", "MA_VT","MA_NVIEN","MA_BPHT"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {
