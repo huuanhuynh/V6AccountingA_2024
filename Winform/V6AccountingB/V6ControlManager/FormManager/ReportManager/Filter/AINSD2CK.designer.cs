@@ -62,7 +62,7 @@
             this.txtMaDvcs.Location = new System.Drawing.Point(5, 69);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(292, 22);
-            this.txtMaDvcs.TabIndex = 3;
+            this.txtMaDvcs.TabIndex = 1;
             this.txtMaDvcs.Vvar = "MA_DVCS";
             // 
             // filterLineVvarTextBox3
@@ -73,7 +73,7 @@
             this.filterLineVvarTextBox3.Location = new System.Drawing.Point(5, 91);
             this.filterLineVvarTextBox3.Name = "filterLineVvarTextBox3";
             this.filterLineVvarTextBox3.Size = new System.Drawing.Size(292, 22);
-            this.filterLineVvarTextBox3.TabIndex = 4;
+            this.filterLineVvarTextBox3.TabIndex = 2;
             this.filterLineVvarTextBox3.Vvar = "MA_VT";
             // 
             // groupBox1
@@ -108,7 +108,7 @@
             this.Txtnh_vt6.Location = new System.Drawing.Point(5, 223);
             this.Txtnh_vt6.Name = "Txtnh_vt6";
             this.Txtnh_vt6.Size = new System.Drawing.Size(292, 22);
-            this.Txtnh_vt6.TabIndex = 10;
+            this.Txtnh_vt6.TabIndex = 8;
             this.Txtnh_vt6.Vvar = "NH_VT";
             // 
             // Txtnh_vt4
@@ -119,7 +119,7 @@
             this.Txtnh_vt4.Location = new System.Drawing.Point(5, 179);
             this.Txtnh_vt4.Name = "Txtnh_vt4";
             this.Txtnh_vt4.Size = new System.Drawing.Size(292, 22);
-            this.Txtnh_vt4.TabIndex = 8;
+            this.Txtnh_vt4.TabIndex = 6;
             this.Txtnh_vt4.Vvar = "NH_VT";
             // 
             // Txtnh_vt5
@@ -130,7 +130,7 @@
             this.Txtnh_vt5.Location = new System.Drawing.Point(5, 201);
             this.Txtnh_vt5.Name = "Txtnh_vt5";
             this.Txtnh_vt5.Size = new System.Drawing.Size(292, 22);
-            this.Txtnh_vt5.TabIndex = 9;
+            this.Txtnh_vt5.TabIndex = 7;
             this.Txtnh_vt5.Vvar = "NH_VT";
             // 
             // Txtnh_vt3
@@ -141,7 +141,7 @@
             this.Txtnh_vt3.Location = new System.Drawing.Point(5, 157);
             this.Txtnh_vt3.Name = "Txtnh_vt3";
             this.Txtnh_vt3.Size = new System.Drawing.Size(292, 22);
-            this.Txtnh_vt3.TabIndex = 7;
+            this.Txtnh_vt3.TabIndex = 5;
             this.Txtnh_vt3.Vvar = "NH_VT";
             // 
             // Txtnh_vt1
@@ -152,7 +152,7 @@
             this.Txtnh_vt1.Location = new System.Drawing.Point(5, 113);
             this.Txtnh_vt1.Name = "Txtnh_vt1";
             this.Txtnh_vt1.Size = new System.Drawing.Size(292, 22);
-            this.Txtnh_vt1.TabIndex = 5;
+            this.Txtnh_vt1.TabIndex = 3;
             this.Txtnh_vt1.Vvar = "NH_VT";
             // 
             // Txtnh_vt2
@@ -163,7 +163,7 @@
             this.Txtnh_vt2.Location = new System.Drawing.Point(5, 135);
             this.Txtnh_vt2.Name = "Txtnh_vt2";
             this.Txtnh_vt2.Size = new System.Drawing.Size(292, 22);
-            this.Txtnh_vt2.TabIndex = 6;
+            this.Txtnh_vt2.TabIndex = 4;
             this.Txtnh_vt2.Vvar = "NH_VT";
             // 
             // TxtMakho
@@ -174,7 +174,7 @@
             this.TxtMakho.Location = new System.Drawing.Point(5, 47);
             this.TxtMakho.Name = "TxtMakho";
             this.TxtMakho.Size = new System.Drawing.Size(292, 22);
-            this.TxtMakho.TabIndex = 2;
+            this.TxtMakho.TabIndex = 0;
             this.TxtMakho.Vvar = "MA_KHO";
             // 
             // radOr
@@ -215,7 +215,7 @@
             this.dateNgay_ct2.Location = new System.Drawing.Point(120, 8);
             this.dateNgay_ct2.Name = "dateNgay_ct2";
             this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct2.TabIndex = 1;
+            this.dateNgay_ct2.TabIndex = 0;
             // 
             // label1
             // 
@@ -240,7 +240,7 @@
             this.groupBoxNhom.Location = new System.Drawing.Point(3, 40);
             this.groupBoxNhom.Name = "groupBoxNhom";
             this.groupBoxNhom.Size = new System.Drawing.Size(296, 106);
-            this.groupBoxNhom.TabIndex = 3;
+            this.groupBoxNhom.TabIndex = 1;
             this.groupBoxNhom.TabStop = false;
             this.groupBoxNhom.Text = "Thứ tự sắp xếp theo nhóm vật tư";
             // 

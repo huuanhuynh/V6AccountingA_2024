@@ -97,7 +97,7 @@
             this.groupBox1.Location = new System.Drawing.Point(3, 91);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(305, 193);
-            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
             // 
@@ -109,7 +109,7 @@
             this.txtLoai_cc.Location = new System.Drawing.Point(9, 64);
             this.txtLoai_cc.Name = "txtLoai_cc";
             this.txtLoai_cc.Size = new System.Drawing.Size(282, 22);
-            this.txtLoai_cc.TabIndex = 10;
+            this.txtLoai_cc.TabIndex = 1;
             this.txtLoai_cc.Vvar = "LOAI_CC";
             // 
             // txtMaDvcs
@@ -120,7 +120,7 @@
             this.txtMaDvcs.Location = new System.Drawing.Point(9, 40);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
-            this.txtMaDvcs.TabIndex = 2;
+            this.txtMaDvcs.TabIndex = 0;
             this.txtMaDvcs.Vvar = "MA_DVCS";
             // 
             // filterLineVvarTextBox16
@@ -131,7 +131,7 @@
             this.filterLineVvarTextBox16.Location = new System.Drawing.Point(9, 112);
             this.filterLineVvarTextBox16.Name = "filterLineVvarTextBox16";
             this.filterLineVvarTextBox16.Size = new System.Drawing.Size(282, 22);
-            this.filterLineVvarTextBox16.TabIndex = 7;
+            this.filterLineVvarTextBox16.TabIndex = 3;
             this.filterLineVvarTextBox16.Vvar = "NH_CC";
             // 
             // filterLineVvarTextBox15
@@ -142,7 +142,7 @@
             this.filterLineVvarTextBox15.Location = new System.Drawing.Point(9, 135);
             this.filterLineVvarTextBox15.Name = "filterLineVvarTextBox15";
             this.filterLineVvarTextBox15.Size = new System.Drawing.Size(282, 22);
-            this.filterLineVvarTextBox15.TabIndex = 8;
+            this.filterLineVvarTextBox15.TabIndex = 4;
             this.filterLineVvarTextBox15.Vvar = "NH_CC";
             // 
             // filterLineVvarTextBox9
@@ -153,7 +153,7 @@
             this.filterLineVvarTextBox9.Location = new System.Drawing.Point(9, 158);
             this.filterLineVvarTextBox9.Name = "filterLineVvarTextBox9";
             this.filterLineVvarTextBox9.Size = new System.Drawing.Size(282, 22);
-            this.filterLineVvarTextBox9.TabIndex = 9;
+            this.filterLineVvarTextBox9.TabIndex = 5;
             this.filterLineVvarTextBox9.Vvar = "NH_TS";
             // 
             // TxtSO_THE_TS
@@ -164,7 +164,7 @@
             this.TxtSO_THE_TS.Location = new System.Drawing.Point(9, 88);
             this.TxtSO_THE_TS.Name = "TxtSO_THE_TS";
             this.TxtSO_THE_TS.Size = new System.Drawing.Size(282, 22);
-            this.TxtSO_THE_TS.TabIndex = 6;
+            this.TxtSO_THE_TS.TabIndex = 2;
             this.TxtSO_THE_TS.Vvar = "SO_THE_CC";
             // 
             // radOr

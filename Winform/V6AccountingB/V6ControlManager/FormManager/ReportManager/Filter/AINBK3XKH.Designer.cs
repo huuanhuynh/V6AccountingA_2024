@@ -77,7 +77,7 @@
             this.filterLineVvarTextBox1.Location = new System.Drawing.Point(6, 112);
             this.filterLineVvarTextBox1.Name = "filterLineVvarTextBox1";
             this.filterLineVvarTextBox1.Size = new System.Drawing.Size(292, 22);
-            this.filterLineVvarTextBox1.TabIndex = 3;
+            this.filterLineVvarTextBox1.TabIndex = 2;
             this.filterLineVvarTextBox1.Vvar = "MA_KHO";
             // 
             // txtMaDvcs
@@ -88,7 +88,7 @@
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 90);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(292, 22);
-            this.txtMaDvcs.TabIndex = 2;
+            this.txtMaDvcs.TabIndex = 1;
             this.txtMaDvcs.Vvar = "MA_DVCS";
             // 
             // filterLineVvarTextBox3
@@ -173,7 +173,7 @@
             this.ftl_ma_gd.Location = new System.Drawing.Point(4, 34);
             this.ftl_ma_gd.Name = "ftl_ma_gd";
             this.ftl_ma_gd.Size = new System.Drawing.Size(292, 22);
-            this.ftl_ma_gd.TabIndex = 65;
+            this.ftl_ma_gd.TabIndex = 0;
             this.ftl_ma_gd.Vvar = "";
             // 
             // Txtnh_vt6
@@ -316,7 +316,7 @@
             this.filterLineVvarTextBox17.Location = new System.Drawing.Point(6, 134);
             this.filterLineVvarTextBox17.Name = "filterLineVvarTextBox17";
             this.filterLineVvarTextBox17.Size = new System.Drawing.Size(292, 22);
-            this.filterLineVvarTextBox17.TabIndex = 4;
+            this.filterLineVvarTextBox17.TabIndex = 3;
             this.filterLineVvarTextBox17.Vvar = "MA_CT";
             // 
             // radOr
@@ -437,7 +437,7 @@
             this.dateNgay_ct1.Location = new System.Drawing.Point(120, 3);
             this.dateNgay_ct1.Name = "dateNgay_ct1";
             this.dateNgay_ct1.Size = new System.Drawing.Size(98, 20);
-            this.dateNgay_ct1.TabIndex = 1;
+            this.dateNgay_ct1.TabIndex = 0;
             // 
             // dateNgay_ct2
             // 
@@ -454,7 +454,7 @@
             this.dateNgay_ct2.Location = new System.Drawing.Point(120, 27);
             this.dateNgay_ct2.Name = "dateNgay_ct2";
             this.dateNgay_ct2.Size = new System.Drawing.Size(98, 20);
-            this.dateNgay_ct2.TabIndex = 3;
+            this.dateNgay_ct2.TabIndex = 1;
             // 
             // label1
             // 
@@ -489,7 +489,7 @@
             this.ctDenSo.Location = new System.Drawing.Point(120, 75);
             this.ctDenSo.Name = "ctDenSo";
             this.ctDenSo.Size = new System.Drawing.Size(98, 20);
-            this.ctDenSo.TabIndex = 64;
+            this.ctDenSo.TabIndex = 3;
             // 
             // v6Label7
             // 
@@ -529,7 +529,7 @@
             this.ctTuSo.Location = new System.Drawing.Point(120, 51);
             this.ctTuSo.Name = "ctTuSo";
             this.ctTuSo.Size = new System.Drawing.Size(98, 20);
-            this.ctTuSo.TabIndex = 63;
+            this.ctTuSo.TabIndex = 2;
             // 
             // v6Label8
             // 

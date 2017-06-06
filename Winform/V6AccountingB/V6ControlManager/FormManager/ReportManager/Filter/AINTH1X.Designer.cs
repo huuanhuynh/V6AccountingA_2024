@@ -83,7 +83,7 @@
             this.ctDenSo.Location = new System.Drawing.Point(120, 72);
             this.ctDenSo.Name = "ctDenSo";
             this.ctDenSo.Size = new System.Drawing.Size(100, 20);
-            this.ctDenSo.TabIndex = 54;
+            this.ctDenSo.TabIndex = 4;
             // 
             // v6Label7
             // 
@@ -123,7 +123,7 @@
             this.ctTuSo.Location = new System.Drawing.Point(120, 51);
             this.ctTuSo.Name = "ctTuSo";
             this.ctTuSo.Size = new System.Drawing.Size(100, 20);
-            this.ctTuSo.TabIndex = 53;
+            this.ctTuSo.TabIndex = 3;
             // 
             // v6Label8
             // 
@@ -170,7 +170,7 @@
             this.dateNgay_ct2.Location = new System.Drawing.Point(120, 25);
             this.dateNgay_ct2.Name = "dateNgay_ct2";
             this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct2.TabIndex = 4;
+            this.dateNgay_ct2.TabIndex = 1;
             // 
             // dateNgay_ct1
             // 
@@ -187,7 +187,7 @@
             this.dateNgay_ct1.Location = new System.Drawing.Point(120, 3);
             this.dateNgay_ct1.Name = "dateNgay_ct1";
             this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct1.TabIndex = 1;
+            this.dateNgay_ct1.TabIndex = 0;
             // 
             // chkGiamTru
             // 
@@ -282,7 +282,7 @@
             this.ftl_ma_gd.Location = new System.Drawing.Point(4, 40);
             this.ftl_ma_gd.Name = "ftl_ma_gd";
             this.ftl_ma_gd.Size = new System.Drawing.Size(292, 22);
-            this.ftl_ma_gd.TabIndex = 57;
+            this.ftl_ma_gd.TabIndex = 0;
             this.ftl_ma_gd.Vvar = "";
             // 
             // Txtnh_vt4
@@ -450,7 +450,7 @@
             this.makho.Location = new System.Drawing.Point(6, 94);
             this.makho.Name = "makho";
             this.makho.Size = new System.Drawing.Size(292, 22);
-            this.makho.TabIndex = 2;
+            this.makho.TabIndex = 1;
             this.makho.Vvar = "MA_KHO";
             // 
             // txtMaDvcs
@@ -461,7 +461,7 @@
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 116);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(292, 22);
-            this.txtMaDvcs.TabIndex = 3;
+            this.txtMaDvcs.TabIndex = 2;
             this.txtMaDvcs.Vvar = "MA_DVCS";
             // 
             // filterLineVvarTextBox8

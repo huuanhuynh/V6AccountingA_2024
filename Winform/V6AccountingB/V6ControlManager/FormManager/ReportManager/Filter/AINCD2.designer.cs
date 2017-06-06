@@ -72,7 +72,7 @@
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 62);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
-            this.txtMaDvcs.TabIndex = 3;
+            this.txtMaDvcs.TabIndex = 1;
             this.txtMaDvcs.Vvar = "MA_DVCS";
             // 
             // TxtMa_vt
@@ -83,7 +83,7 @@
             this.TxtMa_vt.Location = new System.Drawing.Point(6, 85);
             this.TxtMa_vt.Name = "TxtMa_vt";
             this.TxtMa_vt.Size = new System.Drawing.Size(282, 22);
-            this.TxtMa_vt.TabIndex = 4;
+            this.TxtMa_vt.TabIndex = 2;
             this.TxtMa_vt.Vvar = "MA_VT";
             // 
             // groupBox1
@@ -188,7 +188,7 @@
             this.TxtMakho.Location = new System.Drawing.Point(6, 39);
             this.TxtMakho.Name = "TxtMakho";
             this.TxtMakho.Size = new System.Drawing.Size(282, 22);
-            this.TxtMakho.TabIndex = 2;
+            this.TxtMakho.TabIndex = 0;
             this.TxtMakho.Vvar = "MA_KHO";
             // 
             // radOr
@@ -262,7 +262,7 @@
             this.dateNgay_ct1.Location = new System.Drawing.Point(100, 3);
             this.dateNgay_ct1.Name = "dateNgay_ct1";
             this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct1.TabIndex = 1;
+            this.dateNgay_ct1.TabIndex = 0;
             // 
             // dateNgay_ct2
             // 
@@ -277,7 +277,7 @@
             this.dateNgay_ct2.Location = new System.Drawing.Point(100, 29);
             this.dateNgay_ct2.Name = "dateNgay_ct2";
             this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct2.TabIndex = 3;
+            this.dateNgay_ct2.TabIndex = 1;
             // 
             // label1
             // 
@@ -306,7 +306,7 @@
             this.Chk_Tinh_dc.Location = new System.Drawing.Point(63, 81);
             this.Chk_Tinh_dc.Name = "Chk_Tinh_dc";
             this.Chk_Tinh_dc.Size = new System.Drawing.Size(149, 17);
-            this.Chk_Tinh_dc.TabIndex = 7;
+            this.Chk_Tinh_dc.TabIndex = 3;
             this.Chk_Tinh_dc.Text = "Tính PS điều chuyển kho";
             this.Chk_Tinh_dc.UseVisualStyleBackColor = true;
             // 
@@ -335,7 +335,7 @@
             this.TxtVttonkho.MaxLength = 1;
             this.TxtVttonkho.Name = "TxtVttonkho";
             this.TxtVttonkho.Size = new System.Drawing.Size(18, 20);
-            this.TxtVttonkho.TabIndex = 5;
+            this.TxtVttonkho.TabIndex = 2;
             // 
             // v6Label1
             // 
@@ -344,7 +344,7 @@
             this.v6Label1.Location = new System.Drawing.Point(85, 58);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(184, 13);
-            this.v6Label1.TabIndex = 6;
+            this.v6Label1.TabIndex = 3;
             this.v6Label1.Text = "* - Tất cả, 1- Theo dõi tồn , 0 - Không";
             // 
             // groupBoxNhom
@@ -361,7 +361,7 @@
             this.groupBoxNhom.Location = new System.Drawing.Point(3, 113);
             this.groupBoxNhom.Name = "groupBoxNhom";
             this.groupBoxNhom.Size = new System.Drawing.Size(288, 106);
-            this.groupBoxNhom.TabIndex = 9;
+            this.groupBoxNhom.TabIndex = 4;
             this.groupBoxNhom.TabStop = false;
             this.groupBoxNhom.Text = "Thứ tự sắp xếp theo nhóm vật tư";
             // 
@@ -372,7 +372,7 @@
             this.chkHienMa.Location = new System.Drawing.Point(181, 22);
             this.chkHienMa.Name = "chkHienMa";
             this.chkHienMa.Size = new System.Drawing.Size(65, 17);
-            this.chkHienMa.TabIndex = 7;
+            this.chkHienMa.TabIndex = 6;
             this.chkHienMa.Text = "Hiện mã";
             this.chkHienMa.UseVisualStyleBackColor = true;
             this.chkHienMa.CheckedChanged += new System.EventHandler(this.chkHienMa_CheckedChanged);
@@ -405,7 +405,7 @@
             this.lblGroupString.Location = new System.Drawing.Point(6, 44);
             this.lblGroupString.Name = "lblGroupString";
             this.lblGroupString.Size = new System.Drawing.Size(276, 59);
-            this.lblGroupString.TabIndex = 6;
+            this.lblGroupString.TabIndex = 7;
             // 
             // NH_VT6
             // 
