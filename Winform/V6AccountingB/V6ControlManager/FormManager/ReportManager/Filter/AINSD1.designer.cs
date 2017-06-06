@@ -47,7 +47,7 @@
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 82);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
-            this.txtMaDvcs.TabIndex = 3;
+            this.txtMaDvcs.TabIndex = 1;
             this.txtMaDvcs.Vvar = "MA_DVCS";
             // 
             // TxtMavt
@@ -58,7 +58,7 @@
             this.TxtMavt.Location = new System.Drawing.Point(9, 38);
             this.TxtMavt.Name = "TxtMavt";
             this.TxtMavt.Size = new System.Drawing.Size(282, 22);
-            this.TxtMavt.TabIndex = 4;
+            this.TxtMavt.TabIndex = 1;
             this.TxtMavt.Vvar = "MA_VT";
             // 
             // groupBox1
@@ -85,7 +85,7 @@
             this.TxtMakho.Location = new System.Drawing.Point(6, 57);
             this.TxtMakho.Name = "TxtMakho";
             this.TxtMakho.Size = new System.Drawing.Size(282, 22);
-            this.TxtMakho.TabIndex = 2;
+            this.TxtMakho.TabIndex = 0;
             this.TxtMakho.Vvar = "MA_KHO";
             // 
             // radOr
@@ -126,7 +126,7 @@
             this.dateNgay_ct2.Location = new System.Drawing.Point(100, 4);
             this.dateNgay_ct2.Name = "dateNgay_ct2";
             this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct2.TabIndex = 1;
+            this.dateNgay_ct2.TabIndex = 0;
             // 
             // label1
             // 

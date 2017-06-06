@@ -110,7 +110,7 @@
             this.groupBox1.Location = new System.Drawing.Point(3, 80);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(301, 476);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
             // 
@@ -328,7 +328,7 @@
             this.dateNgay_ct1.Location = new System.Drawing.Point(100, 3);
             this.dateNgay_ct1.Name = "dateNgay_ct1";
             this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct1.TabIndex = 1;
+            this.dateNgay_ct1.TabIndex = 0;
             // 
             // dateNgay_ct2
             // 
@@ -343,7 +343,7 @@
             this.dateNgay_ct2.Location = new System.Drawing.Point(100, 29);
             this.dateNgay_ct2.Name = "dateNgay_ct2";
             this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct2.TabIndex = 3;
+            this.dateNgay_ct2.TabIndex = 1;
             // 
             // label1
             // 
@@ -400,7 +400,7 @@
             this.TxtLoai_bc.MaxLength = 1;
             this.TxtLoai_bc.Name = "TxtLoai_bc";
             this.TxtLoai_bc.Size = new System.Drawing.Size(18, 20);
-            this.TxtLoai_bc.TabIndex = 5;
+            this.TxtLoai_bc.TabIndex = 2;
             // 
             // AGLBK1
             // 

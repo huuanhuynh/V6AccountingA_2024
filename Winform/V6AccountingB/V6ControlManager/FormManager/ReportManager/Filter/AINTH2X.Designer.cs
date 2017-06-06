@@ -491,7 +491,7 @@
             this.label7.Location = new System.Drawing.Point(75, 98);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(190, 13);
-            this.label7.TabIndex = 29;
+            this.label7.TabIndex = 4;
             this.label7.Text = "5-Mã N viên, 6-Mã BPHT, 7-Mã đơn vị";
             // 
             // v6Label2
@@ -501,7 +501,7 @@
             this.v6Label2.Location = new System.Drawing.Point(75, 79);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(196, 13);
-            this.v6Label2.TabIndex = 28;
+            this.v6Label2.TabIndex = 3;
             this.v6Label2.Text = "1- Khách,2- Vụ việc,3 -Mã BP, 4-Mã NX";
             // 
             // AINTH2X

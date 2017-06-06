@@ -116,7 +116,7 @@
             this.groupBox1.Location = new System.Drawing.Point(3, 253);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(309, 357);
-            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
             // 
@@ -427,7 +427,7 @@
             this.groupBoxNhom.Location = new System.Drawing.Point(9, 133);
             this.groupBoxNhom.Name = "groupBoxNhom";
             this.groupBoxNhom.Size = new System.Drawing.Size(288, 106);
-            this.groupBoxNhom.TabIndex = 11;
+            this.groupBoxNhom.TabIndex = 5;
             this.groupBoxNhom.TabStop = false;
             this.groupBoxNhom.Text = "Thứ tự sắp xếp theo nhóm vật tư";
             // 
@@ -438,7 +438,7 @@
             this.chkHienMa.Location = new System.Drawing.Point(181, 22);
             this.chkHienMa.Name = "chkHienMa";
             this.chkHienMa.Size = new System.Drawing.Size(65, 17);
-            this.chkHienMa.TabIndex = 7;
+            this.chkHienMa.TabIndex = 6;
             this.chkHienMa.Text = "Hiện mã";
             this.chkHienMa.UseVisualStyleBackColor = true;
             this.chkHienMa.CheckedChanged += new System.EventHandler(this.chkHienMa_CheckedChanged);
@@ -471,7 +471,7 @@
             this.lblGroupString.Location = new System.Drawing.Point(6, 44);
             this.lblGroupString.Name = "lblGroupString";
             this.lblGroupString.Size = new System.Drawing.Size(276, 59);
-            this.lblGroupString.TabIndex = 6;
+            this.lblGroupString.TabIndex = 7;
             // 
             // NH_VT6
             // 

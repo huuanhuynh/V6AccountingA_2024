@@ -56,7 +56,7 @@
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 65);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
-            this.txtMaDvcs.TabIndex = 3;
+            this.txtMaDvcs.TabIndex = 1;
             this.txtMaDvcs.Vvar = "MA_DVCS";
             // 
             // TxtMa_vt
@@ -67,7 +67,7 @@
             this.TxtMa_vt.Location = new System.Drawing.Point(6, 88);
             this.TxtMa_vt.Name = "TxtMa_vt";
             this.TxtMa_vt.Size = new System.Drawing.Size(282, 22);
-            this.TxtMa_vt.TabIndex = 4;
+            this.TxtMa_vt.TabIndex = 2;
             this.TxtMa_vt.Vvar = "MA_VT";
             // 
             // groupBox1
@@ -103,7 +103,7 @@
             this.Txtnh_vt6.Location = new System.Drawing.Point(6, 249);
             this.Txtnh_vt6.Name = "Txtnh_vt6";
             this.Txtnh_vt6.Size = new System.Drawing.Size(282, 22);
-            this.Txtnh_vt6.TabIndex = 10;
+            this.Txtnh_vt6.TabIndex = 9;
             this.Txtnh_vt6.Vvar = "NH_VT";
             // 
             // Txtnh_vt4
@@ -114,7 +114,7 @@
             this.Txtnh_vt4.Location = new System.Drawing.Point(6, 203);
             this.Txtnh_vt4.Name = "Txtnh_vt4";
             this.Txtnh_vt4.Size = new System.Drawing.Size(282, 22);
-            this.Txtnh_vt4.TabIndex = 8;
+            this.Txtnh_vt4.TabIndex = 7;
             this.Txtnh_vt4.Vvar = "NH_VT";
             // 
             // Txtnh_vt5
@@ -125,7 +125,7 @@
             this.Txtnh_vt5.Location = new System.Drawing.Point(6, 226);
             this.Txtnh_vt5.Name = "Txtnh_vt5";
             this.Txtnh_vt5.Size = new System.Drawing.Size(282, 22);
-            this.Txtnh_vt5.TabIndex = 9;
+            this.Txtnh_vt5.TabIndex = 8;
             this.Txtnh_vt5.Vvar = "NH_VT";
             // 
             // Txttk_vt
@@ -136,7 +136,7 @@
             this.Txttk_vt.Location = new System.Drawing.Point(6, 111);
             this.Txttk_vt.Name = "Txttk_vt";
             this.Txttk_vt.Size = new System.Drawing.Size(282, 22);
-            this.Txttk_vt.TabIndex = 12;
+            this.Txttk_vt.TabIndex = 3;
             this.Txttk_vt.Vvar = "TK";
             // 
             // TxtMakho
@@ -147,7 +147,7 @@
             this.TxtMakho.Location = new System.Drawing.Point(6, 42);
             this.TxtMakho.Name = "TxtMakho";
             this.TxtMakho.Size = new System.Drawing.Size(282, 22);
-            this.TxtMakho.TabIndex = 2;
+            this.TxtMakho.TabIndex = 0;
             this.TxtMakho.Vvar = "MA_KHO";
             // 
             // radOr
@@ -183,7 +183,7 @@
             this.Txtnh_vt1.Location = new System.Drawing.Point(6, 134);
             this.Txtnh_vt1.Name = "Txtnh_vt1";
             this.Txtnh_vt1.Size = new System.Drawing.Size(282, 22);
-            this.Txtnh_vt1.TabIndex = 5;
+            this.Txtnh_vt1.TabIndex = 4;
             this.Txtnh_vt1.Vvar = "NH_VT";
             // 
             // Txtnh_vt2
@@ -194,7 +194,7 @@
             this.Txtnh_vt2.Location = new System.Drawing.Point(6, 157);
             this.Txtnh_vt2.Name = "Txtnh_vt2";
             this.Txtnh_vt2.Size = new System.Drawing.Size(282, 22);
-            this.Txtnh_vt2.TabIndex = 6;
+            this.Txtnh_vt2.TabIndex = 5;
             this.Txtnh_vt2.Vvar = "NH_VT";
             // 
             // Txtnh_vt3
@@ -205,7 +205,7 @@
             this.Txtnh_vt3.Location = new System.Drawing.Point(6, 180);
             this.Txtnh_vt3.Name = "Txtnh_vt3";
             this.Txtnh_vt3.Size = new System.Drawing.Size(282, 22);
-            this.Txtnh_vt3.TabIndex = 7;
+            this.Txtnh_vt3.TabIndex = 6;
             this.Txtnh_vt3.Vvar = "NH_VT";
             // 
             // label1
@@ -243,7 +243,7 @@
             this.txtThang1.MaxNumLength = 2;
             this.txtThang1.Name = "txtThang1";
             this.txtThang1.Size = new System.Drawing.Size(100, 20);
-            this.txtThang1.TabIndex = 9;
+            this.txtThang1.TabIndex = 0;
             this.txtThang1.Text = "0";
             this.txtThang1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtThang1.Value = new decimal(new int[] {
@@ -268,7 +268,7 @@
             this.txtNam.MaxNumLength = 4;
             this.txtNam.Name = "txtNam";
             this.txtNam.Size = new System.Drawing.Size(100, 20);
-            this.txtNam.TabIndex = 10;
+            this.txtNam.TabIndex = 1;
             this.txtNam.Text = "0";
             this.txtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNam.Value = new decimal(new int[] {
