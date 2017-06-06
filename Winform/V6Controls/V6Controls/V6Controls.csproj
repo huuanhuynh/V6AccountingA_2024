@@ -150,6 +150,12 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\ALREPORT.designer.cs">
       <DependentUpon>ALREPORT.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ALREPORT1_FilterEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ALREPORT1_FilterEditorForm.designer.cs">
+      <DependentUpon>ALREPORT1_FilterEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\ALREPORT1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1213,6 +1219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ALREPORT.resx">
       <DependentUpon>ALREPORT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ALREPORT1_FilterEditorForm.resx">
+      <DependentUpon>ALREPORT1_FilterEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ALREPORT1.resx">
       <DependentUpon>ALREPORT1.cs</DependentUpon>

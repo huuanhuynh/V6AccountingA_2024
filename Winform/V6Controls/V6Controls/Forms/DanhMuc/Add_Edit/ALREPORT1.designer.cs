@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtSTT_KEY = new V6Controls.V6NumberTextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -51,12 +50,12 @@
             this.label53 = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
             this.v6ColorTextBox16 = new V6Controls.V6ColorTextBox();
-            this.v6ColorTextBox15 = new V6Controls.V6ColorTextBox();
+            this.txtFilter = new V6Controls.V6ColorTextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnEditFilter = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -257,6 +256,7 @@
             // 
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage1.Controls.Add(this.btnEditFilter);
             this.tabPage1.Controls.Add(this.v6ColorTextBox2);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.v6ColorTextBox1);
@@ -266,7 +266,7 @@
             this.tabPage1.Controls.Add(this.label53);
             this.tabPage1.Controls.Add(this.label52);
             this.tabPage1.Controls.Add(this.v6ColorTextBox16);
-            this.tabPage1.Controls.Add(this.v6ColorTextBox15);
+            this.tabPage1.Controls.Add(this.txtFilter);
             this.tabPage1.Controls.Add(this.label47);
             this.tabPage1.Controls.Add(this.label46);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
@@ -407,23 +407,23 @@
             this.v6ColorTextBox16.Size = new System.Drawing.Size(672, 23);
             this.v6ColorTextBox16.TabIndex = 1;
             // 
-            // v6ColorTextBox15
+            // txtFilter
             // 
-            this.v6ColorTextBox15.AccessibleName = "FILTER";
-            this.v6ColorTextBox15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtFilter.AccessibleName = "FILTER";
+            this.txtFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox15.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox15.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox15.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox15.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox15.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox15.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox15.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox15.Location = new System.Drawing.Point(119, 24);
-            this.v6ColorTextBox15.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox15.Name = "v6ColorTextBox15";
-            this.v6ColorTextBox15.Size = new System.Drawing.Size(672, 23);
-            this.v6ColorTextBox15.TabIndex = 0;
+            this.txtFilter.BackColor = System.Drawing.Color.White;
+            this.txtFilter.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFilter.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFilter.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFilter.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFilter.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFilter.LeaveColor = System.Drawing.Color.White;
+            this.txtFilter.Location = new System.Drawing.Point(119, 24);
+            this.txtFilter.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(625, 23);
+            this.txtFilter.TabIndex = 0;
             // 
             // label47
             // 
@@ -473,6 +473,19 @@
             this.tabPage2.Text = "Thông tin ngầm định";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnEditFilter
+            // 
+            this.btnEditFilter.AccessibleName = "";
+            this.btnEditFilter.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnEditFilter.Location = new System.Drawing.Point(751, 22);
+            this.btnEditFilter.Name = "btnEditFilter";
+            this.btnEditFilter.Size = new System.Drawing.Size(40, 25);
+            this.btnEditFilter.TabIndex = 74;
+            this.btnEditFilter.Text = "...";
+            this.btnEditFilter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditFilter.UseVisualStyleBackColor = true;
+            this.btnEditFilter.Click += new System.EventHandler(this.btnEditFilter_Click);
+            // 
             // ALREPORT1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -508,7 +521,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label6;
         private V6NumberTextBox TxtSTT_FILTER;
-        private System.Windows.Forms.ToolTip toolTip1;
         private V6NumberTextBox TxtSTT_KEY;
         private System.Windows.Forms.Label label7;
         private V6ColorTextBox v6ColorTextBox2;
@@ -520,8 +532,9 @@
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label52;
         private V6ColorTextBox v6ColorTextBox16;
-        private V6ColorTextBox v6ColorTextBox15;
+        private V6ColorTextBox txtFilter;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label46;
+        protected System.Windows.Forms.Button btnEditFilter;
     }
 }

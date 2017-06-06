@@ -86,7 +86,7 @@ namespace V6Structs
                     Ptype = value;
                     break;
                 case "SQLTYPE":
-                    sql_type = value;
+                    sql_type = value.ToLower();
                     break;
                 case "TEXTV":
                     TextV = value;
@@ -112,10 +112,17 @@ namespace V6Structs
             }
         }
 
+        /// <summary>
+        /// Trường để lấy data trong vvar_data dùng cho RptExtraParameters khi Ptype = FILTER_BROTHER.
+        /// </summary>
         public string Fname { get; set; }
-
+        /// <summary>
+        /// TABLE2, PARENT, FILTER, FILTER_BROTHER, Dùng trong định nghĩa ds ExtraParameterInfo.
+        /// </summary>
         public string Ptype { get; set; }
-
+        /// <summary>
+        /// Giá trị, tùy ý sử dụng.
+        /// </summary>
         public string Value { get; set; }
 
         public string Name { get; set; }
@@ -170,7 +177,9 @@ namespace V6Structs
         /// Key là LimitChars hoặc LimitChar không phân biệt hoa thường.
         /// </summary>
         public string LimitChars { get; set; }
-
+        /// <summary>
+        /// Trường lọc số liệu khi F5 (trường trong parent data).
+        /// </summary>
         public string Fparent { get; set; }
     }
 }
