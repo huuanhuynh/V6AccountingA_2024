@@ -205,6 +205,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             ChonHinh();
         }
+        
+        private void btnChonhinhS_Click(object sender, EventArgs e)
+        {
+            ChonHinhS();
+        }
 
         private void ChonHinh()
         {
@@ -239,6 +244,39 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
         
+        private void ChonHinhS()
+        {
+            try
+            {
+                var chooseImage = V6ControlFormHelper.ChooseImage();
+                if (chooseImage == null) return;
+
+                pictureBoxS.Image = chooseImage;
+
+                var ma_kh_new = txtMaKH.Text.Trim();
+                var ma_kh_old = Mode == V6Mode.Edit ? DataOld["MA_KH"].ToString().Trim() : ma_kh_new;
+                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_ALKHCT1",
+                    new SqlParameter("@cMa_kh_old", ma_kh_old),
+                    new SqlParameter("@cMa_kh_new", ma_kh_new));
+
+                var photo = Picture.ToJpegByteArray(pictureBoxS.Image);
+                //var sign = Picture.ToJpegByteArray(pictureBox2.Image);
+                var data = new SortedDictionary<string, object> { { "SIGNATURE", photo } };//, {"SIGNATURE", sign}};
+                var keys = new SortedDictionary<string, object> { { "MA_KH", txtMaKH.Text } };
+
+                var result = V6BusinessHelper.UpdateTable(V6TableName.Alkhct1.ToString(), data, keys);
+
+                if (result == 1)
+                {
+                    ShowTopMessage(V6Text.Updated + "SIGNATURE");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".ChonHinhS " + ex.Message);
+            }
+        }
+        
         private void XoaHinh()
         {
             try
@@ -258,13 +296,41 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".ChonHinh " + ex.Message);
+                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".XoaHinh " + ex.Message);
+            }
+        }
+        
+        private void XoaHinhS()
+        {
+            try
+            {
+                pictureBoxS.Image = null;
+
+                var photo = Picture.ToJpegByteArray(pictureBoxS.Image);
+                var data = new SortedDictionary<string, object> { { "SIGNATURE", photo } };
+                var keys = new SortedDictionary<string, object> { { "MA_KH", txtMaKH.Text } };
+
+                var result = V6BusinessHelper.UpdateTable(V6TableName.Alkhct1.ToString(), data, keys);
+
+                if (result == 1)
+                {
+                    ShowTopMessage(V6Text.Updated + "SIGNATURE");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".XoaHinhS " + ex.Message);
             }
         }
 
         private void btnXoahinh_Click(object sender, EventArgs e)
         {
             XoaHinh();
+        }
+        
+        private void btnXoahinhS_Click(object sender, EventArgs e)
+        {
+            XoaHinhS();
         }
 
     }

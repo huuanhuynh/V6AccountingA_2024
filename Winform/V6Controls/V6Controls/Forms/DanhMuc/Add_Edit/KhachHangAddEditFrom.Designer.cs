@@ -131,6 +131,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnChonHinhS = new V6Controls.Controls.V6FormButton();
+            this.btnXoaHinhS = new V6Controls.Controls.V6FormButton();
+            this.pictureBoxS = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -138,6 +141,7 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbPHOTOGRAPH)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxS)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1553,8 +1557,11 @@
             this.tabPage4.AccessibleDescription = "ADDEDITT00004";
             this.tabPage4.AutoScroll = true;
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage4.Controls.Add(this.pictureBoxS);
             this.tabPage4.Controls.Add(this.ptbPHOTOGRAPH);
+            this.tabPage4.Controls.Add(this.btnXoaHinhS);
             this.tabPage4.Controls.Add(this.btnXoahinh);
+            this.tabPage4.Controls.Add(this.btnChonHinhS);
             this.tabPage4.Controls.Add(this.btnChonhinh);
             this.tabPage4.Location = new System.Drawing.Point(4, 28);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
@@ -1568,9 +1575,9 @@
             // 
             this.ptbPHOTOGRAPH.AccessibleName = "PHOTOGRAPH";
             this.ptbPHOTOGRAPH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ptbPHOTOGRAPH.Location = new System.Drawing.Point(281, 28);
+            this.ptbPHOTOGRAPH.Location = new System.Drawing.Point(5, 42);
             this.ptbPHOTOGRAPH.Name = "ptbPHOTOGRAPH";
-            this.ptbPHOTOGRAPH.Size = new System.Drawing.Size(442, 318);
+            this.ptbPHOTOGRAPH.Size = new System.Drawing.Size(350, 262);
             this.ptbPHOTOGRAPH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptbPHOTOGRAPH.TabIndex = 45;
             this.ptbPHOTOGRAPH.TabStop = false;
@@ -1581,7 +1588,7 @@
             this.btnXoahinh.AccessibleName = "";
             this.btnXoahinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnXoahinh.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnXoahinh.Location = new System.Drawing.Point(173, 70);
+            this.btnXoahinh.Location = new System.Drawing.Point(101, 7);
             this.btnXoahinh.Name = "btnXoahinh";
             this.btnXoahinh.Size = new System.Drawing.Size(91, 29);
             this.btnXoahinh.TabIndex = 44;
@@ -1596,7 +1603,7 @@
             this.btnChonhinh.AccessibleName = "";
             this.btnChonhinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnChonhinh.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnChonhinh.Location = new System.Drawing.Point(173, 35);
+            this.btnChonhinh.Location = new System.Drawing.Point(4, 7);
             this.btnChonhinh.Name = "btnChonhinh";
             this.btnChonhinh.Size = new System.Drawing.Size(91, 29);
             this.btnChonhinh.TabIndex = 43;
@@ -1741,6 +1748,47 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã khách hàng";
             // 
+            // btnChonHinhS
+            // 
+            this.btnChonHinhS.AccessibleDescription = "ADDEDITB00004";
+            this.btnChonHinhS.AccessibleName = "";
+            this.btnChonHinhS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonHinhS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonHinhS.Location = new System.Drawing.Point(376, 7);
+            this.btnChonHinhS.Name = "btnChonHinhS";
+            this.btnChonHinhS.Size = new System.Drawing.Size(91, 29);
+            this.btnChonHinhS.TabIndex = 43;
+            this.btnChonHinhS.Text = "Chọn hình";
+            this.btnChonHinhS.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonHinhS.UseVisualStyleBackColor = true;
+            this.btnChonHinhS.Click += new System.EventHandler(this.btnChonhinhS_Click);
+            // 
+            // btnXoaHinhS
+            // 
+            this.btnXoaHinhS.AccessibleDescription = "ADDEDITB00005";
+            this.btnXoaHinhS.AccessibleName = "";
+            this.btnXoaHinhS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXoaHinhS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXoaHinhS.Location = new System.Drawing.Point(473, 7);
+            this.btnXoaHinhS.Name = "btnXoaHinhS";
+            this.btnXoaHinhS.Size = new System.Drawing.Size(91, 29);
+            this.btnXoaHinhS.TabIndex = 44;
+            this.btnXoaHinhS.Text = "Xóa hình";
+            this.btnXoaHinhS.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoaHinhS.UseVisualStyleBackColor = true;
+            this.btnXoaHinhS.Click += new System.EventHandler(this.btnXoahinhS_Click);
+            // 
+            // pictureBoxS
+            // 
+            this.pictureBoxS.AccessibleName = "SIGNATURE";
+            this.pictureBoxS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxS.Location = new System.Drawing.Point(377, 42);
+            this.pictureBoxS.Name = "pictureBoxS";
+            this.pictureBoxS.Size = new System.Drawing.Size(350, 262);
+            this.pictureBoxS.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxS.TabIndex = 45;
+            this.pictureBoxS.TabStop = false;
+            // 
             // KhachHangAddEditFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1763,6 +1811,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ptbPHOTOGRAPH)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxS)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1872,5 +1921,8 @@
         private System.Windows.Forms.PictureBox ptbPHOTOGRAPH;
         protected V6Controls.Controls.V6FormButton btnXoahinh;
         protected V6Controls.Controls.V6FormButton btnChonhinh;
+        private System.Windows.Forms.PictureBox pictureBoxS;
+        protected Controls.V6FormButton btnXoaHinhS;
+        protected Controls.V6FormButton btnChonHinhS;
     }
 }
