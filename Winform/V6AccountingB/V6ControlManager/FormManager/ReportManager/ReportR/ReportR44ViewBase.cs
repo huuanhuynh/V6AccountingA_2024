@@ -12,8 +12,10 @@ using System.Windows.Forms;
 using CrystalDecisions.CrystalReports.Engine;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
+using V6ControlManager.FormManager.DanhMucManager;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
@@ -1046,7 +1048,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (_tbl1 == null)
             {
-                //this.ShowWarningMessage("NoData");
+                ShowTopMessage(V6Text.NoData);
                 return;
             }
             try
@@ -1433,12 +1435,32 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
             }
         }
+        
+        private void btnSuaLine_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var title = V6Setting.IsVietnamese ? "Sửa báo cáo động" : "Edit dynamic report";
+                var f = new DanhMucView(ItemID, title, "Alreport", "ma_bc='"+_program+"'",
+                    V6TableHelper.GetDefaultSortField(V6TableName.Alreport), false);
+                f.EnableAdd = false;
+                f.EnableCopy = false;
+                f.EnableDelete = false;
+                f.EnableFullScreen = false;
+                
+                f.ShowToForm(title);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
+            }
+        }
 
         private void exportToExcel_Click(object sender, EventArgs e)
         {
             if (_tbl1 == null)
             {
-                //this.ShowWarningMessage("NoData");
+                ShowTopMessage(V6Text.NoData);
                 return;
             }
             try
@@ -1500,7 +1522,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (_tbl1 == null)
             {
-                //this.ShowWarningMessage("NoData");
+                ShowTopMessage(V6Text.NoData);
                 return;
             }
             try

@@ -106,9 +106,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 var data = CurrentIndexAM_Data;
                 if (data != null)
                 {
-                    return data["TIME0"].ToString().Left(5);
+                    return data["TIME0"].ToString();//.Left(5);
                 }
                 return "";
+            }
+            set
+            {
+                if (CurrentIndex >= 0 && CurrentIndex < AM.Rows.Count)
+                {
+                    var row = AM.Rows[CurrentIndex];
+                    row["TIME0"] = value.Left(8);
+                }
             }
         }
         public string Time2
@@ -118,9 +126,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 var data = CurrentIndexAM_Data;
                 if (data != null)
                 {
-                    return data["TIME2"].ToString().Left(5);
+                    return data["TIME2"].ToString();
                 }
                 return "";
+            }
+            set
+            {
+                if (CurrentIndex >= 0 && CurrentIndex < AM.Rows.Count)
+                {
+                    var row = AM.Rows[CurrentIndex];
+                    row["TIME2"] = value.Left(8);
+                }
             }
         }
 
@@ -4114,7 +4130,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
                 if (_post) V6ControlFormHelper.RemoveRunningList(_sttRec);
 
+                var time2 = V6BusinessHelper.GetServerDateTime().ToString("HH:mm:ss");
+                Time2 = time2;
                 addDataAM = PreparingDataAM(Invoice);
+                addDataAM["TIME2"] = time2;
                 addDataAM["MA_KHOPH"] = ma_khoPH;
                 addDataAM["MA_VITRIPH"] = ma_vitriPH;
                 
@@ -5106,6 +5125,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             Moi();
             Luu(MA_KHOPH, MA_VITRIPH, false);
             CurrentIndex = AM.Rows.Count - 1;//!!!!!
+            //Time0, Time2
+            var time = V6BusinessHelper.GetServerDateTime();
+            Time0 = time.ToString("HH:mm:ss");
+            //OnBillChanged();
             Mode = V6Mode.Edit;
         }
 

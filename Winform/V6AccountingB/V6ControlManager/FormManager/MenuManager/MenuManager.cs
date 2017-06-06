@@ -333,16 +333,27 @@ namespace V6ControlManager.FormManager.MenuManager
                             break;
                         case "W":
                             #region ==== //bao cao link 2 tables ====
-                            var programW = codeform.Substring(1);
-                            if (V6Login.UserRight.AllowRun(item_id, codeform))
+
+                            if (!V6Login.UserRight.AllowRun(item_id, codeform))
                             {
-                                c = new ReportRView2Base(item_id, programW, programW, repFile, repTitle, repTitle2,
+                                c = new V6UserControlNoRight("Key:" + item_id + "; Codeform:" + codeform);
+                                break;
+                            }
+
+                            var programW = codeform.Substring(1);
+                            if (codeform.StartsWith("WW"))
+                            {
+                                programW = codeform.Substring(2);
+                                c = new ReportRWWView2Base(item_id, programW, programW, repFile, repTitle, repTitle2,
                                     repFileF5, repTitleF5, repTitle2F5);
                             }
                             else
                             {
-                                c = new V6UserControlNoRight("Key:" + item_id + "; Codeform:" + codeform);
+                                c = new ReportRView2Base(item_id, programW, programW, repFile, repTitle, repTitle2,
+                                    repFileF5, repTitleF5, repTitle2F5);
                             }
+
+                            End_case_W:
                             break;
                             #endregion bao cao link 2 table
 

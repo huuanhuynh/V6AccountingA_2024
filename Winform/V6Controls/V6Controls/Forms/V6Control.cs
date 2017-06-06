@@ -105,7 +105,7 @@ namespace V6Controls.Forms
         /// </summary>
         public virtual void DisableZoomButton()
         {
-            //tsFull.Enabled = false;
+            ShowTopMessage(V6Text.NoDefine);
         }
 
         protected void Ready()

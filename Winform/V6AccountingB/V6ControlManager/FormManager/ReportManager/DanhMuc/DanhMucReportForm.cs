@@ -765,7 +765,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             if (_tbl == null)
             {
-                //this.ShowWarningMessage("NoData");
+                ShowTopMessage(V6Text.NoData);
                 return;
             }
             try
@@ -805,7 +805,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             if (_tbl == null)
             {
-                //this.ShowWarningMessage("NoData");
+                ShowTopMessage(V6Text.NoData);
                 return;
             }
             try
@@ -922,7 +922,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             if (_tbl == null)
             {
-                //this.ShowWarningMessage("NoData");
+                ShowTopMessage(V6Text.NoData);
                 return;
             }
             try

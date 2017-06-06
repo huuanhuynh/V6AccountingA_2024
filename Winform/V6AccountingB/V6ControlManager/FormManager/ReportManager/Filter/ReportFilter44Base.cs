@@ -41,7 +41,30 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
             SetHideFields(RTien);
             LoadProgramInfo();// ... F3,F5,...
+            SetParentRowEvent += ReportFilter44Base_SetParentRowEvent;
             Ready();
+        }
+
+        void ReportFilter44Base_SetParentRowEvent(IDictionary<string, object> row)
+        {
+            try
+            {
+                foreach (Control control in groupBox1.Controls)
+                {
+                    var line = control as FilterLineDynamic;
+                    if (line == null) continue;
+
+                    var PARENT_FIELD = line.DefineInfo.Fparent.ToUpper();
+                    if (row.ContainsKey(PARENT_FIELD))
+                    {
+                        line.SetValue(ObjectAndString.ObjectToString(row[PARENT_FIELD]));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ReportFilter44Base_SetParentRowEvent", ex);
+            }
         }
 
         private void LoadProgramInfo()
@@ -68,6 +91,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         //public override void SetStatus2Text()
         //{
+        //      if()base.else
         //    V6ControlFormHelper.SetStatusText2("F3:...");
         //}
 
@@ -139,6 +163,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var and = radAnd.Checked;
             var and_or = and ? " and" : " or ";
             var result = new List<SqlParameter>();
+            result.AddRange(InitFilters);
             //var resultDic = new Dictionary<string,object>();
 
             // Duyệt qua danh sách parameter name, tạo giá trị cho từng cái một.

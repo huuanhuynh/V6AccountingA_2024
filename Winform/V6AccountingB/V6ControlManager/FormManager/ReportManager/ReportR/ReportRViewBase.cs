@@ -1045,7 +1045,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (_tbl1 == null)
             {
-                //this.ShowWarningMessage("NoData");
+                ShowTopMessage(V6Text.NoData);
                 return;
             }
             try
@@ -1437,7 +1437,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (_tbl1 == null)
             {
-                //this.ShowWarningMessage("NoData");
+                ShowTopMessage(V6Text.NoData);
                 return;
             }
             try
@@ -1499,7 +1499,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (_tbl1 == null)
             {
-                //this.ShowWarningMessage("NoData");
+                ShowTopMessage(V6Text.NoData);
                 return;
             }
             try

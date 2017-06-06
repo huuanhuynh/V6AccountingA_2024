@@ -235,6 +235,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
             base.DoHotKey(keyData);
         }
 
+        public override void DisableZoomButton()
+        {
+            btnFull.Enabled = false;
+        }
+
         private void DoAdd()
         {
             try

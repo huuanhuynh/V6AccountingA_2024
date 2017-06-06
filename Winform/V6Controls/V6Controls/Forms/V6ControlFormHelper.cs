@@ -886,7 +886,9 @@ namespace V6Controls.Forms
                 FieldName = lineInfo.Field.ToUpper(),
                 FieldCaption = V6Setting.IsVietnamese ? lineInfo.TextV : lineInfo.TextE,
                 DefineInfo = lineInfo,
-                Visible = lineInfo.Visible
+                Enabled = lineInfo.Enabled,
+                Visible = lineInfo.Visible,
+
             };
 
             V6VvarTextBox vT = null;
@@ -2782,7 +2784,7 @@ namespace V6Controls.Forms
             
             if (data == null)
             {
-                //this.ShowWarningMessage("NoData");
+                //ShowTopMessage(V6Text.NoData);
                 return;
             }
             try
@@ -2935,7 +2937,7 @@ namespace V6Controls.Forms
             
             if (data == null)
             {
-                //this.ShowWarningMessage("NoData");
+                //ShowTopMessage(V6Text.NoData);
                 return;
             }
             try

@@ -231,13 +231,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     lblStatus.Text = "Trống";
                     break;
                 case "1":
-                    lblStatus.Text = _time0;
+                    lblStatus.Text = _time0.Left(5);
                     break;
                 case "2":
-                    lblStatus.Text = _time0;
+                    lblStatus.Text = _time0.Left(5);
                     break;
                 case "3":
-                    lblStatus.Text = _time0 + "-" + _time2;
+                    lblStatus.Text = _time0.Left(5) + "-" + _time2.Left(5);
                     break;
             }
         }

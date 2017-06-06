@@ -31,9 +31,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exportToExcelTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToExcelView = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,9 +59,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnNhan = new System.Windows.Forms.Button();
             this.panel0 = new System.Windows.Forms.Panel();
             this.grbNgonNgu = new System.Windows.Forms.GroupBox();
-            this.rTiengViet = new System.Windows.Forms.RadioButton();
             this.rBothLang = new System.Windows.Forms.RadioButton();
             this.rEnglish = new System.Windows.Forms.RadioButton();
+            this.rTiengViet = new System.Windows.Forms.RadioButton();
             this.grbTienTe = new System.Windows.Forms.GroupBox();
             this.rNgoaiTe = new System.Windows.Forms.RadioButton();
             this.rTienViet = new System.Windows.Forms.RadioButton();
@@ -71,6 +71,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
+            this.btnSuaLine = new V6Controls.Controls.V6FormButton();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -245,26 +246,26 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Control_S = true;
             this.dataGridView1.Location = new System.Drawing.Point(307, 64);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(662, 336);
             this.dataGridView1.TabIndex = 13;
@@ -359,21 +360,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.grbNgonNgu.TabStop = false;
             this.grbNgonNgu.Text = "Ngôn ngữ bc (Rpt Language)";
             // 
-            // rTiengViet
-            // 
-            this.rTiengViet.AccessibleDescription = "REPORTR00004";
-            this.rTiengViet.AutoSize = true;
-            this.rTiengViet.Checked = true;
-            this.rTiengViet.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.rTiengViet.Location = new System.Drawing.Point(6, 13);
-            this.rTiengViet.Name = "rTiengViet";
-            this.rTiengViet.Size = new System.Drawing.Size(73, 17);
-            this.rTiengViet.TabIndex = 1;
-            this.rTiengViet.TabStop = true;
-            this.rTiengViet.Text = "Tiếng Việt";
-            this.rTiengViet.UseVisualStyleBackColor = true;
-            this.rTiengViet.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
-            // 
             // rBothLang
             // 
             this.rBothLang.AccessibleDescription = "REPORTR00006";
@@ -401,6 +387,21 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.rEnglish.Text = "English";
             this.rEnglish.UseVisualStyleBackColor = true;
             this.rEnglish.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
+            // 
+            // rTiengViet
+            // 
+            this.rTiengViet.AccessibleDescription = "REPORTR00004";
+            this.rTiengViet.AutoSize = true;
+            this.rTiengViet.Checked = true;
+            this.rTiengViet.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rTiengViet.Location = new System.Drawing.Point(6, 13);
+            this.rTiengViet.Name = "rTiengViet";
+            this.rTiengViet.Size = new System.Drawing.Size(73, 17);
+            this.rTiengViet.TabIndex = 1;
+            this.rTiengViet.TabStop = true;
+            this.rTiengViet.Text = "Tiếng Việt";
+            this.rTiengViet.UseVisualStyleBackColor = true;
+            this.rTiengViet.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
             // 
             // grbTienTe
             // 
@@ -458,18 +459,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.btnSuaMau.AccessibleDescription = "REPORTB00003";
             this.btnSuaMau.Enabled = false;
-            this.btnSuaMau.Location = new System.Drawing.Point(397, 36);
+            this.btnSuaMau.Location = new System.Drawing.Point(435, 36);
             this.btnSuaMau.Name = "btnSuaMau";
             this.btnSuaMau.Size = new System.Drawing.Size(39, 23);
             this.btnSuaMau.TabIndex = 7;
             this.btnSuaMau.Text = "Sửa";
+            this.toolTipV6FormControl.SetToolTip(this.btnSuaMau, "Sửa Mẫu");
             this.btnSuaMau.UseVisualStyleBackColor = true;
             this.btnSuaMau.Click += new System.EventHandler(this.btnSuaMau_Click);
             // 
             // btnSuaTTMauBC
             // 
             this.btnSuaTTMauBC.AccessibleDescription = "REPORTB00001";
-            this.btnSuaTTMauBC.Location = new System.Drawing.Point(307, 36);
+            this.btnSuaTTMauBC.Location = new System.Drawing.Point(345, 36);
             this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
             this.btnSuaTTMauBC.Size = new System.Drawing.Size(43, 23);
             this.btnSuaTTMauBC.TabIndex = 5;
@@ -480,7 +482,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // btnThemMauBC
             // 
             this.btnThemMauBC.AccessibleDescription = "REPORTB00002";
-            this.btnThemMauBC.Location = new System.Drawing.Point(352, 36);
+            this.btnThemMauBC.Location = new System.Drawing.Point(390, 36);
             this.btnThemMauBC.Name = "btnThemMauBC";
             this.btnThemMauBC.Size = new System.Drawing.Size(43, 23);
             this.btnThemMauBC.TabIndex = 6;
@@ -492,7 +494,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.chkHienTatCa.AccessibleDescription = "REPORTC00001";
             this.chkHienTatCa.AutoSize = true;
-            this.chkHienTatCa.Location = new System.Drawing.Point(442, 40);
+            this.chkHienTatCa.Location = new System.Drawing.Point(302, 40);
             this.chkHienTatCa.Name = "chkHienTatCa";
             this.chkHienTatCa.Size = new System.Drawing.Size(37, 17);
             this.chkHienTatCa.TabIndex = 8;
@@ -509,11 +511,24 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.gridViewSummary1.Size = new System.Drawing.Size(662, 23);
             this.gridViewSummary1.TabIndex = 0;
             // 
+            // btnSuaLine
+            // 
+            this.btnSuaLine.AccessibleDescription = "REPORTB00003";
+            this.btnSuaLine.Location = new System.Drawing.Point(476, 36);
+            this.btnSuaLine.Name = "btnSuaLine";
+            this.btnSuaLine.Size = new System.Drawing.Size(50, 23);
+            this.btnSuaLine.TabIndex = 7;
+            this.btnSuaLine.Text = "ĐK lọc";
+            this.toolTipV6FormControl.SetToolTip(this.btnSuaLine, "Sửa line");
+            this.btnSuaLine.UseVisualStyleBackColor = true;
+            this.btnSuaLine.Click += new System.EventHandler(this.btnSuaLine_Click);
+            // 
             // ReportR44ViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.chkHienTatCa);
+            this.Controls.Add(this.btnSuaLine);
             this.Controls.Add(this.btnSuaMau);
             this.Controls.Add(this.btnSuaTTMauBC);
             this.Controls.Add(this.btnThemMauBC);
@@ -585,6 +600,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private GridViewSummary gridViewSummary1;
         private System.Windows.Forms.ToolStripMenuItem exportToExcelView;
         public System.Windows.Forms.TextBox txtReportTitle;
+        private V6FormButton btnSuaLine;
 
 
 

@@ -3633,6 +3633,12 @@
       <DependentUpon>ChartReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\QuickReportManager.cs" />
+    <Compile Include="FormManager\ReportManager\ReportR\ReportRWWView2Base.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportRWWView2Base.designer.cs">
+      <DependentUpon>ReportRWWView2Base.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\ReportR\ReportRView2Base.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6373,6 +6379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ChartReportForm.resx">
       <DependentUpon>ChartReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportRWWView2Base.resx">
+      <DependentUpon>ReportRWWView2Base.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportRView2Base.resx">
       <DependentUpon>ReportRView2Base.cs</DependentUpon>

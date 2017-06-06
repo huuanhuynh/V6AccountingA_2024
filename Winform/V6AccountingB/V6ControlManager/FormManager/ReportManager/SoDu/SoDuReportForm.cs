@@ -711,7 +711,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         {
             if (_tbl == null)
             {
-                //this.ShowWarningMessage("NoData");
+                ShowTopMessage(V6Text.NoData);
                 return;
             }
             try

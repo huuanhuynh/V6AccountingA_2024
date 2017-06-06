@@ -215,6 +215,7 @@
         public static string DataLoading { get { return V6Setting.Language == "V" ? "Đang tải dữ liệu." : "Data loading."; } }
         public static string ReportError { get { return V6Setting.Language == "V" ? "Báo cáo bị lỗi." : "Report error."; } }
         public static string NoData { get { return V6Setting.Language == "V" ? "Không có dữ liệu." : "No data."; } }
+        public static string NoDefine { get { return V6Setting.Language == "V" ? "Chưa định nghĩa." : "No define."; } }
         public static string NoUID { get { return V6Setting.Language == "V" ? "Không có UID." : "No UID."; } }
         public static string NoSTTREC { get { return V6Setting.Language == "V" ? "Không có STTREC." : "No STTREC."; } }
         public static string NoSelection { get { return V6Setting.Language == "V" ? "Chưa có lựa chọn." : "No selection."; } }

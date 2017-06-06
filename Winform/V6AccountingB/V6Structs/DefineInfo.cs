@@ -42,6 +42,9 @@ namespace V6Structs
         {
             switch (key.ToUpper())
             {
+                case "ENABLED":
+                    Enabled = value == "1";
+                    break;
                 case "F2":
                     F2 = value == "1";
                     break;
@@ -50,6 +53,9 @@ namespace V6Structs
                     break;
                 case "FNAME":
                     Fname = value;
+                    break;
+                case "FPARENT":
+                    Fparent = value;
                     break;
                 case "ACCESSIBLENAME":
                     AccessibleName = value;
@@ -136,6 +142,7 @@ namespace V6Structs
         public string Key3;
         public string Key4;
         public bool Visible = true;
+        public bool Enabled = true;
 
         /// <summary>
         /// lowercase
@@ -163,5 +170,7 @@ namespace V6Structs
         /// Key là LimitChars hoặc LimitChar không phân biệt hoa thường.
         /// </summary>
         public string LimitChars { get; set; }
+
+        public string Fparent { get; set; }
     }
 }

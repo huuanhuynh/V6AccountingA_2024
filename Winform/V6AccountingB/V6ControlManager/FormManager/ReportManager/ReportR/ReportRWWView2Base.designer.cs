@@ -1,9 +1,8 @@
-﻿using V6Controls;
-using V6Controls.Controls;
+﻿using V6Controls.Controls;
 
-namespace V6ControlManager.FormManager.ReportManager.ReportD
+namespace V6ControlManager.FormManager.ReportManager.ReportR
 {
-    partial class ReportD99ViewBase
+    partial class ReportRWWView2Base
     {
         /// <summary>
         /// Required designer variable.
@@ -32,10 +31,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exportToExcelTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToExcelView = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,13 +44,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.exportToXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.viewDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
+            this.timerViewReport = new System.Windows.Forms.Timer(this.components);
+            this.cboMauIn = new V6Controls.V6ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtM_TEN_NLB2 = new System.Windows.Forms.TextBox();
+            this.txtM_TEN_NLB = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtReportTitle = new System.Windows.Forms.TextBox();
+            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.txtNumber = new V6Controls.V6ColorTextBox();
-            this.btnLast = new System.Windows.Forms.Button();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnPrevious = new System.Windows.Forms.Button();
-            this.btnFirst = new System.Windows.Forms.Button();
             this.btnIn = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
@@ -62,62 +69,21 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.rNgoaiTe = new System.Windows.Forms.RadioButton();
             this.rTienViet = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
-            this.timerViewReport = new System.Windows.Forms.Timer(this.components);
-            this.txtReportTitle = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtM_TEN_NLB2 = new System.Windows.Forms.TextBox();
-            this.txtM_TEN_NLB = new System.Windows.Forms.TextBox();
             this.btnSuaMau = new V6Controls.Controls.V6FormButton();
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
-            this.cboMauIn = new V6Controls.V6ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.chkHienTatCa = new V6Controls.V6CheckBox();
+            this.dataGridView2 = new V6Controls.V6ColorDataGridView();
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             this.btnSuaLine = new V6Controls.Controls.V6FormButton();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.panel0.SuspendLayout();
             this.grbNgonNgu.SuspendLayout();
             this.grbTienTe.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.dataGridView1.Control_S = true;
-            this.dataGridView1.Location = new System.Drawing.Point(307, 64);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(662, 335);
-            this.dataGridView1.TabIndex = 4;
-            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
-            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
             // contextMenuStrip1
             // 
@@ -173,12 +139,151 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.viewDataToolStripMenuItem.Text = "ViewData";
             this.viewDataToolStripMenuItem.Click += new System.EventHandler(this.viewDataToolStripMenuItem_Click);
             // 
+            // timerViewReport
+            // 
+            this.timerViewReport.Tick += new System.EventHandler(this.timerViewReport_Tick);
+            // 
+            // cboMauIn
+            // 
+            this.cboMauIn.BackColor = System.Drawing.SystemColors.Window;
+            this.cboMauIn.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.cboMauIn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMauIn.DropDownWidth = 400;
+            this.cboMauIn.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboMauIn.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.cboMauIn.FormattingEnabled = true;
+            this.cboMauIn.Location = new System.Drawing.Point(101, 38);
+            this.cboMauIn.Name = "cboMauIn";
+            this.cboMauIn.Size = new System.Drawing.Size(200, 21);
+            this.cboMauIn.TabIndex = 4;
+            this.cboMauIn.SelectedIndexChanged += new System.EventHandler(this.cboMauIn_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AccessibleDescription = "REPORTR00005";
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(757, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Người lập biểu 2";
+            // 
+            // label2
+            // 
+            this.label2.AccessibleDescription = "REPORTR00004";
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(555, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Người lập biểu";
+            // 
+            // txtM_TEN_NLB2
+            // 
+            this.txtM_TEN_NLB2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtM_TEN_NLB2.Location = new System.Drawing.Point(847, 38);
+            this.txtM_TEN_NLB2.Name = "txtM_TEN_NLB2";
+            this.txtM_TEN_NLB2.Size = new System.Drawing.Size(115, 20);
+            this.txtM_TEN_NLB2.TabIndex = 12;
+            // 
+            // txtM_TEN_NLB
+            // 
+            this.txtM_TEN_NLB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtM_TEN_NLB.Location = new System.Drawing.Point(636, 38);
+            this.txtM_TEN_NLB.Name = "txtM_TEN_NLB";
+            this.txtM_TEN_NLB.Size = new System.Drawing.Size(115, 20);
+            this.txtM_TEN_NLB.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AccessibleDescription = "REPORTL00003";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 41);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(81, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Mẫu in báo cáo";
+            // 
+            // label1
+            // 
+            this.label1.AccessibleDescription = "REPORTL00002";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Tiêu đề báo cáo";
+            // 
+            // txtReportTitle
+            // 
+            this.txtReportTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtReportTitle.Location = new System.Drawing.Point(101, 12);
+            this.txtReportTitle.Name = "txtReportTitle";
+            this.txtReportTitle.Size = new System.Drawing.Size(861, 20);
+            this.txtReportTitle.TabIndex = 2;
+            // 
+            // crystalReportViewer1
+            // 
+            this.crystalReportViewer1.ActiveViewIndex = -1;
+            this.crystalReportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.crystalReportViewer1.DisplayStatusBar = false;
+            this.crystalReportViewer1.Location = new System.Drawing.Point(307, 425);
+            this.crystalReportViewer1.Name = "crystalReportViewer1";
+            this.crystalReportViewer1.ShowCloseButton = false;
+            this.crystalReportViewer1.ShowCopyButton = false;
+            this.crystalReportViewer1.ShowGroupTreeButton = false;
+            this.crystalReportViewer1.ShowLogo = false;
+            this.crystalReportViewer1.ShowParameterPanelButton = false;
+            this.crystalReportViewer1.ShowRefreshButton = false;
+            this.crystalReportViewer1.Size = new System.Drawing.Size(662, 224);
+            this.crystalReportViewer1.TabIndex = 15;
+            this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.crystalReportViewer1.DoubleClick += new System.EventHandler(this.crystalReportViewer1_DoubleClick);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
+            this.dataGridView1.Control_S = true;
+            this.dataGridView1.Location = new System.Drawing.Point(307, 64);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(662, 169);
+            this.dataGridView1.TabIndex = 13;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+            // 
             // grbDieuKienLoc
             // 
-            this.grbDieuKienLoc.AccessibleDescription = "REPORTL00011";
+            this.grbDieuKienLoc.AccessibleDescription = "REPORTL00006";
             this.grbDieuKienLoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.grbDieuKienLoc.Controls.Add(this.panel4);
             this.grbDieuKienLoc.Controls.Add(this.btnIn);
             this.grbDieuKienLoc.Controls.Add(this.btnHuy);
             this.grbDieuKienLoc.Controls.Add(this.btnNhan);
@@ -191,98 +296,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.grbDieuKienLoc.TabStop = false;
             this.grbDieuKienLoc.Text = "Conditional option (Điều Kiện Lọc)";
             // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.txtNumber);
-            this.panel4.Controls.Add(this.btnLast);
-            this.panel4.Controls.Add(this.btnNext);
-            this.panel4.Controls.Add(this.btnPrevious);
-            this.panel4.Controls.Add(this.btnFirst);
-            this.panel4.Location = new System.Drawing.Point(10, 146);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(187, 25);
-            this.panel4.TabIndex = 34;
-            // 
-            // txtNumber
-            // 
-            this.txtNumber.AccessibleDescription = "Nhập số và bấm enter để nhận báo cáo";
-            this.txtNumber.AccessibleName = "Phần báo cáo";
-            this.txtNumber.BackColor = System.Drawing.SystemColors.Window;
-            this.txtNumber.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNumber.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNumber.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtNumber.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtNumber.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNumber.LeaveColor = System.Drawing.Color.White;
-            this.txtNumber.LimitCharacters = "0123456789";
-            this.txtNumber.Location = new System.Drawing.Point(71, 2);
-            this.txtNumber.MaxLength = 5;
-            this.txtNumber.Name = "txtNumber";
-            this.txtNumber.Size = new System.Drawing.Size(43, 20);
-            this.txtNumber.TabIndex = 2;
-            this.txtNumber.UseSendTabOnEnter = false;
-            this.txtNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumber_KeyDown);
-            this.txtNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumber_KeyPress);
-            this.txtNumber.Leave += new System.EventHandler(this.txtNumber_Leave);
-            // 
-            // btnLast
-            // 
-            this.btnLast.AccessibleDescription = "Hiện phần báo cáo cuối cùng";
-            this.btnLast.AccessibleName = "Cuối";
-            this.btnLast.Location = new System.Drawing.Point(155, 1);
-            this.btnLast.Name = "btnLast";
-            this.btnLast.Size = new System.Drawing.Size(29, 23);
-            this.btnLast.TabIndex = 4;
-            this.btnLast.Text = ">|";
-            this.btnLast.UseVisualStyleBackColor = true;
-            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
-            // 
-            // btnNext
-            // 
-            this.btnNext.AccessibleDescription = "Hiện phần báo cáo tiếp theo";
-            this.btnNext.AccessibleName = "Tới";
-            this.btnNext.Location = new System.Drawing.Point(120, 1);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(29, 23);
-            this.btnNext.TabIndex = 3;
-            this.btnNext.Text = ">";
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // btnPrevious
-            // 
-            this.btnPrevious.AccessibleDescription = "Hiện phần báo cáo trước";
-            this.btnPrevious.AccessibleName = "Lui";
-            this.btnPrevious.Location = new System.Drawing.Point(36, 1);
-            this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(29, 23);
-            this.btnPrevious.TabIndex = 1;
-            this.btnPrevious.Text = "<";
-            this.btnPrevious.UseVisualStyleBackColor = true;
-            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
-            // 
-            // btnFirst
-            // 
-            this.btnFirst.AccessibleDescription = "Hiện phần báo cáo đầu tiên";
-            this.btnFirst.AccessibleName = "Đầu";
-            this.btnFirst.Location = new System.Drawing.Point(1, 1);
-            this.btnFirst.Name = "btnFirst";
-            this.btnFirst.Size = new System.Drawing.Size(29, 23);
-            this.btnFirst.TabIndex = 0;
-            this.btnFirst.Text = "|<";
-            this.btnFirst.UseVisualStyleBackColor = true;
-            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
-            // 
             // btnIn
             // 
             this.btnIn.AccessibleDescription = "REPORTB00006";
+            this.btnIn.AccessibleName = "";
             this.btnIn.Image = global::V6ControlManager.Properties.Resources.Print24;
             this.btnIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnIn.Location = new System.Drawing.Point(94, 100);
             this.btnIn.Name = "btnIn";
             this.btnIn.Size = new System.Drawing.Size(88, 40);
-            this.btnIn.TabIndex = 33;
-            this.btnIn.Tag = "P, Control";
+            this.btnIn.TabIndex = 2;
             this.btnIn.Text = "&In";
             this.btnIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnIn.UseVisualStyleBackColor = true;
@@ -291,6 +314,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // btnHuy
             // 
             this.btnHuy.AccessibleDescription = "REPORTB00005";
+            this.btnHuy.AccessibleName = "";
             this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel;
             this.btnHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -298,7 +322,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
             this.btnHuy.TabIndex = 3;
-            this.btnHuy.Tag = "Escape";
             this.btnHuy.Text = "&Hủy";
             this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHuy.UseVisualStyleBackColor = true;
@@ -307,13 +330,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // btnNhan
             // 
             this.btnNhan.AccessibleDescription = "REPORTB00004";
+            this.btnNhan.AccessibleName = "";
             this.btnNhan.Image = global::V6ControlManager.Properties.Resources.Apply;
             this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnNhan.Location = new System.Drawing.Point(6, 100);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
-            this.btnNhan.TabIndex = 2;
-            this.btnNhan.Tag = "Return, Control";
+            this.btnNhan.TabIndex = 1;
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNhan.UseVisualStyleBackColor = true;
@@ -343,7 +366,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             // rTiengViet
             // 
-            this.rTiengViet.AccessibleDescription = "REPORTR00004";
+            this.rTiengViet.AccessibleDescription = "REPORTL00011";
             this.rTiengViet.AccessibleName = "Tiếng Việt";
             this.rTiengViet.AutoSize = true;
             this.rTiengViet.Checked = true;
@@ -359,7 +382,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             // rBothLang
             // 
-            this.rBothLang.AccessibleDescription = "REPORTR00006";
+            this.rBothLang.AccessibleDescription = "REPORTL00013";
             this.rBothLang.AccessibleName = "English";
             this.rBothLang.AutoSize = true;
             this.rBothLang.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -373,7 +396,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             // rEnglish
             // 
-            this.rEnglish.AccessibleDescription = "REPORTR00005";
+            this.rEnglish.AccessibleDescription = "REPORTL00012";
             this.rEnglish.AccessibleName = "English";
             this.rEnglish.AutoSize = true;
             this.rEnglish.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -393,13 +416,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.grbTienTe.Location = new System.Drawing.Point(4, 5);
             this.grbTienTe.Name = "grbTienTe";
             this.grbTienTe.Size = new System.Drawing.Size(224, 35);
-            this.grbTienTe.TabIndex = 1;
+            this.grbTienTe.TabIndex = 0;
             this.grbTienTe.TabStop = false;
             this.grbTienTe.Text = "Tiền tệ";
             // 
             // rNgoaiTe
             // 
             this.rNgoaiTe.AccessibleDescription = "REPORTR00002";
+            this.rNgoaiTe.AccessibleName = "Tiếng Việt";
             this.rNgoaiTe.AutoSize = true;
             this.rNgoaiTe.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.rNgoaiTe.Location = new System.Drawing.Point(83, 13);
@@ -412,6 +436,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // rTienViet
             // 
             this.rTienViet.AccessibleDescription = "REPORTR00001";
+            this.rTienViet.AccessibleName = "English";
             this.rTienViet.AutoSize = true;
             this.rTienViet.Checked = true;
             this.rTienViet.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -426,104 +451,23 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel1.AutoScroll = true;
-            this.panel1.Location = new System.Drawing.Point(6, 177);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(287, 404);
-            this.panel1.TabIndex = 0;
-            // 
-            // crystalReportViewer1
-            // 
-            this.crystalReportViewer1.ActiveViewIndex = -1;
-            this.crystalReportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.crystalReportViewer1.DisplayStatusBar = false;
-            this.crystalReportViewer1.Location = new System.Drawing.Point(307, 425);
-            this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ShowCloseButton = false;
-            this.crystalReportViewer1.ShowCopyButton = false;
-            this.crystalReportViewer1.ShowGroupTreeButton = false;
-            this.crystalReportViewer1.ShowLogo = false;
-            this.crystalReportViewer1.ShowParameterPanelButton = false;
-            this.crystalReportViewer1.ShowRefreshButton = false;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(662, 224);
-            this.crystalReportViewer1.TabIndex = 0;
-            this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            this.crystalReportViewer1.DoubleClick += new System.EventHandler(this.crystalReportViewer1_DoubleClick);
-            // 
-            // timerViewReport
-            // 
-            this.timerViewReport.Tick += new System.EventHandler(this.timerViewReport_Tick);
-            // 
-            // txtReportTitle
-            // 
-            this.txtReportTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtReportTitle.Location = new System.Drawing.Point(101, 12);
-            this.txtReportTitle.Name = "txtReportTitle";
-            this.txtReportTitle.Size = new System.Drawing.Size(861, 20);
-            this.txtReportTitle.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AccessibleDescription = "REPORTL00002";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Tiêu đề báo cáo";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(757, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Người lập biểu 2";
-            // 
-            // label2
-            // 
-            this.label2.AccessibleDescription = "REPORTL00004";
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(555, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Người lập biểu";
-            // 
-            // txtM_TEN_NLB2
-            // 
-            this.txtM_TEN_NLB2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtM_TEN_NLB2.Location = new System.Drawing.Point(847, 38);
-            this.txtM_TEN_NLB2.Name = "txtM_TEN_NLB2";
-            this.txtM_TEN_NLB2.Size = new System.Drawing.Size(115, 20);
-            this.txtM_TEN_NLB2.TabIndex = 7;
-            // 
-            // txtM_TEN_NLB
-            // 
-            this.txtM_TEN_NLB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtM_TEN_NLB.Location = new System.Drawing.Point(636, 38);
-            this.txtM_TEN_NLB.Name = "txtM_TEN_NLB";
-            this.txtM_TEN_NLB.Size = new System.Drawing.Size(115, 20);
-            this.txtM_TEN_NLB.TabIndex = 8;
+            this.panel1.AutoScroll = true;
+            this.panel1.Location = new System.Drawing.Point(6, 146);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(287, 435);
+            this.panel1.TabIndex = 0;
             // 
             // btnSuaMau
             // 
             this.btnSuaMau.AccessibleDescription = "REPORTB00003";
             this.btnSuaMau.Enabled = false;
-            this.btnSuaMau.Location = new System.Drawing.Point(431, 36);
+            this.btnSuaMau.Location = new System.Drawing.Point(434, 36);
             this.btnSuaMau.Name = "btnSuaMau";
-            this.btnSuaMau.Size = new System.Drawing.Size(41, 23);
-            this.btnSuaMau.TabIndex = 21;
+            this.btnSuaMau.Size = new System.Drawing.Size(39, 23);
+            this.btnSuaMau.TabIndex = 7;
             this.btnSuaMau.Text = "Sửa";
             this.btnSuaMau.UseVisualStyleBackColor = true;
             this.btnSuaMau.Click += new System.EventHandler(this.btnSuaMau_Click);
@@ -531,10 +475,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // btnSuaTTMauBC
             // 
             this.btnSuaTTMauBC.AccessibleDescription = "REPORTB00001";
-            this.btnSuaTTMauBC.Location = new System.Drawing.Point(343, 36);
+            this.btnSuaTTMauBC.Location = new System.Drawing.Point(346, 36);
             this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
             this.btnSuaTTMauBC.Size = new System.Drawing.Size(43, 23);
-            this.btnSuaTTMauBC.TabIndex = 22;
+            this.btnSuaTTMauBC.TabIndex = 5;
             this.btnSuaTTMauBC.Text = "Sửa tt";
             this.btnSuaTTMauBC.UseVisualStyleBackColor = true;
             this.btnSuaTTMauBC.Click += new System.EventHandler(this.btnSuaTTMauBC_Click);
@@ -542,56 +486,59 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // btnThemMauBC
             // 
             this.btnThemMauBC.AccessibleDescription = "REPORTB00002";
-            this.btnThemMauBC.Location = new System.Drawing.Point(387, 36);
+            this.btnThemMauBC.Location = new System.Drawing.Point(390, 36);
             this.btnThemMauBC.Name = "btnThemMauBC";
             this.btnThemMauBC.Size = new System.Drawing.Size(43, 23);
-            this.btnThemMauBC.TabIndex = 23;
+            this.btnThemMauBC.TabIndex = 6;
             this.btnThemMauBC.Text = "Thêm";
             this.btnThemMauBC.UseVisualStyleBackColor = true;
             this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
-            // 
-            // cboMauIn
-            // 
-            this.cboMauIn.BackColor = System.Drawing.SystemColors.Window;
-            this.cboMauIn.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.cboMauIn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMauIn.DropDownWidth = 400;
-            this.cboMauIn.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboMauIn.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.cboMauIn.FormattingEnabled = true;
-            this.cboMauIn.Location = new System.Drawing.Point(101, 37);
-            this.cboMauIn.Name = "cboMauIn";
-            this.cboMauIn.Size = new System.Drawing.Size(200, 21);
-            this.cboMauIn.TabIndex = 20;
-            this.cboMauIn.SelectedIndexChanged += new System.EventHandler(this.cboMauIn_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.AccessibleDescription = "REPORTL00003";
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 40);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 13);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "Mẫu in báo cáo";
             // 
             // chkHienTatCa
             // 
             this.chkHienTatCa.AccessibleDescription = "REPORTC00001";
             this.chkHienTatCa.AutoSize = true;
-            this.chkHienTatCa.Location = new System.Drawing.Point(304, 39);
+            this.chkHienTatCa.Location = new System.Drawing.Point(307, 40);
             this.chkHienTatCa.Name = "chkHienTatCa";
             this.chkHienTatCa.Size = new System.Drawing.Size(37, 17);
-            this.chkHienTatCa.TabIndex = 35;
+            this.chkHienTatCa.TabIndex = 8;
             this.chkHienTatCa.Text = "All";
             this.chkHienTatCa.UseVisualStyleBackColor = true;
             this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Control_S = true;
+            this.dataGridView2.Location = new System.Drawing.Point(307, 259);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(662, 163);
+            this.dataGridView2.TabIndex = 14;
+            this.dataGridView2.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
             // 
             // gridViewSummary1
             // 
             this.gridViewSummary1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gridViewSummary1.DataGridView = this.dataGridView1;
-            this.gridViewSummary1.Location = new System.Drawing.Point(307, 399);
+            this.gridViewSummary1.Location = new System.Drawing.Point(307, 233);
             this.gridViewSummary1.Name = "gridViewSummary1";
             this.gridViewSummary1.Size = new System.Drawing.Size(662, 23);
             this.gridViewSummary1.TabIndex = 0;
@@ -599,16 +546,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // btnSuaLine
             // 
             this.btnSuaLine.AccessibleDescription = "REPORTB00003";
-            this.btnSuaLine.Location = new System.Drawing.Point(473, 36);
+            this.btnSuaLine.Location = new System.Drawing.Point(474, 36);
             this.btnSuaLine.Name = "btnSuaLine";
             this.btnSuaLine.Size = new System.Drawing.Size(50, 23);
-            this.btnSuaLine.TabIndex = 36;
+            this.btnSuaLine.TabIndex = 16;
             this.btnSuaLine.Text = "ĐK lọc";
             this.toolTipV6FormControl.SetToolTip(this.btnSuaLine, "Sửa line");
             this.btnSuaLine.UseVisualStyleBackColor = true;
             this.btnSuaLine.Click += new System.EventHandler(this.btnSuaLine_Click);
             // 
-            // ReportD99ViewBase
+            // ReportRWWView2Base
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -619,30 +566,30 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.Controls.Add(this.btnSuaTTMauBC);
             this.Controls.Add(this.btnThemMauBC);
             this.Controls.Add(this.cboMauIn);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtM_TEN_NLB2);
             this.Controls.Add(this.txtM_TEN_NLB);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtReportTitle);
             this.Controls.Add(this.crystalReportViewer1);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.grbDieuKienLoc);
-            this.Name = "ReportD99ViewBase";
+            this.Name = "ReportRWWView2Base";
             this.Size = new System.Drawing.Size(974, 654);
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
             this.VisibleChanged += new System.EventHandler(this.ReportRViewBase_VisibleChanged);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.grbDieuKienLoc.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.panel0.ResumeLayout(false);
             this.grbNgonNgu.ResumeLayout(false);
             this.grbNgonNgu.PerformLayout();
             this.grbTienTe.ResumeLayout(false);
             this.grbTienTe.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -676,20 +623,15 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private System.Windows.Forms.TextBox txtM_TEN_NLB;
         public System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnIn;
-        private System.Windows.Forms.Panel panel4;
-        private V6Controls.V6ColorTextBox txtNumber;
-        private System.Windows.Forms.Button btnLast;
-        private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.Button btnPrevious;
-        private System.Windows.Forms.Button btnFirst;
+        private System.Windows.Forms.Label label4;
+        private V6Controls.V6ComboBox cboMauIn;
         private V6FormButton btnSuaMau;
         private V6FormButton btnSuaTTMauBC;
         private V6FormButton btnThemMauBC;
-        private V6ComboBox cboMauIn;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripMenuItem exportToExcelTemplate;
         private System.Windows.Forms.ToolStripMenuItem viewDataToolStripMenuItem;
         private V6Controls.V6CheckBox chkHienTatCa;
+        private V6Controls.V6ColorDataGridView dataGridView2;
         private System.Windows.Forms.ToolStripMenuItem exportToXmlToolStripMenuItem;
         private GridViewSummary gridViewSummary1;
         private System.Windows.Forms.ToolStripMenuItem exportToExcelView;
