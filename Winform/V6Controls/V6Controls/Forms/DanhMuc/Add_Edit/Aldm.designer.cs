@@ -81,6 +81,7 @@
             this.label47 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.chkIsAldm = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -298,6 +299,7 @@
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.v6ColorTextBox10);
             this.tabPage1.Controls.Add(this.label17);
+            this.tabPage1.Controls.Add(this.chkIsAldm);
             this.tabPage1.Controls.Add(this.ChkVisible);
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
@@ -867,6 +869,18 @@
             this.label46.TabIndex = 47;
             this.label46.Text = "Trường hiển thị tìm kiếm";
             // 
+            // chkIsAldm
+            // 
+            this.chkIsAldm.AccessibleName = "IS_ALDM";
+            this.chkIsAldm.AutoSize = true;
+            this.chkIsAldm.Location = new System.Drawing.Point(528, 127);
+            this.chkIsAldm.Margin = new System.Windows.Forms.Padding(4);
+            this.chkIsAldm.Name = "chkIsAldm";
+            this.chkIsAldm.Size = new System.Drawing.Size(75, 21);
+            this.chkIsAldm.TabIndex = 27;
+            this.chkIsAldm.Text = "Is_aldm";
+            this.chkIsAldm.UseVisualStyleBackColor = true;
+            // 
             // Aldm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -943,5 +957,6 @@
         private V6ColorTextBox v6ColorTextBox1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label5;
+        private V6CheckBox chkIsAldm;
     }
 }

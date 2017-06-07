@@ -60,8 +60,15 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
 
         private void InitializeComponent()
         {
-            SuspendLayout();
-            ResumeLayout(false);
+            this.SuspendLayout();
+            // 
+            // AllChangeCodeForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.ClientSize = new System.Drawing.Size(716, 143);
+            this.Name = "AllChangeCodeForm";
+            this.ResumeLayout(false);
+
         }
 
         protected override void DoChangeCodeThread()

@@ -42,6 +42,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             FormControl.MyInit(tableName, mode, keys, data);
 
             panel1.Controls.Add(FormControl);
+            //panel1.SendToBack();
+
             if (FormControl == null || FormControl is NoRightAddEdit)
             {
                 btnNhan.Enabled = false;

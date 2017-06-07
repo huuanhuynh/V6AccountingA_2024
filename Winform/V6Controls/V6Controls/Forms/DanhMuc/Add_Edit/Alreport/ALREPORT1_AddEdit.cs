@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using V6AccountingBusiness;
 using V6Structs;
-namespace V6Controls.Forms.DanhMuc.Add_Edit
+
+namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
 {
-    public partial class ALREPORT1 : AddEditControlVirtual
+    public partial class ALREPORT1_AddEdit : AddEditControlVirtual
     {
-        public ALREPORT1()
+        public ALREPORT1_AddEdit()
         {
             InitializeComponent();
         }

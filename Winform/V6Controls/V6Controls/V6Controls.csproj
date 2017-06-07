@@ -145,23 +145,29 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\Acosxlt_alloaiytAddEditForm.Designer.cs">
       <DependentUpon>Acosxlt_alloaiytAddEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ALREPORT.cs">
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT_AddEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ALREPORT.designer.cs">
-      <DependentUpon>ALREPORT.cs</DependentUpon>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT_AddEdit.designer.cs">
+      <DependentUpon>ALREPORT_AddEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ALREPORT1_FilterEditorForm.cs">
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_FilterEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ALREPORT1_FilterEditorForm.designer.cs">
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_FilterEditorForm.designer.cs">
       <DependentUpon>ALREPORT1_FilterEditorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ALREPORT1.cs">
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_AddEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ALREPORT1.designer.cs">
-      <DependentUpon>ALREPORT1.cs</DependentUpon>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_AddEdit.designer.cs">
+      <DependentUpon>ALREPORT1_AddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFromSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFromSelectForm.Designer.cs">
+      <DependentUpon>CopyFromSelectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\KhachHangChiTietFrom.cs">
       <SubType>UserControl</SubType>
@@ -1218,14 +1224,17 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Acosxlt_alloaiytAddEditForm.resx">
       <DependentUpon>Acosxlt_alloaiytAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ALREPORT.resx">
-      <DependentUpon>ALREPORT.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT_AddEdit.resx">
+      <DependentUpon>ALREPORT_AddEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ALREPORT1_FilterEditorForm.resx">
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_FilterEditorForm.resx">
       <DependentUpon>ALREPORT1_FilterEditorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ALREPORT1.resx">
-      <DependentUpon>ALREPORT1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_AddEdit.resx">
+      <DependentUpon>ALREPORT1_AddEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFromSelectForm.resx">
+      <DependentUpon>CopyFromSelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\KhachHangChiTietFrom.resx">
       <DependentUpon>KhachHangChiTietFrom.cs</DependentUpon>

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.DanhMucManager;
+using V6ControlManager.FormManager.DanhMucManager.ChangeCode;
 using V6ControlManager.FormManager.HeThong;
 using V6ControlManager.FormManager.HeThong.QuanLyHeThong;
 using V6ControlManager.FormManager.KhoHangManager;
@@ -17,6 +20,7 @@ using V6ControlManager.FormManager.SoDuManager.FirstFilter;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Structs;
 
 namespace V6ControlManager.FormManager.MenuManager
 {
@@ -72,7 +76,14 @@ namespace V6ControlManager.FormManager.MenuManager
                             {
                                 if (check)
                                 {
-                                    bool is_aldm = (TABLE_NAME == "ALREPORT1" || TABLE_NAME == "ALREPORT");
+                                    bool is_aldm = false;
+                                    IDictionary<string, object> keys = new Dictionary<string, object>();
+                                    keys.Add("MA_DM", TABLE_NAME);
+                                    var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
+                                    if (aldm.Rows.Count == 1)
+                                    {
+                                        is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
+                                    }
 
                                     var where = "";
                                     if (TABLE_NAME == "ALKC")
@@ -541,7 +552,6 @@ namespace V6ControlManager.FormManager.MenuManager
                         case "H":
                             #region ==== // Danh mục view format Aldm ====
                             TABLE_NAME = codeform.Substring(1).ToUpper();
-                            check = true;
                             if (TABLE_NAME == "V6USER")
                             {
                                 check = new ConfirmPassword().ShowDialog() == DialogResult.OK;
@@ -555,11 +565,18 @@ namespace V6ControlManager.FormManager.MenuManager
                             {
                                 if (check)
                                 {
+                                    //var where = "";
+                                    bool is_aldm = false;
+                                    IDictionary<string, object> keys = new Dictionary<string, object>();
+                                    keys.Add("MA_DM", TABLE_NAME);
+                                    var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
+                                    if (aldm.Rows.Count == 1)
+                                    {
+                                        is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
+                                    }
 
-                                    var where = "";
-                                    
                                     c = new DanhMucView(item_id, mButton.Text, TABLE_NAME,
-                                        V6Login.GetInitFilter(TABLE_NAME), null, true)
+                                        V6Login.GetInitFilter(TABLE_NAME), null, is_aldm)
                                     {
                                         Name = item_id,
                                         ReportFile = repFile,

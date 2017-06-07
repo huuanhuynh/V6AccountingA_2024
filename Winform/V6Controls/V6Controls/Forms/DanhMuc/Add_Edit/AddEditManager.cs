@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
+using V6Controls.Forms.DanhMuc.Add_Edit.Alreport;
 using V6Controls.Forms.DanhMuc.Add_Edit.NhanSu;
 using V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen;
 using V6Init;
@@ -470,10 +471,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FormControl = new ThongTinDanTocForm();
                     break;
                 case V6TableName.Alreport1:
-                    FormControl = new ALREPORT1();
+                    FormControl = new ALREPORT1_AddEdit();
                     break;
                 case V6TableName.Alreport:
-                    FormControl = new ALREPORT();
+                    FormControl = new ALREPORT_AddEdit();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("AddEditManager.InitControl tableName");

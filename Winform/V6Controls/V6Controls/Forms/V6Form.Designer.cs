@@ -58,7 +58,6 @@
             this.lblTopMessage.TabIndex = 4;
             this.lblTopMessage.Text = "Chào mừng đến với phần mềm V6";
             this.lblTopMessage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.lblTopMessage.Visible = false;
             // 
             // V6Form
             // 
@@ -79,7 +78,7 @@
         #endregion
 
         private System.Windows.Forms.ImageList _waitingImages;
-        private V6Label lblTopMessage;
+        protected V6Label lblTopMessage;
 
     }
 }

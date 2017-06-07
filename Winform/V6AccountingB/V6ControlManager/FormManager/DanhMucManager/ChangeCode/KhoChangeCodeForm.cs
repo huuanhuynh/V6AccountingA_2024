@@ -41,14 +41,13 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
         {
             this.SuspendLayout();
             // 
-            // VatTuChangeCodeForm
+            // KhoChangeCodeForm
             // 
             this.AccessibleNameOldCode = "ma_kho";
             this.AccessibleNameOldCodeName = "ten_kho";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(716, 123);
-            this.Name = "VatTuChangeCodeForm";
-                
+            this.ClientSize = new System.Drawing.Size(716, 142);
+            this.Name = "KhoChangeCodeForm";
             this.ResumeLayout(false);
 
         }

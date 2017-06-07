@@ -128,9 +128,9 @@ namespace V6Controls.Forms
                 _topMessageTimer.Stop();
                 //MessageLable.Top 
             }
-
+            MessageLable.BringToFront();
             MessageLable.Text = message;
-            MessageLable.Visible = true;
+            //MessageLable.Visible = true;
             _topMessageTimer = new Timer { Interval = 200 };
             _topMessageTimer.Tick += topMessageTimer_Tick;
             _topTime = -1;
