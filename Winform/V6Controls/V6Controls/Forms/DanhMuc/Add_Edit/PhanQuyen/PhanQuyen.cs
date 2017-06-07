@@ -75,6 +75,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             {
                 MakeMenu2(item, row2);
             }
+            treeListView1.CheckParentAllCheck(item);
         }
 
         private void MakeMenu2(TreeListViewItem parent, DataRow row)
@@ -90,7 +91,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             item.SubItems.Add("");
             item.SubItems.Add("");
             parent.Items.Add(item);
-
+            
             var data3 = GetMenu3(V6Options.MODULE_ID, v2ID, jobID);
             for (int i = 0; i < data3.Rows.Count; i++ )
             {
@@ -119,6 +120,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                 item.Checked = true;
                 item.Parent.Checked = true;
                 //item.Parent.Parent.Checked = true;
+                //treeListView1.FakeOnItemCheck(item.Parent, CheckState.Unchecked);
             }
 
             if (Vrights_Add.Contains(itemID))

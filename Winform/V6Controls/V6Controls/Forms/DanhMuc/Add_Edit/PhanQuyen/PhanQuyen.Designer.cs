@@ -148,6 +148,9 @@
             this.Name = "PhanQuyen";
             this.Text = "PhanQuyen";
             this.Load += new System.EventHandler(this.PhanQuyen_Load);
+            this.Controls.SetChildIndex(this.treeListView1, 0);
+            this.Controls.SetChildIndex(this.btnNhan, 0);
+            this.Controls.SetChildIndex(this.btnHuy, 0);
             this.ResumeLayout(false);
 
         }

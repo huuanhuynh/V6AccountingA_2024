@@ -155,7 +155,9 @@ namespace V6Structs
         /// lowercase
         /// </summary>
         public string sql_type { get; set; }
-
+        /// <summary>
+        /// Kiểu dữ liệu sql lấy từ sql_type.
+        /// </summary>
         public SqlDbType SqlDbType
         {
             get
@@ -163,7 +165,9 @@ namespace V6Structs
                 return F.ToSqlDbType(sql_type);
             }
         }
-
+        /// <summary>
+        /// Kiểu dữ liệu lấy từ sql_type.
+        /// </summary>
         public Type DataType
         {
             get

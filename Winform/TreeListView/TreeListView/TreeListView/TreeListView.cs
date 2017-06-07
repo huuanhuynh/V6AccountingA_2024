@@ -1330,6 +1330,16 @@ namespace System.Windows.Forms
 				_checkDirection = oldDirection;
 			}
 
+	    /// <summary>
+	    /// Fake call OnItemCheck
+	    /// </summary>
+	    /// <param name="item"></param>
+	    /// <param name="oldStatus"></param>
+	    public void FakeOnItemCheck(TreeListViewItem item, CheckState oldStatus)
+	    {
+	        OnItemCheck(new ItemCheckEventArgs(item.Index, item.CheckStatus, oldStatus));
+	    }
+
 	    private void CallItemCheckedChanged(TreeListViewItem item, ItemCheckEventArgs e)
 	    {
 	        try
@@ -1745,6 +1755,30 @@ namespace System.Windows.Forms
 			return new Rectangle((int)rc.left, (int)rc.top, (int)(rc.right-rc.left), (int)(rc.bottom-rc.top));
 		}
 		#endregion
+
+	    /// <summary>
+	    /// Check if all child check. Then check parent.
+	    /// </summary>
+        /// <param name="parentItem"></param>
+	    /// <exception cref="NotImplementedException"></exception>
+	    public void CheckParentAllCheck(TreeListViewItem parentItem)
+	    {
+	        bool all = true, some = false;
+	        foreach (TreeListViewItem item in parentItem.Items)
+	        {
+	            if (item.CheckStatus != CheckState.Checked)
+	            {
+	                all = false;
+	                break;
+	            }
+                //else
+                //{
+                //    some = true;
+                //}
+	        }
+	        if (all) parentItem.Checked = true;
+            //else if (some) parentItem.CheckStatus
+	    }
 	}
 	#region TreeListViewItemCheckDirection Enum
 	/// <summary>

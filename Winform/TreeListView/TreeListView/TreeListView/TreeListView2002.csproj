@@ -78,11 +78,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\APIs\APIs2002.csproj">
-      <Name>APIs2002</Name>
-      <Project>{4C455726-38B4-4143-8C43-46653918F0E4}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -94,6 +89,9 @@
     </Reference>
     <Reference Include="System.Messaging">
       <Name>System.Messaging</Name>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.APIs">
+      <HintPath>..\..\..\..\Lib\Winform\System.Runtime.InteropServices.APIs.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms">
       <Name>System.Windows.Forms</Name>

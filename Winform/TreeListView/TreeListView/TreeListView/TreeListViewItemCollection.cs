@@ -376,8 +376,8 @@ namespace System.Windows.Forms
 			// Insert in this collection
 			if(index > -1) List.Insert(index, item);
 			if(index > -1) OnItemAdded(new TreeListViewEventArgs(item, TreeListViewAction.Unknown));
-			if(Count == 1 && TreeListView != null && Parent != null)
-				if(Parent.Visible) Parent.Redraw();
+		    if (Count == 1 && TreeListView != null && Parent != null)
+		        if(Parent.Visible) Parent.Redraw();
 			return(index);
 		}
 		/// <summary>
