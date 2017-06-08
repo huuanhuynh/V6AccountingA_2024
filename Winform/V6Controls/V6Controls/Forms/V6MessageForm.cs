@@ -45,17 +45,17 @@ namespace V6Controls.Forms
         {
             if (V6Setting.Language == "V")
             {
-                buttonYES.Text = "Có";
-                buttonNO.Text = "Không";
-                buttonOK.Text = "Nhận";
-                buttonCANCEL.Text = "Hủy";
+                buttonYES.Text = "&Có";
+                buttonNO.Text = "&Không";
+                buttonOK.Text = "&Nhận";
+                buttonCANCEL.Text = "&Hủy";
             }
             else
             {
-                buttonYES.Text = "Yes";
-                buttonNO.Text = "No";
-                buttonOK.Text = "Ok";
-                buttonCANCEL.Text = "Cancel";
+                buttonYES.Text = "&Yes";
+                buttonNO.Text = "&No";
+                buttonOK.Text = "&Ok";
+                buttonCANCEL.Text = "&Cancel";
             }
             //pictureBox1.Image = System.Drawing.SystemIcons.Error;
             switch (_buttons)

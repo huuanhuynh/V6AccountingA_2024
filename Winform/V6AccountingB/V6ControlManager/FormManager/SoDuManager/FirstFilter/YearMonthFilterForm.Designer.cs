@@ -58,7 +58,7 @@
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(88, 32);
             this.btnFilter.TabIndex = 2;
-            this.btnFilter.Text = "Nhận";
+            this.btnFilter.Text = "&Nhận";
             this.btnFilter.UseVisualStyleBackColor = true;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 

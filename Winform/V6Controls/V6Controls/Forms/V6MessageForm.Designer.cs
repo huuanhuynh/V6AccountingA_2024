@@ -62,7 +62,7 @@
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 1;
-            this.buttonOK.Text = "Nhận";
+            this.buttonOK.Text = "&Nhận";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Visible = false;
             // 
