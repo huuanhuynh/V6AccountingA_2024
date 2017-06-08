@@ -206,6 +206,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new AINVITRI02(itemId, program, procedure, reportFile, text);
                 case "AINVITRI03":
                     return new AINVITRI03(itemId, program, procedure, reportFile, text);
+                case "AINVITRI04":
+                    return new AINVITRI04(itemId, program, procedure, reportFile, text);
+                    
                 case "HPRCONGCT":
                     return new HPRCONGCT_XL0(itemId, program, procedure, reportFile, text);
             }

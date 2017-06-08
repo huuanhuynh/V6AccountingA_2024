@@ -3709,6 +3709,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\AINABVITRI2N.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AINVITRI04.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AINVITRI03.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4559,6 +4562,18 @@
     </Compile>
     <Compile Include="FormManager\ToolManager\FormExportSqlTableToFile.designer.cs">
       <DependentUpon>FormExportSqlTableToFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\VitriManager\VitriCafeContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\VitriManager\VitriCafeContainer.Designer.cs">
+      <DependentUpon>VitriCafeContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\VitriManager\VitriKhuCafeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\VitriManager\VitriKhuCafeControl.Designer.cs">
+      <DependentUpon>VitriKhuCafeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -6834,6 +6849,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ToolManager\FormExportSqlTableToFile.resx">
       <DependentUpon>FormExportSqlTableToFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\VitriManager\VitriCafeContainer.resx">
+      <DependentUpon>VitriCafeContainer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\VitriManager\VitriKhuCafeControl.resx">
+      <DependentUpon>VitriKhuCafeControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

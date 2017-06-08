@@ -3857,6 +3857,19 @@ namespace V6Controls.Forms
             return null;
         }
 
+        public static Control FindChild<T>(Control parent, int level = 0, int maxLevel = 10)
+        {
+            if (level > maxLevel) return null; 
+            Control c = parent;
+            if (c is T) return c;
+            foreach (Control control in c.Controls)
+            {
+                var c2 = FindChild<T>(control, ++level);
+                if (c2 is T) return c2;
+            }
+            return null;
+        }
+
         public static void SetGridviewCurrentCellByIndex(DataGridView gridView1, int rowIndex, int cellIndex, Control form = null)
         {
             try
