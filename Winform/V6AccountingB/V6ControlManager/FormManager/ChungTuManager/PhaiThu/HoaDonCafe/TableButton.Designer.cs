@@ -51,6 +51,7 @@
             this.lblName.TabIndex = 0;
             this.lblName.Text = "A1";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblName.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TableButton_MouseDoubleClick);
             // 
             // lblStatus
             // 
@@ -60,6 +61,7 @@
             this.lblStatus.TabIndex = 1;
             this.lblStatus.Text = "Trống";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblStatus.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TableButton_MouseDoubleClick);
             // 
             // lblTTT
             // 
@@ -71,6 +73,7 @@
             this.lblTTT.Text = "0";
             this.lblTTT.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblTTT.Click += new System.EventHandler(this.TableButton_Click);
+            this.lblTTT.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TableButton_MouseDoubleClick);
             // 
             // panel1
             // 
@@ -83,6 +86,7 @@
             this.panel1.Size = new System.Drawing.Size(87, 67);
             this.panel1.TabIndex = 3;
             this.panel1.Click += new System.EventHandler(this.TableButton_Click);
+            this.panel1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TableButton_MouseDoubleClick);
             // 
             // lblGhiChu
             // 
@@ -95,6 +99,7 @@
             this.lblGhiChu.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblGhiChu.TextChanged += new System.EventHandler(this.lblGhiChu_TextChanged);
             this.lblGhiChu.Click += new System.EventHandler(this.TableButton_Click);
+            this.lblGhiChu.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TableButton_MouseDoubleClick);
             // 
             // labelTop
             // 
@@ -141,6 +146,7 @@
             this.Name = "TableButton";
             this.Size = new System.Drawing.Size(93, 73);
             this.Click += new System.EventHandler(this.TableButton_Click);
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TableButton_MouseDoubleClick);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

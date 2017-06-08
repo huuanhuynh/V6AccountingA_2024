@@ -40,6 +40,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             if (handler != null) handler(this, new EventArgs());
         }
 
+        public event EventHandler MyDoubleClick;
+        protected virtual void OnMyDoubleClick()
+        {
+            var handler = MyDoubleClick;
+            if (handler != null) handler(this, new EventArgs());
+        }
+
         public event EventHandler ChangeStatusEvent;
         protected virtual void OnChangeStatus()
         {
@@ -245,6 +252,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private void lblGhiChu_TextChanged(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(lblGhiChu, lblGhiChu.Text);
+        }
+
+        private void TableButton_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            OnMyDoubleClick();
         }
     }
 

@@ -4,6 +4,7 @@ using System.Data;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe;
 using V6Controls;
 using V6Controls.Forms;
@@ -110,6 +111,7 @@ namespace V6ControlManager.FormManager.VitriManager
                 }
                 //button_Click
                 button.Select1 += button_Select1;
+                button.MyDoubleClick += button_MouseDoubleClick;
                 button.ChangeStatusEvent += button_ChangeStatusEvent;
                 //
                 //if (count < key_array.Length)
@@ -148,6 +150,11 @@ namespace V6ControlManager.FormManager.VitriManager
                 if(b != null) b.SelectOne();
             }
 
+        }
+
+        void button_MouseDoubleClick(object sender, EventArgs eventArgs)
+        {
+            InChungTu((TableButton) sender);
         }
 
         /// <summary>
@@ -228,6 +235,42 @@ namespace V6ControlManager.FormManager.VitriManager
             DeSelectAll(selected_button);
             //ShowInvoice(selected_button);
             //txtMaVitri.Text  = selected_button.Ma_vitri;
+
+            //InChungTu(click_button);
+        }
+
+        private void InChungTu(TableButton clickButton)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(clickButton.Stt_Rec)) return;
+
+                var program = hoadonCafe_Invoice.PrintReportProcedure;
+                var repFile = hoadonCafe_Invoice.Alct.Rows[0]["FORM"].ToString().Trim();
+                var repTitle = hoadonCafe_Invoice.Alct.Rows[0]["TIEU_DE_CT"].ToString().Trim();
+                var repTitle2 = hoadonCafe_Invoice.Alct.Rows[0]["TIEU_DE2"].ToString().Trim();
+
+                var c = new InChungTuViewBase(hoadonCafe_Invoice, program, program, repFile, repTitle, repTitle2,
+                    "", "", "", clickButton.Stt_Rec);
+                c.TTT = clickButton.TongTT;
+                c.TTT_NT = clickButton.TongTT;
+                c.MA_NT = V6Options.M_MA_NT0;
+                c.Dock = DockStyle.Fill;
+                c.PrintSuccess += (sender, stt_rec, BaoGia_nd51) =>
+                {
+                    if (BaoGia_nd51 == 1)
+                    {
+                        hoadonCafe_Invoice.IncreaseSl_inAm81(stt_rec);
+                    }
+                    sender.Dispose();
+                };
+
+                c.ShowToForm(V6Text.PrintSOA, true);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".InChungTu", ex);
+            }
         }
 
 
