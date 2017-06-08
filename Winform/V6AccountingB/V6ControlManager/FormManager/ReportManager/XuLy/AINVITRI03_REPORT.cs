@@ -126,7 +126,31 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 plistData = d;
-                if (d.ContainsKey("MA_KH")) txtMaKh.Text = d["MA_KH"].ToString().Trim();
+
+                //{Tuanmh 07/06/2017
+                if (d.ContainsKey("MA_VITRI"))
+                {
+                    var mavitri = d["MA_VITRI"].ToString().Trim();
+                    IDictionary<string, object> keys = new Dictionary<string, object>();
+                    keys.Add("MA_VITRI", mavitri);
+                    var alvitri = V6BusinessHelper.Select(V6TableName.Alvitri, keys, "*").Data;
+                    if (alvitri.Rows.Count == 1)
+                    {
+                        var makh = alvitri.Rows[0]["MA_KH"];
+                        if (makh != null && makh.ToString().Trim() != "")
+                        {
+                            if (d.ContainsKey("MA_KH"))
+                            {
+                                txtMaKh.Text = makh.ToString().Trim();
+                            }
+                        }
+                    }
+                   
+                }
+
+                //if (d.ContainsKey("MA_KH")) txtMaKh.Text = d["MA_KH"].ToString().Trim();
+                //}
+
                 if (d.ContainsKey("CUOI_NGAY"))
                 {
                     DateTime date = ObjectAndString.ObjectToFullDateTime(d["CUOI_NGAY"]);
