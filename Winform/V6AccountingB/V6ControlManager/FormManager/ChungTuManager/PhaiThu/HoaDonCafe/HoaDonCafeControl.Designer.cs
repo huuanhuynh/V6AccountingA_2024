@@ -3355,7 +3355,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.btnLuuTam.Name = "btnLuuTam";
             this.btnLuuTam.Size = new System.Drawing.Size(88, 32);
             this.btnLuuTam.TabIndex = 14;
-            this.btnLuuTam.Text = "Lưu tạm";
+            this.btnLuuTam.Text = "Lư&u tạm";
             this.btnLuuTam.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLuuTam.UseVisualStyleBackColor = true;
             this.btnLuuTam.Click += new System.EventHandler(this.btnLuuTam_Click);

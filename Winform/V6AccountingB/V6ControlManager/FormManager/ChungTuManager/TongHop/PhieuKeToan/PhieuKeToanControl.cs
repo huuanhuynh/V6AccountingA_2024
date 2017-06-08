@@ -2939,11 +2939,46 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
 
                 //Check nh_dk
                 var groupDic = new SortedDictionary<string, decimal[]>();
+                var groupCount = new SortedDictionary<string, int[]>();
                 foreach (DataRow row in AD.Rows)
                 {
                     var nhomDK = row["Nh_dk"].ToString().Trim();
                     var ps_no = ObjectAndString.ObjectToDecimal(row["Ps_no_nt"]);
                     var ps_co = ObjectAndString.ObjectToDecimal(row["Ps_co_nt"]);
+
+                    if (ps_no != 0)
+                    {
+                        //Cộng nhóm nợ cho nhomDK
+                        if (!groupCount.ContainsKey(nhomDK))
+                        {
+                            var group = new int[] { 1, 0 };
+                            groupCount[nhomDK] = group;
+                        }
+                        else
+                        {
+                            var group = groupCount[nhomDK];
+                            group[0] += 1;
+                            //group[1] += 0;
+                            groupCount[nhomDK] = group;
+                        }
+                    }
+                    else
+                    {
+                        //Cộng nhóm có cho nhóm DK
+                        if (!groupCount.ContainsKey(nhomDK))
+                        {
+                            var group = new int[] { 0, 1 };
+                            groupCount[nhomDK] = group;
+                        }
+                        else
+                        {
+                            var group = groupCount[nhomDK];
+                            //group[0] += 0;
+                            group[1] += 1;
+                            groupCount[nhomDK] = group;
+                        }
+                    }
+
                     if (groupDic.ContainsKey(nhomDK))
                     {
                         var group = groupDic[nhomDK];
@@ -2968,6 +3003,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                         checkChiTietError += string.Format("Kiểm tra nhóm định khoản (Phát sinh nợ <> Phát sinh có) {0}\n", item.Key);
                     }
                 }
+
+                var count2 = 0;
+                var nhom_list = "";
+                foreach (KeyValuePair<string, int[]> item in groupCount)
+                {
+                    var group = item.Value;
+                    var count3 = 0;
+                    if (group[0] > 1) count3++;
+                    if (group[1] > 1) count3++;
+                    if (count3 > 1) // nhiều nợ và nhiều có trong 1 nhóm.
+                    {
+                        nhom_list += "," + item.Key;
+                        count2 += 1;
+                    }
+                    
+                }
+                if (count2 > 0)
+                {
+                    checkChiTietError += string.Format("Có hạch toán nhiều nợ, nhiều có trong các nhóm định khoản " + nhom_list);
+                }
+
                 if (checkChiTietError.Length > 0)
                 {
                     this.ShowWarningMessage(checkChiTietError);
