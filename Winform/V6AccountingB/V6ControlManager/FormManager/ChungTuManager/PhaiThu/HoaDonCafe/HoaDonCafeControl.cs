@@ -5156,6 +5156,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             QuayRa();
             Status = "0";
         }
+        private void btnLuuTam_Click(object sender, EventArgs e)
+        {
+            Luu(MA_KHOPH, MA_VITRIPH, false);
+        }
         #endregion command buttons
         
 

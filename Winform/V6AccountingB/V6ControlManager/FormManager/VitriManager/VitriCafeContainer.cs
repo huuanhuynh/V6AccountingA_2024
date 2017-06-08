@@ -210,27 +210,6 @@ namespace V6ControlManager.FormManager.VitriManager
             }
         }
 
-        void khu_ChuyenKhu(object sender, ChuyenKhuEventArgs e)
-        {
-            try
-            {
-                //var from_khu = sender as VitriKhuCafeControl;
-                //if (from_khu == null) return;
-                //var hdCafeFrom = from_khu.hoadonCafe;
-                foreach (VitriKhuCafeControl control in KhuList)
-                {
-                    if (control.Ma_kho == e.Ma_Kho_Den)// hdCafeFrom.MA_KHOPH)
-                    {
-                        //control.NhanBan(e.Stt_rec, e.AM_Data, e.Ma_Kho_Den, e.Ma_Vitri_Den);// hdCafeFrom);
-                        return;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".khu_ChuyenKhu: " + ex.Message);
-            }
-        }
 
         public override void DisableZoomButton()
         {
@@ -365,11 +344,16 @@ namespace V6ControlManager.FormManager.VitriManager
             V6ControlsHelper.DisableLookup = true;
             try
             {
-                if (tabControl1.TabCount == 0 ||
-                    this.ShowConfirmMessage(V6Text.BackConfirm) == DialogResult.Yes)
+                if (tabControl1.TabCount != 0 &&
+                    this.ShowConfirmMessage(V6Text.CloseConfirm) == DialogResult.Yes)
+                {
+                    var p = GetCurrentKhu();
+                    p.Dispose();
+                }
+                else if (tabControl1.TabCount == 0 &&
+                    this.ShowConfirmMessage(V6Text.CloseConfirm) == DialogResult.Yes)
                 {
                     var p = Parent;
-                    
                     if (p is Form) ((Form)p).Dispose();
                     else Dispose();
                 }

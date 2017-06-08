@@ -51,43 +51,53 @@ namespace V6Init
 
         public static string begin1(string mant)
         {
+            if (string.IsNullOrEmpty(mant)) mant = V6Options.M_MA_NT0;
             return (V6AlntValue[mant]["begin1"] ?? "").ToString().Trim();
         }
         public static string begin2(string mant)
         {
+            if (string.IsNullOrEmpty(mant)) mant = V6Options.M_MA_NT0;
             return (V6AlntValue[mant]["begin2"] ?? "").ToString().Trim();
         }
 
         public static string end1(string mant)
         {
+            if (string.IsNullOrEmpty(mant)) mant = V6Options.M_MA_NT0;
             return (V6AlntValue[mant]["end1"] ?? "").ToString().Trim();
         }
         public static string end2(string mant)
         {
+            if (string.IsNullOrEmpty(mant)) mant = V6Options.M_MA_NT0;
             return (V6AlntValue[mant]["end2"] ?? "").ToString().Trim();
         }
         public static string only1(string mant)
         {
+            if (string.IsNullOrEmpty(mant)) mant = V6Options.M_MA_NT0;
             return (V6AlntValue[mant]["only1"] ?? "").ToString().Trim();
         }
         public static string only2(string mant)
         {
+            if (string.IsNullOrEmpty(mant)) mant = V6Options.M_MA_NT0;
             return (V6AlntValue[mant]["only2"] ?? "").ToString().Trim();
         }
         public static string point1(string mant)
         {
+            if (string.IsNullOrEmpty(mant)) mant = V6Options.M_MA_NT0;
             return (V6AlntValue[mant]["point1"] ?? "").ToString().Trim();
         }
         public static string point2(string mant)
         {
+            if (string.IsNullOrEmpty(mant)) mant = V6Options.M_MA_NT0;
             return (V6AlntValue[mant]["point2"] ?? "").ToString().Trim();
         }
         public static string endpoint1(string mant)
         {
+            if (string.IsNullOrEmpty(mant)) mant = V6Options.M_MA_NT0;
             return (V6AlntValue[mant]["endpoint1"] ?? "").ToString().Trim();
         }
         public static string endpoint2(string mant)
         {
+            if (string.IsNullOrEmpty(mant)) mant = V6Options.M_MA_NT0;
             return (V6AlntValue[mant]["endpoint2"] ?? "").ToString().Trim();
         }
         //(V6Alnt.V6AlntValue[MA_NT]["end1"]??"").ToString().Trim(),

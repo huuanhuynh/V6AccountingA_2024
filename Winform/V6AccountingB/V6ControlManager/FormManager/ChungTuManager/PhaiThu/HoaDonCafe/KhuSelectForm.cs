@@ -26,9 +26,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 if (!V6Setting.IsVietnamese) NAME_FIELD = "TEN_KHO2";
 
+                var and_not_in = string.IsNullOrEmpty(NotInList) ? "" : " AND MA_KHO NOT IN (" + NotInList + ")";
                 var kho_data = V6BusinessHelper.Select("Alkho", "*",
                     (V6Login.IsAdmin ? "1=1" : " dbo.VFA_Inlist_MEMO(MA_KHO,'" + V6Login.UserRight.RightKho +"')=1")
-                        + " AND MA_KHO NOT IN (" + NotInList + ")").Data;
+                        + and_not_in).Data;
                 if (kho_data.Rows.Count == 0)
                 {
                     this.ShowWarningMessage("NO KHO");

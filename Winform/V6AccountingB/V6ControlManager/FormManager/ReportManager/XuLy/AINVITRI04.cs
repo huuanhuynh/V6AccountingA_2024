@@ -31,6 +31,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             khoHangContainer.Name = itemId;
             //khoHangContainer.CodeForm = CodeForm;
             panel1.Controls.Add(khoHangContainer);
+            khoHangContainer.Disposed += khoHangContainer_Disposed;
+        }
+
+        void khoHangContainer_Disposed(object sender, System.EventArgs e)
+        {
+            if(!IsDisposed) Dispose();
         }
 
         public override void SetStatus2Text()

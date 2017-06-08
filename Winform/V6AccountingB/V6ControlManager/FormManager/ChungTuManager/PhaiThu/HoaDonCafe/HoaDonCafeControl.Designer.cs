@@ -228,6 +228,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtTongTienNt = new V6Controls.NumberTienNt();
             this.txtMa_vitriPH = new V6Controls.V6ColorTextBox();
             this.txtMa_khoPH = new V6Controls.V6ColorTextBox();
+            this.btnLuuTam = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -3345,6 +3346,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtMa_khoPH.TabIndex = 24;
             this.txtMa_khoPH.Visible = false;
             // 
+            // btnLuuTam
+            // 
+            this.btnLuuTam.AccessibleDescription = "ASOCTSOAR00025";
+            this.btnLuuTam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLuuTam.Image = global::V6ControlManager.Properties.Resources.Save24;
+            this.btnLuuTam.Location = new System.Drawing.Point(567, 550);
+            this.btnLuuTam.Name = "btnLuuTam";
+            this.btnLuuTam.Size = new System.Drawing.Size(88, 32);
+            this.btnLuuTam.TabIndex = 14;
+            this.btnLuuTam.Text = "Lưu tạm";
+            this.btnLuuTam.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLuuTam.UseVisualStyleBackColor = true;
+            this.btnLuuTam.Click += new System.EventHandler(this.btnLuuTam_Click);
+            // 
             // HoaDonCafeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3377,6 +3392,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnLast);
+            this.Controls.Add(this.btnLuuTam);
             this.Controls.Add(this.btnQuayRa);
             this.Controls.Add(this.btnXem);
             this.Controls.Add(this.txtTongTienNt);
@@ -3624,5 +3640,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private V6NumberTextBox txtConLai;
         private V6ColorTextBox txtMa_vitriPH;
         private V6ColorTextBox txtMa_khoPH;
+        private System.Windows.Forms.Button btnLuuTam;
     }
 }

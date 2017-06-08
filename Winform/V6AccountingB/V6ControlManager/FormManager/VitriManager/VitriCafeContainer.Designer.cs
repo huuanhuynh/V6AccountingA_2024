@@ -84,7 +84,7 @@
             this.tsClose.Name = "tsClose";
             this.tsClose.Size = new System.Drawing.Size(26, 26);
             this.tsClose.TabIndex = 3;
-            this.toolTipV6FormControl.SetToolTip(this.tsClose, "Close");
+            this.toolTipV6FormControl.SetToolTip(this.tsClose, "Close Tab");
             this.tsClose.UseVisualStyleBackColor = true;
             this.tsClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
