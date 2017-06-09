@@ -32,6 +32,11 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
             }
         }
 
+        public override void SetStatus2Text()
+        {
+            V6ControlFormHelper.SetStatusText2("Từ điển ngôn ngữ.");
+        }
+
         private bool loadTab2, loadTab3;
 
         private void btnESC_Click(object sender, EventArgs e)

@@ -862,25 +862,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            var text = "";
-            if (FilterControl != null)
-            {
-                if (FilterControl.F3) text += "F3-Sửa chứng từ";
-                if (FilterControl.F5)
-                {
-                    if (FilterControl.F3) text += "; ";
-                    text += "F5-Xem chi tiết";
-                }
-                if(text!="")
-                V6ControlFormHelper.SetStatusText2(text);
-            }
+            FilterControl.SetStatus2Text();
         }
 
         private void XuLyBase_VisibleChanged(object sender, EventArgs e)
         {
             if (Visible)
             {
-                //SetStatus2Text();
+                
             }
         }
 
@@ -1000,6 +989,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //}
                     };
                     f2.ShowDialog(this);
+                    SetStatus2Text();
                 }
             }
             catch (Exception ex)
@@ -1040,6 +1030,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     //}
                 };
                 f2.ShowDialog(this);
+                SetStatus2Text();
             }
             catch (Exception ex)
             {

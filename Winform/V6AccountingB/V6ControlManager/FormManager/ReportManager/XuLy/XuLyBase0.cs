@@ -62,7 +62,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
-            //SetStatus2Text();
+            
         }
 
         
@@ -324,18 +324,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            var text = "";
-            if (FilterControl != null)
-            {
-                if (FilterControl.F3) text += "F3-SetStatus2Text";
-                if (FilterControl.F5)
-                {
-                    if (FilterControl.F3) text += "; ";
-                    text += "F5-SetStatus2Text";
-                }
-                if(text!="")
-                V6ControlFormHelper.SetStatusText2(text);
-            }
+            FilterControl.SetStatus2Text();
         }
 
         private void XuLyBase_VisibleChanged(object sender, EventArgs e)

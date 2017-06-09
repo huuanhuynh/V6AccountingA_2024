@@ -72,6 +72,11 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
             }
         }
 
+        public override void SetStatus2Text()
+        {
+            V6ControlFormHelper.SetStatusText2("Client manager: DoubleClick cột Allow để thay đổi.");
+        }
+
         private void v6FormButton2_Click(object sender, EventArgs e)
         {
             Dispose();

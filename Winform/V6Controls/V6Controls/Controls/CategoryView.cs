@@ -74,6 +74,7 @@ namespace V6Controls.Controls
             {
                 KeyFields = new[] {"MA_KH"};
             }
+            MakeStatus2Text();
         }
 
         private readonly V6Categories _categories = new V6Categories();
@@ -1079,11 +1080,32 @@ namespace V6Controls.Controls
             LoadAtPage(1);
         }
 
+        private string status2text = "";
+
+        private void MakeStatus2Text()
+        {
+            var text = "";
+            if (V6Setting.IsVietnamese)
+            {
+                if (EnableEdit) text += ", F3-Sửa";
+                if (EnableAdd) text += ", F4-Thêm";
+                text += ", F5-Tìm";
+                //if (EnableChangeCode) text += ", F6-Đổi mã";
+                if (EnableDelete) text += ", F8-Xóa";
+            }
+            else
+            {
+                if (EnableEdit) text += ", F3-Edit";
+                if (EnableAdd) text += ", F4-New";
+                text += ", F5-Search";
+                //if (EnableChangeCode) text += ", F6-Change code";
+                if (EnableDelete) text += ", F8-Delete";
+            }
+            status2text = text.Substring(2);
+        }
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(V6Setting.Language == "V"
-                ? "F3-Sửa, F4-Thêm, F5-Tìm, F6-Đổi mã, F8-Xóa"
-                : "F3-Edit, F4-New, F5-Search, F6-Change Code, F8-Delete");
+            V6ControlFormHelper.SetStatusText2(status2text);
         }
         
         private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
