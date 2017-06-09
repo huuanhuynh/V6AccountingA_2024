@@ -72,7 +72,7 @@ namespace V6Controls.Forms
         
         public virtual void SetStatus2Text()
         {
-            
+            //V6ControlFormHelper.SetStatusText2("");
         }
 
         /// <summary>

@@ -410,7 +410,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
             AddFilterControl(_program);
             QuickReportManager.MadeFilterControls(FilterControl, _program);
-            FilterControl.SetStatus2Text();
+            SetStatus2Text();
             gridViewSummary1.Visible = FilterControl.ViewSum;
 
             LoadComboboxSource();
@@ -499,7 +499,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
-            //SetStatus2Text();
+            
         }
 
         
@@ -1101,6 +1101,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             try
             {
                 new ChartReportForm(FilterControl, ReportFileFullF7, _tbl, _tbl2.Copy(), ReportDocumentParameters).ShowDialog();
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -1143,24 +1144,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         public override void SetStatus2Text()
         {
-            var text = "";
-            if (FilterControl != null)
-            {
-                if (FilterControl.F3) text += "F3-Sửa chứng từ";
-                if (FilterControl.F5)
-                {
-                    if (FilterControl.F3) text += "; ";
-                    text += "F5-Xem chi tiết";
-                }
-                V6ControlFormHelper.SetStatusText2(text);
-            }
+            FilterControl.SetStatus2Text();
         }
 
         private void ReportRViewBase_VisibleChanged(object sender, EventArgs e)
         {
             if (Visible)
             {
-                //SetStatus2Text();
+                
             }
         }
 
@@ -1234,6 +1225,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
                 };
                 f2.ShowDialog(this);
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -1275,6 +1267,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
                 };
                 f2.ShowDialog(this);
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -1289,6 +1282,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 var f = new FormRptEditor();
                 f.rptPath = ReportFileFull;
                 f.ShowDialog();
+                SetStatus2Text();
             }
             catch (Exception ex)
             {

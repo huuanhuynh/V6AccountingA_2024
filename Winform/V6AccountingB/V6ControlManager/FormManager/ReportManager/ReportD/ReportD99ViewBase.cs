@@ -534,7 +534,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
-            //SetStatus2Text();
+            
         }
 
 
@@ -1311,20 +1311,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 };
                 QuickReportManager.ShowReportR(this, quick_params);
 
-                
-                //var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFileF5,
-                //    _reportTitleF5, _reportTitle2F5, "", "", "");
-                //view.CodeForm = CodeForm;
-                //view.FilterControl.String1 = FilterControl.String1;
-                //view.FilterControl.String2 = FilterControl.String2;
-                //view.Dock = DockStyle.Fill;
-                //view.FilterControl.InitFilters = oldKeys;
-                //view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
-
-                //view.btnNhan_Click(null, null);
-                //view.ShowToForm("Chi tiết", true);
-
-                FilterControl.SetStatus2Text();
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -1347,24 +1334,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
         public override void SetStatus2Text()
         {
-            var text = "";
-            if (FilterControl != null)
-            {
-                if (FilterControl.F3) text += "F3-Sửa chứng từ";
-                if (FilterControl.F5)
-                {
-                    if (FilterControl.F3) text += "; ";
-                    text += "F5-Xem chi tiết";
-                }
-                V6ControlFormHelper.SetStatusText2(text);
-            }
+            FilterControl.SetStatus2Text();
         }
 
         private void ReportRViewBase_VisibleChanged(object sender, EventArgs e)
         {
             if (Visible)
             {
-                //SetStatus2Text();
+                
             }
         }
 
@@ -1473,6 +1450,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             try
             {
                 new ChartReportForm(FilterControl, ReportFileFullF7, _tbl, _tbl2.Copy(), ReportDocumentParameters).ShowDialog();
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -1534,6 +1512,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     }
                 };
                 f2.ShowDialog(this);
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -1575,6 +1554,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     }
                 };
                 f2.ShowDialog(this);
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -1589,6 +1569,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 var f = new FormRptEditor();
                 f.rptPath = ReportFileFull;
                 f.ShowDialog();
+                SetStatus2Text();
             }
             catch (Exception ex)
             {

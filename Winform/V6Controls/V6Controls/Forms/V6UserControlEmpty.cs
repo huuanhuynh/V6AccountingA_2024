@@ -17,6 +17,11 @@ namespace V6Controls.Forms
             textBox1.Text = (text);
         }
 
+        public override void SetStatus2Text()
+        {
+            V6ControlFormHelper.SetStatusText2("");
+        }
+
         private void button1_Click(object sender, System.EventArgs e)
         {
             try

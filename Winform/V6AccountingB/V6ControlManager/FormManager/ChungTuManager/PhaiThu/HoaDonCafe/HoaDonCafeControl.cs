@@ -5100,7 +5100,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         #region ==== AM Events ====
         private void HoaDonBanHangKiemPhieuXuat_Load(object sender, EventArgs e)
         {
-            //SetStatus2Text();
             btnMoi.Focus();
         }
 
@@ -5385,15 +5384,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 this.WriteExLog(GetType() + ".txtSoCt_TextChanged", ex);
             }
         }
-
-        private void HoaDonBanHangKiemPhieuXuat_VisibleChanged(object sender, EventArgs e)
-        {
-            if (Visible)
-            {
-                //SetStatus2Text();
-            }
-        }
-
+        
         private void btnIn_Click(object sender, EventArgs e)
         {
             In(_sttRec, false);

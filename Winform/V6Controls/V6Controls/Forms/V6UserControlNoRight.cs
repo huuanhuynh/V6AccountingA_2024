@@ -14,5 +14,9 @@ namespace V6Controls.Forms
             label1.Text = V6Text.NotSupported;
             textBox1.Text = (text);
         }
+        public override void SetStatus2Text()
+        {
+            V6ControlFormHelper.SetStatusText2("");
+        }
     }
 }

@@ -1296,7 +1296,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (Visible)
             {
-                //SetStatus2Text();
+                FilterControl.SetStatus2Text();
             }
         }
 

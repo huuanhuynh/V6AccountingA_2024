@@ -36,6 +36,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         protected virtual void OnSelect1()
         {
             IsSelect = true;
+            V6ControlFormHelper.AddLastAction("OnSelect TableButton " + this);
             var handler = Select1;
             if (handler != null) handler(this, new EventArgs());
         }
@@ -247,6 +248,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     lblStatus.Text = _time0.Left(5) + "-" + _time2.Left(5);
                     break;
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Ma_vitri:{0}, Stt_rec:{1}, Mode:{2}, Ghi chú:{3}", Ma_vitri, Stt_Rec, Mode, _ghiChu);
         }
 
         private void lblGhiChu_TextChanged(object sender, EventArgs e)

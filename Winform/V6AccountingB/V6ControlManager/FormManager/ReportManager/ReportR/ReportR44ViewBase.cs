@@ -518,7 +518,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 AddFilterControl(_program);
                 QuickReportManager.MadeFilterControls(FilterControl, _program);
-                FilterControl.SetStatus2Text();
+                SetStatus2Text();
                 gridViewSummary1.Visible = FilterControl.ViewSum;
             
                 LoadComboboxSource();
@@ -548,6 +548,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 this.WriteExLog(GetType() + ".Init", ex);
             }
+        }
+
+        public override void SetStatus2Text()
+        {
+            FilterControl.SetStatus2Text();
         }
 
         private void LoadComboboxSource()
@@ -1196,8 +1201,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                                 f.Controls.Add(hoaDonForm);
                                 
                                 f.ShowDialog();
-                                
-                                FilterControl.SetStatus2Text();
+
+                                SetStatus2Text();
                             }
                         }
                     }
@@ -1238,8 +1243,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 view.btnNhan_Click(null, null);
                 view.ShowToForm("Chi tiết", true);
-                
-                FilterControl.SetStatus2Text();
+
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -1252,12 +1257,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             try
             {
                 new ChartReportForm(FilterControl, ReportFileFullF7, _tbl1, _tbl2.Copy(), ReportDocumentParameters).ShowDialog();
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".XuLyVeDoThiF7: " + ex.Message);
             }
-            FilterControl.SetStatus2Text();
+            SetStatus2Text();
         }
 
         public override bool DoHotKey0(Keys keyData)
@@ -1299,7 +1305,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (Visible)
             {
-                //SetStatus2Text();
+                
             }
         }
 
@@ -1372,7 +1378,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
                 };
                 f2.ShowDialog(this);
-                FilterControl.SetStatus2Text();
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -1414,7 +1420,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
                 };
                 f2.ShowDialog(this);
-                FilterControl.SetStatus2Text();
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -1429,6 +1435,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 var f = new FormRptEditor();
                 f.rptPath = ReportFileFull;
                 f.ShowDialog();
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
