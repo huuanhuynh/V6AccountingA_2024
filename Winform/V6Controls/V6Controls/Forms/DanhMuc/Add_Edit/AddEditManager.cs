@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Controls.Forms.DanhMuc.Add_Edit.Alreport;
 using V6Controls.Forms.DanhMuc.Add_Edit.NhanSu;
@@ -12,7 +14,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
     public static class AddEditManager
     {
         #region ==== Init Control ====
-        public static AddEditControlVirtual Init_Control(V6TableName tableName)
+        public static AddEditControlVirtual Init_Control(V6TableName tableName, string name = null)
         {
             AddEditControlVirtual FormControl = null;
             //if (V6Check_Rights())
@@ -477,7 +479,23 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FormControl = new ALREPORT_AddEdit();
                     break;
                 default:
+                    //Check is_aldm?
+                    bool is_aldm = false;
+                    IDictionary<string, object> keys = new Dictionary<string, object>();
+                    keys.Add("MA_DM", name);
+                    var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
+                    if (aldm.Rows.Count == 1)
+                    {
+                        is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
+                        if (is_aldm)
+                        {
+                            FormControl = new DynamicAddEditForm(name, aldm.Rows[0]);
+                            break;
+                        }
+                    }
+
                     throw new ArgumentOutOfRangeException("AddEditManager.InitControl tableName");
+                    break;
             }
             if (FormControl == null)
             {

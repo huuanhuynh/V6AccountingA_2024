@@ -971,20 +971,11 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             if (keyData == Keys.Escape)
             {
-                //btnThoat.PerformClick();
                 if (this.ShowConfirmMessage(V6Text.BackConfirm) == DialogResult.Yes)
                 {
                     Dispose();
                 }
             }
-            //else if (keyData == (Keys.Control | Keys.Enter))
-            //{
-            //    btnNhan.PerformClick();
-            //}
-            //else if (keyData == Keys.F3 && FilterControl.F3)
-            //{
-            //    XuLyHienThiFormSuaChungTuF3();
-            //}
             else if (keyData == Keys.F5)
             {
                 if (this.ShowConfirmMessage(V6Text.ReloadConfirm) == DialogResult.Yes)

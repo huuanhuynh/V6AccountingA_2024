@@ -145,6 +145,12 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\Acosxlt_alloaiytAddEditForm.Designer.cs">
       <DependentUpon>Acosxlt_alloaiytAddEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\DynamicAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\DynamicAddEditForm.Designer.cs">
+      <DependentUpon>DynamicAddEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT_AddEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1223,6 +1229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Acosxlt_alloaiytAddEditForm.resx">
       <DependentUpon>Acosxlt_alloaiytAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\DynamicAddEditForm.resx">
+      <DependentUpon>DynamicAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT_AddEdit.resx">
       <DependentUpon>ALREPORT_AddEdit.cs</DependentUpon>

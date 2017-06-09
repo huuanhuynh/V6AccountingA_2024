@@ -3783,6 +3783,16 @@ namespace V6Controls.Forms
         }
 
         public static int Copy_Here2Data(V6TableName tableName, V6Mode mode,
+            string keyField1, string keyField2, string keyField3,
+            string newKey1, string newKey2, string newKey3,
+            string oldKey1, string oldKey2, string oldKey3,
+            string uid)
+        {
+            return Copy_Here2Data(tableName.ToString(), mode, keyField1, keyField2, keyField3,
+                newKey1, newKey2, newKey3, oldKey1, oldKey2, oldKey3, uid);
+        }
+
+        public static int Copy_Here2Data(string tableName, V6Mode mode,
             string keyField1,string keyField2,string keyField3,
             string newKey1, string newKey2, string newKey3,
             string oldKey1, string oldKey2, string oldKey3,
@@ -3790,7 +3800,7 @@ namespace V6Controls.Forms
         {
             SqlParameter[] plist =
             {
-                new SqlParameter("@tableName", tableName.ToString()), 
+                new SqlParameter("@tableName", tableName), 
                 new SqlParameter("@mode", mode == V6Mode.Add? "M" : mode == V6Mode.Edit? "S" : "X"),
                 new SqlParameter("@keyField1", keyField1), 
                 new SqlParameter("@keyField2", keyField2), 

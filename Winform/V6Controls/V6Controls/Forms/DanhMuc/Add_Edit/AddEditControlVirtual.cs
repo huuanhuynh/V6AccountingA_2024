@@ -13,7 +13,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
     {
         protected V6Categories Categories;
         public V6TableName TableName { get; set; }
-        private V6TableStruct _structTable;
+        protected V6TableStruct _structTable;
         public V6Mode Mode = V6Mode.Add;
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <param name="mode">Add/Edit/View</param>
         /// <param name="keys">Nếu data null thì load bằng keys</param>
         /// <param name="data">Gán dữ liệu này lên form</param>
-        public void MyInit(V6TableName tableName, V6Mode mode,
+        public virtual void MyInit(V6TableName tableName, V6Mode mode,
             SortedDictionary<string, object> keys, SortedDictionary<string, object> data)
         {
             TableName = tableName;
@@ -117,7 +117,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             LoadTag(2, "", TableName.ToString());
         }
 
-        private void LoadAll()
+        protected virtual void LoadAll()
         {
 
             LoadStruct();//MaxLength...
@@ -158,7 +158,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         }
 
-        private void LoadStruct()
+        protected virtual void LoadStruct()
         {
             try
             {   
@@ -190,7 +190,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         //    }
         //}
 
-        public void LoadData()
+        public virtual void LoadData()
         {
             try
             {
@@ -312,7 +312,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
 
 
-        public bool DoInsertOrUpdate(bool showMessage = true)
+        public virtual bool DoInsertOrUpdate(bool showMessage = true)
         {
             ReloadFlag = false;
             if (Mode==V6Mode.Edit)

@@ -674,8 +674,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             V6ControlFormHelper.ShowMessage("Xóa chưa được!");
                         }
                     }
-
-                    var aev = AddEditManager.Init_Control(CurrentTable); //ảo
+                    
+                    var aev = AddEditManager.Init_Control(CurrentTable, _tableName); //ảo
                     if (!string.IsNullOrEmpty(aev.KeyField1))
                     {
                         var oldKey1 = _data[aev.KeyField1].ToString().Trim();
