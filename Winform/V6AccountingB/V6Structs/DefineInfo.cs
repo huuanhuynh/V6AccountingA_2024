@@ -139,6 +139,11 @@ namespace V6Structs
         public string Loai_key = "10";
         public string Type = "T";
         public string Vvar = "";
+
+        public string TextLang(bool isVN)
+        {
+            return isVN ? TextV : TextE;
+        }
         public string TextV;
         public string TextE;
         /// <summary>

@@ -4,6 +4,7 @@ using System.Data;
 using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -32,9 +33,50 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 IDictionary<string, object> keys = new Dictionary<string, object>();
                 keys.Add("MA_DM", TableName);
                 var data = V6BusinessHelper.Select(V6TableName.Alreport1, keys, "*").Data;
+                int i = 0;
+                int baseTop = panel1.AutoScrollPosition.Y;
+                int rowHeight = 22;
                 foreach (DataRow row in data.Rows)
                 {
-                    
+                    var define = row["Filter"].ToString().Trim();
+                    var defineInfo = new DefineInfo(define);
+                    //Label
+                    var top = baseTop + i * rowHeight;
+                    var label = new V6Label();
+                    label.AutoSize = true;
+                    label.Left = 10;
+                    label.Top = top;
+                    label.Text = defineInfo.TextLang(V6Setting.IsVietnamese);
+                    panel1.Controls.Add(label);
+                    //Input
+                    V6ColorTextBox input = null;
+                    if (ObjectAndString.IsDateTimeType(defineInfo.DataType))
+                    {
+                        input = new V6DateTimeColor();
+                    }
+                    else if (ObjectAndString.IsNumberType(defineInfo.DataType))
+                    {
+                        input = new V6NumberTextBox();
+                    }
+                    else
+                    {
+                        input = new V6VvarTextBox()
+                        {
+                            VVar = defineInfo.Vvar,
+                        };
+                        var tT = (V6VvarTextBox)input;
+                        tT.SetInitFilter(defineInfo.InitFilter);
+                        tT.F2 = defineInfo.F2;
+                    }
+                    if (input != null)
+                    {
+                        input.Width = 150;
+                        input.Left = 150;
+                        input.Top = top;
+                        
+                        panel1.Controls.Add(input);
+                    }
+                    i++;
                 }
             }
             catch (Exception ex)
