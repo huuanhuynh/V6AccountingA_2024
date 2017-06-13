@@ -129,7 +129,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         c.AutoPrint = FilterControl.Check1;
                         c.PrinterName = _PrinterName;
                         c.PrintCopies = _PrintCopies;
-                        c._report_stt_rec = sttRec;
+                        c.Report_Stt_rec = sttRec;
                         c.TTT = ObjectAndString.ObjectToDecimal(row.Cells["T_TT"].Value);
                         c.TTT_NT = ObjectAndString.ObjectToDecimal(row.Cells["T_TT_NT"].Value);
                         c.MA_NT = row.Cells["MA_NT"].Value.ToString().Trim();

@@ -37,6 +37,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         //private string _program, _reportFile, _reportTitle, _reportTitle2;
         private string _program, _Ma_File, _reportTitle, _reportTitle2;
         private string _reportFileF5, _reportTitleF5, _reportTitle2F5;
+        /// <summary>
+        /// Advance filter get albc
+        /// </summary>
+        public string Advance = "";
 
         private DataTable MauInData;
         private DataView MauInView;
@@ -520,7 +524,18 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 QuickReportManager.MadeFilterControls(FilterControl, _program);
                 SetStatus2Text();
                 gridViewSummary1.Visible = FilterControl.ViewSum;
-            
+                
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init", ex);
+            }
+        }
+
+        private void MyInit2()
+        {
+            try
+            {
                 LoadComboboxSource();
                 LoadDefaultData(4, "", _Ma_File, m_itemId, "");
 
@@ -546,7 +561,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".Init", ex);
+                this.WriteExLog(GetType() + ".Init2", ex);
             }
         }
 
@@ -557,7 +572,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void LoadComboboxSource()
         {
-            MauInData = Albc.GetMauInData(_Ma_File);
+            MauInData = Albc.GetMauInData(_Ma_File, "", "", Advance);
             
             if (MauInData.Rows.Count > 0)
             {
@@ -621,6 +636,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void Form_Load(object sender, EventArgs e)
         {
+            MyInit2();
             if (_ds != null && _ds.Tables.Count > 0)
             {
                 SetTBLdata();
@@ -1232,6 +1248,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     (FilterControl.ReportFileF5 ?? _reportFileF5) + "F5",
                     "", "");
                 view.CodeForm = CodeForm;
+                view.Advance = FilterControl.Advance;
                 view.FilterControl.String1 = FilterControl.String1;
                 view.FilterControl.String2 = FilterControl.String2;
                 view.FilterControl.ParentFilterData = FilterControl.FilterData;

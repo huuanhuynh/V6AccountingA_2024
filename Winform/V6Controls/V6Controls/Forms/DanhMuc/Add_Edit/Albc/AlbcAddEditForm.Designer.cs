@@ -331,19 +331,14 @@
             // 
             this.txtExcel2.AccessibleName = "EXCEL2";
             this.txtExcel2.BackColor = System.Drawing.Color.AntiqueWhite;
-            //this.txtExcel2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            //this.txtExcel2.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtExcel2.ForeColor = System.Drawing.SystemColors.WindowText;
-            //this.txtExcel2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            //this.txtExcel2.HoverColor = System.Drawing.Color.Yellow;
-            //this.txtExcel2.LeaveColor = System.Drawing.Color.White;
             this.txtExcel2.Location = new System.Drawing.Point(344, 141);
-            this.txtExcel2.Multiline = true;
             this.txtExcel2.Name = "txtExcel2";
             this.txtExcel2.ReadOnly = true;
             this.txtExcel2.Size = new System.Drawing.Size(41, 37);
             this.txtExcel2.TabIndex = 28;
             this.txtExcel2.TabStop = false;
+            this.txtExcel2.Text = "";
             this.toolTipV6FormControl.SetToolTip(this.txtExcel2, "EXCEL2");
             this.txtExcel2.Visible = false;
             // 
@@ -987,6 +982,7 @@
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(643, 20);
             this.txtFilter.TabIndex = 18;
+            this.toolTipV6FormControl.SetToolTip(this.txtFilter, "value cho field (procedure in albc)");
             // 
             // txtValueV
             // 
@@ -1130,19 +1126,14 @@
             // 
             this.txtExcel2View.AccessibleName = "EXCEL2_VIEW";
             this.txtExcel2View.BackColor = System.Drawing.Color.AntiqueWhite;
-            //this.txtExcel2View.BackColorDisabled = System.Drawing.SystemColors.Control;
-            //this.txtExcel2View.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtExcel2View.ForeColor = System.Drawing.SystemColors.WindowText;
-            //this.txtExcel2View.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            //this.txtExcel2View.HoverColor = System.Drawing.Color.Yellow;
-            //this.txtExcel2View.LeaveColor = System.Drawing.Color.White;
             this.txtExcel2View.Location = new System.Drawing.Point(391, 141);
-            this.txtExcel2View.Multiline = true;
             this.txtExcel2View.Name = "txtExcel2View";
             this.txtExcel2View.ReadOnly = true;
             this.txtExcel2View.Size = new System.Drawing.Size(41, 37);
             this.txtExcel2View.TabIndex = 28;
             this.txtExcel2View.TabStop = false;
+            this.txtExcel2View.Text = "";
             this.toolTipV6FormControl.SetToolTip(this.txtExcel2View, "EXCEL2_VIEW");
             this.txtExcel2View.Visible = false;
             // 
@@ -1196,7 +1187,6 @@
             this.Controls.Add(this.btnExcelTemplateView);
             this.Name = "AlbcAddEditForm";
             this.Size = new System.Drawing.Size(762, 485);
-            
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

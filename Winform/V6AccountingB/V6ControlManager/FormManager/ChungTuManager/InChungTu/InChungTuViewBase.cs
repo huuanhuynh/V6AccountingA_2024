@@ -41,7 +41,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private V6InvoiceBase Invoice;
         private string _program, _Ma_File, _reportTitle, _reportTitle2;
         private string _reportFileF5, _reportTitleF5, _reportTitle2F5;
-        public string _report_stt_rec;
+        public string Report_Stt_rec{get; set; }
+        /// <summary>
+        /// Advance filter get albc
+        /// </summary>
+        public string Advance = "";
 
         private DataTable MauInData;
         private DataView MauInView;
@@ -530,7 +534,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 int hoadon_nd51 = MauInView == null || cboMauIn.SelectedIndex < 0
                     ? 0
                     : ObjectAndString.ObjectToInt(MauInView.ToTable().Rows[cboMauIn.SelectedIndex]["ND51"]);
-                handler(this, _report_stt_rec, hoadon_nd51);
+                handler(this, Report_Stt_rec, hoadon_nd51);
             }
         }
 
@@ -555,7 +559,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             _reportTitleF5 = reportTitleF5;
             _reportTitle2F5 = reportTitle2F5;
 
-            _report_stt_rec = report_stt_rec;
+            Report_Stt_rec = report_stt_rec;
 
             V6ControlFormHelper.AddLastAction(GetType() + " " + invoice.Mact + " " + program);
             
@@ -582,27 +586,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
                 AddFilterControl(_program);
 
-                LoadComboboxSource();
-                if (V6Setting.IsVietnamese)
-                {
-                    rTiengViet.Checked = true;
-                }
-                else
-                {
-                    rEnglish.Checked = true;
-                }
-                txtReportTitle.Text = ReportTitle;
+                //LoadComboboxSource();
+                //if (V6Setting.IsVietnamese)
+                //{
+                //    rTiengViet.Checked = true;
+                //}
+                //else
+                //{
+                //    rEnglish.Checked = true;
+                //}
+                //txtReportTitle.Text = ReportTitle;
 
-                numSoLien.Value = Invoice.SoLien == 0 ? 1 : Invoice.SoLien;
-                if (numSoLien.Value > 0) numSoLien.Enabled = true;
+                //numSoLien.Value = Invoice.SoLien == 0 ? 1 : Invoice.SoLien;
+                //if (numSoLien.Value > 0) numSoLien.Enabled = true;
 
-                if (!V6Login.IsAdmin)
-                {
-                    exportToExcel.Visible = false;
-                    //viewDataToolStripMenuItem.Visible = false;
-                }
+                //if (!V6Login.IsAdmin)
+                //{
+                //    exportToExcel.Visible = false;
+                //    //viewDataToolStripMenuItem.Visible = false;
+                //}
 
-                Ready();
+                //Ready();
             }
             catch (Exception ex)
             {
@@ -612,7 +616,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void LoadComboboxSource()
         {
-            MauInData = Albc.GetMauInData(_Ma_File, Invoice.Mact, _report_stt_rec);
+            MauInData = Albc.GetMauInData(_Ma_File, Invoice.Mact, Report_Stt_rec, Advance);
             
             if (MauInData.Rows.Count > 0)
             {
@@ -645,8 +649,41 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
+        private void MyInit2()
+        {
+            try
+            {
+                LoadComboboxSource();
+                if (V6Setting.IsVietnamese)
+                {
+                    rTiengViet.Checked = true;
+                }
+                else
+                {
+                    rEnglish.Checked = true;
+                }
+                txtReportTitle.Text = ReportTitle;
+
+                numSoLien.Value = Invoice.SoLien == 0 ? 1 : Invoice.SoLien;
+                if (numSoLien.Value > 0) numSoLien.Enabled = true;
+
+                if (!V6Login.IsAdmin)
+                {
+                    exportToExcel.Visible = false;
+                    //viewDataToolStripMenuItem.Visible = false;
+                }
+
+                Ready();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init2 " + ReportFileFull, ex);
+            }
+        }
+
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
+            MyInit2();
             MakeReport(AutoPrint, PrinterName, (int)numSoLien.Value, _printCopy);
         }
 
@@ -680,7 +717,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private void AddFilterControl(string program)
         {
             FilterControl = InFilter.GetFilterControl(program);
-            FilterControl.SetFieldValue(_report_stt_rec);
+            FilterControl.SetFieldValue(Report_Stt_rec);
             
             panel1.Controls.Add(FilterControl);
         }

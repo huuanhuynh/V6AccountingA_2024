@@ -149,7 +149,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
 
         private void LoadComboboxSource()
         {
-            MauInData = Albc.GetMauInData(KhoParams.Program);
+            MauInData = Albc.GetMauInData(KhoParams.Program, "", "", "");
         }
 
         public void GetAndSetData()

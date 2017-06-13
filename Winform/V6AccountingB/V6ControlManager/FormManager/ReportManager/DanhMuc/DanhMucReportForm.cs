@@ -26,6 +26,10 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         DataGridViewPrinter MyDataGridViewPrinter;
         private ReportDocument _rpDoc;
         private string _tableName, _ma_File, _reportTitle, _reportTitle2;
+        /// <summary>
+        /// Advance filter get albc
+        /// </summary>
+        public string Advance = "";
         //private DataTable tbl;
         private V6TableStruct _tStruct;
         private List<SqlParameter> pList;
@@ -341,45 +345,63 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
         private void MyInit()
         {
-            var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
-            if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
+            try
             {
-                var dataRow = V6Setting.DataDVCS;
-                var GET_FIELD = "TEN_NLB";
-                if (dataRow.Table.Columns.Contains(GET_FIELD))
-                    txtM_TEN_NLB.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
-                GET_FIELD = "TEN_NLB2";
-                if (dataRow.Table.Columns.Contains(GET_FIELD))
-                    txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
-            }
+                var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
+                if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
+                {
+                    var dataRow = V6Setting.DataDVCS;
+                    var GET_FIELD = "TEN_NLB";
+                    if (dataRow.Table.Columns.Contains(GET_FIELD))
+                        txtM_TEN_NLB.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
+                    GET_FIELD = "TEN_NLB2";
+                    if (dataRow.Table.Columns.Contains(GET_FIELD))
+                        txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
+                }
 
-            string[] fields = V6Lookup.GetDefaultLookupFields(_tableName);
-            MadeFilterControls(fields);
-            
-            LoadComboboxSource();
-            if (V6Setting.IsVietnamese)
-            {
-                rTiengViet.Checked = true;
-            }
-            else
-            {
-                rEnglish.Checked = true;
-            }
-            txtReportTitle.Text = ReportTitle;
-            //LoadDefaultData(4, "", _Ma_File, m_itemId, "");
+                string[] fields = V6Lookup.GetDefaultLookupFields(_tableName);
+                MadeFilterControls(fields);
 
-            if (!V6Login.IsAdmin)
-            {
-                exportToExcel.Visible = false;
-                //viewDataToolStripMenuItem.Visible = false;
             }
-            
-            Ready();
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init2", ex);
+            }
+        }
+
+        private void MyInit2()
+        {
+            try
+            {
+                LoadComboboxSource();
+                if (V6Setting.IsVietnamese)
+                {
+                    rTiengViet.Checked = true;
+                }
+                else
+                {
+                    rEnglish.Checked = true;
+                }
+                txtReportTitle.Text = ReportTitle;
+                //LoadDefaultData(4, "", _Ma_File, m_itemId, "");
+
+                if (!V6Login.IsAdmin)
+                {
+                    exportToExcel.Visible = false;
+                    //viewDataToolStripMenuItem.Visible = false;
+                }
+
+                Ready();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init2", ex);
+            }
         }
 
         private void LoadComboboxSource()
         {
-            MauInData = Albc.GetMauInData(_ma_File);
+            MauInData = Albc.GetMauInData(_ma_File, "", "", Advance);
             
             if (MauInData.Rows.Count > 0)
             {
@@ -478,7 +500,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
-            
+            MyInit2();
         }
 
         private void MadeFilterControls(params string[] fields)

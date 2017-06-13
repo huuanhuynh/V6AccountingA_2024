@@ -13,10 +13,11 @@ namespace V6AccountingBusiness
         /// report,caption,caption2,title,mau,lan,mau_tu_in
         /// </summary>
         /// <param name="ma_file"></param>
-        /// <param name="ma_ct"></param>
-        /// <param name="stt_rec"></param>
+        /// <param name="ma_ct">Không dùng truyền rỗng</param>
+        /// <param name="stt_rec">Không dùng truyền rỗng</param>
+        /// <param name="advance">Lọc Filter=Advance, Không dùng truền rỗng</param>
         /// <returns></returns>
-        public static DataTable GetMauInData(string ma_file, string ma_ct = "", string stt_rec = "")
+        public static DataTable GetMauInData(string ma_file, string ma_ct, string stt_rec, string advance)
         {
             SqlParameter[] plist =
             {
@@ -24,7 +25,7 @@ namespace V6AccountingBusiness
                 new SqlParameter("@user_id", V6Login.UserId),
                 new SqlParameter("@lang", V6Login.SelectedLanguage),
                 new SqlParameter("@ma_file", ma_file),
-                new SqlParameter("@Advance", ""),
+                new SqlParameter("@Advance", advance),
                 new SqlParameter("@ma_ct", ma_ct),
                 new SqlParameter("@stt_rec", stt_rec),
             };

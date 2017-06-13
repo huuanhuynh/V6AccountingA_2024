@@ -130,6 +130,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         SortedDictionary<string, object> data = new SortedDictionary<string, object>();
                         data.Add("MA_KH", ma_kh);
                         V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                        view.CodeForm = CodeForm;
+                        view.Advance = FilterControl.Advance;
                         view.FilterControl.String1 = FilterControl.String1;
                         view.FilterControl.String2 = FilterControl.String2;
 
@@ -294,6 +296,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                
 
                 view.CodeForm = CodeForm;
+                view.Advance = FilterControl.Advance;
                 view.FilterControl.String1 = FilterControl.String1;
                 view.FilterControl.String2 = FilterControl.String2;
 

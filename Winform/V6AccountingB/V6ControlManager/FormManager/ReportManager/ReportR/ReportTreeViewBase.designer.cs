@@ -520,7 +520,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.Name = "ReportTreeViewBase";
             this.Size = new System.Drawing.Size(974, 654);
             
-            this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.ReportTreeViewBase_VisibleChanged);
             this.contextMenuStrip1.ResumeLayout(false);
             this.grbDieuKienLoc.ResumeLayout(false);

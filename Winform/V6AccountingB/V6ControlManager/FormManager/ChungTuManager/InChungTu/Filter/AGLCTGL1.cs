@@ -12,7 +12,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
             F3 = false;
             F5 = false;
 
-            //TxtStt_rec = _report_stt_rec;
             SetFieldValueEvent += AGLCTGL1_SetFieldValueEvent;
 
             SetHideFields("V");

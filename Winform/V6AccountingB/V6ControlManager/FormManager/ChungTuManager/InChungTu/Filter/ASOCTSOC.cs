@@ -21,7 +21,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
             RptExtraParameters.Add("HOA_TTKH", false);
             RptExtraParameters.Add("HOA_TENKH", false);
             RptExtraParameters.Add("HOA_DIACHIKH", false);
-            //TxtStt_rec = _report_stt_rec;
+            
             SetFieldValueEvent += ASOCTSOA_SetFieldValueEvent;
 
             SetHideFields("V");

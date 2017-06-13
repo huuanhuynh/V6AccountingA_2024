@@ -18,6 +18,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
     public partial class ReportFilter44Base : FilterBase
     {
         private string _program;
+        private string Alreport_advance = "";
         public ReportFilter44Base()
         {
             InitializeComponent();
@@ -81,6 +82,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     F3 = row["F3"].ToString() == "1";
                     F5 = row["F5"].ToString() == "1";
                     F7 = row["F7"].ToString() == "1";
+                    Alreport_advance = row["Advance"].ToString().Trim();
                 }
             }
             catch (Exception ex)
@@ -443,6 +445,21 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             if (lineControl.DefineInfo.Visible && groupBox1.Height - 10 < lineControl.Bottom)
             {
                 Height = groupBox1.Top + lineControl.Bottom + 20;
+            }
+
+            if (lineControl.DefineInfo.Loai_key == "A1" && lineControl._checkBox != null)
+            {
+                lineControl._vtextBox.TextChanged += delegate
+                {
+                    if (lineControl._checkBox.Checked)
+                    {
+                        Advance = Alreport_advance;
+                    }
+                    else
+                    {
+                        Advance = "";
+                    }
+                };
             }
         }
 

@@ -617,7 +617,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.Controls.Add(this.grbDieuKienLoc);
             this.Name = "ReportDViewBase";
             this.Size = new System.Drawing.Size(974, 654);
-            this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.ReportRViewBase_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);

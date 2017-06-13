@@ -196,7 +196,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void LoadComboboxSource()
         {
-            MauInData = Albc.GetMauInData(_reportFile);
+            MauInData = Albc.GetMauInData(_reportFile, "", "", "");
         }
 
         private void FixGridViewSize()

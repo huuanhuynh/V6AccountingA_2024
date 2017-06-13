@@ -139,6 +139,9 @@ namespace V6Structs
         public string Field { get; set; }
         public string AccessibleName { get; set; }
         public string Oper = "";
+        /// <summary>
+        /// A1:FilterAdvance
+        /// </summary>
         public string Loai_key = "10";
         public string Type = "T";
         public string Vvar = "";

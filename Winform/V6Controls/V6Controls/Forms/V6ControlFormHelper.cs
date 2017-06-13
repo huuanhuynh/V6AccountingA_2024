@@ -903,7 +903,11 @@ namespace V6Controls.Forms
             }
             else// if (ObjectAndString.IsStringType(lineInfo.DataType))
             {
-                if (string.IsNullOrEmpty(lineInfo.Vvar))
+                if (lineInfo.Loai_key == "A1")
+                {
+                    lineControl.AddCheckBox();
+                }
+                else if (string.IsNullOrEmpty(lineInfo.Vvar))
                 {
                     lineControl.AddTextBox();
                 }

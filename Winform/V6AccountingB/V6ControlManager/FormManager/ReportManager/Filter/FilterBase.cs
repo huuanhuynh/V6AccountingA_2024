@@ -53,6 +53,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         public string String2, String3;
         /// <summary>
+        /// Advance filter get albc
+        /// </summary>
+        public string Advance = "";
+        /// <summary>
         /// Dùng procedure này để lấy dữ liệu. Code trong phần gọi proc của formReportBase.
         /// </summary>
         public string ProcedureName;

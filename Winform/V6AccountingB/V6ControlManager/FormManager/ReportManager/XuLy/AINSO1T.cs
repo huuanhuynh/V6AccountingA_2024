@@ -130,6 +130,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         SortedDictionary<string, object> data = new SortedDictionary<string, object>();
                         data.Add("MA_VT", ma_vt);
                         V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
+                        view.CodeForm = CodeForm;
+                        view.Advance = FilterControl.Advance;
                         view.FilterControl.String1 = FilterControl.String1;
                         view.FilterControl.String2 = FilterControl.String2;
 
@@ -286,6 +288,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                
 
                 view.CodeForm = CodeForm;
+                view.Advance = FilterControl.Advance;
                 view.FilterControl.String1 = FilterControl.String1;
                 view.FilterControl.String2 = FilterControl.String2;
 
@@ -388,6 +391,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 CodeForm = CodeForm
             };
             view.CodeForm = CodeForm;
+            view.Advance = FilterControl.Advance;
             view.Dock = DockStyle.Fill;
             view.FilterControl.InitFilters = oldKeys;
             view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());

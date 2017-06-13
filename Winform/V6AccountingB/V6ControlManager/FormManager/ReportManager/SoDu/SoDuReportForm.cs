@@ -230,7 +230,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
 
         private void LoadComboboxSource()
         {
-            MauInData = Albc.GetMauInData(_ma_File);
+            MauInData = Albc.GetMauInData(_ma_File, "", "", "");
             
             if (MauInData.Rows.Count > 0)
             {

@@ -12,7 +12,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
            
             F3 = false;
             F5 = true;
-            
+            Advance = chkKieu_f5.Checked ? "Filter='1'" : "1=1";
             dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
             dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
 
@@ -95,6 +95,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Advance", cKey));
             result.Add(new SqlParameter("@Kieu_F5", Kieu_F5));
             return result;
+        }
+
+        private void chkKieu_f5_CheckedChanged(object sender, System.EventArgs e)
+        {
+            Advance = chkKieu_f5.Checked ? "Filter='1'" : "1=1";
         }
 
         

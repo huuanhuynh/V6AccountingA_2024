@@ -34,6 +34,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         //private string _program, _reportFile, _reportTitle, _reportTitle2;
         private string _program, _Ma_File, _reportTitle, _reportTitle2;
         private string _reportFileF5, _reportTitleF5, _reportTitle2F5;
+        /// <summary>
+        /// Advance filter get albc
+        /// </summary>
+        public string Advance = "";
 
         private DataTable MauInData;
         private DataView MauInView;
@@ -395,45 +399,63 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void MyInit()
         {
-            var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
-            if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
+            try
             {
-                var dataRow = V6Setting.DataDVCS;
-                var GET_FIELD = "TEN_NLB";
-                if (dataRow.Table.Columns.Contains(GET_FIELD))
-                    txtM_TEN_NLB.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
-                GET_FIELD = "TEN_NLB2";
-                if (dataRow.Table.Columns.Contains(GET_FIELD))
-                    txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
+                var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
+                if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
+                {
+                    var dataRow = V6Setting.DataDVCS;
+                    var GET_FIELD = "TEN_NLB";
+                    if (dataRow.Table.Columns.Contains(GET_FIELD))
+                        txtM_TEN_NLB.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
+                    GET_FIELD = "TEN_NLB2";
+                    if (dataRow.Table.Columns.Contains(GET_FIELD))
+                        txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
+                }
+
+                AddFilterControl(_program);
+                gridViewSummary1.Visible = FilterControl.ViewSum;
+
             }
-
-            AddFilterControl(_program);
-            gridViewSummary1.Visible = FilterControl.ViewSum;
-
-            LoadComboboxSource();
-            if (V6Setting.IsVietnamese)
+            catch (Exception ex)
             {
-                rTiengViet.Checked = true;
+                this.WriteExLog(GetType() + ".Init", ex);
             }
-            else
-            {
-                rEnglish.Checked = true;
-            }
-            txtReportTitle.Text = ReportTitle;
-            LoadDefaultData(4, "", _Ma_File, m_itemId);
+        }
 
-            if (!V6Login.IsAdmin)
+        private void MyInit2()
+        {
+            try
             {
-                exportToExcel.Visible = false;
-                viewDataToolStripMenuItem.Visible = false;
-            }
+                LoadComboboxSource();
+                if (V6Setting.IsVietnamese)
+                {
+                    rTiengViet.Checked = true;
+                }
+                else
+                {
+                    rEnglish.Checked = true;
+                }
+                txtReportTitle.Text = ReportTitle;
+                LoadDefaultData(4, "", _Ma_File, m_itemId);
 
-            Ready();
+                if (!V6Login.IsAdmin)
+                {
+                    exportToExcel.Visible = false;
+                    viewDataToolStripMenuItem.Visible = false;
+                }
+
+                Ready();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init2", ex);
+            }
         }
 
         private void LoadComboboxSource()
         {
-            MauInData = Albc.GetMauInData(_Ma_File);
+            MauInData = Albc.GetMauInData(_Ma_File, "", "", Advance);
             
             if (MauInData.Rows.Count > 0)
             {
@@ -494,9 +516,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
-            
+            MyInit2();
         }
 
         
@@ -1075,6 +1097,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 var oldKeys = FilterControl.GetFilterParameters();
                 var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFileF5,
                     _reportTitleF5, _reportTitle2F5, "", "", "");
+                view.CodeForm = CodeForm;
+                view.Advance = FilterControl.Advance;
                 view.FilterControl.String1 = FilterControl.String1;
                 view.FilterControl.String2 = FilterControl.String2;
                 view.FilterControl.ParentFilterData = FilterControl.FilterData;

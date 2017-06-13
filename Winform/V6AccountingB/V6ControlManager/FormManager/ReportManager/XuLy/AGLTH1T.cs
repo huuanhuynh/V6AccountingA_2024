@@ -123,6 +123,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             _reportTitleF5, _reportTitle2F5, "", "", "");
                         
                         view.CodeForm = CodeForm;
+                        view.Advance = FilterControl.Advance;
                         view.FilterControl.String1 = FilterControl.String1;
                         view.FilterControl.String2 = FilterControl.String2;
 
@@ -276,6 +277,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                
 
                 view.CodeForm = CodeForm;
+                view.Advance = FilterControl.Advance;
                 view.FilterControl.String1 = FilterControl.String1;
                 view.FilterControl.String2 = FilterControl.String2;
 

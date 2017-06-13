@@ -450,7 +450,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
 
                 //Format mới
-                var mauin = Albc.GetMauInData(FilterControl.String1);
+                var mauin = Albc.GetMauInData(FilterControl.String1, "", "", "");
                 if (mauin != null && mauin.Rows.Count > 0)
                 {
                     var mauin_row = mauin.Rows[0];

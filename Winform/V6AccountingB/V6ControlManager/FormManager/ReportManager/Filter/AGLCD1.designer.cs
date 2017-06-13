@@ -224,6 +224,7 @@
             this.chkKieu_f5.TabIndex = 28;
             this.chkKieu_f5.Text = "F5- Ngày  CT";
             this.chkKieu_f5.UseVisualStyleBackColor = true;
+            this.chkKieu_f5.CheckedChanged += new System.EventHandler(this.chkKieu_f5_CheckedChanged);
             // 
             // AGLCD1
             // 

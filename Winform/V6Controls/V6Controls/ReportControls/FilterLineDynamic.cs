@@ -16,8 +16,9 @@ namespace V6ReportControls
         public V6VvarTextBox _vtextBox;
         private V6NumberTextBox _numberTextBox;
         private V6DateTimePick _dateTimePick;
+        public V6CheckBox _checkBox;
         public bool CheckNotEmpty;
-
+        
         /// <summary>
         /// Sử dụng tùy lúc.
         /// </summary>
@@ -223,6 +224,19 @@ namespace V6ReportControls
                 IsSelected = true;
             };
         }
+        public void AddCheckBox()
+        {
+            _checkBox = new V6CheckBox();
+            _checkBox.Text = "";
+            _checkBox.Location = new Point(comboBox1.Right + 5, 1);
+            _checkBox.Size = new Size(Width - comboBox1.Right - 5, 20);
+            _checkBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            Controls.Add(_checkBox);
+            
+            comboBox1.Visible = false;
+            checkBox1.Visible = false;
+            
+        }
 
         public void SetValue(string stringValue)
         {
@@ -243,6 +257,10 @@ namespace V6ReportControls
                 if (stringValue == "M_NGAY_CT1") _dateTimePick.Value = V6Setting.M_ngay_ct1;
                 else if (stringValue == "M_NGAY_CT2") _dateTimePick.Value = V6Setting.M_ngay_ct2;
                 else if (!string.IsNullOrEmpty(stringValue)) _dateTimePick.Value = ObjectAndString.ObjectToFullDateTime(stringValue);
+            }
+            else if (_checkBox != null)
+            {
+                _checkBox.Checked = stringValue == "1";
             }
         }
 
