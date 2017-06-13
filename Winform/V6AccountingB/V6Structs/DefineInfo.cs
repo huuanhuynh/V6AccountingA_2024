@@ -106,6 +106,9 @@ namespace V6Structs
                 case "VVAR":
                     Vvar = value;
                     break;
+                case "WIDTH":
+                    Width = value;
+                    break;
 
                 default:
                     break;
@@ -190,5 +193,7 @@ namespace V6Structs
         /// Trường lọc số liệu khi F5 (trường trong parent data).
         /// </summary>
         public string Fparent { get; set; }
+
+        public string Width { get; set; }
     }
 }

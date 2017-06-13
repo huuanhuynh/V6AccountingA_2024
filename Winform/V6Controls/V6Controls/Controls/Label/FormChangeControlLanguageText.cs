@@ -32,6 +32,11 @@ namespace V6Controls.Controls.Label
                 button1.Text = "Ok";
             }
             textBox1.Text = _label.Text;
+            if (V6Setting.IsVietnamese)
+            {
+                checkBox1.Checked = true;
+                checkBox1.Visible = true;
+            }
         }
 
         private void Accept()
@@ -40,6 +45,7 @@ namespace V6Controls.Controls.Label
             {
                 _label.Text = NewText;
                 updateText = NewText;
+                change_v = checkBox1.Checked ? "1" : "0";
                 updateId = _label.AccessibleDescription;
                 var T = new Thread(UpdateDatabase);
                 T.IsBackground = true;
@@ -51,14 +57,14 @@ namespace V6Controls.Controls.Label
             }
         }
 
-        private string updateText, updateId;
+        private string updateText, updateId, change_v;
 
 
         private void UpdateDatabase()
         {
             try
             {
-                if (CorpLan.Update(updateId, updateText))
+                if (CorpLan.Update(updateId, V6Setting.Language, updateText, change_v))
                 {
                     V6ControlFormHelper.SetStatusText(V6Text.UpdateSuccess);
                 }
@@ -86,6 +92,11 @@ namespace V6Controls.Controls.Label
             {
                 DialogResult = DialogResult.Cancel;
             }
+        }
+
+        private void checkBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            V6ControlFormHelper.SetStatusText("Dịch tiếng Việt.");
         }
               
     }

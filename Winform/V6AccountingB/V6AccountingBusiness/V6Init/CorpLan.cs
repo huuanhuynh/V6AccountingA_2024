@@ -95,11 +95,15 @@ namespace V6Init
         /// Thay đổi giá trị cho ngôn ngữ hiện tại.
         /// </summary>
         /// <param name="updateId"></param>
+        /// <param name="language_field">Trường update, V,E,F,C...</param>
         /// <param name="updateText"></param>
-        public static bool Update(string updateId, string updateText)
+        /// <param name="change_v">Có dịch tiếng Việt, chỉ có tác dụng khi đang sử dụng tiếng Việt.</param>
+        public static bool Update(string updateId, string language_field, string updateText, string change_v=null)
         {
             if (string.IsNullOrEmpty(updateId)) throw new ArgumentException("updateID");
-            string sql = string.Format("Update {0} Set {1}=@newValue Where ID=@updateId", tableName, V6Setting.Language);
+            var is_Vietnamese = language_field == "V";
+            var change_v_update = is_Vietnamese? ", CHANGE_V='"+change_v+"'":"";
+            string sql = string.Format("Update {0} Set {1}=@newValue" + change_v_update + " Where ID=@updateId", tableName, language_field);
             SqlParameter[] plist =
             {
                 new SqlParameter("@newValue", updateText), 

@@ -66,6 +66,28 @@ namespace V6AccountingBusiness
             return new V6SelectResult();
         }
 
+        public V6SelectResult SelectPaging(string tableName, string fields, int page, int size,
+            string where, string sortField, bool ascending = true)
+        {
+            if (V6Login.UserRight.AllowSelect(tableName))
+            {
+                if (string.IsNullOrEmpty(sortField))
+                {
+                    sortField = V6TableHelper.GetDefaultSortField(tableName);
+                }
+
+                V6SelectResult result = SqlConnect.SelectPaging(tableName, fields, page, size, where, sortField, ascending);
+
+                var listColumn = (from DataColumn column in result.Data.Columns select column.ColumnName).ToList();
+
+                result.FieldsHeaderDictionary = CorpLan2.GetFieldsHeader(listColumn, V6Setting.Language);
+
+                return result;
+            }
+            return new V6SelectResult();
+        }
+
+
         public DataTable SelectTable(string tableName)
         {
             return Service.SelectTable(tableName);

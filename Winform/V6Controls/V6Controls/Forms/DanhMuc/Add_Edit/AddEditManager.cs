@@ -32,38 +32,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Albpts:
                     FormControl = new BoPhanSuDungTangSuatAddEditForm();
                     break;
-                case V6TableName.Alcc:
-                    break;
                 case V6TableName.Alck:
                     FormControl = new ChietKhauAddEditForm();
                     break;
-                case V6TableName.Alck2:
-                    break;
-                case V6TableName.Alckm:
-                    break;
-                case V6TableName.Alckmct:
-                    break;
-                case V6TableName.Alcltg:
-                    break;
                 case V6TableName.Alct:
                     FormControl = new AlctAddEditFrom();
-
-                    break;
-                case V6TableName.Alctct:
-                    break;
-                case V6TableName.Alcthd:
-                    break;
-                case V6TableName.Aldmpbct:
-                    break;
-                case V6TableName.Aldmpbph:
-                    break;
-                case V6TableName.Aldmvt:
-                    break;
-                case V6TableName.Acosxlt_aldmvt:
-                    break;
-                case V6TableName.Acosxlsx_aldmvt:
-                    break;
-                case V6TableName.Aldmvtct:
                     break;
                 case V6TableName.Aldvcs:
                     FormControl = new DonViCoSoAddEditForm();
@@ -71,18 +44,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Aldvt:
                     FormControl = new DonViTinhAddEditForm();
                     break;
-                case V6TableName.Algia:
-                    break;
                 case V6TableName.Algia2:
                     FormControl = new Algia2AddEditForm();
-                    break;
-                case V6TableName.Algia200:
-                    break;
-                case V6TableName.Algiavon:
-                    break;
-                case V6TableName.Algiavon3:
-                    break;
-                case V6TableName.Algiavv:
                     break;
                 case V6TableName.Alhd:
                     FormControl = new HopDongAddEditForm();
@@ -105,16 +68,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Alkho:
                     FormControl = new KhoHangAddEditForm();
                     break;
-                case V6TableName.Alkhtg:
-                    break;
-                case V6TableName.Alkmb:
-                    break;
-                case V6TableName.Alkmbct:
-                    break;
-                case V6TableName.Alkmm:
-                    break;
-                case V6TableName.Alkmmct:
-                    break;
                 case V6TableName.Alku:
                     FormControl = new KheUocAddEditForm();
                     break;
@@ -124,16 +77,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Allo:
                     FormControl = new LoHangAddEditForm();
                     break;
-                case V6TableName.Alloaicc:
-                    break;
-                case V6TableName.Alloaick:
-                    break;
                 case V6TableName.Alloaivc:
                     FormControl = new LoaiDichVuAddEditForm();
-                    break;
-                case V6TableName.Alloaivt:
-                    break;
-                case V6TableName.Almagd:
                     break;
                 case V6TableName.Almagia:
                     FormControl = new MaGiaAddEditForm();
@@ -143,8 +88,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     break;
                 case V6TableName.Alnhcc:
                     FormControl = new PhanNhomCongCuAddEditForm();
-                    break;
-                case V6TableName.Alnhdvcs:
                     break;
                 case V6TableName.Alnhhd:
                     FormControl = new NhomHopDongAddEditForm();
@@ -188,8 +131,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Acosxlsx_alnhytcp:
                     FormControl = new NhomYeuToChiPhiSXDHAddEditForm();
                     break;
-                case V6TableName.Alnk:
-                    break;
                 case V6TableName.Alnt:
                     FormControl = new NgoaiTeAddEditForm();
                     break;
@@ -198,10 +139,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     break;
                 case V6TableName.Alnvien:
                     FormControl = new NhanVienAddEditForm();
-                    break;
-                case V6TableName.Alpb:
-                    break;
-                case V6TableName.Alpb1:
                     break;
                 case V6TableName.Alphi:
                     FormControl = new PhiAddEditForm();
@@ -220,8 +157,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     break;
                 case V6TableName.Alqg:
                     FormControl = new QuocGiaAddEditForm();
-                    break;
-                case V6TableName.Alql:
                     break;
                 case V6TableName.Alquan:
                     FormControl = new QuanHuyenAddEditForm();
@@ -247,10 +182,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Altgts:
                     FormControl = new LyDoTangGiamTSCDAddEditForm();
                     break;
-                case V6TableName.Althau:
-                    break;
-                case V6TableName.Althauct:
-                    break;
                 case V6TableName.Althue:
                     FormControl = new ThueSuatAddEditForm();
                     break;
@@ -260,21 +191,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Altk0:
                     FormControl = new TaiKhoanAddEditForm();
                     break;
-                case V6TableName.Altk1:
-                    break;
                 case V6TableName.Altk2:
                     FormControl = new TieuKhoanAddEditForm();
                     break;
-                case V6TableName.Altklkku:
-                    break;
-                case V6TableName.Altklkvv:
-                    break;
                 case V6TableName.Altknh:
                     FormControl = new TaiKhoanNganHangAddEditForm();
-                    break;
-                case V6TableName.Alts:
-                    break;
-                case V6TableName.Altt:
                     break;
                 case V6TableName.Alttvt:
                     FormControl = new TinhTrangDichVuAddEditForm();
@@ -309,7 +230,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.V6soft:
                     FormControl = new V6SoftAddEditForm();
                     break;
-
                 case V6TableName.V6user:
                     FormControl = new NguoiSuDungAddEditForm();
                     break;
@@ -324,8 +244,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     break;
                 case V6TableName.Alsonb:
                     FormControl = new AlsonbAddEditForm();
-                    break;
-                case V6TableName.Notable:
                     break;
                 case V6TableName.Albc:
                     if (V6Login.IsAdmin) FormControl = new AlbcAddEditForm();
@@ -401,11 +319,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Hrimages:
                     FormControl = new ThongTinHinhAnhChuKy();
                     break;
-
                case V6TableName.Hrlstschool:
                    FormControl = new DanhMucTruongHocForm();
                     break;
-
                case V6TableName.Prhlcong:
                     FormControl = new DanhMucKyHieuCongForm();
                     break;
@@ -478,6 +394,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Alreport:
                     FormControl = new ALREPORT_AddEdit();
                     break;
+                case V6TableName.Notable:
                 default:
                     //Check is_aldm?
                     bool is_aldm = false;

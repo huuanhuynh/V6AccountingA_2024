@@ -9,7 +9,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
     public partial class FormAddEdit : V6Form
     {
         public AddEditControlVirtual FormControl;
-        private readonly V6TableName _tableName;
+        private readonly V6TableName _tableName = V6TableName.Notable;
+        private readonly string _tableNameString;
         
         public event HandleResultData InsertSuccessEvent;
         public event HandleResultData UpdateSuccessEvent;
@@ -37,9 +38,30 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             _tableName = tableName;
             InitializeComponent();
 
-            FormControl = AddEditManager.Init_Control(tableName);
+            FormControl = AddEditManager.Init_Control(tableName, tableName.ToString());
             _tableName = tableName;
             FormControl.MyInit(tableName, mode, keys, data);
+
+            panel1.Controls.Add(FormControl);
+            //panel1.SendToBack();
+
+            if (FormControl == null || FormControl is NoRightAddEdit)
+            {
+                btnNhan.Enabled = false;
+                btnInfos.Visible = false;
+            }
+        }
+
+        public FormAddEdit(string tableName, V6Mode mode = V6Mode.Add,
+            SortedDictionary<string, object> keys = null,
+            SortedDictionary<string, object> data = null)
+        {
+            _tableNameString = tableName;
+            InitializeComponent();
+
+            FormControl = AddEditManager.Init_Control(V6TableName.Notable, _tableNameString);
+            //_tableName = tableName;
+            FormControl.MyInit(_tableName, mode, keys, data);
 
             panel1.Controls.Add(FormControl);
             //panel1.SendToBack();

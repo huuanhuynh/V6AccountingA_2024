@@ -31,11 +31,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 //Tạo control động
                 IDictionary<string, object> keys = new Dictionary<string, object>();
-                keys.Add("MA_DM", TableName);
-                var data = V6BusinessHelper.Select(V6TableName.Alreport1, keys, "*").Data;
+                keys.Add("MA_BC", TableName);
+                var data = V6BusinessHelper.Select(V6TableName.Alreport1, keys, "*", "", "Stt_Filter").Data;
                 int i = 0;
                 int baseTop = panel1.AutoScrollPosition.Y;
-                int rowHeight = 22;
+                int rowHeight = 25;
                 foreach (DataRow row in data.Rows)
                 {
                     var define = row["Filter"].ToString().Trim();
@@ -70,7 +70,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     }
                     if (input != null)
                     {
-                        input.Width = 150;
+                        input.AccessibleName = defineInfo.Field;
+                        input.Width = string.IsNullOrEmpty(defineInfo.Width)
+                            ? 150
+                            : ObjectAndString.ObjectToInt(defineInfo.Width);
                         input.Left = 150;
                         input.Top = top;
                         

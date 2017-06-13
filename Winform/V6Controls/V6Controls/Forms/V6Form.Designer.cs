@@ -58,6 +58,7 @@
             this.lblTopMessage.TabIndex = 4;
             this.lblTopMessage.Text = "Chào mừng đến với phần mềm V6";
             this.lblTopMessage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.lblTopMessage.Visible = false;
             // 
             // V6Form
             // 

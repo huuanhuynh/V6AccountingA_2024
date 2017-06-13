@@ -271,16 +271,34 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             }
 
                         _data = row.ToDataDictionary();
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
-                        f.InsertSuccessEvent += f_InsertSuccess;
-                        f.ShowDialog(this);
+                        if (CurrentTable == V6TableName.Notable)
+                        {
+                            var f = new FormAddEdit(_tableName, V6Mode.Add, keys, _data);
+                            f.InsertSuccessEvent += f_InsertSuccess;
+                            f.ShowDialog(this);
+                        }
+                        else
+                        {
+                            var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
+                            f.InsertSuccessEvent += f_InsertSuccess;
+                            f.ShowDialog(this);
+                        }
                     }
                     else
                     {
-                        //this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
-                        var f = new FormAddEdit(CurrentTable);
-                        f.InsertSuccessEvent += f_InsertSuccess;
-                        f.ShowDialog(this);
+                        if (CurrentTable == V6TableName.Notable)
+                        {
+                            var f = new FormAddEdit(_tableName);
+                            f.InsertSuccessEvent += f_InsertSuccess;
+                            f.ShowDialog(this);
+                        }
+                        else
+                        {
+                            //this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
+                            var f = new FormAddEdit(CurrentTable);
+                            f.InsertSuccessEvent += f_InsertSuccess;
+                            f.ShowDialog(this);
+                        }
                     }
                 }
             }
@@ -319,9 +337,18 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             }
 
                         _data = row.ToDataDictionary();
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
-                        f.InsertSuccessEvent += f_InsertSuccess;
-                        f.ShowDialog(this);
+                        if (CurrentTable == V6TableName.Notable)
+                        {
+                            var f = new FormAddEdit(_tableName, V6Mode.Add, keys, _data);
+                            f.InsertSuccessEvent += f_InsertSuccess;
+                            f.ShowDialog(this);
+                        }
+                        else
+                        {
+                            var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
+                            f.InsertSuccessEvent += f_InsertSuccess;
+                            f.ShowDialog(this);
+                        }
                     }
                     else
                     {
@@ -364,10 +391,20 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             }
 
                         _data = row.ToDataDictionary();
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
-                        f.UpdateSuccessEvent += f_UpdateSuccess;
-                        f.CallReloadEvent += FCallReloadEvent;
-                        f.ShowDialog(this);
+                        if (CurrentTable == V6TableName.Notable)
+                        {
+                            var f = new FormAddEdit(_tableName, V6Mode.Edit, keys, _data);
+                            f.UpdateSuccessEvent += f_UpdateSuccess;
+                            f.CallReloadEvent += FCallReloadEvent;
+                            f.ShowDialog(this);
+                        }
+                        else
+                        {
+                            var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
+                            f.UpdateSuccessEvent += f_UpdateSuccess;
+                            f.CallReloadEvent += FCallReloadEvent;
+                            f.ShowDialog(this);
+                        }
                     }
                     else
                     {
@@ -730,8 +767,16 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             }
 
                         _data = row.ToDataDictionary();
-                        var f = new FormAddEdit(CurrentTable, V6Mode.View, keys, _data);
-                        f.ShowDialog(this);
+                        if (CurrentTable == V6TableName.Notable)
+                        {
+                            var f = new FormAddEdit(_tableName, V6Mode.View, keys, _data);
+                            f.ShowDialog(this);
+                        }
+                        else
+                        {
+                            var f = new FormAddEdit(CurrentTable, V6Mode.View, keys, _data);
+                            f.ShowDialog(this);
+                        }
                     }
                     else
                     {
@@ -816,7 +861,13 @@ namespace V6ControlManager.FormManager.DanhMucManager
             try { 
                 if (page < 1) page = 1;
                 CurrentTable = tableName;
-                var sr = _categories.SelectPaging(tableName, "*", page, size, GetWhere(where), sortField, @ascending);
+                string load_table = CurrentTable.ToString();
+                if (CurrentTable == V6TableName.Notable)
+                {
+                    load_table = _tableName;
+                    if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
+                }
+                var sr = _categories.SelectPaging(load_table, "*", page, size, GetWhere(where), sortField, @ascending);
                 
                 SelectResult.Data = sr.Data;
                 SelectResult.Page = sr.Page;
