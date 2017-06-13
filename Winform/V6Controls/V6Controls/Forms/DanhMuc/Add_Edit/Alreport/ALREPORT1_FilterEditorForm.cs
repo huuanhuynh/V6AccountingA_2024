@@ -42,6 +42,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 txtInitFilter.Text = Info.InitFilter;
                 txtFparent.Text = Info.Fparent;
                 txtWidth.Text = Info.Width;
+                txtLoaiKey.Text = Info.Loai_key;
             }
             catch (Exception ex)
             {

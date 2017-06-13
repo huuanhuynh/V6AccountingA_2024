@@ -202,6 +202,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                             if (line.IsSelected)
                             string_value = line.StringValue;
                             break;
+                        case "A1"://1value
+                            object_value = line.StringValue;
+                            break;
                         case "11"://1value
                             if (line.IsSelected)
                             {
@@ -244,6 +247,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 {
                     case "10": //ngay
                         result.Add(new SqlParameter(parameterName, string_value));
+                        break;
+                    case "A1": //1value
+                        result.Add(new SqlParameter(parameterName, object_value));
                         break;
                     case "11": //1value
                         result.Add(new SqlParameter(parameterName, object_value));
@@ -334,6 +340,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                             if (line.IsSelected)
                                 string_value = line.StringValue;
                             break;
+                        case "A1"://1value
+                            object_value = line.StringValue;
+                            break;
                         case "11"://1value
                             if (line.IsSelected)
                             {
@@ -376,6 +385,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 {
                     case "10": //ngay
                         result.Add(new SqlParameter(parameterName, string_value));
+                        break;
+                    case "A1": //1value
+                        result.Add(new SqlParameter(parameterName, object_value));
                         break;
                     case "11": //1value
                         result.Add(new SqlParameter(parameterName, object_value));
@@ -449,7 +461,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (lineControl.DefineInfo.Loai_key == "A1" && lineControl._checkBox != null)
             {
-                lineControl._vtextBox.TextChanged += delegate
+                if (lineControl._checkBox.Checked) Advance = Alreport_advance;
+                lineControl._checkBox.CheckedChanged += delegate
                 {
                     if (lineControl._checkBox.Checked)
                     {

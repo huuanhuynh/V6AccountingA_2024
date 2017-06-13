@@ -41,6 +41,7 @@ namespace V6ControlManager.FormManager.ReportManager
                     try
                     {
                         string define = row["filter"].ToString().Trim();
+
                         var lineControl = V6ControlFormHelper.MadeLineDynamicControl(define);
 
                         if (lineControl != null)

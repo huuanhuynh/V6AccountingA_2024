@@ -41,6 +41,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnCopyFilter = new System.Windows.Forms.Button();
             this.btnBoSung = new System.Windows.Forms.Button();
             this.txtDONVITINH = new V6Controls.V6NumberTextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -63,7 +64,8 @@
             this.label46 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnCopyFilter = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.v6ColorTextBox4 = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -264,7 +266,9 @@
             this.tabPage1.Controls.Add(this.v6ColorTextBox21);
             this.tabPage1.Controls.Add(this.label53);
             this.tabPage1.Controls.Add(this.label52);
+            this.tabPage1.Controls.Add(this.v6ColorTextBox4);
             this.tabPage1.Controls.Add(this.v6ColorTextBox16);
+            this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.v6ColorTextBox15);
             this.tabPage1.Controls.Add(this.label47);
             this.tabPage1.Controls.Add(this.label46);
@@ -275,6 +279,20 @@
             this.tabPage1.Size = new System.Drawing.Size(796, 331);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
+            // 
+            // btnCopyFilter
+            // 
+            this.btnCopyFilter.AccessibleName = "";
+            this.btnCopyFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCopyFilter.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnCopyFilter.Location = new System.Drawing.Point(566, 299);
+            this.btnCopyFilter.Name = "btnCopyFilter";
+            this.btnCopyFilter.Size = new System.Drawing.Size(202, 29);
+            this.btnCopyFilter.TabIndex = 73;
+            this.btnCopyFilter.Text = "Copy FILTER";
+            this.btnCopyFilter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCopyFilter.UseVisualStyleBackColor = true;
+            this.btnCopyFilter.Click += new System.EventHandler(this.btnCopyFilter_Click);
             // 
             // btnBoSung
             // 
@@ -584,21 +602,35 @@
             this.tabPage2.Text = "Thông tin ngầm định";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnCopyFilter
+            // label9
             // 
-            this.btnCopyFilter.AccessibleName = "";
-            this.btnCopyFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCopyFilter.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCopyFilter.Location = new System.Drawing.Point(566, 299);
-            this.btnCopyFilter.Name = "btnCopyFilter";
-            this.btnCopyFilter.Size = new System.Drawing.Size(202, 29);
-            this.btnCopyFilter.TabIndex = 73;
-            this.btnCopyFilter.Text = "Copy FILTER";
-            this.btnCopyFilter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCopyFilter.UseVisualStyleBackColor = true;
-            this.btnCopyFilter.Click += new System.EventHandler(this.btnCopyFilter_Click);
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(11, 254);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(73, 17);
+            this.label9.TabIndex = 57;
+            this.label9.Text = "ADVANCE";
             // 
-            // ALREPORT
+            // v6ColorTextBox4
+            // 
+            this.v6ColorTextBox4.AccessibleName = "ADVANCE";
+            this.v6ColorTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6ColorTextBox4.BackColor = System.Drawing.Color.White;
+            this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox4.HoverColor = System.Drawing.Color.Yellow;
+            this.v6ColorTextBox4.LeaveColor = System.Drawing.Color.White;
+            this.v6ColorTextBox4.Location = new System.Drawing.Point(119, 251);
+            this.v6ColorTextBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.v6ColorTextBox4.Name = "v6ColorTextBox4";
+            this.v6ColorTextBox4.Size = new System.Drawing.Size(440, 23);
+            this.v6ColorTextBox4.TabIndex = 72;
+            // 
+            // ALREPORT_AddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -606,7 +638,7 @@
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "ALREPORT";
+            this.Name = "ALREPORT_AddEdit";
             this.Size = new System.Drawing.Size(807, 470);
             this.Load += new System.EventHandler(this.KhachHangFrom_Load);
             this.groupBox1.ResumeLayout(false);
@@ -656,5 +688,7 @@
         private System.Windows.Forms.Label label15;
         protected System.Windows.Forms.Button btnBoSung;
         protected System.Windows.Forms.Button btnCopyFilter;
+        private V6ColorTextBox v6ColorTextBox4;
+        private System.Windows.Forms.Label label9;
     }
 }

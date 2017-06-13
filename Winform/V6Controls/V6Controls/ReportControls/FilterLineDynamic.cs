@@ -58,7 +58,7 @@ namespace V6ReportControls
                 if (_vtextBox != null) return _vtextBox.Text.Trim();
                 if (_numberTextBox != null) return _numberTextBox.Value;
                 if (_dateTimePick != null) return _dateTimePick.Value;
-
+                if (_checkBox != null) return _checkBox.Checked;
                 return null;
             }
         }
@@ -71,7 +71,7 @@ namespace V6ReportControls
                 if (_vtextBox != null) return _vtextBox.Text.Trim();
                 if (_numberTextBox != null) return _numberTextBox.Value.ToString(CultureInfo.InvariantCulture);
                 if (_dateTimePick != null) return _dateTimePick.Value.ToString("yyyyMMdd");
-                
+                if (_checkBox != null) return _checkBox.Checked?"1":"0";
                 return "";
             }
         }
