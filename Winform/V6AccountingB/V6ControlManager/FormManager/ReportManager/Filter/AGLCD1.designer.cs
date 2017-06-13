@@ -42,6 +42,7 @@
             this.v6Label2 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
+            this.chkKieu_f5 = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -214,10 +215,21 @@
             this.v6Label4.TabIndex = 27;
             this.v6Label4.Text = "4 -Bù trừ số dư CN có tk mẹ cấp trên";
             // 
+            // chkKieu_f5
+            // 
+            this.chkKieu_f5.AutoSize = true;
+            this.chkKieu_f5.Location = new System.Drawing.Point(193, 15);
+            this.chkKieu_f5.Name = "chkKieu_f5";
+            this.chkKieu_f5.Size = new System.Drawing.Size(89, 17);
+            this.chkKieu_f5.TabIndex = 28;
+            this.chkKieu_f5.Text = "F5- Ngày  CT";
+            this.chkKieu_f5.UseVisualStyleBackColor = true;
+            // 
             // AGLCD1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkKieu_f5);
             this.Controls.Add(this.v6Label4);
             this.Controls.Add(this.v6Label3);
             this.Controls.Add(this.v6Label2);
@@ -254,5 +266,6 @@
         private V6Controls.V6Label v6Label2;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label4;
+        private V6Controls.V6CheckBox chkKieu_f5;
     }
 }

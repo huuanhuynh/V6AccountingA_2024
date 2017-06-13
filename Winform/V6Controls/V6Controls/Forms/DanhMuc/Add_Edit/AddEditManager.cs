@@ -104,10 +104,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Alnhphi:
                     FormControl = new NhomKhoanMucPhiAddEditForm();
                     break;
-                case V6TableName.Alnhtk:
+                case V6TableName.Alnhtk0:
                     FormControl = new NhomTieuKhoanAddEditForm();
                     break;
-                case V6TableName.Alnhtk0:
+                case V6TableName.Alnhtk:
                     FormControl = new NhomTaiKhoanAddEditForm();
                     break;
                 case V6TableName.Alnhts:

@@ -52,7 +52,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 	       // @Ngay_ct2 SmallDateTime, --Đến ngày
 	       // @Bu_tru CHAR(1) = '0', -- Bù trừ tài khoản công nợ
 	       // @Advance AS VARCHAR(8000) = '' -- Điều kiện lọc danh mục khách hàng
-            
+           // @Kieu_F5 CHAR(1)
+
             V6Setting.M_ngay_ct1 = dateNgay_ct1.Value;
             V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
 
@@ -89,8 +90,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 cKey = "1=1";
             }
+            var Kieu_F5=chkKieu_f5.Checked ? "1" : "0" ;
 
             result.Add(new SqlParameter("@Advance", cKey));
+            result.Add(new SqlParameter("@Kieu_F5", Kieu_F5));
             return result;
         }
 

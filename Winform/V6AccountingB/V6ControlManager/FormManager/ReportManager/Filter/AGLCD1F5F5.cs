@@ -5,9 +5,9 @@ using V6Controls.Forms;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AGLCD1F5 : FilterBase
+    public partial class AGLCD1F5F5 : FilterBase
     {
-        public AGLCD1F5()
+        public AGLCD1F5F5()
         {
             InitializeComponent();
             
@@ -19,9 +19,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         void AARCD1_F5_SetParentRowEvent(IDictionary<string, object> row)
         {
             
-            var tk = row["TK"].ToString().Trim();
-            
-            lineTaiKhoan.VvarTextBox.Text = tk;
+            var tk_du = row["TK_DU"].ToString().Trim();
+
+            filterLineVvarTextBox1.VvarTextBox.Text = tk_du;
 
             //var parent = V6ControlFormHelper.FindParent<ReportRViewBase>(this);
             //var rViewBase = parent as ReportRViewBase;
@@ -40,19 +40,19 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //@Advance AS VARCHAR(8000) = '' 
             //@Advance2 AS VARCHAR(8000) - Theo TK
             //@Tk
+            //@Advance3 AS VARCHAR(8000) - Theo TK_DU
 
             var result = new List<SqlParameter>();
             result.AddRange(InitFilters);
             
           
-            var advance2 = GetFilterStringByFields(new List<string>()
+            var advance3 = GetFilterStringByFields(new List<string>()
             {
-                "TK"
+                "TK_DU"
             }, true);
-
+            result.Add(new SqlParameter("@Advance3", advance3));
             
-            result.Add(new SqlParameter("@Advance2", advance2));
-            result.Add(new SqlParameter("@Tk", lineTaiKhoan.StringValue));
+
 
             return result;
         }

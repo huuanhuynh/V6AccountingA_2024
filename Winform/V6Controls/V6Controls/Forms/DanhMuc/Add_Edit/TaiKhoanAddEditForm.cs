@@ -9,7 +9,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public TaiKhoanAddEditForm()
         {
             InitializeComponent();
+            MyInit();
         }
+        private void MyInit()
+        {
+            txtNhomtk1.SetInitFilter("Loai_nh=1");
+            txtNhomtk2.SetInitFilter("Loai_nh=2");
+            txtNhomtk3.SetInitFilter("Loai_nh=3");
+            //KeyField1 = "TK";
+        }
+
         public override void DoBeforeEdit()
         {
             var v = Categories.IsExistOneCode_List("ABKH,ARA00", "Tk", TxtTk.Text);
