@@ -100,6 +100,9 @@ namespace V6Structs
                 case "TEXTE":
                     TextE = value;
                     break;
+                case "TOUPPER":
+                    ToUpper = value == "1";
+                    break;
                 case "TYPE":
                     if (!string.IsNullOrEmpty(value)) Type = value;
                     break;
@@ -212,6 +215,6 @@ namespace V6Structs
         /// </summary>
         public string BField { get; set; }
 
-        
+        public bool ToUpper;
     }
 }

@@ -2720,15 +2720,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                         c.TTT_NT = txtTongThanhToanNt.Value;
                         c.MA_NT = _maNt;
                         c.Dock = DockStyle.Fill;
-
-                        var f = new V6Form();
-
-                        f.StartPosition = FormStartPosition.CenterScreen;
-                        f.WindowState = FormWindowState.Maximized;
-                        f.Text = V6Text.PrintSOA;
-                        f.Controls.Add(c);
-                        c.btnNhan_Click(null, null);
-                        f.ShowDialog();
+                        c.ShowToForm(V6Text.PrintSOA, true);
                     }
                     else
                     {

@@ -73,6 +73,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         {
                             VVar = defineInfo.Vvar,
                         };
+                        if(defineInfo.ToUpper) input.CharacterCasing = CharacterCasing.Upper;
                         var tT = (V6VvarTextBox)input;
                         tT.SetInitFilter(defineInfo.InitFilter);
                         tT.F2 = defineInfo.F2;
