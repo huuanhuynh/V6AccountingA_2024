@@ -76,14 +76,18 @@ namespace V6ControlManager.FormManager.MenuManager
                             {
                                 if (check)
                                 {
-                                    bool is_aldm = false;
+                                    bool is_aldm = false, check_admin = false, check_v6 = false;
                                     IDictionary<string, object> keys = new Dictionary<string, object>();
                                     keys.Add("MA_DM", TABLE_NAME);
                                     var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
                                     if (aldm.Rows.Count == 1)
                                     {
                                         is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
+                                        check_admin = aldm.Rows[0]["CHECK_ADMIN"].ToString() == "1";
+                                        check_v6 = aldm.Rows[0]["CHECK_V6"].ToString() == "1";
                                     }
+
+                                    
 
                                     var where = "";
                                     if (TABLE_NAME == "ALKC")
@@ -106,6 +110,20 @@ namespace V6ControlManager.FormManager.MenuManager
                                     }
                                     else
                                     {
+                                        if (is_aldm)
+                                        {
+                                            if (check_admin)
+                                            {
+                                                check = new ConfirmPassword().ShowDialog() == DialogResult.OK;
+                                            }
+                                            else if (check_v6)
+                                            {
+                                                check = new ConfirmPasswordV6().ShowDialog() == DialogResult.OK;
+                                            }
+                                        }
+
+                                        if (!check) return null;
+
                                         c = new DanhMucView(item_id, mButton.Text, TABLE_NAME,
                                             V6Login.GetInitFilter(TABLE_NAME), null, is_aldm)
                                         {
@@ -269,6 +287,31 @@ namespace V6ControlManager.FormManager.MenuManager
                             {
                                 if (check1)
                                 {
+                                    bool is_aldm = false, check_admin = false, check_v6 = false;
+                                    IDictionary<string, object> keys = new Dictionary<string, object>();
+                                    keys.Add("MA_DM", TABLE_NAME);
+                                    var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
+                                    if (aldm.Rows.Count == 1)
+                                    {
+                                        is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
+                                        check_admin = aldm.Rows[0]["CHECK_ADMIN"].ToString() == "1";
+                                        check_v6 = aldm.Rows[0]["CHECK_V6"].ToString() == "1";
+                                    }
+
+                                    if (is_aldm)
+                                    {
+                                        if (check_admin)
+                                        {
+                                            check = new ConfirmPassword().ShowDialog() == DialogResult.OK;
+                                        }
+                                        else if (check_v6)
+                                        {
+                                            check = new ConfirmPasswordV6().ShowDialog() == DialogResult.OK;
+                                        }
+                                    }
+
+                                    if (!check) return null;
+
                                     c = new DanhMucView(item_id, mButton.Text, tableNameEdit, getInitFilter, "", false)
                                     {
                                         Name = item_id,
@@ -550,7 +593,7 @@ namespace V6ControlManager.FormManager.MenuManager
                             }
                             break;
                         case "H":
-                            #region ==== // Danh mục view format Aldm ====
+                            #region ==== // Danhmucview format Aldm ====
                             TABLE_NAME = codeform.Substring(1).ToUpper();
                             if (TABLE_NAME == "V6USER")
                             {
@@ -566,14 +609,30 @@ namespace V6ControlManager.FormManager.MenuManager
                                 if (check)
                                 {
                                     //var where = "";
-                                    bool is_aldm = false;
+                                    bool is_aldm = false, check_admin = false, check_v6 = false;
                                     IDictionary<string, object> keys = new Dictionary<string, object>();
                                     keys.Add("MA_DM", TABLE_NAME);
                                     var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
                                     if (aldm.Rows.Count == 1)
                                     {
                                         is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
+                                        check_admin = aldm.Rows[0]["CHECK_ADMIN"].ToString() == "1";
+                                        check_v6 = aldm.Rows[0]["CHECK_V6"].ToString() == "1";
                                     }
+
+                                    if (is_aldm)
+                                    {
+                                        if (check_admin)
+                                        {
+                                            check = new ConfirmPassword().ShowDialog() == DialogResult.OK;
+                                        }
+                                        else if (check_v6)
+                                        {
+                                            check = new ConfirmPasswordV6().ShowDialog() == DialogResult.OK;
+                                        }
+                                    }
+
+                                    if (!check) return null;
 
                                     c = new DanhMucView(item_id, mButton.Text, TABLE_NAME,
                                         V6Login.GetInitFilter(TABLE_NAME), null, is_aldm)

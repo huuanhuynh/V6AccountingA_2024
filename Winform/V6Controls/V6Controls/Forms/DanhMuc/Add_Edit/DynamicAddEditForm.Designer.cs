@@ -63,6 +63,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DynamicAddEditForm";
             this.Size = new System.Drawing.Size(750, 550);
+            this.Load += new System.EventHandler(this.DynamicAddEditForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 

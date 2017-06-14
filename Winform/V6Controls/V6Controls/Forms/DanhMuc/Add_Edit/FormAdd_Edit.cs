@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
 
@@ -36,6 +37,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             SortedDictionary<string, object> data = null)
         {
             _tableName = tableName;
+            _tableNameString = tableName.ToString();
             InitializeComponent();
 
             FormControl = AddEditManager.Init_Control(tableName, tableName.ToString());
@@ -93,6 +95,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void FormAdd_Edit_Load(object sender, EventArgs e)
         {
             Text = FormControl.Mode + " - " + V6TableHelper.V6TableCaption(_tableName, V6Setting.Language);
+            bool is_aldm = false;
+            IDictionary<string, object> keys = new Dictionary<string, object>();
+            keys.Add("MA_DM", _tableNameString);
+            var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
+            if (aldm.Rows.Count == 1)
+            {
+                is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
+                if (is_aldm)
+                {
+                    Text = FormControl.Mode + " - " + (V6Setting.IsVietnamese ? aldm.Rows[0]["TITLE"] : aldm.Rows[0]["TITLE2"]);
+                }
+            }
         }
 
         private void btnNhan_Click(object sender, EventArgs e)

@@ -110,6 +110,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             
             string cKey;
             string cKey_hd;
+            string cKey2;
             
             var key0 = GetFilterStringByFields(new List<string>()
             {
@@ -185,6 +186,44 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 cKey_hd = cKey_hd + string.Format(" and stt_rec in (select DISTINCT stt_rec from ARI70 where ma_ct IN ('SOA','SOF') AND ma_vt in (select ma_vt from alvt where {0} ))", key2_hd);
             }
 
+            // {Key2: ARA00 TK AND MA_CT IN 
+            if (filterLinema_ct.IsSelected || filterLinetk_thu.IsSelected)
+            {
+                var key2 = GetFilterStringByFields(new List<string>()
+                {
+                    "TK#","MA_CT#","MA_DVCS"
+                }, and);
+
+                key2 = key2.Replace("#", "");
+
+                if (!string.IsNullOrEmpty(key2))
+                {
+                    if (and)
+                    {
+                        cKey2 = string.Format("(1=1 AND {0})", key2);
+                    }
+                    else
+                    {
+                        cKey2 = string.Format("(1=2 OR {0})", key2);
+                    }
+                }
+                else
+                {
+                    cKey2 = "1=1";
+                }
+
+
+                if ((!string.IsNullOrEmpty(cKey2)) && (cKey2 != "1=1"))
+                {
+                    cKey = cKey +
+                           string.Format(
+                               " and stt_rec in (select DISTINCT stt_rec from ARA00 where ({0}) and ngay_ct>= '{1}' and ngay_ct<='{2}')",
+                               key2, dateNgay_ct1.Value.ToString("yyyyMMdd"), dateNgay_ct2.Value.ToString("yyyyMMdd"));
+                }
+            }
+
+            //}
+
             // Tu so den so
             var tu_so = ctTuSo.Text.Trim().Replace("'", "");
             var den_so = ctDenSo.Text.Trim().Replace("'", "");
@@ -232,6 +271,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     ;
                 }
             }
+
+            
 
             result.Add(new SqlParameter("@cKey", cKey));
             result.Add(new SqlParameter("@cKey_hd", cKey_hd));

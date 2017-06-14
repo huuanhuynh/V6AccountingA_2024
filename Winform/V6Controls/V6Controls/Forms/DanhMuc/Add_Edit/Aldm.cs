@@ -20,7 +20,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                
             }
-
         }
   
         public override void V6F3Execute()
@@ -54,6 +53,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
 
             if (errors.Length > 0) throw new Exception(errors);
+        }
+
+        private void v6CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

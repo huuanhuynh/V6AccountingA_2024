@@ -42,6 +42,9 @@ namespace V6Structs
         {
             switch (key.ToUpper())
             {
+                case "BFIELD":
+                    BField = value;
+                    break;
                 case "ENABLED":
                     Enabled = value == "1";
                     break;
@@ -198,5 +201,9 @@ namespace V6Structs
         public string Fparent { get; set; }
 
         public string Width { get; set; }
+        /// <summary>
+        /// Brother Field
+        /// </summary>
+        public string BField { get; set; }
     }
 }

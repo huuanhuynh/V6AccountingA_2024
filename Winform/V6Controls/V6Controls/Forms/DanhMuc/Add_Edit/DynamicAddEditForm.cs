@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
@@ -78,6 +79,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         input.Top = top;
                         
                         panel1.Controls.Add(input);
+                        //Add brother
+                        if (input is V6VvarTextBox && !string.IsNullOrEmpty(defineInfo.BField))
+                        {
+                            var tT = (V6VvarTextBox)input;
+                            tT.BrotherFields = defineInfo.BField;
+                            var txtB = new V6ColorTextBox();
+                            txtB.AccessibleName = defineInfo.BField;
+                            txtB.Top = top;
+                            txtB.Left = input.Right + 10;
+                            txtB.Width = panel1.Width - txtB.Left - 10;
+                            txtB.ReadOnly = true;
+                            txtB.TabStop = false;
+
+                            panel1.Controls.Add(txtB);
+                        }
                     }
                     i++;
                 }
@@ -349,6 +365,30 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             //}
 
             if (errors.Length > 0) throw new Exception(errors);
+        }
+
+        private void CheckVvarTextBox()
+        {
+            try
+            {
+                foreach (Control control in panel1.Controls)
+                {
+                    var vT = control as V6VvarTextBox;
+                    if (vT != null && !string.IsNullOrEmpty(vT.VVar))
+                    {
+                        vT.ExistRowInTable();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CheckVvarTextBox", ex);
+            }
+        }
+
+        private void DynamicAddEditForm_Load(object sender, EventArgs e)
+        {
+            CheckVvarTextBox();
         }
     }
 }

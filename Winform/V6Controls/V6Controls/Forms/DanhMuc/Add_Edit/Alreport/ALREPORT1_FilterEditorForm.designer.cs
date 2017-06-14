@@ -50,9 +50,11 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.txtLoaiKey = new V6Controls.V6ColorTextBox();
             this.txtWidth = new V6Controls.V6ColorTextBox();
             this.txtFparent = new V6Controls.V6ColorTextBox();
             this.txtInitFilter = new V6Controls.V6ColorTextBox();
+            this.label34 = new System.Windows.Forms.Label();
             this.txtVvar = new V6Controls.V6ColorTextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.txtLimitChars = new V6Controls.V6ColorTextBox();
@@ -62,6 +64,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -79,9 +82,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.txtLoaiKey = new V6Controls.V6ColorTextBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,9 +114,11 @@
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.v6ColorTextBox1);
             this.groupBox1.Controls.Add(this.txtLoaiKey);
             this.groupBox1.Controls.Add(this.txtWidth);
             this.groupBox1.Controls.Add(this.txtFparent);
+            this.groupBox1.Controls.Add(this.label36);
             this.groupBox1.Controls.Add(this.txtInitFilter);
             this.groupBox1.Controls.Add(this.label34);
             this.groupBox1.Controls.Add(this.txtVvar);
@@ -124,6 +129,7 @@
             this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label24);
+            this.groupBox1.Controls.Add(this.label35);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label33);
             this.groupBox1.Controls.Add(this.label22);
@@ -145,7 +151,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(780, 465);
+            this.groupBox1.Size = new System.Drawing.Size(780, 531);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -436,6 +442,22 @@
             this.label13.TabIndex = 20;
             this.label13.Text = "Bắt buộc nhập dữ liệu hay không?";
             // 
+            // txtLoaiKey
+            // 
+            this.txtLoaiKey.AccessibleName = "Loai_key";
+            this.txtLoaiKey.BackColor = System.Drawing.Color.White;
+            this.txtLoaiKey.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtLoaiKey.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLoaiKey.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLoaiKey.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtLoaiKey.HoverColor = System.Drawing.Color.Yellow;
+            this.txtLoaiKey.LeaveColor = System.Drawing.Color.White;
+            this.txtLoaiKey.Location = new System.Drawing.Point(119, 429);
+            this.txtLoaiKey.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLoaiKey.Name = "txtLoaiKey";
+            this.txtLoaiKey.Size = new System.Drawing.Size(150, 23);
+            this.txtLoaiKey.TabIndex = 40;
+            // 
             // txtWidth
             // 
             this.txtWidth.AccessibleName = "Width";
@@ -483,6 +505,17 @@
             this.txtInitFilter.Name = "txtInitFilter";
             this.txtInitFilter.Size = new System.Drawing.Size(150, 23);
             this.txtInitFilter.TabIndex = 37;
+            // 
+            // label34
+            // 
+            this.label34.AccessibleDescription = "";
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(8, 432);
+            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(65, 17);
+            this.label34.TabIndex = 39;
+            this.label34.Text = "Loai_key";
             // 
             // txtVvar
             // 
@@ -597,6 +630,18 @@
             this.label3.Size = new System.Drawing.Size(48, 17);
             this.label3.TabIndex = 6;
             this.label3.Text = "Text E";
+            // 
+            // label33
+            // 
+            this.label33.AccessibleDescription = "";
+            this.label33.AccessibleName = "";
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(283, 433);
+            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(170, 17);
+            this.label33.TabIndex = 41;
+            this.label33.Text = "Loai_key, loại đặc biệt A1";
             // 
             // label22
             // 
@@ -771,7 +816,7 @@
             this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnHuy.Image = global::V6Controls.Properties.Resources.Cancel;
             this.btnHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHuy.Location = new System.Drawing.Point(95, 472);
+            this.btnHuy.Location = new System.Drawing.Point(95, 538);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
             this.btnHuy.TabIndex = 2;
@@ -787,7 +832,7 @@
             this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNhan.Image = global::V6Controls.Properties.Resources.Apply;
             this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNhan.Location = new System.Drawing.Point(7, 472);
+            this.btnNhan.Location = new System.Drawing.Point(7, 538);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
             this.btnNhan.TabIndex = 1;
@@ -797,51 +842,51 @@
             this.btnNhan.UseVisualStyleBackColor = true;
             this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
             // 
-            // label33
+            // label35
             // 
-            this.label33.AccessibleDescription = "";
-            this.label33.AccessibleName = "";
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(283, 433);
-            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(65, 17);
-            this.label33.TabIndex = 41;
-            this.label33.Text = "Loai_key";
+            this.label35.AccessibleDescription = "";
+            this.label35.AccessibleName = "";
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(283, 459);
+            this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(374, 17);
+            this.label35.TabIndex = 41;
+            this.label35.Text = "Trường tên, liên quan... hiển thị tên trong DynamicAddEdit";
             // 
-            // label34
+            // label36
             // 
-            this.label34.AccessibleDescription = "";
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(8, 432);
-            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(65, 17);
-            this.label34.TabIndex = 39;
-            this.label34.Text = "Loai_key";
+            this.label36.AccessibleDescription = "";
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(8, 458);
+            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(47, 17);
+            this.label36.TabIndex = 39;
+            this.label36.Text = "BField";
             // 
             // v6ColorTextBox1
             // 
-            this.txtLoaiKey.AccessibleName = "Loai_key";
-            this.txtLoaiKey.BackColor = System.Drawing.Color.White;
-            this.txtLoaiKey.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtLoaiKey.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtLoaiKey.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtLoaiKey.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtLoaiKey.HoverColor = System.Drawing.Color.Yellow;
-            this.txtLoaiKey.LeaveColor = System.Drawing.Color.White;
-            this.txtLoaiKey.Location = new System.Drawing.Point(119, 429);
-            this.txtLoaiKey.Margin = new System.Windows.Forms.Padding(4);
-            this.txtLoaiKey.Name = "txtLoaiKey";
-            this.txtLoaiKey.Size = new System.Drawing.Size(150, 23);
-            this.txtLoaiKey.TabIndex = 40;
+            this.v6ColorTextBox1.AccessibleName = "BField";
+            this.v6ColorTextBox1.BackColor = System.Drawing.Color.White;
+            this.v6ColorTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox1.HoverColor = System.Drawing.Color.Yellow;
+            this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
+            this.v6ColorTextBox1.Location = new System.Drawing.Point(119, 455);
+            this.v6ColorTextBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.v6ColorTextBox1.Name = "v6ColorTextBox1";
+            this.v6ColorTextBox1.Size = new System.Drawing.Size(150, 23);
+            this.v6ColorTextBox1.TabIndex = 40;
             // 
             // ALREPORT1_FilterEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnHuy;
-            this.ClientSize = new System.Drawing.Size(791, 514);
+            this.ClientSize = new System.Drawing.Size(791, 580);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Controls.Add(this.groupBox1);
@@ -916,5 +961,8 @@
         private V6ColorTextBox txtLoaiKey;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
+        private V6ColorTextBox v6ColorTextBox1;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label35;
     }
 }
