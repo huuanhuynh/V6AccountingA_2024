@@ -45,6 +45,9 @@ namespace V6Structs
                 case "BFIELD":
                     BField = value;
                     break;
+                case "DECIMALS":
+                    int.TryParse(value, out Decimals);
+                    break;
                 case "ENABLED":
                     Enabled = value == "1";
                     break;
@@ -189,7 +192,10 @@ namespace V6Structs
                 return F.TypeFromData_Type(sql_type);
             }
         }
-
+        /// <summary>
+        /// Số chữ số lẽ sau dấu thập phân.
+        /// </summary>
+        public int Decimals = 0;
         public string DefaultValue { get; set; }
         /// <summary>
         /// Key là LimitChars hoặc LimitChar không phân biệt hoa thường.
@@ -205,5 +211,7 @@ namespace V6Structs
         /// Brother Field
         /// </summary>
         public string BField { get; set; }
+
+        
     }
 }

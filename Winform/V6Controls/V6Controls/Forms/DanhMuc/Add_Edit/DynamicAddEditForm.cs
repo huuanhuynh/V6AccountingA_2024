@@ -18,6 +18,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private string TableName;//Đè kiểu cũ. Các hàm cũ đã override.
         private DataRow _dataRow;
+        private DataTable Alreport1Data = null;
+        private Dictionary<V6NumberTextBox, int> NumberTextBox_Format = new Dictionary<V6NumberTextBox, int>();
+        private Dictionary<string, DefineInfo> DefineInfo_Data = new Dictionary<string, DefineInfo>(); 
+
         public DynamicAddEditForm(string tableName, DataRow dataRow)
         {
             TableName = tableName;
@@ -33,14 +37,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 //Tạo control động
                 IDictionary<string, object> keys = new Dictionary<string, object>();
                 keys.Add("MA_BC", TableName);
-                var data = V6BusinessHelper.Select(V6TableName.Alreport1, keys, "*", "", "Stt_Filter").Data;
+                Alreport1Data = V6BusinessHelper.Select(V6TableName.Alreport1, keys, "*", "", "Stt_Filter").Data;
                 int i = 0;
                 int baseTop = panel1.AutoScrollPosition.Y;
                 int rowHeight = 25;
-                foreach (DataRow row in data.Rows)
+                foreach (DataRow row in Alreport1Data.Rows)
                 {
                     var define = row["Filter"].ToString().Trim();
                     var defineInfo = new DefineInfo(define);
+                    DefineInfo_Data[defineInfo.Field.ToUpper()] = defineInfo;
                     //Label
                     var top = baseTop + i * rowHeight;
                     var label = new V6Label();
@@ -58,6 +63,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     else if (ObjectAndString.IsNumberType(defineInfo.DataType))
                     {
                         input = new V6NumberTextBox();
+                        var nT = (V6NumberTextBox)input;
+                        //nT.DecimalPlaces = defineInfo.Decimals;
+                        NumberTextBox_Format[nT] = defineInfo.Decimals;
                     }
                     else
                     {
@@ -129,6 +137,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         protected override void LoadAll()
         {
             LoadStruct();//MaxLength...
+            FixNumberTextBoxFormat();
             V6ControlFormHelper.LoadAndSetFormInfoDefine(TableName.ToString(), this, Parent);
 
             if (Mode == V6Mode.Edit)
@@ -154,6 +163,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     if (_keys != null) LoadData();
                 }
+            }
+        }
+
+        private void FixNumberTextBoxFormat()
+        {
+            try
+            {
+                foreach (KeyValuePair<V6NumberTextBox, int> item in NumberTextBox_Format)
+                {
+                    var addLength = item.Value - item.Key.DecimalPlaces;
+                    if (item.Key.DecimalPlaces == 0 && item.Value > 0) addLength++;
+                    item.Key.DecimalPlaces = item.Value;
+                    item.Key.MaxLength += addLength;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".FixNumberTextBoxFormat", ex);
             }
         }
 
@@ -341,28 +368,128 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            //if (txtMaMauBc.Text.Trim() == "")
-            //    errors += "Chưa nhập mã!\r\n";
-            //if (txtTenMauBc.Text.Trim() == "")
-            //    errors += "Chưa nhập tên !\r\n";
 
+            // check notempty
+            foreach (KeyValuePair<string, DefineInfo> item in DefineInfo_Data)
+            {
+                if (item.Value.NotEmpty)
+                {
+                    if (DataDic.ContainsKey(item.Key))
+                    {
+                        if (DataDic[item.Key].ToString().Trim() == "")
+                        {
+                            errors += string.Format("Chưa nhập {0}: {1}\r\n", item.Key, item.Value.TextLang(V6Setting.IsVietnamese));
+                        }
+                    }
+                    else
+                    {
+                        errors += string.Format("Không lấy được dữ liệu {0}: {1}\r\n", item.Key, item.Value.TextLang(V6Setting.IsVietnamese));
+                    }
+                }
+            }
 
-            //if (Mode == V6Mode.Edit)
-            //{
-            //    bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_MAUBC",
-            //     txtMaMauBc.Text.Trim(), DataOld["MA_MAUBC"].ToString());
-            //    if (!b)
-            //        throw new Exception("Không được sửa mã đã tồn tại: "
-            //                                        + "MA_MAUBC = " + txtMaMauBc.Text.Trim());
-            //}
-            //else if (Mode == V6Mode.Add)
-            //{
-            //    bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_MAUBC",
-            //     txtMaMauBc.Text.Trim(), txtMaMauBc.Text.Trim());
-            //    if (!b)
-            //        throw new Exception("Không được thêm mã đã tồn tại: "
-            //                                        + "MA_MAUBC = " + txtMaMauBc.Text.Trim());
-            //}
+            // check code
+            //_dataRow;// aldm
+            var GRD_COL = _dataRow["GRD_COL"].ToString().Trim().ToUpper();
+            var KEY_LIST = ObjectAndString.SplitString(_dataRow["KEY"].ToString().Trim());
+            string KEY1 = "", KEY2 = "", KEY3 = "";
+            if (GRD_COL == "ONECODE" && KEY_LIST.Length > 0)
+            {
+                KEY1 = KEY_LIST[0].Trim().ToUpper();
+                if (Mode == V6Mode.Edit)
+                {
+                    bool b = V6BusinessHelper.IsValidOneCode_Full(TableName, 0, KEY1,
+                     DataDic[KEY1].ToString(), DataOld[KEY1].ToString());
+                    if (!b)
+                        throw new Exception(string.Format("Không được sửa mã đã tồn tại: {0} = {1}", KEY1, DataDic[KEY1]));
+                }
+                else if (Mode == V6Mode.Add)
+                {
+                    bool b = V6BusinessHelper.IsValidOneCode_Full(TableName, 1, KEY1,
+                        DataDic[KEY1].ToString(), DataDic[KEY1].ToString());
+                    if (!b)
+                        throw new Exception(string.Format("Không được thêm mã đã tồn tại: {0} = {1}", KEY1, DataDic[KEY1]));
+                }
+            }
+            else if (GRD_COL == "TWOCODE" && KEY_LIST.Length > 1)
+            {
+                KEY1 = KEY_LIST[0].Trim().ToUpper();
+                KEY2 = KEY_LIST[1].Trim().ToUpper();
+                if (Mode == V6Mode.Edit)
+                {
+                    bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName, 0,
+                        KEY1, DataDic[KEY1].ToString(), DataOld[KEY1].ToString(),
+                        KEY2, DataDic[KEY2].ToString(), DataOld[KEY2].ToString());
+                    if (!b)
+                        throw new Exception(string.Format("Không được sửa mã đã tồn tại: {0},{1} = {2},{3}",
+                            KEY1, KEY2, DataDic[KEY1], DataDic[KEY2]));
+                }
+                else if (Mode == V6Mode.Add)
+                {
+                    bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName, 1,
+                        KEY1, DataDic[KEY1].ToString(), DataDic[KEY1].ToString(),
+                        KEY2, DataDic[KEY2].ToString(), DataDic[KEY2].ToString());
+                    if (!b)
+                        throw new Exception(string.Format("Không được thêm mã đã tồn tại: {0},{1} = {2},{3}",
+                            KEY1, KEY2, DataDic[KEY1], DataDic[KEY2]));
+                }
+            }
+            else if (GRD_COL == "THREECODE" && KEY_LIST.Length > 2)
+            {
+                KEY1 = KEY_LIST[0].Trim().ToUpper();
+                KEY2 = KEY_LIST[1].Trim().ToUpper();
+                KEY3 = KEY_LIST[2].Trim().ToUpper();
+                if (Mode == V6Mode.Edit)
+                {
+                    bool b = V6BusinessHelper.IsValidThreeCode(TableName, 0,
+                        KEY1, DataDic[KEY1].ToString(), DataOld[KEY1].ToString(),
+                        KEY2, DataDic[KEY2].ToString(), DataOld[KEY2].ToString(),
+                        KEY3, DataDic[KEY3].ToString(), DataOld[KEY3].ToString());
+                    if (!b)
+                        throw new Exception(string.Format("Không được sửa mã đã tồn tại: {0},{1},{2} = {3},{4},{5}",
+                            KEY1, KEY2, KEY3, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3]));
+                }
+                else if (Mode == V6Mode.Add)
+                {
+                    bool b = V6BusinessHelper.IsValidThreeCode(TableName, 1,
+                        KEY1, DataDic[KEY1].ToString(), DataDic[KEY1].ToString(),
+                        KEY2, DataDic[KEY2].ToString(), DataDic[KEY2].ToString(),
+                        KEY3, DataDic[KEY3].ToString(), DataDic[KEY3].ToString());
+                    if (!b)
+                        throw new Exception(string.Format("Không được thêm mã đã tồn tại: {0},{1},{2} = {3},{4},{5}",
+                            KEY1, KEY2, KEY3, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3]));
+                }
+            }
+            else if (GRD_COL == "TWOCODEONEDAY" && KEY_LIST.Length > 2)
+            {
+                KEY1 = KEY_LIST[0].Trim().ToUpper();
+                KEY2 = KEY_LIST[1].Trim().ToUpper();
+                KEY3 = KEY_LIST[2].Trim().ToUpper();
+                if (Mode == V6Mode.Edit)
+                {
+                    bool b = V6BusinessHelper.IsValidThreeCode(TableName, 0,
+                        KEY1, DataDic[KEY1].ToString(), ObjectAndString.ObjectToString(DataOld[KEY1], "yyyyMMdd"),
+                        KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataOld[KEY2], "yyyyMMdd"),
+                        KEY3, DataDic[KEY3].ToString(), ObjectAndString.ObjectToString(DataOld[KEY3], "yyyyMMdd"));
+                    if (!b)
+                        throw new Exception(string.Format("Không được sửa mã đã tồn tại: {0},{1},{2} = {3},{4},{5}",
+                            KEY1, KEY2, KEY3, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3]));
+                }
+                else if (Mode == V6Mode.Add)
+                {
+                    bool b = V6BusinessHelper.IsValidTwoCode_OneDate(TableName, 1,
+                        KEY1, DataDic[KEY1].ToString(), ObjectAndString.ObjectToString(DataDic[KEY1], "yyyyMMdd"),
+                        KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataDic[KEY2], "yyyyMMdd"),
+                        KEY3, DataDic[KEY3].ToString(), ObjectAndString.ObjectToString(DataDic[KEY3], "yyyyMMdd"));
+                    if (!b)
+                        throw new Exception(string.Format("Không được thêm mã đã tồn tại: {0},{1},{2} = {3},{4},{5}",
+                            KEY1, KEY2, KEY3, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3]));
+                }
+            }
+            else
+            {
+                DoNothing();
+            }
 
             if (errors.Length > 0) throw new Exception(errors);
         }

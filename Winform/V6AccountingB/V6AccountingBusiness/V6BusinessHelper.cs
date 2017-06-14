@@ -768,7 +768,6 @@ namespace V6AccountingBusiness
                 case V6TableName.Albpts: result = "ma_bp"; break;
                 case V6TableName.Alcc: result = "so_the_cc"; break;
                 case V6TableName.Alck: result = "ma_ck"; break;
-                case V6TableName.Alck2: result = "ma_ck"; break;
                 case V6TableName.Alckm: result = "ma_ck"; break;
                 case V6TableName.Alckmct: result = "ma_ck"; break;
                 case V6TableName.Alcltg: result = "stt"; break;
@@ -819,7 +818,6 @@ namespace V6AccountingBusiness
                 case V6TableName.Alnhtk0: result = "ma_nh"; break;
                 case V6TableName.Alnhts: result = "ma_nh"; break;
                 case V6TableName.Alnhvt: result = "ma_nh"; break;
-                case V6TableName.Alnhvt2: result = "ma_nh"; break;
                 case V6TableName.Alnhvv: result = "ma_nh"; break;
                 case V6TableName.Alnhytcp: result = "nhom"; break;
                 case V6TableName.Alnk: result = "ma_nk"; break;

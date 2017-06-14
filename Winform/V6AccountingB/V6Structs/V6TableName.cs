@@ -12,7 +12,6 @@ namespace V6Structs
         Albpts,
         Alcc,
         Alck,
-        Alck2,
         Alckm,
         Alckmct,
         Alcltg,
@@ -65,7 +64,6 @@ namespace V6Structs
         Alnhtk0,
         Alnhts,
         Alnhvt,
-        Alnhvt2,
         Alnhvv,
         Alnhytcp,
         Acosxlt_alnhytcp,
@@ -236,8 +234,6 @@ namespace V6Structs
                     return V6TableName.Alcc;
                 case "alck":
                     return V6TableName.Alck;
-                case "alck2":
-                    return V6TableName.Alck2;
                 case "alckm":
                     return V6TableName.Alckm;
                 case "alckmct":
@@ -342,8 +338,6 @@ namespace V6Structs
                     return V6TableName.Alnhts;
                 case "alnhvt":
                     return V6TableName.Alnhvt;
-                case "alnhvt2":
-                    return V6TableName.Alnhvt2;
                 case "alnhvv":
                     return V6TableName.Alnhvv;
                 case "alnhytcp":
@@ -576,7 +570,6 @@ namespace V6Structs
                 case V6TableName.Albpts: result = "ma_bp"; break;
                 case V6TableName.Alcc: result = "so_the_cc"; break;
                 case V6TableName.Alck: result = "ma_ck"; break;
-                case V6TableName.Alck2: result = "ma_ck"; break;
                 case V6TableName.Alckm: result = "ma_ck"; break;
                 case V6TableName.Alckmct: result = "ma_ck"; break;
                 case V6TableName.Alcltg: result = "stt"; break;
@@ -629,7 +622,6 @@ namespace V6Structs
                 case V6TableName.Alnhtk0: result = "ma_nh"; break;
                 case V6TableName.Alnhts: result = "ma_nh"; break;
                 case V6TableName.Alnhvt: result = "ma_nh"; break;
-                case V6TableName.Alnhvt2: result = "ma_nh"; break;
                 case V6TableName.Alnhvv: result = "ma_nh"; break;
                 case V6TableName.Alnhytcp: result = "nhom"; break;
                 case V6TableName.Acosxlt_alnhytcp: result = "nhom"; break;
@@ -813,9 +805,6 @@ namespace V6Structs
                 case V6TableName.Alck:
                     return lang == "V" ? "Danh mục chiết khấu" : " Disccount list";
 
-                case V6TableName.Alck2:
-                    return lang == "V" ? "Danh mục " : "  list";
-
                 case V6TableName.Alckm:
                     return lang == "V" ? "Danh mục " : "  list";
 
@@ -974,9 +963,6 @@ namespace V6Structs
 
                 case V6TableName.Alnhvt:
                     return lang == "V" ? "Danh mục nhóm vật tư " : "  list";
-
-                case V6TableName.Alnhvt2:
-                    return lang == "V" ? "Danh mục " : "  list";
 
                 case V6TableName.Alnhvv:
                     return lang == "V" ? "Danh mục nhóm vụ việc" : "  list";

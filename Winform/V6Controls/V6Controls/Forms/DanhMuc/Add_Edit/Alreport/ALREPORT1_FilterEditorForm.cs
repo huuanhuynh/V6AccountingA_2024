@@ -43,6 +43,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 txtFparent.Text = Info.Fparent;
                 txtWidth.Text = Info.Width;
                 txtLoaiKey.Text = Info.Loai_key;
+                txtBField.Text = Info.BField;
+                txtDecimals.Text = Info.Decimals.ToString();
             }
             catch (Exception ex)
             {

@@ -116,9 +116,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Alnhvt:
                     FormControl = new NhomVatTuAddEditForm();
                     break;
-                case V6TableName.Alnhvt2:
-                    FormControl = new NhomGiaVatTuAddEditForm();
-                    break;
                 case V6TableName.Alnhvv:
                     FormControl = new NhomVuViecAddEditForm();
                     break;
