@@ -64,6 +64,7 @@
             this.TxtKy_bc = new V6Controls.V6NumberTextBox();
             this.cbbLoaiBaoCao = new V6Controls.V6ComboBox();
             this.lblLoaiBaoCao = new System.Windows.Forms.Label();
+            this.chkGiamTru = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -517,10 +518,22 @@
             this.lblLoaiBaoCao.TabIndex = 9;
             this.lblLoaiBaoCao.Text = "Loại báo cáo";
             // 
+            // chkGiamTru
+            // 
+            this.chkGiamTru.AccessibleDescription = "FILTERC00013";
+            this.chkGiamTru.AutoSize = true;
+            this.chkGiamTru.Location = new System.Drawing.Point(205, 5);
+            this.chkGiamTru.Name = "chkGiamTru";
+            this.chkGiamTru.Size = new System.Drawing.Size(65, 17);
+            this.chkGiamTru.TabIndex = 10;
+            this.chkGiamTru.Text = "Giảm trừ";
+            this.chkGiamTru.UseVisualStyleBackColor = true;
+            // 
             // ASOTH5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkGiamTru);
             this.Controls.Add(this.cbbLoaiBaoCao);
             this.Controls.Add(this.lblLoaiBaoCao);
             this.Controls.Add(this.TxtKy_bc);
@@ -579,5 +592,6 @@
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh3;
         private V6Controls.V6ComboBox cbbLoaiBaoCao;
         private System.Windows.Forms.Label lblLoaiBaoCao;
+        private V6Controls.V6CheckBox chkGiamTru;
     }
 }

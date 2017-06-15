@@ -488,7 +488,7 @@
             // 
             this.chkGiamTru.AccessibleDescription = "FILTERC00013";
             this.chkGiamTru.AutoSize = true;
-            this.chkGiamTru.Location = new System.Drawing.Point(231, 9);
+            this.chkGiamTru.Location = new System.Drawing.Point(205, 13);
             this.chkGiamTru.Name = "chkGiamTru";
             this.chkGiamTru.Size = new System.Drawing.Size(65, 17);
             this.chkGiamTru.TabIndex = 2;

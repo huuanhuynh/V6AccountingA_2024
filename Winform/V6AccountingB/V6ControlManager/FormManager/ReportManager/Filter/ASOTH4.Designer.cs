@@ -60,6 +60,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
+            this.chkGiamTru = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -455,10 +456,22 @@
             this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
             this.dateNgay_ct2.TabIndex = 5;
             // 
+            // chkGiamTru
+            // 
+            this.chkGiamTru.AccessibleDescription = "FILTERC00013";
+            this.chkGiamTru.AutoSize = true;
+            this.chkGiamTru.Location = new System.Drawing.Point(229, 25);
+            this.chkGiamTru.Name = "chkGiamTru";
+            this.chkGiamTru.Size = new System.Drawing.Size(65, 17);
+            this.chkGiamTru.TabIndex = 11;
+            this.chkGiamTru.Text = "Giảm trừ";
+            this.chkGiamTru.UseVisualStyleBackColor = true;
+            // 
             // ASOTH4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkGiamTru);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dateNgay_ct2);
             this.Controls.Add(this.label2);
@@ -509,5 +522,6 @@
         private V6ReportControls.FilterLineVvarTextBox Txtnh_vt1;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_vt2;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh3;
+        private V6Controls.V6CheckBox chkGiamTru;
     }
 }

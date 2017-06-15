@@ -25,6 +25,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 txtMaDvcs.Enabled = false;
             }
 
+            chkGiamTru.Checked = true;
+
             Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
             Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
@@ -79,20 +81,21 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                "NH_VT1","NH_VT2","NH_VT3","NH_VT4","NH_VT5","NH_VT6", "MA_QG", "MA_NSX", "TK_VT"
             }, and);
 
+
             if (!string.IsNullOrEmpty(key0))
             {
                 if (and)
                 {
-                    cKey ="(MA_CT ='SOA') AND "+ string.Format("(1=1 AND {0})", key0);
+                    cKey = string.Format("(1=1 AND {0})", key0);
                 }
                 else
                 {
-                    cKey = "(MA_CT ='SOA') AND " + string.Format("(1=2 OR {0})", key0);
+                    cKey = string.Format("(1=2 OR {0})", key0);
                 }
             }
             else
             {
-                cKey = "(MA_CT ='SOA')";
+                cKey = "1=1";
             }
 
             if (!string.IsNullOrEmpty(key1))
@@ -107,7 +110,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
 
             result.Add(new SqlParameter("@condition", cKey));
-
+            result.Add(new SqlParameter("@giam_tru", chkGiamTru.Checked ? 1 : 0));
           
             return result;
         }

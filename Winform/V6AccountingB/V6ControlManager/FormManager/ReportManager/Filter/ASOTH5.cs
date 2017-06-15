@@ -32,6 +32,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             TxtKieu_bc.Text = "3";
             TxtKy_bc.Value = 3;
+            chkGiamTru.Checked = true;
 
             Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
@@ -100,20 +101,21 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 "NH_VT1","NH_VT2","NH_VT3","NH_VT4","NH_VT5","NH_VT6", "MA_QG", "MA_NSX", "TK_VT"
             }, and);
 
+           
             if (!string.IsNullOrEmpty(key0))
             {
                 if (and)
                 {
-                    cKey ="(MA_CT ='SOA') AND "+ string.Format("(1=1 AND {0})", key0);
+                    cKey = string.Format("(1=1 AND {0})", key0);
                 }
                 else
                 {
-                    cKey = "(MA_CT ='SOA') AND " + string.Format("(1=2 OR {0})", key0);
+                    cKey = string.Format("(1=2 OR {0})", key0);
                 }
             }
             else
             {
-                cKey = "(MA_CT ='SOA')";
+                cKey = "1=1";
             }
 
             if (!string.IsNullOrEmpty(key1))
@@ -134,6 +136,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Maubc",RTien=="VN"?0:1));
             result.Add(new SqlParameter("@mLan",RLan));
             result.Add(new SqlParameter("@Loaibc", cbbLoaiBaoCao.SelectedIndex == 0 ? "S" : cbbLoaiBaoCao.SelectedIndex == 1 ? "G" : "C"));
+            result.Add(new SqlParameter("@giam_tru", chkGiamTru.Checked ? 1 : 0));
 
           
             return result;
