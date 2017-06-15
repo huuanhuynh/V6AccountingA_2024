@@ -1083,7 +1083,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                     {
                         _data = row.ToDataDictionary();
 
-                        var f = ChangeCodeManager.GetChangeCodeControl(CurrentTable, _data);
+                        var f = ChangeCodeManager.GetChangeCodeControl(_tableName, _data);
                         if (f != null)
                         {
                             f.DoChangeCodeFinish += f_DoChangeCodeFinish;

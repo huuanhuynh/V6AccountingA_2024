@@ -457,7 +457,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     {
                         _data = row.ToDataDictionary();
 
-                        var f = ChangeCode.ChangeCodeManager.GetChangeCodeControl(CurrentTable, _data);
+                        var f = ChangeCode.ChangeCodeManager.GetChangeCodeControl(_tableName, _data);
                         if (f != null)
                         {
                             f.DoChangeCodeFinish += f_DoChangeCodeFinish;
@@ -631,7 +631,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                 == DialogResult.Yes)
                             {
                                 confirm = true;
-                                t = _categories.Delete(CurrentTable, keys);
+                                t = _categories.Delete(_tableName, keys);
 
                                 if (t > 0)
                                 {
@@ -695,7 +695,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         {
                             this.ShowWarningMessage("Không có khóa UID. Vẫn xóa!");
 
-                            _categories.Delete(CurrentTable, _data);
+                            _categories.Delete(_tableName, _data);
                         }
                     }
 

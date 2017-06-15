@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Data.SqlClient;
 using V6AccountingBusiness;
+using V6Init;
 using V6Structs;
+using V6Tools.V6Convert;
+
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
     public partial class Aldm : AddEditControlVirtual
     {
+        private int maxlen_ma;
+
         public Aldm()
         {
             InitializeComponent();
@@ -12,14 +18,26 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void KhachHangFrom_Load(object sender, System.EventArgs e)
         {
-           // txtval.Focus();
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@ctable", TXTMA_DM.Text.Trim()),
+                new SqlParameter("@cField", txtvalue.Text.Trim()),
+            };
+            maxlen_ma = ObjectAndString.ObjectToInt(V6BusinessHelper.ExecuteFunctionScalar("VFV_iFsize", plist));
+            if (maxlen_ma == 0)
+            {
+                maxlen_ma = 16;
+            }
         }
+
+        public override void DoBeforeAdd()
+        {
+            
+        }
+
         public override void DoBeforeEdit()
         {
-            if (Mode == V6Mode.Edit)
-            {
-               
-            }
+            
         }
   
         public override void V6F3Execute()
@@ -55,9 +73,50 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (errors.Length > 0) throw new Exception(errors);
         }
 
-        private void v6CheckBox1_CheckedChanged(object sender, EventArgs e)
+        private void Make_Mau()
         {
+            var result = "";
+            var result_mau = "";
+            var _so_ct = Convert.ToString((int) TxtSTT13.Value);
 
+            if (txtEXPR1.Text.Trim() != "")
+            {
+                result = txtEXPR1.Text.Trim();
+                result_mau = txtEXPR1.Text.Trim();
+            }
+            if (txtFORM.Text.Trim() != "")
+            {
+                result += "{0:" + txtFORM.Text.Trim() + "}";
+                result_mau += (txtFORM.Text.Trim() + _so_ct).Right(txtFORM.Text.Trim().Length);
+            }
+            else
+            {
+                result += "{0}";
+                if (TxtSTT13.Value > 0)
+                {
+                    result_mau += _so_ct;
+                }
+                else
+                {
+                    result_mau += "1";
+                }
+            }
+
+            TxtTransform.Text = result;
+            TxtMau.Text = result_mau;
+          
+            if (TxtMau.Text.Trim().Length > maxlen_ma)
+            {
+                txtEXPR1.Text = "";
+                txtFORM.Text = "000";
+                this.ShowWarningMessage("Quá giới hạn mã !");
+            }
+
+        }
+
+        private void TxtSTT13_TextChanged(object sender, EventArgs e)
+        {
+            if(IsReady) Make_Mau();
         }
 
     }

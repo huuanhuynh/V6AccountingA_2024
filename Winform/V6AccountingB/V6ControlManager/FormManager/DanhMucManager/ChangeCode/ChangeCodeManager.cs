@@ -6,8 +6,9 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
 {
     public static class ChangeCodeManager
     {
-        public static ChangeCodeBase0 GetChangeCodeControl(V6TableName name, SortedDictionary<string, object> data)
+        public static ChangeCodeBase0 GetChangeCodeControl(string tableName, SortedDictionary<string, object> data)
         {
+            var name = V6TableHelper.ToV6TableName(tableName);
             
             switch (name)
             {
@@ -42,7 +43,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
                     return new AllChangeCodeForm(data, name.ToString());
 
                 default:
-                    var tableName = name.ToString();
+                    //var tableName = name.ToString();
                     IDictionary<string, object> keys = new Dictionary<string, object>();
                     keys.Add("MA_DM", tableName);
                     var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;

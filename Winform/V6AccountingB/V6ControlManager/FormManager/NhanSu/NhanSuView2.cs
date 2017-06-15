@@ -334,7 +334,7 @@ namespace V6ControlManager.FormManager.NhanSu
                             var data = new SortedDictionary<string, object>();
                             data.AddRange(treeListViewAuto1.SelectedItems[0].ToNhanSuDictionary());
 
-                            var f = DanhMucManager.ChangeCode.ChangeCodeManager.GetChangeCodeControl(CurrentTable, data);
+                            var f = DanhMucManager.ChangeCode.ChangeCodeManager.GetChangeCodeControl(_tableName, data);
                             if (f != null)
                             {
                                 f.DoChangeCodeFinish += f_DoChangeCodeFinish;

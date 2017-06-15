@@ -6,6 +6,7 @@ using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -81,6 +82,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             //load truoc lop ke thua
             if (Mode == V6Mode.Add)
             {
+                GetNewID();
                 DoBeforeAdd();
                 if(DataOld != null) DoBeforeCopy();
             }
@@ -450,6 +452,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 DataDic = GetData();
                 ValidateData();
                 var result = Categories.Insert(TableName, DataDic);
+                if (result && update_stt13)
+                {
+                    AddStt13();
+                }
                 return result;
             }
             catch (Exception ex)
@@ -508,6 +514,57 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public virtual void ValidateData()
         {
             
+        }
+
+        protected virtual void GetNewID()
+        {
+            try
+            {
+                //Get aldm row
+                IDictionary<string, object> keys = new Dictionary<string, object>();
+                keys.Add("MA_DM", TableName.ToString());
+                var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
+                if (aldm.Rows.Count == 1)
+                {
+                    var _dataRow = aldm.Rows[0];
+                    var increase = _dataRow["increase_yn"].ToString().Trim();
+                    if (increase == "1")
+                    {
+                        update_stt13 = true;
+                        var id_field = _dataRow["Value"].ToString().Trim().ToUpper();
+                        var stt13 = ObjectAndString.ObjectToInt(_dataRow["Stt13"]);
+                        var transform = _dataRow["transform"].ToString().Trim();
+                        var value = string.Format(transform, stt13 + 1);
+                        IDictionary<string, object> value_dic = new SortedDictionary<string, object>();
+                        value_dic.Add(id_field, value);
+                        V6ControlFormHelper.SetSomeDataDictionary(this, value_dic);
+                        //var control = V6ControlFormHelper.GetControlByAccesibleName(this, id_field);
+                        //if (control != null && control is TextBox)
+                        //{
+                        //    ((TextBox) control).Text = value;
+                        //}
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GetNewID", ex);
+            }
+        }
+
+        protected bool update_stt13;
+        protected virtual void AddStt13()
+        {
+            try
+            {
+                var sql = "Update Aldm set Stt13=Stt13+1 where ma_dm=@ma_dm";
+                SqlParameter[] plist = new []{new SqlParameter("@ma_dm", TableName.ToString())};
+                V6BusinessHelper.ExecuteSqlNoneQuery(sql, plist);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".AddStt13", ex);
+            }
         }
 
         /// <summary>

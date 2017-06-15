@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Init;
@@ -330,6 +331,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 DataDic = GetData();
                 ValidateData();
                 var result = Categories.Insert(TableName, DataDic);
+                if (result && update_stt13)
+                {
+                    AddStt13();
+                }
                 return result;
             }
             catch (Exception ex)
@@ -359,6 +364,53 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 this.ShowErrorException(GetType() + ".UpdateData", ex);
                 return 0;
             }
+        }
+
+        protected override void GetNewID()
+        {
+            try
+            {
+                var increase = _dataRow["increase_yn"].ToString().Trim();
+                if (increase == "1")
+                {
+                    update_stt13 = true;
+                    var id_field = _dataRow["Value"].ToString().Trim().ToUpper();
+                    var stt13 = ObjectAndString.ObjectToInt(_dataRow["Stt13"]);
+                    var transform = _dataRow["transform"].ToString().Trim();
+                    var value = string.Format(transform, stt13 + 1);
+                    IDictionary<string, object> value_dic = new SortedDictionary<string, object>();
+                    value_dic.Add(id_field, value);
+                    V6ControlFormHelper.SetSomeDataDictionary(this, value_dic);
+                    //var control = V6ControlFormHelper.GetControlByAccesibleName(this, id_field);
+                    //if (control != null && control is TextBox)
+                    //{
+                    //    ((TextBox) control).Text = value;
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GetNewID", ex);
+            }
+        }
+
+        protected override void AddStt13()
+        {
+            try
+            {
+                var sql = "Update Aldm set Stt13=Stt13+1 where ma_dm=@ma_dm";
+                SqlParameter[] plist = new[] { new SqlParameter("@ma_dm", TableName) };
+                V6BusinessHelper.ExecuteSqlNoneQuery(sql, plist);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".AddStt13 override", ex);
+            }
+        }
+
+        public override void DoBeforeAdd()
+        {
+            
         }
 
         public override void DoBeforeEdit()
