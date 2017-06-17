@@ -21,6 +21,7 @@
                 return V6Setting.Language == "V" ? "Đã có phát sinh, không được xóa!" : "Has been used, can not delete!";
             }
         }
+
         
         public static string ExitQuestion
         {
@@ -175,6 +176,9 @@
         public static string CloseConfirm { get { return V6Setting.Language == "V" ? "Có chắc bạn muốn đóng lại?" : "Are you sure want to close?"; } }
         public static string Delete { get { return V6Setting.Language == "V" ? "Xóa" : "Delete"; } }
         public static string Confirm { get { return V6Setting.Language == "V" ? "Xác nhận" : "Confirm"; } }
+        public static string CheckInfor { get { return V6Setting.Language == "V" ? "Kiểm tra thông tin chưa đầy đủ !" : "Check information again !"; } }
+        public static string CheckDeclare { get { return V6Setting.Language == "V" ? "Kiểm tra khai báo hệ thống quản lý !" : "Check system information again !"; } }
+        
         public static string DeleteConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn xóa?" : "Are you sure to delete?"; } }
         public static string DeleteRowConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn xóa dòng đang chọn?" : "Are you sure to delete selected row?"; } }
         public static string DeleteDenied { get { return V6Setting.Language == "V" ? "Không được xóa." : "Delete Denied."; } }
@@ -194,6 +198,9 @@
         public static string SelectWarehouse { get { return V6Setting.Language == "V" ? "Chưa chọn mã kho!" : "Select warehouse please!"; } }
         public static string ZoomIn { get { return V6Setting.Language == "V" ? "Phóng" : "ZoomIn"; } }
         public static string ZoomOut { get { return V6Setting.Language == "V" ? "Thu" : "ZoomOut"; } }
+
+        public static string Toolong { get { return V6Setting.Language == "V" ? "Quá dài !" : "Too long! "; } }
+       
         public static string NoRight
         {
             get

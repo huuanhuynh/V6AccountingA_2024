@@ -338,7 +338,7 @@
             // 
             this.label35.AccessibleDescription = "";
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(553, 40);
+            this.label35.Location = new System.Drawing.Point(553, 39);
             this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(35, 17);
@@ -374,7 +374,7 @@
             // 
             this.label27.AccessibleDescription = "";
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(0, 65);
+            this.label27.Location = new System.Drawing.Point(0, 63);
             this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(83, 17);
@@ -385,7 +385,7 @@
             // 
             this.label26.AccessibleDescription = "";
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(551, 65);
+            this.label26.Location = new System.Drawing.Point(551, 64);
             this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(73, 17);
@@ -432,9 +432,9 @@
             this.label34.Location = new System.Drawing.Point(278, 37);
             this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(92, 17);
+            this.label34.Size = new System.Drawing.Size(142, 17);
             this.label34.TabIndex = 126;
-            this.label34.Text = "Định dạng số";
+            this.label34.Text = "Định dạng số ( 0000)";
             // 
             // txtFORM
             // 
@@ -459,7 +459,7 @@
             // 
             this.label11.AccessibleDescription = "FORM";
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1, 40);
+            this.label11.Location = new System.Drawing.Point(1, 37);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(48, 17);

@@ -118,6 +118,9 @@ namespace V6Structs
                 case "WIDTH":
                     Width = value;
                     break;
+                case "MAXLENGTH":
+                    int.TryParse(value, out MaxLength);
+                    break;
 
                 default:
                     break;
@@ -199,6 +202,7 @@ namespace V6Structs
         /// Số chữ số lẽ sau dấu thập phân.
         /// </summary>
         public int Decimals = 0;
+        public int MaxLength = 0;
         public string DefaultValue { get; set; }
         /// <summary>
         /// Key là LimitChars hoặc LimitChar không phân biệt hoa thường.

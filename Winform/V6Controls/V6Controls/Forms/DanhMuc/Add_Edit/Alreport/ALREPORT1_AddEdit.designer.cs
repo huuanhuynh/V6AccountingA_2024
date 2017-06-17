@@ -41,6 +41,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnEditFilter = new System.Windows.Forms.Button();
             this.v6ColorTextBox2 = new V6Controls.V6ColorTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
@@ -55,7 +56,6 @@
             this.label46 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnEditFilter = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -277,6 +277,20 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
+            // btnEditFilter
+            // 
+            this.btnEditFilter.AccessibleName = "";
+            this.btnEditFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditFilter.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnEditFilter.Location = new System.Drawing.Point(751, 22);
+            this.btnEditFilter.Name = "btnEditFilter";
+            this.btnEditFilter.Size = new System.Drawing.Size(40, 25);
+            this.btnEditFilter.TabIndex = 74;
+            this.btnEditFilter.Text = "...";
+            this.btnEditFilter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditFilter.UseVisualStyleBackColor = true;
+            this.btnEditFilter.Click += new System.EventHandler(this.btnEditFilter_Click);
+            // 
             // v6ColorTextBox2
             // 
             this.v6ColorTextBox2.AccessibleName = "KEY4";
@@ -289,7 +303,7 @@
             this.v6ColorTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox2.Location = new System.Drawing.Point(119, 160);
+            this.v6ColorTextBox2.Location = new System.Drawing.Point(119, 225);
             this.v6ColorTextBox2.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox2.Name = "v6ColorTextBox2";
             this.v6ColorTextBox2.Size = new System.Drawing.Size(672, 23);
@@ -298,7 +312,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 162);
+            this.label5.Location = new System.Drawing.Point(11, 227);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 17);
@@ -317,7 +331,7 @@
             this.v6ColorTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox1.Location = new System.Drawing.Point(119, 131);
+            this.v6ColorTextBox1.Location = new System.Drawing.Point(119, 196);
             this.v6ColorTextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
             this.v6ColorTextBox1.Size = new System.Drawing.Size(672, 23);
@@ -326,7 +340,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 134);
+            this.label4.Location = new System.Drawing.Point(11, 199);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 17);
@@ -345,7 +359,7 @@
             this.v6ColorTextBox22.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox22.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox22.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox22.Location = new System.Drawing.Point(119, 104);
+            this.v6ColorTextBox22.Location = new System.Drawing.Point(119, 169);
             this.v6ColorTextBox22.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox22.Name = "v6ColorTextBox22";
             this.v6ColorTextBox22.Size = new System.Drawing.Size(672, 23);
@@ -363,7 +377,7 @@
             this.v6ColorTextBox21.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox21.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox21.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox21.Location = new System.Drawing.Point(119, 77);
+            this.v6ColorTextBox21.Location = new System.Drawing.Point(119, 142);
             this.v6ColorTextBox21.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox21.Name = "v6ColorTextBox21";
             this.v6ColorTextBox21.Size = new System.Drawing.Size(672, 23);
@@ -372,7 +386,7 @@
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(11, 107);
+            this.label53.Location = new System.Drawing.Point(11, 172);
             this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(43, 17);
@@ -382,7 +396,7 @@
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(11, 80);
+            this.label52.Location = new System.Drawing.Point(11, 145);
             this.label52.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(43, 17);
@@ -401,7 +415,7 @@
             this.v6ColorTextBox16.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox16.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox16.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox16.Location = new System.Drawing.Point(119, 50);
+            this.v6ColorTextBox16.Location = new System.Drawing.Point(119, 115);
             this.v6ColorTextBox16.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox16.Name = "v6ColorTextBox16";
             this.v6ColorTextBox16.Size = new System.Drawing.Size(672, 23);
@@ -421,14 +435,15 @@
             this.txtFilter.LeaveColor = System.Drawing.Color.White;
             this.txtFilter.Location = new System.Drawing.Point(119, 24);
             this.txtFilter.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFilter.Multiline = true;
             this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(625, 23);
+            this.txtFilter.Size = new System.Drawing.Size(625, 83);
             this.txtFilter.TabIndex = 0;
             // 
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(11, 53);
+            this.label47.Location = new System.Drawing.Point(11, 118);
             this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(74, 17);
@@ -473,20 +488,7 @@
             this.tabPage2.Text = "Thông tin ngầm định";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnEditFilter
-            // 
-            this.btnEditFilter.AccessibleName = "";
-            this.btnEditFilter.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEditFilter.Location = new System.Drawing.Point(751, 22);
-            this.btnEditFilter.Name = "btnEditFilter";
-            this.btnEditFilter.Size = new System.Drawing.Size(40, 25);
-            this.btnEditFilter.TabIndex = 74;
-            this.btnEditFilter.Text = "...";
-            this.btnEditFilter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEditFilter.UseVisualStyleBackColor = true;
-            this.btnEditFilter.Click += new System.EventHandler(this.btnEditFilter_Click);
-            // 
-            // ALREPORT1
+            // ALREPORT1_AddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

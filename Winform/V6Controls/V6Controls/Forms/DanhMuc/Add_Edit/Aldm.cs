@@ -28,6 +28,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 maxlen_ma = 16;
             }
+            Make_Mau();
         }
 
         public override void DoBeforeAdd()
@@ -48,26 +49,25 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (TXTMA_DM.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
+                errors += V6Text.CheckInfor+"\r\n";
             if (TXTTEN_DM.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
+                errors += V6Text.CheckInfor + "\r\n";
 
+            
 
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_DM",
                  TXTMA_DM.Text.Trim(), DataOld["MA_DM"].ToString());
                 if (!b)
-                    throw new Exception("Không được sửa mã đã tồn tại: "
-                                                    + "MA_DM = " + TXTMA_DM.Text.Trim());
+                    throw new Exception(V6Text.EditDenied + " MA_DM = " + TXTMA_DM.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_DM",
                  TXTMA_DM.Text.Trim(), TXTMA_DM.Text.Trim());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_DM = " + TXTMA_DM.Text.Trim());
+                    throw new Exception(V6Text.AddDenied + " MA_DM = " + TXTMA_DM.Text.Trim());
             }
 
             if (errors.Length > 0) throw new Exception(errors);
@@ -109,7 +109,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 txtEXPR1.Text = "";
                 txtFORM.Text = "000";
-                this.ShowWarningMessage("Quá giới hạn mã !");
+                this.ShowWarningMessage(V6Text.Toolong);
             }
 
         }
@@ -117,6 +117,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void TxtSTT13_TextChanged(object sender, EventArgs e)
         {
             if(IsReady) Make_Mau();
+            
         }
 
     }

@@ -45,6 +45,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 txtLoaiKey.Text = Info.Loai_key;
                 txtBField.Text = Info.BField;
                 txtDecimals.Text = Info.Decimals.ToString();
+                txtmaxlength.Text = Info.MaxLength.ToString();
             }
             catch (Exception ex)
             {

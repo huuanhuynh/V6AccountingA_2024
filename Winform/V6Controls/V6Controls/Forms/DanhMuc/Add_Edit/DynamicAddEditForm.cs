@@ -20,7 +20,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private string TableName;//Đè kiểu cũ. Các hàm cũ đã override.
         private DataRow _dataRow;
         private DataTable Alreport1Data = null;
-        private Dictionary<V6NumberTextBox, int> NumberTextBox_Format = new Dictionary<V6NumberTextBox, int>();
+        private Dictionary<V6NumberTextBox, int> NumberTextBox_Decimals = new Dictionary<V6NumberTextBox, int>();
+        private Dictionary<V6ColorTextBox, int> V6ColorTextBox_MaxLength = new Dictionary<V6ColorTextBox, int>();
         private Dictionary<string, DefineInfo> DefineInfo_Data = new Dictionary<string, DefineInfo>(); 
 
         public DynamicAddEditForm(string tableName, DataRow dataRow)
@@ -66,7 +67,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         input = new V6NumberTextBox();
                         var nT = (V6NumberTextBox)input;
                         //nT.DecimalPlaces = defineInfo.Decimals;
-                        NumberTextBox_Format[nT] = defineInfo.Decimals;
+                        NumberTextBox_Decimals[nT] = defineInfo.Decimals;
                     }
                     else
                     {
@@ -75,12 +76,25 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             VVar = defineInfo.Vvar,
                         };
                         if(defineInfo.ToUpper) input.CharacterCasing = CharacterCasing.Upper;
+
+                        var maxlength = 1;
+                        if (!string.IsNullOrEmpty(defineInfo.LimitChars))
+                        {
+                            input.LimitCharacters = defineInfo.LimitChars;
+                            input.MaxLength = maxlength;
+                        }
+
                         var tT = (V6VvarTextBox)input;
                         tT.SetInitFilter(defineInfo.InitFilter);
                         tT.F2 = defineInfo.F2;
                     }
                     if (input != null)
                     {
+                        if (!(input is V6NumberTextBox) && !(input is V6DateTimeColor))
+                        {
+                            V6ColorTextBox_MaxLength.Add(input, defineInfo.MaxLength);
+                        }
+                        
                         input.AccessibleName = defineInfo.Field;
                         input.Width = string.IsNullOrEmpty(defineInfo.Width)
                             ? 150
@@ -94,7 +108,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         {
                             var tT = (V6VvarTextBox)input;
                             tT.BrotherFields = defineInfo.BField;
-                            var txtB = new V6ColorTextBox();
+                            var txtB = new V6LabelTextBox();
                             txtB.AccessibleName = defineInfo.BField;
                             txtB.Top = top;
                             txtB.Left = input.Right + 10;
@@ -139,7 +153,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         protected override void LoadAll()
         {
             LoadStruct();//MaxLength...
-            FixNumberTextBoxFormat();
+            FixMaxLengFormat();
             V6ControlFormHelper.LoadAndSetFormInfoDefine(TableName.ToString(), this, Parent);
 
             if (Mode == V6Mode.Edit)
@@ -168,16 +182,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        private void FixNumberTextBoxFormat()
+        private void FixMaxLengFormat()
         {
             try
             {
-                foreach (KeyValuePair<V6NumberTextBox, int> item in NumberTextBox_Format)
+                foreach (KeyValuePair<V6NumberTextBox, int> item in NumberTextBox_Decimals)
                 {
                     var addLength = item.Value - item.Key.DecimalPlaces;
                     if (item.Key.DecimalPlaces == 0 && item.Value > 0) addLength++;
                     item.Key.DecimalPlaces = item.Value;
                     item.Key.MaxLength += addLength;
+                }
+
+                foreach (KeyValuePair<V6ColorTextBox, int> item in V6ColorTextBox_MaxLength)
+                {
+                    if(item.Value != 0) item.Key.MaxLength = item.Value;
                 }
             }
             catch (Exception ex)
@@ -431,12 +450,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     {
                         if (DataDic[item.Key].ToString().Trim() == "")
                         {
-                            errors += string.Format("Chưa nhập {0}: {1}\r\n", item.Key, item.Value.TextLang(V6Setting.IsVietnamese));
+                            errors += string.Format(V6Text.CheckInfor +"{0}: {1}\r\n", item.Key, item.Value.TextLang(V6Setting.IsVietnamese));
                         }
                     }
                     else
                     {
-                        errors += string.Format("Không lấy được dữ liệu {0}: {1}\r\n", item.Key, item.Value.TextLang(V6Setting.IsVietnamese));
+                        errors += string.Format(V6Text.CheckDeclare + "{0}: {1}\r\n", item.Key, item.Value.TextLang(V6Setting.IsVietnamese));
                     }
                 }
             }
@@ -454,14 +473,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     bool b = V6BusinessHelper.IsValidOneCode_Full(TableName, 0, KEY1,
                      DataDic[KEY1].ToString(), DataOld[KEY1].ToString());
                     if (!b)
-                        throw new Exception(string.Format("Không được sửa mã đã tồn tại: {0} = {1}", KEY1, DataDic[KEY1]));
+                        throw new Exception(string.Format(V6Text.EditDenied+" {0} = {1}", KEY1, DataDic[KEY1]));
                 }
                 else if (Mode == V6Mode.Add)
                 {
                     bool b = V6BusinessHelper.IsValidOneCode_Full(TableName, 1, KEY1,
                         DataDic[KEY1].ToString(), DataDic[KEY1].ToString());
                     if (!b)
-                        throw new Exception(string.Format("Không được thêm mã đã tồn tại: {0} = {1}", KEY1, DataDic[KEY1]));
+                        throw new Exception(string.Format(V6Text.AddDenied + "{0} = {1}", KEY1, DataDic[KEY1]));
                 }
             }
             else if (GRD_COL == "TWOCODE" && KEY_LIST.Length > 1)
@@ -474,7 +493,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         KEY1, DataDic[KEY1].ToString(), DataOld[KEY1].ToString(),
                         KEY2, DataDic[KEY2].ToString(), DataOld[KEY2].ToString());
                     if (!b)
-                        throw new Exception(string.Format("Không được sửa mã đã tồn tại: {0},{1} = {2},{3}",
+                        throw new Exception(string.Format(V6Text.EditDenied + " {0},{1} = {2},{3}",
                             KEY1, KEY2, DataDic[KEY1], DataDic[KEY2]));
                 }
                 else if (Mode == V6Mode.Add)
@@ -483,7 +502,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         KEY1, DataDic[KEY1].ToString(), DataDic[KEY1].ToString(),
                         KEY2, DataDic[KEY2].ToString(), DataDic[KEY2].ToString());
                     if (!b)
-                        throw new Exception(string.Format("Không được thêm mã đã tồn tại: {0},{1} = {2},{3}",
+                        throw new Exception(string.Format(V6Text.AddDenied + " {0},{1} = {2},{3}",
                             KEY1, KEY2, DataDic[KEY1], DataDic[KEY2]));
                 }
             }
@@ -499,7 +518,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         KEY2, DataDic[KEY2].ToString(), DataOld[KEY2].ToString(),
                         KEY3, DataDic[KEY3].ToString(), DataOld[KEY3].ToString());
                     if (!b)
-                        throw new Exception(string.Format("Không được sửa mã đã tồn tại: {0},{1},{2} = {3},{4},{5}",
+                        throw new Exception(string.Format(V6Text.EditDenied + " {0},{1},{2} = {3},{4},{5}",
                             KEY1, KEY2, KEY3, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3]));
                 }
                 else if (Mode == V6Mode.Add)
@@ -509,7 +528,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         KEY2, DataDic[KEY2].ToString(), DataDic[KEY2].ToString(),
                         KEY3, DataDic[KEY3].ToString(), DataDic[KEY3].ToString());
                     if (!b)
-                        throw new Exception(string.Format("Không được thêm mã đã tồn tại: {0},{1},{2} = {3},{4},{5}",
+                        throw new Exception(string.Format(V6Text.AddDenied + ": {0},{1},{2} = {3},{4},{5}",
                             KEY1, KEY2, KEY3, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3]));
                 }
             }
@@ -525,7 +544,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataOld[KEY2], "yyyyMMdd"),
                         KEY3, DataDic[KEY3].ToString(), ObjectAndString.ObjectToString(DataOld[KEY3], "yyyyMMdd"));
                     if (!b)
-                        throw new Exception(string.Format("Không được sửa mã đã tồn tại: {0},{1},{2} = {3},{4},{5}",
+                        throw new Exception(string.Format(V6Text.EditDenied + " {0},{1},{2} = {3},{4},{5}",
                             KEY1, KEY2, KEY3, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3]));
                 }
                 else if (Mode == V6Mode.Add)
@@ -535,7 +554,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataDic[KEY2], "yyyyMMdd"),
                         KEY3, DataDic[KEY3].ToString(), ObjectAndString.ObjectToString(DataDic[KEY3], "yyyyMMdd"));
                     if (!b)
-                        throw new Exception(string.Format("Không được thêm mã đã tồn tại: {0},{1},{2} = {3},{4},{5}",
+                        throw new Exception(string.Format(V6Text.AddDenied + " {0},{1},{2} = {3},{4},{5}",
                             KEY1, KEY2, KEY3, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3]));
                 }
             }
