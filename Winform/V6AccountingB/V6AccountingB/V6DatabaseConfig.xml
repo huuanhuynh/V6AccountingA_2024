@@ -42,8 +42,8 @@
     <Stt>3</Stt>
     <Server>192.168.1.99\SQLSERVER2K8</Server>
     <Server2>192.168.1.99\SQLSERVER2K8</Server2>
-    <Database>HAITRIEU16</Database>
-    <Database2>HAITRIEU16</Database2>
+    <Database>MOTEL38</Database>
+    <Database2>MOTEL38</Database2>
     <UserId>sa</UserId>
     <UserId2>sa</UserId2>
     <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
@@ -51,11 +51,11 @@
     <Api>api</Api>
     <Api2>api</Api2>
     <TimeOut>120</TimeOut>
-    <Note>HẢI TRIỀU</Note>
+    <Note>MOTEL38</Note>
     <UseIsolation>1</UseIsolation>
     <Run>1</Run>
     <Type>0</Type>
-    <Key>OC1Rf9DFiPYg0njmmdo/yUZAoF2wV8KJ7Cc53EhXYIWeA/UGIqfCrw==</Key>
+    <Key>OC1Rf9DFiPYg0njmmdo/yUZAoF2wV8KJQ+uDUEBAJmA01+lAbCo3tA==</Key>
   </DatabaseList>
   <DatabaseList>
     <Stt>4</Stt>
