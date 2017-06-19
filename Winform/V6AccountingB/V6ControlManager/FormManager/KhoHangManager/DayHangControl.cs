@@ -134,8 +134,8 @@ namespace V6ControlManager.FormManager.KhoHangManager
                 if (KhoParams.Program == "AINVITRI03")
                 {
                     // Sửa nhiều dòng trong dãy"
-                    var condition = string.Format("MA_KHO='{0}' and MA_VITRI like '__{1}%'", MA_KHO.Replace("'", "''"),
-                    ID.Replace("'", "''"));
+                    var condition = string.Format("MA_KHO='{0}' and MA_VITRI like '__{1}%' and MA_VT ='{2}'", MA_KHO.Replace("'", "''"),
+                    ID.Replace("'", "''"), container._mavt.Replace("'", "''"));
 
                     SqlParameter[] plist =
                     {
@@ -149,7 +149,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     plistData = new SortedDictionary<string, object>();
                     plistData["MA_KHO"] = MA_KHO;
                     plistData["MA_VITRI"] = ID;
-                    plistData["MA_VT"] = "";
+                    plistData["MA_VT"] = container._mavt;
                     plistData["NAM"] = container._cuoiNgay.Year;
                     plistData["THANG"] = container._cuoiNgay.Month;
                     plistData["MA_KH"] = "";

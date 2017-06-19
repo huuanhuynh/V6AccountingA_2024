@@ -91,7 +91,7 @@
             this.dateCuoiNgay.Name = "dateCuoiNgay";
             this.dateCuoiNgay.Size = new System.Drawing.Size(96, 20);
             this.dateCuoiNgay.TabIndex = 3;
-            this.dateCuoiNgay.TextTitle = null;
+            this.dateCuoiNgay.ValueChanged += new System.EventHandler(this.dateCuoiNgay_ValueChanged);
             // 
             // btnSuaTTMauBC
             // 

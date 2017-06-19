@@ -21,6 +21,8 @@ namespace V6ControlManager.FormManager.KhoHangManager
         private Point _p = new Point(0, 0);
         private DataTable MauInData;
         public DateTime _cuoiNgay { get; set; }
+        public string _mavt { get; set; }
+
         private KhoHangControl _khoHang;
 
         public KhoParams KhoParams { get; set; }
@@ -160,6 +162,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
 
                 FormManagerHelper.HideMainMenu();
                 _cuoiNgay = dateCuoiNgay.Value;
+                _mavt = txtMavt.Text.Trim();
                 if (txtMaKho.Text == "")
                 {
                     this.ShowMessage(V6Text.SelectWarehouse);
@@ -248,12 +251,23 @@ namespace V6ControlManager.FormManager.KhoHangManager
             if (_khoHang == null) return;
             var condition = string.Format("MA_KHO='{0}'", txtMaKho.Text.Replace("'", "''"));
             //txtMavt.Text.Trim() == "" ? "" : string.Format("and MA_VT='{0}'", txtMavt.Text.Replace("'", "''")));
+            //tuanmh 18/06/2017
+            if (KhoParams.Program == "AINVITRI03")
+            {
+                if (txtMavt.Text.Trim() != "")
+                {
+                    condition = condition + string.Format(" and MA_VT='{0}'", txtMavt.Text.Replace("'", "''"));
+                }
+            }
+
             SqlParameter[] plist =
             {
                 new SqlParameter("@EndDate", _cuoiNgay.ToString("yyyyMMdd")),
                 new SqlParameter("@Condition", condition),
                 new SqlParameter("@Vttonkho", "*"),
                 new SqlParameter("@Kieu_in", "*"),
+                new SqlParameter("@Makho",  txtMaKho.Text.Trim()),
+                new SqlParameter("@Mavt", txtMavt.Text.Trim()),
             };
             var data_vitri_vattu = V6BusinessHelper.ExecuteProcedure(KhoParams.Program, plist).Tables[0];
             _khoHang.SetDataViTriVatTu(data_vitri_vattu);
@@ -362,6 +376,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
 
         private void txtMavt_V6LostFocus(object sender)
         {
+            _mavt = txtMavt.Text.Trim();
             SetColorMavt(txtMavt.Text, Color.Blue);
         }
 
@@ -376,6 +391,12 @@ namespace V6ControlManager.FormManager.KhoHangManager
                 ClearDataVitriVaTu();
                 SetDataViTriVatTu();
             }
+        }
+
+        private void dateCuoiNgay_ValueChanged(object sender, EventArgs e)
+        {
+            //Tuanmh 17/06/2017
+            _cuoiNgay = dateCuoiNgay.Value;
         }
     }
 }
