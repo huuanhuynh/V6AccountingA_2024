@@ -61,7 +61,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 new SqlParameter("@nam", dateYear.Value.Year),
                 new SqlParameter("@thang", dateMonth.Value.Month),
                 new SqlParameter("@Ma_kh", txtMaKh.Text),
-                new SqlParameter("@Advance", ""),//mavitri like???
+                new SqlParameter("@Advance", advance),//mavitri like???
             };
 
             return result;

@@ -104,7 +104,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     new SqlParameter("@Nam", dateYear.Value.Year), 
                     new SqlParameter("@Thang", dateMonth.Value.Month), 
                     new SqlParameter("@Ma_kh", txtMaKh.Text), 
-                    new SqlParameter("@Advance", ""), 
+                    new SqlParameter("@Advance", advance), 
                 };
                 _ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, plist);
 
@@ -157,9 +157,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     dateYear.Value = date;
                     dateMonth.Value = date;
                 }
-                if (d.ContainsKey("MA_KHO")) lineMaKho.VvarTextBox.Text = d["MA_KHO"].ToString().Trim();
-                if (d.ContainsKey("MA_VITRI")) lineMaVitri.VvarTextBox.Text = d["MA_VITRI"].ToString().Trim();
-                if (d.ContainsKey("MA_VT")) lineMaVatTu.VvarTextBox.Text = d["MA_VT"].ToString().Trim();
+                if (d.ContainsKey("MA_KHO")) lineMaKho.VvarTextBox.Text = (d["MA_KHO"]??"").ToString().Trim();
+                if (d.ContainsKey("MA_VITRI")) lineMaVitri.VvarTextBox.Text = (d["MA_VITRI"]??"").ToString().Trim();
+                if (d.ContainsKey("MA_VT")) lineMaVatTu.VvarTextBox.Text = (d["MA_VT"]??"").ToString().Trim();
             }
             catch (Exception ex)
             {

@@ -3330,6 +3330,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     GetTyGiaDefault();
                     GetDefault_Other();
                     SetDefaultData(Invoice);
+                    XuLyKhoaThongTinTheoMaGD();
+                    XuLyThayDoiLoaiPhieuThu();
                     detail1.DoAddButtonClick();
                     SetDefaultDetail();
                     detail2.MODE = V6Mode.Init;

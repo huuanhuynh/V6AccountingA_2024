@@ -4340,6 +4340,15 @@ namespace V6Controls.Forms
             return null;
         }
 
-        
+        /// <summary>
+        /// Kiểm tra bảng dữ liệu có đủ những trường cần thiết hay không.
+        /// </summary>
+        /// <param name="dataTable">Bảng dữ liệu cần kiểm tra</param>
+        /// <param name="columns">Các cột dữ liệu cần phải có</param>
+        /// <returns></returns>
+        public static bool CheckDataFields(DataTable dataTable, IList<string> columns)
+        {
+            return columns.All(column => dataTable.Columns.Contains(column));
+        }
     }
 }

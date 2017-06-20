@@ -586,6 +586,7 @@ namespace V6Controls
         public static SortedDictionary<string, object> ToDataDictionary(this DataRow row)
         {
             var DataDic = new SortedDictionary<string, object>();
+            if (row == null) return DataDic;
             for (int i = 0; i < row.Table.Columns.Count; i++)
             {
                 DataDic.Add(row.Table.Columns[i].ColumnName.ToUpper(), row[i]);
@@ -596,6 +597,7 @@ namespace V6Controls
         public static SortedDictionary<string, object> ToDataDictionary(this DataRow row, string sttRec)
         {
             var DataDic = new SortedDictionary<string, object>();
+            if (row == null) return DataDic;
             for (int i = 0; i < row.Table.Columns.Count; i++)
             {
                 DataDic.Add(row.Table.Columns[i].ColumnName.ToUpper(), row[i]);

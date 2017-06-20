@@ -3,6 +3,7 @@ using System.Data;
 using System.IO;
 using System.Windows.Forms;
 using V6Init;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms
 {
@@ -56,7 +57,7 @@ namespace V6Controls.Forms
 
             if (!string.IsNullOrEmpty(CheckFields))
             {
-                if (!CheckDataFields(data))
+                if (!V6ControlFormHelper.CheckDataFields(data, ObjectAndString.SplitString(CheckFields)))
                     this.ShowWarningMessage("Dữ liệu không hợp lệ! " + CheckFields);
             }
             dataGridView1.DataSource = data;
@@ -102,19 +103,6 @@ namespace V6Controls.Forms
             {
                 this.ShowErrorException(GetType() + ".ReLoad", ex);
             }
-        }
-
-        private bool CheckDataFields(DataTable dataTable)
-        {
-            var columns = CheckFields.Split(',');
-            foreach (string column in columns)
-            {
-                if (!dataTable.Columns.Contains(column))
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 
         private void btnNhan_Click(object sender, EventArgs e)

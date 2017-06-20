@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -65,7 +66,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private string _status = "";
 
         /// <summary>
-        /// Gán Status đổi luôn cả Mode.
+        /// Gán Status đổi luôn cả Mode. 0Init12NewEdit3View
         /// </summary>
         public string Status
         {
@@ -1354,7 +1355,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F3-Sửa số lượng, F4-Thêm chi tiết, F6-Chuyển bàn, F9-Lưu và in, F8-Dọn bàn.");
+            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ?
+                "F3-Sửa số lượng, F4-Thêm chi tiết, F6-Chuyển vị trí, F9-Lưu và in, F8-Dọn dẹp." :
+                "F3-Edit quantity, F4-Add details, F6-Move location, F9-Save and print, F8-Reset.");
         }
         
         public override bool DoHotKey0(Keys keyData)
@@ -1446,6 +1449,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             else if (keyData == Keys.F9)
             {
                 LuuVaIn();
+            }
+            else if (keyData == (Keys.F10))
+            {
+                ChonHoaDonMau();
             }
             else
             {
@@ -6215,6 +6222,109 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             OnBillChanged();
         }
 
-        
+        private void chonHoaDonMauToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChonHoaDonMau();
+        }
+
+        void ChonHoaDonMau()
+        {
+            if (Status != "1" && Status != "2")
+            {
+                ShowParentMessage("Mode!");
+                return;
+            }
+
+            var advance = string.Format("Ma_kho='{0}' and Ma_vitri='{1}'", MA_KHOPH, MA_VITRIPH);
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@ma_ct", Invoice.Mact), 
+                new SqlParameter("@ngay_ct", dateNgayCT.Value.Date), //.ToString("yyyyMMdd")
+                new SqlParameter("@user_id", V6Login.UserId), 
+                new SqlParameter("@advance", advance), 
+            };
+            DataTable table = V6BusinessHelper.ExecuteProcedure("VPA_Get_Voucher_Template", plist).Tables[0];
+            //Check field giong excel.
+            var checkFields = "MA_VT,MA_KHO_I,TIEN_NT2,SO_LUONG1,GIA_NT21";
+            if (!V6ControlFormHelper.CheckDataFields(table, ObjectAndString.SplitString(checkFields)))
+            {
+                this.ShowWarningMessage("Dữ liệu không hợp lệ! " + checkFields);
+                return;
+            }
+
+            var count = 0;
+            _message = "";
+
+            if (table.Columns.Contains("MA_VT") && table.Columns.Contains("MA_KHO_I")
+                && table.Columns.Contains("TIEN_NT2") && table.Columns.Contains("SO_LUONG1")
+                && table.Columns.Contains("GIA_NT21"))
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    var data = row.ToDataDictionary(_sttRec);
+                    var cMaVt = data["MA_VT"].ToString().Trim();
+                    var cMaKhoI = data["MA_KHO_I"].ToString().Trim();
+                    var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
+                    var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
+
+                    //{ Tuanmh 31/08/2016 Them thong tin ALVT
+                    _maVt.Text = cMaVt;
+                    var datavt = _maVt.Data;
+
+
+                    if (datavt != null)
+                    {
+                        //Nếu dữ liệu không (!) chứa mã nào thì thêm vào dữ liệu cho mã đó.
+                        if (!data.ContainsKey("TEN_VT")) data.Add("TEN_VT", (datavt["TEN_VT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("DVT1")) data.Add("DVT1", (datavt["DVT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("DVT")) data.Add("DVT", (datavt["DVT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("TK_VT")) data.Add("TK_VT", (datavt["TK_VT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("HE_SO1")) data.Add("HE_SO1", 1);
+                        if (!data.ContainsKey("SO_LUONG")) data.Add("SO_LUONG", data["SO_LUONG1"]);
+
+                        var __tien_nt0 = ObjectAndString.ToObject<decimal>(data["TIEN_NT2"]);
+                        var __gia_nt0 = ObjectAndString.ObjectToDecimal(data["GIA_NT21"]);
+                        var __tien0 = V6BusinessHelper.Vround(__tien_nt0 * txtTyGia.Value, M_ROUND);
+                        var __gia0 = V6BusinessHelper.Vround(__gia_nt0 * txtTyGia.Value, M_ROUND_GIA);
+
+                        if (!data.ContainsKey("TIEN2")) data.Add("TIEN2", __tien0);
+
+                        if (!data.ContainsKey("GIA21")) data.Add("GIA21", __gia0);
+                        if (!data.ContainsKey("GIA2")) data.Add("GIA2", __gia0);
+                        if (!data.ContainsKey("GIA_NT2")) data.Add("GIA_NT2", data["GIA_NT21"]);
+
+
+                    }
+                    //}
+
+
+
+                    if (exist && exist2)
+                    {
+                        if (XuLyThemDetail(data))
+                        {
+                            count++;
+                        }
+                    }
+                    else
+                    {
+                        if (!exist) _message += " Danh mục vật tư không tồn tại mã: " + cMaVt;
+                        if (!exist2) _message += " Danh mục kho không tồn tại mã: " + cMaKhoI;
+                    }
+                }
+
+                if (count > 0) Luu(MA_KHOPH, MA_VITRIPH, false);
+                
+                ShowParentMessage(count > 0
+                ? string.Format("Đã thêm {0} chi tiết.", count) + _message
+                : "Không thêm được chi tiết nào." + _message);
+            }
+            else
+            {
+                ShowParentMessage("Không có đủ thông tin!");
+            }
+
+
+        }
     }
 }
