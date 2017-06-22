@@ -1204,7 +1204,7 @@ namespace V6Structs
                 case V6TableName.V6lookup:
                     return lang == "V" ? "Cài đặt danh mục V6lookup" : "V6lookup setting";
                 case V6TableName.Abnghi:
-                    return lang == "V" ? "Abnghi" : "Abnghi_e";
+                    return lang == "V" ? "Cập nhật chỉ số ghi (điện,nước...)" : "Input infor";
                 case V6TableName.Hrpersonal:
                     return lang == "V" ? "Danh mục nhân viên" : "Personal ";
                 case V6TableName.Hrappfamily:

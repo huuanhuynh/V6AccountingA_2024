@@ -106,6 +106,25 @@ namespace V6AccountingBusiness
                 cInputField4, cpInput4, cOldItems4,
                 nInputField1, npInput1, nOldItems1);
         }
+        public static bool IsValidFiveCode_TwoNumeric(string cInputTable, byte nStatus,
+          string cInputField1, string cpInput1, string cOldItems1,
+           string cInputField2, string cpInput2, string cOldItems2,
+           string cInputField3, string cpInput3, string cOldItems3,
+           string cInputField4, string cpInput4, string cOldItems4,
+            string cInputField5, string cpInput5, string cOldItems5,
+           string nInputField1, int npInput1, int nOldItems1,
+            string nInputField2, int npInput2, int nOldItems2)
+        {
+            return Service.IsValidFiveCode_TwoNumeric(cInputTable, nStatus,
+                cInputField1, cpInput1, cOldItems1,
+                cInputField2, cpInput2, cOldItems2,
+                cInputField3, cpInput3, cOldItems3,
+                cInputField4, cpInput4, cOldItems4,
+                cInputField5, cpInput5, cOldItems5,
+                nInputField1, npInput1, nOldItems1,
+                nInputField2, npInput2, nOldItems2);
+        }
+
         public static bool IsValidTwoCode_OneNumeric(string cInputTable, byte nStatus,
           string cInputField1, string cpInput1, string cOldItems1,
            string cInputField2, string cpInput2, string cOldItems2,

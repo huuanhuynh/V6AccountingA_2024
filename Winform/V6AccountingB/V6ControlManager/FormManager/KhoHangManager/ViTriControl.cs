@@ -107,8 +107,8 @@ namespace V6ControlManager.FormManager.KhoHangManager
                 {
                     SortedDictionary<string, object> plistData = new SortedDictionary<string, object>();
                     plistData["MA_KHO"] = MA_KHO;
-                    plistData["MA_KH"] = MA_VT;//MA_KH
-                    plistData["MA_VT"] = MA_VT;
+                    plistData["MA_KH"] = container._mavt;//MA_KH
+                    plistData["MA_VT"] = container._mavt;
                     plistData["MA_VITRI"] = MA_VITRI;
                     plistData["CUOI_NGAY"] = container._cuoiNgay;
                     plistData["VT_TONKHO"] = "*";

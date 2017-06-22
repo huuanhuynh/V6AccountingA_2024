@@ -578,7 +578,49 @@ namespace DataAccessLayer.Implementations.Business
 
             return false;
         }
+        public bool IsValidFiveCode_TwoNumeric(string cInputTable, byte nStatus,
+          string cInputField1, string cpInput1, string cOldItems1,
+           string cInputField2, string cpInput2, string cOldItems2,
+           string cInputField3, string cpInput3, string cOldItems3,
+           string cInputField4, string cpInput4, string cOldItems4,
+           string cInputField5, string cpInput5, string cOldItems5,
+           string nInputField1, Int32 npInput1, Int32 nOldItems1,
+            string nInputField2, Int32 npInput2, Int32 nOldItems2
+            )
+        {
 
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@cInputTable", cInputTable),
+                new SqlParameter("@nStatus", nStatus),
+                new SqlParameter("@cInputField1", cInputField1),
+                new SqlParameter("@cInputField2", cInputField2),
+                new SqlParameter("@cInputField3", cInputField3),
+                new SqlParameter("@cInputField4", cInputField4),
+                new SqlParameter("@cInputField5", cInputField5),
+                new SqlParameter("@nInputField1", nInputField1),
+                 new SqlParameter("@nInputField2", nInputField2),
+                new SqlParameter("@cpInput1", cpInput1),
+                new SqlParameter("@cpInput2", cpInput2),
+                new SqlParameter("@cpInput3", cpInput3),
+                new SqlParameter("@cpInput4", cpInput4),
+                new SqlParameter("@cpInput5", cpInput5),
+                new SqlParameter("@npInput1", npInput1),
+                new SqlParameter("@npInput2", npInput2),
+                new SqlParameter("@cpInput1Old", cOldItems1),
+                new SqlParameter("@cpInput2Old", cOldItems2),
+                new SqlParameter("@cpInput3Old", cOldItems3),
+                new SqlParameter("@cpInput4Old", cOldItems4),
+                new SqlParameter("@cpInput5Old", cOldItems5),
+                new SqlParameter("@npInput1Old", nOldItems1),
+                new SqlParameter("@npInput2Old", nOldItems2)
+            };
+
+            object obj = SqlConnect.ExecuteScalar(CommandType.StoredProcedure, "VPA_isValidFiveCode_TwoNumeric", plist);
+            if (obj != null && Convert.ToInt32(obj) == 1) return true;
+
+            return false;
+        }
         public bool IsValidTwoCode_OneNumeric(string cInputTable, byte nStatus,
           string cInputField1, string cpInput1, string cOldItems1,
            string cInputField2, string cpInput2, string cOldItems2,

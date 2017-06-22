@@ -157,7 +157,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     dateYear.Value = date;
                     dateMonth.Value = date;
                 }
-                if (d.ContainsKey("MA_KHO")) lineMaKho.VvarTextBox.Text = (d["MA_KHO"]??"").ToString().Trim();
+                if (d.ContainsKey("MA_KHO"))
+                {
+                    lineMaKho.VvarTextBox.Text = (d["MA_KHO"]??"").ToString().Trim();
+
+                   IDictionary<string, object> keys = new Dictionary<string, object>();
+                   keys.Add("MA_KHO", lineMaKho.StringValue);
+                    var alkho = V6BusinessHelper.Select(V6TableName.Alkho, keys, "*").Data;
+                    if (alkho.Rows.Count == 1)
+                    {
+                        var madvcs = alkho.Rows[0]["MA_DVCS"];
+                        if (madvcs != null && madvcs.ToString().Trim() != "")
+                        {
+                            txtma_dvcs.VvarTextBox.Text = madvcs.ToString().Trim();
+                        }
+                    }
+
+                }
                 if (d.ContainsKey("MA_VITRI")) lineMaVitri.VvarTextBox.Text = (d["MA_VITRI"]??"").ToString().Trim();
                 if (d.ContainsKey("MA_VT")) lineMaVatTu.VvarTextBox.Text = (d["MA_VT"]??"").ToString().Trim();
             }
@@ -245,6 +261,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                if (!V6Login.UserRight.AllowView("", "ABNGHI6"))
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                    return;
+                }
+
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
 
                 if (row != null)
@@ -272,6 +294,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                if (!V6Login.UserRight.AllowEdit("", "ABNGHI6"))
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                    return;
+                }
+
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
 
                 if (row != null)
@@ -303,6 +331,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                if (!V6Login.UserRight.AllowDelete("", "ABNGHI6"))
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                    return;
+                }
+
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                 if (row != null)
                 {
@@ -333,7 +367,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (!V6Login.UserRight.AllowAdd("", "S09"))
+                if (!V6Login.UserRight.AllowAdd("", "ABNGHI6"))
                 {
                     V6ControlFormHelper.NoRightWarning();
                     return;
@@ -347,6 +381,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 currentRowData["MA_KHO"] = lineMaKho.StringValue;
                 currentRowData["MA_VITRI"] = lineMaVitri.StringValue;
                 currentRowData["MA_VT"] = lineMaVatTu.StringValue;
+                currentRowData["MA_DVCS"] = txtma_dvcs.StringValue;
                 
                 var form = new FormAddEdit(V6TableName.Abnghi, V6Mode.Add, null, currentRowData);
                 form.InsertSuccessEvent += data =>
