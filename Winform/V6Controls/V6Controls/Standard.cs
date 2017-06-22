@@ -26,14 +26,10 @@ namespace V6Controls
         private HelpProvider _helpProvider1;
         public bool _multiSelect, _filterStart;
 
-        //private string ma_kh = "";
-        //private string ma_kho = "ma_kho";
-        //private string ma_vt = "ma_vt";
 
         public Standard(V6VvarTextBox sender, StandardConfig lookupInfo, string initStrFilter,
             bool multiSelect = false, bool filterStart = false)
         {            
-            //VVar = vVar.Replace("'","''");
             LstConfig = lookupInfo;
             InitStrFilter = initStrFilter;
             _senderTextBox = sender;
@@ -241,7 +237,7 @@ namespace V6Controls
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.ShowErrorMessage("V6Lookup UpdateSuccessEvent " + ex.Message);
+                this.WriteExLog(GetType() + ".a_UpdateSuccessEvent", ex);
             }
         }
 
@@ -326,7 +322,7 @@ namespace V6Controls
                                 {LstConfig.FieldName, selectedValue},
                                 {"UID", uid}
                             };
-                            var f = new FormAddEdit(V6TableHelper.ToV6TableName(LstConfig.TableName), V6Mode.Edit, keys, null);
+                            var f = new FormAddEdit(LstConfig.TableName, V6Mode.Edit, keys, null);
                             f.ParentData = _senderTextBox.ParentData;
                             f.UpdateSuccessEvent += a_UpdateSuccessEvent;
                             f.ShowDialog(this);
@@ -347,7 +343,7 @@ namespace V6Controls
                     {
                         DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                         var data = row != null ? row.ToDataDictionary() : null;
-                        var a = new FormAddEdit(V6TableHelper.ToV6TableName(LstConfig.TableName), V6Mode.Add, null, data);
+                        var a = new FormAddEdit(LstConfig.TableName, V6Mode.Add, null, data);
                         a.ParentData = _senderTextBox.ParentData;
                         if(data == null) a.SetParentData();
                         a.InsertSuccessEvent += a_InsertSuccessEvent;
@@ -376,9 +372,9 @@ namespace V6Controls
                 txtV_Search.Text = dataDic[LstConfig.FieldName.ToUpper()].ToString().Trim();
                 btnVSearch.PerformClick();
             }
-            catch
+            catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + ".a_InsertSuccessEvent", ex);
             }
         }
         

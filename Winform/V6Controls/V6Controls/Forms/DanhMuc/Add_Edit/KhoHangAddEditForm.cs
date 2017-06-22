@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
+using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -77,5 +81,71 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (errors.Length > 0) throw new Exception(errors);
         }
+
+        private void btnChonhinh_Click(object sender, EventArgs e)
+        {
+            ChonHinh();
+        }
+        private void ChonHinh()
+        {
+            try
+            {
+                var chooseImage = V6ControlFormHelper.ChooseImage();
+                if (chooseImage == null) return;
+
+                ptbPHOTOGRAPH.Image = chooseImage;
+
+                var ma_kho_new = TxtMa_kho.Text.Trim();
+                var ma_kho_old = Mode == V6Mode.Edit ? DataOld["MA_KHO"].ToString().Trim() : ma_kho_new;
+                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_ALKHOCT1",
+                    new SqlParameter("@cMa_kho_old", ma_kho_old),
+                    new SqlParameter("@cMa_kho_new", ma_kho_new));
+
+                var photo = Picture.ToJpegByteArray(ptbPHOTOGRAPH.Image);
+                //var sign = Picture.ToJpegByteArray(pictureBox2.Image);
+                var data = new SortedDictionary<string, object> { { "PHOTOGRAPH", photo } };//, {"SIGNATURE", sign}};
+                var keys = new SortedDictionary<string, object> { { "MA_KHO", TxtMa_kho.Text } };
+
+                var result = V6BusinessHelper.UpdateTable("Alkhoct1", data, keys);
+
+                if (result == 1)
+                {
+                    ShowTopMessage(V6Text.Updated + "PHOTOGRAPH");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".ChonHinh " + ex.Message);
+            }
+        }
+
+        private void btnXoahinh_Click(object sender, EventArgs e)
+        {
+            XoaHinh();
+        }
+
+        private void XoaHinh()
+        {
+            try
+            {
+                ptbPHOTOGRAPH.Image = null;
+
+                var photo = Picture.ToJpegByteArray(ptbPHOTOGRAPH.Image);
+                var data = new SortedDictionary<string, object> { { "PHOTOGRAPH", photo } };
+                var keys = new SortedDictionary<string, object> { { "MA_KHO", TxtMa_kho.Text } };
+
+                var result = V6BusinessHelper.UpdateTable("Alkhoct1", data, keys);
+
+                if (result == 1)
+                {
+                    ShowTopMessage(V6Text.Updated + "PHOTOGRAPH");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".ChonHinh " + ex.Message);
+            }
+        }
+        
     }
 }

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using V6Tools;
 using System.Data;
 using System.Globalization;
+using Microsoft.Win32;
 using V6SqlConnect;
 
 
@@ -100,6 +101,25 @@ namespace V6Init
         public static bool IsRunTime
         {
             get { return LicenseManager.UsageMode != LicenseUsageMode.Designtime; }
+        }
+
+        public static bool IsWordInstalled()
+        {
+            RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Winword.exe");
+            if (key != null)
+            {
+                key.Close();
+            }
+            return key != null;
+        }
+        public static bool IsExcelInstalled()
+        {
+            RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\excel.exe");
+            if (key != null)
+            {
+                key.Close();
+            }
+            return key != null;
         }
 
         private static string _V6Special = "";

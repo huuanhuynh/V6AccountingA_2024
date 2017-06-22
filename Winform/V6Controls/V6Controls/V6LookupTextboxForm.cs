@@ -20,8 +20,8 @@ namespace V6Controls
     public partial class V6LookupTextboxForm : Form
     {
         //private readonly TextBox _senderTextBox;
-        public string _senderText;
-        private IDictionary<string, object> _senderParentData = null; 
+        public string _senderText { get; set; }
+        private readonly IDictionary<string, object> _senderParentData; 
         public DataRow selectedDataRow;
         public AldmConfig LookupInfo;
         //private string _table_name, _ma_dm;
@@ -34,9 +34,6 @@ namespace V6Controls
         private HelpProvider _helpProvider1;
         public bool _multiSelect, _filterStart;
 
-        //private string ma_kh = "";
-        //private string ma_kho = "ma_kho";
-        //private string ma_vt = "ma_vt";
 
         public V6LookupTextboxForm(IDictionary<string, object> sender, string senderText, AldmConfig lookupInfo, string initStrFilter, string lookupInfo_F_Name,
             bool multiSelect = false, bool filterStart = false)
@@ -573,7 +570,7 @@ namespace V6Controls
                                 //{LookupInfo_F_NAME, selectedValue},
                                 {"UID", uid}
                             };
-                            var f = new FormAddEdit(V6TableHelper.ToV6TableName(LookupInfo.TABLE_NAME), V6Mode.Edit, keys, null);
+                            var f = new FormAddEdit(LookupInfo.TABLE_NAME, V6Mode.Edit, keys, null);
 
                             f.ParentData = _senderParentData;
                             f.UpdateSuccessEvent += a_UpdateSuccessEvent;
@@ -592,7 +589,7 @@ namespace V6Controls
                     {
                         DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                         var data = row != null ? row.ToDataDictionary() : null;
-                        var f = new FormAddEdit(V6TableHelper.ToV6TableName(LookupInfo.TABLE_NAME), V6Mode.Add, null, data);
+                        var f = new FormAddEdit(LookupInfo.TABLE_NAME, V6Mode.Add, null, data);
                         
                         f.ParentData = _senderParentData;
                         if(data == null) f.SetParentData();

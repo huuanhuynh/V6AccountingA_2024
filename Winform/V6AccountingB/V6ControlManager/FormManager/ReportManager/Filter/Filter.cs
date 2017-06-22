@@ -860,6 +860,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                 case "ACOSXLT_TINHGIA":
                     return new ZACOSXLT_TINHGIA_Filter();
+
+                case "AMAP01":
+                    return new AMAP01Filter();
+                case "AMAP01A":
+                    return new AMAP01AFilter();
             }
             return new FilterBase() { Visible = false };
         }

@@ -19,5 +19,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
         //public string CodeForm { get; set; }
         public bool ViewLable2 { get; set; }
         public bool RunTimer { get; set; }
+        public string ReportCaption { get; set; }
+        public string ReportCaption2 { get; set; }
     }
 }

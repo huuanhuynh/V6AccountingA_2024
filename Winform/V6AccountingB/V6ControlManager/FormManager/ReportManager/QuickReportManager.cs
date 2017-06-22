@@ -120,9 +120,13 @@ namespace V6ControlManager.FormManager.ReportManager
             view.Dock = DockStyle.Fill;
             view.FilterControl.InitFilters = quickParams.FilterControlInitFilters;
             view.FilterControl.SetParentRow(quickParams.ParentRowData);
+            if(quickParams.FilterData != null)
+            view.FilterControl.SetData(quickParams.FilterData);
 
             if (quickParams.DataSet == null || quickParams.DataSet.Tables.Count == 0)
-                view.btnNhan_Click(null, null);
+            {
+                if(quickParams.AutoRun) view.btnNhan_Click(null, null);
+            }
             else view.DataSet = quickParams.DataSet;
 
             view.ShowToForm(quickParams.FormTitle, true);
@@ -155,5 +159,7 @@ namespace V6ControlManager.FormManager.ReportManager
         public DataSet DataSet { get; set; }
 
         public SortedDictionary<string, object> FilterControlFilterData { get; set; }
+        public SortedDictionary<string, object> FilterData { get; set; }
+        public bool AutoRun { get; set; }
     }
 }

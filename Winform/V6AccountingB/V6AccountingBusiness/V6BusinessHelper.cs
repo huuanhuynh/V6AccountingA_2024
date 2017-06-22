@@ -391,6 +391,11 @@ namespace V6AccountingBusiness
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, procName, plist);
         }
 
+        public static DataSet ExecuteProcedure(string procName, params object[] plist)
+        {
+            return SqlConnect.ExecuteDataset(procName, plist);
+        }
+
         public static object ExecuteScalar(string sql, params SqlParameter[] plist)
         {
             return SqlConnect.ExecuteScalar(CommandType.Text, sql, plist);
@@ -428,6 +433,11 @@ namespace V6AccountingBusiness
         public static int ExecuteProcedureNoneQuery(SqlTransaction tran, string procName, params SqlParameter[] plist)
         {
             return SqlConnect.ExecuteNonQuery(tran, CommandType.StoredProcedure, procName, plist);
+        }
+
+        public static DataSet ExecuteSqlDataset(string sql, params SqlParameter[] plist)
+        {
+            return SqlConnect.ExecuteDataset(CommandType.Text, sql, plist);
         }
 
         public static int ExecuteSqlNoneQuery(string sql, params SqlParameter[] plist)

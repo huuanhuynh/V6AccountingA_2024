@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.IO;
+using System.Text;
 
 namespace V6Tools.V6Convert
 {
@@ -21,12 +22,37 @@ namespace V6Tools.V6Convert
             return returnImage;
         }
 
+        public static Image ToImage(object objectData)
+        {
+            Image picture = null;
+            if (objectData is Image) picture = (Image)objectData;
+            else if (objectData is byte[]) picture = ByteArrayToImage((byte[]) objectData);
+            else
+            {
+                picture = ByteArrayToImage(Encoding.ASCII.GetBytes(objectData.ToString()));
+            }
+
+            return picture;
+        }
+
+        /// <summary>
+        /// Tải hình ảnh từ file, không giữ file, nếu lỗi trả về null.
+        /// </summary>
+        /// <param name="path">đường dẫn đến file hình ảnh</param>
+        /// <returns></returns>
         public static Image LoadCopyImage(string path)
         {
-            using (Image im = Image.FromFile(path))
+            try
             {
-                Bitmap bm = new Bitmap(im);
-                return bm;
+                using (Image im = Image.FromFile(path))
+                {
+                    Bitmap bm = new Bitmap(im);
+                    return bm;
+                }
+            }
+            catch (System.Exception)
+            {
+                return null;
             }
         }
 

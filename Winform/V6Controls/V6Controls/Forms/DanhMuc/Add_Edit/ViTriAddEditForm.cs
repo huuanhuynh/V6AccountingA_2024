@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using V6AccountingBusiness;
 using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -60,6 +62,33 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
 
             if (errors.Length > 0) throw new Exception(errors);
+        }
+
+        private void txtma_maurgb_TextChanged(object sender, EventArgs e)
+        {
+            
+            if(txtma_rgb.Text=="")
+            {
+                lblTenMau.BackColor =Color.Transparent ;
+                Txtten_rgb.Text = "";
+            }
+            else
+            {
+                var datarow = txtma_rgb.Data;
+
+                if(datarow !=null)
+                {
+                    var r = ObjectAndString.ObjectToInt(datarow["R"]);
+                    var g = ObjectAndString.ObjectToInt(datarow["G"]);
+                    var b = ObjectAndString.ObjectToInt(datarow["B"]);
+                    r = Math.Min(r, 255);
+                    g = Math.Min(g, 255);
+                    b = Math.Min(b, 255);
+                    Txtten_rgb.Text = (datarow["TEN_RGB"]??"").ToString();
+
+                    lblTenMau.BackColor = Color.FromArgb(r, g, b);
+                }
+            }
         }
     }
 }

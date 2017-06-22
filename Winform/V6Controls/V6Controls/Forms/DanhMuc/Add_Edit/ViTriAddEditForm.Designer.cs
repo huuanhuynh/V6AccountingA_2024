@@ -39,6 +39,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Txtten_rgb = new V6Controls.V6ColorTextBox();
+            this.txtma_rgb = new V6Controls.V6VvarTextBox();
+            this.lblTenMau = new System.Windows.Forms.Label();
+            this.Txtma_kh = new V6Controls.V6VvarTextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.Txtma_vt = new V6Controls.V6VvarTextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.v6ColorTextBox5 = new V6Controls.V6ColorTextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -69,10 +76,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.Txtma_vt = new V6Controls.V6VvarTextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.Txtma_kh = new V6Controls.V6VvarTextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -228,6 +231,9 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage1.Controls.Add(this.Txtten_rgb);
+            this.tabPage1.Controls.Add(this.txtma_rgb);
+            this.tabPage1.Controls.Add(this.lblTenMau);
             this.tabPage1.Controls.Add(this.Txtma_kh);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.Txtma_vt);
@@ -244,6 +250,105 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
+            // Txtten_rgb
+            // 
+            this.Txtten_rgb.AccessibleName = "";
+            this.Txtten_rgb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Txtten_rgb.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.Txtten_rgb.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.Txtten_rgb.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtten_rgb.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtten_rgb.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.Txtten_rgb.HoverColor = System.Drawing.Color.Yellow;
+            this.Txtten_rgb.LeaveColor = System.Drawing.Color.White;
+            this.Txtten_rgb.Location = new System.Drawing.Point(292, 148);
+            this.Txtten_rgb.Margin = new System.Windows.Forms.Padding(4);
+            this.Txtten_rgb.Name = "Txtten_rgb";
+            this.Txtten_rgb.ReadOnly = true;
+            this.Txtten_rgb.Size = new System.Drawing.Size(407, 23);
+            this.Txtten_rgb.TabIndex = 42;
+            this.Txtten_rgb.TabStop = false;
+            // 
+            // txtma_rgb
+            // 
+            this.txtma_rgb.AccessibleName = "ma_rgb";
+            this.txtma_rgb.BackColor = System.Drawing.Color.White;
+            this.txtma_rgb.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtma_rgb.BrotherFields = "";
+            this.txtma_rgb.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtma_rgb.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtma_rgb.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtma_rgb.HoverColor = System.Drawing.Color.Yellow;
+            this.txtma_rgb.LeaveColor = System.Drawing.Color.White;
+            this.txtma_rgb.Location = new System.Drawing.Point(159, 147);
+            this.txtma_rgb.Name = "txtma_rgb";
+            this.txtma_rgb.Size = new System.Drawing.Size(126, 23);
+            this.txtma_rgb.TabIndex = 3;
+            this.txtma_rgb.VVar = "ma_rgb";
+            this.txtma_rgb.TextChanged += new System.EventHandler(this.txtma_maurgb_TextChanged);
+            // 
+            // lblTenMau
+            // 
+            this.lblTenMau.AutoSize = true;
+            this.lblTenMau.Location = new System.Drawing.Point(4, 150);
+            this.lblTenMau.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblTenMau.Name = "lblTenMau";
+            this.lblTenMau.Size = new System.Drawing.Size(92, 17);
+            this.lblTenMau.TabIndex = 12;
+            this.lblTenMau.Text = "Mã màu RGB";
+            // 
+            // Txtma_kh
+            // 
+            this.Txtma_kh.AccessibleName = "ma_kh";
+            this.Txtma_kh.BackColor = System.Drawing.Color.White;
+            this.Txtma_kh.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.Txtma_kh.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtma_kh.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtma_kh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.Txtma_kh.HoverColor = System.Drawing.Color.Yellow;
+            this.Txtma_kh.LeaveColor = System.Drawing.Color.White;
+            this.Txtma_kh.Location = new System.Drawing.Point(159, 120);
+            this.Txtma_kh.Name = "Txtma_kh";
+            this.Txtma_kh.Size = new System.Drawing.Size(126, 23);
+            this.Txtma_kh.TabIndex = 2;
+            this.Txtma_kh.VVar = "ma_kh";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(4, 123);
+            this.label9.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(69, 17);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Mã khách";
+            // 
+            // Txtma_vt
+            // 
+            this.Txtma_vt.AccessibleName = "ma_vt";
+            this.Txtma_vt.BackColor = System.Drawing.Color.White;
+            this.Txtma_vt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.Txtma_vt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtma_vt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtma_vt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.Txtma_vt.HoverColor = System.Drawing.Color.Yellow;
+            this.Txtma_vt.LeaveColor = System.Drawing.Color.White;
+            this.Txtma_vt.Location = new System.Drawing.Point(159, 91);
+            this.Txtma_vt.Name = "Txtma_vt";
+            this.Txtma_vt.Size = new System.Drawing.Size(126, 23);
+            this.Txtma_vt.TabIndex = 1;
+            this.Txtma_vt.VVar = "ma_vt";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(4, 94);
+            this.label8.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(66, 17);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Mã vật tư";
+            // 
             // checkBox1
             // 
             this.checkBox1.AccessibleName = "status";
@@ -252,7 +357,7 @@
             this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(111, 21);
-            this.checkBox1.TabIndex = 3;
+            this.checkBox1.TabIndex = 4;
             this.checkBox1.Text = "Có sử dụng ?";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -276,7 +381,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 204);
+            this.label5.Location = new System.Drawing.Point(4, 203);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 17);
@@ -738,58 +843,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
-            // Txtma_vt
-            // 
-            this.Txtma_vt.AccessibleName = "ma_vt";
-            this.Txtma_vt.BackColor = System.Drawing.Color.White;
-            this.Txtma_vt.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.Txtma_vt.EnterColor = System.Drawing.Color.PaleGreen;
-            this.Txtma_vt.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.Txtma_vt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.Txtma_vt.HoverColor = System.Drawing.Color.Yellow;
-            this.Txtma_vt.LeaveColor = System.Drawing.Color.White;
-            this.Txtma_vt.Location = new System.Drawing.Point(159, 91);
-            this.Txtma_vt.Name = "Txtma_vt";
-            this.Txtma_vt.Size = new System.Drawing.Size(126, 23);
-            this.Txtma_vt.TabIndex = 1;
-            this.Txtma_vt.VVar = "ma_vt";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(4, 94);
-            this.label8.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(66, 17);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "Mã vật tư";
-            // 
-            // Txtma_kh
-            // 
-            this.Txtma_kh.AccessibleName = "ma_kh";
-            this.Txtma_kh.BackColor = System.Drawing.Color.White;
-            this.Txtma_kh.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.Txtma_kh.EnterColor = System.Drawing.Color.PaleGreen;
-            this.Txtma_kh.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.Txtma_kh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.Txtma_kh.HoverColor = System.Drawing.Color.Yellow;
-            this.Txtma_kh.LeaveColor = System.Drawing.Color.White;
-            this.Txtma_kh.Location = new System.Drawing.Point(159, 120);
-            this.Txtma_kh.Name = "Txtma_kh";
-            this.Txtma_kh.Size = new System.Drawing.Size(126, 23);
-            this.Txtma_kh.TabIndex = 2;
-            this.Txtma_kh.VVar = "ma_kh";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(4, 123);
-            this.label9.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 17);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "Mã khách";
-            // 
             // ViTriAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -858,5 +911,8 @@
         private System.Windows.Forms.Label label9;
         private V6VvarTextBox Txtma_vt;
         private System.Windows.Forms.Label label8;
+        private V6VvarTextBox txtma_rgb;
+        private System.Windows.Forms.Label lblTenMau;
+        private V6ColorTextBox Txtten_rgb;
     }
 }

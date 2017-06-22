@@ -335,6 +335,15 @@ namespace V6SqlConnect
             return null;
         }
 
+        public static DataSet ExecuteDataset(string sql, params object[] prlist)
+        {
+            if (CheckV6Key())
+            {
+                return SqlHelper.ExecuteDataset(DatabaseConfig.ConnectionString, sql, DatabaseConfig.TimeOut, prlist);
+            }
+            return null;
+        }
+
         public static DataSet ExecuteDataset(SqlTransaction tran, CommandType commandType, string sql, params SqlParameter[] prlist)
         {
             if (CheckV6Key())

@@ -91,10 +91,15 @@
             this.v6ColorDateTimePick2 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.ptbPHOTOGRAPH = new System.Windows.Forms.PictureBox();
+            this.btnXoahinh = new System.Windows.Forms.Button();
+            this.btnChonhinh = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbPHOTOGRAPH)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -123,40 +128,35 @@
             // 
             this.TxtMa_dvcs.AccessibleName = "ma_dvcs";
             this.TxtMa_dvcs.BackColor = System.Drawing.Color.White;
-            this.TxtMa_dvcs.BrotherFields = null;
-            this.TxtMa_dvcs.Carry = false;
+            this.TxtMa_dvcs.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtMa_dvcs.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtMa_dvcs.CheckNotEmpty = true;
-            this.TxtMa_dvcs.EnableColorEffect = true;
-            this.TxtMa_dvcs.EnableColorEffectOnMouseEnter = false;
             this.TxtMa_dvcs.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtMa_dvcs.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtMa_dvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtMa_dvcs.HoverColor = System.Drawing.Color.Yellow;
             this.TxtMa_dvcs.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_dvcs.LimitCharacters = null;
             this.TxtMa_dvcs.Location = new System.Drawing.Point(152, 17);
             this.TxtMa_dvcs.Name = "TxtMa_dvcs";
             this.TxtMa_dvcs.Size = new System.Drawing.Size(129, 23);
             this.TxtMa_dvcs.TabIndex = 1;
-            this.TxtMa_dvcs.GrayText = "";
             this.TxtMa_dvcs.VVar = "ma_dvcs";
             // 
             // v6ColorTextBox5
             // 
             this.v6ColorTextBox5.AccessibleName = "M_GROUP_DVCS";
             this.v6ColorTextBox5.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.Carry = false;
-            this.v6ColorTextBox5.EnableColorEffect = true;
-            this.v6ColorTextBox5.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.LimitCharacters = null;
             this.v6ColorTextBox5.Location = new System.Drawing.Point(548, 17);
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
             this.v6ColorTextBox5.Size = new System.Drawing.Size(111, 23);
             this.v6ColorTextBox5.TabIndex = 3;
-            this.v6ColorTextBox5.GrayText = "";
             this.v6ColorTextBox5.Visible = false;
             // 
             // label5
@@ -176,19 +176,18 @@
             this.v6ColorTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox1.Carry = false;
-            this.v6ColorTextBox1.EnableColorEffect = true;
-            this.v6ColorTextBox1.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox1.LimitCharacters = null;
             this.v6ColorTextBox1.Location = new System.Drawing.Point(152, 98);
             this.v6ColorTextBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
             this.v6ColorTextBox1.Size = new System.Drawing.Size(511, 23);
             this.v6ColorTextBox1.TabIndex = 9;
-            this.v6ColorTextBox1.GrayText = "";
             // 
             // label4
             // 
@@ -206,19 +205,18 @@
             this.TxtTen_kho.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtTen_kho.Carry = false;
-            this.TxtTen_kho.EnableColorEffect = true;
-            this.TxtTen_kho.EnableColorEffectOnMouseEnter = false;
+            this.TxtTen_kho.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtTen_kho.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtTen_kho.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtTen_kho.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtTen_kho.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtTen_kho.HoverColor = System.Drawing.Color.Yellow;
             this.TxtTen_kho.LeaveColor = System.Drawing.Color.White;
-            this.TxtTen_kho.LimitCharacters = null;
             this.TxtTen_kho.Location = new System.Drawing.Point(152, 71);
             this.TxtTen_kho.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.TxtTen_kho.Name = "TxtTen_kho";
             this.TxtTen_kho.Size = new System.Drawing.Size(511, 23);
             this.TxtTen_kho.TabIndex = 7;
-            this.TxtTen_kho.GrayText = "";
             // 
             // label1
             // 
@@ -233,20 +231,19 @@
             // TxtMa_kho
             // 
             this.TxtMa_kho.AccessibleName = "ma_kho";
-            this.TxtMa_kho.Carry = false;
+            this.TxtMa_kho.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtMa_kho.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtMa_kho.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtMa_kho.EnableColorEffect = true;
-            this.TxtMa_kho.EnableColorEffectOnMouseEnter = false;
             this.TxtMa_kho.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtMa_kho.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtMa_kho.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtMa_kho.HoverColor = System.Drawing.Color.Yellow;
             this.TxtMa_kho.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_kho.LimitCharacters = null;
             this.TxtMa_kho.Location = new System.Drawing.Point(152, 44);
             this.TxtMa_kho.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.TxtMa_kho.Name = "TxtMa_kho";
             this.TxtMa_kho.Size = new System.Drawing.Size(130, 23);
             this.TxtMa_kho.TabIndex = 5;
-            this.TxtMa_kho.GrayText = "";
             // 
             // label2
             // 
@@ -323,10 +320,11 @@
             // TxtLoai_kho
             // 
             this.TxtLoai_kho.AccessibleName = "loai_kho";
-            this.TxtLoai_kho.Carry = false;
-            this.TxtLoai_kho.EnableColorEffect = true;
-            this.TxtLoai_kho.EnableColorEffectOnMouseEnter = false;
+            this.TxtLoai_kho.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtLoai_kho.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtLoai_kho.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtLoai_kho.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtLoai_kho.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtLoai_kho.HoverColor = System.Drawing.Color.Yellow;
             this.TxtLoai_kho.LeaveColor = System.Drawing.Color.White;
             this.TxtLoai_kho.LimitCharacters = "01";
@@ -336,7 +334,6 @@
             this.TxtLoai_kho.Name = "TxtLoai_kho";
             this.TxtLoai_kho.Size = new System.Drawing.Size(115, 23);
             this.TxtLoai_kho.TabIndex = 3;
-            this.TxtLoai_kho.GrayText = "";
             // 
             // label13
             // 
@@ -351,128 +348,119 @@
             // TxtTk_dl
             // 
             this.TxtTk_dl.AccessibleName = "tk_dl";
-            this.TxtTk_dl.BrotherFields = null;
-            this.TxtTk_dl.Carry = false;
-            this.TxtTk_dl.EnableColorEffect = true;
-            this.TxtTk_dl.EnableColorEffectOnMouseEnter = false;
+            this.TxtTk_dl.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtTk_dl.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtTk_dl.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtTk_dl.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtTk_dl.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtTk_dl.HoverColor = System.Drawing.Color.Yellow;
             this.TxtTk_dl.LeaveColor = System.Drawing.Color.White;
-            this.TxtTk_dl.LimitCharacters = null;
             this.TxtTk_dl.Location = new System.Drawing.Point(193, 40);
             this.TxtTk_dl.Name = "TxtTk_dl";
             this.TxtTk_dl.Size = new System.Drawing.Size(133, 23);
             this.TxtTk_dl.TabIndex = 5;
-            this.TxtTk_dl.GrayText = "";
             this.TxtTk_dl.VVar = "tk";
             // 
             // v6ColorTextBox18
             // 
             this.v6ColorTextBox18.AccessibleName = "dia_chi";
-            this.v6ColorTextBox18.Carry = false;
-            this.v6ColorTextBox18.EnableColorEffect = true;
-            this.v6ColorTextBox18.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox18.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox18.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox18.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox18.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox18.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox18.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox18.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox18.LimitCharacters = null;
             this.v6ColorTextBox18.Location = new System.Drawing.Point(193, 190);
             this.v6ColorTextBox18.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox18.Name = "v6ColorTextBox18";
             this.v6ColorTextBox18.Size = new System.Drawing.Size(401, 23);
             this.v6ColorTextBox18.TabIndex = 15;
-            this.v6ColorTextBox18.GrayText = "";
             // 
             // v6ColorTextBox17
             // 
             this.v6ColorTextBox17.AccessibleName = "email";
-            this.v6ColorTextBox17.Carry = false;
-            this.v6ColorTextBox17.EnableColorEffect = true;
-            this.v6ColorTextBox17.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox17.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox17.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox17.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox17.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox17.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox17.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox17.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox17.LimitCharacters = null;
             this.v6ColorTextBox17.Location = new System.Drawing.Point(193, 160);
             this.v6ColorTextBox17.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox17.Name = "v6ColorTextBox17";
             this.v6ColorTextBox17.Size = new System.Drawing.Size(237, 23);
             this.v6ColorTextBox17.TabIndex = 13;
-            this.v6ColorTextBox17.GrayText = "";
             // 
             // v6ColorTextBox13
             // 
             this.v6ColorTextBox13.AccessibleName = "fax";
-            this.v6ColorTextBox13.Carry = false;
-            this.v6ColorTextBox13.EnableColorEffect = true;
-            this.v6ColorTextBox13.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox13.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox13.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox13.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox13.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox13.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox13.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox13.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox13.LimitCharacters = null;
             this.v6ColorTextBox13.Location = new System.Drawing.Point(192, 130);
             this.v6ColorTextBox13.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox13.Name = "v6ColorTextBox13";
             this.v6ColorTextBox13.Size = new System.Drawing.Size(237, 23);
             this.v6ColorTextBox13.TabIndex = 11;
-            this.v6ColorTextBox13.GrayText = "";
             // 
             // v6ColorTextBox12
             // 
             this.v6ColorTextBox12.AccessibleName = "dien_thoai";
-            this.v6ColorTextBox12.Carry = false;
-            this.v6ColorTextBox12.EnableColorEffect = true;
-            this.v6ColorTextBox12.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox12.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox12.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox12.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox12.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox12.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox12.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox12.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox12.LimitCharacters = null;
             this.v6ColorTextBox12.Location = new System.Drawing.Point(193, 99);
             this.v6ColorTextBox12.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox12.Name = "v6ColorTextBox12";
             this.v6ColorTextBox12.Size = new System.Drawing.Size(237, 23);
             this.v6ColorTextBox12.TabIndex = 9;
-            this.v6ColorTextBox12.GrayText = "";
             // 
             // v6ColorTextBox8
             // 
             this.v6ColorTextBox8.AccessibleName = "thu_kho";
-            this.v6ColorTextBox8.Carry = false;
-            this.v6ColorTextBox8.EnableColorEffect = true;
-            this.v6ColorTextBox8.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox8.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox8.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox8.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox8.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox8.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox8.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox8.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox8.LimitCharacters = null;
             this.v6ColorTextBox8.Location = new System.Drawing.Point(192, 70);
             this.v6ColorTextBox8.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox8.Name = "v6ColorTextBox8";
             this.v6ColorTextBox8.Size = new System.Drawing.Size(237, 23);
             this.v6ColorTextBox8.TabIndex = 7;
-            this.v6ColorTextBox8.GrayText = "";
             // 
             // v6NumberTextBox6
             // 
             this.v6NumberTextBox6.AccessibleName = "date_yn";
-            this.v6NumberTextBox6.Carry = false;
+            this.v6NumberTextBox6.BackColor = System.Drawing.SystemColors.Window;
+            this.v6NumberTextBox6.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6NumberTextBox6.DecimalPlaces = 0;
-            this.v6NumberTextBox6.EnableColorEffect = true;
-            this.v6NumberTextBox6.EnableColorEffectOnMouseEnter = false;
             this.v6NumberTextBox6.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6NumberTextBox6.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox6.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox6.LeaveColor = System.Drawing.Color.White;
             this.v6NumberTextBox6.LimitCharacters = "01";
             this.v6NumberTextBox6.Location = new System.Drawing.Point(192, 246);
             this.v6NumberTextBox6.Margin = new System.Windows.Forms.Padding(4);
             this.v6NumberTextBox6.MaxLength = 1;
-            this.v6NumberTextBox6.MaxNumDecimal = 0;
-            this.v6NumberTextBox6.MaxNumLength = 0;
             this.v6NumberTextBox6.Name = "v6NumberTextBox6";
             this.v6NumberTextBox6.Size = new System.Drawing.Size(133, 23);
             this.v6NumberTextBox6.TabIndex = 19;
             this.v6NumberTextBox6.Text = "0";
             this.v6NumberTextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.v6NumberTextBox6.GrayText = "";
             this.v6NumberTextBox6.Value = new decimal(new int[] {
             0,
             0,
@@ -482,25 +470,23 @@
             // v6NumberTextBox5
             // 
             this.v6NumberTextBox5.AccessibleName = "lo_yn";
-            this.v6NumberTextBox5.Carry = false;
+            this.v6NumberTextBox5.BackColor = System.Drawing.SystemColors.Window;
+            this.v6NumberTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6NumberTextBox5.DecimalPlaces = 0;
-            this.v6NumberTextBox5.EnableColorEffect = true;
-            this.v6NumberTextBox5.EnableColorEffectOnMouseEnter = false;
             this.v6NumberTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6NumberTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox5.LeaveColor = System.Drawing.Color.White;
             this.v6NumberTextBox5.LimitCharacters = "01";
             this.v6NumberTextBox5.Location = new System.Drawing.Point(193, 217);
             this.v6NumberTextBox5.Margin = new System.Windows.Forms.Padding(4);
             this.v6NumberTextBox5.MaxLength = 1;
-            this.v6NumberTextBox5.MaxNumDecimal = 0;
-            this.v6NumberTextBox5.MaxNumLength = 0;
             this.v6NumberTextBox5.Name = "v6NumberTextBox5";
             this.v6NumberTextBox5.Size = new System.Drawing.Size(132, 23);
             this.v6NumberTextBox5.TabIndex = 17;
             this.v6NumberTextBox5.Text = "0";
             this.v6NumberTextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.v6NumberTextBox5.GrayText = "";
             this.v6NumberTextBox5.Value = new decimal(new int[] {
             0,
             0,
@@ -511,25 +497,22 @@
             // 
             this.TxtKho_dl.AccessibleName = "kho_dl";
             this.TxtKho_dl.BackColor = System.Drawing.Color.White;
-            this.TxtKho_dl.Carry = false;
+            this.TxtKho_dl.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtKho_dl.DecimalPlaces = 0;
-            this.TxtKho_dl.EnableColorEffect = true;
-            this.TxtKho_dl.EnableColorEffectOnMouseEnter = false;
             this.TxtKho_dl.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtKho_dl.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtKho_dl.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtKho_dl.HoverColor = System.Drawing.Color.Yellow;
             this.TxtKho_dl.LeaveColor = System.Drawing.Color.White;
             this.TxtKho_dl.LimitCharacters = "01";
             this.TxtKho_dl.Location = new System.Drawing.Point(193, 10);
             this.TxtKho_dl.Margin = new System.Windows.Forms.Padding(4);
             this.TxtKho_dl.MaxLength = 1;
-            this.TxtKho_dl.MaxNumDecimal = 0;
-            this.TxtKho_dl.MaxNumLength = 0;
             this.TxtKho_dl.Name = "TxtKho_dl";
             this.TxtKho_dl.Size = new System.Drawing.Size(132, 23);
             this.TxtKho_dl.TabIndex = 1;
             this.TxtKho_dl.Text = "0";
             this.TxtKho_dl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TxtKho_dl.GrayText = "";
             this.TxtKho_dl.Value = new decimal(new int[] {
             0,
             0,
@@ -647,20 +630,19 @@
             this.v6ColorTextBox6.AccessibleName = "ghi_chu";
             this.v6ColorTextBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox6.Carry = false;
-            this.v6ColorTextBox6.EnableColorEffect = true;
-            this.v6ColorTextBox6.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox6.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox6.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox6.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox6.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox6.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox6.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox6.LimitCharacters = null;
             this.v6ColorTextBox6.Location = new System.Drawing.Point(192, 283);
             this.v6ColorTextBox6.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox6.Multiline = true;
             this.v6ColorTextBox6.Name = "v6ColorTextBox6";
             this.v6ColorTextBox6.Size = new System.Drawing.Size(416, 71);
             this.v6ColorTextBox6.TabIndex = 21;
-            this.v6ColorTextBox6.GrayText = "";
             // 
             // label6
             // 
@@ -724,19 +706,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorTextBox16.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox16.Carry = false;
-            this.v6ColorTextBox16.EnableColorEffect = true;
-            this.v6ColorTextBox16.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox16.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox16.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox16.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox16.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox16.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox16.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox16.LimitCharacters = null;
             this.v6ColorTextBox16.Location = new System.Drawing.Point(145, 349);
             this.v6ColorTextBox16.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorTextBox16.Name = "v6ColorTextBox16";
             this.v6ColorTextBox16.Size = new System.Drawing.Size(511, 23);
             this.v6ColorTextBox16.TabIndex = 161;
-            this.v6ColorTextBox16.GrayText = "";
             // 
             // v6ColorTextBox15
             // 
@@ -745,19 +725,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorTextBox15.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox15.Carry = false;
-            this.v6ColorTextBox15.EnableColorEffect = true;
-            this.v6ColorTextBox15.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox15.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox15.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox15.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox15.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox15.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox15.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox15.LimitCharacters = null;
             this.v6ColorTextBox15.Location = new System.Drawing.Point(145, 318);
             this.v6ColorTextBox15.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorTextBox15.Name = "v6ColorTextBox15";
             this.v6ColorTextBox15.Size = new System.Drawing.Size(511, 23);
             this.v6ColorTextBox15.TabIndex = 160;
-            this.v6ColorTextBox15.GrayText = "";
             // 
             // v6ColorTextBox2
             // 
@@ -766,19 +744,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorTextBox2.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox2.Carry = false;
-            this.v6ColorTextBox2.EnableColorEffect = true;
-            this.v6ColorTextBox2.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox2.LimitCharacters = null;
             this.v6ColorTextBox2.Location = new System.Drawing.Point(145, 287);
             this.v6ColorTextBox2.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorTextBox2.Name = "v6ColorTextBox2";
             this.v6ColorTextBox2.Size = new System.Drawing.Size(511, 23);
             this.v6ColorTextBox2.TabIndex = 159;
-            this.v6ColorTextBox2.GrayText = "";
             // 
             // label29
             // 
@@ -827,57 +803,54 @@
             this.v6ColorTextBox19.AccessibleName = "ma_td3";
             this.v6ColorTextBox19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.v6ColorTextBox19.Carry = false;
-            this.v6ColorTextBox19.EnableColorEffect = true;
-            this.v6ColorTextBox19.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox19.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox19.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox19.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox19.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox19.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox19.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox19.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox19.LimitCharacters = null;
             this.v6ColorTextBox19.Location = new System.Drawing.Point(145, 70);
             this.v6ColorTextBox19.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorTextBox19.Name = "v6ColorTextBox19";
             this.v6ColorTextBox19.Size = new System.Drawing.Size(135, 23);
             this.v6ColorTextBox19.TabIndex = 143;
-            this.v6ColorTextBox19.GrayText = "";
             // 
             // v6ColorTextBox20
             // 
             this.v6ColorTextBox20.AccessibleName = "ma_td2";
             this.v6ColorTextBox20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.v6ColorTextBox20.Carry = false;
-            this.v6ColorTextBox20.EnableColorEffect = true;
-            this.v6ColorTextBox20.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox20.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox20.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox20.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox20.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox20.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox20.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox20.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox20.LimitCharacters = null;
             this.v6ColorTextBox20.Location = new System.Drawing.Point(145, 40);
             this.v6ColorTextBox20.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorTextBox20.Name = "v6ColorTextBox20";
             this.v6ColorTextBox20.Size = new System.Drawing.Size(135, 23);
             this.v6ColorTextBox20.TabIndex = 141;
-            this.v6ColorTextBox20.GrayText = "";
             // 
             // v6ColorTextBox22
             // 
             this.v6ColorTextBox22.AccessibleName = "ma_td1";
             this.v6ColorTextBox22.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.v6ColorTextBox22.Carry = false;
-            this.v6ColorTextBox22.EnableColorEffect = true;
-            this.v6ColorTextBox22.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox22.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox22.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox22.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox22.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox22.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox22.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox22.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox22.LimitCharacters = null;
             this.v6ColorTextBox22.Location = new System.Drawing.Point(145, 11);
             this.v6ColorTextBox22.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorTextBox22.Name = "v6ColorTextBox22";
             this.v6ColorTextBox22.Size = new System.Drawing.Size(135, 23);
             this.v6ColorTextBox22.TabIndex = 139;
-            this.v6ColorTextBox22.GrayText = "";
             // 
             // v6NumberTextBox3
             // 
@@ -885,23 +858,19 @@
             this.v6NumberTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.v6NumberTextBox3.BackColor = System.Drawing.Color.White;
-            this.v6NumberTextBox3.Carry = false;
-            this.v6NumberTextBox3.EnableColorEffect = true;
-            this.v6NumberTextBox3.EnableColorEffectOnMouseEnter = false;
+            this.v6NumberTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6NumberTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6NumberTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox3.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox3.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox3.LimitCharacters = null;
             this.v6NumberTextBox3.Location = new System.Drawing.Point(145, 256);
             this.v6NumberTextBox3.Margin = new System.Windows.Forms.Padding(5);
-            this.v6NumberTextBox3.MaxNumDecimal = 0;
-            this.v6NumberTextBox3.MaxNumLength = 0;
             this.v6NumberTextBox3.Name = "v6NumberTextBox3";
             this.v6NumberTextBox3.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox3.TabIndex = 155;
             this.v6NumberTextBox3.Text = "0,000";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.v6NumberTextBox3.GrayText = "";
             this.v6NumberTextBox3.Value = new decimal(new int[] {
             0,
             0,
@@ -914,23 +883,19 @@
             this.v6NumberTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.v6NumberTextBox2.BackColor = System.Drawing.Color.White;
-            this.v6NumberTextBox2.Carry = false;
-            this.v6NumberTextBox2.EnableColorEffect = true;
-            this.v6NumberTextBox2.EnableColorEffectOnMouseEnter = false;
+            this.v6NumberTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6NumberTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6NumberTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox2.LimitCharacters = null;
             this.v6NumberTextBox2.Location = new System.Drawing.Point(145, 225);
             this.v6NumberTextBox2.Margin = new System.Windows.Forms.Padding(5);
-            this.v6NumberTextBox2.MaxNumDecimal = 0;
-            this.v6NumberTextBox2.MaxNumLength = 0;
             this.v6NumberTextBox2.Name = "v6NumberTextBox2";
             this.v6NumberTextBox2.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox2.TabIndex = 153;
             this.v6NumberTextBox2.Text = "0,000";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.v6NumberTextBox2.GrayText = "";
             this.v6NumberTextBox2.Value = new decimal(new int[] {
             0,
             0,
@@ -943,23 +908,19 @@
             this.v6NumberTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.v6NumberTextBox1.BackColor = System.Drawing.Color.White;
-            this.v6NumberTextBox1.Carry = false;
-            this.v6NumberTextBox1.EnableColorEffect = true;
-            this.v6NumberTextBox1.EnableColorEffectOnMouseEnter = false;
+            this.v6NumberTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6NumberTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6NumberTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox1.LimitCharacters = null;
             this.v6NumberTextBox1.Location = new System.Drawing.Point(145, 194);
             this.v6NumberTextBox1.Margin = new System.Windows.Forms.Padding(5);
-            this.v6NumberTextBox1.MaxNumDecimal = 0;
-            this.v6NumberTextBox1.MaxNumLength = 0;
             this.v6NumberTextBox1.Name = "v6NumberTextBox1";
             this.v6NumberTextBox1.Size = new System.Drawing.Size(135, 23);
             this.v6NumberTextBox1.TabIndex = 151;
             this.v6NumberTextBox1.Text = "0,000";
             this.v6NumberTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.v6NumberTextBox1.GrayText = "";
             this.v6NumberTextBox1.Value = new decimal(new int[] {
             0,
             0,
@@ -1097,14 +1058,15 @@
             this.v6ColorDateTimePick3.AccessibleName = "ngay_td3";
             this.v6ColorDateTimePick3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.v6ColorDateTimePick3.Carry = false;
-            this.v6ColorDateTimePick3.EnableColorEffect = true;
-            this.v6ColorDateTimePick3.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorDateTimePick3.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorDateTimePick3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorDateTimePick3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorDateTimePick3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorDateTimePick3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorDateTimePick3.GrayText = null;
             this.v6ColorDateTimePick3.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorDateTimePick3.ImeMode = System.Windows.Forms.ImeMode.On;
             this.v6ColorDateTimePick3.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorDateTimePick3.LimitCharacters = null;
             this.v6ColorDateTimePick3.Location = new System.Drawing.Point(145, 160);
             this.v6ColorDateTimePick3.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorDateTimePick3.Name = "v6ColorDateTimePick3";
@@ -1112,22 +1074,21 @@
             this.v6ColorDateTimePick3.StringValue = "__/__/____";
             this.v6ColorDateTimePick3.TabIndex = 149;
             this.v6ColorDateTimePick3.Text = "__/__/____";
-            this.v6ColorDateTimePick3.GrayText = null;
-            this.v6ColorDateTimePick3.Value = null;
             // 
             // v6ColorDateTimePick2
             // 
             this.v6ColorDateTimePick2.AccessibleName = "ngay_td2";
             this.v6ColorDateTimePick2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.v6ColorDateTimePick2.Carry = false;
-            this.v6ColorDateTimePick2.EnableColorEffect = true;
-            this.v6ColorDateTimePick2.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorDateTimePick2.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorDateTimePick2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorDateTimePick2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorDateTimePick2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorDateTimePick2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorDateTimePick2.GrayText = null;
             this.v6ColorDateTimePick2.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorDateTimePick2.ImeMode = System.Windows.Forms.ImeMode.On;
             this.v6ColorDateTimePick2.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorDateTimePick2.LimitCharacters = null;
             this.v6ColorDateTimePick2.Location = new System.Drawing.Point(145, 129);
             this.v6ColorDateTimePick2.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorDateTimePick2.Name = "v6ColorDateTimePick2";
@@ -1135,8 +1096,6 @@
             this.v6ColorDateTimePick2.StringValue = "__/__/____";
             this.v6ColorDateTimePick2.TabIndex = 147;
             this.v6ColorDateTimePick2.Text = "__/__/____";
-            this.v6ColorDateTimePick2.GrayText = null;
-            this.v6ColorDateTimePick2.Value = null;
             // 
             // v6ColorDateTimePick1
             // 
@@ -1144,14 +1103,14 @@
             this.v6ColorDateTimePick1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.v6ColorDateTimePick1.BackColor = System.Drawing.Color.White;
-            this.v6ColorDateTimePick1.Carry = false;
-            this.v6ColorDateTimePick1.EnableColorEffect = true;
-            this.v6ColorDateTimePick1.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorDateTimePick1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorDateTimePick1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorDateTimePick1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorDateTimePick1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorDateTimePick1.GrayText = null;
             this.v6ColorDateTimePick1.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorDateTimePick1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.v6ColorDateTimePick1.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorDateTimePick1.LimitCharacters = null;
             this.v6ColorDateTimePick1.Location = new System.Drawing.Point(145, 98);
             this.v6ColorDateTimePick1.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorDateTimePick1.Name = "v6ColorDateTimePick1";
@@ -1159,12 +1118,13 @@
             this.v6ColorDateTimePick1.StringValue = "__/__/____";
             this.v6ColorDateTimePick1.TabIndex = 145;
             this.v6ColorDateTimePick1.Text = "__/__/____";
-            this.v6ColorDateTimePick1.GrayText = null;
-            this.v6ColorDateTimePick1.Value = null;
             // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage3.Controls.Add(this.ptbPHOTOGRAPH);
+            this.tabPage3.Controls.Add(this.btnXoahinh);
+            this.tabPage3.Controls.Add(this.btnChonhinh);
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.tabPage3.Name = "tabPage3";
@@ -1172,6 +1132,47 @@
             this.tabPage3.Size = new System.Drawing.Size(672, 398);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
+            // 
+            // ptbPHOTOGRAPH
+            // 
+            this.ptbPHOTOGRAPH.AccessibleName = "PHOTOGRAPH";
+            this.ptbPHOTOGRAPH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ptbPHOTOGRAPH.Location = new System.Drawing.Point(118, 9);
+            this.ptbPHOTOGRAPH.Name = "ptbPHOTOGRAPH";
+            this.ptbPHOTOGRAPH.Size = new System.Drawing.Size(238, 193);
+            this.ptbPHOTOGRAPH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptbPHOTOGRAPH.TabIndex = 45;
+            this.ptbPHOTOGRAPH.TabStop = false;
+            // 
+            // btnXoahinh
+            // 
+            this.btnXoahinh.AccessibleDescription = "ADDEDITB00005";
+            this.btnXoahinh.AccessibleName = "";
+            this.btnXoahinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXoahinh.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXoahinh.Location = new System.Drawing.Point(10, 51);
+            this.btnXoahinh.Name = "btnXoahinh";
+            this.btnXoahinh.Size = new System.Drawing.Size(91, 29);
+            this.btnXoahinh.TabIndex = 44;
+            this.btnXoahinh.Text = "Xóa hình";
+            this.btnXoahinh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoahinh.UseVisualStyleBackColor = true;
+            this.btnXoahinh.Click += new System.EventHandler(this.btnXoahinh_Click);
+            // 
+            // btnChonhinh
+            // 
+            this.btnChonhinh.AccessibleDescription = "ADDEDITB00004";
+            this.btnChonhinh.AccessibleName = "";
+            this.btnChonhinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonhinh.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonhinh.Location = new System.Drawing.Point(10, 16);
+            this.btnChonhinh.Name = "btnChonhinh";
+            this.btnChonhinh.Size = new System.Drawing.Size(91, 29);
+            this.btnChonhinh.TabIndex = 43;
+            this.btnChonhinh.Text = "Chọn hình";
+            this.btnChonhinh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonhinh.UseVisualStyleBackColor = true;
+            this.btnChonhinh.Click += new System.EventHandler(this.btnChonhinh_Click);
             // 
             // KhoHangAddEditForm
             // 
@@ -1190,6 +1191,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ptbPHOTOGRAPH)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1259,5 +1262,8 @@
         private V6DateTimeColor v6ColorDateTimePick1;
         private V6ColorTextBox TxtLoai_kho;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.PictureBox ptbPHOTOGRAPH;
+        protected System.Windows.Forms.Button btnXoahinh;
+        protected System.Windows.Forms.Button btnChonhinh;
     }
 }

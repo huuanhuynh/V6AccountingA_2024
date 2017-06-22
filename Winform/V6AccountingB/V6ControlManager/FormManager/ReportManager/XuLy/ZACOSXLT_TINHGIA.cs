@@ -232,6 +232,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var oldKeys = FilterControl.GetFilterParameters();
                 QuickReportParams quick_params = new QuickReportParams()
                 {
+                    AutoRun = true,
                     ItemID = m_itemId,
                     CodeForm = CodeForm,
                     DataSet = _ds.Copy(),

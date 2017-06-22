@@ -1458,6 +1458,21 @@
     <Compile Include="FormManager\KhoHangManager\ViTriControl.Designer.cs">
       <DependentUpon>ViTriControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\Map\FormMapEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\Map\FormMapEdit.designer.cs">
+      <DependentUpon>FormMapEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\Map\FormMapManagerAutoHide.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\Map\FormMapManagerAutoHide.designer.cs">
+      <DependentUpon>FormMapManagerAutoHide.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\Map\HDrawing.cs" />
+    <Compile Include="FormManager\Map\MapRegionObject.cs" />
+    <Compile Include="FormManager\Map\MapviewHelper.cs" />
     <Compile Include="FormManager\MenuManager\Menu2Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3375,6 +3390,18 @@
     <Compile Include="FormManager\ReportManager\Filter\XLSTA1_Filter.Designer.cs">
       <DependentUpon>XLSTA1_Filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01AFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01AFilter.designer.cs">
+      <DependentUpon>AMAP01AFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01Filter.designer.cs">
+      <DependentUpon>AMAP01Filter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\ZACOSXLT_TINHGIA_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3717,6 +3744,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AINABVITRI2N.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AMAPREPORT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AMAPEDIT.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AINVITRI04.cs">
@@ -5323,6 +5356,12 @@
     <EmbeddedResource Include="FormManager\KhoHangManager\ViTriControl.resx">
       <DependentUpon>ViTriControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\Map\FormMapEdit.resx">
+      <DependentUpon>FormMapEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\Map\FormMapManagerAutoHide.resx">
+      <DependentUpon>FormMapManagerAutoHide.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\MenuManager\Menu2Control.resx">
       <DependentUpon>Menu2Control.cs</DependentUpon>
     </EmbeddedResource>
@@ -6273,6 +6312,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\XLSTA1_Filter.resx">
       <DependentUpon>XLSTA1_Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01AFilter.resx">
+      <DependentUpon>AMAP01AFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01Filter.resx">
+      <DependentUpon>AMAP01Filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\ZACOSXLT_TINHGIA_Filter.resx">
       <DependentUpon>ZACOSXLT_TINHGIA_Filter.cs</DependentUpon>
