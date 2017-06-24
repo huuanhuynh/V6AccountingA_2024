@@ -51,6 +51,9 @@ namespace V6Structs
                 case "ENABLED":
                     Enabled = value == "1";
                     break;
+                case "EVENT":
+                    Event = value;
+                    break;
                 case "F2":
                     F2 = value == "1";
                     break;
@@ -218,6 +221,11 @@ namespace V6Structs
         /// Brother Field
         /// </summary>
         public string BField { get; set; }
+
+        /// <summary>
+        /// Tên event
+        /// </summary>
+        public string Event { get; set; }
 
         public bool ToUpper;
     }

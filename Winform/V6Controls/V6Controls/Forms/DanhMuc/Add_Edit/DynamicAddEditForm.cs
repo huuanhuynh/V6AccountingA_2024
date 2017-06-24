@@ -22,7 +22,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private DataTable Alreport1Data = null;
         private Dictionary<V6NumberTextBox, int> NumberTextBox_Decimals = new Dictionary<V6NumberTextBox, int>();
         private Dictionary<V6ColorTextBox, int> V6ColorTextBox_MaxLength = new Dictionary<V6ColorTextBox, int>();
-        private Dictionary<string, DefineInfo> DefineInfo_Data = new Dictionary<string, DefineInfo>(); 
+        private Dictionary<string, DefineInfo> DefineInfo_Data = new Dictionary<string, DefineInfo>();
+        private Dictionary<string, Label> Label_Controls = new Dictionary<string, Label>(); 
+        private Dictionary<string, V6ColorTextBox> Input_Controls = new Dictionary<string, V6ColorTextBox>(); 
 
         public DynamicAddEditForm(string tableName, DataRow dataRow)
         {
@@ -56,6 +58,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     label.Top = top;
                     label.Text = defineInfo.TextLang(V6Setting.IsVietnamese);
                     panel1.Controls.Add(label);
+                    Label_Controls[defineInfo.Field.ToUpper()] = label;
                     //Input
                     V6ColorTextBox input = null;
                     if (ObjectAndString.IsDateTimeType(defineInfo.DataType))
@@ -103,6 +106,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         input.Top = top;
                         
                         panel1.Controls.Add(input);
+                        Input_Controls[defineInfo.Field.ToUpper()] = input;
+                        //Sự kiện của input
+                        if (!string.IsNullOrEmpty(defineInfo.Event))
+                        {
+                            switch (defineInfo.Event.ToUpper())
+                            {
+                                case "CHANGECOLOR":
+                                    //CallCHANGECOLOR(input, defineInfo.Rcontrol, defineInfo.Gcontrol, defineInfo.Bcontrol);
+                                    //,Input_Controls, Label_Controls, this);
+                                    break;
+                            }
+                        }
+
                         //Add brother
                         if (input is V6VvarTextBox && !string.IsNullOrEmpty(defineInfo.BField))
                         {
@@ -125,6 +141,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".MyInit", ex);
+            }
+        }
+
+        private void CallCHANGECOLOR(V6ColorTextBox input, object rcontrol, object gcontrol, object bcontrol)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CallCHANGECOLOR", ex);
             }
         }
 

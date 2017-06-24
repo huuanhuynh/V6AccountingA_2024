@@ -309,7 +309,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage("UpdateV6Option: " + ex.Message, ex.Source);
+                this.WriteExLog(GetType() + ".UpdateV6Option", ex);
             }
         }
 

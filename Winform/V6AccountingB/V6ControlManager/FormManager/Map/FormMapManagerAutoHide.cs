@@ -48,33 +48,47 @@ namespace V6ControlManager.FormManager.Map
 
         private void MyInit()
         {
-            DateTime datetime = V6BusinessHelper.GetServerDateTime();
-            MH.DateFrom = datetime.Date;
+            try
+            {
+                DateTime datetime = V6BusinessHelper.GetServerDateTime();
+                MH.DateFrom = datetime.Date;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
         }
         
         private void Form1_Load(object sender, EventArgs e)
         {
-            pictureBox1.Size = panel1_Image.Size;
-            //Gán hết các setting cho MH!!!
-            MH._groupType = "KH";
-            MH._groupTableName = "Alkho";
-            MH._groupTableName_Ct = "Alkhoct1";
-            MH._groupIDfieldName = "Ma_kho";
-            MH._groupKeyFieldName = "Ma_kho";
-            MH._groupSelectString = "Select ma_kho, ten_kho, ten_kho2 ";
-            MH._procLoadItemsColor = "VPA_DETAIL_MA_HINH2MA_VITRI";
-
-            MH.LoadColorList();
-            LoadGroupList();
-            //MH.LoadPolygonDicColor();
-
-            loaded = true;
-            timerRefresh.Start();
-            if (V6Setting.Language == "E")
-                rbtEnglish.Checked = true;
-            else
+            try
             {
-                rbtTiengViet.Checked = true;
+                pictureBox1.Size = panel1_Image.Size;
+                //Gán hết các setting cho MH!!!
+                MH._groupType = "KH";
+                MH._groupTableName = "Alkho";
+                MH._groupTableName_Ct = "Alkhoct1";
+                MH._groupIDfieldName = "Ma_kho";
+                MH._groupKeyFieldName = "Ma_kho";
+                MH._groupSelectString = "Select ma_kho, ten_kho, ten_kho2 ";
+                MH._procLoadItemsColor = "VPA_DETAIL_MA_HINH2MA_VITRI";
+
+                MH.LoadColorList();
+                LoadGroupList();
+                //MH.LoadPolygonDicColor();
+
+                loaded = true;
+                timerRefresh.Start();
+                if (V6Setting.Language == "E")
+                    rbtEnglish.Checked = true;
+                else
+                {
+                    rbtTiengViet.Checked = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".Load", ex);
             }
         }
 

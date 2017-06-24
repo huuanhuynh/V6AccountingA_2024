@@ -575,8 +575,13 @@ namespace V6ControlManager.FormManager.Map
             string sql = _groupSelectString;
             sql += " From [" + _groupTableName + "]";
 
-            
-            
+            //Phân quyền
+            var initFilter = V6Login.IsAdmin ? "" : " dbo.VFA_Inlist_MEMO(MA_KHO,'" + V6Login.UserRight.RightKho + "')=1";
+            if (!string.IsNullOrEmpty(initFilter) && !string.IsNullOrEmpty(where))
+            {
+                where = initFilter + " and " + where;
+            }
+
             if (!string.IsNullOrEmpty(where))
                 sql += " Where " + where;
 
@@ -617,7 +622,7 @@ namespace V6ControlManager.FormManager.Map
             }
             catch (Exception ex)
             {
-                throw new Exception("LoadColor " + ex.Message);
+                Logger.WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + ".LoadColorList", ex, V6ControlFormHelper.LastActionListString);
             }
         }
 

@@ -33,9 +33,41 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
         public override void DoBeforeEdit()
         {
-            var v = Categories.IsExistOneCode_List("ABVT,ABLO,ARI70,ARS90", "Ma_kho", TxtMa_kho.Text);
-            TxtMa_kho.Enabled = !v;
-            TxtMa_dvcs.Enabled = !v;
+            try
+            {
+                var v = Categories.IsExistOneCode_List("ABVT,ABLO,ARI70,ARS90", "Ma_kho", TxtMa_kho.Text);
+                TxtMa_kho.Enabled = !v;
+                TxtMa_dvcs.Enabled = !v;
+
+                LoadImageData();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoBeforeEdit", ex);
+            }
+        }
+
+        private void LoadImageData()
+        {
+            try
+            {
+                SortedDictionary<string, object> keys = new SortedDictionary<string, object>();
+                keys.Add("MA_KHO", TxtMa_kho.Text);
+                var data = Categories.Select("Alkhoct1", keys).Data;
+                if (data != null && data.Rows.Count > 0)
+                {
+                    var rowData = data.Rows[0].ToDataDictionary();
+                    SetSomeData(new SortedDictionary<string, object>()
+                {
+                    {"PHOTOGRAPH", rowData["PHOTOGRAPH"] },
+                    {"SIGNATURE", rowData["SIGNATURE"] }
+                });
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadImageData", ex);
+            }
         }
 
         private void TxtKho_dl_V6LostFocus(object sender)

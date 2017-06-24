@@ -67,7 +67,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".DisableControlWhenEdit " + ex.Message, Application.ProductName);
+                this.WriteExLog(GetType() + ".DoBeforeEdit", ex);
             }
         }
 
@@ -83,17 +83,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void LoadImageData()
         {
-            SortedDictionary<string, object> keys = new SortedDictionary<string, object>();
-            keys.Add("MA_VT", txtMaVT.Text);
-            var data = Categories.Select("Alvtct1", keys).Data;
-            if (data != null && data.Rows.Count > 0)
+            try
             {
-                var rowData = data.Rows[0].ToDataDictionary();
-                SetSomeData(new SortedDictionary<string, object>()
+                SortedDictionary<string, object> keys = new SortedDictionary<string, object>();
+                keys.Add("MA_VT", txtMaVT.Text);
+                var data = Categories.Select("Alvtct1", keys).Data;
+                if (data != null && data.Rows.Count > 0)
                 {
-                    {"PHOTOGRAPH", rowData["PHOTOGRAPH"] },
-                    {"SIGNATURE", rowData["SIGNATURE"] }
-                });
+                    var rowData = data.Rows[0].ToDataDictionary();
+                    SetSomeData(new SortedDictionary<string, object>()
+                    {
+                        {"PHOTOGRAPH", rowData["PHOTOGRAPH"]},
+                        {"SIGNATURE", rowData["SIGNATURE"]}
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadImageData", ex);
             }
         }
 

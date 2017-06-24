@@ -31,7 +31,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.ShowErrorMessage("DisableControlWhenEdit " + ex.Message, ex.Source);
+                this.WriteExLog(GetType() + ".DoBeforeEdit", ex);
             }
         }
 
