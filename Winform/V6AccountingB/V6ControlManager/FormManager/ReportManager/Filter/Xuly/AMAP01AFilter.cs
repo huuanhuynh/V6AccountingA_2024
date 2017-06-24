@@ -18,7 +18,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
             {
                 //lineMaDvcs.Enabled = false;
             }
-            
+            TxtStatus.VvarTextBox.Text = "1";
+            chkkh_yn.Checked = true;
+
             Ready();
         }
 
@@ -43,6 +45,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
         {
             var result = new List<SqlParameter>();
             var condition = "";
+            
             //if (flag == "DAY")
             //{
             condition = string.Format("MA_VITRI like '{0}%'", lineMaVitri.StringValue.Replace("'", "''"));
@@ -54,10 +57,38 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
             //        lineMaVitri.StringValue.Replace("'", "''"));
             //}
 
+
+            var and = radAnd.Checked;
+            var cKey = "";
+            var key1 = GetFilterStringByFields(new List<string>()
+            {
+               "MA_KH","NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6","STATUS"
+            }, and);
+
+            if (chkkh_yn.Checked)
+            {
+                key1 = key1 + " and kh_yn=1";
+            }
+            if (chkcc_yn.Checked)
+            {
+                key1 = key1 + " and cc_yn=1";
+            }
+            if (chknv_yn.Checked)
+            {
+                key1 = key1 + " and kh_nv=1";
+            }
+
+            if (!string.IsNullOrEmpty(key1))
+            {
+                cKey = string.Format(" ma_kh in (select ma_kh from alkh where {0} )", key1);
+            }
+            
+
             result = new List<SqlParameter>
             {
                 new SqlParameter("@MA_KHO", lineMakho.StringValue),
                 new SqlParameter("@Advance", condition),
+                new SqlParameter("@Advance1", cKey),
             };
 
             return result;

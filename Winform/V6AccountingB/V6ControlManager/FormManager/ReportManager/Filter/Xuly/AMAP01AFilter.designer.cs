@@ -33,6 +33,17 @@
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
             this.lineMaVitri = new V6ReportControls.FilterLineVvarTextBox();
+            this.TxtStatus = new V6ReportControls.FilterLineVvarTextBox();
+            this.chknv_yn = new V6Controls.V6CheckBox();
+            this.chkcc_yn = new V6Controls.V6CheckBox();
+            this.chkkh_yn = new V6Controls.V6CheckBox();
+            this.Txtnh_kh6 = new V6ReportControls.FilterLineVvarTextBox();
+            this.Txtnh_kh5 = new V6ReportControls.FilterLineVvarTextBox();
+            this.Txtnh_kh4 = new V6ReportControls.FilterLineVvarTextBox();
+            this.Txtnh_kh1 = new V6ReportControls.FilterLineVvarTextBox();
+            this.Txtnh_kh2 = new V6ReportControls.FilterLineVvarTextBox();
+            this.Txtnh_kh3 = new V6ReportControls.FilterLineVvarTextBox();
+            this.filterLineVvarTextBox3 = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,13 +53,24 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.TxtStatus);
+            this.groupBox1.Controls.Add(this.chknv_yn);
+            this.groupBox1.Controls.Add(this.chkcc_yn);
+            this.groupBox1.Controls.Add(this.chkkh_yn);
+            this.groupBox1.Controls.Add(this.Txtnh_kh6);
+            this.groupBox1.Controls.Add(this.Txtnh_kh5);
+            this.groupBox1.Controls.Add(this.Txtnh_kh4);
+            this.groupBox1.Controls.Add(this.Txtnh_kh1);
+            this.groupBox1.Controls.Add(this.Txtnh_kh2);
+            this.groupBox1.Controls.Add(this.Txtnh_kh3);
+            this.groupBox1.Controls.Add(this.filterLineVvarTextBox3);
             this.groupBox1.Controls.Add(this.lineMakho);
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Controls.Add(this.lineMaVitri);
-            this.groupBox1.Location = new System.Drawing.Point(2, 97);
+            this.groupBox1.Location = new System.Drawing.Point(3, 21);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 166);
+            this.groupBox1.Size = new System.Drawing.Size(289, 414);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -101,13 +123,134 @@
             this.lineMaVitri.TabIndex = 3;
             this.lineMaVitri.Vvar = "MA_VITRI";
             // 
+            // TxtStatus
+            // 
+            this.TxtStatus.AccessibleDescription = "FILTERL00016";
+            this.TxtStatus.FieldCaption = "Trạng thái";
+            this.TxtStatus.FieldName = "STATUS";
+            this.TxtStatus.Location = new System.Drawing.Point(4, 259);
+            this.TxtStatus.Name = "TxtStatus";
+            this.TxtStatus.Size = new System.Drawing.Size(281, 22);
+            this.TxtStatus.TabIndex = 22;
+            this.TxtStatus.Vvar = "";
+            // 
+            // chknv_yn
+            // 
+            this.chknv_yn.AccessibleDescription = "FILTERC00013";
+            this.chknv_yn.AutoSize = true;
+            this.chknv_yn.Location = new System.Drawing.Point(203, 287);
+            this.chknv_yn.Name = "chknv_yn";
+            this.chknv_yn.Size = new System.Drawing.Size(75, 17);
+            this.chknv_yn.TabIndex = 25;
+            this.chknv_yn.Text = "Nhân viên";
+            this.chknv_yn.UseVisualStyleBackColor = true;
+            // 
+            // chkcc_yn
+            // 
+            this.chkcc_yn.AccessibleDescription = "FILTERC00013";
+            this.chkcc_yn.AutoSize = true;
+            this.chkcc_yn.Location = new System.Drawing.Point(118, 287);
+            this.chkcc_yn.Name = "chkcc_yn";
+            this.chkcc_yn.Size = new System.Drawing.Size(63, 17);
+            this.chkcc_yn.TabIndex = 24;
+            this.chkcc_yn.Text = "Nhà CC";
+            this.chkcc_yn.UseVisualStyleBackColor = true;
+            // 
+            // chkkh_yn
+            // 
+            this.chkkh_yn.AccessibleDescription = "FILTERC00013";
+            this.chkkh_yn.AutoSize = true;
+            this.chkkh_yn.Location = new System.Drawing.Point(8, 287);
+            this.chkkh_yn.Name = "chkkh_yn";
+            this.chkkh_yn.Size = new System.Drawing.Size(87, 17);
+            this.chkkh_yn.TabIndex = 23;
+            this.chkkh_yn.Text = "Khách hàng ";
+            this.chkkh_yn.UseVisualStyleBackColor = true;
+            // 
+            // Txtnh_kh6
+            // 
+            this.Txtnh_kh6.AccessibleDescription = "FILTERL00016";
+            this.Txtnh_kh6.FieldCaption = "Nhóm khách hàng 6";
+            this.Txtnh_kh6.FieldName = "NH_KH6";
+            this.Txtnh_kh6.Location = new System.Drawing.Point(4, 237);
+            this.Txtnh_kh6.Name = "Txtnh_kh6";
+            this.Txtnh_kh6.Size = new System.Drawing.Size(281, 22);
+            this.Txtnh_kh6.TabIndex = 21;
+            this.Txtnh_kh6.Vvar = "NH_KH";
+            // 
+            // Txtnh_kh5
+            // 
+            this.Txtnh_kh5.AccessibleDescription = "FILTERL00015";
+            this.Txtnh_kh5.FieldCaption = "Nhóm khách hàng 5";
+            this.Txtnh_kh5.FieldName = "NH_KH5";
+            this.Txtnh_kh5.Location = new System.Drawing.Point(4, 215);
+            this.Txtnh_kh5.Name = "Txtnh_kh5";
+            this.Txtnh_kh5.Size = new System.Drawing.Size(281, 22);
+            this.Txtnh_kh5.TabIndex = 20;
+            this.Txtnh_kh5.Vvar = "NH_KH";
+            // 
+            // Txtnh_kh4
+            // 
+            this.Txtnh_kh4.AccessibleDescription = "FILTERL00014";
+            this.Txtnh_kh4.FieldCaption = "Nhóm khách hàng 4";
+            this.Txtnh_kh4.FieldName = "NH_KH4";
+            this.Txtnh_kh4.Location = new System.Drawing.Point(4, 193);
+            this.Txtnh_kh4.Name = "Txtnh_kh4";
+            this.Txtnh_kh4.Size = new System.Drawing.Size(281, 22);
+            this.Txtnh_kh4.TabIndex = 19;
+            this.Txtnh_kh4.Vvar = "NH_KH";
+            // 
+            // Txtnh_kh1
+            // 
+            this.Txtnh_kh1.AccessibleDescription = "FILTERL00011";
+            this.Txtnh_kh1.FieldCaption = "Nhóm khách hàng 1";
+            this.Txtnh_kh1.FieldName = "NH_KH1";
+            this.Txtnh_kh1.Location = new System.Drawing.Point(4, 127);
+            this.Txtnh_kh1.Name = "Txtnh_kh1";
+            this.Txtnh_kh1.Size = new System.Drawing.Size(281, 22);
+            this.Txtnh_kh1.TabIndex = 16;
+            this.Txtnh_kh1.Vvar = "NH_KH";
+            // 
+            // Txtnh_kh2
+            // 
+            this.Txtnh_kh2.AccessibleDescription = "FILTERL00012";
+            this.Txtnh_kh2.FieldCaption = "Nhóm khách hàng 2";
+            this.Txtnh_kh2.FieldName = "NH_KH2";
+            this.Txtnh_kh2.Location = new System.Drawing.Point(4, 149);
+            this.Txtnh_kh2.Name = "Txtnh_kh2";
+            this.Txtnh_kh2.Size = new System.Drawing.Size(281, 22);
+            this.Txtnh_kh2.TabIndex = 17;
+            this.Txtnh_kh2.Vvar = "NH_KH";
+            // 
+            // Txtnh_kh3
+            // 
+            this.Txtnh_kh3.AccessibleDescription = "FILTERL00013";
+            this.Txtnh_kh3.FieldCaption = "Nhóm khách hàng 3";
+            this.Txtnh_kh3.FieldName = "NH_KH3";
+            this.Txtnh_kh3.Location = new System.Drawing.Point(4, 171);
+            this.Txtnh_kh3.Name = "Txtnh_kh3";
+            this.Txtnh_kh3.Size = new System.Drawing.Size(281, 22);
+            this.Txtnh_kh3.TabIndex = 18;
+            this.Txtnh_kh3.Vvar = "NH_KH";
+            // 
+            // filterLineVvarTextBox3
+            // 
+            this.filterLineVvarTextBox3.AccessibleDescription = "FILTERL00007";
+            this.filterLineVvarTextBox3.FieldCaption = "Mã khách hàng";
+            this.filterLineVvarTextBox3.FieldName = "MA_KH";
+            this.filterLineVvarTextBox3.Location = new System.Drawing.Point(4, 104);
+            this.filterLineVvarTextBox3.Name = "filterLineVvarTextBox3";
+            this.filterLineVvarTextBox3.Size = new System.Drawing.Size(281, 22);
+            this.filterLineVvarTextBox3.TabIndex = 15;
+            this.filterLineVvarTextBox3.Vvar = "MA_KH";
+            // 
             // AMAP01AFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "AMAP01AFilter";
-            this.Size = new System.Drawing.Size(295, 266);
+            this.Size = new System.Drawing.Size(295, 438);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -121,5 +264,16 @@
         private System.Windows.Forms.RadioButton radAnd;
         private V6ReportControls.FilterLineVvarTextBox lineMakho;
         private V6ReportControls.FilterLineVvarTextBox lineMaVitri;
+        private V6ReportControls.FilterLineVvarTextBox TxtStatus;
+        private V6Controls.V6CheckBox chknv_yn;
+        private V6Controls.V6CheckBox chkcc_yn;
+        private V6Controls.V6CheckBox chkkh_yn;
+        private V6ReportControls.FilterLineVvarTextBox Txtnh_kh6;
+        private V6ReportControls.FilterLineVvarTextBox Txtnh_kh5;
+        private V6ReportControls.FilterLineVvarTextBox Txtnh_kh4;
+        private V6ReportControls.FilterLineVvarTextBox Txtnh_kh1;
+        private V6ReportControls.FilterLineVvarTextBox Txtnh_kh2;
+        private V6ReportControls.FilterLineVvarTextBox Txtnh_kh3;
+        private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox3;
     }
 }
