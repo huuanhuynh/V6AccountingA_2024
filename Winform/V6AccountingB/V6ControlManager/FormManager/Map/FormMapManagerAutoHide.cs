@@ -770,7 +770,7 @@ namespace V6ControlManager.FormManager.Map
         {
             if (e.Button == MouseButtons.Left)
             {
-                if (!pictureBox1.Focused) pictureBox1.Focus();
+                if (!panel1_Image.Focused) panel1_Image.Focus();
                 MouseLeftDownOnPictureBox1(e.Location);
                 pictureBox1.Invalidate();
 

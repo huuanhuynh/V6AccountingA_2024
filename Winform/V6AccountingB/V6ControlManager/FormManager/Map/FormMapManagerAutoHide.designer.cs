@@ -33,6 +33,14 @@
             this.contextMenuStrip_Pic1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuPic1ReportKhu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPic1ReportDay = new System.Windows.Forms.ToolStripMenuItem();
+            this.Baocao1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Baocao2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Baocao3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Baocao4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Thongke1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Thongke2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Thongke3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Thongke4 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1_Image = new System.Windows.Forms.Panel();
             this.comboBoxGroup = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip_Reload = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -52,14 +60,6 @@
             this.menuPictureReport = new System.Windows.Forms.ToolStripMenuItem();
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
             this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
-            this.Baocao1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.Baocao2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.Baocao3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.Baocao4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.Thongke1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.Thongke2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.Thongke3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.Thongke4 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.contextMenuStrip_Pic1.SuspendLayout();
             this.panel1_Image.SuspendLayout();
@@ -104,21 +104,77 @@
             this.Thongke3,
             this.Thongke4});
             this.contextMenuStrip_Pic1.Name = "contextMenuStrip_Pic1";
-            this.contextMenuStrip_Pic1.Size = new System.Drawing.Size(153, 246);
+            this.contextMenuStrip_Pic1.Size = new System.Drawing.Size(140, 224);
             // 
             // menuPic1ReportKhu
             // 
             this.menuPic1ReportKhu.Name = "menuPic1ReportKhu";
-            this.menuPic1ReportKhu.Size = new System.Drawing.Size(152, 22);
+            this.menuPic1ReportKhu.Size = new System.Drawing.Size(139, 22);
             this.menuPic1ReportKhu.Text = "Báo cáo khu";
             this.menuPic1ReportKhu.Click += new System.EventHandler(this.menuPic1ReportKhu_Click);
             // 
             // menuPic1ReportDay
             // 
             this.menuPic1ReportDay.Name = "menuPic1ReportDay";
-            this.menuPic1ReportDay.Size = new System.Drawing.Size(152, 22);
+            this.menuPic1ReportDay.Size = new System.Drawing.Size(139, 22);
             this.menuPic1ReportDay.Text = "Báo cáo dãy";
             this.menuPic1ReportDay.Click += new System.EventHandler(this.menuPic1ReportDay_Click);
+            // 
+            // Baocao1
+            // 
+            this.Baocao1.Name = "Baocao1";
+            this.Baocao1.Size = new System.Drawing.Size(139, 22);
+            this.Baocao1.Text = "Báo cáo 1";
+            this.Baocao1.Click += new System.EventHandler(this.Baocao1_Click);
+            // 
+            // Baocao2
+            // 
+            this.Baocao2.Name = "Baocao2";
+            this.Baocao2.Size = new System.Drawing.Size(139, 22);
+            this.Baocao2.Text = "Báo cáo 2";
+            this.Baocao2.Click += new System.EventHandler(this.Baocao2_Click);
+            // 
+            // Baocao3
+            // 
+            this.Baocao3.Name = "Baocao3";
+            this.Baocao3.Size = new System.Drawing.Size(139, 22);
+            this.Baocao3.Text = "Báo cáo 3";
+            this.Baocao3.Click += new System.EventHandler(this.Baocao3_Click);
+            // 
+            // Baocao4
+            // 
+            this.Baocao4.Name = "Baocao4";
+            this.Baocao4.Size = new System.Drawing.Size(139, 22);
+            this.Baocao4.Text = "Báo cáo 4";
+            this.Baocao4.Click += new System.EventHandler(this.Baocao4_Click);
+            // 
+            // Thongke1
+            // 
+            this.Thongke1.Name = "Thongke1";
+            this.Thongke1.Size = new System.Drawing.Size(139, 22);
+            this.Thongke1.Text = "Thống kê 1";
+            this.Thongke1.Click += new System.EventHandler(this.Thongke1_Click);
+            // 
+            // Thongke2
+            // 
+            this.Thongke2.Name = "Thongke2";
+            this.Thongke2.Size = new System.Drawing.Size(139, 22);
+            this.Thongke2.Text = "Thống kê 2";
+            this.Thongke2.Click += new System.EventHandler(this.Thongke2_Click);
+            // 
+            // Thongke3
+            // 
+            this.Thongke3.Name = "Thongke3";
+            this.Thongke3.Size = new System.Drawing.Size(139, 22);
+            this.Thongke3.Text = "Thống kê 3";
+            this.Thongke3.Click += new System.EventHandler(this.Thongke3_Click);
+            // 
+            // Thongke4
+            // 
+            this.Thongke4.Name = "Thongke4";
+            this.Thongke4.Size = new System.Drawing.Size(139, 22);
+            this.Thongke4.Text = "Thống kê 4";
+            this.Thongke4.Click += new System.EventHandler(this.Thongke4_Click);
             // 
             // panel1_Image
             // 
@@ -130,7 +186,7 @@
             this.panel1_Image.Controls.Add(this.pictureBox1);
             this.panel1_Image.Location = new System.Drawing.Point(4, 54);
             this.panel1_Image.Name = "panel1_Image";
-            this.panel1_Image.Size = new System.Drawing.Size(810, 548);
+            this.panel1_Image.Size = new System.Drawing.Size(781, 548);
             this.panel1_Image.TabIndex = 1;
             this.panel1_Image.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_Image_MouseMove);
             // 
@@ -198,7 +254,7 @@
             this.panelContainer1.Controls.Add(this.panel1_Image);
             this.panelContainer1.Location = new System.Drawing.Point(1, 5);
             this.panelContainer1.Name = "panelContainer1";
-            this.panelContainer1.Size = new System.Drawing.Size(820, 605);
+            this.panelContainer1.Size = new System.Drawing.Size(791, 605);
             this.panelContainer1.TabIndex = 4;
             this.panelContainer1.MouseHover += new System.EventHandler(this.panelContainer1_MouseHover);
             this.panelContainer1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelContainer1_MouseMove);
@@ -287,62 +343,6 @@
             // 
             this.timerRefresh.Tick += new System.EventHandler(this.timerRefresh_Tick);
             // 
-            // Baocao1
-            // 
-            this.Baocao1.Name = "Baocao1";
-            this.Baocao1.Size = new System.Drawing.Size(152, 22);
-            this.Baocao1.Text = "Báo cáo 1";
-            this.Baocao1.Click += new System.EventHandler(this.Baocao1_Click);
-            // 
-            // Baocao2
-            // 
-            this.Baocao2.Name = "Baocao2";
-            this.Baocao2.Size = new System.Drawing.Size(152, 22);
-            this.Baocao2.Text = "Báo cáo 2";
-            this.Baocao2.Click += new System.EventHandler(this.Baocao2_Click);
-            // 
-            // Baocao3
-            // 
-            this.Baocao3.Name = "Baocao3";
-            this.Baocao3.Size = new System.Drawing.Size(152, 22);
-            this.Baocao3.Text = "Báo cáo 3";
-            this.Baocao3.Click += new System.EventHandler(this.Baocao3_Click);
-            // 
-            // Baocao4
-            // 
-            this.Baocao4.Name = "Baocao4";
-            this.Baocao4.Size = new System.Drawing.Size(152, 22);
-            this.Baocao4.Text = "Báo cáo 4";
-            this.Baocao4.Click += new System.EventHandler(this.Baocao4_Click);
-            // 
-            // Thongke1
-            // 
-            this.Thongke1.Name = "Thongke1";
-            this.Thongke1.Size = new System.Drawing.Size(152, 22);
-            this.Thongke1.Text = "Thống kê 1";
-            this.Thongke1.Click += new System.EventHandler(this.Thongke1_Click);
-            // 
-            // Thongke2
-            // 
-            this.Thongke2.Name = "Thongke2";
-            this.Thongke2.Size = new System.Drawing.Size(152, 22);
-            this.Thongke2.Text = "Thống kê 2";
-            this.Thongke2.Click += new System.EventHandler(this.Thongke2_Click);
-            // 
-            // Thongke3
-            // 
-            this.Thongke3.Name = "Thongke3";
-            this.Thongke3.Size = new System.Drawing.Size(152, 22);
-            this.Thongke3.Text = "Thống kê 3";
-            this.Thongke3.Click += new System.EventHandler(this.Thongke3_Click);
-            // 
-            // Thongke4
-            // 
-            this.Thongke4.Name = "Thongke4";
-            this.Thongke4.Size = new System.Drawing.Size(152, 22);
-            this.Thongke4.Text = "Thống kê 4";
-            this.Thongke4.Click += new System.EventHandler(this.Thongke4_Click);
-            // 
             // FormMapManagerAutoHide
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -350,7 +350,7 @@
             this.Controls.Add(this.panelContainer1);
             this.MinimumSize = new System.Drawing.Size(600, 500);
             this.Name = "FormMapManagerAutoHide";
-            this.Size = new System.Drawing.Size(935, 611);
+            this.Size = new System.Drawing.Size(795, 611);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contextMenuStrip_Pic1.ResumeLayout(false);

@@ -23,7 +23,10 @@ namespace V6ControlManager.FormManager.ToolManager
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new FormExportSqlTableToFile().Show();
+            if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+            {
+                new FormExportSqlTableToFile().Show();
+            }
         }
 
         private void MyInit()
@@ -54,8 +57,7 @@ namespace V6ControlManager.FormManager.ToolManager
 
         private void btnDBF_Click(object sender, EventArgs e)
         {
-            V6Message.Show("Dùng convert table!");
-            //new FormDBF().Show();
+            new FormDBF().Show();
         }
 
         private void btnModelHelp_Click(object sender, EventArgs e)
@@ -104,6 +106,11 @@ namespace V6ControlManager.FormManager.ToolManager
             {
                 V6Setting.V6Special = V6Setting.V6Special.Replace("Triple", "");
             }
+        }
+
+        private void btnSQL_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

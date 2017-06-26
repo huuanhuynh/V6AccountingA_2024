@@ -1,8 +1,13 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
+using Microsoft.CSharp;
 using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
@@ -23,6 +28,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private Dictionary<V6NumberTextBox, int> NumberTextBox_Decimals = new Dictionary<V6NumberTextBox, int>();
         private Dictionary<V6ColorTextBox, int> V6ColorTextBox_MaxLength = new Dictionary<V6ColorTextBox, int>();
         private Dictionary<string, DefineInfo> DefineInfo_Data = new Dictionary<string, DefineInfo>();
+        
+        private Dictionary<string, object> All_Objects = new Dictionary<string, object>(); 
         private Dictionary<string, Label> Label_Controls = new Dictionary<string, Label>(); 
         private Dictionary<string, V6ColorTextBox> Input_Controls = new Dictionary<string, V6ColorTextBox>(); 
 
@@ -34,10 +41,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             MyInit();
         }
 
+
+        private Type program;
+        private string all_using_text = "", all_method_text = "";
         private void MyInit()
         {
             try
             {
+                //
+                All_Objects["thisForm"] = this;
                 //Tạo control động
                 IDictionary<string, object> keys = new Dictionary<string, object>();
                 keys.Add("MA_BC", TableName);
@@ -53,12 +65,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     //Label
                     var top = baseTop + i * rowHeight;
                     var label = new V6Label();
+                    label.Name = "lbl" + defineInfo.Field;
                     label.AutoSize = true;
                     label.Left = 10;
                     label.Top = top;
                     label.Text = defineInfo.TextLang(V6Setting.IsVietnamese);
                     panel1.Controls.Add(label);
                     Label_Controls[defineInfo.Field.ToUpper()] = label;
+                    All_Objects[label.Name] = label;
                     //Input
                     V6ColorTextBox input = null;
                     if (ObjectAndString.IsDateTimeType(defineInfo.DataType))
@@ -99,6 +113,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         }
                         
                         input.AccessibleName = defineInfo.Field;
+                        input.Name = "txt" + defineInfo.Field;
                         input.Width = string.IsNullOrEmpty(defineInfo.Width)
                             ? 150
                             : ObjectAndString.ObjectToInt(defineInfo.Width);
@@ -107,13 +122,117 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         
                         panel1.Controls.Add(input);
                         Input_Controls[defineInfo.Field.ToUpper()] = input;
+                        All_Objects[input.Name] = input;
                         //Sự kiện của input
-                        if (!string.IsNullOrEmpty(defineInfo.Event))
+                        string DMETHOD = "" + row["DMETHOD"];
+                        if (!string.IsNullOrEmpty(DMETHOD))
                         {
-                            //Make dynamic event and call
-
+                            //Nhiều event
+                            var xml = DMETHOD;
+                            DataSet ds = new DataSet();
+                            ds.ReadXml(new StringReader(xml));
+                            if (ds.Tables.Count <= 0) break;
                             
-                        }
+                            var data = ds.Tables[0];
+                            
+                            foreach (DataRow event_row in data.Rows)
+                            {
+                                var event_name = event_row["event"].ToString().Trim().ToUpper();
+                                var method_name = event_row["method"].ToString().Trim();
+
+                                all_using_text += event_row["using"];
+                                all_method_text += event_row["content"];
+                                all_method_text += " ";
+
+                                //Make dynamic event and call
+                                switch (event_name)
+                                {
+                                    case "TEXTCHANGE":
+                                        input.TextChanged += (s, e) =>
+                                        {
+                                            if (program == null) return;
+
+                                            All_Objects["sender"] = s;
+                                            All_Objects["eventargs"] = e;
+                                            var Method = program.GetMethod(method_name);
+                                            if (Method != null)
+                                            {
+                                                var parameters = Method.GetParameters();
+                                                var listObj = new List<object>();
+                                                foreach (ParameterInfo info in parameters)
+                                                {
+                                                    if (All_Objects.ContainsKey(info.Name))
+                                                    {
+                                                        listObj.Add(All_Objects[info.Name]);
+                                                    }
+                                                    else
+                                                    {
+                                                        listObj.Add(null);
+                                                    }
+                                                }
+                                                Method.Invoke(null, listObj.ToArray());
+                                            }
+                                        };
+                                        break;
+
+                                    case "KEYDOWN":
+                                        input.KeyDown += (s, e) =>
+                                        {
+                                            if (program == null) return;
+
+                                            All_Objects["sender"] = s;
+                                            All_Objects["eventargs"] = e;
+                                            var Method = program.GetMethod(method_name);
+                                            if (Method != null)
+                                            {
+                                                var parameters = Method.GetParameters();
+                                                var listObj = new List<object>();
+                                                foreach (ParameterInfo info in parameters)
+                                                {
+                                                    if (All_Objects.ContainsKey(info.Name))
+                                                    {
+                                                        listObj.Add(All_Objects[info.Name]);
+                                                    }
+                                                    else
+                                                    {
+                                                        listObj.Add(null);
+                                                    }
+                                                }
+                                                Method.Invoke(null, listObj.ToArray());
+                                            }
+                                        };
+                                        break;
+
+                                    case "CLICK":
+                                        input.Click += (s, e) =>
+                                        {
+                                            if (program == null) return;
+
+                                            All_Objects["sender"] = s;
+                                            All_Objects["eventargs"] = e;
+                                            var Method = program.GetMethod(method_name);
+                                            if (Method != null)
+                                            {
+                                                var parameters = Method.GetParameters();
+                                                var listObj = new List<object>();
+                                                foreach (ParameterInfo info in parameters)
+                                                {
+                                                    if (All_Objects.ContainsKey(info.Name))
+                                                    {
+                                                        listObj.Add(All_Objects[info.Name]);
+                                                    }
+                                                    else
+                                                    {
+                                                        listObj.Add(null);
+                                                    }
+                                                }
+                                                Method.Invoke(null, listObj.ToArray());
+                                            }
+                                        };
+                                        break;
+                                }//end switch
+                            }//end for
+                        }//end if DMETHOD
 
                         //Add brother
                         if (input is V6VvarTextBox && !string.IsNullOrEmpty(defineInfo.BField))
@@ -121,6 +240,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             var tT = (V6VvarTextBox)input;
                             tT.BrotherFields = defineInfo.BField;
                             var txtB = new V6LabelTextBox();
+                            txtB.Name = "txt" + defineInfo.BField;
                             txtB.AccessibleName = defineInfo.BField;
                             txtB.Top = top;
                             txtB.Left = input.Right + 10;
@@ -128,16 +248,91 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             txtB.ReadOnly = true;
                             txtB.TabStop = false;
 
+                            All_Objects[txtB.Name] = txtB;
                             panel1.Controls.Add(txtB);
                         }
                     }
                     i++;
                 }
+                program = CreateProgram(all_using_text, all_method_text);
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".MyInit", ex);
             }
+        }
+
+        Type CreateProgram(string using_text, string method_text)
+        {
+            string output = "";
+            try
+            {
+                var using_text0 = "using System;"
+                    + "using System.Data;"
+                    + "using System.Drawing;"
+                    + "using System.Windows.Forms;"
+                    + "using System.Data.SqlClient;"
+                    + "using System.IO;";
+                using_text = using_text0 + using_text;
+                
+                var src = new StringBuilder();
+                src.Append(using_text);
+                //src.AppendLine("using System;");
+                //src.AppendLine("using System.Windows.Forms;");
+                //src.AppendLine("using System.Drawing;");
+                src.AppendLine("");
+                src.AppendLine(@"namespace MyNamespace{");// open namespace
+                src.AppendLine("public class MyClass{ "); // open class
+                src.Append(method_text);
+                src.AppendLine(" ");
+                src.AppendLine("}"); //end class
+                src.AppendLine("}"); //end namespace
+
+                CSharpCodeProvider provider = new CSharpCodeProvider();
+                CompilerParameters parameters = new CompilerParameters();
+                // Reference to System.Drawing library
+                parameters.ReferencedAssemblies.Add("System.dll");
+                parameters.ReferencedAssemblies.Add("System.Data.dll");
+                parameters.ReferencedAssemblies.Add("System.Windows.Forms.dll");
+                parameters.ReferencedAssemblies.Add("mscorlib.dll");
+                parameters.ReferencedAssemblies.Add("System.Drawing.dll");
+
+                parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6Tools.dll");
+                parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6Structs.dll");
+                parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6SqlConnect.dll");
+                parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6Controls.dll");
+                parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6AccountingBusiness.dll");
+                parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6ControlManager.dll");
+
+
+                // True - memory generation, false - external file generation
+                parameters.GenerateInMemory = false;
+                // True - exe file generation, false - dll file generation
+                parameters.GenerateExecutable = false;
+
+                //parameters.OutputAssembly = Path.Combine(Path.GetTempPath(), "myV6class.dll");
+                parameters.CompilerOptions = "/target:library /optimize";
+
+                CompilerResults results = provider.CompileAssemblyFromSource(parameters, src.ToString());
+                System.Collections.Specialized.StringCollection sc = results.Output;
+                foreach (string s in sc)
+                {
+                    Console.WriteLine(s);
+                    output += s + "\r\n";
+                }
+                Assembly assembly = results.CompiledAssembly;
+                Type program = assembly.GetType("MyNamespace.MyClass");
+                return program;
+                //ChangeColor = program.GetMethod("ChangeColor");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateProgram", ex);
+            }
+            
+                this.ShowWarningMessage("Lỗi mã mở rộng " + TableName + "\r\n" + output);
+            
+            return null;
         }
 
         private void CallCHANGECOLOR(V6ColorTextBox input, object rcontrol, object gcontrol, object bcontrol)

@@ -433,7 +433,7 @@ namespace V6ControlManager.FormManager.Map
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            if(!pictureBox1.Focused) pictureBox1.Focus();
+            if (!panel1.Focused) panel1.Focus();
             MouseDownOnPictureBox(e.Location);
             pictureBox1.Invalidate();
         }
@@ -604,7 +604,7 @@ namespace V6ControlManager.FormManager.Map
                         Point[] ps = HDrawing.ClonePolygon(MH.editPolygon);
                         MH.regionDic[id].Polygon = ps;
                         MH.UpdateData(id, ps);
-                        radNo.Checked = true;
+                        //radNo.Checked = true;
                     }
                     else if (keyData == Keys.Delete)
                     {

@@ -178,5 +178,27 @@ namespace V6ControlManager.FormManager.ToolManager
                 this.ShowErrorMessage(ex.Message);
             }
         }
+
+        private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.F5)
+            {
+                RunSql(richTextBox1.Text);
+            }
+        }
+
+        private void RunSql(string sql)
+        {
+            try
+            {
+                var ds = SqlConnect.ExecuteDataset(CommandType.Text, sql);
+                data = ds.Tables.Count > 0 ? ds.Tables[0] : null;
+                dataGridView1.DataSource = data;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".RunSql", ex);
+            }
+        }
     }
 }

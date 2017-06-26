@@ -253,7 +253,16 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
             {
                 if (_viewData == null)
                     _viewData = new DataView(_data);
-                _viewData.RowFilter = string.Format("{0} = '{1}'", _field, id);
+
+                if (string.IsNullOrEmpty(id))
+                {
+                    _viewData.RowFilter = string.Format("{0} = '' or {0} is null", _field, id);
+                }
+                else
+                {
+                    _viewData.RowFilter = string.Format("{0} = '{1}'", _field, id);
+                }
+                
                 _viewData.Sort = _idField;
                 dataGridView1.DataSource = _viewData;
                 dataGridView1.Refresh();

@@ -194,7 +194,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             var file_xml = txtMa_File.Text.Trim().ToUpper() + ".xml";
 
-            new AlbcExcel2EditorForm(txtExcel2, file_xml).ShowDialog();
+            new XmlEditorForm(txtExcel2, file_xml, "ExcelConfig", null).ShowDialog(this);
         }
 
         private void btnExcelTemplate_Click(object sender, EventArgs e)
@@ -275,7 +275,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         private void btnExcel2View_Click(object sender, EventArgs e)
         {
             var file_xml2 = txtMa_File.Text.Trim().ToUpper()+"_VIEW" + ".xml";
-            new AlbcExcel2EditorForm(txtExcel2View, file_xml2).ShowDialog();
+            new XmlEditorForm(txtExcel2View, file_xml2, "ExcelConfig", null).ShowDialog(this);
         }
 
         public override void V6F3Execute()

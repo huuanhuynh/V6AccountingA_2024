@@ -1,6 +1,6 @@
 ﻿namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 {
-    partial class AlbcExcel2EditorForm
+    partial class XmlEditorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -104,7 +104,8 @@
             this.Controls.Add(this.btnNhan);
             this.Controls.Add(this.dataGridView1);
             this.Name = "AlbcExcel2EditorForm";
-            this.Text = "AlbcExcel2EditorForm";
+            this.Text = "XmlEditor";
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnXuatXml, 0);

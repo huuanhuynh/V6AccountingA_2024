@@ -33,7 +33,7 @@
             this.btnDBF = new System.Windows.Forms.Button();
             this.btnHdocument = new System.Windows.Forms.Button();
             this.btnSearchInRpt = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnSQL = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -102,14 +102,15 @@
             this.btnSearchInRpt.UseVisualStyleBackColor = true;
             this.btnSearchInRpt.Click += new System.EventHandler(this.btnSearchInRpt_Click);
             // 
-            // button6
+            // btnSQL
             // 
-            this.button6.Location = new System.Drawing.Point(12, 157);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(100, 23);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "button1";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnSQL.Location = new System.Drawing.Point(12, 157);
+            this.btnSQL.Name = "btnSQL";
+            this.btnSQL.Size = new System.Drawing.Size(100, 23);
+            this.btnSQL.TabIndex = 0;
+            this.btnSQL.Text = "SQL";
+            this.btnSQL.UseVisualStyleBackColor = true;
+            this.btnSQL.Click += new System.EventHandler(this.btnSQL_Click);
             // 
             // button7
             // 
@@ -262,7 +263,7 @@
             this.Controls.Add(this.btnTestInvoice);
             this.Controls.Add(this.btnModelHelp);
             this.Controls.Add(this.button12);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btnSQL);
             this.Controls.Add(this.btnLogView);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.btnSearchInRpt);
@@ -293,7 +294,7 @@
         private System.Windows.Forms.Button btnDBF;
         private System.Windows.Forms.Button btnHdocument;
         private System.Windows.Forms.Button btnSearchInRpt;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnSQL;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;

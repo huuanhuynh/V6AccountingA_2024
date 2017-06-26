@@ -426,11 +426,11 @@
       <DependentUpon>AddEditControlVirtual.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\AddEditManager.cs" />
-    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\AlbcExcel2EditorForm.cs">
+    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\XmlEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\AlbcExcel2EditorForm.Designer.cs">
-      <DependentUpon>AlbcExcel2EditorForm.cs</DependentUpon>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\XmlEditorForm.Designer.cs">
+      <DependentUpon>XmlEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\AlctAddEditFrom.cs">
       <SubType>UserControl</SubType>
@@ -1374,8 +1374,8 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\AddEditControlVirtual.resx">
       <DependentUpon>AddEditControlVirtual.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Albc\AlbcExcel2EditorForm.resx">
-      <DependentUpon>AlbcExcel2EditorForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Albc\XmlEditorForm.resx">
+      <DependentUpon>XmlEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\AlctAddEditFrom.resx">
       <DependentUpon>AlctAddEditFrom.cs</DependentUpon>
