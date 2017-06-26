@@ -614,6 +614,10 @@ namespace V6ControlManager.FormManager.Map
                     int r = (int)(decimal)row["R"];
                     int g = (int)(decimal)row["G"];
                     int b = (int)(decimal)row["B"];
+                    r = Math.Min(r, 255);
+                    g = Math.Min(g, 255);
+                    b = Math.Min(b, 255);
+
                     Color c = Color.FromArgb(r, g, b);
                     colorListByMaVV.Add(id, c);
                 }

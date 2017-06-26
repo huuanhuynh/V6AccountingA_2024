@@ -162,6 +162,36 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 _field = "NH_VV" + loai;
                 _idField = "MA_VV";
             }
+            else if (name == V6TableName.Alvitri)
+            {
+                _field = "NH_VITRI" + loai;
+                _idField = "MA_VITRI";
+            }
+            else if (name == V6TableName.Alphi)
+            {
+                _field = "NH_PHI" + loai;
+                _idField = "MA_PHI";
+            }
+            else if (name == V6TableName.Alts)
+            {
+                _field = "NH_TS" + loai;
+                _idField = "SO_THE_TS";
+            }
+            else if (name == V6TableName.Alcc)
+            {
+                _field = "NH_CC" + loai;
+                _idField = "SO_THE_CC";
+            }
+            else if (name == V6TableName.Alhd)
+            {
+                _field = "NH_HD" + loai;
+                _idField = "MA_HD";
+            }
+            else if (name == V6TableName.Altk0)
+            {
+                _field = "NH_TK0" + loai;
+                _idField = "TK";
+            }
         }
 
         string _field = "";
@@ -384,7 +414,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
             }
             catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + ".Nhan", ex);
             }
             _updateFinish = true;
         }

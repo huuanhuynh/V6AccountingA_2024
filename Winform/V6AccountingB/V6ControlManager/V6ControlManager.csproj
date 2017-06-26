@@ -3390,6 +3390,12 @@
     <Compile Include="FormManager\ReportManager\Filter\XLSTA1_Filter.Designer.cs">
       <DependentUpon>XLSTA1_Filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01BFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01BFilter.designer.cs">
+      <DependentUpon>AMAP01BFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01AFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6312,6 +6318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\XLSTA1_Filter.resx">
       <DependentUpon>XLSTA1_Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01BFilter.resx">
+      <DependentUpon>AMAP01BFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01AFilter.resx">
       <DependentUpon>AMAP01AFilter.cs</DependentUpon>

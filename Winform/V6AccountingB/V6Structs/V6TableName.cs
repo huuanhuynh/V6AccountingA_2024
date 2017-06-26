@@ -203,7 +203,8 @@ namespace V6Structs
         Acosxlsx_alpbph,
         Acosxlsx_alpbct,
         Alreport1,
-        Alreport
+        Alreport,
+        Alnhvitri
 
     }
 
@@ -536,7 +537,10 @@ namespace V6Structs
                 case "alreport1":
                     return V6TableName.Alreport1;
                 case "alreport":
-                    return V6TableName.Alreport;  
+                    return V6TableName.Alreport;
+                case "alnhvitri":
+                    return V6TableName.Alnhvitri;
+  
                 default:
                     try
                     {
@@ -766,7 +770,8 @@ namespace V6Structs
                 case V6TableName.Acosxlt_alpbph: result = "ma_bpht"; break;
                 case V6TableName.Acosxlsx_alpbph: result = "ma_bpht"; break;
                 case V6TableName.Alreport1: result = "ma_bc"; break;
-                case V6TableName.Alreport: result = "ma_bc"; break;    
+                case V6TableName.Alreport: result = "ma_bc"; break;
+                case V6TableName.Alnhvitri: result = "ma_nh"; break;
                 default:
                     result = "";
                     break;
@@ -1265,7 +1270,8 @@ namespace V6Structs
                     return lang == "V" ? "Danh mục thêm mới báo cáo CT( V6 Advance)" : " Add new reports list( V6 Advance)";
                 case V6TableName.Alreport:
                     return lang == "V" ? "Danh mục thêm mới báo cáo ( V6 Advance)" : " Add new reports list( V6 Advance)";
-
+                case V6TableName.Alnhvitri:
+                    return lang == "V" ? "Danh mục nhóm vị trí" : " Location list";
                 default:
                     
                     return "...";

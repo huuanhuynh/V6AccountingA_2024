@@ -110,13 +110,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         //Sự kiện của input
                         if (!string.IsNullOrEmpty(defineInfo.Event))
                         {
-                            switch (defineInfo.Event.ToUpper())
-                            {
-                                case "CHANGECOLOR":
-                                    //CallCHANGECOLOR(input, defineInfo.Rcontrol, defineInfo.Gcontrol, defineInfo.Bcontrol);
-                                    //,Input_Controls, Label_Controls, this);
-                                    break;
-                            }
+                            //Make dynamic event and call
+
+                            
                         }
 
                         //Add brother

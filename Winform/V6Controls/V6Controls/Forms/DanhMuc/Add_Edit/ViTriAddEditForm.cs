@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using V6AccountingBusiness;
+using V6Init;
 using V6Structs;
 using V6Tools.V6Convert;
 
@@ -15,7 +16,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
         public override void DoBeforeEdit()
         {
-            var v = Categories.IsExistOneCode_List("ABLO,ARI70", "Ma_vitri", TxtMa_vitri.Text);
+            var v = Categories.IsExistOneCode_List("ABVITRI,ABLO,ARI70", "Ma_vitri", TxtMa_vitri.Text);
             TxtMa_vitri.Enabled = !v;
             TxtMa_kho.Enabled = !v;
         }
@@ -24,9 +25,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (TxtMa_vitri.Text.Trim() == "")
-                errors += "Chưa nhập mã vị trí!\r\n";
+                errors += V6Text.CheckInfor+"!\r\n";
             if (TxtTen_vitri.Text.Trim() == "")
-                errors += "Chưa nhập tên vị trí!\r\n";
+                errors += V6Text.CheckInfor + "!\r\n";
 
             if (Mode == V6Mode.Edit)
             {
@@ -38,8 +39,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, key,
                             DataDic[key].ToString(), DataOld[key].ToString());
                         if (!b)
-                            throw new Exception("Không được thêm mã đã tồn tại: "
-                                                            + key + "=" + DataDic[key]);
+                            throw new Exception(V6Text.EditDenied+ key + "=" + DataDic[key]);
                     }
                 }
 
@@ -56,8 +56,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, key.Key,
                         DataDic[key.Key].ToString(), "");
-                    if (!b) throw new Exception("Không được thêm mã đã tồn tại: "
-                        + key.Key + "=" + DataDic[key.Key]);
+                    if (!b) throw new Exception(V6Text.AddDenied+ key.Key + "=" + DataDic[key.Key]);
                 }
             }
 
@@ -66,6 +65,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void txtma_maurgb_TextChanged(object sender, EventArgs e)
         {
+            
             
             if(txtma_rgb.Text=="")
             {

@@ -52,6 +52,14 @@
             this.menuPictureReport = new System.Windows.Forms.ToolStripMenuItem();
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
             this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
+            this.Baocao1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Baocao2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Baocao3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Baocao4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Thongke1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Thongke2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Thongke3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Thongke4 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.contextMenuStrip_Pic1.SuspendLayout();
             this.panel1_Image.SuspendLayout();
@@ -86,9 +94,17 @@
             // 
             this.contextMenuStrip_Pic1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuPic1ReportKhu,
-            this.menuPic1ReportDay});
+            this.menuPic1ReportDay,
+            this.Baocao1,
+            this.Baocao2,
+            this.Baocao3,
+            this.Baocao4,
+            this.Thongke1,
+            this.Thongke2,
+            this.Thongke3,
+            this.Thongke4});
             this.contextMenuStrip_Pic1.Name = "contextMenuStrip_Pic1";
-            this.contextMenuStrip_Pic1.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuStrip_Pic1.Size = new System.Drawing.Size(153, 246);
             // 
             // menuPic1ReportKhu
             // 
@@ -125,7 +141,7 @@
             this.comboBoxGroup.FormattingEnabled = true;
             this.comboBoxGroup.Location = new System.Drawing.Point(9, 16);
             this.comboBoxGroup.Name = "comboBoxGroup";
-            this.comboBoxGroup.Size = new System.Drawing.Size(129, 21);
+            this.comboBoxGroup.Size = new System.Drawing.Size(333, 21);
             this.comboBoxGroup.TabIndex = 5;
             this.comboBoxGroup.TabStop = false;
             this.comboBoxGroup.SelectedIndexChanged += new System.EventHandler(this.comboBoxGroup_SelectedIndexChanged);
@@ -150,7 +166,7 @@
             this.grbKhuVuc.Controls.Add(this.comboBoxGroup);
             this.grbKhuVuc.Location = new System.Drawing.Point(4, 4);
             this.grbKhuVuc.Name = "grbKhuVuc";
-            this.grbKhuVuc.Size = new System.Drawing.Size(198, 44);
+            this.grbKhuVuc.Size = new System.Drawing.Size(406, 44);
             this.grbKhuVuc.TabIndex = 7;
             this.grbKhuVuc.TabStop = false;
             this.grbKhuVuc.Text = "Khu vực";
@@ -158,7 +174,7 @@
             // chkNone
             // 
             this.chkNone.AutoSize = true;
-            this.chkNone.Location = new System.Drawing.Point(144, 18);
+            this.chkNone.Location = new System.Drawing.Point(348, 20);
             this.chkNone.Name = "chkNone";
             this.chkNone.Size = new System.Drawing.Size(52, 17);
             this.chkNone.TabIndex = 8;
@@ -191,7 +207,7 @@
             // 
             this.grbNgonNgu.Controls.Add(this.rbtTiengViet);
             this.grbNgonNgu.Controls.Add(this.rbtEnglish);
-            this.grbNgonNgu.Location = new System.Drawing.Point(207, 8);
+            this.grbNgonNgu.Location = new System.Drawing.Point(416, 13);
             this.grbNgonNgu.Name = "grbNgonNgu";
             this.grbNgonNgu.Size = new System.Drawing.Size(174, 35);
             this.grbNgonNgu.TabIndex = 8;
@@ -271,6 +287,62 @@
             // 
             this.timerRefresh.Tick += new System.EventHandler(this.timerRefresh_Tick);
             // 
+            // Baocao1
+            // 
+            this.Baocao1.Name = "Baocao1";
+            this.Baocao1.Size = new System.Drawing.Size(152, 22);
+            this.Baocao1.Text = "Báo cáo 1";
+            this.Baocao1.Click += new System.EventHandler(this.Baocao1_Click);
+            // 
+            // Baocao2
+            // 
+            this.Baocao2.Name = "Baocao2";
+            this.Baocao2.Size = new System.Drawing.Size(152, 22);
+            this.Baocao2.Text = "Báo cáo 2";
+            this.Baocao2.Click += new System.EventHandler(this.Baocao2_Click);
+            // 
+            // Baocao3
+            // 
+            this.Baocao3.Name = "Baocao3";
+            this.Baocao3.Size = new System.Drawing.Size(152, 22);
+            this.Baocao3.Text = "Báo cáo 3";
+            this.Baocao3.Click += new System.EventHandler(this.Baocao3_Click);
+            // 
+            // Baocao4
+            // 
+            this.Baocao4.Name = "Baocao4";
+            this.Baocao4.Size = new System.Drawing.Size(152, 22);
+            this.Baocao4.Text = "Báo cáo 4";
+            this.Baocao4.Click += new System.EventHandler(this.Baocao4_Click);
+            // 
+            // Thongke1
+            // 
+            this.Thongke1.Name = "Thongke1";
+            this.Thongke1.Size = new System.Drawing.Size(152, 22);
+            this.Thongke1.Text = "Thống kê 1";
+            this.Thongke1.Click += new System.EventHandler(this.Thongke1_Click);
+            // 
+            // Thongke2
+            // 
+            this.Thongke2.Name = "Thongke2";
+            this.Thongke2.Size = new System.Drawing.Size(152, 22);
+            this.Thongke2.Text = "Thống kê 2";
+            this.Thongke2.Click += new System.EventHandler(this.Thongke2_Click);
+            // 
+            // Thongke3
+            // 
+            this.Thongke3.Name = "Thongke3";
+            this.Thongke3.Size = new System.Drawing.Size(152, 22);
+            this.Thongke3.Text = "Thống kê 3";
+            this.Thongke3.Click += new System.EventHandler(this.Thongke3_Click);
+            // 
+            // Thongke4
+            // 
+            this.Thongke4.Name = "Thongke4";
+            this.Thongke4.Size = new System.Drawing.Size(152, 22);
+            this.Thongke4.Text = "Thống kê 4";
+            this.Thongke4.Click += new System.EventHandler(this.Thongke4_Click);
+            // 
             // FormMapManagerAutoHide
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,6 +396,14 @@
         private System.Windows.Forms.ToolStripMenuItem menuPic2Report;
         private System.Windows.Forms.ToolStripMenuItem menuPic1ReportDay;
         private System.Windows.Forms.ToolStripMenuItem menuPictureReport;
+        private System.Windows.Forms.ToolStripMenuItem Baocao1;
+        private System.Windows.Forms.ToolStripMenuItem Baocao2;
+        private System.Windows.Forms.ToolStripMenuItem Baocao3;
+        private System.Windows.Forms.ToolStripMenuItem Baocao4;
+        private System.Windows.Forms.ToolStripMenuItem Thongke1;
+        private System.Windows.Forms.ToolStripMenuItem Thongke2;
+        private System.Windows.Forms.ToolStripMenuItem Thongke3;
+        private System.Windows.Forms.ToolStripMenuItem Thongke4;
     }
 }
 

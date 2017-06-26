@@ -391,6 +391,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Alreport:
                     FormControl = new ALREPORT_AddEdit();
                     break;
+                case V6TableName.Alnhvitri:
+                    FormControl = new NhomViTriAddEditForm();
+                    break;
                 case V6TableName.Notable:
                 default:
                     //Check is_aldm?

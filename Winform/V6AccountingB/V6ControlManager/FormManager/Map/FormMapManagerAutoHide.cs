@@ -456,7 +456,295 @@ namespace V6ControlManager.FormManager.Map
             }
         }
 
+        private void ShowReporBaocao1()
+        {
+            showreport = true;
+            try
+            {
+                var filterData = new SortedDictionary<string, object>();
+                filterData["MA_KHO"] = MH._groupID;
+                
+                QuickReportParams quick_params = new QuickReportParams()
+                {
+                    AutoRun = false,
+                    ItemID = m_itemId,
+                    CodeForm = CodeForm,
+                    DataSet = null,
+                    Program = khoparams.Program + "C",
+                    ReportProcedure = khoparams.ReportProcedure + "C",
+                    ReportFile = khoparams.ReportFile + "C",
+                    ReportCaption = khoparams.ReportCaption,
+                    ReportCaption2 = khoparams.ReportCaption2,
+                    //ReportFileF5 = khoparams.ReportFile,
+                    //FilterControlInitFilters = oldKeys,
+                    //FilterControlString1 = FilterControl.String1,
+                    //FilterControlString2 = FilterControl.String2,
+                    //FilterControlFilterData = FilterControl.FilterData,
+                    FilterData = filterData,
+                    FormTitle = "Chi tiết",
+                };
+                QuickReportManager.ShowReportR(this, quick_params);
 
+                SetStatus2Text();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ShowReport", ex);
+            }
+        }
+        private void ShowReporBaocao2()
+        {
+            showreport = true;
+            try
+            {
+                var filterData = new SortedDictionary<string, object>();
+                filterData["MA_KHO"] = MH._groupID;
+
+                QuickReportParams quick_params = new QuickReportParams()
+                {
+                    AutoRun = false,
+                    ItemID = m_itemId,
+                    CodeForm = CodeForm,
+                    DataSet = null,
+                    Program = khoparams.Program + "D",
+                    ReportProcedure = khoparams.ReportProcedure + "D",
+                    ReportFile = khoparams.ReportFile + "D",
+                    ReportCaption = khoparams.ReportCaption,
+                    ReportCaption2 = khoparams.ReportCaption2,
+                    //ReportFileF5 = khoparams.ReportFile,
+                    //FilterControlInitFilters = oldKeys,
+                    //FilterControlString1 = FilterControl.String1,
+                    //FilterControlString2 = FilterControl.String2,
+                    //FilterControlFilterData = FilterControl.FilterData,
+                    FilterData = filterData,
+                    FormTitle = "Chi tiết",
+                };
+                QuickReportManager.ShowReportR(this, quick_params);
+
+                SetStatus2Text();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ShowReport", ex);
+            }
+        }
+        private void ShowReporBaocao3()
+        {
+            showreport = true;
+            try
+            {
+                var filterData = new SortedDictionary<string, object>();
+                filterData["MA_KHO"] = MH._groupID;
+
+                QuickReportParams quick_params = new QuickReportParams()
+                {
+                    AutoRun = false,
+                    ItemID = m_itemId,
+                    CodeForm = CodeForm,
+                    DataSet = null,
+                    Program = khoparams.Program + "E",
+                    ReportProcedure = khoparams.ReportProcedure + "E",
+                    ReportFile = khoparams.ReportFile + "E",
+                    ReportCaption = khoparams.ReportCaption,
+                    ReportCaption2 = khoparams.ReportCaption2,
+                    //ReportFileF5 = khoparams.ReportFile,
+                    //FilterControlInitFilters = oldKeys,
+                    //FilterControlString1 = FilterControl.String1,
+                    //FilterControlString2 = FilterControl.String2,
+                    //FilterControlFilterData = FilterControl.FilterData,
+                    FilterData = filterData,
+                    FormTitle = "Chi tiết",
+                };
+                QuickReportManager.ShowReportR(this, quick_params);
+
+                SetStatus2Text();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ShowReport", ex);
+            }
+        }
+        private void ShowReporBaocao4()
+        {
+            showreport = true;
+            try
+            {
+                var filterData = new SortedDictionary<string, object>();
+                filterData["MA_KHO"] = MH._groupID;
+
+                QuickReportParams quick_params = new QuickReportParams()
+                {
+                    AutoRun = false,
+                    ItemID = m_itemId,
+                    CodeForm = CodeForm,
+                    DataSet = null,
+                    Program = khoparams.Program + "F",
+                    ReportProcedure = khoparams.ReportProcedure + "F",
+                    ReportFile = khoparams.ReportFile + "F",
+                    ReportCaption = khoparams.ReportCaption,
+                    ReportCaption2 = khoparams.ReportCaption2,
+                    //ReportFileF5 = khoparams.ReportFile,
+                    //FilterControlInitFilters = oldKeys,
+                    //FilterControlString1 = FilterControl.String1,
+                    //FilterControlString2 = FilterControl.String2,
+                    //FilterControlFilterData = FilterControl.FilterData,
+                    FilterData = filterData,
+                    FormTitle = "Chi tiết",
+                };
+                QuickReportManager.ShowReportR(this, quick_params);
+
+                SetStatus2Text();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ShowReport", ex);
+            }
+        }
+        private void ShowReporThongke1()
+        {
+            showreport = true;
+            try
+            {
+                var filterData = new SortedDictionary<string, object>();
+                filterData["MA_KHO"] = MH._groupID;
+
+                QuickReportParams quick_params = new QuickReportParams()
+                {
+                    AutoRun = false,
+                    ItemID = m_itemId,
+                    CodeForm = CodeForm,
+                    DataSet = null,
+                    Program = khoparams.Program + "G",
+                    ReportProcedure = khoparams.ReportProcedure + "G",
+                    ReportFile = khoparams.ReportFile + "G",
+                    ReportCaption = khoparams.ReportCaption,
+                    ReportCaption2 = khoparams.ReportCaption2,
+                    //ReportFileF5 = khoparams.ReportFile,
+                    //FilterControlInitFilters = oldKeys,
+                    //FilterControlString1 = FilterControl.String1,
+                    //FilterControlString2 = FilterControl.String2,
+                    //FilterControlFilterData = FilterControl.FilterData,
+                    FilterData = filterData,
+                    FormTitle = "Chi tiết",
+                };
+                QuickReportManager.ShowReportR(this, quick_params);
+
+                SetStatus2Text();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ShowReport", ex);
+            }
+        }
+        private void ShowReporThongke2()
+        {
+            showreport = true;
+            try
+            {
+                var filterData = new SortedDictionary<string, object>();
+                filterData["MA_KHO"] = MH._groupID;
+
+                QuickReportParams quick_params = new QuickReportParams()
+                {
+                    AutoRun = false,
+                    ItemID = m_itemId,
+                    CodeForm = CodeForm,
+                    DataSet = null,
+                    Program = khoparams.Program + "H",
+                    ReportProcedure = khoparams.ReportProcedure + "H",
+                    ReportFile = khoparams.ReportFile + "H",
+                    ReportCaption = khoparams.ReportCaption,
+                    ReportCaption2 = khoparams.ReportCaption2,
+                    //ReportFileF5 = khoparams.ReportFile,
+                    //FilterControlInitFilters = oldKeys,
+                    //FilterControlString1 = FilterControl.String1,
+                    //FilterControlString2 = FilterControl.String2,
+                    //FilterControlFilterData = FilterControl.FilterData,
+                    FilterData = filterData,
+                    FormTitle = "Chi tiết",
+                };
+                QuickReportManager.ShowReportR(this, quick_params);
+
+                SetStatus2Text();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ShowReport", ex);
+            }
+        }
+        private void ShowReporThongke3()
+        {
+            showreport = true;
+            try
+            {
+                var filterData = new SortedDictionary<string, object>();
+                filterData["MA_KHO"] = MH._groupID;
+
+                QuickReportParams quick_params = new QuickReportParams()
+                {
+                    AutoRun = false,
+                    ItemID = m_itemId,
+                    CodeForm = CodeForm,
+                    DataSet = null,
+                    Program = khoparams.Program + "I",
+                    ReportProcedure = khoparams.ReportProcedure + "I",
+                    ReportFile = khoparams.ReportFile + "I",
+                    ReportCaption = khoparams.ReportCaption,
+                    ReportCaption2 = khoparams.ReportCaption2,
+                    //ReportFileF5 = khoparams.ReportFile,
+                    //FilterControlInitFilters = oldKeys,
+                    //FilterControlString1 = FilterControl.String1,
+                    //FilterControlString2 = FilterControl.String2,
+                    //FilterControlFilterData = FilterControl.FilterData,
+                    FilterData = filterData,
+                    FormTitle = "Chi tiết",
+                };
+                QuickReportManager.ShowReportR(this, quick_params);
+
+                SetStatus2Text();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ShowReport", ex);
+            }
+        }
+
+        private void ShowReporThongke4()
+        {
+            showreport = true;
+            try
+            {
+                var filterData = new SortedDictionary<string, object>();
+                filterData["MA_KHO"] = MH._groupID;
+
+                QuickReportParams quick_params = new QuickReportParams()
+                {
+                    AutoRun = false,
+                    ItemID = m_itemId,
+                    CodeForm = CodeForm,
+                    DataSet = null,
+                    Program = khoparams.Program + "K",
+                    ReportProcedure = khoparams.ReportProcedure + "K",
+                    ReportFile = khoparams.ReportFile + "K",
+                    ReportCaption = khoparams.ReportCaption,
+                    ReportCaption2 = khoparams.ReportCaption2,
+                    //ReportFileF5 = khoparams.ReportFile,
+                    //FilterControlInitFilters = oldKeys,
+                    //FilterControlString1 = FilterControl.String1,
+                    //FilterControlString2 = FilterControl.String2,
+                    //FilterControlFilterData = FilterControl.FilterData,
+                    FilterData = filterData,
+                    FormTitle = "Chi tiết",
+                };
+                QuickReportManager.ShowReportR(this, quick_params);
+
+                SetStatus2Text();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ShowReport", ex);
+            }
+        }
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
             if(MH.editMode == EditMode.No)
@@ -756,6 +1044,46 @@ namespace V6ControlManager.FormManager.Map
         private void menuPic1ReportDay_Click(object sender, EventArgs e)
         {
             ShowReportDay();
+        }
+
+        private void Baocao1_Click(object sender, EventArgs e)
+        {
+           ShowReporBaocao1();
+        }
+
+        private void Baocao2_Click(object sender, EventArgs e)
+        {
+           ShowReporBaocao2();
+        }
+
+        private void Baocao3_Click(object sender, EventArgs e)
+        {
+           ShowReporBaocao3();
+        }
+
+        private void Baocao4_Click(object sender, EventArgs e)
+        {
+            ShowReporBaocao4();
+        }
+
+        private void Thongke1_Click(object sender, EventArgs e)
+        {
+            ShowReporThongke1();
+        }
+
+        private void Thongke2_Click(object sender, EventArgs e)
+        {
+            ShowReporThongke2();
+        }
+
+        private void Thongke3_Click(object sender, EventArgs e)
+        {
+            ShowReporThongke3();
+        }
+
+        private void Thongke4_Click(object sender, EventArgs e)
+        {
+            ShowReporThongke4();
         }
 
 

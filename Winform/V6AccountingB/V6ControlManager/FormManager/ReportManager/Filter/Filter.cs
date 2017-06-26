@@ -865,6 +865,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new AMAP01Filter();
                 case "AMAP01A":
                     return new AMAP01AFilter();
+                case "AMAP01B":
+                    return new AMAP01BFilter();
             }
             return new FilterBase() { Visible = false };
         }

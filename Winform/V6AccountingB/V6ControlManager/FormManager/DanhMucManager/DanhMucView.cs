@@ -65,7 +65,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
 
             if (CurrentTable == V6TableName.Alnhkh || CurrentTable == V6TableName.Alnhvt
-                || CurrentTable == V6TableName.Alnhvv)
+                || CurrentTable == V6TableName.Alnhvv || CurrentTable == V6TableName.Alnhvitri
+                || CurrentTable == V6TableName.Alnhphi || CurrentTable == V6TableName.Alnhts
+                || CurrentTable == V6TableName.Alnhcc || CurrentTable == V6TableName.Alnhhd
+                || CurrentTable == V6TableName.Alnhtk)
             {
                 btnNhom.Enabled = true;
             }
@@ -824,6 +827,48 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 else if (name == V6TableName.Alnhvv)
                 {
                     PhanNhomForm form = new PhanNhomForm("Alnhvv", "Alvv");
+
+                    form.ShowDialog(this);
+                    return;
+                }
+                else if (name == V6TableName.Alnhvitri)
+                {
+                    PhanNhomForm form = new PhanNhomForm("Alnhvitri", "Alvitri");
+
+                    form.ShowDialog(this);
+                    return;
+                }
+                else if (name == V6TableName.Alnhphi)
+                {
+                    PhanNhomForm form = new PhanNhomForm("Alnhphi", "Alphi");
+
+                    form.ShowDialog(this);
+                    return;
+                }
+                else if (name == V6TableName.Alnhts)
+                {
+                    PhanNhomForm form = new PhanNhomForm("Alnhts", "Alts");
+
+                    form.ShowDialog(this);
+                    return;
+                }
+                else if (name == V6TableName.Alnhcc)
+                {
+                    PhanNhomForm form = new PhanNhomForm("Alnhcc", "Alcc");
+
+                    form.ShowDialog(this);
+                    return;
+                }
+                else if (name == V6TableName.Alnhhd)
+                {
+                    PhanNhomForm form = new PhanNhomForm("Alnhhd", "Alhd");
+                    
+                    form.ShowDialog(this);
+                    return;
+                }
+                else if (name == V6TableName.Alnhtk)
+                {
+                    PhanNhomForm form = new PhanNhomForm("Alnhtk", "Altk0");
 
                     form.ShowDialog(this);
                     return;
