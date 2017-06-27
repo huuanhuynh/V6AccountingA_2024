@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Reflection;
 using V6AccountingBusiness;
+using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 
@@ -376,7 +377,28 @@ namespace V6Controls
         /// </summary>
         public string VSearch;
         public string Vvar;
-        public string TableName;
+        private string _tableName;
+        /// <summary>
+        /// Tên bảng dạng chuỗi.
+        /// </summary>
+        public string TableName
+        {
+            get
+            {
+                return _tableName;
+            }
+            set
+            {
+                _tableName = value;
+                _v6TableName = V6TableHelper.ToV6TableName(_tableName);
+            }
+        }
+
+        private V6TableName _v6TableName = V6TableName.Notable;
+        /// <summary>
+        /// Tên bảng đã khai báo. Sẽ là NoTable nếu chưa khai báo.
+        /// </summary>
+        public V6TableName V6TableName{get { return _v6TableName; }}
         public string Vorder;
         /// <summary>
         /// Field Name
@@ -392,6 +414,7 @@ namespace V6Controls
 
         public string VTitlenew;
         public string ETitlenew;
+        
     }
 
     

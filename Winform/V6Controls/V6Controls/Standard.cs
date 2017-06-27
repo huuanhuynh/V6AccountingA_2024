@@ -322,7 +322,9 @@ namespace V6Controls
                                 {LstConfig.FieldName, selectedValue},
                                 {"UID", uid}
                             };
-                            var f = new FormAddEdit(LstConfig.TableName, V6Mode.Edit, keys, null);
+                            var f = LstConfig.V6TableName == V6TableName.Notable
+                                ? new FormAddEdit(LstConfig.TableName, V6Mode.Edit, keys, null)
+                                : new FormAddEdit(LstConfig.V6TableName, V6Mode.Edit, keys, null);
                             f.ParentData = _senderTextBox.ParentData;
                             f.UpdateSuccessEvent += a_UpdateSuccessEvent;
                             f.ShowDialog(this);
@@ -343,7 +345,9 @@ namespace V6Controls
                     {
                         DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                         var data = row != null ? row.ToDataDictionary() : null;
-                        var a = new FormAddEdit(LstConfig.TableName, V6Mode.Add, null, data);
+                        var a = LstConfig.V6TableName == V6TableName.Notable
+                            ? new FormAddEdit(LstConfig.TableName, V6Mode.Add, null, data)
+                            : new FormAddEdit(LstConfig.V6TableName, V6Mode.Add, null, data);
                         a.ParentData = _senderTextBox.ParentData;
                         if(data == null) a.SetParentData();
                         a.InsertSuccessEvent += a_InsertSuccessEvent;

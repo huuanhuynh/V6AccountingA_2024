@@ -54,6 +54,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        /// <summary>
+        /// Sử dụng tableName string khi chưa khai báo V6TableName và table phải có khai báo is_dm trong aldm.
+        /// </summary>
+        /// <param name="tableName">Tên bảng</param>
+        /// <param name="mode"></param>
+        /// <param name="keys">Khóa lấy dữ liệu</param>
+        /// <param name="data">Hoặc dữ liệu có sẵn</param>
         public FormAddEdit(string tableName, V6Mode mode = V6Mode.Add,
             SortedDictionary<string, object> keys = null,
             SortedDictionary<string, object> data = null)
