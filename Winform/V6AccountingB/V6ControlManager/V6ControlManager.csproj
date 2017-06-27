@@ -3390,6 +3390,54 @@
     <Compile Include="FormManager\ReportManager\Filter\XLSTA1_Filter.Designer.cs">
       <DependentUpon>XLSTA1_Filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01KFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01KFilter.designer.cs">
+      <DependentUpon>AMAP01KFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01IFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01IFilter.designer.cs">
+      <DependentUpon>AMAP01IFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01HFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01HFilter.designer.cs">
+      <DependentUpon>AMAP01HFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01GFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01GFilter.designer.cs">
+      <DependentUpon>AMAP01GFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01FFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01FFilter.designer.cs">
+      <DependentUpon>AMAP01FFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01EFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01EFilter.designer.cs">
+      <DependentUpon>AMAP01EFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01DFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01DFilter.designer.cs">
+      <DependentUpon>AMAP01DFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01CFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01CFilter.designer.cs">
+      <DependentUpon>AMAP01CFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01BFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6318,6 +6366,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\XLSTA1_Filter.resx">
       <DependentUpon>XLSTA1_Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01KFilter.resx">
+      <DependentUpon>AMAP01KFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01IFilter.resx">
+      <DependentUpon>AMAP01IFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01HFilter.resx">
+      <DependentUpon>AMAP01HFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01GFilter.resx">
+      <DependentUpon>AMAP01GFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01FFilter.resx">
+      <DependentUpon>AMAP01FFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01EFilter.resx">
+      <DependentUpon>AMAP01EFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01DFilter.resx">
+      <DependentUpon>AMAP01DFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01CFilter.resx">
+      <DependentUpon>AMAP01CFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01BFilter.resx">
       <DependentUpon>AMAP01BFilter.cs</DependentUpon>

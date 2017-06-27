@@ -867,6 +867,23 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new AMAP01AFilter();
                 case "AMAP01B":
                     return new AMAP01BFilter();
+                case "AMAP01C":
+                    return new AMAP01CFilter();
+                case "AMAP01D":
+                    return new AMAP01DFilter();
+                case "AMAP01E":
+                    return new AMAP01EFilter();
+                case "AMAP01F":
+                    return new AMAP01FFilter();
+                case "AMAP01G":
+                    return new AMAP01GFilter();
+                case "AMAP01H":
+                    return new AMAP01HFilter();
+                case "AMAP01I":
+                    return new AMAP01IFilter();
+                case "AMAP01K":
+                    return new AMAP01KFilter();
+
             }
             return new FilterBase() { Visible = false };
         }

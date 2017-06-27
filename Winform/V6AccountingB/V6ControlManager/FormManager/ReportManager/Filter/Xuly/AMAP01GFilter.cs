@@ -8,9 +8,9 @@ using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
 {
-    public partial class AMAP01BFilter : FilterBase
+    public partial class AMAP01GFilter : FilterBase
     {
-        public AMAP01BFilter()
+        public AMAP01GFilter()
         {
             InitializeComponent();
 
@@ -20,7 +20,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
             }
             TxtStatus.VvarTextBox.Text = "1";
             chkkh_yn.Checked = true;
-
             Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
             Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
@@ -34,8 +33,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
             txtnh_vitri4.VvarTextBox.SetInitFilter("loai_nh=4");
             txtnh_vitri5.VvarTextBox.SetInitFilter("loai_nh=5");
             txtnh_vitri6.VvarTextBox.SetInitFilter("loai_nh=6");
-
-
             Ready();
         }
 

@@ -462,6 +462,37 @@ namespace DataAccessLayer.Implementations.Business
 
             return false;
         }
+        public bool IsValidThreeCode_OneDate(string cInputTable, byte nStatus,
+          string cInputField1, string cpInput1, string cOldItems1,
+           string cInputField2, string cpInput2, string cOldItems2,
+           string cInputField3, string cpInput3, string cOldItems3,
+           string cInputField4, string cpInput4, string cOldItems4)
+        {
+
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@cInputTable", cInputTable),
+                new SqlParameter("@nStatus", nStatus),
+                new SqlParameter("@cInputField1", cInputField1),
+                new SqlParameter("@cInputField2", cInputField2),
+                new SqlParameter("@cInputField3", cInputField3),
+                new SqlParameter("@nInputField1", cInputField4),
+                new SqlParameter("@cpInput1", cpInput1),
+                new SqlParameter("@cpInput2", cpInput2),
+                new SqlParameter("@cpInput3", cpInput3),
+                new SqlParameter("@npInput1", cpInput4),
+                new SqlParameter("@cpInput1Old", cOldItems1),
+                new SqlParameter("@cpInput2Old", cOldItems2),
+                new SqlParameter("@cpInput3Old", cOldItems3),
+                new SqlParameter("@npInput1Old", cOldItems4)
+            };
+
+            object obj = SqlConnect.ExecuteScalar(CommandType.StoredProcedure, "VPA_isValidThreeCode_OneDate", plist);
+            if (obj != null && Convert.ToInt32(obj) == 1) return true;
+
+            return false;
+        }
+
         public bool IsValidEightCode_OneDate(string cInputTable, byte nStatus,
           string cInputField1, string cpInput1, string cOldItems1,
            string cInputField2, string cpInput2, string cOldItems2,

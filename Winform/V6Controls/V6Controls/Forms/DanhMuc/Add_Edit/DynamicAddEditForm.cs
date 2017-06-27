@@ -683,7 +683,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             //_dataRow;// aldm
             var GRD_COL = _dataRow["GRD_COL"].ToString().Trim().ToUpper();
             var KEY_LIST = ObjectAndString.SplitString(_dataRow["KEY"].ToString().Trim());
-            string KEY1 = "", KEY2 = "", KEY3 = "";
+            string KEY1 = "", KEY2 = "", KEY3 = "", KEY4 = "";
             if (GRD_COL == "ONECODE" && KEY_LIST.Length > 0)
             {
                 KEY1 = KEY_LIST[0].Trim().ToUpper();
@@ -758,10 +758,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 KEY3 = KEY_LIST[2].Trim().ToUpper();
                 if (Mode == V6Mode.Edit)
                 {
-                    bool b = V6BusinessHelper.IsValidThreeCode(TableName, 0,
-                        KEY1, DataDic[KEY1].ToString(), ObjectAndString.ObjectToString(DataOld[KEY1], "yyyyMMdd"),
-                        KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataOld[KEY2], "yyyyMMdd"),
-                        KEY3, DataDic[KEY3].ToString(), ObjectAndString.ObjectToString(DataOld[KEY3], "yyyyMMdd"));
+                    bool b = V6BusinessHelper.IsValidTwoCode_OneDate(TableName, 0,
+                        KEY1, DataDic[KEY1].ToString(), ObjectAndString.ObjectToString(DataOld[KEY1]),
+                        KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataOld[KEY2]),
+                        KEY3, ObjectAndString.ObjectToString(DataDic[KEY3], "yyyyMMdd"), ObjectAndString.ObjectToString(DataOld[KEY3], "yyyyMMdd"));
                     if (!b)
                         throw new Exception(string.Format(V6Text.EditDenied + " {0},{1},{2} = {3},{4},{5}",
                             KEY1, KEY2, KEY3, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3]));
@@ -769,12 +769,42 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 else if (Mode == V6Mode.Add)
                 {
                     bool b = V6BusinessHelper.IsValidTwoCode_OneDate(TableName, 1,
-                        KEY1, DataDic[KEY1].ToString(), ObjectAndString.ObjectToString(DataDic[KEY1], "yyyyMMdd"),
-                        KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataDic[KEY2], "yyyyMMdd"),
-                        KEY3, DataDic[KEY3].ToString(), ObjectAndString.ObjectToString(DataDic[KEY3], "yyyyMMdd"));
+                        KEY1, DataDic[KEY1].ToString(), ObjectAndString.ObjectToString(DataDic[KEY1]),
+                        KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataDic[KEY2]),
+                        KEY3, ObjectAndString.ObjectToString(DataDic[KEY3], "yyyyMMdd"), ObjectAndString.ObjectToString(DataDic[KEY3], "yyyyMMdd"));
                     if (!b)
                         throw new Exception(string.Format(V6Text.AddDenied + " {0},{1},{2} = {3},{4},{5}",
                             KEY1, KEY2, KEY3, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3]));
+                }
+            }
+            else if (GRD_COL == "THREECODEONEDAY" && KEY_LIST.Length > 3)
+            {
+                KEY1 = KEY_LIST[0].Trim().ToUpper();
+                KEY2 = KEY_LIST[1].Trim().ToUpper();
+                KEY3 = KEY_LIST[2].Trim().ToUpper();
+                KEY4 = KEY_LIST[3].Trim().ToUpper();
+
+                if (Mode == V6Mode.Edit)
+                {
+                    bool b = V6BusinessHelper.IsValidThreeCode_OneDate(TableName, 0,
+                        KEY1, DataDic[KEY1].ToString(), ObjectAndString.ObjectToString(DataOld[KEY1]),
+                        KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataOld[KEY2]),
+                        KEY3, DataDic[KEY3].ToString(), ObjectAndString.ObjectToString(DataOld[KEY3]),
+                        KEY4, ObjectAndString.ObjectToString(DataDic[KEY4], "yyyyMMdd"), ObjectAndString.ObjectToString(DataOld[KEY4], "yyyyMMdd"));
+                    if (!b)
+                        throw new Exception(string.Format(V6Text.EditDenied + " {0},{1},{2},{3} = {4},{5},{6},{7}",
+                            KEY1, KEY2, KEY3, KEY4, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3], DataDic[KEY4]));
+                }
+                else if (Mode == V6Mode.Add)
+                {
+                    bool b = V6BusinessHelper.IsValidThreeCode_OneDate(TableName, 1,
+                        KEY1, DataDic[KEY1].ToString(), ObjectAndString.ObjectToString(DataDic[KEY1]),
+                        KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataDic[KEY2]),
+                        KEY3, DataDic[KEY3].ToString(), ObjectAndString.ObjectToString(DataDic[KEY3]),
+                        KEY4, ObjectAndString.ObjectToString(DataDic[KEY4], "yyyyMMdd"), ObjectAndString.ObjectToString(DataDic[KEY4], "yyyyMMdd"));
+                    if (!b)
+                        throw new Exception(string.Format(V6Text.AddDenied + " {0},{1},{2},{3} = {4},{5},{6},{7}",
+                            KEY1, KEY2, KEY3, KEY4, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3], DataDic[KEY4]));
                 }
             }
             else

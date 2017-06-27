@@ -1,5 +1,8 @@
 ﻿using System;
+using V6AccountingBusiness;
+using V6Init;
 using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -70,24 +73,37 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (txtMaNT.Text.Trim() == "")
                 errors += "Chưa nhập mã ngoại tệ !\r\n";
 
+            if (errors.Length > 0) throw new Exception(errors);
+
+            var KEY1 = "MA_VT";
+            var KEY2 = "MA_NT";
+            var KEY3 = "MA_GIA";
+            var KEY4 = "NGAY_BAN";
+
             if (Mode == V6Mode.Edit)
             {
-                //bool b = V6Categories.IsValidOneCode_Full(TableName.ToString(), 0, "MA_BP",
-                // txtma_gia.Text.Trim(), DataOld["MA_BP"].ToString());
-                //if (!b)
-                //    throw new Exception("Không được thêm mã đã tồn tại: "
-                //                                    + "MA_BP = " + txtma_gia.Text.Trim());
+                bool b = V6BusinessHelper.IsValidThreeCode_OneDate("ALGIA2", 0,
+                    KEY1, DataDic[KEY1].ToString(), ObjectAndString.ObjectToString(DataOld[KEY1]),
+                    KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataOld[KEY2]),
+                    KEY3, DataDic[KEY3].ToString(), ObjectAndString.ObjectToString(DataOld[KEY3]),
+                    KEY4, ObjectAndString.ObjectToString(DataDic[KEY4], "yyyyMMdd"), ObjectAndString.ObjectToString(DataOld[KEY4], "yyyyMMdd"));
+                if (!b)
+                    throw new Exception(string.Format(V6Text.EditDenied + " {0},{1},{2},{3} = {4},{5},{6},{7}",
+                        KEY1, KEY2, KEY3, KEY4, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3], DataDic[KEY4]));
             }
             else if (Mode == V6Mode.Add)
             {
-                //bool b = V6Categories.IsValidOneCode_Full(TableName.ToString(), 1, "MA_BP",
-                // txtma_gia.Text.Trim(), txtma_gia.Text.Trim());
-                //if (!b)
-                //    throw new Exception("Không được thêm mã đã tồn tại: "
-                //                                    + "MA_BP = " + txtma_gia.Text.Trim());
+                bool b = V6BusinessHelper.IsValidThreeCode_OneDate("ALGIA2", 1,
+                    KEY1, DataDic[KEY1].ToString(), ObjectAndString.ObjectToString(DataDic[KEY1]),
+                    KEY2, DataDic[KEY2].ToString(), ObjectAndString.ObjectToString(DataDic[KEY2]),
+                    KEY3, DataDic[KEY3].ToString(), ObjectAndString.ObjectToString(DataDic[KEY3]),
+                    KEY4, ObjectAndString.ObjectToString(DataDic[KEY4], "yyyyMMdd"), ObjectAndString.ObjectToString(DataDic[KEY4], "yyyyMMdd"));
+                if (!b)
+                    throw new Exception(string.Format(V6Text.AddDenied + " {0},{1},{2},{3} = {4},{5},{6},{7}",
+                        KEY1, KEY2, KEY3, KEY4, DataDic[KEY1], DataDic[KEY2], DataDic[KEY3], DataDic[KEY4]));
             }
 
-            if (errors.Length > 0) throw new Exception(errors);
+            
         }
 
         private void txtMaVt_V6LostFocus(object sender)
