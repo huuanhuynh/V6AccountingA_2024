@@ -460,11 +460,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".InsertNew", ex);
+                this.ShowInfoMessage(ex.Message);
+                this.WriteExLog(GetType() + ".InsertNew", ex);
                 return false;
             }
         }
 
+        /// <summary>
+        /// Được gọi sau khi thêm thành công.
+        /// </summary>
         public virtual void AfterInsert()
         {
             
@@ -487,11 +491,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".UpdateData", ex);
+                this.ShowInfoMessage(ex.Message);
+                this.WriteExLog(GetType() + ".UpdateData", ex);
                 return 0;
             }
         }
 
+        /// <summary>
+        /// Được gọi sau khi sửa thành công.
+        /// </summary>
         public virtual void AfterUpdate()
         {
             

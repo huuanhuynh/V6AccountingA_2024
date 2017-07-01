@@ -26,6 +26,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 Info = new DefineInfo(_define);
+                txtControlType.Text = Info.ControlType;
                 txtAccessibleName.Text = Info.AccessibleName;
                 txtField.Text = Info.Field;
                 txtTextV.Text = Info.TextV;
@@ -46,6 +47,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 txtBField.Text = Info.BField;
                 txtDecimals.Text = Info.Decimals.ToString();
                 txtmaxlength.Text = Info.MaxLength.ToString();
+                txtDescriptionV.Text = Info.DescriptionV;
+                txtDescriptionE.Text = Info.DescriptionE;
             }
             catch (Exception ex)
             {

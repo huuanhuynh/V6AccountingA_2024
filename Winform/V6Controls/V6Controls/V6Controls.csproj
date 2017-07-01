@@ -109,6 +109,12 @@
     <Compile Include="Controls\GridViewSummary.Designer.cs">
       <DependentUpon>GridViewSummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GridView\CodeEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\GridView\CodeEditorForm.designer.cs">
+      <DependentUpon>CodeEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\GridView\GridViewFilterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,16 @@
     <Compile Include="Controls\Label\FormChangeControlLanguageText.Designer.cs">
       <DependentUpon>FormChangeControlLanguageText.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SyntaxHighlightingTextBox\AutoCompleteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\SyntaxHighlightingTextBox\HighlightDescriptor.cs" />
+    <Compile Include="Controls\SyntaxHighlightingTextBox\HighlightDescriptorCollection.cs" />
+    <Compile Include="Controls\SyntaxHighlightingTextBox\SeperaratorCollection.cs" />
+    <Compile Include="Controls\SyntaxHighlightingTextBox\SyntaxHighlightingTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SyntaxHighlightingTextBox\Win32.cs" />
     <Compile Include="Controls\V6LookupCombobox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1218,8 +1234,17 @@
     <EmbeddedResource Include="Controls\GridViewSummary.resx">
       <DependentUpon>GridViewSummary.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GridView\CodeEditorForm.resx">
+      <DependentUpon>CodeEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\GridView\GridViewFilterForm.resx">
       <DependentUpon>GridViewFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SyntaxHighlightingTextBox\AutoCompleteForm.resx">
+      <DependentUpon>AutoCompleteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SyntaxHighlightingTextBox\SyntaxHighlightingTextBox.resx">
+      <DependentUpon>SyntaxHighlightingTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\TreeView\TreeListViewAuto.resx">
       <DependentUpon>TreeListViewAuto.cs</DependentUpon>

@@ -49,6 +49,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     txtFtype.Visible = true;
                     txtFtype.Enabled = true;
                     txtFdecimal.Visible = true;
+                    lblFdecimal.Visible = true;
                     txtFdecimal.Enabled = true;
                 }
             }

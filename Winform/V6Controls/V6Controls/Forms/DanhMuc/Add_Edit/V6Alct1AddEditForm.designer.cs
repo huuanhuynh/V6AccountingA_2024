@@ -51,6 +51,8 @@
             this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtFdecimal = new V6Controls.V6ColorTextBox();
+            this.lblFdecimal = new System.Windows.Forms.Label();
             this.txtFtype = new V6Controls.V6ColorTextBox();
             this.lblFtype = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -67,8 +69,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtFdecimal = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -441,7 +441,7 @@
             // 
             this.tabPage1.AutoScroll = true;
             this.tabPage1.Controls.Add(this.txtFdecimal);
-            this.tabPage1.Controls.Add(this.label17);
+            this.tabPage1.Controls.Add(this.lblFdecimal);
             this.tabPage1.Controls.Add(this.txtFtype);
             this.tabPage1.Controls.Add(this.lblFtype);
             this.tabPage1.Controls.Add(this.label16);
@@ -465,6 +465,40 @@
             this.tabPage1.Text = "Thông tin chính";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // txtFdecimal
+            // 
+            this.txtFdecimal.AccessibleName = "FDECIMAL";
+            this.txtFdecimal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFdecimal.BackColor = System.Drawing.SystemColors.Window;
+            this.txtFdecimal.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFdecimal.Enabled = false;
+            this.txtFdecimal.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFdecimal.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFdecimal.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFdecimal.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFdecimal.LeaveColor = System.Drawing.Color.White;
+            this.txtFdecimal.Location = new System.Drawing.Point(376, 7);
+            this.txtFdecimal.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFdecimal.Name = "txtFdecimal";
+            this.txtFdecimal.Size = new System.Drawing.Size(126, 23);
+            this.txtFdecimal.TabIndex = 3;
+            this.toolTipV6FormControl.SetToolTip(this.txtFdecimal, "Số chữ số lẽ cho Ftype N9");
+            this.txtFdecimal.Visible = false;
+            // 
+            // lblFdecimal
+            // 
+            this.lblFdecimal.AccessibleDescription = "";
+            this.lblFdecimal.AccessibleName = "";
+            this.lblFdecimal.AutoSize = true;
+            this.lblFdecimal.Location = new System.Drawing.Point(270, 10);
+            this.lblFdecimal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFdecimal.Name = "lblFdecimal";
+            this.lblFdecimal.Size = new System.Drawing.Size(64, 17);
+            this.lblFdecimal.TabIndex = 2;
+            this.lblFdecimal.Text = "Fdecimal";
+            this.lblFdecimal.Visible = false;
+            // 
             // txtFtype
             // 
             this.txtFtype.AccessibleName = "FTYPE";
@@ -483,6 +517,8 @@
             this.txtFtype.Name = "txtFtype";
             this.txtFtype.Size = new System.Drawing.Size(126, 23);
             this.txtFtype.TabIndex = 1;
+            this.toolTipV6FormControl.SetToolTip(this.txtFtype, "A0 tặng, A1, C0 vvar,\r\nN9, N0 tiền, N1 ngoại tệ, N2 số lượng, N3 giá. N4 giá NT, " +
+        "N5 tỷ giá.\r\nD0 date null, D1 date pick.");
             this.txtFtype.Visible = false;
             // 
             // lblFtype
@@ -694,39 +730,6 @@
             this.tabPage2.Text = "Thông tin ngầm định";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label17
-            // 
-            this.label17.AccessibleDescription = "";
-            this.label17.AccessibleName = "";
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(270, 10);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(64, 17);
-            this.label17.TabIndex = 2;
-            this.label17.Text = "Fdecimal";
-            this.label17.Visible = false;
-            // 
-            // txtFdecimal
-            // 
-            this.txtFdecimal.AccessibleName = "FDECIMAL";
-            this.txtFdecimal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFdecimal.BackColor = System.Drawing.SystemColors.Window;
-            this.txtFdecimal.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtFdecimal.Enabled = false;
-            this.txtFdecimal.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtFdecimal.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtFdecimal.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtFdecimal.HoverColor = System.Drawing.Color.Yellow;
-            this.txtFdecimal.LeaveColor = System.Drawing.Color.White;
-            this.txtFdecimal.Location = new System.Drawing.Point(376, 7);
-            this.txtFdecimal.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFdecimal.Name = "txtFdecimal";
-            this.txtFdecimal.Size = new System.Drawing.Size(126, 23);
-            this.txtFdecimal.TabIndex = 3;
-            this.txtFdecimal.Visible = false;
-            // 
             // V6Alct1AddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -791,6 +794,6 @@
         private V6ColorTextBox txtFtype;
         private System.Windows.Forms.Label lblFtype;
         private V6ColorTextBox txtFdecimal;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label lblFdecimal;
     }
 }

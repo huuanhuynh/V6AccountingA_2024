@@ -85,6 +85,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             DoEditXml();
         }
 
+        private void txtDmethod_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
         
     }
 }

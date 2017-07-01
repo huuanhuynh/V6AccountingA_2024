@@ -150,6 +150,12 @@ namespace V6Tools.V6Convert
             return result;
         }
 
+        /// <summary>
+        /// Convert ngày tháng không null.
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="dateFormat"></param>
+        /// <returns></returns>
         public static DateTime ObjectToFullDateTime(object o, string dateFormat = "d/M/yyyy")
         {
             var date = ObjectToDate(o, dateFormat);

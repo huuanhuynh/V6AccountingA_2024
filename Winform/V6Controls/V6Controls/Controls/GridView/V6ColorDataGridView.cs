@@ -84,6 +84,11 @@ namespace V6Controls
         [Description("Dùng Control + A để chọn tất cả các dòng.")]
         public bool Control_A { get { return control_a; } set { control_a = value; } }
         private bool control_a = false;
+
+        [DefaultValue(false)]
+        [Description("Dùng Control + E để chỉnh sửa code.")]
+        public bool Control_E { get { return control_e; } set { control_e = value; } }
+        private bool control_e = false;
         
         [DefaultValue(false)]
         [Description("Dùng Control + Space để chọn dòng đang đứng.")]
@@ -390,6 +395,12 @@ namespace V6Controls
         {
             if (DataSource != null)
             {
+                
+                if (Control_E && e.KeyData == (Keys.Control | Keys.E))
+                {
+                    DoCodeEditor();
+                }
+
                 if (e.KeyData == (Keys.Control | Keys.F))
                 {
                     var f = new FindForm();
@@ -432,6 +443,25 @@ namespace V6Controls
                 {
                     FixSize();
                 }
+            }
+        }
+
+        private void DoCodeEditor()
+        {
+            try
+            {
+                CodeEditorForm form = new CodeEditorForm();
+                form.ContentText = CurrentCell.Value.ToString();
+                form.ShowDialog();
+                string text = form.ContentText;
+                CurrentCell.Value = text;
+                CurrentCell.OwningColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                CurrentCell.OwningColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                CurrentCell.OwningRow.Height = 22*text.Split('\n').Length;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoCodeEditor", ex);
             }
         }
 

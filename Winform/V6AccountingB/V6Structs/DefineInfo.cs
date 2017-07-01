@@ -45,8 +45,17 @@ namespace V6Structs
                 case "BFIELD":
                     BField = value;
                     break;
+                case "CONTROLTYPE":
+                    ControlType = value;
+                    break;
                 case "DECIMALS":
                     int.TryParse(value, out Decimals);
+                    break;
+                case "DESCRIPTIONE":
+                    DescriptionE = value;
+                    break;
+                case "DESCRIPTIONV":
+                    DescriptionV = value;
                     break;
                 case "ENABLED":
                     Enabled = value == "1";
@@ -129,6 +138,8 @@ namespace V6Structs
                     break;
             }
         }
+
+        public string ControlType { get; set; }
 
         /// <summary>
         /// Trường để lấy data trong vvar_data dùng cho RptExtraParameters khi Ptype = FILTER_BROTHER.
@@ -226,6 +237,13 @@ namespace V6Structs
         /// Tên event
         /// </summary>
         public string Event { get; set; }
+
+        public string DescriptionE { get; set; }
+        public string DescriptionV { get; set; }
+        public string DescriptionLang(bool isVN)
+        {
+            return isVN ? DescriptionV : DescriptionE;
+        }
 
         public bool ToUpper;
     }

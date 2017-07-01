@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -19,6 +20,10 @@ namespace V6ControlManager.FormManager.ReportManager
     {
         public static void MadeFilterControls(ReportFilter44Base filterControl, string program)
         {
+            Type Event_program = null;
+            Dictionary<string, object> All_Objects = new Dictionary<string, object>(); 
+            string all_using_text = "", all_method_text = "";
+
             SqlParameter[] plist =
             {
                 new SqlParameter("@ma_bc", program), 
@@ -41,6 +46,7 @@ namespace V6ControlManager.FormManager.ReportManager
                     try
                     {
                         string define = row["filter"].ToString().Trim();
+                        
 
                         var lineControl = V6ControlFormHelper.MadeLineDynamicControl(define);
 
@@ -73,6 +79,98 @@ namespace V6ControlManager.FormManager.ReportManager
                                 filterControl.lineMauBC = lineControl;
                             if (lineControl.DefineInfo.DefaultValue == "M_LAN")
                                 filterControl.lineLAN = lineControl;
+
+                            string xml = row["DMETHOD"].ToString().Trim();
+                            if (!string.IsNullOrEmpty(xml))
+                            {
+                                DataSet ds = new DataSet();
+                                ds.ReadXml(new StringReader(xml));
+                                if (ds.Tables.Count <= 0) break;
+
+                                var data = ds.Tables[0];
+
+                                foreach (DataRow event_row in data.Rows)
+                                {
+                                    //nơi sử dụng: QuickReportManager, DynamicAddEditForm
+                                    //Cần viết lại lineControl events.
+                                    try
+                                    {
+                                        var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                                        var method_name = event_row["method"].ToString().Trim();
+
+                                        if (data.Columns.Contains("using")) all_using_text += event_row["using"];
+                                        all_method_text += event_row["content"];
+                                        all_method_text += " ";
+
+                                        //Make dynamic event and call
+                                        switch (EVENT_NAME)
+                                        {
+                                            case "TEXTCHANGE":
+                                                lineControl.TextChanged += (s, e) =>
+                                                {
+                                                    if (Event_program == null) return;
+
+                                                    All_Objects["sender"] = s;
+                                                    All_Objects["eventargs"] = e;
+                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                                };
+                                                break;
+
+                                            //case "VALUECHANGE":
+                                            //    //V6NumberTextBox numInput = lineControl._ as V6NumberTextBox;
+                                            //    //if (numInput == null) break;
+
+                                            //    lineControl.StringValueChange += (s, e) =>
+                                            //    {
+                                            //        if (Event_program == null) return;
+
+                                            //        All_Objects["sender"] = s;
+                                            //        All_Objects["eventargs"] = e;
+                                            //        V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                            //    };
+                                            //    break;
+
+                                            case "LOSTFOCUS":
+                                                lineControl.LostFocus += (s, e) =>
+                                                {
+                                                    if (Event_program == null) return;
+
+                                                    All_Objects["sender"] = s;
+                                                    All_Objects["eventargs"] = e;
+                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                                };
+                                                break;
+
+                                            case "KEYDOWN":
+                                                lineControl.KeyDown += (s, e) =>
+                                                {
+                                                    if (Event_program == null) return;
+
+                                                    All_Objects["sender"] = s;
+                                                    All_Objects["eventargs"] = e;
+                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                                };
+                                                break;
+
+                                            case "CLICK":
+                                                lineControl.Click += (s, e) =>
+                                                {
+                                                    if (Event_program == null) return;
+
+                                                    All_Objects["sender"] = s;
+                                                    All_Objects["eventargs"] = e;
+                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                                };
+                                                break;
+                                        }//end switch
+                                    }
+                                    catch (Exception exfor)
+                                    {
+                                        V6ControlFormHelper.WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + ".EventFor", exfor);
+                                    }
+                                }//end for
+                            }
+                            
                         }
                         i++;
                     }
@@ -81,6 +179,7 @@ namespace V6ControlManager.FormManager.ReportManager
                         err += "\n" + i + " " + ten + ": " + e1.Message;
                     }
                 }
+                Event_program = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", all_using_text, all_method_text);
             }
             catch (Exception ex)
             {

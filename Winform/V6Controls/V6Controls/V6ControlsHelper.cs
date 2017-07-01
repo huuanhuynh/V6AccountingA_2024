@@ -1,11 +1,15 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Text;
+using Microsoft.CSharp;
 using V6AccountingBusiness;
+using V6Controls.Forms;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -15,6 +19,151 @@ namespace V6Controls
     public class V6ControlsHelper
     {
         public static bool DisableLookup { get; set; }
+
+        /// <summary>
+        /// Tạo một Assembly từ code.
+        /// </summary>
+        /// <param name="name_space"></param>
+        /// <param name="class_name"></param>
+        /// <param name="using_text"></param>
+        /// <param name="method_text"></param>
+        /// <returns></returns>
+        public static Type CreateProgram(string name_space, string class_name, string using_text, string method_text)
+        {
+            string output = "";
+            try
+            {
+                var using_text0 = "using System;"
+                    + "using System.Collections.Generic;"
+                    + "using System.Data;"
+                    + "using System.Drawing;"
+                    + "using System.Windows.Forms;"
+                    + "using System.Data.SqlClient;"
+                    + "using System.IO;"
+                    + "using V6Init;"
+                    + "using V6SqlConnect;"
+                    + "using V6AccountingBusiness;"
+                    + "using V6Controls;"
+                    ;
+                using_text = using_text0 + using_text;
+
+                var src = new StringBuilder();
+                src.Append(using_text);
+                //src.AppendLine("using System;");
+                //src.AppendLine("using System.Windows.Forms;");
+                //src.AppendLine("using System.Drawing;");
+                src.AppendLine("");
+                src.AppendLine("namespace " + name_space + "{");// open namespace
+                src.AppendLine("public class " + class_name + "{ "); // open class
+                src.Append(method_text);
+                src.AppendLine(" ");
+                src.AppendLine("}"); //end class
+                src.AppendLine("}"); //end namespace
+
+                CSharpCodeProvider provider = new CSharpCodeProvider();
+                CompilerParameters parameters = new CompilerParameters();
+                // Reference to System.Drawing library
+                parameters.ReferencedAssemblies.Add("System.dll");
+                parameters.ReferencedAssemblies.Add("System.Data.dll");
+                parameters.ReferencedAssemblies.Add("System.Windows.Forms.dll");
+                parameters.ReferencedAssemblies.Add("mscorlib.dll");
+                parameters.ReferencedAssemblies.Add("System.Drawing.dll");
+
+                parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6Tools.dll");
+                parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6Structs.dll");
+                parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6SqlConnect.dll");
+                parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6Controls.dll");
+                parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6AccountingBusiness.dll");
+                parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6ControlManager.dll");
+
+
+                // True - memory generation, false - external file generation
+                parameters.GenerateInMemory = false;
+                // True - exe file generation, false - dll file generation
+                parameters.GenerateExecutable = false;
+
+                //parameters.OutputAssembly = Path.Combine(Path.GetTempPath(), "myV6class.dll");
+                parameters.CompilerOptions = "/target:library /optimize";
+
+                CompilerResults results = provider.CompileAssemblyFromSource(parameters, src.ToString());
+                System.Collections.Specialized.StringCollection sc = results.Output;
+                foreach (string s in sc)
+                {
+                    Console.WriteLine(s);
+                    output += s + "\r\n";
+                }
+                Assembly assembly = results.CompiledAssembly;
+                Type program = assembly.GetType(name_space + "." + class_name);
+                return program;
+                //ChangeColor = program.GetMethod("ChangeColor");
+            }
+            catch (Exception ex)
+            {
+                V6ControlFormHelper.WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + ".CreateProgram", ex);
+            }
+
+            V6ControlFormHelper.ShowWarningMessage("Lỗi mã mở rộng:\r\n" + output);
+
+            return null;
+        }
+
+        /// <summary>
+        /// Gọi hàm trong type
+        /// </summary>
+        /// <param name="program">Đối tượng class đưa vào.</param>
+        /// <param name="methodName">Hàm trong class.</param>
+        /// <param name="All_Objects">Đối tượng tham số. key là tên của tham số hàm.</param>
+        /// <returns></returns>
+        public static object InvokeMethodDynamic(Type program, string methodName, IDictionary<string, object> All_Objects)
+        {
+            var method = program.GetMethod(methodName);
+            if (method != null)
+            {
+                var parameters = method.GetParameters();
+                var listObj = new List<object>();
+                foreach (ParameterInfo info in parameters)
+                {
+                    if (All_Objects.ContainsKey(info.Name))
+                    {
+                        listObj.Add(All_Objects[info.Name]);
+                    }
+                    else
+                    {
+                        listObj.Add(null);
+                    }
+                }
+                return method.Invoke(null, listObj.ToArray());
+            }
+            return null;
+        }
+
+        public static void SetBrotherFields(V6VvarTextBox txt, IDictionary<string, string> brothers)
+        {
+            var dataRow = txt.Data;
+            if (dataRow == null) return;
+            Form f = txt.FindForm();
+            foreach (KeyValuePair<string, string> item in brothers)
+            {
+                Control c = V6ControlFormHelper.GetControlByName(f, item.Key);
+                var value = dataRow[item.Value];
+                if (c is V6NumberTextBox)
+                {
+                    ((V6NumberTextBox) c).Value = ObjectAndString.ObjectToDecimal(value);
+                }
+                else if (c is V6DateTimeColor)
+                {
+                    ((V6DateTimeColor)c).Value = ObjectAndString.ObjectToDate(value);
+                }
+                else if (c is DateTimePicker)
+                {
+                    ((DateTimePicker)c).Value = ObjectAndString.ObjectToFullDateTime(value);
+                }
+                else
+                {
+                    c.Text = value.ToString().Trim();
+                }
+            }
+        }
 
         /// <summary>
         /// Hàm cổ trong Standar DAO

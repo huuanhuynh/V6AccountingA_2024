@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using V6Controls.Controls;
+using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
@@ -107,9 +108,27 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             }
         }
 
+        private void DoEditXml()
+        {
+            try
+            {
+                var file_xml = TXTMA_BC.Text.Trim().ToUpper() + ".xml";
+                new XmlEditorForm(txtDmethod, file_xml, "Table0", "event,using,method,content".Split(',')).ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoEditXml", ex);
+            }
+        }
+
         private void btnCopyFilter_Click(object sender, EventArgs e)
         {
             CopyFilter();
+        }
+
+        private void btnEditXml_Click(object sender, EventArgs e)
+        {
+            DoEditXml();
         }
 
 

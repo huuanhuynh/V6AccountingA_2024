@@ -453,6 +453,28 @@ namespace V6Controls
                 }
                 else if (TextLength >= MaxLength && dotIndex<0)
                 {
+                    if (i <= StringValue.Length)
+                    {
+                        if (l > 0)//có bôi đen thì xử lý
+                        {
+                            StringValue = StringValue.Remove(i, l);
+                            right = StringValue.Length - i;
+
+                            if ((i == 0 || i == 1) && StringValue.StartsWith("0"))
+                            {
+                                StringValue = s + StringValue.Substring(1);
+                                //if (right > 0) right--;
+                            }
+                            else
+                            {
+                                StringValue = StringValue.Insert(i, s.ToString());
+                            }
+
+                            var sls = TextLength - right + ((dotIndex > 0 && i > dotIndex) ? 1 : 0);
+                            if (sls <= 0) sls = 1;
+                            SelectionStart = sls;    
+                        }                       
+                    }                    
                     return;
                 }
                 else if (dotIndex > 0 && ((TextLength >= MaxLength && i<=dotIndex) || SelectionStart == TextLength))
