@@ -3496,6 +3496,8 @@ namespace V6Controls.Forms
                 var index = dgv.Columns.Cast<DataGridViewColumn>().Count(column => column.Frozen && column.Visible);
                 for (int i = 0; i < showColumns.Length; i++)
                 {
+                    int default_width = 100;
+                    string default_format_number = "N2";
                     string field = showColumns[i].Trim();
                     var column = dgv.Columns[field];
                     if (column != null)
@@ -3514,25 +3516,78 @@ namespace V6Controls.Forms
 
                             if (ObjectAndString.IsNumberType(dataType))
                             {
-                                column.DefaultCellStyle.Format = fff[0];
-                                if (fff.Length > 1)
-                                    column.Width = ObjectAndString.ObjectToInt(fff[1]);
-                                if (fff.Length > 2)
-                                    column.ReadOnly = "R" == fff[2];
+                                if (fff.Length == 1)
+                                {
+                                    var s = fff[0];
+                                    if (s.Length > 0)
+                                    {
+                                        if (char.IsNumber(s[0]))
+                                        {
+                                            column.Width = ObjectAndString.ObjectToInt(s);
+                                            column.DefaultCellStyle.Format = default_format_number;
+                                        }
+                                        else
+                                        {
+                                            column.DefaultCellStyle.Format = s;
+                                            column.Width = default_width;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        column.Width = default_width;
+                                        column.DefaultCellStyle.Format = default_format_number;
+                                    }
+                                }
+                                else
+                                {
+                                    column.DefaultCellStyle.Format = fff[0];
+                                    if (fff.Length > 1)
+                                        column.Width = ObjectAndString.ObjectToInt(fff[1]);
+                                    if (fff.Length > 2)
+                                        column.ReadOnly = "R" == fff[2];
+                                }
                             }
                             else if (column.ValueType == typeof (DateTime))
                             {
                                 if (fff.Length > 0)
-                                    column.Width = ObjectAndString.ObjectToInt(fff[0].Substring(1));
+                                {
+                                    var s = fff[0];
+                                    if (s.Length > 0)
+                                    {
+                                        if(char.IsNumber(s[0])) column.Width = ObjectAndString.ObjectToInt(fff[0]);
+                                        else column.Width = ObjectAndString.ObjectToInt(fff[0].Substring(1));
+                                    }
+                                    else
+                                    {
+                                        column.Width = default_width;
+                                    }
+                                }
+
                                 if (fff.Length > 1)
+                                {
                                     column.ReadOnly = "R" == fff[1];
+                                }
                             }
                             else if (column.ValueType == typeof (string))
                             {
                                 if (fff.Length > 0)
-                                    column.Width = ObjectAndString.ObjectToInt(fff[0].Substring(1));
+                                {
+                                    var s = fff[0];
+                                    if (s.Length > 0)
+                                    {
+                                        if (char.IsNumber(s[0])) column.Width = ObjectAndString.ObjectToInt(fff[0]);
+                                        else column.Width = ObjectAndString.ObjectToInt(fff[0].Substring(1));
+                                    }
+                                    else
+                                    {
+                                        column.Width = default_width;
+                                    }
+                                }
+
                                 if (fff.Length > 1)
+                                {
                                     column.ReadOnly = "R" == fff[1];
+                                }
                             }
                         }
 

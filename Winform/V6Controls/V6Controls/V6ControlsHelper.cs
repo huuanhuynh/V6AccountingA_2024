@@ -158,7 +158,7 @@ namespace V6Controls
                 {
                     ((DateTimePicker)c).Value = ObjectAndString.ObjectToFullDateTime(value);
                 }
-                else
+                else if (c != null)
                 {
                     c.Text = value.ToString().Trim();
                 }
@@ -330,6 +330,7 @@ namespace V6Controls
             
             throw new ArgumentException("SliptString : tham số không hợp lệ");
         }
+
         public static void ThietLapTruongHienThiTrongDataGridView(
                 DataGridView dgv,
                 string lstStringFieldName,

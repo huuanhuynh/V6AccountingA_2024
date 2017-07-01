@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools;
 
 namespace V6Controls
 {
@@ -183,10 +184,10 @@ namespace V6Controls
                 try
                 {
                     standard.dataGridView1.DataSource = tableRoot;
-                    V6ControlsHelper.ThietLapTruongHienThiTrongDataGridView(standard.dataGridView1,
+                    V6ControlFormHelper.FormatGridViewAndHeader(standard.dataGridView1,
                         V6Setting.Language == "V" ? lstConfig.VFields : lstConfig.EFields,
-                        V6Setting.Language=="V"?lstConfig.VHeaders:lstConfig.EHeaders,
-                        lstConfig.VWidths);
+                        lstConfig.VWidths,
+                        V6Setting.Language=="V"?lstConfig.VHeaders:lstConfig.EHeaders);
 
                     if (standard.dataGridView1.Rows.Count > 0)
                     {
@@ -197,9 +198,9 @@ namespace V6Controls
                         standard.txtV_Search.Select();
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    throw new Exception("StandardDAO.KhoiTaoDataGridView : " + e.Message);
+                    V6ControlFormHelper.ShowErrorException(GetType() + ".KhoiTaoDataGridView", ex);
                 }
             }
             else
@@ -207,7 +208,6 @@ namespace V6Controls
                 //LibraryHelper.Log("StandardDAO.KhoiTaoDataGridView : \"tableRoot\" không được null");
             }
         }
-
         
         public DataView myView = null;
         public DataView tempView = null;
