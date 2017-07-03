@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using V6Controls;
+using V6Controls.Controls.Label;
 using V6Init;
 using V6Structs;
 using V6Tools.V6Convert;
@@ -27,7 +28,40 @@ namespace V6ReportControls
         public FilterLineDynamic()
         {
             InitializeComponent();
+            MyInit();
         }
+
+        private void MyInit()
+        {
+            
+        }
+
+        private void FilterLineDynamic_V6LostFocus(object sender)
+        {
+            OnV6LostFocus(sender);
+        }
+
+        void FilterLineDynamic_Click(object sender, EventArgs e)
+        {
+            OnClick(e);
+        }
+
+        private void FilterLineDynamic_KeyDown(object sender, KeyEventArgs e)
+        {
+            OnKeyDown(e);
+        }
+
+        void FilterLineDynamic_LostFocus(object sender, EventArgs e)
+        {
+            OnLostFocus(e);
+        }
+
+        void FilterLineDynamic_TextChanged(object sender, EventArgs e)
+        {
+            IsSelected = true;
+            OnTextChanged(e);
+        }
+
 
         [DefaultValue(null)]
         public string AccessibleName2
@@ -75,6 +109,24 @@ namespace V6ReportControls
                 return "";
             }
         }
+
+        #region ==== EVENTS ====
+
+        public event Action<object, Control> ValueChanged;
+        protected virtual void OnValueChanged(object sender, Control control)
+        {
+            var handler = ValueChanged;
+            if (handler != null) handler(sender, control);
+        }
+
+        public event ControlEventHandle V6LostFocus;
+        protected virtual void OnV6LostFocus(object sender)
+        {
+            var handler = V6LostFocus;
+            if (handler != null) handler(sender);
+        }
+
+        #endregion events
 
         /// <summary>
         /// Định dạng lại giá trị cho phù hợp với query.
@@ -146,7 +198,7 @@ namespace V6ReportControls
             }
         }
         
-        public void AddTextBox()
+        public V6ColorTextBox AddTextBox()
         {
             _textBox = new V6ColorTextBox();
             _textBox.Location = new Point(comboBox1.Right + 5, 1);
@@ -158,9 +210,12 @@ namespace V6ReportControls
             Operators.Add("like"); Operators.Add("="); Operators.Add("<>");
             Operators.Add("is null"); Operators.Add("is not null");
             Operator = "start";
-            _textBox.TextChanged+= delegate {
-                IsSelected = true;
-            };
+            _textBox.Click += FilterLineDynamic_Click;
+            _textBox.TextChanged += FilterLineDynamic_TextChanged;
+            _textBox.LostFocus += FilterLineDynamic_LostFocus;
+            _textBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
+            _textBox.KeyDown += FilterLineDynamic_KeyDown;
+            return _textBox;
         }
         public V6VvarTextBox AddVvarTextBox(string vVar, string filter)
         {
@@ -182,9 +237,11 @@ namespace V6ReportControls
             Operators.Add("like"); Operators.Add("="); Operators.Add("<>");
             Operators.Add("is null"); Operators.Add("is not null");
             Operator = "start";
-            _vtextBox.TextChanged+= delegate {
-                IsSelected = true;
-            };
+            _vtextBox.Click += FilterLineDynamic_Click;
+            _vtextBox.TextChanged += FilterLineDynamic_TextChanged;
+            _vtextBox.LostFocus += FilterLineDynamic_LostFocus;
+            _vtextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
+            _vtextBox.KeyDown += FilterLineDynamic_KeyDown;
             return _vtextBox;
         }
         public void AddNumberTextBox()
@@ -201,10 +258,15 @@ namespace V6ReportControls
             Operators.Add("="); Operators.Add("<>"); Operators.Add(">"); Operators.Add("<");
             Operators.Add("is null"); Operators.Add("is not null");
             Operator = "=";
-            _numberTextBox.TextChanged += delegate
+            _numberTextBox.Click += FilterLineDynamic_Click;
+            _numberTextBox.TextChanged += FilterLineDynamic_TextChanged;
+            _numberTextBox.StringValueChange += (o, e) =>
             {
-                IsSelected = true;
+                OnValueChanged(this, _numberTextBox);
             };
+            _numberTextBox.LostFocus += FilterLineDynamic_LostFocus;
+            _numberTextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
+            _numberTextBox.KeyDown += FilterLineDynamic_KeyDown;
         }
         public void AddDateTimePick()
         {
@@ -219,10 +281,15 @@ namespace V6ReportControls
             Operators.Add("="); Operators.Add("<>"); Operators.Add(">"); Operators.Add("<");
             Operators.Add("is null"); Operators.Add("is not null");
             Operator = "=";
-            _dateTimePick.TextChanged += delegate
+            _dateTimePick.Click += FilterLineDynamic_Click;
+            _dateTimePick.TextChanged += FilterLineDynamic_TextChanged;
+            _dateTimePick.ValueChanged += (o, e) =>
             {
-                IsSelected = true;
+                OnValueChanged(this, _dateTimePick);
             };
+            _dateTimePick.LostFocus += FilterLineDynamic_LostFocus;
+            _dateTimePick.V6LostFocus += FilterLineDynamic_V6LostFocus;
+            _dateTimePick.KeyDown += FilterLineDynamic_KeyDown;
         }
         public void AddCheckBox()
         {
@@ -235,7 +302,15 @@ namespace V6ReportControls
             
             comboBox1.Visible = false;
             checkBox1.Visible = false;
-            
+
+            _checkBox.Click += FilterLineDynamic_Click;
+            _checkBox.TextChanged += FilterLineDynamic_TextChanged;
+            _checkBox.CheckedChanged += (o, e) =>
+            {
+                OnValueChanged(this, _checkBox);
+            };
+            _checkBox.LostFocus += FilterLineDynamic_LostFocus;
+            _checkBox.KeyDown += FilterLineDynamic_KeyDown;
         }
 
         public void SetValue(string stringValue)
@@ -307,5 +382,7 @@ namespace V6ReportControls
                 }
             }
         }
+
+        
     }
 }

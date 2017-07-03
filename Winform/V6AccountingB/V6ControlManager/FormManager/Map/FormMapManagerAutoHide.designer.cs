@@ -60,6 +60,7 @@
             this.menuPictureReport = new System.Windows.Forms.ToolStripMenuItem();
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
             this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
+            this.btnPrintPicture = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.contextMenuStrip_Pic1.SuspendLayout();
             this.panel1_Image.SuspendLayout();
@@ -249,6 +250,7 @@
             this.panelContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelContainer1.Controls.Add(this.btnPrintPicture);
             this.panelContainer1.Controls.Add(this.grbNgonNgu);
             this.panelContainer1.Controls.Add(this.grbKhuVuc);
             this.panelContainer1.Controls.Add(this.panel1_Image);
@@ -343,6 +345,17 @@
             // 
             this.timerRefresh.Tick += new System.EventHandler(this.timerRefresh_Tick);
             // 
+            // btnPrintPicture
+            // 
+            this.btnPrintPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintPicture.Location = new System.Drawing.Point(710, 13);
+            this.btnPrintPicture.Name = "btnPrintPicture";
+            this.btnPrintPicture.Size = new System.Drawing.Size(75, 23);
+            this.btnPrintPicture.TabIndex = 9;
+            this.btnPrintPicture.Text = "Lưu hình";
+            this.btnPrintPicture.UseVisualStyleBackColor = true;
+            this.btnPrintPicture.Click += new System.EventHandler(this.btnPrintPicture_Click);
+            // 
             // FormMapManagerAutoHide
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -404,6 +417,7 @@
         private System.Windows.Forms.ToolStripMenuItem Thongke2;
         private System.Windows.Forms.ToolStripMenuItem Thongke3;
         private System.Windows.Forms.ToolStripMenuItem Thongke4;
+        private System.Windows.Forms.Button btnPrintPicture;
     }
 }
 

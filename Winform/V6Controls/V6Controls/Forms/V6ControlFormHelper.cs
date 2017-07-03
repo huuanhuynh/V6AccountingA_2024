@@ -871,7 +871,8 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
-        /// Tạo filterLine control từ chuỗi thông tin
+        /// Tạo filterLine control từ chuỗi thông tin.
+        /// Name = "line" + lineInfo.Field.ToUpper()
         /// </summary>
         /// <param name="define">Chuỗi thông tin (field:ngay_ct1;textv:Từ ngày;textE:From;where_field:ngay_ct;type:D;loai_key:10;oper:and;sqltype:smalldatetime;limitchar:ABCabc123;defaultValue:m_ngay_ct1)</param>
         /// <returns></returns>
@@ -883,6 +884,7 @@ namespace V6Controls.Forms
 
             var lineControl = new FilterLineDynamic
             {
+                Name = "line" + lineInfo.Field.ToUpper(),
                 FieldName = lineInfo.Field.ToUpper(),
                 FieldCaption = V6Setting.IsVietnamese ? lineInfo.TextV : lineInfo.TextE,
                 DefineInfo = lineInfo,
@@ -3615,6 +3617,10 @@ namespace V6Controls.Forms
         /// <param name="headerString"></param>
         public static void FormatGridViewAndHeader(DataGridView dgv, string showFields, string formatStrings, string headerString)
         {
+            //dgv.DataError += delegate(object sender, DataGridViewDataErrorEventArgs args)
+            //{
+            //    args.ThrowException = false;
+            //};
             if (string.IsNullOrEmpty(showFields)) return;
             //dgv.AutoGenerateColumns = true;//gây lỗi lặp ở tìm hóa đơn.
             var fieldList = showFields.Replace("[", "").Replace("]", "").Split(showFields.Contains(";") ? ';' : ',');

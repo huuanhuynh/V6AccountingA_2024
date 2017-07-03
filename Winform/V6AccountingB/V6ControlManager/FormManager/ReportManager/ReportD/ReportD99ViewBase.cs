@@ -28,7 +28,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 {
     public partial class ReportD99ViewBase : V6FormControl
     {
-        #region Biến toàn cục
+        #region ==== Biến toàn cục ====
         DataGridViewPrinter _myDataGridViewPrinter;
         private ReportDocument _rpDoc;
 
@@ -50,6 +50,78 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         /// Dùng cho procedure chính (program?)
         /// </summary>
         private List<SqlParameter> _pList;
+
+        /// <summary>
+        /// Danh sách event_method của Form_program.
+        /// </summary>
+        private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        private Type Form_program;
+        private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+
+        private void CreateFormProgram()
+        {
+            try
+            {
+                IDictionary<string, object> keys = new Dictionary<string, object>();
+                keys.Add("MA_BC", _program);
+                var AlreportData = V6BusinessHelper.Select(V6TableName.Alreport, keys, "*").Data;
+                if (AlreportData.Rows.Count == 0) return;
+
+                var dataRow = AlreportData.Rows[0];
+                var xml = dataRow["MMETHOD"].ToString().Trim();
+                if (xml == "") return;
+                DataSet ds = new DataSet();
+                ds.ReadXml(new StringReader(xml));
+                if (ds.Tables.Count <= 0) return;
+
+                var data = ds.Tables[0];
+
+                string using_text = "";
+                string method_text = "";
+                foreach (DataRow event_row in data.Rows)
+                {
+                    var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                    var method_name = event_row["method"].ToString().Trim();
+                    Event_Methods[EVENT_NAME] = method_name;
+
+                    using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                    method_text += event_row["content"];
+                    method_text += "\n";
+                }
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateProgram0", ex);
+            }
+        }
+
+        private void CreateFormControls()
+        {
+            try
+            {
+                var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
+                if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
+                {
+                    var dataRow = V6Setting.DataDVCS;
+                    var GET_FIELD = "TEN_NLB";
+                    if (dataRow.Table.Columns.Contains(GET_FIELD))
+                        txtM_TEN_NLB.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
+                    GET_FIELD = "TEN_NLB2";
+                    if (dataRow.Table.Columns.Contains(GET_FIELD))
+                        txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
+                }
+
+                AddFilterControl(_program);
+                QuickReportManager.MadeFilterControls(FilterControl, _program, out All_Objects);
+                gridViewSummary1.Visible = FilterControl.ViewSum;
+
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init", ex);
+            }
+        }
 
         /// <summary>
         /// MA_FILE, MAU, LAN, REPORT
@@ -436,30 +508,20 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
         private void MyInit()
         {
-            try
+            CreateFormProgram();
+            CreateFormControls();
+            try // Dynamic invoke
             {
-                var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
-                if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
+                if (Event_Methods.ContainsKey("INIT"))
                 {
-                    var dataRow = V6Setting.DataDVCS;
-                    var GET_FIELD = "TEN_NLB";
-                    if (dataRow.Table.Columns.Contains(GET_FIELD))
-                        txtM_TEN_NLB.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
-                    GET_FIELD = "TEN_NLB2";
-                    if (dataRow.Table.Columns.Contains(GET_FIELD))
-                        txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
+                    var method_name = Event_Methods["INIT"];
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
-
-                AddFilterControl(_program);
-                QuickReportManager.MadeFilterControls(FilterControl, _program);
-                gridViewSummary1.Visible = FilterControl.ViewSum;
-
             }
-            catch (Exception ex)
+            catch (Exception ex1)
             {
-                this.WriteExLog(GetType() + ".Init", ex);
+                this.WriteExLog(GetType() + ".Dynamic invoke INIT", ex1);
             }
-            
         }
 
         private void MyInit2()

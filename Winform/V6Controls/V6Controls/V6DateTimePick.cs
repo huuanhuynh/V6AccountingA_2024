@@ -109,6 +109,17 @@ namespace V6Controls
 
             base.WndProc(ref m);
         }
+
+        public event ControlEventHandle V6LostFocus;
+        public event ControlEventHandle V6LostFocusNoChange;
+        public void CallDoV6LostFocus()
+        {
+            if (V6LostFocus != null) V6LostFocus(this);
+        }
+        public void CallDoV6LostFocusNoChange()
+        {
+            if (V6LostFocusNoChange != null) V6LostFocusNoChange(this);
+        }
         
 
         private string _gotfocustext = "";
@@ -184,8 +195,20 @@ namespace V6Controls
             this.Leave += new System.EventHandler(this.V6ColorTextBox_Leave);
             this.MouseLeave += new System.EventHandler(this.V6ColorTextBox_MouseLeave);
             this.ValueChanged += V6DateTimePick_ValueChanged;
+            this.LostFocus += V6DateTimePick_LostFocus;
+
             this.ResumeLayout(false);
 
+        }
+
+        void V6DateTimePick_LostFocus(object sender, EventArgs e)
+        {
+            if (!ReadOnly)
+            {
+                _lostfocustext = Text;
+                if (LostFocusText != GotFocusText) CallDoV6LostFocus();
+                else CallDoV6LostFocusNoChange();
+            }
         }
 
         void V6DateTimePick_ValueChanged(object sender, EventArgs e)

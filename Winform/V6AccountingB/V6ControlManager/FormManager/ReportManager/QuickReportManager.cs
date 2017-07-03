@@ -18,7 +18,7 @@ namespace V6ControlManager.FormManager.ReportManager
 {
     public static class QuickReportManager
     {
-        public static void MadeFilterControls(ReportFilter44Base filterControl, string program)
+        public static void MadeFilterControls(ReportFilter44Base filterControl, string program, out Dictionary<string, object> all_Objects)
         {
             Type Event_program = null;
             Dictionary<string, object> All_Objects = new Dictionary<string, object>(); 
@@ -49,6 +49,7 @@ namespace V6ControlManager.FormManager.ReportManager
                         
 
                         var lineControl = V6ControlFormHelper.MadeLineDynamicControl(define);
+                        All_Objects[lineControl.Name] = lineControl;
 
                         if (lineControl != null)
                         {
@@ -116,19 +117,19 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 };
                                                 break;
 
-                                            //case "VALUECHANGE":
-                                            //    //V6NumberTextBox numInput = lineControl._ as V6NumberTextBox;
-                                            //    //if (numInput == null) break;
+                                            case "VALUECHANGE":
+                                                //V6NumberTextBox numInput = lineControl._ as V6NumberTextBox;
+                                                //if (numInput == null) break;
 
-                                            //    lineControl.StringValueChange += (s, e) =>
-                                            //    {
-                                            //        if (Event_program == null) return;
+                                                lineControl.ValueChanged += (s, e) =>
+                                                {
+                                                    if (Event_program == null) return;
 
-                                            //        All_Objects["sender"] = s;
-                                            //        All_Objects["eventargs"] = e;
-                                            //        V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
-                                            //    };
-                                            //    break;
+                                                    All_Objects["sender"] = s;
+                                                    All_Objects["eventargs"] = e;
+                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                                };
+                                                break;
 
                                             case "LOSTFOCUS":
                                                 lineControl.LostFocus += (s, e) =>
@@ -137,6 +138,17 @@ namespace V6ControlManager.FormManager.ReportManager
 
                                                     All_Objects["sender"] = s;
                                                     All_Objects["eventargs"] = e;
+                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                                };
+                                                break;
+
+                                            case "V6LOSTFOCUS":
+                                                lineControl.V6LostFocus += (s) =>
+                                                {
+                                                    if (Event_program == null) return;
+
+                                                    All_Objects["sender"] = s;
+                                                    All_Objects["eventargs"] = null;
                                                     V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
                                                 };
                                                 break;
@@ -190,7 +202,10 @@ namespace V6ControlManager.FormManager.ReportManager
             {
                 filterControl.ShowErrorMessage("MadeFilterControls error: " + err);
             }
+
+            all_Objects = All_Objects;
         }
+
         public static void ShowQuickReport(string itemId)
         {
             try

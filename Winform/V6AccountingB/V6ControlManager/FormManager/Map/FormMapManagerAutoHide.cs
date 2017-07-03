@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 using H;
@@ -1084,6 +1085,25 @@ namespace V6ControlManager.FormManager.Map
         private void Thongke4_Click(object sender, EventArgs e)
         {
             ShowReporThongke4();
+        }
+
+        private void btnPrintPicture_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var file = V6ControlFormHelper.ChooseSaveFile("png|*.png|bmp|*.bmp");
+                if (string.IsNullOrEmpty(file)) return;
+                var image = (Image)pictureBox1.Image.Clone();
+                var g = Graphics.FromImage(image);
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                MH.DrawOnPictureBoxPaint(g);
+
+                image.Save(file, ImageFormat.Png);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".SaveImage", ex);
+            }
         }
 
 

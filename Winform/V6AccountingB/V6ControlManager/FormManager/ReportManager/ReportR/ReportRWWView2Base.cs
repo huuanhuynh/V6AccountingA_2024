@@ -27,7 +27,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 {
     public partial class ReportRWWView2Base : V6FormControl
     {
-        #region Biến toàn cục
+        #region ==== Biến toàn cục ====
         DataGridViewPrinter _myDataGridViewPrinter;
         private ReportDocument _rpDoc;
 
@@ -50,6 +50,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// Dùng cho procedure chính (program?)
         /// </summary>
         private List<SqlParameter> _pList;
+
+        /// <summary>
+        /// Danh sách event_method của Form_program.
+        /// </summary>
+        private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        private Type Form_program;
+        private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
         /// <summary>
         /// MA_FILE, MAU, LAN, REPORT
@@ -415,7 +422,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
 
                 AddFilterControl(_program);
-                QuickReportManager.MadeFilterControls(FilterControl, _program);
+                QuickReportManager.MadeFilterControls(FilterControl, _program, out All_Objects);
                 SetStatus2Text();
                 gridViewSummary1.Visible = FilterControl.ViewSum;
 

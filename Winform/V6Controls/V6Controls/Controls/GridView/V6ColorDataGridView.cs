@@ -51,9 +51,22 @@ namespace V6Controls
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.V6ColorDataGridView_KeyDown);
             this.CellBeginEdit += V6ColorDataGridView_CellBeginEdit;
             this.EditingControlShowing += V6ColorDataGridView_EditingControlShowing;
+            //this.DataError += V6ColorDataGridView_DataError;
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
+        }
+
+        //void V6ColorDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        //{
+        //    //Loại bỏ thông báo lỗi khi có gì đó sai trong gridview.
+        //    e.ThrowException = false;
+        //}
+
+        protected override void OnDataError(bool displayErrorDialogIfNoHandler, DataGridViewDataErrorEventArgs e)
+        {
+            //this.WriteExLog(GetType() + ".OnDataError", e.Exception);
+            V6ControlFormHelper.AddLastError(GetType() + ".OnDataError " + e.Exception.Message);
         }
 
         void V6ColorDataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

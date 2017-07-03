@@ -36,7 +36,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// </summary>
         private Dictionary<string, string> Event_Methods = new Dictionary<string, string>(); 
         
-        private Dictionary<string, object> All_Objects = new Dictionary<string, object>(); 
+        private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
         private Dictionary<string, Label> Label_Controls = new Dictionary<string, Label>();
         private Dictionary<string, Control> Input_Controls = new Dictionary<string, Control>(); 
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Reflection;
 using V6Controls;
 using V6Init;
@@ -18,8 +19,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
             {
                 //lineMaDvcs.Enabled = false;
             }
-            TxtStatus.VvarTextBox.Text = "1";
-            chkkh_yn.Checked = true;
+            //TxtStatus.VvarTextBox.Text = "1";
+           // chkkh_yn.Checked = true;
+            TxtType.Text = "0";
+
             Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
             Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
@@ -55,24 +58,38 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-            
+
             //var condition = "";
             //condition = string.Format("MA_VITRI like '{0}%'", lineMaVitri.StringValue.Replace("'", "''"));
-                
-            
+
+
             var and = radAnd.Checked;
             var cKey0 = "";
             var cKey = "";
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-               "MA_VITRI","NH_VITRI1","NH_VITRI2","NH_VITRI3","NH_VITRI4","NH_VITRI5","NH_VITRI6"
+                "MA_VITRI",
+                "NH_VITRI1",
+                "NH_VITRI2",
+                "NH_VITRI3",
+                "NH_VITRI4",
+                "NH_VITRI5",
+                "NH_VITRI6",
+                "MA_RGB"
             }, and);
 
 
             var key1 = GetFilterStringByFields(new List<string>()
             {
-               "MA_KH","NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6","STATUS"
+                "MA_KH",
+                "NH_KH1",
+                "NH_KH2",
+                "NH_KH3",
+                "NH_KH4",
+                "NH_KH5",
+                "NH_KH6",
+                "STATUS"
             }, and);
 
             if (chkkh_yn.Checked)
@@ -98,11 +115,37 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
                 cKey0 = string.Format(" MA_HINH in (select ma_vitri from alvitri where {0} )", key0);
             }
 
+            //-- Type: 0- Sum theo ma_rgb, 1 - Nhom theo ma_rgb,nh_vitri1,ma_vitri, 2- Nhom theo day: nh_vitri1,ma_vitri
+
+            var cGroup = "";
+            var cType = "";
+
+            cType = TxtType.Text.Trim();
+            
+            switch (cType)
+            {
+                case "0":
+                    cGroup = "MA_RGB";
+                    break;
+                case "1":
+                    cGroup = "MA_RGB,NH_VITRI1";
+                    break;
+                case "2":
+                    cGroup = "NH_VITRI1";
+                    break;
+                default:
+                    break;
+            }
+
+
             var result = new List<SqlParameter>
             {
                 new SqlParameter("@MA_KHO", lineMakho.StringValue),
                 new SqlParameter("@Advance", cKey0),
                 new SqlParameter("@Advance1", cKey),
+                new SqlParameter("@Type", cType),
+                new SqlParameter("@Group", cGroup),
+
             };
 
             return result;
