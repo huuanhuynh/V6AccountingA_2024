@@ -18,6 +18,14 @@ namespace V6ControlManager.FormManager.ReportManager
 {
     public static class QuickReportManager
     {
+        public static ReportFilter44Base AddFilterControl44Base(string program, Panel panel1)
+        {
+            var FilterControl = Filter.Filter.GetFilterControl44(program);
+            panel1.Controls.Add(FilterControl);
+            FilterControl.Focus();
+            return FilterControl;
+        }
+
         public static void MadeFilterControls(ReportFilter44Base filterControl, string program, out Dictionary<string, object> all_Objects)
         {
             Type Event_program = null;
@@ -244,6 +252,16 @@ namespace V6ControlManager.FormManager.ReportManager
             else view.DataSet = quickParams.DataSet;
 
             view.ShowToForm(quickParams.FormTitle, true);
+        }
+
+        /// <summary>
+        /// Tập hợp các event động trên form report.
+        /// </summary>
+        public static class FormEvent
+        {
+            public static string INIT = "INIT";
+            public static string BEFORELOADDATA = "BEFORELOADDATA";
+            public static string AFTERADDFILTERCONTROL = "AFTERADDFILTERCONTROL";
         }
     }
 

@@ -58,6 +58,22 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private Type Form_program;
         private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
+        private void InvokeFormEvent(string eventName)
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(eventName))
+                {
+                    var method_name = Event_Methods[eventName];
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+            }
+        }
+
         private void CreateFormProgram()
         {
             try
@@ -112,8 +128,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                         txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
                 }
 
-                AddFilterControl(_program);
+                FilterControl = QuickReportManager.AddFilterControl44Base(_program, panel1);
+                InvokeFormEvent(QuickReportManager.FormEvent.AFTERADDFILTERCONTROL);
                 QuickReportManager.MadeFilterControls(FilterControl, _program, out All_Objects);
+                All_Objects["thisForm"] = this;
                 gridViewSummary1.Visible = FilterControl.ViewSum;
 
             }
@@ -510,18 +528,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             CreateFormProgram();
             CreateFormControls();
-            try // Dynamic invoke
-            {
-                if (Event_Methods.ContainsKey("INIT"))
-                {
-                    var method_name = Event_Methods["INIT"];
-                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
-                }
-            }
-            catch (Exception ex1)
-            {
-                this.WriteExLog(GetType() + ".Dynamic invoke INIT", ex1);
-            }
+            InvokeFormEvent(QuickReportManager.FormEvent.INIT);
         }
 
         private void MyInit2()
@@ -624,13 +631,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
 
         public ReportFilter44Base FilterControl { get; set; }
-        private void AddFilterControl(string program)
-        {
-            FilterControl = Filter.Filter.GetFilterControl44(program);
-            panel1.Controls.Add(FilterControl);
-            FilterControl.Focus();
-        }
         
+
         public void btnNhan_Click(object sender, EventArgs e)
         {
             if (Data_Loading)
@@ -779,6 +781,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         
         void LoadData()
         {
+            InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+
             try
             {
                 Data_Loading = true;

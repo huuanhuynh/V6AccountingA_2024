@@ -25,6 +25,10 @@ using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.ReportD
 {
+    /// <summary>
+    /// Codeform bắt đầu bằng 9????
+    /// Dùng cho các report có số cột dữ liệu không cố định (ví dụ từ tháng đến tháng).
+    /// </summary>
     public partial class ReportDViewBase : V6FormControl
     {
         #region Biến toàn cục

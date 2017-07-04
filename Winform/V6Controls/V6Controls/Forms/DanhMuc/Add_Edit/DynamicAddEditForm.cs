@@ -190,6 +190,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                     //Make dynamic event and call
                                     switch (EVENT_NAME)
                                     {
+                                        case "INIT":
+                                            input.EnabledChanged += (s, e) =>
+                                            {
+                                                if (Event_program == null) return;
+
+                                                All_Objects["sender"] = s;
+                                                All_Objects["eventargs"] = e;
+                                                V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                            };
+                                            break;
+
                                         case "TEXTCHANGE":
                                             input.TextChanged += (s, e) =>
                                             {

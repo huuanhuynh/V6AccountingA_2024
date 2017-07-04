@@ -52,6 +52,22 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private Type Form_program;
         private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
+        private void InvokeFormEvent(string eventName)
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(eventName))
+                {
+                    var method_name = Event_Methods[eventName];
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+            }
+        }
+
         private void CreateFormProgram()
         {
             try
@@ -106,8 +122,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
                 }
 
-                AddFilterControl(_program);
+                FilterControl = QuickReportManager.AddFilterControl44Base(_program, panel1);
+                InvokeFormEvent(QuickReportManager.FormEvent.AFTERADDFILTERCONTROL);
                 QuickReportManager.MadeFilterControls(FilterControl, _program, out All_Objects);
+                All_Objects["thisForm"] = this;
                 SetStatus2Text();
                 gridViewSummary1.Visible = FilterControl.ViewSum;
 
@@ -536,6 +554,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
+        /// <summary>
+        /// Có hay không tải lại dữ liệu khi chọn lại ngôn ngữ bc hoặc mẫu in...
+        /// </summary>
         private string ReloadData
         {
             get
@@ -581,18 +602,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             CreateFormProgram();
             CreateFormControls();
-            try // Dynamic invoke
-            {
-                if (Event_Methods.ContainsKey("INIT"))
-                {
-                    var method_name = Event_Methods["INIT"];
-                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
-                }
-            }
-            catch (Exception ex1)
-            {
-                this.WriteExLog(GetType() + ".Dynamic invoke INIT", ex1);
-            }
+            InvokeFormEvent(QuickReportManager.FormEvent.INIT);
         }
 
         /// <summary>
@@ -714,13 +724,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         public ReportFilter44Base FilterControl { get; set; }
         public SortedDictionary<string, object> SelectedRowData { get; set; }
 
-        private void AddFilterControl(string program)
-        {
-            FilterControl = Filter.Filter.GetFilterControl44(program);
-            panel1.Controls.Add(FilterControl);
-            FilterControl.Focus();
-        }
-
+        
         public void btnNhan_Click(object sender, EventArgs e)
         {
             if (Data_Loading)
@@ -875,6 +879,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         void LoadData()
         {
+            All_Objects["_plist"] = _pList;
+            InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+
             try
             {
                 Data_Loading = true;
@@ -888,6 +895,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 {
                     proc = _reportProcedure;
                 }
+
                 _ds = V6BusinessHelper.ExecuteProcedure(proc, _pList.ToArray());
                 SetTBLdata();
 

@@ -177,6 +177,18 @@
             this.label76 = new System.Windows.Forms.Label();
             this.label80 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
             this.v6DateTimeColor2 = new V6Controls.V6DateTimeColor();
             this.v6DateTimeColor1 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
@@ -248,18 +260,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -2549,6 +2549,174 @@
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Tự định nghĩa";
             // 
+            // label29
+            // 
+            this.label29.AccessibleDescription = "M_GC_TD3,GC_TD3";
+            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(9, 321);
+            this.label29.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(93, 17);
+            this.label29.TabIndex = 128;
+            this.label29.Text = "Ghi chú ĐN 3";
+            // 
+            // label30
+            // 
+            this.label30.AccessibleDescription = "M_GC_TD2,GC_TD2";
+            this.label30.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(9, 293);
+            this.label30.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(93, 17);
+            this.label30.TabIndex = 127;
+            this.label30.Text = "Ghi chú ĐN 2";
+            // 
+            // label31
+            // 
+            this.label31.AccessibleDescription = "M_GC_TD1,GC_TD1";
+            this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(9, 265);
+            this.label31.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(93, 17);
+            this.label31.TabIndex = 126;
+            this.label31.Text = "Ghi chú ĐN 1";
+            // 
+            // label32
+            // 
+            this.label32.AccessibleDescription = "M_SL_TD3,SL_TD3";
+            this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(9, 237);
+            this.label32.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(61, 17);
+            this.label32.TabIndex = 125;
+            this.label32.Text = "SL ĐN 3";
+            // 
+            // label33
+            // 
+            this.label33.AccessibleDescription = "M_SL_TD2,SL_TD2";
+            this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(9, 209);
+            this.label33.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(61, 17);
+            this.label33.TabIndex = 124;
+            this.label33.Text = "SL ĐN 2";
+            // 
+            // label34
+            // 
+            this.label34.AccessibleDescription = "M_SL_TD1,SL_TD1";
+            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(9, 181);
+            this.label34.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(61, 17);
+            this.label34.TabIndex = 123;
+            this.label34.Text = "SL ĐN 1";
+            // 
+            // label35
+            // 
+            this.label35.AccessibleDescription = "M_NGAY_TD3,NGAY_TD3";
+            this.label35.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(9, 153);
+            this.label35.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(77, 17);
+            this.label35.TabIndex = 122;
+            this.label35.Text = "Ngày ĐN 3";
+            // 
+            // label36
+            // 
+            this.label36.AccessibleDescription = "M_NGAY_TD2,NGAY_TD2";
+            this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(9, 125);
+            this.label36.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(77, 17);
+            this.label36.TabIndex = 121;
+            this.label36.Text = "Ngày ĐN 2";
+            // 
+            // label37
+            // 
+            this.label37.AccessibleDescription = "M_NGAY_TD1,NGAY_TD1";
+            this.label37.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(9, 97);
+            this.label37.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(77, 17);
+            this.label37.TabIndex = 120;
+            this.label37.Text = "Ngày ĐN 1";
+            // 
+            // label39
+            // 
+            this.label39.AccessibleDescription = "M_MA_TD3,MA_TD3";
+            this.label39.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(9, 69);
+            this.label39.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(63, 17);
+            this.label39.TabIndex = 119;
+            this.label39.Text = "Mã ĐN 3";
+            // 
+            // label51
+            // 
+            this.label51.AccessibleDescription = "M_MA_TD2,MA_TD2";
+            this.label51.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(9, 41);
+            this.label51.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(63, 17);
+            this.label51.TabIndex = 118;
+            this.label51.Text = "Mã ĐN 2";
+            // 
+            // label52
+            // 
+            this.label52.AccessibleDescription = "M_MA_TD1,MA_TD1";
+            this.label52.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(9, 13);
+            this.label52.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(63, 17);
+            this.label52.TabIndex = 117;
+            this.label52.Text = "Mã ĐN 1";
+            // 
             // v6DateTimeColor2
             // 
             this.v6DateTimeColor2.AccessibleName = "ngay_td3";
@@ -2622,7 +2790,7 @@
             this.v6ColorTextBox31.Location = new System.Drawing.Point(150, 318);
             this.v6ColorTextBox31.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorTextBox31.Name = "v6ColorTextBox31";
-            this.v6ColorTextBox31.Size = new System.Drawing.Size(184, 23);
+            this.v6ColorTextBox31.Size = new System.Drawing.Size(556, 23);
             this.v6ColorTextBox31.TabIndex = 113;
             // 
             // v6ColorTextBox32
@@ -2638,7 +2806,7 @@
             this.v6ColorTextBox32.Location = new System.Drawing.Point(150, 290);
             this.v6ColorTextBox32.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorTextBox32.Name = "v6ColorTextBox32";
-            this.v6ColorTextBox32.Size = new System.Drawing.Size(184, 23);
+            this.v6ColorTextBox32.Size = new System.Drawing.Size(556, 23);
             this.v6ColorTextBox32.TabIndex = 112;
             // 
             // v6ColorTextBox35
@@ -2654,7 +2822,7 @@
             this.v6ColorTextBox35.Location = new System.Drawing.Point(150, 262);
             this.v6ColorTextBox35.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorTextBox35.Name = "v6ColorTextBox35";
-            this.v6ColorTextBox35.Size = new System.Drawing.Size(184, 23);
+            this.v6ColorTextBox35.Size = new System.Drawing.Size(556, 23);
             this.v6ColorTextBox35.TabIndex = 111;
             // 
             // v6ColorTextBox36
@@ -3698,174 +3866,6 @@
             this.label1.Size = new System.Drawing.Size(66, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã vật tư";
-            // 
-            // label29
-            // 
-            this.label29.AccessibleDescription = "M_GC_TD3,GC_TD3";
-            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(9, 321);
-            this.label29.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(93, 17);
-            this.label29.TabIndex = 128;
-            this.label29.Text = "Ghi chú ĐN 3";
-            // 
-            // label30
-            // 
-            this.label30.AccessibleDescription = "M_GC_TD2,GC_TD2";
-            this.label30.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(9, 293);
-            this.label30.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(93, 17);
-            this.label30.TabIndex = 127;
-            this.label30.Text = "Ghi chú ĐN 2";
-            // 
-            // label31
-            // 
-            this.label31.AccessibleDescription = "M_GC_TD1,GC_TD1";
-            this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(9, 265);
-            this.label31.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(93, 17);
-            this.label31.TabIndex = 126;
-            this.label31.Text = "Ghi chú ĐN 1";
-            // 
-            // label32
-            // 
-            this.label32.AccessibleDescription = "M_SL_TD3,SL_TD3";
-            this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(9, 237);
-            this.label32.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(61, 17);
-            this.label32.TabIndex = 125;
-            this.label32.Text = "SL ĐN 3";
-            // 
-            // label33
-            // 
-            this.label33.AccessibleDescription = "M_SL_TD2,SL_TD2";
-            this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(9, 209);
-            this.label33.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(61, 17);
-            this.label33.TabIndex = 124;
-            this.label33.Text = "SL ĐN 2";
-            // 
-            // label34
-            // 
-            this.label34.AccessibleDescription = "M_SL_TD1,SL_TD1";
-            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(9, 181);
-            this.label34.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(61, 17);
-            this.label34.TabIndex = 123;
-            this.label34.Text = "SL ĐN 1";
-            // 
-            // label35
-            // 
-            this.label35.AccessibleDescription = "M_NGAY_TD3,NGAY_TD3";
-            this.label35.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(9, 153);
-            this.label35.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(77, 17);
-            this.label35.TabIndex = 122;
-            this.label35.Text = "Ngày ĐN 3";
-            // 
-            // label36
-            // 
-            this.label36.AccessibleDescription = "M_NGAY_TD2,NGAY_TD2";
-            this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(9, 125);
-            this.label36.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(77, 17);
-            this.label36.TabIndex = 121;
-            this.label36.Text = "Ngày ĐN 2";
-            // 
-            // label37
-            // 
-            this.label37.AccessibleDescription = "M_NGAY_TD1,NGAY_TD1";
-            this.label37.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(9, 97);
-            this.label37.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(77, 17);
-            this.label37.TabIndex = 120;
-            this.label37.Text = "Ngày ĐN 1";
-            // 
-            // label39
-            // 
-            this.label39.AccessibleDescription = "M_MA_TD3,MA_TD3";
-            this.label39.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(9, 69);
-            this.label39.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(63, 17);
-            this.label39.TabIndex = 119;
-            this.label39.Text = "Mã ĐN 3";
-            // 
-            // label51
-            // 
-            this.label51.AccessibleDescription = "M_MA_TD2,MA_TD2";
-            this.label51.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(9, 41);
-            this.label51.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(63, 17);
-            this.label51.TabIndex = 118;
-            this.label51.Text = "Mã ĐN 2";
-            // 
-            // label52
-            // 
-            this.label52.AccessibleDescription = "M_MA_TD1,MA_TD1";
-            this.label52.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(9, 13);
-            this.label52.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(63, 17);
-            this.label52.TabIndex = 117;
-            this.label52.Text = "Mã ĐN 1";
             // 
             // VatTuAddEditForm
             // 

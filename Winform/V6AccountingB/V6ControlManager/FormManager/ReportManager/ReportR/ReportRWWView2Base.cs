@@ -58,6 +58,90 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private Type Form_program;
         private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
+        private void InvokeFormEvent(string eventName)
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(eventName))
+                {
+                    var method_name = Event_Methods[eventName];
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+            }
+        }
+
+        private void CreateFormProgram()
+        {
+            try
+            {
+                IDictionary<string, object> keys = new Dictionary<string, object>();
+                keys.Add("MA_BC", _program);
+                var AlreportData = V6BusinessHelper.Select(V6TableName.Alreport, keys, "*").Data;
+                if (AlreportData.Rows.Count == 0) return;
+
+                var dataRow = AlreportData.Rows[0];
+                var xml = dataRow["MMETHOD"].ToString().Trim();
+                if (xml == "") return;
+                DataSet ds = new DataSet();
+                ds.ReadXml(new StringReader(xml));
+                if (ds.Tables.Count <= 0) return;
+
+                var data = ds.Tables[0];
+
+                string using_text = "";
+                string method_text = "";
+                foreach (DataRow event_row in data.Rows)
+                {
+                    var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                    var method_name = event_row["method"].ToString().Trim();
+                    Event_Methods[EVENT_NAME] = method_name;
+
+                    using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                    method_text += event_row["content"];
+                    method_text += "\n";
+                }
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateProgram0", ex);
+            }
+        }
+
+        private void CreateFormControls()
+        {
+            try
+            {
+                var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
+                if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
+                {
+                    var dataRow = V6Setting.DataDVCS;
+                    var GET_FIELD = "TEN_NLB";
+                    if (dataRow.Table.Columns.Contains(GET_FIELD))
+                        txtM_TEN_NLB.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
+                    GET_FIELD = "TEN_NLB2";
+                    if (dataRow.Table.Columns.Contains(GET_FIELD))
+                        txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
+                }
+
+                FilterControl = QuickReportManager.AddFilterControl44Base(_program, panel1);
+                InvokeFormEvent(QuickReportManager.FormEvent.AFTERADDFILTERCONTROL);
+                QuickReportManager.MadeFilterControls(FilterControl, _program, out All_Objects);
+                All_Objects["thisForm"] = this;
+                SetStatus2Text();
+                gridViewSummary1.Visible = FilterControl.ViewSum;
+
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init", ex);
+            }
+        }
+
         /// <summary>
         /// MA_FILE, MAU, LAN, REPORT
         /// </summary>
@@ -407,31 +491,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void MyInit()
         {
-            try
-            {
-                var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
-                if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
-                {
-                    var dataRow = V6Setting.DataDVCS;
-                    var GET_FIELD = "TEN_NLB";
-                    if (dataRow.Table.Columns.Contains(GET_FIELD))
-                        txtM_TEN_NLB.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
-                    GET_FIELD = "TEN_NLB2";
-                    if (dataRow.Table.Columns.Contains(GET_FIELD))
-                        txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
-                }
+            CreateFormProgram();
+            CreateFormControls();
 
-                AddFilterControl(_program);
-                QuickReportManager.MadeFilterControls(FilterControl, _program, out All_Objects);
-                SetStatus2Text();
-                gridViewSummary1.Visible = FilterControl.ViewSum;
+            
 
-
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".Init", ex);
-            }
+            InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
         }
 
         private void MyInit2()
@@ -534,13 +599,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         
         public ReportFilter44Base FilterControl { get; set; }
-        private void AddFilterControl(string program)
-        {
-            FilterControl = Filter.Filter.GetFilterControl44(program);
-            panel1.Controls.Add(FilterControl);
-            FilterControl.Focus();
-        }
-        
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
@@ -656,6 +714,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         
         void LoadData()
         {
+            All_Objects["_plist"] = _pList;
+            InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+
             try
             {
                 Data_Loading = true;
