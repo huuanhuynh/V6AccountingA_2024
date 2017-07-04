@@ -667,5 +667,61 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             SetSomeData(someData);
         }
+
+        private void FixTyGia(DataRow row, decimal ty_gia, string fieldTien, string fieldTienNt, int round)
+        {
+            if (AD.Columns.Contains(fieldTien) && AD.Columns.Contains(fieldTienNt))
+            {
+                decimal temp = ObjectAndString.ObjectToDecimal(row[fieldTienNt]);
+                if (temp != 0)
+                    row[fieldTien] = V6BusinessHelper.Vround(temp * ty_gia, round);
+            }
+        }
+        protected void XuLyThayDoiTyGia(V6NumberTextBox txtTyGia, CheckBox chkSua_Tien)
+        {
+            try
+            {
+                var ty_gia = txtTyGia.Value;
+
+                // Tuanmh 25/05/2017
+                if (ty_gia == 0 || chkSua_Tien.Checked) return;
+
+                decimal temp;
+
+                foreach (DataRow row in AD.Rows)
+                {
+                    FixTyGia(row, ty_gia, "Tien", "Tien_nt", M_ROUND);
+                    FixTyGia(row, ty_gia, "Tien0", "TIEN_NT0", M_ROUND);
+                    FixTyGia(row, ty_gia, "Thue", "Thue_nt", M_ROUND);
+                    FixTyGia(row, ty_gia, "CP", "CP_NT", M_ROUND);
+                    FixTyGia(row, ty_gia, "GIA01", "GIA_NT01", M_ROUND_GIA);
+                    FixTyGia(row, ty_gia, "GIA1", "GIA_NT1", M_ROUND_GIA);
+                    FixTyGia(row, ty_gia, "GIA0", "GIA_NT0", M_ROUND_GIA);
+                    FixTyGia(row, ty_gia, "NK", "NK_NT", M_ROUND);
+                    FixTyGia(row, ty_gia, "CK", "CK_NT", M_ROUND);
+                    FixTyGia(row, ty_gia, "GG", "GG_NT", M_ROUND);
+
+                }
+
+                if(AD2 != null)
+                foreach (DataRow row in AD2.Rows)
+                {
+                    FixTyGia(row, ty_gia, "t_tien", "t_tien_nt", M_ROUND);
+                    FixTyGia(row, ty_gia, "t_thue", "t_thue_nt", M_ROUND);
+                    FixTyGia(row, ty_gia, "t_tt", "t_tt_nt", M_ROUND);
+                }
+
+                if (AD3 != null)
+                    foreach (DataRow row in AD3.Rows)
+                    {
+                        FixTyGia(row, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
+                        FixTyGia(row, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
+                    }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".XuLyThayDoiTyGia: " + ex.Message);
+            }
+        }
     }
 }

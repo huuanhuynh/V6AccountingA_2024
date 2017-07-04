@@ -948,44 +948,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             txtTongTienNt.Value = T_PSNONT;
         }
         
-        private void XuLyThayDoiTyGia()
-        {
-            try
-            {
-                var ty_gia = txtTyGia.Value;
-                if (ty_gia == 0) return;
-                decimal temp;
-
-                foreach (DataRow row in AD.Rows)
-                {
-                    temp = ObjectAndString.ObjectToDecimal(row["PS_NO_NT"]);
-                    if (temp != 0)
-                        row["PS_NO"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-
-                    temp = ObjectAndString.ObjectToDecimal(row["PS_CO_NT"]);
-                    if (temp != 0)
-                        row["PS_CO"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-                }
-
-                foreach (DataRow row in AD2.Rows)
-                {
-                    temp = ObjectAndString.ObjectToDecimal(row["t_tien_nt"]);
-                    if (temp != 0)
-                        row["t_tien"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-                    temp = ObjectAndString.ObjectToDecimal(row["t_thue_nt"]);
-                    if (temp != 0)
-                        row["t_thue"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-
-                    temp = ObjectAndString.ObjectToDecimal(row["t_tt_nt"]);
-                    if (temp != 0)
-                        row["t_tt"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".XuLyThayDoiTyGia: " + ex.Message);
-            }
-        }
+        
         private void TinhTongThanhToan(string debug)
         {
             try
@@ -994,7 +957,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
            
                 HienThiTongSoDong(lblTongSoDong);
-                XuLyThayDoiTyGia();
+                //XuLyThayDoiTyGia();
 
                 TinhTongValues();
 
@@ -2795,7 +2758,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         private void TyGia_V6LostFocus(object sender)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
-                TinhTongThanhToan("V6LostFocus " + ((Control)sender).AccessibleName);
+            {
+                XuLyThayDoiTyGia(txtTyGia, chkSua_Tien);
+                TinhTongThanhToan("TyGia_V6LostFocus " + ((Control)sender).AccessibleName);
+            }
         }
 
 

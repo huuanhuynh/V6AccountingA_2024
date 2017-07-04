@@ -13,10 +13,10 @@ namespace V6ReportControls
 {
     public partial class FilterLineDynamic : FilterLineBase
     {
-        private V6ColorTextBox _textBox;
+        public V6ColorTextBox _textBox;
         public V6VvarTextBox _vtextBox;
-        private V6NumberTextBox _numberTextBox;
-        private V6DateTimePick _dateTimePick;
+        public V6NumberTextBox _numberTextBox;
+        public V6DateTimePick _dateTimePick;
         public V6CheckBox _checkBox;
         public bool CheckNotEmpty;
         
@@ -34,6 +34,11 @@ namespace V6ReportControls
         private void MyInit()
         {
             
+        }
+
+        void FilterLineDynamic_GotFocus(object sender, EventArgs e)
+        {
+            OnGotFocus(e);
         }
 
         private void FilterLineDynamic_V6LostFocus(object sender)
@@ -212,6 +217,7 @@ namespace V6ReportControls
             Operator = "start";
             _textBox.Click += FilterLineDynamic_Click;
             _textBox.TextChanged += FilterLineDynamic_TextChanged;
+            _textBox.GotFocus += FilterLineDynamic_GotFocus;
             _textBox.LostFocus += FilterLineDynamic_LostFocus;
             _textBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _textBox.KeyDown += FilterLineDynamic_KeyDown;
@@ -239,6 +245,7 @@ namespace V6ReportControls
             Operator = "start";
             _vtextBox.Click += FilterLineDynamic_Click;
             _vtextBox.TextChanged += FilterLineDynamic_TextChanged;
+            _vtextBox.GotFocus += FilterLineDynamic_GotFocus;
             _vtextBox.LostFocus += FilterLineDynamic_LostFocus;
             _vtextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _vtextBox.KeyDown += FilterLineDynamic_KeyDown;
@@ -264,6 +271,7 @@ namespace V6ReportControls
             {
                 OnValueChanged(this, _numberTextBox);
             };
+            _numberTextBox.GotFocus += FilterLineDynamic_GotFocus;
             _numberTextBox.LostFocus += FilterLineDynamic_LostFocus;
             _numberTextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _numberTextBox.KeyDown += FilterLineDynamic_KeyDown;
@@ -287,6 +295,7 @@ namespace V6ReportControls
             {
                 OnValueChanged(this, _dateTimePick);
             };
+            _dateTimePick.GotFocus += FilterLineDynamic_GotFocus;
             _dateTimePick.LostFocus += FilterLineDynamic_LostFocus;
             _dateTimePick.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _dateTimePick.KeyDown += FilterLineDynamic_KeyDown;
@@ -309,6 +318,7 @@ namespace V6ReportControls
             {
                 OnValueChanged(this, _checkBox);
             };
+            _checkBox.GotFocus += FilterLineDynamic_GotFocus;
             _checkBox.LostFocus += FilterLineDynamic_LostFocus;
             _checkBox.KeyDown += FilterLineDynamic_KeyDown;
         }

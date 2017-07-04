@@ -118,7 +118,7 @@ namespace V6ControlManager.FormManager.Map
             {
                 Point[] ps = item.Value.Polygon;
                 FillPolygon(gp, item.Value);
-                DrawPolygon(gp, item.Value);
+                DrawPolygon(gp, item.Value, 200);
                 //HDrawing.DrawPolygon(gp, ps, GetColor(item.Value.ColorType, Color.Cyan), 2);
             }
             //Fill the hover polygon
@@ -218,9 +218,16 @@ namespace V6ControlManager.FormManager.Map
             }
         }
 
-        public void DrawPolygon(Graphics gp, MapRegionObject region)
+        /// <summary>
+        /// Vẽ viền đa giác
+        /// </summary>
+        /// <param name="gp"></param>
+        /// <param name="region"></param>
+        /// <param name="anpha">Độ trong suốt từ 0 - 255</param>
+        public void DrawPolygon(Graphics gp, MapRegionObject region, int anpha)
         {
-            HDrawing.DrawPolygon(gp, region.Polygon, GetColor(region.ColorType, Color.Cyan), 2);
+            var c = HDrawing.Color2Transparent(GetColor(region.ColorType, Color.Cyan), anpha);
+            HDrawing.DrawPolygon(gp, region.Polygon, c, 2);
         }
 
         public void DrawSelectedPolygon(Graphics gp)
@@ -232,6 +239,11 @@ namespace V6ControlManager.FormManager.Map
             HDrawing.DrawPolygon(gp, region.Polygon, Color.Blue, 5);
         }
 
+        /// <summary>
+        /// Tô màu đa giác
+        /// </summary>
+        /// <param name="gp"></param>
+        /// <param name="region"></param>
         public void FillPolygon(Graphics gp, MapRegionObject region)
         {
             HDrawing.FillPolygonTransparent(gp, region.Polygon, GetColor(region.ColorType, Color.Yellow));

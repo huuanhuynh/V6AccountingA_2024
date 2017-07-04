@@ -2070,8 +2070,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
         private void TyGia_V6LostFocus(object sender)
         {
-            if(Mode == V6Mode.Add || Mode == V6Mode.Edit)
-                TinhTongThanhToan("V6LostFocus " + ((Control)sender).AccessibleName);
+            if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+            {
+                XuLyThayDoiTyGia(txtTyGia, chkSua_Tien);
+                TinhTongThanhToan("TyGia_V6LostFocus " + ((Control)sender).AccessibleName);
+            }
         }
 
         private void TinhTongValues()
@@ -2083,35 +2086,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             var tTien = TinhTong("TIEN");
             txtTongTien.Value = tTien;
         }
-        private void XuLyThayDoiTyGia()
-        {
-            try
-            {
-                var ty_gia = txtTyGia.Value;
-                if (ty_gia == 0) return;
-                decimal temp;
-
-                foreach (DataRow row in AD.Rows)
-                {
-                    temp = ObjectAndString.ObjectToDecimal(row["Tien_nt"]);
-                    if (temp != 0)
-                        row["Tien"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-
-                    
-                    temp = ObjectAndString.ObjectToDecimal(row["GIA_NT1"]);
-                    if (temp != 0)
-                        row["GIA1"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND_GIA);
-
-                    
-                }
-
-              
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".XuLyThayDoiTyGia: " + ex.Message);
-            }
-        }
+        
 
         private void TinhTongThanhToan(string debug)
         {
@@ -2122,7 +2097,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 //Tính tổng thanh toán.//con phan nt va tien viet chua ro rang.
             
                 HienThiTongSoDong(lblTongSoDong);
-                XuLyThayDoiTyGia();
+                //XuLyThayDoiTyGia();
                 TinhTongValues();
     
                 if (string.IsNullOrEmpty(_mMaNt0)) return;

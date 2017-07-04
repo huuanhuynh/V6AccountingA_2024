@@ -150,6 +150,17 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 };
                                                 break;
 
+                                            case "GOTFOCUS":
+                                                lineControl.GotFocus += (s, e) =>
+                                                {
+                                                    if (Event_program == null) return;
+
+                                                    All_Objects["sender"] = s;
+                                                    All_Objects["eventargs"] = e;
+                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                                };
+                                                break;
+
                                             case "V6LOSTFOCUS":
                                                 lineControl.V6LostFocus += (s) =>
                                                 {

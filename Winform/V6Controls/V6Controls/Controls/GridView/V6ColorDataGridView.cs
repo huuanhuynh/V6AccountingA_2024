@@ -464,6 +464,7 @@ namespace V6Controls
             try
             {
                 CodeEditorForm form = new CodeEditorForm();
+                form.UsingText = GetUsingText();
                 form.ContentText = CurrentCell.Value.ToString();
                 form.ShowDialog();
                 string text = form.ContentText;
@@ -476,6 +477,19 @@ namespace V6Controls
             {
                 this.WriteExLog(GetType() + ".DoCodeEditor", ex);
             }
+        }
+
+        private string GetUsingText()
+        {
+            string result = "";
+            if (Columns.Contains("using"))
+            {
+                foreach (DataGridViewRow row in Rows)
+                {
+                    result += row.Cells["using"].Value;
+                }
+            }
+            return result;
         }
 
         /// <summary>

@@ -1738,6 +1738,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         void TienNt0_V6LostFocus(object sender)
         {
+            _tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * txtTyGia.Value), M_ROUND);
             TinhTienNt();// Trong TinhTienNt da co TinhGiaNt
             //TinhGiaNt();
         }
@@ -1980,8 +1981,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 _tienNt0.Value = V6BusinessHelper.Vround((_soLuong1.Value * _giaNt01.Value), M_ROUND_NT);
                 _tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * txtTyGia.Value), M_ROUND);
 
-                _tienNt.Value = _tienNt0.Value;
-                _tien.Value = _tien0.Value;
+                //_tienNt.Value = _tienNt0.Value;
+                //_tien.Value = _tien0.Value;
 
                 TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt0, _pt_cki);
                 
@@ -2819,7 +2820,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
            
                 HienThiTongSoDong(lblTongSoDong);
-                XuLyThayDoiTyGia();
+                //XuLyThayDoiTyGia();
                 TinhTongValues();
                 TinhChietKhau(); //Đã tính //t_tien_nt2, T_CK_NT, PT_CK
                 TinhGiamGia();
@@ -4418,6 +4419,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                                     currentRow[key] = value;
                                 }
                             }
+                            dataGridView1.DataSource = null;
                             dataGridView1.DataSource = AD;
                             TinhTongThanhToan("xy ly sua detail");
 
@@ -4836,80 +4838,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             XuLyThayDoiMaGia();
         }
-
-        private void XuLyThayDoiTyGia()
-        {
-            try
-            {
-                var ty_gia = txtTyGia.Value;
-
-                // Tuanmh 25/05/2017
-                if (ty_gia == 0 || chkSua_Tien.Checked) return;
-
-                decimal temp;
-
-                foreach (DataRow row in AD.Rows)
-                {
-                    temp = ObjectAndString.ObjectToDecimal(row["Tien_nt"]);
-                    if (temp != 0)
-                        row["Tien"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-
-                    temp = ObjectAndString.ObjectToDecimal(row["TIEN_NT0"]);
-                    if (temp != 0)
-                        row["Tien0"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-
-                    temp = ObjectAndString.ObjectToDecimal(row["Thue_nt"]);
-                    if (temp != 0)
-                        row["Thue"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-
-                    temp = ObjectAndString.ObjectToDecimal(row["CP_NT"]);
-                    if (temp != 0)
-                        row["CP"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-
-                    temp = ObjectAndString.ObjectToDecimal(row["GIA_NT01"]);
-                    if (temp != 0)
-                        row["GIA01"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND_GIA);
-
-                    temp = ObjectAndString.ObjectToDecimal(row["GIA_NT1"]);
-                    if (temp != 0)
-                        row["GIA1"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND_GIA);
-
-                    temp = ObjectAndString.ObjectToDecimal(row["GIA_NT0"]);
-                    if (temp != 0)
-                        row["GIA0"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND_GIA);
-
-                    temp = ObjectAndString.ObjectToDecimal(row["NK_NT"]);
-                    if (temp != 0)
-                        row["NK"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-
-
-                }
-
-                foreach (DataRow row in AD2.Rows)
-                {
-                    temp = ObjectAndString.ObjectToDecimal(row["t_tien_nt"]);
-                    if (temp != 0)
-                        row["t_tien"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-                    temp = ObjectAndString.ObjectToDecimal(row["t_thue_nt"]);
-                    if (temp != 0)
-                        row["t_thue"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-
-                    temp = ObjectAndString.ObjectToDecimal(row["t_tt_nt"]);
-                    if (temp != 0)
-                        row["t_tt"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".XuLyThayDoiTyGia: " + ex.Message);
-            }
-        }
-
+        
 
         private void TyGia_V6LostFocus(object sender)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
-                TinhTongThanhToan("V6LostFocus " + ((Control)sender).AccessibleName);
+            {
+                XuLyThayDoiTyGia(txtTyGia, chkSua_Tien);
+                TinhTongThanhToan("TyGia_V6LostFocus " + ((Control)sender).AccessibleName);
+            }
         }
         private void TinhTongThanhToan_V6LostFocus(object sender)
         {
@@ -5198,13 +5135,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         if (TxtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
                         {
                             AD.Rows[i]["Tien_nt"] = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien_nt0"])
-                                + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Cp_nt"])
-                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Ck_nt"])
-                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Gg_nt"]);
+                                                + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Cp_nt"])
+                                                + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Nk_nt"])
+                                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Ck_nt"])
+                                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Gg_nt"]);
                             AD.Rows[i]["Tien"] = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien0"])
-                                + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Cp"])
-                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Ck"])
-                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Gg"]);
+                                                + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Cp"])
+                                                + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Nk"])
+                                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Ck"])
+                                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Gg"]);
                         }
                     }
                 }
@@ -5221,8 +5160,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
                     if (TxtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
                     {
-                        AD.Rows[index]["Tien_nt"] = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Tien_nt0"]) + ObjectAndString.ObjectToDecimal(AD.Rows[index]["Cp_nt"]);
-                        AD.Rows[index]["Tien"] = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Tien0"]) + ObjectAndString.ObjectToDecimal(AD.Rows[index]["Cp"]);
+                        AD.Rows[index]["Tien_nt"] = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Tien_nt0"])
+                                                    + ObjectAndString.ObjectToDecimal(AD.Rows[index]["Cp_nt"])
+                                                    + ObjectAndString.ObjectToDecimal(AD.Rows[index]["Nk_nt"])
+                                                    - ObjectAndString.ObjectToDecimal(AD.Rows[index]["Ck_nt"])
+                                                    - ObjectAndString.ObjectToDecimal(AD.Rows[index]["Gg_nt"]);
+                        AD.Rows[index]["Tien"] = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Tien0"]) 
+                                                    + ObjectAndString.ObjectToDecimal(AD.Rows[index]["Cp"])
+                                                    + ObjectAndString.ObjectToDecimal(AD.Rows[index]["Nk"])
+                                                    - ObjectAndString.ObjectToDecimal(AD.Rows[index]["Ck"])
+                                                    - ObjectAndString.ObjectToDecimal(AD.Rows[index]["Gg"]);
                     }
                 }
 

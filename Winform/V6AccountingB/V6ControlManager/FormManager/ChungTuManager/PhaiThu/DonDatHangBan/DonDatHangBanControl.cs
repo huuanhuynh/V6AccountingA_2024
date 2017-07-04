@@ -3756,6 +3756,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             FixDataGridViewSize(dataGridView1);
         }
+
+
+        private void txtTyGia_V6LostFocus(object sender)
+        {
+            if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+            {
+                XuLyThayDoiTyGia(txtTyGia, chkSua_Tien);
+                TinhTongThanhToan("TyGia_V6LostFocus " + ((Control)sender).AccessibleName);
+            }
+        }
+
         
     }
 }

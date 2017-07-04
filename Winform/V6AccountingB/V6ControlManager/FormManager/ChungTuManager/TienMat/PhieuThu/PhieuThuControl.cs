@@ -1525,35 +1525,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             txtTongThanhToan.Value = V6BusinessHelper.Vround(tTien + tPsNo, M_ROUND);
         }
 
-        private void XuLyThayDoiTyGia()
-        {
-            try
-            {
-                var ty_gia = txtTyGia.Value;
-                if (ty_gia == 0) return;
-                decimal temp;
-
-                foreach (DataRow row in AD.Rows)
-                {
-                    temp = ObjectAndString.ObjectToDecimal(row["Tien_nt"]);
-                    if (temp != 0)
-                    {
-                        row["Tien"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-                        row["Tien_tt"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-                    }
-
-                    temp = ObjectAndString.ObjectToDecimal(row["Ps_co_nt"]);
-                    if (temp != 0)
-                        row["Ps_co"] = V6BusinessHelper.Vround(temp * ty_gia, M_ROUND);
-                    
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".XuLyThayDoiTyGia: " + ex.Message);
-            }
-        }
+        
         private void TinhTongThanhToan(string debug)
         {
             try
@@ -1562,7 +1534,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
 
                 HienThiTongSoDong(lblTongSoDong);
-                XuLyThayDoiTyGia();
+                //XuLyThayDoiTyGia();
                 TinhTongValues();
             }
             catch (Exception ex)
@@ -1574,7 +1546,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         private void TyGia_V6LostFocus(object sender)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
-                TinhTongThanhToan("V6LostFocus " + ((Control)sender).AccessibleName);
+            {
+                XuLyThayDoiTyGia(txtTyGia, chkSua_Tien);
+                TinhTongThanhToan("TyGia_V6LostFocus " + ((Control)sender).AccessibleName);
+            }
         }
 
 

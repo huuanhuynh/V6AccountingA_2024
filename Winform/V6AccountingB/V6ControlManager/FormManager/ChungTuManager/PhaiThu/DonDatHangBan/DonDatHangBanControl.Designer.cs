@@ -1874,7 +1874,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             0,
             0,
             196608});
-            this.txtTyGia.V6LostFocus += new V6Controls.ControlEventHandle(this.TinhTongThanhToan_V6LostFocus);
+            this.txtTyGia.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTyGia_V6LostFocus);
             // 
             // cboMaNt
             // 

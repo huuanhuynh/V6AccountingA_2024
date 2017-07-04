@@ -17,9 +17,17 @@ namespace H
             return clonePs;
         }
 
-        public static Color Color2Transparent(Color c)
+        /// <summary>
+        /// Chuyển thành màu trong suốt
+        /// </summary>
+        /// <param name="c"></param>
+        /// <param name="anpha">Độ mờ, giá trị từ 0 đến 255.</param>
+        /// <returns></returns>
+        public static Color Color2Transparent(Color c, int anpha)
         {
-            return Color.FromArgb(128, c.R, c.G, c.B);
+            if (anpha < 0) anpha = 0;
+            if (anpha > 255) anpha = 255;
+            return Color.FromArgb(anpha, c.R, c.G, c.B);
         }
 
 
@@ -48,7 +56,7 @@ namespace H
 
         public static void DrawLineTransparent(Graphics gp, Point p1, Point p2, Color c, int width)
         {
-            DrawLine(gp, p1, p2, new Pen(Color2Transparent(c), width));
+            DrawLine(gp, p1, p2, new Pen(Color2Transparent(c, 128), width));
         }
 
         public static void DrawPolygon(Graphics gp, Point[] points, Color c, int width)
@@ -90,7 +98,7 @@ namespace H
         {
             if (points.Length > 2)
             {
-                Pen p = new Pen(Color2Transparent(c), width);
+                Pen p = new Pen(Color2Transparent(c, 128), width);
                 gp.DrawPolygon(p, points);
             }
         }
@@ -110,7 +118,7 @@ namespace H
         {
             if (ps.Length > 2)
             {
-                Brush b = new SolidBrush(HDrawing.Color2Transparent(c));
+                Brush b = new SolidBrush(HDrawing.Color2Transparent(c, 128));
                 gp.FillPolygon(b, ps);
             }
         }

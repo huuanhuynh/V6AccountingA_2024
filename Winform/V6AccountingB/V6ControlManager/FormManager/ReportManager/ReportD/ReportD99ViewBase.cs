@@ -781,6 +781,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         
         void LoadData()
         {
+            All_Objects["_plist"] = _pList;
             InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
 
             try

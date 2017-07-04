@@ -20,6 +20,7 @@ namespace V6Controls.Controls.GridView
 
         DataSet ds = new DataSet();
 
+        public string UsingText { get; set; }
         public string ContentText
         {
             get { return txtColorTextBox.Text; }
@@ -301,7 +302,7 @@ namespace V6Controls.Controls.GridView
         {
             try
             {
-                var testBuild = V6ControlsHelper.CreateProgram("test_namespace", "test_classname", "", ContentText);
+                var testBuild = V6ControlsHelper.CreateProgram("test_namespace", "test_classname", UsingText, ContentText);
                 if (testBuild != null)
                 {
                     this.ShowInfoMessage("Build OK");
