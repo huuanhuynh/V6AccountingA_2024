@@ -344,7 +344,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         
         private void btnNhan_Click(object sender, EventArgs e)
         {
-            if (_dataLoading)
+            if (Data_Loading)
             {
                 return;
             }
@@ -438,15 +438,14 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         }
 
         #region ==== LoadData MakeReport ====
-        bool _dataLoaded = false;
-        bool _dataLoading = false;
+        
         private string error_message = "";
         void LoadData()
         {
             try
             {
-                _dataLoading = true;
-                _dataLoaded = false;
+                Data_Loading = true;
+                _load_data_success = false;
                 _ds = V6BusinessHelper.ExecuteProcedure("VPA_R_AL_ALL", pList.ToArray());
                 if (_ds.Tables.Count > 0)
                 {
@@ -462,7 +461,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 {
                     _tbl2 = null;
                 }
-                _dataLoaded = true;
+                _load_data_success = true;
             }
             catch (Exception ex)
             {
@@ -470,22 +469,24 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 _tbl = null;
                 _tbl2 = null;
                 _ds = null;
-                _dataLoaded = false;
+                _load_data_success = false;
             }
-            _dataLoading = false;
+            Data_Loading = false;
         }
 
         private void MakeReport2()
         {
             pList = new List<SqlParameter>();
             AddProcParams();//Add các key khác
+            _load_data_success = false;
+            Data_Loading = true;
             var tLoadData = new Thread(LoadData);
             tLoadData.Start();
             timerViewReport.Start();
         }
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_dataLoaded)
+            if (_load_data_success)
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
@@ -500,12 +501,12 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 }
                 catch (Exception ex)
                 {
-                    _dataLoaded = false;
+                    _load_data_success = false;
                     timerViewReport.Stop();
                     this.ShowErrorException(GetType() + ".TimerView " + ReportFileFull, ex);
                 }
             }
-            else if (_dataLoading)
+            else if (Data_Loading)
             {
                 btnNhan.Image = waitingImages.Images[ii++];
                 if (ii >= waitingImages.Images.Count) ii = 0;

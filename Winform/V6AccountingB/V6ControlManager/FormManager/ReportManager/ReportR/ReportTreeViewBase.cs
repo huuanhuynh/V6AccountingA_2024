@@ -839,6 +839,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (GenerateProcedureParameters()) //Add các key khác
             {
+                _load_data_success = false;
+                Data_Loading = true;
                 var tLoadData = new Thread(LoadData);
                 CheckForIllegalCrossThreadCalls = false;
                 tLoadData.Start();

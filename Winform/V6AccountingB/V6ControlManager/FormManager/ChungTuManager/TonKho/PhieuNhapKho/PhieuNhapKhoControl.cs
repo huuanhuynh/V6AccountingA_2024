@@ -1497,7 +1497,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
         }
 
-        private void TyGia_V6LostFocus(object sender)
+        private void txtTyGia_V6LostFocus(object sender)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
@@ -3061,6 +3061,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
                 XuLyThayDoiMaNt();
             }
+
+            txtTyGia_V6LostFocus(sender);
         }
 
         #endregion am events

@@ -1938,7 +1938,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             0,
             0,
             196608});
-            this.txtTyGia.V6LostFocus += new V6Controls.ControlEventHandle(this.TyGia_V6LostFocus);
+            this.txtTyGia.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTyGia_V6LostFocus);
             // 
             // v6VvarTextBox1
             // 

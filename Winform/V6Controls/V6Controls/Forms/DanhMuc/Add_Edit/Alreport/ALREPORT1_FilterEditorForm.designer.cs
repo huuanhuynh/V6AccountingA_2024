@@ -106,6 +106,9 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label49 = new System.Windows.Forms.Label();
+            this.txtFilterStart = new V6Controls.V6ColorTextBox();
+            this.label50 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -879,9 +882,12 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage2.Controls.Add(this.label50);
             this.tabPage2.Controls.Add(this.label48);
             this.tabPage2.Controls.Add(this.label46);
             this.tabPage2.Controls.Add(this.label41);
+            this.tabPage2.Controls.Add(this.txtFilterStart);
+            this.tabPage2.Controls.Add(this.label49);
             this.tabPage2.Controls.Add(this.txtDescriptionE);
             this.tabPage2.Controls.Add(this.label47);
             this.tabPage2.Controls.Add(this.txtDescriptionV);
@@ -1192,6 +1198,46 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
+            // label49
+            // 
+            this.label49.AccessibleDescription = "";
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(6, 196);
+            this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(69, 17);
+            this.label49.TabIndex = 21;
+            this.label49.Text = "FilterStart";
+            // 
+            // txtFilterStart
+            // 
+            this.txtFilterStart.AccessibleName = "FilterStart";
+            this.txtFilterStart.BackColor = System.Drawing.Color.White;
+            this.txtFilterStart.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFilterStart.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFilterStart.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFilterStart.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFilterStart.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFilterStart.LeaveColor = System.Drawing.Color.White;
+            this.txtFilterStart.Location = new System.Drawing.Point(117, 193);
+            this.txtFilterStart.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFilterStart.Name = "txtFilterStart";
+            this.txtFilterStart.Size = new System.Drawing.Size(150, 23);
+            this.txtFilterStart.TabIndex = 22;
+            // 
+            // label50
+            // 
+            this.label50.AccessibleDescription = "";
+            this.label50.AccessibleName = "";
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(281, 197);
+            this.label50.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(590, 17);
+            this.label50.TabIndex = 23;
+            this.label50.Text = "Bật tắt tính năng lọc chỉ bắt đầu cho vVarTextBox lookup. Mặc định false sẽ lọc l" +
+    "ike \'%abc%\'.";
+            // 
             // ALREPORT1_FilterEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1299,5 +1345,8 @@
         private System.Windows.Forms.Label label48;
         private V6ColorTextBox txtDescriptionE;
         private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label50;
+        private V6ColorTextBox txtFilterStart;
+        private System.Windows.Forms.Label label49;
     }
 }

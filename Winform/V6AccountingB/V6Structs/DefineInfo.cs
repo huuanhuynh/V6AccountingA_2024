@@ -69,6 +69,9 @@ namespace V6Structs
                 case "FIELD":
                     Field = value;
                     break;
+                case "FILTERSTART":
+                    FilterStart = value == "1";
+                    break;
                 case "FNAME":
                     Fname = value;
                     break;
@@ -240,6 +243,11 @@ namespace V6Structs
 
         public string DescriptionE { get; set; }
         public string DescriptionV { get; set; }
+        /// <summary>
+        /// Bật tắt tính năng lọc chỉ bắt đầu. Mặc định false sẽ lọc like '%abc%'.
+        /// </summary>
+        public bool FilterStart { get; set; }
+
         public string DescriptionLang(bool isVN)
         {
             return isVN ? DescriptionV : DescriptionE;

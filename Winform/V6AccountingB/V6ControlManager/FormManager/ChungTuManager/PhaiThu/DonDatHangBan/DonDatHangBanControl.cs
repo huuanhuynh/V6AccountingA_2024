@@ -3325,6 +3325,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
                 XuLyThayDoiMaNt();
             }
+
+            txtTyGia_V6LostFocus(sender);
         }
 
         private void txtMaGia_V6LostFocus(object sender)

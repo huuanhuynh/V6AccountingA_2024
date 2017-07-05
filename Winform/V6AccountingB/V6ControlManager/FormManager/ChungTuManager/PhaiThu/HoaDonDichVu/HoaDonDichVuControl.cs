@@ -2959,6 +2959,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
                 XuLyThayDoiMaNt();
             }
+
+            txtTyGia_V6LostFocus(sender);
         }
 
         private void TinhTongThanhToan_V6LostFocus(object sender)

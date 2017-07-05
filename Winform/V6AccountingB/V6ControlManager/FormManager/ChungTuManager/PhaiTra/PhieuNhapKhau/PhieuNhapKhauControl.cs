@@ -4832,6 +4832,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
                 XuLyThayDoiMaNt();
             }
+
+            txtTyGia_V6LostFocus(sender);
         }
 
         private void txtMaGia_V6LostFocus(object sender)
@@ -4840,7 +4842,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         }
         
 
-        private void TyGia_V6LostFocus(object sender)
+        private void txtTyGia_V6LostFocus(object sender)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {

@@ -1543,7 +1543,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             }
         }
 
-        private void TyGia_V6LostFocus(object sender)
+        private void txtTyGia_V6LostFocus(object sender)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
@@ -3595,6 +3595,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
                 XuLyThayDoiMaNt();
             }
+
+            txtTyGia_V6LostFocus(sender);
         }
         
         #endregion am events

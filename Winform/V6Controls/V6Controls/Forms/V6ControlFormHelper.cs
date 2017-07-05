@@ -918,6 +918,7 @@ namespace V6Controls.Forms
                     vT = lineControl.AddVvarTextBox(lineInfo.Vvar, lineInfo.InitFilter);
                     //
                     vT.F2 = lineInfo.F2;
+                    vT.FilterStart = lineInfo.FilterStart;
                 }
             }
             //Dấu so sánh

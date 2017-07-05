@@ -707,6 +707,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     FixTyGia(row, ty_gia, "CK", "CK_NT", M_ROUND);
                     FixTyGia(row, ty_gia, "GG", "GG_NT", M_ROUND);
 
+                    FixTyGia(row, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
+                    FixTyGia(row, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
+
                 }
 
                 if(AD2 != null)

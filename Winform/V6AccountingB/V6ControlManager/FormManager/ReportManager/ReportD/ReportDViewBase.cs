@@ -834,6 +834,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             if (GenerateProcedureParameters()) //Add các key khác
             {
+                Data_Loading = true;
                 var tLoadData = new Thread(LoadData);
                 tLoadData.Start();
                 timerViewReport.Start();

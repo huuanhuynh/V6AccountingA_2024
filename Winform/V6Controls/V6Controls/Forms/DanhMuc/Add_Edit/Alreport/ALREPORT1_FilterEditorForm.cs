@@ -49,6 +49,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 txtmaxlength.Text = Info.MaxLength.ToString();
                 txtDescriptionV.Text = Info.DescriptionV;
                 txtDescriptionE.Text = Info.DescriptionE;
+                txtFilterStart.Text = Info.FilterStart ? "1" : "";
             }
             catch (Exception ex)
             {

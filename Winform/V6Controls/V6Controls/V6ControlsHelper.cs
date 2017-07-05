@@ -95,6 +95,7 @@ namespace V6Controls
                     + "using V6SqlConnect;"
                     + "using V6AccountingBusiness;"
                     + "using V6Controls;"
+                    + "using V6Controls.Forms;"
                     + "using V6ReportControls;"
                     ;
                 using_text = using_text0 + using_text;

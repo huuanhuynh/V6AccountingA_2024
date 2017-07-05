@@ -3557,6 +3557,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 XuLyThayDoiMaNt();
                 GridViewFormat();
             }
+
+            txtTyGia_V6LostFocus(sender);
         }
         
         private void TinhTongThanhToan_V6LostFocus(object sender)
@@ -3565,7 +3567,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         }
 
 
-        private void TyGia_V6LostFocus(object sender)
+        private void txtTyGia_V6LostFocus(object sender)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {

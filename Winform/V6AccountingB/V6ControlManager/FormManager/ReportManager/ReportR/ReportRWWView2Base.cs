@@ -58,20 +58,21 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private Type Form_program;
         private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
-        private void InvokeFormEvent(string eventName)
+        private object InvokeFormEvent(string eventName)
         {
             try // Dynamic invoke
             {
                 if (Event_Methods.ContainsKey(eventName))
                 {
                     var method_name = Event_Methods[eventName];
-                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
+                    return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
             catch (Exception ex1)
             {
                 this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
             }
+            return null;
         }
 
         private void CreateFormProgram()
@@ -715,10 +716,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         void LoadData()
         {
             All_Objects["_plist"] = _pList;
-            InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+            object beforeLoadData = InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
 
             try
             {
+                if (beforeLoadData != null && !(bool)beforeLoadData)
+                {
+                    Data_Loading = false;
+                    return;
+                }
+
                 Data_Loading = true;
                 _load_data_success = false;
                 string proc;
@@ -782,6 +789,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (GenerateProcedureParameters()) //Add các key khác
             {
                 _load_data_success = false;
+                Data_Loading = true;
                 var tLoadData = new Thread(LoadData);
                 CheckForIllegalCrossThreadCalls = false;
                 tLoadData.Start();
