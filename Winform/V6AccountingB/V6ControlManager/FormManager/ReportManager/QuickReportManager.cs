@@ -210,7 +210,7 @@ namespace V6ControlManager.FormManager.ReportManager
                         err += "\n" + i + " " + ten + ": " + e1.Message;
                     }
                 }
-                Event_program = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", all_using_text, all_method_text);
+                Event_program = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", "D" + program, all_using_text, all_method_text);
             }
             catch (Exception ex)
             {

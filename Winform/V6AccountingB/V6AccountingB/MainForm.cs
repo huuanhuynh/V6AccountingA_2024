@@ -137,6 +137,7 @@ namespace V6AccountingB
             {
                 progressBar1.Value = _complete;
                 V6Text.LoadText("");
+                V6ControlsHelper.DeleteAllFileInV6SoftLocalAppData();
                 _complete = 5;
 
                 var total = menuMain.Buttons.Count;

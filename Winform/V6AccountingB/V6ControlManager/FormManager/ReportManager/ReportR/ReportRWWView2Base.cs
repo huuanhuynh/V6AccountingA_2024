@@ -104,7 +104,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     method_text += event_row["content"];
                     method_text += "\n";
                 }
-                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", using_text, method_text);
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + _program, using_text, method_text);
             }
             catch (Exception ex)
             {

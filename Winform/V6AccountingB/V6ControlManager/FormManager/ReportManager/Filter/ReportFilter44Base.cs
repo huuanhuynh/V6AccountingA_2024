@@ -179,10 +179,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 List<string> in_fieldList_Alvt = new List<string>();
                 List<string> in_fieldList_Altk = new List<string>();
                 List<string> in_fieldList_Alvv = new List<string>();
-                string string_in_Alkh = "";
-                string string_in_Alvt = "";
-                string string_in_Altk = "";
-                string string_in_Alvv = "";
+                List<string> in_fieldList_Alphi = new List<string>();
+                List<string> in_fieldList_Alhd = new List<string>();
+                List<string> in_fieldList_Alku = new List<string>();
+                List<string> in_fieldList_Alsp = new List<string>();
+
                 string last_key = "";
                 foreach (Control control in groupBox1.Controls)
                 {
@@ -235,6 +236,26 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                             in_fieldList_Alvv.Add(line.FieldName);
                             //string_value = line.StringValue;
                             break;
+                        case "25"://in alphi
+                            if (line.IsSelected)
+                                in_fieldList_Alphi.Add(line.FieldName);
+                            //string_value = line.StringValue;
+                            break;
+                        case "26"://in alhd
+                            if (line.IsSelected)
+                                in_fieldList_Alhd.Add(line.FieldName);
+                            //string_value = line.StringValue;
+                            break;
+                        case "27"://in alku
+                            if (line.IsSelected)
+                                in_fieldList_Alku.Add(line.FieldName);
+                            //string_value = line.StringValue;
+                            break;
+                        case "28"://in alsp
+                            if (line.IsSelected)
+                                in_fieldList_Alsp.Add(line.FieldName);
+                            //string_value = line.StringValue;
+                            break;
 
                         case "30"://advance, cộng dồn
                             if(line.IsSelected)
@@ -255,54 +276,18 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         result.Add(new SqlParameter(parameterName, object_value));
                         break;
                     case "21": //in alkh
-                        //param_value = line.StringValue;
                     case "22": //in alvt
-                        //param_value = line.StringValue;
                     case "23": //in altk
-                        //param_value = line.StringValue;
                     case "24": //in alvv
-                        //param_value = line.StringValue;
+                    case "25": //in alphi
+                    case "26": //in alhd
+                    case "27": //in alku
+                    case "28": //in alsp(alvt)
+                        
                     case "30": //advance
-                        if (in_fieldList_Alkh.Count > 0)
-                        {
-                            var key0 = GetFilterStringByFields(in_fieldList_Alkh, and);
-                            if (!string.IsNullOrEmpty(key0))
-                            {
-                                string_in_Alkh = string.Format("{0} MA_KH in (select ma_kh from alkh where {1} )",
-                                    and_or, key0);
-                            }
-                        }
-                        if (in_fieldList_Alvt.Count > 0)
-                        {
-                            var key0 = GetFilterStringByFields(in_fieldList_Alvt, and);
-                            if (!string.IsNullOrEmpty(key0))
-                            {
-                                string_in_Alvt = string.Format("{0} MA_VT in (select ma_vt from alvt where {1} )",
-                                    and_or, key0);
-                            }
-                        }
-                        if (in_fieldList_Altk.Count > 0)
-                        {
-                            var key0 = GetFilterStringByFields(in_fieldList_Altk, and);
-                            if (!string.IsNullOrEmpty(key0))
-                            {
-                                string_in_Altk = string.Format("{0} TK in (select tk from altk where {1} )",
-                                    and_or, key0);
-                            }
-                        }
-                        if (in_fieldList_Alvv.Count > 0)
-                        {
-                            var key0 = GetFilterStringByFields(in_fieldList_Alvv, and);
-                            if (!string.IsNullOrEmpty(key0))
-                            {
-                                string_in_Alvv = string.Format("{0} MA_VV in (select ma_vv from alvv where {1} )",
-                                    and_or, key0);
-                            }
-                        }
-
-                        var last_string_value = string_value + string_in_Alkh + string_in_Alvt + string_in_Altk + string_in_Alvv;
-                        if (last_string_value.Length > 4) last_string_value = last_string_value.Substring(4);
-                        result.Add(new SqlParameter(item.Key, last_string_value));
+                        var advance_key_string = GenAdvanceKeyString(and, string_value, in_fieldList_Alkh, in_fieldList_Alvt, in_fieldList_Altk, in_fieldList_Alvv,
+                            in_fieldList_Alphi, in_fieldList_Alhd, in_fieldList_Alku, in_fieldList_Alsp);
+                        result.Add(new SqlParameter(item.Key, advance_key_string));
                         break;
                 }
             }//End for ParameterNameList
@@ -317,10 +302,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 List<string> in_fieldList_Alvt = new List<string>();
                 List<string> in_fieldList_Altk = new List<string>();
                 List<string> in_fieldList_Alvv = new List<string>();
-                string string_in_Alkh = "";
-                string string_in_Alvt = "";
-                string string_in_Altk = "";
-                string string_in_Alvv = "";
+                List<string> in_fieldList_Alphi = new List<string>();
+                List<string> in_fieldList_Alhd = new List<string>();
+                List<string> in_fieldList_Alku = new List<string>();
+                List<string> in_fieldList_Alsp = new List<string>();
+                
                 string last_key = "";
                 foreach (Control control in groupBox1.Controls)
                 {
@@ -373,6 +359,26 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                                 in_fieldList_Alvv.Add(line.FieldName);
                             //string_value = line.StringValue;
                             break;
+                        case "25"://in alphi
+                            if (line.IsSelected)
+                                in_fieldList_Alphi.Add(line.FieldName);
+                            //string_value = line.StringValue;
+                            break;
+                        case "26"://in alhd
+                            if (line.IsSelected)
+                                in_fieldList_Alhd.Add(line.FieldName);
+                            //string_value = line.StringValue;
+                            break;
+                        case "27"://in alku
+                            if (line.IsSelected)
+                                in_fieldList_Alku.Add(line.FieldName);
+                            //string_value = line.StringValue;
+                            break;
+                        case "28"://in alsp
+                            if (line.IsSelected)
+                                in_fieldList_Alsp.Add(line.FieldName);
+                            //string_value = line.StringValue;
+                            break;
 
                         case "30"://advance, cộng dồn
                             if (line.IsSelected)
@@ -400,50 +406,79 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     //param_value = line.StringValue;
                     case "24": //in alvv
                     //param_value = line.StringValue;
-                    case "30": //advance
-                        if (in_fieldList_Alkh.Count > 0)
-                        {
-                            var key0 = GetFilterStringByFields(in_fieldList_Alkh, and);
-                            if (!string.IsNullOrEmpty(key0))
-                            {
-                                string_in_Alkh = string.Format("{0} MA_KH in (select ma_kh from alkh where {1} )",
-                                    and_or, key0);
-                            }
-                        }
-                        if (in_fieldList_Alvt.Count > 0)
-                        {
-                            var key0 = GetFilterStringByFields(in_fieldList_Alvt, and);
-                            if (!string.IsNullOrEmpty(key0))
-                            {
-                                string_in_Alvt = string.Format("{0} MA_VT in (select ma_vt from alvt where {1} )",
-                                    and_or, key0);
-                            }
-                        }
-                        if (in_fieldList_Altk.Count > 0)
-                        {
-                            var key0 = GetFilterStringByFields(in_fieldList_Altk, and);
-                            if (!string.IsNullOrEmpty(key0))
-                            {
-                                string_in_Altk = string.Format("{0} TK in (select tk from altk where {1} )",
-                                    and_or, key0);
-                            }
-                        }
-                        if (in_fieldList_Alvv.Count > 0)
-                        {
-                            var key0 = GetFilterStringByFields(in_fieldList_Alvv, and);
-                            if (!string.IsNullOrEmpty(key0))
-                            {
-                                string_in_Alvv = string.Format("{0} MA_VV in (select ma_vv from alvv where {1} )",
-                                    and_or, key0);
-                            }
-                        }
+                    case "25": //in alphi
+                    case "26": //in alhd
+                    case "27": //in alku
+                    case "28": //in alsp(alvt)
 
-                        var last_string_value = string_value + string_in_Alkh + string_in_Alvt + string_in_Altk + string_in_Alvv;
-                        if (last_string_value.Length > 4) last_string_value = last_string_value.Substring(4);
-                        result.Add(new SqlParameter(item.Key, last_string_value));
+                    case "30": //advance
+                        var advance_key_string = GenAdvanceKeyString(and, string_value, in_fieldList_Alkh, in_fieldList_Alvt, in_fieldList_Altk, in_fieldList_Alvv,
+                            in_fieldList_Alphi, in_fieldList_Alhd, in_fieldList_Alku, in_fieldList_Alsp);
+                        result.Add(new SqlParameter(item.Key, advance_key_string));
                         break;
                 }
             }//End for ParameterNameList2
+
+            return result;
+        }
+
+        /// <summary>
+        /// Tạo key advance
+        /// </summary>
+        /// <param name="and"></param>
+        /// <param name="string_value">Key lẻ của loại key 30</param>
+        /// <param name="in_fieldList_Alkh"></param>
+        /// <param name="in_fieldList_Alvt"></param>
+        /// <param name="in_fieldList_Altk"></param>
+        /// <param name="in_fieldList_Alvv"></param>
+        /// <param name="in_fieldList_Alphi"></param>
+        /// <param name="in_fieldList_Alhd"></param>
+        /// <param name="in_fieldList_Alku"></param>
+        /// <param name="in_fieldList_Alsp"></param>
+        /// <returns></returns>
+        private string GenAdvanceKeyString(bool and, string string_value,
+            List<string> in_fieldList_Alkh, List<string> in_fieldList_Alvt, List<string> in_fieldList_Altk, List<string> in_fieldList_Alvv,
+            List<string> in_fieldList_Alphi, List<string> in_fieldList_Alhd, List<string> in_fieldList_Alku, List<string> in_fieldList_Alsp)
+        {
+            var string_in_Alkh = GenkeyStringInTable(in_fieldList_Alkh, and, "MA_KH", "ma_kh", "alkh");
+            var string_in_Alvt = GenkeyStringInTable(in_fieldList_Alvt, and, "MA_VT", "ma_vt", "alvt");
+            var string_in_Altk = GenkeyStringInTable(in_fieldList_Altk, and, "TK", "tk", "altk");
+            var string_in_Alvv = GenkeyStringInTable(in_fieldList_Alvv, and, "MA_VV", "ma_vv", "alvv");
+
+            var string_in_Alphi = GenkeyStringInTable(in_fieldList_Alphi, and, "MA_PHI", "ma_phi", "alphi");
+            var string_in_Alhd = GenkeyStringInTable(in_fieldList_Alhd, and, "MA_HD", "ma_hd", "alhd");
+            var string_in_Alku = GenkeyStringInTable(in_fieldList_Alku, and, "MA_KU", "ma_ku", "alku");
+            var string_in_Alsp = GenkeyStringInTable(in_fieldList_Alsp, and, "MA_SP", "ma_vt", "alvt");
+
+            var last_string_value = string_value + string_in_Alkh + string_in_Alvt + string_in_Altk + string_in_Alvv
+                + string_in_Alphi + string_in_Alhd + string_in_Alku + string_in_Alsp;
+            if (last_string_value.Length > 4) last_string_value = last_string_value.Substring(4);
+            return last_string_value;
+        }
+
+        /// <summary>
+        /// Tạo key advance in cho một bảng.
+        /// </summary>
+        /// <param name="in_fieldList_Alsp">Danh sách các field where</param>
+        /// <param name="and"></param>
+        /// <param name="FIELD_in"></param>
+        /// <param name="select_field"></param>
+        /// <param name="from_table"></param>
+        /// <returns></returns>
+        private string GenkeyStringInTable(List<string> in_fieldList_Alsp, bool and, string FIELD_in, string select_field, string from_table)
+        {
+            var result = "";
+            
+            if (in_fieldList_Alsp!=null && in_fieldList_Alsp.Count > 0)
+            {
+                var and_or = and ? " and" : " or ";
+                var key0 = GetFilterStringByFields(in_fieldList_Alsp, and);
+                if (!string.IsNullOrEmpty(key0))
+                {
+                    result = string.Format("{0} {2} in (select {3} from {4} where {1} )",
+                        and_or, key0, FIELD_in, select_field, from_table);
+                }
+            }
 
             return result;
         }

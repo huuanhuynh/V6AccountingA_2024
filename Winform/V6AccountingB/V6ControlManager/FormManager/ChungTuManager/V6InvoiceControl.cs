@@ -691,11 +691,17 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 foreach (DataRow row in AD.Rows)
                 {
                     FixTyGia(row, ty_gia, "Tien", "Tien_nt", M_ROUND);
+                    FixTyGia(row, ty_gia, "Tien2", "Tien_nt2", M_ROUND);
+                    FixTyGia(row, ty_gia, "Tien1", "Tien1_nt", M_ROUND);
+                    FixTyGia(row, ty_gia, "Tien_vc", "Tien_vc_nt", M_ROUND);
                     FixTyGia(row, ty_gia, "Tien0", "TIEN_NT0", M_ROUND);
                     FixTyGia(row, ty_gia, "Thue", "Thue_nt", M_ROUND);
                     FixTyGia(row, ty_gia, "CP", "CP_NT", M_ROUND);
                     FixTyGia(row, ty_gia, "GIA01", "GIA_NT01", M_ROUND_GIA);
                     FixTyGia(row, ty_gia, "GIA1", "GIA_NT1", M_ROUND_GIA);
+                    FixTyGia(row, ty_gia, "GIA2", "GIA_NT2", M_ROUND_GIA);
+                    FixTyGia(row, ty_gia, "GIA21", "GIA_NT21", M_ROUND_GIA);
+
                     FixTyGia(row, ty_gia, "GIA0", "GIA_NT0", M_ROUND_GIA);
                     FixTyGia(row, ty_gia, "NK", "NK_NT", M_ROUND);
                     FixTyGia(row, ty_gia, "CK", "CK_NT", M_ROUND);

@@ -302,7 +302,7 @@ namespace V6Controls.Controls.GridView
         {
             try
             {
-                var testBuild = V6ControlsHelper.CreateProgram("test_namespace", "test_classname", UsingText, ContentText);
+                var testBuild = V6ControlsHelper.CreateProgram("test_namespace", "test_classname", "random", UsingText, ContentText);
                 if (testBuild != null)
                 {
                     this.ShowInfoMessage("Build OK");

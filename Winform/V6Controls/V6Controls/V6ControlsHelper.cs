@@ -5,6 +5,7 @@ using System.Linq;
 using System.Data;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 using System.Reflection;
 using System.Text;
 using Microsoft.CSharp;
@@ -20,20 +21,70 @@ namespace V6Controls
     {
         public static bool DisableLookup { get; set; }
 
+        private static string V6SoftLocalAppData_Directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "V6Soft");
+
+        public static void CreateV6SoftLocalAppDataDirectory()
+        {
+            try
+            {
+                if (!Directory.Exists(V6SoftLocalAppData_Directory)) Directory.CreateDirectory(V6SoftLocalAppData_Directory);
+            }
+            catch
+            {
+                //
+            }
+        }
+
+        public static void DeleteAllFileInV6SoftLocalAppData()
+        {
+            try
+            {
+                DirectoryInfo di = new DirectoryInfo(V6SoftLocalAppData_Directory);
+
+                foreach (FileInfo file in di.GetFiles())
+                {
+                    file.Delete();
+                }
+            }
+            catch
+            {
+                //
+            }
+        }
+
+        public static void DeleteAllSubDirectoriesInV6SoftLocalAppData()
+        {
+            try
+            {
+                DirectoryInfo di = new DirectoryInfo(V6SoftLocalAppData_Directory);
+
+                foreach (DirectoryInfo dir in di.GetDirectories())
+                {
+                    dir.Delete(true);
+                }
+            }
+            catch
+            {
+                //
+            }
+        }
+
         /// <summary>
         /// Tạo một Assembly từ code.
         /// </summary>
         /// <param name="name_space"></param>
         /// <param name="class_name"></param>
+        /// <param name="dllName">Tên file dll, không bao gồm .dll</param>
         /// <param name="using_text"></param>
         /// <param name="method_text"></param>
         /// <returns></returns>
-        public static Type CreateProgram(string name_space, string class_name, string using_text, string method_text)
+        public static Type CreateProgram(string name_space, string class_name, string dllName, string using_text, string method_text)
         {
             string output = "";
             try
             {
-                var using_text0 = "using System;"
+                var using_text0 =
+                    "using System;"
                     + "using System.Collections.Generic;"
                     + "using System.Data;"
                     + "using System.Drawing;"
@@ -44,6 +95,7 @@ namespace V6Controls
                     + "using V6SqlConnect;"
                     + "using V6AccountingBusiness;"
                     + "using V6Controls;"
+                    + "using V6ReportControls;"
                     ;
                 using_text = using_text0 + using_text;
 
@@ -53,7 +105,7 @@ namespace V6Controls
                 //src.AppendLine("using System.Windows.Forms;");
                 //src.AppendLine("using System.Drawing;");
                 src.AppendLine("");
-                src.AppendLine("namespace " + name_space + "{");// open namespace
+                src.AppendLine("namespace " + name_space + "{"); // open namespace
                 src.AppendLine("public class " + class_name + "{ "); // open class
                 src.Append(method_text);
                 src.AppendLine(" ");
@@ -81,8 +133,11 @@ namespace V6Controls
                 parameters.GenerateInMemory = false;
                 // True - exe file generation, false - dll file generation
                 parameters.GenerateExecutable = false;
-
-                //parameters.OutputAssembly = Path.Combine(Path.GetTempPath(), "myV6class.dll");
+                
+                CreateV6SoftLocalAppDataDirectory();
+                string path = Path.Combine(V6SoftLocalAppData_Directory, dllName + DateTime.Now.Ticks + ".dll");
+                parameters.OutputAssembly = path;
+                
                 parameters.CompilerOptions = "/target:library /optimize";
 
                 CompilerResults results = provider.CompileAssemblyFromSource(parameters, src.ToString());

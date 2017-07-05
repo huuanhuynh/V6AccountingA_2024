@@ -68,6 +68,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 this.WriteExLog(GetType() + ".Dynamic invoke INIT", ex1);
             }
+            Disposed += DynamicAddEditForm_Disposed;
+        }
+
+        void DynamicAddEditForm_Disposed(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    if(Form_program != null) AppDomain.Unload(Form_program);
+            //}
+            //catch (Exception)
+            //{
+                
+            //}
         }
 
         private void CreateFormControls()
@@ -326,7 +339,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     }
                     i++;
                 }
-                Event_program = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", all_using_text, all_method_text);
+                Event_program = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", "D" + TableName, all_using_text, all_method_text);
             }
             catch (Exception ex)
             {
@@ -385,7 +398,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     method_text += event_row["content"];
                     method_text += "\n";
                 }
-                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", using_text, method_text);
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + TableName, using_text, method_text);
             }
             catch (Exception ex)
             {
