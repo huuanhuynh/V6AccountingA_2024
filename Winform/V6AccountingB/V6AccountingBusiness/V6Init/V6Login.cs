@@ -594,6 +594,10 @@ namespace V6Init
             return is_allow;
         }
 
+        /// <summary>
+        /// Nếu M_COMPANY_BY_MA_DVCS = 1 và CountDVCS = 1 thay thế các M_TEN... = DataDVCS
+        /// </summary>
+        /// <param name="reportDocumentParameters"></param>
         public static void SetCompanyInfo(SortedDictionary<string, object> reportDocumentParameters)
         {
             var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";

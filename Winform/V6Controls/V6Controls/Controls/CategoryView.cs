@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
+using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.DanhMucManager;
@@ -18,8 +19,13 @@ using SortOrder = System.Windows.Forms.SortOrder;
 
 namespace V6Controls.Controls
 {
+    /// <summary>
+    /// Có parent value so với DanhMucView.
+    /// </summary>
     public partial class CategoryView : V6FormControl
     {
+        private bool _aldm;
+
         public CategoryView()
         {
             InitializeComponent();
@@ -34,7 +40,8 @@ namespace V6Controls.Controls
         /// <param name="initFilter">Không có thì truyền null</param>
         /// <param name="sort">Không có thì truyền null</param>
         /// <param name="parentData">Dữ liệu cha</param>
-        public CategoryView(string itemId, string title, string tableName, string initFilter, string sort, IDictionary<string, object> parentData)
+        public CategoryView(string itemId, string title, string tableName, string initFilter, string sort,
+            IDictionary<string, object> parentData)
         {
             m_itemId = itemId;
             Title = title;
@@ -49,6 +56,22 @@ namespace V6Controls.Controls
             InitFilter = initFilter;
             SelectResult = new V6SelectResult();
             SelectResult.SortField = sort;
+
+            bool is_aldm = false, check_admin = false, check_v6 = false;
+            IDictionary<string, object> keys = new Dictionary<string, object>();
+            keys.Add("MA_DM", _tableName);
+            var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
+            if (aldm.Rows.Count == 1)
+            {
+                is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
+                check_admin = aldm.Rows[0]["CHECK_ADMIN"].ToString() == "1";
+                check_v6 = aldm.Rows[0]["CHECK_V6"].ToString() == "1";
+            }
+            _aldm = is_aldm;
+            if (_aldm)
+            {
+                aldm_config = V6ControlsHelper.GetAldmConfigByTableName(_tableName);
+            }
 
             if (CurrentTable == V6TableName.V_alts || CurrentTable == V6TableName.V_alcc
                 || CurrentTable == V6TableName.V_alts01 || CurrentTable == V6TableName.V_alcc01)
@@ -167,12 +190,24 @@ namespace V6Controls.Controls
             }
             
             // Đè format cũ
-            string showFields = V6Lookup.ValueByTableName[_tableName, "GRDS_V1"].ToString().Trim();
-            string formatStrings = V6Lookup.ValueByTableName[_tableName, "GRDF_V1"].ToString().Trim();
-            string headerString = V6Lookup.ValueByTableName[_tableName, V6Setting.Language == "V" ? "GRDHV_V1" : "GRDHE_V1"].ToString().Trim();
-            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
+            if (_aldm)
+            {
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, aldm_config.GRDS_V1, aldm_config.GRDF_V1,
+                    V6Setting.IsVietnamese ? aldm_config.GRDHV_V1 : aldm_config.GRDHE_V1);
+            }
+            else
+            {
+                string showFields = V6Lookup.ValueByTableName[_tableName, "GRDS_V1"].ToString().Trim();
+                string formatStrings = V6Lookup.ValueByTableName[_tableName, "GRDF_V1"].ToString().Trim();
+                string headerString =
+                    V6Lookup.ValueByTableName[_tableName, V6Setting.IsVietnamese ? "GRDHV_V1" : "GRDHE_V1"]
+                        .ToString().Trim();
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
+            }
 
         }
+
+        private AldmConfig aldm_config;
 
         #region ==== Do method ====
 
@@ -509,9 +544,9 @@ namespace V6Controls.Controls
                     else
                     {
 
-                        var id = V6Lookup.ValueByTableName[CurrentTable.ToString(), "vValue"].ToString().Trim();
+                        var id = V6Lookup.ValueByTableName[_tableName, "vValue"].ToString().Trim();
                         var listTable =
-                            V6Lookup.ValueByTableName[CurrentTable.ToString(), "ListTable"].ToString().Trim();
+                            V6Lookup.ValueByTableName[_tableName, "ListTable"].ToString().Trim();
                         var value = "";
                         
                         if (String.IsNullOrEmpty(listTable) == false)
@@ -668,11 +703,18 @@ namespace V6Controls.Controls
 
         private void LoadTable(V6TableName tableName, int page, int size, string where, string sortField, bool @ascending)
         {
-            try { 
+            try
+            {
                 if (page < 1) page = 1;
                 CurrentTable = tableName;
-                var sr = _categories.SelectPaging(tableName, "*", page, size, GetWhere(where), sortField, @ascending);
-                
+                string load_table = _tableName;
+                if (CurrentTable == V6TableName.Notable)
+                {
+                    load_table = _tableName;
+                    if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
+                }
+                var sr = _categories.SelectPaging(load_table, "*", page, size, GetWhere(where), sortField, @ascending);
+
                 SelectResult.Data = sr.Data;
                 SelectResult.Page = sr.Page;
                 SelectResult.TotalRows = sr.TotalRows;
@@ -687,7 +729,7 @@ namespace V6Controls.Controls
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(ex.Message, "DanhMucView LoadTable_prs");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _tableName), ex);
             }
         }
 
@@ -939,7 +981,7 @@ namespace V6Controls.Controls
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowAdd("", _tableName.ToUpper() + "6"))
             {
                 DoAdd();
             }
@@ -951,7 +993,7 @@ namespace V6Controls.Controls
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowAdd("", _tableName.ToUpper() + "6"))
             {
                 DoAddCopy();
             }
@@ -963,7 +1005,7 @@ namespace V6Controls.Controls
 
         private void btnXem_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowView("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowView("", _tableName.ToUpper() + "6"))
             {
                 DoView();
             }
@@ -983,7 +1025,7 @@ namespace V6Controls.Controls
         private SortedDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowEdit("", _tableName.ToUpper() + "6"))
             {
                 DoEdit();
             }
@@ -995,7 +1037,7 @@ namespace V6Controls.Controls
         
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowDelete("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowDelete("", _tableName.ToUpper() + "6"))
             {
                 DoDelete();
             }
@@ -1037,9 +1079,9 @@ namespace V6Controls.Controls
         }
         private void btnFind_Click(object sender, EventArgs e)
         {
-            V6TableStruct structTable = V6BusinessHelper.GetTableStruct(CurrentTable.ToString());
+            V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_tableName);
             //var keys = new SortedDictionary<string, object>();
-            string[] fields = V6Lookup.GetDefaultLookupFields(CurrentTable.ToString());
+            string[] fields = V6Lookup.GetDefaultLookupFields(_tableName);
             _filterForm = new FilterForm(structTable, fields);
             _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
             _filterForm.Opacity = 0.9;

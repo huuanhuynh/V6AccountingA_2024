@@ -19,10 +19,19 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
             MyInit();
         }
         
-        public PhanNhomForm(string groupTableName, string dataTableName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="groupTableName">Tên bảng nhóm (alnhkh)</param>
+        /// <param name="dataTableName">Tên bảng dữ liệu (alkh)</param>
+        /// <param name="idField"></param>
+        /// <param name="field">field NHOM</param>
+        public PhanNhomForm(string groupTableName, string dataTableName, string idField = "", string field = "")
         {
             _dataTableName = dataTableName;
             _groupTableNameName = groupTableName;
+            _field0 = field;
+            _idField0 = idField;
             InitializeComponent();
             MyInit();
         }
@@ -34,7 +43,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         }
 
         private string _groupTableNameName, _dataTableName;
-        private string _idField;
+        private string _field = "", _field0 = "", _idField, _idField0;
         private bool _dataLoaded = false;
         private DataTable _dataGroup = null, _data = null;
         private DataView _viewGroup, _viewData;
@@ -192,9 +201,19 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 _field = "NH_TK0" + loai;
                 _idField = "TK";
             }
+            else if (name == V6TableName.Alku)
+            {
+                _field = "NH_KU" + loai;
+                _idField = "MA_KU";
+            }
+            else
+            {
+                _field = _field0 + loai;
+                _idField = _idField0;
+            }
         }
 
-        string _field = "";
+        
         private void ViewDataAll()
         {
             try

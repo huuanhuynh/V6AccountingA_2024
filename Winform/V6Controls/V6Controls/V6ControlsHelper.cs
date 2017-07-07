@@ -479,6 +479,8 @@ namespace V6Controls
 
     public class AldmConfig : Config
     {
+        
+
         public AldmConfig(IDictionary<string, object> data)
             : base(data)
         {
@@ -562,6 +564,11 @@ namespace V6Controls
         public string GRDF_V1 { get { return GetString("GRDF_V1"); } }
         public string GRDHV_V1 { get { return GetString("GRDHV_V1"); } }
         public string GRDHE_V1 { get { return GetString("GRDHE_V1"); } }
+        public bool IsGroup { get { return GetString("IS_GROUP") == "1"; } }
+        /// <summary>
+        /// Thông tin nhóm. DataTable,IdField,FieldNhom
+        /// </summary>
+        public string L_ALDM { get { return GetString("L_ALDM"); } }
     }
 
     public class StandardConfig

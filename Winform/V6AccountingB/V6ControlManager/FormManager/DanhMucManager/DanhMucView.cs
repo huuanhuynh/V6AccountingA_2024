@@ -20,6 +20,9 @@ using SortOrder = System.Windows.Forms.SortOrder;
 
 namespace V6ControlManager.FormManager.DanhMucManager
 {
+    /// <summary>
+    /// Hiển thị dữ liệu danh mục, không có parentData như CategoryView.
+    /// </summary>
     public partial class DanhMucView : V6FormControl
     {
         private bool _aldm;
@@ -36,6 +39,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         /// <param name="tableName"></param>
         /// <param name="initFilter">Không có thì truyền null</param>
         /// <param name="sort">Không có thì truyền null</param>
+        /// <param name="aldm">Có lấy thông tin quản lý dm trong aldm hay không?</param>
         public DanhMucView(string itemId, string title, string tableName, string initFilter, string sort, bool aldm)
         {
             m_itemId = itemId;
@@ -68,7 +72,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 || CurrentTable == V6TableName.Alnhvv || CurrentTable == V6TableName.Alnhvitri
                 || CurrentTable == V6TableName.Alnhphi || CurrentTable == V6TableName.Alnhts
                 || CurrentTable == V6TableName.Alnhcc || CurrentTable == V6TableName.Alnhhd
-                || CurrentTable == V6TableName.Alnhtk)
+                || CurrentTable == V6TableName.Alnhtk || CurrentTable == V6TableName.Alnhku)
+            {
+                btnNhom.Enabled = true;
+            }
+            else if (aldm && aldm_config.IsGroup)
             {
                 btnNhom.Enabled = true;
             }
@@ -873,6 +881,24 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     form.ShowDialog(this);
                     return;
                 }
+                else if (name == V6TableName.Alnhku)
+                {
+                    PhanNhomForm form = new PhanNhomForm("Alnhku", "Alku");
+
+                    form.ShowDialog(this);
+                    return;
+                }
+                else if(_aldm && aldm_config.IsGroup)
+                {
+                    string L_ALDM = aldm_config.L_ALDM;
+                    var sss = ObjectAndString.SplitString(L_ALDM);
+                    if (sss.Length >= 3)
+                    {
+                        PhanNhomForm form = new PhanNhomForm(_tableName, sss[0], sss[1], sss[2]);
+                        form.ShowDialog(this);
+                        return;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1181,7 +1207,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowAdd("", _tableName.ToUpper() + "6"))
             {
                 DoAdd();
             }
@@ -1193,7 +1219,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowAdd("", _tableName.ToUpper() + "6"))
             {
                 DoAddCopy();
             }
@@ -1205,7 +1231,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnXem_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowView("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowView("", _tableName.ToUpper() + "6"))
             {
                 DoView();
             }
@@ -1217,7 +1243,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowPrint("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowPrint("", _tableName.ToUpper() + "6"))
             {
                 DoPrint();
             }
@@ -1229,7 +1255,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         
         private void btnNhom_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowEdit("", _tableName.ToUpper() + "6"))
             {
                 DoGroup();
             }
@@ -1256,7 +1282,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         private SortedDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowEdit("", _tableName.ToUpper() + "6"))
             {
                 DoEdit();
             }
@@ -1268,8 +1294,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnDoiMa_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", CurrentTable.ToString().ToUpper() + "6")
-                && V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowAdd("", _tableName.ToUpper() + "6")
+                && V6Login.UserRight.AllowEdit("", _tableName.ToUpper() + "6"))
             {
                 DoChangeCode();
             }
@@ -1281,7 +1307,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowDelete("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowDelete("", _tableName.ToUpper() + "6"))
             {
                 DoDelete();
             }
@@ -1323,10 +1349,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
         }
         private void btnFind_Click(object sender, EventArgs e)
         {
-            V6TableStruct structTable = V6BusinessHelper.GetTableStruct(CurrentTable.ToString());
+            V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_tableName);
             //var keys = new SortedDictionary<string, object>();
             string[] fields = _aldm ? ObjectAndString.SplitString(aldm_config.F_SEARCH):
-                V6Lookup.GetDefaultLookupFields(CurrentTable.ToString());
+                V6Lookup.GetDefaultLookupFields(_tableName);
             _filterForm = new FilterForm(structTable, fields);
             _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
             _filterForm.Opacity = 0.9;
