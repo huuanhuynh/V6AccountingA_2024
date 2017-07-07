@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using V6AccountingBusiness;
+using V6Controls.Controls;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
@@ -50,6 +53,65 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
 
             if (errors.Length > 0) throw new Exception(errors);
+        }
+
+        public override void AfterUpdate()
+        {
+            UpdateAlkuct();
+        }
+
+        public override void AfterInsert()
+        {
+            UpdateAlkuct();
+        }
+
+        private void UpdateAlkuct()
+        {
+            try
+            {
+                var newID = DataDic["MA_KU"].ToString().Trim();
+                
+                SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                data.Add("MA_KU", newID);
+
+                // Tuanmh 25/05/2017 loi Null
+                if (_keys != null)
+                {
+                    Categories.Update("ALKUCT", data, _keys);
+
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".UpdateAlkuct", ex);
+            }
+        }
+
+        private void btnBoSung_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var uid_ct = DataOld["UID"].ToString();
+                var ma_ku_old = DataOld["MA_KU"].ToString().Trim();
+                var data = new Dictionary<string, object>();
+                
+                CategoryView dmView = new CategoryView(ItemID, "title", "Alkuct", "uid_ct='"+uid_ct+"'", null, DataOld);
+                if (Mode == V6Mode.View)
+                {
+                    dmView.EnableAdd = false;
+                    dmView.EnableCopy = false;
+                    dmView.EnableDelete = false;
+                    dmView.EnableEdit = false;
+                }
+                dmView.ToFullForm(btnBoSung.Text);
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + " BoSung_Click " + ex.Message);
+            }
+        
         }
     }
 }

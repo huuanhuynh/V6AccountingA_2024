@@ -204,7 +204,8 @@ namespace V6Structs
         Acosxlsx_alpbct,
         Alreport1,
         Alreport,
-        Alnhvitri
+        Alnhvitri,
+        Alkuct
 
     }
 
@@ -299,6 +300,8 @@ namespace V6Structs
                     return V6TableName.Alkmmct;
                 case "alku":
                     return V6TableName.Alku;
+                case "alkuct":
+                    return V6TableName.Alkuct;
                 case "allnx":
                     return V6TableName.Allnx;
                 case "allo":
@@ -606,6 +609,7 @@ namespace V6Structs
                 case V6TableName.Alkmm: result = "ma_km"; break;
                 case V6TableName.Alkmmct: result = "ma_dvcs"; break;
                 case V6TableName.Alku: result = "ma_ku"; break;
+                case V6TableName.Alkuct: result = "ma_ku"; break;
                 case V6TableName.Allnx: result = "ma_lnx"; break;
                 case V6TableName.Allo: result = "ma_vt"; break;
                 case V6TableName.Alloaicc: result = "loai_cc0"; break;
@@ -908,7 +912,8 @@ namespace V6Structs
 
                 case V6TableName.Alku:
                     return lang == "V" ? "Danh mục khế ước " : "  Agreement list";
-
+                case V6TableName.Alkuct:
+                    return lang == "V" ? "Danh mục khế ước chi tiết " : "  Agreement details list";
                 case V6TableName.Allnx:
                     return lang == "V" ? "Danh mục nhập xuất " : "  Type in-ount list";
 

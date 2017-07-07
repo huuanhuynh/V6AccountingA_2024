@@ -191,6 +191,12 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFromSelectForm.Designer.cs">
       <DependentUpon>CopyFromSelectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\KheUocChiTietForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\KheUocChiTietForm.Designer.cs">
+      <DependentUpon>KheUocChiTietForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\KhachHangChiTietFrom.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1275,6 +1281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFromSelectForm.resx">
       <DependentUpon>CopyFromSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\KheUocChiTietForm.resx">
+      <DependentUpon>KheUocChiTietForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\KhachHangChiTietFrom.resx">
       <DependentUpon>KhachHangChiTietFrom.cs</DependentUpon>

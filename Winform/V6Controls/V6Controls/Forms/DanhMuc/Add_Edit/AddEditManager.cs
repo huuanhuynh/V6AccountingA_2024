@@ -71,6 +71,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Alku:
                     FormControl = new KheUocAddEditForm();
                     break;
+                case V6TableName.Alkuct:
+                    FormControl = new KheUocChiTietForm();
+                    break;
                 case V6TableName.Allnx:
                     FormControl = new LoaiNhapXuatAddEditForm();
                     break;
