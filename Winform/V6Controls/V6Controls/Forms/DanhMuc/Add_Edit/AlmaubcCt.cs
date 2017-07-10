@@ -13,7 +13,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public override void DoBeforeEdit()
         {
             //txtMaMauBc.Enabled = false;
-            txtkind.Value = txtcach_tinh.Text.Trim() == "" ? 1 : 0;
+            //txtkind.Value = txtcach_tinh.Text.Trim() == "" ? 1 : 0;
         }
 
         public override void ValidateData()
@@ -50,16 +50,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void txtkind_TextChanged(object sender, EventArgs e)
         {
-            if (txtkind.Value == 1)
+            if (txtkind.Value == 1 || txtkind.Value == 2)
             {
                 txtcach_tinh.Text = "";
                 txtcach_tinh.Enabled = false;
-                txttk.Enabled = true;
+                txtTK.Enabled = true;
             }
             else
             {
-                txttk.Text = "";
-                txttk.Enabled = false;
+                txtTK.Text = "";
+                txtTK.Enabled = false;
                 txtcach_tinh.Enabled = true;
             }
         }
@@ -71,11 +71,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             switch (switch_text)
             {
                 case "GLTCB":
-                    groupBoxC.Visible = false;
+                    groupBoxB.Visible = true;
                     groupBoxB.Left = groupBox1.Left;
                     break;
+                case "GLTCA":
                 case "GLTCC":
-                    groupBoxB.Visible = false;
+                case "GLTCD":
+                    groupBoxC.Visible = true;
                     groupBoxC.Left = groupBox1.Left;
                     break;
             }

@@ -106,10 +106,26 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 //parameters
                 if (_rptParameters != null)
+                {
+                    string errors = "";
                     foreach (KeyValuePair<string, object> item in _rptParameters)
                     {
-                        _rpDoc.SetParameterValue(item.Key, item.Value);
+                        try
+                        {
+                            _rpDoc.SetParameterValue(item.Key, item.Value);
+                        }
+                        catch (Exception ex)
+                        {
+                            errors += item.Key + " " + ex.Message + "\n";
+                        }
                     }
+
+                    if (errors.Length > 0)
+                    {
+                        this.WriteToLog(GetType() + ".LoadReport Set_rptParameters", errors);
+                        this.ShowWarningMessage("Lỗi tham số:\n" + errors);
+                    }
+                }
                 crystalReportViewer1.ReportSource = _rpDoc;
                 crystalReportViewer1.Show();
             }

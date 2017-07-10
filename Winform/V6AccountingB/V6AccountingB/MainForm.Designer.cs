@@ -211,6 +211,7 @@ namespace V6AccountingB
             menuButton1.ReportTitle2F5 = null;
             menuButton1.ReportTitleF5 = null;
             menuButton1.SortField = "";
+            menuButton1.StatusNumber = 0;
             menuButton1.TableName = "";
             menuButton1.Tag = null;
             menuButton1.Text = "Tiền mặt";
@@ -235,6 +236,7 @@ namespace V6AccountingB
             menuButton2.ReportTitle2F5 = null;
             menuButton2.ReportTitleF5 = null;
             menuButton2.SortField = "";
+            menuButton2.StatusNumber = 0;
             menuButton2.TableName = "";
             menuButton2.Tag = null;
             menuButton2.Text = "Phải thu";
@@ -259,6 +261,7 @@ namespace V6AccountingB
             menuButton3.ReportTitle2F5 = null;
             menuButton3.ReportTitleF5 = null;
             menuButton3.SortField = "";
+            menuButton3.StatusNumber = 0;
             menuButton3.TableName = "";
             menuButton3.Tag = null;
             menuButton3.Text = "Phải trả";
@@ -283,6 +286,7 @@ namespace V6AccountingB
             menuButton4.ReportTitle2F5 = null;
             menuButton4.ReportTitleF5 = null;
             menuButton4.SortField = "";
+            menuButton4.StatusNumber = 0;
             menuButton4.TableName = "";
             menuButton4.Tag = null;
             menuButton4.Text = "Tồn kho";
@@ -307,6 +311,7 @@ namespace V6AccountingB
             menuButton5.ReportTitle2F5 = null;
             menuButton5.ReportTitleF5 = null;
             menuButton5.SortField = "";
+            menuButton5.StatusNumber = 0;
             menuButton5.TableName = "";
             menuButton5.Tag = null;
             menuButton5.Text = "Chi phí / Giá thành";
@@ -331,6 +336,7 @@ namespace V6AccountingB
             menuButton6.ReportTitle2F5 = null;
             menuButton6.ReportTitleF5 = null;
             menuButton6.SortField = "";
+            menuButton6.StatusNumber = 0;
             menuButton6.TableName = "";
             menuButton6.Tag = null;
             menuButton6.Text = "Tài sản cố định";
@@ -355,6 +361,7 @@ namespace V6AccountingB
             menuButton7.ReportTitle2F5 = null;
             menuButton7.ReportTitleF5 = null;
             menuButton7.SortField = "";
+            menuButton7.StatusNumber = 0;
             menuButton7.TableName = "";
             menuButton7.Tag = null;
             menuButton7.Text = "Công cụ";
@@ -379,6 +386,7 @@ namespace V6AccountingB
             menuButton8.ReportTitle2F5 = null;
             menuButton8.ReportTitleF5 = null;
             menuButton8.SortField = "";
+            menuButton8.StatusNumber = 0;
             menuButton8.TableName = "";
             menuButton8.Tag = null;
             menuButton8.Text = "Hệ thống";
@@ -403,6 +411,7 @@ namespace V6AccountingB
             menuButton9.ReportTitle2F5 = null;
             menuButton9.ReportTitleF5 = null;
             menuButton9.SortField = "";
+            menuButton9.StatusNumber = 0;
             menuButton9.TableName = "";
             menuButton9.Tag = null;
             menuButton9.Text = "Tổng hợp";
@@ -427,6 +436,7 @@ namespace V6AccountingB
             menuButton10.ReportTitle2F5 = null;
             menuButton10.ReportTitleF5 = null;
             menuButton10.SortField = "";
+            menuButton10.StatusNumber = 0;
             menuButton10.TableName = "";
             menuButton10.Tag = null;
             menuButton10.Text = "Báo cáo";
@@ -578,11 +588,19 @@ namespace V6AccountingB
             this.Controls.Add(this.lblV6Message);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "MainForm";
             this.Text = "V6Accounting2016.NET - Công ty cổ phần phát triển ứng dụng phần mềm doanh nghiệp " +
     "V6 (V6Business Software)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Controls.SetChildIndex(this.lblV6Message, 0);
+            this.Controls.SetChildIndex(this.panelView, 0);
+            this.Controls.SetChildIndex(this.panelMenuShow, 0);
+            this.Controls.SetChildIndex(this.panelMenu, 0);
+            this.Controls.SetChildIndex(this.statusStrip1, 0);
+            this.Controls.SetChildIndex(this.lblMainMessage, 0);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.panelMenu.ResumeLayout(false);

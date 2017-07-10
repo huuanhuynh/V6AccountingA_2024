@@ -120,4 +120,11 @@
   <metadata name="toolTipV6FormControl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="v6ColorTextBox16.ToolTip" xml:space="preserve">
+    <value>Extra_para: R_MA_KH là tên parameter trong rpt,
+Field là dữ liệu table2 hoặc filterLine...
+Ptype:TABLE2, FILTER-lấy dữ liệu của filter,
+FILTER_BROTHER-lấy dữ liệu của filterLine.Data,
+PARENT - chưa định nghĩa.</value>
+  </data>
 </root>

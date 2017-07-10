@@ -299,7 +299,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                 }
                                 catch (Exception exfor)
                                 {
-                                    this.WriteExLog(GetType() + ".EventFor", exfor);
+                                    this.WriteExLog(GetType() + ".CreateFormControls ReadEventInForLoop", exfor);
                                 }
                             }//end for
                         }//end if DMETHOD

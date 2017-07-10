@@ -40,6 +40,14 @@
             this.TxtForder = new V6Controls.V6NumberTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.v6ColorTextBox6 = new V6Controls.V6ColorTextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.txtcach_tinh3 = new V6Controls.V6ColorTextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.txtcach_tinh2 = new V6Controls.V6ColorTextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.txtcach_tinh1 = new V6Controls.V6ColorTextBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.v6CheckBox3 = new V6Controls.V6CheckBox();
             this.TxtMau = new V6Controls.V6ColorTextBox();
             this.label35 = new System.Windows.Forms.Label();
@@ -88,6 +96,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.v6CheckBox2 = new V6Controls.V6CheckBox();
             this.v6CheckBox1 = new V6Controls.V6CheckBox();
+            this.chkIsGroup = new V6Controls.V6CheckBox();
             this.chkIsAldm = new V6Controls.V6CheckBox();
             this.ChkVisible = new V6Controls.V6CheckBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -101,12 +110,6 @@
             this.v6ColorTextBox15 = new V6Controls.V6ColorTextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
-            this.txtcach_tinh1 = new V6Controls.V6ColorTextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.txtcach_tinh2 = new V6Controls.V6ColorTextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.txtcach_tinh3 = new V6Controls.V6ColorTextBox();
-            this.label30 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -286,6 +289,8 @@
             // tabPage3
             // 
             this.tabPage3.AutoScroll = true;
+            this.tabPage3.Controls.Add(this.v6ColorTextBox6);
+            this.tabPage3.Controls.Add(this.label31);
             this.tabPage3.Controls.Add(this.txtcach_tinh3);
             this.tabPage3.Controls.Add(this.label30);
             this.tabPage3.Controls.Add(this.txtcach_tinh2);
@@ -313,6 +318,124 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Các tùy chọn";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // v6ColorTextBox6
+            // 
+            this.v6ColorTextBox6.AccessibleName = "L_ALDM";
+            this.v6ColorTextBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6ColorTextBox6.BackColor = System.Drawing.Color.White;
+            this.v6ColorTextBox6.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox6.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox6.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox6.HoverColor = System.Drawing.Color.Yellow;
+            this.v6ColorTextBox6.LeaveColor = System.Drawing.Color.White;
+            this.v6ColorTextBox6.Location = new System.Drawing.Point(115, 173);
+            this.v6ColorTextBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.v6ColorTextBox6.Name = "v6ColorTextBox6";
+            this.v6ColorTextBox6.Size = new System.Drawing.Size(672, 23);
+            this.v6ColorTextBox6.TabIndex = 156;
+            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox6, "Thông tin nhóm. DataTable,IdField,FieldNhom");
+            // 
+            // label31
+            // 
+            this.label31.AccessibleDescription = "";
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(1, 175);
+            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(62, 17);
+            this.label31.TabIndex = 157;
+            this.label31.Text = "L_ALDM";
+            this.toolTipV6FormControl.SetToolTip(this.label31, "Phân nhóm động");
+            // 
+            // txtcach_tinh3
+            // 
+            this.txtcach_tinh3.AccessibleName = "cach_tinh3";
+            this.txtcach_tinh3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtcach_tinh3.BackColor = System.Drawing.Color.White;
+            this.txtcach_tinh3.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtcach_tinh3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtcach_tinh3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtcach_tinh3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtcach_tinh3.HoverColor = System.Drawing.Color.Yellow;
+            this.txtcach_tinh3.LeaveColor = System.Drawing.Color.White;
+            this.txtcach_tinh3.Location = new System.Drawing.Point(115, 142);
+            this.txtcach_tinh3.Margin = new System.Windows.Forms.Padding(4);
+            this.txtcach_tinh3.Name = "txtcach_tinh3";
+            this.txtcach_tinh3.Size = new System.Drawing.Size(672, 23);
+            this.txtcach_tinh3.TabIndex = 156;
+            // 
+            // label30
+            // 
+            this.label30.AccessibleDescription = "cach_tinh1";
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(1, 144);
+            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(79, 17);
+            this.label30.TabIndex = 157;
+            this.label30.Text = "Cach_tinh3";
+            // 
+            // txtcach_tinh2
+            // 
+            this.txtcach_tinh2.AccessibleName = "cach_tinh2";
+            this.txtcach_tinh2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtcach_tinh2.BackColor = System.Drawing.Color.White;
+            this.txtcach_tinh2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtcach_tinh2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtcach_tinh2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtcach_tinh2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtcach_tinh2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtcach_tinh2.LeaveColor = System.Drawing.Color.White;
+            this.txtcach_tinh2.Location = new System.Drawing.Point(114, 116);
+            this.txtcach_tinh2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtcach_tinh2.Name = "txtcach_tinh2";
+            this.txtcach_tinh2.Size = new System.Drawing.Size(672, 23);
+            this.txtcach_tinh2.TabIndex = 154;
+            // 
+            // label29
+            // 
+            this.label29.AccessibleDescription = "cach_tinh1";
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(1, 119);
+            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(79, 17);
+            this.label29.TabIndex = 155;
+            this.label29.Text = "Cach_tinh2";
+            // 
+            // txtcach_tinh1
+            // 
+            this.txtcach_tinh1.AccessibleName = "cach_tinh1";
+            this.txtcach_tinh1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtcach_tinh1.BackColor = System.Drawing.Color.White;
+            this.txtcach_tinh1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtcach_tinh1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtcach_tinh1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtcach_tinh1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtcach_tinh1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtcach_tinh1.LeaveColor = System.Drawing.Color.White;
+            this.txtcach_tinh1.Location = new System.Drawing.Point(114, 88);
+            this.txtcach_tinh1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtcach_tinh1.Name = "txtcach_tinh1";
+            this.txtcach_tinh1.Size = new System.Drawing.Size(672, 23);
+            this.txtcach_tinh1.TabIndex = 152;
+            // 
+            // label28
+            // 
+            this.label28.AccessibleDescription = "cach_tinh1";
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(1, 91);
+            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(79, 17);
+            this.label28.TabIndex = 153;
+            this.label28.Text = "Cach_tinh1";
             // 
             // v6CheckBox3
             // 
@@ -547,6 +670,7 @@
             this.tabPage1.Controls.Add(this.label17);
             this.tabPage1.Controls.Add(this.v6CheckBox2);
             this.tabPage1.Controls.Add(this.v6CheckBox1);
+            this.tabPage1.Controls.Add(this.chkIsGroup);
             this.tabPage1.Controls.Add(this.chkIsAldm);
             this.tabPage1.Controls.Add(this.ChkVisible);
             this.tabPage1.Controls.Add(this.label12);
@@ -1060,6 +1184,18 @@
             this.v6CheckBox1.Text = "Check admin";
             this.v6CheckBox1.UseVisualStyleBackColor = true;
             // 
+            // chkIsGroup
+            // 
+            this.chkIsGroup.AccessibleName = "IS_GROUP";
+            this.chkIsGroup.AutoSize = true;
+            this.chkIsGroup.Location = new System.Drawing.Point(423, 164);
+            this.chkIsGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.chkIsGroup.Name = "chkIsGroup";
+            this.chkIsGroup.Size = new System.Drawing.Size(82, 21);
+            this.chkIsGroup.TabIndex = 27;
+            this.chkIsGroup.Text = "Is_group";
+            this.chkIsGroup.UseVisualStyleBackColor = true;
+            // 
             // chkIsAldm
             // 
             this.chkIsAldm.AccessibleName = "IS_ALDM";
@@ -1244,93 +1380,6 @@
             this.label46.TabIndex = 47;
             this.label46.Text = "Trường hiển thị tìm kiếm";
             // 
-            // txtcach_tinh1
-            // 
-            this.txtcach_tinh1.AccessibleName = "cach_tinh1";
-            this.txtcach_tinh1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtcach_tinh1.BackColor = System.Drawing.Color.White;
-            this.txtcach_tinh1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtcach_tinh1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtcach_tinh1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtcach_tinh1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtcach_tinh1.HoverColor = System.Drawing.Color.Yellow;
-            this.txtcach_tinh1.LeaveColor = System.Drawing.Color.White;
-            this.txtcach_tinh1.Location = new System.Drawing.Point(114, 88);
-            this.txtcach_tinh1.Margin = new System.Windows.Forms.Padding(4);
-            this.txtcach_tinh1.Name = "txtcach_tinh1";
-            this.txtcach_tinh1.Size = new System.Drawing.Size(672, 23);
-            this.txtcach_tinh1.TabIndex = 152;
-            // 
-            // label28
-            // 
-            this.label28.AccessibleDescription = "cach_tinh1";
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(1, 91);
-            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(79, 17);
-            this.label28.TabIndex = 153;
-            this.label28.Text = "Cach_tinh1";
-            // 
-            // txtcach_tinh2
-            // 
-            this.txtcach_tinh2.AccessibleName = "cach_tinh2";
-            this.txtcach_tinh2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtcach_tinh2.BackColor = System.Drawing.Color.White;
-            this.txtcach_tinh2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtcach_tinh2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtcach_tinh2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtcach_tinh2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtcach_tinh2.HoverColor = System.Drawing.Color.Yellow;
-            this.txtcach_tinh2.LeaveColor = System.Drawing.Color.White;
-            this.txtcach_tinh2.Location = new System.Drawing.Point(114, 116);
-            this.txtcach_tinh2.Margin = new System.Windows.Forms.Padding(4);
-            this.txtcach_tinh2.Name = "txtcach_tinh2";
-            this.txtcach_tinh2.Size = new System.Drawing.Size(672, 23);
-            this.txtcach_tinh2.TabIndex = 154;
-            // 
-            // label29
-            // 
-            this.label29.AccessibleDescription = "cach_tinh1";
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(1, 119);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(79, 17);
-            this.label29.TabIndex = 155;
-            this.label29.Text = "Cach_tinh2";
-            // 
-            // txtcach_tinh3
-            // 
-            this.txtcach_tinh3.AccessibleName = "cach_tinh3";
-            this.txtcach_tinh3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtcach_tinh3.BackColor = System.Drawing.Color.White;
-            this.txtcach_tinh3.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtcach_tinh3.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtcach_tinh3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtcach_tinh3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtcach_tinh3.HoverColor = System.Drawing.Color.Yellow;
-            this.txtcach_tinh3.LeaveColor = System.Drawing.Color.White;
-            this.txtcach_tinh3.Location = new System.Drawing.Point(115, 142);
-            this.txtcach_tinh3.Margin = new System.Windows.Forms.Padding(4);
-            this.txtcach_tinh3.Name = "txtcach_tinh3";
-            this.txtcach_tinh3.Size = new System.Drawing.Size(672, 23);
-            this.txtcach_tinh3.TabIndex = 156;
-            // 
-            // label30
-            // 
-            this.label30.AccessibleDescription = "cach_tinh1";
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(1, 144);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(79, 17);
-            this.label30.TabIndex = 157;
-            this.label30.Text = "Cach_tinh3";
-            // 
             // Aldm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1436,5 +1485,8 @@
         private System.Windows.Forms.Label label29;
         private V6ColorTextBox txtcach_tinh1;
         private System.Windows.Forms.Label label28;
+        private V6ColorTextBox v6ColorTextBox6;
+        private System.Windows.Forms.Label label31;
+        private V6CheckBox chkIsGroup;
     }
 }
