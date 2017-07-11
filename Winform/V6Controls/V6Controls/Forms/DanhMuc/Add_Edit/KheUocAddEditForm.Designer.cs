@@ -89,6 +89,8 @@
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtMa_dvcs = new V6Controls.V6VvarTextBox();
+            this.label41 = new System.Windows.Forms.Label();
             this.TxtMa_ku = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -168,7 +170,7 @@
             this.btnBoSung.Location = new System.Drawing.Point(601, 372);
             this.btnBoSung.Name = "btnBoSung";
             this.btnBoSung.Size = new System.Drawing.Size(202, 29);
-            this.btnBoSung.TabIndex = 35;
+            this.btnBoSung.TabIndex = 15;
             this.btnBoSung.Text = "Bổ sung chi tiết lãi suất";
             this.btnBoSung.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBoSung.UseVisualStyleBackColor = true;
@@ -188,7 +190,7 @@
             this.txtMaVV.Location = new System.Drawing.Point(201, 196);
             this.txtMaVV.Name = "txtMaVV";
             this.txtMaVV.Size = new System.Drawing.Size(153, 23);
-            this.txtMaVV.TabIndex = 14;
+            this.txtMaVV.TabIndex = 7;
             this.txtMaVV.VVar = "MA_VV";
             // 
             // txtTkVay
@@ -205,7 +207,7 @@
             this.txtTkVay.Location = new System.Drawing.Point(201, 167);
             this.txtTkVay.Name = "txtTkVay";
             this.txtTkVay.Size = new System.Drawing.Size(153, 23);
-            this.txtTkVay.TabIndex = 12;
+            this.txtTkVay.TabIndex = 6;
             this.txtTkVay.VVar = "TK";
             // 
             // label13
@@ -237,7 +239,7 @@
             this.txtNgay_ku2.Margin = new System.Windows.Forms.Padding(5);
             this.txtNgay_ku2.Name = "txtNgay_ku2";
             this.txtNgay_ku2.Size = new System.Drawing.Size(153, 23);
-            this.txtNgay_ku2.TabIndex = 5;
+            this.txtNgay_ku2.TabIndex = 2;
             // 
             // label12
             // 
@@ -268,7 +270,7 @@
             this.TxtNgay_ku1.Margin = new System.Windows.Forms.Padding(5);
             this.TxtNgay_ku1.Name = "TxtNgay_ku1";
             this.TxtNgay_ku1.Size = new System.Drawing.Size(153, 23);
-            this.TxtNgay_ku1.TabIndex = 3;
+            this.TxtNgay_ku1.TabIndex = 1;
             // 
             // Txtnh_ku3
             // 
@@ -284,7 +286,7 @@
             this.Txtnh_ku3.Margin = new System.Windows.Forms.Padding(4);
             this.Txtnh_ku3.Name = "Txtnh_ku3";
             this.Txtnh_ku3.Size = new System.Drawing.Size(153, 23);
-            this.Txtnh_ku3.TabIndex = 24;
+            this.Txtnh_ku3.TabIndex = 13;
             this.Txtnh_ku3.VVar = "NH_KU";
             // 
             // Txtnh_ku2
@@ -301,7 +303,7 @@
             this.Txtnh_ku2.Margin = new System.Windows.Forms.Padding(4);
             this.Txtnh_ku2.Name = "Txtnh_ku2";
             this.Txtnh_ku2.Size = new System.Drawing.Size(153, 23);
-            this.Txtnh_ku2.TabIndex = 22;
+            this.Txtnh_ku2.TabIndex = 12;
             this.Txtnh_ku2.VVar = "NH_KU";
             // 
             // Txtnh_ku1
@@ -318,7 +320,7 @@
             this.Txtnh_ku1.Margin = new System.Windows.Forms.Padding(4);
             this.Txtnh_ku1.Name = "Txtnh_ku1";
             this.Txtnh_ku1.Size = new System.Drawing.Size(153, 23);
-            this.Txtnh_ku1.TabIndex = 20;
+            this.Txtnh_ku1.TabIndex = 11;
             this.Txtnh_ku1.VVar = "NH_KU";
             // 
             // txtMaNt
@@ -335,7 +337,7 @@
             this.txtMaNt.Location = new System.Drawing.Point(360, 109);
             this.txtMaNt.Name = "txtMaNt";
             this.txtMaNt.Size = new System.Drawing.Size(63, 23);
-            this.txtMaNt.TabIndex = 8;
+            this.txtMaNt.TabIndex = 4;
             this.txtMaNt.VVar = "MA_NT";
             // 
             // v6NumberTextBox7
@@ -351,7 +353,7 @@
             this.v6NumberTextBox7.Location = new System.Drawing.Point(201, 138);
             this.v6NumberTextBox7.Name = "v6NumberTextBox7";
             this.v6NumberTextBox7.Size = new System.Drawing.Size(153, 23);
-            this.v6NumberTextBox7.TabIndex = 10;
+            this.v6NumberTextBox7.TabIndex = 5;
             this.v6NumberTextBox7.Text = "0,000";
             this.v6NumberTextBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox7.Value = new decimal(new int[] {
@@ -373,7 +375,7 @@
             this.v6NumberTextBox6.Location = new System.Drawing.Point(201, 225);
             this.v6NumberTextBox6.Name = "v6NumberTextBox6";
             this.v6NumberTextBox6.Size = new System.Drawing.Size(153, 23);
-            this.v6NumberTextBox6.TabIndex = 16;
+            this.v6NumberTextBox6.TabIndex = 8;
             this.v6NumberTextBox6.Text = "0,000";
             this.v6NumberTextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox6.Value = new decimal(new int[] {
@@ -395,7 +397,7 @@
             this.v6NumberTextBox5.Location = new System.Drawing.Point(201, 254);
             this.v6NumberTextBox5.Name = "v6NumberTextBox5";
             this.v6NumberTextBox5.Size = new System.Drawing.Size(153, 23);
-            this.v6NumberTextBox5.TabIndex = 18;
+            this.v6NumberTextBox5.TabIndex = 10;
             this.v6NumberTextBox5.Text = "0,000";
             this.v6NumberTextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox5.Value = new decimal(new int[] {
@@ -417,7 +419,7 @@
             this.v6NumberTextBox4.Location = new System.Drawing.Point(201, 109);
             this.v6NumberTextBox4.Name = "v6NumberTextBox4";
             this.v6NumberTextBox4.Size = new System.Drawing.Size(153, 23);
-            this.v6NumberTextBox4.TabIndex = 7;
+            this.v6NumberTextBox4.TabIndex = 3;
             this.v6NumberTextBox4.Text = "0,000";
             this.v6NumberTextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox4.Value = new decimal(new int[] {
@@ -439,7 +441,7 @@
             this.v6ColorTextBox6.Location = new System.Drawing.Point(201, 14);
             this.v6ColorTextBox6.Name = "v6ColorTextBox6";
             this.v6ColorTextBox6.Size = new System.Drawing.Size(153, 23);
-            this.v6ColorTextBox6.TabIndex = 1;
+            this.v6ColorTextBox6.TabIndex = 0;
             // 
             // label25
             // 
@@ -552,7 +554,7 @@
             this.checkBox1.Margin = new System.Windows.Forms.Padding(5);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(111, 21);
-            this.checkBox1.TabIndex = 26;
+            this.checkBox1.TabIndex = 14;
             this.checkBox1.Text = "Có sử dụng ?";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -1099,6 +1101,8 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.TxtMa_dvcs);
+            this.groupBox1.Controls.Add(this.label41);
             this.groupBox1.Controls.Add(this.TxtMa_ku);
             this.groupBox1.Controls.Add(this.v6ColorTextBox3);
             this.groupBox1.Controls.Add(this.label1);
@@ -1112,6 +1116,35 @@
             this.groupBox1.Size = new System.Drawing.Size(828, 107);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // TxtMa_dvcs
+            // 
+            this.TxtMa_dvcs.AccessibleName = "Ma_dvcs";
+            this.TxtMa_dvcs.BackColor = System.Drawing.Color.White;
+            this.TxtMa_dvcs.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtMa_dvcs.CheckNotEmpty = true;
+            this.TxtMa_dvcs.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtMa_dvcs.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtMa_dvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtMa_dvcs.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtMa_dvcs.LeaveColor = System.Drawing.Color.White;
+            this.TxtMa_dvcs.Location = new System.Drawing.Point(586, 16);
+            this.TxtMa_dvcs.Name = "TxtMa_dvcs";
+            this.TxtMa_dvcs.Size = new System.Drawing.Size(202, 23);
+            this.TxtMa_dvcs.TabIndex = 1;
+            this.TxtMa_dvcs.VVar = "MA_DVCS";
+            // 
+            // label41
+            // 
+            this.label41.AccessibleDescription = "ADDEDITL00005";
+            this.label41.AccessibleName = "";
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(514, 19);
+            this.label41.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(60, 17);
+            this.label41.TabIndex = 9;
+            this.label41.Text = "Mã đvcs";
             // 
             // TxtMa_ku
             // 
@@ -1127,7 +1160,7 @@
             this.TxtMa_ku.Location = new System.Drawing.Point(205, 16);
             this.TxtMa_ku.Name = "TxtMa_ku";
             this.TxtMa_ku.Size = new System.Drawing.Size(153, 23);
-            this.TxtMa_ku.TabIndex = 1;
+            this.TxtMa_ku.TabIndex = 0;
             // 
             // v6ColorTextBox3
             // 
@@ -1146,7 +1179,7 @@
             this.v6ColorTextBox3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox3.Name = "v6ColorTextBox3";
             this.v6ColorTextBox3.Size = new System.Drawing.Size(583, 23);
-            this.v6ColorTextBox3.TabIndex = 5;
+            this.v6ColorTextBox3.TabIndex = 3;
             // 
             // label1
             // 
@@ -1175,7 +1208,7 @@
             this.TxtTen_ku.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.TxtTen_ku.Name = "TxtTen_ku";
             this.TxtTen_ku.Size = new System.Drawing.Size(583, 23);
-            this.TxtTen_ku.TabIndex = 3;
+            this.TxtTen_ku.TabIndex = 2;
             // 
             // label2
             // 
@@ -1290,5 +1323,7 @@
         private System.Windows.Forms.Label label12;
         private V6ColorTextBox v6ColorTextBox1;
         protected System.Windows.Forms.Button btnBoSung;
+        private V6VvarTextBox TxtMa_dvcs;
+        private System.Windows.Forms.Label label41;
     }
 }

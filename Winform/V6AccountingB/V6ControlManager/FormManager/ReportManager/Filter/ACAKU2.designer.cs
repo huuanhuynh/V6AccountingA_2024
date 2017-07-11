@@ -45,6 +45,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtNgay_ct2 = new V6Controls.V6DateTimePick();
             this.txtNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +78,7 @@
             this.filterLineVvarTextBox7.AccessibleDescription = "FILTERL00065";
             this.filterLineVvarTextBox7.FieldCaption = "Mã vụ việc";
             this.filterLineVvarTextBox7.FieldName = "MA_VV";
-            this.filterLineVvarTextBox7.Location = new System.Drawing.Point(6, 64);
+            this.filterLineVvarTextBox7.Location = new System.Drawing.Point(4, 85);
             this.filterLineVvarTextBox7.Name = "filterLineVvarTextBox7";
             this.filterLineVvarTextBox7.Size = new System.Drawing.Size(282, 22);
             this.filterLineVvarTextBox7.TabIndex = 3;
@@ -88,7 +89,7 @@
             this.Txtnh_ku3.AccessibleDescription = "FILTERL00073";
             this.Txtnh_ku3.FieldCaption = "Nhóm khế ước 3";
             this.Txtnh_ku3.FieldName = "NH_KU3";
-            this.Txtnh_ku3.Location = new System.Drawing.Point(6, 152);
+            this.Txtnh_ku3.Location = new System.Drawing.Point(4, 173);
             this.Txtnh_ku3.Name = "Txtnh_ku3";
             this.Txtnh_ku3.Size = new System.Drawing.Size(282, 22);
             this.Txtnh_ku3.TabIndex = 7;
@@ -99,7 +100,7 @@
             this.Txtnh_ku2.AccessibleDescription = "FILTERL00072";
             this.Txtnh_ku2.FieldCaption = "Nhóm khế ước 2";
             this.Txtnh_ku2.FieldName = "NH_KU2";
-            this.Txtnh_ku2.Location = new System.Drawing.Point(6, 130);
+            this.Txtnh_ku2.Location = new System.Drawing.Point(4, 151);
             this.Txtnh_ku2.Name = "Txtnh_ku2";
             this.Txtnh_ku2.Size = new System.Drawing.Size(282, 22);
             this.Txtnh_ku2.TabIndex = 6;
@@ -110,7 +111,7 @@
             this.Txtnh_ku1.AccessibleDescription = "FILTERL00071";
             this.Txtnh_ku1.FieldCaption = "Nhóm khế ước 1";
             this.Txtnh_ku1.FieldName = "NH_KU1";
-            this.Txtnh_ku1.Location = new System.Drawing.Point(6, 108);
+            this.Txtnh_ku1.Location = new System.Drawing.Point(4, 129);
             this.Txtnh_ku1.Name = "Txtnh_ku1";
             this.Txtnh_ku1.Size = new System.Drawing.Size(282, 22);
             this.Txtnh_ku1.TabIndex = 5;
@@ -122,6 +123,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Controls.Add(this.Tk_filterLine);
             this.groupBox1.Controls.Add(this.Txtnh_ku1);
             this.groupBox1.Controls.Add(this.Txtnh_ku2);
@@ -132,7 +134,7 @@
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Location = new System.Drawing.Point(3, 105);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 194);
+            this.groupBox1.Size = new System.Drawing.Size(289, 207);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -142,7 +144,7 @@
             this.Tk_filterLine.AccessibleDescription = "FILTERL00027";
             this.Tk_filterLine.FieldCaption = "Tài khoản";
             this.Tk_filterLine.FieldName = "TK";
-            this.Tk_filterLine.Location = new System.Drawing.Point(6, 86);
+            this.Tk_filterLine.Location = new System.Drawing.Point(4, 107);
             this.Tk_filterLine.Name = "Tk_filterLine";
             this.Tk_filterLine.Size = new System.Drawing.Size(282, 22);
             this.Tk_filterLine.TabIndex = 4;
@@ -153,7 +155,7 @@
             this.filterLineVvarTextBox10.AccessibleDescription = "FILTERL00064";
             this.filterLineVvarTextBox10.FieldCaption = "Mã khế ước";
             this.filterLineVvarTextBox10.FieldName = "MA_KU";
-            this.filterLineVvarTextBox10.Location = new System.Drawing.Point(6, 42);
+            this.filterLineVvarTextBox10.Location = new System.Drawing.Point(4, 63);
             this.filterLineVvarTextBox10.Name = "filterLineVvarTextBox10";
             this.filterLineVvarTextBox10.Size = new System.Drawing.Size(282, 22);
             this.filterLineVvarTextBox10.TabIndex = 2;
@@ -175,9 +177,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(5, 55);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 13);
+            this.label4.Size = new System.Drawing.Size(81, 13);
             this.label4.TabIndex = 36;
-            this.label4.Text = "Kỳ trước từ ngày";
+            this.label4.Text = "Tính lãi từ ngày";
             // 
             // txtNgay_ct4
             // 
@@ -225,9 +227,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(5, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 32;
-            this.label1.Text = "Kỳ này từ ngày";
+            this.label1.Text = "Vay từ ngày";
             // 
             // txtNgay_ct2
             // 
@@ -259,6 +261,17 @@
             this.txtNgay_ct1.Size = new System.Drawing.Size(100, 20);
             this.txtNgay_ct1.TabIndex = 0;
             // 
+            // txtMaDvcs
+            // 
+            this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.FieldCaption = "Mã đơn vị";
+            this.txtMaDvcs.FieldName = "MA_DVCS";
+            this.txtMaDvcs.Location = new System.Drawing.Point(5, 40);
+            this.txtMaDvcs.Name = "txtMaDvcs";
+            this.txtMaDvcs.Size = new System.Drawing.Size(281, 22);
+            this.txtMaDvcs.TabIndex = 8;
+            this.txtMaDvcs.Vvar = "MA_DVCS";
+            // 
             // ACAKU2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,7 +286,7 @@
             this.Controls.Add(this.txtNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "ACAKU2";
-            this.Size = new System.Drawing.Size(295, 302);
+            this.Size = new System.Drawing.Size(295, 315);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -299,5 +312,6 @@
         private V6Controls.V6DateTimePick txtNgay_ct1;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox10;
         private V6ReportControls.FilterLineVvarTextBox Tk_filterLine;
+        private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
     }
 }

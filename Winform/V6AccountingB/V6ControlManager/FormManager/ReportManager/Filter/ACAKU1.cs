@@ -20,8 +20,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
             dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
 
-           
-            
+            txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
+            if (V6Login.MadvcsCount <= 1)
+            {
+                txtMaDvcs.Enabled = false;
+            }
+
 
             Txtnh_ku1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_ku2.VvarTextBox.SetInitFilter("loai_nh=2");
@@ -48,6 +52,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 _hideFields.Add("CON_PT_NT", "CON_PT_NT");
                 _hideFields.Add("T_TIEN_NT2", "T_TIEN_NT2");
                 _hideFields.Add("T_THUE_NT", "T_THUE_NT");
+
+
+
             }
             else
             {
@@ -57,6 +64,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 _hideFields.Add("STT_REC_TT", "STT_REC_TT");
                 _hideFields.Add("MA_TT", "MA_TT");
                 _hideFields.Add("MA_GD", "MA_GD");
+
             }
         }
 
@@ -95,7 +103,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             string cKey;
             var key0 = GetFilterStringByFields(new List<string>()
             {
-               "MA_VV","MA_KU"
+              "MA_DVCS", "MA_VV","MA_KU","TK"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {
@@ -123,8 +131,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 cKey = cKey + string.Format(" and ma_ku in (select ma_ku from alku where {0} )", key1);
             }
-      
-            
+
+
             result.Add(new SqlParameter("@Condition", cKey));
 
             return result;

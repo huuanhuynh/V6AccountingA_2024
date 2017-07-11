@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Controls;
+using V6Init;
 using V6Structs;
+using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -12,6 +16,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public KheUocAddEditForm()
         {
             InitializeComponent();
+            if (Mode == V6Mode.Add)
+            {
+                if (V6Login.MadvcsCount == 1)
+                {
+                    TxtMa_dvcs.Text = V6Login.Madvcs;
+                }
+            }
+            else if (Mode == V6Mode.Edit)
+            {
+
+            }
         }
 
         private void KheUocAddEditForm_Load(object sender, EventArgs e)
@@ -23,8 +38,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         public override void DoBeforeEdit()
         {
-            var v = Categories.IsExistOneCode_List("ABKU,ARA00,ARI70", "MA_KU", TxtMa_ku.Text);
+            try
+            {
+                var v = Categories.IsExistOneCode_List("ABKU,ARA00,ARI70", "MA_KU", TxtMa_ku.Text);
             TxtMa_ku.Enabled = !v;
+            if (!V6Login.IsAdmin && TxtMa_dvcs.Text.ToUpper() != V6Login.Madvcs.ToUpper())
+            {
+                TxtMa_dvcs.Enabled = false;
+            }
+
+            }
+
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("DisableWhenEdit " + ex.Message);
+            }
         }
 
         public override void ValidateData()
@@ -34,7 +62,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 errors += "Chưa nhập mã !\r\n";
             if (TxtTen_ku.Text.Trim() == "")
                 errors += "Chưa nhập tên !\r\n";
-
+            if (V6Login.MadvcsTotal > 0 && TxtMa_dvcs.Text.Trim() == "")
+                errors += "Chưa nhập đơn vị cơ sở !\r\n";
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_KU",

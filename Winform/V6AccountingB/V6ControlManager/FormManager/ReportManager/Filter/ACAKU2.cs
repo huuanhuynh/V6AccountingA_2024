@@ -16,12 +16,17 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
            
             F3 = true;
             F5 = false;
-          
-        
 
-           
-            
 
+
+
+
+
+            txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
+            if (V6Login.MadvcsCount <= 1)
+            {
+                txtMaDvcs.Enabled = false;
+            }
             Txtnh_ku1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_ku2.VvarTextBox.SetInitFilter("loai_nh=2");
             Txtnh_ku3.VvarTextBox.SetInitFilter("loai_nh=3");
@@ -92,7 +97,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             string cKey;
             var key0 = GetFilterStringByFields(new List<string>()
             {
-               "MA_VV","MA_KU","TK"
+              "MA_DVCS", "MA_VV","MA_KU","TK"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {
