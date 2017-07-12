@@ -5140,6 +5140,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         }
                     }
                 }
+
+                //CheckStockAll
+                //Check từng dòng AD
+
                 //OK
                 return true;
             }

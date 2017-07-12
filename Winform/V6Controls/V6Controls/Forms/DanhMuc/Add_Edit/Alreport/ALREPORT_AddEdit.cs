@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Controls.Controls;
 using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
+using V6Init;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
@@ -19,13 +21,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
         {
            // txtval.Focus();
         }
+
+        public override void DoBeforeAdd()
+        {
+            btnBoSung.Enabled = false;
+            btnCopyFilter.Enabled = false;
+        }
+
         public override void DoBeforeEdit()
         {
             if (Mode == V6Mode.Edit)
             {
                
             }
-
         }
   
         public override void V6F3Execute()
@@ -37,6 +45,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             var errors = "";
             if (TXTMA_BC.Text.Trim() == "")
                 errors += "Chưa nhập mã!\r\n";
+            if (Mode == V6Mode.Edit)
+            {
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_BC",
+                 TXTMA_BC.Text.Trim(), DataOld["MA_BC"].ToString());
+                if (!b)
+                    throw new Exception(V6Text.EditDenied + " MA_BC = " + TXTMA_BC.Text.Trim());
+            }
+            else if (Mode == V6Mode.Add)
+            {
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_BC",
+                 TXTMA_BC.Text.Trim(), TXTMA_BC.Text.Trim());
+                if (!b)
+                    throw new Exception(V6Text.AddDenied + " MA_BC = " + TXTMA_BC.Text.Trim());
+            }
             
             if (errors.Length > 0) throw new Exception(errors);
         }
@@ -52,21 +74,37 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                 if (not_in.Length > 1) not_in = not_in.Substring(1);
 
                 //SHOW SELECT
-                CopyFromSelectForm selectForm = new CopyFromSelectForm();
+                CopyFilterSelectForm selectForm = new CopyFilterSelectForm();
                 selectForm.NotInList = not_in;
                 if (selectForm.ShowDialog(this) == DialogResult.OK)
                 {
-                    var selected_ma_bc = selectForm.SelectedID;
-
-                    var keys = new SortedDictionary<string, object>
-                    {
-                        {"MA_BC", selected_ma_bc}
-                    };
-                    var alreport1_data = Categories.Select(V6TableName.Alreport1, keys).Data;
                     var add_count = 0;
-                    foreach (DataRow row in alreport1_data.Rows)
+
+                    //copy all
+                    //var selected_ma_bc = selectForm.SelectedID;
+                    //var keys = new SortedDictionary<string, object>
+                    //{
+                    //    {"MA_BC", selected_ma_bc}
+                    //};
+                    //var alreport1_data = Categories.Select(V6TableName.Alreport1, keys).Data;
+                    //foreach (DataRow row in alreport1_data.Rows)
+                    //{
+                    //    var data = row.ToDataDictionary();
+                    //    data["MA_BC"] = TXTMA_BC.Text.Trim();
+                    //    data["UID_CT"] = DataOld["UID"];
+                    //    if (Categories.Insert(V6TableName.Alreport1, data))
+                    //    {
+                    //        add_count++;
+                    //    };
+                    //}
+
+                    //copy selected
+                    foreach (DataGridViewRow row in selectForm.dataGridView1.Rows)
                     {
+                        if (!row.IsSelect()) continue;
+                        
                         var data = row.ToDataDictionary();
+                        //Ghi đè dữ liệu mới.
                         data["MA_BC"] = TXTMA_BC.Text.Trim();
                         data["UID_CT"] = DataOld["UID"];
                         if (Categories.Insert(V6TableName.Alreport1, data))
@@ -74,7 +112,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                             add_count++;
                         };
                     }
-                    ShowMainMessage(string.Format("Đã thêm {0} chi tiết.", add_count));
+
+                    ShowTopMessage(V6Setting.IsVietnamese 
+                        ? string.Format("Đã thêm {0} chi tiết.", add_count)
+                        : string.Format("{0} detail(s) added.", add_count));
                 }
             }
             catch (Exception ex)

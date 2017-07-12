@@ -306,16 +306,16 @@ namespace V6Controls
         }
 
         /// <summary>
-        /// Kiểm tra Tag.Trim() != "" là được chọn
+        /// Kiểm tra cell [Tag].Trim() != "" hoặc HeaderCell.Tag là được chọn
         /// </summary>
         /// <param name="row"></param>
         /// <returns></returns>
         public static bool IsSelect(this DataGridViewRow row)
         {
             //Có 2 trường hợp, Nếu có Cột Tag
-            if (row.DataGridView.Columns.Contains( "Tag"))
+            if (row.DataGridView.Columns.Contains("Tag"))
             {
-                var tag = (row.Cells[ "Tag"].Value ?? "").ToString().Trim();
+                var tag = (row.Cells["Tag"].Value ?? "").ToString().Trim();
                 return tag != "";
             }
             else // Hoặc dùng HeaderCell.Tag
