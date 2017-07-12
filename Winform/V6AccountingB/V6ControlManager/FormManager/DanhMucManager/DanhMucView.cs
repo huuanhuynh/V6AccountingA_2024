@@ -673,14 +673,30 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                         {
                                             var ma_kh = row.Cells["Ma_kh"].Value.ToString().Trim();
                                             SqlParameter[] plist =
-                                        {
-                                            new SqlParameter("@cMa_kh", ma_kh), 
-                                        };
+                                            {
+                                                new SqlParameter("@cMa_kh", ma_kh), 
+                                            };
                                             V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_DELETE_ALKHCT", plist);
                                         }
                                         catch (Exception ex)
                                         {
                                             this.ShowErrorException(GetType() + ".DoDelete Alkh after", ex);
+                                        }
+                                    }
+                                    else if (CurrentTable == V6TableName.Alreport)
+                                    {
+                                        try
+                                        {
+                                            var ma_bc = row.Cells["Ma_bc"].Value.ToString().Trim();
+                                            SqlParameter[] plist =
+                                            {
+                                                new SqlParameter("@ma_bc", ma_bc), 
+                                            };
+                                            V6BusinessHelper.ExecuteSqlNoneQuery("Delete Alreport1 where Ma_bc=@ma_bc", plist);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            this.ShowErrorException(GetType() + ".DoDelete Alreport after", ex);
                                         }
                                     }
                                     else if (CurrentTable == V6TableName.Alvt)

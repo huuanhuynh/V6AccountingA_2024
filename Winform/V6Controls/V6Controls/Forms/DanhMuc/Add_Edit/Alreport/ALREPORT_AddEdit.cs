@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Controls.Controls;
 using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Init;
@@ -20,13 +21,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
         {
            // txtval.Focus();
         }
+
+        public override void DoBeforeAdd()
+        {
+            btnBoSung.Enabled = false;
+            btnCopyFilter.Enabled = false;
+        }
+
         public override void DoBeforeEdit()
         {
             if (Mode == V6Mode.Edit)
             {
                
             }
-
         }
   
         public override void V6F3Execute()
@@ -38,6 +45,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             var errors = "";
             if (TXTMA_BC.Text.Trim() == "")
                 errors += "Chưa nhập mã!\r\n";
+            if (Mode == V6Mode.Edit)
+            {
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_BC",
+                 TXTMA_BC.Text.Trim(), DataOld["MA_BC"].ToString());
+                if (!b)
+                    throw new Exception(V6Text.EditDenied + " MA_BC = " + TXTMA_BC.Text.Trim());
+            }
+            else if (Mode == V6Mode.Add)
+            {
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_BC",
+                 TXTMA_BC.Text.Trim(), TXTMA_BC.Text.Trim());
+                if (!b)
+                    throw new Exception(V6Text.AddDenied + " MA_BC = " + TXTMA_BC.Text.Trim());
+            }
             
             if (errors.Length > 0) throw new Exception(errors);
         }
@@ -92,7 +113,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                         };
                     }
 
-                    ShowMainMessage(V6Setting.IsVietnamese 
+                    ShowTopMessage(V6Setting.IsVietnamese 
                         ? string.Format("Đã thêm {0} chi tiết.", add_count)
                         : string.Format("{0} detail(s) added.", add_count));
                 }
