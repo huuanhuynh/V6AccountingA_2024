@@ -185,11 +185,11 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_AddEdit.designer.cs">
       <DependentUpon>ALREPORT1_AddEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFromSelectForm.cs">
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFilterSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFromSelectForm.Designer.cs">
-      <DependentUpon>CopyFromSelectForm.cs</DependentUpon>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFilterSelectForm.Designer.cs">
+      <DependentUpon>CopyFilterSelectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\KheUocChiTietForm.cs">
       <SubType>UserControl</SubType>
@@ -1279,8 +1279,8 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_AddEdit.resx">
       <DependentUpon>ALREPORT1_AddEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFromSelectForm.resx">
-      <DependentUpon>CopyFromSelectForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFilterSelectForm.resx">
+      <DependentUpon>CopyFilterSelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\KheUocChiTietForm.resx">
       <DependentUpon>KheUocChiTietForm.cs</DependentUpon>

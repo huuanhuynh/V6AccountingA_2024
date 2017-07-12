@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using V6AccountingBusiness;
 using V6Init;
+using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
 {
-    public partial class CopyFromSelectForm : V6Form
+    public partial class CopyFilterSelectForm : V6Form
     {
-        public CopyFromSelectForm()
+        public CopyFilterSelectForm()
         {
             InitializeComponent();
         }
@@ -44,6 +46,37 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             Ready();
         }
 
+        private void LoadGridView(string ma_bc)
+        {
+            try
+            {
+                var keys = new SortedDictionary<string, object>
+                    {
+                        {"MA_BC", ma_bc}
+                    };
+                var alreport1_data = V6BusinessHelper.Select("Alreport1", keys, "*").Data;
+
+                dataGridView1.DataSource = alreport1_data;
+                dataGridView1.SelectAllRow();
+                //var add_count = 0;
+                //foreach (DataRow row in alreport1_data.Rows)
+                //{
+                //    var data = row.ToDataDictionary();
+                //    data["MA_BC"] = TXTMA_BC.Text.Trim();
+                //    data["UID_CT"] = DataOld["UID"];
+                //    if (Categories.Insert(V6TableName.Alreport1, data))
+                //    {
+                //        add_count++;
+                //    };
+                //}
+                //ShowMainMessage(string.Format("Đã thêm {0} chi tiết.", add_count));
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadGridView", ex);
+            }
+        }
+
         private void listBox1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (listBox1.DataSource != null)
@@ -59,6 +92,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                     SelectedID = null;
                     SelectedName = "";
                 }
+                LoadGridView(SelectedID);
             }
         }
     }

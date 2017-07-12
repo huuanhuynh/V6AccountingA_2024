@@ -130,11 +130,12 @@ namespace V6Controls.Forms
             }
             MessageLable.BringToFront();
             MessageLable.Text = message;
-            //MessageLable.Visible = true;
+            
             _topMessageTimer = new Timer { Interval = 200 };
             _topMessageTimer.Tick += topMessageTimer_Tick;
             _topTime = -1;
             _topMessageTimer.Start();
+            MessageLable.Visible = true;
         }
 
         static void topMessageTimer_Tick(object sender, EventArgs e)
@@ -142,6 +143,7 @@ namespace V6Controls.Forms
             try
             {
                 _topTime++;
+                
                 if (_topTime < 10)//Hiện ra
                 {
                     MessageLable.Top -= MessageLable.Top / 3;

@@ -715,6 +715,15 @@ namespace V6AccountingBusiness
             return Select(name.ToString(), fields, where, groupby, orderby, prList);
         }
 
+        public static V6SelectResult Select(string name, IDictionary<string, object> keys, string fields,
+            string groupby = "", string orderby = "", params SqlParameter[] prList)
+        {
+            if (!V6Login.UserRight.AllowSelect(name)) return new V6SelectResult();
+
+            string where = SqlGenerator.GenSqlWhere(keys);
+            return Select(name.ToString(), fields, where, groupby, orderby, prList);
+        }
+
         public static V6SelectResult Select(string tableName, string fields = "*",
             string where = "", string groupby = "", string orderby = "", params SqlParameter[] prList)
         {

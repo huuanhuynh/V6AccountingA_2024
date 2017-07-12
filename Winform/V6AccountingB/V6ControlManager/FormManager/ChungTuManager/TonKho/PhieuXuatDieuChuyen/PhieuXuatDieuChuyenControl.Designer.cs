@@ -1365,7 +1365,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtMaKhoX.Size = new System.Drawing.Size(100, 20);
             this.txtMaKhoX.TabIndex = 8;
             this.txtMaKhoX.VVar = "ma_kho";
-            this.txtMaKhoX.V6LostFocus += new V6Controls.ControlEventHandle(this.MaKho_V6LostFocus);
+            this.txtMaKhoX.V6LostFocus += new V6Controls.ControlEventHandle(this.MaKhoX_V6LostFocus);
             this.txtMaKhoX.V6LostFocusNoChange += new V6Controls.ControlEventHandle(this.txtMaKhoX_V6LostFocusNoChange);
             // 
             // txtMaKh

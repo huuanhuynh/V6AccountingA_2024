@@ -534,6 +534,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                 };
                             }
                             break;
+                        
                     }
 
                 }
