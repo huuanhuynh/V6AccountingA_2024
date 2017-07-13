@@ -79,7 +79,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //RptExtraParameters.Add("NGAY_CT1", dateNgay_ct1.Value);
             //RptExtraParameters.Add("NGAY_CT2", dateNgay_ct2.Value);
 
-
+            RptExtraParameters.Add("MA_KHO", TxtMakho.IsSelected ? TxtMakho.VvarTextBox.Text.Trim() : "");
+            String1 = TxtMakho.IsSelected ? TxtMakho.VvarTextBox.Text.Trim() : "";
             //RptExtraParameters.Add("MA_KHO", TxtMakho.IsSelected ? TxtMakho.VvarTextBox.Text.Trim() : "");
             //_parameters.Add("MA_VT", TxtMa_vt.IsSelected ? TxtMakho.VvarTextBox.Text.Trim() : "");
 
