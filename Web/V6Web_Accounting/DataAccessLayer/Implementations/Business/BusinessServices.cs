@@ -145,6 +145,22 @@ namespace DataAccessLayer.Implementations.Business
             };
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_DATE_STT_REC", plist).Tables[0];
         }
+        public DataTable GetLoDateAll(string mavt_in, string makho_in, string malo_in, string sttRec, DateTime ngayct)
+        {
+            //mavt = mavt.Replace("'", "''");
+            //makho = makho.Replace("'", "''");
+            //malo = malo.Replace("'", "''");
+
+            SqlParameter[] plist = new[]
+            {
+                new SqlParameter("@cKey1", string.Format("Ma_vt in ("+mavt_in+") and Ma_kho in ("+makho_in+") and Ma_lo in ("+malo_in+")")),
+                new SqlParameter("@cKey2", ""),
+                new SqlParameter("@cKey3", ""),
+                new SqlParameter("@cStt_rec", sttRec),
+                new SqlParameter("@dBg", ngayct)
+            };
+            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_DATE_STT_REC", plist).Tables[0];
+        }
         
         public DataTable GetViTri13(string mavt, string makho, string mavitri, string sttRec, DateTime ngayct)
         {
@@ -180,6 +196,19 @@ namespace DataAccessLayer.Implementations.Business
             };
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_VITRI_DATE_STT_REC", plist).Tables[0];
         }
+        public DataTable GetViTriLoDateAll(string mavt_in, string makho_in, string malo_in, string mavitri_in, string sttRec, DateTime ngayct)
+        {
+            SqlParameter[] plist = new[]
+            {
+                new SqlParameter("@cKey1", string.Format("Ma_vt in ("+mavt_in+") and Ma_kho in ("+makho_in
+                    +") and Ma_lo in ("+malo_in+") and Ma_vitri in ("+mavitri_in+")")),
+                new SqlParameter("@cKey2", ""),
+                new SqlParameter("@cKey3", ""),
+                new SqlParameter("@cStt_rec", sttRec),
+                new SqlParameter("@dBg", ngayct)
+            };
+            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_VITRI_DATE_STT_REC", plist).Tables[0];
+        }
 
         /// <summary>
         /// [VPA_CheckTonXuatAm] 1,'20160216','IND','STTREC','a.MA_VT=''VTLO1'' AND a.MA_KHO=',''
@@ -203,6 +232,20 @@ namespace DataAccessLayer.Implementations.Business
                 new SqlParameter("@ma_ct", mact),
                 new SqlParameter("@Stt_rec", sttRec),
                 new SqlParameter("@Advance", string.Format("a.MA_VT='"+mavt+"' AND a.MA_KHO='"+makho+"'")),
+                new SqlParameter("@OutputInsert", "")
+            };
+            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_CheckTonXuatAm", plist).Tables[0];
+        }
+        
+        public DataTable GetStockAll(string mact, string mavt_in, string makho_in, string sttRec, DateTime ngayct)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@Type", 1),
+                new SqlParameter("@Ngay_ct", ngayct),
+                new SqlParameter("@ma_ct", mact),
+                new SqlParameter("@Stt_rec", sttRec),
+                new SqlParameter("@Advance", string.Format("a.MA_VT in ("+mavt_in+") AND a.MA_KHO in ("+makho_in+")")),
                 new SqlParameter("@OutputInsert", "")
             };
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_CheckTonXuatAm", plist).Tables[0];

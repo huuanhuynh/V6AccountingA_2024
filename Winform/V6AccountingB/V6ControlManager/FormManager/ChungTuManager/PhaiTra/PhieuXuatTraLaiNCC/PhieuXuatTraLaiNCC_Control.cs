@@ -736,7 +736,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         {
             XuLyLayThongTinKhiChonMaKhoI();
             GetTon13();
-            GetLoDate();
+            //GetLoDate();
+            if (_maLo.Text == "") GetLoDate();
+            else GetLoDate13();
         }
         private void XuLyChonMaVt(string mavt)
         {

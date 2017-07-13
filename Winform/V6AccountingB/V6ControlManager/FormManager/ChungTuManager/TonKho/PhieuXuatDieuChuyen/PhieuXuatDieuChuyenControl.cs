@@ -1038,7 +1038,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             else
             {
-                GetLoDate();
+                //GetLoDate();
+                if (_maLo.Text == "") GetLoDate();
+                else GetLoDate13();
             }
         }
 

@@ -24,6 +24,7 @@ namespace DataAccessLayer.Interfaces.Business
         string GetNewLikeSttRec(string pMaCt, string pKhoa, string pLoai);
         DataTable GetViTriLoDate13(string mavt, string makho, string malo, string mavitri, string sttRec, DateTime ngayct);
         DataTable GetStock(string mact, string mavt, string makho, string sttRec, DateTime ngayct);
+        DataTable GetStockAll(string mact, string mavt_in, string makho_in, string sttRec, DateTime ngayct);
         V6TableStruct GetTableStruct(string tableName);
         #region ==== CHECK ====
         /// <summary>

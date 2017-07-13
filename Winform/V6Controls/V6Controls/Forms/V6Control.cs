@@ -122,6 +122,10 @@ namespace V6Controls.Forms
             
         }
 
+        /// <summary>
+        /// Hiển thị thông báo trượt xuống từ góc phải của chương trình.
+        /// </summary>
+        /// <param name="message"></param>
         public void ShowMainMessage(string message)
         {
             V6ControlFormHelper.ShowMainMessage(message);

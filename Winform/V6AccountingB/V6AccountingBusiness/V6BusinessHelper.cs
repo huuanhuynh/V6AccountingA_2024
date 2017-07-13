@@ -1094,6 +1094,10 @@ namespace V6AccountingBusiness
         {
             return Service.GetLoDate13(mavt, makho, malo, sttRec, ngayct);
         }
+        public static DataTable GetLoDateAll(string mavt_in, string makho_in, string malo_in, string sttRec, DateTime ngayct)
+        {
+            return Service.GetLoDateAll(mavt_in, makho_in, malo_in, sttRec, ngayct);
+        }
         
         public static DataTable GetViTri13(string mavt, string makho, string mavitri, string sttRec, DateTime ngayct)
         {
@@ -1104,10 +1108,19 @@ namespace V6AccountingBusiness
         {
             return Service.GetViTriLoDate13(mavt, makho, malo, mavitri, sttRec, ngayct);
         }
+        public static DataTable GetViTriLoDateAll(string mavt_in, string makho_in, string malo_in, string mavitri_in, string sttRec, DateTime ngayct)
+        {
+            return Service.GetViTriLoDateAll(mavt_in, makho_in, malo_in, mavitri_in, sttRec, ngayct);
+        }
 
         public static DataTable GetStock(string mact, string mavt, string makho, string sttRec, DateTime ngayct)
         {
             return Service.GetStock(mact, mavt, makho, sttRec, ngayct);
+        }
+        
+        public static DataTable GetStockAll(string mact, string mavt_in, string makho_in, string sttRec, DateTime ngayct)
+        {
+            return Service.GetStockAll(mact, mavt_in, makho_in, sttRec, ngayct);
         }
 
         public static string MoneyToWords(decimal money, string lang, string ma_nt)
