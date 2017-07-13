@@ -228,6 +228,9 @@ namespace V6Init
             }
         }
 
+        /// <summary>
+        /// Cho phép xuất âm?
+        /// </summary>
         public static string M_CHK_XUAT
         {
             get

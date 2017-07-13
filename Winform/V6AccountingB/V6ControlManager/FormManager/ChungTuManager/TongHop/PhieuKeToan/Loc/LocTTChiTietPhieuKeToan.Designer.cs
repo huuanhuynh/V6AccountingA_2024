@@ -56,12 +56,16 @@
             this.v6Label34 = new V6Controls.V6Label();
             this.v6Label35 = new V6Controls.V6Label();
             this.v6Label36 = new V6Controls.V6Label();
+            this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
+            this.v6Label4 = new V6Controls.V6Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.AccessibleDescription = "SEARCHG00002";
+            this.groupBox1.Controls.Add(this.v6VvarTextBox1);
+            this.groupBox1.Controls.Add(this.v6Label4);
             this.groupBox1.Controls.Add(this.panelFilter2);
             this.groupBox1.Controls.Add(this.v6ColorTextBox4);
             this.groupBox1.Controls.Add(this.v6ColorTextBox5);
@@ -452,6 +456,32 @@
             this.v6Label36.TabIndex = 16;
             this.v6Label36.Text = "Mã hợp đồng";
             // 
+            // v6VvarTextBox1
+            // 
+            this.v6VvarTextBox1.AccessibleName = "dien_giaii";
+            this.v6VvarTextBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6VvarTextBox1.CheckOnLeave = false;
+            this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6VvarTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
+            this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
+            this.v6VvarTextBox1.Location = new System.Drawing.Point(88, 201);
+            this.v6VvarTextBox1.Name = "v6VvarTextBox1";
+            this.v6VvarTextBox1.Size = new System.Drawing.Size(410, 20);
+            this.v6VvarTextBox1.TabIndex = 35;
+            // 
+            // v6Label4
+            // 
+            this.v6Label4.AccessibleDescription = "SEARCHL00012";
+            this.v6Label4.AutoSize = true;
+            this.v6Label4.Location = new System.Drawing.Point(7, 204);
+            this.v6Label4.Name = "v6Label4";
+            this.v6Label4.Size = new System.Drawing.Size(75, 13);
+            this.v6Label4.TabIndex = 34;
+            this.v6Label4.Text = "Diễn giải chứa";
+            // 
             // LocTTChiTietPhieuKeToan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -495,5 +525,7 @@
         private V6ReportControls.PanelFilter panelFilter2;
         private V6Controls.V6VvarTextBox txtDieuKienTK;
         private V6Controls.V6Label v6Label1;
+        private V6Controls.V6VvarTextBox v6VvarTextBox1;
+        private V6Controls.V6Label v6Label4;
     }
 }

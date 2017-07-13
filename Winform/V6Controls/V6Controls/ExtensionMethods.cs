@@ -917,7 +917,7 @@ namespace V6Controls
         /// Ghi log.
         /// </summary>
         /// <param name="owner"></param>
-        /// <param name="address">GetType() + ".MyInit"</param>
+        /// <param name="address">GetType() + ".Method"</param>
         /// <param name="ex">ex</param>
         /// <param name="logFile"></param>
         public static void WriteExLog(this IWin32Window owner, string address, Exception ex, string logFile = "V6Log")

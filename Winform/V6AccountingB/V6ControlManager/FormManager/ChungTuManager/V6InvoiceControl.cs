@@ -490,7 +490,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         /// <summary>
-        /// Hàm cần override
+        /// Hàm cần override để thay đổi container, Hiển thị thông báo phía trên của form chứng từ.
         /// </summary>
         /// <param name="message"></param>
         protected virtual void ShowParentMessage(string message)

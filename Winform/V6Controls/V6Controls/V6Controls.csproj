@@ -161,7 +161,9 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\Acosxlt_alloaiytAddEditForm.Designer.cs">
       <DependentUpon>Acosxlt_alloaiytAddEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFilterSelectForm.cs" />
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFilterSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFilterSelectForm.Designer.cs">
       <DependentUpon>CopyFilterSelectForm.cs</DependentUpon>
     </Compile>

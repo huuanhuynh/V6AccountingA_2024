@@ -128,7 +128,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _tang, _xuat_dd;
-        private V6VvarTextBox _maVt, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo; //_maKho
+        private V6VvarTextBox _maVt, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _maViTri; //_maKho
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt2, _giaNt21,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
         private V6NumberTextBox _ton13,_gia,_gia_nt, _tien, _tienNt, _pt_cki;
         private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4,_ggNt,_gg;
@@ -642,7 +642,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     case "TIEN_VC":
                         _tien_vc = (V6NumberTextBox)control;
                         break;
-                        //}
+
+                    case "MA_VITRI":
+                        _maViTri = control as V6VvarTextBox;
+                        if (_maViTri != null)
+                        {
+                            _maViTri.GotFocus += (s, e) =>
+                            {
+                                _maViTri.CheckNotEmpty = _maVt.VITRI_YN;
+                                var filter = "Ma_kho='" + _maKhoI.Text.Trim() + "'";
+
+                                //if (("," + V6Options.V6OptionValues["M_LST_CT_DV"] + ",").Contains(MaCt))
+                                //{
+                                //    _dataViTri = Invoice.GetViTri(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Value);
+                                //    var getFilter = GetFilterMaViTri(_dataViTri, _sttRec0, _maVt.Text, _maKhoI.Text);
+                                //    if (getFilter != "") filter += " and " + getFilter;
+                                //}
+
+                                _maViTri.SetInitFilter(filter);
+                            };
+
+                            _maViTri.V6LostFocus += sender =>
+                            {
+                                CheckMaViTri();
+                            };
+                        }
+                        break;
 
                 }
                 
@@ -1188,6 +1213,335 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             CheckSoLuong1();
         }
 
+        private void CheckMaViTri()
+        {
+            if (_maKhoI.Text != "")
+            {
+                _maViTri.SetInitFilter("Ma_kho='" + _maKhoI.Text.Trim() + "'");
+            }
+            XuLyLayThongTinKhiChonMaVitri();
+            GetTon13();
+            if (_maVt.VITRI_YN)
+            {
+                if (_maVt.LO_YN && _maVt.DATE_YN)
+                {
+                    GetViTriLoDate13();
+                }
+                else
+                {
+                    GetViTri13();
+                }
+            }
+            else
+            {
+                GetLoDate13();
+            }
+
+            CheckSoLuong1();
+        }
+
+        private void XuLyLayThongTinKhiChonMaVitri()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".XuLyLayThongTinKhiChonMaVitri " + ex.Message);
+            }
+        }
+
+        private DataTable _dataViTri;
+        private void GetViTri13()
+        {
+            try
+            {
+                string sttRec0 = _sttRec0;
+                string maVt = _maVt.Text.Trim().ToUpper();
+                string maKhoI = _maKhoI.Text.Trim().ToUpper();
+                string maViTri = _maViTri.Text.Trim().ToUpper();
+
+                // Theo doi lo moi check
+                if (!_maVt.VITRI_YN)
+                    return;
+
+                if (maVt == "" || maKhoI == "" || maViTri == "") return;
+
+                _dataViTri = Invoice.GetViTri13(maVt, maKhoI, maViTri, _sttRec, dateNgayCT.Value);
+                if (_dataViTri.Rows.Count == 0)
+                {
+                    _ton13.Value = 0;
+                }
+                //Xử lý - tồn
+                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
+                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+
+                for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = _dataViTri.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+
+                    //Neu dung maVt, maKhoI, maViTri
+                    if (maVt == data_maVt && maKhoI == data_maKhoI && maViTri == data_maViTri)
+                    {
+                        //- so luong
+                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal new_soLuong = data_soLuong;
+
+                        foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                        {
+
+                            string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                            string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                            string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                            string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
+
+                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
+                            if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                            {
+                                if (maVt == c_maVt && maKhoI == c_maKhoI && maViTri == c_maViTri)
+                                {
+                                    new_soLuong -= c_soLuong;
+                                }
+                            }
+                        }
+
+                        if (new_soLuong > 0)
+                        {
+                            _ton13.Value = new_soLuong / _heSo1.Value;
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".GetViTri13 " + ex.Message);
+            }
+        }
+
+        private void GetViTriLoDate13()
+        {
+            try
+            {
+                string sttRec0 = _sttRec0;
+                string maVt = _maVt.Text.Trim().ToUpper();
+                string maKhoI = _maKhoI.Text.Trim().ToUpper();
+                string maLo = _maLo.Text.Trim().ToUpper();
+                string maViTri = _maViTri.Text.Trim().ToUpper();
+
+                // Theo doi lo moi check
+                if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maVt.VITRI_YN || !_maKhoI.LO_YN || !_maKhoI.DATE_YN)
+                    return;
+
+                if (maVt == "" || maKhoI == "" || maLo == "" || maViTri == "") return;
+
+                _dataViTri = Invoice.GetViTriLoDate13(maVt, maKhoI, maLo, maViTri, _sttRec, dateNgayCT.Value);
+                if (_dataViTri.Rows.Count == 0)
+                {
+                    _ton13.Value = 0;
+                }
+                //Xử lý - tồn
+                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
+                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+
+                for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = _dataViTri.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
+                    string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+
+                    //Neu dung maVt, maKhoI, maLo, maViTri
+                    if (maVt == data_maVt && maKhoI == data_maKhoI && maLo == data_maLo && maViTri == data_maViTri)
+                    {
+                        //- so luong
+                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal new_soLuong = data_soLuong;
+
+                        foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                        {
+
+                            string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                            string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                            string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                            string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
+                            string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
+
+                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
+                            if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                            {
+                                if (maVt == c_maVt && maKhoI == c_maKhoI && maLo == c_maLo && maViTri == c_maViTri)
+                                {
+                                    new_soLuong -= c_soLuong;
+                                }
+                            }
+                        }
+
+                        if (new_soLuong > 0)
+                        {
+                            _ton13.Value = new_soLuong / _heSo1.Value;
+                            _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".GetViTriLoDate13 " + ex.Message);
+            }
+        }
+
+        private void GetViTri()
+        {
+            try
+            {
+                string sttRec0 = _sttRec0;
+                string maVt = _maVt.Text.Trim().ToUpper();
+                string maKhoI = _maKhoI.Text.Trim().ToUpper();
+
+                // Theo doi lo moi check
+                if (!_maVt.VITRI_YN)
+                    return;
+
+                if (maVt == "" || maKhoI == "") return;
+
+                _dataViTri = Invoice.GetViTri(maVt, maKhoI, _sttRec, dateNgayCT.Value);
+                if (_dataViTri.Rows.Count == 0)
+                {
+                    _ton13.Value = 0;
+                }
+                //Xử lý - tồn
+                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
+                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+
+                for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = _dataViTri.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+                    if (data_maViTri == "") continue;
+                    //Neu dung maVt va maKhoI
+                    if (maVt == data_maVt && maKhoI == data_maKhoI)
+                    {
+                        //- so luong
+                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal new_soLuong = data_soLuong;
+
+                        foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                        {
+
+                            string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                            string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                            string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                            string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
+                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
+                            if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                            {
+                                if (maVt == c_maVt && maKhoI == c_maKhoI && data_maViTri == c_maViTri)
+                                {
+                                    new_soLuong -= c_soLuong;
+                                }
+                            }
+                        }
+
+                        if (new_soLuong > 0)
+                        {
+                            _ton13.Value = new_soLuong / _heSo1.Value;
+                            _maViTri.Text = data_row["Ma_vitri"].ToString().Trim();
+                            break;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void GetViTriLoDate()
+        {
+            try
+            {
+                string sttRec0 = _sttRec0;
+                string maVt = _maVt.Text.Trim().ToUpper();
+                string maKhoI = _maKhoI.Text.Trim().ToUpper();
+
+                // Theo doi lo moi check
+                if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maVt.VITRI_YN
+                    || !_maKhoI.LO_YN || !_maKhoI.DATE_YN)
+                    return;
+
+                if (maVt == "" || maKhoI == "") return;
+
+                _dataViTri = Invoice.GetViTriLoDate(maVt, maKhoI, _sttRec, dateNgayCT.Value);
+                if (_dataViTri.Rows.Count == 0)
+                {
+                    _ton13.Value = 0;
+                }
+                //Xử lý - tồn
+                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
+                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+
+                for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = _dataViTri.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
+                    string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+                    if (data_maLo == "" || data_maViTri == "") continue;
+                    //Neu dung maVt va maKhoI
+                    if (maVt == data_maVt && maKhoI == data_maKhoI)
+                    {
+                        //- so luong
+                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal new_soLuong = data_soLuong;
+
+                        foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                        {
+
+                            string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                            string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                            string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                            string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
+                            string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
+                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
+                            if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                            {
+                                if (maVt == c_maVt && maKhoI == c_maKhoI && data_maLo == c_maLo && data_maViTri == c_maViTri)
+                                {
+                                    new_soLuong -= c_soLuong;
+                                }
+                            }
+                        }
+
+                        if (new_soLuong > 0)
+                        {
+                            _ton13.Value = new_soLuong / _heSo1.Value;
+                            _maLo.Text = data_row["Ma_lo"].ToString().Trim();
+                            _maViTri.Text = data_row["Ma_vitri"].ToString().Trim();
+                            _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
+                            break;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
         /// <summary>
         /// Check so luong roi tinh tien Nt2
         /// </summary>
@@ -1536,16 +1890,46 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             XuLyLayThongTinKhiChonMaKhoI();
             GetTon13();
-            if (_maLo.Text == "") GetLoDate();
-            else GetLoDate13();
+            if (_maVt.VITRI_YN)
+            {
+                if (_maVt.LO_YN && _maVt.DATE_YN)
+                {
+                    GetViTriLoDate();
+                }
+                else
+                {
+                    GetViTri();
+                }
+            }
+            else
+            {
+                if (_maLo.Text == "") GetLoDate();
+                else GetLoDate13();
+            }
         }
+
         private void XuLyChonMaVt(string mavt)
         {
             XuLyLayThongTinKhiChonMaVt();
             XuLyDonViTinhKhiChonMaVt(mavt);
             GetGia();
             GetTon13();
-            GetLoDate();
+            if (_maVt.VITRI_YN)
+            {
+                if (_maVt.LO_YN && _maVt.DATE_YN)
+                {
+                    GetViTriLoDate();
+                }
+                else
+                {
+                    GetViTri();
+                }
+            }
+            else
+            {
+                GetLoDate();
+            }
+            //GetLoDate();
         }
 
         private void XuLyLayThongTinKhiChonMaKhoI()
@@ -3440,7 +3824,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        
         protected override void ShowParentMessage(string message)
         {
             try
@@ -5141,8 +5524,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     }
                 }
 
-                //CheckStockAll
-                //Check từng dòng AD
+                var check_ton = ValidateData_Master_CheckTon();
+                if (!check_ton) return false;
+                
 
                 //OK
                 return true;
@@ -5152,6 +5536,332 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.WriteExLog(GetType() + ".ValidateData_Master", ex);
             }
             return false;
+        }
+
+        private bool ValidateData_Master_CheckTon()
+        {
+            try
+            {
+                if (V6Options.M_CHK_XUAT != "0") return true;
+                
+                var M_CHECK_SAVE_STOCK = V6Options.V6OptionValues["M_CHECK_SAVE_STOCK"];
+                string message = "";
+                foreach (char c in M_CHECK_SAVE_STOCK)
+                {
+                    switch (c)
+                    {
+                        case '1':
+                            message = CheckMakhoMavt();
+                            if(!string.IsNullOrEmpty(message)) goto ThongBao;
+                            break;
+                        case '2':
+                            message = CheckMakhoMavtMalo();
+                            if(!string.IsNullOrEmpty(message)) goto ThongBao;
+                            break;
+                        case '3':
+                            message = CheckMakhoMavtMaloMavitri();
+                            if(!string.IsNullOrEmpty(message)) goto ThongBao;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                ThongBao:
+                if (!string.IsNullOrEmpty(message))
+                {
+                    this.ShowWarningMessage(message);
+                    return false;
+                }
+                //Kiểm tra ok.
+                return true;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "ValidateData_Master_CheckTon", ex);
+                ShowParentMessage("Có lỗi khi check tồn: " + ex.Message);
+                return true;
+            }
+        }
+
+        private string CheckMakhoMavtMaloMavitri()
+        {
+            #region === KiemTra3 Kho,VatTu,Lo,Vitri ===
+            //Reset biến
+            Dictionary<string, decimal> mavt_makho_malo_mavitri__soluong = new Dictionary<string, decimal>();
+            var mavt_list = new List<string>();
+            var makho_list = new List<string>();
+            var malo_list = new List<string>();
+            var mavitri_list = new List<string>();
+            string mavt_in = "", makho_in = "", malo_in = "", mavitri_in = "";
+            foreach (DataRow row in AD.Rows)
+            {
+                string c_mavt = row["Ma_vt"].ToString().Trim();
+                string c_makho = row["Ma_kho_i"].ToString().Trim();
+                string c_malo = row["Ma_lo"].ToString().Trim();
+                string c_mavitri = row["Ma_vitri"].ToString().Trim();
+                string c_mavt_makho_malo_mavitri = c_mavt + "~" + c_makho + "~" + c_malo + "~" + c_mavitri;
+                decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                //lay thong tin lodate cua mavt
+                bool lo = false, date = false, vitri = false;
+                IDictionary<string, object> key = new SortedDictionary<string, object>();
+                key.Add("MA_VT", c_mavt);
+                var lodate_data = V6BusinessHelper.Select(V6TableName.Alvt, key, "*").Data;
+                if (lodate_data.Rows.Count == 1)
+                {
+                    DataRow row0 = lodate_data.Rows[0];
+                    lo = row0["Lo_yn"].ToString().Trim() == "1";
+                    date = row0["Date_yn"].ToString().Trim() == "1";
+                    vitri = row0["Vitri_yn"].ToString().Trim() == "1";
+                }
+                if (lo && date && vitri)
+                {
+                    if (!mavt_list.Contains(c_mavt))
+                    {
+                        mavt_list.Add(c_mavt);
+                        mavt_in += ",'" + c_mavt + "'";
+                    }
+                    if (!makho_list.Contains(c_makho))
+                    {
+                        makho_list.Add(c_makho);
+                        makho_in += ",'" + c_makho + "'";
+                    }
+                    if (!malo_list.Contains(c_malo))
+                    {
+                        malo_list.Add(c_malo);
+                        malo_in += ",'" + c_malo + "'";
+                    }
+                    if (!mavitri_list.Contains(c_mavitri))
+                    {
+                        mavitri_list.Add(c_mavitri);
+                        mavitri_in += ",'" + c_mavitri + "'";
+                    }
+
+                    if (mavt_makho_malo_mavitri__soluong.ContainsKey(c_mavt_makho_malo_mavitri))
+                    {
+                        mavt_makho_malo_mavitri__soluong[c_mavt_makho_malo_mavitri] += c_soluong;
+                    }
+                    else
+                    {
+                        mavt_makho_malo_mavitri__soluong[c_mavt_makho_malo_mavitri] = c_soluong;
+                    }
+                }
+            }
+            if (mavt_in.Length > 0) mavt_in = mavt_in.Substring(1);
+            if (makho_in.Length > 0) makho_in = makho_in.Substring(1);
+            if (malo_in.Length > 0) malo_in = malo_in.Substring(1);
+            if (mavitri_in.Length > 0) mavitri_in = mavitri_in.Substring(1);
+            var data = Invoice.GetViTriLoDateAll(mavt_in, makho_in, malo_in, mavitri_in, _sttRec, dateNgayCT.Value);
+            //Kiểm tra
+            string message = "";
+            
+            foreach (KeyValuePair<string, decimal> item in mavt_makho_malo_mavitri__soluong)
+            {
+                var ss = item.Key.Split('~');
+                var c_mavt = ss[0];
+                var c_makho = ss[1];
+                var c_malo = ss[2];
+                var c_mavitri = ss[3];
+
+                foreach (DataRow row in data.Rows)
+                {
+                    var data_mavt = row["Ma_vt"].ToString().Trim();
+                    var data_makho = row["Ma_kho"].ToString().Trim();
+                    var data_malo = row["Ma_lo"].ToString().Trim();
+                    var data_mavitri = row["Ma_vitri"].ToString().Trim();
+                    var data_soluong = ObjectAndString.ObjectToDecimal(row["Ton_dau"]);
+                    if (c_mavt == data_mavt && c_makho == data_makho && c_malo == data_malo && c_mavitri == data_mavitri)
+                    {
+                        if (data_soluong < item.Value)
+                        {
+                            message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Vitri:{5}  Tồn:{0}  Xuất:{1}\n",
+                                data_soluong, item.Value, c_makho, c_mavt, c_malo, c_mavitri);
+                        }
+                        goto NextItem;
+                    }
+                }
+
+                //else //Có dữ liệu nhưng không trùng mã...
+                message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Vitri:{5}  Tồn:{0}  Xuất:{1}\n",
+                            0, item.Value, c_makho, c_mavt, c_malo, c_mavitri);
+                    
+            NextItem:
+                DoNothing();
+            }
+            return message;
+            #endregion kho,vt,lo
+        }
+
+        private string CheckMakhoMavtMalo()
+        {
+            #region === KiemTra2 Kho,VatTu,Lo ===
+            //Reset biến
+            Dictionary<string, decimal> mavt_makho_malo__soluong = new Dictionary<string, decimal>();
+            var mavt_list = new List<string>();
+            var makho_list = new List<string>();
+            var malo_list = new List<string>();
+            string mavt_in = "", makho_in = "", malo_in = "";
+            foreach (DataRow row in AD.Rows)
+            {
+                string c_mavt = row["Ma_vt"].ToString().Trim();
+                string c_makho = row["Ma_kho_i"].ToString().Trim();
+                string c_malo = row["Ma_lo"].ToString().Trim();
+                string c_mavt_makho_malo = c_mavt + "~" + c_makho + "~" + c_malo;
+                decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                //lay thong tin lodate cua mavt
+                bool lo = false, date = false;
+                IDictionary<string, object> key = new SortedDictionary<string, object>();
+                key.Add("MA_VT", c_mavt);
+                var lodate_data = V6BusinessHelper.Select(V6TableName.Alvt, key, "*").Data;
+                if (lodate_data.Rows.Count == 1)
+                {
+                    DataRow row0 = lodate_data.Rows[0];
+                    lo = row0["Lo_yn"].ToString().Trim() == "1";
+                    date = row0["Date_yn"].ToString().Trim() == "1";
+                }
+                if (lo && date)
+                {
+                    if (!mavt_list.Contains(c_mavt))
+                    {
+                        mavt_list.Add(c_mavt);
+                        mavt_in += ",'" + c_mavt + "'";
+                    }
+                    if (!makho_list.Contains(c_makho))
+                    {
+                        makho_list.Add(c_makho);
+                        makho_in += ",'" + c_makho + "'";
+                    }
+                    if (!malo_list.Contains(c_malo))
+                    {
+                        malo_list.Add(c_malo);
+                        malo_in += ",'" + c_malo + "'";
+                    }
+
+                    if (mavt_makho_malo__soluong.ContainsKey(c_mavt_makho_malo))
+                    {
+                        mavt_makho_malo__soluong[c_mavt_makho_malo] += c_soluong;
+                    }
+                    else
+                    {
+                        mavt_makho_malo__soluong[c_mavt_makho_malo] = c_soluong;
+                    }
+                }
+            }
+            if (mavt_in.Length > 0) mavt_in = mavt_in.Substring(1);
+            if (makho_in.Length > 0) makho_in = makho_in.Substring(1);
+            if (malo_in.Length > 0) malo_in = malo_in.Substring(1);
+            var data = Invoice.GetLoDateAll(mavt_in, makho_in, malo_in, _sttRec, dateNgayCT.Value);
+            //Kiểm tra
+            string message = "";
+            
+            foreach (KeyValuePair<string, decimal> item in mavt_makho_malo__soluong)
+            {
+                var ss = item.Key.Split('~');
+                var c_mavt = ss[0];
+                var c_makho = ss[1];
+                var c_malo = ss[2];
+
+                //if(data.Rows.Count > 0)
+                foreach (DataRow row in data.Rows)
+                {
+                    var data_mavt = row["Ma_vt"].ToString().Trim();
+                    var data_makho = row["Ma_kho"].ToString().Trim();
+                    var data_malo = row["Ma_lo"].ToString().Trim();
+                    var data_soluong = ObjectAndString.ObjectToDecimal(row["Ton_dau"]);
+                    if (c_mavt == data_mavt && c_makho == data_makho && c_malo == data_malo)
+                    {
+                        if (data_soluong < item.Value)
+                        {
+                            message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Tồn:{0}  Xuất:{1}\n",
+                                data_soluong, item.Value, c_makho, c_mavt, c_malo);
+                        }
+                        
+                        goto NextItem;
+                    }
+                }
+                
+                message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Tồn:{0}  Xuất:{1}\n",
+                                0, item.Value, c_makho, c_mavt, c_malo);
+
+            NextItem:
+                DoNothing();
+            }
+
+            return message;
+            #endregion kho,vt,lo
+        }
+
+        private string CheckMakhoMavt()
+        {
+            #region === Check Makho, Mavt ===
+            Dictionary<string, decimal> mavt_makho__soluong = new Dictionary<string, decimal>();
+            // tạo key in
+            List<string> mavt_list = new List<string>();
+            List<string> makho_list = new List<string>();
+            string mavt_in = "", makho_in = "";
+            foreach (DataRow row in AD.Rows)
+            {
+                string c_mavt = row["Ma_vt"].ToString().Trim();
+                string c_makho = row["Ma_kho_i"].ToString().Trim();
+                string c_mavt_makho = c_mavt + "~" + c_makho;
+                decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+
+                if (!mavt_list.Contains(c_mavt))
+                {
+                    mavt_list.Add(c_mavt);
+                    mavt_in += ",'" + c_mavt + "'";
+                }
+                if (!makho_list.Contains(c_makho))
+                {
+                    makho_list.Add(c_makho);
+                    makho_in += ",'" + c_makho + "'";
+                }
+
+                if (mavt_makho__soluong.ContainsKey(c_mavt_makho))
+                {
+                    mavt_makho__soluong[c_mavt_makho] += c_soluong;
+                }
+                else
+                {
+                    mavt_makho__soluong[c_mavt_makho] = c_soluong;
+                }
+            }
+            if (mavt_in.Length > 0) mavt_in = mavt_in.Substring(1);
+            if (makho_in.Length > 0) makho_in = makho_in.Substring(1);
+            //Get dữ liệu tồn
+            var data = Invoice.GetStockAll(mavt_in, makho_in, _sttRec, dateNgayCT.Value);
+            //Kiểm tra
+            string message = "";
+            foreach (KeyValuePair<string, decimal> item in mavt_makho__soluong)
+            {
+                var ss = item.Key.Split('~');
+                var c_mavt = ss[0];
+                var c_makho = ss[1];
+                foreach (DataRow row in data.Rows)
+                {
+                    var data_mavt = row["Ma_vt"].ToString().Trim();
+                    var data_makho = row["Ma_kho"].ToString().Trim();
+                    var data_soluong = ObjectAndString.ObjectToDecimal(row["Ton00"]);
+                    if (c_mavt == data_mavt && c_makho == data_makho)
+                    {
+                        if (data_soluong < item.Value)
+                        {
+                            message += string.Format("Kho:{2}  Vật tư:{3}  Tồn:{0}  Xuất:{1}\n",
+                                data_soluong, item.Value, c_makho, c_mavt);
+                        }
+                        
+                        goto NextItem;
+                    }
+                }
+                // Nếu không gặp được bộ mã trùng item.Key
+                message += string.Format("Kho:{2}  Vật tư:{3}  Tồn:{0}  Xuất:{1}\n",
+                                0, item.Value, c_makho, c_mavt);
+                
+                NextItem:
+                DoNothing();
+            }
+            return message;
+            #endregion makho, mavt
         }
 
         private bool ValidateData_Detail(SortedDictionary<string, object> data)

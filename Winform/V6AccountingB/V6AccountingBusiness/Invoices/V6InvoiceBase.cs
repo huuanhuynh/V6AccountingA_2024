@@ -461,6 +461,11 @@ namespace V6AccountingBusiness.Invoices
         {
             return V6BusinessHelper.GetLoDate13(mavt, makho, malo, sttRec, ngayct);
         }
+
+        public DataTable GetLoDateAll(string mavt_in, string makho_in, string malo_in, string sttRec, DateTime ngayct)
+        {
+            return V6BusinessHelper.GetLoDateAll(mavt_in, makho_in, malo_in, sttRec, ngayct);
+        }
         
         public DataTable GetViTri13(string mavt, string makho, string mavitri, string sttRec, DateTime ngayct)
         {
@@ -471,14 +476,30 @@ namespace V6AccountingBusiness.Invoices
         {
             return V6BusinessHelper.GetViTriLoDate13(mavt, makho, malo, mavitri, sttRec, ngayct);
         }
+        public DataTable GetViTriLoDateAll(string mavt_in, string makho_in, string malo_in, string mavitri_in, string sttRec, DateTime ngayct)
+        {
+            return V6BusinessHelper.GetViTriLoDateAll(mavt_in, makho_in, malo_in, mavitri_in, sttRec, ngayct);
+        }
 
         /// <summary>
         /// [VPA_CheckTonXuatAm] 1,'20160216','SOA','STTREC','a.MA_VT=''VTLO1'' AND a.MA_KHO=',''
         /// </summary>
         /// <returns></returns>
-        public DataTable GetStock (string mavt, string makho, string sttRec, DateTime ngayct)
+        public DataTable GetStock(string mavt, string makho, string sttRec, DateTime ngayct)
         {
             return V6BusinessHelper.GetStock(Mact, mavt, makho, sttRec, ngayct);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mavt_in">'a','b'</param>
+        /// <param name="makho_in"></param>
+        /// <param name="sttRec"></param>
+        /// <param name="ngayct"></param>
+        /// <returns></returns>
+        public DataTable GetStockAll(string mavt_in, string makho_in, string sttRec, DateTime ngayct)
+        {
+            return V6BusinessHelper.GetStockAll(Mact, mavt_in, makho_in, sttRec, ngayct);
         }
 
         //public virtual bool InsertInvoice(SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList)
