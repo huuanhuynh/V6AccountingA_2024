@@ -141,7 +141,7 @@ namespace DataAccessLayer.Implementations.Business
                 new SqlParameter("@cKey2", ""),
                 new SqlParameter("@cKey3", ""),
                 new SqlParameter("@cStt_rec", sttRec),
-                new SqlParameter("@dBg", ngayct)
+                new SqlParameter("@dBg", ngayct.Date)
             };
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_DATE_STT_REC", plist).Tables[0];
         }
@@ -157,7 +157,7 @@ namespace DataAccessLayer.Implementations.Business
                 new SqlParameter("@cKey2", ""),
                 new SqlParameter("@cKey3", ""),
                 new SqlParameter("@cStt_rec", sttRec),
-                new SqlParameter("@dBg", ngayct)
+                new SqlParameter("@dBg", ngayct.Date)
             };
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_DATE_STT_REC", plist).Tables[0];
         }
@@ -174,7 +174,7 @@ namespace DataAccessLayer.Implementations.Business
                 new SqlParameter("@cKey2", ""),
                 new SqlParameter("@cKey3", ""),
                 new SqlParameter("@cStt_rec", sttRec),
-                new SqlParameter("@dBg", ngayct)
+                new SqlParameter("@dBg", ngayct.Date)
             };
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_VITRI_STT_REC", plist).Tables[0];
         }
@@ -192,7 +192,7 @@ namespace DataAccessLayer.Implementations.Business
                 new SqlParameter("@cKey2", ""),
                 new SqlParameter("@cKey3", ""),
                 new SqlParameter("@cStt_rec", sttRec),
-                new SqlParameter("@dBg", ngayct)
+                new SqlParameter("@dBg", ngayct.Date)
             };
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_VITRI_DATE_STT_REC", plist).Tables[0];
         }
@@ -205,7 +205,7 @@ namespace DataAccessLayer.Implementations.Business
                 new SqlParameter("@cKey2", ""),
                 new SqlParameter("@cKey3", ""),
                 new SqlParameter("@cStt_rec", sttRec),
-                new SqlParameter("@dBg", ngayct)
+                new SqlParameter("@dBg", ngayct.Date)
             };
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_VITRI_DATE_STT_REC", plist).Tables[0];
         }

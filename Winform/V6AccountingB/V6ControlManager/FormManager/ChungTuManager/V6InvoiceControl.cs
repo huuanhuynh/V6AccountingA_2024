@@ -732,5 +732,340 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.ShowErrorMessage(GetType() + ".XuLyThayDoiTyGia: " + ex.Message);
             }
         }
+
+        #region ==== ValidateData_Master_CheckTon ====
+        /// <summary>
+        /// Kiểm tra tồn kho trước khi lưu. Trả về true là ok.
+        /// </summary>
+        /// <param name="Invoice"></param>
+        /// <param name="ngayCt">Ngày ct đang nhập trên form.</param>
+        /// <returns></returns>
+        protected bool ValidateData_Master_CheckTon(V6InvoiceBase Invoice, DateTime ngayCt)
+        {
+            try
+            {
+                if (V6Options.M_CHK_XUAT != "0") return true;
+
+                var M_CHECK_SAVE_STOCK = V6Options.V6OptionValues["M_CHECK_SAVE_STOCK"];
+                string message = "";
+                foreach (char c in M_CHECK_SAVE_STOCK)
+                {
+                    switch (c)
+                    {
+                        case '1':
+                            message = CheckMakhoMavt(Invoice, ngayCt);
+                            if (!string.IsNullOrEmpty(message)) goto ThongBao;
+                            break;
+                        case '2':
+                            message = CheckMakhoMavtMalo(Invoice, ngayCt);
+                            if (!string.IsNullOrEmpty(message)) goto ThongBao;
+                            break;
+                        case '3':
+                            message = CheckMakhoMavtMaloMavitri(Invoice, ngayCt);
+                            if (!string.IsNullOrEmpty(message)) goto ThongBao;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+            ThongBao:
+                if (!string.IsNullOrEmpty(message))
+                {
+                    this.ShowWarningMessage(message);
+                    return false;
+                }
+                //Kiểm tra ok.
+                return true;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "ValidateData_Master_CheckTon", ex);
+                ShowParentMessage("Có lỗi khi check tồn: " + ex.Message);
+                return true;
+            }
+        }
+
+        private string CheckMakhoMavtMaloMavitri(V6InvoiceBase Invoice, DateTime ngayCt)
+        {
+            #region === KiemTra3 Kho,VatTu,Lo,Vitri ===
+            //Reset biến
+            Dictionary<string, decimal> mavt_makho_malo_mavitri__soluong = new Dictionary<string, decimal>();
+            var mavt_list = new List<string>();
+            var makho_list = new List<string>();
+            var malo_list = new List<string>();
+            var mavitri_list = new List<string>();
+            string mavt_in = "", makho_in = "", malo_in = "", mavitri_in = "";
+            foreach (DataRow row in AD.Rows)
+            {
+                string c_mavt = row["Ma_vt"].ToString().Trim();
+                string c_makho = row["Ma_kho_i"].ToString().Trim();
+                string c_malo = row["Ma_lo"].ToString().Trim();
+                string c_mavitri = row["Ma_vitri"].ToString().Trim();
+                string c_mavt_makho_malo_mavitri = c_mavt + "~" + c_makho + "~" + c_malo + "~" + c_mavitri;
+                decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                //lay thong tin lodate cua mavt
+                bool lo = false, date = false, vitri = false;
+                IDictionary<string, object> key = new SortedDictionary<string, object>();
+                key.Add("MA_VT", c_mavt);
+                var lodate_data = V6BusinessHelper.Select(V6TableName.Alvt, key, "*").Data;
+                if (lodate_data.Rows.Count == 1)
+                {
+                    DataRow row0 = lodate_data.Rows[0];
+                    lo = row0["Lo_yn"].ToString().Trim() == "1";
+                    date = row0["Date_yn"].ToString().Trim() == "1";
+                    vitri = row0["Vitri_yn"].ToString().Trim() == "1";
+                }
+                if (lo && date && vitri)
+                {
+                    if (!mavt_list.Contains(c_mavt))
+                    {
+                        mavt_list.Add(c_mavt);
+                        mavt_in += ",'" + c_mavt + "'";
+                    }
+                    if (!makho_list.Contains(c_makho))
+                    {
+                        makho_list.Add(c_makho);
+                        makho_in += ",'" + c_makho + "'";
+                    }
+                    if (!malo_list.Contains(c_malo))
+                    {
+                        malo_list.Add(c_malo);
+                        malo_in += ",'" + c_malo + "'";
+                    }
+                    if (!mavitri_list.Contains(c_mavitri))
+                    {
+                        mavitri_list.Add(c_mavitri);
+                        mavitri_in += ",'" + c_mavitri + "'";
+                    }
+
+                    if (mavt_makho_malo_mavitri__soluong.ContainsKey(c_mavt_makho_malo_mavitri))
+                    {
+                        mavt_makho_malo_mavitri__soluong[c_mavt_makho_malo_mavitri] += c_soluong;
+                    }
+                    else
+                    {
+                        mavt_makho_malo_mavitri__soluong[c_mavt_makho_malo_mavitri] = c_soluong;
+                    }
+                }
+            }
+            if (mavt_in.Length > 0) mavt_in = mavt_in.Substring(1);
+            if (makho_in.Length > 0) makho_in = makho_in.Substring(1);
+            if (malo_in.Length > 0) malo_in = malo_in.Substring(1);
+            if (mavitri_in.Length > 0) mavitri_in = mavitri_in.Substring(1);
+            var data = Invoice.GetViTriLoDateAll(mavt_in, makho_in, malo_in, mavitri_in, _sttRec, ngayCt.Date);
+            //Kiểm tra
+            string message = "";
+
+            foreach (KeyValuePair<string, decimal> item in mavt_makho_malo_mavitri__soluong)
+            {
+                var ss = item.Key.Split('~');
+                var c_mavt = ss[0];
+                var c_makho = ss[1];
+                var c_malo = ss[2];
+                var c_mavitri = ss[3];
+
+                foreach (DataRow row in data.Rows)
+                {
+                    var data_mavt = row["Ma_vt"].ToString().Trim();
+                    var data_makho = row["Ma_kho"].ToString().Trim();
+                    var data_malo = row["Ma_lo"].ToString().Trim();
+                    var data_mavitri = row["Ma_vitri"].ToString().Trim();
+                    var data_soluong = ObjectAndString.ObjectToDecimal(row["Ton_dau"]);
+                    if (c_mavt == data_mavt && c_makho == data_makho && c_malo == data_malo && c_mavitri == data_mavitri)
+                    {
+                        if (data_soluong < item.Value)
+                        {
+                            message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Vitri:{5}  Tồn:{0}  Xuất:{1}\n",
+                                data_soluong, item.Value, c_makho, c_mavt, c_malo, c_mavitri);
+                        }
+                        goto NextItem;
+                    }
+                }
+
+                //else //Có dữ liệu nhưng không trùng mã...
+                message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Vitri:{5}  Tồn:{0}  Xuất:{1}\n",
+                            0, item.Value, c_makho, c_mavt, c_malo, c_mavitri);
+
+            NextItem:
+                DoNothing();
+            }
+            return message;
+            #endregion kho,vt,lo
+        }
+
+        private string CheckMakhoMavtMalo(V6InvoiceBase Invoice, DateTime ngayCt)
+        {
+            #region === KiemTra2 Kho,VatTu,Lo ===
+            //Reset biến
+            Dictionary<string, decimal> mavt_makho_malo__soluong = new Dictionary<string, decimal>();
+            var mavt_list = new List<string>();
+            var makho_list = new List<string>();
+            var malo_list = new List<string>();
+            string mavt_in = "", makho_in = "", malo_in = "";
+            foreach (DataRow row in AD.Rows)
+            {
+                string c_mavt = row["Ma_vt"].ToString().Trim();
+                string c_makho = row["Ma_kho_i"].ToString().Trim();
+                string c_malo = row["Ma_lo"].ToString().Trim();
+                string c_mavt_makho_malo = c_mavt + "~" + c_makho + "~" + c_malo;
+                decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                //lay thong tin lodate cua mavt
+                bool lo = false, date = false;
+                IDictionary<string, object> key = new SortedDictionary<string, object>();
+                key.Add("MA_VT", c_mavt);
+                var lodate_data = V6BusinessHelper.Select(V6TableName.Alvt, key, "*").Data;
+                if (lodate_data.Rows.Count == 1)
+                {
+                    DataRow row0 = lodate_data.Rows[0];
+                    lo = row0["Lo_yn"].ToString().Trim() == "1";
+                    date = row0["Date_yn"].ToString().Trim() == "1";
+                }
+                if (lo && date)
+                {
+                    if (!mavt_list.Contains(c_mavt))
+                    {
+                        mavt_list.Add(c_mavt);
+                        mavt_in += ",'" + c_mavt + "'";
+                    }
+                    if (!makho_list.Contains(c_makho))
+                    {
+                        makho_list.Add(c_makho);
+                        makho_in += ",'" + c_makho + "'";
+                    }
+                    if (!malo_list.Contains(c_malo))
+                    {
+                        malo_list.Add(c_malo);
+                        malo_in += ",'" + c_malo + "'";
+                    }
+
+                    if (mavt_makho_malo__soluong.ContainsKey(c_mavt_makho_malo))
+                    {
+                        mavt_makho_malo__soluong[c_mavt_makho_malo] += c_soluong;
+                    }
+                    else
+                    {
+                        mavt_makho_malo__soluong[c_mavt_makho_malo] = c_soluong;
+                    }
+                }
+            }
+            if (mavt_in.Length > 0) mavt_in = mavt_in.Substring(1);
+            if (makho_in.Length > 0) makho_in = makho_in.Substring(1);
+            if (malo_in.Length > 0) malo_in = malo_in.Substring(1);
+            var data = Invoice.GetLoDateAll(mavt_in, makho_in, malo_in, _sttRec, ngayCt);
+            //Kiểm tra
+            string message = "";
+
+            foreach (KeyValuePair<string, decimal> item in mavt_makho_malo__soluong)
+            {
+                var ss = item.Key.Split('~');
+                var c_mavt = ss[0];
+                var c_makho = ss[1];
+                var c_malo = ss[2];
+
+                //if(data.Rows.Count > 0)
+                foreach (DataRow row in data.Rows)
+                {
+                    var data_mavt = row["Ma_vt"].ToString().Trim();
+                    var data_makho = row["Ma_kho"].ToString().Trim();
+                    var data_malo = row["Ma_lo"].ToString().Trim();
+                    var data_soluong = ObjectAndString.ObjectToDecimal(row["Ton_dau"]);
+                    if (c_mavt == data_mavt && c_makho == data_makho && c_malo == data_malo)
+                    {
+                        if (data_soluong < item.Value)
+                        {
+                            message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Tồn:{0}  Xuất:{1}\n",
+                                data_soluong, item.Value, c_makho, c_mavt, c_malo);
+                        }
+
+                        goto NextItem;
+                    }
+                }
+
+                message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Tồn:{0}  Xuất:{1}\n",
+                                0, item.Value, c_makho, c_mavt, c_malo);
+
+            NextItem:
+                DoNothing();
+            }
+
+            return message;
+            #endregion kho,vt,lo
+        }
+
+        private string CheckMakhoMavt(V6InvoiceBase Invoice, DateTime ngayCt)
+        {
+            #region === Check Makho, Mavt ===
+            Dictionary<string, decimal> mavt_makho__soluong = new Dictionary<string, decimal>();
+            // tạo key in
+            List<string> mavt_list = new List<string>();
+            List<string> makho_list = new List<string>();
+            string mavt_in = "", makho_in = "";
+            foreach (DataRow row in AD.Rows)
+            {
+                string c_mavt = row["Ma_vt"].ToString().Trim();
+                string c_makho = row["Ma_kho_i"].ToString().Trim();
+                string c_mavt_makho = c_mavt + "~" + c_makho;
+                decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+
+                if (!mavt_list.Contains(c_mavt))
+                {
+                    mavt_list.Add(c_mavt);
+                    mavt_in += ",'" + c_mavt + "'";
+                }
+                if (!makho_list.Contains(c_makho))
+                {
+                    makho_list.Add(c_makho);
+                    makho_in += ",'" + c_makho + "'";
+                }
+
+                if (mavt_makho__soluong.ContainsKey(c_mavt_makho))
+                {
+                    mavt_makho__soluong[c_mavt_makho] += c_soluong;
+                }
+                else
+                {
+                    mavt_makho__soluong[c_mavt_makho] = c_soluong;
+                }
+            }
+            if (mavt_in.Length > 0) mavt_in = mavt_in.Substring(1);
+            if (makho_in.Length > 0) makho_in = makho_in.Substring(1);
+            //Get dữ liệu tồn
+            var data = Invoice.GetStockAll(mavt_in, makho_in, _sttRec, ngayCt);
+            //Kiểm tra
+            string message = "";
+            foreach (KeyValuePair<string, decimal> item in mavt_makho__soluong)
+            {
+                var ss = item.Key.Split('~');
+                var c_mavt = ss[0];
+                var c_makho = ss[1];
+                foreach (DataRow row in data.Rows)
+                {
+                    var data_mavt = row["Ma_vt"].ToString().Trim();
+                    var data_makho = row["Ma_kho"].ToString().Trim();
+                    var data_soluong = ObjectAndString.ObjectToDecimal(row["Ton00"]);
+                    if (c_mavt == data_mavt && c_makho == data_makho)
+                    {
+                        if (data_soluong < item.Value)
+                        {
+                            message += string.Format("Kho:{2}  Vật tư:{3}  Tồn:{0}  Xuất:{1}\n",
+                                data_soluong, item.Value, c_makho, c_mavt);
+                        }
+
+                        goto NextItem;
+                    }
+                }
+                // Nếu không gặp được bộ mã trùng item.Key
+                message += string.Format("Kho:{2}  Vật tư:{3}  Tồn:{0}  Xuất:{1}\n",
+                                0, item.Value, c_makho, c_mavt);
+
+            NextItem:
+                DoNothing();
+            }
+            return message;
+            #endregion makho, mavt
+        }
+        #endregion CheckTon
+
     }
 }

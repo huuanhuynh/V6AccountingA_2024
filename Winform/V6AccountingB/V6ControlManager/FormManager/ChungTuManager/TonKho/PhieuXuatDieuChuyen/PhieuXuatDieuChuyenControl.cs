@@ -3808,6 +3808,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                     }
                 }
+
+                var check_ton = ValidateData_Master_CheckTon(Invoice, dateNgayCT.Value);
+                if (!check_ton) return false;
+
                 //OK
                 return true;
             }
