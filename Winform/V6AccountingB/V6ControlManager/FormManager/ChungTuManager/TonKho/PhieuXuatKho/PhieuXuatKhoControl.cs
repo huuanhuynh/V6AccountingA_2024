@@ -3745,7 +3745,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     }
                 }
 
-                var check_ton = ValidateData_Master_CheckTon(Invoice, dateNgayCT.Value);
+                var check_ton = ValidateData_Master_CheckTon(Invoice, dateNgayCT.Value, null);
                 if (!check_ton) return false;
 
                 //OK

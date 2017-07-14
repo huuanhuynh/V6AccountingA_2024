@@ -734,13 +734,15 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         #region ==== ValidateData_Master_CheckTon ====
+
         /// <summary>
         /// Kiểm tra tồn kho trước khi lưu. Trả về true là ok.
         /// </summary>
         /// <param name="Invoice"></param>
         /// <param name="ngayCt">Ngày ct đang nhập trên form.</param>
+        /// <param name="maKhoX">Mã kho xuất trên form, nếu dùng Ma_kho_i để null</param>
         /// <returns></returns>
-        protected bool ValidateData_Master_CheckTon(V6InvoiceBase Invoice, DateTime ngayCt)
+        protected bool ValidateData_Master_CheckTon(V6InvoiceBase Invoice, DateTime ngayCt, string maKhoX)
         {
             try
             {
@@ -753,15 +755,15 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     switch (c)
                     {
                         case '1':
-                            message = CheckMakhoMavt(Invoice, ngayCt);
+                            message = CheckMakhoMavt(Invoice, ngayCt, maKhoX);
                             if (!string.IsNullOrEmpty(message)) goto ThongBao;
                             break;
                         case '2':
-                            message = CheckMakhoMavtMalo(Invoice, ngayCt);
+                            message = CheckMakhoMavtMalo(Invoice, ngayCt, maKhoX);
                             if (!string.IsNullOrEmpty(message)) goto ThongBao;
                             break;
                         case '3':
-                            message = CheckMakhoMavtMaloMavitri(Invoice, ngayCt);
+                            message = CheckMakhoMavtMaloMavitri(Invoice, ngayCt, maKhoX);
                             if (!string.IsNullOrEmpty(message)) goto ThongBao;
                             break;
                         default:
@@ -786,7 +788,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        private string CheckMakhoMavtMaloMavitri(V6InvoiceBase Invoice, DateTime ngayCt)
+        private string CheckMakhoMavtMaloMavitri(V6InvoiceBase Invoice, DateTime ngayCt, string maKhoX)
         {
             #region === KiemTra3 Kho,VatTu,Lo,Vitri ===
             //Reset biến
@@ -799,7 +801,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             foreach (DataRow row in AD.Rows)
             {
                 string c_mavt = row["Ma_vt"].ToString().Trim();
-                string c_makho = row["Ma_kho_i"].ToString().Trim();
+                string c_makho = maKhoX ?? row["Ma_kho_i"].ToString().Trim();
                 string c_malo = row["Ma_lo"].ToString().Trim();
                 string c_mavitri = row["Ma_vitri"].ToString().Trim();
                 string c_mavt_makho_malo_mavitri = c_mavt + "~" + c_makho + "~" + c_malo + "~" + c_mavitri;
@@ -894,7 +896,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             #endregion kho,vt,lo
         }
 
-        private string CheckMakhoMavtMalo(V6InvoiceBase Invoice, DateTime ngayCt)
+        private string CheckMakhoMavtMalo(V6InvoiceBase Invoice, DateTime ngayCt, string maKhoX)
         {
             #region === KiemTra2 Kho,VatTu,Lo ===
             //Reset biến
@@ -906,7 +908,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             foreach (DataRow row in AD.Rows)
             {
                 string c_mavt = row["Ma_vt"].ToString().Trim();
-                string c_makho = row["Ma_kho_i"].ToString().Trim();
+                string c_makho = maKhoX ?? row["Ma_kho_i"].ToString().Trim();
                 string c_malo = row["Ma_lo"].ToString().Trim();
                 string c_mavt_makho_malo = c_mavt + "~" + c_makho + "~" + c_malo;
                 decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
@@ -993,7 +995,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             #endregion kho,vt,lo
         }
 
-        private string CheckMakhoMavt(V6InvoiceBase Invoice, DateTime ngayCt)
+        private string CheckMakhoMavt(V6InvoiceBase Invoice, DateTime ngayCt, string maKhoX)
         {
             #region === Check Makho, Mavt ===
             Dictionary<string, decimal> mavt_makho__soluong = new Dictionary<string, decimal>();
@@ -1004,7 +1006,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             foreach (DataRow row in AD.Rows)
             {
                 string c_mavt = row["Ma_vt"].ToString().Trim();
-                string c_makho = row["Ma_kho_i"].ToString().Trim();
+                string c_makho = maKhoX ?? row["Ma_kho_i"].ToString().Trim();
                 string c_mavt_makho = c_mavt + "~" + c_makho;
                 decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
 

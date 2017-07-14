@@ -3809,7 +3809,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     }
                 }
 
-                var check_ton = ValidateData_Master_CheckTon(Invoice, dateNgayCT.Value);
+                var check_ton = ValidateData_Master_CheckTon(Invoice, dateNgayCT.Value, txtMaKhoX.Text.Trim());
                 if (!check_ton) return false;
 
                 //OK
