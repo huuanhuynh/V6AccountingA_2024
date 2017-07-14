@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; 
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -13,6 +13,7 @@ using V6ControlManager.FormManager.ReportManager.ReportD;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
+using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager
 {
@@ -225,15 +226,67 @@ namespace V6ControlManager.FormManager.ReportManager
             all_Objects = All_Objects;
         }
 
-        public static void ShowQuickReport(string itemId)
+        public static void ShowQuickReport(Control owner, string itemId)
         {
             try
             {
-                return;
-                ReportRViewBase qr = new ReportRViewBase
-                    (itemId, "ASOTH1", "ASOTH1", "ASOTH1", "rtitle", "t2", "rf5", "tf5", "t2f5");
-                qr.ShowToForm("QuickReport", true);
-                qr.btnNhan_Click(null, null);
+                //return;
+                var data = V6Menu.GetMenuQuickReport();
+                if (data == null || data.Rows.Count == 0) return;
+                
+                var row = data.Rows[0];
+                
+                MenuButton mButton = new MenuButton()
+                {
+                    ItemID = row["itemid"].ToString().Trim().ToUpper(),
+                    Text = V6Setting.IsVietnamese
+                        ? row["vbar"].ToString().Trim()
+                        : row["vbar2"].ToString().Trim(),
+                    CodeForm = row["codeform"].ToString().Trim(),
+                    Exe = row["program"].ToString().Trim(),
+                    MaChungTu = row["ma_ct"].ToString().Trim(),
+                    NhatKy = row["nhat_ky"].ToString().Trim(),
+
+                    ReportFile = row["rep_file"].ToString().Trim(),
+                    ReportTitle = row["title"].ToString().Trim(),
+                    ReportTitle2 = row["title2"].ToString().Trim(),
+                    ReportFileF5 = row["rep_fileF5"].ToString().Trim(),
+                    ReportTitleF5 = row["titleF5"].ToString().Trim(),
+                    ReportTitle2F5 = row["title2F5"].ToString().Trim(),
+
+                    Key1 = row["Key1"].ToString().Trim(),
+                    Key2 = row["Key2"].ToString().Trim(),
+                    Key3 = row["Key3"].ToString().Trim(),
+                    Key4 = row["Key4"].ToString().Trim(),
+                };
+                var c = MenuManager.MenuManager.GenControl(owner, mButton, null);
+                //auto click
+                if (c is ReportRViewBase)
+                {
+                    (c as ReportRViewBase).btnNhan_Click(null, null);
+                }
+                else if (c is ReportR44ViewBase)
+                {
+                    (c as ReportR44ViewBase).btnNhan_Click(null, null);
+                }
+                else if (c is ReportRView2Base)
+                {
+                    (c as ReportRView2Base).btnNhan_Click(null, null);
+                }
+                else if (c is ReportRWWView2Base)
+                {
+                    (c as ReportRWWView2Base).btnNhan_Click(null, null);
+                }
+                else if (c is ReportDViewBase)
+                {
+                    (c as ReportDViewBase).btnNhan_Click(null, null);
+                }
+                else if (c is ReportD99ViewBase)
+                {
+                    (c as ReportD99ViewBase).btnNhan_Click(null, null);
+                }
+
+                c.ShowToForm(mButton.ReportTitle, true);
             }
             catch (Exception ex)
             {

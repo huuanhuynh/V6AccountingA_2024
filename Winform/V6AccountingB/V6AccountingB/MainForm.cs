@@ -540,7 +540,7 @@ namespace V6AccountingB
         {
             try
             {
-                QuickReportManager.ShowQuickReport("CallFromMain");
+                QuickReportManager.ShowQuickReport(this, "CallFromMain");
             }
             catch (Exception ex)
             {
