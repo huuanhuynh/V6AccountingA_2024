@@ -360,7 +360,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // v6ColorTextBox33
             // 
             this.v6ColorTextBox33.AccessibleName = "ma_kho_i";
-            this.v6ColorTextBox33.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox33.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.v6ColorTextBox33.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox33.CheckOnLeave = false;
             this.v6ColorTextBox33.EnterColor = System.Drawing.Color.PaleGreen;
@@ -372,6 +372,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6ColorTextBox33.Name = "v6ColorTextBox33";
             this.v6ColorTextBox33.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox33.TabIndex = 1;
+            this.v6ColorTextBox33.Visible = false;
             this.v6ColorTextBox33.VVar = "MA_KHO";
             // 
             // v6Label9
@@ -508,11 +509,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             this.v6Label37.AccessibleDescription = "SEARCHL00020";
             this.v6Label37.AutoSize = true;
+            this.v6Label37.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.v6Label37.Location = new System.Drawing.Point(6, 22);
             this.v6Label37.Name = "v6Label37";
             this.v6Label37.Size = new System.Drawing.Size(43, 13);
             this.v6Label37.TabIndex = 0;
             this.v6Label37.Text = "Mã kho";
+            this.v6Label37.Visible = false;
             // 
             // LocTTChiTietPhieuXuatDieuChuyen
             // 

@@ -1752,6 +1752,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 _tienNt.Value = _phaiTtNt.Value;
                 _tien.Value = _phaiTtNt.Value;
                 _ttqd.Value = _phaiTtNt.Value;
+                _tientt.Value = _phaiTtNt.Value;
 
                 _psnoNt.Value = _phaiTtNt.Value;
                 _psno.Value = _phaiTtNt.Value;

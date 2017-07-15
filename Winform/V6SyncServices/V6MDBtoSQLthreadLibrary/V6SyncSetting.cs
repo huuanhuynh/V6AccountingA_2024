@@ -23,6 +23,12 @@ namespace V6ThreadLibrary
             get { return GetSettingP("CopyToV6") == "1"; }
             set { SetSetting("CopyToV6", value ? "1" : "0"); }
         }
+        
+        public bool CopyToLocal
+        {
+            get { return GetSettingP("CopyToLocal") == "1"; }
+            set { SetSetting("CopyToLocal", value ? "1" : "0"); }
+        }
 
         public string LastOpenXmlTable
         {
@@ -46,6 +52,11 @@ namespace V6ThreadLibrary
         public string VPN_EPASS
         {
             get { return GetSettingP("VPN_EPASS"); }
+        }
+        
+        public string LocalFolder
+        {
+            get { return GetSettingP("LocalFolder"); }
         }
 
         public bool SetSetting(string Name, string Value)

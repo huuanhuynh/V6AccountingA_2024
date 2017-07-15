@@ -855,6 +855,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
             if (makho_in.Length > 0) makho_in = makho_in.Substring(1);
             if (malo_in.Length > 0) malo_in = malo_in.Substring(1);
             if (mavitri_in.Length > 0) mavitri_in = mavitri_in.Substring(1);
+            
+            if (string.IsNullOrEmpty(mavt_in) || string.IsNullOrEmpty(makho_in) || string.IsNullOrEmpty(malo_in))
+            {
+                return null;
+            }
             var data = Invoice.GetViTriLoDateAll(mavt_in, makho_in, malo_in, mavitri_in, _sttRec, ngayCt.Date);
             //Kiểm tra
             string message = "";
@@ -954,6 +959,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
             if (mavt_in.Length > 0) mavt_in = mavt_in.Substring(1);
             if (makho_in.Length > 0) makho_in = makho_in.Substring(1);
             if (malo_in.Length > 0) malo_in = malo_in.Substring(1);
+
+            if (string.IsNullOrEmpty(mavt_in) || string.IsNullOrEmpty(makho_in) || string.IsNullOrEmpty(malo_in))
+            {
+                return null;
+            }
             var data = Invoice.GetLoDateAll(mavt_in, makho_in, malo_in, _sttRec, ngayCt);
             //Kiểm tra
             string message = "";
