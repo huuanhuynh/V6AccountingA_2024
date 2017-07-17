@@ -362,6 +362,28 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return null;
         }
 
+        /// <summary>
+        /// Stt_rec &lt;&gt; ADrow["STT_REC_TT"]
+        /// </summary>
+        /// <returns></returns>
+        protected string GetSoCt0InitFilter()
+        {
+            var result = "";
+            try
+            {
+                foreach (DataRow row in AD.Rows)
+                {
+                    result += " And Stt_rec <> '" + row["STT_REC_TT"].ToString().Trim() + "'";
+                }
+                if (result.Length > 4) result = result.Substring(4);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".GetSoCt0InitFilter: " + ex.Message);
+            }
+            return result;
+        }
+
         public void HienThiTongSoDong(Label lblTongSoDong)
         {
             var tSoDong = AD == null ? 0 : AD.Rows.Count;

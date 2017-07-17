@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AlbcAddEditForm));
             this.txtCaption = new V6Controls.V6ColorTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCaption2 = new V6Controls.V6ColorTextBox();
@@ -107,6 +108,11 @@
             this.btnExcelTemplateView = new System.Windows.Forms.Button();
             this.txtExcel2View = new System.Windows.Forms.RichTextBox();
             this.btnExcel2View = new System.Windows.Forms.Button();
+            this.btnEditXml = new System.Windows.Forms.Button();
+            this.txtDmethod = new V6Controls.V6ColorTextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.v6ColorTextBox16 = new V6Controls.V6ColorTextBox();
+            this.label47 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -779,12 +785,17 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 184);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(755, 295);
+            this.tabControl1.Size = new System.Drawing.Size(755, 416);
             this.tabControl1.TabIndex = 37;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage1.Controls.Add(this.btnEditXml);
+            this.tabPage1.Controls.Add(this.txtDmethod);
+            this.tabPage1.Controls.Add(this.label29);
+            this.tabPage1.Controls.Add(this.v6ColorTextBox16);
+            this.tabPage1.Controls.Add(this.label47);
             this.tabPage1.Controls.Add(this.txtExcel1);
             this.tabPage1.Controls.Add(this.txtShowFields1);
             this.tabPage1.Controls.Add(this.txtFormats1);
@@ -810,7 +821,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(747, 269);
+            this.tabPage1.Size = new System.Drawing.Size(747, 390);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Định dạng xem và Excel";
             // 
@@ -841,7 +852,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(747, 269);
+            this.tabPage2.Size = new System.Drawing.Size(747, 390);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Định dạng màu";
             // 
@@ -1147,6 +1158,79 @@
             this.btnExcel2View.UseVisualStyleBackColor = true;
             this.btnExcel2View.Click += new System.EventHandler(this.btnExcel2View_Click);
             // 
+            // btnEditXml
+            // 
+            this.btnEditXml.AccessibleName = "";
+            this.btnEditXml.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditXml.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnEditXml.Location = new System.Drawing.Point(701, 289);
+            this.btnEditXml.Name = "btnEditXml";
+            this.btnEditXml.Size = new System.Drawing.Size(40, 25);
+            this.btnEditXml.TabIndex = 22;
+            this.btnEditXml.Text = "...";
+            this.btnEditXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditXml.UseVisualStyleBackColor = true;
+            this.btnEditXml.Click += new System.EventHandler(this.btnEditXml_Click);
+            // 
+            // txtDmethod
+            // 
+            this.txtDmethod.AccessibleName = "MMETHOD";
+            this.txtDmethod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDmethod.BackColor = System.Drawing.Color.White;
+            this.txtDmethod.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDmethod.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDmethod.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDmethod.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDmethod.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDmethod.LeaveColor = System.Drawing.Color.White;
+            this.txtDmethod.Location = new System.Drawing.Point(99, 289);
+            this.txtDmethod.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDmethod.Multiline = true;
+            this.txtDmethod.Name = "txtDmethod";
+            this.txtDmethod.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtDmethod.Size = new System.Drawing.Size(586, 74);
+            this.txtDmethod.TabIndex = 21;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(7, 292);
+            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(29, 13);
+            this.label29.TabIndex = 20;
+            this.label29.Text = "XML";
+            // 
+            // v6ColorTextBox16
+            // 
+            this.v6ColorTextBox16.AccessibleName = "EXTRA_PARA";
+            this.v6ColorTextBox16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6ColorTextBox16.BackColor = System.Drawing.Color.White;
+            this.v6ColorTextBox16.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox16.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox16.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox16.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox16.HoverColor = System.Drawing.Color.Yellow;
+            this.v6ColorTextBox16.LeaveColor = System.Drawing.Color.White;
+            this.v6ColorTextBox16.Location = new System.Drawing.Point(99, 261);
+            this.v6ColorTextBox16.Margin = new System.Windows.Forms.Padding(4);
+            this.v6ColorTextBox16.Name = "v6ColorTextBox16";
+            this.v6ColorTextBox16.Size = new System.Drawing.Size(641, 20);
+            this.v6ColorTextBox16.TabIndex = 19;
+            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox16, resources.GetString("v6ColorTextBox16.ToolTip"));
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(7, 264);
+            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(78, 13);
+            this.label47.TabIndex = 18;
+            this.label47.Text = "EXTRA_PARA";
+            // 
             // AlbcAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1186,7 +1270,7 @@
             this.Controls.Add(this.txtCaption);
             this.Controls.Add(this.btnExcelTemplateView);
             this.Name = "AlbcAddEditForm";
-            this.Size = new System.Drawing.Size(762, 485);
+            this.Size = new System.Drawing.Size(762, 603);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -1278,5 +1362,10 @@
         private System.Windows.Forms.Label label27;
         private V6NumberTextBox v6NumberTextBox1;
         private System.Windows.Forms.Label label28;
+        protected System.Windows.Forms.Button btnEditXml;
+        private V6ColorTextBox txtDmethod;
+        private System.Windows.Forms.Label label29;
+        private V6ColorTextBox v6ColorTextBox16;
+        private System.Windows.Forms.Label label47;
     }
 }

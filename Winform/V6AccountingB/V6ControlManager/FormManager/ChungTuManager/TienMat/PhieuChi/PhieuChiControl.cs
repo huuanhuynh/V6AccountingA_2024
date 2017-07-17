@@ -1715,24 +1715,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
         }
 
-        private string GetSoCt0InitFilter()
-        {
-            var result = "";
-            try
-            {
-                foreach (DataRow row in AD.Rows)
-                {
-                    result += " And Stt_rec <> '" + row["STT_REC_TT"].ToString().Trim() + "'";
-                }
-                if (result.Length > 4) result = result.Substring(4);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".GetSoCt0InitFilter: " + ex.Message);
-            }
-            return result;
-        }
-
         private void XuLyKhiNhanSoCt(IDictionary<string,object> row)
         {
             try

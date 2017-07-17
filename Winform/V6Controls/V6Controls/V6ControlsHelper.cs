@@ -76,10 +76,12 @@ namespace V6Controls
         /// <param name="class_name"></param>
         /// <param name="dllName">Tên file dll, không bao gồm .dll</param>
         /// <param name="using_text"></param>
-        /// <param name="method_text"></param>
+        /// <param name="method_text">Các hàm, nếu không có trả về null</param>
         /// <returns></returns>
         public static Type CreateProgram(string name_space, string class_name, string dllName, string using_text, string method_text)
         {
+            if (string.IsNullOrEmpty(method_text)) return null;
+
             string output = "";
             try
             {

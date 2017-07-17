@@ -586,6 +586,7 @@
             this.v6ColorTextBox4.Name = "v6ColorTextBox4";
             this.v6ColorTextBox4.Size = new System.Drawing.Size(440, 23);
             this.v6ColorTextBox4.TabIndex = 20;
+            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox4, "Alreport_advance Advance filter get albc");
             // 
             // v6ColorTextBox16
             // 

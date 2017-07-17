@@ -35,7 +35,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private string _program, _Ma_File, _reportTitle, _reportTitle2;
         private string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         /// <summary>
-        /// Advance filter get albc
+        /// Advance filter get albc, nhận từ filter cha để lọc.
         /// </summary>
         public string Advance = "";
 
@@ -104,6 +104,20 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         public string LAN
         {
             get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : "B"; }
+        }
+
+        private string Extra_para
+        {
+            get
+            {
+                var result = "";
+                if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                {
+                    var data = MauInView.ToTable();
+                    result = data.Rows[cboMauIn.SelectedIndex]["Extra_para"].ToString().Trim();
+                }
+                return result;
+            }
         }
 
         public string ReportFile
@@ -741,6 +755,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (FilterControl.RptExtraParameters != null)
             {
                 ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);
+            }
+
+            var rptExtraParametersD = FilterControl.GetRptParametersD(Extra_para, LAN);
+            if (rptExtraParametersD != null)
+            {
+                ReportDocumentParameters.AddRange(rptExtraParametersD, true);
             }
 
             string errors = "";
