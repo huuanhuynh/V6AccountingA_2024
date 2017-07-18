@@ -85,6 +85,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : "B"; }
         }
 
+        private string Extra_para
+        {
+            get
+            {
+                var result = "";
+                if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                {
+                    var data = MauInView.ToTable();
+                    result = data.Rows[cboMauIn.SelectedIndex]["Extra_para"].ToString().Trim();
+                }
+                return result;
+            }
+        }
+
         private string ReportFile
         {
             get
@@ -961,6 +975,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);
             }
 
+            var rptExtraParametersD = FilterControl.GetRptParametersD(Extra_para, LAN);
+            if (rptExtraParametersD != null)
+            {
+                ReportDocumentParameters.AddRange(rptExtraParametersD, true);
+            }
+
             string errors = "";
             foreach (KeyValuePair<string, object> item in ReportDocumentParameters)
             {
@@ -1148,6 +1168,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 btnNhan.Image = btnNhanImage;
                 try
                 {
+                    FilterControl.LoadDataFinish(_ds);
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = _tbl;
                     //FormHelper.SetGridHeaderTextAndFormat(dataGridView1, m_XmlConfig.m_GridFormatDictionary, MainForm.myMessage, MainForm.CurrentLang);

@@ -296,6 +296,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         }
 
         protected DataSet _ds = null;
+        /// <summary>
+        /// Nhận dữ liệu khi tải dữ liệu xong.
+        /// </summary>
+        /// <param name="ds"></param>
         public virtual void LoadDataFinish(DataSet ds)
         {
             _ds = ds;
@@ -338,7 +342,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             V6ControlFormHelper.SetStatusText2(text);
         }
 
-
+        /// <summary>
+        /// Lấy tham số cho rpt theo định nghĩa Extra_para
+        /// </summary>
+        /// <param name="ExtraParameterInfo"></param>
+        /// <param name="LAN"></param>
+        /// <returns></returns>
         public IDictionary<string, object> GetRptParametersD(string ExtraParameterInfo, string LAN)
         {
             try
@@ -382,25 +391,22 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         }
                         else if (di.Ptype.ToUpper() == "FILTER")
                         {
-                            foreach (FilterLineBase control in lineList)
+                            var lineKey = "line" + di.Field.ToUpper();
+                            if (lineList.ContainsKey(lineKey))
                             {
-                                var line = control;// as FilterLineDynamic;
-                                if (line != null && line.FieldName.ToUpper() == di.Field.ToUpper())
+                                var line = lineList[lineKey];
+                                if (line.IsSelected)
                                 {
-                                    if (line.IsSelected)
-                                    {
-                                        result[di.Name] = line.ObjectValue;
-                                    }
+                                    result[di.Name] = line.ObjectValue;
+                                }
+                                else
+                                {
+                                    if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                                        result[di.Name] = 0;
+                                    else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                                        result[di.Name] = new DateTime(1900, 1, 1);
                                     else
-                                    {
-                                        if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
-                                            result[di.Name] = 0;
-                                        else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
-                                            result[di.Name] = new DateTime(1900, 1, 1);
-                                        else
-                                            result[di.Name] = "";
-                                    }
-                                    break;
+                                        result[di.Name] = "";
                                 }
                             }
                         }
@@ -497,14 +503,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
-        private List<FilterLineBase> GetFilterLineList(Control control)
+        public SortedDictionary<string,FilterLineBase> GetFilterLineList(Control control)
         {
-            List<FilterLineBase> result = new List<FilterLineBase>();
+            SortedDictionary<string, FilterLineBase> result = new SortedDictionary<string, FilterLineBase>();
             foreach (Control control1 in control.Controls)
             {
-                if (control1 is FilterLineBase)
+                var line = control1 as FilterLineBase;
+                if (line != null)
                 {
-                    result.Add((FilterLineBase) control1);
+                    result.Add("line" + line.FieldName.ToUpper(), line);
                 }
                 else
                 {

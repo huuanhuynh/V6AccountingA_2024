@@ -94,6 +94,20 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : "B"; }
         }
 
+        private string Extra_para
+        {
+            get
+            {
+                var result = "";
+                if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                {
+                    var data = MauInView.ToTable();
+                    result = data.Rows[cboMauIn.SelectedIndex]["Extra_para"].ToString().Trim();
+                }
+                return result;
+            }
+        }
+
         public string ReportFile
         {
             get
@@ -749,6 +763,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (FilterControl.RptExtraParameters != null)
             {
                 ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);
+            }
+
+            var rptExtraParametersD = FilterControl.GetRptParametersD(Extra_para, LAN);
+            if (rptExtraParametersD != null)
+            {
+                ReportDocumentParameters.AddRange(rptExtraParametersD, true);
             }
 
             string errors = "";
