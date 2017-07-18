@@ -351,7 +351,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".TinhToan Error!\n" + ex.Message);
+                this.ShowErrorMessage(GetType() + ".TinhToan!\n" + ex.Message);
                 _dataLoading = false;
                 _dataLoaded = false;
             }

@@ -174,6 +174,7 @@ namespace V6Controls
         /// <returns></returns>
         public static object InvokeMethodDynamic(Type program, string methodName, IDictionary<string, object> All_Objects)
         {
+            if (program == null) return null;
             var method = program.GetMethod(methodName);
             if (method != null)
             {

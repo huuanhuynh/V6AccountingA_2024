@@ -12,6 +12,7 @@ using CrystalDecisions.CrystalReports.Engine;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter;
+using V6ControlManager.FormManager.ReportManager;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
 using V6Controls.Forms;
@@ -49,6 +50,103 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private DataTable MauInData;
         private DataView MauInView;
+
+        /// <summary>
+        /// Danh sách event_method của Form_program.
+        /// </summary>
+        private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        private Type Form_program;
+        private Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+
+        private object InvokeFormEvent(string eventName)
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(eventName))
+                {
+                    var method_name = Event_Methods[eventName];
+                    return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+            }
+            return null;
+        }
+
+        private void CreateFormProgram()
+        {
+            try
+            {
+                var AlbcData = V6BusinessHelper.Select(V6TableName.Albc, AlbcKeys, "*").Data;
+                if (AlbcData.Rows.Count == 0) return;
+
+                var dataRow = AlbcData.Rows[0];
+                var xml = dataRow["MMETHOD"].ToString().Trim();
+                if (xml == "") return;
+                DataSet ds = new DataSet();
+                ds.ReadXml(new StringReader(xml));
+                if (ds.Tables.Count <= 0) return;
+
+                var data = ds.Tables[0];
+
+                string using_text = "";
+                string method_text = "";
+                foreach (DataRow event_row in data.Rows)
+                {
+                    var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                    var method_name = event_row["method"].ToString().Trim();
+                    Event_Methods[EVENT_NAME] = method_name;
+
+                    using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                    method_text += event_row["content"];
+                    method_text += "\n";
+                }
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + _program, using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateProgram0", ex);
+            }
+        }
+
+        private void CreateFormControls()
+        {
+            try
+            {
+                var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
+                if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
+                {
+                    var dataRow = V6Setting.DataDVCS;
+                    var GET_FIELD = "TEN_NLB";
+                    if (dataRow.Table.Columns.Contains(GET_FIELD))
+                        txtM_TEN_NLB.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
+                    GET_FIELD = "TEN_NLB2";
+                    if (dataRow.Table.Columns.Contains(GET_FIELD))
+                        txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
+                }
+
+                AddFilterControl(_program);
+                //gridViewSummary1.Visible = FilterControl.ViewSum;
+                
+                var lineList = FilterControl.GetFilterLineList();
+                foreach (KeyValuePair<string, FilterLineBase> item in lineList)
+                {
+                    All_Objects[item.Key] = item.Value;
+                }
+                All_Objects["thisForm"] = this;
+                SetStatus2Text();
+                //gridViewSummary1.Visible = FilterControl.ViewSum;
+
+                InvokeFormEvent(QuickReportManager.FormEvent.AFTERADDFILTERCONTROL);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateFormControls", ex);
+            }
+        }
+
         private DataSet _ds;
         private DataTable _tbl, _tbl1, _tbl2, _tbl3;
         //private V6TableStruct _tStruct;
@@ -583,49 +681,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void MyInit()
         {
-            try
-            {
-                var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
-                if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
-                {
-                    var dataRow = V6Setting.DataDVCS;
-                    var GET_FIELD = "TEN_NLB";
-                    if (dataRow.Table.Columns.Contains(GET_FIELD))
-                        txtM_TEN_NLB.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
-                    GET_FIELD = "TEN_NLB2";
-                    if (dataRow.Table.Columns.Contains(GET_FIELD))
-                        txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
-                }
-
-
-                AddFilterControl(_program);
-
-                //LoadComboboxSource();
-                //if (V6Setting.IsVietnamese)
-                //{
-                //    rTiengViet.Checked = true;
-                //}
-                //else
-                //{
-                //    rEnglish.Checked = true;
-                //}
-                //txtReportTitle.Text = ReportTitle;
-
-                //numSoLien.Value = Invoice.SoLien == 0 ? 1 : Invoice.SoLien;
-                //if (numSoLien.Value > 0) numSoLien.Enabled = true;
-
-                //if (!V6Login.IsAdmin)
-                //{
-                //    exportToExcel.Visible = false;
-                //    //viewDataToolStripMenuItem.Visible = false;
-                //}
-
-                //Ready();
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".Init " + ReportFileFull, ex);
-            }
+            CreateFormProgram();
+            CreateFormControls();
+            InvokeFormEvent(QuickReportManager.FormEvent.INIT);
         }
 
         private void LoadComboboxSource()
@@ -1052,8 +1110,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         
         void LoadData()
         {
+            object beforeLoadData = InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+
             try
             {
+                if (beforeLoadData != null && !(bool)beforeLoadData)
+                {
+                    Data_Loading = false;
+                    return;
+                }
+
                 _dataLoading = true;
                 _dataLoaded = false;
                 var proc = "";
@@ -1169,6 +1235,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 try
                 {
                     FilterControl.LoadDataFinish(_ds);
+                    InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = _tbl;
                     //FormHelper.SetGridHeaderTextAndFormat(dataGridView1, m_XmlConfig.m_GridFormatDictionary, MainForm.myMessage, MainForm.CurrentLang);

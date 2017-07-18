@@ -576,6 +576,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         }
                         else
                         {
+
                             RptExtraParameters[di.Name.ToUpper()] = _tbl2Row[di.Field];
                         }
                     }
@@ -592,10 +593,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                             {
                                 if (line.IsSelected)
                                 {
+                                    //Bỏ qua giá trị rỗng.
+                                    if (di.NotEmpty && string.IsNullOrEmpty("" + line.ObjectValue)) continue;
                                     RptExtraParameters[di.Name] = line.ObjectValue;
                                 }
                                 else
                                 {
+                                    if (di.NotEmpty) continue;
+
                                     if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
                                         RptExtraParameters[di.Name] = 0;
                                     else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
@@ -624,10 +629,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                                 {
                                     if (line.IsSelected)
                                     {
+                                        //Bỏ qua giá trị rỗng.
+                                        if (di.NotEmpty && string.IsNullOrEmpty("" + line.ObjectValue)) continue;
                                         RptExtraParameters[di.Name] = vvar_data[di.Fname];
                                     }
                                     else
                                     {
+                                        if (di.NotEmpty) continue;
+
                                         if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
                                             RptExtraParameters[di.Name] = 0;
                                         else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
@@ -638,6 +647,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                                 }
                                 else
                                 {
+                                    if (di.NotEmpty) continue;
                                     // Tuanmh Null loi
                                     if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
                                         RptExtraParameters[di.Name] = 0;

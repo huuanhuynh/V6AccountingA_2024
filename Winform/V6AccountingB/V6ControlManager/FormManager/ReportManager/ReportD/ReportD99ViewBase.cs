@@ -930,6 +930,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 try
                 {
                     FilterControl.LoadDataFinish(_ds);
+                    InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
 
                     dataGridView1.TableSource = _tbl;
 
@@ -971,58 +972,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 this.ShowErrorMessage(_message);
             }
 
-            return;
-            if (_load_data_success)
-            {
-                timerViewReport.Stop();
-                btnNhan.Image = btnNhanImage;
-                
-                try
-                {
-                    FilterControl.LoadDataFinish(_ds);
-
-                    dataGridView1.TableSource = _tbl;
-                    
-                    try
-                    {
-                        string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
-                        object VALUEV;
-                        V6BusinessHelper.GetFormatGridView(CodeForm.Substring(1), "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);
-                        V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", Color.FromName(COLORV));
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
-
-                    FormatGridView();
-                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
-
-                    FilterControl.FormatGridView(dataGridView1);
-                    
-                    ViewReportIndex();
-
-                    dataGridView1.Focus();
-                }
-                catch (Exception ex)
-                {
-                    _load_data_success = false;
-                    timerViewReport.Stop();
-                    this.ShowErrorMessage(GetType() + ".TimerView: " + ex.Message);
-                }
-            }
-            else if (Data_Loading)
-            {
-                btnNhan.Image = waitingImages.Images[ii];
-                ii++;
-                if (ii >= waitingImages.Images.Count) ii = 0;
-            }
-            else//Tải dữ liệu lỗi
-            {
-                timerViewReport.Stop();
-                btnNhan.Image = btnNhanImage;
-                this.ShowErrorMessage(_message);
-            }
         }
 
         private void FormatGridView()

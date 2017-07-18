@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Globalization;
 using V6Controls;
 
@@ -47,6 +48,20 @@ namespace V6ReportControls
                     return v6NumberTextBox1.Value.ToString(CultureInfo.InvariantCulture);
                 }
                 return "";
+            }
+        }
+
+
+        public override object ObjectValue
+        {
+            get { return Value; }
+        }
+
+        public Decimal Value
+        {
+            get
+            {
+                return v6NumberTextBox1.Value;
             }
         }
     }

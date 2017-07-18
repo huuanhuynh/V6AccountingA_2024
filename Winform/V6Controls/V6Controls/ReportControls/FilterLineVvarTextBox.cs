@@ -51,6 +51,11 @@ namespace V6ReportControls
             }
         }
 
+        public override object ObjectValue
+        {
+            get { return StringValue; }
+        }
+
         private string FormatValue(string value)
         {
             if (",=,<>,>,>=,<,<=,".Contains("," + Operator + ","))

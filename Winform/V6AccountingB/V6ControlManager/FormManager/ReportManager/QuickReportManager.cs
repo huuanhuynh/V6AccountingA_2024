@@ -325,6 +325,7 @@ namespace V6ControlManager.FormManager.ReportManager
         {
             public static string INIT = "INIT";
             public static string BEFORELOADDATA = "BEFORELOADDATA";
+            public static string AFTERLOADDATA = "AFTERLOADDATA";
             public static string AFTERADDFILTERCONTROL = "AFTERADDFILTERCONTROL";
         }
     }

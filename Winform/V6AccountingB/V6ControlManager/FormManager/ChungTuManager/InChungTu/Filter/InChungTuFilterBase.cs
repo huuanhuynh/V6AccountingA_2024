@@ -205,7 +205,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
             try
             {
                 var result = new SortedDictionary<string, object>();
-                var lineList = GetFilterLineList(this);
+                var lineList = GetFilterLineList();
                 try
                 {
                     if (string.IsNullOrEmpty(ExtraParameterInfo)) return null;
@@ -243,17 +243,69 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
                         }
                         else if (di.Ptype.ToUpper() == "FILTER")
                         {
-                            foreach (FilterLineBase control in lineList)
+                            var lineKey = "line" + di.Field.ToUpper();
+                            if (lineList.ContainsKey(lineKey))
                             {
-                                var line = control;// as FilterLineDynamic;
-                                if (line != null && line.FieldName.ToUpper() == di.Field.ToUpper())
+                                var line = lineList[lineKey];
+                                if (line.IsSelected)
                                 {
-                                    if (line.IsSelected)
+                                    //Bỏ qua giá trị rỗng.
+                                    if (di.NotEmpty && string.IsNullOrEmpty("" + line.ObjectValue)) continue;
+                                    result[di.Name] = line.ObjectValue;
+                                }
+                                else
+                                {
+                                    if (di.NotEmpty) continue;
+
+                                    if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                                        result[di.Name] = 0;
+                                    else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                                        result[di.Name] = new DateTime(1900, 1, 1);
+                                    else
+                                        result[di.Name] = "";
+                                }
+                            }
+                        }
+                        else if (di.Ptype.ToUpper() == "FILTER_BROTHER")
+                        {
+                            var lineKey = "line" + di.Field.ToUpper();
+                            if (lineList.ContainsKey(lineKey))
+                            {
+                                var line = lineList[lineKey];
+                                if (line is FilterLineVvarTextBox)
+                                {
+                                    var lineV = line as FilterLineVvarTextBox;
+
+                                    var vvar_data = lineV.VvarTextBox.Data;
+                                    if (line.IsSelected == false)
                                     {
-                                        result[di.Name] = line.ObjectValue;
+                                        vvar_data = null;
+                                    }
+
+                                    if (vvar_data != null && vvar_data.Table.Columns.Contains(di.Fname))
+                                    {
+                                        if (line.IsSelected)
+                                        {
+                                            //Bỏ qua giá trị rỗng.
+                                            if (di.NotEmpty && string.IsNullOrEmpty("" + line.ObjectValue)) continue;
+                                            result[di.Name] = vvar_data[di.Fname];
+                                        }
+                                        else
+                                        {
+                                            if (di.NotEmpty) continue;
+
+                                            if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                                                result[di.Name] = 0;
+                                            else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                                                result[di.Name] = new DateTime(1900, 1, 1);
+                                            else
+                                                result[di.Name] = "";
+                                        }
                                     }
                                     else
                                     {
+                                        if (di.NotEmpty) continue;
+                                        // Tuanmh Null loi
                                         if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
                                             result[di.Name] = 0;
                                         else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
@@ -261,53 +313,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
                                         else
                                             result[di.Name] = "";
                                     }
-                                    break;
                                 }
                             }
                         }
-                        //else if (di.Ptype.ToUpper() == "FILTER_BROTHER")
-                        //{
-                        //    foreach (FilterLineBase control in lineList)
-                        //    {
-                        //        var line = control;// as FilterLineDynamic;
-                        //        if (line != null && line.FieldName.ToUpper() == di.Field.ToUpper())
-                        //        {
-                        //            var vvar_data = line._vtextBox.Data;
-                        //            if (line.IsSelected == false)
-                        //            {
-                        //                vvar_data = null;
-                        //            }
-
-                        //            if (vvar_data != null && vvar_data.Table.Columns.Contains(di.Fname))
-                        //            {
-                        //                if (line.IsSelected)
-                        //                {
-                        //                    result[di.Name] = vvar_data[di.Fname];
-                        //                }
-                        //                else
-                        //                {
-                        //                    if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
-                        //                        result[di.Name] = 0;
-                        //                    else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
-                        //                        result[di.Name] = new DateTime(1900, 1, 1);
-                        //                    else
-                        //                        result[di.Name] = "";
-                        //                }
-                        //            }
-                        //            else
-                        //            {
-                        //                // Tuanmh Null loi
-                        //                if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
-                        //                    result[di.Name] = 0;
-                        //                else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
-                        //                    result[di.Name] = new DateTime(1900, 1, 1);
-                        //                else
-                        //                    result[di.Name] = "";
-                        //            }
-                        //            break;
-                        //        }
-                        //    }
-                        //}
                         else
                         {
 
@@ -358,18 +366,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
             }
         }
 
-        public List<FilterLineBase> GetFilterLineList(Control control)
+        /// <summary>
+        /// Trả về từ điển dạng &lt;"lineField",lineControl&gt;
+        /// </summary>
+        /// <returns></returns>
+        public SortedDictionary<string, FilterLineBase> GetFilterLineList()
         {
-            List<FilterLineBase> result = new List<FilterLineBase>();
+            return GetFilterLineListRecursive(this);
+        }
+        public SortedDictionary<string, FilterLineBase> GetFilterLineListRecursive(Control control)
+        {
+            SortedDictionary<string, FilterLineBase> result = new SortedDictionary<string, FilterLineBase>();
             foreach (Control control1 in control.Controls)
             {
-                if (control1 is FilterLineBase)
+                var line = control1 as FilterLineBase;
+                if (line != null)
                 {
-                    result.Add((FilterLineBase)control1);
+                    result.Add("line" + line.FieldName.ToUpper(), line);
                 }
                 else
                 {
-                    result.AddRange(GetFilterLineList(control1));
+                    result.AddRange(GetFilterLineListRecursive(control1));
                 }
             }
             return result;

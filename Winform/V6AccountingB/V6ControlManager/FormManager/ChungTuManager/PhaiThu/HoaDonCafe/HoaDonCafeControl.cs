@@ -3076,6 +3076,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     AD.Rows[i]["Thue_nt"] = thue_nt;
                     AD.Rows[i]["Thue"] = thue;
                 }
+                else
+                {
+                    AD.Rows[i]["Thue_nt"] = 0m;
+                    AD.Rows[i]["Thue"] = 0m;
+                }
             }
             
             // Xu ly chenh lech
