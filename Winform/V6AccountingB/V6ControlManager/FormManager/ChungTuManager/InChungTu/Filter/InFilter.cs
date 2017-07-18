@@ -46,6 +46,8 @@
                     return new ASOCTSOA();
                 case "AAPPR_SOA_IN1F9":
                     return new AAPPR_SOA_IN1F9();
+                case "AAPPR_SOC_IN1F9":
+                    return new AAPPR_SOC_IN1F9();
                 case "AAPPR_SOA_IN2F9":
                     return new AAPPR_SOA_IN2F9();
 

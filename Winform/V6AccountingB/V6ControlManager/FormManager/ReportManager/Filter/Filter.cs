@@ -647,6 +647,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new AAPPR_SOA1();
                 case "AAPPR_SOA_IN1":
                     return new AAPPR_SOA_IN1();
+                case "AAPPR_SOC_IN1":
+                    return new AAPPR_SOC_IN1();
                 case "AAPPR_SOA_IN2":
                     return new AAPPR_SOA_IN2();
                 case "AAPPR_SOA_IN3":

@@ -83,6 +83,7 @@
                 return V6Setting.Language == "V" ? "In hóa đơn" : "Print invoice";
             }
         }
+
         public static string PrintTA1
         {
             get

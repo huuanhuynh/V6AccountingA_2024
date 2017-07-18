@@ -131,6 +131,12 @@
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\AAPPR_POA_IN1F9.designer.cs">
       <DependentUpon>AAPPR_POA_IN1F9.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\AAPPR_SOC_IN1F9.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\AAPPR_SOC_IN1F9.designer.cs">
+      <DependentUpon>AAPPR_SOC_IN1F9.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\AAPPR_TA1_IN1F9.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1632,6 +1638,12 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.Designer.cs">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOC_IN1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOC_IN1.Designer.cs">
+      <DependentUpon>AAPPR_SOC_IN1.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_TA1_IN1.cs">
       <SubType>UserControl</SubType>
@@ -3789,6 +3801,21 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_CA1_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOC_F4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOC_F4.designer.cs">
+      <DependentUpon>AAPPR_SOC_F4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOC_F10.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOC_F10.designer.cs">
+      <DependentUpon>AAPPR_SOC_F10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOC_IN1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_TA1_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4755,6 +4782,9 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\AAPPR_POA_IN1F9.resx">
       <DependentUpon>AAPPR_POA_IN1F9.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\AAPPR_SOC_IN1F9.resx">
+      <DependentUpon>AAPPR_SOC_IN1F9.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\AAPPR_TA1_IN1F9.resx">
       <DependentUpon>AAPPR_TA1_IN1F9.cs</DependentUpon>
     </EmbeddedResource>
@@ -5491,6 +5521,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.resx">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_SOC_IN1.resx">
+      <DependentUpon>AAPPR_SOC_IN1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_TA1_IN1.resx">
       <DependentUpon>AAPPR_TA1_IN1.cs</DependentUpon>
@@ -6550,6 +6583,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_POA_F4.resx">
       <DependentUpon>AAPPR_POA_F4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOC_F4.resx">
+      <DependentUpon>AAPPR_SOC_F4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOC_F10.resx">
+      <DependentUpon>AAPPR_SOC_F10.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA_IN3F3.resx">
       <DependentUpon>AAPPR_SOA_IN3F3.cs</DependentUpon>
