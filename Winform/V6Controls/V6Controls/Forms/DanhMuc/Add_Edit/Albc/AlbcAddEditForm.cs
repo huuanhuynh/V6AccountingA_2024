@@ -323,5 +323,23 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                 txtReportFileNew.ReadOnly = true;
             }
         }
+
+        private void btnEditXml_Click(object sender, EventArgs e)
+        {
+            DoEditXml();
+        }
+
+        private void DoEditXml()
+        {
+            try
+            {
+                var file_xml = txtMa_File.Text.Trim().ToUpper() + ".xml";
+                new XmlEditorForm(txtDmethod, file_xml, "Table0", "event,using,method,content".Split(',')).ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoEditXml", ex);
+            }
+        }
     }
 }

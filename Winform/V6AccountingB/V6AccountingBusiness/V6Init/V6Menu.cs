@@ -94,6 +94,19 @@ namespace V6Init
             return data;
         }
 
+        public static DataTable GetMenuQuickReport()
+        {
+            int type = 2;
+            SqlParameter[] plist = new[]
+            {
+                new SqlParameter("@ModuleID", V6Options.MODULE_ID), 
+                new SqlParameter("@User_id", V6Login.UserId), 
+                new SqlParameter("@TYPE", type), 
+            };
+            DataTable data = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GETV6MENU3", plist).Tables[0];
+            return data;
+        }
+
         public static DataTable GetKey2Hm2()
         {
             int type = 1;

@@ -133,7 +133,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".Init", ex);
+                this.WriteExLog(GetType() + ".CreateFormControls", ex);
             }
         }
 
@@ -1172,6 +1172,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             try
             {
                 FilterControl.LoadDataFinish(_ds);
+                InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
 
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = _tbl1;

@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6Controls;
 using V6Init;
 using V6ReportControls;
 using V6Structs;
@@ -55,9 +56,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 err += "\n" + ex.Message;
             }
+
             if (err.Length > 0)
             {
-                //this.ShowErrorMessage(GetType() + ".MadeControls error!" + err);
+                this.WriteToLog(GetType() + ".MadeControls error!", err);
             }
         }
 

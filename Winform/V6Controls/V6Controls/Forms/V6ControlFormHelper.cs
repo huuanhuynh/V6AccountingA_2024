@@ -668,11 +668,11 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
-        /// Tìm một control trên form (hoặc control) thông qua Name
+        /// Tìm một control trên form (hoặc control) thông qua Name không phân biệt HOA thường.
         /// Nếu không có trả về null
         /// </summary>
         /// <param name="control">Control chứa hoặc chính control cần tìm.</param>
-        /// <param name="name">Name của control cần tìm</param>
+        /// <param name="name">Name của control cần tìm không phân biệt HOA thường.</param>
         /// <returns></returns>
         public static Control GetControlByName(Control control, string name)
         {
@@ -695,11 +695,11 @@ namespace V6Controls.Forms
             }
         }
         /// <summary>
-        /// Tìm một control trên form (hoặc control) thông qua accesibleName
+        /// Tìm một control trên form (hoặc control) thông qua accesibleName không phân biệt HOA thường.
         /// Nếu không có trả về null
         /// </summary>
         /// <param name="control">Control chứa hoặc chính control cần tìm.</param>
-        /// <param name="accesibleName">AccessibleName của control cần tìm</param>
+        /// <param name="accesibleName">AccessibleName của control cần tìm không phân biệt HOA thường.</param>
         /// <returns></returns>
         public static Control GetControlByAccesibleName(Control control, string accesibleName)
         {

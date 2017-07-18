@@ -910,10 +910,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     //xu ly data
                     if (d == DialogResult.OK)
                     {
+                        //SoCt0_V6LostFocus(_soCt0);
+
                         XuLyKhiNhanSoCt(((DataGridViewRow) _soCt0.Tag).ToDataDictionary());
                     }
                     else
                     {
+                        //SoCt0_V6LostFocusNoChange(_soCt0);
                         //_soCt0.Focus();
                         _soCt0.Text = _soCt0.GotFocusText;
                     }
@@ -1100,6 +1103,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         //xu ly data
                         if (d == DialogResult.OK)
                         {
+                            //SoCt0_V6LostFocus(_soCt0);
+
                             if (_soCt0.Tag is DataRow)
                                 XuLyKhiNhanSoCt(((DataRow)_soCt0.Tag).ToDataDictionary());
                             else if (_soCt0.Tag is DataGridViewRow)
@@ -1107,6 +1112,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         }
                         else
                         {
+                            //SoCt0_V6LostFocusNoChange(_soCt0);
                             //_soCt0.Focus();
                             _soCt0.Text = _soCt0.GotFocusText;
                         }
@@ -1137,23 +1143,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             }
         }
 
-        private string GetSoCt0InitFilter()
-        {
-            var result = "";
-            try
-            {
-                foreach (DataRow row in AD.Rows)
-                {
-                    result += " And Stt_rec <> '" + row["STT_REC_TT"].ToString().Trim() + "'";
-                }
-                if (result.Length > 4) result = result.Substring(4);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".GetSoCt0InitFilter: " + ex.Message);
-            }
-            return result;
-        }
         private void XuLyChonMaKhachHang()
         {
             try
@@ -1301,6 +1290,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 _tienNt.Value = _phaiTtNt.Value;
                 _tien.Value = _phaiTtNt.Value;
                 _ttqd.Value = _phaiTtNt.Value;
+                _tientt.Value = _phaiTtNt.Value;
 
                 _pscoNt.Value = _phaiTtNt.Value;
                 _psCo.Value = _phaiTtNt.Value;

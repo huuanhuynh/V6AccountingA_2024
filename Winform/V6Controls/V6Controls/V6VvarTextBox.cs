@@ -336,6 +336,7 @@ namespace V6Controls
         protected override void V6ColorTextBox_LostFocus(object sender, EventArgs e)
         {
             DoCharacterCasing();
+            lostfocustext = Text;
             if (EnableColorEffect)
             {
                 BackColor = ReadOnly ? _leaveColorReadOnly : _leaveColor;
@@ -360,7 +361,7 @@ namespace V6Controls
                     {
                         if (ExistRowInTable(textBox.Text.Trim()))
                         {
-                            if (!Looking && gotfocustext != Text)
+                            if (!Looking && gotfocustext != lostfocustext)
                             {
                                 CallDoV6LostFocus();
                                 //CheckForBarcode();

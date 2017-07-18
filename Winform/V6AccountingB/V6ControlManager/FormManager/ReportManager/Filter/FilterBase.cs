@@ -4,9 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
+using V6Init;
 using V6ReportControls;
+using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
@@ -55,7 +59,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <summary>
         /// Advance filter get albc
         /// </summary>
-        public string Advance = "";
+        public string Advance { get; set; }
         /// <summary>
         /// Dùng procedure này để lấy dữ liệu. Code trong phần gọi proc của formReportBase.
         /// </summary>
@@ -291,10 +295,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             throw new NotImplementedException();
         }
 
-
+        protected DataSet _ds = null;
+        /// <summary>
+        /// Nhận dữ liệu khi tải dữ liệu xong.
+        /// </summary>
+        /// <param name="ds"></param>
         public virtual void LoadDataFinish(DataSet ds)
         {
-            
+            _ds = ds;
         }
 
         public virtual void FormatGridView(V6ColorDataGridView dataGridView1)
@@ -334,6 +342,204 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             V6ControlFormHelper.SetStatusText2(text);
         }
 
-        
+        /// <summary>
+        /// Lấy tham số cho rpt theo định nghĩa Extra_para
+        /// </summary>
+        /// <param name="ExtraParameterInfo"></param>
+        /// <param name="LAN"></param>
+        /// <returns></returns>
+        public IDictionary<string, object> GetRptParametersD(string ExtraParameterInfo, string LAN)
+        {
+            try
+            {
+                var result = new SortedDictionary<string, object>();
+                var lineList = GetFilterLineList();
+                try
+                {
+                    if (string.IsNullOrEmpty(ExtraParameterInfo)) return null;
+                    var sss = ExtraParameterInfo.Split('~');
+
+                    foreach (string ss in sss)
+                    {
+                        DefineInfo di = new DefineInfo(ss);
+                        if (string.IsNullOrEmpty(di.Name)) continue;
+                        
+                        if (di.Ptype.ToUpper() == "TABLE2")
+                        {
+                            var dataTable2 = _ds.Tables[1];
+                            var _tbl2Row = dataTable2.Rows[0];
+                            if (di.Name == "SoTienVietBangChu_TienBanNt")
+                            {
+                                var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);// "T_TIEN_NT2_IN"]);
+                                var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
+                                result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, LAN, ma_nt);
+                            }
+                            else if (di.Name == "SoTienVietBangChu_TienBan")
+                            {
+                                var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);//"T_TIEN2_IN"]);
+                                result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien2_in, LAN,
+                                    V6Options.M_MA_NT0);
+                            }
+                            else
+                            {
+                                //Bỏ qua giá trị rỗng.
+                                if (di.NotEmpty && string.IsNullOrEmpty("" + _tbl2Row[di.Field])) continue;
+                                result[di.Name.ToUpper()] = _tbl2Row[di.Field];
+                            }
+                        }
+                        else if (di.Ptype.ToUpper() == "PARENT")
+                        {
+
+                        }
+                        else if (di.Ptype.ToUpper() == "FILTER")
+                        {
+                            var lineKey = "line" + di.Field.ToUpper();
+                            if (lineList.ContainsKey(lineKey))
+                            {
+                                var line = lineList[lineKey];
+                                if (line.IsSelected)
+                                {
+                                    //Bỏ qua giá trị rỗng.
+                                    if (di.NotEmpty && string.IsNullOrEmpty("" + line.ObjectValue)) continue;
+                                    result[di.Name] = line.ObjectValue;
+                                }
+                                else
+                                {
+                                    if (di.NotEmpty) continue;
+
+                                    if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                                        result[di.Name] = 0;
+                                    else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                                        result[di.Name] = new DateTime(1900, 1, 1);
+                                    else
+                                        result[di.Name] = "";
+                                }
+                            }
+                        }
+                        else if (di.Ptype.ToUpper() == "FILTER_BROTHER")
+                        {
+                            var lineKey = "line" + di.Field.ToUpper();
+                            if (lineList.ContainsKey(lineKey))
+                            {
+                                var line = lineList[lineKey];
+                                if (line is FilterLineVvarTextBox)
+                                {
+                                    var lineV = line as FilterLineVvarTextBox;
+
+                                    var vvar_data = lineV.VvarTextBox.Data;
+                                    if (line.IsSelected == false)
+                                    {
+                                        vvar_data = null;
+                                    }
+
+                                    if (vvar_data != null && vvar_data.Table.Columns.Contains(di.Fname))
+                                    {
+                                        if (line.IsSelected)
+                                        {
+                                            //Bỏ qua giá trị rỗng.
+                                            if (di.NotEmpty && string.IsNullOrEmpty("" + line.ObjectValue)) continue;
+                                            result[di.Name] = vvar_data[di.Fname];
+                                        }
+                                        else
+                                        {
+                                            if (di.NotEmpty) continue;
+
+                                            if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                                                result[di.Name] = 0;
+                                            else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                                                result[di.Name] = new DateTime(1900, 1, 1);
+                                            else
+                                                result[di.Name] = "";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (di.NotEmpty) continue;
+                                        // Tuanmh Null loi
+                                        if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                                            result[di.Name] = 0;
+                                        else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                                            result[di.Name] = new DateTime(1900, 1, 1);
+                                        else
+                                            result[di.Name] = "";
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+
+                        }
+                    }
+
+
+                    //var parent = FindParent<>() as ;
+                    //if (_ds.Tables.Count > 1 && _ds.Tables[1].Rows.Count > 0)//&& parent != null)
+                    //{
+                    //    //var dataTable2 = _ds.Tables[1];
+                    //    //var _tbl2Row = dataTable2.Rows[0];
+                    //    if (dataTable2.Columns.Contains("T_TIEN_NT2_IN") && dataTable2.Columns.Contains("MA_NT"))
+                    //    {
+                    //        var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row["T_TIEN_NT2_IN"]);
+                    //        var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
+                    //        result["SoTienVietBangChu_TienBanNt"] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, LAN, ma_nt);
+                    //    }
+
+                    //    if (dataTable2.Columns.Contains("T_TIEN2_IN"))
+                    //    {
+                    //        var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row["T_TIEN2_IN"]);
+                    //        result["SoTienVietBangChu_TienBan"] = V6BusinessHelper.MoneyToWords(t_tien2_in, LAN,
+                    //            V6Options.M_MA_NT0);
+                    //    }
+
+                    //}
+
+
+                    //foreach (var VARIABLE in "".Split(','))
+                    //{
+                    //    if (VARIABLE == "M_ABC")
+                    //    {
+                    //        result[VARIABLE] = "ABC";
+                    //    }
+                    //}
+                }
+                catch (Exception)
+                {
+
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GetRptParametersD", ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Trả về từ điển dạng &lt;"lineField",lineControl&gt;
+        /// </summary>
+        /// <returns></returns>
+        public SortedDictionary<string, FilterLineBase> GetFilterLineList()
+        {
+            return GetFilterLineListRecursive(this);
+        }
+        public SortedDictionary<string,FilterLineBase> GetFilterLineListRecursive(Control control)
+        {
+            SortedDictionary<string, FilterLineBase> result = new SortedDictionary<string, FilterLineBase>();
+            foreach (Control control1 in control.Controls)
+            {
+                var line = control1 as FilterLineBase;
+                if (line != null)
+                {
+                    result.Add("line" + line.FieldName.ToUpper(), line);
+                }
+                else
+                {
+                    result.AddRange(GetFilterLineListRecursive(control1));
+                }
+            }
+            return result;
+        }
     }
 }

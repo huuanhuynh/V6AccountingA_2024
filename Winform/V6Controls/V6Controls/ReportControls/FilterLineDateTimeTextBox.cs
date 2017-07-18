@@ -52,6 +52,11 @@ namespace V6ReportControls
             }
         }
 
+        public override object ObjectValue
+        {
+            get { return Value; }
+        }
+
         public DateTime Value
         {
             get

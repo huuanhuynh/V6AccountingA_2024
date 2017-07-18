@@ -583,11 +583,11 @@ namespace V6Controls
 
         protected virtual void V6ColorTextBox_Enter(object sender, EventArgs e)
         {
+            gotfocustext = Text;
             if (!DesignMode && _enableColorEffect)
             {
                 BackColor = ReadOnly ? _enterColorReadOnly : _enterColor;
             }
-            gotfocustext = Text;
         }
 
         protected virtual void V6ColorTextBox_LostFocus(object sender, EventArgs e)

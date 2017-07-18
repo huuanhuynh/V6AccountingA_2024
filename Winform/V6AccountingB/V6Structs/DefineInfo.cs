@@ -163,6 +163,9 @@ namespace V6Structs
 
         public bool F2 { get; set; }
 
+        /// <summary>
+        /// Bỏ qua giá trị rỗng trong GetRptParametersD
+        /// </summary>
         public bool NotEmpty { get; set; }
 
         public string Field { get; set; }

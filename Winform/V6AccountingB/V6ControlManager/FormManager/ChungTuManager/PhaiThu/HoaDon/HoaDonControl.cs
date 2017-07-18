@@ -1596,6 +1596,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 _gia21.Value = 0;
                 _gg.Value = 0;
                 _ggNt.Value = 0;
+                
             }
             catch (Exception ex)
             {
@@ -3281,6 +3282,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (!AD.Columns.Contains("Thue")) AD.Columns.Add("Thue", typeof(decimal));
                     AD.Rows[i]["Thue_nt"] = thue_nt;
                     AD.Rows[i]["Thue"] = thue;
+                }
+                else
+                {
+                    AD.Rows[i]["Thue_nt"] = 0m;
+                    AD.Rows[i]["Thue"] = 0m;
                 }
             }
             

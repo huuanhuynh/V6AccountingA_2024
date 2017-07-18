@@ -228,6 +228,11 @@ namespace V6ThreadLibrary
             if (File.Exists(toZipFile)) File.Delete(toZipFile);
             //V6Tools.V67z.ZipFolder(fromFolder, toZipFile);
             V6Tools.V67z.Run7z(@"a " + toZipFile + " " + fromFolder);
+
+            if (toZipFile != null && _setting.CopyToLocal)
+            {
+                File.Copy(toZipFile, Path.Combine(_setting.LocalFolder, Path.GetFileName(toZipFile)));
+            }
             //CopyToV6
             if (_setting.CopyToV6)
             {
@@ -338,9 +343,14 @@ namespace V6ThreadLibrary
                     if (File.Exists(_filenamezip + ".7z")) File.Delete(_filenamezip + ".7z");
                     V6Tools.V67z.Run7z("a " + _filenamezip + ".7z " + _filename + " -aoa ");
                     //V6Tools.V67z.ZipFile(_filenamezip, _filename);
+                    var toZipFile = _filenamezip + ".7z";
+                    if (_setting.CopyToLocal)
+                    {
+                        File.Copy(toZipFile, Path.Combine(_setting.LocalFolder, Path.GetFileName(toZipFile)));
+                    }
                     if (_setting.CopyToV6)
                     {
-                        V6FileIO.CopyToVPN(_filenamezip + ".7z", _setting.VPN_IP, _setting.VPN_USER, _setting.VPN_EPASS, vpn_supfolder);
+                        V6FileIO.CopyToVPN(toZipFile, _setting.VPN_IP, _setting.VPN_USER, _setting.VPN_EPASS, vpn_supfolder);
                     }
                 }
             }

@@ -1715,24 +1715,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
         }
 
-        private string GetSoCt0InitFilter()
-        {
-            var result = "";
-            try
-            {
-                foreach (DataRow row in AD.Rows)
-                {
-                    result += " And Stt_rec <> '" + row["STT_REC_TT"].ToString().Trim() + "'";
-                }
-                if (result.Length > 4) result = result.Substring(4);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".GetSoCt0InitFilter: " + ex.Message);
-            }
-            return result;
-        }
-
         private void XuLyKhiNhanSoCt(IDictionary<string,object> row)
         {
             try
@@ -1752,6 +1734,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 _tienNt.Value = _phaiTtNt.Value;
                 _tien.Value = _phaiTtNt.Value;
                 _ttqd.Value = _phaiTtNt.Value;
+                _tientt.Value = _phaiTtNt.Value;
 
                 _psnoNt.Value = _phaiTtNt.Value;
                 _psno.Value = _phaiTtNt.Value;

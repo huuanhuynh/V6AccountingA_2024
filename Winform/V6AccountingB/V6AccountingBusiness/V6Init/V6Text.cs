@@ -236,6 +236,7 @@
         public static string ExistData { get { return V6Setting.Language == "V" ? "Dữ liệu đã tồn tại." : "Data Exist."; } }
         public static string NotExist { get { return V6Setting.Language == "V" ? "Không tồn tại." : "Not exist."; } }
         public static string NotRunHere { get { return V6Setting.Language == "V" ? "Không xử lý ở đây." : "Not run here."; } }
+        public static string NotValid { get { return V6Setting.Language == "V" ? "Không hợp lệ." : "Not valid."; } }
         public static string Voucher_exist { get { return V6Setting.Language == "V" ? "Chứng từ trùng số , vẫn cho lưu!" : "This voucher is exist, still save!"; } }
         public static string Voucher_exist_not_save { get { return V6Setting.Language == "V" ? "Chứng từ trùng số , không lưu được!" : "This voucher is exist, Not save!"; } }
         public static string Updated { get { return V6Setting.Language == "V" ? "Đã cập nhập." : "Updated."; } }

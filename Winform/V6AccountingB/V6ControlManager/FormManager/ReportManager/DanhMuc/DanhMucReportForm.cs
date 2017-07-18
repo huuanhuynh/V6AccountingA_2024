@@ -17,6 +17,7 @@ using V6ReportControls;
 using V6RptEditor;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 {
@@ -66,6 +67,20 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         private string LAN
         {
             get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : "B"; }
+        }
+
+        private string Extra_para
+        {
+            get
+            {
+                var result = "";
+                if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                {
+                    var data = MauInView.ToTable();
+                    result = data.Rows[cboMauIn.SelectedIndex]["Extra_para"].ToString().Trim();
+                }
+                return result;
+            }
         }
         
         private string ReportFile
@@ -359,8 +374,11 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                         txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
                 }
 
-                string[] fields = V6Lookup.GetDefaultLookupFields(_tableName);
-                MadeFilterControls(fields);
+                //string[] fields = V6Lookup.GetDefaultLookupFields(_tableName);
+                //MadeFilterControls(fields);
+
+                var fields_vvar_filter = V6Lookup.GetValueByTableName(_tableName, "vLfScatter");//.GetReportFilterFields(tableName);
+                MadeControls(_tableName, fields_vvar_filter);
 
             }
             catch (Exception ex)
@@ -396,6 +414,24 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".Init2", ex);
+            }
+        }
+
+        private void MadeControls(string tableName, string fields_vvar_filter)
+        {
+            string err = "";
+            try
+            {
+                _tStruct = V6BusinessHelper.GetTableStruct(tableName);
+                panel1.AddMultiFilterLine(_tStruct, fields_vvar_filter);
+            }
+            catch (Exception ex)
+            {
+                err += "\n" + ex.Message;
+            }
+            if (err.Length > 0)
+            {
+                this.WriteToLog(GetType() + ".MadeControls error!", err);
             }
         }
 
@@ -529,7 +565,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
             if (err.Length > 0)
             {
-                //this.ShowErrorMessage(GetType() + ".MadeControls error!" + err);
+                this.WriteToLog(GetType() + ".MadeControls error!", err);
             }
         }
 
@@ -660,12 +696,197 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
             V6Login.SetCompanyInfo(ReportDocumentParameters);
 
+            var rptExtraParametersD = GetRptParametersD(Extra_para, LAN);
+            if (rptExtraParametersD != null)
+            {
+                ReportDocumentParameters.AddRange(rptExtraParametersD, true);
+            }
+
             foreach (KeyValuePair<string, object> item in ReportDocumentParameters)
             {
                 _rpDoc.SetParameterValue(item.Key, item.Value);
             }
         }
-        
+
+        /// <summary>
+        /// Lấy tham số cho rpt theo định nghĩa Extra_para
+        /// </summary>
+        /// <param name="ExtraParameterInfo"></param>
+        /// <param name="LAN"></param>
+        /// <returns></returns>
+        public IDictionary<string, object> GetRptParametersD(string ExtraParameterInfo, string LAN)
+        {
+            try
+            {
+                var result = new SortedDictionary<string, object>();
+                var lineList = GetFilterLineList(panel1);
+                try
+                {
+                    if (string.IsNullOrEmpty(ExtraParameterInfo)) return null;
+                    var sss = ExtraParameterInfo.Split('~');
+
+                    foreach (string ss in sss)
+                    {
+                        DefineInfo di = new DefineInfo(ss);
+                        if (string.IsNullOrEmpty(di.Name)) continue;
+
+                        if (di.Ptype.ToUpper() == "TABLE2")
+                        {
+                            var dataTable2 = _ds.Tables[1];
+                            var _tbl2Row = dataTable2.Rows[0];
+                            if (di.Name == "SoTienVietBangChu_TienBanNt")
+                            {
+                                var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);// "T_TIEN_NT2_IN"]);
+                                var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
+                                result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, LAN, ma_nt);
+                            }
+                            else if (di.Name == "SoTienVietBangChu_TienBan")
+                            {
+                                var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);//"T_TIEN2_IN"]);
+                                result[di.Name] = V6BusinessHelper.MoneyToWords(t_tien2_in, LAN,
+                                    V6Options.M_MA_NT0);
+                            }
+                            else
+                            {
+                                result[di.Name.ToUpper()] = _tbl2Row[di.Field];
+                            }
+                        }
+                        else if (di.Ptype.ToUpper() == "PARENT")
+                        {
+
+                        }
+                        else if (di.Ptype.ToUpper() == "FILTER")
+                        {
+                            var lineKey = "line" + di.Field.ToUpper();
+                            if (lineList.ContainsKey(lineKey))
+                            {
+                                var line = lineList[lineKey];
+                                if (line.IsSelected)
+                                {
+                                    result[di.Name] = line.ObjectValue;
+                                }
+                                else
+                                {
+                                    if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                                        result[di.Name] = 0;
+                                    else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                                        result[di.Name] = new DateTime(1900, 1, 1);
+                                    else
+                                        result[di.Name] = "";
+                                }
+                            }
+                        }
+                        //else if (di.Ptype.ToUpper() == "FILTER_BROTHER")
+                        //{
+                        //    foreach (FilterLineBase control in lineList)
+                        //    {
+                        //        var line = control;// as FilterLineDynamic;
+                        //        if (line != null && line.FieldName.ToUpper() == di.Field.ToUpper())
+                        //        {
+                        //            var vvar_data = line._vtextBox.Data;
+                        //            if (line.IsSelected == false)
+                        //            {
+                        //                vvar_data = null;
+                        //            }
+
+                        //            if (vvar_data != null && vvar_data.Table.Columns.Contains(di.Fname))
+                        //            {
+                        //                if (line.IsSelected)
+                        //                {
+                        //                    result[di.Name] = vvar_data[di.Fname];
+                        //                }
+                        //                else
+                        //                {
+                        //                    if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                        //                        result[di.Name] = 0;
+                        //                    else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                        //                        result[di.Name] = new DateTime(1900, 1, 1);
+                        //                    else
+                        //                        result[di.Name] = "";
+                        //                }
+                        //            }
+                        //            else
+                        //            {
+                        //                // Tuanmh Null loi
+                        //                if (ObjectAndString.IsNumberType(line.ObjectValue.GetType()))
+                        //                    result[di.Name] = 0;
+                        //                else if (ObjectAndString.IsDateTimeType(line.ObjectValue.GetType()))
+                        //                    result[di.Name] = new DateTime(1900, 1, 1);
+                        //                else
+                        //                    result[di.Name] = "";
+                        //            }
+                        //            break;
+                        //        }
+                        //    }
+                        //}
+                        else
+                        {
+
+                        }
+                    }
+
+
+                    //var parent = FindParent<>() as ;
+                    //if (_ds.Tables.Count > 1 && _ds.Tables[1].Rows.Count > 0)//&& parent != null)
+                    //{
+                    //    //var dataTable2 = _ds.Tables[1];
+                    //    //var _tbl2Row = dataTable2.Rows[0];
+                    //    if (dataTable2.Columns.Contains("T_TIEN_NT2_IN") && dataTable2.Columns.Contains("MA_NT"))
+                    //    {
+                    //        var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row["T_TIEN_NT2_IN"]);
+                    //        var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
+                    //        result["SoTienVietBangChu_TienBanNt"] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, LAN, ma_nt);
+                    //    }
+
+                    //    if (dataTable2.Columns.Contains("T_TIEN2_IN"))
+                    //    {
+                    //        var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row["T_TIEN2_IN"]);
+                    //        result["SoTienVietBangChu_TienBan"] = V6BusinessHelper.MoneyToWords(t_tien2_in, LAN,
+                    //            V6Options.M_MA_NT0);
+                    //    }
+
+                    //}
+
+
+                    //foreach (var VARIABLE in "".Split(','))
+                    //{
+                    //    if (VARIABLE == "M_ABC")
+                    //    {
+                    //        result[VARIABLE] = "ABC";
+                    //    }
+                    //}
+                }
+                catch (Exception)
+                {
+
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GetRptParametersD", ex);
+                return null;
+            }
+        }
+
+        public SortedDictionary<string, FilterLineBase> GetFilterLineList(Control control)
+        {
+            SortedDictionary<string, FilterLineBase> result = new SortedDictionary<string, FilterLineBase>();
+            foreach (Control control1 in control.Controls)
+            {
+                var line = control1 as FilterLineBase;
+                if (line != null)
+                {
+                    result.Add("line" + line.FieldName.ToUpper(), line);
+                }
+                else
+                {
+                    result.AddRange(GetFilterLineList(control1));
+                }
+            }
+            return result;
+        }
+
         #region ==== LoadData MakeReport ====
         bool _dataLoaded;
         bool _dataLoading;
