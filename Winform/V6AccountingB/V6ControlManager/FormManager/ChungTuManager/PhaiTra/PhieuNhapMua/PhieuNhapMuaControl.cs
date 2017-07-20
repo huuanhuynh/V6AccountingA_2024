@@ -750,7 +750,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         {
                             _t_tien22.V6LostFocus += delegate
                             {
-                                TinhTienThue22();
+                                //TinhTienThue22();
+                                TienChanged(_t_tien22.Value, _thue_suat22.Value, _t_thue22);
                             };
 
                             if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
@@ -769,8 +770,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         {
                             _t_tien_nt22.V6LostFocus += delegate
                             {
-                                TinhTien22();
-                                TinhTienThue22();
+                                TienNtChanged(_t_tien_nt22.Value, txtTyGia.Value, _thue_suat22.Value,
+                                    _t_tien22, _t_thue_nt22, _t_thue22);
                             };
 
                             if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
@@ -800,7 +801,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                                 {
                                 
                                 }
-                                TinhTienThue22();
+                                //TinhTienThue22();
+                                Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat22.Value, _t_tien_nt22.Value, _t_tien22.Value, _t_thue_nt22, _t_thue22);
                             };
                         }
                         break;
@@ -811,7 +813,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             _thue_suat22.ReadOnlyTag();
                             _thue_suat22.V6LostFocus += delegate
                             {
-                                TinhTienThue22();
+                                Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat22.Value, _t_tien_nt22.Value, _t_tien22.Value, _t_thue_nt22, _t_thue22);
                             };
                         }
                         break;
@@ -841,6 +843,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _t_thue_nt22.ReadOnlyTag();
                             }
+
+                            _t_thue_nt22.V6LostFocus += delegate
+                            {
+                                Tinh_TienThue_TheoTienThueNt(_t_thue_nt22.Value, txtTyGia.Value, _t_thue22, M_ROUND);
+                            };
                         }
                         break;
                 }
@@ -859,55 +866,50 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
 
         // Tuanmh 07/10/2016
-        private void TinhTien22()
-        {
-            try
-            {
-                _t_tien22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value * txtTyGia.Value, M_ROUND);
-                if (_maNt == _mMaNt0)
-                {
-                    _t_tien22.Enabled = false;
-                    _t_tien22.Value = _t_tien_nt22.Value;
+        //private void TinhTien22()
+        //{
+        //    try
+        //    {
+        //        _t_tien22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value * txtTyGia.Value, M_ROUND);
+        //        if (_maNt == _mMaNt0)
+        //        {
+        //            _t_tien22.Enabled = false;
+        //            _t_tien22.Value = _t_tien_nt22.Value;
+        //        }
+        //        else
+        //        {
+        //            _t_tien22.Enabled = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.ShowErrorException(GetType() + ".TinhTien22", ex);
+        //    }
+        //}
 
-                }
-                else
-                {
-                    _t_tien22.Enabled = true;
-                }
+        //private void TinhTienThue22()
+        //{
+        //    try
+        //    {
+        //        _t_thue_nt22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value * _thue_suat22.Value / 100, M_ROUND_NT);
+        //        _t_thue22.Value = V6BusinessHelper.Vround(_t_tien22.Value * _thue_suat22.Value / 100, M_ROUND);
+        //        if (_maNt == _mMaNt0)
+        //        {
+        //            _t_thue22.Enabled = false;
+        //            _t_thue22.Value = _t_thue_nt22.Value;
+        //        }
+        //        else
+        //        {
+        //            _t_thue22.Enabled = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.ShowErrorException(GetType() + ".TinhTienThue22", ex);
+        //    }
+        //}
 
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".TinhTien22", ex);
-            }
-        }
-
-        private void TinhTienThue22()
-        {
-            try
-            {
-
-                _t_thue_nt22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value * _thue_suat22.Value / 100, M_ROUND_NT);
-                _t_thue22.Value = V6BusinessHelper.Vround(_t_tien22.Value * _thue_suat22.Value / 100, M_ROUND);
-                if (_maNt == _mMaNt0)
-                {
-
-                    _t_thue22.Enabled = false;
-                    _t_thue22.Value = _t_thue_nt22.Value;
-                }
-                else
-                {
-
-                    _t_thue22.Enabled = true;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".TinhTienThue22", ex);
-            }
-        }
-
+        
         private V6ColorTextBox _operTT_33, _nh_dk_33;
         private V6VvarTextBox _tk_i_33, _ma_kh_i_33;
         private V6NumberTextBox _PsNoNt_33, _PsCoNt_33, _PsNo_33, _PsCo_33, _mau_bc_33,
@@ -2936,12 +2938,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 
                 txtTongThanhToanNt.Value = V6BusinessHelper.Vround(t_tt_nt, M_ROUND_NT);
 
-                var tygia = txtTyGia.Value;
-                txtTongTien0.Value = V6BusinessHelper.Vround(t_tien_nt2*tygia, M_ROUND);
-                txtTongGiam.Value = V6BusinessHelper.Vround(t_gg_nt*tygia, M_ROUND);
-                txtTongCk.Value = V6BusinessHelper.Vround(t_ck_nt*tygia, M_ROUND);
-                txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
-                txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
+                //var tygia = txtTyGia.Value;
+                //txtTongTien0.Value = V6BusinessHelper.Vround(t_tien_nt2*tygia, M_ROUND);
+                //txtTongGiam.Value = V6BusinessHelper.Vround(t_gg_nt*tygia, M_ROUND);
+                //txtTongCk.Value = V6BusinessHelper.Vround(t_ck_nt*tygia, M_ROUND);
+                //txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
+                //txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
                 //Co_Thay_Doi = true;
                
             }
@@ -4337,7 +4339,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         _dia_chi22.Enabled = _dia_chi22.Text.Trim() == "";
                         _ma_so_thue22.Enabled = _ma_so_thue22.Text.Trim() == "";
                     }
-                    TinhTienThue22();
+                    //TinhTienThue22();
+                    Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat22.Value, _t_tien_nt22.Value, _t_tien22.Value, _t_thue_nt22, _t_thue22);
                 }
                 _mau_bc.Focus();
             }
@@ -4908,7 +4911,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             txtTyGia_V6LostFocus(sender);
         }
         
-        private void TinhTongThanhToan_V6LostFocus(object sender)
+        private void txtThueSuat_V6LostFocus(object sender)
         {
             TinhTongThanhToan("V6LostFocus " + ((Control)sender).AccessibleName);
         }
@@ -5856,6 +5859,56 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             FixDataGridViewSize(dataGridView1, dataGridView2, dataGridView3, dataGridView3ChiPhi);
         }
 
-        
+
+        private void txtTongGiamNt_V6LostFocus(object sender)
+        {
+            try
+            {
+                txtTongGiam.Value = V6BusinessHelper.Vround(txtTongGiamNt.Value * txtTyGia.Value, M_ROUND);
+                if (MA_NT == _mMaNt0)
+                {
+                    txtTongGiam.Value = txtTongGiamNt.Value;
+                }
+                TinhTongThanhToan("txtTongGiamNt_V6LostFocus");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".txtTongGiamNt_V6LostFocus", ex);
+            }
+        }
+
+        private void txtTongCkNt_V6LostFocus(object sender)
+        {
+            try
+            {
+                txtTongCk.Value = V6BusinessHelper.Vround(txtTongCkNt.Value * txtTyGia.Value, M_ROUND);
+                if (MA_NT == _mMaNt0)
+                {
+                    txtTongCk.Value = txtTongCkNt.Value;
+                }
+                TinhTongThanhToan("txtTongCkNt_V6LostFocus");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".txtTongCkNt_V6LostFocus", ex);
+            }
+        }
+
+        private void txtTongThueNt_V6LostFocus(object sender)
+        {
+            try
+            {
+                txtTongThue.Value = V6BusinessHelper.Vround(txtTongThueNt.Value * txtTyGia.Value, M_ROUND);
+                if (MA_NT == _mMaNt0)
+                {
+                    txtTongThue.Value = txtTongThueNt.Value;
+                }
+                TinhTongThanhToan("txtTongThueNt_V6LostFocus");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".txtTongThueNt_V6LostFocus", ex);
+            }
+        }
     }
 }

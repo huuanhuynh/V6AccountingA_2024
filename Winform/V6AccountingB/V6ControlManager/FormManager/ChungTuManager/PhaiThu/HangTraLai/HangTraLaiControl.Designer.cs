@@ -1104,7 +1104,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             0,
             0,
             196608});
-            this.txtTongGiamNt.V6LostFocus += new V6Controls.ControlEventHandle(this.TinhTongThanhToan_V6LostFocus);
+            this.txtTongGiamNt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTongGiamNt_V6LostFocus);
             // 
             // v6Label23
             // 
@@ -1139,7 +1139,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             0,
             0,
             196608});
-            this.txtTongCkNt.V6LostFocus += new V6Controls.ControlEventHandle(this.TinhTongThanhToan_V6LostFocus);
+            this.txtTongCkNt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTongCkNt_V6LostFocus);
             // 
             // v6Label22
             // 
@@ -1175,7 +1175,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             0,
             0,
             0});
-            this.txtTongThueNt.V6LostFocus += new V6Controls.ControlEventHandle(this.TinhTongThanhToan_V6LostFocus);
+            this.txtTongThueNt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTongThueNt_V6LostFocus);
             // 
             // chkSuaTienThue
             // 
@@ -1510,7 +1510,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             0,
             0,
             131072});
-            this.txtThueSuat.V6LostFocus += new V6Controls.ControlEventHandle(this.TinhTongThanhToan_V6LostFocus);
+            this.txtThueSuat.V6LostFocus += new V6Controls.ControlEventHandle(this.txtThueSuat_V6LostFocus);
             // 
             // txtPtCk
             // 

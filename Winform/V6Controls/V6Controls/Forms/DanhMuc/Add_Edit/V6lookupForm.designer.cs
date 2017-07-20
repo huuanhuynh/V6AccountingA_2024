@@ -547,7 +547,9 @@
             this.v6ColorTextBox11.Name = "v6ColorTextBox11";
             this.v6ColorTextBox11.Size = new System.Drawing.Size(670, 23);
             this.v6ColorTextBox11.TabIndex = 3;
-            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox11, "Các trường Filter khi in danh mục MA_KH:MA_KH:MA_KH like \'%abc%\'");
+            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox11, "Các trường Filter khi in danh mục MA_KH:MA_KH:MA_KH like \'%abc%\'\r\nCác trường cách" +
+        " nhau bằng phẩy (,) hoặc chấm phẩy (;)\r\nCấu trúc (FIELD:vvar:Filter), Các phần s" +
+        "au : có thể bỏ qua.");
             // 
             // label7
             // 

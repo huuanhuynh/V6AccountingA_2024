@@ -1749,7 +1749,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             0,
             0,
             196608});
-            this.txtTongCkNt.V6LostFocus += new V6Controls.ControlEventHandle(this.TinhTongThanhToan_V6LostFocus);
             // 
             // v6Label22
             // 
@@ -1788,7 +1787,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             0,
             0,
             0});
-            this.txtTongThueNt.V6LostFocus += new V6Controls.ControlEventHandle(this.TinhTongThanhToan_V6LostFocus);
+            this.txtTongThueNt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTongThueNt_V6LostFocus);
             // 
             // txtTongThanhToanNt
             // 
@@ -1908,7 +1907,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             0,
             0,
             196608});
-            this.txtTongGiamNt.V6LostFocus += new V6Controls.ControlEventHandle(this.TinhTongThanhToan_V6LostFocus);
+            this.txtTongGiamNt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTongGiamNt_V6LostFocus);
             // 
             // v6Label21
             // 
@@ -2301,7 +2300,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             0,
             0,
             131072});
-            this.txtThueSuat.V6LostFocus += new V6Controls.ControlEventHandle(this.TinhTongThanhToan_V6LostFocus);
+            this.txtThueSuat.V6LostFocus += new V6Controls.ControlEventHandle(this.txtThueSuat_V6LostFocus);
             // 
             // txtPtCk
             // 
@@ -3616,7 +3615,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.MinimumSize = new System.Drawing.Size(600, 450);
             this.Name = "PhieuNhapKhauControl";
             this.Size = new System.Drawing.Size(899, 583);
-            
             this.Load += new System.EventHandler(this.HoaDonBanHangKiemPhieuXuat_Load);
             this.VisibleChanged += new System.EventHandler(this.HoaDonBanHangKiemPhieuXuat_VisibleChanged);
             this.tabControl1.ResumeLayout(false);

@@ -1,6 +1,6 @@
-﻿namespace V6ControlManager.FormManager.KhoHangManager
+﻿namespace V6ControlManager.FormManager.KhoHangManager.Draw
 {
-    partial class KhoHangContainer
+    partial class KhoHangContainerDraw
     {
         /// <summary>
         /// Required designer variable.
@@ -176,7 +176,7 @@
             0,
             196608});
             // 
-            // KhoHangContainer
+            // KhoHangContainerDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -189,7 +189,7 @@
             this.Controls.Add(this.lblTenHang);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Name = "KhoHangContainer";
+            this.Name = "KhoHangContainerDraw";
             this.Size = new System.Drawing.Size(784, 562);
             this.ResumeLayout(false);
             this.PerformLayout();

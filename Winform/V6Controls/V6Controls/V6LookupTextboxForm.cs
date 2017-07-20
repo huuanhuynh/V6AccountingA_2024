@@ -98,7 +98,7 @@ namespace V6Controls
             {
                 if (_multiSelect && vSearchFilter.Contains(","))
                 {
-                    var tbl = V6BusinessHelper.Select(LookupInfo.TABLE_NAME, "*", initFilter).Data;
+                    var tbl = V6BusinessHelper.Select(LookupInfo.TABLE_NAME, "*", initFilter, "", LookupInfo.Vorder).Data;
                     return tbl;
                 }
                 else
@@ -108,7 +108,7 @@ namespace V6Controls
                     {
                         where += " AND (" + vSearchFilter + ")";
                     }
-                    var tbl = V6BusinessHelper.Select(LookupInfo.TABLE_NAME, "*", where).Data;
+                    var tbl = V6BusinessHelper.Select(LookupInfo.TABLE_NAME, "*", where, "", LookupInfo.Vorder).Data;
                     return tbl;
                 }
             }

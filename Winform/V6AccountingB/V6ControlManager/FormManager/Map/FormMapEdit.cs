@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using H;
+using HaUtility.Helper;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.KhoHangManager;
 using V6Controls;

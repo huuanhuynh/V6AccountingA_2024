@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
@@ -592,6 +593,106 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.ShowErrorException(GetType() + ".TinhChietKhauChiTiet", ex);
             }
         }
+
+
+        #region ==== Tính toán trong chi tiết ====
+
+        /// <summary>
+        /// Tính lại tiền thuế nt hoặc thuế theo thuế suất và tiền tương ứng nhập vào
+        /// </summary>
+        /// <param name="thueSuat">vd: 10 là 10%</param>
+        /// <param name="tien"></param>
+        /// <param name="txtTienThue"></param>
+        /// <param name="round"></param>
+        protected void Tinh_TienThue_TheoThueSuat(decimal thueSuat, decimal tien, V6NumberTextBox txtTienThue, int round)
+        {
+            try
+            {
+                txtTienThue.Value = V6BusinessHelper.Vround(tien * thueSuat / 100, round);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+        
+        protected void Tinh_TienThue_TheoTienThueNt(decimal tienThueNt, decimal tyGia, V6NumberTextBox txtTienThue, int round)
+        {
+            try
+            {
+                txtTienThue.Value = V6BusinessHelper.Vround(tienThueNt * tyGia, round);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        protected void Tinh_TienThueNtVaTienThue_TheoThueSuat(decimal thueSuat, decimal tienNt, decimal tien, V6NumberTextBox txtTienThueNt, V6NumberTextBox txtTienThue)
+        {
+            try
+            {
+                Tinh_TienThue_TheoThueSuat(thueSuat, tienNt, txtTienThueNt, M_ROUND_NT);
+                Tinh_TienThue_TheoThueSuat(thueSuat, tien, txtTienThue, M_ROUND);
+
+                if (_maNt == _mMaNt0)
+                {
+                    txtTienThue.Value = txtTienThueNt.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        /// <summary>
+        /// Xử lý khi thay đổi giá trị tienNt (trong chi tiết).
+        /// </summary>
+        /// <param name="tienNt">giá trị tienNt sau khi thay đổi.</param>
+        /// <param name="tyGia">tỷ giá đổi tienNt ra tien.</param>
+        /// <param name="thueSuat"></param>
+        /// <param name="txtTien"></param>
+        /// <param name="txtTienThueNt"></param>
+        /// <param name="txtTienThue"></param>
+        protected void TienNtChanged(decimal tienNt, decimal tyGia, decimal thueSuat, V6NumberTextBox txtTien,
+            V6NumberTextBox txtTienThueNt, V6NumberTextBox txtTienThue)
+        {
+            try
+            {
+                txtTien.Value = V6BusinessHelper.Vround(tienNt * tyGia, M_ROUND);
+                if (_maNt == _mMaNt0)
+                {
+                    txtTien.Value = tienNt;
+                }
+                Tinh_TienThueNtVaTienThue_TheoThueSuat(thueSuat, tienNt, txtTien.Value, txtTienThueNt, txtTienThue);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        /// <summary>
+        /// Tính lại tiền thuế sau khi thay đổi tiền.
+        /// </summary>
+        /// <param name="tien">Giá trị Tiền sau khi thay đổi.</param>
+        /// <param name="thueSuat">Thuế suất theo %. vd 10 là 10%.</param>
+        /// <param name="txtTienThue">TextBox tiền thuế.</param>
+        protected void TienChanged(decimal tien, decimal thueSuat, V6NumberTextBox txtTienThue)
+        {
+            try
+            {
+                Tinh_TienThue_TheoThueSuat(thueSuat, tien, txtTienThue, M_ROUND);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        #endregion Tính toán trong chi tiết ====================================================
+
 
         protected bool ValidateNgayCt(string maCt, DateTimePicker dateNgayCT)
         {

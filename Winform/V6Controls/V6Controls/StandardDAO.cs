@@ -73,7 +73,7 @@ namespace V6Controls
 
                     if (standard._multiSelect && vSearchFilter.Contains(","))
                     {
-                        var tbl = V6BusinessHelper.Select(tableName, "*", initFilter).Data;
+                        var tbl = V6BusinessHelper.Select(tableName, "*", initFilter, "", lstConfig.Vorder).Data;
                         return tbl;
                     }
                     else
@@ -83,7 +83,7 @@ namespace V6Controls
                         {
                             where += " AND (" + vSearchFilter + ")";
                         }
-                        var tbl = V6BusinessHelper.Select(tableName, "*", where).Data;
+                        var tbl = V6BusinessHelper.Select(tableName, "*", where, "", lstConfig.Vorder).Data;
                         return tbl;
                     }
                 }
