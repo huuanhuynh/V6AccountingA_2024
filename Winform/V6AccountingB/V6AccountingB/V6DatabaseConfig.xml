@@ -76,6 +76,44 @@
     <Type>0</Type>
     <Key>SmCUKiZWc9og0njmmdo/yUZAoF2wV8KJgZxSbqmuYTvkBoyvF9044A==</Key>
   </DatabaseList>
+  <DatabaseList>
+    <Stt>5</Stt>
+    <Server>192.168.1.99\SQLSERVER2K8</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Database>MOTEL17</Database>
+    <Database2>MOTEL17</Database2>
+    <UserId>sa</UserId>
+    <UserId2>sa</UserId2>
+    <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
+    <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>MOTEL- PHU LOI</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>zn5UHNYXfy8g0njmmdo/yUZAoF2wV8KJpU/gZLpMec5Pia+U0EeP2g==</Key>
+  </DatabaseList>
+  <DatabaseList>
+    <Stt>6</Stt>
+    <Server>192.168.1.99\SQLSERVER2K8</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Database>VIETHA17_WH</Database>
+    <Database2>VIETHA17_WH</Database2>
+    <UserId>sa</UserId>
+    <UserId2>sa</UserId2>
+    <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
+    <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>VIET HA- KHO LONG HAU</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>1MyiGdzr4dUg0njmmdo/yUZAoF2wV8KJ9/oYAJ0sJzP/L2SKcUBWiQ==</Key>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>

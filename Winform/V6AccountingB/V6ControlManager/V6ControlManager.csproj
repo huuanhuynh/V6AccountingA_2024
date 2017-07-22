@@ -1433,6 +1433,7 @@
     <Compile Include="FormManager\KhoHangManager\Draw\KhoHangContainerDraw.Designer.cs">
       <DependentUpon>KhoHangContainerDraw.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\KhoHangManager\Draw\KhoHangObject.cs" />
     <Compile Include="FormManager\KhoHangManager\KhoHangContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -7158,6 +7159,7 @@
     <None Include="Resources\Help.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="FormManager\KhoHangManager\Draw\NewFolder1\" />
     <Folder Include="FormManager\Other\" />
   </ItemGroup>
   <ItemGroup>
