@@ -18,14 +18,22 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
             }
         }
+
         public override void DoBeforeEdit()
         {
-            var v = Categories.IsExistOneCode_List("ARI70,ARA00", "Ma_bp", TxtMa_bp.Text);
-            TxtMa_bp.Enabled = !v;
-
-            if (!V6Login.IsAdmin && TxtMa_dvcs.Text.ToUpper() != V6Login.Madvcs.ToUpper())
+            try
             {
-                TxtMa_dvcs.Enabled = false;
+                var v = Categories.IsExistOneCode_List("ARI70,ARA00", "Ma_bp", TxtMa_bp.Text);
+                TxtMa_bp.Enabled = !v;
+
+                if (!V6Login.IsAdmin && TxtMa_dvcs.Text.ToUpper() != V6Login.Madvcs.ToUpper())
+                {
+                    TxtMa_dvcs.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoBeforeEdit", ex);
             }
         }
 

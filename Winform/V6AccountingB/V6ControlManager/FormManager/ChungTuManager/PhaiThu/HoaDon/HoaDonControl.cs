@@ -3324,8 +3324,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 var t_vc_nt = TxtT_TIENVCNT.Value;
 
                 var t_tt_nt = t_tien_nt2 - t_gg_nt - t_ck_nt + t_thue_nt + t_vc_nt;
-                
                 txtTongThanhToanNt.Value = V6BusinessHelper.Vround(t_tt_nt, M_ROUND_NT);
+
+                var t_tt = txtTongTien2.Value - txtTongGiam.Value - txtTongCk.Value + txtTongThue.Value + TxtT_TIENVC.Value;
+                txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt, M_ROUND);
 
                 //var tygia = txtTyGia.Value;
                 //txtTongTien2.Value = V6BusinessHelper.Vround(t_tien_nt2*tygia, M_ROUND);

@@ -406,6 +406,7 @@ namespace V6ControlManager.FormManager.Map
                 {
                     dataGridView1.ClearSelection();
                     dataGridView1.Rows[i].Selected = true;
+                    dataGridView1.FirstDisplayedScrollingRowIndex = i;
                 }
             }
         }

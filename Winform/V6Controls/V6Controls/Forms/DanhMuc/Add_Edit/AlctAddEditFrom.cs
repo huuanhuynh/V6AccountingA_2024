@@ -10,6 +10,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
     public partial class AlctAddEditFrom : AddEditControlVirtual
     {
         private bool _ready;
+
         public AlctAddEditFrom()
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public override void ValidateData()
         {
             if (Mode != V6Mode.Add) return;
-            if(txtMaCt.Text.Trim()=="") throw new Exception("Chưa nhập mã chứng từ!");
+            if (txtMaCt.Text.Trim() == "") throw new Exception("Chưa nhập mã chứng từ!");
         }
 
         private void LoadAlpost()
@@ -65,10 +66,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".cboKieuPost_SelectedIndexChanged " + ex.Message, Application.ProductName);
+                Logger.WriteToLog(
+                    V6Login.ClientName + " " + GetType() + ".cboKieuPost_SelectedIndexChanged " + ex.Message,
+                    Application.ProductName);
             }
         }
-  
 
-        }
+    }
 }

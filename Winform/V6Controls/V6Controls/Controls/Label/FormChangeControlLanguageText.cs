@@ -25,17 +25,37 @@ namespace V6Controls.Controls.Label
 
         private void MyInit()
         {
+            //Thay đổi nội dung text bằng tiếng Anh
             if (V6Setting.Language != "V")
             {
                 Text = "Change text";
                 label1.Text = "Text";
                 button1.Text = "Ok";
+
+                columnHeader1.Text = "Name";
+                columnHeader2.Text = "Value";
             }
             textBox1.Text = _label.Text;
+            ShowControlInfo();
             if (V6Setting.IsVietnamese)
             {
                 checkBox1.Checked = true;
                 checkBox1.Visible = true;
+            }
+        }
+
+        private void ShowControlInfo()
+        {
+            try
+            {
+                ListViewItem nameItem = new ListViewItem(new[] {V6Setting.IsVietnamese ? "Tên đối tượng" : "Object Name", _label.Name});
+                listView1.Items.Add(nameItem);
+                ListViewItem nameAccDes = new ListViewItem(new[] {"AccessibleDescription", _label.AccessibleDescription});
+                listView1.Items.Add(nameAccDes);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ShowControlInfo", ex);
             }
         }
 
