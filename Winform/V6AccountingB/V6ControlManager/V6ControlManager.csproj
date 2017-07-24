@@ -1427,6 +1427,13 @@
     <Compile Include="FormManager\HeThong\ThongTinChuongTrinh.Designer.cs">
       <DependentUpon>ThongTinChuongTrinh.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\KhoHangManager\Draw\KhoHangContainerDraw.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\KhoHangManager\Draw\KhoHangContainerDraw.Designer.cs">
+      <DependentUpon>KhoHangContainerDraw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\KhoHangManager\Draw\KhoHangObject.cs" />
     <Compile Include="FormManager\KhoHangManager\KhoHangContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1451,6 +1458,7 @@
     <Compile Include="FormManager\KhoHangManager\DayHangControl.Designer.cs">
       <DependentUpon>DayHangControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\KhoHangManager\KhoHangHelper.cs" />
     <Compile Include="FormManager\KhoHangManager\KhoParams.cs" />
     <Compile Include="FormManager\KhoHangManager\Report\VitriReportForm.cs">
       <SubType>Form</SubType>
@@ -1476,7 +1484,6 @@
     <Compile Include="FormManager\Map\FormMapManagerAutoHide.designer.cs">
       <DependentUpon>FormMapManagerAutoHide.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\Map\HDrawing.cs" />
     <Compile Include="FormManager\Map\MapRegionObject.cs" />
     <Compile Include="FormManager\Map\MapviewHelper.cs" />
     <Compile Include="FormManager\Map\TestClass1.cs" />
@@ -4708,6 +4715,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Hprojects\HaUtility\HaUtility.csproj">
+      <Project>{0A11F974-1C92-457B-837A-911A8EF85055}</Project>
+      <Name>HaUtility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Hprojects\Hdocument\H_Document.csproj">
       <Project>{c4ac374f-b5a7-4c2f-91ff-92284233f9a2}</Project>
       <Name>H_Document</Name>
@@ -5422,6 +5433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\HeThong\ThongTinChuongTrinh.resx">
       <DependentUpon>ThongTinChuongTrinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\KhoHangManager\Draw\KhoHangContainerDraw.resx">
+      <DependentUpon>KhoHangContainerDraw.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\KhoHangManager\KhoHangContainer.resx">
       <DependentUpon>KhoHangContainer.cs</DependentUpon>
@@ -7145,6 +7159,7 @@
     <None Include="Resources\Help.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="FormManager\KhoHangManager\Draw\NewFolder1\" />
     <Folder Include="FormManager\Other\" />
   </ItemGroup>
   <ItemGroup>

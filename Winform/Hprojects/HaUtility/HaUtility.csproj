@@ -48,6 +48,7 @@
     <Compile Include="Converter\DataHelper.cs" />
     <Compile Include="Converter\PrimitiveTypes.cs" />
     <Compile Include="Converter\VietnameseText.cs" />
+    <Compile Include="Helper\HDrawing.cs" />
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="Helper\PrinterStatus.cs" />
     <Compile Include="Helper\RegistryHelper.cs" />

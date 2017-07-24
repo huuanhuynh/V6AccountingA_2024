@@ -1084,7 +1084,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     foreach (DataRow row in Invoice.Alct0.Rows)
                     {
                         if (row["So_ct"].ToString().Trim().ToUpper() == inputUpper)
+                        {
                             check = true;
+                        }
+
                         if (check)
                         {
                             //

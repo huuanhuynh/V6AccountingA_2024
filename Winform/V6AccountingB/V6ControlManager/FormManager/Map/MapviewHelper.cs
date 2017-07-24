@@ -6,11 +6,11 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using H;
+using HaUtility.Helper;
 using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Init;
-using V6SqlConnect;
-using V6Tools;
+using Logger = V6Tools.Logger;
 
 namespace V6ControlManager.FormManager.Map
 {

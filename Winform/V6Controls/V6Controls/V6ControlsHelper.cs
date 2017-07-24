@@ -572,6 +572,7 @@ namespace V6Controls
         /// Thông tin nhóm. DataTable,IdField,FieldNhom
         /// </summary>
         public string L_ALDM { get { return GetString("L_ALDM"); } }
+        public string Vorder { get { return GetString("VORDER"); } }
     }
 
     public class StandardConfig

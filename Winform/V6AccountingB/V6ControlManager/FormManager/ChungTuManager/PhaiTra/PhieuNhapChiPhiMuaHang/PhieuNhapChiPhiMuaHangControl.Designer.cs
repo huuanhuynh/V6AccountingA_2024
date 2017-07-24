@@ -1406,7 +1406,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             0,
             0,
             0});
-            this.txtTongThueNt.V6LostFocus += new V6Controls.ControlEventHandle(this.TinhTongThanhToan_V6LostFocus);
+            this.txtTongThueNt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTongThueNt_V6LostFocus);
             // 
             // chkSuaTienThue
             // 
@@ -1651,7 +1651,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             0,
             0,
             131072});
-            this.txtThueSuat.V6LostFocus += new V6Controls.ControlEventHandle(this.TinhTongThanhToan_V6LostFocus);
+            this.txtThueSuat.V6LostFocus += new V6Controls.ControlEventHandle(this.txtThueSuat_V6LostFocus);
             // 
             // btnChucNang
             // 

@@ -158,6 +158,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Control_A = true;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -241,6 +242,7 @@
             this.Name = "PhanNhomForm";
             this.Text = "Phân nhóm";
             this.Load += new System.EventHandler(this.PhanNhomForm_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.panel2, 0);
             this.panel1.ResumeLayout(false);

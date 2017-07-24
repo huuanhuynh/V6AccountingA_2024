@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -21,7 +22,6 @@ namespace V6ControlManager.FormManager.KhoHangManager
         public KhoHangControl()
         {
             InitializeComponent();
-            GetAndSetData();
         }
 
         public KhoHangControl(KhoParams kparas)
@@ -32,18 +32,6 @@ namespace V6ControlManager.FormManager.KhoHangManager
             SetData(KhoParams.Data);
         }
 
-        private void GetAndSetData()
-        {
-            try
-            {
-                var data = ParseDBF.ReadDBF("D:\\Test\\APALETT.DBF");
-                SetData(data);
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(string.Format("{0}.{1}", GetType(), MethodBase.GetCurrentMethod().Name), ex);
-            }
-        }
 
         private void SetData(DataTable data)
         {
@@ -234,12 +222,26 @@ namespace V6ControlManager.FormManager.KhoHangManager
         {
             try
             {
+                Dictionary<string, string> errors = new Dictionary<string, string>();
                 foreach (DataRow row in dataVitriVattu.Rows)
                 {
                     var cVitri = row["MA_VITRI"].ToString().Trim();
                     var cMavt = row["MA_VT"].ToString().Trim();
                     var ma_day = cVitri.Substring(2, 1);//////
-                    _listDay[ma_day].SetDataVitriVatTu(row, cVitri, cMavt);
+                    
+                    if (_listDay.ContainsKey(ma_day))
+                    {
+                        _listDay[ma_day].SetDataVitriVatTu(row, cVitri, cMavt);
+                    }
+                    else
+                    {
+                        errors[ma_day] = "Khong co day: " + ma_day;
+                    }
+                }
+
+                if (errors.Count > 0)
+                {
+                    ShowMainMessage(errors.Aggregate("", (current, error) => current + error.Value + "\n"));
                 }
             }
             catch (Exception ex)

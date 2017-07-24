@@ -3506,5 +3506,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         }
 
 
+        private void txtTongThueNt_V6LostFocus(object sender)
+        {
+            try
+            {
+                txtTongThue.Value = V6BusinessHelper.Vround(txtTongThueNt.Value * txtTyGia.Value, M_ROUND);
+                if (MA_NT == _mMaNt0)
+                {
+                    txtTongThue.Value = txtTongThueNt.Value;
+                }
+                TinhTongThanhToan("txtTongThueNt_V6LostFocus");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".txtTongThueNt_V6LostFocus", ex);
+            }
+        }
     }
 }

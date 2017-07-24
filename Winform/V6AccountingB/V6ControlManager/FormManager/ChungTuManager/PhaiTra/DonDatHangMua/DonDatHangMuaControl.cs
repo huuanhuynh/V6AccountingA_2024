@@ -1625,12 +1625,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 
                 txtTongThanhToanNt.Value = V6BusinessHelper.Vround(t_tt_nt, M_ROUND_NT);
 
-                var tygia = txtTyGia.Value;
-                txtTongTien0.Value = V6BusinessHelper.Vround(t_tien_nt2*tygia, M_ROUND);
-                txtTongGiam.Value = V6BusinessHelper.Vround(t_gg_nt*tygia, M_ROUND);
-                txtTongCk.Value = V6BusinessHelper.Vround(t_ck_nt*tygia, M_ROUND);
-                txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
-                txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
+                //var tygia = txtTyGia.Value;
+                //txtTongTien0.Value = V6BusinessHelper.Vround(t_tien_nt2*tygia, M_ROUND);
+                //txtTongGiam.Value = V6BusinessHelper.Vround(t_gg_nt*tygia, M_ROUND);
+                //txtTongCk.Value = V6BusinessHelper.Vround(t_ck_nt*tygia, M_ROUND);
+                //txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
+                //txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
                 //Co_Thay_Doi = true;
                 
             }
@@ -3464,7 +3464,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             txtTyGia_V6LostFocus(sender);
         }
         
-        private void TinhTongThanhToan_V6LostFocus(object sender)
+        private void txtThueSuat_V6LostFocus(object sender)
         {
             TinhTongThanhToan("V6LostFocus " + ((Control)sender).AccessibleName);
         }
@@ -4085,6 +4085,57 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         private void tabControl1_SizeChanged(object sender, EventArgs e)
         {
             FixDataGridViewSize(dataGridView1, dataGridView2, dataGridView3);
+        }
+
+        private void txtTongGiamNt_V6LostFocus(object sender)
+        {
+            try
+            {
+                txtTongGiam.Value = V6BusinessHelper.Vround(txtTongGiamNt.Value * txtTyGia.Value, M_ROUND);
+                if (MA_NT == _mMaNt0)
+                {
+                    txtTongGiam.Value = txtTongGiamNt.Value;
+                }
+                TinhTongThanhToan("txtTongGiamNt_V6LostFocus");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".txtTongGiamNt_V6LostFocus", ex);
+            }
+        }
+
+        private void txtTongCkNt_V6LostFocus(object sender)
+        {
+            try
+            {
+                txtTongCk.Value = V6BusinessHelper.Vround(txtTongCkNt.Value * txtTyGia.Value, M_ROUND);
+                if (MA_NT == _mMaNt0)
+                {
+                    txtTongCk.Value = txtTongCkNt.Value;
+                }
+                TinhTongThanhToan("txtTongCkNt_V6LostFocus");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".txtTongCkNt_V6LostFocus", ex);
+            }
+        }
+
+        private void txtTongThueNt_V6LostFocus(object sender)
+        {
+            try
+            {
+                txtTongThue.Value = V6BusinessHelper.Vround(txtTongThueNt.Value * txtTyGia.Value, M_ROUND);
+                if (MA_NT == _mMaNt0)
+                {
+                    txtTongThue.Value = txtTongThueNt.Value;
+                }
+                TinhTongThanhToan("txtTongThueNt_V6LostFocus");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".txtTongThueNt_V6LostFocus", ex);
+            }
         }
     }
 }

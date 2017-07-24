@@ -484,7 +484,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     {
                         _t_tien_nt22.V6LostFocus += delegate
                         {
-                            TinhTienThue22();
+                            TinhTien22TienThue22();
                         };
                     }
                 }
@@ -502,7 +502,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                             _thue_suat22.Value = ObjectAndString.ObjectToDecimal(_ma_thue22.Data["THUE_SUAT"]);
                             _tk_thue_no22.Text = _ma_thue22.Data["TK_THUE_NO"].ToString().Trim();
                             _tk_du22.Text = txtManx.Text;
-                            TinhTienThue22();
+                            TinhTien22TienThue22();
                         };
                     }
                 }
@@ -516,7 +516,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
                         _thue_suat22.V6LostFocus += delegate
                         {
-                            TinhTienThue22();
+                            TinhTien22TienThue22();
                         };
                     }
                 }
@@ -533,7 +533,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     _t_thue_nt22 = control as V6NumberTextBox;
                     if (_t_thue_nt22 != null)
                     {
-
+                        _t_thue_nt22.V6LostFocus += delegate
+                        {
+                            TinhTienThue22();
+                        };
                     }
                 }
             }
@@ -588,7 +591,36 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 this.ShowErrorMessage(GetType() + ".TinhTienThue: " + ex.Message);
             }
         }
+
+        /// <summary>
+        /// Tính toán tiền thuế chi tiết bảng AD2
+        /// </summary>
         private void TinhTienThue22()
+        {
+            try
+            {
+                _t_thue22.Value = V6BusinessHelper.Vround(_t_thue_nt22.Value * txtTyGia.Value, M_ROUND);
+                if (_maNt == _mMaNt0)
+                {
+                    _t_thue22.Enabled = false;
+
+                    _t_thue22.Value = _t_thue_nt22.Value;
+                }
+                else
+                {
+                    _t_thue22.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".TinhTienThue22: " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Tính toán tiền và tiền thuế chi tiết bảng AD2
+        /// </summary>
+        private void TinhTien22TienThue22()
         {
             try
             {
@@ -1224,18 +1256,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 txtTongThanhToanNt.Value = V6BusinessHelper.Vround(t_tt_nt, M_ROUND_NT);
 
                 //Tính tiền quy đổi (VND)
-                var tygia = txtTyGia.Value;
-                txtTongTien.Value = V6BusinessHelper.Vround(t_tien_nt*tygia, M_ROUND);
-                txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
-                txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
+                //var tygia = txtTyGia.Value;
+                //txtTongTien.Value = V6BusinessHelper.Vround(t_tien_nt*tygia, M_ROUND);
+                //txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
+                //txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
 
                 //Fix
-                if (_maNt == _mMaNt0)
-                {
-                    txtTongTien.Value = t_tien_nt;
-                    txtTongThue.Value = t_thue_nt;
-                    txtTongThanhToan.Value = t_tt_nt;
-                }
+                //if (_maNt == _mMaNt0)
+                //{
+                //    txtTongTien.Value = t_tien_nt;
+                //    txtTongThue.Value = t_thue_nt;
+                //    txtTongThanhToan.Value = t_tt_nt;
+                //}
                
             }
             catch (Exception ex)
@@ -2453,7 +2485,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                         _dia_chi22.Enabled = _dia_chi22.Text.Trim() == "";
                         _ma_so_thue22.Enabled = _ma_so_thue22.Text.Trim() == "";
                     }
-                    TinhTienThue22();
+                    TinhTien22TienThue22();
                 }
                 _mau_bc.Focus();
             }
@@ -3450,6 +3482,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         private void tabControl1_SizeChanged(object sender, EventArgs e)
         {
             FixDataGridViewSize(dataGridView1, dataGridView2);
+        }
+
+        private void txtTongThueNt_V6LostFocus(object sender)
+        {
+            try
+            {
+                txtTongThue.Value = V6BusinessHelper.Vround(txtTongThueNt.Value * txtTyGia.Value, M_ROUND);
+                if (MA_NT == _mMaNt0)
+                {
+                    txtTongThue.Value = txtTongThueNt.Value;
+                }
+                TinhTongThanhToan("txtTongThueNt_V6LostFocus");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".txtTongThueNt_V6LostFocus", ex);
+            }
         }
     }
 }

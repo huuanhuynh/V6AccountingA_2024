@@ -51,6 +51,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     txtFdecimal.Visible = true;
                     lblFdecimal.Visible = true;
                     txtFdecimal.Enabled = true;
+
+                    lblCheckVvar.Visible = true;
+                    chkCheckVvar.Visible = true;
+                    lblNotEmpty.Visible = true;
+                    chkNotEmpty.Visible = true;
                 }
             }
             else

@@ -11,11 +11,10 @@ using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6Structs;
-using V6Tools;
 
-namespace V6ControlManager.FormManager.KhoHangManager
+namespace V6ControlManager.FormManager.KhoHangManager.Draw
 {
-    public partial class KhoHangContainer : V6FormControl
+    public partial class KhoHangContainerDraw : V6FormControl
     {
         #region ==== Properties ====
         private Point _p = new Point(0, 0);
@@ -135,12 +134,12 @@ namespace V6ControlManager.FormManager.KhoHangManager
         #endregion properties
         
 
-        public KhoHangContainer()
+        public KhoHangContainerDraw()
         {
             InitializeComponent();
         }
 
-        public KhoHangContainer(KhoParams kparas)
+        public KhoHangContainerDraw(KhoParams kparas)
         {
             InitializeComponent();
             KhoParams = kparas;
@@ -217,15 +216,15 @@ namespace V6ControlManager.FormManager.KhoHangManager
                 panel1.Controls.Clear();
                 KhoParams.Data = data;
                 KhoParams.MA_KHO = txtMaKho.Text;
-                if (_khoHang != null && !_khoHang.IsDisposed)
-                {
-                    _khoHang.Dispose();
-                    GC.SuppressFinalize(_khoHang);
-                }
                 _khoHang = new KhoHangControl(KhoParams);
                 _khoHang.AddControlsFinish += delegate
                 {
-                    SetDataViTriVatTu();
+                    LoadSetDataViTriVatTu();
+                    //Lấy kích thước.
+                    int w = 10 + _khoHang.Width;
+                    int h = 10 + _khoHang.Height;
+                    pictureBox1.Image = new Bitmap(w, h);
+                    pictureBox1.Paint += pictureBox1_Paint;
                     if (KhoParams.RunTimer) timer1.Start();
                 };
                   
@@ -235,6 +234,23 @@ namespace V6ControlManager.FormManager.KhoHangManager
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".SetData", ex);
+            }
+        }
+
+        void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            DrawKhoHang(e.Graphics);
+        }
+
+        private void DrawKhoHang(Graphics graphics)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DrawKhoHang", ex);
             }
         }
 
@@ -251,7 +267,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             }
         }
 
-        private void SetDataViTriVatTu()
+        private void LoadSetDataViTriVatTu()
         {
             if (_khoHang == null) return;
             var condition = string.Format("MA_KHO='{0}'", txtMaKho.Text.Replace("'", "''"));
@@ -394,7 +410,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             {
                 timeCount = 0;
                 ClearDataVitriVaTu();
-                SetDataViTriVatTu();
+                LoadSetDataViTriVatTu();
             }
         }
 

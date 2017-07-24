@@ -69,6 +69,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.chkCheckVvar = new V6Controls.V6CheckBox();
+            this.lblCheckVvar = new System.Windows.Forms.Label();
+            this.chkNotEmpty = new V6Controls.V6CheckBox();
+            this.lblNotEmpty = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -445,13 +449,17 @@
             this.tabPage1.Controls.Add(this.txtFtype);
             this.tabPage1.Controls.Add(this.lblFtype);
             this.tabPage1.Controls.Add(this.label16);
+            this.tabPage1.Controls.Add(this.lblNotEmpty);
             this.tabPage1.Controls.Add(this.label15);
             this.tabPage1.Controls.Add(this.v6CheckBox1);
+            this.tabPage1.Controls.Add(this.chkNotEmpty);
             this.tabPage1.Controls.Add(this.ChkFstatus);
             this.tabPage1.Controls.Add(this.TxtWidth);
+            this.tabPage1.Controls.Add(this.lblCheckVvar);
             this.tabPage1.Controls.Add(this.label14);
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.TxtForder);
+            this.tabPage1.Controls.Add(this.chkCheckVvar);
             this.tabPage1.Controls.Add(this.chkCarry);
             this.tabPage1.Controls.Add(this.ChkVisible);
             this.tabPage1.Controls.Add(this.label12);
@@ -730,6 +738,56 @@
             this.tabPage2.Text = "Thông tin ngầm định";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // chkCheckVvar
+            // 
+            this.chkCheckVvar.AccessibleName = "checkvvar";
+            this.chkCheckVvar.AutoSize = true;
+            this.chkCheckVvar.Location = new System.Drawing.Point(376, 97);
+            this.chkCheckVvar.Margin = new System.Windows.Forms.Padding(4);
+            this.chkCheckVvar.Name = "chkCheckVvar";
+            this.chkCheckVvar.Size = new System.Drawing.Size(237, 21);
+            this.chkCheckVvar.TabIndex = 9;
+            this.chkCheckVvar.Text = "Kiểm tra dữ liệu hợp lệ khi ra khỏi";
+            this.chkCheckVvar.UseVisualStyleBackColor = true;
+            this.chkCheckVvar.Visible = false;
+            // 
+            // lblCheckVvar
+            // 
+            this.lblCheckVvar.AccessibleDescription = "";
+            this.lblCheckVvar.AutoSize = true;
+            this.lblCheckVvar.Location = new System.Drawing.Point(270, 98);
+            this.lblCheckVvar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCheckVvar.Name = "lblCheckVvar";
+            this.lblCheckVvar.Size = new System.Drawing.Size(72, 17);
+            this.lblCheckVvar.TabIndex = 8;
+            this.lblCheckVvar.Text = "checkvvar";
+            this.lblCheckVvar.Visible = false;
+            // 
+            // chkNotEmpty
+            // 
+            this.chkNotEmpty.AccessibleName = "notempty";
+            this.chkNotEmpty.AutoSize = true;
+            this.chkNotEmpty.Location = new System.Drawing.Point(376, 126);
+            this.chkNotEmpty.Margin = new System.Windows.Forms.Padding(4);
+            this.chkNotEmpty.Name = "chkNotEmpty";
+            this.chkNotEmpty.Size = new System.Drawing.Size(219, 21);
+            this.chkNotEmpty.TabIndex = 11;
+            this.chkNotEmpty.Text = "Kiểm tra textbox cần có dữ liệu";
+            this.chkNotEmpty.UseVisualStyleBackColor = true;
+            this.chkNotEmpty.Visible = false;
+            // 
+            // lblNotEmpty
+            // 
+            this.lblNotEmpty.AccessibleDescription = "";
+            this.lblNotEmpty.AutoSize = true;
+            this.lblNotEmpty.Location = new System.Drawing.Point(270, 127);
+            this.lblNotEmpty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNotEmpty.Name = "lblNotEmpty";
+            this.lblNotEmpty.Size = new System.Drawing.Size(66, 17);
+            this.lblNotEmpty.TabIndex = 10;
+            this.lblNotEmpty.Text = "notempty";
+            this.lblNotEmpty.Visible = false;
+            // 
             // V6Alct1AddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -795,5 +853,9 @@
         private System.Windows.Forms.Label lblFtype;
         private V6ColorTextBox txtFdecimal;
         private System.Windows.Forms.Label lblFdecimal;
+        private System.Windows.Forms.Label lblNotEmpty;
+        private V6CheckBox chkNotEmpty;
+        private System.Windows.Forms.Label lblCheckVvar;
+        private V6CheckBox chkCheckVvar;
     }
 }

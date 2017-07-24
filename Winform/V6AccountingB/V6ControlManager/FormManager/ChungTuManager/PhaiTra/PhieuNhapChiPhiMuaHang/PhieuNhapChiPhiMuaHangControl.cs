@@ -1713,11 +1713,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 
                 txtTongThanhToanNt.Value = V6BusinessHelper.Vround(t_tt_nt, M_ROUND_NT);
 
-                var tygia = txtTyGia.Value;
-                TxtT_cp.Value = V6BusinessHelper.Vround(t_tien_nt2*tygia, M_ROUND);
+                //var tygia = txtTyGia.Value;
+                //TxtT_cp.Value = V6BusinessHelper.Vround(t_tien_nt2*tygia, M_ROUND);
                 
-                txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
-                txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
+                //txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
+                //txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
                 //Co_Thay_Doi = true;
                
             }
@@ -3561,7 +3561,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             txtTyGia_V6LostFocus(sender);
         }
         
-        private void TinhTongThanhToan_V6LostFocus(object sender)
+        private void txtThueSuat_V6LostFocus(object sender)
         {
             TinhTongThanhToan("V6LostFocus " + ((Control)sender).AccessibleName);
         }
@@ -4252,5 +4252,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             FixDataGridViewSize(dataGridView1, dataGridView2, dataGridView3ChiPhi);
         }
 
+        private void txtTongThueNt_V6LostFocus(object sender)
+        {
+            try
+            {
+                txtTongThue.Value = V6BusinessHelper.Vround(txtTongThueNt.Value * txtTyGia.Value, M_ROUND);
+                if (MA_NT == _mMaNt0)
+                {
+                    txtTongThue.Value = txtTongThueNt.Value;
+                }
+                TinhTongThanhToan("txtTongThueNt_V6LostFocus");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".txtTongThueNt_V6LostFocus", ex);
+            }
+        }
     }
 }

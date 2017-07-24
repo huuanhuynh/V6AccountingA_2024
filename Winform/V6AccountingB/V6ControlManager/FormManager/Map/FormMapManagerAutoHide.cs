@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
-using H;
+using HaUtility.Helper;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.KhoHangManager;
 using V6ControlManager.FormManager.ReportManager;

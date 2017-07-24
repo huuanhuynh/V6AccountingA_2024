@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -126,13 +127,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         private V6VvarTextBox _ma_kh22, _tk_du22, _tk_thue_no22, _ma_thue22;
         private V6DateTimeColor _ngay_ct022;
         private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _gia_Nt022;
-
+        string[] alctct_GRD_HIDE = new string[] { };
+        string[] alctct_GRD_READONLY = new string[] { };
         
         private void LoadDetailControls()
         {
             detail1.lblName.AccessibleName = "TEN_TK";
             //Lấy các control động
             var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
+
+            //Lấy thông tin Alctct
+            var alctct = V6BusinessHelper.GetAlctCt(Invoice.Mact);
+
+            if (!V6Login.IsAdmin)
+            {
+                if (alctct != null && alctct.Rows.Count > 0)
+                {
+                    var GRD_HIDE = alctct.Rows[0]["GRD_HIDE"].ToString().ToUpper();
+                    var GRD_READONLY = alctct.Rows[0]["GRD_READONLY"].ToString().ToUpper();
+                    alctct_GRD_HIDE = ObjectAndString.SplitString(GRD_HIDE);
+                    alctct_GRD_READONLY = ObjectAndString.SplitString(GRD_READONLY);
+                }
+            }
+
             //Thêm các control động vào danh sách
             foreach (KeyValuePair<int, Control> item in dynamicControlList)
             {
@@ -445,8 +462,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     {
                         _t_tien_nt22.V6LostFocus += delegate
                         {
-                            TinhTienThue22();
+                            //TinhTien22TienThue22();
+                            TienNtChanged(_t_tien_nt22.Value, txtTyGia.Value, _thue_suat22.Value,
+                                    _t_tien22, _t_thue_nt22, _t_thue22);
                         };
+
+                        if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                        {
+                            _t_tien_nt22.InvisibleTag();
+                        }
+                        if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                        {
+                            _t_tien_nt22.ReadOnlyTag();
+                        }
                     }
                 }
                 else if (NAME == "MA_THUE")
@@ -463,7 +491,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                             _thue_suat22.Value = ObjectAndString.ObjectToDecimal(_ma_thue22.Data["THUE_SUAT"]);
                             _tk_thue_no22.Text = _ma_thue22.Data["TK_THUE_NO"].ToString().Trim();
                             _tk_du22.Text = txtManx.Text;
-                            TinhTienThue22();
+                            //TinhTien22TienThue22();
+                            Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat22.Value, _t_tien_nt22.Value, _t_tien22.Value, _t_thue_nt22, _t_thue22);
                         };
                     }
                 }
@@ -477,7 +506,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
 
                         _thue_suat22.V6LostFocus += delegate
                         {
-                            TinhTienThue22();
+                            //TinhTien22TienThue22();
+                            Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat22.Value, _t_tien_nt22.Value, _t_tien22.Value, _t_thue_nt22, _t_thue22);
                         };
                     }
                 }
@@ -486,7 +516,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     _t_thue22 = control as V6NumberTextBox;
                     if (_t_thue22 != null)
                     {
-
+                        if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                        {
+                            _t_thue22.InvisibleTag();
+                        }
+                        if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                        {
+                            _t_thue22.ReadOnlyTag();
+                        }
                     }
                 }
                 else if (NAME == "T_THUE_NT")
@@ -494,7 +531,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     _t_thue_nt22 = control as V6NumberTextBox;
                     if (_t_thue_nt22 != null)
                     {
+                        _t_thue_nt22.V6LostFocus += delegate
+                        {
+                            //TinhTienThue22();
+                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            {
+                                _t_thue_nt22.InvisibleTag();
+                            }
+                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            {
+                                _t_thue_nt22.ReadOnlyTag();
+                            }
 
+                            _t_thue_nt22.V6LostFocus += delegate
+                            {
+                                Tinh_TienThue_TheoTienThueNt(_t_thue_nt22.Value, txtTyGia.Value, _t_thue22, M_ROUND);
+                            };
+                        };
                     }
                 }
 
@@ -1000,33 +1053,62 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                 _mau_bc.Value = 1;
             }
         }
-        private void TinhTienThue22()
-        {
-            try
-            {
-                _t_tien22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value*txtTyGia.Value, M_ROUND);
-                _t_thue_nt22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value * _thue_suat22.Value / 100, M_ROUND_NT);
-                _t_thue22.Value = V6BusinessHelper.Vround(_t_thue_nt22.Value * txtTyGia.Value, M_ROUND);
-                if (_maNt == _mMaNt0)
-                {
-                    _t_tien22.Enabled = false;
-                    _t_thue22.Enabled = false;
 
-                    _t_tien22.Value = _t_tien_nt22.Value;
-                    _t_thue22.Value = _t_thue_nt22.Value;
-                }
-                else
-                {
-                    _t_tien22.Enabled = true;
-                    _t_thue22.Enabled = true;
-                }
+        /// <summary>
+        /// Tính toán tiền thuế chi tiết bảng AD2
+        /// </summary>
+        //private void TinhTienThue22()
+        //{
+        //    try
+        //    {
+        //        _t_thue22.Value = V6BusinessHelper.Vround(_t_thue_nt22.Value * txtTyGia.Value, M_ROUND);
+        //        if (_maNt == _mMaNt0)
+        //        {
+        //            _t_thue22.Enabled = false;
+
+        //            _t_thue22.Value = _t_thue_nt22.Value;
+        //        }
+        //        else
+        //        {
+        //            _t_thue22.Enabled = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.ShowErrorMessage(GetType() + ".TinhTienThue22: " + ex.Message);
+        //    }
+        //}
+
+        ///// <summary>
+        ///// Tính toán tiền và tiền thuế chi tiết bảng AD2
+        ///// </summary>
+        //private void TinhTien22TienThue22()
+        //{
+        //    try
+        //    {
+        //        _t_tien22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value*txtTyGia.Value, M_ROUND);
+        //        _t_thue_nt22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value * _thue_suat22.Value / 100, M_ROUND_NT);
+        //        _t_thue22.Value = V6BusinessHelper.Vround(_t_thue_nt22.Value * txtTyGia.Value, M_ROUND);
+        //        if (_maNt == _mMaNt0)
+        //        {
+        //            _t_tien22.Enabled = false;
+        //            _t_thue22.Enabled = false;
+
+        //            _t_tien22.Value = _t_tien_nt22.Value;
+        //            _t_thue22.Value = _t_thue_nt22.Value;
+        //        }
+        //        else
+        //        {
+        //            _t_tien22.Enabled = true;
+        //            _t_thue22.Enabled = true;
+        //        }
                 
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".TinhTienThue22: " + ex.Message);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.ShowErrorMessage(GetType() + ".TinhTien22TienThue22: " + ex.Message);
+        //    }
+        //}
 
 
         #region Get Dynamic Controls
@@ -3011,7 +3093,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                         _dia_chi22.Enabled = _dia_chi22.Text.Trim() == "";
                         _ma_so_thue22.Enabled = _ma_so_thue22.Text.Trim() == "";
                     }
-                    TinhTienThue22();
+                    //TinhTien22TienThue22();
+                    Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat22.Value, _t_tien_nt22.Value, _t_tien22.Value, _t_thue_nt22, _t_thue22);
                 }
                 _mau_bc.Focus();
             }
@@ -3907,6 +3990,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         private void tabControl1_SizeChanged(object sender, EventArgs e)
         {
             FixDataGridViewSize(dataGridView1, dataGridView2, dataGridView3);
+        }
+
+        private void txtTongThueNt_V6LostFocus(object sender)
+        {
+            try
+            {
+                txtTongThue.Value = V6BusinessHelper.Vround(txtTongThueNt.Value * txtTyGia.Value, M_ROUND);
+                if (MA_NT == _mMaNt0)
+                {
+                    txtTongThue.Value = txtTongThueNt.Value;
+                }
+                TinhTongThanhToan("txtTongThueNt_V6LostFocus");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".txtTongThueNt_V6LostFocus", ex);
+            }
         }
     }
 }

@@ -71,6 +71,7 @@ namespace V6ReportControls
                     {
                         //lineControl.AddTextBox();
                         lineControl.AddVvarTextBox(vvar, filter);
+                        if (lineControl._vtextBox != null) lineControl._vtextBox.F2 = true;
                     }
                     else if (",date,smalldatetime,datetime,"
                         .Contains("," + structTable[NAME].sql_data_type_string + ","))

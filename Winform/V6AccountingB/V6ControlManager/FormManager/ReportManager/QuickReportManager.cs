@@ -286,7 +286,8 @@ namespace V6ControlManager.FormManager.ReportManager
                     (c as ReportD99ViewBase).btnNhan_Click(null, null);
                 }
 
-                c.ShowToForm(mButton.ReportTitle, true);
+                c.ShowToForm(mButton.ReportTitle + (string.IsNullOrEmpty(mButton.ReportFile)?"Code: " + mButton.CodeForm:""),
+                    true, false); // fullScreen, dialog
             }
             catch (Exception ex)
             {
