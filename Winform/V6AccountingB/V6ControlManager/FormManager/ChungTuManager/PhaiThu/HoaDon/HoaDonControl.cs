@@ -3247,13 +3247,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 t_thue_nt = t_tien_truocthue*thue_suat/100;
                 t_thue_nt = V6BusinessHelper.Vround(t_thue_nt, M_ROUND_NT);
                 //sV("T_THUE_NT", t_thue_nt);
-                txtTongThueNt.Value = t_thue_nt;
+                
                 
                 t_thue = V6BusinessHelper.Vround(t_thue_nt * ty_gia, M_ROUND);
                 if (_maNt == _mMaNt0)
                     t_thue = t_thue_nt;
-
+                
+               
             }
+            // Tuanmh 25/07/2017
+            txtTongThueNt.Value = t_thue_nt;
+            txtTongThue.Value = t_thue;
 
             //tính thuế riêng cho từng chi tiết
             //tính phần trăm giá trị của từng chi tiết trên tổng tiền hàng rồi nhân với tổng thuế sẽ ra thuế 
@@ -3335,7 +3339,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 //TxtT_TIENVC.Value = V6BusinessHelper.Vround(t_vc_nt * tygia, M_ROUND);                
                 //txtTongCk.Value = V6BusinessHelper.Vround(t_ck_nt*tygia, M_ROUND);
                 //txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
-                //txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
+                // txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
                 //Co_Thay_Doi = true;
                 txtConLai.Value = t_tt_nt - txtSL_UD1.Value;
             }

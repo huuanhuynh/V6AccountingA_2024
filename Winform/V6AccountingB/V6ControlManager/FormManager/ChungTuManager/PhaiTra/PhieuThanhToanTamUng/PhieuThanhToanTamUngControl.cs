@@ -1255,11 +1255,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 var t_tt_nt = t_tien_nt + t_thue_nt;
                 txtTongThanhToanNt.Value = V6BusinessHelper.Vround(t_tt_nt, M_ROUND_NT);
 
+                var t_tt = txtTongTien.Value + txtTongThue.Value;
+                txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt, M_ROUND);
+
                 //Tính tiền quy đổi (VND)
                 //var tygia = txtTyGia.Value;
                 //txtTongTien.Value = V6BusinessHelper.Vround(t_tien_nt*tygia, M_ROUND);
                 //txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
-                //txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
+                // txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
 
                 //Fix
                 //if (_maNt == _mMaNt0)

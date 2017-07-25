@@ -1621,16 +1621,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 var t_gg_nt = txtTongGiamNt.Value;
                 var t_ck_nt = txtTongCkNt.Value;
                 var t_thue_nt = txtTongThueNt.Value;
+
                 var t_tt_nt = t_tien_nt2 - t_gg_nt - t_ck_nt + t_thue_nt;
-                
                 txtTongThanhToanNt.Value = V6BusinessHelper.Vround(t_tt_nt, M_ROUND_NT);
+
+                var t_tt = txtTongTien0.Value - txtTongGiam.Value - txtTongCk.Value + txtTongThue.Value;
+                txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt, M_ROUND);
 
                 //var tygia = txtTyGia.Value;
                 //txtTongTien0.Value = V6BusinessHelper.Vround(t_tien_nt2*tygia, M_ROUND);
                 //txtTongGiam.Value = V6BusinessHelper.Vround(t_gg_nt*tygia, M_ROUND);
                 //txtTongCk.Value = V6BusinessHelper.Vround(t_ck_nt*tygia, M_ROUND);
                 //txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
-                //txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
+                // txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
                 //Co_Thay_Doi = true;
                 
             }

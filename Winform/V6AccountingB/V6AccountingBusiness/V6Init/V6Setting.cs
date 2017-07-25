@@ -260,7 +260,10 @@ namespace V6Init
         public static string Dia_chix;
         public static string Dia_chi2x;
         public static string Dien_thoai;
-        public static string Ma_so_thue;
+        /// <summary>
+        /// Lấy từ dvcs login.
+        /// </summary>
+        public static string Ma_so_thue { get; set; }
 
         public static DataRow DataDVCS;
 
