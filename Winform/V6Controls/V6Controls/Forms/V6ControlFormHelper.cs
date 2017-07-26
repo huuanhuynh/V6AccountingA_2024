@@ -1429,7 +1429,7 @@ namespace V6Controls.Forms
         /// <summary>
         /// Gán value cho các control trên form có AccessibleName
         /// Không có data thì sẽ set rỗng nếu set_default = true
-        /// Cancel all không còn tác dụng, còn canceldata
+        /// Có cancelall, canceldata
         /// </summary>
         /// <param name="control">Form cần điền dữ liệu, thường dùng từ khóa this</param>
         /// <param name="data">Lưu ý. nên dùng key UPPER</param>
