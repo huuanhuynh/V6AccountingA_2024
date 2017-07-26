@@ -1213,6 +1213,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 
                 _psno.Value = V6BusinessHelper.Vround(_psnoNt.Value * txtTyGia.Value, M_ROUND);
+                _tien.Value = _psno.Value;
                 if (_tienNt != null)
 
                 _tienNt.Value = _psnoNt.Value;
@@ -4141,6 +4142,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
                 XuLyThayDoiTyGia(txtTyGia, chkSua_Tien);
+                foreach (DataRow row in AD.Rows)
+                {
+                    row["TIEN_TT"] = row["PS_NO"];
+                }
+
                 TinhTongThanhToan("TyGia_V6LostFocus " + ((Control)sender).AccessibleName);
             }
         }

@@ -124,7 +124,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         //T_TT_NT0,T_TT_QD, PHAI_TT_NT, MA_NT_I
         private V6ColorTextBox _soCt0, _maNtI, _sttRecTt, _soSeri0,_dien_giaii;
         private V6VvarTextBox _tkI;
-        private V6NumberTextBox _t_tt_nt0, _t_tt_qd, _phaiTtNt, _psCo, _pscoNt, _tien, _tienNt,_tientt, _ttqd;
+        private V6NumberTextBox _t_tt_nt0, _t_tt_qd, _phaiTtNt, _psCo, _pscoNt, _tien, _tienNt,_tientt, _ttqd, _ty_gia_ht2;
         private V6DateTimeColor _ngayCt0;
 
         
@@ -298,6 +298,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                             break;
                         case "TEN_KH_I":
                             control.DisableTag();
+                            break;
+                        case "TY_GIA_HT2":
+                            _ty_gia_ht2 = control as V6NumberTextBox;
+                            if (_ty_gia_ht2 != null)
+                            {
+                                
+                            }
                             break;
 
                     }
@@ -875,6 +882,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
 
                 _psCo.Value = V6BusinessHelper.Vround(_pscoNt.Value * txtTyGia.Value, M_ROUND);
+                _tien.Value = _psCo.Value;
                 if (_tienNt != null)
 
                 _tienNt.Value = _pscoNt.Value;
@@ -1298,6 +1306,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 _pscoNt.Value = _phaiTtNt.Value;
                 _psCo.Value = _phaiTtNt.Value;
 
+                _ty_gia_ht2.Value = ObjectAndString.ObjectToDecimal(row["TY_GIA"]);
+                if (_maNtI.Text != _mMaNt0)
+                {
+                    _tientt.Value = V6BusinessHelper.Vround(_phaiTtNt.Value*_ty_gia_ht2.Value, M_ROUND);
+                    _tien.Value = _tientt.Value;
+                    _psCo.Value = _tientt.Value;
+                }
+
                 //{Tuanmh 21/08/2016
                
                 if (Txtdien_giai.Text != "")
@@ -1316,45 +1332,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 this.ShowErrorMessage(GetType() + ".XuLyKhiNhanSoCt: " + ex.Message);
             }
         }
-        //private void XuLyKhiNhanSoCt(IDictionary<string,object> row, DataGridViewRow row0)
-        //{
-        //    try
-        //    {
-        //        _tkI.Text = row.Cells["TK"].Value.ToString().Trim();
-        //        _t_tt_nt0.Value = ObjectAndString.ObjectToDecimal(row.Cells["TC_TT"].Value);
-        //        _t_tt_qd.Value = ObjectAndString.ObjectToDecimal(row.Cells["T_TT_QD"].Value);
-        //        _phaiTtNt.Value = ObjectAndString.ObjectToDecimal(row.Cells["CL_TT"].Value);
-        //        _maNtI.Text = row.Cells["MA_NT"].Value.ToString().Trim();
-        //        _sttRecTt.Text = row.Cells["STT_REC"].Value.ToString().Trim();
-
-        //        _ngayCt0.Value = ObjectAndString.ObjectToDate(row.Cells["NGAY_CT"].Value);
-        //        _soSeri0.Text = row.Cells["SO_SERI"].Value.ToString().Trim();
-                
-        //        _tienNt.Value = _phaiTtNt.Value;
-        //        _tien.Value = _phaiTtNt.Value;
-        //        _ttqd.Value = _phaiTtNt.Value;
-
-        //        _pscoNt.Value = _phaiTtNt.Value;
-        //        _psCo.Value = _phaiTtNt.Value;
-
-        //        //{Tuanmh 21/08/2016
-        //        if (Txtdien_giai.Text != "")
-        //        {
-        //            _dien_giaii.Text = Txtdien_giai.Text.Trim() + " số " + row.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + V6BusinessHelper.V6_DTOC((DateTime)row.Cells["NGAY_CT"].Value);
-        //        }
-        //        else
-        //        {
-        //            _dien_giaii.Text = " Thu tiền bán hàng theo CT số " + row.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + V6BusinessHelper.V6_DTOC((DateTime)row.Cells["NGAY_CT"].Value);
-        //        }
-        //        //}
-
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.ShowErrorMessage(GetType() + ".XuLyKhiNhanSoCt: " + ex.Message);
-        //    }
-        //}
 
         #endregion methods
         
@@ -1541,6 +1518,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
                 XuLyThayDoiTyGia(txtTyGia, chkSua_Tien);
+                foreach (DataRow row in AD.Rows)
+                {
+                    row["TIEN_TT"] = row["PS_CO"];
+                }
+                
                 TinhTongThanhToan("TyGia_V6LostFocus " + ((Control)sender).AccessibleName);
             }
         }
@@ -3760,6 +3742,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         dic["TIEN"] = data.Cells["CL_TT"].Value;
                         dic["TIEN_NT"] = data.Cells["CL_TT"].Value;
                         dic["TIEN_TT"] = data.Cells["CL_TT"].Value;
+
                         dic["TT_QD"] = data.Cells["CL_TT"].Value;
                         dic["PS_CO"] = data.Cells["CL_TT"].Value;
                         dic["PS_CO_NT"] = data.Cells["CL_TT"].Value;
@@ -3769,6 +3752,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         dic["NGAY_CT0"] = data.Cells["NGAY_CT"].Value;
                         dic["SO_SERI0"] = data.Cells["SO_SERI"].Value;
 
+                        var ty_gia_ht2_Value = ObjectAndString.ObjectToDecimal(data.Cells["ty_gia"]);
+                        dic["TY_GIA_HT2"] = ty_gia_ht2_Value;
+                        if (dic["MA_NT_I"].ToString().Trim() != _mMaNt0)
+                        {
+                            var tientt_Value = V6BusinessHelper.Vround(
+                                ObjectAndString.ObjectToDecimal(dic["PHAI_TT_NT"]) * ty_gia_ht2_Value, M_ROUND);
+                            dic["TIEN_TT"] = tientt_Value;
+                            dic["TIEN"] = tientt_Value;
+                            dic["PS_CO"] = tientt_Value;
+                        }
 
                         //{Tuanmh 21/08/2016
                         if (Txtdien_giai.Text != "")

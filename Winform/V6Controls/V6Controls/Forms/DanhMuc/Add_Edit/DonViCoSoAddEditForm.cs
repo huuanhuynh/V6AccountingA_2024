@@ -1,5 +1,6 @@
 ﻿using System;
 using V6AccountingBusiness;
+using V6Init;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
@@ -15,6 +16,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
 
         }
+
+        public override void DoBeforeEdit()
+        {
+            try
+            {
+                var v = Categories.IsExistOneCode_List("ARI70,ARA00", "Ma_dvcs", TxtMa_dvcs.Text);
+                TxtMa_dvcs.Enabled = !v;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoBeforeEdit", ex);
+            }
+        }
+
         public override void ValidateData()
         {
             var errors = "";

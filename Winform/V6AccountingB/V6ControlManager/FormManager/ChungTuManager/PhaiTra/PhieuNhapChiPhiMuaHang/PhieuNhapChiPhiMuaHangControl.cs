@@ -1709,15 +1709,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 
                 var t_tien_nt2 = TxtT_cp_nt.Value;
                 var t_thue_nt = txtTongThueNt.Value;
-                var t_tt_nt = t_tien_nt2  + t_thue_nt;
                 
+                var t_tt_nt = t_tien_nt2  + t_thue_nt;
                 txtTongThanhToanNt.Value = V6BusinessHelper.Vround(t_tt_nt, M_ROUND_NT);
+
+                var t_tt = TxtT_cp.Value + txtTongThue.Value;
+                txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt, M_ROUND);
 
                 //var tygia = txtTyGia.Value;
                 //TxtT_cp.Value = V6BusinessHelper.Vround(t_tien_nt2*tygia, M_ROUND);
                 
                 //txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
-                //txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
+                // txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
                 //Co_Thay_Doi = true;
                
             }
