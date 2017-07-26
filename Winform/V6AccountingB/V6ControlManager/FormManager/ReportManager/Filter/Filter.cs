@@ -856,6 +856,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new FilterDanhMuc("ALNHTK");
                 case "AGLNHTK0":
                     return new FilterDanhMuc("ALNHTK0");
+                case "V6CT":
+                    return new FilterDanhMuc("ALCT");
                     
                 #endregion danh muc
 
