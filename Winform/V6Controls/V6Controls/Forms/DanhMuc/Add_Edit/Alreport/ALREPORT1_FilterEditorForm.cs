@@ -50,6 +50,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 txtDescriptionV.Text = Info.DescriptionV;
                 txtDescriptionE.Text = Info.DescriptionE;
                 txtFilterStart.Text = Info.FilterStart ? "1" : "";
+                txtToUpper.Text = Info.ToUpper ? "1" : "";
             }
             catch (Exception ex)
             {

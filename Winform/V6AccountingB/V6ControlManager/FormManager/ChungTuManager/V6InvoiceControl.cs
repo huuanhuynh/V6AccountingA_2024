@@ -426,6 +426,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        /// <summary>
+        /// Gán dữ liệu mặc định theo chứng từ. (VPA_GetDefaultvalue)
+        /// </summary>
+        /// <param name="invoice"></param>
         protected void SetDefaultData(V6InvoiceBase invoice)
         {
             try
@@ -433,14 +437,38 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 var data = invoice.LoadDefaultData(V6Setting.Language, m_itemId);
                 var data0 = new SortedDictionary<string, object>();
                 data0.AddRange(data);
-                V6ControlFormHelper.SetFormDataDictionary(this, new SortedDictionary<string, object>(data0), false);
+                var controlDic = V6ControlFormHelper.SetFormDataDictionary(this, new SortedDictionary<string, object>(data0), false);
+                FixVvarBrothers(controlDic);
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".SetDefaultData", ex);
             }
         }
-        
+
+        /// <summary>
+        /// Gán dữ liệu liên quan của các vVar textbox.
+        /// </summary>
+        /// <param name="controlDic"></param>
+        private void FixVvarBrothers(SortedDictionary<string, Control> controlDic)
+        {
+            if (!V6Setting.Fixinvoicevvar) return;
+            try
+            {
+                foreach (KeyValuePair<string, Control> item in controlDic)
+                {
+                    if (item.Value is V6VvarTextBox)
+                    {
+                        ((V6VvarTextBox) item.Value).ExistRowInTable();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".FixVvarBrothers", ex);
+            }
+        }
+
         protected void SetDefaultDataDetail(V6InvoiceBase invoice, Control detailControl)
         {
             try
@@ -876,7 +904,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         #region ==== ValidateData_Master_CheckTon ====
 
         /// <summary>
-        /// Kiểm tra tồn kho trước khi lưu. Trả về true là ok.
+        /// Kiểm tra tồn kho trước khi lưu. Trả về true là ok. 123
         /// </summary>
         /// <param name="Invoice"></param>
         /// <param name="ngayCt">Ngày ct đang nhập trên form.</param>
@@ -950,6 +978,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 bool lo = false, date = false, vitri = false;
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
                 key.Add("MA_VT", c_mavt);
+                key.Add("VT_TON_KHO", 1);
                 var lodate_data = V6BusinessHelper.Select(V6TableName.Alvt, key, "*").Data;
                 if (lodate_data.Rows.Count == 1)
                 {
@@ -1061,6 +1090,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 bool lo = false, date = false;
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
                 key.Add("MA_VT", c_mavt);
+                key.Add("VT_TON_KHO", 1);
                 var lodate_data = V6BusinessHelper.Select(V6TableName.Alvt, key, "*").Data;
                 if (lodate_data.Rows.Count == 1)
                 {
@@ -1160,6 +1190,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 string c_mavt_makho = c_mavt + "~" + c_makho;
                 decimal c_soluong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
 
+                IDictionary<string, object> key = new SortedDictionary<string, object>();
+                key.Add("MA_VT", c_mavt);
+                key.Add("VT_TON_KHO", 1);
+                var lodate_data = V6BusinessHelper.Select(V6TableName.Alvt, key, "*").Data;
+                if (lodate_data.Rows.Count != 1)
+                {
+                    continue; // Bỏ qua không kiểm tra.
+                    //DataRow row0 = lodate_data.Rows[0];
+                    //lo = row0["Lo_yn"].ToString().Trim() == "1";
+                    //date = row0["Date_yn"].ToString().Trim() == "1";
+                }
+
                 if (!mavt_list.Contains(c_mavt))
                 {
                     mavt_list.Add(c_mavt);
@@ -1180,6 +1222,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     mavt_makho__soluong[c_mavt_makho] = c_soluong;
                 }
             }
+
             if (mavt_in.Length > 0) mavt_in = mavt_in.Substring(1);
             if (makho_in.Length > 0) makho_in = makho_in.Substring(1);
             //Get dữ liệu tồn

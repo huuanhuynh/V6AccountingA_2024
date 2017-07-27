@@ -33,7 +33,8 @@ namespace V6ControlManager.FormManager.ToolManager
         {
             try
             {
-                chkMouseRightTriple.Checked = V6Setting.V6Special.Contains("Triple");
+                chkMouseRightTriple.Checked = V6Setting.Triple;
+                chkAutoFixInvoiceVvar.Checked = V6Setting.Fixinvoicevvar;
             }
             catch (Exception ex)
             {
@@ -108,9 +109,25 @@ namespace V6ControlManager.FormManager.ToolManager
             }
         }
 
+        private void chkAutoFixInvoiceVvar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!IsReady) return;
+
+            if (chkAutoFixInvoiceVvar.Checked)
+            {
+                V6Setting.V6Special = V6Setting.V6Special + "Fixinvoicevvar";
+            }
+            else
+            {
+                V6Setting.V6Special = V6Setting.V6Special.Replace("Fixinvoicevvar", "");
+            }
+        }
+
         private void btnSQL_Click(object sender, EventArgs e)
         {
 
         }
+
+       
     }
 }

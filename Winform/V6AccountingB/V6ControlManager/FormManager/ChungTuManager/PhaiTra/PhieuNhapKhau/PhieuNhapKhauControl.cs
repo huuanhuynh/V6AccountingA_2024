@@ -2457,10 +2457,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             TxtT_nk_nt.Value = TinhTong("NK_NT");
             TxtT_nk.Value = TinhTong("NK");
 
-            txtTongThueNt.Value = TinhTong("THUE_NT");
-            txtTongThue.Value = TinhTong("THUE");
-            
-            
             var tPsNoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_NO_NT", "OPER_TT");
             var tPsCoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_CO_NT", "OPER_TT");
             txtTongTangGiamNt.Value = tPsNoNt;
@@ -2730,7 +2726,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             {
                 t_thue_nt = txtTongThueNt.Value;
                 t_thue = V6BusinessHelper.Vround(t_thue_nt * ty_gia, M_ROUND);
-                txtTongThue.Value = t_thue;
             }
             else                   //Tiền thuế cộng dồn AD2
             {
@@ -2740,9 +2735,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 //t_thue_nt = (t_tien_nt2 - t_gg_nt - t_ck_nt)*thue_suat/100;
                 //t_thue_nt = V6BusinessHelper.Vround(t_thue_nt, M_ROUND_NT);
                 //sV("T_THUE_NT", t_thue_nt);
-                txtTongThueNt.Value = t_thue_nt;
-                txtTongThue.Value = t_thue;
             }
+            // Tuanmh 25/07/2017
+            txtTongThueNt.Value = t_thue_nt;
+            txtTongThue.Value = t_thue;
 
             //tính thuế riêng cho từng chi tiết
             //tính phần trăm giá trị của từng chi tiết trên tổng tiền hàng rồi nhân với tổng thuế sẽ ra thuế 
@@ -2863,9 +2859,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 //txtTongGiam.Value = V6BusinessHelper.Vround(t_gg_nt*tygia, M_ROUND);
                 //txtTongCk.Value = V6BusinessHelper.Vround(t_ck_nt*tygia, M_ROUND);
                 //TxtT_tc.Value = V6BusinessHelper.Vround(t_tc_nt * tygia, M_ROUND);
-                //txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
-                // txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
-                //Co_Thay_Doi = true;
                
             }
             catch (Exception ex)
@@ -2992,7 +2985,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             if (V6Login.MadvcsCount >= 1)
             {
                 if (V6Login.Madvcs != "")
+                {
                     txtMadvcs.Text = V6Login.Madvcs;
+                    txtMadvcs.ExistRowInTable();
+                }
             }
 
             //M_Ma_nk

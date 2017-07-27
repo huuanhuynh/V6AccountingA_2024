@@ -49,6 +49,7 @@
             this.btnTestInvoice = new System.Windows.Forms.Button();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
             this.chkMouseRightTriple = new System.Windows.Forms.CheckBox();
+            this.chkAutoFixInvoiceVvar = new System.Windows.Forms.CheckBox();
             this.groupBoxOptions.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -236,6 +237,7 @@
             // 
             this.groupBoxOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxOptions.Controls.Add(this.chkAutoFixInvoiceVvar);
             this.groupBoxOptions.Controls.Add(this.chkMouseRightTriple);
             this.groupBoxOptions.Location = new System.Drawing.Point(135, 12);
             this.groupBoxOptions.Name = "groupBoxOptions";
@@ -254,6 +256,17 @@
             this.chkMouseRightTriple.Text = "Nhấn phải chuột để sửa chữ ";
             this.chkMouseRightTriple.UseVisualStyleBackColor = true;
             this.chkMouseRightTriple.CheckedChanged += new System.EventHandler(this.chkMouseRightTriple_CheckedChanged);
+            // 
+            // chkAutoFixInvoiceVvar
+            // 
+            this.chkAutoFixInvoiceVvar.AutoSize = true;
+            this.chkAutoFixInvoiceVvar.Location = new System.Drawing.Point(6, 42);
+            this.chkAutoFixInvoiceVvar.Name = "chkAutoFixInvoiceVvar";
+            this.chkAutoFixInvoiceVvar.Size = new System.Drawing.Size(136, 17);
+            this.chkAutoFixInvoiceVvar.TabIndex = 0;
+            this.chkAutoFixInvoiceVvar.Text = "chkAutoFixInvoiceVvar";
+            this.chkAutoFixInvoiceVvar.UseVisualStyleBackColor = true;
+            this.chkAutoFixInvoiceVvar.CheckedChanged += new System.EventHandler(this.chkAutoFixInvoiceVvar_CheckedChanged);
             // 
             // AllTool
             // 
@@ -310,5 +323,6 @@
         private System.Windows.Forms.Button btnTestInvoice;
         private System.Windows.Forms.GroupBox groupBoxOptions;
         private System.Windows.Forms.CheckBox chkMouseRightTriple;
+        private System.Windows.Forms.CheckBox chkAutoFixInvoiceVvar;
     }
 }

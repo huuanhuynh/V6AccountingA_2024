@@ -1362,7 +1362,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             if (V6Login.MadvcsCount >= 1)
             {
                 if (V6Login.Madvcs != "")
+                {
                     txtMadvcs.Text = V6Login.Madvcs;
+                    txtMadvcs.ExistRowInTable();
+                }
             }
 
             //M_Ma_nk

@@ -1434,12 +1434,13 @@ namespace V6Controls.Forms
         /// <param name="control">Form cần điền dữ liệu, thường dùng từ khóa this</param>
         /// <param name="data">Lưu ý. nên dùng key UPPER</param>
         /// <param name="set_default">Nếu không có dữ liệu thì gán rỗng hoặc mặc định.</param>
-        public static void SetFormDataDictionary(Control control, SortedDictionary<string, object> data, bool set_default = true)
+        public static SortedDictionary<string, Control> SetFormDataDictionary(Control control, SortedDictionary<string, object> data, bool set_default = true)
         {
+            SortedDictionary<string, Control> result = new SortedDictionary<string, Control>();
             try
             {
                 _errors = "";
-                SetFormDataDicRecursive(control, data, set_default);
+                result = SetFormDataDicRecursive(control, data, set_default);
             }
             catch (Exception ex)
             {
@@ -1451,6 +1452,7 @@ namespace V6Controls.Forms
                 WriteExLog("V6ControlFormHelper.SetFormDataDictionary", ex);
                 throw ex;
             }
+            return result;
         }
         
         /// <summary>
@@ -1458,12 +1460,13 @@ namespace V6Controls.Forms
         /// </summary>
         /// <param name="control"></param>
         /// <param name="data"></param>
-        public static void SetSomeDataDictionary(Control control, IDictionary<string, object> data)
+        public static SortedDictionary<string, Control> SetSomeDataDictionary(Control control, IDictionary<string, object> data)
         {
+            SortedDictionary<string, Control> result = new SortedDictionary<string, Control>();
             try
             {
                 _errors = "";
-                SetFormDataDicRecursive(control, data, false);
+                result = SetFormDataDicRecursive(control, data, false);
             }
             catch (Exception ex)
             {
@@ -1476,10 +1479,19 @@ namespace V6Controls.Forms
                     + ".SetSomeDataDictionary", ex, LastActionListString);
                 throw ex;
             }
+            return result;
         }
 
-        private static void SetFormDataDicRecursive(Control control, IDictionary<string, object> data, bool set_default = true)
+        /// <summary>
+        /// Gán dữ liệu lên form hoặc control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="data"></param>
+        /// <param name="set_default"></param>
+        /// <returns>Các control được gán dữ liệu. key=AccessibleName</returns>
+        private static SortedDictionary<string, Control> SetFormDataDicRecursive(Control control, IDictionary<string, object> data, bool set_default = true)
         {
+            SortedDictionary<string, Control> result = new SortedDictionary<string, Control>();
             try
             {
                 var tagString = string.Format(";{0};", control.Tag ?? "");
@@ -1492,7 +1504,7 @@ namespace V6Controls.Forms
                 if (data != null && !string.IsNullOrEmpty(NAME) && data.ContainsKey(NAME.ToUpper()))
                 {
                     NAME = NAME.ToUpper();
-
+                    result[NAME] = control;
                     #region === Gán giá trị ===
 
                     var color = control as V6DateTimeColor;
@@ -1685,7 +1697,8 @@ namespace V6Controls.Forms
                 {
                     foreach (Control c in control.Controls)
                     {
-                        SetFormDataDicRecursive(c, data, set_default);
+                        var result1 = SetFormDataDicRecursive(c, data, set_default);
+                        result.AddRange(result1);
                     }
                 }
             CANCELALL: ;
@@ -1695,6 +1708,7 @@ namespace V6Controls.Forms
                 _errors += "\r\nAccessibleName: " + control.AccessibleName
                     + "\r\nException: " + ex.Message;
             }
+            return result;
         }
 
         public static void SetFormTagDictionary(Control control, SortedDictionary<string, string> tagData)
@@ -3975,7 +3989,7 @@ namespace V6Controls.Forms
         /// <param name="control"></param>
         public static void ApplyControlTripleClick(Control control)
         {
-            if (V6Setting.V6Special.Contains("Triple"))
+            if (V6Setting.Triple)
             try
             {
                 var tagString = string.Format(";{0};", control.Tag ?? "");
