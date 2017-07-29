@@ -22,7 +22,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
         public DateTime _cuoiNgay { get; set; }
         public string _mavt { get; set; }
 
-        private KhoHangControl _khoHang;
+        private KhoHangControlDraw _khoHang;
 
         public KhoParams KhoParams { get; set; }
         
@@ -216,7 +216,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                 panel1.Controls.Clear();
                 KhoParams.Data = data;
                 KhoParams.MA_KHO = txtMaKho.Text;
-                _khoHang = new KhoHangControl(KhoParams);
+                _khoHang = new KhoHangControlDraw(KhoParams);
                 _khoHang.AddControlsFinish += delegate
                 {
                     LoadSetDataViTriVatTu();
@@ -228,8 +228,8 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                     if (KhoParams.RunTimer) timer1.Start();
                 };
                   
-                _khoHang.Dock = DockStyle.Fill;
-                panel1.Controls.Add(_khoHang);
+                //_khoHang.Dock = DockStyle.Fill;
+                //panel1.Controls.Add(_khoHang);
             }
             catch (Exception ex)
             {
@@ -293,7 +293,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             };
             var data_vitri_vattu = V6BusinessHelper.ExecuteProcedure(KhoParams.Program, plist).Tables[0];
             _khoHang.SetDataViTriVatTu(data_vitri_vattu);
-            _khoHang.Focus();
+            //_khoHang.Focus();
 
             if (txtMavt.Text != "") SetColorMavt(txtMavt.Text, Color.Blue);
         }

@@ -13,22 +13,24 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.KhoHangManager
 {
-    public partial class KhoHangControl : V6FormControl
+    public class KhoHangControlDraw
     {
         private Point _p = new Point(0, 0);
         private DataTable _data;
-        private SortedList<string, DayHangControl> _listDay;
+        private SortedList<string, DayHangControlDraw> _listDay;
         public KhoParams KhoParams { get; set; }
-        public KhoHangControl()
+        public int Width { get; set; }
+        public int Height { get; set; }
+
+        public KhoHangControlDraw()
         {
-            InitializeComponent();
+            
         }
 
-        public KhoHangControl(KhoParams kparas)
+        public KhoHangControlDraw(KhoParams kparas)
         {
-            InitializeComponent();
             KhoParams = kparas;
-            lblKho.Text = KhoParams.MA_KHO;
+            lblKho_Text = KhoParams.MA_KHO;
             SetData(KhoParams.Data);
         }
 
@@ -41,7 +43,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             try
             {
                 _data = data;
-                _listDay = new SortedList<string, DayHangControl>();
+                _listDay = new SortedList<string, DayHangControlDraw>();
                 Thread T = new Thread(SetDataThread);
                 Timer timer = new Timer();
                 timer.Tick += timer_Tick;
@@ -53,7 +55,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".SetData", ex);
+                V6ControlFormHelper.WriteExLog(GetType() + ".SetData", ex);
             }
         }
 
@@ -63,35 +65,36 @@ namespace V6ControlManager.FormManager.KhoHangManager
             {
                 if (running)
                 {
-                    progressBar1.Value = count*100/total;
+                    //progressBar1.Value = count*100/total;
                 }
                 else
                 {
                     ((Timer)sender).Stop();
-                    progressBar1.Value = 100;
+                    //progressBar1.Value = 100;
                     if (success)
                     {
-                        progressBar1.Visible = false;
-                        foreach (KeyValuePair<string, DayHangControl> item in _listDay)
+                        //progressBar1.Visible = false;
+                        foreach (KeyValuePair<string, DayHangControlDraw> item in _listDay)
                         {
-                            panel1.Controls.Add(item.Value);
+                            //panel1.Controls.Add(item.Value);
                         }
                     }
                     else
                     {
-                        this.ShowErrorMessage(GetType() + ".Error");
+                        V6ControlFormHelper.ShowErrorMessage(GetType() + ".Error");
                     }
                     OnAddControlsFinish();
                 }
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".timer_Tick", ex);
+                V6ControlFormHelper.WriteExLog(GetType() + ".timer_Tick", ex);
             }
         }
 
         private bool running, success;
         private int count, total;
+        private string lblKho_Text;
 
         private void SetDataThread()
         {
@@ -108,7 +111,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             catch (Exception ex)
             {
                 success = false;
-                this.WriteExLog(GetType() + ".SetDataThread", ex);
+                V6ControlFormHelper.WriteExLog(GetType() + ".SetDataThread", ex);
             }
             running = false;
         }
@@ -134,7 +137,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".AddRow", ex);
+                V6ControlFormHelper.WriteExLog(GetType() + ".AddRow", ex);
             }
         }
 
@@ -142,17 +145,17 @@ namespace V6ControlManager.FormManager.KhoHangManager
         {
             try
             {
-                DayHangControl day = new DayHangControl(KhoParams, row);
+                DayHangControlDraw day = new DayHangControlDraw(KhoParams, row);
                 _listDay.Add(day.ID, day);
                 day.Location = new Point(_p.X, _p.Y);
                 _p = new Point(_p.X, _p.Y + day.Height);
                 //panel1.Controls.Add(kho);
-                day.SizeChanged += day_SizeChanged;
+                //day.SizeChanged += day_SizeChanged;
                 Resort();
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".AddDayHang", ex);
+                V6ControlFormHelper.WriteExLog(GetType() + ".AddDayHang", ex);
             }
         }
 
@@ -170,7 +173,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".Resort", ex);
+                V6ControlFormHelper.WriteExLog(GetType() + ".Resort", ex);
             }
         }
 
@@ -214,14 +217,14 @@ namespace V6ControlManager.FormManager.KhoHangManager
         {
             try
             {
-                foreach (KeyValuePair<string, DayHangControl> item in _listDay)
+                foreach (KeyValuePair<string, DayHangControlDraw> item in _listDay)
                 {
                     item.Value.ClearDataVitriVaTu();
                 }
             }
             catch (Exception ex)
             {
-                this.WriteExLog(string.Format("{0}.{1}", GetType(), MethodBase.GetCurrentMethod().Name), ex);
+                V6ControlFormHelper.WriteExLog(string.Format("{0}.{1}", GetType(), MethodBase.GetCurrentMethod().Name), ex);
             }
         }
 
@@ -248,12 +251,12 @@ namespace V6ControlManager.FormManager.KhoHangManager
 
                 if (errors.Count > 0)
                 {
-                    ShowMainMessage(errors.Aggregate("", (current, error) => current + error.Value + "\n"));
+                    V6ControlFormHelper.ShowMainMessage(errors.Aggregate("", (current, error) => current + error.Value + "\n"));
                 }
             }
             catch (Exception ex)
             {
-                this.WriteExLog(string.Format("{0}.{1}", GetType(), MethodBase.GetCurrentMethod().Name), ex);
+                V6ControlFormHelper.WriteExLog(string.Format("{0}.{1}", GetType(), MethodBase.GetCurrentMethod().Name), ex);
             }
         }
 
@@ -266,21 +269,21 @@ namespace V6ControlManager.FormManager.KhoHangManager
         {
             try
             {
-                foreach (KeyValuePair<string, DayHangControl> item in _listDay)
+                foreach (KeyValuePair<string, DayHangControlDraw> item in _listDay)
                 {
                     item.Value.SetColorMavt(ma_vt, color);
                 }
-                panel1.Focus();
+                //panel1.Focus();
             }
             catch (Exception ex)
             {
-                this.WriteExLog(string.Format("{0}.{1}", GetType(), MethodBase.GetCurrentMethod().Name), ex);
+                V6ControlFormHelper.WriteExLog(string.Format("{0}.{1}", GetType(), MethodBase.GetCurrentMethod().Name), ex);
             }
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
-            panel1.Focus();
+            //panel1.Focus();
         }
     }
 }

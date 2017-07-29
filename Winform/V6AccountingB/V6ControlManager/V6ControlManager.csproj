@@ -1427,13 +1427,17 @@
     <Compile Include="FormManager\HeThong\ThongTinChuongTrinh.Designer.cs">
       <DependentUpon>ThongTinChuongTrinh.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\KhoHangManager\Draw\DayHangControlDraw.cs" />
+    <Compile Include="FormManager\KhoHangManager\Draw\KeHangControlDraw.cs" />
     <Compile Include="FormManager\KhoHangManager\Draw\KhoHangContainerDraw.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\KhoHangManager\Draw\KhoHangContainerDraw.Designer.cs">
       <DependentUpon>KhoHangContainerDraw.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\KhoHangManager\Draw\KhoHangControlDraw.cs" />
     <Compile Include="FormManager\KhoHangManager\Draw\KhoHangObject.cs" />
+    <Compile Include="FormManager\KhoHangManager\Draw\ViTriControlDraw.cs" />
     <Compile Include="FormManager\KhoHangManager\KhoHangContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5433,6 +5437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\HeThong\ThongTinChuongTrinh.resx">
       <DependentUpon>ThongTinChuongTrinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\KhoHangManager\Draw\DayHangControlDraw.resx">
+      <DependentUpon>DayHangControlDraw.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\KhoHangManager\Draw\KhoHangContainerDraw.resx">
       <DependentUpon>KhoHangContainerDraw.cs</DependentUpon>

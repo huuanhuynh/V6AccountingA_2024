@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using V6Init;
+using V6Structs;
 using V6Tools;
 
 namespace V6Controls.Forms
@@ -111,6 +112,15 @@ namespace V6Controls.Forms
         protected void Ready()
         {
             _ready0 = true;
+        }
+
+        protected void SetControlValue(Control control, object value)
+        {
+            V6ControlFormHelper.SetControlValue(control, value);
+        }
+        protected void SetControlValue(Control control, object value, DefineInfo config)
+        {
+            V6ControlFormHelper.SetControlValue(control, value, config);
         }
 
         /// <summary>

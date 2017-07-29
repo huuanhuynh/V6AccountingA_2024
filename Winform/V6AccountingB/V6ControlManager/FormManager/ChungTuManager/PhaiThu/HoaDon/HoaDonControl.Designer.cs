@@ -2881,6 +2881,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.txtMa_sonb.Name = "txtMa_sonb";
             this.txtMa_sonb.Size = new System.Drawing.Size(100, 20);
             this.txtMa_sonb.TabIndex = 1;
+            this.txtMa_sonb.UseChangeTextOnSetFormData = true;
             this.txtMa_sonb.VVar = "ma_sonb";
             this.txtMa_sonb.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMa_sonb_V6LostFocus);
             this.txtMa_sonb.V6LostFocusNoChange += new V6Controls.ControlEventHandle(this.txtMa_sonb_V6LostFocusNoChange);

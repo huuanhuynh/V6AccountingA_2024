@@ -485,7 +485,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         /// <summary>
-        /// Gán dữ liệu mặc định khi bấm mới chi tiết.
+        /// Gán dữ liệu mặc định khi bấm mới chi tiết. Cần override
         /// </summary>
         protected virtual void SetDefaultDetail()
         {

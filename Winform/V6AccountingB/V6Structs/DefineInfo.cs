@@ -100,6 +100,12 @@ namespace V6Structs
                 case "NOTEMPTY":
                     NotEmpty = value == "1";
                     break;
+                case "OVERRIDE":
+                    Override = value == "1";
+                    break;
+                case "NOOVERRIDE":
+                    NoOverride = value == "1";
+                    break;
                 case "OPER":
                     Oper = value;
                     break;
@@ -108,6 +114,9 @@ namespace V6Structs
                     break;
                 case "SQLTYPE":
                     sql_type = value.ToLower();
+                    break;
+                case "STATUS":
+                    Status = value == "1";
                     break;
                 case "TEXTV":
                     TextV = value;
@@ -250,6 +259,12 @@ namespace V6Structs
         /// Bật tắt tính năng lọc chỉ bắt đầu. Mặc định false sẽ lọc like '%abc%'.
         /// </summary>
         public bool FilterStart { get; set; }
+        /// <summary>
+        /// Bật tắt TemplateSetting. false sẽ bỏ qua hết các xử lý của trường hợp đó.
+        /// </summary>
+        public bool Status = false;
+        public bool Override = true;
+        public bool NoOverride = false;
 
         public string DescriptionLang(bool isVN)
         {

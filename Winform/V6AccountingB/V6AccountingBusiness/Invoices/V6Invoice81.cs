@@ -4,6 +4,7 @@ using System.Data;
 using DataAccessLayer.Implementations.Invoices;
 using V6Init;
 using V6SqlConnect;
+using V6Structs;
 
 namespace V6AccountingBusiness.Invoices
 {
@@ -25,7 +26,7 @@ namespace V6AccountingBusiness.Invoices
         }
 
         public override string Name { get { return "Hóa đơn"; } }
-        
+
         public bool InsertInvoice(SortedDictionary<string, object> am,
             List<SortedDictionary<string, object>> adList,
             List<SortedDictionary<string, object>> adList3)

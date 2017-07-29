@@ -1531,7 +1531,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     txtMaSoThue.Text = "";
                     txtTenKh.Text = "";
                     txtDiaChi.Text = "";
-                    txtMaGia.Text = "";
+                    //txtMaGia.Text = "";
+                    SetControlValue(txtMaGia, null, Invoice.GetTemplateSettingAM("MA_GIA"));
                     txtDienThoaiKH.Text = "";
                     return;
                 }
@@ -1546,7 +1547,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 txtDienThoaiKH.Text = (data["dien_thoai"] ?? "").ToString().Trim();
                 txtHanTT.Value = ObjectAndString.ObjectToInt(data["han_tt"]);
                 // Tuanmh 28/05/2016
-                txtMaGia.Text = (data["MA_GIA"] ?? "").ToString().Trim();
+                //txtMaGia.Text = (data["MA_GIA"] ?? "").ToString().Trim();
+                SetControlValue(txtMaGia, data["MA_GIA"], Invoice.GetTemplateSettingAM("MA_GIA"));
 
                 //Lay thong tin gan du lieu 20170320
                 SetDefaultDataReference(Invoice, ItemID, "TXTMAKH", data);
@@ -2052,8 +2054,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 var data = _maVt.Data;
                 if (data == null)
                 {
-                    _tkDt.Text = "";
-                    _tkGv.Text = "";
+                    //_tkGv.Text = "";
+                    //_tkDt.Text = "";
+                    SetControlValue(_tkDt, "", Invoice.GetTemplateSettingAD("TK_DT"));
+                    SetControlValue(_tkGv, "", Invoice.GetTemplateSettingAD("TK_GV"));
                     _tkCkI.Text = "";
                     _tkVt.Text = "";
                     _hs_qd1.Value = 0;
@@ -2062,8 +2066,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 else
                 {
-                    _tkDt.Text = (data["tk_dt"] ?? "").ToString().Trim();
-                    _tkGv.Text = (data["tk_gv"] ?? "").ToString().Trim();
+                    //_tkDt.Text = (data["tk_dt"] ?? "").ToString().Trim();
+                    //_tkGv.Text = (data["tk_gv"] ?? "").ToString().Trim();
+                    SetControlValue(_tkDt, data["tk_dt"], Invoice.GetTemplateSettingAD("TK_DT"));
+                    SetControlValue(_tkGv, data["tk_gv"], Invoice.GetTemplateSettingAD("TK_GV"));
+                    SetControlValue(_soLuong1, data["PACKS1"], Invoice.GetTemplateSettingAD("PACKS1"));
                     if (V6Options.V6OptionValues["M_SOA_HT_KM_CK"] == "1")
                     {
                         _tkCkI.Text = (data["tk_ck"] ?? "").ToString().Trim();

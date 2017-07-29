@@ -616,5 +616,79 @@ namespace V6AccountingBusiness.Invoices
 
         public virtual string Name { get { return _base_name; } set { _base_name = value; } }
         protected string _base_name = "Chứng từ";
+
+        private SortedDictionary<string, DefineInfo> _templateSettingAM = null;
+        /// <summary>
+        /// Lấy định nghĩa, nếu không có là mặc định.
+        /// </summary>
+        /// <param name="KEY"></param>
+        /// <returns></returns>
+        public DefineInfo GetTemplateSettingAM(string KEY)
+        {
+            KEY = KEY.ToUpper();
+            if (TemplateSettingAM.ContainsKey(KEY))
+                return _templateSettingAM[KEY];
+            return new DefineInfo("");
+        }
+        private SortedDictionary<string, DefineInfo> TemplateSettingAM
+        {
+            get
+            {
+                if (_templateSettingAM == null || _templateSettingAM.Count == 0)
+                {
+                    GetAllTemplateSettingAM();
+                }
+                return _templateSettingAM;
+            }
+        }
+
+        private void GetAllTemplateSettingAM()
+        {
+            _templateSettingAM = new SortedDictionary<string, DefineInfo>();
+            var define = Alct.Rows[0]["AM_TEMPLATE"].ToString().Trim();
+            string[] sss = define.Split('~');
+            foreach (string s in sss)
+            {
+                var defineInfo = new DefineInfo(s);
+                _templateSettingAM[defineInfo.Name.ToUpper()] = defineInfo;
+            }
+        }
+
+        private SortedDictionary<string, DefineInfo> _templateSettingAD = null;
+        /// <summary>
+        /// Lấy định nghĩa, nếu không có là mặc định.
+        /// </summary>
+        /// <param name="KEY"></param>
+        /// <returns></returns>
+        public DefineInfo GetTemplateSettingAD(string KEY)
+        {
+            KEY = KEY.ToUpper();
+            if (TemplateSettingAD.ContainsKey(KEY))
+                return _templateSettingAD[KEY];
+            return new DefineInfo("");
+        }
+        private SortedDictionary<string, DefineInfo> TemplateSettingAD
+        {
+            get
+            {
+                if (_templateSettingAD == null || _templateSettingAD.Count == 0)
+                {
+                    GetAllTemplateSettingAD();
+                }
+                return _templateSettingAD;
+            }
+        }
+
+        private void GetAllTemplateSettingAD()
+        {
+            _templateSettingAD = new SortedDictionary<string, DefineInfo>();
+            var define = Alct.Rows[0]["AD_TEMPLATE"].ToString().Trim();
+            string[] sss = define.Split('~');
+            foreach (string s in sss)
+            {
+                var defineInfo = new DefineInfo(s);
+                _templateSettingAD[defineInfo.Name.ToUpper()] = defineInfo;
+            }
+        }
     }
 }
