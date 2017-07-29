@@ -17,6 +17,21 @@ namespace V6ControlManager.FormManager.KhoHangManager
 {
     public partial class KhoHangContainer : V6FormControl
     {
+
+        public KhoHangContainer()
+        {
+            InitializeComponent();
+        }
+
+        public KhoHangContainer(KhoParams kparas)
+        {
+            InitializeComponent();
+            KhoParams = kparas;
+            txtTime.Visible = kparas.RunTimer;
+            LoadComboboxSource();
+            LoadDefaultData(4, "", kparas.Program, KhoParams.ItemId);
+        }
+
         #region ==== Properties ====
         private Point _p = new Point(0, 0);
         private DataTable MauInData;
@@ -135,19 +150,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
         #endregion properties
         
 
-        public KhoHangContainer()
-        {
-            InitializeComponent();
-        }
-
-        public KhoHangContainer(KhoParams kparas)
-        {
-            InitializeComponent();
-            KhoParams = kparas;
-            txtTime.Visible = kparas.RunTimer;
-            LoadComboboxSource();
-            LoadDefaultData(4, "", kparas.Program, KhoParams.ItemId);
-        }
+        
 
         private void LoadComboboxSource()
         {

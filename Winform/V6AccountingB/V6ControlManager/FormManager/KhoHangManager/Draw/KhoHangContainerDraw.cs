@@ -242,11 +242,12 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             DrawKhoHang(e.Graphics);
         }
 
+        List<KhoHangControl> listKho = new List<KhoHangControl>(); 
         private void DrawKhoHang(Graphics graphics)
         {
             try
             {
-
+                HaUtility.Helper.HDrawing.DrawLine(graphics, new Point(0, 0), new Point(100, 100));
             }
             catch (Exception ex)
             {

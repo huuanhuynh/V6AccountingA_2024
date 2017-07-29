@@ -124,7 +124,7 @@ namespace V6Init
 
         private static string _V6Special = "";
         /// <summary>
-        /// Đánh dấu đặc biệt.
+        /// Đánh dấu đặc biệt.Triple,Fixinvoicevvar
         /// </summary>
         public static string V6Special
         {
@@ -145,6 +145,15 @@ namespace V6Init
                 _V6Special = value;
                 UtilityHelper.WriteRegistry("V6SPECIAL", value);
             }
+        }
+
+        public static bool Triple
+        {
+            get { return V6Special.Contains("Triple"); }
+        }
+        public static bool Fixinvoicevvar
+        {
+            get { return V6Special.Contains("Fixinvoicevvar"); }
         }
 
         private static string _language = "";

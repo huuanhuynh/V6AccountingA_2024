@@ -546,6 +546,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                             _maViTri.V6LostFocus += sender =>
                             {
                                 //CheckMaViTri();
+                                XuLyThongTinKhiChonMaVitri();
                             };
                         }
                         break;
@@ -865,6 +866,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         {
             try
             {
+                if (_maVt.Data != null && _maVt.VITRI_YN)
+                {
+                    var packs1 = ObjectAndString.ObjectToDecimal(_maVt.Data["Packs1"]);
+                    if (packs1 > 0 && _soLuong1.Value > packs1)
+                    {
+                        _soLuong1.Value = packs1;
+                    }
+                }
                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
                 TinhTienVon1();
                 TinhTienVon();
@@ -986,6 +995,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".XuLyLayThongTinKhiChonMaLo" + ex.Message);
+            }
+        }
+
+        private void XuLyThongTinKhiChonMaVitri()
+        {
+            try
+            {
+                var datavt = _maVt.Data;
+                if (datavt == null) return;
+                var packs1 = ObjectAndString.ObjectToDecimal(datavt["Packs1"]);
+                if (packs1 > 0)
+                {
+                    _soLuong1.Value = packs1;
+                    if (_heSo1.Value == 0) _heSo1.Value = 1;
+                    _soLuong.Value = _soLuong1.Value*_heSo1.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XuLyThongTinKhiChonMaVitri", ex);
             }
         }
 
@@ -1616,7 +1645,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             if (V6Login.MadvcsCount >= 1)
             {
                 if (V6Login.Madvcs != "")
+                {
                     txtMadvcs.Text = V6Login.Madvcs;
+                    txtMadvcs.ExistRowInTable();
+                }
             }
 
             //M_Ma_nk

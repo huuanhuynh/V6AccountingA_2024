@@ -434,6 +434,19 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         
                         if (error == "")
                         {
+                            //_sttRec0 = V6BusinessHelper.GetNewSttRec0(AD);
+                            //data["STT_REC0"] = _sttRec0;
+                            data["STT_REC"] = txtSttRec.Text;
+                            data["MA_CT"] = txtMaCt.Text;
+                            data["MA_CT_ME"] = txtMaCtMe.Text;
+                            data["LOAI"] = txtLoai.Text;
+                            data["NHOM"] = txtNhom.Text;
+                            data["MA_DM"] = txtMaDm.Text;
+                            data["DEFAULTV"] = txtDefaultV.Text;
+                            data["DEFAULTE"] = txtDefaultE.Text;
+
+                            data["USER_ID"] = _user_name.Data["user_id"];
+
                             //Sửa dòng dữ liệu.
                             var currentRow = AD.Rows[cIndex];
                             foreach (DataColumn column in AD.Columns)

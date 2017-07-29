@@ -7,6 +7,7 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen.Loc;
 using V6Controls;
@@ -513,9 +514,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                                 _maViTri.SetInitFilter(filter);
                             };
 
-                            _maViTri.V6LostFocus += sender =>
+                            _maViTri.LostFocus += delegate
                             {
                                 CheckMaViTri();
+                                CheckMaVitriTon();
                             };
                         }
                         break;
@@ -669,7 +671,185 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
             CheckSoLuong1();
         }
-        
+
+        private void CheckMaVitriTon()
+        {
+            try
+            {
+                Invoice.GetAlVitriTon(dateNgayCT.Value, _sttRec, _maVt.Text, txtMaKhoX.Text);
+                FixAlVitriTon(Invoice.AlVitriTon, AD);
+
+                var inputUpper = _maViTri.Text.Trim().ToUpper();
+                if (Invoice.AlVitriTon != null)
+                {
+                    var check = false;
+                    foreach (DataRow row in Invoice.AlVitriTon.Rows)
+                    {
+                        if (row["Ma_vitri"].ToString().Trim().ToUpper() == inputUpper)
+                        {
+                            check = true;
+                        }
+
+                        if (check)
+                        {
+                            //
+                            _maViTri.Tag = row;
+                            XuLyKhiNhanMaVitri(row.ToDataDictionary());
+                            break;
+                        }
+                    }
+
+                    if (!check)
+                    {
+                        var initFilter = GetAlVitriTonInitFilter();
+                        var f = new FilterView(Invoice.AlVitriTon, "Ma_vitri", "ALVITRITON", _maViTri, initFilter);
+                        var d = f.ShowDialog();
+
+                        //xu ly data
+                        if (d == DialogResult.OK)
+                        {
+                            //SoCt0_V6LostFocus(_soCt0);
+
+                            if (_maViTri.Tag is DataRow)
+                                XuLyKhiNhanMaVitri(((DataRow)_maViTri.Tag).ToDataDictionary());
+                            else if (_maViTri.Tag is DataGridViewRow)
+                                XuLyKhiNhanMaVitri(((DataGridViewRow)_maViTri.Tag).ToDataDictionary());
+                        }
+                        else
+                        {
+                            //SoCt0_V6LostFocusNoChange(_maViTri);
+                            //_maViTri.Focus();
+                            _maViTri.Text = _maViTri.GotFocusText;
+                        }
+                    }
+                    //else if (detail1.MODE == V6Mode.Add)
+                    //{
+                    //    //Check so ct da chon
+                    //    check = false;
+                    //    foreach (DataRow row in AD.Rows)
+                    //    {
+                    //        if (row["Ma_vitri"].ToString().Trim().ToUpper() == inputUpper)
+                    //        {
+                    //            check = true;
+                    //            break;
+                    //        }
+                    //    }
+                    //    if (check) this.ShowWarningMessage("Số hóa đơn đã chọn! " + inputUpper);
+                    //}
+
+                    GetViTriLoDate13();
+                }
+                else
+                {
+                    this.ShowErrorMessage(GetType() + ".AlvitriTon null");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".CheckVitriTon: " + ex.Message);
+            }
+        }
+
+        private void FixAlVitriTon(DataTable alVitriTon, DataTable ad)
+        {
+            try
+            {
+
+                string sttRec0 = _sttRec0;
+                //string maVt = _maVt.Text.Trim().ToUpper();
+                //string maKhoI = _maKhoI.Text.Trim().ToUpper();
+                //string maLo = _maLo.Text.Trim().ToUpper();
+                // string maViTri = _maViTri.Text.Trim().ToUpper();
+
+                // Theo doi lo moi check
+                if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maVt.VITRI_YN || !txtMaKhoX.LO_YN || !txtMaKhoX.DATE_YN)
+                    return;
+
+                //if (maVt == "" || maKhoI == "" || maLo == "") return;
+
+                //Xử lý - tồn
+                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
+                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+
+                List<DataRow> empty_rows = new List<DataRow>();
+
+                for (int i = alVitriTon.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = alVitriTon.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
+                    string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+
+                    //Neu dung maVt, maKhoI, maLo, maViTri
+                    //- so luong
+                    decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                    decimal new_soLuong = data_soLuong;
+
+                    foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                    {
+                        //if (maVt == data_maVt && maKhoI == data_maKhoI && maLo == data_maLo && maViTri == data_maViTri)
+                        //{
+
+
+                        string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                        string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                        string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                        string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
+                        string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
+
+                        decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
+                        if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                        {
+                            if (data_maVt == c_maVt && data_maKhoI == c_maKhoI && data_maLo == c_maLo &&
+                                data_maViTri == c_maViTri)
+                            {
+                                new_soLuong -= c_soLuong;
+                            }
+                        }
+                    }
+
+                    if (new_soLuong > 0)
+                    {
+                        data_row["Ton_dau"] = new_soLuong;
+                    }
+                    else
+                    {
+                        empty_rows.Add(data_row);
+
+                    }
+                }
+
+                //remove all empty_rows
+                foreach (DataRow row in empty_rows)
+                {
+                    alVitriTon.Rows.Remove(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".GetViTriLoDate13 " + ex.Message);
+            }
+        }
+
+        private void XuLyKhiNhanMaVitri(IDictionary<string, object> row)//, DataRow row0)
+        {
+            try
+            {
+                _maLo.Text = row["MA_LO"].ToString().Trim();
+                _hanSd.Value = ObjectAndString.ObjectToDate(row["HSD"]);
+                _ton13.Value = ObjectAndString.ObjectToDecimal(row["TON_DAU"]);
+                _maLo.Enabled = false;
+                _maLo.ReadOnlyTag();
+
+                CheckSoLuong1();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".XuLyKhiNhanMaVitri: " + ex.Message);
+            }
+        }
+
         /// <summary>
         /// Đã tính luôn tiền vốn 1
         /// </summary>
@@ -2257,7 +2437,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             if (V6Login.MadvcsCount >= 1)
             {
                 if (V6Login.Madvcs != "")
+                {
                     txtMadvcs.Text = V6Login.Madvcs;
+                    txtMadvcs.ExistRowInTable();
+                }
             }
 
             //M_Ma_nk

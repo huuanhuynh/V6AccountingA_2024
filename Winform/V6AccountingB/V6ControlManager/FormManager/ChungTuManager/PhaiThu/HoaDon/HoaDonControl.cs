@@ -3338,8 +3338,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 //txtTongGiam.Value = V6BusinessHelper.Vround(t_gg_nt*tygia, M_ROUND);
                 //TxtT_TIENVC.Value = V6BusinessHelper.Vround(t_vc_nt * tygia, M_ROUND);                
                 //txtTongCk.Value = V6BusinessHelper.Vround(t_ck_nt*tygia, M_ROUND);
-                //txtTongThue.Value = V6BusinessHelper.Vround(t_thue_nt*tygia, M_ROUND);
-                // txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt_nt*tygia, M_ROUND);
                 //Co_Thay_Doi = true;
                 txtConLai.Value = t_tt_nt - txtSL_UD1.Value;
             }
@@ -3440,7 +3438,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             if (V6Login.MadvcsCount >= 1)
             {
                 if (V6Login.Madvcs != "")
+                {
                     txtMadvcs.Text = V6Login.Madvcs;
+                    txtMadvcs.ExistRowInTable();
+                }
             }
             
             //M_Ma_nk
@@ -3468,9 +3469,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
 
             }
-          
-            
-
         }
 
         /// <summary>
