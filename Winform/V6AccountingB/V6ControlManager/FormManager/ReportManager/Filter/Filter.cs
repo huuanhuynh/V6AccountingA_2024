@@ -814,11 +814,56 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new FilterDanhMuc("ALLO");
                 case "AINKHO":
                     return new FilterDanhMuc("ALKHO");
+                case "ACATKNH":
+                    return new FilterDanhMuc("ALTKNH");
                 case "AARBP":
                     return new FilterDanhMuc("ALBP");
                 case "AGLTK0":
                     return new FilterDanhMuc("ALTK0");
-
+                case "AARNHKH":
+                    return new FilterDanhMuc("ALNHKH");
+                case "AARTHUE":
+                    return new FilterDanhMuc("ALTHUE");
+                case "AINNHVT":
+                    return new FilterDanhMuc("ALNHVT");
+                case "ACOVV":
+                    return new FilterDanhMuc("ALVV");
+                case "ACONHVV":
+                    return new FilterDanhMuc("ALNHVV");
+                case "AFANV":
+                    return new FilterDanhMuc("ALNV");
+                case "AFATGTS":
+                    return new FilterDanhMuc("ALTGTS");
+                case "AFABP":
+                    return new FilterDanhMuc("ALBP");
+                case "AFANHTS":
+                    return new FilterDanhMuc("ALNHTS");
+                case "ATOTGCC":
+                    return new FilterDanhMuc("ALTGCC");
+                case "ATOBP":
+                    return new FilterDanhMuc("ALBP");
+                case "ATONHCC":
+                    return new FilterDanhMuc("ALNHCC");
+                case "AGLDVCS":
+                    return new FilterDanhMuc("ALDVCS");
+                case "AGLTK2":
+                    return new FilterDanhMuc("ALTK2");
+                case "AGLDMKC":
+                    return new FilterDanhMuc("ALKC");
+                case "AGLDMPB":
+                    return new FilterDanhMuc("ALPB");
+                case "AGLNHTK":
+                    return new FilterDanhMuc("ALNHTK");
+                case "AGLNHTK0":
+                    return new FilterDanhMuc("ALNHTK0");
+                case "V6CT":
+                    return new FilterDanhMuc("ALCT");
+                case "V6OPTION":
+                    return new FilterDanhMuc("V6OPTION");
+                case "V6TGNT":
+                    return new FilterDanhMuc("ALTGNT");
+                case "V6NT":
+                    return new FilterDanhMuc("ALNT");
                 #endregion danh muc
 
                 #region ==== Kho - Vị trí ====
