@@ -838,7 +838,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         {
             try
             {
-                _tientt.Value = _ttqd.Value;
+                //if (_maNtI.Text == _maNt) _tientt.Value = _ttqd.Value;
             }
             catch (Exception ex)
             {
@@ -846,11 +846,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             }
         }
 
-        void _tienNt_V6LostFocus(object sender)
+        private void _tienNt_V6LostFocus(object sender)
         {
             try
             {
-                
+
                 _tien.Value = V6BusinessHelper.Vround(_tienNt.Value*txtTyGia.Value, M_ROUND);
 
                 if (_pscoNt != null)
@@ -1310,8 +1310,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 if (_maNtI.Text != _mMaNt0)
                 {
                     _tientt.Value = V6BusinessHelper.Vround(_phaiTtNt.Value*_ty_gia_ht2.Value, M_ROUND);
-                    _tien.Value = _tientt.Value;
-                    _psCo.Value = _tientt.Value;
+                    _tien.Value = V6BusinessHelper.Vround(_phaiTtNt.Value * txtTyGia.Value, M_ROUND);
+                    _psCo.Value = _tien.Value;
                 }
 
                 //{Tuanmh 21/08/2016

@@ -70,7 +70,10 @@
             this.label46 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnXuatXML = new System.Windows.Forms.Button();
+            this.btnNhapXML = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -241,6 +244,8 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage3.Controls.Add(this.btnNhapXML);
+            this.tabPage3.Controls.Add(this.btnXuatXML);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
@@ -683,6 +688,34 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
             // 
+            // btnXuatXML
+            // 
+            this.btnXuatXML.AccessibleName = "";
+            this.btnXuatXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXuatXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXuatXML.Location = new System.Drawing.Point(7, 7);
+            this.btnXuatXML.Name = "btnXuatXML";
+            this.btnXuatXML.Size = new System.Drawing.Size(202, 29);
+            this.btnXuatXML.TabIndex = 25;
+            this.btnXuatXML.Text = "Xuất XML";
+            this.btnXuatXML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXuatXML.UseVisualStyleBackColor = true;
+            this.btnXuatXML.Click += new System.EventHandler(this.btnXuatXML_Click);
+            // 
+            // btnNhapXML
+            // 
+            this.btnNhapXML.AccessibleName = "";
+            this.btnNhapXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNhapXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNhapXML.Location = new System.Drawing.Point(7, 42);
+            this.btnNhapXML.Name = "btnNhapXML";
+            this.btnNhapXML.Size = new System.Drawing.Size(202, 29);
+            this.btnNhapXML.TabIndex = 25;
+            this.btnNhapXML.Text = "Nhập XML";
+            this.btnNhapXML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNhapXML.UseVisualStyleBackColor = true;
+            this.btnNhapXML.Click += new System.EventHandler(this.btnNhapXML_Click);
+            // 
             // ALREPORT_AddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -696,6 +729,7 @@
             this.Load += new System.EventHandler(this.KhachHangFrom_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -746,5 +780,7 @@
         protected System.Windows.Forms.Button btnEditXml;
         private V6ColorTextBox txtDmethod;
         private System.Windows.Forms.Label label10;
+        protected System.Windows.Forms.Button btnNhapXML;
+        protected System.Windows.Forms.Button btnXuatXML;
     }
 }

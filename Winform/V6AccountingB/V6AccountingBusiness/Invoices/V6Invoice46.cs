@@ -83,6 +83,7 @@ namespace V6AccountingBusiness.Invoices
                         new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
                         new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
                         new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
+                        new SqlParameter("@Mode", "M"),
                         new SqlParameter("@Tk", am["TK"].ToString()),
                         new SqlParameter("@Ma_gd", am["MA_GD"].ToString()),
                         new SqlParameter("@nRows", adList.Count),
@@ -122,6 +123,26 @@ namespace V6AccountingBusiness.Invoices
             SortedDictionary<string,object> keys )
         {
 
+            //POST MAIN BEFORE
+            int apgia0 = 0;
+            SqlParameter[] pList0 =
+                    {
+                        new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
+                        new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
+                        new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
+                        new SqlParameter("@Mode", "S"),
+                        new SqlParameter("@Tk", am["TK"].ToString()),
+                        new SqlParameter("@Ma_gd", am["MA_GD"].ToString()),
+                        new SqlParameter("@nRows", adList.Count),
+                        new SqlParameter("@nKieu_Post", am["KIEU_POST"].ToString()),
+                        new SqlParameter("@Ap_gia", apgia0),
+                        new SqlParameter("@UserID", V6Login.UserId),
+                        new SqlParameter("@Save_voucher", "1")
+                        
+                    };
+            V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_BC1_POST_MAIN_BEFORE", pList0);
+
+
             var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AM, AMStruct, am, keys);
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("AM46Update");
             //Delete AD
@@ -147,6 +168,7 @@ namespace V6AccountingBusiness.Invoices
                         new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
                         new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
                         new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
+                        new SqlParameter("@Mode", "S"),
                         new SqlParameter("@Tk", am["TK"].ToString()),
                         new SqlParameter("@Ma_gd", am["MA_GD"].ToString()),
                         new SqlParameter("@nRows", adList.Count),

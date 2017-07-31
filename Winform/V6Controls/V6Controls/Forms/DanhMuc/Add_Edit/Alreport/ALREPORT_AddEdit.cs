@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Controls;
@@ -26,6 +27,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
         {
             btnBoSung.Enabled = false;
             btnCopyFilter.Enabled = false;
+            btnXuatXML.Enabled = false;
+            btnNhapXML.Enabled = false;
         }
 
         public override void DoBeforeEdit()
@@ -162,6 +165,88 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             }
         }
 
+        private void DoExportXml()
+        {
+            try
+            {
+                var saveFile = V6ControlFormHelper.ChooseSaveFile("Xml|*.xml");
+                if (string.IsNullOrEmpty(saveFile)) return;
+
+                DataSet exportDataSet = new DataSet("ALREPORTDATA");
+                DataTable alreportTable = V6BusinessHelper.Select("Alreport", "Top 0 *", "1=0").Data;
+                alreportTable.AddRow(GetData());
+                exportDataSet.Tables.Add(alreportTable.Copy());
+                var keys = new SortedDictionary<string, object>
+                {
+                    {"MA_BC", TXTMA_BC.Text}
+                };
+                var alreport1_data = V6BusinessHelper.Select("Alreport1", keys, "*").Data;
+                exportDataSet.Tables.Add(alreport1_data.Copy());
+
+                FileStream fs = new FileStream(saveFile, FileMode.Create);
+                exportDataSet.WriteXml(fs);
+                fs.Close();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".DoExportXml", ex);
+            }
+        }
+        
+        private void DoImportXml()
+        {
+            try
+            {
+                var openFile = V6ControlFormHelper.ChooseOpenFile("Xml|*.xml");
+                if (string.IsNullOrEmpty(openFile)) return;
+                FileStream fs = new FileStream(openFile, FileMode.Open);
+                DataSet exportDataSet = new DataSet("ALREPORTDATA");
+                exportDataSet.ReadXml(fs);
+                fs.Close();
+                if (exportDataSet.Tables.Count > 0 && exportDataSet.Tables[0].Rows.Count > 0)
+                {
+                    var data = exportDataSet.Tables[0].Rows[0].ToDataDictionary();
+                    //Bỏ qua một số dữ liệu
+                    if (data.ContainsKey("MA_BC")) data.Remove("MA_BC");
+
+                    //Gán lên form.
+                    SetData(data);
+                }
+
+                // Alreport1 áp luôn ngay lên dữ liệu. Chưa có cơ chế tạm.
+                if (exportDataSet.Tables.Count > 1)
+                {
+                    //Xoa va nhap lai chi tiet.
+                    int delete_count = 0, add_count = 0;
+                    var keys = new SortedDictionary<string, object>
+                    {
+                        {"MA_BC", TXTMA_BC.Text}
+                    };
+                    delete_count = V6BusinessHelper.Delete(V6TableName.Alreport1, keys);
+
+                    var alreport1Data = exportDataSet.Tables[1];
+                    foreach (DataRow row in alreport1Data.Rows)
+                    {
+                        var data = row.ToDataDictionary();
+                        //Ghi đè dữ liệu mới.
+                        data["MA_BC"] = TXTMA_BC.Text.Trim();
+                        data["UID_CT"] = DataOld["UID"];
+                        if (Categories.Insert(V6TableName.Alreport1, data))
+                        {
+                            add_count++;
+                        };
+                    }
+                    ShowTopMessage(V6Setting.IsVietnamese
+                        ? string.Format("Đã xóa {0} và thêm {1} chi tiết.", delete_count, add_count)
+                        : string.Format("{0} detail(s) deleted and {1} added.", delete_count, add_count));
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".DoImportXml", ex);
+            }
+        }
+
         private void btnCopyFilter_Click(object sender, EventArgs e)
         {
             CopyFilter();
@@ -170,6 +255,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
         private void btnEditXml_Click(object sender, EventArgs e)
         {
             DoEditXml();
+        }
+
+        private void btnXuatXML_Click(object sender, EventArgs e)
+        {
+            DoExportXml();
+        }
+
+        private void btnNhapXML_Click(object sender, EventArgs e)
+        {
+            DoImportXml();
         }
 
 

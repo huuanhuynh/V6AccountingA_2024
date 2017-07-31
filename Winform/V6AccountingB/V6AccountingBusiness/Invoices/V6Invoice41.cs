@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using V6Init;
 using V6SqlConnect;
+using V6Structs;
 
 namespace V6AccountingBusiness.Invoices
 {
@@ -109,6 +110,7 @@ namespace V6AccountingBusiness.Invoices
                         new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
                         new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
                         new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
+                        new SqlParameter("@Mode", "M"),
                         new SqlParameter("@Tk", am["TK"].ToString()),
                         new SqlParameter("@Ma_gd", am["MA_GD"].ToString()),
                         new SqlParameter("@nRows", adList.Count),
@@ -154,6 +156,7 @@ namespace V6AccountingBusiness.Invoices
                         new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
                         new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
                         new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
+                        new SqlParameter("@Mode", "S"),
                         new SqlParameter("@Tk", am["TK"].ToString()),
                         new SqlParameter("@Ma_gd", am["MA_GD"].ToString()),
                         new SqlParameter("@nRows", adList.Count),
@@ -200,6 +203,7 @@ namespace V6AccountingBusiness.Invoices
                         new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
                         new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
                         new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
+                        new SqlParameter("@Mode", "S"),
                         new SqlParameter("@Tk", am["TK"].ToString()),
                         new SqlParameter("@Ma_gd", am["MA_GD"].ToString()),
                         new SqlParameter("@nRows", adList.Count),
