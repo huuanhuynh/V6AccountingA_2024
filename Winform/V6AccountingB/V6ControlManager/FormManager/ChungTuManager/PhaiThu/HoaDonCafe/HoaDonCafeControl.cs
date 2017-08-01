@@ -1708,7 +1708,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         private void XuLyLayThongTinKhiChonMaKhoI()
         {
-            _maKhoI.RefreshLoDateYnValue();
+            try
+            {
+                _maKhoI.RefreshLoDateYnValue();
+                var makho_data = _maKhoI.Data;
+                if (makho_data != null)
+                {
+                    var tk_dl = makho_data["TK_DL"].ToString().Trim();
+                    if (!string.IsNullOrEmpty(tk_dl))
+                    {
+                        _tkVt.Text = tk_dl;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XuLyLayThongTinKhiChonMaKhoI", ex);
+            }
         }
 
         private void XuLyLayThongTinKhiChonMaLo()

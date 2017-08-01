@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -3216,6 +3217,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 else
                 {
                     V6ControlFormHelper.RemoveRunningList(_sttRec);
+                    TinhToanTruocKhiLuu();
                     addDataAM = PreparingDataAM(Invoice);
                     V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD);
                     V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD2);
@@ -4045,7 +4047,55 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             return true;
         }
-        
+
+        private void TinhToanTruocKhiLuu()
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Ngay_ct", dateNgayCT.Value.Date),
+                    new SqlParameter("@Tk", txtTk.Text),
+                    new SqlParameter("@Ma_kh", txtMaKh.Text),
+                    new SqlParameter("@Ma_dvcs", txtMadvcs.Text),
+                    new SqlParameter("@Stt_rec", _sttRec),
+                    new SqlParameter("@Loai_cl", 0),
+                    new SqlParameter("@Get_cl", 1),
+                    new SqlParameter("@OutputInsert", ""),
+                };
+                var Acatinhtg = V6BusinessHelper.ExecuteProcedure("Acatinhtg", plist);
+                if (Acatinhtg != null && Acatinhtg.Tables.Count > 0 && Acatinhtg.Tables[0].Rows.Count > 0
+                    && _maNt != _mMaNt0)
+                {
+                    var tggs_row = Acatinhtg.Tables[0].Rows[0];
+                    var ty_gia = ObjectAndString.ObjectToDecimal(tggs_row["TY_GIA"]);
+                    if (ty_gia != 0 && !chkSuaTggs.Checked)
+                    {
+                        Txtty_gia_ht.Value = ty_gia;
+                        foreach (DataRow ad_row in AD.Rows)
+                        {
+                            if (txtTyGia.Value > ty_gia)
+                            {
+                                ad_row["TY_GIA_HT2"] = ty_gia;
+                                ad_row["TIEN_TT"] =V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(ad_row["TIEN_NT"])*ty_gia,M_ROUND);
+                            }
+                            else
+                            {
+                                ad_row["TY_GIA_HT2"] = txtTyGia.Value;
+                                ad_row["TIEN_TT"] = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(ad_row["TIEN_NT"]) * ty_gia, M_ROUND);
+                            }
+                        }
+                        dataGridView1.DataSource = AD;
+                        //TinhTongValues();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".TinhToanTruocKhiLuu", ex);
+            }
+        }
+
 
         #region ==== Navigation button ====
         private void btnFirst_Click(object sender, EventArgs e)

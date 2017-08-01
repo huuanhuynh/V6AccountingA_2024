@@ -1199,50 +1199,84 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         private void XuLyChonMaKhoX()
         {
-            txtMaKhoX.RefreshLoDateYnValue();
-
-            TxtTen_kho.Text = txtMaKhoX.Data["TEN_KHO"].ToString();
-
-            //GetTon13();
-            //GetLoDate();
-            if (_maVt.VITRI_YN)
+            try
             {
-                if (_maVt.LO_YN && _maVt.DATE_YN)
+                var makhoX_data = txtMaKhoX.Data;
+
+                txtMaKhoX.RefreshLoDateYnValue();
+                
+
+                //GetTon13();
+                //GetLoDate();
+                if (_maVt.VITRI_YN)
                 {
-                    GetViTriLoDate();
+                    if (_maVt.LO_YN && _maVt.DATE_YN)
+                    {
+                        GetViTriLoDate();
+                    }
+                    else
+                    {
+                        GetViTri();
+                    }
                 }
                 else
                 {
-                    GetViTri();
+                    //GetLoDate();
+                    if (_maLo.Text == "") GetLoDate();
+                    else GetLoDate13();
+                }
+
+                if (makhoX_data != null)
+                {
+                    TxtTen_kho.Text = makhoX_data["TEN_KHO"].ToString();
+
+                    var tk_dl = makhoX_data["TK_DL"].ToString().Trim();
+                    if (!string.IsNullOrEmpty(tk_dl))
+                    {
+                        _tkVt.Text = tk_dl;
+                        foreach (DataRow row in AD.Rows)
+                        {
+                            row["TK_VT"] = tk_dl;
+                        }
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                //GetLoDate();
-                if (_maLo.Text == "") GetLoDate();
-                else GetLoDate13();
+                this.WriteExLog(GetType() + ".XuLyChonMaKhoX", ex);
             }
         }
 
         private void XuLyChonMaKhoN()
         {
-            txtMaKhoN.LO_YN = false;
-            txtMaKhoN.DATE_YN = false;
-
-            if (txtMaKhoN.Data != null)
+            try
             {
+                txtMaKhoN.LO_YN = false;
+                txtMaKhoN.DATE_YN = false;
+
                 var data = txtMaKhoN.Data;
-                if ((data["LO_YN"] ?? "").ToString().Trim() == "1")
-                    txtMaKhoN.LO_YN = true;
-                else
-                    txtMaKhoN.LO_YN = false;
+                if (data != null)
+                {
+                    txtMaKhoN.LO_YN = (data["LO_YN"] ?? "").ToString().Trim() == "1";
+                    txtMaKhoN.DATE_YN = (data["DATE_YN"] ?? "").ToString().Trim() == "1";
 
-                if ((data["DATE_YN"] ?? "").ToString().Trim() == "1")
-                    txtMaKhoN.DATE_YN = true;
-                else
-                    txtMaKhoN.DATE_YN = false;
+                    TxtTen_khoN.Text = txtMaKhoN.Data["TEN_KHO"].ToString();
+                    
+                    var tk_dl = data["TK_DL"].ToString().Trim();
+                    if (!string.IsNullOrEmpty(tk_dl))
+                    {
+                        _Ma_nx_i.Text = tk_dl;
 
-                TxtTen_khoN.Text = txtMaKhoN.Data["TEN_KHO"].ToString();
+                        foreach (DataRow row in AD.Rows)
+                        {
+                            row["MA_NX_I"] = tk_dl;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XuLyChonMaKhoN", ex);
             }
         }
 
@@ -1901,6 +1935,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 }
 
                 SetDefaultDataDetail(Invoice, detail1.panelControls);
+
+                var makhoN_data = txtMaKhoN.Data;
+                if (makhoN_data != null)
+                {
+                    var tk_dl = makhoN_data["TK_DL"].ToString().Trim();
+                    if (!string.IsNullOrEmpty(tk_dl))
+                    {
+                        _Ma_nx_i.Text = tk_dl;
+                    }
+                }
+
+                var makhoX_data = txtMaKhoX.Data;
+                if (makhoX_data != null)
+                {
+                    var tk_dl = makhoX_data["TK_DL"].ToString().Trim();
+                    if (!string.IsNullOrEmpty(tk_dl))
+                    {
+                        _tkVt.Text = tk_dl;
+                    }
+                }
             }
             catch (Exception ex)
             {
