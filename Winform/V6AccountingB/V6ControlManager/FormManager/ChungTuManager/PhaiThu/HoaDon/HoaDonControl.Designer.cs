@@ -227,6 +227,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
             this.txtTongTienNt = new V6Controls.NumberTienNt();
+            this.menuDetail1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuXemPhieuNhap = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -241,6 +245,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.group3.SuspendLayout();
             this.group2.SuspendLayout();
             this.group1.SuspendLayout();
+            this.menuDetail1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewTextBoxColumn1
@@ -3301,6 +3306,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.txtTongTienNt.Visible = false;
             this.txtTongTienNt.TextChanged += new System.EventHandler(this.txtTongThanhToanNt_TextChanged);
             // 
+            // menuDetail1
+            // 
+            this.menuDetail1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuXemPhieuNhap,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3});
+            this.menuDetail1.Name = "menuChucNang";
+            this.menuDetail1.Size = new System.Drawing.Size(162, 92);
+            // 
+            // menuXemPhieuNhap
+            // 
+            this.menuXemPhieuNhap.Name = "menuXemPhieuNhap";
+            this.menuXemPhieuNhap.Size = new System.Drawing.Size(161, 22);
+            this.menuXemPhieuNhap.Text = "Xem phiếu nhập";
+            this.menuXemPhieuNhap.Click += new System.EventHandler(this.menuXemPhieuNhap_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(161, 22);
+            this.toolStripMenuItem2.Text = "...";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
+            this.toolStripMenuItem3.Text = "...";
+            // 
             // HoaDonControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3359,6 +3392,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.group2.PerformLayout();
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
+            this.menuDetail1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3554,5 +3588,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private V6FormButton btnApGia;
         private V6ColorTextBox txtDienThoaiKH;
         private V6NumberTextBox txtConLai;
+        private System.Windows.Forms.ContextMenuStrip menuDetail1;
+        private System.Windows.Forms.ToolStripMenuItem menuXemPhieuNhap;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
     }
 }

@@ -711,7 +711,7 @@ namespace V6Controls
 
         public void ChangeValue(decimal value)
         {
-            var oldValue = value;
+            var oldValue = Value;
             Value = value;
             if (oldValue != Value) CallDoV6LostFocus();
             else CallDoV6LostFocusNoChange();

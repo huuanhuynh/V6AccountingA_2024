@@ -10,13 +10,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             InitializeComponent();
         }
+
         public override void ValidateData()
         {
             var errors = "";
             if (txtma_thue.Text.Trim() == "")
                 errors += "Chưa nhập mã!\r\n";
             if (txtten_thue.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
+                errors += "Chưa nhập tên!\r\n";
 
 
             if (Mode == V6Mode.Edit)

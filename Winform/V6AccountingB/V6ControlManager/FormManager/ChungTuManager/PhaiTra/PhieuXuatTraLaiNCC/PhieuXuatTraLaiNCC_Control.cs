@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC.ChonPhieuNhap;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC.Loc;
@@ -98,6 +100,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             cboKieuPost.SelectedIndex = 0;
 
             LoadDetailControls();
+            detail1.AddContexMenu(menuDetail1);
             ResetForm();
 
             LoadAll();
@@ -3867,6 +3870,55 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".txtTongThueNt_V6LostFocus", ex);
+            }
+        }
+
+        private void menuXemPhieuNhap_Click(object sender, EventArgs e)
+        {
+            XemPhieuNhap();
+        }
+
+        private void XemPhieuNhap()
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@nXT", 1),
+                    new SqlParameter("@Type", 0),
+                    new SqlParameter("@Ngay_ct", dateNgayCT.Value.Date),
+                    new SqlParameter("@Stt_rec", _sttRec),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                    new SqlParameter("@M_lan", V6Login.SelectedLanguage),
+                    new SqlParameter("@Advance", string.Format("Ma_kho='{0}' and Ma_vt='{1}'", _maKhoI.Text, _maVt.Text)),
+                    new SqlParameter("@OutputInsert", ""),
+                };
+                var data0 = V6BusinessHelper.ExecuteProcedure("VPA_Get_IXC_VIEWF5", plist);
+                if (data0 == null || data0.Tables.Count == 0)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
+
+                var data = data0.Tables[0];
+                FilterView f = new FilterView(data, "MA_KH", "IXC_VIEWF5", new V6ColorTextBox(), "");
+                if (f.ShowDialog(this) == DialogResult.OK)
+                {
+                    var ROW = f.SelectedRowData;
+                    if (ROW == null || ROW.Count == 0) return;
+
+                    var datamavt = _maVt.Data;
+
+                    if (_xuat_dd.Checked || (datamavt != null && ObjectAndString.ObjectToDecimal(datamavt["GIA_TON"]) == 2))
+                    {
+                        _gia1.ChangeValue(ObjectAndString.ObjectToDecimal(ROW["GIA"]));
+                        _gia_nt1.ChangeValue(ObjectAndString.ObjectToDecimal(ROW["GIA"]));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XemPhieuNhap", ex);
             }
         }
     }
