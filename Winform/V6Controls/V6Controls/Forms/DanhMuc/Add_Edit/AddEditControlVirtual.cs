@@ -271,7 +271,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         : Convert.ToInt16(DataDic["USER_ID"]);
 
                     V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_inherit_USER",
-                        new SqlParameter("@pinherit_user", inher_user));
+                        new SqlParameter("@pinherit_user", inher_user),
+                        new SqlParameter("@type", DataDic["INHERIT_TYPE"])
+                        );
                     ReloadFlag = true;
                 }
             }

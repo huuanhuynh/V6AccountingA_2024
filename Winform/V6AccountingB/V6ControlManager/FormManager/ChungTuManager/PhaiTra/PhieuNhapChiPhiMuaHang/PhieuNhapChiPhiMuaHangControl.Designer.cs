@@ -2922,7 +2922,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             this.MinimumSize = new System.Drawing.Size(600, 450);
             this.Name = "PhieuNhapChiPhiMuaHangControl";
             this.Size = new System.Drawing.Size(899, 608);
-            
             this.Load += new System.EventHandler(this.HoaDonBanHangKiemPhieuXuat_Load);
             this.VisibleChanged += new System.EventHandler(this.HoaDonBanHangKiemPhieuXuat_VisibleChanged);
             this.tabControl1.ResumeLayout(false);

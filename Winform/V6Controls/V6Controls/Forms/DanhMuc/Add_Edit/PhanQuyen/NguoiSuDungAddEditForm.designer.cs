@@ -72,6 +72,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtInherit_type = new V6Controls.V6ColorTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -107,6 +108,7 @@
             this.tabPage1.Controls.Add(this.cboLevel);
             this.tabPage1.Controls.Add(this.chkIs_admin);
             this.tabPage1.Controls.Add(this.chkIsVadmin);
+            this.tabPage1.Controls.Add(this.txtInherit_type);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
@@ -697,6 +699,26 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên người sử dụng";
             // 
+            // txtInherit_type
+            // 
+            this.txtInherit_type.AccessibleName = "Inherit_type";
+            this.txtInherit_type.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInherit_type.BackColor = System.Drawing.SystemColors.Window;
+            this.txtInherit_type.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtInherit_type.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtInherit_type.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtInherit_type.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtInherit_type.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtInherit_type.HoverColor = System.Drawing.Color.Yellow;
+            this.txtInherit_type.LeaveColor = System.Drawing.Color.White;
+            this.txtInherit_type.Location = new System.Drawing.Point(440, 143);
+            this.txtInherit_type.Margin = new System.Windows.Forms.Padding(4);
+            this.txtInherit_type.Name = "txtInherit_type";
+            this.txtInherit_type.Size = new System.Drawing.Size(120, 23);
+            this.txtInherit_type.TabIndex = 1;
+            // 
             // NguoiSuDungAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -763,5 +785,6 @@
         private System.Windows.Forms.RichTextBox txtR_sonb;
         private System.Windows.Forms.Button bntPhanQuyenCtct;
         private V6CheckBox v6chk_set_vattu_ketoan_banhang;
+        private V6ColorTextBox txtInherit_type;
     }
 }

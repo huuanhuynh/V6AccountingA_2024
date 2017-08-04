@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -8,6 +9,7 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.ChonDonHang;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc;
@@ -117,6 +119,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             cboKieuPost.SelectedIndex = 0;
             cboLoai_pb.SelectedIndex = 0;
             LoadDetailControls();
+            detail1.AddContexMenu(menuDetail1);
             LoadDetail2Controls();
             LoadDetail3Controls();
             ResetForm();
@@ -5815,5 +5818,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 this.WriteExLog(GetType() + ".txtTongThueNt_V6LostFocus", ex);
             }
         }
+
+        private void menuXemPhieuNhap_Click(object sender, EventArgs e)
+        {
+            XemPhieuNhapView(dateNgayCT.Value, Invoice.Mact, _maKhoI.Text, _maVt.Text);
+        }
+
+
     }
 }

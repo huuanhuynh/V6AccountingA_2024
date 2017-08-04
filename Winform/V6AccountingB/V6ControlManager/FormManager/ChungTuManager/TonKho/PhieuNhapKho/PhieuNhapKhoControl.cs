@@ -83,6 +83,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             cboKieuPost.SelectedIndex = 0;
 
             LoadDetailControls();
+            detail1.AddContexMenu(menuDetail1);
             ResetForm();
 
             _maGd = (Invoice.Alct.Rows[0]["M_MA_GD"] ?? "2").ToString().Trim();
@@ -3474,5 +3475,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         {
             FixDataGridViewSize(dataGridView1);
         }
+
+        private void menuXemPhieuNhap_Click(object sender, EventArgs e)
+        {
+            XemPhieuNhapView(dateNgayCT.Value, Invoice.Mact, _maKhoI.Text, _maVt.Text);
+        }
+
     }
 }

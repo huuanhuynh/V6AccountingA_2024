@@ -31,6 +31,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -197,6 +198,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.btnTim = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
             this.TxtMa_gd = new V6Controls.V6ColorTextBox();
+            this.menuDetail1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuXemPhieuNhap = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -208,6 +213,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.group3.SuspendLayout();
             this.group2.SuspendLayout();
             this.group1.SuspendLayout();
+            this.menuDetail1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -2801,6 +2807,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.TxtMa_gd.TabIndex = 32;
             this.TxtMa_gd.Visible = false;
             // 
+            // menuDetail1
+            // 
+            this.menuDetail1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuXemPhieuNhap,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3});
+            this.menuDetail1.Name = "menuChucNang";
+            this.menuDetail1.Size = new System.Drawing.Size(162, 92);
+            // 
+            // menuXemPhieuNhap
+            // 
+            this.menuXemPhieuNhap.Name = "menuXemPhieuNhap";
+            this.menuXemPhieuNhap.Size = new System.Drawing.Size(161, 22);
+            this.menuXemPhieuNhap.Text = "Xem phiếu nhập";
+            this.menuXemPhieuNhap.Click += new System.EventHandler(this.menuXemPhieuNhap_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(161, 22);
+            this.toolStripMenuItem2.Text = "...";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
+            this.toolStripMenuItem3.Text = "...";
+            // 
             // HangTraLaiControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2835,7 +2869,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.MinimumSize = new System.Drawing.Size(600, 450);
             this.Name = "HangTraLaiControl";
             this.Size = new System.Drawing.Size(899, 586);
-            
             this.Load += new System.EventHandler(this.HangTraLaiControl_Load);
             this.VisibleChanged += new System.EventHandler(this.HangTraLaiControl_VisibleChanged);
             this.tabControl1.ResumeLayout(false);
@@ -2856,6 +2889,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.group2.PerformLayout();
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
+            this.menuDetail1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3026,5 +3060,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         private V6ColorTextBox txtSoCtKemt;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ContextMenuStrip menuDetail1;
+        private System.Windows.Forms.ToolStripMenuItem menuXemPhieuNhap;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
     }
 }

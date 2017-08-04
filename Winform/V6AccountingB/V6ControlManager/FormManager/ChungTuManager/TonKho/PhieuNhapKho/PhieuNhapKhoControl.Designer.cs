@@ -151,6 +151,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
+            this.menuDetail1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuXemPhieuNhap = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -163,6 +167,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.group3.SuspendLayout();
             this.group2.SuspendLayout();
             this.group1.SuspendLayout();
+            this.menuDetail1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1925,6 +1930,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // menuDetail1
+            // 
+            this.menuDetail1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuXemPhieuNhap,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3});
+            this.menuDetail1.Name = "menuChucNang";
+            this.menuDetail1.Size = new System.Drawing.Size(162, 92);
+            // 
+            // menuXemPhieuNhap
+            // 
+            this.menuXemPhieuNhap.Name = "menuXemPhieuNhap";
+            this.menuXemPhieuNhap.Size = new System.Drawing.Size(161, 22);
+            this.menuXemPhieuNhap.Text = "Xem phiếu nhập";
+            this.menuXemPhieuNhap.Click += new System.EventHandler(this.menuXemPhieuNhap_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(161, 22);
+            this.toolStripMenuItem2.Text = "...";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
+            this.toolStripMenuItem3.Text = "...";
+            // 
             // PhieuNhapKhoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1958,7 +1991,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.MinimumSize = new System.Drawing.Size(600, 450);
             this.Name = "PhieuNhapKhoControl";
             this.Size = new System.Drawing.Size(899, 630);
-            
             this.Load += new System.EventHandler(this.PhieuNhapKhoControl_Load);
             this.VisibleChanged += new System.EventHandler(this.PhieuNhapKhoControl_VisibleChanged);
             this.tabControl1.ResumeLayout(false);
@@ -1980,6 +2012,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.group2.PerformLayout();
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
+            this.menuDetail1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2103,5 +2136,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         private V6ColorTextBox txtSoCtKemt;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ContextMenuStrip menuDetail1;
+        private System.Windows.Forms.ToolStripMenuItem menuXemPhieuNhap;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
     }
 }

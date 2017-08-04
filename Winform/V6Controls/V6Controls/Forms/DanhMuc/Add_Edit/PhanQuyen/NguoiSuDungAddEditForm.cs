@@ -86,6 +86,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                     btnPhanQuyenKho.Enabled = enable;
                     btnPhanQuyenSnb.Enabled = enable;
                     bntPhanQuyenCtct.Enabled = enable;
+                    txtInherit_type.Enabled = enable;
 
                     chkInherit_ch.Enabled = enable;
                     chkIs_admin.Enabled = enable;
@@ -110,6 +111,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                 txtModuleID.Text = V6Options.MODULE_ID;
                 var max = Convert.ToInt32(SqlConnect.ExecuteScalar(CommandType.Text, "Select Max(User_ID) from V6user"));
                 TxtUser_id.Value = max + 1;
+
+                txtInherit_type.Text = "1,2,3,4,5";
             }
             catch (Exception ex)
             {

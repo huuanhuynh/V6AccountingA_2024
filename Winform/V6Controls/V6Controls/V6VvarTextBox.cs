@@ -42,7 +42,9 @@ namespace V6Controls
         private string _vVar = "";
         //private bool _loadAutoCompleteSrc = false;
         private bool _f5 = true, _f2;
-
+        /// <summary>
+        /// Data_ID
+        /// </summary>
         private string _text_data = "";
         private DataRow _data;
         private Form _frm;

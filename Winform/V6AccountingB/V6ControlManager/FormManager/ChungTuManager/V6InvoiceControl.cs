@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6Controls;
 using V6Controls.Forms;
@@ -1261,6 +1263,39 @@ namespace V6ControlManager.FormManager.ChungTuManager
             #endregion makho, mavt
         }
         #endregion CheckTon
+
+        protected void XemPhieuNhapView(DateTime ngayCT, string maCT, string maKho, string maVt)
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@nXT", 1),
+                    new SqlParameter("@Type", 0),
+                    new SqlParameter("@Ngay_ct", ngayCT.Date),
+                    new SqlParameter("@Ma_ct", maCT),
+                    new SqlParameter("@Stt_rec", _sttRec),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                    new SqlParameter("@M_lan", V6Login.SelectedLanguage),
+                    new SqlParameter("@Advance", string.Format("Ma_kho='{0}' and Ma_vt='{1}'", maKho, maVt)),
+                    new SqlParameter("@OutputInsert", ""),
+                };
+                var data0 = V6BusinessHelper.ExecuteProcedure("VPA_Get_STOCK_IN_VIEWF5", plist);
+                if (data0 == null || data0.Tables.Count == 0)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
+
+                var data = data0.Tables[0];
+                FilterView f = new FilterView(data, "MA_KH", "STOCK_IN_VIEWF5", new V6ColorTextBox(), "");
+                f.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XemPhieuNhapView", ex);
+            }
+        }
 
     }
 }

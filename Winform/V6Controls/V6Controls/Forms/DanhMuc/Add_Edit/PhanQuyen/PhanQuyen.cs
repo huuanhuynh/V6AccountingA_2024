@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
 {
@@ -49,11 +50,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         private DataTable v6Menu;
         private void GetV6MenuData()
         {
-            string sql = "v2id,jobid,vbar,vbar2";
-            sql += ",CASE WHEN CODE<>'' THEN (LTRIM(RTRIM(ITEMID))+'/'+LTRIM(RTRIM(code))) ELSE ITEMID END AS ITEMID ";
-            
-            v6Menu = V6BusinessHelper.Select("v6menu", sql,"Module_id= '"+V6Options.MODULE_ID+"' And HIDE_YN<>1 ").Data;
+            try
+            {
+                string select = "v2id,jobid,vbar,vbar2,Basicright";
+                select += ",CASE WHEN CODE<>'' THEN (LTRIM(RTRIM(ITEMID))+'/'+LTRIM(RTRIM(code))) ELSE ITEMID END AS ITEMID ";
+                string where = "Module_id= '" + V6Options.MODULE_ID + "' And (HIDE_YN<>1 or Basicright=1)";
 
+                v6Menu = V6BusinessHelper.Select("v6menu", select, where).Data;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GetV6MenuData", ex);
+            }
         }
 
         private void MakeMenu1(DataRow row)
@@ -115,7 +123,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             
             parent.Items.Add(item);
 
-            if (Vrights.Contains(itemID))
+            bool is_basic_right = ObjectAndString.ObjectToBool(row["Basicright"]);
+            if (Vrights.Contains(itemID) || is_basic_right)
             {                
                 item.Checked = true;
                 item.Parent.Checked = true;
@@ -123,31 +132,31 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                 //treeListView1.FakeOnItemCheck(item.Parent, CheckState.Unchecked);
             }
 
-            if (Vrights_Add.Contains(itemID))
+            if (Vrights_Add.Contains(itemID) || is_basic_right)
             {
                 item.SubItems[1].Text = yes;
                 item.Parent.SubItems[1].Text = yes;
                 item.Parent.Parent.SubItems[1].Text = yes;
             }
-            if (Vrights_Edit.Contains(itemID))
+            if (Vrights_Edit.Contains(itemID) || is_basic_right)
             {
                 item.SubItems[2].Text = yes;
                 item.Parent.SubItems[2].Text = yes;
                 item.Parent.Parent.SubItems[2].Text = yes;
             }
-            if (Vrights_Delete.Contains(itemID))
+            if (Vrights_Delete.Contains(itemID) || is_basic_right)
             {
                 item.SubItems[3].Text = yes;
                 item.Parent.SubItems[3].Text = yes;
                 item.Parent.Parent.SubItems[3].Text = yes;
             }
-            if (Vrights_View.Contains(itemID))
+            if (Vrights_View.Contains(itemID) || is_basic_right)
             {
                 item.SubItems[4].Text = yes;
                 item.Parent.SubItems[4].Text = yes;
                 item.Parent.Parent.SubItems[4].Text = yes;
             }
-            if (Vrights_Print.Contains(itemID))
+            if (Vrights_Print.Contains(itemID) || is_basic_right)
             {
                 item.SubItems[5].Text = yes;
                 item.Parent.SubItems[5].Text = yes;

@@ -186,7 +186,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                         cRow.ChangeSelect();
                     }
                 }
-                
+                else if (e.KeyCode == Keys.Escape)
+                {
+                    DialogResult = DialogResult.Cancel;
+                }
             }
             catch (Exception ex)
             {
@@ -312,7 +315,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
 
         private void btnESC_Click(object sender, EventArgs e)
         {
-            Close();
+            DialogResult = DialogResult.Cancel;
         }
         
         protected virtual void OnChoseEvent(DataGridViewRow data)

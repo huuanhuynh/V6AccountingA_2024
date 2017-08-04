@@ -447,8 +447,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                         _gia_nt1.Enabled = true;
                                         _gia_nt.Enabled = true;
                                         if (chkSua_Tien.Checked)
+                                        {
                                             _tienNt.Enabled = true;
-                                        else _tienNt.Enabled = false;
+                                        }
+                                        else
+                                        {
+                                            _tienNt.Enabled = false;
+                                        }
                                     }
                                     else
                                     {
@@ -2016,15 +2021,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
                     _dvt1.Enabled = true;
 
-                    _tienNt.Enabled = chkSua_Tien.Checked && _xuat_dd.Text!="";
+                   
 
                     //{Tuanmh 20/02/2016
-                    
-                    _gia_nt.Enabled =  _xuat_dd.Text != "";
-                    _gia.Enabled =  _xuat_dd.Text != "" && _gia_nt.Value==0;
 
-                    _gia_nt1.Enabled =  _xuat_dd.Text != "";
-                    _gia1.Enabled =  _xuat_dd.Text != "" && _gia_nt1.Value == 0;
+                    bool is_gia_dichdanh = _maVt.GIA_TON == 2 || _xuat_dd.Text != "";
+
+                    _tienNt.Enabled = chkSua_Tien.Checked && is_gia_dichdanh;
+                    _tien.Enabled = is_gia_dichdanh && _tienNt.Value == 0 && _maNt != _mMaNt0;
+
+                    _gia_nt.Enabled = is_gia_dichdanh;
+                    _gia.Enabled =  is_gia_dichdanh && _gia_nt.Value==0;
+                    _gia_nt1.Enabled = is_gia_dichdanh;
+                    _gia1.Enabled =  is_gia_dichdanh && _gia_nt1.Value == 0;
+                    
 
                     dateNgayLCT.Enabled = Invoice.M_NGAY_CT;
                 }
