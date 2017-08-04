@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -84,6 +85,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             cboKieuPost.SelectedIndex = 0;
 
             LoadDetailControls();
+            detail1.AddContexMenu(menuDetail1);
             ResetForm();
 
             _maGd = (Invoice.Alct.Rows[0]["M_MA_GD"] ?? "2").ToString().Trim();
@@ -524,7 +526,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                 _maViTri.LostFocus += delegate
                                 {
                                     //CheckMaViTri();
-                                    CheckMaVitriTon();
+                                    if (!_maViTri.ReadOnly)
+                                    {
+                                        CheckMaVitriTon();
+                                    }
                                 };
                             }
                             break;
@@ -562,13 +567,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
         private void CheckMaVitriTon()
         {
+            if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+            if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
             try
             {
                 Invoice.GetAlVitriTon(dateNgayCT.Value, _sttRec, _maVt.Text, _maKhoI.Text);
                 FixAlVitriTon(Invoice.AlVitriTon, AD);
 
                 var inputUpper = _maViTri.Text.Trim().ToUpper();
-                if (Invoice.AlVitriTon != null)
+                if (Invoice.AlVitriTon != null && Invoice.AlVitriTon.Rows.Count > 0)
                 {
                     var check = false;
                     foreach (DataRow row in Invoice.AlVitriTon.Rows)
@@ -629,7 +636,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 }
                 else
                 {
-                    this.ShowErrorMessage(GetType() + ".AlvitriTon null");
+                    ShowMainMessage("AlvitriTon null");
                 }
             }
             catch (Exception ex)
@@ -4229,6 +4236,55 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private void tabControl1_SizeChanged(object sender, EventArgs e)
         {
             FixDataGridViewSize(dataGridView1);
+        }
+
+        private void menuXemPhieuNhap_Click(object sender, EventArgs e)
+        {
+            XemPhieuNhap();
+        }
+
+        private void XemPhieuNhap()
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@nXT", 1),
+                    new SqlParameter("@Type", 0),
+                    new SqlParameter("@Ngay_ct", dateNgayCT.Value.Date),
+                    new SqlParameter("@Stt_rec", _sttRec),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                    new SqlParameter("@M_lan", V6Login.SelectedLanguage),
+                    new SqlParameter("@Advance", string.Format("Ma_kho='{0}' and Ma_vt='{1}'", _maKhoI.Text, _maVt.Text)),
+                    new SqlParameter("@OutputInsert", ""),
+                };
+                var data0 = V6BusinessHelper.ExecuteProcedure("VPA_Get_IXA_VIEWF5", plist);
+                if (data0 == null || data0.Tables.Count == 0)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
+
+                var data = data0.Tables[0];
+                FilterView f = new FilterView(data, "MA_KH", "IXA_VIEWF5", new V6ColorTextBox(), "");
+                if (f.ShowDialog(this) == DialogResult.OK)
+                {
+                    var ROW = f.SelectedRowData;
+                    if (ROW == null || ROW.Count == 0) return;
+
+                    var datamavt = _maVt.Data;
+
+                    if (_xuat_dd.Checked || (datamavt != null && ObjectAndString.ObjectToDecimal(datamavt["GIA_TON"]) == 2))
+                    {
+                        _gia1.ChangeValue(ObjectAndString.ObjectToDecimal(ROW["GIA"]));
+                        _gia_nt1.ChangeValue(ObjectAndString.ObjectToDecimal(ROW["GIA"]));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XemPhieuNhap", ex);
+            }
         }
     }
 }

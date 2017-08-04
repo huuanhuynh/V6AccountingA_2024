@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
@@ -7,6 +8,7 @@ using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ChungTuManager.Filter
 {
@@ -19,6 +21,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
     {
         //public string CONSTRING = "";
         public string DataField { get; set; }
+        public SortedDictionary<string, object> SelectedRowData = null; 
         
         private string Ma_dm;
         
@@ -152,15 +155,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                             if(row.IsSelect())
                                 OnChoseEvent(row);
                         }
+
+                        if (dataGridView1.CurrentRow != null)
+                        {
+                            SelectedRowData = dataGridView1.CurrentRow.ToDataDictionary();
+                        }
                         DialogResult = DialogResult.OK;
                     }
                     else if (dataGridView1.SelectedCells.Count > 0)
                     {
                         var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
-                        string selectedValue = currentRow.Cells[DataField].Value.ToString().Trim();
-                        _senderTextBox.Text = selectedValue;
+                        object selectedValue = currentRow.Cells[DataField].Value;
+                        //_senderTextBox.Text = selectedValue;
+                        V6ControlFormHelper.SetControlValue(_senderTextBox, selectedValue);
                         _senderTextBox.Tag = currentRow;
                         //Close();
+                        if (dataGridView1.CurrentRow != null)
+                        {
+                            SelectedRowData = dataGridView1.CurrentRow.ToDataDictionary();
+                        }
                         DialogResult = DialogResult.OK;
                         _senderTextBox.SetLooking(false);
                     }
@@ -191,10 +204,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             if (dataGridView1.Rows.Count > 0 && e.RowIndex >= 0)
             {
                 var currentRow = dataGridView1.Rows[e.RowIndex];
-                string selectedValue = currentRow.Cells[DataField].Value.ToString().Trim();
-                _senderTextBox.Text = selectedValue;
+                object selectedValue = currentRow.Cells[DataField].Value;
+                //_senderTextBox.Text = selectedValue;
+                V6ControlFormHelper.SetControlValue(_senderTextBox, selectedValue);
                 _senderTextBox.Tag = currentRow;
                 //Close();
+                if (dataGridView1.CurrentRow != null)
+                {
+                    SelectedRowData = dataGridView1.CurrentRow.ToDataDictionary();
+                }
                 DialogResult = DialogResult.OK;
                 //Dispose();
                 _senderTextBox.SetLooking(false);
@@ -206,12 +224,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
         private string GenFilterString(string fields)
         {
             var result = "";
+            if (txtV_Search.Text.Trim() == "") return "";
+
             try
             {
                 string[] items = fields.Split(',');
                 foreach (string item in items)
                 {
-                    result += " or " + item.Trim() + " like '%" +txtV_Search.Text.Trim()+ "%'";
+                    var column = dataGridView1.Columns[item];
+                    if (column != null)
+                    {
+                        var valueType = column.ValueType;
+                        if (ObjectAndString.IsStringType(valueType))
+                        {
+                            result += " or " + item.Trim() + " like '%" + txtV_Search.Text.Trim() + "%'";
+                        }
+                        else if (ObjectAndString.IsNumberType(valueType))
+                        {
+                            result += " or " + item.Trim() + " = " + ObjectAndString.StringToDecimal(txtV_Search.Text.Trim()) ;
+                        }
+                        else if (ObjectAndString.IsDateTimeType(valueType))
+                        {
+                            result += " or " + item.Trim() + " = '" + ObjectAndString.StringToDate(txtV_Search.Text.Trim()).ToString("yyyyMMdd") + "'";
+                        }
+                    }
                 }
             }
             catch

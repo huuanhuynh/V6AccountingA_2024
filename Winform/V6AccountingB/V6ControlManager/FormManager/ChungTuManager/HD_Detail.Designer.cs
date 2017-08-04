@@ -35,6 +35,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.components = new System.ComponentModel.Container();
             this.panelControls = new System.Windows.Forms.Panel();
             this.panel0 = new System.Windows.Forms.Panel();
+            this.btnChucNang = new V6Controls.Controls.DropDownButton();
             this.lblName = new V6Controls.V6Label();
             this.btnSua = new V6Controls.Controls.V6FormButton();
             this.btnXoa = new V6Controls.Controls.V6FormButton();
@@ -52,7 +53,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.panelControls.AutoSize = true;
             this.panelControls.Location = new System.Drawing.Point(1, 0);
             this.panelControls.Name = "panelControls";
-            this.panelControls.Size = new System.Drawing.Size(730, 32);
+            this.panelControls.Size = new System.Drawing.Size(730, 33);
             this.panelControls.TabIndex = 2;
             this.panelControls.SizeChanged += new System.EventHandler(this.panel1and2_SizeChanged);
             // 
@@ -61,18 +62,31 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.panel0.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel0.AutoSize = true;
+            this.panel0.Controls.Add(this.btnChucNang);
             this.panel0.Controls.Add(this.lblName);
             this.panel0.Location = new System.Drawing.Point(77, 0);
             this.panel0.Name = "panel0";
-            this.panel0.Size = new System.Drawing.Size(66, 50);
+            this.panel0.Size = new System.Drawing.Size(69, 52);
             this.panel0.TabIndex = 1;
             this.panel0.SizeChanged += new System.EventHandler(this.panel0_SizeChanged);
+            // 
+            // btnChucNang
+            // 
+            this.btnChucNang.AccessibleDescription = "AINCTIXAB00033";
+            this.btnChucNang.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnChucNang.Location = new System.Drawing.Point(35, 24);
+            this.btnChucNang.Name = "btnChucNang";
+            this.btnChucNang.Size = new System.Drawing.Size(31, 23);
+            this.btnChucNang.TabIndex = 38;
+            this.btnChucNang.Text = "...";
+            this.btnChucNang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChucNang.UseVisualStyleBackColor = true;
+            this.btnChucNang.Visible = false;
             // 
             // lblName
             // 
             this.lblName.AccessibleName = "ten_vt";
-            this.lblName.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblName.Location = new System.Drawing.Point(0, 36);
+            this.lblName.Location = new System.Drawing.Point(0, 33);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(66, 14);
             this.lblName.TabIndex = 0;
@@ -204,5 +218,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public V6Label lblName;
         private System.Windows.Forms.HScrollBar hScrollBar1;
         public System.Windows.Forms.Panel panel2;
+        private DropDownButton btnChucNang;
     }
 }

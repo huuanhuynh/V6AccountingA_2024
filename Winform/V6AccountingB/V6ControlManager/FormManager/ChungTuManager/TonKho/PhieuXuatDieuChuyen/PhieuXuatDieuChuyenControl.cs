@@ -516,8 +516,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                             _maViTri.LostFocus += delegate
                             {
-                                CheckMaViTri();
-                                CheckMaVitriTon();
+                                if (!_maViTri.ReadOnly)
+                                {
+                                    CheckMaViTri();
+                                    CheckMaVitriTon();
+                                }
                             };
                         }
                         break;
@@ -674,6 +677,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         private void CheckMaVitriTon()
         {
+            if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+            if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
             try
             {
                 Invoice.GetAlVitriTon(dateNgayCT.Value, _sttRec, _maVt.Text, txtMaKhoX.Text);
@@ -752,24 +757,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         private void FixAlVitriTon(DataTable alVitriTon, DataTable ad)
         {
+            if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+            if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
             try
             {
-
                 string sttRec0 = _sttRec0;
-                //string maVt = _maVt.Text.Trim().ToUpper();
-                //string maKhoI = _maKhoI.Text.Trim().ToUpper();
-                //string maLo = _maLo.Text.Trim().ToUpper();
-                // string maViTri = _maViTri.Text.Trim().ToUpper();
-
                 // Theo doi lo moi check
                 if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maVt.VITRI_YN || !txtMaKhoX.LO_YN || !txtMaKhoX.DATE_YN)
                     return;
-
-                //if (maVt == "" || maKhoI == "" || maLo == "") return;
-
-                //Xử lý - tồn
-                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
-                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
 
                 List<DataRow> empty_rows = new List<DataRow>();
 

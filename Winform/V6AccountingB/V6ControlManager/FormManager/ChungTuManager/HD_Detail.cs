@@ -92,8 +92,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         btnMoi.Enabled = true;
                         btnSua.Enabled = false;
                         btnXoa.Enabled = false;
-                        btnNhan.Enabled = true;        
-                
+                        btnNhan.Enabled = true;
+                        btnChucNang.Enabled = true;
                         break;
 
                     case V6Mode.Edit:
@@ -104,7 +104,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         btnSua.Enabled = true;
                         btnXoa.Enabled = false;
                         btnNhan.Enabled = true;
-                        
+                        btnChucNang.Enabled = true;
+
                         toolTip1.SetToolTip(btnSua, V6Text.Cancel);
                         btnSua.Image = Properties.Resources.Cancel16;
                         
@@ -122,6 +123,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         btnSua.Enabled = false;
                         btnXoa.Enabled = false;
                         btnNhan.Enabled = false;
+                        btnChucNang.Enabled = false;
                         break;
                     case V6Mode.View:
                         SetFormControlsReadOnly(true);
@@ -135,6 +137,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         btnSua.Enabled = true;
                         btnXoa.Enabled = true;
                         btnNhan.Enabled = false;
+                        btnChucNang.Enabled = false;
                         break;
                     case V6Mode.Init:
                         SetFormControlsReadOnly(true);
@@ -147,14 +150,15 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         btnSua.Enabled = true;
                         btnXoa.Enabled = true;
                         btnNhan.Enabled = false;
+                        btnChucNang.Enabled = false;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                this.WriteExLog(GetType() + ".ChangeMode", ex);
             }
         }
 
@@ -585,6 +589,16 @@ namespace V6ControlManager.FormManager.ChungTuManager
             foreach (Control control in Controls)
             {
                 V6ControlFormHelper.SetFormControlsReadOnly(control, readOnly);    
+            }
+        }
+
+
+        public void AddContexMenu(ContextMenuStrip menu)
+        {
+            if (menu != null && menu.Items.Count > 0)
+            {
+                btnChucNang.Menu = menu;
+                btnChucNang.Visible = true;
             }
         }
 
