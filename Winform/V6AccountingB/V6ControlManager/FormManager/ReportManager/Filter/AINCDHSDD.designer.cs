@@ -52,6 +52,7 @@
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label2 = new V6Controls.V6Label();
             this.txtKieuIn = new V6Controls.V6VvarTextBox();
+            this.v6Label4 = new V6Controls.V6Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -344,17 +345,28 @@
             this.txtKieuIn.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtKieuIn.HoverColor = System.Drawing.Color.Yellow;
             this.txtKieuIn.LeaveColor = System.Drawing.Color.White;
-            this.txtKieuIn.LimitCharacters = "*10";
+            this.txtKieuIn.LimitCharacters = "*102";
             this.txtKieuIn.Location = new System.Drawing.Point(79, 85);
             this.txtKieuIn.MaxLength = 1;
             this.txtKieuIn.Name = "txtKieuIn";
             this.txtKieuIn.Size = new System.Drawing.Size(18, 20);
             this.txtKieuIn.TabIndex = 3;
             // 
+            // v6Label4
+            // 
+            this.v6Label4.AccessibleDescription = "FILTERL00158";
+            this.v6Label4.AutoSize = true;
+            this.v6Label4.Location = new System.Drawing.Point(102, 107);
+            this.v6Label4.Name = "v6Label4";
+            this.v6Label4.Size = new System.Drawing.Size(56, 13);
+            this.v6Label4.TabIndex = 14;
+            this.v6Label4.Text = "2 - Tồn <0";
+            // 
             // AINCDHSDD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.v6Label4);
             this.Controls.Add(this.v6Label3);
             this.Controls.Add(this.v6Label2);
             this.Controls.Add(this.txtKieuIn);
@@ -401,5 +413,6 @@
         private V6Controls.V6Label v6Label2;
         private V6Controls.V6VvarTextBox txtKieuIn;
         private V6ReportControls.FilterLineVvarTextBox txtma_lo;
+        private V6Controls.V6Label v6Label4;
     }
 }

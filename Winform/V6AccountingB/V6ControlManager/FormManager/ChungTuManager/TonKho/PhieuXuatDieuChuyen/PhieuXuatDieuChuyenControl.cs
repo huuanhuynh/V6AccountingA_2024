@@ -791,7 +791,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                         string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
                         string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
-                        string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                        string c_maKhoI = txtMaKhoX.Text;
                         string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
                         string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
 

@@ -31,7 +31,7 @@
             this.v6Label4 = new V6Controls.V6Label();
             this.txtLastName = new V6Controls.V6ColorTextBox();
             this.v6Label17 = new V6Controls.V6Label();
-            this.txtName = new V6Controls.V6LookupTextBox();
+            this.txtName = new V6Controls.V6ColorTextBox();
             this.txtID = new V6Controls.V6ColorTextBox();
             this.SuspendLayout();
             // 
@@ -43,7 +43,7 @@
             this.v6Label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label4.Name = "v6Label4";
             this.v6Label4.Size = new System.Drawing.Size(106, 17);
-            this.v6Label4.TabIndex = 3;
+            this.v6Label4.TabIndex = 2;
             this.v6Label4.Text = "Tên quốc tịch 2";
             // 
             // txtLastName
@@ -60,7 +60,7 @@
             this.txtLastName.Margin = new System.Windows.Forms.Padding(5);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(493, 23);
-            this.txtLastName.TabIndex = 1;
+            this.txtLastName.TabIndex = 3;
             // 
             // v6Label17
             // 
@@ -86,10 +86,8 @@
             this.txtName.Location = new System.Drawing.Point(139, 19);
             this.txtName.Margin = new System.Windows.Forms.Padding(5);
             this.txtName.Name = "txtName";
-            this.txtName.NeighborFields = "RELATION";
-            this.txtName.ParentData = null;
             this.txtName.Size = new System.Drawing.Size(493, 23);
-            this.txtName.TabIndex = 0;
+            this.txtName.TabIndex = 1;
             // 
             // txtID
             // 
@@ -107,7 +105,7 @@
             this.txtID.Margin = new System.Windows.Forms.Padding(5);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(176, 23);
-            this.txtID.TabIndex = 2;
+            this.txtID.TabIndex = 4;
             this.txtID.Visible = false;
             // 
             // ThongTinQuocTichForm
@@ -133,7 +131,7 @@
         private V6Controls.V6Label v6Label4;
         private V6Controls.V6ColorTextBox txtLastName;
         private V6Controls.V6Label v6Label17;
-        private V6Controls.V6LookupTextBox txtName;
-        private V6ColorTextBox txtID;
+        private V6Controls.V6ColorTextBox txtID;
+        private V6Controls.V6ColorTextBox txtName;
     }
 }

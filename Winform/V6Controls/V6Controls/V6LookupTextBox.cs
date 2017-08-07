@@ -13,7 +13,7 @@ using V6Tools.V6Convert;
 namespace V6Controls
 {
     /// <summary>
-    /// Lookup textBox
+    /// Lookup textBox, Dữ liệu khác với hiển thị.
     /// </summary>
     public class V6LookupTextBox : V6ColorTextBox
     {
@@ -23,6 +23,13 @@ namespace V6Controls
             GotFocus += V6LookupTextBox_GotFocus;
             //_upper = true;
         }
+
+        /// <summary>
+        /// Dùng cho ShowTextField, làm trường dữ liệu cho ShowText khi lấy data.
+        /// </summary>
+        [DefaultValue(null)]
+        [Description("Dùng cho ShowTextField, làm trường dữ liệu cho ShowText khi lấy data.")]
+        public string AccessibleName2 { get; set; }
 
         void V6LookupTextBox_GotFocus(object sender, EventArgs e)
         {
@@ -188,16 +195,27 @@ namespace V6Controls
             set { _ma_dm = value; }
         }
 
-        //[Description("Tên bảng lấy dữ liệu.")]
-        //[DefaultValue("")]
-        //public string TableName
-        //{
-        //    get { return _table_name; }
-        //    set { _table_name = value; }
-        //}
+        [Description("Dữ liệu theo valueField.")]
+        public object Value
+        {
+            get { return Data == null ? null : Data[ValueField]; }
+        }
+
+        public void SetValue(object value)
+        {
+            try
+            {
+                ExistRowInTableID(value);
+                //this.WriteToLog("V6LookupTextBox", "Chưa viết SetValue");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".SetValue", ex);
+            }
+        }
 
         [Category("V6")]
-        [Description("Tên trường lấy giá trị thay thế cho F_NAME. Nếu không dùng thì reset về null. Giá trị rỗng có thể chạy không đúng")]
+        [Description("Tên trường lấy dữ liệu.")]
         [DefaultValue(null)]
         public string ValueField
         {
@@ -206,12 +224,27 @@ namespace V6Controls
         }
         private string _valueField;
 
+        [Category("V6")]
+        [Description("Tên trường dữ liệu hiển thị.")]
+        [DefaultValue(null)]
+        public string ShowTextField
+        {
+            get { return _showTextField; }
+            set { _showTextField = value; }
+        }
+        private string _showTextField;
+
+        /// <summary>
+        /// Trường lấy dữ liệu hiển thị. Nếu không có định nghĩa trong lookupinfo sẽ lấy ValueField
+        /// </summary>
         public string LookupInfo_F_NAME
         {
             get
             {
+                if (!string.IsNullOrEmpty(_showTextField)) return _showTextField;
+                if(LookupInfo != null) return LookupInfo.F_NAME;
                 if (!string.IsNullOrEmpty(_valueField)) return _valueField;
-                return LookupInfo == null ? null : LookupInfo.F_NAME;
+                return null;
             }
         }
         
@@ -354,6 +387,8 @@ namespace V6Controls
                     {
                         if (ExistRowInTable(textBox.Text.Trim()))
                         {
+                            FixText();
+
                             if (!Looking && gotfocustext != Text) CallDoV6LostFocus();
                             else CallDoV6LostFocusNoChange();
                         }
@@ -389,13 +424,16 @@ namespace V6Controls
 
         public void LoadAutoCompleteSource()
         {
+            if (V6Setting.IsDesignTime) return;
             if (auto1 != null) return;
             if (LookupInfo.NoInfo) return;
 
-            if (!string.IsNullOrEmpty(LookupInfo.TABLE_NAME) && !string.IsNullOrEmpty(LookupInfo_F_NAME) && auto1 == null)
+            try
             {
-                try
+                if (!string.IsNullOrEmpty(LookupInfo.TABLE_NAME) && !string.IsNullOrEmpty(LookupInfo_F_NAME) &&
+                    auto1 == null)
                 {
+
                     auto1 = new AutoCompleteStringCollection();
 
                     var selectTop = "";
@@ -406,7 +444,7 @@ namespace V6Controls
                         var filter = InitFilter;
                         if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
                         var where = " 1=1 " + filter;
-                            
+
                         var tbl1 = V6BusinessHelper.Select(tableName,
                             selectTop + " [" + LookupInfo_F_NAME + "]",
                             where, "", "", null).Data;
@@ -422,14 +460,15 @@ namespace V6Controls
                         AutoCompleteSource = AutoCompleteSource.CustomSource;
                         V6ControlsHelper.DisableLookup = false;
                     }
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".LoadAutoCompleteSource " + LookupInfo.TABLE_NAME + " " + ex.Message);
-                    V6ControlsHelper.DisableLookup = false;
+
                 }
             }
-
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAutoCompleteSource" + LookupInfo.TABLE_NAME
+                    + string.Format(" LookupInfo:{0}, LookupInfo_F_NAME:{1}", LookupInfo==null?"null":"", LookupInfo_F_NAME??"null"), ex);
+                V6ControlsHelper.DisableLookup = false;
+            }
         }
 
         private AutoCompleteMode _oldAutoCompleteMode;
@@ -475,6 +514,7 @@ namespace V6Controls
         /// <returns></returns>
         public bool ExistRowInTable(string text)
         {
+            if (V6Setting.IsDesignTime) return false;
             try
             {
                 _text_data = text;
@@ -508,10 +548,62 @@ namespace V6Controls
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.ShowErrorMessage(ex.Message);
+                this.WriteExLog(GetType() + ".ExistRowInTable", ex);
                 return false;
             }
             return false;
+        }
+        
+        private bool ExistRowInTableID(object id)
+        {
+            if (V6Setting.IsDesignTime) return false;
+            try
+            {
+                if (!string.IsNullOrEmpty(LookupInfo_F_NAME))
+                {
+                    string tableName = LookupInfo.TABLE_NAME;
+                    var filter = InitFilter;
+                    if (!string.IsNullOrEmpty(filter)) filter = " and (" + filter + ")";
+
+                    SqlParameter[] plist =
+                    {
+                        new SqlParameter("@id", id)
+                    };
+                    var tbl = V6BusinessHelper.Select(tableName, "*", ValueField + "=@id " + filter, "", "", plist).Data;
+
+                    if (tbl != null && tbl.Rows.Count >= 1)
+                    {
+                        var oneRow = tbl.Rows[0];
+                        _data = oneRow;
+                        FixText();
+                        V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields);
+                        SetNeighborValues();
+                        return true;
+                    }
+                    else
+                    {
+                        _data = null;
+                        V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields);
+                        SetNeighborValues();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ExistRowInTable", ex);
+                return false;
+            }
+            return false;
+        }
+
+        private void FixText()
+        {
+            //Fix text
+            if (Data != null)
+            {
+                Text = Data[LookupInfo_F_NAME].ToString().Trim();
+                _text_data = Text;
+            }
         }
 
         public void RefreshLoDateYnValue()
@@ -538,9 +630,9 @@ namespace V6Controls
                 if (Data.Table.Columns.Contains("GIA_TON"))
                     GIA_TON = ObjectAndString.ObjectToInt(Data["GIA_TON"]);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                this.WriteExLog(GetType() + ".RefreshLoDateYnValue", ex);
             }
         }
 
@@ -561,9 +653,9 @@ namespace V6Controls
                 }
                 V6ControlFormHelper.SetNeighborData(this, _data, neighbor_field);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                this.WriteExLog(GetType() + ".SetNeighborValues", ex);
             }
         }
 
@@ -620,35 +712,44 @@ namespace V6Controls
 
         protected void DoLookup(bool multi = false)
         {
-            if (LookupInfo.NoInfo) return;
-            //_frm = FindForm();
-            var filter = InitFilter;
-            if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
-            var fStand = new V6LookupTextboxForm(ParentData, this.Text, LookupInfo, " 1=1 " + filter, LookupInfo_F_NAME, multi, FilterStart);
-            Looking = true;
-            DialogResult dsr = fStand.ShowDialog();
-            Looking = false;
-            if (dsr == DialogResult.OK)
+            if (V6Setting.IsDesignTime) return;
+
+            try
             {
-                Text = fStand._senderText;
-                if(!multi) Data = fStand.selectedDataRow;
-            }
-            else
-            {
-                //Kiem tra neu gia tri khong hop le thi xoa            
-                if (!multi && !ExistRowInTable())
+                if (LookupInfo.NoInfo) return;
+                //_frm = FindForm();
+                var filter = InitFilter;
+                if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
+                var fStand = new V6LookupTextboxForm(ParentData, this.Text, LookupInfo, " 1=1 " + filter, LookupInfo_F_NAME, multi, FilterStart);
+                Looking = true;
+                DialogResult dsr = fStand.ShowDialog();
+                Looking = false;
+                if (dsr == DialogResult.OK)
                 {
-                    Clear();
-                    if (CheckNotEmpty || CheckOnLeave)
-                        _lockFocus = true;
-                    else _lockFocus = false;
+                    Text = fStand._senderText;
+                    if (!multi) Data = fStand.selectedDataRow;
                 }
                 else
                 {
-                    _lockFocus = false;
+                    //Kiem tra neu gia tri khong hop le thi xoa            
+                    if (!multi && !ExistRowInTable())
+                    {
+                        Clear();
+                        if (CheckNotEmpty || CheckOnLeave)
+                            _lockFocus = true;
+                        else _lockFocus = false;
+                    }
+                    else
+                    {
+                        _lockFocus = false;
+                    }
+                    SetLooking(false);
+                    //Clear();
                 }
-                SetLooking(false);
-                //Clear();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoLookup", ex);
             }
         }
 

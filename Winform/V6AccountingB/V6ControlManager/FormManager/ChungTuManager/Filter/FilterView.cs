@@ -240,7 +240,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                         var valueType = column.ValueType;
                         if (ObjectAndString.IsStringType(valueType))
                         {
-                            result += " or " + item.Trim() + " like '%" + txtV_Search.Text.Trim() + "%'";
+                            result += " or " + item.Trim() + " like  '%" + txtV_Search.Text.Trim() + "%'";//dùng cho RowFilter không dùng N'value'
                         }
                         else if (ObjectAndString.IsNumberType(valueType))
                         {

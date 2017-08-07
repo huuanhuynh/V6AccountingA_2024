@@ -555,15 +555,16 @@ namespace V6Controls.Forms
                     case "N3"://GIA
 
                         decimals = V6Options.M_IP_GIA;
+                        //Tuanmh 06/08/2017 - loi CreateNumberSoLuong
+                        c = CreateNumberGia(fcolumn, fcaption, decimals, width, fstatus, carry);
 
-                        c = CreateNumberSoLuong(fcolumn, fcaption, decimals, width, fstatus, carry);
 
                         break;
                     case "N4"://Gia nt
 
                         decimals = V6Options.M_IP_GIA_NT;
-
-                        c = CreateNumberSoLuong(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        //Tuanmh 06/08/2017 - loi CreateNumberSoLuong
+                        c = CreateNumberGiaNt(fcolumn, fcaption, decimals, width, fstatus, carry);
 
                         break;
                     case "N5"://Ty gia
@@ -764,64 +765,17 @@ namespace V6Controls.Forms
                     {
                         _debugList.Add(control.AccessibleName);
                         cNAME = control.AccessibleName.Trim().ToUpper();
-                        var color = control as V6DateTimeColor;
-                        if (color != null)
+                        if (!(control is RadioButton) && d.ContainsKey(cNAME))
                         {
-                            d.Add(cNAME, color.Value);
-                        }
-                        else if (control is V6IndexComboBox)
-                        {
-                            d.Add(cNAME, ((V6IndexComboBox)control).SelectedIndex);
-                        }
-                        else if (control is V6ComboBox)
-                        {
-                            var cbo = control as V6ComboBox;
-                            d.Add(cNAME, cbo.DataSource != null ? cbo.SelectedValue : cbo.Text);
-                        }
-                        else if (control is ComboBox)
-                        {
-                            var cbo = control as ComboBox;
-                            d.Add(cNAME, cbo.DataSource != null ? cbo.SelectedValue : cbo.Text);
-                        }
-                        else if (control is PictureBox)
-                        {
-                            var pic = control as PictureBox;
-                            d.Add(cNAME, Picture.ToJpegByteArray(pic.Image));
-                        }
-                        else if (control is V6NumberTextBox)
-                        {
-                            d.Add(cNAME, ((V6NumberTextBox)control).Value);
-                        }
-                        else if (control is V6CheckTextBox)
-                        {
-                            d.Add(cNAME, ((V6CheckTextBox)control).StringValue);
-                        }
-                        else if (control is CheckBox)
-                        {
-                            d.Add(cNAME, ((CheckBox)control).Checked ? 1 : 0);
-                        }
-                        else if (control is RadioButton)
-                        {
-                            if (((RadioButton)control).Checked)
-                                d.Add(cNAME, control.Text);
-                        }
-                        else if (control is GioiTinhControl)
-                        {
-                            d.Add(cNAME, ((GioiTinhControl) control).Value);
-                        }
-                        else if (control is V6DateTimePick)
-                        {
-                            d.Add(cNAME, ((V6DateTimePick)control).Value);
-                        }
-                        else if (control is DateTimePicker)
-                        {
-                            d.Add(cNAME, ((DateTimePicker)control).Value);
-                        }
-                        else
-                        {
-                            d.Add(cNAME, control.Text);
+                            Control f = FindParent<V6Control>(control);
+                            var formName = (f == null ? "null" : f.Name);
+                            var formType = (f == null ? "null" : f.GetType().ToString());
+                            WriteToLog("V6ControlFormHelper.GetFormDataDictionaryRecusive",
+                                string.Format("Form [{0}] type [{1}] trùng AccessibleName [{2}]",
+                                formName, formType, cNAME));
                         }
 
+                        GetControlValue(d, control);
                     }
 
                     if (control.Controls.Count > 0)
@@ -958,123 +912,13 @@ namespace V6Controls.Forms
                         if (!string.IsNullOrEmpty(NAME)
                             && row.Table.Columns.Contains(NAME) && fields.Contains("," + NAME.ToLower() + ","))
                         {
-                            var color = c as V6DateTimeColor;
-                            if (color != null)
-                            {
-                                color.Value = ObjectAndString.ObjectToDate(row[NAME]);
-                            }
-                            else if (c is V6IndexComboBox)
-                            {
-                                ((V6IndexComboBox)control).SelectedIndex = ObjectAndString.ObjectToInt(row[NAME]);
-                            }
-                            else if (c is ComboBox)
-                            {
-                                //!!! can mo rong nhieu loai combobox
-                                var com = c as ComboBox;
-                                var value = ObjectAndString.ObjectToString(row[NAME]);
-                                if (com.Items.Contains(value))
-                                {
-                                    com.SelectedText = value;
-                                }
-                                else
-                                {
-                                    com.Items.Add(value);
-                                    com.SelectedText = value;
-                                }
-                            }
-                            else if (c is V6DateTimePick)
-                            {
-                                var object_to_date = ObjectAndString.ObjectToDate(row[NAME]);
-                                if (object_to_date != null)
-                                    ((V6DateTimePick)c).Value = (DateTime)object_to_date;
-                            }
-                            else if (c is DateTimePicker)
-                            {
-                                var object_to_date = ObjectAndString.ObjectToDate(row[NAME]);
-                                if (object_to_date != null)
-                                    ((DateTimePicker)c).Value = (DateTime) object_to_date;
-                            }
-                            else if (c is V6NumberTextBox)
-                            {
-                                ((V6NumberTextBox)c).Value = ObjectAndString.ObjectToDecimal(row[NAME]);
-                            }
-                            else if (c is V6CheckTextBox)
-                            {
-                                ((V6CheckTextBox)c).SetStringValue(ObjectAndString.ObjectToString(row[NAME]));
-                            }
-                            else if (c is CheckBox)
-                            {
-                                string value = row[NAME].ToString().Trim();
-                                if (value == "1" || value.ToLower() == "true")
-                                {
-                                    ((CheckBox)c).Checked = true;
-                                }
-                                else
-                                {
-                                    ((CheckBox)c).Checked = false;
-                                }
-                            }
-                            else if (c is RadioButton)
-                            {
-                                if (row[NAME].ToString().Trim() == c.Text)
-                                {
-                                    ((RadioButton)c).Checked = true;
-                                }
-                            }
-                            else if (control is GioiTinhControl)
-                            {
-                                ((GioiTinhControl)control).Value = row[NAME].ToString().Trim();
-                            }
-                            else
-                            {
-                                c.Text = row[NAME].ToString().Trim();
-                            }
+                            SetControlValue(c, row[NAME]);
                         }
                         else if (!string.IsNullOrEmpty(c.AccessibleName) &&
                                  fields.Contains("," + c.AccessibleName.ToLower() + ","))
                         {
                             //Gán rỗng hoặc mặc định
-                            if (c is V6IndexComboBox)
-                            {
-                                var com = c as ComboBox;
-                                if (com.Items.Count > 0)
-                                    com.SelectedIndex = 0;
-                            }
-                            else if (c is ComboBox)
-                            {
-                                //!!! can mo rong nhieu loai combobox
-                                var com = c as ComboBox;
-                                if (com.Items.Count > 0)
-                                    com.SelectedIndex = 0;
-                            }
-                            else if (c is V6DateTimePick)
-                            {
-                                ((V6DateTimePick)c).Value = DateTime.Now;
-                            }
-                            else if (c is DateTimePicker)
-                            {
-                                ((DateTimePicker) c).Value = DateTime.Now;
-                            }
-                            else if (c is V6NumberTextBox)
-                            {
-                                ((V6NumberTextBox) c).Value = 0;
-                            }
-                            else if (c is CheckBox)
-                            {
-                                ((CheckBox) c).Checked = false;
-                            }
-                            else if (c is RadioButton)
-                            {
-                                ((RadioButton) c).Checked = false;
-                            }
-                            else if (control is GioiTinhControl)
-                            {
-                                ((GioiTinhControl)control).Value = "";
-                            }
-                            else
-                            {
-                                c.Text = "";
-                            }
+                            SetControlValue(c, null);
                         }
                     }
                 }
@@ -1113,123 +957,12 @@ namespace V6Controls.Forms
 
                         if (row.Table.Columns.Contains(fieldName))
                         {
-                            var color = c as V6DateTimeColor;
-                            if (color != null)
-                            {
-                                color.Value = ObjectAndString.ObjectToDate(row[fieldName]);
-                            }
-                            else if (c is V6IndexComboBox)
-                            {
-                                ((V6IndexComboBox) control).SelectedIndex = ObjectAndString.ObjectToInt(row[fieldName]);
-                            }
-                            else if (c is ComboBox)
-                            {
-                                //!!! can mo rong nhieu loai combobox
-                                var com = c as ComboBox;
-                                var value = ObjectAndString.ObjectToString(row[fieldName]);
-                                if (com.Items.Contains(value))
-                                {
-                                    com.SelectedText = value;
-                                }
-                                else
-                                {
-                                    com.Items.Add(value);
-                                    com.SelectedText = value;
-                                }
-                            }
-                            else if (c is V6DateTimePick)
-                            {
-                                var object_to_date = ObjectAndString.ObjectToDate(row[fieldName]);
-                                if (object_to_date != null)
-                                    ((V6DateTimePick) c).Value = (DateTime) object_to_date;
-                            }
-                            else if (c is DateTimePicker)
-                            {
-                                var object_to_date = ObjectAndString.ObjectToDate(row[fieldName]);
-                                if (object_to_date != null)
-                                    ((DateTimePicker) c).Value = (DateTime) object_to_date;
-                            }
-                            else if (c is V6NumberTextBox)
-                            {
-                                ((V6NumberTextBox) c).Value = ObjectAndString.ObjectToDecimal(row[fieldName]);
-                            }
-                            else if (c is V6CheckTextBox)
-                            {
-                                ((V6CheckTextBox) c).SetStringValue(ObjectAndString.ObjectToString(row[fieldName]));
-                            }
-                            else if (c is CheckBox)
-                            {
-                                string value = row[fieldName].ToString().Trim();
-                                if (value == "1" || value.ToLower() == "true")
-                                {
-                                    ((CheckBox) c).Checked = true;
-                                }
-                                else
-                                {
-                                    ((CheckBox) c).Checked = false;
-                                }
-                            }
-                            else if (c is RadioButton)
-                            {
-                                if (row[fieldName].ToString().Trim() == c.Text)
-                                {
-                                    ((RadioButton) c).Checked = true;
-                                }
-                            }
-                            else if (control is GioiTinhControl)
-                            {
-                                ((GioiTinhControl)control).Value = row[fieldName].ToString().Trim();
-                            }
-                            else
-                            {
-                                c.Text = row[fieldName].ToString().Trim();
-                            }
-
+                            SetControlValue(c, row[fieldName]);
                         }
                         else // Có trong neighbor nhưng không có trong data
                         {
                             //Gán rỗng hoặc mặc định
-                            if (c is V6IndexComboBox)
-                            {
-                                var com = c as ComboBox;
-                                if (com.Items.Count > 0)
-                                    com.SelectedIndex = 0;
-                            }
-                            else if (c is ComboBox)
-                            {
-                                //!!! can mo rong nhieu loai combobox
-                                var com = c as ComboBox;
-                                if (com.Items.Count > 0)
-                                    com.SelectedIndex = 0;
-                            }
-                            else if (c is V6DateTimePick)
-                            {
-                                ((V6DateTimePick)c).Value = DateTime.Now;
-                            }
-                            else if (c is DateTimePicker)
-                            {
-                                ((DateTimePicker) c).Value = DateTime.Now;
-                            }
-                            else if (c is V6NumberTextBox)
-                            {
-                                ((V6NumberTextBox) c).Value = 0;
-                            }
-                            else if (c is CheckBox)
-                            {
-                                ((CheckBox) c).Checked = false;
-                            }
-                            else if (c is RadioButton)
-                            {
-                                ((RadioButton) c).Checked = false;
-                            }
-                            else if (control is GioiTinhControl)
-                            {
-                                ((GioiTinhControl)control).Value = "";
-                            }
-                            else
-                            {
-                                c.Text = "";
-                            }
+                            SetControlValue(c, null);
                         }
                     }
                 }
@@ -1505,192 +1238,13 @@ namespace V6Controls.Forms
                 {
                     NAME = NAME.ToUpper();
                     result[NAME] = control;
-                    #region === Gán giá trị ===
+                    
                     SetControlValue(control, data[NAME]);
-                    //var color = control as V6DateTimeColor;
-                    //if (color != null)
-                    //{
-                    //    color.Value = ObjectAndString.ObjectToDate(data[NAME]);
-                    //}
-                    //else if (control is V6IndexComboBox)
-                    //{
-                    //    ((V6IndexComboBox) control).SelectedIndex = ObjectAndString.ObjectToInt(data[NAME]);
-                    //}
-                    //else if (control is ComboBox)
-                    //{
-                    //    var com = control as ComboBox;
-                    //    try
-                    //    {
-                    //        var VALUE = ObjectAndString.ObjectToString(data[NAME]).Trim();
-                    //        if (com.Items.Count > 0 && VALUE != "")
-                    //        {
-                    //            if (string.IsNullOrEmpty(com.ValueMember))
-                    //            {
-                    //                com.SelectedItem = VALUE;
-                    //            }
-                    //            else
-                    //            {
-                    //                com.SelectedValue = VALUE;
-                    //            }
-                    //        }
-                    //        else
-                    //        {
-                    //            if (com.Items.Count > 0)
-                    //                com.SelectedIndex = -1;
-                    //        }
-                    //    }
-                    //    catch
-                    //    {
-                    //        // ignored
-                    //    }
-                    //}
-                    //else if (control is PictureBox)
-                    //{
-                    //    var pic = control as PictureBox;
-                    //    try
-                    //    {
-                    //        var objectData = data[NAME];
-                    //        Image picture = null;
-                    //        if (objectData is Image) picture = (Image) objectData;
-                    //        else if (objectData is byte[]) picture = Picture.ByteArrayToImage((byte[])objectData);
-
-                    //        pic.Image = picture;
-                    //    }
-                    //    catch (Exception ex)
-                    //    {
-                    //        Logger.WriteToLog("V6ControlFormHelper.SetFormDataDicRecusive PictureBox " + ex.Message);
-                    //    }
-                    //}
-                    //else if (control is V6DateTimePick)
-                    //{
-                    //    var object_to_date = ObjectAndString.ObjectToDate(data[NAME]);
-                    //    if (object_to_date != null)
-                    //        ((V6DateTimePick) control).Value = (DateTime) object_to_date;
-                    //}
-                    //else if (control is DateTimePicker)
-                    //{
-                    //    var object_to_date = ObjectAndString.ObjectToDate(data[NAME]);
-                    //    if (object_to_date != null)
-                    //        ((DateTimePicker) control).Value = (DateTime) object_to_date;
-                    //}
-                    //else if (control is V6VvarTextBox) //!!!!.ChangeText()????
-                    //{
-                    //    var vvarTextBox = control as V6VvarTextBox;
-                    //    vvarTextBox.SetDataRow(null);
-                    //    var text = ObjectAndString.ObjectToString(data[NAME]).Trim();
-                    //    if (vvarTextBox.UseChangeTextOnSetFormData)
-                    //        vvarTextBox.ChangeText(text);
-                    //    else vvarTextBox.Text = text;
-                    //}
-                    //else if (control is V6NumberTextBox)
-                    //{
-                    //    var text_box = control as V6NumberTextBox;
-                    //    var value = ObjectAndString.ObjectToDecimal(data[NAME]);
-                    //    if (text_box.UseChangeTextOnSetFormData)
-                    //        text_box.ChangeValue(value);
-                    //    else text_box.Value = value;
-                    //}
-                    //else if (control is V6CheckTextBox)
-                    //{
-                    //    ((V6CheckTextBox) control).SetStringValue(ObjectAndString.ObjectToString(data[NAME]));
-                    //}
-                    //else if (control is V6ColorTextBox)
-                    //{
-                    //    var text_box = control as V6ColorTextBox;
-                    //    var text = ObjectAndString.ObjectToString(data[NAME]).Trim();
-                    //    if (text_box.UseChangeTextOnSetFormData)
-                    //        text_box.ChangeText(text);
-                    //    else text_box.Text = text;
-                    //}
-                    //else if (control is CheckBox)
-                    //{
-                    //    string value = data[NAME].ToString().Trim();
-                    //    if (value == "1" || value.ToLower() == "true")
-                    //    {
-                    //        ((CheckBox) control).Checked = true;
-                    //    }
-                    //    else
-                    //    {
-                    //        ((CheckBox) control).Checked = false;
-                    //    }
-                    //}
-                    //else if (control is RadioButton)
-                    //{
-                    //    if (data[NAME].ToString().Trim() == control.Text)
-                    //    {
-                    //        ((RadioButton) control).Checked = true;
-                    //    }
-                    //}
-                    //else if (control is GioiTinhControl)
-                    //{
-                    //    ((GioiTinhControl) control).Value = data[NAME].ToString().Trim();
-                    //}
-                    //else
-                    //{
-                    //    control.Text = ObjectAndString
-                    //        .ObjectToString(data[NAME]).Trim();
-                    //}
                 }
-                #endregion gán giá trị
-
                 else if (set_default && !string.IsNullOrEmpty(NAME))
                 {
-                    #region === Gán rỗng hoặc mặc định ===
-
-                    var con = control as V6DateTimeColor;
-                    if (con != null)
-                    {
-                        con.Value = null;
-                    }
-                    var com = control as ComboBox;
-                    if (com != null)
-                    {
-                        try
-                        {
-                            //!!! can mo rong nhieu loai combobox
-                            if (com.Items.Count > 0)
-                                com.SelectedIndex = -1;
-                        }
-                        catch
-                        {
-                            // ignored
-                        }
-                    }
-                    else if (control is V6DateTimePick)
-                    {
-                        ((V6DateTimePick) control).Value = DateTime.Now;
-                    }
-                    else if (control is DateTimePicker)
-                    {
-                        ((DateTimePicker) control).Value = DateTime.Now;
-                    }
-                    else if (control is V6VvarTextBox)
-                    {
-                        ((V6VvarTextBox) control).SetDataRow(null);
-                        ((V6VvarTextBox) control).Clear();
-                    }
-                    else if (control is V6NumberTextBox)
-                    {
-                        ((V6NumberTextBox) control).Value = 0;
-                    }
-                    else if (control is CheckBox)
-                    {
-                        ((CheckBox) control).Checked = false;
-                    }
-                    else if (control is RadioButton)
-                    {
-                        ((RadioButton) control).Checked = false;
-                    }
-                    else if (control is GioiTinhControl)
-                    {
-                        ((GioiTinhControl) control).Value = "";
-                    }
-                    else
-                    {
-                        control.Text = "";
-                    }
-
-                    #endregion gán rỗng
+                    // === Gán rỗng hoặc mặc định ===
+                    SetControlValue(control, null);
                 }
 
                 if (control.Controls.Count > 0)
@@ -2209,6 +1763,36 @@ namespace V6Controls.Forms
         public static NumberSoluong CreateNumberSoLuong(string accessibleName, string caption, int decimals, int width, bool visible, bool carry = false)
         {
             return new NumberSoluong
+            {
+                Name = accessibleName,
+                AccessibleName = accessibleName,
+                Carry = carry,
+                GrayText = caption,
+                DecimalPlaces = decimals,
+                Width = width,
+                Visible = visible,
+                Tag = visible ? null : "hide"
+            };
+        }
+        //Tuanmh 06/08/2017
+        public static NumberGia CreateNumberGia(string accessibleName, string caption, int decimals, int width, bool visible, bool carry = false)
+        {
+            return new NumberGia
+            {
+                Name = accessibleName,
+                AccessibleName = accessibleName,
+                Carry = carry,
+                GrayText = caption,
+                DecimalPlaces = decimals,
+                Width = width,
+                Visible = visible,
+                Tag = visible ? null : "hide"
+            };
+        }
+        //Tuanmh 06/08/2017
+        public static NumberGiaNt CreateNumberGiaNt(string accessibleName, string caption, int decimals, int width, bool visible, bool carry = false)
+        {
+            return new NumberGiaNt
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
@@ -4518,6 +4102,10 @@ namespace V6Controls.Forms
                     Logger.WriteToLog("V6ControlFormHelper.SetFormDataDicRecusive PictureBox " + ex.Message);
                 }
             }
+            else if (control is V6LookupTextBox)
+            {
+                ((V6LookupTextBox) control).SetValue(value);
+            }
             else if (control is V6DateTimePick)
             {
                 var object_to_date = ObjectAndString.ObjectToDate(value);
@@ -4588,5 +4176,108 @@ namespace V6Controls.Forms
                     .ObjectToString(value).Trim();
             }
         }
+
+        /// <summary>
+        /// Lấy dữ liệu đưa vào Dictionary.
+        /// </summary>
+        /// <param name="d">Dictionary chứa dữ liệu lấy được</param>
+        /// <param name="control"></param>
+        /// <returns>Dữ liệu chính của control.</returns>
+        public static void GetControlValue(IDictionary<string, object> d, Control control)
+        {
+            string cNAME = control.AccessibleName.Trim().ToUpper();
+
+            if (control is V6VvarTextBox)
+            {
+                d[cNAME] = control.Text;
+                //return control.Text;
+            }
+            else if (control is V6NumberTextBox)
+            {
+                d[cNAME] = ((V6NumberTextBox)control).Value;
+                //return ((V6NumberTextBox)control).Value;
+            }
+            if (control is V6DateTimeColor)
+            {
+                var color = control as V6DateTimeColor;
+                d[cNAME] = color.Value;
+                //return color.Value;
+            }
+            else if (control is V6DateTimePick)
+            {
+                d[cNAME] = ((V6DateTimePick)control).Value;
+                //return ((V6DateTimePick)control).Value;
+            }
+            else if (control is DateTimePicker)
+            {
+                d[cNAME] = ((DateTimePicker)control).Value;
+                //return ((DateTimePicker)control).Value;
+            }
+            else if (control is V6IndexComboBox)
+            {
+                d[cNAME] = ((V6IndexComboBox)control).SelectedIndex;
+                //return ((V6IndexComboBox)control).SelectedIndex;
+            }
+            else if (control is V6ComboBox)
+            {
+                var cbo = control as V6ComboBox;
+                d[cNAME] = cbo.DataSource != null ? cbo.SelectedValue : cbo.Text;
+                //return cbo.DataSource != null ? cbo.SelectedValue : cbo.Text;
+            }
+            else if (control is ComboBox)
+            {
+                var cbo = control as ComboBox;
+                d[cNAME] = cbo.DataSource != null ? cbo.SelectedValue : cbo.Text;
+                //return cbo.DataSource != null ? cbo.SelectedValue : cbo.Text;
+            }
+            else if (control is PictureBox)
+            {
+                var pic = control as PictureBox;
+                d[cNAME] = Picture.ToJpegByteArray(pic.Image);
+                //return Picture.ToJpegByteArray(pic.Image);
+            }
+            else if (control is V6LookupTextBox)
+            {
+                V6LookupTextBox ltb = (V6LookupTextBox)control;
+                d[cNAME] = ltb.Value;
+                if (!string.IsNullOrEmpty(ltb.AccessibleName2))
+                {
+                    d[ltb.AccessibleName2.ToUpper()] = ltb.Text;
+                }
+                //return ltb.Value;
+            }
+            else if (control is V6CheckTextBox)
+            {
+                d[cNAME] = ((V6CheckTextBox)control).StringValue;
+                //return ((V6CheckTextBox)control).StringValue;
+            }
+            else if (control is CheckBox)
+            {
+                d[cNAME] = ((CheckBox)control).Checked ? 1 : 0;
+                //return ((CheckBox)control).Checked ? 1 : 0;
+            }
+            else if (control is RadioButton)
+            {
+                if (((RadioButton) control).Checked)
+                {
+                    d[cNAME] = control.Text;
+                    //return true;
+                }
+                else
+                {
+                    //return false;
+                }
+            }
+            else if (control is GioiTinhControl)
+            {
+                d[cNAME] = ((GioiTinhControl)control).Value;
+                //return ((GioiTinhControl)control).Value;
+            }
+            
+
+            d[cNAME] = control.Text;
+            //return control.Text;
+        }
+
     }
 }

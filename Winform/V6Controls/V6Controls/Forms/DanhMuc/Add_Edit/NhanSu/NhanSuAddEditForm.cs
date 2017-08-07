@@ -14,23 +14,29 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
         public override void DoBeforeEdit()
         {
-
-            //if (TXTbirth_date.Text.Length == 10)
-            //{
-            //    TxTbirth_date.Value = ObjectAndString.ObjectToDate(TXTbirth_date.Text);
-            //}
-            if (txtgender.Text == "1")
+            try
             {
-                radNam.Checked = true;
-                radNu.Checked = false;
+                //if (TXTbirth_date.Text.Length == 10)
+                //{
+                //    TxTbirth_date.Value = ObjectAndString.ObjectToDate(TXTbirth_date.Text);
+                //}
+                if (txtgender.Text == "1")
+                {
+                    radNam.Checked = true;
+                    radNu.Checked = false;
+                }
+                else
+                {
+                    radNam.Checked = false;
+                    radNu.Checked = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                radNam.Checked = false;
-                radNu.Checked = true;
+                this.WriteExLog(GetType() + ".DoBeforeEdit", ex);
             }
-
         }
+
         public override void SetDataKeys(SortedDictionary<string, object> keyData)
         {
             try
@@ -66,10 +72,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         }
         public override void DoBeforeAdd()
         {
-            txtSttRec.Text = V6BusinessHelper.GetNewLikeSttRec("HR1", "STT_REC", "M");
-          //  TxTemp_id.Text = "HR1";
-            radNam.Checked = true;
-
+            try
+            {
+                txtSttRec.Text = V6BusinessHelper.GetNewLikeSttRec("HR1", "STT_REC", "M");
+                //  TxTemp_id.Text = "HR1";
+                radNam.Checked = true;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoBeforeAdd", ex);
+            }
         }
         
         public override void ValidateData()
@@ -102,14 +114,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         
         private void radNam_CheckedChanged(object sender, EventArgs e)
         {
-
-            if (radNam.Checked)
+            try
             {
-                txtgender.Text = "1";
+                if (IsReady) txtgender.Text = radNam.Checked ? "1" : "0";
             }
-            else
+            catch (Exception ex)
             {
-                txtgender.Text = "0";
+                this.WriteExLog(GetType() + ".radNam_CheckedChanged", ex);
             }
         }
 

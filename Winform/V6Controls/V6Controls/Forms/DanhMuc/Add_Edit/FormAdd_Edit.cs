@@ -39,8 +39,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             _tableName = tableName;
             _tableNameString = tableName.ToString();
             InitializeComponent();
-
+            
             FormControl = AddEditManager.Init_Control(tableName, tableName.ToString());
+            
             _tableName = tableName;
             FormControl.MyInit(tableName, mode, keys, data);
 
@@ -66,12 +67,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             SortedDictionary<string, object> data = null)
         {
             _tableNameString = tableName;
+            _tableName = V6TableHelper.ToV6TableName(_tableNameString);
             InitializeComponent();
 
-            FormControl = AddEditManager.Init_Control(V6TableName.Notable, _tableNameString);
+            FormControl = AddEditManager.Init_Control(_tableName, _tableNameString);
             //_tableName = tableName;
-            FormControl.MyInit(_tableName, mode, keys, data);
 
+            FormControl.MyInit(_tableName, mode, keys, data);
+            
             panel1.Controls.Add(FormControl);
             //panel1.SendToBack();
 

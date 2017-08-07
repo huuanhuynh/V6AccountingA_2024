@@ -56,6 +56,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.v6Label4 = new V6Controls.V6Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -315,7 +316,7 @@
             this.txtKieuIn.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtKieuIn.HoverColor = System.Drawing.Color.Yellow;
             this.txtKieuIn.LeaveColor = System.Drawing.Color.White;
-            this.txtKieuIn.LimitCharacters = "*10";
+            this.txtKieuIn.LimitCharacters = "*102";
             this.txtKieuIn.Location = new System.Drawing.Point(75, 81);
             this.txtKieuIn.MaxLength = 1;
             this.txtKieuIn.Name = "txtKieuIn";
@@ -346,7 +347,7 @@
             // 
             this.Chk_Tinh_dc.AccessibleDescription = "FILTERC00014";
             this.Chk_Tinh_dc.AutoSize = true;
-            this.Chk_Tinh_dc.Location = new System.Drawing.Point(76, 108);
+            this.Chk_Tinh_dc.Location = new System.Drawing.Point(76, 117);
             this.Chk_Tinh_dc.Name = "Chk_Tinh_dc";
             this.Chk_Tinh_dc.Size = new System.Drawing.Size(149, 17);
             this.Chk_Tinh_dc.TabIndex = 4;
@@ -403,10 +404,21 @@
             this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
             this.dateNgay_ct1.TabIndex = 0;
             // 
+            // v6Label4
+            // 
+            this.v6Label4.AccessibleDescription = "FILTERL00158";
+            this.v6Label4.AutoSize = true;
+            this.v6Label4.Location = new System.Drawing.Point(99, 100);
+            this.v6Label4.Name = "v6Label4";
+            this.v6Label4.Size = new System.Drawing.Size(56, 13);
+            this.v6Label4.TabIndex = 11;
+            this.v6Label4.Text = "2 - Tồn <0";
+            // 
             // AINCDHSDG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.v6Label4);
             this.Controls.Add(this.Chk_Tinh_dc);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -458,5 +470,6 @@
         private V6ReportControls.FilterLineVvarTextBox Txtma_qg;
         private V6ReportControls.FilterLineVvarTextBox Txtma_nsx;
         private V6ReportControls.FilterLineVvarTextBox Txttk_vt;
+        private V6Controls.V6Label v6Label4;
     }
 }

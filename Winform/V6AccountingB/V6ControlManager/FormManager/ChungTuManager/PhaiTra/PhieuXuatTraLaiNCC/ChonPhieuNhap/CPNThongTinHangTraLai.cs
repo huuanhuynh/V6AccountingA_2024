@@ -123,8 +123,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             {
                 result += (result.Length > 0 ? and_or : "")
                     + tbL
-                    + string.Format("dien_giai like '%{0}%'",
-                    dienGiai.Text);
+                    + string.Format("dien_giai like N'%{0}%'",
+                    dienGiai.Text.Replace("'", "''"));
             }
             
             return result;

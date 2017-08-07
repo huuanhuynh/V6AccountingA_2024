@@ -353,7 +353,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDanToc.BackColor = System.Drawing.Color.White;
             this.txtDanToc.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtDanToc.BrotherFields = "ID";
             this.txtDanToc.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtDanToc.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtDanToc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -365,6 +364,7 @@
             this.txtDanToc.Name = "txtDanToc";
             this.txtDanToc.NeighborFields = "ETHNIC_ID";
             this.txtDanToc.ParentData = null;
+            this.txtDanToc.ShowTextField = "NAME";
             this.txtDanToc.Size = new System.Drawing.Size(210, 23);
             this.txtDanToc.TabIndex = 11;
             this.txtDanToc.ValueField = "name";
@@ -422,13 +422,12 @@
             // 
             // txtQuocTich
             // 
-            this.txtQuocTich.AccessibleName = "NATIONALITY_NAME";
+            this.txtQuocTich.AccessibleName = "NATIONALITY";
             this.txtQuocTich.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtQuocTich.BackColor = System.Drawing.Color.White;
             this.txtQuocTich.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtQuocTich.BrotherFields = "ID";
             this.txtQuocTich.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtQuocTich.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtQuocTich.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -440,9 +439,10 @@
             this.txtQuocTich.Name = "txtQuocTich";
             this.txtQuocTich.NeighborFields = "NATIONALITY";
             this.txtQuocTich.ParentData = null;
+            this.txtQuocTich.ShowTextField = "NAME";
             this.txtQuocTich.Size = new System.Drawing.Size(210, 23);
             this.txtQuocTich.TabIndex = 9;
-            this.txtQuocTich.ValueField = "name";
+            this.txtQuocTich.ValueField = "ID";
             // 
             // v6Label4
             // 
