@@ -347,7 +347,7 @@
             // 
             // txtDanToc
             // 
-            this.txtDanToc.AccessibleName = "ETHNIC_NAME";
+            this.txtDanToc.AccessibleName = "ETHNIC_ID";
             this.txtDanToc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -362,12 +362,11 @@
             this.txtDanToc.Ma_dm = "HRLSTETHNIC";
             this.txtDanToc.Margin = new System.Windows.Forms.Padding(5);
             this.txtDanToc.Name = "txtDanToc";
-            this.txtDanToc.NeighborFields = "ETHNIC_ID";
             this.txtDanToc.ParentData = null;
             this.txtDanToc.ShowTextField = "NAME";
             this.txtDanToc.Size = new System.Drawing.Size(210, 23);
             this.txtDanToc.TabIndex = 11;
-            this.txtDanToc.ValueField = "name";
+            this.txtDanToc.ValueField = "ID";
             // 
             // label1
             // 
@@ -457,7 +456,7 @@
             // 
             // TxtTonGiao
             // 
-            this.TxtTonGiao.AccessibleName = "RELIGION_NAME";
+            this.TxtTonGiao.AccessibleName = "RELIGION";
             this.TxtTonGiao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -473,11 +472,11 @@
             this.TxtTonGiao.Ma_dm = "HRLSTRELIGION";
             this.TxtTonGiao.Margin = new System.Windows.Forms.Padding(5);
             this.TxtTonGiao.Name = "TxtTonGiao";
-            this.TxtTonGiao.NeighborFields = "RELIGION";
             this.TxtTonGiao.ParentData = null;
+            this.TxtTonGiao.ShowTextField = "NAME";
             this.TxtTonGiao.Size = new System.Drawing.Size(210, 23);
             this.TxtTonGiao.TabIndex = 13;
-            this.TxtTonGiao.ValueField = "name";
+            this.TxtTonGiao.ValueField = "ID";
             // 
             // v6Label5
             // 

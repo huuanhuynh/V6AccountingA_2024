@@ -4191,50 +4191,59 @@ namespace V6Controls.Forms
             {
                 d[cNAME] = control.Text;
                 //return control.Text;
+                return;
             }
             else if (control is V6NumberTextBox)
             {
                 d[cNAME] = ((V6NumberTextBox)control).Value;
                 //return ((V6NumberTextBox)control).Value;
+                return;
             }
             if (control is V6DateTimeColor)
             {
                 var color = control as V6DateTimeColor;
                 d[cNAME] = color.Value;
                 //return color.Value;
+                return;
             }
             else if (control is V6DateTimePick)
             {
                 d[cNAME] = ((V6DateTimePick)control).Value;
                 //return ((V6DateTimePick)control).Value;
+                return;
             }
             else if (control is DateTimePicker)
             {
                 d[cNAME] = ((DateTimePicker)control).Value;
                 //return ((DateTimePicker)control).Value;
+                return;
             }
             else if (control is V6IndexComboBox)
             {
                 d[cNAME] = ((V6IndexComboBox)control).SelectedIndex;
                 //return ((V6IndexComboBox)control).SelectedIndex;
+                return;
             }
             else if (control is V6ComboBox)
             {
                 var cbo = control as V6ComboBox;
                 d[cNAME] = cbo.DataSource != null ? cbo.SelectedValue : cbo.Text;
                 //return cbo.DataSource != null ? cbo.SelectedValue : cbo.Text;
+                return;
             }
             else if (control is ComboBox)
             {
                 var cbo = control as ComboBox;
                 d[cNAME] = cbo.DataSource != null ? cbo.SelectedValue : cbo.Text;
                 //return cbo.DataSource != null ? cbo.SelectedValue : cbo.Text;
+                return;
             }
             else if (control is PictureBox)
             {
                 var pic = control as PictureBox;
                 d[cNAME] = Picture.ToJpegByteArray(pic.Image);
                 //return Picture.ToJpegByteArray(pic.Image);
+                return;
             }
             else if (control is V6LookupTextBox)
             {
@@ -4245,16 +4254,19 @@ namespace V6Controls.Forms
                     d[ltb.AccessibleName2.ToUpper()] = ltb.Text;
                 }
                 //return ltb.Value;
+                return;
             }
             else if (control is V6CheckTextBox)
             {
                 d[cNAME] = ((V6CheckTextBox)control).StringValue;
                 //return ((V6CheckTextBox)control).StringValue;
+                return;
             }
             else if (control is CheckBox)
             {
                 d[cNAME] = ((CheckBox)control).Checked ? 1 : 0;
                 //return ((CheckBox)control).Checked ? 1 : 0;
+                return;
             }
             else if (control is RadioButton)
             {
@@ -4262,21 +4274,25 @@ namespace V6Controls.Forms
                 {
                     d[cNAME] = control.Text;
                     //return true;
+                    return;
                 }
                 else
                 {
                     //return false;
+                    return;
                 }
             }
             else if (control is GioiTinhControl)
             {
                 d[cNAME] = ((GioiTinhControl)control).Value;
                 //return ((GioiTinhControl)control).Value;
+                return;
             }
             
 
             d[cNAME] = control.Text;
             //return control.Text;
+            return;
         }
 
     }
