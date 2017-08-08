@@ -655,7 +655,7 @@ namespace V6Tools
         //        case 1:
              
         //            f.Filter = "Word file(*.doc)|*.doc";
-        //            if (f.ShowDialog() == DialogResult.OK)
+        //            if (f.ShowDialog(null) == DialogResult.OK)
         //            {
         //                repd.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.WordForWindows, f.FileName);
         //                result = true;
@@ -664,7 +664,7 @@ namespace V6Tools
         //        case 2:
                     
         //            f.Filter = "Pdf file(*.pdf)|*.pdf";
-        //            if (f.ShowDialog() == DialogResult.OK)
+        //            if (f.ShowDialog(null) == DialogResult.OK)
         //            {
         //                repd.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, f.FileName);
         //                result = true;
@@ -673,7 +673,7 @@ namespace V6Tools
         //        case 3:
                    
         //            f.Filter = "Excel file(*.xls)|*.xls";
-        //            if (f.ShowDialog() == DialogResult.OK)
+        //            if (f.ShowDialog(null) == DialogResult.OK)
         //            {
         //                repd.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.Excel, f.FileName);
         //                result = true;

@@ -169,7 +169,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
         {
             try
             {
-                var saveFile = V6ControlFormHelper.ChooseSaveFile("Xml|*.xml");
+                var saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Xml|*.xml");
                 if (string.IsNullOrEmpty(saveFile)) return;
 
                 DataSet exportDataSet = new DataSet("ALREPORTDATA");
@@ -197,7 +197,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
         {
             try
             {
-                var openFile = V6ControlFormHelper.ChooseOpenFile("Xml|*.xml");
+                var openFile = V6ControlFormHelper.ChooseOpenFile(this, "Xml|*.xml");
                 if (string.IsNullOrEmpty(openFile)) return;
                 FileStream fs = new FileStream(openFile, FileMode.Open);
                 DataSet exportDataSet = new DataSet("ALREPORTDATA");

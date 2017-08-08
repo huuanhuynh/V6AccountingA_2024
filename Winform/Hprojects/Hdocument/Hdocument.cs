@@ -575,7 +575,7 @@ namespace H_document
             SaveFileDialog sd = new SaveFileDialog();
             sd.DefaultExt = ".xml";
             sd.Filter = "Xml|*.xml|All file|*.*";
-            if (sd.ShowDialog() == DialogResult.OK)
+            if (sd.ShowDialog(null) == DialogResult.OK)
             {
                 _file = sd.FileName;
                 Save(ds);

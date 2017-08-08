@@ -721,7 +721,7 @@ namespace V6Controls
             if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
             var fStand = new Standard(this, LookupInfo, " 1=1 " + filter, multi, FilterStart);
             Looking = true;
-            fStand.ShowDialog();
+            fStand.ShowDialog(this);
         }
 
         public void Lookup(bool multi = false)

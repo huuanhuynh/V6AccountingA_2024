@@ -3958,7 +3958,7 @@ namespace V6Controls.Forms
         /// <summary>
         /// Chọn một file Excel trong ổ đĩa. Nếu không chọn trả về rỗng.
         /// </summary>
-        /// <para name="owner">Form hooặc control chủ gọi hàm</para>
+        /// <para name="owner">Form hooặc control chủ gọi hàm này.</para>
         /// <returns></returns>
         public static string ChooseExcelFile(IWin32Window owner)
         {
@@ -3979,15 +3979,16 @@ namespace V6Controls.Forms
         /// <summary>
         /// Chọn một file để lưu. Nếu không chọn trả về rỗng.
         /// </summary>
+        /// <param name="owner">Form hooặc control chủ gọi hàm này.</param>
         /// <param name="filter">Lọc file, vd: All file|*.*</param>
         /// <returns></returns>
-        public static string ChooseSaveFile(string filter)
+        public static string ChooseSaveFile(IWin32Window owner, string filter)
         {
             if (V6Setting.IsDesignTime) return "";
             if (string.IsNullOrEmpty(filter)) filter = "All file|*.*";
             else if (!filter.Contains("All file|*.*".ToUpper())) filter += "|All file|*.*";
             saveFileDialog.Filter = filter;
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            if (saveFileDialog.ShowDialog(owner) == DialogResult.OK)
             {
                 return saveFileDialog.FileName;
             }
@@ -3999,18 +4000,20 @@ namespace V6Controls.Forms
             Filter = "All file|*.*",
             Title = V6Setting.IsVietnamese ? "Chọn file lưu" : "Choose save file"
         };
+
         /// <summary>
         /// Chọn một file để mở. Nếu không chọn trả về rỗng.
         /// </summary>
+        /// <param name="owner">Form hooặc control chủ gọi hàm này.</param>
         /// <param name="filter">Lọc file, vd: All file|*.*</param>
         /// <returns></returns>
-        public static string ChooseOpenFile(string filter)
+        public static string ChooseOpenFile(IWin32Window owner, string filter)
         {
             if (V6Setting.IsDesignTime) return "";
             if (string.IsNullOrEmpty(filter)) filter = "All file|*.*";
             else if (!filter.Contains("All file|*.*".ToUpper())) filter += "|All file|*.*";
             openFileDialog.Filter = filter;
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog(owner) == DialogResult.OK)
             {
                 return openFileDialog.FileName;
             }
@@ -4020,13 +4023,14 @@ namespace V6Controls.Forms
         /// <summary>
         /// Chọn một hình trong ổ đĩa. Nếu không chọn trả về null
         /// </summary>
+        /// <param name="owner">Form hooặc control chủ gọi hàm này.</param>
         /// <returns></returns>
-        public static Image ChooseImage()
+        public static Image ChooseImage(IWin32Window owner)
         {
             using (var box = new OpenFileDialog())
             {
                 box.Filter = "JPG Files (*.jpg)|*.jpg|BMP Files (*.bmp)|*.bmp|PNG Files (*.png)|*.png|GIF Files (*.gif)|*.gif";
-                if (box.ShowDialog() == DialogResult.OK)
+                if (box.ShowDialog(owner) == DialogResult.OK)
                 {
                     return LoadCopyImage(box.FileName);
                 }

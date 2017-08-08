@@ -58,10 +58,11 @@ namespace V6Tools
         /// <summary>
         /// Hàm backup dữ liệu từ SQLSERVER
         /// </summary>
+        /// <param name="owner">Form hoặc control chủ gọi hàm này.</param>
         /// <param name="conString">Chuỗi kết nối</param>
         /// <param name="databaseName">Tên database</param>
         /// <returns></returns>
-        public static bool BackupData(string conString, string databaseName)
+        public static bool BackupData(IWin32Window owner, string conString, string databaseName)
         {
             if (conString != "" && databaseName != "")
             {
@@ -69,7 +70,7 @@ namespace V6Tools
                 {
                     SaveFileDialog objSaveFile = new SaveFileDialog();
                     objSaveFile.Filter = "Backup file(bak)|*.bak";
-                    if (objSaveFile.ShowDialog() == DialogResult.OK)
+                    if (objSaveFile.ShowDialog(owner) == DialogResult.OK)
                     {
                         Cursor.Current = Cursors.WaitCursor;
                         SqlConnection connect = new SqlConnection(conString);

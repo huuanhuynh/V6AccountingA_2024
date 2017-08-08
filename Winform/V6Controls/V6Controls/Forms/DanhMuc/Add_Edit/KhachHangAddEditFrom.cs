@@ -215,7 +215,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                var chooseImage = V6ControlFormHelper.ChooseImage();
+                var chooseImage = V6ControlFormHelper.ChooseImage(this);
                 if (chooseImage == null) return;
 
                 ptbPHOTOGRAPH.Image = chooseImage;
@@ -248,7 +248,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                var chooseImage = V6ControlFormHelper.ChooseImage();
+                var chooseImage = V6ControlFormHelper.ChooseImage(this);
                 if (chooseImage == null) return;
 
                 pictureBoxS.Image = chooseImage;

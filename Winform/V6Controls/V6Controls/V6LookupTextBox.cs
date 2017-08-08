@@ -722,7 +722,7 @@ namespace V6Controls
                 if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
                 var fStand = new V6LookupTextboxForm(ParentData, this.Text, LookupInfo, " 1=1 " + filter, LookupInfo_F_NAME, multi, FilterStart);
                 Looking = true;
-                DialogResult dsr = fStand.ShowDialog();
+                DialogResult dsr = fStand.ShowDialog(this);
                 Looking = false;
                 if (dsr == DialogResult.OK)
                 {

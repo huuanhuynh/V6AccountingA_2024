@@ -130,7 +130,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             try
             {
-                var openFile = V6ControlFormHelper.ChooseOpenFile("Xml|*.xml");
+                var openFile = V6ControlFormHelper.ChooseOpenFile(this, "Xml|*.xml");
                 if (string.IsNullOrEmpty(openFile)) return;
                 FileStream fs = new FileStream(openFile, FileMode.Open);
                 _ds.Clear();

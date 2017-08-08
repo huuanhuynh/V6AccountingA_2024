@@ -26,7 +26,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         {
             try
             {
-                var chooseImage = V6ControlFormHelper.ChooseImage();
+                var chooseImage = V6ControlFormHelper.ChooseImage(this);
                 if (chooseImage == null) return;
 
                 pictureBox1.Image = chooseImage;
@@ -53,7 +53,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         {
             try
             {
-                var chooseImage = V6ControlFormHelper.ChooseImage();
+                var chooseImage = V6ControlFormHelper.ChooseImage(this);
                 if (chooseImage == null) return;
 
                 pictureBox2.Image = chooseImage;

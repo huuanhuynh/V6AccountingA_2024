@@ -1090,7 +1090,7 @@ namespace V6ControlManager.FormManager.Map
         {
             try
             {
-                var file = V6ControlFormHelper.ChooseSaveFile("png|*.png|bmp|*.bmp");
+                var file = V6ControlFormHelper.ChooseSaveFile(this, "png|*.png|bmp|*.bmp");
                 if (string.IsNullOrEmpty(file)) return;
                 var image = (Image)pictureBox1.Image.Clone();
                 var g = Graphics.FromImage(image);
