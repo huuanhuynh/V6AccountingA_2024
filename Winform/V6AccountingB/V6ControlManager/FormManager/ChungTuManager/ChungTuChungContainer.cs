@@ -253,7 +253,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 tsFull.Image = Properties.Resources.ZoomOut24;
                 toolTip1.SetToolTip(tsFull, V6Text.ZoomOut);
 
-                f.ShowDialog(this);
+                f.ShowDialog(container);
             }
         }
 

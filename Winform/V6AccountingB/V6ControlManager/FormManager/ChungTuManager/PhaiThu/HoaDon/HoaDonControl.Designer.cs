@@ -2588,6 +2588,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.txtDienThoaiKH.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtDienThoaiKH.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtDienThoaiKH.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDienThoaiKH.GrayText = "Số điện thoại";
             this.txtDienThoaiKH.HoverColor = System.Drawing.Color.Yellow;
             this.txtDienThoaiKH.LeaveColor = System.Drawing.Color.White;
             this.txtDienThoaiKH.Location = new System.Drawing.Point(515, 72);
@@ -2607,6 +2608,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.txtMaSoThue.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaSoThue.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaSoThue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaSoThue.GrayText = "Mã số thuế";
             this.txtMaSoThue.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaSoThue.LeaveColor = System.Drawing.Color.White;
             this.txtMaSoThue.Location = new System.Drawing.Point(515, 51);
@@ -3313,7 +3315,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.toolStripMenuItem2,
             this.toolStripMenuItem3});
             this.menuDetail1.Name = "menuChucNang";
-            this.menuDetail1.Size = new System.Drawing.Size(162, 92);
+            this.menuDetail1.Size = new System.Drawing.Size(162, 70);
             // 
             // menuXemPhieuNhap
             // 

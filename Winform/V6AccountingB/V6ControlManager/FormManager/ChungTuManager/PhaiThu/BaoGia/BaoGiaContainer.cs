@@ -303,7 +303,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 tsFull.Image = Properties.Resources.ZoomOut24;
                 tsFull.Text = V6Text.ZoomOut;
 
-                f.ShowDialog(this);
+                f.ShowDialog(container);
             }
         }
 

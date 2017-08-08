@@ -313,7 +313,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 tsFull.Image = Properties.Resources.ZoomOut24;
                 toolTipV6FormControl.SetToolTip(tsFull, V6Text.ZoomOut);
 
-                f.ShowDialog(this);
+                f.ShowDialog(container);
             }
         }
 
