@@ -624,7 +624,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         c.AutoPrint = FilterControl.Check1;
                         c.PrintCopies = _PrintCopies;
-                        c.ShowToForm(V6Text.PrintIXA, true);
+                        c.ShowToForm(this, V6Text.PrintIXA, true);
 
                         //var f = new V6Form();
                         //f.StartPosition = FormStartPosition.CenterScreen;

@@ -744,7 +744,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             view.FilterControl.InitFilters = oldKeys;
             view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
             view.btnNhan_Click(null, null);
-            view.ShowToForm(_reportCaption, true);
+            view.ShowToForm(this, _reportCaption, true);
 
             //var f = new V6Form();
             //f.WindowState = FormWindowState.Maximized;

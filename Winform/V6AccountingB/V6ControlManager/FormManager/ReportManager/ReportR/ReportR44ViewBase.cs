@@ -1341,7 +1341,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
 
                 view.btnNhan_Click(null, null);
-                view.ShowToForm("Chi tiết", true);
+                view.ShowToForm(this, "Chi tiết", true);
 
                 SetStatus2Text();
             }
@@ -1558,8 +1558,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 f.EnableCopy = false;
                 f.EnableDelete = false;
                 f.EnableFullScreen = false;
-                
-                f.ShowToForm(title);
+
+                f.ShowToForm(this, title);
             }
             catch (Exception ex)
             {

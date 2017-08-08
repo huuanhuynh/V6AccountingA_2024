@@ -343,6 +343,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                             _tienNt.V6LostFocus += delegate
                             {
+                                _tien.Value = V6BusinessHelper.Vround(_tienNt.Value * txtTyGia.Value, M_ROUND);
+                                if (_maNt == _mMaNt0)
+                                {
+                                    _tien.Value = _tienNt.Value;
+                                }
                                 TinhGiaVon();
                             };
 
@@ -3344,7 +3349,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         c.TTT_NT = txtTongTienNt.Value;
                         c.MA_NT = _maNt;
                         c.Dock = DockStyle.Fill;
-                        c.ShowToForm(V6Text.PrintSOA, true);
+                        c.ShowToForm(this, V6Text.PrintSOA, true);
                     }
                     else
                     {

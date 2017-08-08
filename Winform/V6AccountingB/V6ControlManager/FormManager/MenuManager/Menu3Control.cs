@@ -245,7 +245,7 @@ namespace V6ControlManager.FormManager.MenuManager
 
                 if (c != null)
                 {
-                    c.ShowToForm(mButton.Text, true, false);
+                    c.ShowToForm(this, mButton.Text, true, false);
                 }
             }
             catch (Exception ex)

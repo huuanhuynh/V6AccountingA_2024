@@ -85,7 +85,7 @@ namespace V6AccountingB
                 
                 if (c != null)
                 {
-                    c.ShowToForm(mButton.Text, true, false);
+                    c.ShowToForm(this, mButton.Text, true, false);
                 }
 
             }

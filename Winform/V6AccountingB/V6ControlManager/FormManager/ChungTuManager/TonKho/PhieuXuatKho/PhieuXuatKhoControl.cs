@@ -3271,7 +3271,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         c.MA_NT = _maNt;
                         c.Dock = DockStyle.Fill;
 
-                        c.ShowToForm(V6Text.PrintIXA);
+                        c.ShowToForm(this, V6Text.PrintIXA);
                     }
                     else
                     {

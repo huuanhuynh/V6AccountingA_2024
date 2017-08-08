@@ -2878,7 +2878,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     c.TTT_NT = txtTongThanhToanNt.Value;
                     c.MA_NT =  _maNt;
                     c.Dock = DockStyle.Fill;
-                    c.ShowToForm(V6Text.PrintSOA, true);
+                    c.ShowToForm(this, V6Text.PrintSOA, true);
                 }
                 else
                 {

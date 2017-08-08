@@ -286,7 +286,7 @@ namespace V6ControlManager.FormManager.ReportManager
                     (c as ReportD99ViewBase).btnNhan_Click(null, null);
                 }
 
-                c.ShowToForm(mButton.ReportTitle + (string.IsNullOrEmpty(mButton.ReportFile)?"Code: " + mButton.CodeForm:""),
+                c.ShowToForm(owner, mButton.ReportTitle + (string.IsNullOrEmpty(mButton.ReportFile) ? "Code: " + mButton.CodeForm : ""),
                     true, false); // fullScreen, dialog
             }
             catch (Exception ex)
@@ -316,7 +316,7 @@ namespace V6ControlManager.FormManager.ReportManager
             }
             else view.DataSet = quickParams.DataSet;
 
-            view.ShowToForm(quickParams.FormTitle, true);
+            view.ShowToForm(owner, quickParams.FormTitle, true);
         }
 
         /// <summary>

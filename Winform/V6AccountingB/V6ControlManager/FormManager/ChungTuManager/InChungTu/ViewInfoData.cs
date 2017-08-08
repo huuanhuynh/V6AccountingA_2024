@@ -70,7 +70,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     c.TTT_NT = ObjectAndString.ObjectToDecimal(data["T_PS_NO_NT"]);// txtTongThanhToanNt.Value;
                     c.MA_NT = ObjectAndString.ObjectToString(data["MA_NT"]);
 
-                    c.ShowToForm(V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+                    c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
                 }
             }
             catch (Exception ex)

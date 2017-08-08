@@ -3014,7 +3014,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                             sender.Dispose();
                         };
 
-                        c.ShowToForm(V6Text.PrintSOA, true);
+                        c.ShowToForm(this, V6Text.PrintSOA, true);
                     }
                     else
                     {

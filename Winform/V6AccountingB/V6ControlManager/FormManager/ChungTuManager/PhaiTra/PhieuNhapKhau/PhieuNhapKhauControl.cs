@@ -2028,6 +2028,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 //Tuanmh 25/05/2017 Bo sung-> + Thue_nk
                 _tienNt.Value = _tienNt0.Value + _cpNt.Value - _ckNt.Value - _ggNt.Value+_nkNt.Value;
                 _tien.Value = _tien0.Value + _cp.Value - _ck.Value - _gg.Value + _nk.Value;
+                
+                if (_maNt == _mMaNt0)
+                {
+                    _tien0.Value = _tienNt0.Value;
+                    _tien.Value = _tienNt.Value;
+                }
             }
             catch (Exception ex)
             {
@@ -4008,7 +4014,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     c.TTT_NT = txtTongThanhToanNt.Value;
                     c.MA_NT = _maNt;
                     c.Dock = DockStyle.Fill;
-                    c.ShowToForm(V6Text.PrintSOA, true);
+                    c.ShowToForm(this, V6Text.PrintSOA, true);
                 }
                 else
                 {

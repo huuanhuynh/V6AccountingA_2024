@@ -128,7 +128,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                
                 view.FilterControl.SetData(selectedData);
                 view.btnNhan_Click(null, null);
-                view.ShowToForm(V6Text.PhanBo);
+                view.ShowToForm(this, V6Text.PhanBo);
                 
                 SetStatus2Text();
                 //btnNhan.PerformClick();

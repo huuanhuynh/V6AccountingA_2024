@@ -121,7 +121,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     c.SetData(plistData);
                     c.Size = new Size(800, 600);
                     c.btnNhan_Click(null, null);
-                    c.ShowToForm(MA_VITRI);
+                    c.ShowToForm(this, MA_VITRI);
                 }
                 else
 
@@ -165,7 +165,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                         "reportCaption", "caption2", "", "", "");
                     c.FilterControl.SetData(plistData);
                     c.btnNhan_Click(null, null);
-                    c.ShowToForm("Vitri");
+                    c.ShowToForm(this, "Vitri");
                 }
 
                 container.SetColorMavt(MA_VT, Color.Blue);

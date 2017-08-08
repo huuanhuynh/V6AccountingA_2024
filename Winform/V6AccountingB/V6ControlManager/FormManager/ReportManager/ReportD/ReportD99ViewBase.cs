@@ -1642,7 +1642,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 f.EnableDelete = false;
                 f.DisableZoomButton();
 
-                f.ShowToForm(title);
+                f.ShowToForm(this, title);
             }
             catch (Exception ex)
             {

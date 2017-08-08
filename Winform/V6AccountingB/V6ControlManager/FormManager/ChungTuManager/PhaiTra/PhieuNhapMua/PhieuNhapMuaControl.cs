@@ -1703,6 +1703,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         void TienNt0_V6LostFocus(object sender)
         {
+            _tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * txtTyGia.Value), M_ROUND);
             TinhTienNt();//Da tinh gia nt trong tinhtiennt
             //TinhGiaNt();
         }
@@ -1967,8 +1968,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             try
             {
                 //Tuanmh 19/12/2016 Chua Kiem tra Null
+                
                 _tienNt.Value = _tienNt0.Value + _cpNt.Value - _ckNt.Value - _ggNt.Value + _tien_vcNt.Value;
                 _tien.Value = _tien0.Value + _cp.Value - _ck.Value - _gg.Value + _tien_vc.Value;
+
+                if (_maNt == _mMaNt0)
+                {
+                    _tien0.Value = _tienNt0.Value;
+                    _tien.Value = _tienNt.Value;
+                }
             }
             catch (Exception ex)
             {
@@ -4084,7 +4092,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     c.TTT_NT = txtTongThanhToanNt.Value;
                     c.MA_NT = _maNt;
                     c.Dock = DockStyle.Fill;
-                    c.ShowToForm(V6Text.PrintSOA, true);
+                    c.ShowToForm(this, V6Text.PrintSOA, true);
                 }
                 else
                 {

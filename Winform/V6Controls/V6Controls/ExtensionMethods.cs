@@ -390,10 +390,11 @@ namespace V6Controls
         /// Hiển thị Ucontrol lên form. Có xác nhận đóng khi nhấn X
         /// </summary>
         /// <param name="control"></param>
+        /// <param name="owner">Form chủ, không có để null</param>
         /// <param name="title"></param>
         /// <param name="fullScreen"></param>
         /// <param name="dialog"></param>
-        public static void ShowToForm(this UserControl control, string title = "Form", bool fullScreen = false, bool dialog = true)
+        public static void ShowToForm(this UserControl control, IWin32Window owner, string title = "Form", bool fullScreen = false, bool dialog = true)
         {
             try
             {
@@ -428,7 +429,7 @@ namespace V6Controls
                     }
                 };
 
-                if(dialog) f.ShowDialog();
+                if(dialog) f.ShowDialog(owner);
                 else f.Show();
             }
             catch (Exception ex)

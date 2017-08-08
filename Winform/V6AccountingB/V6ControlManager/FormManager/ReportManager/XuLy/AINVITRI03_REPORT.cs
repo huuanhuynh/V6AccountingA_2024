@@ -406,7 +406,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var f = new ReportRViewBase(m_itemId, _program + "BF7", _program + "BF7", _reportFile + "BF7", "caption", "2", "", "", "");
                 f.FilterControl.SetData(plistData);
                 f.btnNhan_Click(null, null);
-                f.ShowToForm(GetType() + "_F7");
+                f.ShowToForm(this, GetType() + "_F7");
             }
             catch (Exception ex)
             {

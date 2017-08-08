@@ -112,7 +112,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                 var f = new ReportRViewBase(m_itemId,  KhoParams.Program + "AF7", KhoParams.Program + "AF7", KhoParams.ReportFile  + "AF7", "caption", "2", "", "", "");
                 f.FilterControl.SetData(plistData);
                 f.btnNhan_Click(null, null);
-                f.ShowToForm(GetType() + "_F7");
+                f.ShowToForm(this, GetType() + "_F7");
             }
             catch (Exception ex)
             {
@@ -186,7 +186,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                         "reportCaption", "caption2", "", "", "");
                     c.FilterControl.SetData(plistData);
                     c.btnNhan_Click(null, null);
-                    c.ShowToForm("DayHang");
+                    c.ShowToForm(this, "DayHang");
 
                     var cSelectedRow = c.SelectedRowData;
                     if (cSelectedRow != null)

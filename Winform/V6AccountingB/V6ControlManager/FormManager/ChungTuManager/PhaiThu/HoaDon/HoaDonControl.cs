@@ -4572,7 +4572,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             if (!sender.IsDisposed) sender.Dispose();
                         };
 
-                        c.ShowToForm(V6Text.PrintSOA, true);
+                        c.ShowToForm(this, V6Text.PrintSOA, true);
                     }
                     else
                     {

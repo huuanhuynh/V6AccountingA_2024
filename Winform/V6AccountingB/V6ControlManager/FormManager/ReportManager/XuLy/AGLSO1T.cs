@@ -47,7 +47,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             view.FilterControl.InitFilters = oldKeys;
             view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
             view.btnNhan_Click(null, null);
-            view.ShowToForm(_reportCaption, true);
+            view.ShowToForm(this, _reportCaption, true);
 
             SetStatus2Text();
         }
@@ -166,7 +166,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         view.PrintCopies = _PrintCopies;
 
                         view.btnNhan_Click(null, null);
-                        view.ShowToForm("", true);
+                        view.ShowToForm(this, "", true);
                         //var f  = new V6Form();
                         //f.WindowState = FormWindowState.Maximized;
                         //f.Controls.Add(view);
@@ -328,7 +328,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //view.PrinterName = _PrinterName;
                 //view.PrintCopies = _PrintCopies;
                 view.btnNhan_Click(null, null);
-                view.ShowToForm(_reportTitleF5, true);
+                view.ShowToForm(this, _reportTitleF5, true);
 
                 //var f  = new V6Form();
                 //f.WindowState = FormWindowState.Maximized;
