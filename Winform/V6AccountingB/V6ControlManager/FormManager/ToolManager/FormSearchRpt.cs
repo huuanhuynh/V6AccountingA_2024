@@ -32,7 +32,7 @@ namespace V6ControlManager.FormManager.ToolManager
         {
             f.SelectedPath = txtFolder.Text;
             f.Description = "Chọn một thư mục cần nén!";
-            if (f.ShowDialog() == DialogResult.OK)
+            if (f.ShowDialog(this) == DialogResult.OK)
             {
                 txtFolder.Text = f.SelectedPath;
                 LoadFiles();

@@ -578,7 +578,7 @@ namespace V6Controls.Controls.TreeView
                     GridViewSummary gSum = new GridViewSummary();
                     gSum.DataGridView = newGridView;
 
-                    f.ShowDialog();
+                    f.ShowDialog(this);
                     gSum.Refresh();
                 }
             }

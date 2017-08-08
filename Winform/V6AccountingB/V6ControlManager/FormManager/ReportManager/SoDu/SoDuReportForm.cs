@@ -553,7 +553,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                     Filter = "Excel files (*.xls)|*.xls|Xlsx|*.xlsx",
                     FileName = ChuyenMaTiengViet.ToUnSign(ReportTitle)
                 };
-                if (save.ShowDialog() == DialogResult.OK)
+                if (save.ShowDialog(this) == DialogResult.OK)
                 {
                     try
                     {   
@@ -624,7 +624,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             MyPrintDialog.ShowHelp = false;
             MyPrintDialog.ShowNetwork = false;
 
-            if (MyPrintDialog.ShowDialog() != DialogResult.OK)
+            if (MyPrintDialog.ShowDialog(this) != DialogResult.OK)
                 return false;
 
             MyPrintDocument.DocumentName = Text;
@@ -704,7 +704,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
 
         private void exportToExcelTemplate_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ExportExcelTemplate(_tbl, _tbl2, ReportDocumentParameters,
+            V6ControlFormHelper.ExportExcelTemplate(this, _tbl, _tbl2, ReportDocumentParameters,
                 MAU, LAN, ReportFile, ExcelTemplateFileFull, ReportTitle);
         }
 
@@ -722,7 +722,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                     Filter = "Xml files (*.xml)|*.xml",
                     FileName = ChuyenMaTiengViet.ToUnSign(ReportTitle)
                 };
-                if (save.ShowDialog() == DialogResult.OK)
+                if (save.ShowDialog(this) == DialogResult.OK)
                 {
                     try
                     {
@@ -820,7 +820,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             try
             {
                 var f = new FormRptEditor { rptPath = ReportFileFull };
-                f.ShowDialog();
+                f.ShowDialog(this);
             }
             catch (Exception ex)
             {

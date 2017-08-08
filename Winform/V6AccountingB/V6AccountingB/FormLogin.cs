@@ -371,7 +371,7 @@ namespace V6AccountingB
         private void btnEdit_Click(object sender, EventArgs e)
         {
             //var f = new ConfirmPasswordV6();
-            //if (f.ShowDialog() == DialogResult.OK)
+            //if (f.ShowDialog(this) == DialogResult.OK)
             //{
                 
             //}

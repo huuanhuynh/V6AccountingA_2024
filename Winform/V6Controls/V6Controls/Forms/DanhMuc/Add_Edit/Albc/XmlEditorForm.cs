@@ -112,7 +112,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                     Title = "Xuất XML.",
                     FileName = _file_xml
                 };
-                if (saveFile.ShowDialog() == DialogResult.OK)
+                if (saveFile.ShowDialog(this) == DialogResult.OK)
                 {
                     if (string.IsNullOrEmpty(saveFile.FileName)) return;
                     FileStream fs = new FileStream(saveFile.FileName, FileMode.Create);

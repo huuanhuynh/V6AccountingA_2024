@@ -231,7 +231,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 var save = new SaveFileDialog {Filter = @"Excel files (*.xls)|*.xls|Xlsx|*.xlsx"};
-                if (save.ShowDialog() == DialogResult.OK)
+                if (save.ShowDialog(this) == DialogResult.OK)
                 {
                     try
                     {   

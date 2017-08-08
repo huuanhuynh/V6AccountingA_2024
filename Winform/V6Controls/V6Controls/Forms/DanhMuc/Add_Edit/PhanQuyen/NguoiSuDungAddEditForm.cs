@@ -209,7 +209,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
 
                     })
                 {
-                    if (phanQuyen.ShowDialog() == DialogResult.OK)
+                    if (phanQuyen.ShowDialog(this) == DialogResult.OK)
                     {
                         txtRights.Text = phanQuyen.Vrights;
                         txtRightAdd.Text = phanQuyen.Vrights_Add;
@@ -238,7 +238,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                         Vrights_dvcs = txtRightDvcs.Text
                     })
                 {
-                    if (phanQuyenDvcs.ShowDialog() == DialogResult.OK)
+                    if (phanQuyenDvcs.ShowDialog(this) == DialogResult.OK)
                     {
                         txtRightDvcs.Text = phanQuyenDvcs.Vrights_dvcs;
 
@@ -263,7 +263,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                     Vrights_dvcs = txtRightDvcs.Text
                 })
                 {
-                    if (phanQuyenKho.ShowDialog() == DialogResult.OK)
+                    if (phanQuyenKho.ShowDialog(this) == DialogResult.OK)
                     {
                         txtRightKho.Text = phanQuyenKho.Vrights_kho;
 
@@ -315,7 +315,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                     Vrights_dvcs = txtRightDvcs.Text
                 })
                 {
-                    if (phnQuyenF.ShowDialog() == DialogResult.OK)
+                    if (phnQuyenF.ShowDialog(this) == DialogResult.OK)
                     {
                         txtR_sonb.Text = phnQuyenF.Vrights_sonb;
 

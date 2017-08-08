@@ -205,7 +205,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         V6ControlFormHelper.UpdateGridViewRow(row, data);
                     };
 
-                    form.ShowDialog();
+                    form.ShowDialog(this);
                     SetStatus2Text();
                 }
                 else

@@ -98,7 +98,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             }
 		}
 
-        public static void Print()
+        public static void Print(IWin32Window owner = null)
         {
             SetBarcodeGeneralValues(barcode);
             barcodecount = 0;
@@ -108,10 +108,10 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                     (int)(pageHeight / 25.4f * 100));
             
             document.DefaultPageSettings.PaperSize = psize;
-                                    
+            
             //printview = new PrintPreviewDialog();
             //printview.Document = document;
-            //printview.ShowDialog();
+            //printview.ShowDialog(owner);
 
             PrintDialog printdialog1 = new PrintDialog();
             printdialog1.AllowPrintToFile = true;
@@ -121,8 +121,8 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             
             printdialog1.UseEXDialog = true;
             printdialog1.PrinterSettings.DefaultPageSettings.PaperSize = psize;
-            
-            if (printdialog1.ShowDialog() == DialogResult.OK)
+
+            if (printdialog1.ShowDialog(owner) == DialogResult.OK)
             {
                 //printdialog1.Document = document;
                 document.PrinterSettings = printdialog1.PrinterSettings;
@@ -134,7 +134,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             }
         }
 
-        public static void PrintView()
+        public static void PrintView(IWin32Window owner = null)
         {
             SetBarcodeGeneralValues(barcode);
             BarcodePrintProgram.barcodecount = 0;
@@ -153,7 +153,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             printview.ShowIcon = false;
 
             ((ToolStripButton)((ToolStrip)printview.Controls[1]).Items[0]).Enabled = false;
-            printview.ShowDialog();
+            printview.ShowDialog(owner);
         }
 
         static V6Barcode13 barcode = new V6Barcode13();

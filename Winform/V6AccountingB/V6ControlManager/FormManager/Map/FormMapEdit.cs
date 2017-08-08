@@ -93,14 +93,14 @@ namespace V6ControlManager.FormManager.Map
         private void ChooseImage()
         {
             this.ShowMessage("KhongDung");
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
             {
                 //UpdateImage(openFileDialog1.FileName);
             }
         }
         private void ChooseImageNone()
         {
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
             {
                 UpdateImageNone(openFileDialog1.FileName);
             }

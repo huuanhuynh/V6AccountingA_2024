@@ -51,7 +51,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             try
             {
                 ALREPORT1_FilterEditorForm f = new ALREPORT1_FilterEditorForm(txtFilter.Text);
-                if (f.ShowDialog() == DialogResult.OK)
+                if (f.ShowDialog(this) == DialogResult.OK)
                 {
                     txtFilter.Text = f.FILTER_DEFINE;
                 }

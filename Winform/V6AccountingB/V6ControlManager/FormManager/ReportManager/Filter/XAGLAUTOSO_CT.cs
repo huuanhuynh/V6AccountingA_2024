@@ -53,16 +53,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         private void btnMa_ctnb_Click(object sender, EventArgs e)
         {
             using (V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen.DanhSachChungTu chungtu = new V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen.DanhSachChungTu
+            {Text = "Danh sách chứng từ.", VLists_ct = TxtMa_ctnb.Text})
             {
-                Text = "Danh sách chứng từ.",
-                VLists_ct = TxtMa_ctnb.Text
-
-            })
-            {
-                if (chungtu.ShowDialog() == DialogResult.OK)
+                if (chungtu.ShowDialog(this) == DialogResult.OK)
                 {
                     TxtMa_ctnb.Text = chungtu.VLists_ct;
-
                 }
             }
         }

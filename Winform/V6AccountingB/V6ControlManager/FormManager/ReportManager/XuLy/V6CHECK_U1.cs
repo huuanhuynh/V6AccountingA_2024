@@ -245,7 +245,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         hoaDonForm.Dock = DockStyle.Fill;
                         f.Controls.Add(hoaDonForm);
 
-                        f.ShowDialog();
+                        f.ShowDialog(this);
                     }
                 }
             }

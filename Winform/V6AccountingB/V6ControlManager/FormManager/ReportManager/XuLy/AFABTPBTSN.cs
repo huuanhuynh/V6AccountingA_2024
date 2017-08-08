@@ -48,7 +48,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         f.WindowState = FormWindowState.Maximized;
                         f.Controls.Add(view);
                         view.btnNhan_Click(null, null);
-                        f.ShowDialog();
+                        f.ShowDialog(this);
                         SetStatus2Text();
 
                     }

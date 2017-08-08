@@ -82,7 +82,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (f3count == 3)
             {
                 f3count = 0;
-                if (new ConfirmPasswordV6().ShowDialog() == DialogResult.OK)
+                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                 {
                     V6ControlFormHelper.ShowMainMessage("V6 Confirm ......OK....");
                     FilterControl.Call1();

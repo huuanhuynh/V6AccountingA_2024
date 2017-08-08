@@ -206,7 +206,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         V6ControlFormHelper.UpdateGridViewRow(row, data);
                     };
 
-                    form.ShowDialog();
+                    form.ShowDialog(this);
                     SetStatus2Text();
                 }
                 else
@@ -238,7 +238,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         V6ControlFormHelper.UpdateGridViewRow(row, data);
                     };
 
-                    form.ShowDialog();
+                    form.ShowDialog(this);
                     SetStatus2Text();
                 }
                 else
@@ -305,7 +305,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     
                 };
 
-                form.ShowDialog();
+                form.ShowDialog(this);
                 SetStatus2Text();
                 btnNhan.PerformClick();
 

@@ -170,7 +170,7 @@ namespace V6ControlManager.FormManager.MenuManager
                         if (TABLE_NAME == "V6USER" || TABLE_NAME == "V6CLIENTS" || TABLE_NAME == "ALSTT" || TABLE_NAME == "V6OPTION"
                             || codeform.StartsWith("8"))
                         {
-                            check = new ConfirmPassword().ShowDialog() == DialogResult.OK;
+                            check = new ConfirmPassword().ShowDialog(this) == DialogResult.OK;
                         }
                     }
 

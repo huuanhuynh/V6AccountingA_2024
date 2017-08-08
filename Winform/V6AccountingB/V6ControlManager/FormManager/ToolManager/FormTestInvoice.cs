@@ -227,7 +227,7 @@ namespace V6ControlManager.FormManager.ToolManager
         {
             try
             {
-                if (o.ShowDialog() == DialogResult.OK)
+                if (o.ShowDialog(this) == DialogResult.OK)
                 {
                 }
             }
@@ -241,7 +241,7 @@ namespace V6ControlManager.FormManager.ToolManager
         {
             try
             {
-                if (o.ShowDialog() == DialogResult.OK)
+                if (o.ShowDialog(this) == DialogResult.OK)
                 {
                 }
             }

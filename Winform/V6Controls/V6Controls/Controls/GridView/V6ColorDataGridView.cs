@@ -466,7 +466,7 @@ namespace V6Controls
                 CodeEditorForm form = new CodeEditorForm();
                 form.UsingText = GetUsingText();
                 form.ContentText = CurrentCell.Value.ToString();
-                form.ShowDialog();
+                form.ShowDialog(this);
                 string text = form.ContentText;
                 CurrentCell.Value = text;
                 CurrentCell.OwningColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -611,7 +611,7 @@ namespace V6Controls
         public void ShowFilterForm()
         {
             var form = new GridViewFilterForm(this);
-            if (form.ShowDialog() == DialogResult.OK)
+            if (form.ShowDialog(this) == DialogResult.OK)
             {
                 if(CurrentCell.ColumnIndex>=0)
                 Filter(form.Field, form.Operator, form.Value, form.Value2, form.FindNext, form.FindOR);

@@ -291,7 +291,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     var ma_maubc = row0["file_maubc"].ToString().Trim();
                     var filter = "mau_bc='" + ma_maubc + "'";
                     BangCanDoiTaiChinhForm form = new BangCanDoiTaiChinhForm(filter);
-                    form.ShowDialog();
+                    form.ShowDialog(this);
                 }
             }
             catch (Exception ex)

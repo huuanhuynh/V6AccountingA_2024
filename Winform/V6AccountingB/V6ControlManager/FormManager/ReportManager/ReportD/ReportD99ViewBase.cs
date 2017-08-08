@@ -1083,7 +1083,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             myPrintDialog.ShowHelp = false;
             myPrintDialog.ShowNetwork = false;
 
-            if (myPrintDialog.ShowDialog() != DialogResult.OK)
+            if (myPrintDialog.ShowDialog(this) != DialogResult.OK)
                 return false;
 
             MyPrintDocument.DocumentName = Text;
@@ -1314,7 +1314,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                                     hoaDonForm.Dock = DockStyle.Fill;
                                     f.Controls.Add(hoaDonForm);
                                 
-                                f.ShowDialog();
+                                f.ShowDialog(this);
                                 SetStatus2Text();
                             }
                         }
@@ -1415,7 +1415,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 return;
 
                 var dfp = DefaultPrinter;
-                var selectedPrinter = V6ControlFormHelper.PrintRpt(_rpDoc, dfp);
+                var selectedPrinter = V6ControlFormHelper.PrintRpt(this, _rpDoc, dfp);
                 if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != dfp)
                 {
                     print_one = true;
@@ -1497,7 +1497,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             try
             {
-                new ChartReportForm(FilterControl, ReportFileFullF7, _tbl, _tbl2.Copy(), ReportDocumentParameters).ShowDialog();
+                new ChartReportForm(FilterControl, ReportFileFullF7, _tbl, _tbl2.Copy(), ReportDocumentParameters)
+                    .ShowDialog(this);
                 SetStatus2Text();
             }
             catch (Exception ex)
@@ -1616,7 +1617,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             {
                 var f = new FormRptEditor();
                 f.rptPath = ReportFileFull;
-                f.ShowDialog();
+                f.ShowDialog(this);
                 SetStatus2Text();
             }
             catch (Exception ex)
@@ -1664,7 +1665,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     Filter = @"Excel files (*.xls)|*.xls|Xlsx|*.xlsx",
                     FileName = ChuyenMaTiengViet.ToUnSign(ReportTitle)
                 };
-                if (save.ShowDialog() == DialogResult.OK)
+                if (save.ShowDialog(this) == DialogResult.OK)
                 {
                     try
                     {
@@ -1694,7 +1695,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 var f = V6Setting.IsVietnamese ? "GRDHV_V1" : "GRDHE_V1";
                 if (_tbl2.Columns.Contains(f)) excelHeaders = _tbl2.Rows[0][f].ToString();
             }
-            V6ControlFormHelper.ExportExcelTemplateD(_tbl, _tbl2, "R", ReportDocumentParameters,
+            V6ControlFormHelper.ExportExcelTemplateD(this, _tbl, _tbl2, "R", ReportDocumentParameters,
                 MAU, LAN, ReportFile, ExcelTemplateFileFull, ReportTitle, excelColumns, excelHeaders);
         }
 
@@ -1712,7 +1713,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     Filter = "Xml files (*.xml)|*.xml",
                     FileName = ChuyenMaTiengViet.ToUnSign(ReportTitle)
                 };
-                if (save.ShowDialog() == DialogResult.OK)
+                if (save.ShowDialog(this) == DialogResult.OK)
                 {
                     try
                     {
@@ -1764,7 +1765,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 }
                 else
                 {
-                    V6ControlFormHelper.ExportExcelTemplateD(_tbl, _tbl2, "V", ReportDocumentParameters,
+                    V6ControlFormHelper.ExportExcelTemplateD(this, _tbl, _tbl2, "V", ReportDocumentParameters,
                      MAU, LAN, ReportFile, ExcelTemplateFileView, ReportTitle, showFields, headerString);
                 }
             }

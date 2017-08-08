@@ -105,7 +105,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         f.Close();
                     };
 
-                    f.ShowDialog();
+                    f.ShowDialog(this);
                     SetStatus2Text();
                 }
             }
@@ -204,7 +204,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     f.Close();
                                 };
 
-                                f.ShowDialog();
+                                f.ShowDialog(this);
                                 SetStatus2Text();
                             }
 

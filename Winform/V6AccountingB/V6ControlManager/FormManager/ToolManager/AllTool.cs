@@ -45,7 +45,7 @@ namespace V6ControlManager.FormManager.ToolManager
 
         private void btnTestInvoice_Click(object sender, EventArgs e)
         {
-            if (new ConfirmPasswordV6().ShowDialog() == DialogResult.OK)
+            if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
             {
                 new FormTestInvoice().Show();
             }

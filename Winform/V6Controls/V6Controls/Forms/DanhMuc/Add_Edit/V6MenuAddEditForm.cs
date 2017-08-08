@@ -28,7 +28,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (f3count == 2)
             {
                 f3count = 0;
-                if (new ConfirmPasswordV6().ShowDialog() == DialogResult.OK)
+                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                 {
                     ShowTopMessage("V6 Confirm ......OK....");
                     txtVBAR.Enabled = true;

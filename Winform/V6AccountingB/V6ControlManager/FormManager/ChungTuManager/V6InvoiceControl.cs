@@ -551,7 +551,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             try
             {
                 if ((V6Login.IsAdmin || V6Login.Level != "05") && !string.IsNullOrEmpty(_sttRec))
-                    new ViewInfoData(invoice, _sttRec, invoice.Mact).ShowDialog();
+                    new ViewInfoData(invoice, _sttRec, invoice.Mact).ShowDialog(this);
             }
             catch (Exception ex)
             {

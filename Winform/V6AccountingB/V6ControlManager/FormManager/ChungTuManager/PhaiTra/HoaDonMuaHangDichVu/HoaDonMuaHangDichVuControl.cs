@@ -2859,7 +2859,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     _timForm.ViewMode = true;
                     _timForm.Refresh0();
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                 }
             }
             catch (Exception ex)
@@ -2880,7 +2880,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                         _timForm = new TimHoaDonMuaHangDichVuForm(this);
                     _timForm.ViewMode = false;
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                     btnSua.Focus();
                 }
                 else

@@ -459,7 +459,7 @@ namespace V6ControlManager.FormManager.SoDuManager
             try
             {
                 var f = new SoDuReportForm(_tableName, ReportFile, ReportTitle, ReportTitle2, InitFilter);
-                f.ShowDialog();
+                f.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -1004,7 +1004,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 };
                 btnFull.Image = Properties.Resources.ZoomOut24;
                 btnFull.Text = V6Text.ZoomOut;
-                f.ShowDialog();
+                f.ShowDialog(this);
             }
         }
 
@@ -1087,7 +1087,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                         if (f != null)
                         {
                             f.DoChangeCodeFinish += f_DoChangeCodeFinish;
-                            f.ShowDialog();
+                            f.ShowDialog(this);
                         }
                     }
                     else

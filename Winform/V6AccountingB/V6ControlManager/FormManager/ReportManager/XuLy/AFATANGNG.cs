@@ -239,7 +239,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                         f.Dispose();
                                     };
 
-                                    f.ShowDialog();
+                                    f.ShowDialog(this);
                                     SetStatus2Text();
                                     btnNhan.PerformClick();
 
@@ -317,7 +317,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     f.Dispose();
                                 };
 
-                                f.ShowDialog();
+                                f.ShowDialog(this);
                                 SetStatus2Text();
                                 btnNhan.PerformClick();
 

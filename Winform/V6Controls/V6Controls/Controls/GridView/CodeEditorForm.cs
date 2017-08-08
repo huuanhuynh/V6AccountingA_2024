@@ -147,7 +147,7 @@ namespace V6Controls.Controls.GridView
             sfd.Filter = "Select Sql *.sql|*.sql|Văn bản *.rtf|*.rtf|Tập tin text *.txt|*.txt|Tất cả tập tin!|*.*";
             sfd.Title = "Lưu theo tên";
             sfd.FileName = txtColorTextBox.tenFile;
-            DialogResult drs = sfd.ShowDialog();
+            DialogResult drs = sfd.ShowDialog(this);
             if (drs == DialogResult.OK)
             {
                 //Luu theo 2 dinh dang, text va dinh dang rieng
@@ -231,7 +231,7 @@ namespace V6Controls.Controls.GridView
             ofd.Title = "Mở tập tin";
             ofd.DefaultExt = "sql";
             ofd.InitialDirectory = APPPATH;
-            if (ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog(this) == DialogResult.OK)
             {
                 openFile(ofd.FileName);                
             }
@@ -556,12 +556,11 @@ namespace V6Controls.Controls.GridView
             prd.AllowCurrentPage = false;
             prd.AllowSelection = false;
             prd.AllowSomePages = false;            
-            if (prd.ShowDialog()==DialogResult.OK)
+            if (prd.ShowDialog(this)==DialogResult.OK)
             {
                 txtColorTextBox.PrinterName = prd.PrinterSettings.PrinterName;                
                 txtColorTextBox.PrintRichTextContents();
             }
-            
         }
 
         private void CodeEditorForm_ResizeEnd(object sender, EventArgs e)

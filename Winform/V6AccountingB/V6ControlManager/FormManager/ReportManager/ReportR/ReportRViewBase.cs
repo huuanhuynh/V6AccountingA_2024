@@ -1142,7 +1142,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             myPrintDialog.ShowHelp = false;
             myPrintDialog.ShowNetwork = false;
 
-            if (myPrintDialog.ShowDialog() != DialogResult.OK)
+            if (myPrintDialog.ShowDialog(this) != DialogResult.OK)
                 return false;
 
             MyPrintDocument.DocumentName = Text;
@@ -1314,7 +1314,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                                 hoaDonForm.Dock = DockStyle.Fill;
                                 f.Controls.Add(hoaDonForm);
                                 
-                                f.ShowDialog();
+                                f.ShowDialog(this);
                                 
                                 FilterControl.SetStatus2Text();
                             }
@@ -1371,7 +1371,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                new ChartReportForm(FilterControl, ReportFileFullF7, _tbl1, _tbl2.Copy(), ReportDocumentParameters).ShowDialog();
+                new ChartReportForm(FilterControl, ReportFileFullF7, _tbl1, _tbl2.Copy(), ReportDocumentParameters)
+                    .ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -1445,7 +1446,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 return;
 
                 var dfp = DefaultPrinter;
-                var selectedPrinter = V6ControlFormHelper.PrintRpt(_rpDoc, dfp);
+                var selectedPrinter = V6ControlFormHelper.PrintRpt(this, _rpDoc, dfp);
                 if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != dfp)
                 {
                     print_one = true;
@@ -1548,7 +1549,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 var f = new FormRptEditor();
                 f.rptPath = ReportFileFull;
-                f.ShowDialog();
+                f.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -1570,7 +1571,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     Filter = @"Excel files (*.xls)|*.xls|Xlsx|*.xlsx",
                     FileName = ChuyenMaTiengViet.ToUnSign(ReportTitle)
                 };
-                if (save.ShowDialog() == DialogResult.OK)
+                if (save.ShowDialog(this) == DialogResult.OK)
                 {
                     try
                     {
@@ -1592,7 +1593,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void exportToExcelTemplate_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ExportExcelTemplate(_tbl1, _tbl2, ReportDocumentParameters,
+            V6ControlFormHelper.ExportExcelTemplate(this, _tbl1, _tbl2, ReportDocumentParameters,
                 MAU, LAN, ReportFile, ExcelTemplateFileFull, ReportTitle);
         }
 
@@ -1608,7 +1609,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
                 else
                 {
-                    V6ControlFormHelper.ExportExcelTemplateD(_tbl1, _tbl2, "V", ReportDocumentParameters,
+                    V6ControlFormHelper.ExportExcelTemplateD(this, _tbl1, _tbl2, "V", ReportDocumentParameters,
                         MAU, LAN, ReportFile, ExcelTemplateFileView, ReportTitle, excelColumns, excelHeaders);
                 }
             }
@@ -1632,7 +1633,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     Filter = "Xml files (*.xml)|*.xml",
                     FileName = ChuyenMaTiengViet.ToUnSign(ReportTitle)
                 };
-                if (save.ShowDialog() == DialogResult.OK)
+                if (save.ShowDialog(this) == DialogResult.OK)
                 {
                     try
                     {

@@ -4038,7 +4038,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     _timForm.ViewMode = true;
                     _timForm.Refresh0();
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                 }
             }
             catch (Exception ex)
@@ -4059,7 +4059,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         _timForm = new TimPhieuNhapKhauForm(this);
                     _timForm.ViewMode = false;
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                     btnSua.Focus();
                 }
                 else
@@ -5532,7 +5532,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     {
                         CDH_PNKForm chon = new CDH_PNKForm(txtMadvcs.Text, txtMaKh.Text);
                         chon.AcceptSelectEvent += chon_AcceptSelectEvent;
-                        chon.ShowDialog();
+                        chon.ShowDialog(this);
                     }
                     else
                     {

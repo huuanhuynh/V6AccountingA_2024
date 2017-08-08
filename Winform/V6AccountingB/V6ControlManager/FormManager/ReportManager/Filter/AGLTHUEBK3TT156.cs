@@ -145,7 +145,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             };
             if (txtFileName.Text != "") save.FileName = txtFileName.Text;
 
-            if (save.ShowDialog() == DialogResult.OK)
+            if (save.ShowDialog(this) == DialogResult.OK)
             {
                 txtFileName.Text = save.FileName;
             }

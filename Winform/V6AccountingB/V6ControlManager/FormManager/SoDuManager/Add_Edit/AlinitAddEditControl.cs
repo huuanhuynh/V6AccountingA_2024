@@ -622,7 +622,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     Vrights_user = txtRightUser.Text
                 })
                 {
-                    if (phnQuyenF.ShowDialog() == DialogResult.OK)
+                    if (phnQuyenF.ShowDialog(this) == DialogResult.OK)
                     {
                         txtRightUser.Text = phnQuyenF.Vrights_user;
                     }

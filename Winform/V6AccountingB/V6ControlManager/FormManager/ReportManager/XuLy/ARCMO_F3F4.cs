@@ -258,7 +258,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     // CPXHangTraLaiForm chonpx = new CPXHangTraLaiForm(this, txtma_dvcs.Text, txtma_kh.Text);
                     //chonpx.AcceptSelectEvent += chonpx_AcceptSelectEvent;
-                    //chonpx.ShowDialog();
+                    //chonpx.ShowDialog(this);
                     var initFilter = "MA_KH='"+ma_kh+"'";
                     var Invoice = new V6Invoice41();
                     var _soCt0 = new V6VvarTextBox();
@@ -267,7 +267,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var f = new FilterView_ARS20(Invoice, _soCt0, _stt_rec, ma_dvcs, initFilter);
                     f.MultiSeletion = false;
                     
-                    if (f.ShowDialog() == DialogResult.OK)
+                    if (f.ShowDialog(this) == DialogResult.OK)
                     {
                         var data = (DataGridViewRow) _soCt0.Tag;
                         txtso_ct_tt.Text = data.Cells["SO_CT"].Value.ToString().Trim();

@@ -1248,7 +1248,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     var initFilter = GetSoCt0InitFilter();
                     var f = new FilterView(Invoice.Alct0, "So_ct", "ARS30", _soCt0, initFilter);
-                    var d = f.ShowDialog();
+                    var d = f.ShowDialog(this);
 
                     //xu ly data
                     if (d == DialogResult.OK)
@@ -1675,7 +1675,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     {
                         var initFilter = GetSoCt0InitFilter();
                         var f = new FilterView(Invoice.Alct0, "So_ct", "ARS30", _soCt0, initFilter);
-                        var d = f.ShowDialog();
+                        var d = f.ShowDialog(this);
 
                         //xu ly data
                         if (d == DialogResult.OK)
@@ -3456,7 +3456,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     _timForm.ViewMode = true;
                     _timForm.Refresh0();
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                 }
             }
             catch (Exception ex)
@@ -3477,7 +3477,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         _timForm = new TimPhieuChiForm(this, _orderList3);
                     _timForm.ViewMode = false;
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                     btnSua.Focus();
                 }
                 else
@@ -4407,7 +4407,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                         XuLyThemDetail(dic);
                     };
-                    filter_view.ShowDialog();
+                    filter_view.ShowDialog(this);
 
                 }
             }

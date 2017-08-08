@@ -38,7 +38,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 //f.ShowColor = false;
 
-                if (f.ShowDialog() == DialogResult.OK)
+                if (f.ShowDialog(this) == DialogResult.OK)
                 {
                     txtval.Text = f.Font.Name;
                 }

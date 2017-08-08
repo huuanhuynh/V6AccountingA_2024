@@ -33,7 +33,7 @@ namespace V6ControlManager.FormManager.ToolManager
             try
             {
                 OpenFileDialog o = new OpenFileDialog();
-                if(o.ShowDialog() == DialogResult.OK)
+                if(o.ShowDialog(this) == DialogResult.OK)
                 {
                     var extension = Path.GetExtension(o.FileName);
                     if (extension != null)
@@ -109,7 +109,7 @@ namespace V6ControlManager.FormManager.ToolManager
                 if (table2 != null)
                 {
                     SaveFileDialog o = new SaveFileDialog();
-                    if (o.ShowDialog() == DialogResult.OK)
+                    if (o.ShowDialog(this) == DialogResult.OK)
                     {
                         string ext = Path.GetExtension(o.FileName).ToLower();
                         bool no = false;

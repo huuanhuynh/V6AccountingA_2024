@@ -216,7 +216,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         private void btnPrinterSelect_Click(object sender, EventArgs e)
         {
             PrintDialog pt = new PrintDialog();
-            if (pt.ShowDialog() == DialogResult.OK)
+            if (pt.ShowDialog(this) == DialogResult.OK)
             {
                 txtPrinterDef.Text = pt.PrinterSettings.PrinterName;
             }
@@ -231,7 +231,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                     Vrights_user = txtRightUser.Text
                 })
                 {
-                    if (phnQuyenF.ShowDialog() == DialogResult.OK)
+                    if (phnQuyenF.ShowDialog(this) == DialogResult.OK)
                     {
                         txtRightUser.Text = phnQuyenF.Vrights_user;
                     }
@@ -283,7 +283,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             if (f3count == 2)
             {
                 f3count = 0;
-                if (new ConfirmPasswordV6().ShowDialog() == DialogResult.OK)
+                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                 {
                     ShowTopMessage("V6 Confirm ......OK....");
                     _firstAddF3 = true;

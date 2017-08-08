@@ -285,7 +285,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
             var lookupForm = new V6LookupTextboxForm(null, edit_cell.Value.ToString().Trim(), LookupInfo, " 1=1 " + filter, LookupInfo_F_NAME, multi, false);
             //Looking = true;
-            if (lookupForm.ShowDialog() == DialogResult.OK)
+            if (lookupForm.ShowDialog(this) == DialogResult.OK)
             {
                 edit_cell.Value = lookupForm._senderText;
             }

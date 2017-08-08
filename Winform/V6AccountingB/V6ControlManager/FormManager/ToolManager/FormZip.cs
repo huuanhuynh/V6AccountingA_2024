@@ -15,12 +15,12 @@ namespace V6ControlManager.FormManager.ToolManager
         {
             OpenFileDialog o = new OpenFileDialog();
             o.Title = "Mở tập tin cần nén!";
-            if (o.ShowDialog() == DialogResult.OK)
+            if (o.ShowDialog(this) == DialogResult.OK)
             {
                 txtFile1.Text = o.FileName;
                 SaveFileDialog s = new SaveFileDialog();
                 s.Title = "Đặt tên tập tin nén bạn muốn!";
-                if (s.ShowDialog() == DialogResult.OK)
+                if (s.ShowDialog(this) == DialogResult.OK)
                 {
                     txtFile2.Text = s.FileName;
                     V6Tools.V67z.ZipFile(txtFile2.Text, txtFile1.Text);
@@ -33,12 +33,12 @@ namespace V6ControlManager.FormManager.ToolManager
         {
             FolderBrowserDialog f = new FolderBrowserDialog();
             f.Description = "Chọn một thư mục cần nén!";
-            if (f.ShowDialog() == DialogResult.OK)
+            if (f.ShowDialog(this) == DialogResult.OK)
             {
                 txtFolder1.Text = f.SelectedPath;
                 SaveFileDialog s = new SaveFileDialog();
                 s.Title = "Đặt tên tập tin nén bạn muốn!";
-                if (s.ShowDialog() == DialogResult.OK)
+                if (s.ShowDialog(this) == DialogResult.OK)
                 {
                     txtFolder2.Text = s.FileName;
 

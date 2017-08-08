@@ -73,7 +73,7 @@ namespace V6Controls.Forms
                     Multiselect = false,
                     Title = "Chọn tệp excel"
                 };
-                if (f.ShowDialog() == DialogResult.OK)
+                if (f.ShowDialog(this) == DialogResult.OK)
                 {
                     txtFile.Text = f.FileName;
                     LoadExcel(f.FileName);

@@ -472,7 +472,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         if (f != null)
                         {
                             f.DoChangeCodeFinish += f_DoChangeCodeFinish;
-                            f.ShowDialog();
+                            f.ShowDialog(this);
                         }
                     }
                     else
@@ -821,7 +821,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                FormManagerHelper.ShowDanhMucPrint(_tableName, ReportFile, ReportTitle, ReportTitle2);
+                FormManagerHelper.ShowDanhMucPrint(this, _tableName, ReportFile, ReportTitle, ReportTitle2);
             }
             catch (Exception ex)
             {
@@ -1472,7 +1472,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 };
                 btnFull.Image = Properties.Resources.ZoomOut24;
                 btnFull.Text = V6Text.ZoomOut;
-                f.ShowDialog();
+                f.ShowDialog(this);
             }
         }
 

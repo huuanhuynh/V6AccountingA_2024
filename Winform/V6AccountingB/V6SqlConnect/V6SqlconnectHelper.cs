@@ -99,7 +99,7 @@ namespace V6SqlConnect
     //            {
     //                SaveFileDialog objSaveFile = new SaveFileDialog();
     //                objSaveFile.Filter = "Backup file(bak)|*.bak";
-    //                if (objSaveFile.ShowDialog() == DialogResult.OK)
+    //                if (objSaveFile.ShowDialog(null) == DialogResult.OK)
     //                {
     //                    Cursor.Current = Cursors.WaitCursor;
     //                    SqlConnection connect = new SqlConnection(conString);

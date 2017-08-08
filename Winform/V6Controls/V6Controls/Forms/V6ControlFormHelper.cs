@@ -1363,7 +1363,7 @@ namespace V6Controls.Forms
                         //    control.ShowErrorException(parent.GetType() + ".Load user define info error!", ex);
                         //}
                     };
-                    f.ShowDialog();
+                    f.ShowDialog(control);
                 }
             }
             catch (Exception ex)
@@ -2085,17 +2085,18 @@ namespace V6Controls.Forms
         /// <summary>
         /// Chọn máy in
         /// </summary>
-        /// <param name="rpDoc"></param>
+        /// <param name="owner">Form hoặc control gọi hàm này.</param>
+        /// <param name="rpDoc">Đổi tượng rpt cần in.</param>
         /// <param name="printerName">Máy in chọn sẵn.</param>
         /// <returns>Tên máy in đã chọn in.</returns>
-        public static string PrintRpt(ReportDocument rpDoc, string printerName)
+        public static string PrintRpt(IWin32Window owner, ReportDocument rpDoc, string printerName)
         {
             PrintDialog pt = new PrintDialog();
             pt.PrinterSettings.PrinterName = printerName;
             pt.AllowPrintToFile = false;
             pt.AllowCurrentPage = true;
             pt.AllowSomePages = true;
-            if (pt.ShowDialog() == DialogResult.OK)
+            if (pt.ShowDialog(owner) == DialogResult.OK)
             {
                 PrintRptToPrinter(rpDoc,
                     pt.PrinterSettings.PrinterName,
@@ -2106,6 +2107,7 @@ namespace V6Controls.Forms
             }
             return null;
         }
+
         public static void PrintRptToPrinter(ReportDocument rpDoc, string printerName, int copies, int startPage = 0, int endPage = 0)
         {
             //rpDoc.PrintOptions.PrinterName = printerName; Câu này không có tác dụng.
@@ -2382,7 +2384,19 @@ namespace V6Controls.Forms
             ReorderDataGridViewColumns(dgv, orderList.ToArray(), i);
         }
 
-        public static void ExportExcelTemplate(DataTable data, DataTable tbl2,
+        /// <summary>
+        /// Xuất Excel ra file theo file mẫu.
+        /// </summary>
+        /// <param name="owner">Form hoặc control chủ đang gọi hàm này.</param>
+        /// <param name="data">Dữ liệu xuất ra.</param>
+        /// <param name="tbl2">Dữ liệu phụ khi type = 2.</param>
+        /// <param name="ReportDocumentParameters">Các tham số gửi vào report, dùng để xuất lên các vị trí được cấu hình xml.</param>
+        /// <param name="MAU">key albc</param>
+        /// <param name="LAN">key albc</param>
+        /// <param name="ReportFile">key albc</param>
+        /// <param name="ExcelTemplateFileFull">File excel mẫu.</param>
+        /// <param name="defaultSaveName">Tên file lưu gợi ý.</param>
+        public static void ExportExcelTemplate(IWin32Window owner, DataTable data, DataTable tbl2,
             SortedDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string defaultSaveName)
         {
@@ -2400,7 +2414,7 @@ namespace V6Controls.Forms
                     Title = "Xuất excel.",
                     FileName = ChuyenMaTiengViet.ToUnSign(defaultSaveName)
                 };
-                if (save.ShowDialog() == DialogResult.OK)
+                if (save.ShowDialog(owner) == DialogResult.OK)
                 {
                     try
                     {
@@ -2535,7 +2549,22 @@ namespace V6Controls.Forms
             }
         }
         
-        public static void ExportExcelTemplateD(DataTable data, DataTable tbl2, string MODE,
+        /// <summary>
+        /// Xuất Excel ra file theo file mẫu Động.
+        /// </summary>
+        /// <param name="owner">Form hoặc control chủ đang gọi hàm này.</param>
+        /// <param name="data">Dữ liệu xuất ra.</param>
+        /// <param name="tbl2">Dữ liệu phụ khi type = 2.</param>
+        /// <param name="MODE">"V" ? "EXCEL2_VIEW" : "EXCEL2"</param>
+        /// <param name="ReportDocumentParameters">Các tham số gửi vào report, dùng để xuất lên các vị trí được cấu hình xml.</param>
+        /// <param name="MAU">key albc</param>
+        /// <param name="LAN">key albc</param>
+        /// <param name="ReportFile">key albc</param>
+        /// <param name="ExcelTemplateFileFull">File excel mẫu.</param>
+        /// <param name="defaultSaveName">Tên file lưu gợi ý.</param>
+        /// <param name="excelColumns">Các cột ,,</param>
+        /// <param name="excelHeaders">Điền tên các cột ,,</param>
+        public static void ExportExcelTemplateD(IWin32Window owner, DataTable data, DataTable tbl2, string MODE,
             SortedDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string defaultSaveName, string excelColumns, string excelHeaders)
         {
@@ -2553,7 +2582,7 @@ namespace V6Controls.Forms
                     Title = "Xuất excel.",
                     FileName = ChuyenMaTiengViet.ToUnSign(defaultSaveName)
                 };
-                if (save.ShowDialog() == DialogResult.OK)
+                if (save.ShowDialog(owner) == DialogResult.OK)
                 {
                     try
                     {
@@ -3710,6 +3739,8 @@ namespace V6Controls.Forms
 
         private static void ApplyLookup_KeyDown(object sender, KeyEventArgs e)
         {
+            IWin32Window owner =  sender as IWin32Window;
+            
             if (e.KeyData == (Keys.Control | Keys.Q))
             {
                 V6ControlsHelper.DisableLookup = true;
@@ -3736,26 +3767,26 @@ namespace V6Controls.Forms
                             }
                             else
                             {
-                                DoLookup();
+                                DoLookup(owner);
                             }
                         }
                     }
                     else if (!string.IsNullOrEmpty(LookupInfo.F_NAME))
                     {
-                        DoLookup();
+                        DoLookup(owner);
                     }
                 }
             }
             else if (e.KeyCode == Keys.F5 && !string.IsNullOrEmpty(LookupInfo_F_NAME))
             {
                 //LoadAutoCompleteSource();
-                DoLookup();
+                DoLookup(owner);
             }
             else if (e.KeyCode == Keys.F2)
             {
                 if (F2)
                 {
-                    DoLookup(true);
+                    DoLookup(owner, true);
                 }
             }
         }
@@ -3763,7 +3794,7 @@ namespace V6Controls.Forms
         private static void ApplyLookup_LostFocus(object sender, EventArgs e)
         {
             if (LookupInfo.NoInfo) return;
-
+            IWin32Window owner = sender as IWin32Window;
             //DoCharacterCasing();
             var textBox = (TextBox)sender;
             if (V6ControlsHelper.DisableLookup)
@@ -3790,13 +3821,13 @@ namespace V6Controls.Forms
                         }
                         else
                         {
-                            DoLookup(false);
+                            DoLookup(owner, false);
                         }
                     }
                 }
                 else if (!string.IsNullOrEmpty(LookupInfo.F_NAME))
                 {
-                    DoLookup(false);
+                    DoLookup(owner, false);
                 }
                 else
                 {
@@ -3811,7 +3842,7 @@ namespace V6Controls.Forms
             //}
         }
 
-        private static void DoLookup(bool multi = false)
+        private static void DoLookup(IWin32Window owner, bool multi = false)
         {
             if (LookupInfo.NoInfo) return;
             //_frm = FindForm();
@@ -3820,12 +3851,12 @@ namespace V6Controls.Forms
             var parentData = new SortedDictionary<string, object>();
             var fStand = new V6LookupTextboxForm(parentData, txt.Text, LookupInfo, " 1=1 " + filter, LookupInfo_F_NAME, multi, FilterStart);
             Looking = true;
-            fStand.ShowDialog();
+            fStand.ShowDialog(owner);
         }
 
-        private static void Lookup(bool multi = false)
+        private static void Lookup(IWin32Window owner, bool multi = false)
         {
-            DoLookup(multi);
+            DoLookup(owner, multi);
         }
 
         private static string _text_data = "";
@@ -3923,14 +3954,16 @@ namespace V6Controls.Forms
             Multiselect = false,
             Title = V6Setting.IsVietnamese?"Chọn file Excel":"Choose Excel file"
         };
+
         /// <summary>
         /// Chọn một file Excel trong ổ đĩa. Nếu không chọn trả về rỗng.
         /// </summary>
+        /// <para name="owner">Form hooặc control chủ gọi hàm</para>
         /// <returns></returns>
-        public static string ChooseExcelFile()
+        public static string ChooseExcelFile(IWin32Window owner)
         {
             if (V6Setting.IsDesignTime) return "";
-            if (excelOpenFileDialog.ShowDialog() == DialogResult.OK)
+            if (excelOpenFileDialog.ShowDialog(owner) == DialogResult.OK)
             {
                 return excelOpenFileDialog.FileName;
             }
@@ -3942,6 +3975,7 @@ namespace V6Controls.Forms
             Filter = "All file|*.*",
             Title = V6Setting.IsVietnamese ? "Chọn file lưu" : "Choose save file"
         };
+
         /// <summary>
         /// Chọn một file để lưu. Nếu không chọn trả về rỗng.
         /// </summary>

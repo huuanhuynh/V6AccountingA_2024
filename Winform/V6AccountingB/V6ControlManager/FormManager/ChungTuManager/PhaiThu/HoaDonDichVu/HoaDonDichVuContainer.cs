@@ -168,7 +168,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 tsFull.Image = Properties.Resources.ZoomOut24;
                 tsFull.Text = V6Text.ZoomOut;
 
-                f.ShowDialog();
+                f.ShowDialog(this);
             }
         }
 

@@ -913,7 +913,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 {
                     var initFilter = GetSoCt0InitFilter();
                     var f = new FilterView(Invoice.Alct0, "So_ct", "ARS20", _soCt0, initFilter);
-                    var d = f.ShowDialog();
+                    var d = f.ShowDialog(this);
 
                     //xu ly data
                     if (d == DialogResult.OK)
@@ -1109,7 +1109,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     {
                         var initFilter = GetSoCt0InitFilter();
                         var f = new FilterView(Invoice.Alct0, "So_ct", "ARS20", _soCt0, initFilter);
-                        var d = f.ShowDialog();
+                        var d = f.ShowDialog(this);
 
                         //xu ly data
                         if (d == DialogResult.OK)
@@ -2902,7 +2902,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     _timForm.ViewMode = true;
                     _timForm.Refresh0();
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                 }
             }
             catch (Exception ex)
@@ -2923,7 +2923,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         _timForm = new TimPhieuThuForm(this);
                     _timForm.ViewMode = false;
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                     btnSua.Focus();
                 }
                 else
@@ -3780,7 +3780,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
                         XuLyThemDetail(dic);
                     };
-                    f.ShowDialog();
+                    f.ShowDialog(this);
 
                 }
                 else if (_MA_GD == "A")
@@ -3844,7 +3844,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
                         XuLyThemDetail(dic);
                     };
-                    f.ShowDialog();
+                    f.ShowDialog(this);
                 }
             }
             catch (Exception ex)

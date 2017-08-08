@@ -376,7 +376,7 @@ namespace V6Controls
                         }
                     };
                     
-                    f.ShowDialog();
+                    f.ShowDialog(gridview);
                     gSum.Refresh();
                 }
             }
@@ -460,7 +460,7 @@ namespace V6Controls
             //tsFull.Image = Properties.Resources.ZoomOut24;
             //tsFull.Text = V6Text.ZoomOut;
 
-            f.ShowDialog();
+            f.ShowDialog(container);
         }
 
         #endregion datagridview
@@ -813,7 +813,7 @@ namespace V6Controls
                     }
                 };
 
-                f.ShowDialog();
+                f.ShowDialog(container);
             }
         }
 

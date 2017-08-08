@@ -715,7 +715,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     {
                         var initFilter = GetAlVitriTonInitFilter();
                         var f = new FilterView(Invoice.AlVitriTon, "Ma_vitri", "ALVITRITON", _maViTri, initFilter);
-                        var d = f.ShowDialog();
+                        var d = f.ShowDialog(this);
 
                         //xu ly data
                         if (d == DialogResult.OK)
@@ -3374,7 +3374,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     _timForm.ViewMode = true;
                     _timForm.Refresh0();
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                 }
             }
             catch (Exception ex)
@@ -3395,7 +3395,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         _timForm = new TimPhieuXuatDieuChuyenForm(this);
                     _timForm.ViewMode = false;
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                     btnSua.Focus();
                 }
                 else

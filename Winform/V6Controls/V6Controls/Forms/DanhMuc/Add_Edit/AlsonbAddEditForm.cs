@@ -72,7 +72,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 })
                 {
-                    if (chungtu.ShowDialog() == DialogResult.OK)
+                    if (chungtu.ShowDialog(this) == DialogResult.OK)
                     {
                         TxtMa_ctnb.Text = chungtu.VLists_ct;
 

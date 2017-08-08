@@ -94,7 +94,7 @@ namespace V6ControlManager.FormManager.ToolManager
         {
             try
             {
-                if(o.ShowDialog() == DialogResult.OK)
+                if(o.ShowDialog(this) == DialogResult.OK)
                 {
                     txtFile.Text = o.FileName;
                     OpenFile(txtFile.Text);
@@ -110,7 +110,7 @@ namespace V6ControlManager.FormManager.ToolManager
         {
             try
             {
-                if (o.ShowDialog() == DialogResult.OK)
+                if (o.ShowDialog(this) == DialogResult.OK)
                 {
                     txtReplace1.Text = o.FileName;
                 }
@@ -125,7 +125,7 @@ namespace V6ControlManager.FormManager.ToolManager
         {
             try
             {
-                if (o.ShowDialog() == DialogResult.OK)
+                if (o.ShowDialog(this) == DialogResult.OK)
                 {
                     //txtReplace2.Text = o.FileName;
                 }

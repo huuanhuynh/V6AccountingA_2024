@@ -309,7 +309,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     f.BusyTables = f_BusyTables;
                     f.EmptyTables = f_EmptyTables;
 
-                    var dr = f.ShowDialog();
+                    var dr = f.ShowDialog(this);
                     if (dr == DialogResult.OK)
                     {
                         hdcafe.MA_KHOPH = f.SelectedKhoID;

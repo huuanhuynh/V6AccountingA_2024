@@ -338,7 +338,7 @@ namespace V6ControlManager.FormManager.NhanSu
                             if (f != null)
                             {
                                 f.DoChangeCodeFinish += f_DoChangeCodeFinish;
-                                f.ShowDialog();
+                                f.ShowDialog(this);
                             }
                         }
                         else
@@ -504,7 +504,7 @@ namespace V6ControlManager.FormManager.NhanSu
             {
                 if (V6Login.UserRight.AllowPrint("", CurrentTable.ToString().ToUpper() + "6"))
                 {
-                    FormManagerHelper.ShowDanhMucPrint(_tableName, ReportFile, ReportTitle, ReportTitle2);
+                    FormManagerHelper.ShowDanhMucPrint(this, _tableName, ReportFile, ReportTitle, ReportTitle2);
                 }
                 else
                 {
@@ -1043,7 +1043,7 @@ namespace V6ControlManager.FormManager.NhanSu
                             TABLE_NAME == "V6OPTION"
                             || codeform.StartsWith("8"))
                         {
-                            check = new ConfirmPassword().ShowDialog() == DialogResult.OK;
+                            check = new ConfirmPassword().ShowDialog(this) == DialogResult.OK;
                         }
                     }
 

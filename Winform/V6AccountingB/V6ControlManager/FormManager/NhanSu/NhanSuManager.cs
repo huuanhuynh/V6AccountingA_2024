@@ -93,11 +93,11 @@ namespace V6ControlManager.FormManager.NhanSu
                         var check = true;
                         if (TABLE_NAME == "V6USER")
                         {
-                            check = new ConfirmPassword().ShowDialog() == DialogResult.OK;
+                            check = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
                         }
                         else if (TABLE_NAME == "ALDM" || TABLE_NAME == "V6LOOKUP")
                         {
-                            check = new ConfirmPasswordV6().ShowDialog() == DialogResult.OK;
+                            check = new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
                         }
 
                         if (V6Login.UserRight.AllowRun(item_id, codeform))
@@ -109,7 +109,7 @@ namespace V6ControlManager.FormManager.NhanSu
                                 if (TABLE_NAME == "ALKC")
                                 {
                                     var filterForm = new YearFilterForm(TABLE_NAME);
-                                    if (filterForm.ShowDialog() == DialogResult.OK)
+                                    if (filterForm.ShowDialog(owner) == DialogResult.OK)
                                     {
 
                                         where = filterForm.QueryString;

@@ -290,7 +290,7 @@ namespace V6AccountingB
             if (seri == "allow" && allow)
             {
                 var f = new FormLogin();
-                if (f.ShowDialog() == DialogResult.OK && f.ReadyLogin)
+                if (f.ShowDialog(null) == DialogResult.OK && f.ReadyLogin)
                 {
                     try
                     {
@@ -311,12 +311,12 @@ namespace V6AccountingB
                 V6ControlFormHelper.ShowInfoMessage(V6Setting.IsVietnamese ? "Kiểm tra máy chủ!" : "Check server!");
                 return;
             }
-            else if (License.CheckLicenseKey(seri, key) || new FormKey(seri).ShowDialog() == DialogResult.OK)
+            else if (License.CheckLicenseKey(seri, key) || new FormKey(seri).ShowDialog(null) == DialogResult.OK)
                 //var checkLicenseKeyOk = License.CheckLicenseKey(seri, key);
                 //if (checkLicenseKeyOk)
             {
                 var f = new FormLogin();
-                if (f.ShowDialog() == DialogResult.OK && f.ReadyLogin)
+                if (f.ShowDialog(null) == DialogResult.OK && f.ReadyLogin)
                 {
                     try
                     {
@@ -334,7 +334,7 @@ namespace V6AccountingB
             }
             //else // Enter License
             //{
-            //    while (new FormKey(seri).ShowDialog() == DialogResult.No)
+            //    while (new FormKey(seri).ShowDialog(null) == DialogResult.No)
             //    {
             //        ;
             //    }

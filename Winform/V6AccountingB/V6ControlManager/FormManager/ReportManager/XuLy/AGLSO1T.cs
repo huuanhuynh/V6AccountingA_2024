@@ -86,7 +86,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 if (InLienTuc) // thì chọn máy in trước
                 {
-                    DialogResult dr = p.ShowDialog();
+                    DialogResult dr = p.ShowDialog(this);
                     if (dr == DialogResult.OK)
                     {
                         _PrinterName = p.PrinterSettings.PrinterName;
@@ -174,7 +174,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //{
                         //    f.Close();
                         //};
-                        //f.ShowDialog();
+                        //f.ShowDialog(this);
 
                         SetStatus2Text();
                         remove_list_g.Add(row);
@@ -255,7 +255,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 if (InLienTuc) // thì chọn máy in trước
                 {
-                    DialogResult dr = p.ShowDialog();
+                    DialogResult dr = p.ShowDialog(this);
                     if (dr == DialogResult.OK)
                     {
                         _PrinterName = p.PrinterSettings.PrinterName;

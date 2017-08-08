@@ -934,7 +934,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 };
                 btnFull.Image = Properties.Resources.ZoomOut24;
                 btnFull.Text = V6Text.ZoomOut;
-                f.ShowDialog();
+                f.ShowDialog(this);
             }
         }
 

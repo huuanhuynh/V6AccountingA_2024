@@ -521,7 +521,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 var save = new SaveFileDialog {Filter = @"Excel files (*.xls)|*.xls|Xlsx|*.xlsx"};
-                if (save.ShowDialog() == DialogResult.OK)
+                if (save.ShowDialog(this) == DialogResult.OK)
                 {
                     try
                     {   
@@ -552,7 +552,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             myPrintDialog.ShowHelp = false;
             myPrintDialog.ShowNetwork = false;
 
-            if (myPrintDialog.ShowDialog() != DialogResult.OK)
+            if (myPrintDialog.ShowDialog(this) != DialogResult.OK)
                 return false;
 
             MyPrintDocument.DocumentName = _reportCaption;
@@ -712,7 +712,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 f.Controls.Add(hoaDonForm);
 
 
-                                f.ShowDialog();
+                                f.ShowDialog(this);
                                 SetStatus2Text();
                             }
                         }
@@ -750,7 +750,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //f.WindowState = FormWindowState.Maximized;
             //f.Controls.Add(view);
             //view.btnNhan_Click(null, null);
-            //f.ShowDialog();
+            //f.ShowDialog(this);
             SetStatus2Text();
         }
 

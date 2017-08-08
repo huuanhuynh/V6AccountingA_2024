@@ -4116,7 +4116,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     _timForm.ViewMode = true;
                     _timForm.Refresh0();
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                 }
             }
             catch (Exception ex)
@@ -4137,7 +4137,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         _timForm = new TimPhieuNhapMuaForm(this);
                     _timForm.ViewMode = false;
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                     btnSua.Focus();
                 }
                 else
@@ -4976,7 +4976,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     {
                         CDH_PNMForm chon = new CDH_PNMForm(this, txtMadvcs.Text, txtMaKh.Text);
                         chon.AcceptSelectEvent += chon_AcceptSelectEvent;
-                        chon.ShowDialog();
+                        chon.ShowDialog(this);
                     }
                     else
                     {

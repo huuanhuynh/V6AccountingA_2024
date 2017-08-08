@@ -65,11 +65,11 @@ namespace V6ControlManager.FormManager.MenuManager
                             //var check = true;
                             if (TABLE_NAME == "V6USER")
                             {
-                                check = new ConfirmPassword().ShowDialog() == DialogResult.OK;
+                                check = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
                             }
                             else if (TABLE_NAME == "ALDM" || TABLE_NAME == "V6LOOKUP" || TABLE_NAME == "ALREPORT1" || TABLE_NAME == "ALREPORT")
                             {
-                                check = new ConfirmPasswordV6().ShowDialog() == DialogResult.OK;
+                                check = new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
                             }
 
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
@@ -93,7 +93,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                     if (TABLE_NAME == "ALKC")
                                     {
                                         var filterForm = new YearFilterForm(TABLE_NAME);
-                                        if (filterForm.ShowDialog() == DialogResult.OK)
+                                        if (filterForm.ShowDialog(owner) == DialogResult.OK)
                                         {
 
                                             where = filterForm.QueryString;
@@ -114,11 +114,11 @@ namespace V6ControlManager.FormManager.MenuManager
                                         {
                                             if (check_admin)
                                             {
-                                                check = new ConfirmPassword().ShowDialog() == DialogResult.OK;
+                                                check = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
                                             }
                                             else if (check_v6)
                                             {
-                                                check = new ConfirmPasswordV6().ShowDialog() == DialogResult.OK;
+                                                check = new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
                                             }
                                         }
 
@@ -165,7 +165,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                     tableNamesd == "ACOSXLSX_ABSPDD" || tableNamesd == "ACOSXLSX_ABSPYTCP")
                                 {
                                     var filterForm = new YearMonthFilterForm(tableNamesd);
-                                    if (filterForm.ShowDialog() == DialogResult.OK)
+                                    if (filterForm.ShowDialog(owner) == DialogResult.OK)
                                     {
                                         var where = filterForm.QueryString;
                                         c = new SoDuView(item_id, mButton.Text, tableNamesd)
@@ -273,12 +273,12 @@ namespace V6ControlManager.FormManager.MenuManager
                             {
                                 if (control_press)
                                 {
-                                    check1 = new ConfirmPasswordV6().ShowDialog() == DialogResult.OK;
+                                    check1 = new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
                                     getInitFilter = "";
                                 }
                                 else
                                 {
-                                    check1 = new ConfirmPassword().ShowDialog() == DialogResult.OK;
+                                    check1 = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
                                     getInitFilter = V6Login.GetInitFilter(tableNameEdit);
                                 }
                             }
@@ -302,11 +302,11 @@ namespace V6ControlManager.FormManager.MenuManager
                                     {
                                         if (check_admin)
                                         {
-                                            check = new ConfirmPassword().ShowDialog() == DialogResult.OK;
+                                            check = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
                                         }
                                         else if (check_v6)
                                         {
-                                            check = new ConfirmPasswordV6().ShowDialog() == DialogResult.OK;
+                                            check = new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
                                         }
                                     }
 
@@ -368,7 +368,7 @@ namespace V6ControlManager.FormManager.MenuManager
                             #region ==== V6CLIENTS V6ONLINES ====
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
-                                check = new ConfirmPassword().ShowDialog() == DialogResult.OK;
+                                check = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
 
                                 if (check)
                                 {
@@ -436,7 +436,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                 if (maCt == "S05") // Aldmvt
                                 {
                                     var filterForm = new AldmvtFilterForm();
-                                    if (filterForm.ShowDialog() == DialogResult.OK)
+                                    if (filterForm.ShowDialog(owner) == DialogResult.OK)
                                     {
                                         where = filterForm.QueryString;
                                         c = new SoDuView2(mButton.Text, maCt, item_id)
@@ -452,7 +452,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                 if (maCt == "S10" + "") // acosxlt_aldmvt
                                 {
                                     var filterForm = new AldmvtSXLTFilterForm();
-                                    if (filterForm.ShowDialog() == DialogResult.OK)
+                                    if (filterForm.ShowDialog(owner) == DialogResult.OK)
                                     {
                                         where = filterForm.QueryString;
                                         c = new SoDuView2(mButton.Text, maCt, item_id)
@@ -468,7 +468,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                     if (maCt == "S11" + "") // acosxlt_aldmvt
                                 {
                                     var filterForm = new AldmvtSXDHFilterForm();
-                                    if (filterForm.ShowDialog() == DialogResult.OK)
+                                    if (filterForm.ShowDialog(owner) == DialogResult.OK)
                                     {
                                         where = filterForm.QueryString;
                                         c = new SoDuView2(mButton.Text, maCt, item_id)
@@ -484,7 +484,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                 else if (maCt == "S0M") // Alkmb
                                 {
                                     var filterForm = new AlkmbFilterForm();
-                                    if (filterForm.ShowDialog() == DialogResult.OK)
+                                    if (filterForm.ShowDialog(owner) == DialogResult.OK)
                                     {
                                         where = filterForm.QueryString;
                                         c = new SoDuView2(mButton.Text, maCt, item_id)
@@ -500,7 +500,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                 else if (maCt == "S0N") // Akhungck
                                 {
                                     var filterForm = new AkhungckFilterForm();
-                                    if (filterForm.ShowDialog() == DialogResult.OK)
+                                    if (filterForm.ShowDialog(owner) == DialogResult.OK)
                                     {
                                         where = filterForm.QueryString;
                                         c = new SoDuView2(mButton.Text, maCt, item_id)
@@ -516,7 +516,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                 else if (maCt == "S04")
                                 {
                                     var filterForm = new YearFilterForm(maCt);
-                                    if (filterForm.ShowDialog() == DialogResult.OK)
+                                    if (filterForm.ShowDialog(owner) == DialogResult.OK)
                                     {
                                         where = filterForm.QueryString;
                                         c = new SoDuView2(mButton.Text, maCt, item_id)
@@ -597,11 +597,11 @@ namespace V6ControlManager.FormManager.MenuManager
                             TABLE_NAME = codeform.Substring(1).ToUpper();
                             if (TABLE_NAME == "V6USER")
                             {
-                                check = new ConfirmPassword().ShowDialog() == DialogResult.OK;
+                                check = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
                             }
                             else if (TABLE_NAME == "ALDM" || TABLE_NAME == "V6LOOKUP" )
                             {
-                                check = new ConfirmPasswordV6().ShowDialog() == DialogResult.OK;
+                                check = new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
                             }
 
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
@@ -624,11 +624,11 @@ namespace V6ControlManager.FormManager.MenuManager
                                     {
                                         if (check_admin)
                                         {
-                                            check = new ConfirmPassword().ShowDialog() == DialogResult.OK;
+                                            check = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
                                         }
                                         else if (check_v6)
                                         {
-                                            check = new ConfirmPasswordV6().ShowDialog() == DialogResult.OK;
+                                            check = new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
                                         }
                                     }
 

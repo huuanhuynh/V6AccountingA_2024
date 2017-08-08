@@ -347,7 +347,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        public static void ChooseColor(TextBox txtR, TextBox txtG, TextBox txtB, Label lblR, Label lblG, Label lblB)
+        public void ChooseColor(TextBox txtR, TextBox txtG, TextBox txtB, Label lblR, Label lblG, Label lblB)
         {
             int r = 0, g = 0, b = 0;
             int.TryParse(txtR.Text, out r);
@@ -356,7 +356,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             Color c = Color.FromArgb(r, g, b);
             ColorDialog d = new ColorDialog();
             d.Color = c;
-            if (d.ShowDialog() == DialogResult.OK)
+            if (d.ShowDialog(this) == DialogResult.OK)
             {
                 lblR.BackColor = d.Color;
                 lblG.BackColor = d.Color;

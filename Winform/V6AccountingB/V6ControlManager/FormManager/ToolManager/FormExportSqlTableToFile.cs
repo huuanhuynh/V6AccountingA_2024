@@ -87,7 +87,7 @@ namespace V6ControlManager.FormManager.ToolManager
                     SaveFileDialog o = new SaveFileDialog();
                     o.Filter = "Excel 2003|*.xls|Excel 2007-2010|*.xlsx|DatabaseFox|*.dbf|Text file|*.txt|Xml file|*.xml";
 
-                    if (o.ShowDialog() == DialogResult.OK && o.FileName != null)
+                    if (o.ShowDialog(this) == DialogResult.OK && o.FileName != null)
                     {
                         string ext = Path.GetExtension(o.FileName).ToLower();
                         bool no = false;
@@ -143,7 +143,7 @@ namespace V6ControlManager.FormManager.ToolManager
                     SaveFileDialog o = new SaveFileDialog();
                     o.Filter = "Excel 2003|*.xls|Excel 2007-2010|*.xlsx|DatabaseFox|*.dbf|Text file|*.txt";
 
-                    if (o.ShowDialog() == DialogResult.OK && o.FileName != null)
+                    if (o.ShowDialog(this) == DialogResult.OK && o.FileName != null)
                     {
                         string ext = Path.GetExtension(o.FileName).ToLower();
                         bool no = false;

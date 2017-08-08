@@ -180,7 +180,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                             V6ControlFormHelper.ShowInfoMessage("Not allowed!");
                         }
                     };
-                    f.ShowDialog();
+                    f.ShowDialog(null);
                 }
                 else
                 {

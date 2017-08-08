@@ -44,7 +44,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             try
             {
-                string file = V6ControlFormHelper.ChooseExcelFile();
+                string file = V6ControlFormHelper.ChooseExcelFile(this);
                 if (!string.IsNullOrEmpty(file))
                 {
                     txtFile.Text = file;

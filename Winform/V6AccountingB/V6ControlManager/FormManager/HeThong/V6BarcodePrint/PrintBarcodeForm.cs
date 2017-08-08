@@ -243,7 +243,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             
             //printview = new PrintPreviewDialog();
             //printview.Document = document;
-            //printview.ShowDialog();
+            //printview.ShowDialog(this);
 
             PrintDialog printdialog1 = new PrintDialog();
             printdialog1.AllowPrintToFile = true;
@@ -264,7 +264,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             //printdialog1.
             document.PrintPage += document_PrintPage;
 
-            if (printdialog1.ShowDialog() == DialogResult.OK)
+            if (printdialog1.ShowDialog(this) == DialogResult.OK)
             {
                 //printdialog1.Document = document;
                 document.PrinterSettings = printdialog1.PrinterSettings;
@@ -298,7 +298,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             printview.ShowIcon = false;
             //Tắt nút in.
             ((ToolStripButton)((ToolStrip)printview.Controls[1]).Items[0]).Enabled = false;
-            printview.ShowDialog();
+            printview.ShowDialog(this);
         }
 
         BarcodeLib _barcodeLib = new BarcodeLib();

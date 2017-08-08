@@ -951,7 +951,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 {
                     CPXHangTraLaiForm chonpx = new CPXHangTraLaiForm(this, txtMadvcs.Text, txtMaKh.Text);
                     chonpx.AcceptSelectEvent += chonpx_AcceptSelectEvent;
-                    chonpx.ShowDialog();
+                    chonpx.ShowDialog(this);
                 }
                 else
                 {
@@ -2954,7 +2954,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     _timForm.ViewMode = true;
                     _timForm.Refresh0();
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                 }
             }
             catch (Exception ex)
@@ -2975,7 +2975,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         _timForm = new TimHangTraLaiForm(this);
                     _timForm.ViewMode = false;
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                     btnSua.Focus();
                 }
                 else

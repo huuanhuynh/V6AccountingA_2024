@@ -136,7 +136,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         formView.Dispose();
                     };
 
-                    formView.ShowDialog();
+                    formView.ShowDialog(this);
                     SetStatus2Text();
                 }
             }

@@ -4454,7 +4454,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     _timForm.ViewMode = true;
                     _timForm.Refresh0();
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                 }
             }
             catch (Exception ex)
@@ -4475,7 +4475,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         _timForm = new TimHoaDonFormCafe(this);
                     _timForm.ViewMode = false;
                     _timForm.Visible = false;
-                    _timForm.ShowDialog();
+                    _timForm.ShowDialog(this);
                     btnSua.Focus();
                 }
                 else
@@ -5856,7 +5856,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 {
                     CDH_HoaDonForm chon = new CDH_HoaDonForm(dateNgayCT.Value, txtMadvcs.Text, txtMaKh.Text);
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
-                    chon.ShowDialog();
+                    chon.ShowDialog(this);
                 }
                 else
                 {
@@ -5884,7 +5884,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 {
                     CBG_HoaDonForm chon = new CBG_HoaDonForm(txtMadvcs.Text, txtMaKh.Text);
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
-                    chon.ShowDialog();
+                    chon.ShowDialog(this);
                 }
                 else
                 {
@@ -6087,7 +6087,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     {
                         CPX_HoaDonForm chon = new CPX_HoaDonForm(dateNgayCT.Value, txtMadvcs.Text, txtMaKh.Text);
                         chon.AcceptSelectEvent += chon_AcceptSelectEvent;
-                        chon.ShowDialog();
+                        chon.ShowDialog(this);
                     }
                     else
                     {
