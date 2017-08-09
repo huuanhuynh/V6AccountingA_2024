@@ -154,6 +154,11 @@ namespace V6Controls
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            if (this is V6VvarTextBox)
+            {
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+
             if (keyData == Keys.Enter && UseSendTabOnEnter)
             {
                 SendKeys.Send("{TAB}");
@@ -175,6 +180,10 @@ namespace V6Controls
                     if (MaxLength == 1)
                     {
                         Text = c.ToString();
+                    }
+                    else if (TextLength > 0 && SelectionStart == MaxLength)
+                    {
+                        Text = Text.Substring(0, TextLength-1) + c;
                     }
                 }
             }
@@ -204,6 +213,39 @@ namespace V6Controls
             var handler = GrayTextChanged;
             if (handler != null) handler(this, EventArgs.Empty);
         }
+
+        protected void Do_Enter_ColorEffect()
+        {
+            if (!DesignMode && _enableColorEffect)
+            {
+                BackColor = ReadOnly ? _enterColorReadOnly : _enterColor;
+            }
+        }
+        
+        protected void Do_MouseEnter_ColorEffect()
+        {
+            if (_enableColorEffect && _enableColorEffectOnMouseEnter && !Focused)
+            {
+                BackColor = _hoverColor;
+            }
+        }
+
+        protected void Do_MouseLeave_ColorEffect()
+        {
+            if (_enableColorEffect && _enableColorEffectOnMouseEnter && !Focused)
+            {
+                BackColor = ReadOnly ? _leaveColorReadOnly : _leaveColor;
+            }
+        }
+
+        protected void Do_LostFocus_ColorEffect()
+        {
+            if (!DesignMode && _enableColorEffect)
+            {
+                BackColor = ReadOnly ? _leaveColorReadOnly : _leaveColor;
+            }
+        }
+
 
         protected string _cuetext = "";
         [Category("V6")]
@@ -584,19 +626,13 @@ namespace V6Controls
         protected virtual void V6ColorTextBox_Enter(object sender, EventArgs e)
         {
             gotfocustext = Text;
-            if (!DesignMode && _enableColorEffect)
-            {
-                BackColor = ReadOnly ? _enterColorReadOnly : _enterColor;
-            }
+            Do_Enter_ColorEffect();
         }
 
         protected virtual void V6ColorTextBox_LostFocus(object sender, EventArgs e)
         {
             DoCharacterCasing();
-            if (!DesignMode && _enableColorEffect)
-            {
-                BackColor = ReadOnly ? _leaveColorReadOnly : _leaveColor;
-            }
+            Do_LostFocus_ColorEffect();
 
             if (!ReadOnly)
             {
@@ -648,18 +684,12 @@ namespace V6Controls
 
         private void V6ColorTextBox_MouseEnter(object sender, EventArgs e)
         {
-            if (_enableColorEffect && _enableColorEffectOnMouseEnter && !Focused)
-            {
-                BackColor = _hoverColor;
-            }
+            Do_MouseEnter_ColorEffect();
         }
 
         private void V6ColorTextBox_MouseLeave(object sender, EventArgs e)
         {
-            if (_enableColorEffect && _enableColorEffectOnMouseEnter && !Focused)
-            {
-                BackColor = ReadOnly ? _leaveColorReadOnly : _leaveColor;
-            }
+            Do_MouseLeave_ColorEffect();
         }
         #endregion events
 
