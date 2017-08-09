@@ -1921,12 +1921,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                             .ShowMessage(message);
                         return;
                     }
-                    if (parent is PhieuNhapKhoContainer)
-                    {
-                        ((PhieuNhapKhoContainer)parent)
-                            .ShowMessage(message);
-                        return;
-                    }
                     else
                     {
                         parent = parent.Parent;

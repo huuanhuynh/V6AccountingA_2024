@@ -1260,12 +1260,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                             .ShowMessage(message);
                         return;
                     }
-                    if (parent is PhieuKeToanContainer)
-                    {
-                        ((PhieuKeToanContainer)parent)
-                            .ShowMessage(message);
-                        return;
-                    }
                     else
                     {
                         parent = parent.Parent;

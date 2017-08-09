@@ -2278,12 +2278,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                             .ShowMessage(message);
                         return;
                     }
-                    if (parent is HangTraLaiContainer)
-                    {
-                        ((HangTraLaiContainer)parent)
-                            .ShowMessage(message);
-                        return;
-                    }
                     else
                     {
                         parent = parent.Parent;

@@ -2181,12 +2181,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                             .ShowMessage(message);
                         return;
                     }
-                    if (parent is PhieuThuContainer)
-                    {
-                        ((PhieuThuContainer)parent)
-                            .ShowMessage(message);
-                        return;
-                    }
                     else
                     {
                         parent = parent.Parent;

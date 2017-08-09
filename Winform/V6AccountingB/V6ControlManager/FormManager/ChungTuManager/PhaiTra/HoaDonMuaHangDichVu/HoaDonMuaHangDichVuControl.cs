@@ -2182,12 +2182,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                             .ShowMessage(message);
                         return;
                     }
-                    if (parent is HoaDonMuaHangDichVuContainer)
-                    {
-                        ((HoaDonMuaHangDichVuContainer)parent)
-                            .ShowMessage(message);
-                        return;
-                    }
                     else
                     {
                         parent = parent.Parent;

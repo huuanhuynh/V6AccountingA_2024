@@ -2109,12 +2109,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                             .ShowMessage(message);
                         return;
                     }
-                    if (parent is PhieuXuatTraLaiNCCContainer)
-                    {
-                        ((PhieuXuatTraLaiNCCContainer)parent)
-                            .ShowMessage(message);
-                        return;
-                    }
                     else
                     {
                         parent = parent.Parent;

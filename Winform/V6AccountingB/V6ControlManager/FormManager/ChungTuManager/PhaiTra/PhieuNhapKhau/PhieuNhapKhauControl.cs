@@ -3335,12 +3335,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                             .ShowMessage(message);
                         return;
                     }
-                    if (parent is PhieuNhapKhauContainer)
-                    {
-                        ((PhieuNhapKhauContainer)parent)
-                            .ShowMessage(message);
-                        return;
-                    }
                     else
                     {
                         parent = parent.Parent;

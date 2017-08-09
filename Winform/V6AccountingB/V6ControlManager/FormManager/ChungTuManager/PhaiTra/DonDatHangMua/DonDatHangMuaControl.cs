@@ -1972,12 +1972,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                             .ShowMessage(message);
                         return;
                     }
-                    if (parent is DonDatHangMuaContainer)
-                    {
-                        ((DonDatHangMuaContainer)parent)
-                            .ShowMessage(message);
-                        return;
-                    }
                     else
                     {
                         parent = parent.Parent;

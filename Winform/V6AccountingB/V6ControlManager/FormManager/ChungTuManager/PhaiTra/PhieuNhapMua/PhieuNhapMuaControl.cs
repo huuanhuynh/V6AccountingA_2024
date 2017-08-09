@@ -3430,12 +3430,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             .ShowMessage(message);
                         return;
                     }
-                    if (parent is PhieuNhapMuaContainer)
-                    {
-                        ((PhieuNhapMuaContainer)parent)
-                            .ShowMessage(message);
-                        return;
-                    }
                     
                     parent = parent.Parent;
                 }

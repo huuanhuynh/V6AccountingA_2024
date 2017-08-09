@@ -49,72 +49,44 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 return new HoaDonCafeContainer(maCt, itemId, false);
 
             return new ChungTuChungContainer(maCt, itemId, false);
-            switch (maCt)
-            {
-                #region ==== Phải thu ====
-                case "SOA":// Hóa đơn bán hàng kiêm phiếu xuất
-                    //return new HoaDonContainer(itemId) { Name = itemId };
-                case "SOH":// Đơn đặt hàng bán
-                    return new DonDatHangBanContainer(itemId) { Name = itemId };
-                case "SOR":// Báo giá.
-                    return new BaoGiaContainer(maCt, itemId, true);
-                case "AR1":// Hóa đơn dịch vụ
-                    return new HoaDonDichVuContainer(itemId) { Name = itemId };
-                case "SOF":// Phiếu nhập hàng bán bị trả lại
-                    return new HangTraLaiContainer(itemId) { Name = itemId };
-                #endregion phải thu
-
-                #region ==== Tồn kho ====
-                case "IXA":// Phiếu xuất kho
-                    return new PhieuXuatKhoContainer(itemId) { Name = itemId };
-                case "IXB":// Phiếu xuất điều chuyển
-                    return new PhieuXuatDieuChuyenContainer(itemId) { Name = itemId };
-                case "IND":// Phiếu NHẬP kho
-                    return new PhieuNhapKhoContainer(itemId) { Name = itemId };
-                #endregion tồn kho
-
-                #region ==== Tiền mặt ====
-                case "BC1":// Bao co
-                    //return new BaoCoContainer(itemId) { Name = itemId };
-                case "TA1":// Phieu thu
-                    return new PhieuThuContainer(maCt, itemId) { Name = itemId };
-
-                case "BN1":// Bao no
-                    //return new BaoNoContainer(itemId) { Name = itemId };
-                case "CA1":// Phieu chi
-                    return new PhieuChiContainer(maCt, itemId) { Name = itemId };
-                
-                
-                #endregion tiền mặt
-
-                #region ==== Phải trả ====
-                case "POA":
-                    return new PhieuNhapMuaContainer(itemId) { Name = itemId };
-                case "POH":
-                    return new DonDatHangMuaContainer(itemId) { Name = itemId };
-                case "POB":
-                    return new PhieuNhapKhauContainer(itemId) { Name = itemId };
-                case "POC":
-                    return new PhieuNhapChiPhiMuaHangContainer(itemId) { Name = itemId };
-                case "AP1":
-                    return new HoaDonMuaHangDichVuContainer(itemId) { Name = itemId };
-                case "AP2":
-                    return new PhieuThanhToanTamUngContainer(itemId) { Name = itemId };
-                case "IXC":
-                    return new PhieuXuatTraLaiNCCContainer(itemId) { Name = itemId };
-                #endregion phải trả
-
-                #region ==== Tổng hợp ====
-                // Phiếu kế toán dùng chung
-                case "GL1":
-                case "AP9":
-                case "AR9":
-                    return new PhieuKeToanContainer(maCt, itemId) { Name = itemId };
-                #endregion tổng hợp
-
-                default:
-                    return new ChungTuChungContainer(maCt, itemId, false);
-            }
+            //switch (maCt)
+            //{
+            //    #region ==== Phải thu ====
+            //    case "SOA":// Hóa đơn bán hàng kiêm phiếu xuất
+            //    case "SOH":// Đơn đặt hàng bán
+            //    case "SOR":// Báo giá.
+            //    case "AR1":// Hóa đơn dịch vụ
+            //    case "SOF":// Phiếu nhập hàng bán bị trả lại
+            //    #endregion phải thu
+            //    #region ==== Tồn kho ====
+            //    case "IXA":// Phiếu xuất kho
+            //    case "IXB":// Phiếu xuất điều chuyển
+            //    case "IND":// Phiếu NHẬP kho
+            //    #endregion tồn kho
+            //    #region ==== Tiền mặt ====
+            //    case "BC1":// Bao co
+            //    case "TA1":// Phieu thu
+            //    case "BN1":// Bao no
+            //    case "CA1":// Phieu chi
+            //    #endregion tiền mặt
+            //    #region ==== Phải trả ====
+            //    case "POA":// PhieuNhapMua
+            //    case "POH":// DonDatHangMua
+            //    case "POB":// PhieuNhapKhau
+            //    case "POC":// PhieuNhapChiPhiMuaHang
+            //    case "AP1":// HoaDonMuaHangDichVu
+            //    case "AP2":// PhieuThanhToanTamUng
+            //    case "IXC":// PhieuXuatTraLaiNCC
+            //    #endregion phải trả
+            //    #region ==== Tổng hợp ====
+            //    // Phiếu kế toán dùng chung
+            //    case "GL1":
+            //    case "AP9":
+            //    case "AR9":
+            //    #endregion tổng hợp
+            //    default:
+            //        return new ChungTuChungContainer(maCt, itemId, false);
+            //}
         }
 
         /// <summary>

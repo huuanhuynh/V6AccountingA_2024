@@ -278,12 +278,6 @@
     <Compile Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\TimBaoGiaForm.Designer.cs">
       <DependentUpon>TimBaoGiaForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanContainer.Designer.cs">
-      <DependentUpon>DonDatHangBanContainer.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -470,12 +464,6 @@
     <Compile Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\Loc\TimDonDatHangMuaForm.Designer.cs">
       <DependentUpon>TimDonDatHangMuaForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\DonDatHangMuaContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\DonDatHangMuaContainer.Designer.cs">
-      <DependentUpon>DonDatHangMuaContainer.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\DonDatHangMuaControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -536,12 +524,6 @@
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuThanhToanTamUng\Loc\TimPhieuThanhToanTamUngForm.Designer.cs">
       <DependentUpon>TimPhieuThanhToanTamUngForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuThanhToanTamUng\PhieuThanhToanTamUngContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuThanhToanTamUng\PhieuThanhToanTamUngContainer.Designer.cs">
-      <DependentUpon>PhieuThanhToanTamUngContainer.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuThanhToanTamUng\PhieuThanhToanTamUngControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -589,12 +571,6 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiThu\HangTraLai\HangTraLaiControl.Designer.cs">
       <DependentUpon>HangTraLaiControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\HangTraLai\HangTraLaiContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\HangTraLai\HangTraLaiContainer.Designer.cs">
-      <DependentUpon>HangTraLaiContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiThu\HangTraLai\Loc\LocKetQuaHangTraLai.cs">
       <SubType>UserControl</SubType>
@@ -650,12 +626,6 @@
     <Compile Include="FormManager\ChungTuManager\PhaiTra\HoaDonMuaHangDichVu\Loc\TimHoaDonMuaHangDichVuForm.Designer.cs">
       <DependentUpon>TimHoaDonMuaHangDichVuForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\HoaDonMuaHangDichVu\HoaDonMuaHangDichVuContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\HoaDonMuaHangDichVu\HoaDonMuaHangDichVuContainer.Designer.cs">
-      <DependentUpon>HoaDonMuaHangDichVuContainer.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\HoaDonMuaHangDichVu\HoaDonMuaHangDichVuControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -698,12 +668,6 @@
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThongTinHangTraLai.Designer.cs">
       <DependentUpon>CPNThongTinHangTraLai.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\PhieuXuatTraLaiNCC_Container.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\PhieuXuatTraLaiNCC_Container.Designer.cs">
-      <DependentUpon>PhieuXuatTraLaiNCC_Container.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\PhieuXuatTraLaiNCC_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -739,12 +703,6 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\Loc\TimPhieuXuatTraLaiNCC_Form.Designer.cs">
       <DependentUpon>TimPhieuXuatTraLaiNCC_Form.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVu\HoaDonDichVuContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVu\HoaDonDichVuContainer.Designer.cs">
-      <DependentUpon>HoaDonDichVuContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVu\HoaDonDichVuControl.cs">
       <SubType>UserControl</SubType>
@@ -836,12 +794,6 @@
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapChiPhiMuaHang\ChonPhieuNhap\CPN_PhieuNhapChiPhiMuaHangForm.Designer.cs">
       <DependentUpon>CPN_PhieuNhapChiPhiMuaHangForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\TongHop\PhieuKeToan\PhieuKeToanContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TongHop\PhieuKeToan\PhieuKeToanContainer.Designer.cs">
-      <DependentUpon>PhieuKeToanContainer.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ChungTuManager\TongHop\PhieuKeToan\PhieuKeToanControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -908,12 +860,6 @@
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\Loc\TimPhieuNhapKhoForm.Designer.cs">
       <DependentUpon>TimPhieuNhapKhoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\PhieuNhapKhoContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\PhieuNhapKhoContainer.Designer.cs">
-      <DependentUpon>PhieuNhapKhoContainer.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\PhieuNhapKhoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -949,12 +895,6 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapChiPhiMuaHang\Loc\TimPhieuNhapChiPhiMuaHangForm.Designer.cs">
       <DependentUpon>TimPhieuNhapChiPhiMuaHangForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapChiPhiMuaHang\PhieuNhapChiPhiMuaHangContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapChiPhiMuaHang\PhieuNhapChiPhiMuaHangContainer.Designer.cs">
-      <DependentUpon>PhieuNhapChiPhiMuaHangContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapChiPhiMuaHang\PhieuNhapChiPhiMuaHangControl.cs">
       <SubType>UserControl</SubType>
@@ -998,12 +938,6 @@
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\Loc\TimPhieuXuatKhoForm.Designer.cs">
       <DependentUpon>TimPhieuXuatKhoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\PhieuXuatKhoContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\PhieuXuatKhoContainer.Designer.cs">
-      <DependentUpon>PhieuXuatKhoContainer.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\PhieuXuatKhoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1015,12 +949,6 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\PhieuXuatDieuChuyenControl.Designer.cs">
       <DependentUpon>PhieuXuatDieuChuyenControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\PhieuXuatDieuChuyenContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\PhieuXuatDieuChuyenContainer.Designer.cs">
-      <DependentUpon>PhieuXuatDieuChuyenContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\Loc\LocKetQuaPhieuXuatDieuChuyen.cs">
       <SubType>UserControl</SubType>
@@ -1100,12 +1028,6 @@
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\Loc\TimPhieuNhapKhauForm.Designer.cs">
       <DependentUpon>TimPhieuNhapKhauForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\PhieuNhapKhauContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\PhieuNhapKhauContainer.Designer.cs">
-      <DependentUpon>PhieuNhapKhauContainer.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\PhieuNhapKhauControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1147,12 +1069,6 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\PhieuNhapMuaControl.Designer.cs">
       <DependentUpon>PhieuNhapMuaControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\PhieuNhapMuaContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\PhieuNhapMuaContainer.Designer.cs">
-      <DependentUpon>PhieuNhapMuaContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTSOA.cs">
       <SubType>UserControl</SubType>
@@ -1203,12 +1119,6 @@
     <Compile Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\TimPhieuChiForm.Designer.cs">
       <DependentUpon>TimPhieuChiForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuChi\PhieuChiContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuChi\PhieuChiContainer.Designer.cs">
-      <DependentUpon>PhieuChiContainer.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ChungTuManager\TienMat\PhieuChi\PhieuChiControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1244,12 +1154,6 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TienMat\PhieuThu\PhieuThuControl.Designer.cs">
       <DependentUpon>PhieuThuControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuThu\PhieuThuContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuThu\PhieuThuContainer.Designer.cs">
-      <DependentUpon>PhieuThuContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\Filter\FilterView.cs">
       <SubType>Form</SubType>
@@ -4869,9 +4773,6 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\TimBaoGiaForm.resx">
       <DependentUpon>TimBaoGiaForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanContainer.resx">
-      <DependentUpon>DonDatHangBanContainer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanControl.resx">
       <DependentUpon>DonDatHangBanControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -4972,9 +4873,6 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\Loc\TimDonDatHangMuaForm.resx">
       <DependentUpon>TimDonDatHangMuaForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\DonDatHangMuaContainer.resx">
-      <DependentUpon>DonDatHangMuaContainer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\DonDatHangMuaControl.resx">
       <DependentUpon>DonDatHangMuaControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -5005,9 +4903,6 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuThanhToanTamUng\Loc\TimPhieuThanhToanTamUngForm.resx">
       <DependentUpon>TimPhieuThanhToanTamUngForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuThanhToanTamUng\PhieuThanhToanTamUngContainer.resx">
-      <DependentUpon>PhieuThanhToanTamUngContainer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuThanhToanTamUng\PhieuThanhToanTamUngControl.resx">
       <DependentUpon>PhieuThanhToanTamUngControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -5029,9 +4924,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HangTraLai\HangTraLaiControl.resx">
       <DependentUpon>HangTraLaiControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HangTraLai\HangTraLaiContainer.resx">
-      <DependentUpon>HangTraLaiContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HangTraLai\Loc\LocKetQuaHangTraLai.resx">
       <DependentUpon>LocKetQuaHangTraLai.cs</DependentUpon>
@@ -5057,9 +4949,6 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\HoaDonMuaHangDichVu\Loc\TimHoaDonMuaHangDichVuForm.resx">
       <DependentUpon>TimHoaDonMuaHangDichVuForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\HoaDonMuaHangDichVu\HoaDonMuaHangDichVuContainer.resx">
-      <DependentUpon>HoaDonMuaHangDichVuContainer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\HoaDonMuaHangDichVu\HoaDonMuaHangDichVuControl.resx">
       <DependentUpon>HoaDonMuaHangDichVuControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -5078,9 +4967,6 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThongTinHangTraLai.resx">
       <DependentUpon>CPNThongTinHangTraLai.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\PhieuXuatTraLaiNCC_Container.resx">
-      <DependentUpon>PhieuXuatTraLaiNCC_Container.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\PhieuXuatTraLaiNCC_Control.resx">
       <DependentUpon>PhieuXuatTraLaiNCC_Control.cs</DependentUpon>
     </EmbeddedResource>
@@ -5095,9 +4981,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\Loc\TimPhieuXuatTraLaiNCC_Form.resx">
       <DependentUpon>TimPhieuXuatTraLaiNCC_Form.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVu\HoaDonDichVuContainer.resx">
-      <DependentUpon>HoaDonDichVuContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVu\HoaDonDichVuControl.resx">
       <DependentUpon>HoaDonDichVuControl.cs</DependentUpon>
@@ -5144,9 +5027,6 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\TongHop\PhieuKeToan\Loc\LocKetQuaPhieuKeToan.resx">
       <DependentUpon>LocKetQuaPhieuKeToan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\TongHop\PhieuKeToan\PhieuKeToanContainer.resx">
-      <DependentUpon>PhieuKeToanContainer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TongHop\PhieuKeToan\PhieuKeToanControl.resx">
       <DependentUpon>PhieuKeToanControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -5177,9 +5057,6 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\Loc\TimPhieuNhapKhoForm.resx">
       <DependentUpon>TimPhieuNhapKhoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\PhieuNhapKhoContainer.resx">
-      <DependentUpon>PhieuNhapKhoContainer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\PhieuNhapKhoControl.resx">
       <DependentUpon>PhieuNhapKhoControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -5197,9 +5074,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapChiPhiMuaHang\Loc\TimPhieuNhapChiPhiMuaHangForm.resx">
       <DependentUpon>TimPhieuNhapChiPhiMuaHangForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapChiPhiMuaHang\PhieuNhapChiPhiMuaHangContainer.resx">
-      <DependentUpon>PhieuNhapChiPhiMuaHangContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapChiPhiMuaHang\PhieuNhapChiPhiMuaHangControl.resx">
       <DependentUpon>PhieuNhapChiPhiMuaHangControl.cs</DependentUpon>
@@ -5226,17 +5100,11 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\Loc\TimPhieuXuatKhoForm.resx">
       <DependentUpon>TimPhieuXuatKhoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\PhieuXuatKhoContainer.resx">
-      <DependentUpon>PhieuXuatKhoContainer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\PhieuXuatKhoControl.resx">
       <DependentUpon>PhieuXuatKhoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\PhieuXuatDieuChuyenControl.resx">
       <DependentUpon>PhieuXuatDieuChuyenControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\PhieuXuatDieuChuyenContainer.resx">
-      <DependentUpon>PhieuXuatDieuChuyenContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\Loc\LocKetQuaPhieuXuatDieuChuyen.resx">
       <DependentUpon>LocKetQuaPhieuXuatDieuChuyen.cs</DependentUpon>
@@ -5283,9 +5151,6 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\Loc\TimPhieuNhapKhauForm.resx">
       <DependentUpon>TimPhieuNhapKhauForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\PhieuNhapKhauContainer.resx">
-      <DependentUpon>PhieuNhapKhauContainer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\PhieuNhapKhauControl.resx">
       <DependentUpon>PhieuNhapKhauControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -5306,9 +5171,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\PhieuNhapMuaControl.resx">
       <DependentUpon>PhieuNhapMuaControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\PhieuNhapMuaContainer.resx">
-      <DependentUpon>PhieuNhapMuaContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTSOA.resx">
       <DependentUpon>ASOCTSOA.cs</DependentUpon>
@@ -5331,9 +5193,6 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\TimPhieuChiForm.resx">
       <DependentUpon>TimPhieuChiForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuChi\PhieuChiContainer.resx">
-      <DependentUpon>PhieuChiContainer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuChi\PhieuChiControl.resx">
       <DependentUpon>PhieuChiControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -5351,9 +5210,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuThu\PhieuThuControl.resx">
       <DependentUpon>PhieuThuControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuThu\PhieuThuContainer.resx">
-      <DependentUpon>PhieuThuContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\Filter\FilterView.resx">
       <DependentUpon>FilterView.cs</DependentUpon>

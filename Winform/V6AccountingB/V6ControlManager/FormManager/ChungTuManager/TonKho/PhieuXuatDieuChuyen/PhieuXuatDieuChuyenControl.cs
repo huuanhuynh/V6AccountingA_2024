@@ -2710,12 +2710,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             .ShowMessage(message);
                         return;
                     }
-                    if (parent is PhieuXuatDieuChuyenContainer)
-                    {
-                        ((PhieuXuatDieuChuyenContainer)parent)
-                            .ShowMessage(message);
-                        return;
-                    }
                     else
                     {
                         parent = parent.Parent;
