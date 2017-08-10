@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Windows.Forms;
 using V6Structs;
-namespace V6Controls.Forms.DanhMuc.Add_Edit
+
+namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
 {
     public partial class ALREPORT1_FilterEditorForm : V6Form
     {
@@ -26,31 +28,56 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 Info = new DefineInfo(_define);
-                txtControlType.Text = Info.ControlType;
-                txtAccessibleName.Text = Info.AccessibleName;
-                txtField.Text = Info.Field;
-                txtTextV.Text = Info.TextV;
-                txtTextE.Text = Info.TextE;
-                txtSqlType.Text = Info.sql_type;
-                txtOper.Text = Info.Oper;
-                txtDefaultValue.Text = Info.DefaultValue;
+
+                //Tự gán giá trị lên form theo Property và Field
+                foreach (PropertyInfo property in typeof(DefineInfo).GetProperties())
+                {
+                    if (property.CanRead && property.CanWrite)
+                    {
+                        Control c = V6ControlFormHelper.GetControlByAccesibleName(this, property.Name);
+                        if (c != null)
+                        {
+                            SetControlValue(c, property.GetValue(Info, null));
+                        }
+                    }
+                }
+                foreach (FieldInfo field in typeof(DefineInfo).GetFields())
+                {
+                    Control c = V6ControlFormHelper.GetControlByAccesibleName(this, field.Name);
+                    if (c != null)
+                    {
+                        SetControlValue(c, field.GetValue(Info));
+                    }
+                }
+
+                //Fix lại các trường có kiểu khác string.
                 txtNotEmpty.Text = Info.NotEmpty ? "1" : "0";
                 txtEnabled.Text = Info.Enabled ? "1" : "0";
                 txtVisible.Text = Info.Visible ? "1" : "0";
                 txtF2.Text = Info.F2 ? "1" : "0";
-                txtLimitChars.Text = Info.LimitChars;
-                txtVvar.Text = Info.Vvar;
-                txtInitFilter.Text = Info.InitFilter;
-                txtFparent.Text = Info.Fparent;
-                txtWidth.Text = Info.Width;
-                txtLoaiKey.Text = Info.Loai_key;
-                txtBField.Text = Info.BField;
-                txtDecimals.Text = Info.Decimals.ToString();
-                txtmaxlength.Text = Info.MaxLength.ToString();
-                txtDescriptionV.Text = Info.DescriptionV;
-                txtDescriptionE.Text = Info.DescriptionE;
                 txtFilterStart.Text = Info.FilterStart ? "1" : "";
                 txtToUpper.Text = Info.ToUpper ? "1" : "";
+                //txtControlType.Text = Info.ControlType;
+                //txtAccessibleName.Text = Info.AccessibleName;
+                //txtField.Text = Info.Field;
+                //txtField2.Text = Info.Field2;
+                //txtTextV.Text = Info.TextV;
+                //txtTextE.Text = Info.TextE;
+                //txtSqlType.Text = Info.sql_type;
+                //txtOper.Text = Info.Oper;
+                //txtDefaultValue.Text = Info.DefaultValue;
+                //txtLimitChars.Text = Info.LimitChars;
+                //txtVvar.Text = Info.Vvar;
+                //txtInitFilter.Text = Info.InitFilter;
+                //txtFparent.Text = Info.Fparent;
+                //txtWidth.Text = Info.Width;
+                //txtLoaiKey.Text = Info.Loai_key;
+                //txtBField.Text = Info.BField;
+                //txtDecimals.Text = Info.Decimals.ToString();
+                //txtmaxlength.Text = Info.MaxLength.ToString();
+                //txtDescriptionV.Text = Info.DescriptionV;
+                //txtDescriptionE.Text = Info.DescriptionE;
+                //txtMa_dm.Text = Info.MA_DM;
             }
             catch (Exception ex)
             {

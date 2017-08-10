@@ -12,6 +12,12 @@ namespace V6ControlManager.FormManager.NhanSu
 {
     public static class NhanSuManager
     {
+        /// <summary>
+        /// Lấy control theo code
+        /// </summary>
+        /// <param name="itemID"></param>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public static V6Control GetControl(string itemID, string code)
         {
             switch (code)

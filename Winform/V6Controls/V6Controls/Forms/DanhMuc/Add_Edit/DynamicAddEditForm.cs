@@ -30,6 +30,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private DataTable Alreport1Data = null;
         private Dictionary<V6NumberTextBox, int> NumberTextBox_Decimals = new Dictionary<V6NumberTextBox, int>();
         private Dictionary<V6ColorTextBox, int> V6ColorTextBox_MaxLength = new Dictionary<V6ColorTextBox, int>();
+        /// <summary>
+        /// AccessibleName_KEY - DefineInfo
+        /// </summary>
         private Dictionary<string, DefineInfo> DefineInfo_Data = new Dictionary<string, DefineInfo>();
         /// <summary>
         /// Danh sách event_method của Form_program.
@@ -100,15 +103,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     var define = row["Filter"].ToString().Trim();
                     var defineInfo = new DefineInfo(define);
-                    DefineInfo_Data[defineInfo.Field.ToUpper()] = defineInfo;
+                    var AccessibleName_KEY = string.IsNullOrEmpty(defineInfo.AccessibleName)
+                        ? defineInfo.Field.ToUpper()
+                        : defineInfo.AccessibleName.ToUpper();
+                    DefineInfo_Data[AccessibleName_KEY.ToUpper()] = defineInfo;
                     //Label
                     var top = baseTop + i * rowHeight;
+
                     var label = new V6Label();
                     label.Name = "lbl" + defineInfo.Field;
                     label.AutoSize = true;
                     label.Left = 10;
                     label.Top = top;
                     label.Text = defineInfo.TextLang(V6Setting.IsVietnamese);
+                    label.Visible = defineInfo.Visible;
                     panel1.Controls.Add(label);
                     Label_Controls[defineInfo.Field.ToUpper()] = label;
                     All_Objects[label.Name] = label;
@@ -122,6 +130,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             AccessibleName = "",
                             Text = defineInfo.TextLang(V6Setting.IsVietnamese),
                             UseVisualStyleBackColor = true
+                        };
+                    }
+                    else if (defineInfo.ControlType != null && defineInfo.ControlType.ToUpper() == "LOOKUPTEXTBOX")
+                    {
+                        input = new V6LookupTextBox()
+                        {
+                            Name = "txt" + defineInfo.Field,
+                            Ma_dm = defineInfo.MA_DM,               //Mã danh mục trong Aldm
+                            AccessibleName = defineInfo.AccessibleName,      //Trường get dữ liệu
+                            AccessibleName2 = defineInfo.AccessibleName2,    //Trường get text hiển thị
+                            ValueField = defineInfo.Field,          //Trường dữ liệu
+                            ShowTextField = defineInfo.Field2,      //Trường text hiển thị
                         };
                     }
                     else if (ObjectAndString.IsDateTimeType(defineInfo.DataType))
@@ -163,10 +183,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         }
 
                         //Bao lại các thuộc tính nếu chưa có.
-                        if (input.AccessibleName == null) input.AccessibleName = defineInfo.Field;
+                        if (input.AccessibleName == null) input.AccessibleName = AccessibleName_KEY;
                         if (string.IsNullOrEmpty(input.Name)) input.Name = "txt" + defineInfo.Field;
                         if(!string.IsNullOrEmpty(defineInfo.DefaultValue))
                             input.Text = defineInfo.DefaultValue;
+                        input.Visible = defineInfo.Visible;
                         input.Width = string.IsNullOrEmpty(defineInfo.Width)
                             ? 150
                             : ObjectAndString.ObjectToInt(defineInfo.Width);

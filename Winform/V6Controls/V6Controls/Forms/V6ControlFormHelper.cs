@@ -4068,13 +4068,25 @@ namespace V6Controls.Forms
                 if (config.NotEmpty)
                 {
                     if (value == null) return;
+                    if (ObjectAndString.IsNumberType(value.GetType()))
+                    {
+                        if (ObjectAndString.ObjectToDecimal(value) == 0) return;
+                    }
                     if (value.ToString().Trim() == "") return;
                     SetControlValue(control, value);
                 }
                 
                 if (config.NoOverride)
                 {
-                    if (string.IsNullOrEmpty(control.Text)) SetControlValue(control, value);
+                    if (control is V6NumberTextBox)
+                    {
+                        var numTb = control as V6NumberTextBox;
+                        if (numTb.Value == 0) SetControlValue(numTb, value);
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(control.Text)) SetControlValue(control, value);
+                    }
                 }
             }
             catch (Exception ex)

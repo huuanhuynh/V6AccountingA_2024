@@ -225,7 +225,7 @@ namespace V6Controls
         private string _valueField;
 
         [Category("V6")]
-        [Description("Tên trường dữ liệu hiển thị.")]
+        [Description("Tên trường dữ liệu hiển thị. Bị đè bởi LookupInfo.F_NAME")]
         [DefaultValue(null)]
         public string ShowTextField
         {
@@ -235,14 +235,14 @@ namespace V6Controls
         private string _showTextField;
 
         /// <summary>
-        /// Trường lấy dữ liệu hiển thị. Nếu không có định nghĩa trong lookupinfo sẽ lấy ValueField
+        /// Trường lấy dữ liệu hiển thị. Ưu tiên LookupInfo.F_NAME, nếu không có sẽ lấy ShowTextField hoặc ValueField.
         /// </summary>
         public string LookupInfo_F_NAME
         {
             get
             {
+                if (LookupInfo != null && !string.IsNullOrEmpty(LookupInfo.F_NAME)) return LookupInfo.F_NAME;
                 if (!string.IsNullOrEmpty(_showTextField)) return _showTextField;
-                if(LookupInfo != null) return LookupInfo.F_NAME;
                 if (!string.IsNullOrEmpty(_valueField)) return _valueField;
                 return null;
             }

@@ -100,7 +100,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _nhap_tb;
         private V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _tkVt, _maLo, _maKhoI, _maViTri;
-        private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2;
+        private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_td1;
         private V6NumberTextBox _ton13, _gia,_gia_nt, _gia0, _gia_nt0, _tien, _tienNt, _tien0, _tienNt0, _gia01, _gia_nt01;
         private V6DateTimeColor _hanSd;
         string[] alctct_GRD_HIDE = new string[] { };
@@ -253,8 +253,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         _soLuong1.V6LostFocus += SoLuong1_V6LostFocus;
                         _soLuong1.V6LostFocusNoChange += delegate
                         {
-
                         };
+                        _soLuong1.LostFocus += delegate
+                        {
+                            SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
+                        };
+
                         if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
                         {
                             _soLuong1.ReadOnlyTag();
@@ -297,6 +301,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         if (_sl_qd2 != null)
                         {
                             _sl_qd2.DisableTag();
+                        }
+                        break;
+                    case "SL_TD1":
+                        _sl_td1 = control as V6NumberTextBox;
+                        if (_sl_td1 != null)
+                        {
+                            
                         }
                         break;
                     case "HS_QD1":
@@ -876,6 +887,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     }
                 }
                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
+
+                //SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
+
                 TinhTienVon1();
                 TinhTienVon();
             }
@@ -1027,6 +1041,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     _soLuong1.Value = packs1;
                     if (_heSo1.Value == 0) _heSo1.Value = 1;
                     _soLuong.Value = _soLuong1.Value*_heSo1.Value;
+                    
                 }
             }
             catch (Exception ex)

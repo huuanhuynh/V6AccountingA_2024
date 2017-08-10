@@ -98,6 +98,11 @@ namespace V6Controls.Forms
             return V6ControlFormHelper.DoKeyCommand(this, keyData);
         }
 
+        public void SetControlValue(Control control, object value)
+        {
+            V6ControlFormHelper.SetControlValue(control, value);
+        }
+
         /// <summary>
         /// Lấy dữ liệu trên form.
         /// </summary>

@@ -158,17 +158,17 @@
             this.v6ColorTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox2.Location = new System.Drawing.Point(164, 188);
+            this.v6ColorTextBox2.Location = new System.Drawing.Point(165, 188);
             this.v6ColorTextBox2.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox2.Name = "v6ColorTextBox2";
-            this.v6ColorTextBox2.Size = new System.Drawing.Size(555, 23);
+            this.v6ColorTextBox2.Size = new System.Drawing.Size(560, 23);
             this.v6ColorTextBox2.TabIndex = 15;
             // 
             // label42
             // 
             this.label42.AccessibleDescription = "tinh_thanh";
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(23, 191);
+            this.label42.Location = new System.Drawing.Point(10, 191);
             this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(76, 17);
@@ -197,7 +197,7 @@
             this.v6ColorTextBox12.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox12.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox12.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox12.Location = new System.Drawing.Point(164, 110);
+            this.v6ColorTextBox12.Location = new System.Drawing.Point(165, 110);
             this.v6ColorTextBox12.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox12.Name = "v6ColorTextBox12";
             this.v6ColorTextBox12.Size = new System.Drawing.Size(198, 23);
@@ -206,7 +206,7 @@
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(23, 218);
+            this.label38.Location = new System.Drawing.Point(10, 218);
             this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(57, 17);
@@ -223,10 +223,10 @@
             this.v6ColorTextBox14.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox14.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox14.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox14.Location = new System.Drawing.Point(164, 162);
+            this.v6ColorTextBox14.Location = new System.Drawing.Point(165, 162);
             this.v6ColorTextBox14.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox14.Name = "v6ColorTextBox14";
-            this.v6ColorTextBox14.Size = new System.Drawing.Size(555, 23);
+            this.v6ColorTextBox14.Size = new System.Drawing.Size(560, 23);
             this.v6ColorTextBox14.TabIndex = 14;
             // 
             // v6ColorTextBox17
@@ -239,11 +239,11 @@
             this.v6ColorTextBox17.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox17.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox17.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox17.Location = new System.Drawing.Point(164, 215);
+            this.v6ColorTextBox17.Location = new System.Drawing.Point(165, 215);
             this.v6ColorTextBox17.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox17.Multiline = true;
             this.v6ColorTextBox17.Name = "v6ColorTextBox17";
-            this.v6ColorTextBox17.Size = new System.Drawing.Size(555, 53);
+            this.v6ColorTextBox17.Size = new System.Drawing.Size(560, 53);
             this.v6ColorTextBox17.TabIndex = 17;
             // 
             // v6ColorTextBox11
@@ -256,7 +256,7 @@
             this.v6ColorTextBox11.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox11.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox11.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox11.Location = new System.Drawing.Point(164, 84);
+            this.v6ColorTextBox11.Location = new System.Drawing.Point(165, 84);
             this.v6ColorTextBox11.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox11.Name = "v6ColorTextBox11";
             this.v6ColorTextBox11.Size = new System.Drawing.Size(198, 23);
@@ -277,7 +277,7 @@
             // 
             this.label12.AccessibleDescription = "email";
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(23, 114);
+            this.label12.Location = new System.Drawing.Point(10, 114);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(42, 17);
@@ -288,7 +288,7 @@
             // 
             this.label14.AccessibleDescription = "ngan_hang";
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(23, 164);
+            this.label14.Location = new System.Drawing.Point(10, 164);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(139, 17);
@@ -299,7 +299,7 @@
             // 
             this.label11.AccessibleDescription = "fax";
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(23, 88);
+            this.label11.Location = new System.Drawing.Point(10, 88);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(47, 17);
@@ -310,7 +310,7 @@
             // 
             this.label5.AccessibleDescription = "doi_tac";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 35);
+            this.label5.Location = new System.Drawing.Point(10, 35);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 17);
@@ -321,7 +321,7 @@
             // 
             this.label13.AccessibleDescription = "tknh";
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(23, 140);
+            this.label13.Location = new System.Drawing.Point(10, 140);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(143, 17);
@@ -332,7 +332,7 @@
             // 
             this.label10.AccessibleDescription = "so_dien_thoai";
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(23, 62);
+            this.label10.Location = new System.Drawing.Point(10, 62);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(91, 17);
@@ -343,7 +343,7 @@
             // 
             this.label4.AccessibleDescription = "dia_chi";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 11);
+            this.label4.Location = new System.Drawing.Point(10, 10);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 17);
@@ -360,10 +360,10 @@
             this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.Location = new System.Drawing.Point(164, 31);
+            this.v6ColorTextBox5.Location = new System.Drawing.Point(165, 31);
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
-            this.v6ColorTextBox5.Size = new System.Drawing.Size(555, 23);
+            this.v6ColorTextBox5.Size = new System.Drawing.Size(560, 23);
             this.v6ColorTextBox5.TabIndex = 1;
             // 
             // v6ColorTextBox13
@@ -376,10 +376,10 @@
             this.v6ColorTextBox13.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox13.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox13.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox13.Location = new System.Drawing.Point(164, 136);
+            this.v6ColorTextBox13.Location = new System.Drawing.Point(165, 136);
             this.v6ColorTextBox13.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox13.Name = "v6ColorTextBox13";
-            this.v6ColorTextBox13.Size = new System.Drawing.Size(555, 23);
+            this.v6ColorTextBox13.Size = new System.Drawing.Size(560, 23);
             this.v6ColorTextBox13.TabIndex = 13;
             // 
             // v6ColorTextBox10
@@ -392,7 +392,7 @@
             this.v6ColorTextBox10.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox10.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox10.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox10.Location = new System.Drawing.Point(164, 58);
+            this.v6ColorTextBox10.Location = new System.Drawing.Point(165, 58);
             this.v6ColorTextBox10.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox10.Name = "v6ColorTextBox10";
             this.v6ColorTextBox10.Size = new System.Drawing.Size(198, 23);
@@ -408,10 +408,10 @@
             this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox4.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox4.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox4.Location = new System.Drawing.Point(164, 7);
+            this.v6ColorTextBox4.Location = new System.Drawing.Point(165, 7);
             this.v6ColorTextBox4.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox4.Name = "v6ColorTextBox4";
-            this.v6ColorTextBox4.Size = new System.Drawing.Size(555, 23);
+            this.v6ColorTextBox4.Size = new System.Drawing.Size(560, 23);
             this.v6ColorTextBox4.TabIndex = 0;
             // 
             // tabPage2
@@ -1053,7 +1053,7 @@
             this.txtMaKH.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaKH.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaKH.LeaveColor = System.Drawing.Color.White;
-            this.txtMaKH.Location = new System.Drawing.Point(173, 20);
+            this.txtMaKH.Location = new System.Drawing.Point(165, 20);
             this.txtMaKH.Name = "txtMaKH";
             this.txtMaKH.Size = new System.Drawing.Size(184, 23);
             this.txtMaKH.TabIndex = 0;
@@ -1062,7 +1062,7 @@
             // 
             this.label1.AccessibleDescription = "ma_kh";
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 20);
+            this.label1.Location = new System.Drawing.Point(10, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 17);

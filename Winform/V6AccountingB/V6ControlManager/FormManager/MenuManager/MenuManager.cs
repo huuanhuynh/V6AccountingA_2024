@@ -26,6 +26,14 @@ namespace V6ControlManager.FormManager.MenuManager
 {
     public static class MenuManager
     {
+        /// <summary>
+        /// formname = codeform.Substring(1).ToUpper();
+        /// </summary>
+        private static string FORM_NAME;
+        /// <summary>
+        /// TABLE_NAME = codeform.Substring(1).ToUpper();
+        /// </summary>
+        private static string TABLE_NAME;
         public static V6Control GenControl(Control owner, MenuButton mButton, MouseEventArgs e)
         {
             try
@@ -44,8 +52,8 @@ namespace V6ControlManager.FormManager.MenuManager
                 if (!string.IsNullOrEmpty(codeform))
                 {
                     var code = codeform.Substring(0, 1);
-                    var formname = codeform.Substring(1).ToUpper();
-                    var TABLE_NAME = codeform.Substring(1).ToUpper();
+                    FORM_NAME = codeform.Substring(1).ToUpper();
+                    TABLE_NAME = codeform.Substring(1).ToUpper();
                     var check = true;
 
                     switch (code)
@@ -372,8 +380,8 @@ namespace V6ControlManager.FormManager.MenuManager
 
                                 if (check)
                                 {
-                                    if (formname == "V6CLIENTS") c = new ClientManager(item_id);
-                                    if (formname == "V6ONLINES")
+                                    if (FORM_NAME == "V6CLIENTS") c = new ClientManager(item_id);
+                                    if (FORM_NAME == "V6ONLINES")
                                     {
                                         if(V6Login.IsLocal) c = new OnlineManager(item_id);
                                         else c = new V6UserControlEmpty(V6Text.NotAllowed);
@@ -559,37 +567,35 @@ namespace V6ControlManager.FormManager.MenuManager
                             }
                             break;
 
-                        case "C": // View readonly
+                        case "C": // NhanSu NoGridControl
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
-                                var programX = codeform.Substring(1);
-                                //c = XuLy.GetXuLyControlX(item_id, programX, programX, repFile, mButton.Text);
-                                c = new NoGridControl(item_id, formname);
+                                //var programX = codeform.Substring(1);
+                                c = new NoGridControl(item_id, FORM_NAME);
                             }
                             break;
 
-                        case "D": // GridView/form readonly
+                        case "D": // NhanSu OneGridControl
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
-                                var programX = codeform.Substring(1);
-                                //c = XuLy.GetXuLyControlX(item_id, programX, programX, repFile, mButton.Text);
-                                c = new OneGridControl(item_id, formname);
+                                //var programX = codeform.Substring(1);
+                                c = new OneGridControl(item_id, FORM_NAME);
                             }
                             break;
 
-                        case "E": // 2 GridView / form readonly
+                        case "E": // NhanSu TwoGridControl
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
-                                var programX = codeform.Substring(1);
-                                c = new TwoGridControl(item_id, formname);
+                                //var programX = codeform.Substring(1);
+                                c = new TwoGridControl(item_id, FORM_NAME);
                             }
                             break;
 
-                        case "F": // Nhân sự view
+                        case "F": // Nhân sự view HLNS
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
                                 var programX = codeform.Substring(1);
-                                c = NhanSuManager.GetControl(item_id, formname);
+                                c = NhanSuManager.GetControl(item_id, FORM_NAME);
                             }
                             break;
                         case "H":

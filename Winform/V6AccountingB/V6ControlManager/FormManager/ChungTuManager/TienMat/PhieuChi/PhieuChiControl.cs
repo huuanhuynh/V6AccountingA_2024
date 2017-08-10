@@ -284,6 +284,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             {
                                 _thue_nt.V6LostFocus += delegate
                                 {
+
+                                    //10/08/2017 Tinh thue 1 chi tiet dang dung
+                                    _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value * txtTyGia.Value, M_ROUND);
+                                    if (_maNt == _mMaNt0)
+                                    {
+                                        _thue.Value = _thue_nt.Value;
+                                    }
+
                                     _tt_nt.Value = _psnoNt.Value + _thue_nt.Value;
                                     _tt.Value = _psno.Value + _thue.Value;
                                 };
@@ -1230,6 +1238,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 if (_tien != null)
                      _tientt.Value = _tien.Value;
 
+                //10/08/2017 Tinh thue 1 chi tiet dang dung
+                _thue_nt.Value = V6BusinessHelper.Vround(_thue_suat.Value * _tienNt.Value / 100, M_ROUND);
+                _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value * txtTyGia.Value, M_ROUND);
+                if (_maNt == _mMaNt0)
+                {
+                    _thue.Value = _thue_nt.Value;
+                }
+
                 _tt_nt.Value = _psnoNt.Value + _thue_nt.Value;
                 _tt.Value = _psno.Value + _thue.Value;
             }
@@ -1821,6 +1837,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 }
                 else //Cac truong hop khac
                 {
+                    detail1.MODE = V6Mode.Init;
+                    detail3.MODE = V6Mode.Init;
+                    Detail2ModeByChkSuaThue();
+                    
                     XuLyKhoaThongTinKhachHang();
                     txtTyGia.Enabled = _maNt != _mMaNt0;
                     
@@ -3257,13 +3277,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     }
 
                     ResetForm();
-                    
                     Mode = V6Mode.Add;
+
                     txtLoaiPhieu.ChangeText(_MA_GD);
 
                     GetSttRec(Invoice.Mact);
                     V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + txtSoPhieu.Text);
-                   // GetSoPhieu();
+                    //GetSoPhieu();
 
                     GetM_ma_nt0();
                     GetTyGiaDefault();
@@ -3273,8 +3293,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     XuLyThayDoiLoaiPhieuThu();
                     detail1.DoAddButtonClick();
                     SetDefaultDetail();
-                    detail2.MODE = V6Mode.Init;
-                    detail3.MODE = V6Mode.Init;
+                    
                     txtMa_sonb.Focus();
                 }
                 else
@@ -4978,6 +4997,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         }
 
         private void chkSuaThue_CheckedChanged(object sender, EventArgs e)
+        {
+            Detail2ModeByChkSuaThue();
+        }
+
+        private void Detail2ModeByChkSuaThue()
         {
             if (!chkSuaThue.Checked)
             {

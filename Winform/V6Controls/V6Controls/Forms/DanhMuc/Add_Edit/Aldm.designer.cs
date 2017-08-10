@@ -878,7 +878,7 @@
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
             this.v6ColorTextBox1.Size = new System.Drawing.Size(215, 23);
             this.v6ColorTextBox1.TabIndex = 9;
-            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox1, "Trường nhận dữ liệu khi lookup");
+            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox1, "Trường nhận dữ liệu khi lookup, lấy dữ liệu hiển thị");
             // 
             // label5
             // 

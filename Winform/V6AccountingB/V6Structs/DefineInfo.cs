@@ -69,6 +69,9 @@ namespace V6Structs
                 case "FIELD":
                     Field = value;
                     break;
+                case "FIELD2":
+                    Field2 = value;
+                    break;
                 case "FILTERSTART":
                     FilterStart = value == "1";
                     break;
@@ -80,6 +83,9 @@ namespace V6Structs
                     break;
                 case "ACCESSIBLENAME":
                     AccessibleName = value;
+                    break;
+                case "ACCESSIBLENAME2":
+                    AccessibleName2 = value;
                     break;
                 case "DEFAULTVALUE":
                     DefaultValue = value;
@@ -97,6 +103,9 @@ namespace V6Structs
                 case "NAME":
                     Name = value;
                     break;
+                case "MA_DM":
+                    MA_DM = value;
+                    break;
                 case "NOTEMPTY":
                     NotEmpty = value == "1";
                     break;
@@ -113,7 +122,7 @@ namespace V6Structs
                     Ptype = value;
                     break;
                 case "SQLTYPE":
-                    sql_type = value.ToLower();
+                    sqltype = value.ToLower();
                     break;
                 case "STATUS":
                     Status = value == "1";
@@ -166,6 +175,7 @@ namespace V6Structs
         /// </summary>
         public string Value { get; set; }
 
+        public string MA_DM { get; set; }
         public string Name { get; set; }
 
         public string InitFilter { get; set; }
@@ -173,12 +183,25 @@ namespace V6Structs
         public bool F2 { get; set; }
 
         /// <summary>
-        /// Bỏ qua giá trị rỗng trong GetRptParametersD
+        /// Bỏ qua giá trị rỗng trong GetRptParametersD, Dữ liệu mới phải khác rỗng trong SetControlValue config.
         /// </summary>
         public bool NotEmpty { get; set; }
-
+        /// <summary>
+        /// Trường dữ liệu
+        /// </summary>
         public string Field { get; set; }
+        /// <summary>
+        /// Trường text hiển thị
+        /// </summary>
+        public string Field2 { get; set; }
+        /// <summary>
+        /// Tên khóa dữ liệu khi lấy dữ liệu trên form
+        /// </summary>
         public string AccessibleName { get; set; }
+        /// <summary>
+        /// Tên khóa dữ liệu ShowText khi lấy dữ liệu trên form của V6LookupTextBox
+        /// </summary>
+        public string AccessibleName2 { get; set; }
         public string Oper = "";
         /// <summary>
         /// A1:FilterAdvance
@@ -206,7 +229,7 @@ namespace V6Structs
         /// <summary>
         /// lowercase
         /// </summary>
-        public string sql_type { get; set; }
+        public string sqltype { get; set; }
         /// <summary>
         /// Kiểu dữ liệu sql lấy từ sql_type.
         /// </summary>
@@ -214,7 +237,7 @@ namespace V6Structs
         {
             get
             {
-                return F.ToSqlDbType(sql_type);
+                return F.ToSqlDbType(sqltype);
             }
         }
         /// <summary>
@@ -224,7 +247,7 @@ namespace V6Structs
         {
             get
             {
-                return F.TypeFromData_Type(sql_type);
+                return F.TypeFromData_Type(sqltype);
             }
         }
         /// <summary>
@@ -263,7 +286,13 @@ namespace V6Structs
         /// Bật tắt TemplateSetting. false sẽ bỏ qua hết các xử lý của trường hợp đó.
         /// </summary>
         public bool Status = false;
+        /// <summary>
+        /// Luôn ghi đè.
+        /// </summary>
         public bool Override = true;
+        /// <summary>
+        /// Nếu đã có không ghi đè.
+        /// </summary>
         public bool NoOverride = false;
 
         public string DescriptionLang(bool isVN)

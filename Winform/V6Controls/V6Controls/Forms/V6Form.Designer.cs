@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(V6Form));
             this._waitingImages = new System.Windows.Forms.ImageList(this.components);
             this.lblTopMessage = new V6Controls.V6Label();
+            this.toolTipV6FormControl = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // _waitingImages
@@ -80,6 +81,7 @@
 
         private System.Windows.Forms.ImageList _waitingImages;
         protected V6Label lblTopMessage;
+        protected System.Windows.Forms.ToolTip toolTipV6FormControl;
 
     }
 }

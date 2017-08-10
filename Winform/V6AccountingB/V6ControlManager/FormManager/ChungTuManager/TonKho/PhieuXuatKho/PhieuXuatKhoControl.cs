@@ -102,7 +102,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _xuat_dd;
         private V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _tkVt, _maLo, _maKhoI, _maViTri;
-        private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2;
+        private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_td1;
         private V6NumberTextBox _ton13, _gia, _gia_nt, _tien, _tienNt, _gia1, _gia_nt1;
         private V6DateTimeColor _hanSd;
         string[] alctct_GRD_HIDE = new string[] { };
@@ -261,6 +261,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                 _sl_qd2.DisableTag();
                             }
                             break;
+                        case "SL_TD1":
+                            _sl_td1 = control as V6NumberTextBox;
+                            if (_sl_td1 != null)
+                            {
+
+                            }
+                            break;
                         case "HS_QD1":
                             _hs_qd1 = control as V6NumberTextBox;
                             if (_hs_qd1 != null)
@@ -292,7 +299,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                 {
                                     CheckSoLuong1();
                                 };
-
+                                _soLuong1.LostFocus += delegate
+                                {
+                                    SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
+                                };
                                 if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
                                 {
                                     _soLuong1.ReadOnlyTag();

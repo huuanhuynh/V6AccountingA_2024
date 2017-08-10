@@ -1,4 +1,4 @@
-﻿namespace V6Controls.Forms.DanhMuc.Add_Edit
+﻿namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
 {
     partial class ALREPORT1_FilterEditorForm
     {
@@ -44,13 +44,11 @@
             this.txtDecimals = new V6Controls.V6ColorTextBox();
             this.txtBField = new V6Controls.V6ColorTextBox();
             this.txtLoaiKey = new V6Controls.V6ColorTextBox();
-            this.txtWidth = new V6Controls.V6ColorTextBox();
             this.label38 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.txtInitFilter = new V6Controls.V6ColorTextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.txtVvar = new V6Controls.V6ColorTextBox();
-            this.label32 = new System.Windows.Forms.Label();
             this.txtLimitChars = new V6Controls.V6ColorTextBox();
             this.txtTextV = new V6Controls.V6ColorTextBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -60,7 +58,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -70,23 +67,36 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.txtControlType = new V6Controls.V6VvarTextBox();
+            this.txtField2 = new V6Controls.V6VvarTextBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.txtControlType = new V6Controls.V6ColorTextBox();
+            this.txtAccessibleName2 = new V6Controls.V6VvarTextBox();
             this.label44 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.txtToUpper = new V6Controls.V6ColorTextBox();
             this.label39 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label53 = new System.Windows.Forms.Label();
+            this.txtMa_dm = new V6Controls.V6ColorTextBox();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.txtWidth = new V6Controls.V6ColorTextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
+            this.txtFilterStart = new V6Controls.V6ColorTextBox();
+            this.label49 = new System.Windows.Forms.Label();
             this.txtDescriptionE = new V6Controls.V6ColorTextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.txtDescriptionV = new V6Controls.V6ColorTextBox();
@@ -106,9 +116,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label49 = new System.Windows.Forms.Label();
-            this.txtFilterStart = new V6Controls.V6ColorTextBox();
-            this.label50 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -142,7 +149,7 @@
             this.txtField.Location = new System.Drawing.Point(120, 60);
             this.txtField.Name = "txtField";
             this.txtField.Size = new System.Drawing.Size(150, 23);
-            this.txtField.TabIndex = 4;
+            this.txtField.TabIndex = 3;
             // 
             // txtF2
             // 
@@ -155,18 +162,18 @@
             this.txtF2.HoverColor = System.Drawing.Color.Yellow;
             this.txtF2.LeaveColor = System.Drawing.Color.White;
             this.txtF2.LimitCharacters = "01";
-            this.txtF2.Location = new System.Drawing.Point(120, 320);
+            this.txtF2.Location = new System.Drawing.Point(120, 346);
             this.txtF2.Margin = new System.Windows.Forms.Padding(4);
             this.txtF2.MaxLength = 1;
             this.txtF2.Name = "txtF2";
             this.txtF2.Size = new System.Drawing.Size(150, 23);
-            this.txtF2.TabIndex = 34;
+            this.txtF2.TabIndex = 14;
             // 
             // label20
             // 
             this.label20.AccessibleDescription = "descript2";
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(9, 323);
+            this.label20.Location = new System.Drawing.Point(10, 348);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(24, 17);
@@ -184,18 +191,18 @@
             this.txtNotEmpty.HoverColor = System.Drawing.Color.Yellow;
             this.txtNotEmpty.LeaveColor = System.Drawing.Color.White;
             this.txtNotEmpty.LimitCharacters = "01";
-            this.txtNotEmpty.Location = new System.Drawing.Point(120, 242);
+            this.txtNotEmpty.Location = new System.Drawing.Point(120, 268);
             this.txtNotEmpty.Margin = new System.Windows.Forms.Padding(4);
             this.txtNotEmpty.MaxLength = 1;
             this.txtNotEmpty.Name = "txtNotEmpty";
             this.txtNotEmpty.Size = new System.Drawing.Size(150, 23);
-            this.txtNotEmpty.TabIndex = 25;
+            this.txtNotEmpty.TabIndex = 11;
             // 
             // label14
             // 
             this.label14.AccessibleDescription = "descript2";
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(9, 245);
+            this.label14.Location = new System.Drawing.Point(10, 270);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(68, 17);
@@ -212,11 +219,11 @@
             this.txtOper.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtOper.HoverColor = System.Drawing.Color.Yellow;
             this.txtOper.LeaveColor = System.Drawing.Color.White;
-            this.txtOper.Location = new System.Drawing.Point(120, 216);
+            this.txtOper.Location = new System.Drawing.Point(120, 242);
             this.txtOper.Margin = new System.Windows.Forms.Padding(4);
             this.txtOper.Name = "txtOper";
             this.txtOper.Size = new System.Drawing.Size(150, 23);
-            this.txtOper.TabIndex = 22;
+            this.txtOper.TabIndex = 10;
             // 
             // txtSqlType
             // 
@@ -228,17 +235,17 @@
             this.txtSqlType.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSqlType.HoverColor = System.Drawing.Color.Yellow;
             this.txtSqlType.LeaveColor = System.Drawing.Color.White;
-            this.txtSqlType.Location = new System.Drawing.Point(120, 164);
+            this.txtSqlType.Location = new System.Drawing.Point(120, 190);
             this.txtSqlType.Margin = new System.Windows.Forms.Padding(4);
             this.txtSqlType.Name = "txtSqlType";
             this.txtSqlType.Size = new System.Drawing.Size(150, 23);
-            this.txtSqlType.TabIndex = 16;
+            this.txtSqlType.TabIndex = 8;
             // 
             // label19
             // 
             this.label19.AccessibleDescription = "";
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(284, 324);
+            this.label19.Location = new System.Drawing.Point(284, 348);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(262, 17);
@@ -249,7 +256,7 @@
             // 
             this.label10.AccessibleDescription = "descript2";
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(9, 219);
+            this.label10.Location = new System.Drawing.Point(10, 244);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(40, 17);
@@ -266,17 +273,17 @@
             this.txtTextE.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTextE.HoverColor = System.Drawing.Color.Yellow;
             this.txtTextE.LeaveColor = System.Drawing.Color.White;
-            this.txtTextE.Location = new System.Drawing.Point(120, 138);
+            this.txtTextE.Location = new System.Drawing.Point(120, 164);
             this.txtTextE.Margin = new System.Windows.Forms.Padding(4);
             this.txtTextE.Name = "txtTextE";
             this.txtTextE.Size = new System.Drawing.Size(150, 23);
-            this.txtTextE.TabIndex = 13;
+            this.txtTextE.TabIndex = 7;
             // 
             // label8
             // 
             this.label8.AccessibleDescription = "descript2";
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(9, 167);
+            this.label8.Location = new System.Drawing.Point(10, 192);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(72, 17);
@@ -287,7 +294,7 @@
             // 
             this.label13.AccessibleDescription = "";
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(284, 246);
+            this.label13.Location = new System.Drawing.Point(284, 270);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(224, 17);
@@ -304,11 +311,11 @@
             this.txtDecimals.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDecimals.HoverColor = System.Drawing.Color.Yellow;
             this.txtDecimals.LeaveColor = System.Drawing.Color.White;
-            this.txtDecimals.Location = new System.Drawing.Point(120, 190);
+            this.txtDecimals.Location = new System.Drawing.Point(120, 216);
             this.txtDecimals.Margin = new System.Windows.Forms.Padding(4);
             this.txtDecimals.Name = "txtDecimals";
             this.txtDecimals.Size = new System.Drawing.Size(150, 23);
-            this.txtDecimals.TabIndex = 19;
+            this.txtDecimals.TabIndex = 9;
             // 
             // txtBField
             // 
@@ -320,11 +327,11 @@
             this.txtBField.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtBField.HoverColor = System.Drawing.Color.Yellow;
             this.txtBField.LeaveColor = System.Drawing.Color.White;
-            this.txtBField.Location = new System.Drawing.Point(120, 86);
+            this.txtBField.Location = new System.Drawing.Point(120, 112);
             this.txtBField.Margin = new System.Windows.Forms.Padding(4);
             this.txtBField.Name = "txtBField";
             this.txtBField.Size = new System.Drawing.Size(150, 23);
-            this.txtBField.TabIndex = 7;
+            this.txtBField.TabIndex = 5;
             // 
             // txtLoaiKey
             // 
@@ -340,29 +347,14 @@
             this.txtLoaiKey.Margin = new System.Windows.Forms.Padding(4);
             this.txtLoaiKey.Name = "txtLoaiKey";
             this.txtLoaiKey.Size = new System.Drawing.Size(150, 23);
-            this.txtLoaiKey.TabIndex = 46;
-            // 
-            // txtWidth
-            // 
-            this.txtWidth.AccessibleName = "Width";
-            this.txtWidth.BackColor = System.Drawing.Color.White;
-            this.txtWidth.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtWidth.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtWidth.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtWidth.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtWidth.HoverColor = System.Drawing.Color.Yellow;
-            this.txtWidth.LeaveColor = System.Drawing.Color.White;
-            this.txtWidth.Location = new System.Drawing.Point(120, 398);
-            this.txtWidth.Margin = new System.Windows.Forms.Padding(4);
-            this.txtWidth.Name = "txtWidth";
-            this.txtWidth.Size = new System.Drawing.Size(150, 23);
-            this.txtWidth.TabIndex = 43;
+            this.txtLoaiKey.TabIndex = 17;
+            this.toolTipV6FormControl.SetToolTip(this.txtLoaiKey, "Các loại key trong báo cáo");
             // 
             // label38
             // 
             this.label38.AccessibleDescription = "";
             this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(9, 193);
+            this.label38.Location = new System.Drawing.Point(10, 218);
             this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(65, 17);
@@ -373,7 +365,7 @@
             // 
             this.label36.AccessibleDescription = "";
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(9, 89);
+            this.label36.Location = new System.Drawing.Point(10, 114);
             this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(47, 17);
@@ -390,17 +382,17 @@
             this.txtInitFilter.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtInitFilter.HoverColor = System.Drawing.Color.Yellow;
             this.txtInitFilter.LeaveColor = System.Drawing.Color.White;
-            this.txtInitFilter.Location = new System.Drawing.Point(120, 372);
+            this.txtInitFilter.Location = new System.Drawing.Point(120, 398);
             this.txtInitFilter.Margin = new System.Windows.Forms.Padding(4);
             this.txtInitFilter.Name = "txtInitFilter";
             this.txtInitFilter.Size = new System.Drawing.Size(150, 23);
-            this.txtInitFilter.TabIndex = 40;
+            this.txtInitFilter.TabIndex = 16;
             // 
             // label34
             // 
             this.label34.AccessibleDescription = "";
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(9, 435);
+            this.label34.Location = new System.Drawing.Point(10, 434);
             this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(65, 17);
@@ -417,22 +409,11 @@
             this.txtVvar.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtVvar.HoverColor = System.Drawing.Color.Yellow;
             this.txtVvar.LeaveColor = System.Drawing.Color.White;
-            this.txtVvar.Location = new System.Drawing.Point(120, 294);
+            this.txtVvar.Location = new System.Drawing.Point(120, 320);
             this.txtVvar.Margin = new System.Windows.Forms.Padding(4);
             this.txtVvar.Name = "txtVvar";
             this.txtVvar.Size = new System.Drawing.Size(150, 23);
-            this.txtVvar.TabIndex = 31;
-            // 
-            // label32
-            // 
-            this.label32.AccessibleDescription = "";
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(9, 401);
-            this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(44, 17);
-            this.label32.TabIndex = 42;
-            this.label32.Text = "Width";
+            this.txtVvar.TabIndex = 13;
             // 
             // txtLimitChars
             // 
@@ -444,11 +425,11 @@
             this.txtLimitChars.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLimitChars.HoverColor = System.Drawing.Color.Yellow;
             this.txtLimitChars.LeaveColor = System.Drawing.Color.White;
-            this.txtLimitChars.Location = new System.Drawing.Point(120, 268);
+            this.txtLimitChars.Location = new System.Drawing.Point(120, 294);
             this.txtLimitChars.Margin = new System.Windows.Forms.Padding(4);
             this.txtLimitChars.Name = "txtLimitChars";
             this.txtLimitChars.Size = new System.Drawing.Size(150, 23);
-            this.txtLimitChars.TabIndex = 28;
+            this.txtLimitChars.TabIndex = 12;
             // 
             // txtTextV
             // 
@@ -460,17 +441,17 @@
             this.txtTextV.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTextV.HoverColor = System.Drawing.Color.Yellow;
             this.txtTextV.LeaveColor = System.Drawing.Color.White;
-            this.txtTextV.Location = new System.Drawing.Point(120, 112);
+            this.txtTextV.Location = new System.Drawing.Point(120, 138);
             this.txtTextV.Margin = new System.Windows.Forms.Padding(4);
             this.txtTextV.Name = "txtTextV";
             this.txtTextV.Size = new System.Drawing.Size(150, 23);
-            this.txtTextV.TabIndex = 10;
+            this.txtTextV.TabIndex = 6;
             // 
             // label26
             // 
             this.label26.AccessibleDescription = "";
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(9, 375);
+            this.label26.Location = new System.Drawing.Point(10, 400);
             this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(57, 17);
@@ -482,7 +463,7 @@
             this.label37.AccessibleDescription = "";
             this.label37.AccessibleName = "";
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(284, 194);
+            this.label37.Location = new System.Drawing.Point(284, 218);
             this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(209, 17);
@@ -493,7 +474,7 @@
             // 
             this.label24.AccessibleDescription = "";
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(9, 297);
+            this.label24.Location = new System.Drawing.Point(10, 322);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(37, 17);
@@ -505,7 +486,7 @@
             this.label35.AccessibleDescription = "";
             this.label35.AccessibleName = "";
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(284, 90);
+            this.label35.Location = new System.Drawing.Point(284, 114);
             this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(374, 17);
@@ -516,7 +497,7 @@
             // 
             this.label3.AccessibleDescription = "descript2";
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 141);
+            this.label3.Location = new System.Drawing.Point(10, 166);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 17);
@@ -540,29 +521,18 @@
             // 
             this.label22.AccessibleDescription = "";
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(9, 271);
+            this.label22.Location = new System.Drawing.Point(10, 296);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(74, 17);
             this.label22.TabIndex = 27;
             this.label22.Text = "LimitChars";
             // 
-            // label31
-            // 
-            this.label31.AccessibleDescription = "";
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(284, 402);
-            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(77, 17);
-            this.label31.TabIndex = 44;
-            this.label31.Text = "Chiều rộng";
-            // 
             // label9
             // 
             this.label9.AccessibleDescription = "";
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(284, 220);
+            this.label9.Location = new System.Drawing.Point(284, 244);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(192, 17);
@@ -573,7 +543,7 @@
             // 
             this.label2.AccessibleDescription = "";
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 115);
+            this.label2.Location = new System.Drawing.Point(10, 140);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 17);
@@ -584,7 +554,7 @@
             // 
             this.label25.AccessibleDescription = "";
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(284, 376);
+            this.label25.Location = new System.Drawing.Point(284, 400);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(99, 17);
@@ -595,7 +565,7 @@
             // 
             this.label7.AccessibleDescription = "";
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(284, 168);
+            this.label7.Location = new System.Drawing.Point(284, 192);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(238, 17);
@@ -606,7 +576,7 @@
             // 
             this.label30.AccessibleDescription = "";
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(9, 37);
+            this.label30.Location = new System.Drawing.Point(10, 36);
             this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(112, 17);
@@ -617,7 +587,7 @@
             // 
             this.label23.AccessibleDescription = "";
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(284, 298);
+            this.label23.Location = new System.Drawing.Point(284, 322);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(37, 17);
@@ -628,7 +598,7 @@
             // 
             this.label1.AccessibleDescription = "";
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 63);
+            this.label1.Location = new System.Drawing.Point(10, 62);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 17);
@@ -639,7 +609,7 @@
             // 
             this.label21.AccessibleDescription = "";
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(284, 272);
+            this.label21.Location = new System.Drawing.Point(284, 296);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(183, 17);
@@ -650,29 +620,18 @@
             // 
             this.label5.AccessibleDescription = "";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(284, 142);
+            this.label5.Location = new System.Drawing.Point(284, 166);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 17);
             this.label5.TabIndex = 14;
             this.label5.Text = "Vd: Item ID";
             // 
-            // label29
-            // 
-            this.label29.AccessibleDescription = "";
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(284, 38);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(112, 17);
-            this.label29.TabIndex = 2;
-            this.label29.Text = "AccessibleName";
-            // 
             // label4
             // 
             this.label4.AccessibleDescription = "";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(284, 116);
+            this.label4.Location = new System.Drawing.Point(284, 140);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(263, 17);
@@ -683,7 +642,7 @@
             // 
             this.label6.AccessibleDescription = "";
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(284, 64);
+            this.label6.Location = new System.Drawing.Point(284, 62);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(496, 17);
@@ -744,7 +703,11 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage1.Controls.Add(this.txtField2);
+            this.tabPage1.Controls.Add(this.label51);
+            this.tabPage1.Controls.Add(this.label52);
             this.tabPage1.Controls.Add(this.txtControlType);
+            this.tabPage1.Controls.Add(this.txtAccessibleName2);
             this.tabPage1.Controls.Add(this.txtAccessibleName);
             this.tabPage1.Controls.Add(this.label44);
             this.tabPage1.Controls.Add(this.txtField);
@@ -752,9 +715,9 @@
             this.tabPage1.Controls.Add(this.txtF2);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.label29);
             this.tabPage1.Controls.Add(this.label43);
             this.tabPage1.Controls.Add(this.label20);
-            this.tabPage1.Controls.Add(this.label29);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label21);
             this.tabPage1.Controls.Add(this.txtNotEmpty);
@@ -769,7 +732,6 @@
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.label19);
             this.tabPage1.Controls.Add(this.label40);
-            this.tabPage1.Controls.Add(this.label31);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.label22);
             this.tabPage1.Controls.Add(this.label33);
@@ -786,11 +748,9 @@
             this.tabPage1.Controls.Add(this.txtLoaiKey);
             this.tabPage1.Controls.Add(this.txtTextV);
             this.tabPage1.Controls.Add(this.txtToUpper);
-            this.tabPage1.Controls.Add(this.txtWidth);
             this.tabPage1.Controls.Add(this.label38);
             this.tabPage1.Controls.Add(this.label39);
             this.tabPage1.Controls.Add(this.txtLimitChars);
-            this.tabPage1.Controls.Add(this.label32);
             this.tabPage1.Controls.Add(this.label36);
             this.tabPage1.Controls.Add(this.txtVvar);
             this.tabPage1.Controls.Add(this.txtInitFilter);
@@ -802,6 +762,43 @@
             this.tabPage1.Size = new System.Drawing.Size(769, 475);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
+            // 
+            // txtField2
+            // 
+            this.txtField2.AccessibleName = "Field2";
+            this.txtField2.BackColor = System.Drawing.Color.White;
+            this.txtField2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtField2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtField2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtField2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtField2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtField2.LeaveColor = System.Drawing.Color.White;
+            this.txtField2.Location = new System.Drawing.Point(120, 86);
+            this.txtField2.Name = "txtField2";
+            this.txtField2.Size = new System.Drawing.Size(150, 23);
+            this.txtField2.TabIndex = 4;
+            // 
+            // label51
+            // 
+            this.label51.AccessibleDescription = "";
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(284, 88);
+            this.label51.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(489, 17);
+            this.label51.TabIndex = 50;
+            this.label51.Text = "Trường text hiển thị dùng trong DynamicAddedit V6lookupTextbox ShowField";
+            // 
+            // label52
+            // 
+            this.label52.AccessibleDescription = "";
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(10, 88);
+            this.label52.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(46, 17);
+            this.label52.TabIndex = 48;
+            this.label52.Text = "Field2";
             // 
             // txtControlType
             // 
@@ -816,35 +813,64 @@
             this.txtControlType.Location = new System.Drawing.Point(120, 8);
             this.txtControlType.Name = "txtControlType";
             this.txtControlType.Size = new System.Drawing.Size(150, 23);
-            this.txtControlType.TabIndex = 1;
+            this.txtControlType.TabIndex = 0;
+            this.toolTipV6FormControl.SetToolTip(this.txtControlType, "Type LookupTextBox nhớ nhập MA_DM");
+            // 
+            // txtAccessibleName2
+            // 
+            this.txtAccessibleName2.AccessibleName = "AccessibleName2";
+            this.txtAccessibleName2.BackColor = System.Drawing.Color.White;
+            this.txtAccessibleName2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtAccessibleName2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtAccessibleName2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtAccessibleName2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtAccessibleName2.GrayText = "AccessibleName2";
+            this.txtAccessibleName2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtAccessibleName2.LeaveColor = System.Drawing.Color.White;
+            this.txtAccessibleName2.Location = new System.Drawing.Point(287, 34);
+            this.txtAccessibleName2.Name = "txtAccessibleName2";
+            this.txtAccessibleName2.Size = new System.Drawing.Size(150, 23);
+            this.txtAccessibleName2.TabIndex = 2;
+            this.toolTipV6FormControl.SetToolTip(this.txtAccessibleName2, "Sử dụng cho ControlType = V6LookupTextBox để lấy dữ liệu hiển thị.");
             // 
             // label44
             // 
             this.label44.AccessibleDescription = "";
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(9, 11);
+            this.label44.Location = new System.Drawing.Point(10, 10);
             this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(84, 17);
             this.label44.TabIndex = 0;
             this.label44.Text = "Control type";
             // 
+            // label29
+            // 
+            this.label29.AccessibleDescription = "";
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(444, 36);
+            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(64, 17);
+            this.label29.TabIndex = 2;
+            this.label29.Text = "Key data";
+            // 
             // label43
             // 
             this.label43.AccessibleDescription = "";
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(284, 12);
+            this.label43.Location = new System.Drawing.Point(284, 10);
             this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(118, 17);
+            this.label43.Size = new System.Drawing.Size(211, 17);
             this.label43.TabIndex = 2;
-            this.label43.Text = "Button, Textbox...";
+            this.label43.Text = "Button, LookupTextBox, Textbox";
             // 
             // label40
             // 
             this.label40.AccessibleDescription = "";
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(284, 350);
+            this.label40.Location = new System.Drawing.Point(284, 374);
             this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(114, 17);
@@ -862,17 +888,17 @@
             this.txtToUpper.HoverColor = System.Drawing.Color.Yellow;
             this.txtToUpper.LeaveColor = System.Drawing.Color.White;
             this.txtToUpper.LimitCharacters = "01";
-            this.txtToUpper.Location = new System.Drawing.Point(120, 346);
+            this.txtToUpper.Location = new System.Drawing.Point(120, 372);
             this.txtToUpper.Margin = new System.Windows.Forms.Padding(4);
             this.txtToUpper.Name = "txtToUpper";
             this.txtToUpper.Size = new System.Drawing.Size(150, 23);
-            this.txtToUpper.TabIndex = 37;
+            this.txtToUpper.TabIndex = 15;
             // 
             // label39
             // 
             this.label39.AccessibleDescription = "";
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(9, 349);
+            this.label39.Location = new System.Drawing.Point(10, 374);
             this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(64, 17);
@@ -882,6 +908,12 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage2.Controls.Add(this.label53);
+            this.tabPage2.Controls.Add(this.txtMa_dm);
+            this.tabPage2.Controls.Add(this.label54);
+            this.tabPage2.Controls.Add(this.label31);
+            this.tabPage2.Controls.Add(this.txtWidth);
+            this.tabPage2.Controls.Add(this.label32);
             this.tabPage2.Controls.Add(this.label50);
             this.tabPage2.Controls.Add(this.label48);
             this.tabPage2.Controls.Add(this.label46);
@@ -913,6 +945,95 @@
             this.tabPage2.Size = new System.Drawing.Size(769, 475);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin thêm";
+            // 
+            // label53
+            // 
+            this.label53.AccessibleDescription = "";
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(281, 244);
+            this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(165, 17);
+            this.label53.TabIndex = 50;
+            this.label53.Text = "Mã danh mục trong Aldm";
+            // 
+            // txtMa_dm
+            // 
+            this.txtMa_dm.AccessibleName = "MA_DM";
+            this.txtMa_dm.BackColor = System.Drawing.Color.White;
+            this.txtMa_dm.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMa_dm.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMa_dm.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMa_dm.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMa_dm.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMa_dm.LeaveColor = System.Drawing.Color.White;
+            this.txtMa_dm.Location = new System.Drawing.Point(120, 242);
+            this.txtMa_dm.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMa_dm.Name = "txtMa_dm";
+            this.txtMa_dm.Size = new System.Drawing.Size(150, 23);
+            this.txtMa_dm.TabIndex = 10;
+            // 
+            // label54
+            // 
+            this.label54.AccessibleDescription = "";
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(10, 244);
+            this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(57, 17);
+            this.label54.TabIndex = 48;
+            this.label54.Text = "MA_DM";
+            // 
+            // label31
+            // 
+            this.label31.AccessibleDescription = "";
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(281, 218);
+            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(77, 17);
+            this.label31.TabIndex = 47;
+            this.label31.Text = "Chiều rộng";
+            // 
+            // txtWidth
+            // 
+            this.txtWidth.AccessibleName = "Width";
+            this.txtWidth.BackColor = System.Drawing.Color.White;
+            this.txtWidth.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtWidth.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtWidth.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtWidth.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtWidth.HoverColor = System.Drawing.Color.Yellow;
+            this.txtWidth.LeaveColor = System.Drawing.Color.White;
+            this.txtWidth.Location = new System.Drawing.Point(120, 216);
+            this.txtWidth.Margin = new System.Windows.Forms.Padding(4);
+            this.txtWidth.Name = "txtWidth";
+            this.txtWidth.Size = new System.Drawing.Size(150, 23);
+            this.txtWidth.TabIndex = 8;
+            // 
+            // label32
+            // 
+            this.label32.AccessibleDescription = "";
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(10, 218);
+            this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(44, 17);
+            this.label32.TabIndex = 45;
+            this.label32.Text = "Width";
+            // 
+            // label50
+            // 
+            this.label50.AccessibleDescription = "";
+            this.label50.AccessibleName = "";
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(281, 192);
+            this.label50.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(590, 17);
+            this.label50.TabIndex = 23;
+            this.label50.Text = "Bật tắt tính năng lọc chỉ bắt đầu cho vVarTextBox lookup. Mặc định false sẽ lọc l" +
+    "ike \'%abc%\'.";
             // 
             // label48
             // 
@@ -950,6 +1071,35 @@
             this.label41.TabIndex = 23;
             this.label41.Text = "default=1 (limitchars not null)";
             // 
+            // txtFilterStart
+            // 
+            this.txtFilterStart.AccessibleName = "FilterStart";
+            this.txtFilterStart.BackColor = System.Drawing.Color.White;
+            this.txtFilterStart.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFilterStart.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFilterStart.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFilterStart.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFilterStart.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFilterStart.LeaveColor = System.Drawing.Color.White;
+            this.txtFilterStart.Location = new System.Drawing.Point(120, 190);
+            this.txtFilterStart.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFilterStart.Name = "txtFilterStart";
+            this.txtFilterStart.Size = new System.Drawing.Size(150, 23);
+            this.txtFilterStart.TabIndex = 7;
+            this.toolTipV6FormControl.SetToolTip(this.txtFilterStart, "Bật tắt tính năng lọc chỉ bắt đầu cho vVarTextBox lookup.\r\nMặc định false sẽ lọc " +
+        "like \'%abc%\'.");
+            // 
+            // label49
+            // 
+            this.label49.AccessibleDescription = "";
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(10, 192);
+            this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(69, 17);
+            this.label49.TabIndex = 21;
+            this.label49.Text = "FilterStart";
+            // 
             // txtDescriptionE
             // 
             this.txtDescriptionE.AccessibleName = "DescriptionE";
@@ -960,17 +1110,17 @@
             this.txtDescriptionE.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDescriptionE.HoverColor = System.Drawing.Color.Yellow;
             this.txtDescriptionE.LeaveColor = System.Drawing.Color.White;
-            this.txtDescriptionE.Location = new System.Drawing.Point(117, 162);
+            this.txtDescriptionE.Location = new System.Drawing.Point(120, 164);
             this.txtDescriptionE.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescriptionE.Name = "txtDescriptionE";
             this.txtDescriptionE.Size = new System.Drawing.Size(150, 23);
-            this.txtDescriptionE.TabIndex = 22;
+            this.txtDescriptionE.TabIndex = 6;
             // 
             // label47
             // 
             this.label47.AccessibleDescription = "";
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(6, 165);
+            this.label47.Location = new System.Drawing.Point(10, 166);
             this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(88, 17);
@@ -987,17 +1137,17 @@
             this.txtDescriptionV.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDescriptionV.HoverColor = System.Drawing.Color.Yellow;
             this.txtDescriptionV.LeaveColor = System.Drawing.Color.White;
-            this.txtDescriptionV.Location = new System.Drawing.Point(117, 136);
+            this.txtDescriptionV.Location = new System.Drawing.Point(120, 138);
             this.txtDescriptionV.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescriptionV.Name = "txtDescriptionV";
             this.txtDescriptionV.Size = new System.Drawing.Size(150, 23);
-            this.txtDescriptionV.TabIndex = 22;
+            this.txtDescriptionV.TabIndex = 5;
             // 
             // label45
             // 
             this.label45.AccessibleDescription = "";
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(6, 139);
+            this.label45.Location = new System.Drawing.Point(10, 140);
             this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(88, 17);
@@ -1014,17 +1164,17 @@
             this.txtmaxlength.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtmaxlength.HoverColor = System.Drawing.Color.Yellow;
             this.txtmaxlength.LeaveColor = System.Drawing.Color.White;
-            this.txtmaxlength.Location = new System.Drawing.Point(117, 110);
+            this.txtmaxlength.Location = new System.Drawing.Point(120, 112);
             this.txtmaxlength.Margin = new System.Windows.Forms.Padding(4);
             this.txtmaxlength.Name = "txtmaxlength";
             this.txtmaxlength.Size = new System.Drawing.Size(150, 23);
-            this.txtmaxlength.TabIndex = 22;
+            this.txtmaxlength.TabIndex = 4;
             // 
             // label42
             // 
             this.label42.AccessibleDescription = "";
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(6, 113);
+            this.label42.Location = new System.Drawing.Point(10, 114);
             this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(72, 17);
@@ -1046,7 +1196,7 @@
             // 
             this.label28.AccessibleDescription = "";
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(6, 87);
+            this.label28.Location = new System.Drawing.Point(10, 88);
             this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(72, 17);
@@ -1063,11 +1213,11 @@
             this.txtFparent.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtFparent.HoverColor = System.Drawing.Color.Yellow;
             this.txtFparent.LeaveColor = System.Drawing.Color.White;
-            this.txtFparent.Location = new System.Drawing.Point(117, 84);
+            this.txtFparent.Location = new System.Drawing.Point(120, 86);
             this.txtFparent.Margin = new System.Windows.Forms.Padding(4);
             this.txtFparent.Name = "txtFparent";
             this.txtFparent.Size = new System.Drawing.Size(150, 23);
-            this.txtFparent.TabIndex = 10;
+            this.txtFparent.TabIndex = 3;
             // 
             // txtVisible
             // 
@@ -1080,12 +1230,12 @@
             this.txtVisible.HoverColor = System.Drawing.Color.Yellow;
             this.txtVisible.LeaveColor = System.Drawing.Color.White;
             this.txtVisible.LimitCharacters = "01";
-            this.txtVisible.Location = new System.Drawing.Point(117, 58);
+            this.txtVisible.Location = new System.Drawing.Point(120, 60);
             this.txtVisible.Margin = new System.Windows.Forms.Padding(4);
             this.txtVisible.MaxLength = 1;
             this.txtVisible.Name = "txtVisible";
             this.txtVisible.Size = new System.Drawing.Size(150, 23);
-            this.txtVisible.TabIndex = 7;
+            this.txtVisible.TabIndex = 2;
             // 
             // txtEnabled
             // 
@@ -1098,18 +1248,18 @@
             this.txtEnabled.HoverColor = System.Drawing.Color.Yellow;
             this.txtEnabled.LeaveColor = System.Drawing.Color.White;
             this.txtEnabled.LimitCharacters = "01";
-            this.txtEnabled.Location = new System.Drawing.Point(117, 32);
+            this.txtEnabled.Location = new System.Drawing.Point(120, 34);
             this.txtEnabled.Margin = new System.Windows.Forms.Padding(4);
             this.txtEnabled.MaxLength = 1;
             this.txtEnabled.Name = "txtEnabled";
             this.txtEnabled.Size = new System.Drawing.Size(150, 23);
-            this.txtEnabled.TabIndex = 4;
+            this.txtEnabled.TabIndex = 1;
             // 
             // label18
             // 
             this.label18.AccessibleDescription = "descript2";
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(6, 61);
+            this.label18.Location = new System.Drawing.Point(10, 62);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(49, 17);
@@ -1120,7 +1270,7 @@
             // 
             this.label16.AccessibleDescription = "descript2";
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 35);
+            this.label16.Location = new System.Drawing.Point(10, 36);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(60, 17);
@@ -1159,17 +1309,17 @@
             this.txtDefaultValue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDefaultValue.HoverColor = System.Drawing.Color.Yellow;
             this.txtDefaultValue.LeaveColor = System.Drawing.Color.White;
-            this.txtDefaultValue.Location = new System.Drawing.Point(117, 6);
+            this.txtDefaultValue.Location = new System.Drawing.Point(120, 8);
             this.txtDefaultValue.Margin = new System.Windows.Forms.Padding(4);
             this.txtDefaultValue.Name = "txtDefaultValue";
             this.txtDefaultValue.Size = new System.Drawing.Size(150, 23);
-            this.txtDefaultValue.TabIndex = 1;
+            this.txtDefaultValue.TabIndex = 0;
             // 
             // label12
             // 
             this.label12.AccessibleDescription = "descript2";
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 9);
+            this.label12.Location = new System.Drawing.Point(10, 10);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(91, 17);
@@ -1197,46 +1347,6 @@
             this.tabPage3.Size = new System.Drawing.Size(769, 475);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
-            // 
-            // label49
-            // 
-            this.label49.AccessibleDescription = "";
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(6, 196);
-            this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(69, 17);
-            this.label49.TabIndex = 21;
-            this.label49.Text = "FilterStart";
-            // 
-            // txtFilterStart
-            // 
-            this.txtFilterStart.AccessibleName = "FilterStart";
-            this.txtFilterStart.BackColor = System.Drawing.Color.White;
-            this.txtFilterStart.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtFilterStart.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtFilterStart.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtFilterStart.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtFilterStart.HoverColor = System.Drawing.Color.Yellow;
-            this.txtFilterStart.LeaveColor = System.Drawing.Color.White;
-            this.txtFilterStart.Location = new System.Drawing.Point(117, 193);
-            this.txtFilterStart.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFilterStart.Name = "txtFilterStart";
-            this.txtFilterStart.Size = new System.Drawing.Size(150, 23);
-            this.txtFilterStart.TabIndex = 22;
-            // 
-            // label50
-            // 
-            this.label50.AccessibleDescription = "";
-            this.label50.AccessibleName = "";
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(281, 197);
-            this.label50.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(590, 17);
-            this.label50.TabIndex = 23;
-            this.label50.Text = "Bật tắt tính năng lọc chỉ bắt đầu cho vVarTextBox lookup. Mặc định false sẽ lọc l" +
-    "ike \'%abc%\'.";
             // 
             // ALREPORT1_FilterEditorForm
             // 
@@ -1301,10 +1411,6 @@
         private System.Windows.Forms.Label label21;
         private V6VvarTextBox txtAccessibleName;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label29;
-        private V6ColorTextBox txtWidth;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label31;
         private V6ColorTextBox txtLoaiKey;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
@@ -1336,7 +1442,7 @@
         private System.Windows.Forms.Label label41;
         private V6ColorTextBox txtmaxlength;
         private System.Windows.Forms.Label label42;
-        private V6VvarTextBox txtControlType;
+        private V6Controls.V6ColorTextBox txtControlType;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label46;
@@ -1348,5 +1454,16 @@
         private System.Windows.Forms.Label label50;
         private V6ColorTextBox txtFilterStart;
         private System.Windows.Forms.Label label49;
+        private V6VvarTextBox txtField2;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label label31;
+        private V6ColorTextBox txtWidth;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label53;
+        private V6ColorTextBox txtMa_dm;
+        private System.Windows.Forms.Label label54;
+        private V6VvarTextBox txtAccessibleName2;
+        private System.Windows.Forms.Label label29;
     }
 }

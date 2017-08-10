@@ -185,6 +185,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                         {
                             _thue_nt.V6LostFocus += delegate
                             {
+                                //10/08/2017 Tinh thue 1 chi tiet dang dung
+                                _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value * txtTyGia.Value, M_ROUND);
+                                if (_maNt == _mMaNt0)
+                                {
+                                    _thue.Value = _thue_nt.Value;
+                                }
+
                                 _tt_nt.Value = _tienNt.Value + _thue_nt.Value;
                                 _tt.Value = _tien.Value + _thue.Value;
                             };
@@ -221,6 +228,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                             _tienNt.V6LostFocus += delegate
                             {
                                 _tien.Value = V6BusinessHelper.Vround((_tienNt.Value*txtTyGia.Value), M_ROUND);
+                                if (_maNt == _mMaNt0)
+                                {
+                                    _tien.Value = _tienNt.Value;
+                                }
                                 TinhTienThue();
                             };
                         }
@@ -952,6 +963,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 }
                 else
                 {
+                    detail1.MODE = V6Mode.Init;
+                    Detail2ModeByChkSuaThue();
                     XuLyKhoaThongTinKhachHang();
                     txtTyGia.Enabled = _maNt != _mMaNt0;
                     dateNgayLCT.Enabled = Invoice.M_NGAY_CT;
@@ -2084,7 +2097,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     SetDefaultData(Invoice);
                     detail1.DoAddButtonClick();
                     SetDefaultDetail();
-                    detail2.MODE = V6Mode.Init;
+                    
                     txtMa_sonb.Focus();
                 }
                 else
@@ -3468,6 +3481,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         }
 
         private void chkSuaThue_CheckedChanged(object sender, EventArgs e)
+        {
+            Detail2ModeByChkSuaThue();
+        }
+
+        private void Detail2ModeByChkSuaThue()
         {
             if (!chkSuaThue.Checked)
             {
