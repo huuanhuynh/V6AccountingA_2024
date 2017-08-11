@@ -683,7 +683,7 @@ namespace V6AccountingBusiness.Invoices
         {
             _templateSettingAD = new SortedDictionary<string, DefineInfo>();
             var define = Alct.Rows[0]["AD_TEMPLATE"].ToString().Trim();
-            string[] sss = define.Split('~');
+            string[] sss = define.Split(new []{'~'}, StringSplitOptions.RemoveEmptyEntries);
             foreach (string s in sss)
             {
                 var defineInfo = new DefineInfo(s);

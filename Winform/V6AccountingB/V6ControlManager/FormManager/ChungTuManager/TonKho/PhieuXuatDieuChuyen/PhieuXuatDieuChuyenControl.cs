@@ -618,7 +618,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
                     string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
                     string c_maKhoI = txtMaKhoN.Text.ToUpper();
-                    string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
+                    string c_maViTri = row["Ma_vitriN"].ToString().Trim().ToUpper();
 
                     //Add 31-07-2016
                     //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
