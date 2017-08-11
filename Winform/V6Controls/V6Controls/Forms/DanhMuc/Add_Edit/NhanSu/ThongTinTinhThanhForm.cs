@@ -55,23 +55,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                                         + "CODE = " + txtMaCode.Text.Trim());
             }
 
-            if (Mode == V6Mode.Edit)
-            {
-
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "NAME",
-                 txtMaCode.Text.Trim(), DataOld["NAME"].ToString());
-                if (!b)
-                    throw new Exception("Không được sửa tên đã tồn tại: "
-                                                    + "NAME = " + txtMaCode.Text.Trim());
-            }
-            else if (Mode == V6Mode.Add)
-            {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "NAME",
-                    txtMaCode.Text.Trim(), txtMaCode.Text.Trim());
-                if (!b)
-                    throw new Exception("Không được thêm tên đã tồn tại: "
-                                        + "NAME = " + txtMaCode.Text.Trim());
-            }
             if (errors.Length > 0) throw new Exception(errors);
         }
 
