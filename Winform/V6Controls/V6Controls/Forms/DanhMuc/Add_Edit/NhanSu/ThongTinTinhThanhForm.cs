@@ -54,6 +54,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                     throw new Exception("Không được thêm mã đã tồn tại: "
                                         + "CODE = " + txtMaCode.Text.Trim());
             }
+
             if (errors.Length > 0) throw new Exception(errors);
         }
 

@@ -55,6 +55,7 @@ namespace V6Structs
         Almauhd,
         Alnhcc,
         Alnhdvcs,
+        HRLSTORGUNIT,
         Alnhhd,
         Alnhkh,
         Alnhkh2,
@@ -324,6 +325,8 @@ namespace V6Structs
                     return V6TableName.Alnhcc;
                 case "alnhdvcs":
                     return V6TableName.Alnhdvcs;
+                case "HRLSTORGUNIT":
+                    return V6TableName.HRLSTORGUNIT;
                 case "alnhhd":
                     return V6TableName.Alnhhd;
                 case "alnhkh":
@@ -621,6 +624,7 @@ namespace V6Structs
                 case V6TableName.Almauhd: result = "ma_mauhd"; break;
                 case V6TableName.Alnhcc: result = "ma_nh"; break;
                 case V6TableName.Alnhdvcs: result = "ma_nh"; break;
+                case V6TableName.HRLSTORGUNIT: result = "ma_bp"; break;
                 case V6TableName.Alnhhd: result = "ma_nh"; break;
                 case V6TableName.Alnhkh: result = "ma_nh"; break;
                 case V6TableName.Alnhkh2: result = "ma_nh"; break;
@@ -946,6 +950,8 @@ namespace V6Structs
 
                 case V6TableName.Alnhdvcs:
                     return lang == "V" ? "Danh mục đơn vị cơ sở " : "  list";
+                case V6TableName.HRLSTORGUNIT:
+                    return lang == "V" ? "Danh mục bộ phận " : "  list";
 
                 case V6TableName.Alnhhd:
                     return lang == "V" ? "Danh mục nhóm hợp đồng" : "  list";
