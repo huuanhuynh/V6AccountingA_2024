@@ -154,7 +154,7 @@ namespace V6Controls
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (this is V6VvarTextBox)
+            if (this is V6VvarTextBox || this is V6LookupTextBox)
             {
                 return base.ProcessCmdKey(ref msg, keyData);
             }

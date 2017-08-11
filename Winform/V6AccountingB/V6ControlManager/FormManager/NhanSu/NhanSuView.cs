@@ -920,7 +920,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 };
                 btnFull.Image = Properties.Resources.ZoomOut2;
                 btnFull.Text = V6Text.ZoomOut;
-                f.ShowDialog(this);
+                f.ShowDialog(container);
             }
         }
 

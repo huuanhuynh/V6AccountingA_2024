@@ -53,7 +53,7 @@
             this.btnInfos.Location = new System.Drawing.Point(275, 229);
             this.btnInfos.Name = "btnInfos";
             this.btnInfos.Size = new System.Drawing.Size(197, 29);
-            this.btnInfos.TabIndex = 2;
+            this.btnInfos.TabIndex = 3;
             this.btnInfos.Text = "&Thông tin về các trường định nghĩa";
             this.btnInfos.UseVisualStyleBackColor = true;
             this.btnInfos.Click += new System.EventHandler(this.btnInfos_Click);
@@ -69,7 +69,7 @@
             this.btnHuy.Location = new System.Drawing.Point(92, 219);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
-            this.btnHuy.TabIndex = 16;
+            this.btnHuy.TabIndex = 2;
             this.btnHuy.Tag = "Escape";
             this.btnHuy.Text = "&Hủy";
             this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -86,7 +86,7 @@
             this.btnNhan.Location = new System.Drawing.Point(4, 219);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
-            this.btnNhan.TabIndex = 15;
+            this.btnNhan.TabIndex = 1;
             this.btnNhan.Tag = "Return, Control";
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -111,6 +111,7 @@
             this.Name = "FormAddEdit";
             this.Text = "FormAdd_Edit";
             this.Load += new System.EventHandler(this.FormAdd_Edit_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.btnInfos, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);

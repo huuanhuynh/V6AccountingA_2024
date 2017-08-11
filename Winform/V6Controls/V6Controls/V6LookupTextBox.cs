@@ -170,6 +170,10 @@ namespace V6Controls
         //    set { _loadAutoCompleteSrc = value; }
         //}
 
+        /// <summary>
+        /// Cờ đã xử lý khi bấm enter.
+        /// </summary>
+        private bool _checkOnLeave_OnEnter = false;
         private bool _checkOnLeave = true;
         [Description("Bật tắt kiểm tra tính hợp lệ của dữ liệu khi rời khỏi.")]
         [DefaultValue(true)]
@@ -274,12 +278,22 @@ namespace V6Controls
         }
 
         #region ==== Event ====
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                //SendKeys.Send("{TAB}");
+                return false;
+            }
 
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
         protected override void V6ColorTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (string.IsNullOrEmpty(LookupInfo.TABLE_NAME))
             {
                 base.V6ColorTextBox_KeyDown(sender, e);
+                if (e.KeyData == Keys.Enter) SendKeys.Send("{TAB}");
             }
             else
             {
@@ -289,52 +303,63 @@ namespace V6Controls
                     SwitchAutoCompleteMode();
                     return;
                 }
-                
-                if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
-                {
-                    DoCharacterCasing();
-                    if (_checkOnLeave && !ReadOnly && Visible)
-                    {
-                        if (Text.Trim() != "")
-                        {
-                            if (!string.IsNullOrEmpty(LookupInfo_F_NAME))
-                            {
-                                if (ExistRowInTable(Text.Trim()))
-                                {
-                                    if (!Looking && gotfocustext != Text) CallDoV6LostFocus();
-                                    else CallDoV6LostFocusNoChange();
-                                    if (e.KeyCode == Keys.Enter)
-                                    {
-                                        e.SuppressKeyPress = true;
-                                        SendKeys.Send("{TAB}");
-                                    }
-                                }
-                                else
-                                {
-                                    DoLookup();
-                                }
 
-                            }
-                        }
-                        else if (_checkNotEmpty && !string.IsNullOrEmpty(LookupInfo_F_NAME))
-                        {
-                            DoLookup();
-                        }
-                        else
-                        {
-                            base.V6ColorTextBox_KeyDown(this, e);
-                        }
-                    }
-                    else
-                    {
-                        if (e.KeyCode == Keys.Enter)
-                        {
-                            e.SuppressKeyPress = true;
-                            SendKeys.Send("{TAB}");
-                        }
-                    }
+                if (e.KeyData == Keys.Enter)
+                {
+                    //Do check on leave
+                    Do_CheckOnLeave(new EventArgs());
+                    //Flag
+                    _checkOnLeave_OnEnter = true;
+                    //Send Tab
+                    SendKeys.Send("{TAB}");
                 }
-                else if (F5 && !ReadOnly && e.KeyCode == Keys.F5 && !string.IsNullOrEmpty(LookupInfo_F_NAME))
+
+                //if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+                //{
+                //    DoCharacterCasing();
+                //    if (_checkOnLeave && !ReadOnly && Visible)
+                //    {
+                //        if (Text.Trim() != "")
+                //        {
+                //            if (!string.IsNullOrEmpty(LookupInfo_F_NAME))
+                //            {
+                //                if (ExistRowInTable(Text.Trim()))
+                //                {
+                //                    if (!Looking && gotfocustext != Text) CallDoV6LostFocus();
+                //                    else CallDoV6LostFocusNoChange();
+                //                    if (e.KeyCode == Keys.Enter)
+                //                    {
+                //                        e.SuppressKeyPress = true;
+                //                        //SendKeys.Send("{TAB}");
+                //                    }
+                //                }
+                //                else
+                //                {
+                //                    DoLookup();
+                //                }
+
+                //            }
+                //        }
+                //        else if (_checkNotEmpty && !string.IsNullOrEmpty(LookupInfo_F_NAME))
+                //        {
+                //            DoLookup();
+                //        }
+                //        else
+                //        {
+                //            base.V6ColorTextBox_KeyDown(this, e);
+                //        }
+                //    }
+                //    else
+                //    {
+                //        if (e.KeyCode == Keys.Enter)
+                //        {
+                //            e.SuppressKeyPress = true;
+                //            //SendKeys.Send("{TAB}");
+                //        }
+                //    }
+                //}
+                //else
+                    if (F5 && !ReadOnly && e.KeyCode == Keys.F5 && !string.IsNullOrEmpty(LookupInfo_F_NAME))
                 {
                     LoadAutoCompleteSource();
                     DoLookup();
@@ -379,13 +404,35 @@ namespace V6Controls
             {
                 base.V6ColorTextBox_LostFocus(sender, e);
             }
-            else if (_checkOnLeave && !ReadOnly && Visible)
+            else
             {
-                if (textBox.Text.Trim() != "")
+                if (_checkOnLeave_OnEnter)
+                {
+                    // Đã xử lý KeyDown Enter.
+                    _checkOnLeave_OnEnter = false;
+                }
+                else
+                {
+                    Do_CheckOnLeave(e);
+                }
+            }
+
+            if (_lockFocus)
+            {
+                _lockFocus = false;
+                Focus();
+            }
+        }
+
+        private void Do_CheckOnLeave(EventArgs e)
+        {
+            if (_checkOnLeave && !ReadOnly && Visible)
+            {
+                if (Text.Trim() != "")
                 {
                     if (!string.IsNullOrEmpty(LookupInfo_F_NAME))
                     {
-                        if (ExistRowInTable(textBox.Text.Trim()))
+                        if (ExistRowInTable(Text.Trim()))
                         {
                             FixText();
 
@@ -404,18 +451,15 @@ namespace V6Controls
                 }
                 else
                 {
-                    ExistRowInTable(textBox.Text.Trim());
-                    base.V6ColorTextBox_LostFocus(sender, e);
+                    ExistRowInTable(Text.Trim());
+                    base.V6ColorTextBox_LostFocus(this, e);
                 }
             }
-
-            if (_lockFocus)
+            else if (!_checkOnLeave && !ReadOnly && Visible && Enabled)
             {
-                _lockFocus = false;
-                Focus();
+                ExistRowInTable(Text.Trim());
             }
         }
-
         
         #endregion event
 

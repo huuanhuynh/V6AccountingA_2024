@@ -1472,7 +1472,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 };
                 btnFull.Image = Properties.Resources.ZoomOut24;
                 btnFull.Text = V6Text.ZoomOut;
-                f.ShowDialog(this);
+                f.ShowDialog(container);
             }
         }
 
