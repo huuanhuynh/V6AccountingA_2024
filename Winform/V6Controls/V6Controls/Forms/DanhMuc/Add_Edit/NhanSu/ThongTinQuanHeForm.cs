@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using V6AccountingBusiness;
 using System;
+using V6Structs;
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
     public partial class ThongTinQuanHeForm : AddEditControlVirtual
@@ -59,6 +60,26 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             if (txtName.Text.Trim() == "")
                 errors += "Chưa nhập tên !\r\n";
             if (errors.Length > 0) throw new Exception(errors);
+
+            if (Mode == V6Mode.Edit)
+            {
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "NAME",
+                 txtName.Text.Trim(), DataOld["NAME"].ToString());
+                if (!b)
+                    throw new Exception("Không được sửa tên đã tồn tại: "
+                                                    + "NAME = " + txtName.Text.Trim());
+            }
+            else if (Mode == V6Mode.Add)
+            {
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "NAME",
+                 txtName.Text.Trim(), txtName.Text.Trim());
+                if (!b)
+                    throw new Exception("Không được thêm tên đã tồn tại: "
+                                                    + "NAME = " + txtName.Text.Trim());
+            }
+
+            if (errors.Length > 0) throw new Exception(errors);
+
         }
     }
 }
