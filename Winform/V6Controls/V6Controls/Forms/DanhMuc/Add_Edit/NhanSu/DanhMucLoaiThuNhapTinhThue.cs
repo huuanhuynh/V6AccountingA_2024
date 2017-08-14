@@ -22,7 +22,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         }
         public override void DoBeforeEdit()
         {
-            txtMa_loai_tn.ReadOnly = true;
+          //  txtMa_loai_tn.ReadOnly = true;
             //txtManhCa.ExistRowInTable();
             //txtMaCong.ExistRowInTable();
         }

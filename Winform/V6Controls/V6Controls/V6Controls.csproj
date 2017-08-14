@@ -353,6 +353,12 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinDieuKienSongForm.designer.cs">
       <DependentUpon>ThongTinDieuKienSongForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHopDong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHopDong.designer.cs">
+      <DependentUpon>ThongTinHopDong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinTonGiaoForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1362,6 +1368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinDieuKienSongForm.resx">
       <DependentUpon>ThongTinDieuKienSongForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHopDong.resx">
+      <DependentUpon>ThongTinHopDong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinTonGiaoForm.resx">
       <DependentUpon>ThongTinTonGiaoForm.cs</DependentUpon>

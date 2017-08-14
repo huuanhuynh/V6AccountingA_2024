@@ -185,6 +185,7 @@ namespace V6Structs
         Prhlttbh,
         Prhltp,
         Prloailuong,
+        HRLSTCONTRACTTYPE,
         Prhlloaitn,
         Hrxhltg,
         Hrlstreligion,
@@ -536,6 +537,8 @@ namespace V6Structs
                     return V6TableName.Prhltp;
                 case "Prloailuong":
                     return V6TableName.Prloailuong;
+                case "HRLSTCONTRACTTYPE":
+                    return V6TableName.HRLSTCONTRACTTYPE;
                 case "Prhlloaitn":
                     return V6TableName.Prhlloaitn;
                 case "Hrxhltg":
@@ -761,6 +764,7 @@ namespace V6Structs
                 case V6TableName.Prhlttbh: result = "ma_ttbh"; break;
                 case V6TableName.Prhltp: result = "ma_loai"; break;
                 case V6TableName.Prloailuong: result = "ma_loai_lg"; break;
+                case V6TableName.HRLSTCONTRACTTYPE: result = "name"; break;
                 case V6TableName.Prhlloaitn: result = "ma_loai_tn"; break;
                 case V6TableName.Hrxhltg: result = "ma_tg"; break;
                 case V6TableName.Hrlstreligion: result = "name"; break;
@@ -1249,6 +1253,8 @@ namespace V6Structs
                     return lang == "V" ? "Danh mục thưởng, phạt" : "";
                 case V6TableName.Prloailuong:
                     return lang == "V" ? "Danh mục các loại lương" : "";
+                case V6TableName.HRLSTCONTRACTTYPE:
+                    return lang == "V" ? "Danh mục hợp đồng" : "";
                 case V6TableName.Prhlloaitn:
                     return lang == "V" ? "Danh mục loại thu nhập tính thuế" : "";
                 case V6TableName.Hrxhltg:

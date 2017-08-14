@@ -242,7 +242,7 @@ namespace V6Controls
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
+       {
             try
             {
                 if(keyData == (Keys.Control | Keys.F))

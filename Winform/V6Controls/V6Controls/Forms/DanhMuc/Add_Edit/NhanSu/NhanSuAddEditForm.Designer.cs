@@ -195,11 +195,11 @@
             this.TxTlast_name.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxTlast_name.HoverColor = System.Drawing.Color.Yellow;
             this.TxTlast_name.LeaveColor = System.Drawing.Color.White;
-            this.TxTlast_name.Location = new System.Drawing.Point(452, 42);
+            this.TxTlast_name.Location = new System.Drawing.Point(164, 42);
             this.TxTlast_name.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.TxTlast_name.Name = "TxTlast_name";
             this.TxTlast_name.Size = new System.Drawing.Size(141, 23);
-            this.TxTlast_name.TabIndex = 5;
+            this.TxTlast_name.TabIndex = 3;
             // 
             // TxTmid_name
             // 
@@ -233,11 +233,11 @@
             this.TxTfirst_name.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxTfirst_name.HoverColor = System.Drawing.Color.Yellow;
             this.TxTfirst_name.LeaveColor = System.Drawing.Color.White;
-            this.TxTfirst_name.Location = new System.Drawing.Point(164, 42);
+            this.TxTfirst_name.Location = new System.Drawing.Point(452, 42);
             this.TxTfirst_name.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.TxTfirst_name.Name = "TxTfirst_name";
             this.TxTfirst_name.Size = new System.Drawing.Size(141, 23);
-            this.TxTfirst_name.TabIndex = 3;
+            this.TxTfirst_name.TabIndex = 5;
             // 
             // label4
             // 

@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.txtSTT = new V6Controls.V6NumberTextBox();
+            this.txtMa_loai_luong = new V6Controls.V6VvarTextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtten_loai_tn = new V6Controls.V6LabelTextBox();
             this.txtKieu = new V6Controls.V6ColorTextBox();
             this.TxtCongThuc = new V6Controls.V6ColorTextBox();
-            this.TXTLOAITN = new V6Controls.V6ColorTextBox();
+            this.TXTLOAITN = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox17 = new V6Controls.V6ColorTextBox();
             this.v6Label9 = new V6Controls.V6Label();
             this.v6Label5 = new V6Controls.V6Label();
@@ -72,13 +76,60 @@
             this.txtTenLoaiLg = new V6Controls.V6ColorTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtMa_loai_luong = new V6Controls.V6VvarTextBox();
-            this.txtSTT = new V6Controls.V6NumberTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // txtSTT
+            // 
+            this.txtSTT.AccessibleName = "STT";
+            this.txtSTT.BackColor = System.Drawing.Color.White;
+            this.txtSTT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSTT.DecimalPlaces = 0;
+            this.txtSTT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSTT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSTT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSTT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSTT.LeaveColor = System.Drawing.Color.White;
+            this.txtSTT.Location = new System.Drawing.Point(161, 5);
+            this.txtSTT.Name = "txtSTT";
+            this.txtSTT.Size = new System.Drawing.Size(75, 23);
+            this.txtSTT.TabIndex = 0;
+            this.txtSTT.Text = "0";
+            this.txtSTT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSTT.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // txtMa_loai_luong
+            // 
+            this.txtMa_loai_luong.AccessibleName = "ma_loai_lg";
+            this.txtMa_loai_luong.BackColor = System.Drawing.Color.White;
+            this.txtMa_loai_luong.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMa_loai_luong.BrotherFields = "";
+            this.txtMa_loai_luong.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMa_loai_luong.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMa_loai_luong.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMa_loai_luong.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMa_loai_luong.LeaveColor = System.Drawing.Color.White;
+            this.txtMa_loai_luong.Location = new System.Drawing.Point(162, 34);
+            this.txtMa_loai_luong.Name = "txtMa_loai_luong";
+            this.txtMa_loai_luong.Size = new System.Drawing.Size(151, 23);
+            this.txtMa_loai_luong.TabIndex = 1;
+            this.txtMa_loai_luong.UseWaitCursor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 37);
+            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 17);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Mã loại";
             // 
             // v6TabControl1
             // 
@@ -100,6 +151,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage1.Controls.Add(this.txtten_loai_tn);
             this.tabPage1.Controls.Add(this.txtKieu);
             this.tabPage1.Controls.Add(this.TxtCongThuc);
             this.tabPage1.Controls.Add(this.TXTLOAITN);
@@ -119,6 +171,19 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
+            // txtten_loai_tn
+            // 
+            this.txtten_loai_tn.AccessibleName = "ten_loai_tn";
+            this.txtten_loai_tn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtten_loai_tn.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtten_loai_tn.Location = new System.Drawing.Point(319, 57);
+            this.txtten_loai_tn.Name = "txtten_loai_tn";
+            this.txtten_loai_tn.ReadOnly = true;
+            this.txtten_loai_tn.Size = new System.Drawing.Size(328, 16);
+            this.txtten_loai_tn.TabIndex = 68;
+            this.txtten_loai_tn.TabStop = false;
+            this.txtten_loai_tn.Tag = "readonly";
+            // 
             // txtKieu
             // 
             this.txtKieu.AccessibleName = "kieu";
@@ -127,12 +192,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtKieu.BackColor = System.Drawing.SystemColors.Window;
             this.txtKieu.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtKieu.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtKieu.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtKieu.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtKieu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtKieu.HoverColor = System.Drawing.Color.Yellow;
             this.txtKieu.LeaveColor = System.Drawing.Color.White;
-            this.txtKieu.LimitCharacters = "SQFU";
+            this.txtKieu.LimitCharacters = "SQFUsqfu";
             this.txtKieu.Location = new System.Drawing.Point(158, 27);
             this.txtKieu.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtKieu.MaxLength = 1;
@@ -167,6 +233,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TXTLOAITN.BackColor = System.Drawing.SystemColors.Window;
             this.TXTLOAITN.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TXTLOAITN.BrotherFields = "ten_loai_tn";
             this.TXTLOAITN.EnterColor = System.Drawing.Color.PaleGreen;
             this.TXTLOAITN.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TXTLOAITN.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -177,6 +244,7 @@
             this.TXTLOAITN.Name = "TXTLOAITN";
             this.TXTLOAITN.Size = new System.Drawing.Size(151, 23);
             this.TXTLOAITN.TabIndex = 1;
+            this.TXTLOAITN.VVar = "ma_loai_tn";
             // 
             // v6ColorTextBox17
             // 
@@ -808,55 +876,6 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Số thứ tự công thức";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 37);
-            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 17);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Mã loại";
-            // 
-            // txtMa_loai_luong
-            // 
-            this.txtMa_loai_luong.AccessibleName = "ma_loai_lg";
-            this.txtMa_loai_luong.BackColor = System.Drawing.Color.White;
-            this.txtMa_loai_luong.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMa_loai_luong.BrotherFields = "";
-            this.txtMa_loai_luong.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMa_loai_luong.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMa_loai_luong.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMa_loai_luong.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMa_loai_luong.LeaveColor = System.Drawing.Color.White;
-            this.txtMa_loai_luong.Location = new System.Drawing.Point(162, 34);
-            this.txtMa_loai_luong.Name = "txtMa_loai_luong";
-            this.txtMa_loai_luong.Size = new System.Drawing.Size(151, 23);
-            this.txtMa_loai_luong.TabIndex = 1;
-            // 
-            // txtSTT
-            // 
-            this.txtSTT.AccessibleName = "STT";
-            this.txtSTT.BackColor = System.Drawing.Color.White;
-            this.txtSTT.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtSTT.DecimalPlaces = 0;
-            this.txtSTT.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtSTT.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtSTT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtSTT.HoverColor = System.Drawing.Color.Yellow;
-            this.txtSTT.LeaveColor = System.Drawing.Color.White;
-            this.txtSTT.Location = new System.Drawing.Point(161, 5);
-            this.txtSTT.Name = "txtSTT";
-            this.txtSTT.Size = new System.Drawing.Size(75, 23);
-            this.txtSTT.TabIndex = 0;
-            this.txtSTT.Text = "0";
-            this.txtSTT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtSTT.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
             // KhaiBaoLoaiLuong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -929,8 +948,9 @@
         private V6Label v6Label5;
         private V6ColorTextBox v6ColorTextBox17;
         private V6Label v6Label9;
-        private V6ColorTextBox TXTLOAITN;
+        private V6VvarTextBox TXTLOAITN;
         private V6ColorTextBox TxtCongThuc;
         private V6ColorTextBox txtKieu;
+        private V6LabelTextBox txtten_loai_tn;
     }
 }
