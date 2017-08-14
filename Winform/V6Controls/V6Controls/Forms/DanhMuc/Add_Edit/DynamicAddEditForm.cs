@@ -162,6 +162,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                 Name = "lbt" + defineInfo.Field,
                             };
                         }
+                        else if (defineInfo.ControlType.ToUpper() == "CHECKBOX")
+                        {
+                            input = new V6CheckBox()
+                            {
+                                Name = "chk" + defineInfo.Field
+                            };
+                        }
                     }
                     else if (ObjectAndString.IsDateTimeType(defineInfo.DataType))
                     {

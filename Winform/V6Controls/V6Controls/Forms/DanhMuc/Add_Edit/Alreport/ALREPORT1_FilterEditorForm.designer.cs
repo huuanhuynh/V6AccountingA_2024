@@ -80,7 +80,7 @@
             this.txtAccessibleName2 = new V6Controls.V6VvarTextBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
+            this.lblControlType = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.txtToUpper = new V6Controls.V6ColorTextBox();
             this.label39 = new System.Windows.Forms.Label();
@@ -116,6 +116,9 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lblControlTypeCheckBox = new System.Windows.Forms.Label();
+            this.lblControlTypeTextBox = new System.Windows.Forms.Label();
+            this.lblControlTypeLookupTextBox = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -716,7 +719,10 @@
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label29);
-            this.tabPage1.Controls.Add(this.label43);
+            this.tabPage1.Controls.Add(this.lblControlTypeCheckBox);
+            this.tabPage1.Controls.Add(this.lblControlTypeLookupTextBox);
+            this.tabPage1.Controls.Add(this.lblControlTypeTextBox);
+            this.tabPage1.Controls.Add(this.lblControlType);
             this.tabPage1.Controls.Add(this.label20);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label21);
@@ -855,16 +861,17 @@
             this.label29.TabIndex = 2;
             this.label29.Text = "Key data";
             // 
-            // label43
+            // lblControlType
             // 
-            this.label43.AccessibleDescription = "";
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(284, 10);
-            this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(211, 17);
-            this.label43.TabIndex = 2;
-            this.label43.Text = "Button, LookupTextBox, Textbox";
+            this.lblControlType.AccessibleDescription = "";
+            this.lblControlType.AutoSize = true;
+            this.lblControlType.Location = new System.Drawing.Point(284, 10);
+            this.lblControlType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblControlType.Name = "lblControlType";
+            this.lblControlType.Size = new System.Drawing.Size(49, 17);
+            this.lblControlType.TabIndex = 2;
+            this.lblControlType.Text = "Button";
+            this.lblControlType.Click += new System.EventHandler(this.lblControlType_Click);
             // 
             // label40
             // 
@@ -1348,6 +1355,42 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
+            // lblControlTypeCheckBox
+            // 
+            this.lblControlTypeCheckBox.AccessibleDescription = "";
+            this.lblControlTypeCheckBox.AutoSize = true;
+            this.lblControlTypeCheckBox.Location = new System.Drawing.Point(516, 10);
+            this.lblControlTypeCheckBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblControlTypeCheckBox.Name = "lblControlTypeCheckBox";
+            this.lblControlTypeCheckBox.Size = new System.Drawing.Size(70, 17);
+            this.lblControlTypeCheckBox.TabIndex = 2;
+            this.lblControlTypeCheckBox.Text = "CheckBox";
+            this.lblControlTypeCheckBox.Click += new System.EventHandler(this.lblControlType_Click);
+            // 
+            // lblControlTypeTextBox
+            // 
+            this.lblControlTypeTextBox.AccessibleDescription = "";
+            this.lblControlTypeTextBox.AutoSize = true;
+            this.lblControlTypeTextBox.Location = new System.Drawing.Point(336, 10);
+            this.lblControlTypeTextBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblControlTypeTextBox.Name = "lblControlTypeTextBox";
+            this.lblControlTypeTextBox.Size = new System.Drawing.Size(58, 17);
+            this.lblControlTypeTextBox.TabIndex = 2;
+            this.lblControlTypeTextBox.Text = "TextBox";
+            this.lblControlTypeTextBox.Click += new System.EventHandler(this.lblControlType_Click);
+            // 
+            // lblControlTypeLookupTextBox
+            // 
+            this.lblControlTypeLookupTextBox.AccessibleDescription = "";
+            this.lblControlTypeLookupTextBox.AutoSize = true;
+            this.lblControlTypeLookupTextBox.Location = new System.Drawing.Point(403, 10);
+            this.lblControlTypeLookupTextBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblControlTypeLookupTextBox.Name = "lblControlTypeLookupTextBox";
+            this.lblControlTypeLookupTextBox.Size = new System.Drawing.Size(105, 17);
+            this.lblControlTypeLookupTextBox.TabIndex = 2;
+            this.lblControlTypeLookupTextBox.Text = "LookupTextBox";
+            this.lblControlTypeLookupTextBox.Click += new System.EventHandler(this.lblControlType_Click);
+            // 
             // ALREPORT1_FilterEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1444,7 +1487,7 @@
         private System.Windows.Forms.Label label42;
         private V6Controls.V6ColorTextBox txtControlType;
         private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label lblControlType;
         private System.Windows.Forms.Label label46;
         private V6ColorTextBox txtDescriptionV;
         private System.Windows.Forms.Label label45;
@@ -1465,5 +1508,8 @@
         private System.Windows.Forms.Label label54;
         private V6VvarTextBox txtAccessibleName2;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label lblControlTypeCheckBox;
+        private System.Windows.Forms.Label lblControlTypeLookupTextBox;
+        private System.Windows.Forms.Label lblControlTypeTextBox;
     }
 }

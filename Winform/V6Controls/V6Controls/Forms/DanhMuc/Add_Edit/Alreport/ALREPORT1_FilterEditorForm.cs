@@ -120,6 +120,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             Nhan();
         }
 
+        private void lblControlType_Click(object sender, EventArgs e)
+        {
+            txtControlType.Text = ((Control) sender).Text;
+        }
+
         
     }
 }
