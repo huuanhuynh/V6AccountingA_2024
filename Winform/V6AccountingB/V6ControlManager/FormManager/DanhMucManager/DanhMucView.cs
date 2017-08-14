@@ -224,7 +224,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                Logger.WriteExLog(V6Login.ClientName + " " + GetType() + ".SetFormatGridView", ex, V6ControlFormHelper.LastActionListString);
+                this.WriteExLog(GetType() + ".SetFormatGridView", ex);
             }
 
         }
@@ -243,7 +243,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".DoHotKey " + ex.Message);
+                this.WriteExLog(GetType() + ".DoHotKey", ex);
             }
             base.DoHotKey(keyData);
         }
@@ -315,7 +315,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".DoAdd " + _tableName + " " + ex.Message);
+                this.ShowErrorException(GetType() + ".DoAdd " + _tableName, ex);
             }
         }
 
@@ -369,7 +369,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".DoAddCopy: " + ex.Message);
+                this.ShowErrorException(GetType() + ".DoAddCopy " + _tableName, ex);
             }
         }
 
@@ -425,7 +425,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".DoEdit: " + ex.Message);
+                this.ShowErrorException(GetType() + ".DoEdit", ex);
             }
         }
 
@@ -441,13 +441,22 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                if (data == null) return;
-                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-                V6ControlFormHelper.UpdateGridViewRow(row, data);
+                if (CurrentTable == V6TableName.Notable
+                    && !string.IsNullOrEmpty(aldm_config.TABLE_VIEW)
+                    && V6BusinessHelper.IsExistDatabaseTable(aldm_config.TABLE_VIEW))
+                {
+                    ReLoad();
+                }
+                else
+                {
+                    if (data == null) return;
+                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+                    V6ControlFormHelper.UpdateGridViewRow(row, data);
+                }
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".f_UpdateSuccess: " + ex.Message);
+                this.ShowErrorException(GetType() + ".f_UpdateSuccess", ex);
             }
         }
 
@@ -951,7 +960,16 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 string load_table = CurrentTable.ToString();
                 if (CurrentTable == V6TableName.Notable)
                 {
-                    load_table = _tableName;
+                    if (!string.IsNullOrEmpty(aldm_config.TABLE_VIEW)
+                        && V6BusinessHelper.IsExistDatabaseTable(aldm_config.TABLE_VIEW))
+                    {
+                        load_table = aldm_config.TABLE_VIEW;
+                    }
+                    else
+                    {
+                        load_table = _tableName;
+                    }
+                    
                     if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
                 }
                 var sr = _categories.SelectPaging(load_table, "*", page, size, GetWhere(where), sortField, @ascending);
@@ -1101,7 +1119,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                Logger.WriteExLog(V6Login.ClientName + " " + GetType() + ".ReLoad", ex, V6ControlFormHelper.LastActionListString);
+                this.WriteExLog(GetType() + ".ReLoad", ex);
             }
         }
         
@@ -1290,7 +1308,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                Logger.WriteExLog(V6Login.ClientName + " " + GetType() + ".f_InsertSuccess", ex, V6ControlFormHelper.LastActionListString);
+                this.WriteExLog(GetType() + ".f_InsertSuccess", ex);
             }
         }
 

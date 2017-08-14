@@ -13,9 +13,8 @@ using V6Tools.V6Convert;
 namespace V6ControlManager.FormManager.ChungTuManager.Filter
 {
     /// <summary>
-    /// Cần nâng cấp thêm phần lọc từ đầu. Nếu 0 rows thì lọc or nhiều trường.
-    /// Nếu còn 1 dòng thì bấm enter ở vsearch là chọn luôn.
-    /// Có thể cần nâng cấp phần phân trang giống danh mục view
+    /// Form chọn dữ liệu có filter. Nếu không gán dữ liệu cho control nào thì gửi sender bằng null hoặc new V6ColorTextBox.
+    /// Có thể cần nâng cấp phần phân trang giống danh mục view.
     /// </summary>
     public partial class FilterView : Form
     {
@@ -29,6 +28,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
         private DataTable _data;
         internal string InitStrFilter;
         private readonly V6ColorTextBox _senderTextBox;
+        private string SenderTextBox_Text { get { return _senderTextBox == null ? "" : _senderTextBox.Text; } }
 
         private HelpProvider _helpProvider1;
         public bool MultiSeletion { get; set; }
@@ -39,26 +39,37 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
         public string  Report_GRDSV1 = "";
         public string  Report_GRDFV1 = "";
         public string  Report_GRDHV_V1 = "";
-         public string  Report_GRDHE_V1 = "";
+        public string  Report_GRDHE_V1 = "";
 
+        private DataView myView;
+        public DataView ViewData { get { return myView; } }
+
+        /// <summary>
+        /// <para>Form chọn dữ liệu có filter. Nếu không gán dữ liệu cho control nào thì gửi sender bằng null hoặc new V6ColorTextBox.</para>
+        /// <para>Kiểm tra số lượng dữ liệu hiển thị = ViewData.Count.</para>
+        /// </summary>
+        /// <param name="data">Dữ liệu gửi vào.</param>
+        /// <param name="dataField">Trường lấy dữ liệu.</param>
+        /// <param name="maDm"></param>
+        /// <param name="sender">Control nhận dữ liệu</param>
+        /// <param name="initStrFilter">Lọc dữ liệu ban đầu. Không có thì truyền null hoặc rỗng.</param>
         public FilterView(DataTable data, string dataField, string maDm, V6ColorTextBox sender, string initStrFilter)
-        {            
-            DataField = dataField.Replace("'","''");
+        {
+            if (initStrFilter == null) initStrFilter = "";
+            DataField = dataField.Replace("'", "''");
             Ma_dm = maDm;
-            
-                
-            var aldm_data = V6BusinessHelper.Select("aldm","GRDS_V1,GRDF_V1,GRDHV_V1,GRDHE_V1","ma_dm='" + maDm + "'").Data;
-               if (aldm_data != null && aldm_data.Rows.Count > 0)
-             {
-                
+
+
+            var aldm_data =
+                V6BusinessHelper.Select("aldm", "GRDS_V1,GRDF_V1,GRDHV_V1,GRDHE_V1", "ma_dm='" + maDm + "'").Data;
+            if (aldm_data != null && aldm_data.Rows.Count > 0)
+            {
+
                 Report_GRDSV1 = aldm_data.Rows[0][0].ToString().Trim();
                 Report_GRDFV1 = aldm_data.Rows[0][1].ToString().Trim();
                 Report_GRDHV_V1 = aldm_data.Rows[0][2].ToString().Trim();
                 Report_GRDHE_V1 = aldm_data.Rows[0][3].ToString().Trim();
-
-               }
-
-
+            }
 
             _data = data;
             InitStrFilter = initStrFilter;
@@ -67,14 +78,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             Init();
         }
 
-        
+
 
         private void Init()
         {
             try
             {
                 //DialogResult = DialogResult.No;
-                txtV_Search.Text = _senderTextBox.Text;
+                txtV_Search.Text = SenderTextBox_Text;
                 myView = new DataView(_data);
                 dataGridView1.DataSource = myView;
                 FormatDataGridView();
@@ -125,7 +136,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             }
         }
 
-        private DataView myView;
         private void ViewFilter()
         {
             _filterString = GenFilterString(DataField);
@@ -166,16 +176,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                     {
                         var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
                         object selectedValue = currentRow.Cells[DataField].Value;
-                        //_senderTextBox.Text = selectedValue;
-                        V6ControlFormHelper.SetControlValue(_senderTextBox, selectedValue);
-                        _senderTextBox.Tag = currentRow;
-                        //Close();
+                        if (_senderTextBox != null)
+                        {
+                            V6ControlFormHelper.SetControlValue(_senderTextBox, selectedValue);
+                            _senderTextBox.Tag = currentRow;
+                        }
+                        
                         if (dataGridView1.CurrentRow != null)
                         {
                             SelectedRowData = dataGridView1.CurrentRow.ToDataDictionary();
                         }
                         DialogResult = DialogResult.OK;
-                        _senderTextBox.SetLooking(false);
+                        if (_senderTextBox != null) _senderTextBox.SetLooking(false);
                     }
                 }
                 else if (e.KeyCode == Keys.Space && MultiSeletion)
@@ -208,22 +220,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             {
                 var currentRow = dataGridView1.Rows[e.RowIndex];
                 object selectedValue = currentRow.Cells[DataField].Value;
-                //_senderTextBox.Text = selectedValue;
-                V6ControlFormHelper.SetControlValue(_senderTextBox, selectedValue);
-                _senderTextBox.Tag = currentRow;
-                //Close();
+                if (_senderTextBox != null)
+                {
+                    V6ControlFormHelper.SetControlValue(_senderTextBox, selectedValue);
+                    _senderTextBox.Tag = currentRow;
+                }
+
                 if (dataGridView1.CurrentRow != null)
                 {
                     SelectedRowData = dataGridView1.CurrentRow.ToDataDictionary();
                 }
                 DialogResult = DialogResult.OK;
-                //Dispose();
-                _senderTextBox.SetLooking(false);
+                if (_senderTextBox != null) _senderTextBox.SetLooking(false);
             }
         }
 
         #region //====================huuan add===================================
         string _filterString = "";  //"field1,field2,..."
+        /// <summary>
+        /// Tạo chuỗi filter từ InitFilter và chuỗi nhập + fields
+        /// </summary>
+        /// <param name="fields"></param>
+        /// <returns></returns>
         private string GenFilterString(string fields)
         {
             var result = "";
@@ -284,7 +302,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             {
                 btnVSearch.PerformClick();
             }
-
         }
 
         private void btnVSearch_Click(object sender, EventArgs e)
@@ -310,7 +327,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
 
         private void Standard_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _senderTextBox.SetLooking(false);
+            if (_senderTextBox != null) _senderTextBox.SetLooking(false);
         }
 
         private void btnESC_Click(object sender, EventArgs e)

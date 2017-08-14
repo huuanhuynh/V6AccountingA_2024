@@ -1294,5 +1294,28 @@ namespace V6AccountingBusiness
             }
             table.Rows.Add(newRow);
         }
+
+        /// <summary>
+        /// Kiểm tra sự tồn tại của table hoặc view trong csdl.
+        /// </summary>
+        /// <param name="tableView">Tên bảng hoặc view.</param>
+        /// <returns></returns>
+        public static bool IsExistDatabaseTable(string tableView)
+        {
+            try
+            {
+                //SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME=@name
+                //var i = ExecuteScalar("SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME=@name", new[] { new SqlParameter("@name", tableView) });
+                //return ObjectAndString.ObjectToBool(i);
+
+                var result = ExecuteProcedureScalar("V6TOOLS_ISEXISTTABLE", new[] {new SqlParameter("@cInputTable_View", tableView)});
+                return ObjectAndString.ObjectToBool(result);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return false;
+        }
     }
 }

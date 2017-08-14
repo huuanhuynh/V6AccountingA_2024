@@ -3904,18 +3904,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
 
                 var data = data0.Tables[0];
                 FilterView f = new FilterView(data, "MA_KH", "IXC_VIEWF5", new V6ColorTextBox(), "");
-                if (f.ShowDialog(this) == DialogResult.OK)
+                if (f.ViewData.Count > 0)
                 {
-                    var ROW = f.SelectedRowData;
-                    if (ROW == null || ROW.Count == 0) return;
-
-                    var datamavt = _maVt.Data;
-
-                    if (_xuat_dd.Checked || (datamavt != null && ObjectAndString.ObjectToDecimal(datamavt["GIA_TON"]) == 2))
+                    if (f.ShowDialog(this) == DialogResult.OK)
                     {
-                        _gia1.ChangeValue(ObjectAndString.ObjectToDecimal(ROW["GIA"]));
-                        _gia_nt1.ChangeValue(ObjectAndString.ObjectToDecimal(ROW["GIA"]));
+                        var ROW = f.SelectedRowData;
+                        if (ROW == null || ROW.Count == 0) return;
+
+                        var datamavt = _maVt.Data;
+
+                        if (_xuat_dd.Checked ||
+                            (datamavt != null && ObjectAndString.ObjectToDecimal(datamavt["GIA_TON"]) == 2))
+                        {
+                            _gia1.ChangeValue(ObjectAndString.ObjectToDecimal(ROW["GIA"]));
+                            _gia_nt1.ChangeValue(ObjectAndString.ObjectToDecimal(ROW["GIA"]));
+                        }
                     }
+                }
+                else
+                {
+                    ShowParentMessage("IXC_ViewF5 " + V6Text.NoData);
                 }
             }
             catch (Exception ex)

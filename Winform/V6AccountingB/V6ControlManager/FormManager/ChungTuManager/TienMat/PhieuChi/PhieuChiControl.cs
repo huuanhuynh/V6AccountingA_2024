@@ -1264,17 +1264,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     var initFilter = GetSoCt0InitFilter();
                     var f = new FilterView(Invoice.Alct0, "So_ct", "ARS30", _soCt0, initFilter);
-                    var d = f.ShowDialog(this);
-
-                    //xu ly data
-                    if (d == DialogResult.OK)
+                    if (f.ViewData.Count > 0)
                     {
-                        XuLyKhiNhanSoCt(((DataGridViewRow) _soCt0.Tag).ToDataDictionary());
+                        var d = f.ShowDialog(this);
+                        //xu ly data
+                        if (d == DialogResult.OK)
+                        {
+                            XuLyKhiNhanSoCt(((DataGridViewRow) _soCt0.Tag).ToDataDictionary());
+                        }
+                        else
+                        {
+                            _soCt0.Text = _soCt0.GotFocusText;
+                        }
                     }
                     else
                     {
-                        //_soCt0.Focus();
-                        _soCt0.Text = _soCt0.GotFocusText;
+                        ShowParentMessage("Alct0_ARS30 " + V6Text.NoData);
                     }
                 }
             }
@@ -1691,20 +1696,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     {
                         var initFilter = GetSoCt0InitFilter();
                         var f = new FilterView(Invoice.Alct0, "So_ct", "ARS30", _soCt0, initFilter);
-                        var d = f.ShowDialog(this);
-
-                        //xu ly data
-                        if (d == DialogResult.OK)
+                        if (f.ViewData.Count > 0)
                         {
-                            if(_soCt0.Tag is DataRow)
-                                XuLyKhiNhanSoCt(((DataRow)_soCt0.Tag).ToDataDictionary());
-                            else if (_soCt0.Tag is DataGridViewRow)
-                                XuLyKhiNhanSoCt(((DataGridViewRow)_soCt0.Tag).ToDataDictionary());
+                            var d = f.ShowDialog(this);
+                            //xu ly data
+                            if (d == DialogResult.OK)
+                            {
+                                if (_soCt0.Tag is DataRow)
+                                    XuLyKhiNhanSoCt(((DataRow) _soCt0.Tag).ToDataDictionary());
+                                else if (_soCt0.Tag is DataGridViewRow)
+                                    XuLyKhiNhanSoCt(((DataGridViewRow) _soCt0.Tag).ToDataDictionary());
+                            }
+                            else
+                            {
+                                _soCt0.Text = _soCt0.GotFocusText;
+                            }
                         }
                         else
                         {
-                            //_soCt0.Focus();
-                            _soCt0.Text = _soCt0.GotFocusText;
+                            ShowParentMessage("Alct0_ARS30 " + V6Text.NoData);
                         }
                     }
                     else if(detail1.MODE == V6Mode.Add)
@@ -4420,7 +4430,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                         XuLyThemDetail(dic);
                     };
-                    filter_view.ShowDialog(this);
+
+                    if (filter_view.ViewData.Count > 0)
+                    {
+                        filter_view.ShowDialog(this);
+                    }
+                    else
+                    {
+                        ShowParentMessage("Alct0_ARS30 " + V6Text.NoData);
+                    }
 
                 }
             }

@@ -6218,7 +6218,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
 
                 var data = data0.Tables[0];
-                FilterView f = new FilterView(data, "MA_KH", "SOA_VIEWF5", new V6ColorTextBox(), "");
+                FilterView f = new FilterView(data, "MA_KH", "SOA_VIEWF5", null, null);
                 if (f.ShowDialog(this) == DialogResult.OK)
                 {
                     var ROW = f.SelectedRowData;

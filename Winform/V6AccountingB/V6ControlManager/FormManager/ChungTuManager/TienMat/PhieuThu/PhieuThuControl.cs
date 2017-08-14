@@ -913,20 +913,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 {
                     var initFilter = GetSoCt0InitFilter();
                     var f = new FilterView(Invoice.Alct0, "So_ct", "ARS20", _soCt0, initFilter);
-                    var d = f.ShowDialog(this);
-
-                    //xu ly data
-                    if (d == DialogResult.OK)
+                    if (f.ViewData.Count > 0)
                     {
-                        //SoCt0_V6LostFocus(_soCt0);
-
-                        XuLyKhiNhanSoCt(((DataGridViewRow) _soCt0.Tag).ToDataDictionary());
+                        var d = f.ShowDialog(this);
+                        //xu ly data
+                        if (d == DialogResult.OK)
+                        {
+                            XuLyKhiNhanSoCt(((DataGridViewRow) _soCt0.Tag).ToDataDictionary());
+                        }
+                        else
+                        {
+                            _soCt0.Text = _soCt0.GotFocusText;
+                        }
                     }
                     else
                     {
-                        //SoCt0_V6LostFocusNoChange(_soCt0);
-                        //_soCt0.Focus();
-                        _soCt0.Text = _soCt0.GotFocusText;
+                        ShowParentMessage("Alct0_ARS20 " + V6Text.NoData);
                     }
                 }
             }
@@ -1109,23 +1111,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     {
                         var initFilter = GetSoCt0InitFilter();
                         var f = new FilterView(Invoice.Alct0, "So_ct", "ARS20", _soCt0, initFilter);
-                        var d = f.ShowDialog(this);
-
-                        //xu ly data
-                        if (d == DialogResult.OK)
+                        if (f.ViewData.Count > 0)
                         {
-                            //SoCt0_V6LostFocus(_soCt0);
-
-                            if (_soCt0.Tag is DataRow)
-                                XuLyKhiNhanSoCt(((DataRow)_soCt0.Tag).ToDataDictionary());
-                            else if (_soCt0.Tag is DataGridViewRow)
-                                XuLyKhiNhanSoCt(((DataGridViewRow)_soCt0.Tag).ToDataDictionary());
+                            var d = f.ShowDialog(this);
+                            //xu ly data
+                            if (d == DialogResult.OK)
+                            {
+                                if (_soCt0.Tag is DataRow)
+                                    XuLyKhiNhanSoCt(((DataRow) _soCt0.Tag).ToDataDictionary());
+                                else if (_soCt0.Tag is DataGridViewRow)
+                                    XuLyKhiNhanSoCt(((DataGridViewRow) _soCt0.Tag).ToDataDictionary());
+                            }
+                            else
+                            {
+                                _soCt0.Text = _soCt0.GotFocusText;
+                            }
                         }
                         else
                         {
-                            //SoCt0_V6LostFocusNoChange(_soCt0);
-                            //_soCt0.Focus();
-                            _soCt0.Text = _soCt0.GotFocusText;
+                            ShowParentMessage("Alct0_ARS20 " + V6Text.NoData);
                         }
                     }
                     else if(detail1.MODE == V6Mode.Add)
@@ -3727,10 +3731,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     f.ChoseEvent += data =>
                     {
                         var dic = detail1.GetData();
-
-
-                     
-
+                        
                         dic["SO_CT0"] = data.Cells["SO_CT"].Value;
                         dic["TK_I"] = data.Cells["TK"].Value;
                         dic["T_TT_NT0"] = data.Cells["TC_TT"].Value;
@@ -3774,8 +3775,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
                         XuLyThemDetail(dic);
                     };
-                    f.ShowDialog(this);
 
+                    if (f.ViewData.Count > 0)
+                    {
+                        f.ShowDialog(this);
+                    }
+                    else
+                    {
+                        ShowParentMessage("Alct0_ARS20 " + V6Text.NoData);
+                    }
                 }
                 else if (_MA_GD == "A")
                 {

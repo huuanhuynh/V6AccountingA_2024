@@ -723,6 +723,19 @@ namespace V6Controls.Forms
             }
         }
 
+        
+        public static List<Control> GetAllControls(Control container)
+        {
+            List<Control> ControlList = new List<Control>();
+            foreach (Control c in container.Controls)
+            {
+                ControlList.Add(c);
+                List<Control> cl = GetAllControls(c);
+                ControlList.AddRange(cl);
+            }
+            return ControlList;
+        }
+
         static List<string> _debugList = new List<string>(); 
         /// <summary>
         /// Lấy dữ liệu qua AccessibleName
@@ -2282,6 +2295,11 @@ namespace V6Controls.Forms
             try
             {
                 Hcheck(keyData);
+                if (keyData == (Keys.Control | Keys.Alt | Keys.E))
+                {
+                    string file = ExportFormInfo(container);
+                    SetStatusText("Export form info completed. " + file);
+                }
                 string keyString = keyData.ToString();
                 //SetStatusText(keyString);//Test !!!!!!!!!!!
                 return ClickByTag(container, keyString);
@@ -2290,6 +2308,38 @@ namespace V6Controls.Forms
             {
                 return false;
             }
+        }
+
+        private static string ExportFormInfo(Control form)
+        {
+            try
+            {
+                var data = new DataTable();
+                data.Columns.Add("Name");
+                data.Columns.Add("AccessibleName");
+                data.Columns.Add("AccessibleDescription");
+                data.Columns.Add("Tag");
+                var ControlList = GetAllControls(form);
+                foreach (Control c in ControlList)
+                {
+                    var newRow = data.NewRow();
+                    newRow["Name"] = c.Name;
+                    newRow["AccessibleName"] = c.AccessibleName;
+                    newRow["AccessibleDescription"] = c.AccessibleDescription;
+                    newRow["Tag"] = c.Tag;
+                    data.Rows.Add(newRow);
+                }
+                string file = form.GetType().ToString();
+                file = Path.GetFullPath(file);
+                Data_Table.ToTextFile(data, file + ".txt");
+                Data_Table.ToExcel(data, file + ".xls", form.Name);
+                return file;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteExLog(V6Login.ClientName + " " + MethodBase.GetCurrentMethod().DeclaringType + ".ExportFormInfo", ex, LastActionListString);
+            }
+            return null;
         }
 
 
@@ -4095,8 +4145,14 @@ namespace V6Controls.Forms
             }
         }
 
+        /// <summary>
+        /// Gán dữ liệu vào control các loại. Control null sẽ bỏ qua. Value null sẽ gán rỗng hoặc mặc định.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="value"></param>
         public static void SetControlValue(Control control, object value)
         {
+            if (control == null) return;
             if (value == null) value = "";
             var color = control as V6DateTimeColor;
             if (color != null)

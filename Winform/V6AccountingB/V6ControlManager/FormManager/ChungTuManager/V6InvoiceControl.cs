@@ -1288,7 +1288,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
 
                 var data = data0.Tables[0];
-                FilterView f = new FilterView(data, "MA_KH", "STOCK_IN_VIEWF5", new V6ColorTextBox(), "");
+                FilterView f = new FilterView(data, "MA_KH", "STOCK_IN_VIEWF5", null, null);
                 f.ShowDialog(this);
             }
             catch (Exception ex)

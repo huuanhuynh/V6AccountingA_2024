@@ -613,23 +613,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     {
                         var initFilter = GetAlVitriTonInitFilter();
                         var f = new FilterView(Invoice.AlVitriTon, "Ma_vitri", "ALVITRITON", _maViTri, initFilter);
-                        var d = f.ShowDialog(this);
-
-                        //xu ly data
-                        if (d == DialogResult.OK)
+                        if (f.ViewData != null && f.ViewData.Count > 0)
                         {
-                            //SoCt0_V6LostFocus(_soCt0);
+                            var d = f.ShowDialog(this);
 
-                            if (_maViTri.Tag is DataRow)
-                                XuLyKhiNhanMaVitri(((DataRow)_maViTri.Tag).ToDataDictionary());
-                            else if (_maViTri.Tag is DataGridViewRow)
-                                XuLyKhiNhanMaVitri(((DataGridViewRow)_maViTri.Tag).ToDataDictionary());
+                            //xu ly data
+                            if (d == DialogResult.OK)
+                            {
+                                if (_maViTri.Tag is DataRow)
+                                    XuLyKhiNhanMaVitri(((DataRow) _maViTri.Tag).ToDataDictionary());
+                                else if (_maViTri.Tag is DataGridViewRow)
+                                    XuLyKhiNhanMaVitri(((DataGridViewRow) _maViTri.Tag).ToDataDictionary());
+                            }
+                            else
+                            {
+                                _maViTri.Text = _maViTri.GotFocusText;
+                            }
                         }
                         else
                         {
-                            //SoCt0_V6LostFocusNoChange(_maViTri);
-                            //_maViTri.Focus();
-                            _maViTri.Text = _maViTri.GotFocusText;
+                            ShowParentMessage("AlVitriTon" + V6Text.NoData);
                         }
                     }
                     //else if (detail1.MODE == V6Mode.Add)
@@ -4275,24 +4278,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 var data0 = V6BusinessHelper.ExecuteProcedure("VPA_Get_IXA_VIEWF5", plist);
                 if (data0 == null || data0.Tables.Count == 0)
                 {
-                    ShowMainMessage(V6Text.NoData);
+                    ShowParentMessage(V6Text.NoData);
                     return;
                 }
 
                 var data = data0.Tables[0];
                 FilterView f = new FilterView(data, "MA_KH", "IXA_VIEWF5", new V6ColorTextBox(), "");
-                if (f.ShowDialog(this) == DialogResult.OK)
+                if (f.ViewData.Count > 0)
                 {
-                    var ROW = f.SelectedRowData;
-                    if (ROW == null || ROW.Count == 0) return;
-
-                    var datamavt = _maVt.Data;
-
-                    if (_xuat_dd.Checked || (datamavt != null && ObjectAndString.ObjectToDecimal(datamavt["GIA_TON"]) == 2))
+                    if (f.ShowDialog(this) == DialogResult.OK)
                     {
-                        _gia1.ChangeValue(ObjectAndString.ObjectToDecimal(ROW["GIA"]));
-                        _gia_nt1.ChangeValue(ObjectAndString.ObjectToDecimal(ROW["GIA"]));
+                        var ROW = f.SelectedRowData;
+                        if (ROW == null || ROW.Count == 0) return;
+
+                        var datamavt = _maVt.Data;
+
+                        if (_xuat_dd.Checked ||
+                            (datamavt != null && ObjectAndString.ObjectToDecimal(datamavt["GIA_TON"]) == 2))
+                        {
+                            _gia1.ChangeValue(ObjectAndString.ObjectToDecimal(ROW["GIA"]));
+                            _gia_nt1.ChangeValue(ObjectAndString.ObjectToDecimal(ROW["GIA"]));
+                        }
                     }
+                }
+                else
+                {
+                    ShowParentMessage("IXA_VIEWF5" + V6Text.NoData);
                 }
             }
             catch (Exception ex)
