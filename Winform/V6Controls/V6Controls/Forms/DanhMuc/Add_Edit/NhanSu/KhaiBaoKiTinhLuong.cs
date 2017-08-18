@@ -19,7 +19,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         }
         public override void DoBeforeAdd()
         {
-
+            txtMaTg.ExistRowInTable();
+        }
+        public override void DoBeforeEdit()
+        {
+            txtMaTg.ExistRowInTable();
         }
         public override void ValidateData()
         {
