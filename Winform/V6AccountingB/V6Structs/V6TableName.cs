@@ -116,6 +116,8 @@ namespace V6Structs
         V6option,
         V6soft,
         Abvt,
+    
+     
         Abkh,
         Abtk,
         Ablo,
@@ -573,6 +575,7 @@ namespace V6Structs
             string result;
             switch (name)
             {
+          
                 case V6TableName.Albc: result = "ma_file"; break;
                 case V6TableName.Albp: result = "ma_bp"; break;
                 case V6TableName.Albpcc: result = "ma_bp"; break;

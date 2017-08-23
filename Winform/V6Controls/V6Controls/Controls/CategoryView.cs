@@ -58,14 +58,20 @@ namespace V6Controls.Controls
             SelectResult.SortField = sort;
 
             bool is_aldm = false, check_admin = false, check_v6 = false;
+            _tableName_View = tableName;
+
             IDictionary<string, object> keys = new Dictionary<string, object>();
             keys.Add("MA_DM", _tableName);
             var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
+            string tableName_aldm = "";
+
             if (aldm.Rows.Count == 1)
             {
                 is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
                 check_admin = aldm.Rows[0]["CHECK_ADMIN"].ToString() == "1";
                 check_v6 = aldm.Rows[0]["CHECK_V6"].ToString() == "1";
+                if(aldm.Rows[0]["TABLE_VIEW"].ToString()!="")
+                    _tableName_View = aldm.Rows[0]["TABLE_VIEW"].ToString();
             }
             _aldm = is_aldm;
             if (_aldm)
@@ -107,6 +113,7 @@ namespace V6Controls.Controls
         /// Tên gốc gửi vào
         /// </summary>
         private string _tableName;
+        private string _tableName_View;
         /// <summary>
         /// Tên theo enum V6TableName
         /// </summary>
@@ -255,15 +262,29 @@ namespace V6Controls.Controls
                             }
 
                         _data = row.ToDataDictionary();
-                        f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
+                        // PHAT 23/08/2017
+                        if (CurrentTable == V6TableName.Notable)
+                        {
+                            f = new FormAddEdit(_tableName, V6Mode.Add, keys, _data);                          
+                        }
+                        else
+                        {
+                            f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);                           
+                        }
                         f.ParentData = _parentData;
-                        //f.SetParentData();
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
                     }
                     else
                     {
-                        f = new FormAddEdit(CurrentTable);
+                        if (CurrentTable == V6TableName.Notable)
+                        {
+                            f = new FormAddEdit(_tableName);
+                        }
+                        else
+                        {
+                            f = new FormAddEdit(CurrentTable);
+                        }
                         f.ParentData = _parentData;
                         f.SetParentData();
                         f.InsertSuccessEvent += f_InsertSuccess;
@@ -288,7 +309,7 @@ namespace V6Controls.Controls
                 else
                 {
                     DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
+                    FormAddEdit f;
                     if (row != null)
                     {
                         var keys = new SortedDictionary<string, object>();
@@ -305,7 +326,17 @@ namespace V6Controls.Controls
                             }
 
                         _data = row.ToDataDictionary();
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
+                        // PHAT 23/08/2017
+                        if (CurrentTable == V6TableName.Notable)
+                        {
+                             f = new FormAddEdit(_tableName, V6Mode.Add, keys, _data);
+                           
+                        }
+                        else
+                        {
+                             f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
+                           
+                        }
                         f.ParentData = _parentData;
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
@@ -333,7 +364,7 @@ namespace V6Controls.Controls
                 else
                 {
                     DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
+                    FormAddEdit f;
                     if (row != null)
                     {
                         var keys = new SortedDictionary<string, object>();
@@ -347,10 +378,18 @@ namespace V6Controls.Controls
                                 {
                                     keys[keyField] = row.Cells[keyField].Value;
                                 }
-                            }
-
+                            }                     
                         _data = row.ToDataDictionary();
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
+                        //PHAT 23/08/2017
+                        if (CurrentTable == V6TableName.Notable)
+                        {
+                            f = new FormAddEdit(_tableName, V6Mode.Edit, keys, _data);
+                        }
+                        else
+                        {
+                            f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
+                        }
+
                         f.ParentData = _parentData;
                         f.UpdateSuccessEvent += f_UpdateSuccess;
                         f.CallReloadEvent += FCallReloadEvent;
@@ -541,6 +580,32 @@ namespace V6Controls.Controls
                         }
 
                     }
+                    // PHAT 23/08/2017
+                    else if (CurrentTable == V6TableName.Notable)
+                    {
+                      
+                        if (dataGridView1.Columns.Contains("UID"))
+                        {
+                            var keys = new SortedDictionary<string, object> { { "UID", row.Cells["UID"].Value } };
+
+                            if (this.ShowConfirmMessage(V6Text.DeleteConfirm + "\n" , V6Text.Delete)
+                                == DialogResult.Yes)
+                            {
+                                var t = _categories.Delete(_tableName, keys);
+
+                                if (t > 0)
+                                {
+                                    ReLoad();
+                                    V6ControlFormHelper.ShowMainMessage("Đã xóa ");
+                                }
+                                else
+                                {
+                                    V6ControlFormHelper.ShowMessage("Xóa chưa được!");
+                                }
+                            }
+                        }
+
+                    }
                     else
                     {
 
@@ -609,26 +674,30 @@ namespace V6Controls.Controls
                             _categories.Delete(CurrentTable, _data);
                         }
                     }
-
-                    var aev = AddEditManager.Init_Control(CurrentTable);//ảo
-                    if (!string.IsNullOrEmpty(aev.KeyField1))
+                    //PHAT 23/08/2017
+                    if (CurrentTable != V6TableName.Notable)
                     {
-                        var oldKey1 = _data[aev.KeyField1].ToString().Trim();
-                        var oldKey2 = "";
-                        if (!string.IsNullOrEmpty(aev.KeyField2) && _data.ContainsKey(aev.KeyField2))
-                            oldKey2 = _data[aev.KeyField2].ToString().Trim();
-                        var oldKey3 = "";
-                        if (!string.IsNullOrEmpty(aev.KeyField3) && _data.ContainsKey(aev.KeyField3))
-                            oldKey3 = _data[aev.KeyField3].ToString().Trim();
+                        var aev = AddEditManager.Init_Control(CurrentTable);//ảo
+                        if (!string.IsNullOrEmpty(aev.KeyField1))
+                        {
+                            var oldKey1 = _data[aev.KeyField1].ToString().Trim();
+                            var oldKey2 = "";
+                            if (!string.IsNullOrEmpty(aev.KeyField2) && _data.ContainsKey(aev.KeyField2))
+                                oldKey2 = _data[aev.KeyField2].ToString().Trim();
+                            var oldKey3 = "";
+                            if (!string.IsNullOrEmpty(aev.KeyField3) && _data.ContainsKey(aev.KeyField3))
+                                oldKey3 = _data[aev.KeyField3].ToString().Trim();
 
-                        var uid = _data.ContainsKey("UID") ? _data["UID"].ToString() : "";
-                        
-                        V6ControlFormHelper.Copy_Here2Data(CurrentTable, V6Mode.Delete,
-                            aev.KeyField1, aev.KeyField2, aev.KeyField3,
-                            oldKey1, oldKey2, oldKey3,
-                            oldKey1, oldKey2, oldKey3,
-                            uid);
-                    }
+                            var uid = _data.ContainsKey("UID") ? _data["UID"].ToString() : "";
+
+                            V6ControlFormHelper.Copy_Here2Data(CurrentTable, V6Mode.Delete,
+                                aev.KeyField1, aev.KeyField2, aev.KeyField3,
+                                oldKey1, oldKey2, oldKey3,
+                                oldKey1, oldKey2, oldKey3,
+                                uid);
+                        }
+                    } 
+                  
                 }
             }
             catch (Exception ex)
@@ -648,7 +717,7 @@ namespace V6Controls.Controls
                 else
                 {
                     DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
+                    FormAddEdit f;
                     if (row != null)
                     {
                         var keys = new SortedDictionary<string, object>();
@@ -665,8 +734,19 @@ namespace V6Controls.Controls
                             }
 
                         _data = row.ToDataDictionary();
-                        var f = new FormAddEdit(CurrentTable, V6Mode.View, keys, _data);
-                        f.ShowDialog(this);
+                        // PHAT 23/08/2017
+                        if (CurrentTable == V6TableName.Notable)
+                        {
+                            f = new FormAddEdit(_tableName, V6Mode.View, keys, _data);
+                            f.ShowDialog(this);
+
+                        }
+                        else
+                        {
+                             f = new FormAddEdit(CurrentTable, V6Mode.View, keys, _data);
+                            f.ShowDialog(this);
+                        }
+                       
                     }
                     else
                     {
@@ -710,8 +790,17 @@ namespace V6Controls.Controls
                 string load_table = _tableName;
                 if (CurrentTable == V6TableName.Notable)
                 {
-                    load_table = _tableName;
-                    if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
+                    if(_tableName_View !="")
+                        load_table = _tableName_View;
+
+                    if (string.IsNullOrEmpty(sortField))
+                    {
+                        if (aldm_config != null)
+                        {
+                            sortField = aldm_config.ORDER;
+                        }
+                      
+                    }
                 }
                 var sr = _categories.SelectPaging(load_table, "*", page, size, GetWhere(where), sortField, @ascending);
 

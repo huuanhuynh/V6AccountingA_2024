@@ -11,11 +11,13 @@ using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
-    public static class AddEditManager
+    public static class AddEditManager 
     {
+        
         #region ==== Init Control ====
         public static AddEditControlVirtual Init_Control(V6TableName tableName, string name = null)
         {
+
             AddEditControlVirtual FormControl = null;
             //if (V6Check_Rights())
             switch (tableName)
@@ -404,8 +406,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 default:
                     //Check is_aldm?
                     bool is_aldm = false;
+                    
                     IDictionary<string, object> keys = new Dictionary<string, object>();
-                    keys.Add("MA_DM", name);
+                    keys.Add("MA_DM",name);
                     var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
                     if (aldm.Rows.Count == 1)
                     {

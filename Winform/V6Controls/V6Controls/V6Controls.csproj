@@ -1814,6 +1814,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Resources\Stop.png" />
   </ItemGroup>
   <ItemGroup>
@@ -2067,6 +2068,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ZoomOut24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

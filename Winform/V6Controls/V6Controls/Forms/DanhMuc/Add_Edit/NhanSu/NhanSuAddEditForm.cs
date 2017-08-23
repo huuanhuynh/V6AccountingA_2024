@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using V6AccountingBusiness;
 using V6Structs;
+using V6Controls.Controls;
+using V6ControlManager.FormManager.DanhMucManager;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
@@ -124,6 +126,28 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             }
         }
 
-      
+        private void btnBoSung_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var stt_recNS = DataOld["STT_REC"].ToString();
+               
+
+                CategoryView dmView = new CategoryView(ItemID, "title", "HRPOSITION", "STT_REC='" + stt_recNS + "'", null, DataOld);
+                if (Mode == V6Mode.View)
+                {
+                    dmView.EnableAdd = false;
+                    dmView.EnableCopy = false;
+                    dmView.EnableDelete = false;
+                    dmView.EnableEdit = false;
+                }
+                dmView.ToFullForm(btnBoSung.Text);
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + " BoSung_Click " + ex.Message);
+            }
+        }
     }
 }

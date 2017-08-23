@@ -13,10 +13,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         }
         public void MyInit()
         {
-           
-           
+
+            
         }
 
+       
         public override void DoBeforeAdd()
         {
             int loai = 3;

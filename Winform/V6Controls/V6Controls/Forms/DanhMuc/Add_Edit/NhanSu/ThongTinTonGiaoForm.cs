@@ -1,7 +1,11 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using V6AccountingBusiness;
+using V6Init;
 using V6Structs;
-using System;
+using V6Tools;
+
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
     public partial class ThongTinTonGiaoForm : AddEditControlVirtual
@@ -16,6 +20,34 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
           
         }
+
+        public override void DoBeforeEdit()
+        {
+            try
+            {
+                IDictionary<string, object> keys = new Dictionary<string, object>();
+                keys.Add("MA_DM", TableName);
+                var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
+                string F8_table = "", code_field = "";
+
+                if (aldm.Rows.Count == 1)
+                {
+                    var row = aldm.Rows[0];
+                    F8_table = row["F8_TABLE"].ToString().Trim();
+                    //code_field = row[""].ToString().Trim();
+                }
+
+
+                var v = Categories.IsExistOneCode_List(F8_table, "ID", txtID.Text);
+                txtID.Enabled = !v;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("BPHT DisableWhenEdit " + ex.Message);
+            }
+        }
+
         public override void DoBeforeAdd()
         {
             int loai = 3;

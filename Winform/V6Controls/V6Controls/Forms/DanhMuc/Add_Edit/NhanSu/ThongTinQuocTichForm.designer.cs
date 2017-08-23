@@ -28,66 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.v6Label4 = new V6Controls.V6Label();
-            this.txtLastName = new V6Controls.V6ColorTextBox();
-            this.v6Label17 = new V6Controls.V6Label();
-            this.txtName = new V6Controls.V6ColorTextBox();
             this.txtID = new V6Controls.V6ColorTextBox();
+            this.txtName = new V6Controls.V6ColorTextBox();
+            this.v6Label17 = new V6Controls.V6Label();
+            this.txtLastName = new V6Controls.V6ColorTextBox();
+            this.v6Label4 = new V6Controls.V6Label();
             this.SuspendLayout();
-            // 
-            // v6Label4
-            // 
-            this.v6Label4.AccessibleDescription = "";
-            this.v6Label4.AutoSize = true;
-            this.v6Label4.Location = new System.Drawing.Point(5, 50);
-            this.v6Label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label4.Name = "v6Label4";
-            this.v6Label4.Size = new System.Drawing.Size(106, 17);
-            this.v6Label4.TabIndex = 2;
-            this.v6Label4.Text = "Tên quốc tịch 2";
-            // 
-            // txtLastName
-            // 
-            this.txtLastName.AccessibleName = "NAME2";
-            this.txtLastName.BackColor = System.Drawing.Color.White;
-            this.txtLastName.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtLastName.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtLastName.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtLastName.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtLastName.HoverColor = System.Drawing.Color.Yellow;
-            this.txtLastName.LeaveColor = System.Drawing.Color.White;
-            this.txtLastName.Location = new System.Drawing.Point(139, 46);
-            this.txtLastName.Margin = new System.Windows.Forms.Padding(5);
-            this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(493, 23);
-            this.txtLastName.TabIndex = 3;
-            // 
-            // v6Label17
-            // 
-            this.v6Label17.AccessibleDescription = "";
-            this.v6Label17.AutoSize = true;
-            this.v6Label17.Location = new System.Drawing.Point(5, 21);
-            this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label17.Name = "v6Label17";
-            this.v6Label17.Size = new System.Drawing.Size(94, 17);
-            this.v6Label17.TabIndex = 0;
-            this.v6Label17.Text = "Tên quốc tịch";
-            // 
-            // txtName
-            // 
-            this.txtName.AccessibleName = "NAME";
-            this.txtName.BackColor = System.Drawing.Color.White;
-            this.txtName.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtName.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtName.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtName.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtName.HoverColor = System.Drawing.Color.Yellow;
-            this.txtName.LeaveColor = System.Drawing.Color.White;
-            this.txtName.Location = new System.Drawing.Point(139, 19);
-            this.txtName.Margin = new System.Windows.Forms.Padding(5);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(493, 23);
-            this.txtName.TabIndex = 1;
             // 
             // txtID
             // 
@@ -107,6 +53,60 @@
             this.txtID.Size = new System.Drawing.Size(176, 23);
             this.txtID.TabIndex = 4;
             this.txtID.Visible = false;
+            // 
+            // txtName
+            // 
+            this.txtName.AccessibleName = "NAME";
+            this.txtName.BackColor = System.Drawing.Color.White;
+            this.txtName.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtName.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtName.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtName.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtName.HoverColor = System.Drawing.Color.Yellow;
+            this.txtName.LeaveColor = System.Drawing.Color.White;
+            this.txtName.Location = new System.Drawing.Point(139, 19);
+            this.txtName.Margin = new System.Windows.Forms.Padding(5);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(493, 23);
+            this.txtName.TabIndex = 1;
+            // 
+            // v6Label17
+            // 
+            this.v6Label17.AccessibleDescription = "";
+            this.v6Label17.AutoSize = true;
+            this.v6Label17.Location = new System.Drawing.Point(5, 21);
+            this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.v6Label17.Name = "v6Label17";
+            this.v6Label17.Size = new System.Drawing.Size(94, 17);
+            this.v6Label17.TabIndex = 0;
+            this.v6Label17.Text = "Tên quốc tịch";
+            // 
+            // txtLastName
+            // 
+            this.txtLastName.AccessibleName = "NAME2";
+            this.txtLastName.BackColor = System.Drawing.Color.White;
+            this.txtLastName.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtLastName.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLastName.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLastName.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtLastName.HoverColor = System.Drawing.Color.Yellow;
+            this.txtLastName.LeaveColor = System.Drawing.Color.White;
+            this.txtLastName.Location = new System.Drawing.Point(139, 46);
+            this.txtLastName.Margin = new System.Windows.Forms.Padding(5);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(493, 23);
+            this.txtLastName.TabIndex = 3;
+            // 
+            // v6Label4
+            // 
+            this.v6Label4.AccessibleDescription = "";
+            this.v6Label4.AutoSize = true;
+            this.v6Label4.Location = new System.Drawing.Point(5, 50);
+            this.v6Label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.v6Label4.Name = "v6Label4";
+            this.v6Label4.Size = new System.Drawing.Size(106, 17);
+            this.v6Label4.TabIndex = 2;
+            this.v6Label4.Text = "Tên quốc tịch 2";
             // 
             // ThongTinQuocTichForm
             // 
