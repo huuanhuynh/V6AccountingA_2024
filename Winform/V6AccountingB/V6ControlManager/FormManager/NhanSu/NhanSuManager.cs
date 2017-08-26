@@ -26,7 +26,8 @@ namespace V6ControlManager.FormManager.NhanSu
                     return new NhanSuView(itemID, "Nhân sự", "HRPERSONAL");
                 case "HLNSCT":
                     return new NhanSuView2(itemID, "Nhân sự 2", "HRPERSONAL");
-
+                case "PRNSCT":
+                    return new TienLuongView2(itemID, "Tiền lương 2", "HRPERSONAL");
                 case "KTH":
                     return new CacKhoanThuongControl();
                 case "KGT":

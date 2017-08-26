@@ -553,9 +553,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                                 if (("," + V6Options.V6OptionValues["M_LST_CT_DV"] + ",").Contains(Invoice.Mact))
                                 {
-                                    _dataViTri = Invoice.GetViTri(_maVt.Text, txtMaKhoN.Text, _sttRec, dateNgayCT.Value);
-                                    var getFilter = GetFilterMaViTri(_dataViTri, _sttRec0, _maVt.Text, txtMaKhoN.Text);
-                                    if (getFilter != "") filter += " and " + getFilter;
+                                    _dataViTri = Invoice.GetViTri("", txtMaKhoN.Text, _sttRec, dateNgayCT.Value);
+                                    var getFilter = GetFilterMaViTriNhap(_dataViTri, _sttRec0,"", txtMaKhoN.Text);
+                                    if (getFilter != "")
+                                    {
+                                        filter += " and " + getFilter;
+                                    }
+
                                 }
 
                                 _maViTriN.SetInitFilter(filter);
@@ -646,6 +650,72 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             return "(1=0)";
+        }
+        private string GetFilterMaViTriNhap(DataTable dataViTri, string sttRec0, string maVt, string maKhoI)
+        {
+            try
+            {
+                var list_maViTri = "";
+                if (maKhoI == "") return list_maViTri;
+
+
+                for (int i = dataViTri.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = dataViTri.Rows[i];
+                   // string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+                    if (data_maViTri == "") continue;
+
+                    //Neu dung maVt va maKhoI
+                    if ( maKhoI == data_maKhoI)
+                    {
+
+                        list_maViTri += string.Format(" and Ma_vitri<>'{0}'", data_maViTri);
+
+                    }
+                }
+
+                //if (list_maViTri.Length > 4)
+                //{
+                //    list_maViTri = list_maViTri.Substring(4);
+                //    list_maViTri = "(" + list_maViTri + ")";
+                //}
+
+                foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                {
+
+                    string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                   // string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                    string c_maKhoI = txtMaKhoN.Text.ToUpper();
+                    string c_maViTri = row["Ma_vitriN"].ToString().Trim().ToUpper();
+
+                    //Add 31-07-2016
+                    //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
+                    //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
+
+
+                    if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                    {
+                        if (maKhoI == c_maKhoI)
+                        {
+                            list_maViTri += string.Format(" and Ma_vitri<>'{0}'", c_maViTri);
+                        }
+                    }
+                }
+
+                if (list_maViTri.Length > 4)
+                {
+                    list_maViTri = list_maViTri.Substring(4);
+                    list_maViTri = "(" + list_maViTri + ")";
+                    return list_maViTri;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+            return "(1=1)";
         }
 
 
@@ -1510,7 +1580,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
                 //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
 
-                for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                //for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                for (int i = 0; i <= _dataViTri.Rows.Count - 1; i++)
                 {
                     DataRow data_row = _dataViTri.Rows[i];
                     string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
@@ -1790,7 +1861,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
                 //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
 
-                for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                //for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                for (int i = 0; i <= _dataViTri.Rows.Count - 1; i++)
                 {
                     DataRow data_row = _dataViTri.Rows[i];
                     string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();

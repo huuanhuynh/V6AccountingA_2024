@@ -3971,12 +3971,61 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                          var row = AM.Rows[CurrentIndex];
                         if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"])))
                         {
-                            Mode = V6Mode.Edit;
-                            detail1.MODE = V6Mode.View;
-                            detail2.MODE = V6Mode.View;
-                            detail3.MODE = V6Mode.View;
-                            //SetDataGridView3ChiPhiReadOnly();
-                            txtMa_sonb.Focus();
+                            //Tuanmh 24/07/2016 Check Debit Amount
+                             DataTable DataCheck_Edit_All = Invoice.GetCheck_Edit_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
+                                    txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                    txtManx.Text.Trim(), dateNgayCT.Value, txtMa_ct.Text, txtTongThanhToan.Value,"E",V6Login.UserId);
+
+                                bool check_edit = true;
+
+                                if (DataCheck_Edit_All != null && DataCheck_Edit_All.Rows.Count > 0)
+                                {
+                                    var chksave_all = DataCheck_Edit_All.Rows[0]["chksave_all"].ToString();
+                                    var chk_yn = DataCheck_Edit_All.Rows[0]["chk_yn"].ToString();
+                                    var mess = DataCheck_Edit_All.Rows[0]["mess"].ToString().Trim();
+                                    var mess2 = DataCheck_Edit_All.Rows[0]["mess2"].ToString().Trim();
+                                    var message = V6Setting.IsVietnamese ? mess : mess2;
+
+                                    switch (chksave_all)
+                                    {
+                                        case "00":
+                                        case "04":
+                                            // Save: OK --Loai_kh in ALKH
+                                            // Save: OK --Thau
+                                            break;
+                                        case "01":
+                                        case "02":
+                                        case "03":
+
+                                            if (message != "") this.ShowWarningMessage(message);
+                                            if (chk_yn == "0")
+                                            {
+                                                check_edit = false;
+                                            }
+                                            break;
+
+                                        case "06":
+                                        case "07":
+                                        case "08":
+                                            // Save but mess
+                                            if (message != "") this.ShowWarningMessage(message);
+                                            check_edit = true;
+                                            break;
+
+
+                                    }
+                                }
+
+                            if (check_edit == true)
+                            {
+                                Mode = V6Mode.Edit;
+                                detail1.MODE = V6Mode.View;
+                                detail2.MODE = V6Mode.View;
+                                detail3.MODE = V6Mode.View;
+                                //SetDataGridView3ChiPhiReadOnly();
+                                txtMa_sonb.Focus();
+                                
+                            }
                         }
                         else
                         {
@@ -4006,7 +4055,55 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         // Tuanmh 16/02/2016 Check level
                     if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"])))
                     {
-                        DoDeleteThread();
+                        //Tuanmh 24/07/2016 Check Debit Amount
+                        DataTable DataCheck_Edit_All = Invoice.GetCheck_Edit_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
+                               txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                               txtManx.Text.Trim(), dateNgayCT.Value, txtMa_ct.Text, txtTongThanhToan.Value, "D",V6Login.UserId);
+
+                        bool check_delete = true;
+
+                        if (DataCheck_Edit_All != null && DataCheck_Edit_All.Rows.Count > 0)
+                        {
+                            var chksave_all = DataCheck_Edit_All.Rows[0]["chksave_all"].ToString();
+                            var chk_yn = DataCheck_Edit_All.Rows[0]["chk_yn"].ToString();
+                            var mess = DataCheck_Edit_All.Rows[0]["mess"].ToString().Trim();
+                            var mess2 = DataCheck_Edit_All.Rows[0]["mess2"].ToString().Trim();
+                            var message = V6Setting.IsVietnamese ? mess : mess2;
+
+                            switch (chksave_all)
+                            {
+                                case "00":
+                                case "04":
+                                    // Save: OK --Loai_kh in ALKH
+                                    // Save: OK --Thau
+                                    break;
+                                case "01":
+                                case "02":
+                                case "03":
+
+                                    if (message != "") this.ShowWarningMessage(message);
+                                    if (chk_yn == "0")
+                                    {
+                                        check_delete = false;
+                                    }
+                                    break;
+
+                                case "06":
+                                case "07":
+                                case "08":
+                                    // Save but mess
+                                    if (message != "") this.ShowWarningMessage(message);
+                                    check_delete = true;
+                                    break;
+
+
+                            }
+                        }
+
+                        if (check_delete == true)
+                        {
+                            DoDeleteThread();
+                         }
                     }
                     else
                     {
@@ -5640,7 +5737,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         }
                     }
                 }
-                
+              
                 //OK
                 return true;
             }

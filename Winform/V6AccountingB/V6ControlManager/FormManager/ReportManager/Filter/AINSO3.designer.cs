@@ -39,6 +39,7 @@
             this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
             this.v6Label9 = new V6Controls.V6Label();
             this.TxtMa_vt = new V6Controls.V6VvarTextBox();
+            this.Chk_Tinh_dc = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -160,7 +161,7 @@
             // 
             this.v6Label9.AccessibleDescription = "FILTERL00020";
             this.v6Label9.AutoSize = true;
-            this.v6Label9.Location = new System.Drawing.Point(5, 64);
+            this.v6Label9.Location = new System.Drawing.Point(5, 62);
             this.v6Label9.Name = "v6Label9";
             this.v6Label9.Size = new System.Drawing.Size(55, 13);
             this.v6Label9.TabIndex = 4;
@@ -177,16 +178,28 @@
             this.TxtMa_vt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtMa_vt.HoverColor = System.Drawing.Color.Yellow;
             this.TxtMa_vt.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_vt.Location = new System.Drawing.Point(120, 61);
+            this.TxtMa_vt.Location = new System.Drawing.Point(120, 59);
             this.TxtMa_vt.Name = "TxtMa_vt";
             this.TxtMa_vt.Size = new System.Drawing.Size(100, 20);
             this.TxtMa_vt.TabIndex = 5;
             this.TxtMa_vt.VVar = "MA_VT";
             // 
+            // Chk_Tinh_dc
+            // 
+            this.Chk_Tinh_dc.AccessibleDescription = "FILTERC00014";
+            this.Chk_Tinh_dc.AutoSize = true;
+            this.Chk_Tinh_dc.Location = new System.Drawing.Point(120, 84);
+            this.Chk_Tinh_dc.Name = "Chk_Tinh_dc";
+            this.Chk_Tinh_dc.Size = new System.Drawing.Size(149, 17);
+            this.Chk_Tinh_dc.TabIndex = 8;
+            this.Chk_Tinh_dc.Text = "Tính PS điều chuyển kho";
+            this.Chk_Tinh_dc.UseVisualStyleBackColor = true;
+            // 
             // AINSO3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.Chk_Tinh_dc);
             this.Controls.Add(this.v6Label9);
             this.Controls.Add(this.TxtMa_vt);
             this.Controls.Add(this.label2);
@@ -216,5 +229,6 @@
         private V6Controls.V6DateTimePick dateNgay_ct1;
         private V6Controls.V6Label v6Label9;
         private V6Controls.V6VvarTextBox TxtMa_vt;
+        private V6Controls.V6CheckBox Chk_Tinh_dc;
     }
 }

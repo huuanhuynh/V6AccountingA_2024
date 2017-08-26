@@ -272,8 +272,8 @@ namespace V6ControlManager.FormManager.KhoHangManager
             {
                 new SqlParameter("@EndDate", _cuoiNgay.ToString("yyyyMMdd")),
                 new SqlParameter("@Condition", condition),
-                new SqlParameter("@Vttonkho", "*"),
-                new SqlParameter("@Kieu_in", "*"),
+                new SqlParameter("@Vttonkho", "1"),
+                new SqlParameter("@Kieu_in", "1"),
                 new SqlParameter("@Makho",  txtMaKho.Text.Trim()),
                 new SqlParameter("@Mavt", txtMavt.Text.Trim()),
             };

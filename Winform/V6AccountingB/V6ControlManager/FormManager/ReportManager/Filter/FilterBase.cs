@@ -391,6 +391,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         {
 
                         }
+                            // Tuanmh 23/08/2017
+                        else if (di.Ptype.ToUpper() == "ONEVALUE")
+                        {
+                            result[di.Name.ToUpper()] = di.Fname;
+                        }
                         else if (di.Ptype.ToUpper() == "FILTER")
                         {
                             var lineKey = "line" + di.Field.ToUpper();

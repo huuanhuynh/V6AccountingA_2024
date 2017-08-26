@@ -562,13 +562,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     {
                         var dataTable2 = _ds.Tables[1];
                         var _tbl2Row = dataTable2.Rows[0];
-                        if (di.Name == "SoTienVietBangChu_TienBanNt")
+                        // Tuanmh 18/08/2017 Upper -> Match Parameter
+                        if (di.Name.ToUpper() == "SOTIENVIETBANGCHU_TIENBANNT")
                         {
                             var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);// "T_TIEN_NT2_IN"]);
                             var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
                             RptExtraParameters[di.Name] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, LAN, ma_nt);
                         }
-                        else if (di.Name == "SoTienVietBangChu_TienBan")
+                        else if (di.Name.ToUpper() == "SOTIENVIETBANGCHU_TIENBAN")
                         {
                             var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);//"T_TIEN2_IN"]);
                             RptExtraParameters[di.Name] = V6BusinessHelper.MoneyToWords(t_tien2_in, LAN,

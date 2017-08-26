@@ -103,9 +103,35 @@ namespace DataAccessLayer.Implementations.Business
         {
             mavt = mavt.Replace("'", "''");
             makho = makho.Replace("'", "''");
+
+            string keys = "";
+            if (makho == "")
+            {
+                if (mavt == "")
+                {
+                    keys = "1=1";
+                }
+                else
+                {
+                    keys = string.Format("Ma_vt = '" + mavt + "'");
+                }
+
+            }
+            else
+            {
+                if (mavt == "")
+                {
+                    keys = string.Format(" Ma_kho = '" + makho + "'");
+                }
+                else
+                {
+                    keys = string.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "'");
+                }
+            }
+            
             SqlParameter[] plist = new[]
             {
-                new SqlParameter("@cKey1", string.Format("Ma_vt = '"+mavt+"' and Ma_kho = '"+makho+"'")),
+                new SqlParameter("@cKey1", keys),
                 new SqlParameter("@cKey2", ""),
                 new SqlParameter("@cKey3", ""),
                 new SqlParameter("@cStt_rec", sttRec),
@@ -118,9 +144,35 @@ namespace DataAccessLayer.Implementations.Business
         {
             mavt = mavt.Replace("'", "''");
             makho = makho.Replace("'", "''");
+
+            string keys = "";
+            if (makho == "")
+            {
+                if (mavt == "")
+                {
+                    keys = "1=1";
+                }
+                else
+                {
+                    keys = string.Format("Ma_vt = '" + mavt + "'");
+                }
+
+            }
+            else
+            {
+                if (mavt == "")
+                {
+                    keys = string.Format(" Ma_kho = '" + makho + "'");
+                }
+                else
+                {
+                    keys = string.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "'");
+                }
+            }
+
             SqlParameter[] plist = new[]
             {
-                new SqlParameter("@cKey1", string.Format("Ma_vt = '"+mavt+"' and Ma_kho = '"+makho+"'")),
+                new SqlParameter("@cKey1", keys),
                 new SqlParameter("@cKey2", ""),
                 new SqlParameter("@cKey3", ""),
                 new SqlParameter("@cStt_rec", sttRec),
@@ -186,9 +238,71 @@ namespace DataAccessLayer.Implementations.Business
             malo = malo.Replace("'", "''");
             mavitri = mavitri.Replace("'", "''");
 
-            SqlParameter[] plist = new[]
+            string keys = "";
+            if (makho == "")
             {
-                new SqlParameter("@cKey1", string.Format("Ma_vt = '"+mavt+"' and Ma_kho = '"+makho+"' and Ma_lo = '"+malo+"' and Ma_vitri = '"+mavitri+"'")),
+                if (malo == "")
+                {
+                    if (mavitri == "")
+                    {
+                        keys =string.Format("Ma_vt = '" + mavt + "'");
+                    }
+                    else
+                    {
+                        keys = string.Format("Ma_vt = '" + mavt + "' and Ma_vitri = '" + mavitri + "'");
+                    }
+
+                }
+                else
+                {
+                    if (mavitri == "")
+                    {
+                        keys = string.Format("Ma_vt = '" + mavt + "' and Ma_lo = '" + malo + "'");
+                    }
+                    else
+                    {
+                        keys = string.Format("Ma_vt = '" + mavt + "' and Ma_lo = '" + malo + "' and Ma_vitri = '" + mavitri + "'");
+                    }
+
+                    
+                }
+                
+            }
+            else
+            {
+                if (malo == "")
+                {
+                    if (mavitri == "")
+                    {
+                        keys = string.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "'");
+
+                    }
+                    else
+                    {
+                        keys =string.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "' and Ma_vitri = '" + mavitri + "'");
+                    }
+
+                }
+                else
+                {
+                    if (mavitri == "")
+                    {
+                        keys =string.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "' and Ma_lo = '" + malo +"'");
+                    }
+                    else
+                    {
+                        keys =string.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "' and Ma_lo = '" + malo +"' and Ma_vitri = '" + mavitri + "'");
+                    }
+
+
+                }  
+            }
+
+            SqlParameter[] plist = new[]
+            {   
+               
+                //new SqlParameter("@cKey1", string.Format("Ma_vt = '"+mavt+"' and Ma_kho = '"+makho+"' and Ma_lo = '"+malo+"' and Ma_vitri = '"+mavitri+"'")),
+                new SqlParameter("@cKey1",keys),
                 new SqlParameter("@cKey2", ""),
                 new SqlParameter("@cKey3", ""),
                 new SqlParameter("@cStt_rec", sttRec),

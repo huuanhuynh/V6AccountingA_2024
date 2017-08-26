@@ -36,6 +36,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtma_nh = new V6Controls.V6LookupTextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtstt_in = new V6Controls.V6NumberTextBox();
             this.txtma_thue = new V6Controls.V6VvarTextBox();
             this.txtThueSuat = new V6Controls.V6NumberTextBox();
             this.chkStatus = new V6Controls.V6CheckBox();
@@ -121,6 +125,10 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txtma_nh);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.txtstt_in);
             this.groupBox1.Controls.Add(this.txtma_thue);
             this.groupBox1.Controls.Add(this.txtThueSuat);
             this.groupBox1.Controls.Add(this.chkStatus);
@@ -142,6 +150,71 @@
             this.groupBox1.Size = new System.Drawing.Size(608, 241);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // txtma_nh
+            // 
+            this.txtma_nh.AccessibleName = "ma_nh";
+            this.txtma_nh.BackColor = System.Drawing.SystemColors.Window;
+            this.txtma_nh.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtma_nh.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtma_nh.CheckNotEmpty = true;
+            this.txtma_nh.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtma_nh.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtma_nh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtma_nh.HoverColor = System.Drawing.Color.Yellow;
+            this.txtma_nh.LeaveColor = System.Drawing.Color.White;
+            this.txtma_nh.Location = new System.Drawing.Point(468, 140);
+            this.txtma_nh.Ma_dm = "ALNHTHUE";
+            this.txtma_nh.Margin = new System.Windows.Forms.Padding(4);
+            this.txtma_nh.Name = "txtma_nh";
+            this.txtma_nh.ParentData = null;
+            this.txtma_nh.Size = new System.Drawing.Size(132, 23);
+            this.txtma_nh.TabIndex = 8;
+            this.txtma_nh.ValueField = "MA_NH";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(387, 143);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(77, 17);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Nhóm thuế";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(387, 112);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(62, 17);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Số TT in";
+            // 
+            // txtstt_in
+            // 
+            this.txtstt_in.AccessibleName = "stt_in";
+            this.txtstt_in.BackColor = System.Drawing.SystemColors.Window;
+            this.txtstt_in.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtstt_in.DecimalPlaces = 0;
+            this.txtstt_in.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtstt_in.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtstt_in.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtstt_in.HoverColor = System.Drawing.Color.Yellow;
+            this.txtstt_in.LeaveColor = System.Drawing.Color.White;
+            this.txtstt_in.Location = new System.Drawing.Point(467, 109);
+            this.txtstt_in.Margin = new System.Windows.Forms.Padding(4);
+            this.txtstt_in.Name = "txtstt_in";
+            this.txtstt_in.Size = new System.Drawing.Size(132, 23);
+            this.txtstt_in.TabIndex = 7;
+            this.txtstt_in.Text = "0";
+            this.txtstt_in.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtstt_in.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // txtma_thue
             // 
@@ -173,7 +246,7 @@
             this.txtThueSuat.Margin = new System.Windows.Forms.Padding(4);
             this.txtThueSuat.Name = "txtThueSuat";
             this.txtThueSuat.Size = new System.Drawing.Size(132, 23);
-            this.txtThueSuat.TabIndex = 7;
+            this.txtThueSuat.TabIndex = 4;
             this.txtThueSuat.Text = "0,000";
             this.txtThueSuat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtThueSuat.Value = new decimal(new int[] {
@@ -190,7 +263,7 @@
             this.chkStatus.Margin = new System.Windows.Forms.Padding(4);
             this.chkStatus.Name = "chkStatus";
             this.chkStatus.Size = new System.Drawing.Size(107, 21);
-            this.chkStatus.TabIndex = 14;
+            this.chkStatus.TabIndex = 9;
             this.chkStatus.Text = "Có sử dụng?";
             this.chkStatus.UseVisualStyleBackColor = true;
             // 
@@ -208,7 +281,7 @@
             this.txtTK_THUE_NO.Margin = new System.Windows.Forms.Padding(4);
             this.txtTK_THUE_NO.Name = "txtTK_THUE_NO";
             this.txtTK_THUE_NO.Size = new System.Drawing.Size(132, 23);
-            this.txtTK_THUE_NO.TabIndex = 12;
+            this.txtTK_THUE_NO.TabIndex = 6;
             this.txtTK_THUE_NO.VVar = "TK";
             // 
             // txtTK_THUE_CO
@@ -225,7 +298,7 @@
             this.txtTK_THUE_CO.Margin = new System.Windows.Forms.Padding(4);
             this.txtTK_THUE_CO.Name = "txtTK_THUE_CO";
             this.txtTK_THUE_CO.Size = new System.Drawing.Size(132, 23);
-            this.txtTK_THUE_CO.TabIndex = 9;
+            this.txtTK_THUE_CO.TabIndex = 5;
             this.txtTK_THUE_CO.VVar = "TK";
             // 
             // txtTenThue2
@@ -242,7 +315,7 @@
             this.txtTenThue2.Margin = new System.Windows.Forms.Padding(4);
             this.txtTenThue2.Name = "txtTenThue2";
             this.txtTenThue2.Size = new System.Drawing.Size(356, 23);
-            this.txtTenThue2.TabIndex = 5;
+            this.txtTenThue2.TabIndex = 3;
             // 
             // txtten_thue
             // 
@@ -258,7 +331,7 @@
             this.txtten_thue.Margin = new System.Windows.Forms.Padding(4);
             this.txtten_thue.Name = "txtten_thue";
             this.txtten_thue.Size = new System.Drawing.Size(356, 23);
-            this.txtten_thue.TabIndex = 3;
+            this.txtten_thue.TabIndex = 2;
             // 
             // ThueSuatAddEditForm
             // 
@@ -292,5 +365,9 @@
         private V6VvarTextBox txtma_thue;
         private V6VvarTextBox txtTK_THUE_NO;
         private V6VvarTextBox txtTK_THUE_CO;
+        private V6LookupTextBox txtma_nh;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private V6NumberTextBox txtstt_in;
     }
 }

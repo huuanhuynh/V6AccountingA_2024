@@ -568,6 +568,8 @@ namespace V6Controls
         public string GRDHV_V1 { get { return GetString("GRDHV_V1"); } }
         public string GRDHE_V1 { get { return GetString("GRDHE_V1"); } }
         public bool IsGroup { get { return GetString("IS_GROUP") == "1"; } }
+
+        public string TABLE_KEY { get { return GetString("TABLE_KEY"); } }
         /// <summary>
         /// Thông tin nhóm. DataTable,IdField,FieldNhom
         /// </summary>

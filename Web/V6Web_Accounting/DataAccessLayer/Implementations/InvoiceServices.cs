@@ -144,8 +144,8 @@ namespace DataAccessLayer.Implementations
                 return null;
             }
         }
-        public DataTable GetCheck_Save_All(string status, string kieuPost, string soct, string masonb, string sttrec, string madvcs, string makh, 
-            string manx,DateTime ngayct, string mact,decimal tongthanhtoan,out string v6Message)
+        public DataTable GetCheck_Save_All(string status, string kieuPost, string soct, string masonb, string sttrec, string madvcs, string makh,
+            string manx, DateTime ngayct, string mact, decimal tongthanhtoan, string mode, int user_id, out string v6Message)
         {
             try
             {
@@ -161,10 +161,42 @@ namespace DataAccessLayer.Implementations
                     new SqlParameter("@Ngay_ct",  ngayct.ToString("yyyyMMdd")), 
                     new SqlParameter("@Ma_ct", mact), 
                     new SqlParameter("@T_tt", tongthanhtoan), 
-                    new SqlParameter("@Stt_rec",sttrec)
+                    new SqlParameter("@Stt_rec",sttrec),
+                    new SqlParameter("@Mode",mode),
+                    new SqlParameter("@User_id",user_id)
                 };
                 v6Message = "Success";
                 return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_CHECK_SAVE_ALL", plist).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                v6Message = ex.Message;
+                return null;
+            }
+        }
+        public DataTable GetCheck_Edit_All(string status, string kieuPost, string soct, string masonb, string sttrec, string madvcs, string makh,
+           string manx, DateTime ngayct, string mact, decimal tongthanhtoan, string mode, int user_id, out string v6Message)
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {     
+                    new SqlParameter("@status", status),
+                    new SqlParameter("@kieu_post", kieuPost),
+                    new SqlParameter("@So_ct", soct),
+                    new SqlParameter("@Ma_sonb", masonb), 
+                    new SqlParameter("@Ma_dvcs", madvcs), 
+                    new SqlParameter("@Ma_kh", makh), 
+                    new SqlParameter("@Ma_nx", manx), 
+                    new SqlParameter("@Ngay_ct",  ngayct.ToString("yyyyMMdd")), 
+                    new SqlParameter("@Ma_ct", mact), 
+                    new SqlParameter("@T_tt", tongthanhtoan), 
+                    new SqlParameter("@Stt_rec",sttrec),
+                    new SqlParameter("@Mode",mode),
+                    new SqlParameter("@User_id",user_id)
+                };
+                v6Message = "Success";
+                return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_CHECK_EDIT_ALL", plist).Tables[0];
             }
             catch (Exception ex)
             {

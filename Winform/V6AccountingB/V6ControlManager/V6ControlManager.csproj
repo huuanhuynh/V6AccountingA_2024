@@ -1421,6 +1421,12 @@
     <Compile Include="FormManager\NhanSu\Filter\HRIMAGES_filter.Designer.cs">
       <DependentUpon>HRIMAGES_filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\NhanSu\TienLuongView2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\NhanSu\TienLuongView2.Designer.cs">
+      <DependentUpon>TienLuongView2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\NhanSu\NhanSuView2.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5335,6 +5341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\NhanSu\Filter\HRIMAGES_filter.resx">
       <DependentUpon>HRIMAGES_filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\NhanSu\TienLuongView2.resx">
+      <DependentUpon>TienLuongView2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\NhanSu\NhanSuView2.resx">
       <DependentUpon>NhanSuView2.cs</DependentUpon>

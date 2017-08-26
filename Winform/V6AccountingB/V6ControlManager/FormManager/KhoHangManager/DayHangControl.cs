@@ -178,8 +178,8 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     //plistData["MA_VT"] = MA_VT;
                     plistData["MA_VITRI"] = "__" + ID;
                     plistData["CUOI_NGAY"] = container._cuoiNgay;
-                    plistData["VT_TONKHO"] = "*";
-                    plistData["KIEU_IN"] = "*";
+                    plistData["VT_TONKHO"] = "1";
+                    plistData["KIEU_IN"] = "1";
 
                     ReportRViewBase c = new ReportRViewBase(KhoParams.ItemId, KhoParams.Program, KhoParams.Program + "A",
                         KhoParams.ReportFile,
