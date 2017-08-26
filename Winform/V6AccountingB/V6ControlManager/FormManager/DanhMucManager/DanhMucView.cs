@@ -616,8 +616,9 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     }
                     else
                     {
-
-                        var id = _aldm? aldm_config.KEY:
+                        // Tuanmh 23/08/2017
+                        //id = _aldm ? aldm_config.KEY:
+                        var id = _aldm ? aldm_config.TABLE_KEY:
                             V6Lookup.ValueByTableName[CurrentTable.ToString(), "vValue"].ToString().Trim();
                         
                         var id_check = _aldm ? aldm_config.DOI_MA :
@@ -626,10 +627,12 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         var listTable = _aldm?aldm_config.F8_TABLE:
                             V6Lookup.ValueByTableName[CurrentTable.ToString(), "ListTable"].ToString().Trim();
                         var value = "";
+                        var value_show = "";
 
                         if (String.IsNullOrEmpty(listTable) == false)
                         {
                             value = string.IsNullOrEmpty(id) ? "" : row.Cells[id].Value.ToString().Trim();
+                            value_show = value;
                             var v = _categories.IsExistOneCode_List(listTable, id_check, value);
                             if (v)
                             {
@@ -639,7 +642,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             // Change id-> f_name
                             if (_aldm)
                             {
-                                value = string.IsNullOrEmpty(aldm_config.F_NAME) ? "" : row.Cells[aldm_config.F_NAME].Value.ToString().Trim();
+                               value_show = string.IsNullOrEmpty(aldm_config.F_NAME) ? "" : row.Cells[aldm_config.F_NAME].Value.ToString().Trim();
                             }
                         }
 
@@ -647,7 +650,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         {
                             var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
 
-                            if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + value, "Xóa?")
+                            if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + value_show, "Xóa?")
                                 == DialogResult.Yes)
                             {
                                 confirm = true;

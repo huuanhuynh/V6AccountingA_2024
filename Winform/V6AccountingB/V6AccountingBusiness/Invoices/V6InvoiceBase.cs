@@ -421,9 +421,14 @@ namespace V6AccountingBusiness.Invoices
             return Service.GetCheck_VC_Save(status, kieu_post, soct, masonb, sttrec, out V6Message);
         }
         public DataTable GetCheck_Save_All(string status, string kieu_post, string soct, string masonb, string sttrec, string madvcs, string makh,
-             string manx,DateTime ngayct, string mact,decimal tongthanhtoan)
+             string manx, DateTime ngayct, string mact, decimal tongthanhtoan, string mode, int user_id)
         {
-            return Service.GetCheck_Save_All(status, kieu_post, soct, masonb, sttrec, madvcs, makh,manx,ngayct,mact, tongthanhtoan, out V6Message);
+            return Service.GetCheck_Save_All(status, kieu_post, soct, masonb, sttrec, madvcs, makh, manx, ngayct, mact, tongthanhtoan, mode, user_id, out V6Message);
+        }
+        public DataTable GetCheck_Edit_All(string status, string kieu_post, string soct, string masonb, string sttrec, string madvcs, string makh,
+             string manx, DateTime ngayct, string mact, decimal tongthanhtoan, string mode, int user_id)
+        {
+            return Service.GetCheck_Edit_All(status, kieu_post, soct, masonb, sttrec, madvcs, makh, manx, ngayct, mact, tongthanhtoan,mode,user_id, out V6Message);
         }
 
         /// <summary>

@@ -136,5 +136,22 @@ namespace V6Init
             if (data.Rows.Count > 0) return data.Rows[0];
             return null;
         }
+        public static DataTable GetKey2Pr2()
+        {
+            int type = 1;
+            var sql = "Select * from V6Menu Where Key2 = @Key2";
+            sql += "\n AND V2ID+JOBID+ItemID IN ";
+            sql += "\n    (SELECT V2ID+JOBid+ItemID FROM V6MENU WHERE (((1=@isAdmin or dbo.VFA_Inlist_MEMO(ITEMID,@mrights)=1)) AND hide_yn<>1 AND Module_id=@moduleID )";
+            sql += "\n    GROUP BY V2ID,JOBID,ItemID) ORDER BY stt_box";
+            SqlParameter[] prList = new[]
+            {
+                new SqlParameter("@Key2", "PR2"), 
+                new SqlParameter("@isAdmin", V6Login.IsAdmin), 
+                new SqlParameter("@mrights", V6Login.UserRight.Mrights), 
+                new SqlParameter("@moduleID", V6Options.MODULE_ID), 
+            };
+            DataTable data = SqlConnect.ExecuteDataset(CommandType.Text, sql, prList).Tables[0];
+            return data;
+        }
     }
 }

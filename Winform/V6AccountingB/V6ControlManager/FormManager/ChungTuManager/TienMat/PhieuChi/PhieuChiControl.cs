@@ -165,7 +165,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     detail1.ShowLblName = false;
                 }
-                else if (_MA_GD == "2")
+                else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
                 {
                     //detail1.ShowLblName = true;
                     detail1.lblName.AccessibleName = "TEN_TK_I";
@@ -1210,6 +1210,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 // Tuanmh 09/02/2016
                 if (_tien != null)
                      _tientt.Value = _tien.Value;
+
+                if (_ttqd != null && _tienNt != null && _maNtI.Text == _maNt)
+                {
+                    _ttqd.Value = _tienNt.Value;
+                }
             }   
             catch (Exception ex)
             {
@@ -1322,7 +1327,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                     alct1 = alct1_01;
             }
-            else if (_MA_GD == "2")
+            else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
             {
                 if (alct1_02 == null)
                 {
@@ -1766,6 +1771,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                 _psnoNt.Value = _phaiTtNt.Value;
                 _psno.Value = _phaiTtNt.Value;
+
+                if (_maNtI.Text != _mMaNt0)
+                {
+                    _tientt.Value = V6BusinessHelper.Vround(_phaiTtNt.Value * _ty_gia_ht2.Value, M_ROUND);
+                    _tien.Value = V6BusinessHelper.Vround(_phaiTtNt.Value * txtTyGia.Value, M_ROUND);
+                    _psno.Value = _tien.Value;
+                }
 
                 //{Tuanmh 21/08/2016
 
@@ -2230,7 +2242,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     }
                 }
                 //Loại 2
-                if (_MA_GD == "2")
+                if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
                 {
                     LoadDetailControls("2");
                     //alct = alct1_02;
@@ -2327,7 +2339,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     _tkI.Enabled = true;
                     KhoaThongTinKH();
                 }
-                else if (_MA_GD == "2")
+                else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
                 {
                     //Enable 
                     _tkI.Enabled = true;
@@ -3721,7 +3733,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     if (!dic.ContainsKey("SO_CT0") || dic["SO_CT0"].ToString().Trim() == "") error += "\nSố hóa đơn rỗng.";
                 }else
-                if (_MA_GD == "2")
+                    if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
                 {
                     if (!dic.ContainsKey("TK_I") || dic["TK_I"].ToString().Trim() == "") error += "\nTài khoản rỗng.";
                 }else
@@ -3795,7 +3807,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     var error = "";
                     if(_MA_GD == "1")
                         if (!data.ContainsKey("SO_CT0") || data["SO_CT0"].ToString().Trim() == "") error += "\nChưa chọn hóa đơn.";
-                    if(_MA_GD == "2" || _MA_GD == "3")
+                    if (_MA_GD == "2" || _MA_GD == "3" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
                         if (!data.ContainsKey("TK_I") || data["TK_I"].ToString().Trim() == "") error += "\nChưa nhập tài khoản.";
                     
                     if (error == "")
@@ -3935,7 +3947,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     txtMadvcs.Focus();
                     return false;
                 }
-                if ((_MA_GD == "1" || _MA_GD == "2") && txtMaKh.Text.Trim() == "")
+                if ((_MA_GD == "1" || _MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
+                    && txtMaKh.Text.Trim() == "")
                 {
                     this.ShowWarningMessage("Chưa nhập mã khách hàng!");
                     txtMaKh.Focus();
@@ -4415,8 +4428,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         dic["NGAY_CT0"] = ngay_ct0;
                         dic["SO_SERI0"] = data.Cells["SO_SERI"].Value;
 
-                        dic["TY_GIA_HT2"] = data.Cells["TY_GIA"].Value;
+                        
+                        var ty_gia_ht2_Value = ObjectAndString.ObjectToDecimal(data.Cells["ty_gia"]);
+                        dic["TY_GIA_HT2"] = ty_gia_ht2_Value;
 
+                        if (dic["MA_NT_I"].ToString().Trim() != _mMaNt0)
+                        {
+                            var tientt_Value = V6BusinessHelper.Vround(
+                                ObjectAndString.ObjectToDecimal(dic["PHAI_TT_NT"]) * ty_gia_ht2_Value, M_ROUND);
+                            dic["TIEN_TT"] = tientt_Value;
+                            dic["TIEN"] = tientt_Value;
+                            dic["PS_NO"] = tientt_Value;
+                        }
                         //{Tuanmh 21/08/2016
                         if (Txtdien_giai.Text != "") 
                         {

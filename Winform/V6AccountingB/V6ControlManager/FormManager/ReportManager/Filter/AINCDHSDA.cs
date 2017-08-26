@@ -11,7 +11,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             InitializeComponent();
 
             TxtVttonkho.Text = "*";
-            txtKieuIn.Text = "*";
+            txtKieuIn.Text = "1";
             
             F3 = false;
             F5 = true;

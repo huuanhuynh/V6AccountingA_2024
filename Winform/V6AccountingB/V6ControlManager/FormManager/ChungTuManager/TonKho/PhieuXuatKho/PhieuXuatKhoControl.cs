@@ -191,6 +191,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
                             _maVt.V6LostFocusNoChange += delegate
                             {
+
                                 if (_maVt.LO_YN)
                                 {
                                     _maLo.Enabled = true;
@@ -199,8 +200,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                 {
                                     _maLo.Enabled = false;
                                 }
-                                GetTon13();
-                                GetLoDate13();
+
+                                //Tuanmh 21/08/2017
+                                if (_maVt.VITRI_YN)
+                                {
+                                    if (_maVt.LO_YN && _maVt.DATE_YN)
+                                    {
+                                        GetViTriLoDate13();
+                                    }
+                                    else
+                                    {
+                                        GetViTri13();
+                                    }
+                                }
+                                else
+                                {
+                                    
+                                    GetTon13();
+                                    GetLoDate13();
+                                }
                             };
                             break;
                         case "MA_NX_I":
@@ -246,6 +264,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             _maKhoI.DATE_YN = false;
 
                             _maKhoI.V6LostFocus += MaKhoI_V6LostFocus;
+
+                            _maKhoI.V6LostFocusNoChange += delegate
+                            {
+                                XuLyChonMaKhoI();
+                            };
+
                             break;
                         case "SL_QD":
                             _sl_qd = control as V6NumberTextBox;
@@ -1117,7 +1141,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             {
                 if (_maVt.LO_YN && _maVt.DATE_YN)
                 {
-                    GetViTriLoDate();
+                    if (_maKhoI.Text == "")
+                    {
+                        GetViTriLoDate13();    
+                    }
+                    else
+                    {
+                        GetViTriLoDate();    
+                    }
+                    
                 }
                 else
                 {
@@ -1364,7 +1396,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             try
             {
-                
+
                 string sttRec0 = _sttRec0;
                 string maVt = _maVt.Text.Trim().ToUpper();
                 string maKhoI = _maKhoI.Text.Trim().ToUpper();
@@ -1372,38 +1404,41 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 string maViTri = _maViTri.Text.Trim().ToUpper();
 
                 // Theo doi lo moi check
-                if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maVt.VITRI_YN || !_maKhoI.LO_YN || !_maKhoI.DATE_YN)
+                if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maVt.VITRI_YN)
                     return;
 
-                if (maVt == "" || maKhoI == "" || maLo == "" || maViTri == "") return;
 
-                _ton13.Value = 0;
-                _dataViTri = Invoice.GetViTriLoDate13(maVt, maKhoI, maLo, maViTri, _sttRec, dateNgayCT.Value);
-                if (_dataViTri.Rows.Count == 0)
+                // Tuanmh 21/08/2017 Get default Ma_kho
+                if (maKhoI == "")
                 {
+
                     _ton13.Value = 0;
-                }
-                //Xử lý - tồn
-                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
-                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
-
-                for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
-                {
-                    DataRow data_row = _dataViTri.Rows[i];
-                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
-                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
-                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
-                    string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
-
-                    //Neu dung maVt, maKhoI, maLo, maViTri
-                    if (maVt == data_maVt && maKhoI == data_maKhoI && maLo == data_maLo && maViTri == data_maViTri)
+                    _dataViTri = Invoice.GetViTriLoDate13(maVt, maKhoI, maLo, maViTri, _sttRec, dateNgayCT.Value);
+                    if (_dataViTri.Rows.Count == 0)
                     {
+                        _ton13.Value = 0;
+                    }
+
+                    //for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                    for (int i = 0; i <= _dataViTri.Rows.Count - 1; i++)
+                    {
+                        DataRow data_row = _dataViTri.Rows[i];
+                        string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                        string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                        string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
+                        string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+
                         //- so luong
                         decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
                         decimal new_soLuong = data_soLuong;
 
+                        bool check_makhoi = false;
+
+
+
                         foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
                         {
+
 
                             string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
                             string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
@@ -1411,25 +1446,142 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
                             string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
 
-                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
-                            if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                            //Neu dung maVt, maLo, maViTri
+                            if (c_maVt == data_maVt && c_maKhoI == data_maKhoI && c_maLo == data_maLo &&
+                                c_maViTri == data_maViTri)
                             {
-                                if (maVt == c_maVt && maKhoI == c_maKhoI && maLo == c_maLo && maViTri == c_maViTri)
+
+                                decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
+                                if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
                                 {
                                     new_soLuong -= c_soLuong;
+                                    check_makhoi = true;
+                                    
                                 }
                             }
                         }
 
-                        if (new_soLuong > 0)
+
+                        if (new_soLuong > 0 && check_makhoi == true)
                         {
+                            _maKhoI.Text = data_maKhoI;
+                            _maLo.Text = data_maLo;
+                            _maViTri.Text = data_maViTri;
+
+                            //maKhoI = data_maKhoI;
+                            //maLo = data_maLo;
+                            //maViTri = data_maViTri;
+
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
+                            check_makhoi = true;
                             break;
+                        }
+                        else
+                        {
+                            check_makhoi = false;
+                        }
+
+                        if (check_makhoi == false)
+                        {
+                            if (new_soLuong > 0)
+                            {
+                                _maKhoI.Text = data_maKhoI;
+                                _maLo.Text = data_maLo;
+                                _maViTri.Text = data_maViTri;
+
+                                _ton13.Value = new_soLuong/_heSo1.Value;
+                                _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
+                                break;
+                            }
+                            else
+                            {
+                                _maKhoI.Text = "";
+                                _maLo.Text = "";
+                                _maViTri.Text = "";
+
+                                _ton13.Value = 0;
+                                _hanSd.Value = null;
+                            }
+                        }
+
+                    }
+
+                }
+                else
+                {
+
+
+
+
+                    if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maVt.VITRI_YN || !_maKhoI.LO_YN || !_maKhoI.DATE_YN)
+                        return;
+
+
+
+                    if (maVt == "" || maKhoI == "" || maLo == "" || maViTri == "") return;
+
+                    _ton13.Value = 0;
+                    _dataViTri = Invoice.GetViTriLoDate13(maVt, maKhoI, maLo, maViTri, _sttRec, dateNgayCT.Value);
+                    if (_dataViTri.Rows.Count == 0)
+                    {
+                        _ton13.Value = 0;
+                    }
+                    //Xử lý - tồn
+                    //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
+                    //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+
+                    //for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                    for (int i = 0; i <= _dataViTri.Rows.Count - 1; i++)
+                    {
+                        DataRow data_row = _dataViTri.Rows[i];
+                        string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                        string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                        string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
+                        string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+
+                        //Neu dung maVt, maKhoI, maLo, maViTri
+                        if (maVt == data_maVt && maKhoI == data_maKhoI && maLo == data_maLo && maViTri == data_maViTri)
+                        {
+                            //- so luong
+                            decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                            decimal new_soLuong = data_soLuong;
+
+                            foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                            {
+
+                                string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                                string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                                string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                                string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
+                                string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
+
+                                decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
+                                if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                                {
+                                    if (maVt == c_maVt && maKhoI == c_maKhoI && maLo == c_maLo && maViTri == c_maViTri)
+                                    {
+                                        new_soLuong -= c_soLuong;
+                                    }
+                                }
+                            }
+
+                            if (new_soLuong > 0)
+                            {
+                                _ton13.Value = new_soLuong/_heSo1.Value;
+                                _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
+                                _maLo.Text = data_maLo;
+                                _maViTri.Text = data_maViTri;
+
+                                break;
+                            }
                         }
                     }
                 }
             }
+
+
+
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".GetViTriLoDate13 " + ex.Message);
@@ -1667,7 +1819,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
                 //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
 
-                for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                //for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
+                for (int i = 0; i <= _dataViTri.Rows.Count - 1; i++)
+
                 {
                     DataRow data_row = _dataViTri.Rows[i];
                     string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();

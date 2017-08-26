@@ -113,7 +113,7 @@ namespace V6AccountingBusiness.Invoices
         DataTable GetCheck_VC_Save(string status, string kieu_post, string soct, string masonb, string sttrec);
 
         DataTable GetCheck_Save_All(string status, string kieu_post, string soct, string masonb, string sttrec, string madvcs, string makh,
-            string manx,DateTime ngayct, string mact,decimal tongthanhtoan);
+            string manx,DateTime ngayct, string mact,decimal tongthanhtoan,string mode, int user_id);
 
         /// <summary>
         /// Lấy thông tin Lo Date bằng procedure [VPA_EdItems_DATE_STT_REC]

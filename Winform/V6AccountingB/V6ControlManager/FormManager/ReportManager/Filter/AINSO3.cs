@@ -109,7 +109,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Condition", cKey));
             result.Add(new SqlParameter("@Ma_ct", ""));
 
+            int tinhdc = 0;
+            if (Chk_Tinh_dc.Checked)
+                tinhdc = 1; 
+            else
+                tinhdc = 0;
 
+            result.Add(new SqlParameter("@Tinh_dc", tinhdc));
           
 
             return result;

@@ -66,8 +66,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 new SqlParameter("@EndDate", dateCuoiNgay.Value.ToString("yyyyMMdd")),
                 new SqlParameter("@Condition", condition),
-                new SqlParameter("@Vttonkho", "*"),
-                new SqlParameter("@Kieu_in", "*"),
+                new SqlParameter("@Vttonkho", "1"),
+                new SqlParameter("@Kieu_in", "1"),
             };
 
             return result;

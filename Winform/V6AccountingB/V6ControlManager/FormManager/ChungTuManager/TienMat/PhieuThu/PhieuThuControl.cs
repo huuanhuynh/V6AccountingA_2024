@@ -1665,9 +1665,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     }
                 }
                 //Loại 2
-                if (_MA_GD == "2")
+                if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
                 {
-                    LoadDetailControls(_MA_GD);
+                    // Tuanmh 25/08/2017 su dung chung ma_gd="2"
+                    //LoadDetailControls(_MA_GD);
+                    LoadDetailControls("2");
+
                     //alct = alct1_02;
                     var dataGridViewColumn = dataGridView1.Columns["TK_I"];
                     if (dataGridViewColumn != null)
@@ -1767,7 +1770,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     _tkI.Enabled = true;
                     KhoaThongTinKH();
                 }
-                else if (_MA_GD == "2")
+                else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
                 {
                     //Enable 
                     _tkI.Enabled = true;
@@ -1859,7 +1862,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
                     if (_MA_GD == "1")
                         detail1.ShowIDs(new[] {"lblGIA21", "lblTIEN2"});
-                    if (_MA_GD == "2")
+                    if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
                         detail1.ShowIDs(new[] { "PS_CO", "lblGIA21", "lblTIEN2" });
                     if (_MA_GD == "3")
                         detail1.ShowIDs(new[] { "PS_CO", "lblGIA21", "lblTIEN2" });
@@ -3142,7 +3145,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 {
                     if (!dic.ContainsKey("SO_CT0") || dic["SO_CT0"].ToString().Trim() == "") error += "\nSố hóa đơn rỗng.";
                 }
-                else if (_MA_GD == "2")
+                else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
                 {
                     if (!dic.ContainsKey("TK_I") || dic["TK_I"].ToString().Trim() == "") error += "\nTài khoản rỗng.";
                 }else
@@ -3218,7 +3221,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         if (!data.ContainsKey("SO_CT0") || data["SO_CT0"].ToString().Trim() == "") error += "\nChưa chọn hóa đơn.";
                     if (_MA_GD == "A")
                         if (!data.ContainsKey("SO_CT0") || data["SO_CT0"].ToString().Trim() == "") error += "\nChưa chọn hóa đơn.";
-                    if(_MA_GD == "2" || _MA_GD == "3")
+                    if (_MA_GD == "2" || _MA_GD == "3" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
                         if (!data.ContainsKey("TK_I") || data["TK_I"].ToString().Trim() == "") error += "\nChưa nhập tài khoản.";
                     
                     if (error == "")
@@ -3358,7 +3361,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     txtMadvcs.Focus();
                     return false;
                 }
-                if ((_MA_GD == "1" || _MA_GD == "2") && txtMaKh.Text.Trim() == "")
+                if ((_MA_GD == "1" || _MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9") 
+                    && txtMaKh.Text.Trim() == "")
                 {
                     this.ShowWarningMessage("Chưa nhập mã khách hàng!");
                     txtMaKh.Focus();

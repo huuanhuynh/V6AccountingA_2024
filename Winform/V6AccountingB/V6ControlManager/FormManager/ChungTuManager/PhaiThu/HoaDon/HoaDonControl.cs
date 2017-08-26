@@ -5522,9 +5522,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
                 //Tuanmh 24/07/2016 Check Debit Amount
                 {
+                    var mode_vc = "V";
+                    if (Mode == V6Mode.Edit)
+                    {
+                        mode_vc = "E";
+                    }
+                    else if (Mode == V6Mode.Add)
+                    {
+                        mode_vc = "A";
+                        
+                    }
+
                     DataTable DataCheck_Save_All = Invoice.GetCheck_Save_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
                         TxtSo_ct.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec,txtMadvcs.Text.Trim(),txtMaKh.Text.Trim(),
-                        txtManx.Text.Trim(),dateNgayCT.Value,txtMa_ct.Text,txtTongThanhToan.Value);
+                        txtManx.Text.Trim(), dateNgayCT.Value, txtMa_ct.Text, txtTongThanhToan.Value, mode_vc, V6Login.UserId);
 
                     
 

@@ -111,8 +111,8 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     plistData["MA_VT"] = container._mavt;
                     plistData["MA_VITRI"] = MA_VITRI;
                     plistData["CUOI_NGAY"] = container._cuoiNgay;
-                    plistData["VT_TONKHO"] = "*";
-                    plistData["KIEU_IN"] = "*";
+                    plistData["VT_TONKHO"] = "1";
+                    plistData["KIEU_IN"] = "1";
 
                     plistData.AddRange(_rowDataVitriVattu.ToDataDictionary());
 
@@ -133,8 +133,8 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     {
                         new SqlParameter("@EndDate", container._cuoiNgay.ToString("yyyyMMdd")),
                         new SqlParameter("@Condition", condition),
-                        new SqlParameter("@Vttonkho", "*"),
-                        new SqlParameter("@Kieu_in", "*"),
+                        new SqlParameter("@Vttonkho", "1"),
+                        new SqlParameter("@Kieu_in", "1"),
                     };
                     var table = V6BusinessHelper.ExecuteProcedure(KhoParams.Program, plist).Tables[0];
                     V6ColorDataGridView gv = new V6ColorDataGridView();
@@ -157,8 +157,8 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     plistData["MA_VT"] = MA_VT;
                     plistData["MA_VITRI"] = MA_VITRI;
                     plistData["CUOI_NGAY"] = container._cuoiNgay;
-                    plistData["VT_TONKHO"] = "*";
-                    plistData["KIEU_IN"] = "*";
+                    plistData["VT_TONKHO"] = "1";
+                    plistData["KIEU_IN"] = "1";
 
                     ReportRViewBase c = new ReportRViewBase(KhoParams.ItemId, KhoParams.Program, KhoParams.Program,
                         KhoParams.ReportFile,
