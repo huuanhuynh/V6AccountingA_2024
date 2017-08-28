@@ -30,8 +30,8 @@
         {
             this.v6Label18 = new V6Controls.V6Label();
             this.v6Label17 = new V6Controls.V6Label();
-            this.txtNgay_nghi = new V6Controls.V6Label();
-            this.v6DateTimeColor1 = new V6Controls.V6DateTimeColor();
+            this.lb = new V6Controls.V6Label();
+            this.txtNgay_nghi = new V6Controls.V6DateTimeColor();
             this.txtten_bp = new V6Controls.V6LabelTextBox();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.txtMa_Cong = new V6Controls.V6VvarTextBox();
@@ -69,6 +69,7 @@
             this.v6Label2 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
+            this.v6LabelTextBox1 = new V6Controls.V6LabelTextBox();
             this.SuspendLayout();
             // 
             // v6Label18
@@ -95,39 +96,39 @@
             this.v6Label17.TabIndex = 160;
             this.v6Label17.Text = "1 - Sản phẩm, 2 - Thời gian, 3 - Khoán, 4 - Khác";
             // 
+            // lb
+            // 
+            this.lb.AccessibleDescription = "";
+            this.lb.AccessibleName = "";
+            this.lb.AutoSize = true;
+            this.lb.Location = new System.Drawing.Point(295, 153);
+            this.lb.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb.Name = "lb";
+            this.lb.Size = new System.Drawing.Size(72, 17);
+            this.lb.TabIndex = 159;
+            this.lb.Text = "Ngày nghỉ";
+            // 
             // txtNgay_nghi
             // 
-            this.txtNgay_nghi.AccessibleDescription = "";
             this.txtNgay_nghi.AccessibleName = "Ngay_nghi";
-            this.txtNgay_nghi.AutoSize = true;
-            this.txtNgay_nghi.Location = new System.Drawing.Point(295, 153);
-            this.txtNgay_nghi.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.txtNgay_nghi.Name = "txtNgay_nghi";
-            this.txtNgay_nghi.Size = new System.Drawing.Size(72, 17);
-            this.txtNgay_nghi.TabIndex = 159;
-            this.txtNgay_nghi.Text = "Ngày nghỉ";
-            // 
-            // v6DateTimeColor1
-            // 
-            this.v6DateTimeColor1.AccessibleName = "NGAY_SINH";
-            this.v6DateTimeColor1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtNgay_nghi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.v6DateTimeColor1.BackColor = System.Drawing.Color.White;
-            this.v6DateTimeColor1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6DateTimeColor1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6DateTimeColor1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6DateTimeColor1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6DateTimeColor1.GrayText = null;
-            this.v6DateTimeColor1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6DateTimeColor1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.v6DateTimeColor1.LeaveColor = System.Drawing.Color.White;
-            this.v6DateTimeColor1.Location = new System.Drawing.Point(391, 150);
-            this.v6DateTimeColor1.Margin = new System.Windows.Forms.Padding(5);
-            this.v6DateTimeColor1.Name = "v6DateTimeColor1";
-            this.v6DateTimeColor1.Size = new System.Drawing.Size(135, 23);
-            this.v6DateTimeColor1.StringValue = "__/__/____";
-            this.v6DateTimeColor1.TabIndex = 158;
-            this.v6DateTimeColor1.Text = "__/__/____";
+            this.txtNgay_nghi.BackColor = System.Drawing.Color.White;
+            this.txtNgay_nghi.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNgay_nghi.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNgay_nghi.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNgay_nghi.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNgay_nghi.GrayText = null;
+            this.txtNgay_nghi.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNgay_nghi.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtNgay_nghi.LeaveColor = System.Drawing.Color.White;
+            this.txtNgay_nghi.Location = new System.Drawing.Point(391, 150);
+            this.txtNgay_nghi.Margin = new System.Windows.Forms.Padding(5);
+            this.txtNgay_nghi.Name = "txtNgay_nghi";
+            this.txtNgay_nghi.Size = new System.Drawing.Size(135, 23);
+            this.txtNgay_nghi.StringValue = "__/__/____";
+            this.txtNgay_nghi.TabIndex = 158;
+            this.txtNgay_nghi.Text = "__/__/____";
             // 
             // txtten_bp
             // 
@@ -162,6 +163,7 @@
             this.txtMa_Cong.AccessibleName = "MA_CONG";
             this.txtMa_Cong.BackColor = System.Drawing.SystemColors.Window;
             this.txtMa_Cong.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMa_Cong.BrotherFields = "ten_cong";
             this.txtMa_Cong.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMa_Cong.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMa_Cong.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -327,6 +329,7 @@
             this.txtMa_CV.AccessibleName = "MA_CV";
             this.txtMa_CV.BackColor = System.Drawing.SystemColors.Window;
             this.txtMa_CV.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMa_CV.BrotherFields = "ten_cv";
             this.txtMa_CV.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMa_CV.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMa_CV.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -527,6 +530,7 @@
             this.buttonSua.Text = "&Sửa";
             this.buttonSua.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonSua.UseVisualStyleBackColor = true;
+            this.buttonSua.Click += new System.EventHandler(this.buttonSua_Click_1);
             // 
             // buttonHuy
             // 
@@ -544,6 +548,7 @@
             this.buttonHuy.Text = "&Hủy";
             this.buttonHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonHuy.UseVisualStyleBackColor = true;
+            this.buttonHuy.Click += new System.EventHandler(this.buttonHuy_Click_1);
             // 
             // buttonNhan
             // 
@@ -560,6 +565,7 @@
             this.buttonNhan.Text = "&Nhận";
             this.buttonNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonNhan.UseVisualStyleBackColor = true;
+            this.buttonNhan.Click += new System.EventHandler(this.buttonNhan_Click_1);
             // 
             // txtSttRec
             // 
@@ -685,14 +691,28 @@
             this.v6Label3.TabIndex = 121;
             this.v6Label3.Text = "Hệ số lương cơ bản";
             // 
+            // v6LabelTextBox1
+            // 
+            this.v6LabelTextBox1.AccessibleName = "ten_cv";
+            this.v6LabelTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.v6LabelTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.v6LabelTextBox1.Location = new System.Drawing.Point(298, 89);
+            this.v6LabelTextBox1.Name = "v6LabelTextBox1";
+            this.v6LabelTextBox1.ReadOnly = true;
+            this.v6LabelTextBox1.Size = new System.Drawing.Size(251, 16);
+            this.v6LabelTextBox1.TabIndex = 163;
+            this.v6LabelTextBox1.TabStop = false;
+            this.v6LabelTextBox1.Tag = "readonly";
+            // 
             // ThongTinLuongCoBan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.v6LabelTextBox1);
             this.Controls.Add(this.v6Label18);
             this.Controls.Add(this.v6Label17);
+            this.Controls.Add(this.lb);
             this.Controls.Add(this.txtNgay_nghi);
-            this.Controls.Add(this.v6DateTimeColor1);
             this.Controls.Add(this.txtten_bp);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.txtMa_Cong);
@@ -743,8 +763,8 @@
 
         private V6Label v6Label18;
         private V6Label v6Label17;
-        private V6Label txtNgay_nghi;
-        private V6DateTimeColor v6DateTimeColor1;
+        private V6Label lb;
+        private V6DateTimeColor txtNgay_nghi;
         private V6LabelTextBox txtten_bp;
         private V6CheckBox checkBox1;
         private V6VvarTextBox txtMa_Cong;
@@ -782,5 +802,6 @@
         private V6Label v6Label2;
         private V6Label v6Label1;
         private V6Label v6Label3;
+        private V6LabelTextBox v6LabelTextBox1;
     }
 }

@@ -95,7 +95,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
         }
 
-        private void buttonSua_Click(object sender, EventArgs e)
+        private void buttonSua_Click_1(object sender, EventArgs e)
         {
             buttonSua.Enabled = false;
             buttonNhan.Enabled = true;
@@ -103,14 +103,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             V6ControlFormHelper.SetFormControlsReadOnly(this, false);
         }
 
-        private void buttonNhan_Click(object sender, EventArgs e)
+        private void buttonNhan_Click_1(object sender, EventArgs e)
         {
             buttonNhan.Enabled = false;
             buttonHuy.Enabled = false;
+            buttonSua.Enabled = true;
+            V6ControlFormHelper.SetFormControlsReadOnly(this, true);
             UpdateData();
         }
 
-        private void buttonHuy_Click(object sender, EventArgs e)
+        private void buttonHuy_Click_1(object sender, EventArgs e)
         {
             buttonSua.Enabled = true;
             buttonNhan.Enabled = true;
@@ -118,6 +120,5 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             V6ControlFormHelper.SetFormDataDictionary(this, DataOld);
             V6ControlFormHelper.SetFormControlsReadOnly(this, true);
         }
-
     }
 }
