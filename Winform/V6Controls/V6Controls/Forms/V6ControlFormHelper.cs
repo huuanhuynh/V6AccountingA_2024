@@ -1180,7 +1180,7 @@ namespace V6Controls.Forms
         /// <param name="control">Form cần điền dữ liệu, thường dùng từ khóa this</param>
         /// <param name="data">Lưu ý. nên dùng key UPPER</param>
         /// <param name="set_default">Nếu không có dữ liệu thì gán rỗng hoặc mặc định.</param>
-        public static SortedDictionary<string, Control> SetFormDataDictionary(Control control, SortedDictionary<string, object> data, bool set_default = true)
+        public static SortedDictionary<string, Control> SetFormDataDictionary(Control control, IDictionary<string, object> data, bool set_default = true)
         {
             SortedDictionary<string, Control> result = new SortedDictionary<string, Control>();
             try

@@ -229,8 +229,11 @@ namespace V6ControlManager.FormManager.NhanSu.View
                 if (ds.Tables.Count > 0)
                 {
                     DataRow datarow = ds.Tables[0].Rows[0];
-                    V6ControlFormHelper.SetFormDataRow(ThongTinControl2, datarow);
-                    V6ControlFormHelper.SetFormDataRow(ThongTinControl, datarow);
+                    var dataDic = datarow.ToDataDictionary();
+                    ThongTinControl2.SetData(dataDic);
+                    ThongTinControl.SetData(dataDic);
+                    //V6ControlFormHelper.SetFormDataRow(ThongTinControl2, datarow);
+                    //V6ControlFormHelper.SetFormDataRow(ThongTinControl, datarow);
                 }
 
 
@@ -245,9 +248,8 @@ namespace V6ControlManager.FormManager.NhanSu.View
         public override void SetParentData(IDictionary<string, object> nhanSuData)
         {
             FilterControl.SetParentRow(nhanSuData);
-            V6ControlFormHelper.SetSomeDataDictionary(ThongTinControl2, nhanSuData);
-            
-            
+            //V6ControlFormHelper.SetSomeDataDictionary(ThongTinControl2, nhanSuData);
+            ThongTinControl2.SetData(nhanSuData);
         }
        
        

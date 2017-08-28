@@ -78,7 +78,10 @@ namespace V6Controls
                 _helpProvider1.SetHelpString(dataGridView1, ChuyenMaTiengViet.ToUnSign("Chọn một dòng và nhấn enter để nhận giá trị!"));
                 _helpProvider1.SetHelpString(btnTatCa, ChuyenMaTiengViet.ToUnSign("Hiện tất cả."));
                 //helpProvider1.SetHelpString(, "Hien tat ca danh muc.");
-                toolStripStatusLabel1.Text = "F1-Hướng dẫn, F3-Sửa, F4-Thêm, Enter-Chọn, ESC-Quay ra";
+                toolStripStatusLabel1.Text = string.Format("F1-Hướng dẫn{3}{4}, Enter-Chọn, ESC-Quay ra",
+                    "0", "1", "2",
+                    LookupInfo.F3 ? ", F3-Sửa" : "",
+                    LookupInfo.F4 ? ", F4-Thêm" : "");
                 toolStripStatusLabel2.Text = _multiSelect ? ", Space-Chọn/Bỏ chọn, (Ctrl+A)-Chọn tất cả, (Ctrl+U)-Bỏ chọn tất cả" : "";
             }
             catch (Exception ex)
@@ -91,6 +94,7 @@ namespace V6Controls
         {
             if (string.IsNullOrEmpty(LookupInfo.TABLE_NAME))
             {
+                this.WriteToLog(GetType() + ".ThemDuLieuVaoBangChinh", "LookupInfo.TABLE_NAME = empty, Ma_dm = " + LookupInfo.MA_DM);
                 throw new Exception("Table_Name!");
             }
             
@@ -556,6 +560,11 @@ namespace V6Controls
 
                 if (keyData == Keys.F3) //Sua
                 {
+                    if (!LookupInfo.F3)
+                    {
+                        return false;
+                    }
+
                     if (V6Login.UserRight.AllowEdit("", LookupInfo.TABLE_NAME.ToUpper() + "6"))
                     {
                         if (dataGridView1.SelectedCells.Count > 0)
@@ -585,6 +594,11 @@ namespace V6Controls
                 }
                 else if (keyData == Keys.F4)
                 {
+                    if (!LookupInfo.F4)
+                    {
+                        return false;
+                    }
+
                     if (V6Login.UserRight.AllowAdd("", LookupInfo.TABLE_NAME.ToUpper() + "6"))
                     {
                         DataGridViewRow row = dataGridView1.GetFirstSelectedRow();

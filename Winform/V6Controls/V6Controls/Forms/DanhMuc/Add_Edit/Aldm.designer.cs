@@ -112,6 +112,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.TxtForder = new V6Controls.V6NumberTextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.chkFormF3 = new V6Controls.V6CheckBox();
+            this.chkFormF4 = new V6Controls.V6CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -774,6 +776,7 @@
             // 
             this.tabPage2.AccessibleDescription = "thong_tin_cong_no";
             this.tabPage2.AutoScroll = true;
+            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.v6ColorTextBox22);
             this.tabPage2.Controls.Add(this.v6ColorTextBox21);
             this.tabPage2.Controls.Add(this.label53);
@@ -789,7 +792,6 @@
             this.tabPage2.Size = new System.Drawing.Size(796, 348);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // v6ColorTextBox22
             // 
@@ -906,6 +908,9 @@
             // tabPage3
             // 
             this.tabPage3.AutoScroll = true;
+            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage3.Controls.Add(this.chkFormF4);
+            this.tabPage3.Controls.Add(this.chkFormF3);
             this.tabPage3.Controls.Add(this.v6ColorTextBox6);
             this.tabPage3.Controls.Add(this.label31);
             this.tabPage3.Controls.Add(this.txtcach_tinh3);
@@ -934,7 +939,6 @@
             this.tabPage3.Size = new System.Drawing.Size(796, 348);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Các tùy chọn";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // v6ColorTextBox6
             // 
@@ -1418,6 +1422,30 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Sắp xếp";
             // 
+            // chkFormF3
+            // 
+            this.chkFormF3.AccessibleName = "F3";
+            this.chkFormF3.AutoSize = true;
+            this.chkFormF3.Location = new System.Drawing.Point(115, 204);
+            this.chkFormF3.Margin = new System.Windows.Forms.Padding(4);
+            this.chkFormF3.Name = "chkFormF3";
+            this.chkFormF3.Size = new System.Drawing.Size(201, 21);
+            this.chkFormF3.TabIndex = 158;
+            this.chkFormF3.Text = "F3 cho phép sửa khi lookup";
+            this.chkFormF3.UseVisualStyleBackColor = true;
+            // 
+            // chkFormF4
+            // 
+            this.chkFormF4.AccessibleName = "F4";
+            this.chkFormF4.AutoSize = true;
+            this.chkFormF4.Location = new System.Drawing.Point(114, 233);
+            this.chkFormF4.Margin = new System.Windows.Forms.Padding(4);
+            this.chkFormF4.Name = "chkFormF4";
+            this.chkFormF4.Size = new System.Drawing.Size(235, 21);
+            this.chkFormF4.TabIndex = 158;
+            this.chkFormF4.Text = "F4 cho phép thêm mới khi lookup";
+            this.chkFormF4.UseVisualStyleBackColor = true;
+            // 
             // Aldm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1528,5 +1556,7 @@
         private V6CheckBox chkIsGroup;
         private V6ColorTextBox v6ColorTextBox7;
         private System.Windows.Forms.Label label32;
+        private V6CheckBox chkFormF4;
+        private V6CheckBox chkFormF3;
     }
 }

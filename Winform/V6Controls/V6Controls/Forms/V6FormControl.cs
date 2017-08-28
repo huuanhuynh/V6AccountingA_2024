@@ -48,7 +48,7 @@ namespace V6Controls.Forms
         /// Dữ liệu không có sẽ gán rỗng.
         /// </summary>
         /// <param name="d"></param>
-        public virtual void SetData(SortedDictionary<string, object> d)
+        public virtual void SetData(IDictionary<string, object> d)
         {
             V6ControlFormHelper.SetFormDataDictionary( this, d );
         }

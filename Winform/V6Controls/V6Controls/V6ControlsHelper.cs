@@ -470,6 +470,12 @@ namespace V6Controls
             }
             return 0;
         }
+
+        /// <summary>
+        /// Lấy thông tin theo trường
+        /// </summary>
+        /// <param name="name">UPPER</param>
+        /// <returns></returns>
         public string GetString(string name)
         {
             if (_data != null && _data.ContainsKey(name))
@@ -543,8 +549,8 @@ namespace V6Controls
         public string CLASS { get { return GetString("CLASS"); } }
         public string NXT { get { return GetString("NXT"); } }
         public string F2 { get { return GetString("F2"); } }
-        public string F3 { get { return GetString("F3"); } }
-        public string F4 { get { return GetString("F4"); } }
+        public bool F3 { get { return GetString("F3") == "1"; } }
+        public bool F4 { get { return GetString("F4") == "1"; } }
         public string CTRL_F4 { get { return GetString("CTRL_F4"); } }
         public string DUPDATE { get { return GetString("DUPDATE"); } }
         public string TRANSFORM { get { return GetString("TRANSFORM"); } }

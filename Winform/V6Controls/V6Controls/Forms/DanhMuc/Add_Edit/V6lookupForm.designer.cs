@@ -81,7 +81,10 @@
             this.v6ColorTextBox15 = new V6Controls.V6ColorTextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
+            this.chkFormF4 = new V6Controls.V6CheckBox();
+            this.chkFormF3 = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -218,6 +221,8 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage3.Controls.Add(this.chkFormF4);
+            this.tabPage3.Controls.Add(this.chkFormF3);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
@@ -866,6 +871,30 @@
             this.label46.TabIndex = 47;
             this.label46.Text = "Trường hiển thị";
             // 
+            // chkFormF4
+            // 
+            this.chkFormF4.AccessibleName = "F4";
+            this.chkFormF4.AutoSize = true;
+            this.chkFormF4.Location = new System.Drawing.Point(110, 37);
+            this.chkFormF4.Margin = new System.Windows.Forms.Padding(4);
+            this.chkFormF4.Name = "chkFormF4";
+            this.chkFormF4.Size = new System.Drawing.Size(235, 21);
+            this.chkFormF4.TabIndex = 159;
+            this.chkFormF4.Text = "F4 cho phép thêm mới khi lookup";
+            this.chkFormF4.UseVisualStyleBackColor = true;
+            // 
+            // chkFormF3
+            // 
+            this.chkFormF3.AccessibleName = "F3";
+            this.chkFormF3.AutoSize = true;
+            this.chkFormF3.Location = new System.Drawing.Point(111, 8);
+            this.chkFormF3.Margin = new System.Windows.Forms.Padding(4);
+            this.chkFormF3.Name = "chkFormF3";
+            this.chkFormF3.Size = new System.Drawing.Size(201, 21);
+            this.chkFormF3.TabIndex = 160;
+            this.chkFormF3.Text = "F3 cho phép sửa khi lookup";
+            this.chkFormF3.UseVisualStyleBackColor = true;
+            // 
             // V6lookupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -879,6 +908,8 @@
             this.Load += new System.EventHandler(this.KhachHangFrom_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -943,5 +974,7 @@
         private V6ColorTextBox txtVtitle;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
+        private V6CheckBox chkFormF4;
+        private V6CheckBox chkFormF3;
     }
 }
