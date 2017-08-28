@@ -1414,6 +1414,12 @@
     <Compile Include="FormManager\NhanSu\Filter\HRAPPFAMILY_filter.Designer.cs">
       <DependentUpon>HRAPPFAMILY_filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\NhanSu\Filter\HHRINFOR1_filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\NhanSu\Filter\HHRINFOR1_filter.Designer.cs">
+      <DependentUpon>HHRINFOR1_filter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\NhanSu\Filter\NhanSuFilterManager.cs" />
     <Compile Include="FormManager\NhanSu\Filter\HRIMAGES_filter.cs">
       <SubType>UserControl</SubType>
@@ -5338,6 +5344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\NhanSu\Filter\HRAPPFAMILY_filter.resx">
       <DependentUpon>HRAPPFAMILY_filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\NhanSu\Filter\HHRINFOR1_filter.resx">
+      <DependentUpon>HHRINFOR1_filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\NhanSu\Filter\HRIMAGES_filter.resx">
       <DependentUpon>HRIMAGES_filter.cs</DependentUpon>

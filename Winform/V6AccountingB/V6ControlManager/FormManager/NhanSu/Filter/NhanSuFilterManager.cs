@@ -15,8 +15,10 @@ namespace V6ControlManager.FormManager.NhanSu.Filter
                     return new HRAPPFAMILY_filter();
                 case "HHRIMAGES":
                     return new HRIMAGES_filter();
+                case "HHRINFOR1":
+                    return new HHRINFOR1_filter();
+                    
 
-                
                   #endregion a
             }
             return new FilterBase(){Visible = false};
