@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.NhanSu.Filter;
 using V6ControlManager.FormManager.ReportManager.Filter;
@@ -42,14 +43,14 @@ namespace V6ControlManager.FormManager.NhanSu.View
                 ThongTinControl = NhanSuManager.GetControl(ItemID, _formname) as V6FormControl;
                 if (ThongTinControl != null)
                 {
-                    //ThongTinControl.Dock = DockStyle.Fill;
+                    ThongTinControl.Dock = DockStyle.Fill;
                     panelControl.Controls.Add(ThongTinControl);
                 }
 
                 ThongTinControl2 = NhanSuManager.GetControl(ItemID, "HINFOR_NS") as V6FormControl;
                 if (ThongTinControl2 != null)
                 {
-                   
+                    V6ControlFormHelper.SetFormControlsReadOnly(ThongTinControl2, true);
                     panelControl2.Controls.Add(ThongTinControl2);
                 }
 

@@ -145,7 +145,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 for (int i = 1; i <= 31; i++)
                 {
                     //DataGridViewComboBoxColumn cbc = new DataGridViewComboBoxColumn();
-                    string fieldName = "CONG_" + ("00" + i).Right(2);
+                    string fieldName = FilterControl.Check1 ? "CONG_" + ("00" + i).Right(2) : "GIO_" + ("00" + i).Right(2);
                     var column = dataGridView1.Columns[fieldName];
                     if (column != null)
                     {
@@ -186,7 +186,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         }
         void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (!ExistRowInTable(edit_cell.Value.ToString().Trim()))
+            if (FilterControl.Check1 && !ExistRowInTable(edit_cell.Value.ToString().Trim()))
             {
                 Lookup();
             }
@@ -213,6 +213,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             {
                 int nTime = 0;
                 int nAmount = 0;
+
+                
+
                 SqlParameter[] plist =
                 {
                     new SqlParameter("@nYear", cell.OwningRow.Cells["NAM"].Value),
@@ -220,10 +223,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     new SqlParameter("@cEmployID", cell.OwningRow.Cells["MA_NS"].Value),
                     new SqlParameter("@cD", cell.OwningColumn.DataPropertyName.Right(2)),
                     new SqlParameter("@cDept", ""),
-                    new SqlParameter("@cW", cell.Value),
-                    new SqlParameter("@nTime", nTime),
+
+                    new SqlParameter("@cW", FilterControl.Check1 ? cell.Value : ""),
+                    new SqlParameter("@nTime", FilterControl.Check1 ? nTime : cell.Value),
+
                     new SqlParameter("@nAmount", nAmount),
-                    new SqlParameter("@nUserID", V6Login.UserId)
+                    new SqlParameter("@nUserID", V6Login.UserId),
+                    new SqlParameter("@cType", FilterControl.Check1 ? "0" : "1")
                 };
                 if (V6BusinessHelper.ExecuteProcedureNoneQuery("VPH_SaveTimeSheet_Month", plist) > 0)
                 {

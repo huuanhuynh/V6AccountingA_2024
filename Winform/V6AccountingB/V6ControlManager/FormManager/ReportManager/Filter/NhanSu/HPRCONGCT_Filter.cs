@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using V6AccountingBusiness;
+using V6Controls;
+using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
 
@@ -11,6 +13,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
         public HPRCONGCT_Filter()
         {
             InitializeComponent();
+            Check1 = true;
             F9 = true;
             
             dateNgay_ct1.Value = V6Setting.M_SV_DATE;
@@ -31,11 +34,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
         public override List<SqlParameter> GetFilterParameters()
         {
             var result = new List<SqlParameter>();
+            Check1 = radTheoNgay.Checked;
             Date1 = dateNgay_ct1.Value.Date;
             result.Add(new SqlParameter("@dWork", Date1));
             
             //result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
             result.Add(new SqlParameter("@nUserID", V6Login.UserId));
+            result.Add(new SqlParameter("@cType", radTheoNgay.Checked ? "0" : "1"));
             return result;
         }
 
@@ -43,5 +48,22 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
         {
 
         }
+
+        public override void FormatGridView(V6ColorDataGridView dataGridView1)
+        {
+            string showFields = "";
+            string formatStrings = "";
+            string headerString = "";
+            if (_ds.Tables.Count > 1 && _ds.Tables[1].Rows.Count > 0)
+            {
+                var data = _ds.Tables[1];
+                if (data.Columns.Contains("GRDS_V1")) showFields = data.Rows[0]["GRDS_V1"].ToString();
+                if (data.Columns.Contains("GRDF_V1")) formatStrings = data.Rows[0]["GRDF_V1"].ToString();
+                var f = V6Setting.IsVietnamese ? "GRDHV_V1" : "GRDHE_V1";
+                if (data.Columns.Contains(f)) headerString = data.Rows[0][f].ToString();
+            }
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
+        }
+
     }
 }

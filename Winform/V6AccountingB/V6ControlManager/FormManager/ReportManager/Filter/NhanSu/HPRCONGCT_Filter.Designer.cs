@@ -37,7 +37,11 @@
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radTheoGio = new System.Windows.Forms.RadioButton();
+            this.radTheoNgay = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -149,10 +153,48 @@
             // monthCalendar1
             // 
             this.monthCalendar1.FirstDayOfWeek = System.Windows.Forms.Day.Monday;
-            this.monthCalendar1.Location = new System.Drawing.Point(11, 57);
+            this.monthCalendar1.Location = new System.Drawing.Point(11, 110);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.ShowWeekNumbers = true;
             this.monthCalendar1.TabIndex = 4;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.radTheoGio);
+            this.groupBox2.Controls.Add(this.radTheoNgay);
+            this.groupBox2.Location = new System.Drawing.Point(11, 51);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(249, 47);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Kiểu chấm công";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // radTheoGio
+            // 
+            this.radTheoGio.AutoSize = true;
+            this.radTheoGio.Location = new System.Drawing.Point(160, 19);
+            this.radTheoGio.Name = "radTheoGio";
+            this.radTheoGio.Size = new System.Drawing.Size(67, 17);
+            this.radTheoGio.TabIndex = 1;
+            this.radTheoGio.TabStop = true;
+            this.radTheoGio.Text = "Theo giờ";
+            this.radTheoGio.UseVisualStyleBackColor = true;
+            // 
+            // radTheoNgay
+            // 
+            this.radTheoNgay.AutoSize = true;
+            this.radTheoNgay.Checked = true;
+            this.radTheoNgay.Location = new System.Drawing.Point(6, 19);
+            this.radTheoNgay.Name = "radTheoNgay";
+            this.radTheoNgay.Size = new System.Drawing.Size(129, 17);
+            this.radTheoNgay.TabIndex = 0;
+            this.radTheoNgay.TabStop = true;
+            this.radTheoNgay.Text = "Chấm công theo ngày";
+            this.radTheoNgay.UseVisualStyleBackColor = true;
             // 
             // HPRCONGCT_Filter
             // 
@@ -163,11 +205,14 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateNgay_ct2);
             this.Controls.Add(this.dateNgay_ct1);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "HPRCONGCT_Filter";
             this.Size = new System.Drawing.Size(307, 439);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,5 +229,8 @@
         private System.Windows.Forms.Label label2;
         private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton radTheoGio;
+        private System.Windows.Forms.RadioButton radTheoNgay;
     }
 }

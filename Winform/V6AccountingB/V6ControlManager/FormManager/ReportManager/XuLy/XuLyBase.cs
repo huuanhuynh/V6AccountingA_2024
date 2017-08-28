@@ -469,6 +469,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //Format mới
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
             if (ViewDetail) V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Report_GRDSV2, Report_GRDFV2, V6Setting.IsVietnamese ? Report_GRDHV_V2 : Report_GRDHE_V2);
+
+            FilterControl.FormatGridView(dataGridView1);
         }
 
         /// <summary>

@@ -45,14 +45,14 @@ namespace V6ControlManager.FormManager.NhanSu.View
                 ThongTinControl1 = NhanSuManager.GetControl(ItemID, _formname) as V6FormControl;
                 if (ThongTinControl1 != null)
                 {
-                    //ThongTinControl.Dock = DockStyle.Fill;
+                    ThongTinControl1.Dock = DockStyle.Fill;
                     panelControl.Controls.Add(ThongTinControl1);
                 }
 
                 ThongTinControl2 = NhanSuManager.GetControl(ItemID, "HINFOR_NS") as V6FormControl;
                 if (ThongTinControl2 != null)
                 {
-                   
+                    V6ControlFormHelper.SetFormControlsReadOnly(ThongTinControl2, true);
                     panelControl2.Controls.Add(ThongTinControl2);
                 }
 
