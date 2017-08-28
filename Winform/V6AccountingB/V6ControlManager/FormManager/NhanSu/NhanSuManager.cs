@@ -40,8 +40,10 @@ namespace V6ControlManager.FormManager.NhanSu
                     return new HINFOR_NS();
                 case "HHRIMAGES":
                     return new ThongTinHinhAnhChuKy();
+                case "HHRINFOR1":
+                    return new ThongTinLuongCoBan();
 
-                    
+
                 default:
                     
                     break;

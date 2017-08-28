@@ -1,0 +1,123 @@
+﻿using System;
+using System.Collections.Generic;
+using V6AccountingBusiness;
+using V6Init;
+using V6Structs;
+using V6Tools;
+using V6Tools.V6Convert;
+
+namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
+{
+    public partial class ThongTinLuongCoBan : V6FormControl
+    {
+        public SortedDictionary<string, object> DataOld;
+        public SortedDictionary<string, object> DataDic { get; set; }
+        public SortedDictionary<string, object> _keys = new SortedDictionary<string, object>();
+        public ThongTinLuongCoBan()
+        {
+            InitializeComponent();
+            MyInit();
+            V6ControlFormHelper.SetFormControlsReadOnly(this,true);
+            
+        }
+
+        public void MyInit()
+        {
+            V6ControlFormHelper.SetFormControlsReadOnly(this, true);
+            buttonSua.Enabled = false;
+            buttonNhan.Enabled = false;
+            buttonHuy.Enabled = false;
+        }
+        public  void DoBeforeEdit()
+        {
+            
+
+        }
+        public  void LoadData(string stt_rec)
+        {
+            try
+            {
+                var _keys = new SortedDictionary<string, object> { { "STT_REC",stt_rec } };
+                if (_keys != null && _keys.Count > 0)
+                {
+                    var selectResult = V6BusinessHelper.Select("vprdmnsluong",_keys,"*","","");
+                    if (selectResult.Data.Rows.Count == 1)
+                    {
+                        DataOld = selectResult.Data.Rows[0].ToDataDictionary();
+                        V6ControlFormHelper.SetFormDataDictionary(this, DataOld);
+                    }
+                    else if (selectResult.Data.Rows.Count > 1)
+                    {
+                        throw new Exception("Lấy dữ liệu sai >1");
+                    }
+                    else
+                    {
+                        throw new Exception("Không lấy được dữ liệu!");
+                    }
+                }
+                buttonSua.Enabled = true;
+                buttonNhan.Enabled = false;
+                buttonHuy.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".LoadData", ex);
+            }
+           
+        }
+        public  int UpdateData()
+        {
+            try
+            {
+
+               // FixFormData();
+                DataDic = GetData();
+                //ValidateData();
+                //Lấy thêm UID từ DataEditNếu có.
+                if (DataOld.ContainsKey("UID"))
+                {
+                    _keys["UID"] = DataOld["UID"];
+                }
+                var result = V6BusinessHelper.Update("hrgeneral2", DataDic, _keys);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                this.ShowInfoMessage(ex.Message);
+                this.WriteExLog(GetType() + ".UpdateData", ex);
+                return 0;
+            }
+        }
+        public override void SetData(IDictionary<string, object> d)
+        {
+
+            LoadData(d["STT_REC"].ToString().Trim());
+
+        }
+
+        private void buttonSua_Click(object sender, EventArgs e)
+        {
+            buttonSua.Enabled = false;
+            buttonNhan.Enabled = true;
+            buttonHuy.Enabled = true;
+            V6ControlFormHelper.SetFormControlsReadOnly(this, false);
+        }
+
+        private void buttonNhan_Click(object sender, EventArgs e)
+        {
+            buttonNhan.Enabled = false;
+            buttonHuy.Enabled = false;
+            UpdateData();
+        }
+
+        private void buttonHuy_Click(object sender, EventArgs e)
+        {
+            buttonSua.Enabled = true;
+            buttonNhan.Enabled = true;
+            buttonHuy.Enabled = false;
+            V6ControlFormHelper.SetFormDataDictionary(this, DataOld);
+            V6ControlFormHelper.SetFormControlsReadOnly(this, true);
+        }
+
+    }
+}
