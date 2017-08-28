@@ -151,7 +151,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                                         (chkIs_admin.Checked ? "1" : "0"));
         }
 
-        public override void SetData(SortedDictionary<string, object> d)
+        public override void SetData(IDictionary<string, object> d)
         {
             base.SetData(d);
             if (Mode == V6Mode.Add)

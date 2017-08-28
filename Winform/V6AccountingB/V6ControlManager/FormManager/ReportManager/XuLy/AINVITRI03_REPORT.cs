@@ -120,8 +120,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
 
-        private SortedDictionary<string, object> plistData;
-        public override void SetData(SortedDictionary<string, object> d)
+        private IDictionary<string, object> plistData;
+        public override void SetData(IDictionary<string, object> d)
         {
             try
             {

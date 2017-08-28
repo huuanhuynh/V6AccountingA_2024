@@ -322,7 +322,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             return 0;
         }
 
-        public override void SetData(SortedDictionary<string, object> d)
+        public override void SetData(IDictionary<string, object> d)
         {
             base.SetData(d);
             AfterSetData();

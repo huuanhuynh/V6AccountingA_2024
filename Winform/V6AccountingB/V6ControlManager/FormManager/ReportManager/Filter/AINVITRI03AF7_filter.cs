@@ -68,7 +68,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         }
 
         private string flag = "VITRI";
-        public override void SetData(SortedDictionary<string, object> data)
+        public override void SetData(IDictionary<string, object> data)
         {
             try
             {
