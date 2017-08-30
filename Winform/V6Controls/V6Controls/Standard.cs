@@ -305,6 +305,11 @@ namespace V6Controls
 
                 if (keyData == Keys.F3) //Sua
                 {
+                    if (!LstConfig.F3)
+                    {
+                        return false;
+                    }
+
                     if (LstConfig.TableName.ToUpper() == "ALTK" || LstConfig.TableName.ToUpper() == "ALTK0")
                         return true;
 
@@ -338,6 +343,11 @@ namespace V6Controls
                 }
                 else if (keyData == Keys.F4)
                 {
+                    if (!LstConfig.F4)
+                    {
+                        return false;
+                    }
+
                     if (LstConfig.TableName.ToUpper() == "ALTK" || LstConfig.TableName.ToUpper() == "ALTK0")
                         return true;
 

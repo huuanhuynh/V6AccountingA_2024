@@ -5,6 +5,7 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using V6Controls.Forms;
 using V6Controls.Functions;
 
 namespace V6Controls
@@ -674,6 +675,13 @@ namespace V6Controls
             {
                 Text = TextFunctions.ChangeToUnicode(Text);
             }
+            else if (e.KeyData == (Keys.Control | Keys.Shift | Keys.I))
+            {
+                var message = string.Format("Name({0}), AccessibleName({1}), AccessibleDescription({2}),",
+                    Name, AccessibleName, AccessibleDescription);
+                V6ControlFormHelper.SetStatusText(message);
+                Clipboard.SetText(message);
+            }
         }
 
         [Category("V6")]
@@ -695,7 +703,7 @@ namespace V6Controls
 
         [Category("V6")]
         [DefaultValue(false)]
-        [Description("Cờ để sử dụng cho hàm Set[Some]DataDictionary trên control.")]
+        [Description("Cờ sinh ra sự kiện khi sử dụng hàm Set[Some]DataDictionary hoặc SetControlValue lên control.")]
         public bool UseChangeTextOnSetFormData { get; set; }
         /// <summary>
         /// Gán text bằng hàm này để xảy ra sự kiện V6LostFocus

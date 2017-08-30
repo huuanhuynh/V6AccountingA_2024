@@ -3815,6 +3815,18 @@
     <Compile Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.designer.cs">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\NhanSu\HPRCONGCT_XL1_F5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\NhanSu\HPRCONGCT_XL1_F5.designer.cs">
+      <DependentUpon>HPRCONGCT_XL1_F5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\NhanSu\HPRCONGCT_XL1_F3F4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\NhanSu\HPRCONGCT_XL1_F3F4.designer.cs">
+      <DependentUpon>HPRCONGCT_XL1_F3F4.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\NhanSu\HPRCONGCT_XL1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6541,6 +6553,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.resx">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\HPRCONGCT_XL1_F5.resx">
+      <DependentUpon>HPRCONGCT_XL1_F5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\HPRCONGCT_XL1_F3F4.resx">
+      <DependentUpon>HPRCONGCT_XL1_F3F4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\HPRCONGCT_XL0.resx">
       <DependentUpon>HPRCONGCT_XL0.cs</DependentUpon>

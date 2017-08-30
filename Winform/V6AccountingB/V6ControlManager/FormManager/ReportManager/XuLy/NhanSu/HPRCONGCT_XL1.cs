@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Threading;
@@ -54,10 +55,65 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 dataGridView1.CellPainting += dataGridView1_CellPainting;
                 dataGridView1.MouseMove += dataGridView1_MouseMove;
                 dataGridView1.MouseLeave += dataGridView1_MouseLeave;
+
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".SetupGridview", ex);
+            }
+        }
+
+
+        protected override void XuLyXemChiTietF5()
+        {
+            try
+            {
+                if (dataGridView1.CurrentCell == null || dataGridView1.CurrentRow == null)
+                {
+                    ShowMainMessage("null cell.");
+                    return;
+                }
+                //Lay du lieu theo ngay thang nam ma_ns dang chon
+                var current_cell = dataGridView1.CurrentCell;
+                var currentRow = dataGridView1.CurrentRow;
+                var columnName = current_cell.OwningColumn.DataPropertyName;
+                var day = ObjectAndString.ObjectToInt(columnName.Right(2));
+                if (day > 0 && day <= 31)
+                {
+                    var ma_ns = currentRow.Cells["MA_NS"].Value.ToString().Trim();
+                    string value1 = FilterControl.Check1 ? current_cell.Value.ToString() : "";
+                    decimal value2 = FilterControl.Check1 ? 0 : ObjectAndString.ObjectToDecimal(current_cell.Value);
+                
+                    SqlParameter[] plist =
+                    {
+                        new SqlParameter("@dWork", FilterControl.Date1),
+                        new SqlParameter("@nUserID", V6Login.UserId),
+                        new SqlParameter("@cType", FilterControl.Check1 ? "0" : "1"),
+                        new SqlParameter("@cMa_ns", ma_ns),
+                        new SqlParameter("@cField", columnName),
+                        new SqlParameter("@cValue1", value1),
+                        new SqlParameter("@nValue2", value2),
+                    };
+                    var ds = V6BusinessHelper.ExecuteProcedure("HPRCONGCTF5", plist);
+                    //Hien thi du lieu lay duoc
+                
+                    DateTime date_ngay = new DateTime(FilterControl.Date1.Year, FilterControl.Date1.Month, day);
+                    if (ds != null && ds.Tables.Count > 0)
+                    {
+                        var data = ds.Tables[0];
+                        new HPRCONGCT_XL1_F5(data)
+                        {
+                            Ma_ns = ma_ns,
+                            Ngay = date_ngay,
+                        }
+                        .ShowDialog(this);
+                    }
+                }
+                //=> Ve form view, form F3F4
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".F5", ex);
             }
         }
 
@@ -342,7 +398,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("SpaceBar: Chọn, F9: Gán tất cả nhân viên = ô đang chọn.");
+            V6ControlFormHelper.SetStatusText2("SpaceBar: Chọn, F9: Gán tất cả nhân viên = ô đang chọn. F5-Bổ sung");
         }
 
         protected override void MakeReport2()

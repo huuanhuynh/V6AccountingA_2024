@@ -153,6 +153,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                 AccessibleName2 = defineInfo.AccessibleName2, //Trường get text hiển thị
                                 ValueField = defineInfo.Field, //Trường dữ liệu
                                 ShowTextField = defineInfo.Field2, //Trường text hiển thị
+                                CheckOnLeave = true,
+                                CheckNotEmpty = defineInfo.NotEmpty,
                             };
                         }
                         else if (defineInfo.ControlType.ToUpper() == "LABEL")
