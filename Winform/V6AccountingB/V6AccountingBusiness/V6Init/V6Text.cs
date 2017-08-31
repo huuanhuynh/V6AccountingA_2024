@@ -176,8 +176,9 @@
         public static string Busy { get { return V6Setting.Language == "V" ? "Đang bận!" : "Busy!"; } }
         public static string CloseConfirm { get { return V6Setting.Language == "V" ? "Có chắc bạn muốn đóng lại?" : "Are you sure want to close?"; } }
         public static string Delete { get { return V6Setting.Language == "V" ? "Xóa" : "Delete"; } }
+        public static string Deleted { get { return V6Setting.Language == "V" ? "Đã xóa" : "Deleted"; } }
         public static string Confirm { get { return V6Setting.Language == "V" ? "Xác nhận" : "Confirm"; } }
-        public static string CheckInfor { get { return V6Setting.Language == "V" ? "Kiểm tra thông tin chưa đầy đủ !" : "Check information again !"; } }
+        public static string CheckInfor { get { return V6Setting.Language == "V" ? "Kiểm tra thông tin chưa đầy đủ!" : "Check information again !"; } }
         public static string CheckDeclare { get { return V6Setting.Language == "V" ? "Kiểm tra khai báo hệ thống quản lý !" : "Check system information again !"; } }
         
         public static string DeleteConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn xóa?" : "Are you sure to delete?"; } }

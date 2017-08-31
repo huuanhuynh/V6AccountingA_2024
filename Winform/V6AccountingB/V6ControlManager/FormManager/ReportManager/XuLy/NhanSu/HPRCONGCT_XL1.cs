@@ -7,8 +7,10 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
+using V6Controls.Controls.LichView;
 using V6Controls.Forms;
 using V6Init;
+using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
@@ -63,6 +65,46 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             }
         }
 
+        protected override void XuLyHienThiFormSuaChungTuF3()
+        {
+            if (dataGridView1.CurrentRow == null) return;
+
+            var rowData = dataGridView1.CurrentRow.ToDataDictionary();
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@dWork", FilterControl.Date1),
+                new SqlParameter("@cMa_ns", rowData["MA_NS"]),
+                new SqlParameter("@nUserID", V6Login.UserId),
+                new SqlParameter("@cType", FilterControl.Check1?"0":"1"),
+            };
+            var ds = V6BusinessHelper.ExecuteProcedure("HPRCONGCTF3", plist);
+            var rowData2 = ds.Tables[0].Rows[0].ToDataDictionary();
+            SortedDictionary<int, LichViewCellData> lichViewdata = new SortedDictionary<int, LichViewCellData>();
+            string FIELD_format = "";
+            if (FilterControl.Check1)
+            {
+                //Ngay CONG_01
+                FIELD_format = "CONG_{0:00}";
+            }
+            else
+            {
+                //Gio GIO_O1
+                FIELD_format = "GIO_{0:00}";
+            }
+
+            for (int i = 1; i <= 31; i++)
+            {
+                LichViewCellData cellData = new LichViewCellData()
+                {
+                    Key = i,
+                    Detail1 = rowData[string.Format(FIELD_format, i)].ToString().Trim(),
+                    Detail2 = rowData2[string.Format("CONG_{0:00}", i)].ToString().Trim(),
+                    //Detail3 = "???",
+                };
+                lichViewdata[i] = cellData;
+            }
+            new HPRCONGCT_XL1_F3(V6Mode.Edit, FilterControl.Date1.Year, FilterControl.Date1.Month, lichViewdata).Show();
+        }
 
         protected override void XuLyXemChiTietF5()
         {
@@ -83,7 +125,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     var ma_ns = currentRow.Cells["MA_NS"].Value.ToString().Trim();
                     string value1 = FilterControl.Check1 ? current_cell.Value.ToString() : "";
                     decimal value2 = FilterControl.Check1 ? 0 : ObjectAndString.ObjectToDecimal(current_cell.Value);
-                
+
                     SqlParameter[] plist =
                     {
                         new SqlParameter("@dWork", FilterControl.Date1),
@@ -94,20 +136,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                         new SqlParameter("@cValue1", value1),
                         new SqlParameter("@nValue2", value2),
                     };
-                    var ds = V6BusinessHelper.ExecuteProcedure("HPRCONGCTF5", plist);
-                    //Hien thi du lieu lay duoc
-                
+
+
                     DateTime date_ngay = new DateTime(FilterControl.Date1.Year, FilterControl.Date1.Month, day);
-                    if (ds != null && ds.Tables.Count > 0)
+                    
+                    new HPRCONGCT_XL1_F5(plist)
                     {
-                        var data = ds.Tables[0];
-                        new HPRCONGCT_XL1_F5(data)
-                        {
-                            Ma_ns = ma_ns,
-                            Ngay = date_ngay,
-                        }
-                        .ShowDialog(this);
+                        Ma_ns = ma_ns,
+                        Ngay = date_ngay,
                     }
+                    .ShowDialog(this);
                 }
                 //=> Ve form view, form F3F4
             }

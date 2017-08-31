@@ -14,6 +14,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
         {
             InitializeComponent();
             Check1 = true;
+            F3 = true;
             F5 = true;
             F9 = true;
             
