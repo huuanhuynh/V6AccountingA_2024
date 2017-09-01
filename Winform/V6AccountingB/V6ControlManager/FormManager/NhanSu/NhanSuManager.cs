@@ -42,6 +42,8 @@ namespace V6ControlManager.FormManager.NhanSu
                     return new ThongTinHinhAnhChuKy();
                 case "HHRINFOR1":
                     return new ThongTinLuongCoBan();
+                case "HHRINFOR2":
+                    return new ThongTinBaoHiem();
 
 
                 default:

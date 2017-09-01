@@ -48,12 +48,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.txtNgayCuoi = new V6Controls.V6DateTimeColor();
+            this.v6LookupTextBox8 = new V6Controls.V6ColorTextBox();
             this.v6LookupTextBox4 = new V6Controls.V6LookupTextBox();
-            this.v6LookupTextBox3 = new V6Controls.V6LookupTextBox();
             this.v6LookupTextBox2 = new V6Controls.V6LookupTextBox();
             this.v6LookupTextBox1 = new V6Controls.V6LookupTextBox();
-            this.txtNgonNgu = new V6Controls.V6ColorTextBox();
+            this.txtNgayCuoi = new V6Controls.V6DateTimeColor();
+            this.v6LookupTextBox3 = new V6Controls.V6LookupTextBox();
             this.v6ColorTextBox11 = new V6Controls.V6ColorTextBox();
             this.txtNamTotNghiep = new V6Controls.V6ColorTextBox();
             this.txtDTcoquan = new V6Controls.V6ColorTextBox();
@@ -105,9 +105,10 @@
             this.v6Label17 = new V6Controls.V6Label();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.v6LookupTextBox6 = new V6Controls.V6LookupTextBox();
+            this.txtHonNhan = new V6Controls.V6LookupTextBox();
             this.v6Label8 = new V6Controls.V6Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnBoSung = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.v6ColorTextBox16 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox15 = new V6Controls.V6ColorTextBox();
@@ -134,7 +135,6 @@
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btnBoSung = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.panelGioiTinh.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
@@ -179,7 +179,7 @@
             this.TXTbirth_date.Mask = "00/00/0000    ";
             this.TXTbirth_date.Name = "TXTbirth_date";
             this.TXTbirth_date.Size = new System.Drawing.Size(154, 23);
-            this.TXTbirth_date.TabIndex = 51;
+            this.TXTbirth_date.TabIndex = 5;
             // 
             // txtSttRec0
             // 
@@ -253,7 +253,7 @@
             this.TxTnick_name.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.TxTnick_name.Name = "TxTnick_name";
             this.TxTnick_name.Size = new System.Drawing.Size(154, 23);
-            this.TxTnick_name.TabIndex = 50;
+            this.TxTnick_name.TabIndex = 4;
             // 
             // label1
             // 
@@ -350,7 +350,7 @@
             this.TxTfirst_name.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.TxTfirst_name.Name = "TxTfirst_name";
             this.TxTfirst_name.Size = new System.Drawing.Size(154, 23);
-            this.TxTfirst_name.TabIndex = 49;
+            this.TxTfirst_name.TabIndex = 3;
             // 
             // TxTmid_name
             // 
@@ -369,7 +369,7 @@
             this.TxTmid_name.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.TxTmid_name.Name = "TxTmid_name";
             this.TxTmid_name.Size = new System.Drawing.Size(154, 23);
-            this.TxTmid_name.TabIndex = 48;
+            this.TxTmid_name.TabIndex = 2;
             // 
             // TxTlast_name
             // 
@@ -388,7 +388,7 @@
             this.TxTlast_name.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.TxTlast_name.Name = "TxTlast_name";
             this.TxTlast_name.Size = new System.Drawing.Size(154, 23);
-            this.TxTlast_name.TabIndex = 46;
+            this.TxTlast_name.TabIndex = 1;
             // 
             // label3
             // 
@@ -418,7 +418,7 @@
             this.TxTemp_id.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.TxTemp_id.Name = "TxTemp_id";
             this.TxTemp_id.Size = new System.Drawing.Size(154, 23);
-            this.TxTemp_id.TabIndex = 42;
+            this.TxTemp_id.TabIndex = 0;
             // 
             // label5
             // 
@@ -445,17 +445,17 @@
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
             this.v6TabControl1.Size = new System.Drawing.Size(726, 527);
-            this.v6TabControl1.TabIndex = 1;
+            this.v6TabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage1.Controls.Add(this.txtNgayCuoi);
+            this.tabPage1.Controls.Add(this.v6LookupTextBox8);
             this.tabPage1.Controls.Add(this.v6LookupTextBox4);
-            this.tabPage1.Controls.Add(this.v6LookupTextBox3);
             this.tabPage1.Controls.Add(this.v6LookupTextBox2);
             this.tabPage1.Controls.Add(this.v6LookupTextBox1);
-            this.tabPage1.Controls.Add(this.txtNgonNgu);
+            this.tabPage1.Controls.Add(this.txtNgayCuoi);
+            this.tabPage1.Controls.Add(this.v6LookupTextBox3);
             this.tabPage1.Controls.Add(this.v6ColorTextBox11);
             this.tabPage1.Controls.Add(this.txtNamTotNghiep);
             this.tabPage1.Controls.Add(this.txtDTcoquan);
@@ -507,7 +507,7 @@
             this.tabPage1.Controls.Add(this.v6Label17);
             this.tabPage1.Controls.Add(this.checkBox1);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.v6LookupTextBox6);
+            this.tabPage1.Controls.Add(this.txtHonNhan);
             this.tabPage1.Controls.Add(this.v6Label8);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
@@ -515,6 +515,103 @@
             this.tabPage1.Size = new System.Drawing.Size(718, 495);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
+            // 
+            // v6LookupTextBox8
+            // 
+            this.v6LookupTextBox8.AccessibleName = "mark_language";
+            this.v6LookupTextBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6LookupTextBox8.BackColor = System.Drawing.Color.White;
+            this.v6LookupTextBox8.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6LookupTextBox8.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6LookupTextBox8.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6LookupTextBox8.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6LookupTextBox8.HoverColor = System.Drawing.Color.Yellow;
+            this.v6LookupTextBox8.LeaveColor = System.Drawing.Color.White;
+            this.v6LookupTextBox8.Location = new System.Drawing.Point(501, 175);
+            this.v6LookupTextBox8.Margin = new System.Windows.Forms.Padding(5);
+            this.v6LookupTextBox8.Name = "v6LookupTextBox8";
+            this.v6LookupTextBox8.Size = new System.Drawing.Size(209, 23);
+            this.v6LookupTextBox8.TabIndex = 150;
+            // 
+            // v6LookupTextBox4
+            // 
+            this.v6LookupTextBox4.AccessibleName = "prov_address";
+            this.v6LookupTextBox4.AccessibleName2 = "";
+            this.v6LookupTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6LookupTextBox4.BackColor = System.Drawing.Color.White;
+            this.v6LookupTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6LookupTextBox4.BrotherFields = "ID";
+            this.v6LookupTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6LookupTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6LookupTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6LookupTextBox4.HoverColor = System.Drawing.Color.Yellow;
+            this.v6LookupTextBox4.LeaveColor = System.Drawing.Color.White;
+            this.v6LookupTextBox4.Location = new System.Drawing.Point(501, 412);
+            this.v6LookupTextBox4.Ma_dm = "HRLSTPCS";
+            this.v6LookupTextBox4.Margin = new System.Windows.Forms.Padding(5);
+            this.v6LookupTextBox4.Name = "v6LookupTextBox4";
+            this.v6LookupTextBox4.NeighborFields = "";
+            this.v6LookupTextBox4.ParentData = null;
+            this.v6LookupTextBox4.ShowTextField = "NAME";
+            this.v6LookupTextBox4.Size = new System.Drawing.Size(209, 23);
+            this.v6LookupTextBox4.TabIndex = 29;
+            this.v6LookupTextBox4.ValueField = "ID";
+            // 
+            // v6LookupTextBox2
+            // 
+            this.v6LookupTextBox2.AccessibleName = "prov_permannent";
+            this.v6LookupTextBox2.AccessibleName2 = "";
+            this.v6LookupTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6LookupTextBox2.BackColor = System.Drawing.Color.White;
+            this.v6LookupTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6LookupTextBox2.BrotherFields = "ID";
+            this.v6LookupTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6LookupTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6LookupTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6LookupTextBox2.HoverColor = System.Drawing.Color.Yellow;
+            this.v6LookupTextBox2.LeaveColor = System.Drawing.Color.White;
+            this.v6LookupTextBox2.Location = new System.Drawing.Point(501, 385);
+            this.v6LookupTextBox2.Ma_dm = "HRLSTPCS";
+            this.v6LookupTextBox2.Margin = new System.Windows.Forms.Padding(5);
+            this.v6LookupTextBox2.Name = "v6LookupTextBox2";
+            this.v6LookupTextBox2.NeighborFields = "";
+            this.v6LookupTextBox2.ParentData = null;
+            this.v6LookupTextBox2.ShowTextField = "NAME";
+            this.v6LookupTextBox2.Size = new System.Drawing.Size(209, 23);
+            this.v6LookupTextBox2.TabIndex = 26;
+            this.v6LookupTextBox2.ValueField = "ID";
+            // 
+            // v6LookupTextBox1
+            // 
+            this.v6LookupTextBox1.AccessibleName = "prov_village";
+            this.v6LookupTextBox1.AccessibleName2 = "";
+            this.v6LookupTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6LookupTextBox1.BackColor = System.Drawing.Color.White;
+            this.v6LookupTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6LookupTextBox1.BrotherFields = "ID";
+            this.v6LookupTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6LookupTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6LookupTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6LookupTextBox1.HoverColor = System.Drawing.Color.Yellow;
+            this.v6LookupTextBox1.LeaveColor = System.Drawing.Color.White;
+            this.v6LookupTextBox1.Location = new System.Drawing.Point(501, 358);
+            this.v6LookupTextBox1.Ma_dm = "HRLSTPCS";
+            this.v6LookupTextBox1.Margin = new System.Windows.Forms.Padding(5);
+            this.v6LookupTextBox1.Name = "v6LookupTextBox1";
+            this.v6LookupTextBox1.NeighborFields = "";
+            this.v6LookupTextBox1.ParentData = null;
+            this.v6LookupTextBox1.ShowTextField = "NAME";
+            this.v6LookupTextBox1.Size = new System.Drawing.Size(209, 23);
+            this.v6LookupTextBox1.TabIndex = 24;
+            this.v6LookupTextBox1.ValueField = "ID";
             // 
             // txtNgayCuoi
             // 
@@ -539,127 +636,35 @@
             this.txtNgayCuoi.TabIndex = 7;
             this.txtNgayCuoi.Text = "__/__/____";
             // 
-            // v6LookupTextBox4
-            // 
-            this.v6LookupTextBox4.AccessibleName = "";
-            this.v6LookupTextBox4.AllowDrop = true;
-            this.v6LookupTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6LookupTextBox4.BackColor = System.Drawing.Color.White;
-            this.v6LookupTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6LookupTextBox4.BrotherFields = "ID";
-            this.v6LookupTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6LookupTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6LookupTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6LookupTextBox4.HoverColor = System.Drawing.Color.Yellow;
-            this.v6LookupTextBox4.LeaveColor = System.Drawing.Color.White;
-            this.v6LookupTextBox4.Location = new System.Drawing.Point(501, 412);
-            this.v6LookupTextBox4.Ma_dm = "HRLSTPCS";
-            this.v6LookupTextBox4.Margin = new System.Windows.Forms.Padding(5);
-            this.v6LookupTextBox4.Name = "v6LookupTextBox4";
-            this.v6LookupTextBox4.NeighborFields = "HRLSTPCS";
-            this.v6LookupTextBox4.ParentData = null;
-            this.v6LookupTextBox4.Size = new System.Drawing.Size(209, 23);
-            this.v6LookupTextBox4.TabIndex = 29;
-            this.v6LookupTextBox4.ValueField = "NAME";
-            // 
             // v6LookupTextBox3
             // 
-            this.v6LookupTextBox3.AccessibleName = "";
+            this.v6LookupTextBox3.AccessibleName = "district_address";
             this.v6LookupTextBox3.AllowDrop = true;
             this.v6LookupTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6LookupTextBox3.BackColor = System.Drawing.Color.White;
             this.v6LookupTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6LookupTextBox3.BrotherFields = "ID";
+            this.v6LookupTextBox3.BrotherFields = "";
             this.v6LookupTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6LookupTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6LookupTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6LookupTextBox3.HoverColor = System.Drawing.Color.Yellow;
             this.v6LookupTextBox3.LeaveColor = System.Drawing.Color.White;
             this.v6LookupTextBox3.Location = new System.Drawing.Point(370, 412);
-            this.v6LookupTextBox3.Ma_dm = "HRLSTPCS";
+            this.v6LookupTextBox3.Ma_dm = "HRLSTDISTRICT";
             this.v6LookupTextBox3.Margin = new System.Windows.Forms.Padding(5);
             this.v6LookupTextBox3.Name = "v6LookupTextBox3";
-            this.v6LookupTextBox3.NeighborFields = "HRLSTPCS";
+            this.v6LookupTextBox3.NeighborFields = "";
             this.v6LookupTextBox3.ParentData = null;
+            this.v6LookupTextBox3.ShowTextField = "NAME";
             this.v6LookupTextBox3.Size = new System.Drawing.Size(128, 23);
             this.v6LookupTextBox3.TabIndex = 28;
-            this.v6LookupTextBox3.ValueField = "NAME";
-            // 
-            // v6LookupTextBox2
-            // 
-            this.v6LookupTextBox2.AccessibleName = "";
-            this.v6LookupTextBox2.AllowDrop = true;
-            this.v6LookupTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6LookupTextBox2.BackColor = System.Drawing.Color.White;
-            this.v6LookupTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6LookupTextBox2.BrotherFields = "ID";
-            this.v6LookupTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6LookupTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6LookupTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6LookupTextBox2.HoverColor = System.Drawing.Color.Yellow;
-            this.v6LookupTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6LookupTextBox2.Location = new System.Drawing.Point(501, 385);
-            this.v6LookupTextBox2.Ma_dm = "HRLSTPCS";
-            this.v6LookupTextBox2.Margin = new System.Windows.Forms.Padding(5);
-            this.v6LookupTextBox2.Name = "v6LookupTextBox2";
-            this.v6LookupTextBox2.NeighborFields = "HRLSTPCS";
-            this.v6LookupTextBox2.ParentData = null;
-            this.v6LookupTextBox2.Size = new System.Drawing.Size(209, 23);
-            this.v6LookupTextBox2.TabIndex = 26;
-            this.v6LookupTextBox2.ValueField = "NAME";
-            // 
-            // v6LookupTextBox1
-            // 
-            this.v6LookupTextBox1.AccessibleName = "";
-            this.v6LookupTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6LookupTextBox1.BackColor = System.Drawing.Color.White;
-            this.v6LookupTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6LookupTextBox1.BrotherFields = "ID";
-            this.v6LookupTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6LookupTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6LookupTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6LookupTextBox1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6LookupTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6LookupTextBox1.Location = new System.Drawing.Point(501, 358);
-            this.v6LookupTextBox1.Ma_dm = "HRLSTPCS";
-            this.v6LookupTextBox1.Margin = new System.Windows.Forms.Padding(5);
-            this.v6LookupTextBox1.Name = "v6LookupTextBox1";
-            this.v6LookupTextBox1.NeighborFields = "HRLSTPCS";
-            this.v6LookupTextBox1.ParentData = null;
-            this.v6LookupTextBox1.Size = new System.Drawing.Size(209, 23);
-            this.v6LookupTextBox1.TabIndex = 24;
-            this.v6LookupTextBox1.ValueField = "NAME";
-            // 
-            // txtNgonNgu
-            // 
-            this.txtNgonNgu.AccessibleName = "mark_language";
-            this.txtNgonNgu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNgonNgu.BackColor = System.Drawing.SystemColors.Window;
-            this.txtNgonNgu.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNgonNgu.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNgonNgu.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtNgonNgu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtNgonNgu.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNgonNgu.LeaveColor = System.Drawing.Color.White;
-            this.txtNgonNgu.Location = new System.Drawing.Point(501, 175);
-            this.txtNgonNgu.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.txtNgonNgu.Name = "txtNgonNgu";
-            this.txtNgonNgu.Size = new System.Drawing.Size(209, 23);
-            this.txtNgonNgu.TabIndex = 18;
+            this.v6LookupTextBox3.ValueField = "ID";
             // 
             // v6ColorTextBox11
             // 
-            this.v6ColorTextBox11.AccessibleName = "";
+            this.v6ColorTextBox11.AccessibleName = "edu_level";
             this.v6ColorTextBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -754,13 +759,14 @@
             // 
             // txtTinhThanh
             // 
-            this.txtTinhThanh.AccessibleName = "";
+            this.txtTinhThanh.AccessibleName = "prov_birthplace";
+            this.txtTinhThanh.AccessibleName2 = "";
             this.txtTinhThanh.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTinhThanh.BackColor = System.Drawing.Color.White;
             this.txtTinhThanh.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTinhThanh.BrotherFields = "ID";
+            this.txtTinhThanh.BrotherFields = "";
             this.txtTinhThanh.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTinhThanh.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTinhThanh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -770,11 +776,12 @@
             this.txtTinhThanh.Ma_dm = "HRLSTPCS";
             this.txtTinhThanh.Margin = new System.Windows.Forms.Padding(5);
             this.txtTinhThanh.Name = "txtTinhThanh";
-            this.txtTinhThanh.NeighborFields = "HRLSTPCS";
+            this.txtTinhThanh.NeighborFields = "";
             this.txtTinhThanh.ParentData = null;
+            this.txtTinhThanh.ShowTextField = "NAME";
             this.txtTinhThanh.Size = new System.Drawing.Size(209, 23);
             this.txtTinhThanh.TabIndex = 22;
-            this.txtTinhThanh.ValueField = "NAME";
+            this.txtTinhThanh.ValueField = "ID";
             // 
             // txtDiaChi
             // 
@@ -807,7 +814,7 @@
             // 
             // txtHoKhau
             // 
-            this.txtHoKhau.AccessibleName = "prov_village";
+            this.txtHoKhau.AccessibleName = "permannent";
             this.txtHoKhau.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -868,7 +875,7 @@
             // 
             // txtNoiSinh
             // 
-            this.txtNoiSinh.AccessibleName = "prov_birthplace";
+            this.txtNoiSinh.AccessibleName = "birth_place";
             this.txtNoiSinh.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -987,6 +994,7 @@
             // 
             // txtGhiChu
             // 
+            this.txtGhiChu.AccessibleName = "remarks";
             this.txtGhiChu.AllowDrop = true;
             this.txtGhiChu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -1072,10 +1080,12 @@
             this.v6LookupTextBox7.Location = new System.Drawing.Point(501, 147);
             this.v6LookupTextBox7.Margin = new System.Windows.Forms.Padding(5);
             this.v6LookupTextBox7.Name = "v6LookupTextBox7";
-            this.v6LookupTextBox7.NeighborFields = "ETHNIC_ID";
+            this.v6LookupTextBox7.NeighborFields = "";
             this.v6LookupTextBox7.ParentData = null;
+            this.v6LookupTextBox7.ShowTextField = "NAME";
             this.v6LookupTextBox7.Size = new System.Drawing.Size(209, 23);
             this.v6LookupTextBox7.TabIndex = 17;
+            this.v6LookupTextBox7.ValueField = "ID";
             // 
             // v6Label9
             // 
@@ -1101,13 +1111,13 @@
             // 
             // txtTruong
             // 
-            this.txtTruong.AccessibleName = "SCHOOL_NAME";
+            this.txtTruong.AccessibleName = "university";
             this.txtTruong.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTruong.BackColor = System.Drawing.Color.White;
             this.txtTruong.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTruong.BrotherFields = "ID";
+            this.txtTruong.BrotherFields = "";
             this.txtTruong.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtTruong.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTruong.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1119,9 +1129,10 @@
             this.txtTruong.Name = "txtTruong";
             this.txtTruong.NeighborFields = "SCHOOL";
             this.txtTruong.ParentData = null;
+            this.txtTruong.ShowTextField = "NAME";
             this.txtTruong.Size = new System.Drawing.Size(209, 23);
             this.txtTruong.TabIndex = 15;
-            this.txtTruong.ValueField = "NAME";
+            this.txtTruong.ValueField = "ID";
             // 
             // v6Label11
             // 
@@ -1136,7 +1147,7 @@
             // 
             // txtChuyenNghanh
             // 
-            this.txtChuyenNghanh.AccessibleName = "HRLSTCOURSE_NAME";
+            this.txtChuyenNghanh.AccessibleName = "speciality";
             this.txtChuyenNghanh.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -1152,11 +1163,12 @@
             this.txtChuyenNghanh.Ma_dm = "HRLSTCOURSE";
             this.txtChuyenNghanh.Margin = new System.Windows.Forms.Padding(5);
             this.txtChuyenNghanh.Name = "txtChuyenNghanh";
-            this.txtChuyenNghanh.NeighborFields = "COURSE";
+            this.txtChuyenNghanh.NeighborFields = "";
             this.txtChuyenNghanh.ParentData = null;
+            this.txtChuyenNghanh.ShowTextField = "NAME";
             this.txtChuyenNghanh.Size = new System.Drawing.Size(209, 23);
             this.txtChuyenNghanh.TabIndex = 14;
-            this.txtChuyenNghanh.ValueField = "NAME";
+            this.txtChuyenNghanh.ValueField = "ID";
             // 
             // v6Label12
             // 
@@ -1242,10 +1254,12 @@
             this.v6LookupTextBox5.Ma_dm = "hrlstnationality";
             this.v6LookupTextBox5.Margin = new System.Windows.Forms.Padding(5);
             this.v6LookupTextBox5.Name = "v6LookupTextBox5";
-            this.v6LookupTextBox5.NeighborFields = "ETHNIC_ID";
+            this.v6LookupTextBox5.NeighborFields = "";
             this.v6LookupTextBox5.ParentData = null;
+            this.v6LookupTextBox5.ShowTextField = "NAME";
             this.v6LookupTextBox5.Size = new System.Drawing.Size(209, 23);
             this.v6LookupTextBox5.TabIndex = 5;
+            this.v6LookupTextBox5.ValueField = "ID";
             // 
             // v6Label7
             // 
@@ -1263,13 +1277,13 @@
             // 
             // txtĐieuKienSong
             // 
-            this.txtĐieuKienSong.AccessibleName = "LIVINGARR_NAME";
+            this.txtĐieuKienSong.AccessibleName = "liv_arrangement";
             this.txtĐieuKienSong.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtĐieuKienSong.BackColor = System.Drawing.Color.White;
             this.txtĐieuKienSong.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtĐieuKienSong.BrotherFields = "ID";
+            this.txtĐieuKienSong.BrotherFields = "";
             this.txtĐieuKienSong.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtĐieuKienSong.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtĐieuKienSong.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1279,11 +1293,12 @@
             this.txtĐieuKienSong.Ma_dm = "HRLSTLIVINGARR";
             this.txtĐieuKienSong.Margin = new System.Windows.Forms.Padding(5);
             this.txtĐieuKienSong.Name = "txtĐieuKienSong";
-            this.txtĐieuKienSong.NeighborFields = "LIVINGARR";
+            this.txtĐieuKienSong.NeighborFields = "";
             this.txtĐieuKienSong.ParentData = null;
+            this.txtĐieuKienSong.ShowTextField = "NAME";
             this.txtĐieuKienSong.Size = new System.Drawing.Size(209, 23);
             this.txtĐieuKienSong.TabIndex = 4;
-            this.txtĐieuKienSong.ValueField = "name";
+            this.txtĐieuKienSong.ValueField = "ID";
             // 
             // v6Label6
             // 
@@ -1304,19 +1319,22 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TXTNGHIAVU_QS.BackColor = System.Drawing.Color.White;
             this.TXTNGHIAVU_QS.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TXTNGHIAVU_QS.BrotherFields = "ID";
+            this.TXTNGHIAVU_QS.BrotherFields = "";
             this.TXTNGHIAVU_QS.EnterColor = System.Drawing.Color.PaleGreen;
             this.TXTNGHIAVU_QS.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TXTNGHIAVU_QS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TXTNGHIAVU_QS.HoverColor = System.Drawing.Color.Yellow;
             this.TXTNGHIAVU_QS.LeaveColor = System.Drawing.Color.White;
             this.TXTNGHIAVU_QS.Location = new System.Drawing.Point(149, 88);
+            this.TXTNGHIAVU_QS.Ma_dm = "HRLSTMILITARY";
             this.TXTNGHIAVU_QS.Margin = new System.Windows.Forms.Padding(5);
             this.TXTNGHIAVU_QS.Name = "TXTNGHIAVU_QS";
-            this.TXTNGHIAVU_QS.NeighborFields = "MILITARY_SERVICE";
+            this.TXTNGHIAVU_QS.NeighborFields = "";
             this.TXTNGHIAVU_QS.ParentData = null;
+            this.TXTNGHIAVU_QS.ShowTextField = "NAME";
             this.TXTNGHIAVU_QS.Size = new System.Drawing.Size(209, 23);
             this.TXTNGHIAVU_QS.TabIndex = 3;
+            this.TXTNGHIAVU_QS.ValueField = "ID";
             // 
             // v6Label5
             // 
@@ -1458,27 +1476,30 @@
             this.label4.TabIndex = 94;
             this.label4.Text = "Trạng Thái";
             // 
-            // v6LookupTextBox6
+            // txtHonNhan
             // 
-            this.v6LookupTextBox6.AccessibleName = "";
-            this.v6LookupTextBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtHonNhan.AccessibleName = "civil_status";
+            this.txtHonNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6LookupTextBox6.BackColor = System.Drawing.Color.White;
-            this.v6LookupTextBox6.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6LookupTextBox6.BrotherFields = "ID";
-            this.v6LookupTextBox6.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6LookupTextBox6.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6LookupTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6LookupTextBox6.HoverColor = System.Drawing.Color.Yellow;
-            this.v6LookupTextBox6.LeaveColor = System.Drawing.Color.White;
-            this.v6LookupTextBox6.Location = new System.Drawing.Point(149, 169);
-            this.v6LookupTextBox6.Margin = new System.Windows.Forms.Padding(5);
-            this.v6LookupTextBox6.Name = "v6LookupTextBox6";
-            this.v6LookupTextBox6.NeighborFields = "";
-            this.v6LookupTextBox6.ParentData = null;
-            this.v6LookupTextBox6.Size = new System.Drawing.Size(209, 23);
-            this.v6LookupTextBox6.TabIndex = 6;
+            this.txtHonNhan.BackColor = System.Drawing.Color.White;
+            this.txtHonNhan.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtHonNhan.BrotherFields = "ID";
+            this.txtHonNhan.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtHonNhan.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtHonNhan.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtHonNhan.HoverColor = System.Drawing.Color.Yellow;
+            this.txtHonNhan.LeaveColor = System.Drawing.Color.White;
+            this.txtHonNhan.Location = new System.Drawing.Point(149, 169);
+            this.txtHonNhan.Ma_dm = "HRLSTCIVIL";
+            this.txtHonNhan.Margin = new System.Windows.Forms.Padding(5);
+            this.txtHonNhan.Name = "txtHonNhan";
+            this.txtHonNhan.NeighborFields = "";
+            this.txtHonNhan.ParentData = null;
+            this.txtHonNhan.ShowTextField = "NAME";
+            this.txtHonNhan.Size = new System.Drawing.Size(209, 23);
+            this.txtHonNhan.TabIndex = 6;
+            this.txtHonNhan.ValueField = "ID";
             // 
             // v6Label8
             // 
@@ -1500,7 +1521,22 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(718, 495);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Thông tin bộ phận chức vụ";
+            this.tabPage2.Text = "Thông tin bộ phận chức vụ, thông tin phụ";
+            // 
+            // btnBoSung
+            // 
+            this.btnBoSung.AccessibleDescription = "ADDEDITB00007";
+            this.btnBoSung.AccessibleName = "";
+            this.btnBoSung.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBoSung.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBoSung.Location = new System.Drawing.Point(426, 32);
+            this.btnBoSung.Name = "btnBoSung";
+            this.btnBoSung.Size = new System.Drawing.Size(245, 29);
+            this.btnBoSung.TabIndex = 0;
+            this.btnBoSung.Text = "Bổ sung thông tin bộ phận chức vụ";
+            this.btnBoSung.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBoSung.UseVisualStyleBackColor = true;
+            this.btnBoSung.Click += new System.EventHandler(this.btnBoSung_Click);
             // 
             // tabPage3
             // 
@@ -1964,21 +2000,6 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Thông tin khác";
             // 
-            // btnBoSung
-            // 
-            this.btnBoSung.AccessibleDescription = "ADDEDITB00007";
-            this.btnBoSung.AccessibleName = "";
-            this.btnBoSung.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnBoSung.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBoSung.Location = new System.Drawing.Point(426, 68);
-            this.btnBoSung.Name = "btnBoSung";
-            this.btnBoSung.Size = new System.Drawing.Size(245, 29);
-            this.btnBoSung.TabIndex = 35;
-            this.btnBoSung.Text = "Bổ sung thông tin bộ phận chức vụ";
-            this.btnBoSung.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBoSung.UseVisualStyleBackColor = true;
-            this.btnBoSung.Click += new System.EventHandler(this.btnBoSung_Click);
-            // 
             // NhanSuAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2026,17 +2047,12 @@
         private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private V6DateTimeColor txtNgayCuoi;
-        private V6LookupTextBox v6LookupTextBox4;
         private V6LookupTextBox v6LookupTextBox3;
-        private V6LookupTextBox v6LookupTextBox2;
-        private V6LookupTextBox v6LookupTextBox1;
-        private V6ColorTextBox txtNgonNgu;
         private V6ColorTextBox v6ColorTextBox11;
         private V6ColorTextBox txtNamTotNghiep;
         private V6ColorTextBox txtDTcoquan;
         private V6ColorTextBox txtDTnha;
         private V6ColorTextBox txtDTDD;
-        private V6LookupTextBox txtTinhThanh;
         private V6ColorTextBox txtDiaChi;
         private System.Windows.Forms.Label label14;
         private V6ColorTextBox txtHoKhau;
@@ -2054,7 +2070,6 @@
         private System.Windows.Forms.Label label6;
         private V6ColorTextBox txtGhiChu;
         private V6Label v6Label18;
-        private V6ColorTextBox txtGhiChuHocTap;
         private System.Windows.Forms.Label label2;
         private V6Label v6Label16;
         private V6LookupTextBox v6LookupTextBox7;
@@ -2082,7 +2097,7 @@
         private V6Label v6Label17;
         private V6CheckBox checkBox1;
         private System.Windows.Forms.Label label4;
-        private V6LookupTextBox v6LookupTextBox6;
+        private V6LookupTextBox txtHonNhan;
         private V6Label v6Label8;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
@@ -2112,5 +2127,11 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label35;
         protected System.Windows.Forms.Button btnBoSung;
+        private V6LookupTextBox txtTinhThanh;
+        private V6LookupTextBox v6LookupTextBox4;
+        private V6LookupTextBox v6LookupTextBox2;
+        private V6LookupTextBox v6LookupTextBox1;
+        private V6ColorTextBox v6LookupTextBox8;
+        private V6ColorTextBox txtGhiChuHocTap;
     }
 }

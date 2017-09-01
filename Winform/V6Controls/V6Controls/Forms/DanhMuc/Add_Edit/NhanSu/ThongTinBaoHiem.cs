@@ -8,12 +8,12 @@ using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
-    public partial class ThongTinLuongCoBan : V6FormControl
+    public partial class ThongTinBaoHiem : V6FormControl
     {
         public SortedDictionary<string, object> DataOld;
         public SortedDictionary<string, object> DataDic { get; set; }
         public SortedDictionary<string, object> _keys = new SortedDictionary<string, object>();
-        public ThongTinLuongCoBan()
+        public ThongTinBaoHiem()
         {
             InitializeComponent();
             MyInit();
@@ -54,8 +54,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                 buttonSua.Enabled = true;
                 buttonNhan.Enabled = false;
                 buttonHuy.Enabled = false;
-                txtMa_Cong.ExistRowInTable();
-                txtMa_NhNV.ExistRowInTable();
+              
             }
             catch (Exception ex)
             {
@@ -99,8 +98,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             buttonNhan.Enabled = true;
             buttonHuy.Enabled = true;
             V6ControlFormHelper.SetFormControlsReadOnly(this, false);
-            txtMa_BP.ReadOnly = true;
-            txtMa_CV.ReadOnly = true;
+           
         }
 
         private void buttonNhan_Click_1(object sender, EventArgs e)
@@ -119,6 +117,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             buttonHuy.Enabled = false;
             V6ControlFormHelper.SetFormDataDictionary(this, DataOld);
             V6ControlFormHelper.SetFormControlsReadOnly(this, true);
+        }
+
+        private void txtworkdate2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

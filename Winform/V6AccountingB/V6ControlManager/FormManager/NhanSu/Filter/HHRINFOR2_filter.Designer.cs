@@ -1,6 +1,6 @@
 ﻿namespace V6ControlManager.FormManager.NhanSu.Filter
 {
-    partial class HHRINFOR1_filter
+    partial class HHRINFOR2_filter
     {
         /// <summary> 
         /// Required designer variable.
@@ -70,8 +70,8 @@
             // groupBox1
             // 
             this.groupBox1.AccessibleDescription = "FILTERG00001";
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.Txtten_ns);
             this.groupBox1.Controls.Add(this.lineMaNS);

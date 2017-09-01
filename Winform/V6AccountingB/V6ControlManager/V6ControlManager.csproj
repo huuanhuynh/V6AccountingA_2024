@@ -1408,6 +1408,12 @@
       <DependentUpon>Menu3Control.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\MenuManager\MenuManager.cs" />
+    <Compile Include="FormManager\NhanSu\Filter\HHRINFOR2_filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\NhanSu\Filter\HHRINFOR2_filter.Designer.cs">
+      <DependentUpon>HHRINFOR2_filter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\NhanSu\Filter\HRAPPFAMILY_filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5341,6 +5347,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\MenuManager\Menu3Control.resx">
       <DependentUpon>Menu3Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\NhanSu\Filter\HHRINFOR2_filter.resx">
+      <DependentUpon>HHRINFOR2_filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\NhanSu\Filter\HRAPPFAMILY_filter.resx">
       <DependentUpon>HRAPPFAMILY_filter.cs</DependentUpon>

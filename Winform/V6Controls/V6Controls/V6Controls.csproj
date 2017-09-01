@@ -293,6 +293,12 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinCapDoNgoaiNguForm.designer.cs">
       <DependentUpon>ThongTinCapDoNgoaiNguForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBaoHiem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBaoHiem.designer.cs">
+      <DependentUpon>ThongTinBaoHiem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinLuongCoBan.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1344,6 +1350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinCapDoNgoaiNguForm.resx">
       <DependentUpon>ThongTinCapDoNgoaiNguForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBaoHiem.resx">
+      <DependentUpon>ThongTinBaoHiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinLuongCoBan.resx">
       <DependentUpon>ThongTinLuongCoBan.cs</DependentUpon>
