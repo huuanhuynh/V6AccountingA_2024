@@ -65,7 +65,6 @@
             // 
             this.buttonSua.AccessibleDescription = "REPORTB00004";
             this.buttonSua.AccessibleName = "";
-            this.buttonSua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonSua.Image = global::V6Controls.Properties.Resources.EditPage;
             this.buttonSua.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonSua.Location = new System.Drawing.Point(11, 436);
@@ -82,7 +81,6 @@
             // 
             this.buttonHuy.AccessibleDescription = "REPORTB00005";
             this.buttonHuy.AccessibleName = "";
-            this.buttonHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonHuy.Image = global::V6Controls.Properties.Resources.Cancel;
             this.buttonHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -100,7 +98,6 @@
             // 
             this.buttonNhan.AccessibleDescription = "REPORTB00004";
             this.buttonNhan.AccessibleName = "";
-            this.buttonNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonNhan.Image = global::V6Controls.Properties.Resources.Apply;
             this.buttonNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonNhan.Location = new System.Drawing.Point(105, 436);
@@ -125,7 +122,7 @@
             this.txtSttRec.GrayText = "STT_REC";
             this.txtSttRec.HoverColor = System.Drawing.Color.Yellow;
             this.txtSttRec.LeaveColor = System.Drawing.Color.White;
-            this.txtSttRec.Location = new System.Drawing.Point(512, 5);
+            this.txtSttRec.Location = new System.Drawing.Point(337, 5);
             this.txtSttRec.Margin = new System.Windows.Forms.Padding(5);
             this.txtSttRec.Name = "txtSttRec";
             this.txtSttRec.Size = new System.Drawing.Size(109, 23);
@@ -146,9 +143,8 @@
             // 
             this.txtNGAY_BD_BH.AccessibleDescription = "";
             this.txtNGAY_BD_BH.AccessibleName = "NGAY_BD_BH";
-            this.txtNGAY_BD_BH.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNGAY_BD_BH.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNGAY_BD_BH.BackColor = System.Drawing.Color.White;
             this.txtNGAY_BD_BH.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNGAY_BD_BH.EnterColor = System.Drawing.Color.PaleGreen;
@@ -342,9 +338,8 @@
             // 
             this.txtSI_DATE.AccessibleDescription = "";
             this.txtSI_DATE.AccessibleName = "SI_DATE";
-            this.txtSI_DATE.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSI_DATE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtSI_DATE.BackColor = System.Drawing.Color.White;
             this.txtSI_DATE.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtSI_DATE.EnterColor = System.Drawing.Color.PaleGreen;
@@ -365,9 +360,8 @@
             // txtSI_DATE2
             // 
             this.txtSI_DATE2.AccessibleName = "SI_DATE2";
-            this.txtSI_DATE2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSI_DATE2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtSI_DATE2.BackColor = System.Drawing.Color.White;
             this.txtSI_DATE2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtSI_DATE2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -405,9 +399,8 @@
             // 
             this.txtNGAY_BD_YT.AccessibleDescription = "";
             this.txtNGAY_BD_YT.AccessibleName = "NGAY_BD_YT";
-            this.txtNGAY_BD_YT.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNGAY_BD_YT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNGAY_BD_YT.BackColor = System.Drawing.Color.White;
             this.txtNGAY_BD_YT.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNGAY_BD_YT.EnterColor = System.Drawing.Color.PaleGreen;
@@ -429,9 +422,8 @@
             // 
             this.txtHI_DATE.AccessibleDescription = "";
             this.txtHI_DATE.AccessibleName = "HI_DATE";
-            this.txtHI_DATE.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtHI_DATE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtHI_DATE.BackColor = System.Drawing.Color.White;
             this.txtHI_DATE.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtHI_DATE.EnterColor = System.Drawing.Color.PaleGreen;
@@ -453,9 +445,8 @@
             // 
             this.txtHI_DATE2.AccessibleDescription = "";
             this.txtHI_DATE2.AccessibleName = "HI_DATE2";
-            this.txtHI_DATE2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtHI_DATE2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtHI_DATE2.BackColor = System.Drawing.Color.White;
             this.txtHI_DATE2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtHI_DATE2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -508,9 +499,8 @@
             // 
             this.txtngay_bd_tn.AccessibleDescription = "";
             this.txtngay_bd_tn.AccessibleName = "ngay_bd_tn";
-            this.txtngay_bd_tn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtngay_bd_tn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtngay_bd_tn.BackColor = System.Drawing.Color.White;
             this.txtngay_bd_tn.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtngay_bd_tn.EnterColor = System.Drawing.Color.PaleGreen;
@@ -532,9 +522,8 @@
             // 
             this.txtngay_kt_tn.AccessibleDescription = "";
             this.txtngay_kt_tn.AccessibleName = "ngay_kt_tn";
-            this.txtngay_kt_tn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtngay_kt_tn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtngay_kt_tn.BackColor = System.Drawing.Color.White;
             this.txtngay_kt_tn.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtngay_kt_tn.EnterColor = System.Drawing.Color.PaleGreen;
@@ -590,7 +579,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongTinBaoHiem";
-            this.Size = new System.Drawing.Size(670, 487);
+            this.Size = new System.Drawing.Size(465, 487);
             this.ResumeLayout(false);
             this.PerformLayout();
 

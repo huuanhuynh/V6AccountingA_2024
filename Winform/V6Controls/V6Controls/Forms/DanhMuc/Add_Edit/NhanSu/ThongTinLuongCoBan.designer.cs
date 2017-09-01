@@ -400,7 +400,6 @@
             // 
             this.buttonSua.AccessibleDescription = "REPORTB00004";
             this.buttonSua.AccessibleName = "";
-            this.buttonSua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonSua.Image = global::V6Controls.Properties.Resources.EditPage;
             this.buttonSua.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonSua.Location = new System.Drawing.Point(6, 475);
@@ -417,7 +416,6 @@
             // 
             this.buttonHuy.AccessibleDescription = "REPORTB00005";
             this.buttonHuy.AccessibleName = "";
-            this.buttonHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonHuy.Image = global::V6Controls.Properties.Resources.Cancel;
             this.buttonHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -435,7 +433,6 @@
             // 
             this.buttonNhan.AccessibleDescription = "REPORTB00004";
             this.buttonNhan.AccessibleName = "";
-            this.buttonNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonNhan.Image = global::V6Controls.Properties.Resources.Apply;
             this.buttonNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonNhan.Location = new System.Drawing.Point(100, 475);
@@ -621,9 +618,8 @@
             // txtworkdate
             // 
             this.txtworkdate.AccessibleName = "workdate";
-            this.txtworkdate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtworkdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtworkdate.BackColor = System.Drawing.Color.White;
             this.txtworkdate.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtworkdate.EnterColor = System.Drawing.Color.PaleGreen;
@@ -644,9 +640,8 @@
             // txtworkdate2
             // 
             this.txtworkdate2.AccessibleName = "workdate2";
-            this.txtworkdate2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtworkdate2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtworkdate2.BackColor = System.Drawing.Color.White;
             this.txtworkdate2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtworkdate2.EnterColor = System.Drawing.Color.PaleGreen;
