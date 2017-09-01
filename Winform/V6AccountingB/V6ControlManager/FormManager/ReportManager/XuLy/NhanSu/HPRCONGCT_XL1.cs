@@ -92,18 +92,22 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 FIELD_format = "GIO_{0:00}";
             }
 
-            for (int i = 1; i <= 31; i++)
+            DateTime date0 = new DateTime(FilterControl.Date1.Year, FilterControl.Date1.Month, 1);
+            int day_in_month = DateTime.DaysInMonth(FilterControl.Date1.Year, FilterControl.Date1.Month);
+            for (int i = 1; i <= day_in_month; i++)
             {
-                LichViewCellData cellData = new LichViewCellData()
+                LichViewCellData cellData = new LichViewCellData(i, new DateTime(date0.Year, date0.Month, i))
                 {
-                    Key = i,
+                    Day = i,
                     Detail1 = rowData[string.Format(FIELD_format, i)].ToString().Trim(),
                     Detail2 = rowData2[string.Format("CONG_{0:00}", i)].ToString().Trim(),
+                    Detail2Color = ObjectAndString.RGBStringToColor(rowData2[string.Format("MAU_{0:00}",i)].ToString())
                     //Detail3 = "???",
                 };
                 lichViewdata[i] = cellData;
             }
-            new HPRCONGCT_XL1_F3(V6Mode.Edit, FilterControl.Date1.Year, FilterControl.Date1.Month, lichViewdata).Show();
+            string ten_ns = string.Format("[{0}] [{1}]", rowData["MA_NS"], rowData["TEN_NS"].ToString().Trim());
+            new HPRCONGCT_XL1_F3(V6Mode.Edit, FilterControl.Date1.Year, FilterControl.Date1.Month, ten_ns, FilterControl, lichViewdata, rowData).Show();
         }
 
         protected override void XuLyXemChiTietF5()

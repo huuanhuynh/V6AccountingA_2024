@@ -55,7 +55,7 @@ namespace V6ControlManager.FormManager.MenuManager
                     FORM_NAME = codeform.Substring(1).ToUpper();
                     TABLE_NAME = codeform.Substring(1).ToUpper();
                     bool check = true, mouse_left = false, ctrl_is_down = false;
-                    if (e.Button == MouseButtons.Left)
+                    if (e == null || e.Button == MouseButtons.Left)
                     {
                         mouse_left = true;
                     }

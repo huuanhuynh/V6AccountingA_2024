@@ -231,6 +231,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                 if (row == null) return;
 
+                if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + row.Cells["MA_CONG"].Value, V6Text.Delete)
+                    != DialogResult.Yes)
+                {
+                    return;
+                }
+
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
                 key.Add("UID", row.Cells["UID"].Value);
                 if (V6BusinessHelper.Delete(_table_name, key) > 0)

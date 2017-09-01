@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.ReportManager.Filter;
 //using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Controls.LichView;
@@ -19,8 +20,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         #region Biến toàn cục
 
         protected SortedDictionary<int, LichViewCellData> _data;
+        private IDictionary<string, object> _rowData;
         protected V6Mode _mode;
         protected int _year, _month;
+        protected string _ten_nv;
+        private FilterBase FilterControl;
         //protected string _text;
         //protected string _uid;
         protected string _tableName = "PRCONG2";
@@ -60,12 +64,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             InitializeComponent();
         }
 
-        public HPRCONGCT_XL1_F3(V6Mode mode, int year, int month, SortedDictionary<int, LichViewCellData> data)
+        public HPRCONGCT_XL1_F3(V6Mode mode, int year, int month, string ten_nv, FilterBase filterControl,
+            SortedDictionary<int, LichViewCellData> data, IDictionary<string, object> rowData)
         {
             _mode = mode;
             _year = year;
             _month = month;
+            _ten_nv = ten_nv;
+            FilterControl = filterControl;
             _data = data;
+            _rowData = rowData;
             InitializeComponent();
             MyInit();
             //Getmaxstt();
@@ -76,7 +84,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             try
             {
                 var currentDate = V6BusinessHelper.GetServerDateTime();
-                lichView1.SetData(_year, _month, currentDate, _data);
+                lichView1.SetData(_year, _month, currentDate, _data, _rowData, _ten_nv);
                 if (_mode == V6Mode.Add)
                 {
                     Text = "Thêm";
@@ -242,6 +250,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         }
 
         protected int _oldIndex = -1;
+        
 
         private void lichView1_ClickNextEvent(LichViewEventArgs obj)
         {
@@ -253,12 +262,48 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             ShowMainMessage("Bạn đã bấm nút Previous.");
         }
 
-        void lichView1_ClickCellEvent(LichViewEventArgs obj)
+        void lichView1_ClickCellEvent(LichViewControl sender, LichViewEventArgs obj)
         {
             string message = string.Format("Bạn đã click ô {0}.", obj.CellData.Key);
-            if (obj.IsClickDetail1) message += " Detail1";
-            if (obj.IsClickDetail2) message += " Detail2";
-            if (obj.IsClickDetail3) message += " Detail3";
+            if (obj.IsClickDetail1)
+            {
+                message += " Detail1";
+            }
+
+            if (obj.IsClickDetail2) // Giả F5
+            {
+                message += " Detail2";
+                var ma_ns = sender.RowData["MA_NS"].ToString().Trim();
+                string value1 = FilterControl.Check1 ? obj.CellData.Detail1 : "";
+                decimal value2 = FilterControl.Check1 ? 0 : ObjectAndString.ObjectToDecimal(obj.CellData.Detail1);
+
+                SqlParameter[] plist =
+                    {
+                        new SqlParameter("@dWork", obj.CellData.Date),
+                        new SqlParameter("@nUserID", V6Login.UserId),
+                        new SqlParameter("@cType", FilterControl.Check1 ? "0" : "1"),
+                        new SqlParameter("@cMa_ns", ma_ns),
+                        new SqlParameter("@cField", string.Format("CONG_{0:00}", obj.CellData.Day)),
+                        new SqlParameter("@cValue1", value1),
+                        new SqlParameter("@nValue2", value2),
+                    };
+
+
+                DateTime date_ngay = new DateTime(FilterControl.Date1.Year, FilterControl.Date1.Month, obj.CellData.Day);
+
+                new HPRCONGCT_XL1_F5(plist)
+                {
+                    Ma_ns = ma_ns,
+                    Ngay = date_ngay,
+                }
+                .ShowDialog(this);
+            }
+
+            if (obj.IsClickDetail3)
+            {
+                message += " Detail3";
+            }
+
             ShowTopMessage(message);
         }
 

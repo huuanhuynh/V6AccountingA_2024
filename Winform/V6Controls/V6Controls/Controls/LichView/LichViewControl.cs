@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Windows.Forms;
+using HaUtility.Helper;
 using V6Controls.Forms;
 using V6Init;
 
@@ -51,7 +52,39 @@ namespace V6Controls.Controls.LichView
         void LichView_MouseMove(object sender, MouseEventArgs e)
         {
             MouseLocation = e.Location;
+            var g = this.CreateGraphics();
             //Invalidate();
+            //Kiểm tra xem nút nào đang được trỏ chuột.
+            bool can_break = false;
+            foreach (KeyValuePair<int, LichViewCellData> item in DataSource)
+            {
+                if (item.Value.Rectangle.Contains(MouseLocation))
+                {
+                    var cellData = item.Value;
+                    cellData.IsHover = true;
+                    DrawCell(cellData.Rectangle.Location, g, cellData);
+                    //if (can_break) break;
+                }
+                else if(item.Value.IsHover)
+                {
+                    //Redraw old hover cell
+                    var oldCell = item.Value;
+                    oldCell.IsHover = false;
+                    DrawCell(oldCell.Rectangle.Location, g, oldCell);
+                }
+            }
+            //DrawToDay
+            if (CurrentDate.Year == Year && CurrentDate.Month == Month)
+            {
+                if (DataSource.ContainsKey(CurrentDate.Day))
+                {
+                    var cellData = DataSource[CurrentDate.Day];
+                    var pen = new Pen(Color.Blue, 1);
+                    pen.DashStyle = DashStyle.Dash;
+                    g.DrawRectangle(pen, cellData.Rectangle.X + 2, cellData.Rectangle.Y + 2,
+                        cellData.Rectangle.Width - 4, cellData.Rectangle.Height - 4);
+                }
+            }
         }
 
         void LichView_Click(object sender, EventArgs e)
@@ -93,7 +126,7 @@ namespace V6Controls.Controls.LichView
                     }
                 }
 
-                if(mouse_on_a_cell) OnClickCellEvent(
+                if(mouse_on_a_cell) OnClickCellEvent(this,
                     new LichViewEventArgs()
                     {
                         CellData=clickCellData,
@@ -106,11 +139,12 @@ namespace V6Controls.Controls.LichView
         }
 
         #region ==== Properties ====
-        protected DateTime CurrentDate { get; set; }
+        public DateTime CurrentDate { get; set; }
         /// <summary>
         /// Dữ liệu
         /// </summary>
         public IDictionary<int, LichViewCellData> DataSource { get; set; }
+        public IDictionary<string, object> RowData { get; set; } 
         /// <summary>
         /// Màu viền. Không dùng chọn Color.Transparent
         /// </summary>
@@ -142,6 +176,7 @@ namespace V6Controls.Controls.LichView
         protected Point MouseLocation { get; set; }
         public int HeaderHeight { get; set; }
         public int FooterHeight { get; set; }
+        public string FooterText { get; set; }
 
         protected Rectangle PreviousButtonRectangle
         {
@@ -159,6 +194,15 @@ namespace V6Controls.Controls.LichView
             {
                 return new Rectangle(BorderWidth + col_width, BorderWidth, Width - 2*col_width - 2*BorderWidth,
                     HeaderHeight/2);
+            }
+        }
+
+        protected Rectangle FooterRectangle
+        {
+            get
+            {
+                return new Rectangle(BorderWidth, Height - BorderWidth - FooterHeight,
+                    Width - 2 * BorderWidth, FooterHeight);
             }
         }
 
@@ -182,20 +226,25 @@ namespace V6Controls.Controls.LichView
             if (handler != null) handler(eventArgs);
         }
 
-        public event Action<LichViewEventArgs> ClickCellEvent;
-        protected virtual void OnClickCellEvent(LichViewEventArgs eventArgs)
+        public event Action<LichViewControl, LichViewEventArgs> ClickCellEvent;
+        protected virtual void OnClickCellEvent(LichViewControl sender, LichViewEventArgs eventArgs)
         {
             var handler = ClickCellEvent;
-            if (handler != null) handler(eventArgs);
+            if (handler != null) handler(sender, eventArgs);
         }
         #endregion events
 
-        public void SetData(int year, int month, DateTime currentDate, IDictionary<int, LichViewCellData> data)
+        public void SetData(int year, int month, DateTime currentDate,
+            IDictionary<int, LichViewCellData> data,
+            IDictionary<string, object> rowData,
+            string footerText)
         {
             Year = year;
             Month = month;
             CurrentDate = currentDate;
             DataSource = data;
+            RowData = rowData;
+            FooterText = footerText;
 
             Invalidate();
         }
@@ -317,8 +366,25 @@ namespace V6Controls.Controls.LichView
                 {
                     int x = basePoint.X + col*col_width;
                     int y = basePoint.Y + row*row_height;
-                    Point cellbasepoint = new Point(x, y);
-                    DrawCell(cellbasepoint, e, i, col, row);
+                    Point cellBasePoint = new Point(x, y);
+                    LichViewCellData cellData = DataSource[i];
+                    if (cellData == null) // Can xem lai !!!!!
+                    {
+                        cellData = new LichViewCellData(0, new DateTime(Year, Month, i))
+                        {
+                            Col = col,
+                            Row = row,
+                            Day = i
+                        };
+                    }
+                    else
+                    {
+                        cellData.Col = col;
+                        cellData.Row = row;
+                    }
+                    Rectangle cellRectangle = new Rectangle(cellBasePoint, new Size(col_width, row_height));
+                    cellData.Rectangle = cellRectangle;
+                    DrawCell(cellBasePoint, e.Graphics, cellData);
 
                     col++;
                     if (col == 7)
@@ -333,7 +399,7 @@ namespace V6Controls.Controls.LichView
                     if (DataSource.ContainsKey(CurrentDate.Day))
                     {
                         var cellData = DataSource[CurrentDate.Day];
-                        var pen = new Pen(Color.Blue, 2);
+                        var pen = new Pen(Color.Blue, 1);
                         pen.DashStyle = DashStyle.Dash;
                         e.Graphics.DrawRectangle(pen, cellData.Rectangle.X + 2, cellData.Rectangle.Y + 2,
                             cellData.Rectangle.Width - 4, cellData.Rectangle.Height - 4);
@@ -352,45 +418,69 @@ namespace V6Controls.Controls.LichView
         private int week_in_month = 5;
         private DayOfWeek first_day_of_week;
         private DateTime ngay_dau_thang;
-        private void DrawCell(Point basePoint, PaintEventArgs e, int day, int col, int row)
+        private void DrawCell(Point basePoint0, Graphics g, LichViewCellData cellData)//, int day)//, int col, int row)
         {
+            var basePoint = cellData.Rectangle.Location;
             //Draw backColor
-            Brush brush = new SolidBrush(_hoverBackColor);
-            Rectangle cellRectangle = new Rectangle(basePoint, new Size(col_width, row_height));
+            Brush brush = new SolidBrush(BackColor);
+
+            var hoverRec = cellData.Rectangle;
+            if (cellData.IsHover)
+            {
+                brush = new SolidBrush(_hoverBackColor);
+                Pen detailBorderPen = new Pen(Color.Blue, 1);
+                Color tran_color = Color.FromArgb(100, 0, 0, 255);
+                Brush detail_brush = new SolidBrush(tran_color);
+                g.FillRectangle(brush, hoverRec);
+                //Draw detail hover border.
+                if (cellData.Detail1Rectangle.Contains(MouseLocation))
+                {
+                    g.FillRectangle(detail_brush, cellData.Detail1Rectangle);
+                }
+                else if (cellData.Detail2Rectangle.Contains(MouseLocation))
+                {
+                    g.FillRectangle(detail_brush, cellData.Detail2Rectangle);
+                }
+                else if (cellData.Detail3Rectangle.Contains(MouseLocation))
+                {
+                    g.FillRectangle(detail_brush, cellData.Detail3Rectangle);
+                }
+            }
+            else
+            {
+                g.FillRectangle(brush, hoverRec);
+            }
+
             var pen = new Pen(Color.Black, 1);
-            e.Graphics.DrawRectangle(pen, cellRectangle);
-            //Hover...
-            //if (rec.Contains(MouseLocation))
-            //{
-            //    e.Graphics.FillEllipse(brush, rec);
-            //}
-            brush = new SolidBrush(col == 5 ? _satudayColor : (col == 6 ? _sundayColor : ForeColor));
+            g.DrawRectangle(pen, cellData.Rectangle);// cellRectangle);
+            
+            brush = new SolidBrush(cellData.Col == 5 ? _satudayColor : (cellData.Col == 6 ? _sundayColor : ForeColor));
             //Draw day
             float emSize = (float)col_width/9;
             System.Drawing.Font dayFont = new Font(Font.FontFamily, emSize);
-            e.Graphics.DrawString("" + day, dayFont, brush, basePoint);
+            g.DrawString("" + cellData.Day, dayFont, brush, cellData.Rectangle);// basePoint);
             //Draw Data
             //Test
             brush = new SolidBrush(DetailColor);
-            //var bottomRightRec = new Rectangle(basePoint.X + 9, basePoint.Y + 9, col_width - 9, row_height - 9);
-            //e.Graphics.FillRectangle(brush, bottomRightRec);
-            if (DataSource != null && DataSource.ContainsKey(day))
+            
+            //if (DataSource != null && DataSource.ContainsKey(day)) // Nếu có cellData
+            if (cellData.Key != 0)
             {
-                LichViewCellData cellData = DataSource[day];
-                cellData.Rectangle = cellRectangle;
+                //LichViewCellData cellData = DataSource[day];
+                //cellData.Rectangle = cellRectangle;
                 float oneDetailHeight = (float)row_height/3;
                 StringFormat format = new StringFormat();
                 format.LineAlignment = StringAlignment.Center;
                 format.Alignment = StringAlignment.Center;
 
                 RectangleF layoutRec = new RectangleF(basePoint.X + 20, basePoint.Y, col_width - 20, oneDetailHeight);
-                e.Graphics.DrawString(cellData.Detail1, Font, brush, layoutRec, format);
+                g.DrawString(cellData.Detail1, Font, brush, layoutRec, format);
                 cellData.Detail1Rectangle = layoutRec;
                 layoutRec = new RectangleF(basePoint.X, basePoint.Y + oneDetailHeight, col_width, oneDetailHeight);
-                e.Graphics.DrawString(cellData.Detail2, Font, brush, layoutRec, format);
+                g.DrawString(cellData.Detail2, Font, new SolidBrush(cellData.Detail2Color), layoutRec, format);
                 cellData.Detail2Rectangle = layoutRec;
                 layoutRec = new RectangleF(basePoint.X, basePoint.Y + oneDetailHeight*2, col_width, oneDetailHeight);
-                e.Graphics.DrawString(cellData.Detail3, Font, brush, layoutRec, format);
+                g.DrawString(cellData.Detail3, Font, brush, layoutRec, format);
                 cellData.Detail3Rectangle = layoutRec;
             }
         }
@@ -398,6 +488,15 @@ namespace V6Controls.Controls.LichView
         private void DrawFooter(PaintEventArgs e)
         {
             if (FooterHeight <= 0) return;
+            if (FooterText != null)
+            {
+                Font titleFont = new Font(Font.FontFamily, Font.Size, FontStyle.Bold);
+                Brush brush = new SolidBrush(Color.Blue);
+                StringFormat format = new StringFormat();
+                format.LineAlignment = StringAlignment.Center;
+                format.Alignment = StringAlignment.Center;
+                e.Graphics.DrawString(FooterText, titleFont, brush, FooterRectangle, format);
+            }
         }
     }
 
