@@ -208,8 +208,7 @@ namespace V6Structs
         Alreport1,
         Alreport,
         Alnhvitri,
-        Alkuct
-
+        Alkuct,
     }
 
     public static class V6TableHelper
@@ -1236,7 +1235,7 @@ namespace V6Structs
                 case V6TableName.Hrxhlca:
                     return lang == "V" ? "Danh mục chi tiết ca làm việc" : "";
                 case V6TableName.PRLICHLE:
-                    return lang == "V" ? "Khai báo ngày nghỉ , lễ..." : "";
+                    return lang == "V" ? "Khai báo lịch lễ..." : "";
                 case V6TableName.Hrxky:
                     return lang == "V" ? "Khai báo kì tính lương" : "";
                 case V6TableName.Prhlthuetn:

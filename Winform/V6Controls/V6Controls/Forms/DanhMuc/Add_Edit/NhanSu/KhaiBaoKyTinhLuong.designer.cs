@@ -1,6 +1,6 @@
 ﻿namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
-    partial class KhaiBaoKiTinhLuong
+    partial class KhaiBaoKyTinhLuong
     {
         /// <summary> 
         /// Required designer variable.
@@ -51,8 +51,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.txtMaTg);
             this.groupBox1.Controls.Add(this.txttenTg);
@@ -113,8 +113,8 @@
             // txtSoNgay
             // 
             this.txtSoNgay.AccessibleName = "so_ngay";
-            this.txtSoNgay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSoNgay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSoNgay.BackColor = System.Drawing.SystemColors.Window;
             this.txtSoNgay.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -133,7 +133,7 @@
             // txtNgay2
             // 
             this.txtNgay2.AccessibleName = "ngay2";
-            this.txtNgay2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtNgay2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNgay2.BackColor = System.Drawing.Color.White;
             this.txtNgay2.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -155,7 +155,7 @@
             // txtNgay1
             // 
             this.txtNgay1.AccessibleName = "ngay1";
-            this.txtNgay1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtNgay1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNgay1.BackColor = System.Drawing.Color.White;
             this.txtNgay1.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -177,8 +177,8 @@
             // txtNam
             // 
             this.txtNam.AccessibleName = "Nam";
-            this.txtNam.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNam.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNam.BackColor = System.Drawing.SystemColors.Window;
             this.txtNam.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -197,8 +197,8 @@
             // txtThag
             // 
             this.txtThag.AccessibleName = "thang";
-            this.txtThag.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtThag.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtThag.BackColor = System.Drawing.SystemColors.Window;
             this.txtThag.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -217,8 +217,8 @@
             // txtKy
             // 
             this.txtKy.AccessibleName = "ky";
-            this.txtKy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtKy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtKy.BackColor = System.Drawing.SystemColors.Window;
             this.txtKy.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -281,8 +281,8 @@
             // checkBox1
             // 
             this.checkBox1.AccessibleName = "status";
-            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(152, 225);

@@ -6,9 +6,9 @@ using V6Init;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
-    public partial class KhaiBaoKiTinhLuong : AddEditControlVirtual
+    public partial class KhaiBaoKyTinhLuong : AddEditControlVirtual
     {
-        public KhaiBaoKiTinhLuong()
+        public KhaiBaoKyTinhLuong()
         {
             InitializeComponent();
             MyInit();
