@@ -282,6 +282,8 @@ namespace V6Controls
                     lstConfig.ETitlenew = (row["ETitlenew"].ToString().Trim());
                     lstConfig.LargeYn = Convert.ToInt32(row["Large_yn"]) == 1;
                     lstConfig.LoadAutoComplete = row["LOAD_AUTO"].ToString().Trim() == "1";
+                    lstConfig.F3 = row["F3"].ToString().Trim() == "1";
+                    lstConfig.F4 = row["F4"].ToString().Trim() == "1";
                     try
                     {
                         lstConfig.V1Title = (row["v1Title"].ToString().Trim());
@@ -549,7 +551,13 @@ namespace V6Controls
         public string CLASS { get { return GetString("CLASS"); } }
         public string NXT { get { return GetString("NXT"); } }
         public string F2 { get { return GetString("F2"); } }
+        /// <summary>
+        /// Cấu hình có sử dụng F3 để sửa khi đang chọn lookup.
+        /// </summary>
         public bool F3 { get { return GetString("F3") == "1"; } }
+        /// <summary>
+        /// Cấu hình có sử dụng F4 để thêm khi đang chọn lookup.
+        /// </summary>
         public bool F4 { get { return GetString("F4") == "1"; } }
         public string CTRL_F4 { get { return GetString("CTRL_F4"); } }
         public string DUPDATE { get { return GetString("DUPDATE"); } }
@@ -636,6 +644,14 @@ namespace V6Controls
         public bool NoInfo { get; set; }
 
         public bool Error { get; set; }
+        /// <summary>
+        /// Cấu hình có sử dụng F3 để sửa khi đang chọn lookup.
+        /// </summary>
+        public bool F3 { get; set; }
+        /// <summary>
+        /// Cấu hình có sử dụng F4 để thêm khi đang chọn lookup.
+        /// </summary>
+        public bool F4 { get; set; }
 
         public string VTitlenew;
         public string ETitlenew;

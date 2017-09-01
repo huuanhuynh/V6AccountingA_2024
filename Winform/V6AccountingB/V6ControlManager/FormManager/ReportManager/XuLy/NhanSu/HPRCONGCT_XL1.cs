@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
+using V6Controls.Controls.LichView;
 using V6Controls.Forms;
 using V6Init;
+using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
@@ -54,10 +57,101 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 dataGridView1.CellPainting += dataGridView1_CellPainting;
                 dataGridView1.MouseMove += dataGridView1_MouseMove;
                 dataGridView1.MouseLeave += dataGridView1_MouseLeave;
+
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".SetupGridview", ex);
+            }
+        }
+
+        protected override void XuLyHienThiFormSuaChungTuF3()
+        {
+            if (dataGridView1.CurrentRow == null) return;
+
+            var rowData = dataGridView1.CurrentRow.ToDataDictionary();
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@dWork", FilterControl.Date1),
+                new SqlParameter("@cMa_ns", rowData["MA_NS"]),
+                new SqlParameter("@nUserID", V6Login.UserId),
+                new SqlParameter("@cType", FilterControl.Check1?"0":"1"),
+            };
+            var ds = V6BusinessHelper.ExecuteProcedure("HPRCONGCTF3", plist);
+            var rowData2 = ds.Tables[0].Rows[0].ToDataDictionary();
+            SortedDictionary<int, LichViewCellData> lichViewdata = new SortedDictionary<int, LichViewCellData>();
+            string FIELD_format = "";
+            if (FilterControl.Check1)
+            {
+                //Ngay CONG_01
+                FIELD_format = "CONG_{0:00}";
+            }
+            else
+            {
+                //Gio GIO_O1
+                FIELD_format = "GIO_{0:00}";
+            }
+
+            for (int i = 1; i <= 31; i++)
+            {
+                LichViewCellData cellData = new LichViewCellData()
+                {
+                    Key = i,
+                    Detail1 = rowData[string.Format(FIELD_format, i)].ToString().Trim(),
+                    Detail2 = rowData2[string.Format("CONG_{0:00}", i)].ToString().Trim(),
+                    //Detail3 = "???",
+                };
+                lichViewdata[i] = cellData;
+            }
+            new HPRCONGCT_XL1_F3(V6Mode.Edit, FilterControl.Date1.Year, FilterControl.Date1.Month, lichViewdata).Show();
+        }
+
+        protected override void XuLyXemChiTietF5()
+        {
+            try
+            {
+                if (dataGridView1.CurrentCell == null || dataGridView1.CurrentRow == null)
+                {
+                    ShowMainMessage("null cell.");
+                    return;
+                }
+                //Lay du lieu theo ngay thang nam ma_ns dang chon
+                var current_cell = dataGridView1.CurrentCell;
+                var currentRow = dataGridView1.CurrentRow;
+                var columnName = current_cell.OwningColumn.DataPropertyName;
+                var day = ObjectAndString.ObjectToInt(columnName.Right(2));
+                if (day > 0 && day <= 31)
+                {
+                    var ma_ns = currentRow.Cells["MA_NS"].Value.ToString().Trim();
+                    string value1 = FilterControl.Check1 ? current_cell.Value.ToString() : "";
+                    decimal value2 = FilterControl.Check1 ? 0 : ObjectAndString.ObjectToDecimal(current_cell.Value);
+
+                    SqlParameter[] plist =
+                    {
+                        new SqlParameter("@dWork", FilterControl.Date1),
+                        new SqlParameter("@nUserID", V6Login.UserId),
+                        new SqlParameter("@cType", FilterControl.Check1 ? "0" : "1"),
+                        new SqlParameter("@cMa_ns", ma_ns),
+                        new SqlParameter("@cField", columnName),
+                        new SqlParameter("@cValue1", value1),
+                        new SqlParameter("@nValue2", value2),
+                    };
+
+
+                    DateTime date_ngay = new DateTime(FilterControl.Date1.Year, FilterControl.Date1.Month, day);
+                    
+                    new HPRCONGCT_XL1_F5(plist)
+                    {
+                        Ma_ns = ma_ns,
+                        Ngay = date_ngay,
+                    }
+                    .ShowDialog(this);
+                }
+                //=> Ve form view, form F3F4
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".F5", ex);
             }
         }
 
@@ -145,7 +239,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 for (int i = 1; i <= 31; i++)
                 {
                     //DataGridViewComboBoxColumn cbc = new DataGridViewComboBoxColumn();
-                    string fieldName = "CONG_" + ("00" + i).Right(2);
+                    string fieldName = FilterControl.Check1 ? "CONG_" + ("00" + i).Right(2) : "GIO_" + ("00" + i).Right(2);
                     var column = dataGridView1.Columns[fieldName];
                     if (column != null)
                     {
@@ -186,7 +280,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         }
         void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (!ExistRowInTable(edit_cell.Value.ToString().Trim()))
+            if (FilterControl.Check1 && !ExistRowInTable(edit_cell.Value.ToString().Trim()))
             {
                 Lookup();
             }
@@ -213,6 +307,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             {
                 int nTime = 0;
                 int nAmount = 0;
+
+                
+
                 SqlParameter[] plist =
                 {
                     new SqlParameter("@nYear", cell.OwningRow.Cells["NAM"].Value),
@@ -220,10 +317,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     new SqlParameter("@cEmployID", cell.OwningRow.Cells["MA_NS"].Value),
                     new SqlParameter("@cD", cell.OwningColumn.DataPropertyName.Right(2)),
                     new SqlParameter("@cDept", ""),
-                    new SqlParameter("@cW", cell.Value),
-                    new SqlParameter("@nTime", nTime),
+
+                    new SqlParameter("@cW", FilterControl.Check1 ? cell.Value : ""),
+                    new SqlParameter("@nTime", FilterControl.Check1 ? nTime : cell.Value),
+
                     new SqlParameter("@nAmount", nAmount),
-                    new SqlParameter("@nUserID", V6Login.UserId)
+                    new SqlParameter("@nUserID", V6Login.UserId),
+                    new SqlParameter("@cType", FilterControl.Check1 ? "0" : "1")
                 };
                 if (V6BusinessHelper.ExecuteProcedureNoneQuery("VPH_SaveTimeSheet_Month", plist) > 0)
                 {
@@ -336,7 +436,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("SpaceBar: Chọn, F9: Gán tất cả nhân viên = ô đang chọn.");
+            V6ControlFormHelper.SetStatusText2("SpaceBar: Chọn, F9: Gán tất cả nhân viên = ô đang chọn. F5-Bổ sung");
         }
 
         protected override void MakeReport2()

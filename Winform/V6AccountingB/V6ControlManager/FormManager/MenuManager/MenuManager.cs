@@ -54,7 +54,15 @@ namespace V6ControlManager.FormManager.MenuManager
                     var code = codeform.Substring(0, 1);
                     FORM_NAME = codeform.Substring(1).ToUpper();
                     TABLE_NAME = codeform.Substring(1).ToUpper();
-                    var check = true;
+                    bool check = true, mouse_left = false, ctrl_is_down = false;
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        mouse_left = true;
+                    }
+                    if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
+                    {
+                        ctrl_is_down = true;
+                    }
 
                     switch (code)
                     {
@@ -69,15 +77,20 @@ namespace V6ControlManager.FormManager.MenuManager
                             break;
                         case "2"://DanhMucView
                             #region ==== DanhMucView ====
-                            //var TABLE_NAME = codeform.Substring(1).ToUpper();
-                            //var check = true;
-                            if (TABLE_NAME == "V6USER")
+                            if (TABLE_NAME == "ALDM" || TABLE_NAME == "V6LOOKUP" || TABLE_NAME == "ALREPORT1" || TABLE_NAME == "ALREPORT")
                             {
-                                check = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
+                                check = CheckPasswordV6(owner);
                             }
-                            else if (TABLE_NAME == "ALDM" || TABLE_NAME == "V6LOOKUP" || TABLE_NAME == "ALREPORT1" || TABLE_NAME == "ALREPORT")
+                            else if (TABLE_NAME == "V6USER")
                             {
-                                check = new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
+                                if (mouse_left && ctrl_is_down)
+                                {
+                                    check = CheckPasswordV6(owner);
+                                }
+                                else
+                                {
+                                    check = CheckPassword(owner);
+                                }
                             }
 
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
@@ -120,13 +133,13 @@ namespace V6ControlManager.FormManager.MenuManager
                                     {
                                         if (is_aldm)
                                         {
-                                            if (check_admin)
+                                            if (check_admin && V6Login.IsAdmin)
                                             {
-                                                check = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
+                                                check = CheckPassword(owner);
                                             }
                                             else if (check_v6)
                                             {
-                                                check = new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
+                                                check = CheckPasswordV6(owner);
                                             }
                                         }
 
@@ -270,23 +283,18 @@ namespace V6ControlManager.FormManager.MenuManager
 
                             var tableNameEdit = codeform.Substring(1);
                             string getInitFilter = null;
-                            bool check1 = true, control_press = false;
-
-                            if (e.Button == MouseButtons.Left && (Control.ModifierKeys & Keys.Control) == Keys.Control)
-                            {
-                                control_press = true;
-                            }
+                            bool check1 = true;
 
                             if (tableNameEdit.ToUpper() == "ALSTT" || tableNameEdit.ToUpper() == "V6OPTION")
                             {
-                                if (control_press)
+                                if (mouse_left && ctrl_is_down)
                                 {
-                                    check1 = new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
+                                    check1 = CheckPasswordV6(owner);
                                     getInitFilter = "";
                                 }
                                 else
                                 {
-                                    check1 = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
+                                    check1 = CheckPassword(owner);
                                     getInitFilter = V6Login.GetInitFilter(tableNameEdit);
                                 }
                             }
@@ -308,13 +316,13 @@ namespace V6ControlManager.FormManager.MenuManager
 
                                     if (is_aldm)
                                     {
-                                        if (check_admin)
+                                        if (check_admin && V6Login.IsAdmin)
                                         {
-                                            check = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
+                                            check = CheckPassword(owner);
                                         }
                                         else if (check_v6)
                                         {
-                                            check = new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
+                                            check = CheckPasswordV6(owner);
                                         }
                                     }
 
@@ -376,7 +384,7 @@ namespace V6ControlManager.FormManager.MenuManager
                             #region ==== V6CLIENTS V6ONLINES ====
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
-                                check = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
+                                check = CheckPassword(owner);
 
                                 if (check)
                                 {
@@ -603,11 +611,18 @@ namespace V6ControlManager.FormManager.MenuManager
                             TABLE_NAME = codeform.Substring(1).ToUpper();
                             if (TABLE_NAME == "V6USER")
                             {
-                                check = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
+                                if (mouse_left && ctrl_is_down)
+                                {
+                                    check = CheckPasswordV6(owner);
+                                }
+                                else
+                                {
+                                    check = CheckPassword(owner);
+                                }
                             }
                             else if (TABLE_NAME == "ALDM" || TABLE_NAME == "V6LOOKUP" )
                             {
-                                check = new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
+                                check = CheckPasswordV6(owner);
                             }
 
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
@@ -628,13 +643,13 @@ namespace V6ControlManager.FormManager.MenuManager
 
                                     if (is_aldm)
                                     {
-                                        if (check_admin)
+                                        if (check_admin && V6Login.IsAdmin)
                                         {
-                                            check = new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
+                                            check = CheckPassword(owner);
                                         }
                                         else if (check_v6)
                                         {
-                                            check = new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
+                                            check = CheckPasswordV6(owner);
                                         }
                                     }
 
@@ -704,6 +719,36 @@ namespace V6ControlManager.FormManager.MenuManager
                 owner.ShowErrorMessage(MethodBase.GetCurrentMethod().DeclaringType + " GenControl: " + ex.Message);
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Kiểm tra password của user đang đăng nhập.
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <returns></returns>
+        private static bool CheckPassword(IWin32Window owner)
+        {
+            return new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
+        }
+        
+        /// <summary>
+        /// Kiểm tra admin 1 lần (chưa làm)
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <returns></returns>
+        private static bool CheckPasswordAdmin(IWin32Window owner)
+        {
+            return new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
+        }
+
+        /// <summary>
+        /// Kiểm tra password V6
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <returns></returns>
+        private static bool CheckPasswordV6(IWin32Window owner)
+        {
+            return new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
         }
     }
 }

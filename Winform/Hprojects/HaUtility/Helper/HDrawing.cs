@@ -92,6 +92,18 @@ namespace HaUtility.Helper
                 gp.DrawPolygon(p, points);
         }
 
+        /// <summary>
+        /// Vẽ một hình chữ nhật lên Graphics (chưa viết hàm)
+        /// </summary>
+        /// <param name="g">Graphics</param>
+        /// <param name="p1">Điểm góc 1</param>
+        /// <param name="p2">Điểm góc đối diện điểm góc 1</param>
+        /// <param name="p">Bút vẽ</param>
+        public static void DrawRectangle(Graphics g, Point p1, Point p2, Pen p)
+        {
+            throw new NotImplementedException();
+        }
+
         public static void DrawPolygonTransparent(Graphics gp, Point[] points, Color c, int width)
         {
             if (points.Length > 2)

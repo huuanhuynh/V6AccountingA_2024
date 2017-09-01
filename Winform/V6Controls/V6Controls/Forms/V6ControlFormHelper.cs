@@ -3681,6 +3681,12 @@ namespace V6Controls.Forms
             }
         }
 
+        /// <summary>
+        /// <para>Hiển thị thông tin ở Status bar khi bấm chuột giữa.</para> 
+        /// <para>Edit ngôn ngữ khi bấm chuột phải [hai lần].</para> 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         static void c_MouseDClick(object sender, MouseEventArgs e)
         {
             var control = sender as Control;

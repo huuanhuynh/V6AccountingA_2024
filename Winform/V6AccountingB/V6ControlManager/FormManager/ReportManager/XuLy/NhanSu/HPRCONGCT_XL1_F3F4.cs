@@ -8,10 +8,11 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Structs;
+using V6Tools.V6Convert;
 
-namespace V6ControlManager.FormManager.ReportManager.XuLy
+namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 {
-    public partial class AINVITRI03_F3F4 : V6Form
+    public partial class HPRCONGCT_XL1_F3F4 : V6Form
     {
         #region Biến toàn cục
 
@@ -19,7 +20,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected V6Mode _mode;
         //protected string _text;
         //protected string _uid;
-        protected string _tableName = "ABNGHI";
+        protected string _tableName = "PRCONG2";
 
         public event HandleResultData InsertSuccessEvent;
         protected virtual void OnInsertSuccessEvent(SortedDictionary<string, object> datadic)
@@ -51,19 +52,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
 
         #endregion properties
-        public AINVITRI03_F3F4()
+        public HPRCONGCT_XL1_F3F4()
         {
             InitializeComponent();
         }
 
-        public AINVITRI03_F3F4(V6Mode mode, SortedDictionary<string, object> data)
+        public HPRCONGCT_XL1_F3F4(V6Mode mode, SortedDictionary<string, object> data)
         {
             _mode = mode;
             
             _data = data;
             InitializeComponent();
             MyInit();
-            Getmaxstt();
+            //Getmaxstt();
         }
 
         private void MyInit()
@@ -71,7 +72,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 V6ControlFormHelper.SetFormDataDictionary(this, _data);
-                
+                dateNgay.DisableTag();
+                txtMaNhanSu.ExistRowInTable();
+
                 if (_mode == V6Mode.Add)
                 {
                     Text = "Thêm";
@@ -84,7 +87,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     V6ControlFormHelper.SetFormControlsReadOnly(this, true);
                 }
-
             }
             catch (Exception ex)
             {
@@ -92,14 +94,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        public  void Getmaxstt()
-        {
-            if (_mode == V6Mode.Add)
-            {
-                decimal maxvalue = V6BusinessHelper.GetMaxValueTable("V6HELP_QA", "STT", "1=1");
-                txtSoLuong.Value = maxvalue + 1;
-            }
-        }
+        //public  void Getmaxstt()
+        //{
+        //    if (_mode == V6Mode.Add)
+        //    {
+        //        decimal maxvalue = V6BusinessHelper.GetMaxValueTable("V6HELP_QA", "STT", "1=1");
+        //        txtSoLuong.Value = maxvalue + 1;
+        //    }
+        //}
 
         private void UpdateData()
         {
@@ -169,19 +171,56 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-
-            if (_mode == V6Mode.Edit)
+            if (ValidateData())
             {
-                UpdateData();
+                if (_mode == V6Mode.Edit)
+                {
+                    UpdateData();
+                }
+                else if (_mode == V6Mode.Add)
+                {
+                    InsertNew();
+                }
             }
-            else if(_mode == V6Mode.Add)
+            else
             {
-                InsertNew();
+                ShowMainMessage(V6Text.ExistData);
             }
         }
 
+        private bool ValidateData()
+        {
+            try
+            {
+                byte status = 0;
+                var dataOld = new SortedDictionary<string, object>();
+                if (_mode == V6Mode.Edit)
+                {
+                    status = 0;
+                    dataOld.AddRange(_data);
+                }
+                else
+                {
+                    status = 1;
+                    dataOld = GetData();
+                }
+                
+                bool valid = V6BusinessHelper.IsValidThreeCode_OneDate(_tableName, status,
+                    "MA_NS", txtMaNhanSu.Text, (dataOld["MA_NS"]??"").ToString().Trim(),
+                    "MA_CONG", txtMaCong.Text, (dataOld["MA_CONG"]??"").ToString().Trim(),
+                    "MA_BP", (txtMaBp.Value + "").Trim(), (dataOld["MA_BP"]??"").ToString().Trim(),
+                    "NGAY", dateNgay.Value.ToString("yyyyMMdd"), ObjectAndString.ObjectToFullDateTime(dataOld["NGAY"]).ToString("yyyyMMdd")
+                    );
+                return valid;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException("ValidateData", ex);
+            }
+            return false;
+        }
 
-        
+
         private void btnHuy_Click(object sender, EventArgs e)
         {
             Dispose();

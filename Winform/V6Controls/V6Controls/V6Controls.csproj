@@ -127,6 +127,13 @@
     <Compile Include="Controls\Label\FormChangeControlLanguageText.Designer.cs">
       <DependentUpon>FormChangeControlLanguageText.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LichView\LichViewCellData.cs" />
+    <Compile Include="Controls\LichView\LichViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LichView\LichViewControl.Designer.cs">
+      <DependentUpon>LichViewControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SyntaxHighlightingTextBox\AutoCompleteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1854,6 +1861,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Hprojects\HaUtility\HaUtility.csproj">
+      <Project>{0A11F974-1C92-457B-837A-911A8EF85055}</Project>
+      <Name>HaUtility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\V6AccountingB\V6AccountingBusiness\V6AccountingBusiness.csproj">
       <Project>{5128ff85-304f-4943-853e-f8e3535dfb55}</Project>
       <Name>V6AccountingBusiness</Name>
