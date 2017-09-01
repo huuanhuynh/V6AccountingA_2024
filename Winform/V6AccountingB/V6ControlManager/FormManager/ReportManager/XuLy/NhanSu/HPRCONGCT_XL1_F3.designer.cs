@@ -79,7 +79,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.lichView1.CodeForm = null;
             this.lichView1.DataSource = null;
             this.lichView1.DetailColor = System.Drawing.Color.Orange;
-            this.lichView1.FooterHeight = 0;
+            this.lichView1.FooterHeight = 20;
             this.lichView1.HeaderHeight = 40;
             this.lichView1.HoverBackColor = System.Drawing.Color.Aqua;
             this.lichView1.Location = new System.Drawing.Point(12, 12);
@@ -90,7 +90,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.lichView1.TabIndex = 11;
             this.lichView1.ClickNextEvent += new System.Action<V6Controls.Controls.LichView.LichViewEventArgs>(this.lichView1_ClickNextEvent);
             this.lichView1.ClickPreviousEvent += new System.Action<V6Controls.Controls.LichView.LichViewEventArgs>(this.lichView1_ClickPreviousEvent);
-            this.lichView1.ClickCellEvent += new System.Action<V6Controls.Controls.LichView.LichViewEventArgs>(this.lichView1_ClickCellEvent);
+            this.lichView1.ClickCellEvent += new System.Action<V6Controls.Controls.LichView.LichViewControl, V6Controls.Controls.LichView.LichViewEventArgs>(this.lichView1_ClickCellEvent);
             // 
             // HPRCONGCT_XL1_F3
             // 

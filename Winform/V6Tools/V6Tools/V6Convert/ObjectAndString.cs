@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Globalization;
 
 
@@ -414,6 +415,31 @@ namespace V6Tools.V6Convert
         public static float ObjectToFloat(string s)
         {
             return ToObject<float>(s);
+        }
+
+        public static Color RGBStringToColor(string rgb)
+        {
+            int r = 0, g = 0, b = 0;
+            if (rgb != null && rgb.Contains(","))
+            {
+                string[] sss = rgb.Split(',');
+                r = ObjectToInt(sss[0]);
+                if (sss.Length > 1) g = ObjectToInt(sss[1]);
+                if (sss.Length > 2) b = ObjectToInt(sss[2]);
+            }
+            else if (rgb != null && rgb.StartsWith("#"))
+            {
+                var convert_from_string = (new ColorConverter()).ConvertFromString(rgb);
+                if (convert_from_string != null)
+                {
+                    Color color = (Color) convert_from_string;
+                    return color;
+                }
+            }
+            if (r > 255) r = 255;
+            if (g > 255) g = 255;
+            if (b > 255) b = 255;
+            return Color.FromArgb(r, g, b);
         }
     }
 }
