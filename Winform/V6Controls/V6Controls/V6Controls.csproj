@@ -246,11 +246,11 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCacKhoanTraThayBHXH.designer.cs">
       <DependentUpon>DanhMucCacKhoanTraThayBHXH.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoKiTinhLuong.cs">
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoKyTinhLuong.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoKiTinhLuong.designer.cs">
-      <DependentUpon>KhaiBaoKiTinhLuong.cs</DependentUpon>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoKyTinhLuong.designer.cs">
+      <DependentUpon>KhaiBaoKyTinhLuong.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThueTNCN.cs">
       <SubType>UserControl</SubType>
@@ -261,8 +261,14 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoNgayNghiLe.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoNgayNghiLe.designer.cs">
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoNgayNghiLe1.designer.cs">
       <DependentUpon>KhaiBaoNgayNghiLe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLichLe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLichLe.designer.cs">
+      <DependentUpon>KhaiBaoLichLe.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucChiTietCaLamViecForm.cs">
       <SubType>UserControl</SubType>
@@ -1331,14 +1337,17 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCacKhoanTraThayBHXH.resx">
       <DependentUpon>DanhMucCacKhoanTraThayBHXH.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoKiTinhLuong.resx">
-      <DependentUpon>KhaiBaoKiTinhLuong.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoKyTinhLuong.resx">
+      <DependentUpon>KhaiBaoKyTinhLuong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThueTNCN.resx">
       <DependentUpon>DanhMucThueTNCN.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoNgayNghiLe.resx">
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoNgayNghiLe1.resx">
       <DependentUpon>KhaiBaoNgayNghiLe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLichLe.resx">
+      <DependentUpon>KhaiBaoLichLe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucChiTietCaLamViecForm.resx">
       <DependentUpon>DanhMucChiTietCaLamViecForm.cs</DependentUpon>

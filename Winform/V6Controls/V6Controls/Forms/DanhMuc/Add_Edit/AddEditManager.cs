@@ -337,13 +337,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FormControl = new DanhMucChiTietCaLamViecForm();
                     break;
                 case V6TableName.PRLICHLE:
-                    FormControl = new KhaiBaoNgayNghiLe();
+                    FormControl = new KhaiBaoLichLe();
                     break;
                 case V6TableName.HRLSTCONTRACTTYPE:
                     FormControl = new ThongTinHopDong();
                     break;
                 case V6TableName.Hrxky:
-                    FormControl = new KhaiBaoKiTinhLuong();
+                    FormControl = new KhaiBaoKyTinhLuong();
                     break;
                 case V6TableName.Prhlthuetn:
                     FormControl = new DanhMucThueTNCN();

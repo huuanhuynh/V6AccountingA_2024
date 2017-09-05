@@ -75,7 +75,7 @@
             this.v6Label18.AccessibleDescription = "";
             this.v6Label18.AccessibleName = "";
             this.v6Label18.AutoSize = true;
-            this.v6Label18.Location = new System.Drawing.Point(208, 352);
+            this.v6Label18.Location = new System.Drawing.Point(189, 352);
             this.v6Label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label18.Name = "v6Label18";
             this.v6Label18.Size = new System.Drawing.Size(454, 17);
@@ -87,7 +87,7 @@
             this.v6Label17.AccessibleDescription = "";
             this.v6Label17.AccessibleName = "";
             this.v6Label17.AutoSize = true;
-            this.v6Label17.Location = new System.Drawing.Point(208, 321);
+            this.v6Label17.Location = new System.Drawing.Point(189, 321);
             this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label17.Name = "v6Label17";
             this.v6Label17.Size = new System.Drawing.Size(312, 17);
@@ -177,7 +177,7 @@
             this.txtLoai_Khoan.Location = new System.Drawing.Point(144, 349);
             this.txtLoai_Khoan.MaxLength = 1;
             this.txtLoai_Khoan.Name = "txtLoai_Khoan";
-            this.txtLoai_Khoan.Size = new System.Drawing.Size(56, 23);
+            this.txtLoai_Khoan.Size = new System.Drawing.Size(44, 23);
             this.txtLoai_Khoan.TabIndex = 12;
             // 
             // txtLoai_Luong
@@ -194,7 +194,7 @@
             this.txtLoai_Luong.Location = new System.Drawing.Point(144, 318);
             this.txtLoai_Luong.MaxLength = 1;
             this.txtLoai_Luong.Name = "txtLoai_Luong";
-            this.txtLoai_Luong.Size = new System.Drawing.Size(56, 23);
+            this.txtLoai_Luong.Size = new System.Drawing.Size(44, 23);
             this.txtLoai_Luong.TabIndex = 11;
             // 
             // txtHS_CTY
@@ -275,7 +275,7 @@
             // 
             this.v6Label16.AccessibleDescription = "";
             this.v6Label16.AutoSize = true;
-            this.v6Label16.Location = new System.Drawing.Point(6, 445);
+            this.v6Label16.Location = new System.Drawing.Point(6, 444);
             this.v6Label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label16.Name = "v6Label16";
             this.v6Label16.Size = new System.Drawing.Size(73, 17);
@@ -400,7 +400,6 @@
             // 
             this.buttonSua.AccessibleDescription = "REPORTB00004";
             this.buttonSua.AccessibleName = "";
-            this.buttonSua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonSua.Image = global::V6Controls.Properties.Resources.EditPage;
             this.buttonSua.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonSua.Location = new System.Drawing.Point(6, 475);
@@ -417,7 +416,6 @@
             // 
             this.buttonHuy.AccessibleDescription = "REPORTB00005";
             this.buttonHuy.AccessibleName = "";
-            this.buttonHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonHuy.Image = global::V6Controls.Properties.Resources.Cancel;
             this.buttonHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -435,7 +433,6 @@
             // 
             this.buttonNhan.AccessibleDescription = "REPORTB00004";
             this.buttonNhan.AccessibleName = "";
-            this.buttonNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonNhan.Image = global::V6Controls.Properties.Resources.Apply;
             this.buttonNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonNhan.Location = new System.Drawing.Point(100, 475);
@@ -460,7 +457,7 @@
             this.txtSttRec.GrayText = "STT_REC";
             this.txtSttRec.HoverColor = System.Drawing.Color.Yellow;
             this.txtSttRec.LeaveColor = System.Drawing.Color.White;
-            this.txtSttRec.Location = new System.Drawing.Point(512, 5);
+            this.txtSttRec.Location = new System.Drawing.Point(475, 5);
             this.txtSttRec.Margin = new System.Windows.Forms.Padding(5);
             this.txtSttRec.Name = "txtSttRec";
             this.txtSttRec.Size = new System.Drawing.Size(109, 23);
@@ -621,9 +618,8 @@
             // txtworkdate
             // 
             this.txtworkdate.AccessibleName = "workdate";
-            this.txtworkdate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtworkdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtworkdate.BackColor = System.Drawing.Color.White;
             this.txtworkdate.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtworkdate.EnterColor = System.Drawing.Color.PaleGreen;
@@ -644,9 +640,8 @@
             // txtworkdate2
             // 
             this.txtworkdate2.AccessibleName = "workdate2";
-            this.txtworkdate2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtworkdate2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtworkdate2.BackColor = System.Drawing.Color.White;
             this.txtworkdate2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtworkdate2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -724,7 +719,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongTinLuongCoBan";
-            this.Size = new System.Drawing.Size(670, 526);
+            this.Size = new System.Drawing.Size(649, 526);
             this.ResumeLayout(false);
             this.PerformLayout();
 
