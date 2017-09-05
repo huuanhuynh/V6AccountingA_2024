@@ -58,17 +58,17 @@ namespace V6Controls.Controls.LichView
             bool can_break = false;
             foreach (KeyValuePair<int, LichViewCellData> item in DataSource)
             {
-                if (item.Value.Rectangle.Contains(MouseLocation))
+                var cellData = item.Value;
+                if (cellData.Rectangle.Contains(MouseLocation))
                 {
-                    var cellData = item.Value;
                     cellData.IsHover = true;
                     DrawCell(cellData.Rectangle.Location, g, cellData);
                     //if (can_break) break;
                 }
-                else if(item.Value.IsHover)
+                else if(cellData.IsHover)
                 {
                     //Redraw old hover cell
-                    var oldCell = item.Value;
+                    var oldCell = cellData;
                     oldCell.IsHover = false;
                     DrawCell(oldCell.Rectangle.Location, g, oldCell);
                 }

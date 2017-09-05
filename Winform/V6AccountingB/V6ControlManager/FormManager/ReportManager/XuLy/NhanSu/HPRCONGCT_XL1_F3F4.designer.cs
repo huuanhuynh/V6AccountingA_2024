@@ -104,7 +104,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.txtGio.AccessibleName = "GIO";
             this.txtGio.BackColor = System.Drawing.SystemColors.Window;
             this.txtGio.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtGio.DecimalPlaces = 0;
+            this.txtGio.DecimalPlaces = 2;
             this.txtGio.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtGio.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtGio.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -116,13 +116,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.txtGio.Name = "txtGio";
             this.txtGio.Size = new System.Drawing.Size(120, 20);
             this.txtGio.TabIndex = 6;
-            this.txtGio.Text = "0";
+            this.txtGio.Text = "0,00";
             this.txtGio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGio.Value = new decimal(new int[] {
             0,
             0,
             0,
-            0});
+            131072});
             // 
             // v6Label9
             // 

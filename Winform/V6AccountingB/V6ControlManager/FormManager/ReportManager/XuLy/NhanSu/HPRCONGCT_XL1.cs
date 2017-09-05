@@ -107,7 +107,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 lichViewdata[i] = cellData;
             }
             string ten_ns = string.Format("[{0}] [{1}]", rowData["MA_NS"], rowData["TEN_NS"].ToString().Trim());
-            new HPRCONGCT_XL1_F3(V6Mode.Edit, FilterControl.Date1.Year, FilterControl.Date1.Month, ten_ns, FilterControl, lichViewdata, rowData).Show();
+            new HPRCONGCT_XL1_F3(V6Mode.Edit, FilterControl.Date1.Year, FilterControl.Date1.Month, ten_ns, FilterControl, lichViewdata, rowData)
+                .ShowDialog(this);
         }
 
         protected override void XuLyXemChiTietF5()
