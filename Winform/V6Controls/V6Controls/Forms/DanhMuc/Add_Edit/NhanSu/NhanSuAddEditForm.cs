@@ -114,18 +114,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             if (errors.Length > 0) throw new Exception(errors);
         }
         
-        private void radNam_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (IsReady) txtgender.Text = radNam.Checked ? "1" : "0";
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".radNam_CheckedChanged", ex);
-            }
-        }
-
         private void btnBoSung_Click(object sender, EventArgs e)
         {
             try
@@ -147,6 +135,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + " BoSung_Click " + ex.Message);
+            }
+        }
+
+        private void radNam_CheckedChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (IsReady) txtgender.Text = radNam.Checked ? "1" : "0";
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".radNam_CheckedChanged", ex);
             }
         }
     }

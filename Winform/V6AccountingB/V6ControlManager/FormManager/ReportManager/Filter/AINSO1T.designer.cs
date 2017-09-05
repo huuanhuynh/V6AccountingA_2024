@@ -47,6 +47,7 @@
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_vt3 = new V6ReportControls.FilterLineVvarTextBox();
             this.TxtMa_vt = new V6ReportControls.FilterLineVvarTextBox();
+            this.Chk_Tinh_dc = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -283,10 +284,22 @@
             this.TxtMa_vt.TabIndex = 4;
             this.TxtMa_vt.Vvar = "MA_VT";
             // 
+            // Chk_Tinh_dc
+            // 
+            this.Chk_Tinh_dc.AccessibleDescription = "FILTERC00014";
+            this.Chk_Tinh_dc.AutoSize = true;
+            this.Chk_Tinh_dc.Location = new System.Drawing.Point(81, 56);
+            this.Chk_Tinh_dc.Name = "Chk_Tinh_dc";
+            this.Chk_Tinh_dc.Size = new System.Drawing.Size(149, 17);
+            this.Chk_Tinh_dc.TabIndex = 10;
+            this.Chk_Tinh_dc.Text = "Tính PS điều chuyển kho";
+            this.Chk_Tinh_dc.UseVisualStyleBackColor = true;
+            // 
             // AINSO1T
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.Chk_Tinh_dc);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -321,5 +334,6 @@
         private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_vt3;
         private V6ReportControls.FilterLineVvarTextBox TxtMa_vt;
+        private V6Controls.V6CheckBox Chk_Tinh_dc;
     }
 }

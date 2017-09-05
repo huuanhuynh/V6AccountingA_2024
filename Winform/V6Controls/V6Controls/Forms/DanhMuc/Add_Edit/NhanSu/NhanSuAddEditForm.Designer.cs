@@ -300,6 +300,7 @@
             // 
             // radNam
             // 
+            this.radNam.AccessibleName = "";
             this.radNam.AutoSize = true;
             this.radNam.Location = new System.Drawing.Point(4, 7);
             this.radNam.Margin = new System.Windows.Forms.Padding(4);
@@ -309,9 +310,11 @@
             this.radNam.TabStop = true;
             this.radNam.Text = "Nam";
             this.radNam.UseVisualStyleBackColor = true;
+            this.radNam.CheckedChanged += new System.EventHandler(this.radNam_CheckedChanged_1);
             // 
             // radNu
             // 
+            this.radNu.AccessibleName = "";
             this.radNu.AutoSize = true;
             this.radNu.Location = new System.Drawing.Point(60, 6);
             this.radNu.Margin = new System.Windows.Forms.Padding(4);

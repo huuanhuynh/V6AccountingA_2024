@@ -39,6 +39,7 @@
             this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
             this.v6Label9 = new V6Controls.V6Label();
             this.TxtMa_vt = new V6Controls.V6VvarTextBox();
+            this.Chk_Tinh_dc = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,9 +64,9 @@
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Controls.Add(this.txtMaDvcs);
-            this.groupBox1.Location = new System.Drawing.Point(3, 99);
+            this.groupBox1.Location = new System.Drawing.Point(3, 121);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 150);
+            this.groupBox1.Size = new System.Drawing.Size(289, 114);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -116,7 +117,7 @@
             this.dateNgay_ct2.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct2.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgay_ct2.LeaveColor = System.Drawing.Color.White;
-            this.dateNgay_ct2.Location = new System.Drawing.Point(120, 36);
+            this.dateNgay_ct2.Location = new System.Drawing.Point(101, 38);
             this.dateNgay_ct2.Name = "dateNgay_ct2";
             this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
             this.dateNgay_ct2.TabIndex = 3;
@@ -125,7 +126,7 @@
             // 
             this.label1.AccessibleDescription = "FILTERL00003";
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 39);
+            this.label1.Location = new System.Drawing.Point(6, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 2;
@@ -135,7 +136,7 @@
             // 
             this.label2.AccessibleDescription = "FILTERL00002";
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 15);
+            this.label2.Location = new System.Drawing.Point(6, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 0;
@@ -151,7 +152,7 @@
             this.dateNgay_ct1.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgay_ct1.LeaveColor = System.Drawing.Color.White;
-            this.dateNgay_ct1.Location = new System.Drawing.Point(120, 10);
+            this.dateNgay_ct1.Location = new System.Drawing.Point(101, 10);
             this.dateNgay_ct1.Name = "dateNgay_ct1";
             this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
             this.dateNgay_ct1.TabIndex = 1;
@@ -160,7 +161,7 @@
             // 
             this.v6Label9.AccessibleDescription = "FILTERL00020";
             this.v6Label9.AutoSize = true;
-            this.v6Label9.Location = new System.Drawing.Point(5, 63);
+            this.v6Label9.Location = new System.Drawing.Point(6, 69);
             this.v6Label9.Name = "v6Label9";
             this.v6Label9.Size = new System.Drawing.Size(55, 13);
             this.v6Label9.TabIndex = 4;
@@ -177,16 +178,28 @@
             this.TxtMa_vt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtMa_vt.HoverColor = System.Drawing.Color.Yellow;
             this.TxtMa_vt.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_vt.Location = new System.Drawing.Point(121, 61);
+            this.TxtMa_vt.Location = new System.Drawing.Point(102, 66);
             this.TxtMa_vt.Name = "TxtMa_vt";
             this.TxtMa_vt.Size = new System.Drawing.Size(100, 20);
             this.TxtMa_vt.TabIndex = 5;
             this.TxtMa_vt.VVar = "MA_VT";
             // 
+            // Chk_Tinh_dc
+            // 
+            this.Chk_Tinh_dc.AccessibleDescription = "FILTERC00014";
+            this.Chk_Tinh_dc.AutoSize = true;
+            this.Chk_Tinh_dc.Location = new System.Drawing.Point(55, 94);
+            this.Chk_Tinh_dc.Name = "Chk_Tinh_dc";
+            this.Chk_Tinh_dc.Size = new System.Drawing.Size(149, 17);
+            this.Chk_Tinh_dc.TabIndex = 8;
+            this.Chk_Tinh_dc.Text = "Tính PS điều chuyển kho";
+            this.Chk_Tinh_dc.UseVisualStyleBackColor = true;
+            // 
             // AINSO1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.Chk_Tinh_dc);
             this.Controls.Add(this.v6Label9);
             this.Controls.Add(this.TxtMa_vt);
             this.Controls.Add(this.label2);
@@ -195,7 +208,7 @@
             this.Controls.Add(this.dateNgay_ct2);
             this.Controls.Add(this.groupBox1);
             this.Name = "AINSO1";
-            this.Size = new System.Drawing.Size(295, 252);
+            this.Size = new System.Drawing.Size(295, 268);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -216,5 +229,6 @@
         private V6Controls.V6DateTimePick dateNgay_ct1;
         private V6Controls.V6Label v6Label9;
         private V6Controls.V6VvarTextBox TxtMa_vt;
+        private V6Controls.V6CheckBox Chk_Tinh_dc;
     }
 }

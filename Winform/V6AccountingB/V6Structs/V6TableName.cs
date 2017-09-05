@@ -1223,7 +1223,7 @@ namespace V6Structs
                 case V6TableName.Hrpersonal:
                     return lang == "V" ? "Danh mục nhân viên" : "Personal ";
                 case V6TableName.Hrappfamily:
-                    return lang == "V" ? "Thông tin gia đìng" : "Family";
+                    return lang == "V" ? "Thông tin gia đình" : "Family";
                 case V6TableName.Hrlstrelation:
                     return lang == "V" ? "Quan hệ" : "Relation";
                 case V6TableName.Prhlcong:
