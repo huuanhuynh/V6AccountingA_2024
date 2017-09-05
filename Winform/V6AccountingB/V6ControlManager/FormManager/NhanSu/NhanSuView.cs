@@ -229,7 +229,7 @@ namespace V6ControlManager.FormManager.NhanSu
                                 }
                             }
 
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, data);
+                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, null);
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
 

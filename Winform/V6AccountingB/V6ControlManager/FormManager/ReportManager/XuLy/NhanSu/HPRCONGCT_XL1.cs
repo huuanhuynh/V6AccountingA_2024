@@ -441,7 +441,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("SpaceBar: Chọn, F9: Gán tất cả nhân viên = ô đang chọn. F5-Bổ sung");
+            V6ControlFormHelper.SetStatusText2("SpaceBar: Chọn, F9: Gán tất cả nhân viên = ô đang chọn. F5-Bổ sung. F3-Lịch");
         }
 
         protected override void MakeReport2()
