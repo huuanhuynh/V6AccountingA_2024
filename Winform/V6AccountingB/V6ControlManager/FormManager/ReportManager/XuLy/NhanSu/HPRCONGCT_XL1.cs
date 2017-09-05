@@ -176,10 +176,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
-            {   
-                var FIELD = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
-                
+            {
+                if (e.ColumnIndex == -1) return;
 
+                var FIELD = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
                 if (FIELD == cFIELD && (e.RowIndex != selectedRowIndex || e.ColumnIndex != selectedColumnIndex))//e.RowIndex == -1 && 
                 {
                     e.PaintBackground(e.CellBounds, true);
