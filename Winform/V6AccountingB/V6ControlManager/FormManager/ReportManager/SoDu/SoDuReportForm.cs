@@ -840,6 +840,11 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             txtReportTitle.Text = ReportTitle;
             ViewReport();
         }
+
+        private void panel1_Leave(object sender, EventArgs e)
+        {
+            btnNhan.Focus();
+        }
         
     }
 }

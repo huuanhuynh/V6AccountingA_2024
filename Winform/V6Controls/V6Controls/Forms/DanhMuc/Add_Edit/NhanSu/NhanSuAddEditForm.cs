@@ -156,6 +156,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                     string position_id = data_row["POSITION_ID"].ToString().Trim();
 
                     var insert_data = new SortedDictionary<string, object>(key);
+                    insert_data["STT_REC"] = txtSttRec.Text;
                     insert_data.Add("STT_REC0", "00001");
                     insert_data.Add("ORGUNIT_ID", orgunit_id);
                     insert_data.Add("POSITION_ID", position_id);

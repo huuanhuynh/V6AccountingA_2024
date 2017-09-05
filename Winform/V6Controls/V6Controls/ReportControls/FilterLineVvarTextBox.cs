@@ -11,7 +11,14 @@ namespace V6ReportControls
             Operators.Add("start");
             Operator = "start";
             v6VvarTextBox1.TextChanged += delegate {
-                IsSelected = true;
+                if (v6VvarTextBox1.Text.Trim() == string.Empty)
+                {
+                    IsSelected = false;
+                }
+                else
+                {
+                    IsSelected = true;
+                }
             };
         }
 
@@ -122,5 +129,6 @@ namespace V6ReportControls
             }
             return result;
         }
+
     }
 }

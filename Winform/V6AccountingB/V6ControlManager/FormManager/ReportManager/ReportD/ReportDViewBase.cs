@@ -1832,5 +1832,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 this.ShowErrorMessage(GetType() + ".ExportToExcelView " + ex.Message);
             }
         }
+
+        private void panel1_Leave(object sender, EventArgs e)
+        {
+            btnNhan.Focus();
+        }
     }
 }
