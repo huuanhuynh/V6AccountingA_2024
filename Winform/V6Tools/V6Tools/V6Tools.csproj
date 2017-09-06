@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChuyenMaTiengViet.cs" />
+    <Compile Include="LunarSolar.cs" />
     <Compile Include="ExcelDataReader\ExcelDataReader.cs" />
     <Compile Include="ExcelDataReader\ExcelDataReaderCore.cs" />
     <Compile Include="FormHelper.cs" />

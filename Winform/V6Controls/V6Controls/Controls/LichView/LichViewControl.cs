@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using HaUtility.Helper;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools;
 
 namespace V6Controls.Controls.LichView
 {
@@ -16,8 +17,10 @@ namespace V6Controls.Controls.LichView
         public LichViewControl()
         {
             InitializeComponent();
-            Month = DateTime.Now.Month;
-            Year = DateTime.Now.Year;
+            FocusDate = DateTime.Now;
+            Month = FocusDate.Month;
+            Year = FocusDate.Year;
+            
             MyInit();
         }
 
@@ -62,7 +65,7 @@ namespace V6Controls.Controls.LichView
                 if (cellData.Rectangle.Contains(MouseLocation))
                 {
                     cellData.IsHover = true;
-                    DrawCell(cellData.Rectangle.Location, g, cellData);
+                    DrawCell(g, cellData);
                     //if (can_break) break;
                 }
                 else if(cellData.IsHover)
@@ -70,19 +73,21 @@ namespace V6Controls.Controls.LichView
                     //Redraw old hover cell
                     var oldCell = cellData;
                     oldCell.IsHover = false;
-                    DrawCell(oldCell.Rectangle.Location, g, oldCell);
+                    DrawCell(g, oldCell);
                 }
             }
-            //DrawToDay
-            if (CurrentDate.Year == Year && CurrentDate.Month == Month)
+            
+            if (FocusDate.Year == Year && FocusDate.Month == Month)
             {
-                if (DataSource.ContainsKey(CurrentDate.Day))
+                if (DataSource.ContainsKey(FocusDate.Day))
                 {
-                    var cellData = DataSource[CurrentDate.Day];
-                    var pen = new Pen(Color.Blue, 1);
-                    pen.DashStyle = DashStyle.Dash;
-                    g.DrawRectangle(pen, cellData.Rectangle.X + 2, cellData.Rectangle.Y + 2,
-                        cellData.Rectangle.Width - 4, cellData.Rectangle.Height - 4);
+                    DrawToDay(g, DataSource[FocusDate.Day]);
+
+                    //var cellData = DataSource[CurrentDate.Day];
+                    //var pen = new Pen(Color.Blue, 1);
+                    //pen.DashStyle = DashStyle.Dash;
+                    //g.DrawRectangle(pen, cellData.Rectangle.X + 2, cellData.Rectangle.Y + 2,
+                    //    cellData.Rectangle.Width - 4, cellData.Rectangle.Height - 4);
                 }
             }
         }
@@ -139,7 +144,9 @@ namespace V6Controls.Controls.LichView
         }
 
         #region ==== Properties ====
-        public DateTime CurrentDate { get; set; }
+
+        public DateTime FocusDate = DateTime.Now;
+        
         /// <summary>
         /// Dữ liệu
         /// </summary>
@@ -148,17 +155,19 @@ namespace V6Controls.Controls.LichView
         /// <summary>
         /// Màu viền. Không dùng chọn Color.Transparent
         /// </summary>
+        [Category("ColorSetting")]
         public Color BorderColor { get { return _borderColor; } set { _borderColor = value; } }
         private Color _borderColor = Color.Black;
-
+        [Category("ColorSetting")]
         public Color DetailColor { get { return _detailColor; } set { _detailColor = value; } }
         private Color _detailColor = Color.Orange;
-
+        [Category("ColorSetting")]
         public Color HoverBackColor { get { return _hoverBackColor; } set { _hoverBackColor = value; } }
         private Color _hoverBackColor = Color.Aqua;
-
+        [Category("ColorSetting")]
         public Color SatudayColor { get { return _satudayColor; } set { _satudayColor = value; } }
         private Color _satudayColor = Color.Blue;
+        [Category("ColorSetting")]
         public Color SundayColor { get { return _sundayColor; } set { _sundayColor = value; } }
         private Color _sundayColor = Color.Red;
 
@@ -206,8 +215,21 @@ namespace V6Controls.Controls.LichView
             }
         }
 
+        [DefaultValue(true)]
+        public bool ShowAmLich
+        {
+            get { return _showAL; }
+            set
+            {
+                _showAL = value;
+                Invalidate();
+            }
+        }
+        protected bool _showAL = true;
+
         [DefaultValue(false)]
         public bool ShowNextPrevious { get; set; }
+        
 
         #endregion properties
 
@@ -234,14 +256,14 @@ namespace V6Controls.Controls.LichView
         }
         #endregion events
 
-        public void SetData(int year, int month, DateTime currentDate,
+        public void SetData(int year, int month, DateTime focusDate,
             IDictionary<int, LichViewCellData> data,
             IDictionary<string, object> rowData,
             string footerText)
         {
             Year = year;
             Month = month;
-            CurrentDate = currentDate;
+            FocusDate = focusDate;
             DataSource = data;
             RowData = rowData;
             FooterText = footerText;
@@ -359,6 +381,7 @@ namespace V6Controls.Controls.LichView
         {
             try
             {
+                LichViewCellData todayCellData = null;
                 int col = (int)first_day_of_week - 1;
                 if (col == -1) col = 6;
                 int row = 0;
@@ -367,7 +390,7 @@ namespace V6Controls.Controls.LichView
                     int x = basePoint.X + col*col_width;
                     int y = basePoint.Y + row*row_height;
                     Point cellBasePoint = new Point(x, y);
-                    LichViewCellData cellData = DataSource[i];
+                    LichViewCellData cellData = DataSource == null ? null : DataSource[i];
                     if (cellData == null) // Can xem lai !!!!!
                     {
                         cellData = new LichViewCellData(0, new DateTime(Year, Month, i))
@@ -382,9 +405,13 @@ namespace V6Controls.Controls.LichView
                         cellData.Col = col;
                         cellData.Row = row;
                     }
+                    if (i == FocusDate.Day)
+                    {
+                        todayCellData = cellData;
+                    }
                     Rectangle cellRectangle = new Rectangle(cellBasePoint, new Size(col_width, row_height));
                     cellData.Rectangle = cellRectangle;
-                    DrawCell(cellBasePoint, e.Graphics, cellData);
+                    DrawCell(e.Graphics, cellData);
 
                     col++;
                     if (col == 7)
@@ -393,22 +420,23 @@ namespace V6Controls.Controls.LichView
                         row++;
                     }
                 }
-                //DrawToDay
-                if (CurrentDate.Year == Year && CurrentDate.Month == Month)
-                {
-                    if (DataSource.ContainsKey(CurrentDate.Day))
-                    {
-                        var cellData = DataSource[CurrentDate.Day];
-                        var pen = new Pen(Color.Blue, 1);
-                        pen.DashStyle = DashStyle.Dash;
-                        e.Graphics.DrawRectangle(pen, cellData.Rectangle.X + 2, cellData.Rectangle.Y + 2,
-                            cellData.Rectangle.Width - 4, cellData.Rectangle.Height - 4);
-                    }
-                }
+                DrawToDay(e.Graphics, todayCellData);
+
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".DrawBody", ex);
+            }
+        }
+
+        private void DrawToDay(Graphics g, LichViewCellData todayCellData)
+        {
+            if (todayCellData != null)
+            {
+                var pen = new Pen(Color.Blue, 1);
+                pen.DashStyle = DashStyle.Dash;
+                g.DrawRectangle(pen, todayCellData.Rectangle.X + 2, todayCellData.Rectangle.Y + 2,
+                    todayCellData.Rectangle.Width - 4, todayCellData.Rectangle.Height - 4);
             }
         }
 
@@ -418,7 +446,7 @@ namespace V6Controls.Controls.LichView
         private int week_in_month = 5;
         private DayOfWeek first_day_of_week;
         private DateTime ngay_dau_thang;
-        private void DrawCell(Point basePoint0, Graphics g, LichViewCellData cellData)//, int day)//, int col, int row)
+        private void DrawCell(Graphics g, LichViewCellData cellData)//, int day)//, int col, int row)
         {
             var basePoint = cellData.Rectangle.Location;
             //Draw backColor
@@ -457,8 +485,38 @@ namespace V6Controls.Controls.LichView
             brush = new SolidBrush(cellData.Col == 5 ? _satudayColor : (cellData.Col == 6 ? _sundayColor : ForeColor));
             //Draw day
             float emSize = (float)col_width/9;
-            System.Drawing.Font dayFont = new Font(Font.FontFamily, emSize);
+            Font dayFont = new Font(Font.FontFamily, emSize);
             g.DrawString("" + cellData.Day, dayFont, brush, cellData.Rectangle);// basePoint);
+            //Draw LunarDate
+            if (_showAL)
+            {
+                var size = g.MeasureString("" + cellData.Day, dayFont);
+                LunarDate lunarDate = new LunarDate(cellData.Date);
+                //In đỏ ngày tết
+                if(lunarDate.LunarMonth == 1)
+                {
+                    if (lunarDate.LunarDay == 1 || lunarDate.LunarDay == 3 || lunarDate.LunarDay == 3)
+                    {
+                        brush = new SolidBrush(Color.Red);
+                    }
+                }
+                Rectangle lunarRec = new Rectangle(cellData.Rectangle.X,
+                    (int) (cellData.Rectangle.Y + Math.Ceiling(size.Height)),
+                    Width, (int) (Height - size.Height));
+                emSize = (float) col_width/15;
+                Font lunarFont = new Font(Font.FontFamily, emSize);
+                var lunarDay = "" + lunarDate.LunarDay;
+                if (cellData.Date.Day == 1 || lunarDate.LunarDay == 1)
+                {
+                    lunarDay += "/" + lunarDate.LunarMonth;
+                    if (lunarDate.IsLeap)
+                    {
+                        lunarDay += "N";
+                    }
+                }
+                g.DrawString(lunarDay, lunarFont, brush, lunarRec);
+            }
+
             //Draw Data
             //Test
             brush = new SolidBrush(DetailColor);
