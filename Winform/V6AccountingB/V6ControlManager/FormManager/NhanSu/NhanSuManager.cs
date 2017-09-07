@@ -44,6 +44,12 @@ namespace V6ControlManager.FormManager.NhanSu
                     return new ThongTinLuongCoBan();
                 case "HHRINFOR2":
                     return new ThongTinBaoHiem();
+                case "HHRHEALTHPROFILE":
+                    return new ThongTinSucKhoe();
+                case "HHRJOBEXPERIENCE2":
+                    return new KinhNghiemLamViec2();
+                case "HHRJOBEXPERIENCE":
+                    return new KinhNghiemLamViec();
 
 
                 default:

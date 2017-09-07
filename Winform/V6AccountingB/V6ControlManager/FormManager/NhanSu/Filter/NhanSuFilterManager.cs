@@ -19,6 +19,12 @@ namespace V6ControlManager.FormManager.NhanSu.Filter
                     return new HHRINFOR1_filter();
                 case "HHRINFOR2":
                     return new HHRINFOR2_filter();
+                case "HHRHEALTHPROFILE":
+                    return new HHRHEALTHPROFILE_filter();
+                case "HHRJOBEXPERIENCE":
+                    return new HHRJOBEXPERIENCE_filter();
+                case "HHRJOBEXPERIENCE2":
+                    return new HHRJOBEXPERIENCE2_filter();
 
                     #endregion a
             }

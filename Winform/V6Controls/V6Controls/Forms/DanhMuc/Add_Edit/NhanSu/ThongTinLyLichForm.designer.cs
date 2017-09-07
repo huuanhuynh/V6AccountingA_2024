@@ -30,8 +30,6 @@
         {
             this.TXTyear_deceased0 = new V6Controls.V6DateTimeColor();
             this.TXTyear_deceased = new V6Controls.V6ColorTextBox();
-            this.TXTbirth_date0 = new V6Controls.V6DateTimeColor();
-            this.TXTbirth_date = new V6Controls.V6ColorTextBox();
             this.chkPhuThuoc = new System.Windows.Forms.CheckBox();
             this.chkChet = new System.Windows.Forms.CheckBox();
             this.txtTrinhDoHocVan = new V6Controls.V6ColorTextBox();
@@ -66,6 +64,8 @@
             this.txtMidName = new V6Controls.V6ColorTextBox();
             this.txtLastName = new V6Controls.V6ColorTextBox();
             this.v6Label4 = new V6Controls.V6Label();
+            this.TXTbirth_date0 = new V6Controls.V6DateTimeColor();
+            this.TXTbirth_date = new V6Controls.V6ColorTextBox();
             this.SuspendLayout();
             // 
             // TXTyear_deceased0
@@ -107,46 +107,6 @@
             this.TXTyear_deceased.Name = "TXTyear_deceased";
             this.TXTyear_deceased.Size = new System.Drawing.Size(131, 23);
             this.TXTyear_deceased.TabIndex = 127;
-            // 
-            // TXTbirth_date0
-            // 
-            this.TXTbirth_date0.AccessibleName = "birth_date0";
-            this.TXTbirth_date0.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TXTbirth_date0.BackColor = System.Drawing.Color.White;
-            this.TXTbirth_date0.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TXTbirth_date0.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TXTbirth_date0.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TXTbirth_date0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TXTbirth_date0.GrayText = null;
-            this.TXTbirth_date0.HoverColor = System.Drawing.Color.Yellow;
-            this.TXTbirth_date0.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.TXTbirth_date0.LeaveColor = System.Drawing.Color.White;
-            this.TXTbirth_date0.Location = new System.Drawing.Point(139, 108);
-            this.TXTbirth_date0.Margin = new System.Windows.Forms.Padding(5);
-            this.TXTbirth_date0.Name = "TXTbirth_date0";
-            this.TXTbirth_date0.Size = new System.Drawing.Size(106, 23);
-            this.TXTbirth_date0.StringValue = "__/__/____";
-            this.TXTbirth_date0.TabIndex = 124;
-            this.TXTbirth_date0.Text = "__/__/____";
-            this.TXTbirth_date0.Leave += new System.EventHandler(this.TXTbirth_date0_Leave);
-            // 
-            // TXTbirth_date
-            // 
-            this.TXTbirth_date.AccessibleName = "birth_date";
-            this.TXTbirth_date.BackColor = System.Drawing.Color.White;
-            this.TXTbirth_date.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TXTbirth_date.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TXTbirth_date.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TXTbirth_date.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TXTbirth_date.HoverColor = System.Drawing.Color.Yellow;
-            this.TXTbirth_date.LeaveColor = System.Drawing.Color.White;
-            this.TXTbirth_date.Location = new System.Drawing.Point(280, 108);
-            this.TXTbirth_date.Margin = new System.Windows.Forms.Padding(5);
-            this.TXTbirth_date.Name = "TXTbirth_date";
-            this.TXTbirth_date.Size = new System.Drawing.Size(131, 23);
-            this.TXTbirth_date.TabIndex = 125;
             // 
             // chkPhuThuoc
             // 
@@ -276,6 +236,7 @@
             this.txtRelation.Margin = new System.Windows.Forms.Padding(5);
             this.txtRelation.Name = "txtRelation";
             this.txtRelation.NeighborFields = "RELATION_NAME";
+            this.txtRelation.ParentData = null;
             this.txtRelation.Size = new System.Drawing.Size(113, 23);
             this.txtRelation.TabIndex = 1;
             this.txtRelation.ValueField = "ID";
@@ -298,6 +259,7 @@
             this.txtQuanHe.Margin = new System.Windows.Forms.Padding(5);
             this.txtQuanHe.Name = "txtQuanHe";
             this.txtQuanHe.NeighborFields = "RELATION";
+            this.txtQuanHe.ParentData = null;
             this.txtQuanHe.Size = new System.Drawing.Size(179, 23);
             this.txtQuanHe.TabIndex = 1;
             // 
@@ -612,6 +574,46 @@
             this.v6Label4.TabIndex = 3;
             this.v6Label4.Text = "Họ và tên";
             // 
+            // TXTbirth_date0
+            // 
+            this.TXTbirth_date0.AccessibleName = "birth_date0";
+            this.TXTbirth_date0.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TXTbirth_date0.BackColor = System.Drawing.Color.White;
+            this.TXTbirth_date0.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TXTbirth_date0.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TXTbirth_date0.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TXTbirth_date0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TXTbirth_date0.GrayText = null;
+            this.TXTbirth_date0.HoverColor = System.Drawing.Color.Yellow;
+            this.TXTbirth_date0.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.TXTbirth_date0.LeaveColor = System.Drawing.Color.White;
+            this.TXTbirth_date0.Location = new System.Drawing.Point(139, 108);
+            this.TXTbirth_date0.Margin = new System.Windows.Forms.Padding(5);
+            this.TXTbirth_date0.Name = "TXTbirth_date0";
+            this.TXTbirth_date0.Size = new System.Drawing.Size(106, 23);
+            this.TXTbirth_date0.StringValue = "__/__/____";
+            this.TXTbirth_date0.TabIndex = 124;
+            this.TXTbirth_date0.Text = "__/__/____";
+            this.TXTbirth_date0.Leave += new System.EventHandler(this.TXTbirth_date0_Leave);
+            // 
+            // TXTbirth_date
+            // 
+            this.TXTbirth_date.AccessibleName = "birth_date";
+            this.TXTbirth_date.BackColor = System.Drawing.Color.White;
+            this.TXTbirth_date.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TXTbirth_date.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TXTbirth_date.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TXTbirth_date.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TXTbirth_date.HoverColor = System.Drawing.Color.Yellow;
+            this.TXTbirth_date.LeaveColor = System.Drawing.Color.White;
+            this.TXTbirth_date.Location = new System.Drawing.Point(280, 108);
+            this.TXTbirth_date.Margin = new System.Windows.Forms.Padding(5);
+            this.TXTbirth_date.Name = "TXTbirth_date";
+            this.TXTbirth_date.Size = new System.Drawing.Size(131, 23);
+            this.TXTbirth_date.TabIndex = 125;
+            // 
             // ThongTinLyLichForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -699,9 +701,9 @@
         private V6ColorTextBox txtFirstName;
         private V6ColorTextBox txtSttRec0;
         private V6LookupTextBox txtRelation;
-        private V6DateTimeColor TXTbirth_date0;
-        private V6ColorTextBox TXTbirth_date;
         private V6DateTimeColor TXTyear_deceased0;
         private V6ColorTextBox TXTyear_deceased;
+        private V6DateTimeColor TXTbirth_date0;
+        private V6ColorTextBox TXTbirth_date;
     }
 }
