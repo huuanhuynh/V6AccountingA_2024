@@ -183,7 +183,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         if (V6BusinessHelper.Insert(V6TableName.Alkh, dataDic))
                         {
                             remove_list_g.Add(row);
-                            //i--;
                         }
                         else
                         {
