@@ -53,8 +53,10 @@
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtDIEN_THOAI = new V6Controls.V6ColorTextBox();
             this.txtMst = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox2 = new V6Controls.V6ColorTextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtDiaChĩ = new V6Controls.V6ColorTextBox();
@@ -66,8 +68,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtTenDvcs = new V6Controls.V6ColorTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtDIEN_THOAI = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -464,9 +464,9 @@
             this.label19.Location = new System.Drawing.Point(13, 406);
             this.label19.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(182, 17);
+            this.label19.Size = new System.Drawing.Size(153, 17);
             this.label19.TabIndex = 25;
-            this.label19.Text = "Chức danh \"kế toán trưởng\"";
+            this.label19.Text = "Chức danh \"KT trưởng\"";
             // 
             // label1
             // 
@@ -477,6 +477,26 @@
             this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã DVCS";
+            // 
+            // txtDIEN_THOAI
+            // 
+            this.txtDIEN_THOAI.AccessibleName = "DIEN_THOAI";
+            this.txtDIEN_THOAI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDIEN_THOAI.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDIEN_THOAI.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDIEN_THOAI.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDIEN_THOAI.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDIEN_THOAI.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDIEN_THOAI.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDIEN_THOAI.LeaveColor = System.Drawing.Color.White;
+            this.txtDIEN_THOAI.Location = new System.Drawing.Point(549, 259);
+            this.txtDIEN_THOAI.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.txtDIEN_THOAI.Name = "txtDIEN_THOAI";
+            this.txtDIEN_THOAI.Size = new System.Drawing.Size(182, 23);
+            this.txtDIEN_THOAI.TabIndex = 13;
+            this.txtDIEN_THOAI.TextChanged += new System.EventHandler(this.v6ColorTextBox2_TextChanged);
             // 
             // txtMst
             // 
@@ -517,6 +537,17 @@
             this.v6ColorTextBox2.Size = new System.Drawing.Size(274, 23);
             this.v6ColorTextBox2.TabIndex = 18;
             this.v6ColorTextBox2.TextChanged += new System.EventHandler(this.v6ColorTextBox2_TextChanged);
+            // 
+            // label13
+            // 
+            this.label13.AccessibleName = "";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(457, 263);
+            this.label13.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(91, 17);
+            this.label13.TabIndex = 12;
+            this.label13.Text = "Số điện thoại";
             // 
             // label8
             // 
@@ -683,37 +714,6 @@
             this.label2.Size = new System.Drawing.Size(74, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Tên DVCS";
-            // 
-            // label13
-            // 
-            this.label13.AccessibleName = "";
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(457, 263);
-            this.label13.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(91, 17);
-            this.label13.TabIndex = 12;
-            this.label13.Text = "Số điện thoại";
-            // 
-            // txtDIEN_THOAI
-            // 
-            this.txtDIEN_THOAI.AccessibleName = "DIEN_THOAI";
-            this.txtDIEN_THOAI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDIEN_THOAI.BackColor = System.Drawing.SystemColors.Window;
-            this.txtDIEN_THOAI.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtDIEN_THOAI.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtDIEN_THOAI.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtDIEN_THOAI.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtDIEN_THOAI.HoverColor = System.Drawing.Color.Yellow;
-            this.txtDIEN_THOAI.LeaveColor = System.Drawing.Color.White;
-            this.txtDIEN_THOAI.Location = new System.Drawing.Point(549, 259);
-            this.txtDIEN_THOAI.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.txtDIEN_THOAI.Name = "txtDIEN_THOAI";
-            this.txtDIEN_THOAI.Size = new System.Drawing.Size(182, 23);
-            this.txtDIEN_THOAI.TabIndex = 13;
-            this.txtDIEN_THOAI.TextChanged += new System.EventHandler(this.v6ColorTextBox2_TextChanged);
             // 
             // DonViCoSoAddEditForm
             // 
