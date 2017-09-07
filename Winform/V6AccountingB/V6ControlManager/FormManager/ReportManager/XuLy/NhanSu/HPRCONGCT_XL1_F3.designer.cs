@@ -80,10 +80,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.lichView1.DataSource = null;
             this.lichView1.DetailColor = System.Drawing.Color.Orange;
             this.lichView1.FooterHeight = 20;
+            this.lichView1.FooterText = "Footer";
             this.lichView1.HeaderHeight = 40;
             this.lichView1.HoverBackColor = System.Drawing.Color.Aqua;
             this.lichView1.Location = new System.Drawing.Point(12, 12);
             this.lichView1.Name = "lichView1";
+            this.lichView1.RowData = null;
             this.lichView1.SatudayColor = System.Drawing.Color.Blue;
             this.lichView1.Size = new System.Drawing.Size(759, 433);
             this.lichView1.SundayColor = System.Drawing.Color.Red;

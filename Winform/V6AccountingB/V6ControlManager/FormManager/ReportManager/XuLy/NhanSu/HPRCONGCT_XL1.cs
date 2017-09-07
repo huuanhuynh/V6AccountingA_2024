@@ -107,7 +107,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 lichViewdata[i] = cellData;
             }
             string ten_ns = string.Format("[{0}] [{1}]", rowData["MA_NS"], rowData["TEN_NS"].ToString().Trim());
-            new HPRCONGCT_XL1_F3(V6Mode.Edit, FilterControl.Date1.Year, FilterControl.Date1.Month, ten_ns, FilterControl, lichViewdata, rowData).Show();
+            new HPRCONGCT_XL1_F3(V6Mode.Edit, FilterControl.Date1.Year, FilterControl.Date1.Month, ten_ns, FilterControl, lichViewdata, rowData)
+                .ShowDialog(this);
         }
 
         protected override void XuLyXemChiTietF5()
@@ -175,10 +176,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
-            {   
-                var FIELD = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
-                
+            {
+                if (e.ColumnIndex == -1) return;
 
+                var FIELD = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
                 if (FIELD == cFIELD && (e.RowIndex != selectedRowIndex || e.ColumnIndex != selectedColumnIndex))//e.RowIndex == -1 && 
                 {
                     e.PaintBackground(e.CellBounds, true);
@@ -440,7 +441,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("SpaceBar: Chọn, F9: Gán tất cả nhân viên = ô đang chọn. F5-Bổ sung");
+            V6ControlFormHelper.SetStatusText2("SpaceBar: Chọn, F9: Gán tất cả nhân viên = ô đang chọn. F5-Bổ sung. F3-Lịch");
         }
 
         protected override void MakeReport2()

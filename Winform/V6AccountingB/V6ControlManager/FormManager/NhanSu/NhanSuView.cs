@@ -153,6 +153,8 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
+                if (treeListViewAuto1.SelectedItems[0].Level != 2) return;
+
                 if (V6Login.UserRight.AllowAdd("", CurrentTable.ToString().ToUpper() + "6"))
                 {
                     if (CurrentTable != V6TableName.None)
@@ -176,11 +178,12 @@ namespace V6ControlManager.FormManager.NhanSu
                         //            keys[KEYFIELD] = data[KEYFIELD];
                         //        }
                         //    }
+                        var someData = new SortedDictionary<string, object>();
+                        someData["STT_REC"] = data["STT_REC"];
 
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, null, null);
+                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, null, someData);
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
-
                     }
                     else
                     {
@@ -226,7 +229,7 @@ namespace V6ControlManager.FormManager.NhanSu
                                 }
                             }
 
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, data);
+                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, null);
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
 

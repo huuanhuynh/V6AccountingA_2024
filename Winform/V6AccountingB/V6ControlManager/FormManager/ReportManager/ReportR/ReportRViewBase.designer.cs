@@ -59,9 +59,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnNhan = new System.Windows.Forms.Button();
             this.panel0 = new System.Windows.Forms.Panel();
             this.grbNgonNgu = new System.Windows.Forms.GroupBox();
-            this.rTiengViet = new System.Windows.Forms.RadioButton();
             this.rBothLang = new System.Windows.Forms.RadioButton();
             this.rEnglish = new System.Windows.Forms.RadioButton();
+            this.rTiengViet = new System.Windows.Forms.RadioButton();
             this.grbTienTe = new System.Windows.Forms.GroupBox();
             this.rNgoaiTe = new System.Windows.Forms.RadioButton();
             this.rTienViet = new System.Windows.Forms.RadioButton();
@@ -359,21 +359,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.grbNgonNgu.TabStop = false;
             this.grbNgonNgu.Text = "Ngôn ngữ bc (Rpt Language)";
             // 
-            // rTiengViet
-            // 
-            this.rTiengViet.AccessibleDescription = "REPORTR00004";
-            this.rTiengViet.AutoSize = true;
-            this.rTiengViet.Checked = true;
-            this.rTiengViet.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.rTiengViet.Location = new System.Drawing.Point(6, 13);
-            this.rTiengViet.Name = "rTiengViet";
-            this.rTiengViet.Size = new System.Drawing.Size(73, 17);
-            this.rTiengViet.TabIndex = 1;
-            this.rTiengViet.TabStop = true;
-            this.rTiengViet.Text = "Tiếng Việt";
-            this.rTiengViet.UseVisualStyleBackColor = true;
-            this.rTiengViet.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
-            // 
             // rBothLang
             // 
             this.rBothLang.AccessibleDescription = "REPORTR00006";
@@ -401,6 +386,21 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.rEnglish.Text = "English";
             this.rEnglish.UseVisualStyleBackColor = true;
             this.rEnglish.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
+            // 
+            // rTiengViet
+            // 
+            this.rTiengViet.AccessibleDescription = "REPORTR00004";
+            this.rTiengViet.AutoSize = true;
+            this.rTiengViet.Checked = true;
+            this.rTiengViet.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rTiengViet.Location = new System.Drawing.Point(6, 13);
+            this.rTiengViet.Name = "rTiengViet";
+            this.rTiengViet.Size = new System.Drawing.Size(73, 17);
+            this.rTiengViet.TabIndex = 1;
+            this.rTiengViet.TabStop = true;
+            this.rTiengViet.Text = "Tiếng Việt";
+            this.rTiengViet.UseVisualStyleBackColor = true;
+            this.rTiengViet.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
             // 
             // grbTienTe
             // 
@@ -453,6 +453,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(287, 435);
             this.panel1.TabIndex = 0;
+            this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
             // btnSuaMau
             // 

@@ -305,6 +305,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(508, 135);
             this.panel1.TabIndex = 0;
+            this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
             // crystalReportViewer1
             // 
@@ -479,6 +480,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.F_FormClosed);
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
             this.ResizeEnd += new System.EventHandler(this.F_ResizeEnd);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.grbDieuKienLoc, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.Controls.SetChildIndex(this.crystalReportViewer1, 0);

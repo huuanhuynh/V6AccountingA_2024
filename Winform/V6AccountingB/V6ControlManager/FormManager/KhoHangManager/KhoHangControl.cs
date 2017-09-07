@@ -282,5 +282,10 @@ namespace V6ControlManager.FormManager.KhoHangManager
         {
             panel1.Focus();
         }
+
+        public void DrawToGraphics(Graphics graphics, Point basePoint)
+        {
+            Rectangle rec = new Rectangle(basePoint, new Size(Width, Height));
+        }
     }
 }

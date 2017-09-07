@@ -135,6 +135,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(287, 577);
             this.panel1.TabIndex = 0;
+            this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
             // btnHuy
             // 

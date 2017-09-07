@@ -677,8 +677,8 @@ namespace V6Controls
             }
             else if (e.KeyData == (Keys.Control | Keys.Shift | Keys.I))
             {
-                var message = string.Format("Name({0}), AccessibleName({1}), AccessibleDescription({2}),",
-                    Name, AccessibleName, AccessibleDescription);
+                var message = string.Format("{0}({1}), Aname({2}), Adescription({3}),",
+                    GetType(), Name, AccessibleName, AccessibleDescription);
                 V6ControlFormHelper.SetStatusText(message);
                 Clipboard.SetText(message);
             }

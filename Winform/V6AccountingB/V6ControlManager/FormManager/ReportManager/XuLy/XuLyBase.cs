@@ -1040,6 +1040,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             SetStatus2Text();
         }
+
+        private void panel1_Leave(object sender, EventArgs e)
+        {
+            btnNhan.Focus();
+        }
         
         
     }

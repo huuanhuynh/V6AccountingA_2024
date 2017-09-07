@@ -230,6 +230,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                   
                 //_khoHang.Dock = DockStyle.Fill;
                 //panel1.Controls.Add(_khoHang);
+                listKho.Add(_khoHang);
             }
             catch (Exception ex)
             {
@@ -242,12 +243,17 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             DrawKhoHang(e.Graphics);
         }
 
-        List<KhoHangControl> listKho = new List<KhoHangControl>(); 
+        List<KhoHangControlDraw> listKho = new List<KhoHangControlDraw>(); 
         private void DrawKhoHang(Graphics graphics)
         {
             try
             {
                 HaUtility.Helper.HDrawing.DrawLine(graphics, new Point(0, 0), new Point(100, 100));
+                foreach (KhoHangControlDraw kho in listKho)
+                {
+                    Point basePoint = new Point(1,1);
+                    kho.DrawToGraphics(graphics, basePoint);
+                }
             }
             catch (Exception ex)
             {

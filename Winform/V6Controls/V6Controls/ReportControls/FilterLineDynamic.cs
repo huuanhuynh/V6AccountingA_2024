@@ -63,7 +63,18 @@ namespace V6ReportControls
 
         void FilterLineDynamic_TextChanged(object sender, EventArgs e)
         {
-            IsSelected = true;
+            if (_textBox != null && _textBox.Text.Trim() == string.Empty)
+            {
+                IsSelected = false;
+            }
+            else if (_vtextBox != null && _vtextBox.Text.Trim() == string.Empty)
+            {
+                IsSelected = false;
+            }
+            else
+            {
+                IsSelected = true;
+            }
             OnTextChanged(e);
         }
 

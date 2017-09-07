@@ -337,5 +337,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         protected int _oldIndex = -1;
 
+        private void panel1_Leave(object sender, EventArgs e)
+        {
+            btnNhan.Focus();
+        }
+
     }
 }

@@ -451,6 +451,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(287, 435);
             this.panel1.TabIndex = 0;
+            this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
             // btnSuaMau
             // 
@@ -519,7 +520,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.Controls.Add(this.grbDieuKienLoc);
             this.Name = "ReportTreeViewBase";
             this.Size = new System.Drawing.Size(974, 654);
-            
             this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.ReportTreeViewBase_VisibleChanged);
             this.contextMenuStrip1.ResumeLayout(false);

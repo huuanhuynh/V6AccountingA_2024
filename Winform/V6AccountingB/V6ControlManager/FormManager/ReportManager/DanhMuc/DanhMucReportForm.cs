@@ -1360,6 +1360,11 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             LoadComboboxSource();
         }
 
+        private void panel1_Leave(object sender, EventArgs e)
+        {
+            btnNhan.Focus();
+        }
+
         
     }
 }

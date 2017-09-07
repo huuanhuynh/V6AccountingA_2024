@@ -3693,10 +3693,9 @@ namespace V6Controls.Forms
             if (control == null) return;
             if (e.Button == MouseButtons.Middle)
             {
-                var message = string.Format("Name({0}), AccessibleName({1}), AccessibleDescription({2}),",
-                    control.Name,
-                    control.AccessibleName,
-                    control.AccessibleDescription);
+                var message = string.Format("{0}({1}), Aname({2}), Adescription({3}),",
+                    control.GetType(), control.Name, control.AccessibleName, control.AccessibleDescription);
+                
                 SetStatusText(message);
                 Clipboard.SetText(message);
             }
