@@ -503,7 +503,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
                         V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "F8", plist);
                         remove_list_g.Add(row);
-                        //i--;
                     }
                 }
                 catch (Exception ex)

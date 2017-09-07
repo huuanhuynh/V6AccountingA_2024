@@ -138,7 +138,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         view.Dock = DockStyle.Fill;
                         view.FilterControl.InitFilters = oldKeys;
 
-                        view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
+                        view.FilterControl.SetParentRow(row.ToDataDictionary());
 
                         //view.AutoPrint = FilterControl.Check1;
                         view.AutoPrint = InLienTuc;
@@ -159,7 +159,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         
                         
                         remove_list_g.Add(row);
-                        //i--;
                     }
                 }
                 catch (Exception ex)
@@ -215,12 +214,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-
                 if (this.ShowConfirmMessage("Có chắc chắn in liên tục không?") != DialogResult.Yes)
                 {
                     return;
                 }
-
 
                 InLienTuc = false;
 
@@ -260,7 +257,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 t.IsBackground = true;
                 t.Start();
                 tF10.Start();
-
             }
             catch (Exception ex)
             {

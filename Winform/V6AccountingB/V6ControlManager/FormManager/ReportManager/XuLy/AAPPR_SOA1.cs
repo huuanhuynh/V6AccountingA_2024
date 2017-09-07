@@ -81,7 +81,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "F8", plist);
                         remove_list_g.Add(row);
-                        //i--;
                     }
                 }
                 catch (Exception ex)
@@ -169,7 +168,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "F9", plist);
                         remove_list_g.Add(row);
-                        //i--;
                     }
                 }
                 catch (Exception ex)

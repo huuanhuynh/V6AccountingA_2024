@@ -161,7 +161,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         f.ShowDialog(this);
                         
                         remove_list_g.Add(row);
-                        //i--;
                     }
                 }
                 catch (Exception ex)
