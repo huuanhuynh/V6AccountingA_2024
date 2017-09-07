@@ -193,5 +193,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                 this.ShowErrorMessage(GetType() + " BoSung_Click " + ex.Message);
             }
         }
+
+        private void radNam_CheckedChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (IsReady) txtgender.Text = radNam.Checked ? "1" : "0";
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".radNam_CheckedChanged", ex);
+            }
+        }
     }
 }
