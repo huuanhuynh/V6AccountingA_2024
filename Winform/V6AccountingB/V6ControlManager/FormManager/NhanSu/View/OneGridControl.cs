@@ -343,10 +343,12 @@ namespace V6ControlManager.FormManager.NhanSu.View
                     _gridViewData = ds.Tables[0];
                     gridView1.DataSource = _gridViewData;
                     FormatGridView();
-                    
+                    gridView1.Focus();
                     if (_gridViewData.Rows.Count > 0)
+                    {
                         V6ControlFormHelper.SetFormDataDictionary(ThongTinControl2, _gridViewData.Rows[0].ToDataDictionary());
-                    
+                    }
+                    gridView1.Focus();
                 }
             }
             catch (Exception ex)

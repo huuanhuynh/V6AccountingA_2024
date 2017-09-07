@@ -23,16 +23,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                 //{
                 //    TxTbirth_date.Value = ObjectAndString.ObjectToDate(TXTbirth_date.Text);
                 //}
-                if (txtgender.Text == "1")
-                {
-                    radNam.Checked = true;
-                    radNu.Checked = false;
-                }
-                else
-                {
-                    radNam.Checked = false;
-                    radNu.Checked = true;
-                }
             }
             catch (Exception ex)
             {
@@ -203,6 +193,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".radNam_CheckedChanged", ex);
+            }
+        }
+
+        private void NhanSuAddEditForm_Load(object sender, EventArgs e)
+        {
+            if (txtgender.Text == "1")
+            {
+                radNam.Checked = true;
+                radNu.Checked = false;
+            }
+            else
+            {
+                radNam.Checked = false;
+                radNu.Checked = true;
             }
         }
     }

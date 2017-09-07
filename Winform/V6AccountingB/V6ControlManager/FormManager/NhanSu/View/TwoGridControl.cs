@@ -50,9 +50,17 @@ namespace V6ControlManager.FormManager.NhanSu.View
 
         public override void LoadData(string code)
         {
-            if (ThongTinControl != null)
+            try
             {
-                ThongTinControl.LoadData(code);
+                if (ThongTinControl != null)
+                {
+                    ThongTinControl.LoadData(code);
+                }
+                gridView1.Focus();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadData", ex);
             }
         }
 

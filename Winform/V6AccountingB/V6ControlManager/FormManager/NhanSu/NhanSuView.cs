@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -279,7 +280,7 @@ namespace V6ControlManager.FormManager.NhanSu
                                 {
                                     this.ShowInfoMessage(V6Text.NoUID);
                                 }
-                                if (selected_item_data.ContainsKey("UID"))
+                                if (selected_item_data.ContainsKey("STT_REC"))
                                 {
                                     keys["STT_REC"] = selected_item_data["STT_REC"];
                                 }
@@ -426,7 +427,7 @@ namespace V6ControlManager.FormManager.NhanSu
                     {
                         var selected_item = treeListViewAuto1.SelectedItems[0];
                         var data = treeListViewAuto1.SelectedItemData;
-                        
+                        object UID = data["UID"];
                         var id = V6Lookup.ValueByTableName[CurrentTable.ToString(), "vValue"].ToString().Trim();
                         var listTable =
                             V6Lookup.ValueByTableName[CurrentTable.ToString(), "ListTable"].ToString().Trim();
@@ -449,32 +450,43 @@ namespace V6ControlManager.FormManager.NhanSu
 
                         if (data.ContainsKey("UID"))
                         {
-                            var keys = new SortedDictionary<string, object> {{"UID", data["UID"]}};
+                            var keys = new SortedDictionary<string, object> {{"UID", UID}};
                             
 
                             if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + value, "Xóa?")
                                 == DialogResult.Yes)
                             {
-                                isDeleted = _categories.Delete(CurrentTable, keys);
+                                SqlParameter[] plist =
+                                {
+                                    new SqlParameter("@UID", UID.ToString()),
+                                };
+
+                                if (V6BusinessHelper.ExecuteProcedureNoneQuery("VPH_DELETE_AUTO_FROM_PERSONAL", plist) > 0)
+                                {
+                                    isDeleted = 1;
+                                }
+                                if (_categories.Delete(CurrentTable, keys) > 0)
+                                {
+                                    isDeleted++;
+                                }
                             }
                             else
                             {
                                 return;
                             }
                         }
-                        //else
-                        //{
-                        //    this.ShowWarningMessage("Không có khóa. Vẫn xóa dựa trên dữ liệu đang có!");
 
-                        //    isDeleted = _categories.Delete(CurrentTable, data);
-                        //}
-
-                        if (isDeleted > 0)
+                        if (isDeleted == 2)
                         {
                             //ReLoad();
                             //treeListViewAuto1.Items.Remove(selected_item);
                             selected_item.Remove();
                             V6ControlFormHelper.ShowMessage(V6Text.DeleteSuccess);
+                        }
+                        else if (isDeleted == 1)
+                        {
+                            this.WriteToLog(GetType() + ".DoDelete", "Xóa dang dở UID:" + UID);
+                            V6ControlFormHelper.ShowMessage("Xóa dang dở UID:" + UID);
                         }
                         else
                         {
@@ -516,8 +528,10 @@ namespace V6ControlManager.FormManager.NhanSu
                             var data = treeListViewAuto1.SelectedItemData;
 
                             var keys = new SortedDictionary<string, object>();
-                            if (treeListViewAuto1.Columns.ContainsKey("UID"))
+                            if (data.ContainsKey("UID"))
                                 keys.Add("UID", data["UID"].ToString());
+                            if (data.ContainsKey("STT_REC"))
+                                keys.Add("STT_REC", data["STT_REC"].ToString());
 
                             if (KeyFields != null)
                                 foreach (var keyField in KeyFields)
@@ -529,7 +543,7 @@ namespace V6ControlManager.FormManager.NhanSu
                                     }
                                 }
 
-                            var f = new FormAddEdit(CurrentTable, V6Mode.View, keys, data);
+                            var f = new FormAddEdit(CurrentTable, V6Mode.View, keys, null);
                             f.ShowDialog(this);
                         }
                         else

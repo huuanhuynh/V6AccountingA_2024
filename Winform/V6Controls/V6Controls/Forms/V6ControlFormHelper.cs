@@ -995,7 +995,7 @@ namespace V6Controls.Forms
         {
             var tagString = string.Format(";{0};", control.Tag ?? "");
 
-            var cancelall = control is DataGridView || tagString.Contains(";cancelall;");
+            var cancelall = tagString.Contains(";cancelall;");
             if (cancelall)
                 goto CANCELALL;
             var cancel = tagString != "" && tagString.Contains(";cancel;");
@@ -1038,11 +1038,18 @@ namespace V6Controls.Forms
 
                 if (disable) control.Enabled = false;
                 if (enable) control.Enabled = true;
+                
+                goto CANCELALL;
             }
-            else if (control is RichTextBox)
+            else if (control is TextBoxBase)
             {
-                ((RichTextBox)control).ReadOnly = readonli || readonl2;
+                ((TextBoxBase)control).ReadOnly = readonli || readonl2;
             }
+            //else
+            //{
+            //    if (readonli || readonl2) control.Enabled = false;
+            //    else control.Enabled = true;
+            //}
             
             CANCEL:
             if (control.Controls.Count > 0)
