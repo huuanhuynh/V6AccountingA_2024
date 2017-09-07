@@ -115,9 +115,7 @@ namespace V6Structs
         Notable,
         V6option,
         V6soft,
-        Abvt,
-    
-     
+        Abvt,   
         Abkh,
         Abtk,
         Ablo,
@@ -209,6 +207,8 @@ namespace V6Structs
         Alreport,
         Alnhvitri,
         Alkuct,
+        hrjobexperience,
+        hrjobexperience2
     }
 
     public static class V6TableHelper

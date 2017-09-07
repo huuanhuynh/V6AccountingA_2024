@@ -8,120 +8,64 @@ using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
-    public partial class KinhNghiemLamViec2 : V6FormControl
+    public partial class KinhNghiemLamViec2 : AddEditControlVirtual
     {
-        public SortedDictionary<string, object> DataOld;
-        public SortedDictionary<string, object> DataDic { get; set; }
-        public SortedDictionary<string, object> _keys = new SortedDictionary<string, object>();
         public KinhNghiemLamViec2()
         {
             InitializeComponent();
-            MyInit();
-            V6ControlFormHelper.SetFormControlsReadOnly(this,true);
-            
+           
         }
 
-        public void MyInit()
+        public override void DoBeforeEdit()
         {
-            V6ControlFormHelper.SetFormControlsReadOnly(this, true);
-            buttonSua.Enabled = false;
-            buttonNhan.Enabled = false;
-            buttonHuy.Enabled = false;
+
+           
+
         }
-       
-        public  void LoadData(string stt_rec)
+        public override void DoBeforeAdd()
+        {
+
+           
+
+        }
+
+        public override void SetDataKeys(SortedDictionary<string, object> keyData)
         {
             try
             {
-                var _keys = new SortedDictionary<string, object> { { "STT_REC",stt_rec } };
-                if (_keys != null && _keys.Count > 0)
+                //base.SetDataKeys(keys);
+                var keys = new Dictionary<string, object>();
+                keys["STT_REC"] = keyData["STT_REC"];
+                keys["STT_REC0"] = keyData["STT_REC0"];
+
+                var data = V6BusinessHelper.Select(V6TableName.Hrappfamily, keys, "*").Data;
+                if (data != null)
                 {
-                    var selectResult = V6BusinessHelper.Select("vHRJOBEXPERIENCE2", _keys,"*","","");
-                    if (selectResult.Data.Rows.Count == 1)
+                    if (data.Rows.Count == 1)
                     {
-                        DataOld = selectResult.Data.Rows[0].ToDataDictionary();
-                        V6ControlFormHelper.SetFormDataDictionary(this, DataOld);
-                    }
-                    else if (selectResult.Data.Rows.Count > 1)
-                    {
-                        throw new Exception("Lấy dữ liệu sai >1");
+                        SetData(data.Rows[0].ToDataDictionary());
                     }
                     else
                     {
-                        throw new Exception("Không lấy được dữ liệu!");
+                        throw new Exception(string.Format("{0} key {1} {2} có {3} dòng dữ liệu.",
+                            V6TableName.Hrappfamily, keys["STT_REC"], keys["STT_REC0"], data.Rows.Count));
                     }
                 }
-                buttonSua.Enabled = true;
-                buttonNhan.Enabled = false;
-                buttonHuy.Enabled = false;
-              
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".LoadData", ex);
-            }
-           
-        }
-        public  int UpdateData()
-        {
-            try
-            {
-
-               // FixFormData();
-                DataDic = GetData();
-                //ValidateData();
-                //Lấy thêm UID từ DataEditNếu có.
-                if (DataOld.ContainsKey("UID"))
+                else
                 {
-                    _keys["UID"] = DataOld["UID"];
+                    throw new Exception(string.Format("{0} key {1} {2} Select null.",
+                            V6TableName.Hrappfamily, keys["STT_REC"], keys["STT_REC0"]));
                 }
-                var result = V6BusinessHelper.Update("hrgeneral2", DataDic, _keys);
-                return result;
             }
             catch (Exception ex)
             {
-                this.ShowInfoMessage(ex.Message);
-                this.WriteExLog(GetType() + ".UpdateData", ex);
-                return 0;
+                Logger.WriteToLog(V6Login.ClientName + " " +GetType() + ".SetDataKeys " + ex.Message);
             }
         }
-        public override void SetData(IDictionary<string, object> d)
-        {
 
-            LoadData(d["STT_REC"].ToString().Trim());
+       
 
-        }
+     
 
-        private void buttonSua_Click_1(object sender, EventArgs e)
-        {
-            buttonSua.Enabled = false;
-            buttonNhan.Enabled = true;
-            buttonHuy.Enabled = true;
-            V6ControlFormHelper.SetFormControlsReadOnly(this, false);
-           
-        }
-
-        private void buttonNhan_Click_1(object sender, EventArgs e)
-        {
-            buttonNhan.Enabled = false;
-            buttonHuy.Enabled = false;
-            buttonSua.Enabled = true;
-            V6ControlFormHelper.SetFormControlsReadOnly(this, true);
-            UpdateData();
-        }
-
-        private void buttonHuy_Click_1(object sender, EventArgs e)
-        {
-            buttonSua.Enabled = true;
-            buttonNhan.Enabled = false;
-            buttonHuy.Enabled = false;
-            V6ControlFormHelper.SetFormDataDictionary(this, DataOld);
-            V6ControlFormHelper.SetFormControlsReadOnly(this, true);
-        }
-
-        private void txtworkdate2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
