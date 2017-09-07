@@ -138,7 +138,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         view.Dock = DockStyle.Fill;
                         view.FilterControl.InitFilters = oldKeys;
 
-                        view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
+                        view.FilterControl.SetParentRow(row.ToDataDictionary());
 
                         //view.AutoPrint = FilterControl.Check1;
                         view.AutoPrint = InLienTuc;
