@@ -300,6 +300,24 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\HINFOR_NS.designer.cs">
       <DependentUpon>HINFOR_NS.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec2.designer.cs">
+      <DependentUpon>KinhNghiemLamViec2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec.designer.cs">
+      <DependentUpon>KinhNghiemLamViec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinSucKhoe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinSucKhoe.designer.cs">
+      <DependentUpon>ThongTinSucKhoe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinCapDoNgoaiNguForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1363,6 +1381,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\HINFOR_NS.resx">
       <DependentUpon>HINFOR_NS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec2.resx">
+      <DependentUpon>KinhNghiemLamViec2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec.resx">
+      <DependentUpon>KinhNghiemLamViec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinSucKhoe.resx">
+      <DependentUpon>ThongTinSucKhoe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinCapDoNgoaiNguForm.resx">
       <DependentUpon>ThongTinCapDoNgoaiNguForm.cs</DependentUpon>

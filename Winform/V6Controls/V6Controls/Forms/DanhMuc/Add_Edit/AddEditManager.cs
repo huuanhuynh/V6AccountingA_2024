@@ -312,6 +312,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Hrappfamily:
                     FormControl = new ThongTinLyLichForm();
                     break;
+                
                 case V6TableName.Hrlstrelation:
                     FormControl = new ThongTinQuanHeForm();
                     break;
@@ -401,6 +402,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     break;
                 case V6TableName.Alnhvitri:
                     FormControl = new NhomViTriAddEditForm();
+                    break;
+                case V6TableName.hrjobexperience:
+                    FormControl = new KinhNghiemLamViec();
+                    break;
+                case V6TableName.hrjobexperience2:
+                    FormControl = new KinhNghiemLamViec2();
                     break;
                 case V6TableName.Notable:
                 default:

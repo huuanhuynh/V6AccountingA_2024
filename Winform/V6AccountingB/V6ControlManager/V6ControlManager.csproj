@@ -1408,11 +1408,29 @@
       <DependentUpon>Menu3Control.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\MenuManager\MenuManager.cs" />
+    <Compile Include="FormManager\NhanSu\Filter\HHRHEALTHPROFILE_filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\NhanSu\Filter\HHRHEALTHPROFILE_filter.Designer.cs">
+      <DependentUpon>HHRHEALTHPROFILE_filter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\NhanSu\Filter\HHRINFOR2_filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\NhanSu\Filter\HHRINFOR2_filter.Designer.cs">
       <DependentUpon>HHRINFOR2_filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\NhanSu\Filter\HHRJOBEXPERIENCE2_filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\NhanSu\Filter\HHRJOBEXPERIENCE2_filter.Designer.cs">
+      <DependentUpon>HHRJOBEXPERIENCE2_filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\NhanSu\Filter\HHRJOBEXPERIENCE_filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\NhanSu\Filter\HHRJOBEXPERIENCE_filter.Designer.cs">
+      <DependentUpon>HHRJOBEXPERIENCE_filter.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\NhanSu\Filter\HRAPPFAMILY_filter.cs">
       <SubType>UserControl</SubType>
@@ -5366,8 +5384,17 @@
     <EmbeddedResource Include="FormManager\MenuManager\Menu3Control.resx">
       <DependentUpon>Menu3Control.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\NhanSu\Filter\HHRHEALTHPROFILE_filter.resx">
+      <DependentUpon>HHRHEALTHPROFILE_filter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\NhanSu\Filter\HHRINFOR2_filter.resx">
       <DependentUpon>HHRINFOR2_filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\NhanSu\Filter\HHRJOBEXPERIENCE2_filter.resx">
+      <DependentUpon>HHRJOBEXPERIENCE2_filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\NhanSu\Filter\HHRJOBEXPERIENCE_filter.resx">
+      <DependentUpon>HHRJOBEXPERIENCE_filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\NhanSu\Filter\HRAPPFAMILY_filter.resx">
       <DependentUpon>HRAPPFAMILY_filter.cs</DependentUpon>
