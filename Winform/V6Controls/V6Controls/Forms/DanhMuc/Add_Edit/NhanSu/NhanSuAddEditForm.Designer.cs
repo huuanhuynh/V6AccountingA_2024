@@ -2013,6 +2013,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "NhanSuAddEditForm";
             this.Size = new System.Drawing.Size(736, 658);
+            this.Load += new System.EventHandler(this.NhanSuAddEditForm_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panelGioiTinh.ResumeLayout(false);

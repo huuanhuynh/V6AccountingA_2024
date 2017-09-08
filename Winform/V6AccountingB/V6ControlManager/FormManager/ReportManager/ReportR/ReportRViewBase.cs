@@ -1294,6 +1294,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                             selectedMaCt = "IXB"; // phiếu xuất điều chuyển
                             selectedSttRec = selectedSttRec.Left(10) + selectedMaCt;
                         }
+                        else if (",AP1,POA,POB,POC,".Contains(selectedMaCt) && dataGridView1.Columns.Contains("STT_REC_PN"))
+                        {
+                            selectedSttRec = currentRow.Cells["STT_REC_PN"].Value.ToString().Trim();
+                        }
 
                         if (!string.IsNullOrEmpty(selectedSttRec) && !string.IsNullOrEmpty(selectedMaCt))
                         {
