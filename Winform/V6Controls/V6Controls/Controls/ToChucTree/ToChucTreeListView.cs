@@ -9,12 +9,12 @@ using V6Init;
 using V6Tools;
 using V6Tools.V6Convert;
 
-namespace V6Controls.Controls.TreeView
+namespace V6Controls.Controls.ToChucTree
 {
-    public class TreeListViewAuto : TreeListView
+    public class ToChucTreeListView : TreeListView
     {
         #region ==== Contructor ====
-        public TreeListViewAuto()
+        public ToChucTreeListView()
         {
             InitializeComponent();
         }
@@ -23,14 +23,14 @@ namespace V6Controls.Controls.TreeView
         {
             this.SuspendLayout();
             // 
-            // TreeListViewAuto
+            // ToChucTreeListView
             // 
-            this.SelectedIndexChanged += new System.EventHandler(this.TreeListViewAuto_SelectedIndexChanged);
+            this.SelectedIndexChanged += new System.EventHandler(this.ToChucTreeListView_SelectedIndexChanged);
             this.ResumeLayout(false);
 
         }
 
-        private void TreeListViewAuto_SelectedIndexChanged(object sender, EventArgs e)
+        private void ToChucTreeListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SelectedItems == null || SelectedItems.Count == 0) return;
             var selectedItem = SelectedItems[0];
@@ -82,25 +82,31 @@ namespace V6Controls.Controls.TreeView
         /// <summary>
         /// Set GroupList and NameList fields
         /// </summary>
-        public void SetGroupAndNameFieldList(string[] groupFieldList, string[] groupNameFieldList)
+        public void SetGroupAndNameFieldList(string idField, string textField)
         {
-            _groupFieldList = groupFieldList;
-            _groupNameFieldList = groupNameFieldList;
+            ID_Field = idField;
+            Text_Field = textField;
             ResetViewData();
             OnGroupListChanged();
         }
 
-        public string[] GetGroupFieldList()
+        public string GetIDField()
         {
-            return _groupFieldList;
+            return ID_Field;
         }
-        public string[] GetGroupNameFieldList()
+        public string GetTextField()
         {
-            return _groupNameFieldList;
+            return Text_Field;
         }
         
-        private string[] _groupFieldList;
-        private string[] _groupNameFieldList;
+        public string ID_Field { get; set; }
+        public string Text_Field { get; set; }
+        public string ImageIndex_Field { get; set; }
+        [DefaultValue("parent")]
+        public string ParentIdField { get { return _parent_field.ToUpper(); } set { _parent_field = value; } }
+        private string _parent_field = "parent";
+        public string Sort_Field { get { return _sortfield; } set { _sortfield = value; } }
+        public string _sortfield = "fsort";
 
         [DefaultValue(true)]
         public bool ViewName { get { return _view_name; }
@@ -115,18 +121,18 @@ namespace V6Controls.Controls.TreeView
 
         private bool _view_name = true;
 
-        /// <summary>
-        /// Kiểm tra dòng đang chọn có phải là cấp cuối (chi tiết) hay không.
-        /// </summary>
-        [Browsable(false)]
-        public bool IsDetailSelected
-        {
-            get
-            {
-                if (SelectedItems.Count == 0) return false;
-                return SelectedItems[0].Level == MaxLevel;
-            }
-        }
+        ///// <summary>
+        ///// Kiểm tra dòng đang chọn có phải là cấp cuối (chi tiết) hay không.
+        ///// </summary>
+        //[Browsable(false)]
+        //public bool IsDetailSelected
+        //{
+        //    get
+        //    {
+        //        if (SelectedItems.Count == 0) return false;
+        //        return SelectedItems[0].Level == MaxLevel;
+        //    }
+        //}
 
         /// <summary>
         /// Dữ liệu của dòng đang chọn.
@@ -145,38 +151,19 @@ namespace V6Controls.Controls.TreeView
             }
         }
 
-        public int MaxLevel
-        {
-            get
-            {
-                if (_groupFieldList != null)
-                {
-                    return _groupFieldList.Length - 1;
-                }
-                return -1;
-            }
-        }
+        //public int MaxLevel
+        //{
+        //    get
+        //    {
+        //        if (ID_Field != null)
+        //        {
+        //            return ID_Field.Length - 1;
+        //        }
+        //        return -1;
+        //    }
+        //}
 
-        private SortedDictionary<string, object> GetItemData(TreeListViewItem item)
-        {
-            try
-            {
-                if (item.Level == MaxLevel) return ((DataRow)item.Tag).ToDataDictionary();
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteToLog("TreeListViewAuto " + ex.Message, Application.ProductName);
-            }
-
-            var result = new SortedDictionary<string, object>();
-            if (item.Level > 0)
-            {
-                result = GetItemData(item.Parent);
-            }
-            result.Add(_groupFieldList[item.Level].ToUpper(), item.Name);
-            
-            return result;
-        }
+        
 
         #endregion properties
 
@@ -212,20 +199,31 @@ namespace V6Controls.Controls.TreeView
         #endregion events
 
 
-        /// <summary>
-        /// Kiểm tra mã có nằm trong danh sách nhóm hay không.
-        /// </summary>
-        /// <param name="NAME">UPPER</param>
-        /// <returns></returns>
-        private bool IsInGroup(string NAME)
+        ///// <summary>
+        ///// Kiểm tra mã có nằm trong danh sách nhóm hay không.
+        ///// </summary>
+        ///// <param name="NAME">UPPER</param>
+        ///// <returns></returns>
+        //private bool IsInGroup(string NAME)
+        //{
+        //    foreach (string group in ID_Field)
+        //    {
+        //        if (NAME == group.ToUpper()) return true;
+        //    }
+        //    return false;
+        //}
+        private SortedDictionary<string, object> GetItemData(TreeListViewItem item)
         {
-            foreach (string group in _groupFieldList)
+            try
             {
-                if (NAME == group.ToUpper()) return true;
+                return ((DataRow)item.Tag).ToDataDictionary();
             }
-            return false;
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("ToChucTreeListView " + ex.Message, Application.ProductName);
+            }
+            return null;
         }
-
         
         private void ResetView()
         {
@@ -292,7 +290,7 @@ namespace V6Controls.Controls.TreeView
             //}
             //catch (Exception ex)
             //{
-            //    Logger.WriteToLog("TreeListViewAuto " + ex.Message, Application.ProductName);
+            //    Logger.WriteToLog("ToChucTreeListView " + ex.Message, Application.ProductName);
             //}
         }
 
@@ -300,17 +298,115 @@ namespace V6Controls.Controls.TreeView
         {
             Items.Clear();
             if (_data == null) return;
-            foreach (DataRow row in _data.Rows)
+            //Add node theo parent
+            //Add root node (without parent)
+            DataView parents = new DataView(_data);
+            parents.RowFilter = string.Format("IsNull([{0}],'') = ''", _parent_field);//, _sortfield, DataViewRowState.None);
+            parents.Sort = _sortfield;
+
+            DataTable parents_table = parents.ToTable();
+            foreach (DataRow parent_row in parents_table.Rows)
             {
-                AddTreeRow(row);
+                AddParentNode(parent_row);
             }
+                
+            //Code cũ thêm từng dòng.
+            //foreach (DataRow row in _data.Rows)
+            //{
+            //    AddTreeRow(row);
+            //}
             ExpandAll();
+        }
+
+        /// <summary>
+        /// Thêm node cha và tất cả con cháu của nó.
+        /// </summary>
+        /// <param name="parentRow"></param>
+        private void AddParentNode(DataRow parentRow)
+        {
+            try
+            {
+                //Thêm node cha
+                string id = parentRow[ID_Field].ToString().Trim();
+                string text = parentRow[Text_Field].ToString().Trim();
+                int image_index = ObjectAndString.ObjectToInt(parentRow[ImageIndex_Field]);
+                TreeListViewItem parentNode = new TreeListViewItem(id, image_index);
+                parentNode.Name = id;
+                if (ViewName) parentNode.Text = text;
+                parentNode.Tag = parentRow;
+                //Add more (subitems)
+                AddSubItem(parentNode, parentRow);
+                Items.Add(parentNode);
+                //Thêm con cháu. (đệ quy)
+                AddChild(parentNode);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".AddParentNode", ex);
+            }
+        }
+
+        /// <summary>
+        /// Đệ quy. Thêm các con cho node từ DataSource
+        /// </summary>
+        /// <param name="parentNode"></param>
+        private void AddChild(TreeListViewItem parentNode)
+        {
+            // Nếu không có con cháu thì ngưng
+            string parent_id = parentNode.Name;
+            DataView childs = new DataView(_data);
+            childs.RowFilter = string.Format("[{0}] = '"+parent_id+"'", ParentIdField);
+            childs.Sort = _sortfield;
+            //, DataViewRowState.None);
+            DataTable childs_table = childs.ToTable();
+            if (childs_table.Rows.Count == 0) return;
+            foreach (DataRow row in childs_table.Rows)
+            {
+                string id = row[ID_Field].ToString().Trim();
+                string text = row[Text_Field].ToString().Trim();
+                int image_index = ObjectAndString.ObjectToInt(row[ImageIndex_Field]);
+                TreeListViewItem node = new TreeListViewItem(id, image_index);
+                node.Name = id;
+                if (ViewName) node.Text = text;
+                node.Tag = row;
+                //Add more (subitems)
+                AddSubItem(node, row);
+                parentNode.Items.Add(node);
+                AddChild(node);
+            }
+        }
+
+        private void AddSubItem(TreeListViewItem node, DataRow row)
+        {
+            for (int i = 1; i < Columns.Count; i++)
+            {
+                var columnNAME = Columns[i].Name.ToUpper();
+                //if (IsInGroup(columnNAME)) continue;
+                if (row.Table.Columns.Contains(columnNAME))
+                {
+                    var value = row[columnNAME];
+                    if (ObjectAndString.IsNumberType(value.GetType()))
+                    {
+                        var numberString = ObjectAndString.NumberToString(value, _viewDecimals[i - 1],
+                            V6Options.M_NUM_POINT, ".");
+                        node.SubItems.Add(numberString);
+                    }
+                    else
+                    {
+                        node.SubItems.Add(ObjectAndString.ObjectToString(value));
+                    }
+                }
+                else
+                {
+                    node.SubItems.Add("");
+                }
+            }
         }
 
         public void AddData(IDictionary<string, object> data)
         {
             var newRow = _data.AddRow(data);
-            AddTreeRow(newRow);
+            AddNewNode(newRow);
         }
 
         public void AddData(ICollection<SortedDictionary<string, object>> data)
@@ -323,7 +419,7 @@ namespace V6Controls.Controls.TreeView
             foreach (IDictionary<string, object> line in data)
             {
                 var newRow = _data.AddRow(line);
-                AddTreeRow(newRow);
+                AddNewNode(newRow);
             }
         }
 
@@ -336,127 +432,149 @@ namespace V6Controls.Controls.TreeView
         /// Thêm một dòng vào tree
         /// </summary>
         /// <param name="data">key in UPPER</param>
-        private void AddTreeRow(DataRow data)//IDictionary<string, object>
+        private void AddNewNode(DataRow data)//IDictionary<string, object>
         {
-            if (_groupFieldList == null || _groupFieldList.Length == 0)
+            if (ID_Field == null || ID_Field.Length == 0)
             {
                 throw new Exception("No GroupFieldList");
             }
-            if (_groupNameFieldList == null || _groupNameFieldList.Length == 0)
+            if (Text_Field == null || Text_Field.Length == 0)
             {
                 throw new Exception("No GroupNameFieldList");
             }
-            var GROUP_FIELD = _groupFieldList[0].ToUpper();
-            var GROUP_CODE = data[GROUP_FIELD].ToString().Trim();
-            var NAME_FIELD = _groupNameFieldList[0];
-            var GROUP_TEXT = data[NAME_FIELD].ToString().Trim();
-
+            
+            var NODE_ID = data[ID_Field].ToString().Trim();
+            var NODE_TEXT = data[Text_Field].ToString().Trim();
+            var PARENT_ID = data[_parent_field].ToString().Trim();
             // Find parrent node
-            TreeListViewItem node = null;
-            foreach (TreeListViewItem item in Items)
-            {
-                if (item.Name == GROUP_CODE)
-                {
-                    node = item;
-                    break;
-                }
-            }
+            TreeListViewItem node = FindNode(PARENT_ID);
             // If not found, create new node
             if (node == null)
             {
-                node = new TreeListViewItem(GROUP_CODE, 0);
-                node.Name = GROUP_CODE;
-                if (ViewName) node.Text = GROUP_TEXT;
-                Items.Add(node);
+                AddNewParentNode(data);
+                //node = new TreeListViewItem(NODE_ID, 0);
+                //node.Name = NODE_ID;
+                //if (ViewName) node.Text = NODE_TEXT;
+                //Items.Add(node);
             }
-
-            //Add tiếp các cấp khác
-            AddNode(1, node, data);
+            else // if found add child
+            {
+                AddNewChild(node, data);
+            }
             
             OnTreeRowAdded(data.ToDataDictionary());
         }
 
-
-
-        private void AddNode(int level, TreeListViewItem parent, DataRow data)//IDictionary<string, object>
+        private void AddNewChild(TreeListViewItem node, DataRow data)
         {
-            if (level == _groupFieldList.Length)
-            {
-                parent.Tag = data;
-                if (_viewColumns == null || _viewColumns.Length == 0)
-                {
-                    for (int i = 1; i < Columns.Count; i++)
-                    {
-                        var columnNAME = Columns[i].Name.ToUpper();
-                        //if (IsInGroup(columnNAME)) continue;
-                        if (data.Table.Columns.Contains(columnNAME))
-                        {
-                            var value = data[columnNAME];
-                            parent.SubItems.Add(ObjectAndString.ObjectToString(value));
-                        }
-                        else
-                        {
-                            parent.SubItems.Add("");
-                        }
-                    }
-                }
-                else
-                {
-                    for (int i = 1; i < Columns.Count; i++)
-                    {
-                        var columnNAME = Columns[i].Name.ToUpper();
-                        //if (IsInGroup(columnNAME)) continue;
-                        if (data.Table.Columns.Contains(columnNAME))
-                        {
-                            var value = data[columnNAME];
-                            if (ObjectAndString.IsNumberType(value.GetType()))
-                            {
-                                var numberString = ObjectAndString.NumberToString(value, _viewDecimals[i-1],
-                                    V6Options.M_NUM_POINT, ".");
-                                parent.SubItems.Add(numberString);
-                            }
-                            else
-                            {
-                                parent.SubItems.Add(ObjectAndString.ObjectToString(value));
-                            }
-                        }
-                        else
-                        {
-                            parent.SubItems.Add("");
-                        }
-                    }
-                }
-            }
-            else // Đoạn code này giống với code của hàm ở trên.
-            {
-                var GROUP_FIELD = _groupFieldList[level].ToUpper();
-                var GROUP_CODE = data[GROUP_FIELD].ToString().Trim();
-                var NAME_FIELD = _groupNameFieldList[level];
-                var GROUP_TEXT = data[NAME_FIELD].ToString().Trim();
-
-                // Find parrent node
-                TreeListViewItem node = null;
-                foreach (TreeListViewItem item in parent.Items)
-                {
-                    if (item.Name == GROUP_CODE)
-                    {
-                        node = item;
-                        break;
-                    }
-                }
-                // If not found, create new node
-                if (node == null)
-                {
-                    node = new TreeListViewItem(GROUP_CODE, level);
-                    node.Name = GROUP_CODE;
-                    if(ViewName) node.Text = GROUP_TEXT;
-                    parent.Items.Add(node);
-                }
-
-                //Add tiếp các cấp khác
-                AddNode(level+1, node, data);
-            }
+            throw new NotImplementedException();
         }
+
+        private void AddNewParentNode(DataRow data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TreeListViewItem FindNode(string id)
+        {
+            if (Items == null || ItemsCount == 0) return null;
+            foreach (TreeListViewItem item in Items)
+            {
+                return FindNodeRecursive(item, id);
+            }
+            return null;
+        }
+
+        private TreeListViewItem FindNodeRecursive(TreeListViewItem item, string id)
+        {
+            if (item.Name == id) return item;
+            foreach (TreeListViewItem i in item.Items)
+            {
+                return FindNodeRecursive(i, id);
+            }
+            return null;
+        }
+
+        // Hàm cũ không còn phù hợp
+        //private void AddNode(int level, TreeListViewItem parent, DataRow data)//IDictionary<string, object>
+        //{
+        //    if (level == ID_Field.Length)
+        //    {
+        //        parent.Tag = data;
+        //        if (_viewColumns == null || _viewColumns.Length == 0)
+        //        {
+        //            for (int i = 1; i < Columns.Count; i++)
+        //            {
+        //                var columnNAME = Columns[i].Name.ToUpper();
+        //                //if (IsInGroup(columnNAME)) continue;
+        //                if (data.Table.Columns.Contains(columnNAME))
+        //                {
+        //                    var value = data[columnNAME];
+        //                    parent.SubItems.Add(ObjectAndString.ObjectToString(value));
+        //                }
+        //                else
+        //                {
+        //                    parent.SubItems.Add("");
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            for (int i = 1; i < Columns.Count; i++)
+        //            {
+        //                var columnNAME = Columns[i].Name.ToUpper();
+        //                //if (IsInGroup(columnNAME)) continue;
+        //                if (data.Table.Columns.Contains(columnNAME))
+        //                {
+        //                    var value = data[columnNAME];
+        //                    if (ObjectAndString.IsNumberType(value.GetType()))
+        //                    {
+        //                        var numberString = ObjectAndString.NumberToString(value, _viewDecimals[i-1],
+        //                            V6Options.M_NUM_POINT, ".");
+        //                        parent.SubItems.Add(numberString);
+        //                    }
+        //                    else
+        //                    {
+        //                        parent.SubItems.Add(ObjectAndString.ObjectToString(value));
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    parent.SubItems.Add("");
+        //                }
+        //            }
+        //        }
+        //    }
+        //    else // Đoạn code này giống với code của hàm ở trên.
+        //    {
+        //        var GROUP_FIELD = ID_Field[level].ToUpper();
+        //        var GROUP_CODE = data[GROUP_FIELD].ToString().Trim();
+        //        var NAME_FIELD = Text_Field[level];
+        //        var GROUP_NAME = data[NAME_FIELD].ToString().Trim();
+
+        //        // Find parrent node
+        //        TreeListViewItem node = null;
+        //        foreach (TreeListViewItem item in parent.Items)
+        //        {
+        //            if (item.Name == GROUP_CODE)
+        //            {
+        //                node = item;
+        //                break;
+        //            }
+        //        }
+        //        // If not found, create new node
+        //        if (node == null)
+        //        {
+        //            node = new TreeListViewItem(GROUP_CODE, level);
+        //            node.Name = GROUP_CODE;
+        //            if(ViewName) node.Text = GROUP_NAME;
+        //            parent.Items.Add(node);
+        //        }
+
+        //        //Add tiếp các cấp khác
+        //        AddNode(level+1, node, data);
+        //    }
+        //}
 
         private string[] _viewColumns;
         private string[] _viewNames;
