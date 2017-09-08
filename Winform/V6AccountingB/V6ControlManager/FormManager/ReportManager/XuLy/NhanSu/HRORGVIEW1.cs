@@ -16,6 +16,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
             string tableName = program, initFilter = "", sort = "";
             Control tochucViewContainer = new ToChucView(itemId, text, tableName, initFilter, sort);
+            tochucViewContainer.Dock = DockStyle.Fill;
             panel1.Controls.Add(tochucViewContainer);
         }
 
