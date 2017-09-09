@@ -32,7 +32,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 //vTitle, eTitle
                 var groupFields = ObjectAndString.SplitString(V6Lookup.GetValueByTableName(_tableName, "vTitle"));
                 var groupNameFields = ObjectAndString.SplitString(V6Lookup.GetValueByTableName(_tableName, "eTitle"));
-                treeListViewAuto1.SetGroupAndNameFieldList(groupFields, groupNameFields);
+                //treeListViewAuto1.SetGroupAndNameFieldList(groupFields, groupNameFields);
 
                 //treeListViewAuto1.SetGroupAndNameFieldList(
                 //        new string[] { "MA_DVCS", "MA_BPNS", "MA_NS" },
@@ -120,9 +120,9 @@ namespace V6ControlManager.FormManager.NhanSu
                     if (CurrentTable != V6TableName.None)
                     {
                         var data = new SortedDictionary<string, object>();
-                        if (treeListViewAuto1.SelectedItems.Count>0)
+                        if (tochucTree1.SelectedItems.Count>0)
                         {
-                            data = treeListViewAuto1.SelectedItemData;
+                            data = tochucTree1.SelectedItemData;
                         }
 
                         //var keys = new SortedDictionary<string, object>();
@@ -169,9 +169,9 @@ namespace V6ControlManager.FormManager.NhanSu
                     if (CurrentTable != V6TableName.None)
                     {
                         var data = new SortedDictionary<string, object>();
-                        if (treeListViewAuto1.SelectedItems.Count > 0)
+                        if (tochucTree1.SelectedItems.Count > 0)
                         {
-                            data = treeListViewAuto1.SelectedItemData;
+                            data = tochucTree1.SelectedItemData;
                         }
 
                         var keys = new SortedDictionary<string, object>();
@@ -221,12 +221,12 @@ namespace V6ControlManager.FormManager.NhanSu
                     }
                     else
                     {
-                        TreeListViewItem item = treeListViewAuto1.SelectedItems[0];
+                        TreeListViewItem item = tochucTree1.SelectedItems[0];
                         
-                        if (item.Level == treeListViewAuto1.MaxLevel)
+                        //if (item.Level == treeListViewAuto1.MaxLevel)
                         {
                             //var selected_item_data = treeListViewAuto1.SelectedItems[0].ToNhanSuDictionary();
-                            var selected_item_data = treeListViewAuto1.SelectedItemData;
+                            var selected_item_data = tochucTree1.SelectedItemData;
                             if (selected_item_data != null)
                             {
                                 var keys = new SortedDictionary<string, object>();
@@ -303,7 +303,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
                 var dictionary = new SortedDictionary<string,string>();
                 dictionary.AddRange(data);
-                treeListViewAuto1.UpdateSelectedItemData(data);
+                tochucTree1.UpdateSelectedItemData(data);
                 //SetFormatGridView();
             }
             catch (Exception ex)
@@ -328,11 +328,11 @@ namespace V6ControlManager.FormManager.NhanSu
                     else
                     {
                         //DataGridViewRow row = dataGridView01.GetFirstSelectedRow();
-                        if (treeListViewAuto1.SelectedItems[0] != null
-                            && treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
+                        if (tochucTree1.SelectedItems[0] != null)
+                            //&& treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
                         {
                             var data = new SortedDictionary<string, object>();
-                            data.AddRange(treeListViewAuto1.SelectedItems[0].ToNhanSuDictionary());
+                            data.AddRange(tochucTree1.SelectedItems[0].ToNhanSuDictionary());
 
                             var f = DanhMucManager.ChangeCode.ChangeCodeManager.GetChangeCodeControl(_tableName, data);
                             if (f != null)
@@ -370,11 +370,11 @@ namespace V6ControlManager.FormManager.NhanSu
             {
                 if (V6Login.UserRight.AllowDelete("", CurrentTable.ToString().ToUpper() + "6"))
                 {
-                    if (treeListViewAuto1.SelectedItems[0] != null
-                        && treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
+                    if (tochucTree1.SelectedItems[0] != null)
+                        //&& treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
                     {
-                        var selected_item = treeListViewAuto1.SelectedItems[0];
-                        var data = treeListViewAuto1.SelectedItemData;
+                        var selected_item = tochucTree1.SelectedItems[0];
+                        var data = tochucTree1.SelectedItemData;
                         
                         var id = V6Lookup.ValueByTableName[CurrentTable.ToString(), "vValue"].ToString().Trim();
                         var listTable =
@@ -459,20 +459,20 @@ namespace V6ControlManager.FormManager.NhanSu
                     }
                     else
                     {
-                        if (treeListViewAuto1.SelectedItems[0] != null
-                            && treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
+                        if (tochucTree1.SelectedItems[0] != null)
+                            //&& treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
                         {
-                            var data = treeListViewAuto1.SelectedItemData;
+                            var data = tochucTree1.SelectedItemData;
 
                             var keys = new SortedDictionary<string, object>();
-                            if (treeListViewAuto1.Columns.ContainsKey("UID"))
+                            if (tochucTree1.Columns.ContainsKey("UID"))
                                 keys.Add("UID", data["UID"].ToString());
 
                             if (KeyFields != null)
                                 foreach (var keyField in KeyFields)
                                 {
                                     var KEYFIELD = keyField.ToUpper();
-                                    if (treeListViewAuto1.Columns.ContainsKey(KEYFIELD))
+                                    if (tochucTree1.Columns.ContainsKey(KEYFIELD))
                                     {
                                         keys[KEYFIELD] = data[KEYFIELD];
                                     }
@@ -559,7 +559,7 @@ namespace V6ControlManager.FormManager.NhanSu
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _tableName), ex);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _viewName), ex);
             }
         }
 
@@ -583,7 +583,7 @@ namespace V6ControlManager.FormManager.NhanSu
             
             //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
 
-            treeListViewAuto1.SetData(SelectResult.Data, showFields, headerString, formatStrings);
+            tochucTree1.SetData(SelectResult.Data, showFields, headerString, formatStrings);
             #endregion nhansutreeview
 
 
@@ -714,7 +714,7 @@ namespace V6ControlManager.FormManager.NhanSu
         //Reload
         private void f_InsertSuccess(SortedDictionary<string, object> data)
         {
-            treeListViewAuto1.AddData(data);
+            tochucTree1.AddData(data);
         }
 
 
@@ -867,20 +867,20 @@ namespace V6ControlManager.FormManager.NhanSu
                     }
                     else
                     {
-                        if (treeListViewAuto1.SelectedItems[0] != null
-                            && treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
+                        if (tochucTree1.SelectedItems[0] != null)
+                            //&& treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
                         {
-                            var data = treeListViewAuto1.SelectedItemData;
+                            var data = tochucTree1.SelectedItemData;
 
                             var keys = new SortedDictionary<string, object>();
-                            if (treeListViewAuto1.Columns.ContainsKey("UID"))
+                            if (tochucTree1.Columns.ContainsKey("UID"))
                                 keys.Add("UID", data["UID"].ToString());
 
                             if (KeyFields != null)
                                 foreach (var keyField in KeyFields)
                                 {
                                     var KEYFIELD = keyField.ToUpper();
-                                    if (treeListViewAuto1.Columns.ContainsKey(KEYFIELD))
+                                    if (tochucTree1.Columns.ContainsKey(KEYFIELD))
                                     {
                                         keys[KEYFIELD] = data[KEYFIELD];
                                     }

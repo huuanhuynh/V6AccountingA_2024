@@ -1,6 +1,4 @@
 ﻿using System.Windows.Forms;
-using V6ControlManager.FormManager.KhoHangManager;
-using V6ControlManager.FormManager.Map;
 using V6ControlManager.FormManager.NhanSu;
 using V6Controls.Forms;
 

@@ -941,7 +941,7 @@ namespace V6ControlManager.FormManager.NhanSu
         }
 
 
-        private void treeListViewAuto1_Click(object sender, EventArgs e)
+        private void toChucTreeListView1_Click(object sender, EventArgs e)
         {
             //DoTreeClick();
         }

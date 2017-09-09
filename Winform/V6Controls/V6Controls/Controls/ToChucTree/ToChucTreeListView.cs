@@ -27,7 +27,6 @@ namespace V6Controls.Controls.ToChucTree
             // 
             this.SelectedIndexChanged += new System.EventHandler(this.ToChucTreeListView_SelectedIndexChanged);
             this.ResumeLayout(false);
-
         }
 
         private void ToChucTreeListView_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,6 +106,8 @@ namespace V6Controls.Controls.ToChucTree
         private string _parent_field = "parent";
         public string Sort_Field { get { return _sortfield; } set { _sortfield = value; } }
         public string _sortfield = "fsort";
+        public string IsBold_Field { get { return _isBoldField; } set { _isBoldField = value; } }
+        public string _isBoldField = "isBold";
 
         [DefaultValue(true)]
         public bool ViewName { get { return _view_name; }
@@ -336,9 +337,19 @@ namespace V6Controls.Controls.ToChucTree
                 parentNode.Tag = parentRow;
                 //Add more (subitems)
                 AddSubItem(parentNode, parentRow);
+                bool isBold = _data.Columns.Contains(_isBoldField) && ObjectAndString.ObjectToBool(parentRow[_isBoldField]);
+                if (isBold)
+                {
+                    SetTreeListViewItemBold(parentNode);
+                }
                 Items.Add(parentNode);
                 //Thêm con cháu. (đệ quy)
                 AddChild(parentNode);
+                //Thêm xong ghi nhận số lượng
+                var countAll = parentNode.ChildrenCount;
+                var countChi = parentNode.Items.Count;
+                text = string.Format("{0} ({1})", parentRow[Text_Field].ToString().Trim(), countChi, countAll);
+                parentNode.Text = text;
             }
             catch (Exception ex)
             {
@@ -371,8 +382,34 @@ namespace V6Controls.Controls.ToChucTree
                 node.Tag = row;
                 //Add more (subitems)
                 AddSubItem(node, row);
+                bool isBold = _data.Columns.Contains(_isBoldField) && ObjectAndString.ObjectToBool(row[_isBoldField]);
+                if (isBold)
+                {
+                    SetTreeListViewItemBold(node);
+                }
                 parentNode.Items.Add(node);
                 AddChild(node);
+                //Thêm xong ghi nhận số lượng
+                if (isBold)
+                {
+                    var countAll = node.ChildrenCount;
+                    var countChi = node.Items.Count;
+                    if (countChi > 0)
+                    {
+                        text = string.Format("{0} ({1})", row[Text_Field].ToString().Trim(), countChi, countAll);
+                        node.Text = text;
+                    }
+                }
+            }
+        }
+
+        private void SetTreeListViewItemBold(TreeListViewItem node)
+        {
+            node.Font = new Font(node.Font, FontStyle.Bold);
+            //node.UseItemStyleForSubItems = false;
+            for (int i = 0; i < node.SubItems.Count; i++)
+            {
+                node.SubItems[i].Font = node.Font;
             }
         }
 

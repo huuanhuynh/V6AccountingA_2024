@@ -80,7 +80,7 @@
             this.toChucTreeListView1.TabIndex = 22;
             this.toChucTreeListView1.Text_Field = "NAME";
             this.toChucTreeListView1.UseCompatibleStateImageBehavior = false;
-            this.toChucTreeListView1.Click += new System.EventHandler(this.treeListViewAuto1_Click);
+            this.toChucTreeListView1.Click += new System.EventHandler(this.toChucTreeListView1_Click);
             // 
             // imageList1
             // 
