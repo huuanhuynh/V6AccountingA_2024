@@ -143,7 +143,7 @@
             this.txttype.Location = new System.Drawing.Point(116, 332);
             this.txttype.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txttype.Name = "txttype";
-            this.txttype.Size = new System.Drawing.Size(414, 23);
+            this.txttype.Size = new System.Drawing.Size(380, 23);
             this.txttype.TabIndex = 9;
             // 
             // v6Label6
@@ -170,7 +170,7 @@
             this.txtperiod.Location = new System.Drawing.Point(116, 301);
             this.txtperiod.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtperiod.Name = "txtperiod";
-            this.txtperiod.Size = new System.Drawing.Size(414, 23);
+            this.txtperiod.Size = new System.Drawing.Size(380, 23);
             this.txtperiod.TabIndex = 8;
             // 
             // v6Label5
@@ -199,7 +199,7 @@
             this.txtremarks.Multiline = true;
             this.txtremarks.Name = "txtremarks";
             this.txtremarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtremarks.Size = new System.Drawing.Size(414, 62);
+            this.txtremarks.Size = new System.Drawing.Size(380, 62);
             this.txtremarks.TabIndex = 7;
             // 
             // v6Label10
@@ -226,7 +226,7 @@
             this.txtework.Location = new System.Drawing.Point(116, 199);
             this.txtework.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtework.Name = "txtework";
-            this.txtework.Size = new System.Drawing.Size(414, 23);
+            this.txtework.Size = new System.Drawing.Size(380, 23);
             this.txtework.TabIndex = 6;
             // 
             // v6Label7
@@ -253,7 +253,7 @@
             this.txteposition.Location = new System.Drawing.Point(116, 168);
             this.txteposition.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txteposition.Name = "txteposition";
-            this.txteposition.Size = new System.Drawing.Size(414, 23);
+            this.txteposition.Size = new System.Drawing.Size(380, 23);
             this.txteposition.TabIndex = 5;
             // 
             // txteproject
@@ -269,7 +269,7 @@
             this.txteproject.Location = new System.Drawing.Point(116, 137);
             this.txteproject.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txteproject.Name = "txteproject";
-            this.txteproject.Size = new System.Drawing.Size(414, 23);
+            this.txteproject.Size = new System.Drawing.Size(380, 23);
             this.txteproject.TabIndex = 4;
             // 
             // v6Label4
@@ -296,7 +296,7 @@
             this.txtecompany.Location = new System.Drawing.Point(116, 106);
             this.txtecompany.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtecompany.Name = "txtecompany";
-            this.txtecompany.Size = new System.Drawing.Size(414, 23);
+            this.txtecompany.Size = new System.Drawing.Size(380, 23);
             this.txtecompany.TabIndex = 3;
             // 
             // v6Label2
@@ -339,7 +339,7 @@
             this.txtORGUNIT_ID.NeighborFields = "";
             this.txtORGUNIT_ID.ParentData = null;
             this.txtORGUNIT_ID.ShowTextField = "NAME";
-            this.txtORGUNIT_ID.Size = new System.Drawing.Size(210, 23);
+            this.txtORGUNIT_ID.Size = new System.Drawing.Size(176, 23);
             this.txtORGUNIT_ID.TabIndex = 2;
             this.txtORGUNIT_ID.ValueField = "ID";
             // 
@@ -350,9 +350,9 @@
             this.v6Label3.Location = new System.Drawing.Point(11, 78);
             this.v6Label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label3.Name = "v6Label3";
-            this.v6Label3.Size = new System.Drawing.Size(83, 17);
+            this.v6Label3.Size = new System.Drawing.Size(61, 17);
             this.v6Label3.TabIndex = 234;
-            this.v6Label3.Text = "Mã bộ phận";
+            this.v6Label3.Text = "Bộ phận";
             // 
             // KinhNghiemLamViec2
             // 
@@ -383,7 +383,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "KinhNghiemLamViec2";
-            this.Size = new System.Drawing.Size(538, 370);
+            this.Size = new System.Drawing.Size(518, 370);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -443,6 +443,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 #endregion Báo cáo quản trị hàng xuất kho
                 case "AINGIA_TB":
                     return new AINGIA_TB();
+                case "HPAYROLLCALC":
+                    return new HPAYROLLCALC();
                 case "AINGIA_TBDD":
                     return new AINGIA_TBDD();
                 case "AINGIA_NTXT":

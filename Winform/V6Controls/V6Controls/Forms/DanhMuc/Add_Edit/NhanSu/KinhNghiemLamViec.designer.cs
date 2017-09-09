@@ -141,7 +141,7 @@
             this.txttype.Location = new System.Drawing.Point(120, 285);
             this.txttype.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txttype.Name = "txttype";
-            this.txttype.Size = new System.Drawing.Size(417, 23);
+            this.txttype.Size = new System.Drawing.Size(397, 23);
             this.txttype.TabIndex = 8;
             // 
             // v6Label6
@@ -168,7 +168,7 @@
             this.txtperiod.Location = new System.Drawing.Point(120, 255);
             this.txtperiod.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtperiod.Name = "txtperiod";
-            this.txtperiod.Size = new System.Drawing.Size(417, 23);
+            this.txtperiod.Size = new System.Drawing.Size(397, 23);
             this.txtperiod.TabIndex = 7;
             // 
             // v6Label5
@@ -197,7 +197,7 @@
             this.txtremarks.Multiline = true;
             this.txtremarks.Name = "txtremarks";
             this.txtremarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtremarks.Size = new System.Drawing.Size(417, 62);
+            this.txtremarks.Size = new System.Drawing.Size(397, 62);
             this.txtremarks.TabIndex = 6;
             // 
             // v6Label10
@@ -224,7 +224,7 @@
             this.txtework.Location = new System.Drawing.Point(120, 156);
             this.txtework.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtework.Name = "txtework";
-            this.txtework.Size = new System.Drawing.Size(417, 23);
+            this.txtework.Size = new System.Drawing.Size(397, 23);
             this.txtework.TabIndex = 5;
             // 
             // v6Label7
@@ -251,7 +251,7 @@
             this.txteposition.Location = new System.Drawing.Point(120, 126);
             this.txteposition.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txteposition.Name = "txteposition";
-            this.txteposition.Size = new System.Drawing.Size(417, 23);
+            this.txteposition.Size = new System.Drawing.Size(397, 23);
             this.txteposition.TabIndex = 4;
             // 
             // txteproject
@@ -267,7 +267,7 @@
             this.txteproject.Location = new System.Drawing.Point(120, 96);
             this.txteproject.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txteproject.Name = "txteproject";
-            this.txteproject.Size = new System.Drawing.Size(417, 23);
+            this.txteproject.Size = new System.Drawing.Size(397, 23);
             this.txteproject.TabIndex = 3;
             // 
             // v6Label4
@@ -294,7 +294,7 @@
             this.txtecompany.Location = new System.Drawing.Point(120, 66);
             this.txtecompany.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtecompany.Name = "txtecompany";
-            this.txtecompany.Size = new System.Drawing.Size(417, 23);
+            this.txtecompany.Size = new System.Drawing.Size(397, 23);
             this.txtecompany.TabIndex = 2;
             // 
             // v6Label2
@@ -347,7 +347,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "KinhNghiemLamViec";
-            this.Size = new System.Drawing.Size(566, 329);
+            this.Size = new System.Drawing.Size(535, 329);
             this.ResumeLayout(false);
             this.PerformLayout();
 
