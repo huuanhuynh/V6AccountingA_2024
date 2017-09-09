@@ -161,6 +161,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 case "AINGIA_TB":
                     return new AINGIA_TB(itemId, program, procedure, reportFile, text);
+                case "HPAYROLLCALC":
+                    return new HPAYROLLCALC(itemId, program, procedure, reportFile, text);
                 case "AINABVT2N":
                     return new AINABVT2N(itemId, program, procedure, reportFile, text);
                 case "AINABLO2N":

@@ -70,15 +70,14 @@
             this.txtSttRec.Margin = new System.Windows.Forms.Padding(5);
             this.txtSttRec.Name = "txtSttRec";
             this.txtSttRec.Size = new System.Drawing.Size(109, 23);
-            this.txtSttRec.TabIndex = 127;
+            this.txtSttRec.TabIndex = 13;
             this.txtSttRec.Visible = false;
             // 
             // txthealth_type
             // 
             this.txthealth_type.AccessibleName = "health_type";
-            this.txthealth_type.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txthealth_type.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txthealth_type.BackColor = System.Drawing.Color.White;
             this.txthealth_type.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txthealth_type.EnterColor = System.Drawing.Color.PaleGreen;
@@ -121,9 +120,8 @@
             // txtblood
             // 
             this.txtblood.AccessibleName = "blood";
-            this.txtblood.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtblood.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtblood.BackColor = System.Drawing.Color.White;
             this.txtblood.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtblood.EnterColor = System.Drawing.Color.PaleGreen;
@@ -156,9 +154,8 @@
             // txtallergies
             // 
             this.txtallergies.AccessibleName = "allergies";
-            this.txtallergies.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtallergies.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtallergies.BackColor = System.Drawing.SystemColors.Window;
             this.txtallergies.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtallergies.EnterColor = System.Drawing.Color.PaleGreen;
@@ -186,9 +183,8 @@
             // txtdiseaseds
             // 
             this.txtdiseaseds.AccessibleName = "diseaseds";
-            this.txtdiseaseds.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtdiseaseds.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtdiseaseds.BackColor = System.Drawing.SystemColors.Window;
             this.txtdiseaseds.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtdiseaseds.EnterColor = System.Drawing.Color.PaleGreen;
@@ -216,9 +212,8 @@
             // txthandicaps
             // 
             this.txthandicaps.AccessibleName = "handicaps";
-            this.txthandicaps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txthandicaps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txthandicaps.BackColor = System.Drawing.SystemColors.Window;
             this.txthandicaps.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txthandicaps.EnterColor = System.Drawing.Color.PaleGreen;
@@ -246,9 +241,8 @@
             // txtvaccinations
             // 
             this.txtvaccinations.AccessibleName = "vaccinations";
-            this.txtvaccinations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtvaccinations.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtvaccinations.BackColor = System.Drawing.SystemColors.Window;
             this.txtvaccinations.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtvaccinations.EnterColor = System.Drawing.Color.PaleGreen;
@@ -276,9 +270,8 @@
             // txtothers
             // 
             this.txtothers.AccessibleName = "others";
-            this.txtothers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtothers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtothers.BackColor = System.Drawing.SystemColors.Window;
             this.txtothers.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtothers.EnterColor = System.Drawing.Color.PaleGreen;
@@ -328,9 +321,8 @@
             // txtremarks
             // 
             this.txtremarks.AccessibleName = "remarks";
-            this.txtremarks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtremarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtremarks.BackColor = System.Drawing.SystemColors.Window;
             this.txtremarks.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtremarks.EnterColor = System.Drawing.Color.PaleGreen;
@@ -396,9 +388,8 @@
             // txtheight
             // 
             this.txtheight.AccessibleName = "height";
-            this.txtheight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtheight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtheight.BackColor = System.Drawing.SystemColors.Window;
             this.txtheight.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtheight.EnterColor = System.Drawing.Color.PaleGreen;
@@ -410,14 +401,13 @@
             this.txtheight.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtheight.Name = "txtheight";
             this.txtheight.Size = new System.Drawing.Size(95, 23);
-            this.txtheight.TabIndex = 147;
+            this.txtheight.TabIndex = 7;
             // 
             // txtWeight
             // 
             this.txtWeight.AccessibleName = "weight";
-            this.txtWeight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtWeight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtWeight.BackColor = System.Drawing.SystemColors.Window;
             this.txtWeight.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtWeight.EnterColor = System.Drawing.Color.PaleGreen;
@@ -429,7 +419,7 @@
             this.txtWeight.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.Size = new System.Drawing.Size(95, 23);
-            this.txtWeight.TabIndex = 148;
+            this.txtWeight.TabIndex = 8;
             // 
             // ThongTinSucKhoe
             // 

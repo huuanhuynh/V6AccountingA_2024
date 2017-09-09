@@ -1788,6 +1788,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AGLCD1F5F5.designer.cs">
       <DependentUpon>AGLCD1F5F5.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\HPAYROLLCALC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\HPAYROLLCALC.Designer.cs">
+      <DependentUpon>HPAYROLLCALC.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ReportFilter44Base.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3779,6 +3785,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\AINABVITRI2N.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\HPAYROLLCALC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AMAPREPORT.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5609,6 +5618,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AINCDVITRIA.resx">
       <DependentUpon>AINCDVITRIA.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\HPAYROLLCALC.resx">
+      <DependentUpon>HPAYROLLCALC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AINSO3.resx">
       <DependentUpon>AINSO3.cs</DependentUpon>
     </EmbeddedResource>
@@ -6550,6 +6562,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ACPDDCK.resx">
       <DependentUpon>ACPDDCK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\HPAYROLLCALC.resx">
+      <DependentUpon>HPAYROLLCALC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINGIA_TB.resx">
       <DependentUpon>AINGIA_TB.cs</DependentUpon>
