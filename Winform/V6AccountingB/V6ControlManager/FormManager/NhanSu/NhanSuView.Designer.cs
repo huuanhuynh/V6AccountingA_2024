@@ -32,7 +32,7 @@
             System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NhanSuView));
             this.lblTotalPage = new System.Windows.Forms.Label();
-            this.treeListViewAuto1 = new V6Controls.Controls.TreeView.TreeListViewAuto();
+            this.treeListViewAuto1 = new V6Controls.Controls.ToChucTree.ToChucTreeListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnDoiMa = new System.Windows.Forms.Button();
             this.btnFull = new System.Windows.Forms.Button();
@@ -68,12 +68,18 @@
             this.treeListViewAuto1.Comparer = treeListViewItemCollectionComparer1;
             this.treeListViewAuto1.GridLines = true;
             this.treeListViewAuto1.HideSelection = false;
+            this.treeListViewAuto1.ID_Field = "NODE";
+            this.treeListViewAuto1.ImageIndex_Field = "PICTURE";
+            this.treeListViewAuto1.IsBold_Field = "isBold";
             this.treeListViewAuto1.Location = new System.Drawing.Point(3, 64);
             this.treeListViewAuto1.MultiSelect = false;
             this.treeListViewAuto1.Name = "treeListViewAuto1";
+            this.treeListViewAuto1.ParentIdField = "PARENT";
             this.treeListViewAuto1.Size = new System.Drawing.Size(743, 515);
             this.treeListViewAuto1.SmallImageList = this.imageList1;
+            this.treeListViewAuto1.Sort_Field = "fsort";
             this.treeListViewAuto1.TabIndex = 22;
+            this.treeListViewAuto1.Text_Field = "NAME";
             this.treeListViewAuto1.UseCompatibleStateImageBehavior = false;
             this.treeListViewAuto1.Click += new System.EventHandler(this.treeListViewAuto1_Click);
             // 
@@ -283,6 +289,6 @@
         private System.Windows.Forms.Button btnFull;
         private System.Windows.Forms.Button btnDoiMa;
         private System.Windows.Forms.ImageList imageList1;
-        private V6Controls.Controls.TreeView.TreeListViewAuto treeListViewAuto1;
+        private V6Controls.Controls.ToChucTree.ToChucTreeListView treeListViewAuto1;
     }
 }

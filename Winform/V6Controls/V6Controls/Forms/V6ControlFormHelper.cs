@@ -4265,6 +4265,14 @@ namespace V6Controls.Forms
                     text_box.ChangeText(text);
                 else text_box.Text = text;
             }
+            else if (control is V6ColorMaskedTextBox)
+            {
+                var text_box = control as V6ColorMaskedTextBox;
+                var text = ObjectAndString.ObjectToString(value).Trim();
+                if (text_box.UseChangeTextOnSetFormData)
+                    text_box.ChangeText(text);
+                else text_box.Text = text;
+            }
             else if (control is CheckBox)
             {
                 string value1 = value.ToString().Trim();

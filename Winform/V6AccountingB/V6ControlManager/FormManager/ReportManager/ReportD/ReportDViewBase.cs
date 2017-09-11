@@ -821,6 +821,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             {
                 if (beforeLoadData != null && !(bool)beforeLoadData)
                 {
+                    _message = V6Text.CheckInfor;
                     Data_Loading = false;
                     return;
                 }

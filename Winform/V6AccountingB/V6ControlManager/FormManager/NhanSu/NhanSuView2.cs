@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -84,7 +85,7 @@ namespace V6ControlManager.FormManager.NhanSu
         private readonly V6Categories _categories = new V6Categories();
         private SortedDictionary<string, string> _hideColumnDic; 
         private string _tableName;
-        private string _viewName = "VPRDMNS";
+        private string _viewName = "VPRDMNSTREE";
         [DefaultValue(V6TableName.None)]
         public V6TableName CurrentTable { get; set; }
         public V6SelectResult SelectResult { get; set; }
@@ -537,11 +538,12 @@ namespace V6ControlManager.FormManager.NhanSu
         private void LoadTable(V6TableName tableName, int page, int size, string where, string sortField, bool ascending)
         {
             try { 
-                if (page < 1) page = 1;
+                //if (page < 1) page = 1;
                 CurrentTable = tableName;
 
                 //var sr = _categories.SelectPaging(tableName, "*", page, size, GetWhere(where), sortField, ascending);
-                var sr = V6BusinessHelper.Select(_viewName, "*", where, "", sortField);
+                string new_where = GetNewWhere(where);
+                var sr = V6BusinessHelper.Select(_viewName, "*", new_where, "", sortField);
                 
                 SelectResult.Data = sr.Data;
                 
@@ -561,6 +563,22 @@ namespace V6ControlManager.FormManager.NhanSu
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _viewName), ex);
             }
+        }
+
+        private string GetNewWhere(string where)
+        {
+            if (string.IsNullOrEmpty(where))
+            {
+                return "";
+            }
+            
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@cWhere", where??""),
+                new SqlParameter("@return", null),
+            };
+            string listParent = V6BusinessHelper.ExecuteProcedureScalar("VPH_GetParentNodeList", plist).ToString().Trim();
+            return string.Format("{0} or(dbo.VFV_InList0(node,'{1}',',')=1)", where, listParent);
         }
 
         private void LoadAtPage(int page)

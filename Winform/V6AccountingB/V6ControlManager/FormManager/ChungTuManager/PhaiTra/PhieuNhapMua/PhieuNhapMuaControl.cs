@@ -5613,7 +5613,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         private void txtManx_V6LostFocus(object sender)
         {
-            if (TxtTk_i_ao.Text.Trim() == "") TxtTk_i_ao.Text = txtManx.Text;
+            //Tuanmh 09/09/2017 Loi Tk_i
+            if(TxtTk_i_ao.Text.Trim() == "" || TxtT_cp_nt_ao.Value + TxtT_cp_ao.Value==0)
+            {
+                TxtTk_i_ao.Text = txtManx.Text;
+            }
         }
 
         private bool ValidateData_Master()

@@ -52,7 +52,7 @@
             this.lblTotalPage.Text = "Tổng cộng";
             this.lblTotalPage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // treeListViewAuto1
+            // tochucTree1
             // 
             this.tochucTree1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
@@ -61,7 +61,7 @@
             this.tochucTree1.Comparer = treeListViewItemCollectionComparer1;
             this.tochucTree1.GridLines = true;
             this.tochucTree1.HideSelection = false;
-            this.tochucTree1.ID_Field = "STT_REC";
+            this.tochucTree1.ID_Field = "NODE";
             this.tochucTree1.ImageIndex_Field = "PICTURE";
             this.tochucTree1.IsBold_Field = "isBold";
             this.tochucTree1.Location = new System.Drawing.Point(3, 29);
