@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NhanSuView2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TienLuongView2));
             this.lblTotalPage = new System.Windows.Forms.Label();
-            this.treeListViewAuto1 = new V6Controls.Controls.TreeView.TreeListViewAuto();
+            this.tochucTree1 = new V6Controls.Controls.ToChucTree.ToChucTreeListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.panelView = new System.Windows.Forms.Panel();
@@ -54,21 +54,27 @@
             // 
             // treeListViewAuto1
             // 
-            this.treeListViewAuto1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tochucTree1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             treeListViewItemCollectionComparer1.Column = 0;
             treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
-            this.treeListViewAuto1.Comparer = treeListViewItemCollectionComparer1;
-            this.treeListViewAuto1.GridLines = true;
-            this.treeListViewAuto1.HideSelection = false;
-            this.treeListViewAuto1.Location = new System.Drawing.Point(3, 29);
-            this.treeListViewAuto1.MultiSelect = false;
-            this.treeListViewAuto1.Name = "treeListViewAuto1";
-            this.treeListViewAuto1.Size = new System.Drawing.Size(242, 244);
-            this.treeListViewAuto1.SmallImageList = this.imageList1;
-            this.treeListViewAuto1.TabIndex = 22;
-            this.treeListViewAuto1.UseCompatibleStateImageBehavior = false;
-            this.treeListViewAuto1.Click += new System.EventHandler(this.treeListViewAuto1_Click);
+            this.tochucTree1.Comparer = treeListViewItemCollectionComparer1;
+            this.tochucTree1.GridLines = true;
+            this.tochucTree1.HideSelection = false;
+            this.tochucTree1.ID_Field = "NODE";
+            this.tochucTree1.ImageIndex_Field = "PICTURE";
+            this.tochucTree1.IsBold_Field = "isBold";
+            this.tochucTree1.Location = new System.Drawing.Point(3, 29);
+            this.tochucTree1.MultiSelect = false;
+            this.tochucTree1.Name = "tochucTree1";
+            this.tochucTree1.ParentIdField = "PARENT";
+            this.tochucTree1.Size = new System.Drawing.Size(242, 244);
+            this.tochucTree1.SmallImageList = this.imageList1;
+            this.tochucTree1.Sort_Field = "fsort";
+            this.tochucTree1.TabIndex = 22;
+            this.tochucTree1.Text_Field = "NAME";
+            this.tochucTree1.UseCompatibleStateImageBehavior = false;
+            this.tochucTree1.Click += new System.EventHandler(this.treeListViewAuto1_Click);
             // 
             // imageList1
             // 
@@ -129,7 +135,7 @@
             this.btnLoc.UseVisualStyleBackColor = true;
             this.btnLoc.Click += new System.EventHandler(this.btnLoc_Click);
             // 
-            // NhanSuView2
+            // TienLuongView2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -138,7 +144,7 @@
             this.Controls.Add(this.panelView);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.lblTotalPage);
-            this.Controls.Add(this.treeListViewAuto1);
+            this.Controls.Add(this.tochucTree1);
             this.Name = "TienLuongView2";
             this.Size = new System.Drawing.Size(749, 600);
             this.Load += new System.EventHandler(this.TienLuongView2_Load);
@@ -151,7 +157,7 @@
 
         private System.Windows.Forms.Label lblTotalPage;
         private System.Windows.Forms.ImageList imageList1;
-        private V6Controls.Controls.TreeView.TreeListViewAuto treeListViewAuto1;
+        private V6Controls.Controls.ToChucTree.ToChucTreeListView tochucTree1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Panel panelView;
         private V6Controls.V6ColorTextBox txtLoc;

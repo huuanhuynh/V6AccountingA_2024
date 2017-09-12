@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -32,7 +33,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 //vTitle, eTitle
                 var groupFields = ObjectAndString.SplitString(V6Lookup.GetValueByTableName(_tableName, "vTitle"));
                 var groupNameFields = ObjectAndString.SplitString(V6Lookup.GetValueByTableName(_tableName, "eTitle"));
-                treeListViewAuto1.SetGroupAndNameFieldList(groupFields, groupNameFields);
+                //treeListViewAuto1.SetGroupAndNameFieldList(groupFields, groupNameFields);
 
                 //treeListViewAuto1.SetGroupAndNameFieldList(
                 //        new string[] { "MA_DVCS", "MA_BPNS", "MA_NS" },
@@ -47,11 +48,11 @@ namespace V6ControlManager.FormManager.NhanSu
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".NhanSuView2 MyInit " + ex.Message);
+                this.ShowErrorMessage(GetType() + ".TienLuongView2 MyInit " + ex.Message);
             }
         }
 
-        public TienLuongView2(string itemId, string title, string tableName, string initFilter = "", string sort="")
+        public TienLuongView2(string itemId, string title, string tableName, string initFilter = "", string sort = "")
         {
             m_itemId = itemId;
             Title = title;
@@ -60,7 +61,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
             InitializeComponent();
             MyInit();
-            
+
             _hideColumnDic = _categories.GetHideColumns(tableName);
             InitFilter = initFilter;
             SelectResult = new V6SelectResult();
@@ -78,13 +79,13 @@ namespace V6ControlManager.FormManager.NhanSu
             {
                 KeyFields = new[] { "MA_BP", "MA_CV", "MA_NS" };
             }
-          
+
         }
 
         private readonly V6Categories _categories = new V6Categories();
-        private SortedDictionary<string, string> _hideColumnDic; 
+        private SortedDictionary<string, string> _hideColumnDic;
         private string _tableName;
-        private string _viewName = "VPRDMNS";
+        private string _viewName = "VPRDMNSTREE";
         [DefaultValue(V6TableName.None)]
         public V6TableName CurrentTable { get; set; }
         public V6SelectResult SelectResult { get; set; }
@@ -120,9 +121,9 @@ namespace V6ControlManager.FormManager.NhanSu
                     if (CurrentTable != V6TableName.None)
                     {
                         var data = new SortedDictionary<string, object>();
-                        if (treeListViewAuto1.SelectedItems.Count>0)
+                        if (tochucTree1.SelectedItems.Count > 0)
                         {
-                            data = treeListViewAuto1.SelectedItemData;
+                            data = tochucTree1.SelectedItemData;
                         }
 
                         //var keys = new SortedDictionary<string, object>();
@@ -169,9 +170,9 @@ namespace V6ControlManager.FormManager.NhanSu
                     if (CurrentTable != V6TableName.None)
                     {
                         var data = new SortedDictionary<string, object>();
-                        if (treeListViewAuto1.SelectedItems.Count > 0)
+                        if (tochucTree1.SelectedItems.Count > 0)
                         {
-                            data = treeListViewAuto1.SelectedItemData;
+                            data = tochucTree1.SelectedItemData;
                         }
 
                         var keys = new SortedDictionary<string, object>();
@@ -221,12 +222,12 @@ namespace V6ControlManager.FormManager.NhanSu
                     }
                     else
                     {
-                        TreeListViewItem item = treeListViewAuto1.SelectedItems[0];
-                        
-                        if (item.Level == treeListViewAuto1.MaxLevel)
+                        TreeListViewItem item = tochucTree1.SelectedItems[0];
+
+                        //if (item.Level == treeListViewAuto1.MaxLevel)
                         {
                             //var selected_item_data = treeListViewAuto1.SelectedItems[0].ToNhanSuDictionary();
-                            var selected_item_data = treeListViewAuto1.SelectedItemData;
+                            var selected_item_data = tochucTree1.SelectedItemData;
                             if (selected_item_data != null)
                             {
                                 var keys = new SortedDictionary<string, object>();
@@ -272,7 +273,7 @@ namespace V6ControlManager.FormManager.NhanSu
                         }
                         else if (item.Level == 2)
                         {
-                            
+
                         }
                     }
                 }
@@ -301,9 +302,9 @@ namespace V6ControlManager.FormManager.NhanSu
             {
                 if (data == null) return;
 
-                var dictionary = new SortedDictionary<string,string>();
+                var dictionary = new SortedDictionary<string, string>();
                 dictionary.AddRange(data);
-                treeListViewAuto1.UpdateSelectedItemData(data);
+                tochucTree1.UpdateSelectedItemData(data);
                 //SetFormatGridView();
             }
             catch (Exception ex)
@@ -328,11 +329,11 @@ namespace V6ControlManager.FormManager.NhanSu
                     else
                     {
                         //DataGridViewRow row = dataGridView01.GetFirstSelectedRow();
-                        if (treeListViewAuto1.SelectedItems[0] != null
-                            && treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
+                        if (tochucTree1.SelectedItems[0] != null)
+                        //&& treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
                         {
                             var data = new SortedDictionary<string, object>();
-                            data.AddRange(treeListViewAuto1.SelectedItems[0].ToNhanSuDictionary());
+                            data.AddRange(tochucTree1.SelectedItems[0].ToNhanSuDictionary());
 
                             var f = DanhMucManager.ChangeCode.ChangeCodeManager.GetChangeCodeControl(_tableName, data);
                             if (f != null)
@@ -352,7 +353,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 {
                     V6ControlFormHelper.NoRightWarning();
                 }
-             }
+            }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
@@ -370,12 +371,12 @@ namespace V6ControlManager.FormManager.NhanSu
             {
                 if (V6Login.UserRight.AllowDelete("", CurrentTable.ToString().ToUpper() + "6"))
                 {
-                    if (treeListViewAuto1.SelectedItems[0] != null
-                        && treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
+                    if (tochucTree1.SelectedItems[0] != null)
+                    //&& treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
                     {
-                        var selected_item = treeListViewAuto1.SelectedItems[0];
-                        var data = treeListViewAuto1.SelectedItemData;
-                        
+                        var selected_item = tochucTree1.SelectedItems[0];
+                        var data = tochucTree1.SelectedItemData;
+
                         var id = V6Lookup.ValueByTableName[CurrentTable.ToString(), "vValue"].ToString().Trim();
                         var listTable =
                             V6Lookup.ValueByTableName[CurrentTable.ToString(), "ListTable"].ToString().Trim();
@@ -383,7 +384,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
                         if (!string.IsNullOrEmpty(listTable) && !string.IsNullOrEmpty(id))
                         {
-                            if(data.ContainsKey(id.ToUpper()))
+                            if (data.ContainsKey(id.ToUpper()))
                                 value = data[id.ToUpper()].ToString().Trim();
                             var v = _categories.IsExistOneCode_List(listTable, id, value);
                             if (v)
@@ -393,13 +394,13 @@ namespace V6ControlManager.FormManager.NhanSu
                                 return;
                             }
                         }
-                        
+
                         var isDeleted = 0;
 
                         if (data.ContainsKey("UID"))
                         {
-                            var keys = new SortedDictionary<string, object> {{"UID", data["UID"]}};
-                            
+                            var keys = new SortedDictionary<string, object> { { "UID", data["UID"] } };
+
 
                             if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + value, "Xóa?")
                                 == DialogResult.Yes)
@@ -429,7 +430,7 @@ namespace V6ControlManager.FormManager.NhanSu
                         {
                             V6ControlFormHelper.ShowMessage(V6Text.DeleteFail);
                         }
-                        
+
                     }
                     else
                     {
@@ -459,20 +460,20 @@ namespace V6ControlManager.FormManager.NhanSu
                     }
                     else
                     {
-                        if (treeListViewAuto1.SelectedItems[0] != null
-                            && treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
+                        if (tochucTree1.SelectedItems[0] != null)
+                        //&& treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
                         {
-                            var data = treeListViewAuto1.SelectedItemData;
+                            var data = tochucTree1.SelectedItemData;
 
                             var keys = new SortedDictionary<string, object>();
-                            if (treeListViewAuto1.Columns.ContainsKey("UID"))
+                            if (tochucTree1.Columns.ContainsKey("UID"))
                                 keys.Add("UID", data["UID"].ToString());
 
                             if (KeyFields != null)
                                 foreach (var keyField in KeyFields)
                                 {
                                     var KEYFIELD = keyField.ToUpper();
-                                    if (treeListViewAuto1.Columns.ContainsKey(KEYFIELD))
+                                    if (tochucTree1.Columns.ContainsKey(KEYFIELD))
                                     {
                                         keys[KEYFIELD] = data[KEYFIELD];
                                     }
@@ -494,13 +495,13 @@ namespace V6ControlManager.FormManager.NhanSu
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".NhanSuView2 DoView " + ex.Message);
+                this.ShowErrorMessage(GetType() + ".TienLuongView2 DoView " + ex.Message);
             }
         }
 
         private void DoPrint()
         {
-             try
+            try
             {
                 if (V6Login.UserRight.AllowPrint("", CurrentTable.ToString().ToUpper() + "6"))
                 {
@@ -530,23 +531,25 @@ namespace V6ControlManager.FormManager.NhanSu
             SelectResult = new V6SelectResult();
             CloseFilterForm();
             int pageSize = 0;
-            
+
             LoadTable(tableName, 1, pageSize, GetWhere(), sort, true);
         }
 
         private void LoadTable(V6TableName tableName, int page, int size, string where, string sortField, bool ascending)
         {
-            try { 
-                if (page < 1) page = 1;
+            try
+            {
+                //if (page < 1) page = 1;
                 CurrentTable = tableName;
 
                 //var sr = _categories.SelectPaging(tableName, "*", page, size, GetWhere(where), sortField, ascending);
-                var sr = V6BusinessHelper.Select(_viewName, "*", where, "", sortField);
-                
+                string new_where = GetNewWhere(where);
+                var sr = V6BusinessHelper.Select(_viewName, "*", new_where, "", sortField);
+
                 SelectResult.Data = sr.Data;
-                
+
                 SelectResult.Page = sr.Page;
-                
+
                 SelectResult.TotalRows = sr.TotalRows;
                 SelectResult.PageSize = sr.PageSize;
                 SelectResult.Fields = sr.Fields;
@@ -559,8 +562,24 @@ namespace V6ControlManager.FormManager.NhanSu
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _tableName), ex);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _viewName), ex);
             }
+        }
+
+        private string GetNewWhere(string where)
+        {
+            if (string.IsNullOrEmpty(where))
+            {
+                return "";
+            }
+
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@cWhere", where??""),
+                new SqlParameter("@return", null),
+            };
+            string listParent = V6BusinessHelper.ExecuteProcedureScalar("VPH_GetParentNodeList", plist).ToString().Trim();
+            return string.Format("{0} or(dbo.VFV_InList0(node,'{1}',',')=1)", where, listParent);
         }
 
         private void LoadAtPage(int page)
@@ -580,10 +599,10 @@ namespace V6ControlManager.FormManager.NhanSu
             string showFields = V6Lookup.ValueByTableName[_tableName, "GRDS_V1"].ToString().Trim();
             string headerString = V6Lookup.ValueByTableName[_tableName, V6Setting.IsVietnamese ? "GRDHV_V1" : "GRDHE_V1"].ToString().Trim();
             string formatStrings = V6Lookup.ValueByTableName[_tableName, "GRDF_V1"].ToString().Trim();
-            
+
             //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
 
-            treeListViewAuto1.SetData(SelectResult.Data, showFields, headerString, formatStrings);
+            tochucTree1.SetData(SelectResult.Data, showFields, headerString, formatStrings);
             #endregion nhansutreeview
 
 
@@ -597,9 +616,10 @@ namespace V6ControlManager.FormManager.NhanSu
 
         public void First()
         {
-            try { 
-            LoadTable(CurrentTable, 1, SelectResult.PageSize,
-                SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            try
+            {
+                LoadTable(CurrentTable, 1, SelectResult.PageSize,
+                    SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -609,9 +629,10 @@ namespace V6ControlManager.FormManager.NhanSu
 
         public void Previous()
         {
-            try { 
-            LoadTable(CurrentTable, SelectResult.Page - 1, SelectResult.PageSize,
-                SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            try
+            {
+                LoadTable(CurrentTable, SelectResult.Page - 1, SelectResult.PageSize,
+                    SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -635,9 +656,10 @@ namespace V6ControlManager.FormManager.NhanSu
 
         public void Last()
         {
-            try { 
-            LoadTable(CurrentTable, SelectResult.TotalPages, SelectResult.PageSize,
-                SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            try
+            {
+                LoadTable(CurrentTable, SelectResult.TotalPages, SelectResult.PageSize,
+                    SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -662,7 +684,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
             }
         }
-        
+
         private void btnThem_Click(object sender, EventArgs e)
         {
             if (V6Login.UserRight.AllowAdd("", CurrentTable.ToString().ToUpper() + "6"))
@@ -714,7 +736,7 @@ namespace V6ControlManager.FormManager.NhanSu
         //Reload
         private void f_InsertSuccess(SortedDictionary<string, object> data)
         {
-            treeListViewAuto1.AddData(data);
+            tochucTree1.AddData(data);
         }
 
 
@@ -764,7 +786,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 }
             }
 
-            if(!string.IsNullOrEmpty(where))
+            if (!string.IsNullOrEmpty(where))
             {
                 if (string.IsNullOrEmpty(result))
                     result = where;
@@ -821,14 +843,14 @@ namespace V6ControlManager.FormManager.NhanSu
                 // ignored
             }
         }
-        
+
         public override void SetStatus2Text()
         {
             V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese
                 ? "F3-Sửa, F4-Thêm, F5-Tìm, F6-Đổi mã, F8-Xóa"
                 : "F3-Edit, F4-New, F5-Search, F6-Change Code, F8-Delete");
         }
-        
+
         private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
             e.Column.SortMode = DataGridViewColumnSortMode.Programmatic;
@@ -867,20 +889,20 @@ namespace V6ControlManager.FormManager.NhanSu
                     }
                     else
                     {
-                        if (treeListViewAuto1.SelectedItems[0] != null
-                            && treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
+                        if (tochucTree1.SelectedItems[0] != null)
+                        //&& treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
                         {
-                            var data = treeListViewAuto1.SelectedItemData;
+                            var data = tochucTree1.SelectedItemData;
 
                             var keys = new SortedDictionary<string, object>();
-                            if (treeListViewAuto1.Columns.ContainsKey("UID"))
+                            if (tochucTree1.Columns.ContainsKey("UID"))
                                 keys.Add("UID", data["UID"].ToString());
 
                             if (KeyFields != null)
                                 foreach (var keyField in KeyFields)
                                 {
                                     var KEYFIELD = keyField.ToUpper();
-                                    if (treeListViewAuto1.Columns.ContainsKey(KEYFIELD))
+                                    if (tochucTree1.Columns.ContainsKey(KEYFIELD))
                                     {
                                         keys[KEYFIELD] = data[KEYFIELD];
                                     }
@@ -980,7 +1002,7 @@ namespace V6ControlManager.FormManager.NhanSu
             {
                 if (this.ShowConfirmMessage(V6Text.ReloadConfirm) == DialogResult.Yes)
                 {
-                    ReLoad();   
+                    ReLoad();
                 }
             }
             else
@@ -1101,7 +1123,7 @@ namespace V6ControlManager.FormManager.NhanSu
                         {
                             ((OneGridControl)c).HideFilterControl();
                         }
-                        
+
                         c.Disposed += delegate(object sender1, EventArgs e1)
                         {
                             ControlsDictionary.Remove(((Control)sender1).Name);
@@ -1139,6 +1161,6 @@ namespace V6ControlManager.FormManager.NhanSu
             DoFillter();
         }
 
-        
+
     }
 }

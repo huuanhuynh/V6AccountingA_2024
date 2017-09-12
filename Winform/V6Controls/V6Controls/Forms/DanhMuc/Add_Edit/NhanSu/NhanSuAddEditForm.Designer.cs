@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.TXTbirth_date = new System.Windows.Forms.MaskedTextBox();
+            this.TXTbirth_date = new V6Controls.V6ColorMaskedTextBox();
             this.txtSttRec0 = new V6Controls.V6ColorTextBox();
             this.txtSttRec = new V6Controls.V6ColorTextBox();
             this.v6Label1 = new V6Controls.V6Label();

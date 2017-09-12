@@ -3011,6 +3011,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private void GetDefault_Other()
         {
             txtMa_ct.Text = Invoice.Mact;
+            dateNgayCT.Value = V6Setting.M_SV_DATE;
+            dateNgayLCT.Value = V6Setting.M_SV_DATE;
             //Tuanmh 25/01/2016- Ma_dvcs
             if (V6Login.MadvcsCount >= 1)
             {
@@ -5398,7 +5400,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         private void txtManx_V6LostFocus(object sender)
         {
-            if (TxtTk_i_ao.Text.Trim() == "") TxtTk_i_ao.Text = txtManx.Text;
+            //Tuanmh 09/09/2017 Loi Tk_i
+            if (TxtTk_i_ao.Text.Trim() == "" || TxtT_cp_nt_ao.Value + TxtT_cp_ao.Value == 0)
+            {
+                TxtTk_i_ao.Text = txtManx.Text;
+            }
         }
 
         private bool ValidateData_Master()

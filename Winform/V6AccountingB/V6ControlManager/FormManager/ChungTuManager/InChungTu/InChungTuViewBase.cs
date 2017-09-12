@@ -1116,6 +1116,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             {
                 if (beforeLoadData != null && !(bool)beforeLoadData)
                 {
+                    _message = V6Text.CheckInfor;
                     Data_Loading = false;
                     return;
                 }

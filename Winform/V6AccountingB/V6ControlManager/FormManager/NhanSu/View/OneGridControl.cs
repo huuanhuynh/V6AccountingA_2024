@@ -45,6 +45,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                 ThongTinControl1 = NhanSuManager.GetControl(ItemID, _formname) as V6FormControl;
                 if (ThongTinControl1 != null)
                 {
+                    V6ControlFormHelper.SetFormControlsReadOnly(ThongTinControl1, true);
                     ThongTinControl1.Dock = DockStyle.Fill;
                     panelControl.Controls.Add(ThongTinControl1);
                 }
@@ -348,6 +349,8 @@ namespace V6ControlManager.FormManager.NhanSu.View
                     {
                         V6ControlFormHelper.SetFormDataDictionary(ThongTinControl2, _gridViewData.Rows[0].ToDataDictionary());
                     }
+                    //V6ControlFormHelper.SetFormControlsReadOnly(ThongTinControl1, true);
+                    //V6ControlFormHelper.SetFormControlsReadOnly(ThongTinControl2, true);
                     gridView1.Focus();
                 }
             }

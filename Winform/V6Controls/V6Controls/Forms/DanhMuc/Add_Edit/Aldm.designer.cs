@@ -80,6 +80,8 @@
             this.label47 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.chkFormF4 = new V6Controls.V6CheckBox();
+            this.chkFormF3 = new V6Controls.V6CheckBox();
             this.v6ColorTextBox6 = new V6Controls.V6ColorTextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.txtcach_tinh3 = new V6Controls.V6ColorTextBox();
@@ -112,8 +114,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.TxtForder = new V6Controls.V6NumberTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.chkFormF3 = new V6Controls.V6CheckBox();
-            this.chkFormF4 = new V6Controls.V6CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -809,7 +809,7 @@
             this.v6ColorTextBox22.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox22.Name = "v6ColorTextBox22";
             this.v6ColorTextBox22.Size = new System.Drawing.Size(613, 23);
-            this.v6ColorTextBox22.TabIndex = 53;
+            this.v6ColorTextBox22.TabIndex = 3;
             // 
             // v6ColorTextBox21
             // 
@@ -827,7 +827,7 @@
             this.v6ColorTextBox21.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox21.Name = "v6ColorTextBox21";
             this.v6ColorTextBox21.Size = new System.Drawing.Size(613, 23);
-            this.v6ColorTextBox21.TabIndex = 54;
+            this.v6ColorTextBox21.TabIndex = 2;
             // 
             // label53
             // 
@@ -865,7 +865,7 @@
             this.v6ColorTextBox16.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox16.Name = "v6ColorTextBox16";
             this.v6ColorTextBox16.Size = new System.Drawing.Size(613, 23);
-            this.v6ColorTextBox16.TabIndex = 50;
+            this.v6ColorTextBox16.TabIndex = 1;
             // 
             // v6ColorTextBox15
             // 
@@ -883,7 +883,7 @@
             this.v6ColorTextBox15.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox15.Name = "v6ColorTextBox15";
             this.v6ColorTextBox15.Size = new System.Drawing.Size(613, 23);
-            this.v6ColorTextBox15.TabIndex = 48;
+            this.v6ColorTextBox15.TabIndex = 0;
             // 
             // label47
             // 
@@ -939,6 +939,30 @@
             this.tabPage3.Size = new System.Drawing.Size(796, 348);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Các tùy chọn";
+            // 
+            // chkFormF4
+            // 
+            this.chkFormF4.AccessibleName = "F4";
+            this.chkFormF4.AutoSize = true;
+            this.chkFormF4.Location = new System.Drawing.Point(114, 233);
+            this.chkFormF4.Margin = new System.Windows.Forms.Padding(4);
+            this.chkFormF4.Name = "chkFormF4";
+            this.chkFormF4.Size = new System.Drawing.Size(235, 21);
+            this.chkFormF4.TabIndex = 158;
+            this.chkFormF4.Text = "F4 cho phép thêm mới khi lookup";
+            this.chkFormF4.UseVisualStyleBackColor = true;
+            // 
+            // chkFormF3
+            // 
+            this.chkFormF3.AccessibleName = "F3";
+            this.chkFormF3.AutoSize = true;
+            this.chkFormF3.Location = new System.Drawing.Point(115, 204);
+            this.chkFormF3.Margin = new System.Windows.Forms.Padding(4);
+            this.chkFormF3.Name = "chkFormF3";
+            this.chkFormF3.Size = new System.Drawing.Size(201, 21);
+            this.chkFormF3.TabIndex = 158;
+            this.chkFormF3.Text = "F3 cho phép sửa khi lookup";
+            this.chkFormF3.UseVisualStyleBackColor = true;
             // 
             // v6ColorTextBox6
             // 
@@ -1421,30 +1445,6 @@
             this.label6.Size = new System.Drawing.Size(59, 17);
             this.label6.TabIndex = 6;
             this.label6.Text = "Sắp xếp";
-            // 
-            // chkFormF3
-            // 
-            this.chkFormF3.AccessibleName = "F3";
-            this.chkFormF3.AutoSize = true;
-            this.chkFormF3.Location = new System.Drawing.Point(115, 204);
-            this.chkFormF3.Margin = new System.Windows.Forms.Padding(4);
-            this.chkFormF3.Name = "chkFormF3";
-            this.chkFormF3.Size = new System.Drawing.Size(201, 21);
-            this.chkFormF3.TabIndex = 158;
-            this.chkFormF3.Text = "F3 cho phép sửa khi lookup";
-            this.chkFormF3.UseVisualStyleBackColor = true;
-            // 
-            // chkFormF4
-            // 
-            this.chkFormF4.AccessibleName = "F4";
-            this.chkFormF4.AutoSize = true;
-            this.chkFormF4.Location = new System.Drawing.Point(114, 233);
-            this.chkFormF4.Margin = new System.Windows.Forms.Padding(4);
-            this.chkFormF4.Name = "chkFormF4";
-            this.chkFormF4.Size = new System.Drawing.Size(235, 21);
-            this.chkFormF4.TabIndex = 158;
-            this.chkFormF4.Text = "F4 cho phép thêm mới khi lookup";
-            this.chkFormF4.UseVisualStyleBackColor = true;
             // 
             // Aldm
             // 

@@ -71,7 +71,6 @@
     <Reference Include="System.Runtime.InteropServices.APIs">
       <HintPath>..\..\..\Lib\Winform\System.Runtime.InteropServices.APIs.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\WINDOWS\assembly\GAC_MSIL\System.Web.Services\2.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
@@ -144,6 +143,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\SyntaxHighlightingTextBox\Win32.cs" />
+    <Compile Include="Controls\ToChucTree\ToChucTreeControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ToChucTree\ToChucTreeListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\V6LookupCombobox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1300,6 +1305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SyntaxHighlightingTextBox\SyntaxHighlightingTextBox.resx">
       <DependentUpon>SyntaxHighlightingTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ToChucTree\ToChucTreeListView.resx">
+      <DependentUpon>ToChucTreeListView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\TreeView\TreeListViewAuto.resx">
       <DependentUpon>TreeListViewAuto.cs</DependentUpon>

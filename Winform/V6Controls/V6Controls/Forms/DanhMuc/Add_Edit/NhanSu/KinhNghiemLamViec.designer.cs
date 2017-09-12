@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtdate_to = new System.Windows.Forms.MaskedTextBox();
-            this.TXTdate_from = new System.Windows.Forms.MaskedTextBox();
+            this.txtdate_to = new V6Controls.V6ColorMaskedTextBox();
+            this.TXTdate_from = new V6Controls.V6ColorMaskedTextBox();
             this.txtSttRec0 = new V6Controls.V6ColorTextBox();
             this.v6Label9 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();

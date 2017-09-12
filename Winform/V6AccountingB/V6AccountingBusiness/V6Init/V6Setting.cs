@@ -257,6 +257,9 @@ namespace V6Init
 
         }
 
+        /// <summary>
+        /// Ngày server lúc login.
+        /// </summary>
         public static DateTime M_SV_DATE = DateTime.Today;
         
         public static DateTime M_ngay_ct1 = M_SV_DATE;

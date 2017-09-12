@@ -349,7 +349,7 @@ namespace V6Controls.Controls.TreeView
             var GROUP_FIELD = _groupFieldList[0].ToUpper();
             var GROUP_CODE = data[GROUP_FIELD].ToString().Trim();
             var NAME_FIELD = _groupNameFieldList[0];
-            var GROUP_NAME = data[NAME_FIELD].ToString().Trim();
+            var GROUP_TEXT = data[NAME_FIELD].ToString().Trim();
 
             // Find parrent node
             TreeListViewItem node = null;
@@ -366,7 +366,7 @@ namespace V6Controls.Controls.TreeView
             {
                 node = new TreeListViewItem(GROUP_CODE, 0);
                 node.Name = GROUP_CODE;
-                if (ViewName) node.Text = GROUP_NAME;
+                if (ViewName) node.Text = GROUP_TEXT;
                 Items.Add(node);
             }
 
@@ -432,7 +432,7 @@ namespace V6Controls.Controls.TreeView
                 var GROUP_FIELD = _groupFieldList[level].ToUpper();
                 var GROUP_CODE = data[GROUP_FIELD].ToString().Trim();
                 var NAME_FIELD = _groupNameFieldList[level];
-                var GROUP_NAME = data[NAME_FIELD].ToString().Trim();
+                var GROUP_TEXT = data[NAME_FIELD].ToString().Trim();
 
                 // Find parrent node
                 TreeListViewItem node = null;
@@ -449,7 +449,7 @@ namespace V6Controls.Controls.TreeView
                 {
                     node = new TreeListViewItem(GROUP_CODE, level);
                     node.Name = GROUP_CODE;
-                    if(ViewName) node.Text = GROUP_NAME;
+                    if(ViewName) node.Text = GROUP_TEXT;
                     parent.Items.Add(node);
                 }
 

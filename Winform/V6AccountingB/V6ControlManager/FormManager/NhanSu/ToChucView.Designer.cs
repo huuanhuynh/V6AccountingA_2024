@@ -1,6 +1,6 @@
 ﻿namespace V6ControlManager.FormManager.NhanSu
 {
-    partial class NhanSuView
+    partial class ToChucView
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NhanSuView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToChucView));
             this.lblTotalPage = new System.Windows.Forms.Label();
-            this.treeListViewAuto1 = new V6Controls.Controls.ToChucTree.ToChucTreeListView();
+            this.toChucTreeListView1 = new V6Controls.Controls.ToChucTree.ToChucTreeListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnDoiMa = new System.Windows.Forms.Button();
             this.btnFull = new System.Windows.Forms.Button();
@@ -58,30 +58,29 @@
             this.lblTotalPage.Text = "Tổng cộng";
             this.lblTotalPage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // treeListViewAuto1
+            // toChucTreeListView1
             // 
-            this.treeListViewAuto1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.toChucTreeListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             treeListViewItemCollectionComparer1.Column = 0;
             treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
-            this.treeListViewAuto1.Comparer = treeListViewItemCollectionComparer1;
-            this.treeListViewAuto1.GridLines = true;
-            this.treeListViewAuto1.HideSelection = false;
-            this.treeListViewAuto1.ID_Field = "NODE";
-            this.treeListViewAuto1.ImageIndex_Field = "PICTURE";
-            this.treeListViewAuto1.IsBold_Field = "isBold";
-            this.treeListViewAuto1.Location = new System.Drawing.Point(3, 64);
-            this.treeListViewAuto1.MultiSelect = false;
-            this.treeListViewAuto1.Name = "treeListViewAuto1";
-            this.treeListViewAuto1.ParentIdField = "PARENT";
-            this.treeListViewAuto1.Size = new System.Drawing.Size(743, 515);
-            this.treeListViewAuto1.SmallImageList = this.imageList1;
-            this.treeListViewAuto1.Sort_Field = "fsort";
-            this.treeListViewAuto1.TabIndex = 22;
-            this.treeListViewAuto1.Text_Field = "NAME";
-            this.treeListViewAuto1.UseCompatibleStateImageBehavior = false;
-            this.treeListViewAuto1.Click += new System.EventHandler(this.treeListViewAuto1_Click);
+            this.toChucTreeListView1.Comparer = treeListViewItemCollectionComparer1;
+            this.toChucTreeListView1.GridLines = true;
+            this.toChucTreeListView1.HideSelection = false;
+            this.toChucTreeListView1.ID_Field = "NODE";
+            this.toChucTreeListView1.ImageIndex_Field = "picture";
+            this.toChucTreeListView1.Location = new System.Drawing.Point(6, 64);
+            this.toChucTreeListView1.MultiSelect = false;
+            this.toChucTreeListView1.Name = "toChucTreeListView1";
+            this.toChucTreeListView1.ParentIdField = "PARENT";
+            this.toChucTreeListView1.Size = new System.Drawing.Size(740, 515);
+            this.toChucTreeListView1.SmallImageList = this.imageList1;
+            this.toChucTreeListView1.Sort_Field = "fsort";
+            this.toChucTreeListView1.TabIndex = 22;
+            this.toChucTreeListView1.Text_Field = "NAME";
+            this.toChucTreeListView1.UseCompatibleStateImageBehavior = false;
+            this.toChucTreeListView1.Click += new System.EventHandler(this.toChucTreeListView1_Click);
             // 
             // imageList1
             // 
@@ -94,6 +93,11 @@
             this.imageList1.Images.SetKeyName(4, "");
             this.imageList1.Images.SetKeyName(5, "");
             this.imageList1.Images.SetKeyName(6, "");
+            this.imageList1.Images.SetKeyName(7, "HammerBlack16.png");
+            this.imageList1.Images.SetKeyName(8, "LightBlack16.png");
+            this.imageList1.Images.SetKeyName(9, "ToolBox16.png");
+            this.imageList1.Images.SetKeyName(10, "UserBlack16.png");
+            this.imageList1.Images.SetKeyName(11, "UserList16.png");
             // 
             // btnDoiMa
             // 
@@ -249,12 +253,12 @@
             this.btnThem.EnabledChanged += new System.EventHandler(this.btnThem_EnabledChanged);
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
-            // NhanSuView
+            // ToChucView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblTotalPage);
-            this.Controls.Add(this.treeListViewAuto1);
+            this.Controls.Add(this.toChucTreeListView1);
             this.Controls.Add(this.btnDoiMa);
             this.Controls.Add(this.btnFull);
             this.Controls.Add(this.btnXoa);
@@ -266,9 +270,9 @@
             this.Controls.Add(this.btnFind);
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.btnThem);
-            this.Name = "NhanSuView";
+            this.Name = "ToChucView";
             this.Size = new System.Drawing.Size(749, 600);
-            this.Load += new System.EventHandler(this.NhanSuView_Load);
+            this.Load += new System.EventHandler(this.ToChucView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -289,6 +293,6 @@
         private System.Windows.Forms.Button btnFull;
         private System.Windows.Forms.Button btnDoiMa;
         private System.Windows.Forms.ImageList imageList1;
-        private V6Controls.Controls.ToChucTree.ToChucTreeListView treeListViewAuto1;
+        private V6Controls.Controls.ToChucTree.ToChucTreeListView toChucTreeListView1;
     }
 }

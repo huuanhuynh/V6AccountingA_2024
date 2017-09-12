@@ -222,6 +222,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new AMAPEDIT(itemId, program, procedure, reportFile, text);
                 case "AMAP01":
                     return new AMAPREPORT(itemId, program, procedure, reportFile, text);
+
+                case "HRORGVIEW1":
+                    return new HRORGVIEW1(itemId, program, procedure, reportFile, text);
             }
             return new XuLyBase0(itemId, program, procedure, reportFile, text);
         }
