@@ -857,23 +857,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 this.ShowErrorMessage(GetType() + ".SetAllReportParams: " + ReportFileFull + " " + errors);
             }
 
-            //SetReportParams2();
         }
 
-        ///// <summary>
-        ///// Các tham số thêm từ filter
-        ///// </summary>
-        //private void SetReportParams2()//!!!! them ParamDic
-        //{
-
-        //    if (FilterControl._parameters != null)
-        //    {
-        //        foreach (KeyValuePair<string, object> key_value_pair in FilterControl._parameters)
-        //        {
-        //            _rpDoc.SetParameterValue(key_value_pair.Key, key_value_pair.Value);
-        //        }
-        //    }
-        //}
 
         #region ==== LoadData MakeReport ====
         

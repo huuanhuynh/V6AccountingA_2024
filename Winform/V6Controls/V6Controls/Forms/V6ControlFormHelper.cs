@@ -4169,7 +4169,7 @@ namespace V6Controls.Forms
             var color = control as V6DateTimeColor;
             if (color != null)
             {
-                color.Value = ObjectAndString.ObjectToDate(value);
+                color.Value = ObjectAndString.ObjectToFullDateTime(value);
             }
             else if (control is V6IndexComboBox)
             {
@@ -4226,15 +4226,13 @@ namespace V6Controls.Forms
             }
             else if (control is V6DateTimePick)
             {
-                var object_to_date = ObjectAndString.ObjectToDate(value);
-                if (object_to_date != null)
-                    ((V6DateTimePick)control).Value = (DateTime)object_to_date;
+                var object_to_date = ObjectAndString.ObjectToFullDateTime(value);
+                ((V6DateTimePick)control).Value = object_to_date;
             }
             else if (control is DateTimePicker)
             {
-                var object_to_date = ObjectAndString.ObjectToDate(value);
-                if (object_to_date != null)
-                    ((DateTimePicker)control).Value = (DateTime)object_to_date;
+                var object_to_date = ObjectAndString.ObjectToFullDateTime(value);
+                ((DateTimePicker)control).Value = object_to_date;
             }
             else if (control is V6VvarTextBox) //!!!!.ChangeText()????
             {

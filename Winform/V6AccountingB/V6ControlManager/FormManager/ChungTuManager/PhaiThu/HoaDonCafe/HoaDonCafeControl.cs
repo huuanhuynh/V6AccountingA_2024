@@ -3248,6 +3248,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private void GetDefault_Other()
         {
             txtMa_ct.Text = Invoice.Mact;
+            dateNgayCT.Value = V6Setting.M_SV_DATE;
+            dateNgayLCT.Value = V6Setting.M_SV_DATE;
             //Tuanmh 14/05/2017- Ma_dvcs
             if (V6Login.MadvcsCount >= 1)
             {

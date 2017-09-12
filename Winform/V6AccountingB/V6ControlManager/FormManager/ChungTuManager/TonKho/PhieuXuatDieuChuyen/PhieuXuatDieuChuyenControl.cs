@@ -2577,6 +2577,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private void GetDefault_Other()
         {
             txtMa_ct.Text = Invoice.Mact;
+            dateNgayCT.Value = V6Setting.M_SV_DATE;
+            dateNgayLCT.Value = V6Setting.M_SV_DATE;
             //Tuanmh 25/01/2016- Ma_dvcs
             if (V6Login.MadvcsCount >= 1)
             {
