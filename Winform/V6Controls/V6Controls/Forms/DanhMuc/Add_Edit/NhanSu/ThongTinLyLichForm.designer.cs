@@ -41,7 +41,6 @@
             this.txtRelation = new V6Controls.V6LookupTextBox();
             this.txtQuanHe = new V6Controls.V6LookupTextBox();
             this.txtDiaChi = new V6Controls.V6ColorTextBox();
-            this.txtTinhTrangHonNhan = new V6Controls.V6ColorTextBox();
             this.v6Label14 = new V6Controls.V6Label();
             this.v6Label17 = new V6Controls.V6Label();
             this.v6Label16 = new V6Controls.V6Label();
@@ -66,14 +65,14 @@
             this.v6Label4 = new V6Controls.V6Label();
             this.TXTbirth_date0 = new V6Controls.V6DateTimeColor();
             this.TXTbirth_date = new V6Controls.V6ColorTextBox();
+            this.v6LookupTextBox1 = new V6Controls.V6LookupTextBox();
             this.SuspendLayout();
             // 
             // TXTyear_deceased0
             // 
             this.TXTyear_deceased0.AccessibleName = "year_deceased0";
-            this.TXTyear_deceased0.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TXTyear_deceased0.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.TXTyear_deceased0.BackColor = System.Drawing.Color.White;
             this.TXTyear_deceased0.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TXTyear_deceased0.EnterColor = System.Drawing.Color.PaleGreen;
@@ -88,7 +87,7 @@
             this.TXTyear_deceased0.Name = "TXTyear_deceased0";
             this.TXTyear_deceased0.Size = new System.Drawing.Size(106, 23);
             this.TXTyear_deceased0.StringValue = "__/__/____";
-            this.TXTyear_deceased0.TabIndex = 126;
+            this.TXTyear_deceased0.TabIndex = 15;
             this.TXTyear_deceased0.Text = "__/__/____";
             this.TXTyear_deceased0.TextChanged += new System.EventHandler(this.TXTbirth_date0_Leave);
             // 
@@ -106,26 +105,28 @@
             this.TXTyear_deceased.Margin = new System.Windows.Forms.Padding(5);
             this.TXTyear_deceased.Name = "TXTyear_deceased";
             this.TXTyear_deceased.Size = new System.Drawing.Size(131, 23);
-            this.TXTyear_deceased.TabIndex = 127;
+            this.TXTyear_deceased.TabIndex = 16;
             // 
             // chkPhuThuoc
             // 
+            this.chkPhuThuoc.AccessibleName = "dependent";
             this.chkPhuThuoc.AutoSize = true;
             this.chkPhuThuoc.Location = new System.Drawing.Point(139, 494);
             this.chkPhuThuoc.Margin = new System.Windows.Forms.Padding(4);
             this.chkPhuThuoc.Name = "chkPhuThuoc";
             this.chkPhuThuoc.Size = new System.Drawing.Size(15, 14);
-            this.chkPhuThuoc.TabIndex = 0;
+            this.chkPhuThuoc.TabIndex = 19;
             this.chkPhuThuoc.UseVisualStyleBackColor = true;
             // 
             // chkChet
             // 
+            this.chkChet.AccessibleName = "deceased";
             this.chkChet.AutoSize = true;
             this.chkChet.Location = new System.Drawing.Point(139, 354);
             this.chkChet.Margin = new System.Windows.Forms.Padding(4);
             this.chkChet.Name = "chkChet";
             this.chkChet.Size = new System.Drawing.Size(15, 14);
-            this.chkChet.TabIndex = 27;
+            this.chkChet.TabIndex = 14;
             this.chkChet.UseVisualStyleBackColor = true;
             // 
             // txtTrinhDoHocVan
@@ -141,7 +142,7 @@
             this.txtTrinhDoHocVan.Margin = new System.Windows.Forms.Padding(5);
             this.txtTrinhDoHocVan.Name = "txtTrinhDoHocVan";
             this.txtTrinhDoHocVan.Size = new System.Drawing.Size(465, 23);
-            this.txtTrinhDoHocVan.TabIndex = 17;
+            this.txtTrinhDoHocVan.TabIndex = 9;
             // 
             // v6Label10
             // 
@@ -178,7 +179,7 @@
             this.txtTonGiao.Margin = new System.Windows.Forms.Padding(5);
             this.txtTonGiao.Name = "txtTonGiao";
             this.txtTonGiao.Size = new System.Drawing.Size(118, 23);
-            this.txtTonGiao.TabIndex = 11;
+            this.txtTonGiao.TabIndex = 5;
             // 
             // txtSttRec0
             // 
@@ -245,7 +246,7 @@
             // 
             // txtQuanHe
             // 
-            this.txtQuanHe.AccessibleName = "RELATION_NAME";
+            this.txtQuanHe.AccessibleName = "RELATION";
             this.txtQuanHe.BackColor = System.Drawing.Color.White;
             this.txtQuanHe.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtQuanHe.BrotherFields = "ID";
@@ -258,10 +259,12 @@
             this.txtQuanHe.Ma_dm = "HRLSTRELATION";
             this.txtQuanHe.Margin = new System.Windows.Forms.Padding(5);
             this.txtQuanHe.Name = "txtQuanHe";
-            this.txtQuanHe.NeighborFields = "RELATION";
+            this.txtQuanHe.NeighborFields = "";
             this.txtQuanHe.ParentData = null;
+            this.txtQuanHe.ShowTextField = "NAME";
             this.txtQuanHe.Size = new System.Drawing.Size(179, 23);
-            this.txtQuanHe.TabIndex = 1;
+            this.txtQuanHe.TabIndex = 0;
+            this.txtQuanHe.ValueField = "ID";
             // 
             // txtDiaChi
             // 
@@ -277,23 +280,7 @@
             this.txtDiaChi.Margin = new System.Windows.Forms.Padding(5);
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(465, 23);
-            this.txtDiaChi.TabIndex = 25;
-            // 
-            // txtTinhTrangHonNhan
-            // 
-            this.txtTinhTrangHonNhan.AccessibleName = "";
-            this.txtTinhTrangHonNhan.BackColor = System.Drawing.Color.White;
-            this.txtTinhTrangHonNhan.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTinhTrangHonNhan.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtTinhTrangHonNhan.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtTinhTrangHonNhan.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtTinhTrangHonNhan.HoverColor = System.Drawing.Color.Yellow;
-            this.txtTinhTrangHonNhan.LeaveColor = System.Drawing.Color.White;
-            this.txtTinhTrangHonNhan.Location = new System.Drawing.Point(139, 145);
-            this.txtTinhTrangHonNhan.Margin = new System.Windows.Forms.Padding(5);
-            this.txtTinhTrangHonNhan.Name = "txtTinhTrangHonNhan";
-            this.txtTinhTrangHonNhan.Size = new System.Drawing.Size(465, 23);
-            this.txtTinhTrangHonNhan.TabIndex = 15;
+            this.txtDiaChi.TabIndex = 13;
             // 
             // v6Label14
             // 
@@ -352,6 +339,7 @@
             // 
             // txtGhiChu
             // 
+            this.txtGhiChu.AccessibleName = "note";
             this.txtGhiChu.BackColor = System.Drawing.Color.White;
             this.txtGhiChu.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtGhiChu.EnterColor = System.Drawing.Color.PaleGreen;
@@ -363,10 +351,11 @@
             this.txtGhiChu.Margin = new System.Windows.Forms.Padding(5);
             this.txtGhiChu.Name = "txtGhiChu";
             this.txtGhiChu.Size = new System.Drawing.Size(465, 23);
-            this.txtGhiChu.TabIndex = 33;
+            this.txtGhiChu.TabIndex = 18;
             // 
             // txtThuNhap
             // 
+            this.txtThuNhap.AccessibleName = "income";
             this.txtThuNhap.BackColor = System.Drawing.Color.White;
             this.txtThuNhap.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtThuNhap.EnterColor = System.Drawing.Color.PaleGreen;
@@ -378,7 +367,7 @@
             this.txtThuNhap.Margin = new System.Windows.Forms.Padding(5);
             this.txtThuNhap.Name = "txtThuNhap";
             this.txtThuNhap.Size = new System.Drawing.Size(465, 23);
-            this.txtThuNhap.TabIndex = 23;
+            this.txtThuNhap.TabIndex = 12;
             // 
             // v6Label13
             // 
@@ -427,7 +416,7 @@
             this.txtLyDoChet.Margin = new System.Windows.Forms.Padding(5);
             this.txtLyDoChet.Name = "txtLyDoChet";
             this.txtLyDoChet.Size = new System.Drawing.Size(465, 23);
-            this.txtLyDoChet.TabIndex = 31;
+            this.txtLyDoChet.TabIndex = 17;
             // 
             // txtNgheNghiep
             // 
@@ -443,7 +432,7 @@
             this.txtNgheNghiep.Margin = new System.Windows.Forms.Padding(5);
             this.txtNgheNghiep.Name = "txtNgheNghiep";
             this.txtNgheNghiep.Size = new System.Drawing.Size(465, 23);
-            this.txtNgheNghiep.TabIndex = 21;
+            this.txtNgheNghiep.TabIndex = 11;
             // 
             // v6Label12
             // 
@@ -491,6 +480,7 @@
             // 
             // txtTinhTrangViecLam
             // 
+            this.txtTinhTrangViecLam.AccessibleName = "job_status";
             this.txtTinhTrangViecLam.BackColor = System.Drawing.Color.White;
             this.txtTinhTrangViecLam.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTinhTrangViecLam.EnterColor = System.Drawing.Color.PaleGreen;
@@ -502,7 +492,7 @@
             this.txtTinhTrangViecLam.Margin = new System.Windows.Forms.Padding(5);
             this.txtTinhTrangViecLam.Name = "txtTinhTrangViecLam";
             this.txtTinhTrangViecLam.Size = new System.Drawing.Size(465, 23);
-            this.txtTinhTrangViecLam.TabIndex = 19;
+            this.txtTinhTrangViecLam.TabIndex = 10;
             // 
             // v6Label6
             // 
@@ -529,7 +519,7 @@
             this.txtFirstName.Margin = new System.Windows.Forms.Padding(5);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(104, 23);
-            this.txtFirstName.TabIndex = 6;
+            this.txtFirstName.TabIndex = 4;
             // 
             // txtMidName
             // 
@@ -545,7 +535,7 @@
             this.txtMidName.Margin = new System.Windows.Forms.Padding(5);
             this.txtMidName.Name = "txtMidName";
             this.txtMidName.Size = new System.Drawing.Size(174, 23);
-            this.txtMidName.TabIndex = 5;
+            this.txtMidName.TabIndex = 3;
             // 
             // txtLastName
             // 
@@ -561,7 +551,7 @@
             this.txtLastName.Margin = new System.Windows.Forms.Padding(5);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(106, 23);
-            this.txtLastName.TabIndex = 4;
+            this.txtLastName.TabIndex = 2;
             // 
             // v6Label4
             // 
@@ -577,9 +567,8 @@
             // TXTbirth_date0
             // 
             this.TXTbirth_date0.AccessibleName = "birth_date0";
-            this.TXTbirth_date0.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TXTbirth_date0.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.TXTbirth_date0.BackColor = System.Drawing.Color.White;
             this.TXTbirth_date0.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TXTbirth_date0.EnterColor = System.Drawing.Color.PaleGreen;
@@ -594,7 +583,7 @@
             this.TXTbirth_date0.Name = "TXTbirth_date0";
             this.TXTbirth_date0.Size = new System.Drawing.Size(106, 23);
             this.TXTbirth_date0.StringValue = "__/__/____";
-            this.TXTbirth_date0.TabIndex = 124;
+            this.TXTbirth_date0.TabIndex = 6;
             this.TXTbirth_date0.Text = "__/__/____";
             this.TXTbirth_date0.Leave += new System.EventHandler(this.TXTbirth_date0_Leave);
             // 
@@ -612,12 +601,35 @@
             this.TXTbirth_date.Margin = new System.Windows.Forms.Padding(5);
             this.TXTbirth_date.Name = "TXTbirth_date";
             this.TXTbirth_date.Size = new System.Drawing.Size(131, 23);
-            this.TXTbirth_date.TabIndex = 125;
+            this.TXTbirth_date.TabIndex = 7;
+            // 
+            // v6LookupTextBox1
+            // 
+            this.v6LookupTextBox1.AccessibleName = "Civil_Status";
+            this.v6LookupTextBox1.BackColor = System.Drawing.Color.White;
+            this.v6LookupTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6LookupTextBox1.BrotherFields = "ID";
+            this.v6LookupTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6LookupTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6LookupTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6LookupTextBox1.HoverColor = System.Drawing.Color.Yellow;
+            this.v6LookupTextBox1.LeaveColor = System.Drawing.Color.White;
+            this.v6LookupTextBox1.Location = new System.Drawing.Point(139, 146);
+            this.v6LookupTextBox1.Ma_dm = "HRLSTCIVIL";
+            this.v6LookupTextBox1.Margin = new System.Windows.Forms.Padding(5);
+            this.v6LookupTextBox1.Name = "v6LookupTextBox1";
+            this.v6LookupTextBox1.NeighborFields = "";
+            this.v6LookupTextBox1.ParentData = null;
+            this.v6LookupTextBox1.ShowTextField = "NAME";
+            this.v6LookupTextBox1.Size = new System.Drawing.Size(179, 23);
+            this.v6LookupTextBox1.TabIndex = 35;
+            this.v6LookupTextBox1.ValueField = "ID";
             // 
             // ThongTinLyLichForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.v6LookupTextBox1);
             this.Controls.Add(this.TXTyear_deceased0);
             this.Controls.Add(this.TXTyear_deceased);
             this.Controls.Add(this.TXTbirth_date0);
@@ -633,7 +645,6 @@
             this.Controls.Add(this.txtRelation);
             this.Controls.Add(this.txtQuanHe);
             this.Controls.Add(this.txtDiaChi);
-            this.Controls.Add(this.txtTinhTrangHonNhan);
             this.Controls.Add(this.v6Label14);
             this.Controls.Add(this.v6Label17);
             this.Controls.Add(this.v6Label16);
@@ -672,7 +683,6 @@
         private V6Controls.V6Label v6Label1;
         private V6Controls.V6Label v6Label2;
         private V6Controls.V6Label v6Label3;
-        private V6Controls.V6ColorTextBox txtTinhTrangHonNhan;
         private V6Controls.V6Label v6Label5;
         private V6Controls.V6ColorTextBox txtTrinhDoHocVan;
         private V6Controls.V6Label v6Label6;
@@ -705,5 +715,6 @@
         private V6ColorTextBox TXTyear_deceased;
         private V6DateTimeColor TXTbirth_date0;
         private V6ColorTextBox TXTbirth_date;
+        private V6LookupTextBox v6LookupTextBox1;
     }
 }
