@@ -179,7 +179,7 @@
             this.txtTonGiao.Margin = new System.Windows.Forms.Padding(5);
             this.txtTonGiao.Name = "txtTonGiao";
             this.txtTonGiao.Size = new System.Drawing.Size(118, 23);
-            this.txtTonGiao.TabIndex = 5;
+            this.txtTonGiao.TabIndex = 4;
             // 
             // txtSttRec0
             // 
@@ -519,7 +519,7 @@
             this.txtFirstName.Margin = new System.Windows.Forms.Padding(5);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(104, 23);
-            this.txtFirstName.TabIndex = 4;
+            this.txtFirstName.TabIndex = 3;
             // 
             // txtMidName
             // 
@@ -535,7 +535,7 @@
             this.txtMidName.Margin = new System.Windows.Forms.Padding(5);
             this.txtMidName.Name = "txtMidName";
             this.txtMidName.Size = new System.Drawing.Size(174, 23);
-            this.txtMidName.TabIndex = 3;
+            this.txtMidName.TabIndex = 2;
             // 
             // txtLastName
             // 
@@ -551,7 +551,7 @@
             this.txtLastName.Margin = new System.Windows.Forms.Padding(5);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(106, 23);
-            this.txtLastName.TabIndex = 2;
+            this.txtLastName.TabIndex = 1;
             // 
             // v6Label4
             // 
@@ -583,7 +583,7 @@
             this.TXTbirth_date0.Name = "TXTbirth_date0";
             this.TXTbirth_date0.Size = new System.Drawing.Size(106, 23);
             this.TXTbirth_date0.StringValue = "__/__/____";
-            this.TXTbirth_date0.TabIndex = 6;
+            this.TXTbirth_date0.TabIndex = 5;
             this.TXTbirth_date0.Text = "__/__/____";
             this.TXTbirth_date0.Leave += new System.EventHandler(this.TXTbirth_date0_Leave);
             // 
@@ -601,7 +601,7 @@
             this.TXTbirth_date.Margin = new System.Windows.Forms.Padding(5);
             this.TXTbirth_date.Name = "TXTbirth_date";
             this.TXTbirth_date.Size = new System.Drawing.Size(131, 23);
-            this.TXTbirth_date.TabIndex = 7;
+            this.TXTbirth_date.TabIndex = 6;
             // 
             // v6LookupTextBox1
             // 
@@ -622,7 +622,7 @@
             this.v6LookupTextBox1.ParentData = null;
             this.v6LookupTextBox1.ShowTextField = "NAME";
             this.v6LookupTextBox1.Size = new System.Drawing.Size(179, 23);
-            this.v6LookupTextBox1.TabIndex = 35;
+            this.v6LookupTextBox1.TabIndex = 7;
             this.v6LookupTextBox1.ValueField = "ID";
             // 
             // ThongTinLyLichForm
