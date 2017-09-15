@@ -33,6 +33,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         {
             try
             {
+              
                 var _keys = new SortedDictionary<string, object> { { "STT_REC",stt_rec } };
                 if (_keys != null && _keys.Count > 0)
                 {
@@ -51,10 +52,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                         throw new Exception("Không lấy được dữ liệu!");
                     }
                 }
+               V6ControlFormHelper.SetFormControlsReadOnly(this, true);
                 buttonSua.Enabled = true;
                 buttonNhan.Enabled = false;
                 buttonHuy.Enabled = false;
-              
+             
             }
             catch (Exception ex)
             {

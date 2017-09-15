@@ -50,8 +50,8 @@
             this.buttonSua = new System.Windows.Forms.Button();
             this.buttonHuy = new System.Windows.Forms.Button();
             this.buttonNhan = new System.Windows.Forms.Button();
-            this.txtheight = new V6Controls.V6ColorTextBox();
-            this.txtWeight = new V6Controls.V6ColorTextBox();
+            this.txtheight = new V6Controls.V6NumberTextBox();
+            this.txtweight = new V6Controls.V6NumberTextBox();
             this.SuspendLayout();
             // 
             // txtSttRec
@@ -388,44 +388,54 @@
             // txtheight
             // 
             this.txtheight.AccessibleName = "height";
-            this.txtheight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtheight.BackColor = System.Drawing.SystemColors.Window;
             this.txtheight.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtheight.DecimalPlaces = 2;
             this.txtheight.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtheight.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtheight.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtheight.HoverColor = System.Drawing.Color.Yellow;
             this.txtheight.LeaveColor = System.Drawing.Color.White;
             this.txtheight.Location = new System.Drawing.Point(150, 221);
-            this.txtheight.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtheight.Name = "txtheight";
             this.txtheight.Size = new System.Drawing.Size(95, 23);
             this.txtheight.TabIndex = 7;
+            this.txtheight.Text = "0,00";
+            this.txtheight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtheight.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
             // 
-            // txtWeight
+            // txtweight
             // 
-            this.txtWeight.AccessibleName = "weight";
-            this.txtWeight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtWeight.BackColor = System.Drawing.SystemColors.Window;
-            this.txtWeight.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtWeight.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtWeight.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtWeight.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtWeight.HoverColor = System.Drawing.Color.Yellow;
-            this.txtWeight.LeaveColor = System.Drawing.Color.White;
-            this.txtWeight.Location = new System.Drawing.Point(150, 252);
-            this.txtWeight.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.txtWeight.Name = "txtWeight";
-            this.txtWeight.Size = new System.Drawing.Size(95, 23);
-            this.txtWeight.TabIndex = 8;
+            this.txtweight.AccessibleName = "weight";
+            this.txtweight.BackColor = System.Drawing.SystemColors.Window;
+            this.txtweight.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtweight.DecimalPlaces = 2;
+            this.txtweight.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtweight.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtweight.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtweight.HoverColor = System.Drawing.Color.Yellow;
+            this.txtweight.LeaveColor = System.Drawing.Color.White;
+            this.txtweight.Location = new System.Drawing.Point(150, 252);
+            this.txtweight.Name = "txtweight";
+            this.txtweight.Size = new System.Drawing.Size(95, 23);
+            this.txtweight.TabIndex = 8;
+            this.txtweight.Text = "0,00";
+            this.txtweight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtweight.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
             // 
             // ThongTinSucKhoe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.txtWeight);
+            this.Controls.Add(this.txtweight);
             this.Controls.Add(this.txtheight);
             this.Controls.Add(this.txtremarks);
             this.Controls.Add(this.v6Label10);
@@ -481,7 +491,7 @@
         private V6Label v6Label9;
         private V6Label v6Label10;
         private V6ColorTextBox txtremarks;
-        private V6ColorTextBox txtheight;
-        private V6ColorTextBox txtWeight;
+        private V6NumberTextBox txtheight;
+        private V6NumberTextBox txtweight;
     }
 }

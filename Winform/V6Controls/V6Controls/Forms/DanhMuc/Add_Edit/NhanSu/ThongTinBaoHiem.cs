@@ -51,6 +51,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                         throw new Exception("Không lấy được dữ liệu!");
                     }
                 }
+                V6ControlFormHelper.SetFormControlsReadOnly(this, true);
                 buttonSua.Enabled = true;
                 buttonNhan.Enabled = false;
                 buttonHuy.Enabled = false;

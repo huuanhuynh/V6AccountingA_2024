@@ -28,8 +28,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 txtMaDvcs.Enabled = false;
             }
-
-            SetParentRowEvent += AFABTPBTSN_F7_SetParentRowEvent;
+             SetParentRowEvent += AFABTPBTSN_F7_SetParentRowEvent;
 
         }
 
