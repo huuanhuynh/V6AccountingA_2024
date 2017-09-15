@@ -4213,7 +4213,7 @@ namespace V6Controls.Forms
             var color = control as V6DateTimeColor;
             if (color != null)
             {
-                color.Value = ObjectAndString.ObjectToFullDateTime(value);
+                color.Value = ObjectAndString.ObjectToDate(value);
             }
             else if (control is V6IndexComboBox)
             {

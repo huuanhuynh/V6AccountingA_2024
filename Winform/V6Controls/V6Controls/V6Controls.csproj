@@ -1190,6 +1190,12 @@
     <Compile Include="ReportControls\FilterLineNumberTextBox.Designer.cs">
       <DependentUpon>FilterLineNumberTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportControls\FilterLineLookupTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportControls\FilterLineLookupTextBox.Designer.cs">
+      <DependentUpon>FilterLineLookupTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportControls\FilterLineVvarTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1823,6 +1829,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportControls\FilterLineNumberTextBox.resx">
       <DependentUpon>FilterLineNumberTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportControls\FilterLineLookupTextBox.resx">
+      <DependentUpon>FilterLineLookupTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportControls\FilterLineVvarTextBox.resx">
       <DependentUpon>FilterLineVvarTextBox.cs</DependentUpon>

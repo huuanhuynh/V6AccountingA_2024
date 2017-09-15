@@ -210,7 +210,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                     if (data.ContainsKey("MA_BC")) data.Remove("MA_BC");
 
                     //Gán lên form.
-                    SetData(data);
+                    SetSomeData(data);
                 }
 
                 // Alreport1 áp luôn ngay lên dữ liệu. Chưa có cơ chế tạm.
