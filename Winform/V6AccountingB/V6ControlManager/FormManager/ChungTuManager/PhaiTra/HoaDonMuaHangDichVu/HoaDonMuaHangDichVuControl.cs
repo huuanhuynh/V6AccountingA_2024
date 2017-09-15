@@ -531,23 +531,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     _t_thue_nt22 = control as V6NumberTextBox;
                     if (_t_thue_nt22 != null)
                     {
+                        if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                        {
+                            _t_thue_nt22.InvisibleTag();
+                        }
+                        if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                        {
+                            _t_thue_nt22.ReadOnlyTag();
+                        }
+
                         _t_thue_nt22.V6LostFocus += delegate
                         {
-                            //TinhTienThue22();
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
-                            {
-                                _t_thue_nt22.InvisibleTag();
-                            }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
-                            {
-                                _t_thue_nt22.ReadOnlyTag();
-                            }
-
-                            _t_thue_nt22.V6LostFocus += delegate
-                            {
-                                Tinh_TienThue_TheoTienThueNt(_t_thue_nt22.Value, txtTyGia.Value, _t_thue22, M_ROUND);
-                            };
-                        };
+                            Tinh_TienThue_TheoTienThueNt(_t_thue_nt22.Value, txtTyGia.Value, _t_thue22, M_ROUND);
+                        };                        
                     }
                 }
 
