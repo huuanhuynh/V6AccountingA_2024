@@ -79,11 +79,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 var ds1 = TinhGia_TB1();
                 var MaxCal = ds1.Tables[0];
-                var count = ObjectAndString.ObjectToInt(MaxCal.Rows[0][0]??0) + 2;
+                var count = ObjectAndString.ObjectToInt(MaxCal.Rows[0][0] ?? 0) + 2;
 
-               
-                var m_giavt=ObjectAndString.ObjectToString(V6Options.V6OptionValues["M_GIA_VT"]);
-                if (m_giavt=="1" || m_giavt=="0")
+
+                var m_giavt = ObjectAndString.ObjectToString(V6Options.V6OptionValues["M_GIA_VT"]);
+                if (m_giavt == "1" || m_giavt == "0")
                 {
                     count = 1;
                 }

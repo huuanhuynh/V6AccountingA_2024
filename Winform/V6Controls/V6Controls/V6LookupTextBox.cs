@@ -627,6 +627,7 @@ namespace V6Controls
                     else
                     {
                         _data = null;
+                        FixText();
                         V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields);
                         SetNeighborValues();
                     }
@@ -647,6 +648,11 @@ namespace V6Controls
             {
                 Text = Data[LookupInfo_F_NAME].ToString().Trim();
                 _text_data = Text;
+            }
+            else
+            {
+                Text = "";
+                _text_data = "";
             }
         }
 
