@@ -80,6 +80,9 @@
             this.txtAccessibleName2 = new V6Controls.V6VvarTextBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
+            this.lblControlTypeCheckBox = new System.Windows.Forms.Label();
+            this.lblControlTypeLookupTextBox = new System.Windows.Forms.Label();
+            this.lblControlTypeTextBox = new System.Windows.Forms.Label();
             this.lblControlType = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.txtToUpper = new V6Controls.V6ColorTextBox();
@@ -116,9 +119,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.lblControlTypeCheckBox = new System.Windows.Forms.Label();
-            this.lblControlTypeTextBox = new System.Windows.Forms.Label();
-            this.lblControlTypeLookupTextBox = new System.Windows.Forms.Label();
+            this.txtNField = new V6Controls.V6ColorTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -371,9 +372,9 @@
             this.label36.Location = new System.Drawing.Point(10, 114);
             this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(47, 17);
+            this.label36.Size = new System.Drawing.Size(91, 17);
             this.label36.TabIndex = 6;
-            this.label36.Text = "BField";
+            this.label36.Text = "BField/NField";
             // 
             // txtInitFilter
             // 
@@ -489,12 +490,12 @@
             this.label35.AccessibleDescription = "";
             this.label35.AccessibleName = "";
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(284, 114);
+            this.label35.Location = new System.Drawing.Point(444, 115);
             this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(374, 17);
+            this.label35.Size = new System.Drawing.Size(193, 17);
             this.label35.TabIndex = 8;
-            this.label35.Text = "Trường tên, liên quan... hiển thị tên trong DynamicAddEdit";
+            this.label35.Text = "Brother Field / Neighbor Field";
             // 
             // label3
             // 
@@ -749,6 +750,7 @@
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.label37);
             this.tabPage1.Controls.Add(this.txtDecimals);
+            this.tabPage1.Controls.Add(this.txtNField);
             this.tabPage1.Controls.Add(this.txtBField);
             this.tabPage1.Controls.Add(this.label26);
             this.tabPage1.Controls.Add(this.txtLoaiKey);
@@ -860,6 +862,42 @@
             this.label29.Size = new System.Drawing.Size(64, 17);
             this.label29.TabIndex = 2;
             this.label29.Text = "Key data";
+            // 
+            // lblControlTypeCheckBox
+            // 
+            this.lblControlTypeCheckBox.AccessibleDescription = "";
+            this.lblControlTypeCheckBox.AutoSize = true;
+            this.lblControlTypeCheckBox.Location = new System.Drawing.Point(516, 10);
+            this.lblControlTypeCheckBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblControlTypeCheckBox.Name = "lblControlTypeCheckBox";
+            this.lblControlTypeCheckBox.Size = new System.Drawing.Size(70, 17);
+            this.lblControlTypeCheckBox.TabIndex = 2;
+            this.lblControlTypeCheckBox.Text = "CheckBox";
+            this.lblControlTypeCheckBox.Click += new System.EventHandler(this.lblControlType_Click);
+            // 
+            // lblControlTypeLookupTextBox
+            // 
+            this.lblControlTypeLookupTextBox.AccessibleDescription = "";
+            this.lblControlTypeLookupTextBox.AutoSize = true;
+            this.lblControlTypeLookupTextBox.Location = new System.Drawing.Point(403, 10);
+            this.lblControlTypeLookupTextBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblControlTypeLookupTextBox.Name = "lblControlTypeLookupTextBox";
+            this.lblControlTypeLookupTextBox.Size = new System.Drawing.Size(105, 17);
+            this.lblControlTypeLookupTextBox.TabIndex = 2;
+            this.lblControlTypeLookupTextBox.Text = "LookupTextBox";
+            this.lblControlTypeLookupTextBox.Click += new System.EventHandler(this.lblControlType_Click);
+            // 
+            // lblControlTypeTextBox
+            // 
+            this.lblControlTypeTextBox.AccessibleDescription = "";
+            this.lblControlTypeTextBox.AutoSize = true;
+            this.lblControlTypeTextBox.Location = new System.Drawing.Point(336, 10);
+            this.lblControlTypeTextBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblControlTypeTextBox.Name = "lblControlTypeTextBox";
+            this.lblControlTypeTextBox.Size = new System.Drawing.Size(58, 17);
+            this.lblControlTypeTextBox.TabIndex = 2;
+            this.lblControlTypeTextBox.Text = "TextBox";
+            this.lblControlTypeTextBox.Click += new System.EventHandler(this.lblControlType_Click);
             // 
             // lblControlType
             // 
@@ -1355,41 +1393,22 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
-            // lblControlTypeCheckBox
+            // txtNField
             // 
-            this.lblControlTypeCheckBox.AccessibleDescription = "";
-            this.lblControlTypeCheckBox.AutoSize = true;
-            this.lblControlTypeCheckBox.Location = new System.Drawing.Point(516, 10);
-            this.lblControlTypeCheckBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblControlTypeCheckBox.Name = "lblControlTypeCheckBox";
-            this.lblControlTypeCheckBox.Size = new System.Drawing.Size(70, 17);
-            this.lblControlTypeCheckBox.TabIndex = 2;
-            this.lblControlTypeCheckBox.Text = "CheckBox";
-            this.lblControlTypeCheckBox.Click += new System.EventHandler(this.lblControlType_Click);
-            // 
-            // lblControlTypeTextBox
-            // 
-            this.lblControlTypeTextBox.AccessibleDescription = "";
-            this.lblControlTypeTextBox.AutoSize = true;
-            this.lblControlTypeTextBox.Location = new System.Drawing.Point(336, 10);
-            this.lblControlTypeTextBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblControlTypeTextBox.Name = "lblControlTypeTextBox";
-            this.lblControlTypeTextBox.Size = new System.Drawing.Size(58, 17);
-            this.lblControlTypeTextBox.TabIndex = 2;
-            this.lblControlTypeTextBox.Text = "TextBox";
-            this.lblControlTypeTextBox.Click += new System.EventHandler(this.lblControlType_Click);
-            // 
-            // lblControlTypeLookupTextBox
-            // 
-            this.lblControlTypeLookupTextBox.AccessibleDescription = "";
-            this.lblControlTypeLookupTextBox.AutoSize = true;
-            this.lblControlTypeLookupTextBox.Location = new System.Drawing.Point(403, 10);
-            this.lblControlTypeLookupTextBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblControlTypeLookupTextBox.Name = "lblControlTypeLookupTextBox";
-            this.lblControlTypeLookupTextBox.Size = new System.Drawing.Size(105, 17);
-            this.lblControlTypeLookupTextBox.TabIndex = 2;
-            this.lblControlTypeLookupTextBox.Text = "LookupTextBox";
-            this.lblControlTypeLookupTextBox.Click += new System.EventHandler(this.lblControlType_Click);
+            this.txtNField.AccessibleName = "NField";
+            this.txtNField.BackColor = System.Drawing.Color.White;
+            this.txtNField.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNField.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNField.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNField.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNField.GrayText = " NeighborField";
+            this.txtNField.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNField.LeaveColor = System.Drawing.Color.White;
+            this.txtNField.Location = new System.Drawing.Point(287, 111);
+            this.txtNField.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNField.Name = "txtNField";
+            this.txtNField.Size = new System.Drawing.Size(150, 23);
+            this.txtNField.TabIndex = 5;
             // 
             // ALREPORT1_FilterEditorForm
             // 
@@ -1511,5 +1530,6 @@
         private System.Windows.Forms.Label lblControlTypeCheckBox;
         private System.Windows.Forms.Label lblControlTypeLookupTextBox;
         private System.Windows.Forms.Label lblControlTypeTextBox;
+        private V6ColorTextBox txtNField;
     }
 }

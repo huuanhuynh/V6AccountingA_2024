@@ -35,6 +35,7 @@
             this.v6Label2 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
+            this.lblAmLich = new V6Controls.V6Label();
             this.SuspendLayout();
             // 
             // gioiTinh1
@@ -62,6 +63,7 @@
             this.TXTNGAY_SINH.Name = "TXTNGAY_SINH";
             this.TXTNGAY_SINH.Size = new System.Drawing.Size(120, 23);
             this.TXTNGAY_SINH.TabIndex = 16;
+            this.TXTNGAY_SINH.TextChanged += new System.EventHandler(this.TXTNGAY_SINH_TextChanged);
             // 
             // txtMA_NS
             // 
@@ -96,7 +98,7 @@
             this.txtTEN_NS.Location = new System.Drawing.Point(199, 0);
             this.txtTEN_NS.Margin = new System.Windows.Forms.Padding(5);
             this.txtTEN_NS.Name = "txtTEN_NS";
-            this.txtTEN_NS.Size = new System.Drawing.Size(342, 23);
+            this.txtTEN_NS.Size = new System.Drawing.Size(431, 23);
             this.txtTEN_NS.TabIndex = 15;
             // 
             // v6Label2
@@ -131,6 +133,17 @@
             this.v6Label4.TabIndex = 3;
             this.v6Label4.Text = "Họ và tên";
             // 
+            // lblAmLich
+            // 
+            this.lblAmLich.AccessibleDescription = "";
+            this.lblAmLich.AutoSize = true;
+            this.lblAmLich.Location = new System.Drawing.Point(367, 28);
+            this.lblAmLich.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAmLich.Name = "lblAmLich";
+            this.lblAmLich.Size = new System.Drawing.Size(89, 17);
+            this.lblAmLich.TabIndex = 12;
+            this.lblAmLich.Text = "Ngày âm lịch";
+            // 
             // HINFOR_NS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -139,13 +152,14 @@
             this.Controls.Add(this.TXTNGAY_SINH);
             this.Controls.Add(this.txtMA_NS);
             this.Controls.Add(this.txtTEN_NS);
+            this.Controls.Add(this.lblAmLich);
             this.Controls.Add(this.v6Label2);
             this.Controls.Add(this.v6Label1);
             this.Controls.Add(this.v6Label4);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "HINFOR_NS";
-            this.Size = new System.Drawing.Size(546, 47);
+            this.Size = new System.Drawing.Size(635, 47);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,5 +174,6 @@
         private V6ColorTextBox txtMA_NS;
         private V6ColorTextBox TXTNGAY_SINH;
         private Controls.GioiTinhControl gioiTinh1;
+        private V6Label lblAmLich;
     }
 }

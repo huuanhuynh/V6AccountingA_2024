@@ -15,6 +15,7 @@ namespace V6ReportControls
     {
         public V6ColorTextBox _textBox;
         public V6VvarTextBox _vtextBox;
+        public V6LookupTextBox _lookuptextBox;
         public V6NumberTextBox _numberTextBox;
         public V6DateTimePick _dateTimePick;
         public V6CheckBox _checkBox;
@@ -71,6 +72,10 @@ namespace V6ReportControls
             {
                 IsSelected = false;
             }
+            else if (_lookuptextBox != null && _lookuptextBox.Text.Trim() == string.Empty)
+            {
+                IsSelected = false;
+            }
             else
             {
                 IsSelected = true;
@@ -106,6 +111,7 @@ namespace V6ReportControls
             {
                 if (_textBox != null) return _textBox.Text.Trim();
                 if (_vtextBox != null) return _vtextBox.Text.Trim();
+                if (_lookuptextBox != null) return _lookuptextBox.Value;
                 if (_numberTextBox != null) return _numberTextBox.Value;
                 if (_dateTimePick != null) return _dateTimePick.Value;
                 if (_checkBox != null) return _checkBox.Checked;
@@ -119,6 +125,7 @@ namespace V6ReportControls
             {
                 if (_textBox != null) return _textBox.Text.Trim();
                 if (_vtextBox != null) return _vtextBox.Text.Trim();
+                if (_lookuptextBox != null) return _lookuptextBox.Value.ToString();
                 if (_numberTextBox != null) return _numberTextBox.Value.ToString(CultureInfo.InvariantCulture);
                 if (_dateTimePick != null) return _dateTimePick.Value.ToString("yyyyMMdd");
                 if (_checkBox != null) return _checkBox.Checked?"1":"0";
@@ -223,8 +230,11 @@ namespace V6ReportControls
             Controls.Add(_textBox);
             Operators.Clear();
             Operators.Add("start");
-            Operators.Add("like"); Operators.Add("="); Operators.Add("<>");
-            Operators.Add("is null"); Operators.Add("is not null");
+            Operators.Add("like");
+            Operators.Add("=");
+            Operators.Add("<>");
+            Operators.Add("is null");
+            Operators.Add("is not null");
             Operator = "start";
             _textBox.Click += FilterLineDynamic_Click;
             _textBox.TextChanged += FilterLineDynamic_TextChanged;
@@ -262,6 +272,46 @@ namespace V6ReportControls
             _vtextBox.KeyDown += FilterLineDynamic_KeyDown;
             return _vtextBox;
         }
+
+        public V6LookupTextBox AddLookupTextBox(string ma_dm, string filter,
+            string value_field, string text_field, string brother, string neighbor)
+        {
+            _lookuptextBox = new V6LookupTextBox
+            {
+                //VVar = vVar,
+                Ma_dm = ma_dm,
+                ValueField = value_field,
+                ShowTextField = text_field,
+                BrotherFields = brother,
+                NeighborFields = neighbor,
+
+                Location = new Point(comboBox1.Right + 5, 1),
+                Size = new Size(Width - comboBox1.Right - 5, 20),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
+                CheckNotEmpty = false,
+                CheckOnLeave = false,
+            };
+
+            _lookuptextBox.SetInitFilter(filter);
+
+            Controls.Add(_lookuptextBox);
+            Operators.Clear();
+            Operators.Add("start");
+            Operators.Add("like");
+            Operators.Add("=");
+            Operators.Add("<>");
+            Operators.Add("is null");
+            Operators.Add("is not null");
+            Operator = "start";
+            _lookuptextBox.Click += FilterLineDynamic_Click;
+            _lookuptextBox.TextChanged += FilterLineDynamic_TextChanged;
+            _lookuptextBox.GotFocus += FilterLineDynamic_GotFocus;
+            _lookuptextBox.LostFocus += FilterLineDynamic_LostFocus;
+            _lookuptextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
+            _lookuptextBox.KeyDown += FilterLineDynamic_KeyDown;
+            return _lookuptextBox;
+        }
+
         public void AddNumberTextBox()
         {
             _numberTextBox = new V6NumberTextBox();
@@ -344,6 +394,10 @@ namespace V6ReportControls
             {
                 _vtextBox.Text = stringValue;
             }
+            else if (_lookuptextBox != null)
+            {
+                _lookuptextBox.SetValue(stringValue);
+            }
             else if (_numberTextBox != null)
             {
                 _numberTextBox.Value = ObjectAndString.ObjectToDecimal(stringValue);
@@ -370,6 +424,10 @@ namespace V6ReportControls
             {
                 _vtextBox.LimitCharacters = limitChars;
             }
+            else if (_lookuptextBox != null)
+            {
+                _lookuptextBox.LimitCharacters = limitChars;
+            }
             else if (_numberTextBox != null)
             {
                 _numberTextBox.LimitCharacters = limitChars;
@@ -392,6 +450,11 @@ namespace V6ReportControls
                     _vtextBox.CheckOnLeave = true;
                     _vtextBox.CheckNotEmpty = true;
                 }
+                if (_lookuptextBox != null)
+                {
+                    _lookuptextBox.CheckOnLeave = true;
+                    _lookuptextBox.CheckNotEmpty = true;
+                }
             }
             else
             {
@@ -400,6 +463,11 @@ namespace V6ReportControls
                 {
                     _vtextBox.CheckOnLeave = false;
                     _vtextBox.CheckNotEmpty = false;
+                }
+                if (_lookuptextBox != null)
+                {
+                    _lookuptextBox.CheckOnLeave = false;
+                    _lookuptextBox.CheckNotEmpty = false;
                 }
             }
         }

@@ -4633,6 +4633,12 @@
     <Compile Include="FormManager\ToolManager\FormDBF.designer.cs">
       <DependentUpon>FormDBF.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ToolManager\FormAmLich.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ToolManager\FormAmLich.designer.cs">
+      <DependentUpon>FormAmLich.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ToolManager\FormLogView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6992,6 +6998,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ToolManager\FormDBF.resx">
       <DependentUpon>FormDBF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ToolManager\FormAmLich.resx">
+      <DependentUpon>FormAmLich.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ToolManager\FormLogView.resx">
       <DependentUpon>FormLogView.cs</DependentUpon>

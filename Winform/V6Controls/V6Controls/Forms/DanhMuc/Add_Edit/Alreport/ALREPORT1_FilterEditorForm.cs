@@ -57,6 +57,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                 txtF2.Text = Info.F2 ? "1" : "0";
                 txtFilterStart.Text = Info.FilterStart ? "1" : "";
                 txtToUpper.Text = Info.ToUpper ? "1" : "";
+
+                //Tự động gán các loại text
                 //txtControlType.Text = Info.ControlType;
                 //txtAccessibleName.Text = Info.AccessibleName;
                 //txtField.Text = Info.Field;

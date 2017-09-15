@@ -43,13 +43,13 @@
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
+            this.btnAmLich = new System.Windows.Forms.Button();
             this.btnLogView = new System.Windows.Forms.Button();
             this.btnModelHelp = new System.Windows.Forms.Button();
             this.btnTestInvoice = new System.Windows.Forms.Button();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
-            this.chkMouseRightTriple = new System.Windows.Forms.CheckBox();
             this.chkAutoFixInvoiceVvar = new System.Windows.Forms.CheckBox();
+            this.chkMouseRightTriple = new System.Windows.Forms.CheckBox();
             this.groupBoxOptions.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -194,14 +194,15 @@
             this.button15.Text = "button1";
             this.button15.UseVisualStyleBackColor = true;
             // 
-            // button16
+            // btnAmLich
             // 
-            this.button16.Location = new System.Drawing.Point(12, 447);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(100, 23);
-            this.button16.TabIndex = 0;
-            this.button16.Text = "button1";
-            this.button16.UseVisualStyleBackColor = true;
+            this.btnAmLich.Location = new System.Drawing.Point(12, 447);
+            this.btnAmLich.Name = "btnAmLich";
+            this.btnAmLich.Size = new System.Drawing.Size(100, 23);
+            this.btnAmLich.TabIndex = 0;
+            this.btnAmLich.Text = "Âm lịch";
+            this.btnAmLich.UseVisualStyleBackColor = true;
+            this.btnAmLich.Click += new System.EventHandler(this.btnAmLich_Click);
             // 
             // btnLogView
             // 
@@ -246,17 +247,6 @@
             this.groupBoxOptions.TabStop = false;
             this.groupBoxOptions.Text = "Tùy chọn";
             // 
-            // chkMouseRightTriple
-            // 
-            this.chkMouseRightTriple.AutoSize = true;
-            this.chkMouseRightTriple.Location = new System.Drawing.Point(6, 19);
-            this.chkMouseRightTriple.Name = "chkMouseRightTriple";
-            this.chkMouseRightTriple.Size = new System.Drawing.Size(165, 17);
-            this.chkMouseRightTriple.TabIndex = 0;
-            this.chkMouseRightTriple.Text = "Nhấn phải chuột để sửa chữ ";
-            this.chkMouseRightTriple.UseVisualStyleBackColor = true;
-            this.chkMouseRightTriple.CheckedChanged += new System.EventHandler(this.chkMouseRightTriple_CheckedChanged);
-            // 
             // chkAutoFixInvoiceVvar
             // 
             this.chkAutoFixInvoiceVvar.AutoSize = true;
@@ -267,6 +257,17 @@
             this.chkAutoFixInvoiceVvar.Text = "chkAutoFixInvoiceVvar";
             this.chkAutoFixInvoiceVvar.UseVisualStyleBackColor = true;
             this.chkAutoFixInvoiceVvar.CheckedChanged += new System.EventHandler(this.chkAutoFixInvoiceVvar_CheckedChanged);
+            // 
+            // chkMouseRightTriple
+            // 
+            this.chkMouseRightTriple.AutoSize = true;
+            this.chkMouseRightTriple.Location = new System.Drawing.Point(6, 19);
+            this.chkMouseRightTriple.Name = "chkMouseRightTriple";
+            this.chkMouseRightTriple.Size = new System.Drawing.Size(165, 17);
+            this.chkMouseRightTriple.TabIndex = 0;
+            this.chkMouseRightTriple.Text = "Nhấn phải chuột để sửa chữ ";
+            this.chkMouseRightTriple.UseVisualStyleBackColor = true;
+            this.chkMouseRightTriple.CheckedChanged += new System.EventHandler(this.chkMouseRightTriple_CheckedChanged);
             // 
             // AllTool
             // 
@@ -280,7 +281,7 @@
             this.Controls.Add(this.btnLogView);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.btnSearchInRpt);
-            this.Controls.Add(this.button16);
+            this.Controls.Add(this.btnAmLich);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.btnHdocument);
             this.Controls.Add(this.button15);
@@ -317,7 +318,7 @@
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button btnAmLich;
         private System.Windows.Forms.Button btnLogView;
         private System.Windows.Forms.Button btnModelHelp;
         private System.Windows.Forms.Button btnTestInvoice;

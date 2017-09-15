@@ -104,9 +104,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
                 var t_tien_nt = ObjectAndString.ObjectToDecimal(_tbl2Row["T_TIEN_NT"]);
                 var t_tien = ObjectAndString.ObjectToDecimal(_tbl2Row["T_TIEN"]);
                 var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
-                
-                RptExtraParameters["SoTienVietBangChu_TienVonNt"] = V6BusinessHelper.MoneyToWords(t_tien_nt, parent.LAN, ma_nt);
-                RptExtraParameters["SoTienVietBangChu_TienVon"] = V6BusinessHelper.MoneyToWords(t_tien, parent.LAN, V6Options.M_MA_NT0);
+
+                RptExtraParameters["SOTIENVIETBANGCHU_TIENBANNT"] = V6BusinessHelper.MoneyToWords(t_tien_nt, parent.LAN, ma_nt);
+                RptExtraParameters["SOTIENVIETBANGCHU_TIENBAN"] = V6BusinessHelper.MoneyToWords(t_tien, parent.LAN, V6Options.M_MA_NT0);
 
             }
         }

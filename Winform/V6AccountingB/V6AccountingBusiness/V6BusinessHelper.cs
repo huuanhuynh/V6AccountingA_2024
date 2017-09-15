@@ -753,7 +753,10 @@ namespace V6AccountingBusiness
         /// <returns></returns>
         public static decimal Vround(decimal number, int round)
         {
-            return Math.Round(number, round, MidpointRounding.ToEven);
+            // Tuanmh 14/09/2017 (3866,5->3866)
+            //return Math.Round(number, round, MidpointRounding.ToEven);
+            return Math.Round(number, round, MidpointRounding.AwayFromZero);
+
         }
 
         //{ Tuanmh 21/08/2016

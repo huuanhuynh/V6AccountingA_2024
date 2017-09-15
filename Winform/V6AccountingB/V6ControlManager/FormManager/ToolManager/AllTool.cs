@@ -128,6 +128,11 @@ namespace V6ControlManager.FormManager.ToolManager
 
         }
 
+        private void btnAmLich_Click(object sender, EventArgs e)
+        {
+            new FormAmLich().Show(this);
+        }
+
        
     }
 }

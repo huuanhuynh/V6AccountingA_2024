@@ -99,7 +99,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _xuat_dd;
-        private V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _tkVt, _maLo, _maViTri, _maViTriN;
+        private V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _tkVt, _maLo, _maViTri, _maViTriN,_maVt_Tmp;
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_td1;
         private V6NumberTextBox _ton13, _gia, _gia_nt, _tien, _tienNt, _gia1, _gia_nt1;
         private V6DateTimeColor _hanSd;
@@ -1290,7 +1290,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 var makhoX_data = txtMaKhoX.Data;
 
                 txtMaKhoX.RefreshLoDateYnValue();
-                
+
 
                 //GetTon13();
                 //GetLoDate();
@@ -1325,8 +1325,43 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             row["TK_VT"] = tk_dl;
                         }
                     }
+                    else
+                    {
+                        //{Tuanmh 14/09/2017 Set lai TK_vt khi doi ma_kho
+
+                        var mavt_data = _maVt.Data;
+                        var tk_vt_tmp="";
+
+                        if (mavt_data != null)
+                        {
+                            tk_vt_tmp = mavt_data["TK_VT"].ToString().Trim();
+                            if (!string.IsNullOrEmpty(tk_vt_tmp))
+                            {
+                                _tkVt.Text = tk_vt_tmp;
+                            }
+                        }
+
+
+                        foreach (DataRow row in AD.Rows)
+                        {
+                            _maVt_Tmp.Text = row["MA_VT"].ToString().Trim();
+                            mavt_data = _maVt_Tmp.Data;
+                            if (mavt_data != null)
+                            {
+                                tk_vt_tmp = mavt_data["TK_VT"].ToString().Trim();
+                                if (!string.IsNullOrEmpty(tk_vt_tmp))
+                                {
+                                    row["TK_VT"] = tk_vt_tmp;
+                                }
+                            }
+
+                        }
+                        //}                       
+                    }
+
                 }
             }
+
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".XuLyChonMaKhoX", ex);
@@ -1357,6 +1392,40 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         {
                             row["MA_NX_I"] = tk_dl;
                         }
+                    }
+                    else
+                    {//{Tuanmh 14/09/2017 Set lai TK_vt khi doi ma_kho
+
+                        var mavt_data = _maVt.Data;
+                        var tk_vt_tmp = "";
+
+                        if (mavt_data != null)
+                        {
+                            tk_vt_tmp = mavt_data["TK_VT"].ToString().Trim();
+                            if (!string.IsNullOrEmpty(tk_vt_tmp))
+                            {
+                                _Ma_nx_i.Text = tk_vt_tmp;
+                            }
+                        }
+
+
+                        foreach (DataRow row in AD.Rows)
+                        {
+                            _maVt_Tmp.Text = row["MA_VT"].ToString().Trim();
+                            mavt_data = _maVt_Tmp.Data;
+                            if (mavt_data != null)
+                            {
+                                tk_vt_tmp = mavt_data["TK_VT"].ToString().Trim();
+                                if (!string.IsNullOrEmpty(tk_vt_tmp))
+                                {
+                                    row["MA_NX_I"] = tk_vt_tmp;
+                                }
+                            }
+
+                        }
+                        //}         
+
+
                     }
                 }
             }

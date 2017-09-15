@@ -54,41 +54,50 @@ namespace V6Controls.Controls.LichView
 
         void LichView_MouseMove(object sender, MouseEventArgs e)
         {
-            MouseLocation = e.Location;
-            var g = this.CreateGraphics();
-            //Invalidate();
-            //Kiểm tra xem nút nào đang được trỏ chuột.
-            bool can_break = false;
-            foreach (KeyValuePair<int, LichViewCellData> item in DataSource)
+            try
             {
-                var cellData = item.Value;
-                if (cellData.Rectangle.Contains(MouseLocation))
+                MouseLocation = e.Location;
+                var g = this.CreateGraphics();
+                //Invalidate();
+                //Kiểm tra xem nút nào đang được trỏ chuột.
+                bool can_break = false;
+                if(DataSource != null)
+                foreach (KeyValuePair<int, LichViewCellData> item in DataSource)
                 {
-                    cellData.IsHover = true;
-                    DrawCell(g, cellData);
-                    //if (can_break) break;
+                    var cellData = item.Value;
+                    if (cellData.Rectangle.Contains(MouseLocation))
+                    {
+                        cellData.IsHover = true;
+                        DrawCell(g, cellData);
+                        //if (can_break) break;
+                    }
+                    else if (cellData.IsHover)
+                    {
+                        //Redraw old hover cell
+                        var oldCell = cellData;
+                        oldCell.IsHover = false;
+                        DrawCell(g, oldCell);
+                    }
                 }
-                else if(cellData.IsHover)
+
+                if (FocusDate.Year == Year && FocusDate.Month == Month)
                 {
-                    //Redraw old hover cell
-                    var oldCell = cellData;
-                    oldCell.IsHover = false;
-                    DrawCell(g, oldCell);
+                    if (DataSource != null)
+                    if (DataSource.ContainsKey(FocusDate.Day))
+                    {
+                        DrawToDay(g, DataSource[FocusDate.Day]);
+
+                        //var cellData = DataSource[CurrentDate.Day];
+                        //var pen = new Pen(Color.Blue, 1);
+                        //pen.DashStyle = DashStyle.Dash;
+                        //g.DrawRectangle(pen, cellData.Rectangle.X + 2, cellData.Rectangle.Y + 2,
+                        //    cellData.Rectangle.Width - 4, cellData.Rectangle.Height - 4);
+                    }
                 }
             }
-            
-            if (FocusDate.Year == Year && FocusDate.Month == Month)
+            catch (Exception ex)
             {
-                if (DataSource.ContainsKey(FocusDate.Day))
-                {
-                    DrawToDay(g, DataSource[FocusDate.Day]);
-
-                    //var cellData = DataSource[CurrentDate.Day];
-                    //var pen = new Pen(Color.Blue, 1);
-                    //pen.DashStyle = DashStyle.Dash;
-                    //g.DrawRectangle(pen, cellData.Rectangle.X + 2, cellData.Rectangle.Y + 2,
-                    //    cellData.Rectangle.Width - 4, cellData.Rectangle.Height - 4);
-                }
+                ;
             }
         }
 
@@ -150,7 +159,13 @@ namespace V6Controls.Controls.LichView
         /// <summary>
         /// Dữ liệu
         /// </summary>
-        public IDictionary<int, LichViewCellData> DataSource { get; set; }
+        public IDictionary<int, LichViewCellData> DataSource {
+            get { return _dataSource; }
+            set
+            {
+                _dataSource = value ?? new Dictionary<int, LichViewCellData>();
+            } }
+        protected IDictionary<int, LichViewCellData> _dataSource = new Dictionary<int, LichViewCellData>();
         public IDictionary<string, object> RowData { get; set; } 
         /// <summary>
         /// Màu viền. Không dùng chọn Color.Transparent
@@ -256,6 +271,15 @@ namespace V6Controls.Controls.LichView
         }
         #endregion events
 
+        /// <summary>
+        /// Nạp dữ liệu cho lịch hiển thị
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="focusDate"></param>
+        /// <param name="data"></param>
+        /// <param name="rowData"></param>
+        /// <param name="footerText"></param>
         public void SetData(int year, int month, DateTime focusDate,
             IDictionary<int, LichViewCellData> data,
             IDictionary<string, object> rowData,
@@ -390,7 +414,7 @@ namespace V6Controls.Controls.LichView
                     int x = basePoint.X + col*col_width;
                     int y = basePoint.Y + row*row_height;
                     Point cellBasePoint = new Point(x, y);
-                    LichViewCellData cellData = DataSource == null ? null : DataSource[i];
+                    LichViewCellData cellData = DataSource == null || !DataSource.ContainsKey(i) ? null : DataSource[i];
                     if (cellData == null) // Can xem lai !!!!!
                     {
                         cellData = new LichViewCellData(0, new DateTime(Year, Month, i))

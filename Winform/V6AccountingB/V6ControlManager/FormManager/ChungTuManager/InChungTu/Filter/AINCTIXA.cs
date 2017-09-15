@@ -87,9 +87,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
                 var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row["T_TIEN2_IN"]);
                 var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
 
-                RptExtraParameters["SoTienVietBangChu_TienBanNt"] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, parent.LAN,ma_nt);
+                RptExtraParameters["SOTIENVIETBANGCHU_TIENBANNT"] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, parent.LAN, ma_nt);
 
-                RptExtraParameters["SoTienVietBangChu_TienBan"] = V6BusinessHelper.MoneyToWords(t_tien2_in, parent.LAN,
+                RptExtraParameters["SOTIENVIETBANGCHU_TIENBAN"] = V6BusinessHelper.MoneyToWords(t_tien2_in, parent.LAN,
                     V6Options.M_MA_NT0);
 
             }

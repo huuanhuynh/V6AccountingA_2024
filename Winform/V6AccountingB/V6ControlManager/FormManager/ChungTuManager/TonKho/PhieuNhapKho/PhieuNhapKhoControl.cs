@@ -1032,6 +1032,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         {
             XuLyLayThongTinKhiChonMaVt();
             XuLyDonViTinhKhiChonMaVt(mavt);
+             //{Tuanmh 14-09/2017 get tk_dl from alkho
+            if ( _maKhoI.Text !="")
+                XuLyLayThongTinKhiChonMaKhoI();
+            //}
+
             GetTon13();
             
         }
@@ -1055,6 +1060,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     if (!string.IsNullOrEmpty(tk_dl))
                     {
                         _tkVt.Text = tk_dl;
+                    }
+                    else
+                    {  //Tuanmh 14/09/2017 Set lai TK_vt khi doi ma_kho
+                        var mavt_data = _maVt.Data;
+                        if (mavt_data != null)
+                        {
+                            var tk_vt = mavt_data["TK_VT"].ToString().Trim();
+                            if (!string.IsNullOrEmpty(tk_vt))
+                            {
+                                _tkVt.Text = tk_vt;
+                            }
+                        }
                     }
                 }
             }

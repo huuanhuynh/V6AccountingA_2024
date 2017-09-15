@@ -160,6 +160,9 @@ namespace V6Structs
             }
         }
 
+        /// <summary>
+        /// BUTTON LOOKUPTEXTBOX LABEL CHECKBOX
+        /// </summary>
         public string ControlType { get; set; }
 
         /// <summary>
@@ -270,7 +273,10 @@ namespace V6Structs
         /// Brother Field
         /// </summary>
         public string BField { get; set; }
-
+        /// <summary>
+        /// Neightbor Field
+        /// </summary>
+        public string NField { get; set; }
         /// <summary>
         /// Tên event
         /// </summary>
@@ -282,6 +288,9 @@ namespace V6Structs
         /// Bật tắt tính năng lọc chỉ bắt đầu. Mặc định false sẽ lọc like '%abc%'.
         /// </summary>
         public bool FilterStart { get; set; }
+
+        
+
         /// <summary>
         /// Bật tắt TemplateSetting. false sẽ bỏ qua hết các xử lý của trường hợp đó.
         /// </summary>

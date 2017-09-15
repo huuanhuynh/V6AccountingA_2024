@@ -666,37 +666,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         
                     }
                 }
-
-                
-                //var parent = FindParent<>() as ;
-                //if (_ds.Tables.Count > 1 && _ds.Tables[1].Rows.Count > 0)//&& parent != null)
-                //{
-                //    //var dataTable2 = _ds.Tables[1];
-                //    //var _tbl2Row = dataTable2.Rows[0];
-                //    if (dataTable2.Columns.Contains("T_TIEN_NT2_IN") && dataTable2.Columns.Contains("MA_NT"))
-                //    {
-                //        var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row["T_TIEN_NT2_IN"]);
-                //        var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
-                //        RptExtraParameters["SoTienVietBangChu_TienBanNt"] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, LAN, ma_nt);
-                //    }
-
-                //    if (dataTable2.Columns.Contains("T_TIEN2_IN"))
-                //    {
-                //        var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row["T_TIEN2_IN"]);
-                //        RptExtraParameters["SoTienVietBangChu_TienBan"] = V6BusinessHelper.MoneyToWords(t_tien2_in, LAN,
-                //            V6Options.M_MA_NT0);
-                //    }
-
-                //}
-
-
-                //foreach (var VARIABLE in "".Split(','))
-                //{
-                //    if (VARIABLE == "M_ABC")
-                //    {
-                //        RptExtraParameters[VARIABLE] = "ABC";
-                //    }
-                //}
             }
             catch (Exception)
             {

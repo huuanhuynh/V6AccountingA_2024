@@ -861,8 +861,24 @@ namespace V6Controls.Forms
             };
 
             V6VvarTextBox vT = null;
+            V6LookupTextBox vL = null;
+            //Tuanmh check null
+            string controltype="";
+            if (string.IsNullOrEmpty(lineInfo.ControlType)==false)
+            {
+                   controltype=lineInfo.ControlType.ToUpper();
+            }
+              
 
-            if (ObjectAndString.IsDateTimeType(lineInfo.DataType))
+            if (controltype == "LOOKUPTEXTBOX") 
+            {
+                vL = lineControl.AddLookupTextBox(lineInfo.MA_DM, lineInfo.InitFilter,
+                    lineInfo.Field, lineInfo.Field2, lineInfo.BField, lineInfo.NField);
+                //
+                vL.F2 = lineInfo.F2;
+                vL.FilterStart = lineInfo.FilterStart;
+            }
+            else if (ObjectAndString.IsDateTimeType(lineInfo.DataType))
             {
                 lineControl.AddDateTimePick();
             }
@@ -872,6 +888,7 @@ namespace V6Controls.Forms
             }
             else// if (ObjectAndString.IsStringType(lineInfo.DataType))
             {
+
                 if (lineInfo.Loai_key == "A1")
                 {
                     lineControl.AddCheckBox();
@@ -1854,6 +1871,33 @@ namespace V6Controls.Forms
                 Tag = visible ? null : "hide"
             };
         }
+
+        public static V6LookupTextBox CreateLookupTextBox(string accessibleName,
+            string ma_dm, string value_field, string text_field, string brother, string neighbor,
+            string caption, int width, bool visible,
+            bool checkOnLeave, bool checkNotEmpty, bool carry = false)
+        {
+            return new V6LookupTextBox
+            {
+                Name = accessibleName,
+                AccessibleName = accessibleName,
+                AccessibleName2 = accessibleName + "2",
+                Carry = carry,
+                Ma_dm = ma_dm,
+                ValueField = value_field,
+                ShowTextField = text_field,
+                BrotherFields = brother,
+                NeighborFields = neighbor,
+
+                CheckOnLeave = checkOnLeave,
+                CheckNotEmpty = checkNotEmpty,
+                GrayText = caption,
+                Width = width,
+                Visible = visible,
+                Tag = visible ? null : "hide"
+            };
+        }
+
         public static V6ColorTextBox CreateLimitTextBox(string accessibleName, string limit, string caption, int width, bool visible, bool carry = false)
         {
             var a = new V6ColorTextBox

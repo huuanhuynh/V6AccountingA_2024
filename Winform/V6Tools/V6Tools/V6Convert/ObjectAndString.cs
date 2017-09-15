@@ -110,10 +110,10 @@ namespace V6Tools.V6Convert
         /// <summary>
         /// Trả về DateTime?
         /// </summary>
-        /// <param name="o"></param>
-        /// <param name="dateFormat"></param>
+        /// <param name="o">chuỗi ngày phải có định dạng dd/MM/yyyy</param>
+        /// <param name="dateFormat">Không còn tác dụng</param>
         /// <returns></returns>
-        public static DateTime? ObjectToDate(object o, string dateFormat = "d/M/yyyy")
+        public static DateTime? ObjectToDate(object o, string dateFormat = "dd/MM/yyyy")
         {
             var result = DateTime.Now;
             if (o == null) return null;
@@ -134,8 +134,8 @@ namespace V6Tools.V6Convert
                         var index1 = t.IndexOf('/');
                         var index2 = t.LastIndexOf('/');
                         var yearString = t.Substring(index2 + 1);
-                        var monthString = t.Substring(index1 + 1, index2 - index1);
-                        var dayString = t.Substring(index2 + 1);
+                        var monthString = t.Substring(index1 + 1, index2 - index1 - 1);
+                        var dayString = t.Substring(0, index1);
                         
                         var day = int.Parse(dayString);
                         var month = int.Parse(monthString);
@@ -154,10 +154,10 @@ namespace V6Tools.V6Convert
         /// <summary>
         /// Convert ngày tháng không null.
         /// </summary>
-        /// <param name="o"></param>
-        /// <param name="dateFormat"></param>
+        /// <param name="o">chuỗi ngày phải có định dạng dd/MM/yyyy</param>
+        /// <param name="dateFormat">Không còn tác dụng</param>
         /// <returns></returns>
-        public static DateTime ObjectToFullDateTime(object o, string dateFormat = "d/M/yyyy")
+        public static DateTime ObjectToFullDateTime(object o, string dateFormat = "dd/MM/yyyy")
         {
             var date = ObjectToDate(o, dateFormat);
             if (date == null) return DateTime.Now;
