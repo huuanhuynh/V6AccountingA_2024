@@ -87,10 +87,11 @@ namespace V6Tools.V6Convert
         }
 
         /// <summary>
-        /// Chuỗi số
+        /// <para>Chuyển chuỗi số có dấu cách thập phân về đúng dấu . hoặc , theo hệ thống để dùng hàm Convert.</para>
+        /// <para>.</para>
         /// </summary>
-        /// <param name="numberString"></param>
-        /// <returns></returns>
+        /// <param name="numberString">Chuỗi số</param>
+        /// <returns>Trả về chuổi số không còn dấu cách phần nghìn, dấu thập phân theo hệ thống máy tính.</returns>
         public static string StringToSystemDecimalSymbolStringNumber(string numberString)
         {
             numberString = numberString.Replace(" ", "");

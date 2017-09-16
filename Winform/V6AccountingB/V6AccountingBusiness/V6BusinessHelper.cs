@@ -396,12 +396,23 @@ namespace V6AccountingBusiness
         }
 
         
-
+        /// <summary>
+        /// Thực thi Procedure.
+        /// </summary>
+        /// <param name="procName"></param>
+        /// <param name="plist"></param>
+        /// <returns></returns>
         public static DataSet ExecuteProcedure(string procName, params SqlParameter[] plist)
         {
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, procName, plist);
         }
 
+        /// <summary>
+        /// Thực thi Procedure với các tham số theo thứ tự không cần tên.
+        /// </summary>
+        /// <param name="procName">Tên Procedure</param>
+        /// <param name="plist">Các tham số theo thứ tự</param>
+        /// <returns></returns>
         public static DataSet ExecuteProcedure(string procName, params object[] plist)
         {
             return SqlConnect.ExecuteDataset(procName, plist);
