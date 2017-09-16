@@ -20,7 +20,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
     {
         private readonly string _formname;
         private string _stt_rec, _table_name;
-        private DataTable _gridViewData;
+        private DataTable _gridViewData, _inforData;
         private V6FormControl ThongTinControl1;
         private V6FormControl ThongTinControl2;
         public OneGridControl()
@@ -327,6 +327,13 @@ namespace V6ControlManager.FormManager.NhanSu.View
             {
                 FormManagerHelper.HideMainMenu();
 
+                // Reset
+                V6ControlFormHelper.SetFormDataDictionary(ThongTinControl1,null);
+                V6ControlFormHelper.SetFormDataDictionary(ThongTinControl2, null);
+                _gridViewData = null;
+                gridView1.DataSource = null;
+                
+
                 SqlParameter[] plist = FilterControl.GetFilterParameters().ToArray();
                 //Find stt_rec
                 foreach (SqlParameter parameter in plist)
@@ -341,18 +348,32 @@ namespace V6ControlManager.FormManager.NhanSu.View
                 
                 if (ds.Tables.Count > 0)
                 {
-                    _gridViewData = ds.Tables[0];
-                    gridView1.DataSource = _gridViewData;
-                    FormatGridView();
-                    gridView1.Focus();
-                    if (_gridViewData.Rows.Count > 0)
+                    //{Tuanmh 15/09/2017
+                    //1.Infor personal 
+
+                    _inforData = ds.Tables[0];
+                    if (_inforData.Rows.Count > 0)
                     {
-                        V6ControlFormHelper.SetFormDataDictionary(ThongTinControl2, _gridViewData.Rows[0].ToDataDictionary());
+                        V6ControlFormHelper.SetFormDataDictionary(ThongTinControl2, _inforData.Rows[0].ToDataDictionary());
                     }
-                    //V6ControlFormHelper.SetFormControlsReadOnly(ThongTinControl1, true);
-                    //V6ControlFormHelper.SetFormControlsReadOnly(ThongTinControl2, true);
+
+
+                    //2.Data gridview
+                    if (ds.Tables.Count > 1)
+                    {
+                        _gridViewData = ds.Tables[1];
+                        gridView1.DataSource = _gridViewData;
+                        FormatGridView();
+                        gridView1.Focus();
+                        if (_gridViewData.Rows.Count > 0)
+                        {
+                            V6ControlFormHelper.SetFormDataDictionary(ThongTinControl1, _gridViewData.Rows[0].ToDataDictionary());
+                        }
+                    }
                     gridView1.Focus();
+                    //}
                 }
+                
             }
             catch (Exception ex)
             {
@@ -384,7 +405,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
         {
             try
             {
-                if (gridView1.CurrentRow != null)
+                if (gridView1.CurrentRow != null && _gridViewData != null)
                 {
                     var selectedData = gridView1.CurrentRow.ToDataDictionary();
                     V6ControlFormHelper.SetFormDataDictionary(ThongTinControl1, selectedData);
