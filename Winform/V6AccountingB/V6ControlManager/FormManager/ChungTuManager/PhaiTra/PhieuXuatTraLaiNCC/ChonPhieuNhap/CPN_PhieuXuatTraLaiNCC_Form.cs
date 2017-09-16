@@ -229,6 +229,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             if (V6Login.MadvcsCount <= 1)
             {
                 txtMaDVCS.Enabled = false;
+                txtMaDVCS.ReadOnly = true;
             }
             ChungTu.SetTxtStatusProperties(Invoice, txtTrangThai, lblStatusDescription);
         }

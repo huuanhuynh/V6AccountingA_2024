@@ -98,6 +98,7 @@
             this.buttonNO.Name = "buttonNO";
             this.buttonNO.Size = new System.Drawing.Size(75, 23);
             this.buttonNO.TabIndex = 3;
+            this.buttonNO.Tag = "Escape";
             this.buttonNO.Text = "Không";
             this.buttonNO.UseVisualStyleBackColor = true;
             this.buttonNO.Visible = false;
@@ -175,6 +176,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.CancelButton = this.buttonCANCEL;
             this.ClientSize = new System.Drawing.Size(284, 108);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
@@ -187,6 +189,10 @@
             this.Name = "V6MessageForm";
             this.ShowInTaskbar = false;
             this.Text = "Thông báo";
+            this.Controls.SetChildIndex(this.lblMessage, 0);
+            this.Controls.SetChildIndex(this.pictureBox1, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -28,6 +28,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             if (V6Login.MadvcsCount <= 1)
             {
                 txtMaDvcs.Enabled = false;
+                txtMaDvcs.VvarTextBox.ReadOnly = true;
             }
 
             TxtKieu_bc.Text = "3";

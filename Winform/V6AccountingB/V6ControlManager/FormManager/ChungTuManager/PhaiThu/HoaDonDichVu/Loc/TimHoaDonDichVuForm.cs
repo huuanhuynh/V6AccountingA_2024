@@ -248,6 +248,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             if (V6Login.MadvcsCount <= 1)
             {
                 txtMaDVCS.Enabled = false;
+                txtMaDVCS.ReadOnly = true;
             }
 
             chkNSD.Checked = new V6Invoice21().M_LOC_NSD;

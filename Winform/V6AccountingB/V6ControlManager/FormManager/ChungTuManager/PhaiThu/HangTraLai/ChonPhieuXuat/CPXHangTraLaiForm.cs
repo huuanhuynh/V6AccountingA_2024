@@ -230,6 +230,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             if (V6Login.MadvcsCount <= 1)
             {
                 txtMaDVCS.Enabled = false;
+                txtMaDVCS.ReadOnly = true;
             }
             ChungTu.SetTxtStatusProperties(_HangTraLaiForm.Invoice, txtTrangThai, lblStatusDescription);
         }

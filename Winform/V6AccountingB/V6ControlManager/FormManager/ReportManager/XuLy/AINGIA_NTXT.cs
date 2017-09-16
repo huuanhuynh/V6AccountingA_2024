@@ -152,7 +152,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
         /// <summary>
-        /// Lặp vật tư, Gom EXEC4 và 5 vào trong 1 tháng.
+        /// Lặp vật tư, Gom EXEC4 và 5 vào trong 1 th
         /// </summary>
         private void TinhGia_NTXT_A45(int year, int month, string ma_vt, int warning, int tinh_giatb, string advance)
         {
