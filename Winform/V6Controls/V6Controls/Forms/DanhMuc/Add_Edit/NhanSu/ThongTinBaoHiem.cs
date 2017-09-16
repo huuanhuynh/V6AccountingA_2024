@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using V6AccountingBusiness;
+using System.Windows.Forms;
 using V6Init;
 using V6Structs;
 using V6Tools;
@@ -13,6 +14,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         public SortedDictionary<string, object> DataOld;
         public SortedDictionary<string, object> DataDic { get; set; }
         public SortedDictionary<string, object> _keys = new SortedDictionary<string, object>();
+        public Control button = null;
         public ThongTinBaoHiem()
         {
             InitializeComponent();
@@ -95,6 +97,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
         private void buttonSua_Click_1(object sender, EventArgs e)
         {
+            var paren = Parent.Parent;
+            button = V6ControlFormHelper.GetControlByName(paren, "btnNhan");
+            button.Enabled = false;
             buttonSua.Enabled = false;
             buttonNhan.Enabled = true;
             buttonHuy.Enabled = true;
@@ -109,6 +114,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             buttonSua.Enabled = true;
             V6ControlFormHelper.SetFormControlsReadOnly(this, true);
             UpdateData();
+            button.Enabled = true;
         }
 
         private void buttonHuy_Click_1(object sender, EventArgs e)
@@ -118,6 +124,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             buttonHuy.Enabled = false;
             V6ControlFormHelper.SetFormDataDictionary(this, DataOld);
             V6ControlFormHelper.SetFormControlsReadOnly(this, true);
+            button.Enabled = true;
         }
 
         private void txtworkdate2_TextChanged(object sender, EventArgs e)
