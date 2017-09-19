@@ -224,6 +224,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             if (V6Login.MadvcsCount <= 1)
             {
                 txtMaDVCS.Enabled = false;
+                txtMaDVCS.ReadOnly = true;
             }
 
             chkNSD.Checked = _formChungTu.Invoice.M_LOC_NSD;
@@ -341,6 +342,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             {
                 HideLocKetQua();
             }
+            InitTuyChon();
         }
 
         public void Refresh0()
@@ -358,5 +360,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             e.Cancel = true;
             Hide();
         }
+
     }
 }

@@ -26,6 +26,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc
                 if (V6Login.MadvcsCount <= 1)
                 {
                     txtMaDVCS.Enabled = false;
+                    txtMaDVCS.ReadOnly = true;
                 }
                 soTienTu.DecimalPlaces = V6Options.M_ROUND_NT;
                 soTienDen.DecimalPlaces = V6Options.M_ROUND_NT;
