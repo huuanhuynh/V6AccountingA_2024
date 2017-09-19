@@ -31,21 +31,21 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.v6ColorDataGridView1 = new V6Controls.V6ColorDataGridView();
+            this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.comboBox1 = new V6Controls.V6ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.btnIn = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.v6ColorDataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // v6ColorDataGridView1
             // 
-            this.v6ColorDataGridView1.AllowUserToAddRows = false;
-            this.v6ColorDataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.v6ColorDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.v6ColorDataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -55,16 +55,16 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.v6ColorDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.v6ColorDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.v6ColorDataGridView1.Location = new System.Drawing.Point(2, 47);
-            this.v6ColorDataGridView1.Name = "v6ColorDataGridView1";
-            this.v6ColorDataGridView1.ReadOnly = true;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(2, 47);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.v6ColorDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.v6ColorDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.v6ColorDataGridView1.Size = new System.Drawing.Size(474, 211);
-            this.v6ColorDataGridView1.TabIndex = 0;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(474, 211);
+            this.dataGridView1.TabIndex = 0;
             // 
             // comboBox1
             // 
@@ -122,12 +122,12 @@
             this.Controls.Add(this.btnIn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.v6ColorDataGridView1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
             this.Name = "ViewInfoData";
             this.Text = "ViewInfoData";
             this.Load += new System.EventHandler(this.ViewInfoData_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.v6ColorDataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,7 +135,7 @@
 
         #endregion
 
-        private V6Controls.V6ColorDataGridView v6ColorDataGridView1;
+        private V6Controls.V6ColorDataGridView dataGridView1;
         private V6Controls.V6ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;

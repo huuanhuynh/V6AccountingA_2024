@@ -6581,6 +6581,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ACPDDCK.resx">
       <DependentUpon>ACPDDCK.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINGIA_NTXT.resx">
+      <DependentUpon>AINGIA_NTXT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HPAYROLLCALC.resx">
       <DependentUpon>HPAYROLLCALC.cs</DependentUpon>
     </EmbeddedResource>

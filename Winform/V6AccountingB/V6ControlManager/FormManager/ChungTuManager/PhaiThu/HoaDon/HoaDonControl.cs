@@ -161,49 +161,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             foreach (KeyValuePair<int, Control> item in dynamicControlList)
             {
                 var control = item.Value;
-                
-                if (control is V6NumberTextBox)
-                {
-                    //toolTip1.SetToolTip(control, ((V6NumberTextBox)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6NumberTextBox)sender).AccessibleName + ": " + ((V6NumberTextBox)sender).GrayText;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6NumberTextBox)sender).TextTitle, ((V6NumberTextBox)sender).Parent, location);
-                    };
-                }
-                else if (control is V6ColorTextBox)
-                {
-                    //toolTip1.SetToolTip(control,((V6ColorTextBox)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6ColorTextBox)sender).AccessibleName + ": " + ((V6ColorTextBox)sender).GrayText;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6ColorTextBox)sender).TextTitle, ((V6ColorTextBox)sender).Parent, location);
-                    };
-                }
-                else if (control is V6DateTimePick)
-                {
-                    //toolTip1.SetToolTip(control, ((V6ColorDateTimePick)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6DateTimePick)sender).AccessibleName + ": " + ((V6DateTimePick)sender).TextTitle;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6DateTimePick)sender).TextTitle, ((V6DateTimePick)sender).Parent, location);
-                    };
-                }
+                ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
-
                 switch (NAME)
                 {
                     case "MA_VT":
@@ -700,48 +660,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             foreach (KeyValuePair<int, Control> item in dynamicControlList)
             {
                 var control = item.Value;
-
-                #region ---- Set Event ----
-                if (control is V6NumberTextBox)
-                {
-                    //toolTip1.SetToolTip(control, ((V6NumberTextBox)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6NumberTextBox)sender).AccessibleName + ": " + ((V6NumberTextBox)sender).GrayText;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6NumberTextBox)sender).TextTitle, ((V6NumberTextBox)sender).Parent, location);
-                    };
-                }
-                else if (control is V6ColorTextBox)
-                {
-                    //toolTip1.SetToolTip(control,((V6ColorTextBox)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6ColorTextBox)sender).AccessibleName + ": " + ((V6ColorTextBox)sender).GrayText;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6ColorTextBox)sender).TextTitle, ((V6ColorTextBox)sender).Parent, location);
-                    };
-                }
-                else if (control is V6DateTimePick)
-                {
-                    //toolTip1.SetToolTip(control, ((V6ColorDateTimePick)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6DateTimePick)sender).AccessibleName + ": " + ((V6DateTimePick)sender).TextTitle;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6DateTimePick)sender).TextTitle, ((V6DateTimePick)sender).Parent, location);
-                    };
-                }
-                #endregion set event
+                ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
 
@@ -2718,9 +2637,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     detail1.MODE = V6Mode.Lock;
                     detail3.MODE = V6Mode.Lock;
+
+                    ChonDonHangBanMenu.Enabled = false;
+                    chonBaoGiaToolStripMenuItem.Enabled = false;
+                    chonTuExcelToolStripMenuItem.Enabled = false;
                 }
                 else
                 {
+                    ChonDonHangBanMenu.Enabled = true;
+                    chonBaoGiaToolStripMenuItem.Enabled = true;
+                    chonTuExcelToolStripMenuItem.Enabled = true;
+
                     XuLyKhoaThongTinKhachHang();
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;
@@ -5759,6 +5686,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
+                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+
                 var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMadvcs.Text.Trim();
                 var message = "";
@@ -5787,6 +5716,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
+                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+
                 var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMadvcs.Text.Trim();
                 var message = "";
@@ -5844,6 +5775,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
+                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+
                 var chonExcel = new LoadExcelDataForm();
                 chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT2,SO_LUONG1,GIA_NT21";
                 chonExcel.AcceptData += chonExcel_AcceptData;
@@ -5927,6 +5860,38 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
 
 
+        }
+
+        private void xemCongNoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Mode == V6Mode.Init) return;
+
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@MA_KH", txtMaKh.Text),
+                    new SqlParameter("@TK", txtManx.Text),
+                    new SqlParameter("@Ngay_ct", dateNgayCT.Value.Date.ToString("yyyyMMdd")),
+                    new SqlParameter("@Advance", string.Format("Ma_dvcs='{0}'", txtMadvcs.Text.Replace("'", "''"))),
+                };
+                var data = V6BusinessHelper.ExecuteProcedure("", plist).Tables[0];
+                if (data.Rows.Count > 0)
+                {
+                    var row = data.Rows[0];
+                    var du_no = ObjectAndString.ObjectToDecimal(row["NO_CK"]) - ObjectAndString.ObjectToDecimal(row["CO_CK"]);
+                    string message = string.Format("Số dư nợ cuối ngày {0}: {1}", dateNgayCT.Value.ToString("yyyyMMdd"), du_no);
+                    this.ShowMessage(message);
+                }
+                else
+                {
+                    this.ShowMessage(V6Text.NoData);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".xemCongNoToolStripMenuItem_Click " + _sttRec, ex);
+            }
         }
 
         #endregion chức năng
@@ -6269,6 +6234,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.WriteExLog(GetType() + ".XemPhieuNhap", ex);
             }
         }
+
+        
 
     }
 }

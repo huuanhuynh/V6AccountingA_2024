@@ -264,7 +264,6 @@
             this.txtMaKh.BackColor = System.Drawing.Color.AntiqueWhite;
             this.txtMaKh.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaKh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMaKh.BrotherFields = "";
             this.txtMaKh.CheckNotEmpty = true;
             this.txtMaKh.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaKh.ForeColor = System.Drawing.SystemColors.WindowText;

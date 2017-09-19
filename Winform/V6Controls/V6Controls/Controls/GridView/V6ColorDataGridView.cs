@@ -748,5 +748,35 @@ namespace V6Controls
             }
         }
 
+        /// <summary>
+        /// <para>Gán format mặc định.</para>
+        /// <para>2 số lẻ</para>
+        /// </summary>
+        public void Format()
+        {
+            foreach (DataGridViewColumn column in Columns)
+            {
+                var dataType = column.ValueType;
+                if (dataType == typeof (decimal)
+                    //|| dataType == typeof (int)
+                    || dataType == typeof (double)
+                    //|| dataType == typeof (long)
+                    //|| dataType == typeof (short)
+                    || dataType == typeof (float)
+                    //|| dataType == typeof (Int16)
+                    //|| dataType == typeof (Int32)
+                    //|| dataType == typeof (Int64)
+                    //|| dataType == typeof (uint)
+                    //|| dataType == typeof (UInt16)
+                    //|| dataType == typeof (UInt32)
+                    //|| dataType == typeof (UInt64)
+                    //|| dataType == typeof (byte)
+                    //|| dataType == typeof (sbyte)
+                    || dataType == typeof (Single))
+                {
+                    column.DefaultCellStyle.Format = "N2";
+                }
+            }
+        }
     }
 }

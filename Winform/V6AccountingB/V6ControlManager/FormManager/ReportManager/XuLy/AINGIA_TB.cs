@@ -40,6 +40,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         //Sửa lại hoàn toàn. Tách thành nhiều hàm trong Thread.
         protected override void ExecuteProcedure()
         {
+            _message = "";
             //_pList:
             //0 @Period1 int,
             //1 @Year1 int,
@@ -115,7 +116,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 new SqlParameter("@Tinh_giatb", Tinh_giatb), 
                                 new SqlParameter("@Advance", Advance), 
                             };
-                            SetStatusText("Đang cập nhật giá ... " + i.ToString("dd/MM/yyyy"));
+                            _message = "Đang cập nhật giá ... " + i.ToString("dd/MM/yyyy");
+                            SetStatusText(_message);
                             TinhGia_TB3(plist);
                         }
                 }

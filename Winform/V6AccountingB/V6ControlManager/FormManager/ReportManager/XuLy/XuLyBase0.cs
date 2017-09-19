@@ -144,6 +144,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected virtual void Nhan()
         {
+            _message = string.Empty;
             ExecuteProcedure();
         }
 
@@ -178,13 +179,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     FilterControl.LoadDataFinish(_ds);
                     DoAfterExecuteSuccess();
-                    this.ShowMessage("Thực hiện xong!");
+                    _message = V6Text.Finish;
+                    V6ControlFormHelper.SetStatusText(_message);
+                    this.ShowMessage(_message);
                     _success = false;
                 }
                 catch (Exception ex)
                 {
                     timerViewReport.Stop();
                     _success = false;
+                    _message = ex.Message;
+                    V6ControlFormHelper.SetStatusText(_message);
                     this.ShowErrorMessage(GetType() + ".TimerView" + ex.Message, ex.Source);
                 }
             }
@@ -199,7 +204,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
                 ii = 0;
+                _message = V6Text.Busy;
             }
+            V6ControlFormHelper.SetStatusText(_message);
         }
         
         #endregion ==== execute ====

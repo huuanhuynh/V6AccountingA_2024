@@ -2339,7 +2339,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtMaKh.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaKh.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaKh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMaKh.BrotherFields = "";
             this.txtMaKh.CheckNotEmpty = true;
             this.txtMaKh.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaKh.ForeColor = System.Drawing.SystemColors.WindowText;

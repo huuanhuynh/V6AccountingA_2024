@@ -231,6 +231,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.menuXemPhieuNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.xemCongNoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1954,6 +1955,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.btnChucNang.Name = "btnChucNang";
             this.btnChucNang.Size = new System.Drawing.Size(87, 29);
             this.btnChucNang.TabIndex = 1;
+            this.btnChucNang.Tag = "cancel";
             this.btnChucNang.Text = "Chức năng";
             this.btnChucNang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnChucNang.UseVisualStyleBackColor = true;
@@ -1964,9 +1966,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.ChonDonHangBanMenu,
             this.chonBaoGiaToolStripMenuItem,
             this.TroGiupMenu,
-            this.chonTuExcelToolStripMenuItem});
+            this.chonTuExcelToolStripMenuItem,
+            this.xemCongNoToolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(181, 92);
+            this.menuChucNang.Size = new System.Drawing.Size(181, 136);
             // 
             // ChonDonHangBanMenu
             // 
@@ -2477,7 +2480,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.txtMaKh.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaKh.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaKh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMaKh.BrotherFields = "";
             this.txtMaKh.CheckNotEmpty = true;
             this.txtMaKh.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaKh.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -3336,6 +3338,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
             this.toolStripMenuItem3.Text = "...";
             // 
+            // xemCongNoToolStripMenuItem
+            // 
+            this.xemCongNoToolStripMenuItem.Name = "xemCongNoToolStripMenuItem";
+            this.xemCongNoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.xemCongNoToolStripMenuItem.Text = "XemCongNo";
+            this.xemCongNoToolStripMenuItem.Click += new System.EventHandler(this.xemCongNoToolStripMenuItem_Click);
+            // 
             // HoaDonControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3594,5 +3603,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private System.Windows.Forms.ToolStripMenuItem menuXemPhieuNhap;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem xemCongNoToolStripMenuItem;
     }
 }
