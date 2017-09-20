@@ -37,7 +37,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                V6Tools.Logger.WriteToLog("BPHT DisableWhenEdit " + ex.Message);
+                V6Tools.Logger.WriteToLog("DisableWhenEdit " + ex.Message);
             }
         }
         public override void ValidateData()

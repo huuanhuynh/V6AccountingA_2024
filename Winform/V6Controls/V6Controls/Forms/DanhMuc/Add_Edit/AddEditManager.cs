@@ -110,7 +110,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FormControl = new NhomKhoanMucPhiAddEditForm();
                     break;
                 case V6TableName.Alnhtk0:
-                    FormControl = new NhomTieuKhoanAddEditForm();
+                    FormControl = new PhanLoaiCacTaiKhoanAddEditForm();
                     break;
                 case V6TableName.Alnhtk:
                     FormControl = new NhomTaiKhoanAddEditForm();

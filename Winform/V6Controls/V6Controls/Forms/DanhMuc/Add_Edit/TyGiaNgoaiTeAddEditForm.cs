@@ -9,13 +9,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public TyGiaNgoaiTeAddEditForm()
         {
             InitializeComponent();
+            
         }
         
         public override void DoBeforeEdit()
         {
-            
+            TxtMa_nt.ExistRowInTable();
         }
 
+        public override void DoBeforeAdd()
+        {
+            TxtMa_nt.ExistRowInTable();
+        }
         public override void ValidateData()
         {
             var errors = "";

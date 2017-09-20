@@ -4,9 +4,9 @@ using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
-    public partial class TuDienNguoiDungDinhNghiaAddEditForm : AddEditControlVirtual
+    public partial class PhanLoaiCacTaiKhoanAddEditForm : AddEditControlVirtual
     {
-        public TuDienNguoiDungDinhNghiaAddEditForm()
+        public PhanLoaiCacTaiKhoanAddEditForm()
         {
             InitializeComponent();
         }
@@ -26,41 +26,41 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     //code_field = row[""].ToString().Trim();
                 }
 
-                var v = Categories.IsExistOneCode_List(F8_table, "MA_TD", Txtma_td.Text);
-                Txtma_td.Enabled = !v;
+                var v = Categories.IsExistOneCode_List(F8_table, "MA_NH", Txtma_nh.Text);
+                Txtma_nh.Enabled = !v;
 
-                if (!V6Init.V6Login.IsAdmin && Txtma_td.Text.ToUpper() != V6Init.V6Login.Madvcs.ToUpper())
+                if (!V6Init.V6Login.IsAdmin && Txtma_nh.Text.ToUpper() != V6Init.V6Login.Madvcs.ToUpper())
                 {
-                    Txtma_td.Enabled = false;
+                    Txtma_nh.Enabled = false;
                 }
 
             }
             catch (Exception ex)
             {
-                V6Tools.Logger.WriteToLog("BPHT DisableWhenEdit " + ex.Message);
+                V6Tools.Logger.WriteToLog(" DisableWhenEdit " + ex.Message);
             }
         }
         public override void ValidateData()
         {
             var errors = "";
-            if (Txtma_td.Text.Trim() == "" || TxtTen_td.Text.Trim() == "")
+            if (Txtma_nh.Text.Trim() == "" || txtten_nh.Text.Trim() == "")
                 errors += V6Init.V6Text.CheckInfor + " !\r\n";
 
             if (Mode == V6Structs.V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_TD",
-                    Txtma_td.Text.Trim(), DataOld["MA_TD"].ToString());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_NH",
+                    Txtma_nh.Text.Trim(), DataOld["MA_NH"].ToString());
                 if (!b)
                     throw new Exception(V6Init.V6Text.ExistData
-                                        + "MA_TD = " + Txtma_td.Text.Trim());
+                                        + "MA_NH = " + Txtma_nh.Text.Trim());
             }
             else if (Mode == V6Structs.V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_TD",
-                    Txtma_td.Text.Trim(), Txtma_td.Text.Trim());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_NH",
+                    Txtma_nh.Text.Trim(), Txtma_nh.Text.Trim());
                 if (!b)
                     throw new Exception(V6Init.V6Text.ExistData
-                                        + "MA_TD = " + Txtma_td.Text.Trim());
+                                        + "MA_NH = " + Txtma_nh.Text.Trim());
             }
 
             if (errors.Length > 0) throw new Exception(errors);

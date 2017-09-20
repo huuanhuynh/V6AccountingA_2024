@@ -14,30 +14,57 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             Txtnh_phi3.SetInitFilter("Loai_nh=3");
 
         }
+        public override void DoBeforeEdit()
+        {
+            try
+            {
+                System.Collections.Generic.IDictionary<string, object> keys = new System.Collections.Generic.Dictionary<string, object>();
+                keys.Add("MA_DM", TableName);
+                var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
+                string F8_table = "", code_field = "";
+
+                if (aldm.Rows.Count == 1)
+                {
+                    var row = aldm.Rows[0];
+                    F8_table = row["F8_TABLE"].ToString().Trim();
+                    //code_field = row[""].ToString().Trim();
+                }
+
+                var v = Categories.IsExistOneCode_List(F8_table, "MA_PHI", TxtMa_phi.Text);
+                TxtMa_phi.Enabled = !v;
+
+                if (!V6Init.V6Login.IsAdmin && TxtMa_phi.Text.ToUpper() != V6Init.V6Login.Madvcs.ToUpper())
+                {
+                    TxtMa_phi.Enabled = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                V6Tools.Logger.WriteToLog("BPHT DisableWhenEdit " + ex.Message);
+            }
+        }
         public override void ValidateData()
         {
             var errors = "";
-            if (TxtMa_phi.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
-            if (TxtTen_phi.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
+            if (TxtMa_phi.Text.Trim() == "" || TxtTen_phi.Text.Trim() == "")
+                errors += V6Init.V6Text.CheckInfor + " !\r\n";
 
-
-            if (Mode == V6Mode.Edit)
+            if (Mode == V6Structs.V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_PHI",
-                 TxtMa_phi.Text.Trim(), DataOld["MA_PHI"].ToString());
+                    TxtMa_phi.Text.Trim(), DataOld["MA_PHI"].ToString());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_PHI = " + TxtMa_phi.Text.Trim());
+                    throw new Exception(V6Init.V6Text.ExistData
+                                        + "MA_PHI = " + TxtMa_phi.Text.Trim());
             }
-            else if (Mode == V6Mode.Add)
+            else if (Mode == V6Structs.V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_PHI",
-                 TxtMa_phi.Text.Trim(), TxtMa_phi.Text.Trim());
+                    TxtMa_phi.Text.Trim(), TxtMa_phi.Text.Trim());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_PHI = " + TxtMa_phi.Text.Trim());
+                    throw new Exception(V6Init.V6Text.ExistData
+                                        + "MA_PHI = " + TxtMa_phi.Text.Trim());
             }
 
             if (errors.Length > 0) throw new Exception(errors);
