@@ -203,7 +203,7 @@
             // 
             // maNhanVien
             // 
-            this.maNhanVien.AccessibleName = "ma_nvienBH";
+            this.maNhanVien.AccessibleName = "MA_NVIEN";
             this.maNhanVien.BrotherFields = null;
             this.maNhanVien.Carry = false;
             this.maNhanVien.CheckOnLeave = false;

@@ -218,7 +218,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // 
             // v6ColorTextBox25
             // 
-            this.v6ColorTextBox25.AccessibleName = "ma_vv";
+            this.v6ColorTextBox25.AccessibleName = "MA_VV_I";
             this.v6ColorTextBox25.BrotherFields = null;
             this.v6ColorTextBox25.Carry = false;
             this.v6ColorTextBox25.CheckOnLeave = false;

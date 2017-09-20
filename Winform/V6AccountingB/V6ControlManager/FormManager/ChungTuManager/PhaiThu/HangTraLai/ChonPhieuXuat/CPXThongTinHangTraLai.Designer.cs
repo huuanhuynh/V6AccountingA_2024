@@ -184,7 +184,7 @@
             // 
             // maNhanVien
             // 
-            this.maNhanVien.AccessibleName = "ma_nvienBH";
+            this.maNhanVien.AccessibleName = "MA_NVIEN";
             this.maNhanVien.BackColor = System.Drawing.SystemColors.Window;
             this.maNhanVien.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.maNhanVien.EnterColor = System.Drawing.Color.PaleGreen;

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using V6Controls.Controls;
 using V6Controls.Forms;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -336,7 +337,9 @@ namespace V6Controls
             try
             {
                 var data = gridview.DataSource;
-                
+                DataViewerForm dataViewer = new DataViewerForm(data);
+                dataViewer.ShowDialog(gridview);
+                return;
                 {
                     var f  = new V6Form
                     {
@@ -352,7 +355,7 @@ namespace V6Controls
                     var bounds = f.CreateGraphics().VisibleClipBounds;
                     //child.Location = new Point(0, 0);
                     //child.Dock = DockStyle.Fill;
-                    DataGridView newGridView = new DataGridView
+                    V6ColorDataGridView newGridView = new V6ColorDataGridView
                     {
                         AllowUserToAddRows = false,
                         AllowUserToDeleteRows = false,
@@ -363,6 +366,7 @@ namespace V6Controls
 
                     f.Controls.Add(newGridView);
                     newGridView.DataSource = data;
+                    newGridView.Format();
 
                     GridViewSummary gSum = new GridViewSummary();
                     gSum.DataGridView = newGridView;

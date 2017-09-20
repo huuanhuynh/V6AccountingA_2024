@@ -661,7 +661,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new V6BACKUP1();
                 case "V6LEVELDOWN":
                     return new V6LEVELDOWN();
-
+                case "V6LEVELSET":
+                    return new V6LEVELSET();
 
                 #endregion he thong
 

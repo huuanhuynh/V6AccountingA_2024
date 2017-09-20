@@ -84,6 +84,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new ARSD_AP(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "V6LEVELDOWN":
                     return new V6LEVELDOWN(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "V6LEVELSET":
+                    return new V6LEVELSET(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "V6IMXLS":
                     return new V6IMPORTXLS(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
 
