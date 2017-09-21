@@ -2589,7 +2589,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.txtMaKh.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaKh.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaKh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMaKh.BrotherFields = "ten_kh,dia_chi,ma_so_thue";
             this.txtMaKh.CheckNotEmpty = true;
             this.txtMaKh.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaKh.ForeColor = System.Drawing.SystemColors.WindowText;

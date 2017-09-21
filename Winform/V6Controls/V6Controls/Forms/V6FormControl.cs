@@ -358,5 +358,42 @@ namespace V6Controls.Forms
             visibleData = result;
             return result;
         }
+
+        /// <summary>
+        /// <para>Gán event cho control, hiện status khi Enter.</para>
+        /// <para>Hàm chỉ gọi 1 lần cho 1 control.</para>
+        /// </summary>
+        /// <param name="control"></param>
+        protected void ApplyControlEnterStatus(Control control)
+        {
+            if (control is V6ColorTextBox)
+            {
+                control.Enter += delegate(object sender, EventArgs e)
+                {
+                    V6ColorTextBox ctb = (V6ColorTextBox)sender;
+                    var s = string.Format("{0}:{1} ({2})", ctb.AccessibleName, ctb.GrayText, ctb.Text);
+                    V6ControlFormHelper.SetStatusText(s);
+                };
+            }
+            else if (control is V6ColorMaskedTextBox)
+            {
+                control.Enter += delegate(object sender, EventArgs e)
+                {
+                    V6ColorMaskedTextBox mtb = (V6ColorMaskedTextBox)sender;
+                    var s = string.Format("{0}:{1} ({2})", mtb.AccessibleName, mtb.GrayText, mtb.Text);
+                    V6ControlFormHelper.SetStatusText(s);
+                };
+            }
+            else if (control is V6DateTimePick)
+            {
+                control.Enter += delegate(object sender, EventArgs e)
+                {
+                    V6DateTimePick mtb = (V6DateTimePick)sender;
+                    var s = string.Format("{0}:{1} ({2})", mtb.AccessibleName, mtb.TextTitle, mtb.Text);
+                    V6ControlFormHelper.SetStatusText(s);
+                };
+            }
+        }
+
     }
 }

@@ -154,46 +154,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             foreach (KeyValuePair<int, Control> item in dynamicControlList)
             {
                 var control = item.Value;
-                
-                if (control is V6NumberTextBox)
-                {
-                    //toolTip1.SetToolTip(control, ((V6NumberTextBox)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6NumberTextBox)sender).AccessibleName + ": " + ((V6NumberTextBox)sender).GrayText;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6NumberTextBox)sender).TextTitle, ((V6NumberTextBox)sender).Parent, location);
-                    };
-                }
-                else if (control is V6ColorTextBox)
-                {
-                    //toolTip1.SetToolTip(control,((V6ColorTextBox)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6ColorTextBox)sender).AccessibleName + ": " + ((V6ColorTextBox)sender).GrayText;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6ColorTextBox)sender).TextTitle, ((V6ColorTextBox)sender).Parent, location);
-                    };
-                }
-                else if (control is V6DateTimePick)
-                {
-                    //toolTip1.SetToolTip(control, ((V6ColorDateTimePick)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6DateTimePick)sender).AccessibleName + ": " + ((V6DateTimePick)sender).TextTitle;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6DateTimePick)sender).TextTitle, ((V6DateTimePick)sender).Parent, location);
-                    };
-                }
+                ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
                 switch (NAME)
@@ -294,48 +255,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             foreach (KeyValuePair<int, Control> item in dynamicControlList)
             {
                 var control = item.Value;
-
-
-                if (control is V6NumberTextBox)
-                {
-                    //toolTip1.SetToolTip(control, ((V6NumberTextBox)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6NumberTextBox)sender).AccessibleName + ": " + ((V6NumberTextBox)sender).GrayText;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6NumberTextBox)sender).TextTitle, ((V6NumberTextBox)sender).Parent, location);
-                    };
-                }
-                else if (control is V6ColorTextBox)
-                {
-                    //toolTip1.SetToolTip(control,((V6ColorTextBox)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6ColorTextBox)sender).AccessibleName + ": " + ((V6ColorTextBox)sender).GrayText;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6ColorTextBox)sender).TextTitle, ((V6ColorTextBox)sender).Parent, location);
-                    };
-                }
-                else if (control is V6DateTimePick)
-                {
-                    //toolTip1.SetToolTip(control, ((V6ColorDateTimePick)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6DateTimePick)sender).AccessibleName + ": " + ((V6DateTimePick)sender).TextTitle;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6DateTimePick)sender).TextTitle, ((V6DateTimePick)sender).Parent, location);
-                    };
-                }
-
+                ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
                 if (NAME == "SO_CT0")
@@ -574,48 +494,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             foreach (KeyValuePair<int, Control> item in dynamicControlList)
             {
                 var control = item.Value;
-
-                #region ---- Set Event ----
-                if (control is V6NumberTextBox)
-                {
-                    //toolTip1.SetToolTip(control, ((V6NumberTextBox)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6NumberTextBox)sender).AccessibleName + ": " + ((V6NumberTextBox)sender).GrayText;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6NumberTextBox)sender).TextTitle, ((V6NumberTextBox)sender).Parent, location);
-                    };
-                }
-                else if (control is V6ColorTextBox)
-                {
-                    //toolTip1.SetToolTip(control,((V6ColorTextBox)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6ColorTextBox)sender).AccessibleName + ": " + ((V6ColorTextBox)sender).GrayText;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6ColorTextBox)sender).TextTitle, ((V6ColorTextBox)sender).Parent, location);
-                    };
-                }
-                else if (control is V6DateTimePick)
-                {
-                    //toolTip1.SetToolTip(control, ((V6ColorDateTimePick)control).TextTitle);
-                    control.Enter += delegate(object sender, EventArgs e)
-                    {
-                        var s = ((V6DateTimePick)sender).AccessibleName + ": " + ((V6DateTimePick)sender).TextTitle;
-                        V6ControlFormHelper.SetStatusText(s);
-
-                        var location = control.Location;
-                        location.Y -= 22;
-                        //toolTip1.Show(((V6DateTimePick)sender).TextTitle, ((V6DateTimePick)sender).Parent, location);
-                    };
-                }
-                #endregion set event
+                ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
 
@@ -1384,9 +1263,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     }
                     else
                     {
-                        txtTenKh.Enabled = true;
+                        txtTenKh.Enabled = false;
                         txtDiaChi.Enabled = true;
-                        txtMaSoThue.Enabled = true;
+                        txtMaSoThue.Enabled = false;
                     }
                 }
                 else

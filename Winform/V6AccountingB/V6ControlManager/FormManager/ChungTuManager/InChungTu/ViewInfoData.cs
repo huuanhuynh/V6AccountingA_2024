@@ -46,6 +46,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
+        /// <summary>
+        /// Tạm thời format kiểu số 2 số lẻ.
+        /// </summary>
+        private void FormatGridView()
+        {
+            try
+            {
+                dataGridView1.Format();
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
         private void Print()
         {
             try
@@ -53,7 +68,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var selectedValue = comboBox1.SelectedValue.ToString().Trim();
                 if (selectedValue == "PRINT_AMAD")
                 {
-                    var data = v6ColorDataGridView1.CurrentRow.ToDataDictionary();
+                    var data = dataGridView1.CurrentRow.ToDataDictionary();
                     //Goi form in.
 
 
@@ -95,7 +110,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     new SqlParameter("@cMa_ct", MA_CT), 
                 };
                     var loadData = V6BusinessHelper.ExecuteProcedure(Procedure, plist).Tables[0];
-                    v6ColorDataGridView1.DataSource = loadData;
+                    dataGridView1.DataSource = loadData;
+                    FormatGridView();
                 }
             }
             catch (Exception ex)
