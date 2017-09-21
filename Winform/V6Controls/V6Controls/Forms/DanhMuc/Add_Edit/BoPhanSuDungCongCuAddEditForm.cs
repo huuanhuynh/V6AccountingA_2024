@@ -16,17 +16,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                System.Collections.Generic.IDictionary<string, object> keys = new System.Collections.Generic.Dictionary<string, object>();
-                keys.Add("MA_DM", TableName);
-                var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
-                string F8_table = "", code_field = "";
-
-                if (aldm.Rows.Count == 1)
-                {
-                    var row = aldm.Rows[0];
-                    F8_table = row["F8_TABLE"].ToString().Trim();
-                    //code_field = row[""].ToString().Trim();
-                }
+              
 
                 var v = Categories.IsExistOneCode_List("ALCC", "MA_BP", txtma_bp.Text);
                 txtma_bp.Enabled = !v;

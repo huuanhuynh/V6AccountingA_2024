@@ -18,36 +18,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 + V6Tools.DocSo.NumWordsWrapper(number.Value, begin2.Text,
                 end2.Text, only2.Text, point2.Text, endpoint2.Text);
         }
-        
-              public override void DoBeforeEdit()
+
+        public override void DoBeforeEdit()
         {
-            try
-            {
-                System.Collections.Generic.IDictionary<string, object> keys = new System.Collections.Generic.Dictionary<string, object>();
-                keys.Add("MA_DM", TableName);
-                var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
-                string F8_table = "", code_field = "";
+            var v = Categories.IsExistOneCode_List("ARA00", "Ma_nt", TxtMa_nt.Text);
+            TxtMa_nt.Enabled = !v;
 
-                if (aldm.Rows.Count == 1)
-                {
-                    var row = aldm.Rows[0];
-                    F8_table = row["F8_TABLE"].ToString().Trim();
-                    //code_field = row[""].ToString().Trim();
-                }
 
-                var v = Categories.IsExistOneCode_List(F8_table, "Ma_nt", TxtMa_nt.Text);
-                TxtMa_nt.Enabled = !v;
-
-                if (!V6Init.V6Login.IsAdmin && TxtMa_nt.Text.ToUpper() != V6Init.V6Login.Madvcs.ToUpper())
-                {
-                    TxtMa_nt.Enabled = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                V6Tools.Logger.WriteToLog("MA_NT DisableWhenEdit " + ex.Message);
-            }
         }
         public override void ValidateData()
         {

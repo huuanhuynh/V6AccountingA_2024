@@ -15,6 +15,32 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         public void MyInit()
         {
         }
+        public override void DoBeforeEdit()
+        {
+            try
+            {
+                System.Collections.Generic.IDictionary<string, object> keys = new System.Collections.Generic.Dictionary<string, object>();
+                keys.Add("MA_DM", TableName);
+                var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
+                string F8_table = "", code_field = "";
+
+                if (aldm.Rows.Count == 1)
+                {
+                    var row = aldm.Rows[0];
+                    F8_table = row["F8_TABLE"].ToString().Trim();
+                    //code_field = row[""].ToString().Trim();
+                }
+
+
+                var v = Categories.IsExistOneCode_List(F8_table, "CODE", txtID.Text);
+                txtID.Enabled = !v;
+
+            }
+            catch (Exception ex)
+            {
+                V6Tools.Logger.WriteToLog("DisableWhenEdit " + ex.Message);
+            }
+        }
         public override void DoBeforeAdd()
         {
             int loai = 3;

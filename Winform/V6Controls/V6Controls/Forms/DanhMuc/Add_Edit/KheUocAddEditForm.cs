@@ -36,36 +36,25 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             Txtnh_ku3.SetInitFilter("Loai_nh=3");
         }
 
-        public override void DoBeforeEdit()
-        {
-            try
-            {
-                System.Collections.Generic.IDictionary<string, object> keys = new System.Collections.Generic.Dictionary<string, object>();
-                keys.Add("MA_DM", TableName);
-                var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
-                string F8_table = "", code_field = "";
 
-                if (aldm.Rows.Count == 1)
+            public override void DoBeforeEdit()
+            {
+                try
                 {
-                    var row = aldm.Rows[0];
-                    F8_table = row["F8_TABLE"].ToString().Trim();
-                    //code_field = row[""].ToString().Trim();
-                }
+                    var v = Categories.IsExistOneCode_List("ABKU,ARA00,ARI70", "MA_KU", TxtMa_ku.Text);
+                    TxtMa_ku.Enabled = !v;
+                    if (!V6Login.IsAdmin && TxtMa_dvcs.Text.ToUpper() != V6Login.Madvcs.ToUpper())
+                    {
+                        TxtMa_dvcs.Enabled = false;
+                    }
 
-                var v = Categories.IsExistOneCode_List(F8_table, "MA_KU", TxtMa_ku.Text);
-            TxtMa_ku.Enabled = !v;
-            if (!V6Login.IsAdmin && TxtMa_dvcs.Text.ToUpper() != V6Login.Madvcs.ToUpper())
-            {
-                TxtMa_dvcs.Enabled = false;
-            }
+                    }
 
-            }
-
-            catch (Exception ex)
-            {
-                Logger.WriteToLog("DisableWhenEdit " + ex.Message);
-            }
-        }
+                    catch (Exception ex)
+                    {
+                        Logger.WriteToLog("DisableWhenEdit " + ex.Message);
+                    }
+                    }
 
         public override void ValidateData()
         {

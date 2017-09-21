@@ -84,11 +84,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         public override void ValidateData()
         {
-            var errors = "";
-            if (txtMaKH.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
-            if (txtTenKH.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
+             
+               var errors = "";
+            if (txtMaKH.Text.Trim() == "" || txtTenKH.Text.Trim() == "")
+                errors += V6Init.V6Text.CheckInfor + " !\r\n";
             if (V6Login.MadvcsTotal > 0 && TxtMa_dvcs.Text.Trim() == "")
                 errors += "Chưa nhập đơn vị cơ sở !\r\n";
 
@@ -97,7 +96,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0,"MA_KH",
                  txtMaKH.Text.Trim(), DataOld["MA_KH"].ToString());
                 if (!b)
-                    throw new Exception("Không được sửa mã đã tồn tại: "
+                    throw new Exception(V6Init.V6Text.ExistData
                                                     + "MA_KH = " + txtMaKH.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
@@ -105,7 +104,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_KH",
                  txtMaKH.Text.Trim(), txtMaKH.Text.Trim());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
+                    throw new Exception(V6Init.V6Text.ExistData
                                                     + "MA_KH = " + txtMaKH.Text.Trim());
             }
 
