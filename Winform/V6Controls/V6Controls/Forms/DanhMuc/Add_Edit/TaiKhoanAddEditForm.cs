@@ -20,14 +20,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
         public override void FixFormData()
         {
-            if (TxtTk_me.Text.Trim() != "")
-            {
-                txtLoai_tk.Value = 1;
-            }
-            else
-            {
-                txtLoai_tk.Value = 0;
-            }
+            //if (TxtTk_me.Text.Trim() != "")
+            //{
+            //    txtLoai_tk.Value = 1;
+            //}
+            //else
+            //{
+            //    txtLoai_tk.Value = 0;
+            //}
         }
         public override void DoBeforeEdit()
         {

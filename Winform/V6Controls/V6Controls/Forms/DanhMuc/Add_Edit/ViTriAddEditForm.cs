@@ -16,9 +16,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
         public override void DoBeforeEdit()
         {
+            TxtMa_kho.ExistRowInTable();
             var v = Categories.IsExistOneCode_List("ABVITRI,ABLO,ARI70", "Ma_vitri", TxtMa_vitri.Text);
             TxtMa_vitri.Enabled = !v;
             TxtMa_kho.Enabled = !v;
+        }
+
+        public override void DoBeforeAdd()
+        {
         }
 
         public override void ValidateData()
@@ -88,6 +93,59 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                     lblTenMau.BackColor = Color.FromArgb(r, g, b);
                 }
+            }
+        }
+
+        private void btnBoSung_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var uid_ct = DataOld["UID"].ToString();
+                var ma_kh_old = DataOld["MA_KH"].ToString().Trim();
+                var data = new Dictionary<string, object>();
+                //FormAddEdit editForm = new FormAddEdit(V6TableName.Alkhct,);
+
+                Controls.CategoryView dmView = new Controls.CategoryView(ItemID, "title", "alvitrict", "uid_ct='" + uid_ct + "'", null, DataOld);
+                if (Mode == V6Mode.View)
+                {
+                    dmView.EnableAdd = false;
+                    dmView.EnableCopy = false;
+                    dmView.EnableDelete = false;
+                    dmView.EnableEdit = false;
+                }
+                dmView.ToFullForm(btnBoSung.Text);
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + " BoSung_Click " + ex.Message);
+            }
+        }
+        public override void AfterUpdate()
+        {
+            UpdateVitrict();
+        }
+
+        public override void AfterInsert()
+        {
+            UpdateVitrict();
+        }
+
+        private void UpdateVitrict()
+        {
+            try
+            {
+                var ma_vitri_new = DataDic["MA_VITRI"].ToString().Trim();
+                var ma_vitri_old = Mode == V6Mode.Edit ? DataOld["MA_VITRI"].ToString().Trim() : ma_vitri_new;
+
+                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_ALVITRICT",
+                    new System.Data.SqlClient.SqlParameter("@cMa_vitri_old", ma_vitri_old),
+                    new System.Data.SqlClient.SqlParameter("@cMa_vitri_new", ma_vitri_new));
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".UpdateAlvitriCT", ex);
             }
         }
     }

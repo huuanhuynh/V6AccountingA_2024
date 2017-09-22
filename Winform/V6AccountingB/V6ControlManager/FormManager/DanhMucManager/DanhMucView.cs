@@ -727,6 +727,22 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                             this.ShowErrorException(GetType() + ".DoDelete Alvt after", ex);
                                         }
                                     }
+                                    if (CurrentTable == V6TableName.Alvitri)
+                                    {
+                                        try
+                                        {
+                                            var ma_vitri = row.Cells["Ma_vitri"].Value.ToString().Trim();
+                                            SqlParameter[] plist =
+                                            {
+                                                new SqlParameter("@cMa_vitri", ma_vitri),
+                                            };
+                                            V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_DELETE_ALVITRICT", plist);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            this.ShowErrorException(GetType() + ".DoDelete Alvitri after", ex);
+                                        }
+                                    }
                                 }
                             }
                         }

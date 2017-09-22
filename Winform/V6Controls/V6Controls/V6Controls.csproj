@@ -461,6 +461,12 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\V6valid.Designer.cs">
       <DependentUpon>V6valid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ViTriChiTietAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ViTriChiTietAddEditForm.Designer.cs">
+      <DependentUpon>ViTriChiTietAddEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSPDHAddEditForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1473,6 +1479,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6valid.resx">
       <DependentUpon>V6valid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ViTriChiTietAddEditForm.resx">
+      <DependentUpon>ViTriChiTietAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSPDHAddEditForm.resx">
       <DependentUpon>YeuToChiPhiSPDHAddEditForm.cs</DependentUpon>
