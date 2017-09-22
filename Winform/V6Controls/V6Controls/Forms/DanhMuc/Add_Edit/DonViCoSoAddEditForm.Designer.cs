@@ -59,7 +59,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.txtDiaChĩ = new V6Controls.V6ColorTextBox();
+            this.txtDiaChiX = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtDiaChi = new V6Controls.V6ColorTextBox();
@@ -106,7 +106,7 @@
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.txtDiaChĩ);
+            this.groupBox1.Controls.Add(this.txtDiaChiX);
             this.groupBox1.Controls.Add(this.v6ColorTextBox1);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.txtDiaChi);
@@ -425,7 +425,6 @@
             this.v6ColorTextBox7.Name = "v6ColorTextBox7";
             this.v6ColorTextBox7.Size = new System.Drawing.Size(562, 23);
             this.v6ColorTextBox7.TabIndex = 26;
-            this.v6ColorTextBox7.TextChanged += new System.EventHandler(this.v6ColorTextBox2_TextChanged);
             // 
             // label5
             // 
@@ -455,7 +454,6 @@
             this.v6ColorTextBox3.Name = "v6ColorTextBox3";
             this.v6ColorTextBox3.Size = new System.Drawing.Size(274, 23);
             this.v6ColorTextBox3.TabIndex = 22;
-            this.v6ColorTextBox3.TextChanged += new System.EventHandler(this.v6ColorTextBox2_TextChanged);
             // 
             // label19
             // 
@@ -496,7 +494,6 @@
             this.txtDIEN_THOAI.Name = "txtDIEN_THOAI";
             this.txtDIEN_THOAI.Size = new System.Drawing.Size(182, 23);
             this.txtDIEN_THOAI.TabIndex = 13;
-            this.txtDIEN_THOAI.TextChanged += new System.EventHandler(this.v6ColorTextBox2_TextChanged);
             // 
             // txtMst
             // 
@@ -516,7 +513,6 @@
             this.txtMst.Name = "txtMst";
             this.txtMst.Size = new System.Drawing.Size(274, 23);
             this.txtMst.TabIndex = 13;
-            this.txtMst.TextChanged += new System.EventHandler(this.v6ColorTextBox2_TextChanged);
             // 
             // v6ColorTextBox2
             // 
@@ -536,7 +532,6 @@
             this.v6ColorTextBox2.Name = "v6ColorTextBox2";
             this.v6ColorTextBox2.Size = new System.Drawing.Size(274, 23);
             this.v6ColorTextBox2.TabIndex = 18;
-            this.v6ColorTextBox2.TextChanged += new System.EventHandler(this.v6ColorTextBox2_TextChanged);
             // 
             // label13
             // 
@@ -571,25 +566,24 @@
             this.label14.TabIndex = 17;
             this.label14.Text = "Tên kế toán trưởng";
             // 
-            // txtDiaChĩ
+            // txtDiaChiX
             // 
-            this.txtDiaChĩ.AccessibleName = "DIA_CHIX";
-            this.txtDiaChĩ.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtDiaChiX.AccessibleName = "DIA_CHIX";
+            this.txtDiaChiX.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDiaChĩ.BackColor = System.Drawing.SystemColors.Window;
-            this.txtDiaChĩ.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtDiaChĩ.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtDiaChĩ.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtDiaChĩ.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtDiaChĩ.HoverColor = System.Drawing.Color.Yellow;
-            this.txtDiaChĩ.LeaveColor = System.Drawing.Color.White;
-            this.txtDiaChĩ.Location = new System.Drawing.Point(169, 179);
-            this.txtDiaChĩ.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.txtDiaChĩ.Name = "txtDiaChĩ";
-            this.txtDiaChĩ.Size = new System.Drawing.Size(562, 23);
-            this.txtDiaChĩ.TabIndex = 9;
-            this.txtDiaChĩ.TextChanged += new System.EventHandler(this.v6ColorTextBox2_TextChanged);
+            this.txtDiaChiX.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDiaChiX.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDiaChiX.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDiaChiX.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDiaChiX.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDiaChiX.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDiaChiX.LeaveColor = System.Drawing.Color.White;
+            this.txtDiaChiX.Location = new System.Drawing.Point(169, 179);
+            this.txtDiaChiX.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.txtDiaChiX.Name = "txtDiaChiX";
+            this.txtDiaChiX.Size = new System.Drawing.Size(562, 23);
+            this.txtDiaChiX.TabIndex = 9;
             // 
             // v6ColorTextBox1
             // 
@@ -609,7 +603,6 @@
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
             this.v6ColorTextBox1.Size = new System.Drawing.Size(274, 23);
             this.v6ColorTextBox1.TabIndex = 16;
-            this.v6ColorTextBox1.TextChanged += new System.EventHandler(this.v6ColorTextBox2_TextChanged);
             // 
             // label11
             // 
@@ -640,7 +633,6 @@
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(562, 23);
             this.txtDiaChi.TabIndex = 9;
-            this.txtDiaChi.TextChanged += new System.EventHandler(this.v6ColorTextBox2_TextChanged);
             // 
             // label6
             // 
@@ -671,7 +663,6 @@
             this.txtTenDvcsX.Name = "txtTenDvcsX";
             this.txtTenDvcsX.Size = new System.Drawing.Size(562, 23);
             this.txtTenDvcsX.TabIndex = 5;
-            this.txtTenDvcsX.TextChanged += new System.EventHandler(this.v6ColorTextBox2_TextChanged);
             // 
             // label9
             // 
@@ -702,7 +693,6 @@
             this.txtTenDvcs.Name = "txtTenDvcs";
             this.txtTenDvcs.Size = new System.Drawing.Size(562, 23);
             this.txtTenDvcs.TabIndex = 5;
-            this.txtTenDvcs.TextChanged += new System.EventHandler(this.v6ColorTextBox2_TextChanged);
             // 
             // label2
             // 
@@ -753,7 +743,7 @@
         private V6ColorTextBox txtTen2X;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label10;
-        private V6ColorTextBox txtDiaChĩ;
+        private V6ColorTextBox txtDiaChiX;
         private System.Windows.Forms.Label label11;
         private V6ColorTextBox txtTenDvcsX;
         private System.Windows.Forms.Label label9;

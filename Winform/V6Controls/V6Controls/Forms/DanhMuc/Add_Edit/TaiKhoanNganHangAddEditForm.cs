@@ -26,15 +26,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var v = Categories.IsExistOneCode_List(F8_table, "TKNH", txtTKNH.Text);
                 txtTKNH.Enabled = !v;
 
-                if (!V6Init.V6Login.IsAdmin && txtTKNH.Text.ToUpper() != V6Init.V6Login.Madvcs.ToUpper())
-                {
-                    txtTKNH.Enabled = false;
-                }
+                
 
             }
             catch (System.Exception ex)
             {
-                V6Tools.Logger.WriteToLog("BPHT DisableWhenEdit " + ex.Message);
+                V6Tools.Logger.WriteToLog("TaiKhoanNganHangAddEditForm DisableWhenEdit " + ex.Message);
             }
         }
         public override void ValidateData()

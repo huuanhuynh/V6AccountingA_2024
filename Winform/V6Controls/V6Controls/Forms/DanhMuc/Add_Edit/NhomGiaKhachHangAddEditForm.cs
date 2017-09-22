@@ -29,15 +29,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var v = Categories.IsExistOneCode_List(F8_table, "MA_NH", TXTMA_NH.Text);
                 TXTMA_NH.Enabled = !v;
 
-                if (!V6Init.V6Login.IsAdmin && TXTMA_NH.Text.ToUpper() != V6Init.V6Login.Madvcs.ToUpper())
-                {
-                    TXTMA_NH.Enabled = false;
-                }
+                
 
             }
             catch (Exception ex)
             {
-                V6Tools.Logger.WriteToLog("DisableWhenEdit " + ex.Message);
+                V6Tools.Logger.WriteToLog("NhomGiaKhachHangAddEditForm DisableWhenEdit " + ex.Message);
             }
         }
         public override void ValidateData()

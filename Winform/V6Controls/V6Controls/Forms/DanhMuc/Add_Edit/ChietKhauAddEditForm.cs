@@ -25,15 +25,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var v = Categories.IsExistOneCode_List(F8_table, "MA_CK", TXTma_ck.Text);
                 TXTma_ck.Enabled = !v;
 
-                if (!V6Init.V6Login.IsAdmin && TXTma_ck.Text.ToUpper() != V6Init.V6Login.Madvcs.ToUpper())
-                {
-                    TXTma_ck.Enabled = false;
-                }
+                
 
             }
             catch (Exception ex)
             {
-                V6Tools.Logger.WriteToLog("BPHT DisableWhenEdit " + ex.Message);
+                V6Tools.Logger.WriteToLog("ChietKhauAddEditForm DisableWhenEdit " + ex.Message);
             }
         }
         public ChietKhauAddEditForm()

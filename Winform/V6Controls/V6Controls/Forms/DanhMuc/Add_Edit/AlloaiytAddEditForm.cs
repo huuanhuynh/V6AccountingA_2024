@@ -29,15 +29,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var v = Categories.IsExistOneCode_List(F8_table, "LOAI_YT", txtLoai_yt.Text);
                 txtLoai_yt.Enabled = !v;
 
-                if (!V6Init.V6Login.IsAdmin && txtLoai_yt.Text.ToUpper() != V6Init.V6Login.Madvcs.ToUpper())
-                {
-                    txtLoai_yt.Enabled = false;
-                }
+                
 
             }
             catch (Exception ex)
             {
-                V6Tools.Logger.WriteToLog("BPHT DisableWhenEdit " + ex.Message);
+                V6Tools.Logger.WriteToLog("AlloaiytAddEditForm DisableWhenEdit " + ex.Message);
             }
         }
         public override void ValidateData()

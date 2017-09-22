@@ -101,10 +101,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 var uid_ct = DataOld["UID"].ToString();
-                var ma_kh_old = DataOld["MA_KH"].ToString().Trim();
-                var data = new Dictionary<string, object>();
-                //FormAddEdit editForm = new FormAddEdit(V6TableName.Alkhct,);
-
+                
                 Controls.CategoryView dmView = new Controls.CategoryView(ItemID, "title", "alvitrict", "uid_ct='" + uid_ct + "'", null, DataOld);
                 if (Mode == V6Mode.View)
                 {

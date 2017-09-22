@@ -18,15 +18,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var v = Categories.IsExistOneCode_List("ALTS", "LOAI_TS", Txtma_loai.Text);
                 Txtma_loai.Enabled = !v;
 
-                if (!V6Init.V6Login.IsAdmin && Txtma_loai.Text.ToUpper() != V6Init.V6Login.Madvcs.ToUpper())
-                {
-                    Txtma_loai.Enabled = false;
-                }
+                
 
             }
             catch (Exception ex)
             {
-                V6Tools.Logger.WriteToLog("DisableWhenEdit " + ex.Message);
+                V6Tools.Logger.WriteToLog("PhanLoaiTaiSanAddEditForm DisableWhenEdit " + ex.Message);
             }
             
         }

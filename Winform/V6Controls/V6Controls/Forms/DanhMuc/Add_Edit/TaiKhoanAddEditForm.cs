@@ -36,15 +36,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var v = Categories.IsExistOneCode_List("ABKH,ARA00", "Tk", TxtTk.Text);
                 TxtTk.Enabled = !v;
 
-                if (!V6Init.V6Login.IsAdmin && TxtTk.Text.ToUpper() != V6Init.V6Login.Madvcs.ToUpper())
-                {
-                    TxtTk.Enabled = false;
-                }
 
             }
             catch (Exception ex)
             {
-                V6Tools.Logger.WriteToLog("MA_NH DisableWhenEdit " + ex.Message);
+                V6Tools.Logger.WriteToLog("TaiKhoanAddEditForm DisableWhenEdit " + ex.Message);
             }
         }
         public override void ValidateData()

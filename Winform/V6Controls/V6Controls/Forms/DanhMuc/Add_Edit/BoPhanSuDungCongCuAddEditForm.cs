@@ -21,15 +21,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var v = Categories.IsExistOneCode_List("ALCC", "MA_BP", txtma_bp.Text);
                 txtma_bp.Enabled = !v;
 
-                if (!V6Init.V6Login.IsAdmin && txtma_bp.Text.ToUpper() != V6Init.V6Login.Madvcs.ToUpper())
-                {
-                    txtma_bp.Enabled = false;
-                }
+                
 
             }
             catch (Exception ex)
             {
-                V6Tools.Logger.WriteToLog("BPHT DisableWhenEdit " + ex.Message);
+                V6Tools.Logger.WriteToLog("BoPhanSuDungCongCuAddEditForm DisableWhenEdit " + ex.Message);
             }
         }
         public override void ValidateData()
