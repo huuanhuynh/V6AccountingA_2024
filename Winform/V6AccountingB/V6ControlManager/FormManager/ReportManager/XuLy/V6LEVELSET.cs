@@ -240,7 +240,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
                             new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
-                            new SqlParameter("@Set_ma_level", FilterControl.Kieu_post),
+                            new SqlParameter("@Set_ma_level",FilterControl.Kieu_post ),
                             new SqlParameter("@UserID", V6Login.UserId)
                         };
 

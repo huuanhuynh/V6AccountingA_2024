@@ -70,6 +70,8 @@
 
                 case "PRINT_AMAD":
                     return new PRINT_AMAD();
+                case "PRINT_INFOR":
+                    return new PRINT_INFOR();
                 #region ==== In liên tục ====
                 case "AAPPR_SOF_IN1F9":
                     return new AAPPR_SOF_IN1F9();

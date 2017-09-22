@@ -53,7 +53,7 @@
             this.v6Label2 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
-            this.TxtXtag = new V6Controls.V6VvarTextBox();
+            this.TxtXkieu_post = new V6Controls.V6VvarTextBox();
             this.ctDenSo = new V6Controls.V6VvarTextBox();
             this.v6Label7 = new V6Controls.V6Label();
             this.chkLike = new V6Controls.V6CheckBox();
@@ -61,6 +61,8 @@
             this.v6Label8 = new V6Controls.V6Label();
             this.chkKhoaPhieu = new V6Controls.V6CheckBox();
             this.v6Label5 = new V6Controls.V6Label();
+            this.cboLevel1 = new V6Controls.V6ComboBox();
+            this.v6Label6 = new V6Controls.V6Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -322,11 +324,11 @@
             this.v6Label1.AccessibleDescription = "FILTERL00212";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.v6Label1.Location = new System.Drawing.Point(5, 215);
+            this.v6Label1.Location = new System.Drawing.Point(5, 229);
             this.v6Label1.Name = "v6Label1";
-            this.v6Label1.Size = new System.Drawing.Size(111, 13);
+            this.v6Label1.Size = new System.Drawing.Size(57, 13);
             this.v6Label1.TabIndex = 10;
-            this.v6Label1.Text = "Khóa chứng từ bởi";
+            this.v6Label1.Text = "Khóa bởi";
             // 
             // cboLevel
             // 
@@ -342,10 +344,10 @@
             "0 - Chưa cập nhập",
             "1 - Cập nhập tất cả",
             "2 - Chỉ cập nhập vào kho"});
-            this.cboLevel.Location = new System.Drawing.Point(126, 212);
+            this.cboLevel.Location = new System.Drawing.Point(65, 226);
             this.cboLevel.Name = "cboLevel";
-            this.cboLevel.Size = new System.Drawing.Size(170, 21);
-            this.cboLevel.TabIndex = 11;
+            this.cboLevel.Size = new System.Drawing.Size(230, 21);
+            this.cboLevel.TabIndex = 8;
             // 
             // v6Label2
             // 
@@ -373,26 +375,26 @@
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(144, 69);
             this.v6Label4.Name = "v6Label4";
-            this.v6Label4.Size = new System.Drawing.Size(137, 13);
+            this.v6Label4.Size = new System.Drawing.Size(134, 13);
             this.v6Label4.TabIndex = 8;
-            this.v6Label4.Text = "0-Chưa duyệt, 1- Duyệt kho";
+            this.v6Label4.Text = "0-Chưa duyệt,1- Duyệt kho";
             // 
-            // TxtXtag
+            // TxtXkieu_post
             // 
-            this.TxtXtag.AccessibleName = "";
-            this.TxtXtag.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtXtag.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtXtag.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtXtag.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtXtag.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtXtag.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtXtag.LeaveColor = System.Drawing.Color.White;
-            this.TxtXtag.LimitCharacters = "0125";
-            this.TxtXtag.Location = new System.Drawing.Point(120, 68);
-            this.TxtXtag.MaxLength = 1;
-            this.TxtXtag.Name = "TxtXtag";
-            this.TxtXtag.Size = new System.Drawing.Size(18, 20);
-            this.TxtXtag.TabIndex = 3;
+            this.TxtXkieu_post.AccessibleName = "";
+            this.TxtXkieu_post.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtXkieu_post.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtXkieu_post.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtXkieu_post.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtXkieu_post.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtXkieu_post.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtXkieu_post.LeaveColor = System.Drawing.Color.White;
+            this.TxtXkieu_post.LimitCharacters = "0125";
+            this.TxtXkieu_post.Location = new System.Drawing.Point(120, 68);
+            this.TxtXkieu_post.MaxLength = 1;
+            this.TxtXkieu_post.Name = "TxtXkieu_post";
+            this.TxtXkieu_post.Size = new System.Drawing.Size(18, 20);
+            this.TxtXkieu_post.TabIndex = 3;
             // 
             // ctDenSo
             // 
@@ -404,16 +406,16 @@
             this.ctDenSo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.ctDenSo.HoverColor = System.Drawing.Color.Yellow;
             this.ctDenSo.LeaveColor = System.Drawing.Color.White;
-            this.ctDenSo.Location = new System.Drawing.Point(126, 185);
+            this.ctDenSo.Location = new System.Drawing.Point(126, 201);
             this.ctDenSo.Name = "ctDenSo";
             this.ctDenSo.Size = new System.Drawing.Size(100, 20);
-            this.ctDenSo.TabIndex = 6;
+            this.ctDenSo.TabIndex = 7;
             // 
             // v6Label7
             // 
             this.v6Label7.AccessibleDescription = "FILTERL00022";
             this.v6Label7.AutoSize = true;
-            this.v6Label7.Location = new System.Drawing.Point(5, 183);
+            this.v6Label7.Location = new System.Drawing.Point(5, 199);
             this.v6Label7.Name = "v6Label7";
             this.v6Label7.Size = new System.Drawing.Size(41, 13);
             this.v6Label7.TabIndex = 19;
@@ -426,7 +428,7 @@
             this.chkLike.AutoSize = true;
             this.chkLike.Checked = true;
             this.chkLike.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkLike.Location = new System.Drawing.Point(69, 160);
+            this.chkLike.Location = new System.Drawing.Point(69, 176);
             this.chkLike.Name = "chkLike";
             this.chkLike.Size = new System.Drawing.Size(42, 17);
             this.chkLike.TabIndex = 4;
@@ -444,16 +446,16 @@
             this.ctTuSo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.ctTuSo.HoverColor = System.Drawing.Color.Yellow;
             this.ctTuSo.LeaveColor = System.Drawing.Color.White;
-            this.ctTuSo.Location = new System.Drawing.Point(126, 159);
+            this.ctTuSo.Location = new System.Drawing.Point(126, 175);
             this.ctTuSo.Name = "ctTuSo";
             this.ctTuSo.Size = new System.Drawing.Size(100, 20);
-            this.ctTuSo.TabIndex = 5;
+            this.ctTuSo.TabIndex = 6;
             // 
             // v6Label8
             // 
             this.v6Label8.AccessibleDescription = "FILTERL00021";
             this.v6Label8.AutoSize = true;
-            this.v6Label8.Location = new System.Drawing.Point(5, 159);
+            this.v6Label8.Location = new System.Drawing.Point(5, 175);
             this.v6Label8.Name = "v6Label8";
             this.v6Label8.Size = new System.Drawing.Size(47, 13);
             this.v6Label8.TabIndex = 17;
@@ -463,10 +465,10 @@
             // 
             this.chkKhoaPhieu.AccessibleDescription = "FILTERC00018";
             this.chkKhoaPhieu.AutoSize = true;
-            this.chkKhoaPhieu.Location = new System.Drawing.Point(120, 124);
+            this.chkKhoaPhieu.Location = new System.Drawing.Point(120, 153);
             this.chkKhoaPhieu.Name = "chkKhoaPhieu";
             this.chkKhoaPhieu.Size = new System.Drawing.Size(96, 17);
-            this.chkKhoaPhieu.TabIndex = 4;
+            this.chkKhoaPhieu.TabIndex = 5;
             this.chkKhoaPhieu.Text = "Đã khóa phiếu";
             this.chkKhoaPhieu.UseVisualStyleBackColor = true;
             // 
@@ -480,10 +482,42 @@
             this.v6Label5.TabIndex = 20;
             this.v6Label5.Text = "5-Hóa đơn hủy";
             // 
+            // cboLevel1
+            // 
+            this.cboLevel1.AccessibleName = "ma_level1";
+            this.cboLevel1.BackColor = System.Drawing.SystemColors.Window;
+            this.cboLevel1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.cboLevel1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLevel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLevel1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboLevel1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.cboLevel1.FormattingEnabled = true;
+            this.cboLevel1.Items.AddRange(new object[] {
+            "0 - Chưa cập nhập",
+            "1 - Cập nhập tất cả",
+            "2 - Chỉ cập nhập vào kho"});
+            this.cboLevel1.Location = new System.Drawing.Point(65, 129);
+            this.cboLevel1.Name = "cboLevel1";
+            this.cboLevel1.Size = new System.Drawing.Size(230, 21);
+            this.cboLevel1.TabIndex = 4;
+            // 
+            // v6Label6
+            // 
+            this.v6Label6.AccessibleDescription = "FILTERL00212";
+            this.v6Label6.AutoSize = true;
+            this.v6Label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.v6Label6.Location = new System.Drawing.Point(3, 132);
+            this.v6Label6.Name = "v6Label6";
+            this.v6Label6.Size = new System.Drawing.Size(56, 13);
+            this.v6Label6.TabIndex = 21;
+            this.v6Label6.Text = "Xử lý bởi";
+            // 
             // V6LEVELSET
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cboLevel1);
+            this.Controls.Add(this.v6Label6);
             this.Controls.Add(this.v6Label5);
             this.Controls.Add(this.chkKhoaPhieu);
             this.Controls.Add(this.ctDenSo);
@@ -493,7 +527,7 @@
             this.Controls.Add(this.v6Label8);
             this.Controls.Add(this.v6Label3);
             this.Controls.Add(this.v6Label4);
-            this.Controls.Add(this.TxtXtag);
+            this.Controls.Add(this.TxtXkieu_post);
             this.Controls.Add(this.v6Label2);
             this.Controls.Add(this.cboLevel);
             this.Controls.Add(this.v6Label1);
@@ -534,7 +568,7 @@
         private V6Controls.V6Label v6Label2;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label4;
-        private V6Controls.V6VvarTextBox TxtXtag;
+        private V6Controls.V6VvarTextBox TxtXkieu_post;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh6;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh5;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh4;
@@ -548,5 +582,7 @@
         private V6Controls.V6Label v6Label8;
         private V6Controls.V6CheckBox chkKhoaPhieu;
         private V6Controls.V6Label v6Label5;
+        private V6Controls.V6ComboBox cboLevel1;
+        private V6Controls.V6Label v6Label6;
     }
 }

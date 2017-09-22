@@ -173,6 +173,12 @@
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTSOR.designer.cs">
       <DependentUpon>ASOCTSOR.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT_INFOR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT_INFOR.designer.cs">
+      <DependentUpon>PRINT_INFOR.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT_AMAD.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4808,6 +4814,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTSOR.resx">
       <DependentUpon>ASOCTSOR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT_INFOR.resx">
+      <DependentUpon>PRINT_INFOR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT_AMAD.resx">
       <DependentUpon>PRINT_AMAD.cs</DependentUpon>

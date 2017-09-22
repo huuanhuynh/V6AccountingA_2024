@@ -19,9 +19,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             dateNgay_ct1.Value = V6Setting.M_SV_DATE;
             dateNgay_ct2.Value = V6Setting.M_SV_DATE;
 
-            TxtXtag.Text = "2";
+            TxtXkieu_post.Text = "2";
             ctDenSo.Enabled = false;
-            chkKhoaPhieu.Checked = true;
+            chkKhoaPhieu.Checked = false;
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
 
@@ -38,10 +38,21 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                                     "", "", "ma_level").Data;
             cboLevel.ValueMember = "ma_level";
             cboLevel.DisplayMember = V6Setting.IsVietnamese ? "ten_level" : "ten_level2";
+
+
+            cboLevel1.ValueMember = "ma_level1";
+            cboLevel1.DisplayMember = V6Setting.IsVietnamese ? "ten_level" : "ten_level2";
+            cboLevel1.DataSource = V6BusinessHelper.Select("AlLevel", "ma_level as ma_level1,ten_level,ten_level2",
+                                    "", "", "ma_level1").Data;
+            cboLevel1.ValueMember = "ma_level1";
+            cboLevel1.DisplayMember = V6Setting.IsVietnamese ? "ten_level" : "ten_level2";
             
+
             //Get login user level
             var loginLevel = V6Login.Level;
             cboLevel.SelectedValue = loginLevel;
+            cboLevel1.SelectedValue = "05";
+
             Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
             Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
@@ -103,21 +114,40 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0} )", key1);
             }
 
-            switch (TxtXtag.Text.Trim())
+            switch (TxtXkieu_post.Text.Trim())
             {
                 case "0":
                     cKey = cKey + " and ( Xtag=' ' or Xtag IS NULL )";
                     break;
                 case "1":
-                    cKey = cKey + " and ( Xtag='1' OR Kieu_post='1' )";
+                    cKey = cKey + " and ( Kieu_post='1' )";
                     break;
                 case "2":
-                    cKey = cKey + " and ( Xtag='2'  OR Kieu_post='2')";
+                    cKey = cKey + " and ( Kieu_post='2')";
                     break;
                 case "5":
-                    cKey = cKey + " and ( Xtag='5'  OR Kieu_post='5')";
+                    cKey = cKey + " and ( Kieu_post='5')";
                     break;
             }
+            switch (cboLevel1.SelectedValue.ToString().Trim())
+            {
+                case "01":
+                    cKey = cKey + " and ( Xtag='1')";
+                    break;
+                case "02":
+                    cKey = cKey + " and ( Xtag='2')";
+                    break;
+                case "03":
+                    cKey = cKey + " and ( Xtag='3')";
+                    break;
+                case "04":
+                    cKey = cKey + " and ( Xtag='4')";
+                    break;
+                case "05":
+                    cKey = cKey + " and ( ISNULL(Xtag,'')='')";
+                    break;
+            }
+
             if (chkKhoaPhieu.Checked)
             {
                 cKey = cKey + " and ( ISNULL(Xtag,'')<>'')";

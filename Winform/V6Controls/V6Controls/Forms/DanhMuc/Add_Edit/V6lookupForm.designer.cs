@@ -31,7 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtFcolumn = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
-            this.v6ColorTextBox2 = new V6Controls.V6ColorTextBox();
+            this.TxtVMA_FILE = new V6Controls.V6ColorTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -98,7 +98,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.TxtFcolumn);
             this.groupBox1.Controls.Add(this.v6ColorTextBox3);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox2);
+            this.groupBox1.Controls.Add(this.TxtVMA_FILE);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
@@ -125,7 +125,7 @@
             this.TxtFcolumn.Location = new System.Drawing.Point(119, 17);
             this.TxtFcolumn.Name = "TxtFcolumn";
             this.TxtFcolumn.Size = new System.Drawing.Size(150, 23);
-            this.TxtFcolumn.TabIndex = 1;
+            this.TxtFcolumn.TabIndex = 0;
             // 
             // v6ColorTextBox3
             // 
@@ -143,25 +143,25 @@
             this.v6ColorTextBox3.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox3.Name = "v6ColorTextBox3";
             this.v6ColorTextBox3.Size = new System.Drawing.Size(672, 23);
-            this.v6ColorTextBox3.TabIndex = 7;
+            this.v6ColorTextBox3.TabIndex = 2;
             // 
-            // v6ColorTextBox2
+            // TxtVMA_FILE
             // 
-            this.v6ColorTextBox2.AccessibleName = "VMA_FILE";
-            this.v6ColorTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtVMA_FILE.AccessibleName = "VMA_FILE";
+            this.TxtVMA_FILE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox2.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox2.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox2.Location = new System.Drawing.Point(119, 43);
-            this.v6ColorTextBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox2.Name = "v6ColorTextBox2";
-            this.v6ColorTextBox2.Size = new System.Drawing.Size(672, 23);
-            this.v6ColorTextBox2.TabIndex = 5;
+            this.TxtVMA_FILE.BackColor = System.Drawing.Color.White;
+            this.TxtVMA_FILE.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtVMA_FILE.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtVMA_FILE.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtVMA_FILE.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtVMA_FILE.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtVMA_FILE.LeaveColor = System.Drawing.Color.White;
+            this.TxtVMA_FILE.Location = new System.Drawing.Point(119, 43);
+            this.TxtVMA_FILE.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtVMA_FILE.Name = "TxtVMA_FILE";
+            this.TxtVMA_FILE.Size = new System.Drawing.Size(672, 23);
+            this.TxtVMA_FILE.TabIndex = 1;
             // 
             // label3
             // 
@@ -325,7 +325,7 @@
             this.v6ColorTextBox24.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox24.Name = "v6ColorTextBox24";
             this.v6ColorTextBox24.Size = new System.Drawing.Size(621, 23);
-            this.v6ColorTextBox24.TabIndex = 26;
+            this.v6ColorTextBox24.TabIndex = 10;
             // 
             // label23
             // 
@@ -355,7 +355,7 @@
             this.v6ColorTextBox23.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox23.Name = "v6ColorTextBox23";
             this.v6ColorTextBox23.Size = new System.Drawing.Size(474, 23);
-            this.v6ColorTextBox23.TabIndex = 23;
+            this.v6ColorTextBox23.TabIndex = 9;
             // 
             // label22
             // 
@@ -385,7 +385,7 @@
             this.v6ColorTextBox20.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox20.Name = "v6ColorTextBox20";
             this.v6ColorTextBox20.Size = new System.Drawing.Size(474, 23);
-            this.v6ColorTextBox20.TabIndex = 20;
+            this.v6ColorTextBox20.TabIndex = 8;
             // 
             // label21
             // 
@@ -415,7 +415,7 @@
             this.v6ColorTextBox19.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox19.Name = "v6ColorTextBox19";
             this.v6ColorTextBox19.Size = new System.Drawing.Size(474, 23);
-            this.v6ColorTextBox19.TabIndex = 17;
+            this.v6ColorTextBox19.TabIndex = 7;
             // 
             // label20
             // 
@@ -444,7 +444,7 @@
             this.v6ColorTextBox4.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox4.Name = "v6ColorTextBox4";
             this.v6ColorTextBox4.Size = new System.Drawing.Size(474, 23);
-            this.v6ColorTextBox4.TabIndex = 13;
+            this.v6ColorTextBox4.TabIndex = 5;
             // 
             // v6ColorTextBox13
             // 
@@ -462,7 +462,7 @@
             this.v6ColorTextBox13.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox13.Name = "v6ColorTextBox13";
             this.v6ColorTextBox13.Size = new System.Drawing.Size(474, 23);
-            this.v6ColorTextBox13.TabIndex = 9;
+            this.v6ColorTextBox13.TabIndex = 3;
             // 
             // label11
             // 
@@ -502,7 +502,7 @@
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
             this.v6ColorTextBox5.Size = new System.Drawing.Size(474, 23);
-            this.v6ColorTextBox5.TabIndex = 15;
+            this.v6ColorTextBox5.TabIndex = 6;
             // 
             // label16
             // 
@@ -531,7 +531,7 @@
             this.v6ColorTextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
             this.v6ColorTextBox1.Size = new System.Drawing.Size(474, 23);
-            this.v6ColorTextBox1.TabIndex = 11;
+            this.v6ColorTextBox1.TabIndex = 4;
             // 
             // label10
             // 
@@ -560,7 +560,7 @@
             this.v6ColorTextBox12.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox12.Name = "v6ColorTextBox12";
             this.v6ColorTextBox12.Size = new System.Drawing.Size(474, 23);
-            this.v6ColorTextBox12.TabIndex = 6;
+            this.v6ColorTextBox12.TabIndex = 2;
             // 
             // label14
             // 
@@ -589,7 +589,7 @@
             this.v6ColorTextBox11.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox11.Name = "v6ColorTextBox11";
             this.v6ColorTextBox11.Size = new System.Drawing.Size(670, 23);
-            this.v6ColorTextBox11.TabIndex = 3;
+            this.v6ColorTextBox11.TabIndex = 1;
             this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox11, "Các trường Filter khi in danh mục MA_KH:MA_KH:MA_KH like \'%abc%\'\r\nCác trường cách" +
         " nhau bằng phẩy (,) hoặc chấm phẩy (;)\r\nCấu trúc (FIELD:vvar:Filter), Các phần s" +
         "au : có thể bỏ qua.");
@@ -665,7 +665,7 @@
             this.v6ColorTextBox10.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox10.Name = "v6ColorTextBox10";
             this.v6ColorTextBox10.Size = new System.Drawing.Size(210, 23);
-            this.v6ColorTextBox10.TabIndex = 1;
+            this.v6ColorTextBox10.TabIndex = 0;
             // 
             // label17
             // 
@@ -686,7 +686,7 @@
             this.ChkVisible.Margin = new System.Windows.Forms.Padding(4);
             this.ChkVisible.Name = "ChkVisible";
             this.ChkVisible.Size = new System.Drawing.Size(31, 21);
-            this.ChkVisible.TabIndex = 28;
+            this.ChkVisible.TabIndex = 11;
             this.ChkVisible.Text = ".";
             this.ChkVisible.UseVisualStyleBackColor = true;
             // 
@@ -710,7 +710,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(4, 110);
+            this.tabControl1.Location = new System.Drawing.Point(4, 112);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -757,7 +757,7 @@
             this.txtEtitle.Margin = new System.Windows.Forms.Padding(4);
             this.txtEtitle.Name = "txtEtitle";
             this.txtEtitle.Size = new System.Drawing.Size(613, 23);
-            this.txtEtitle.TabIndex = 53;
+            this.txtEtitle.TabIndex = 5;
             // 
             // v6ColorTextBox22
             // 
@@ -775,7 +775,7 @@
             this.v6ColorTextBox22.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox22.Name = "v6ColorTextBox22";
             this.v6ColorTextBox22.Size = new System.Drawing.Size(613, 23);
-            this.v6ColorTextBox22.TabIndex = 53;
+            this.v6ColorTextBox22.TabIndex = 3;
             // 
             // txtVtitle
             // 
@@ -793,7 +793,7 @@
             this.txtVtitle.Margin = new System.Windows.Forms.Padding(4);
             this.txtVtitle.Name = "txtVtitle";
             this.txtVtitle.Size = new System.Drawing.Size(613, 23);
-            this.txtVtitle.TabIndex = 54;
+            this.txtVtitle.TabIndex = 4;
             // 
             // label19
             // 
@@ -821,7 +821,7 @@
             this.v6ColorTextBox21.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox21.Name = "v6ColorTextBox21";
             this.v6ColorTextBox21.Size = new System.Drawing.Size(613, 23);
-            this.v6ColorTextBox21.TabIndex = 54;
+            this.v6ColorTextBox21.TabIndex = 2;
             // 
             // label18
             // 
@@ -869,7 +869,7 @@
             this.v6ColorTextBox16.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox16.Name = "v6ColorTextBox16";
             this.v6ColorTextBox16.Size = new System.Drawing.Size(613, 23);
-            this.v6ColorTextBox16.TabIndex = 50;
+            this.v6ColorTextBox16.TabIndex = 1;
             // 
             // v6ColorTextBox15
             // 
@@ -887,7 +887,7 @@
             this.v6ColorTextBox15.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox15.Name = "v6ColorTextBox15";
             this.v6ColorTextBox15.Size = new System.Drawing.Size(613, 23);
-            this.v6ColorTextBox15.TabIndex = 48;
+            this.v6ColorTextBox15.TabIndex = 0;
             // 
             // label47
             // 
@@ -940,7 +940,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private V6Controls.V6ColorTextBox v6ColorTextBox3;
-        private V6Controls.V6ColorTextBox v6ColorTextBox2;
+        private V6Controls.V6ColorTextBox TxtVMA_FILE;
         private V6VvarTextBox TxtFcolumn;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage1;
