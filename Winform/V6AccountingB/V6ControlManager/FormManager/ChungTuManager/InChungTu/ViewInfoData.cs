@@ -87,6 +87,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
                     c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
                 }
+                else if (selectedValue == "PRINT_INFOR")
+                {
+                    var data = dataGridView1.CurrentRow.ToDataDictionary();
+                    //Goi form in.
+                    
+                    string program = selectedValue;
+                    string repFile = selectedValue;
+                    string repTitle = "THÔNG TIN NGƯỜI CẬP NHẬT";
+                    string repTitle2 = "VOUCHER INFORMATION";
+                    string _sttRec = "";
+                    if (data.ContainsKey("STT_REC")) _sttRec = data["STT_REC"].ToString().Trim();
+
+                    var c = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
+                            "", "", "", _sttRec);
+                   c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+                }
+                
+                    
+                
             }
             catch (Exception ex)
             {

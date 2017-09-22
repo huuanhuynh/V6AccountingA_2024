@@ -173,6 +173,12 @@
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTSOR.designer.cs">
       <DependentUpon>ASOCTSOR.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT_INFOR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT_INFOR.designer.cs">
+      <DependentUpon>PRINT_INFOR.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT_AMAD.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2382,6 +2388,12 @@
     <Compile Include="FormManager\ReportManager\Filter\NhanSu\HPRCONGCT_Filter.Designer.cs">
       <DependentUpon>HPRCONGCT_Filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\V6LEVELSET.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\V6LEVELSET.Designer.cs">
+      <DependentUpon>V6LEVELSET.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\XAGLAUTOSO_CT.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3884,6 +3896,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\NhanSu\HPRCONGCT_XL0.Designer.cs">
       <DependentUpon>HPRCONGCT_XL0.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\V6LEVELSET.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ZACOSXLT_TINHGIA_F3.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4799,6 +4814,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTSOR.resx">
       <DependentUpon>ASOCTSOR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT_INFOR.resx">
+      <DependentUpon>PRINT_INFOR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT_AMAD.resx">
       <DependentUpon>PRINT_AMAD.cs</DependentUpon>
@@ -5887,6 +5905,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\NhanSu\HPRCONGCT_Filter.resx">
       <DependentUpon>HPRCONGCT_Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\V6LEVELSET.resx">
+      <DependentUpon>V6LEVELSET.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\XAGLAUTOSO_CT.resx">
       <DependentUpon>XAGLAUTOSO_CT.cs</DependentUpon>

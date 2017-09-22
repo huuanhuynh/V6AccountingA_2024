@@ -142,6 +142,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.chonBaoGiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TroGiupMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonTuExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xemCongNoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnChonPX = new V6Controls.Controls.V6FormButton();
             this.lblTongSoDong = new V6Controls.V6Label();
             this.v6Label20 = new V6Controls.V6Label();
@@ -231,7 +232,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.menuXemPhieuNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.xemCongNoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1969,7 +1969,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.chonTuExcelToolStripMenuItem,
             this.xemCongNoToolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(181, 136);
+            this.menuChucNang.Size = new System.Drawing.Size(181, 114);
             // 
             // ChonDonHangBanMenu
             // 
@@ -1997,6 +1997,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.chonTuExcelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.chonTuExcelToolStripMenuItem.Text = "Chọn từ Excel";
             this.chonTuExcelToolStripMenuItem.Click += new System.EventHandler(this.chonTuExcelToolStripMenuItem_Click);
+            // 
+            // xemCongNoToolStripMenuItem
+            // 
+            this.xemCongNoToolStripMenuItem.Name = "xemCongNoToolStripMenuItem";
+            this.xemCongNoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.xemCongNoToolStripMenuItem.Text = "Xem công nợ";
+            this.xemCongNoToolStripMenuItem.Click += new System.EventHandler(this.xemCongNoToolStripMenuItem_Click);
             // 
             // btnChonPX
             // 
@@ -3337,13 +3344,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
             this.toolStripMenuItem3.Text = "...";
-            // 
-            // xemCongNoToolStripMenuItem
-            // 
-            this.xemCongNoToolStripMenuItem.Name = "xemCongNoToolStripMenuItem";
-            this.xemCongNoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.xemCongNoToolStripMenuItem.Text = "XemCongNo";
-            this.xemCongNoToolStripMenuItem.Click += new System.EventHandler(this.xemCongNoToolStripMenuItem_Click);
             // 
             // HoaDonControl
             // 

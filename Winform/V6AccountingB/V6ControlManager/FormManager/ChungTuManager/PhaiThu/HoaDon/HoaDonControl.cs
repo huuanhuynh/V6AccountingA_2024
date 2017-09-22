@@ -5867,6 +5867,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             try
             {
                 if (Mode == V6Mode.Init) return;
+                if (txtMaKh.Text == "" || txtManx.Text== "")  return;
+                var datatk = txtManx.Data;
+                if (datatk == null ||ObjectAndString.ObjectToDecimal(datatk["TK_CN"]) == 0) return;
 
                 SqlParameter[] plist =
                 {
@@ -5874,13 +5877,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     new SqlParameter("@TK", txtManx.Text),
                     new SqlParameter("@Ngay_ct", dateNgayCT.Value.Date.ToString("yyyyMMdd")),
                     new SqlParameter("@Advance", string.Format("Ma_dvcs='{0}'", txtMadvcs.Text.Replace("'", "''"))),
+                    new SqlParameter("@User_id",V6Login.UserId),
+                    new SqlParameter("@Lan", V6Setting.Language),
+
                 };
-                var data = V6BusinessHelper.ExecuteProcedure("", plist).Tables[0];
+                var data = V6BusinessHelper.ExecuteProcedure("VPA_GetCongNo", plist).Tables[0];
                 if (data.Rows.Count > 0)
                 {
                     var row = data.Rows[0];
-                    var du_no = ObjectAndString.ObjectToDecimal(row["NO_CK"]) - ObjectAndString.ObjectToDecimal(row["CO_CK"]);
-                    string message = string.Format("Số dư nợ cuối ngày {0}: {1}", dateNgayCT.Value.ToString("yyyyMMdd"), du_no);
+                    var text_duno = ObjectAndString.NumberToString((ObjectAndString.ObjectToDecimal(row["NO_CK"]) - ObjectAndString.ObjectToDecimal(row["CO_CK"])), 2, V6Options.M_NUM_POINT, ".");
+                    var showtext = V6Setting.Language == "V" ? "Số dư nợ cuối ngày " : "Ending balance ";
+
+                    string message = string.Format(showtext + " :{0}--> {1}", dateNgayCT.Value.ToString("dd/MM/yyyy"), text_duno);
                     this.ShowMessage(message);
                 }
                 else

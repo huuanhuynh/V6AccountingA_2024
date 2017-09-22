@@ -443,7 +443,7 @@
             // 
             // v6ColorTextBox25
             // 
-            this.v6ColorTextBox25.AccessibleName = "ma_vv";
+            this.v6ColorTextBox25.AccessibleName = "MA_VV_I";;
             this.v6ColorTextBox25.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox25.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox25.EnterColor = System.Drawing.Color.PaleGreen;
@@ -881,7 +881,7 @@
             // 
             // maNhanVien
             // 
-            this.maNhanVien.AccessibleName = "ma_nvienBH";
+            this.maNhanVien.AccessibleName = "MA_NVIEN";
             this.maNhanVien.BackColor = System.Drawing.SystemColors.Window;
             this.maNhanVien.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.maNhanVien.EnterColor = System.Drawing.Color.PaleGreen;

@@ -135,7 +135,7 @@ namespace V6ReportControls
                     string filter = null;
                     if (sss.Length >= 2)
                     {
-                        vvar = sss[1];
+                        vvar = sss[1].Trim();
                     }
                     if (sss.Length == 3)
                     {

@@ -145,6 +145,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             this.soTienDen.Name = "soTienDen";
             this.soTienDen.Size = new System.Drawing.Size(132, 20);
             this.soTienDen.TabIndex = 20;
+            this.soTienDen.Text = "0,000";
+            this.soTienDen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.soTienDen.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            196608});
             // 
             // maBoPhan
             // 
@@ -211,7 +218,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             // 
             // maNhanVien
             // 
-            this.maNhanVien.AccessibleName = "ma_nvienBH";
+            this.maNhanVien.AccessibleName = "MA_NVIEN";
             this.maNhanVien.BackColor = System.Drawing.SystemColors.Window;
             this.maNhanVien.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.maNhanVien.CheckOnLeave = false;
@@ -257,6 +264,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             this.soTienTu.Name = "soTienTu";
             this.soTienTu.Size = new System.Drawing.Size(132, 20);
             this.soTienTu.TabIndex = 18;
+            this.soTienTu.Text = "0,000";
+            this.soTienTu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.soTienTu.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            196608});
             // 
             // maKhach
             // 

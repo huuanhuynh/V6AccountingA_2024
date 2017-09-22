@@ -269,7 +269,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
             // 
             // maNhanVienBH
             // 
-            this.maNhanVienBH.AccessibleName = "ma_nvienBH";
+            this.maNhanVienBH.AccessibleName = "MA_NVIEN";
             this.maNhanVienBH.BackColor = System.Drawing.SystemColors.Window;
             this.maNhanVienBH.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.maNhanVienBH.CheckOnLeave = false;

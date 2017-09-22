@@ -15,6 +15,11 @@ using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
+    /// <summary>
+    /// <para>Filter control động.</para>
+    /// <para>Các filter line được định nghĩa.</para>
+    /// <para>Dữ liệu gán lên line từ Fparent.</para>
+    /// </summary>
     public partial class ReportFilter44Base : FilterBase
     {
         private string _program;
@@ -53,7 +58,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 foreach (Control control in groupBox1.Controls)
                 {
                     var line = control as FilterLineDynamic;
-                    if (line == null) continue;
+                    if (line == null || line.DefineInfo.Fparent == null) continue;
 
                     var PARENT_FIELD = line.DefineInfo.Fparent.ToUpper();
                     if (row.ContainsKey(PARENT_FIELD))
@@ -79,9 +84,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     var row = data.Rows[0];
                     ComboboxData = row["Combo_data"].ToString().Trim();
                     ExtraParameterInfo = row["Extra_para"].ToString().Trim();
-                    F3 = row["F3"].ToString() == "1";
-                    F5 = row["F5"].ToString() == "1";
-                    F7 = row["F7"].ToString() == "1";
+                    F3 = ObjectAndString.ObjectToBool(row["F3"]);
+                    F5 = ObjectAndString.ObjectToBool(row["F5"]);
+                    F7 = ObjectAndString.ObjectToBool(row["F7"]);
                     Alreport_advance = row["Advance"].ToString().Trim();
                 }
             }
