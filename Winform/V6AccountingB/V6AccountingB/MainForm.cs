@@ -389,7 +389,7 @@ namespace V6AccountingB
         {
             timeCount2++;
             //if (!_locked && Win32.GetIdleTime() > 600 * 5)//Test
-            if (!_locked && Win32.GetIdleTime() > 60000 * 5)
+            if (V6Options.M_LOCK_TIME > 0 && !_locked && Win32.GetIdleTime() > 60000 * V6Options.M_LOCK_TIME)
             {
                 LockProgram();
             }

@@ -326,6 +326,18 @@ namespace V6Init
                 return "1" == V6OptionValues["M_ADD_DETAILQUANTITY"];
             }
         }
+        /// <summary>
+        /// Thời gian khóa password tính bằng phút
+        /// </summary>
+        public static int M_LOCK_TIME
+        {
+            get
+            {
+                if (V6OptionValues == null) return 0;
+                return Convert.ToInt32(V6OptionValues["M_LOCK_TIME"]);
+            }
+        }
+
     }
 
     public enum GetDataMode

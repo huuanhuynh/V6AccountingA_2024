@@ -297,6 +297,23 @@ namespace V6AccountingB
                             DialogResult = DialogResult.No;
                             return;
                         }
+
+                        //Check pass_date
+                        int M_DAY_CHANGEPASS = int.Parse(V6Options.V6OptionValues["M_DAY_CHANGEPASS"]);
+                        if (M_DAY_CHANGEPASS > 0)
+                        {
+                            DateTime? pass_date = (DateTime?) V6Login.UserInfo["PASS_DATE"];
+                            int passed = 0;
+                            if (pass_date != null) passed = (V6Setting.M_SV_DATE - pass_date).Value.Days;
+                            if (pass_date == null || passed >= M_DAY_CHANGEPASS)
+                            {
+                                if (new ChangePassword().ShowDialog(this) != DialogResult.OK)
+                                {
+                                    return;
+                                }
+                            }
+                        }
+
                         //Khởi tạo giá trị ban đầu
                         V6Setting.M_SV_DATE = V6BusinessHelper.GetServerDateTime();
                         V6Setting.M_ngay_ct1 = V6Setting.M_SV_DATE;

@@ -39,6 +39,7 @@
             this.cboLevel = new V6Controls.V6ComboBox();
             this.chkIs_admin = new V6Controls.V6CheckBox();
             this.chkIsVadmin = new V6Controls.V6CheckBox();
+            this.txtInherit_type = new V6Controls.V6ColorTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -72,7 +73,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtInherit_type = new V6Controls.V6ColorTextBox();
+            this.txtPassDate = new V6Controls.V6DateTimeColor();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -231,6 +232,26 @@
             this.chkIsVadmin.UseVisualStyleBackColor = true;
             this.chkIsVadmin.Visible = false;
             // 
+            // txtInherit_type
+            // 
+            this.txtInherit_type.AccessibleName = "Inherit_type";
+            this.txtInherit_type.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInherit_type.BackColor = System.Drawing.SystemColors.Window;
+            this.txtInherit_type.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtInherit_type.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtInherit_type.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtInherit_type.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtInherit_type.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtInherit_type.HoverColor = System.Drawing.Color.Yellow;
+            this.txtInherit_type.LeaveColor = System.Drawing.Color.White;
+            this.txtInherit_type.Location = new System.Drawing.Point(440, 143);
+            this.txtInherit_type.Margin = new System.Windows.Forms.Padding(4);
+            this.txtInherit_type.Name = "txtInherit_type";
+            this.txtInherit_type.Size = new System.Drawing.Size(120, 23);
+            this.txtInherit_type.TabIndex = 1;
+            // 
             // tabPage2
             // 
             this.tabPage2.AccessibleDescription = "thong_tin_cong_no";
@@ -261,6 +282,7 @@
             this.groupBox1.AccessibleName = "groupBox1";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txtPassDate);
             this.groupBox1.Controls.Add(this.v6chk_set_vattu_ketoan_banhang);
             this.groupBox1.Controls.Add(this.txtR_sonb);
             this.groupBox1.Controls.Add(this.txtRightKho);
@@ -470,10 +492,10 @@
             this.TxtCodeUser.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtCodeUser.HoverColor = System.Drawing.Color.Yellow;
             this.TxtCodeUser.LeaveColor = System.Drawing.Color.White;
-            this.TxtCodeUser.Location = new System.Drawing.Point(555, 98);
+            this.TxtCodeUser.Location = new System.Drawing.Point(599, 100);
             this.TxtCodeUser.Margin = new System.Windows.Forms.Padding(4);
             this.TxtCodeUser.Name = "TxtCodeUser";
-            this.TxtCodeUser.Size = new System.Drawing.Size(175, 23);
+            this.TxtCodeUser.Size = new System.Drawing.Size(132, 23);
             this.TxtCodeUser.TabIndex = 21;
             this.TxtCodeUser.Visible = false;
             // 
@@ -500,10 +522,10 @@
             this.TxtPassword.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtPassword.HoverColor = System.Drawing.Color.Yellow;
             this.TxtPassword.LeaveColor = System.Drawing.Color.White;
-            this.TxtPassword.Location = new System.Drawing.Point(555, 71);
+            this.TxtPassword.Location = new System.Drawing.Point(560, 97);
             this.TxtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.TxtPassword.Name = "TxtPassword";
-            this.TxtPassword.Size = new System.Drawing.Size(175, 23);
+            this.TxtPassword.Size = new System.Drawing.Size(132, 23);
             this.TxtPassword.TabIndex = 21;
             this.TxtPassword.Visible = false;
             // 
@@ -699,25 +721,28 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên người sử dụng";
             // 
-            // txtInherit_type
+            // txtPassDate
             // 
-            this.txtInherit_type.AccessibleName = "Inherit_type";
-            this.txtInherit_type.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInherit_type.BackColor = System.Drawing.SystemColors.Window;
-            this.txtInherit_type.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtInherit_type.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtInherit_type.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtInherit_type.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtInherit_type.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtInherit_type.HoverColor = System.Drawing.Color.Yellow;
-            this.txtInherit_type.LeaveColor = System.Drawing.Color.White;
-            this.txtInherit_type.Location = new System.Drawing.Point(440, 143);
-            this.txtInherit_type.Margin = new System.Windows.Forms.Padding(4);
-            this.txtInherit_type.Name = "txtInherit_type";
-            this.txtInherit_type.Size = new System.Drawing.Size(120, 23);
-            this.txtInherit_type.TabIndex = 1;
+            this.txtPassDate.AccessibleName = "PASS_DATE";
+            this.txtPassDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtPassDate.BackColor = System.Drawing.Color.White;
+            this.txtPassDate.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtPassDate.Enabled = false;
+            this.txtPassDate.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtPassDate.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPassDate.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtPassDate.GrayText = null;
+            this.txtPassDate.HoverColor = System.Drawing.Color.Yellow;
+            this.txtPassDate.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtPassDate.LeaveColor = System.Drawing.Color.White;
+            this.txtPassDate.Location = new System.Drawing.Point(594, 71);
+            this.txtPassDate.Margin = new System.Windows.Forms.Padding(5);
+            this.txtPassDate.Name = "txtPassDate";
+            this.txtPassDate.Size = new System.Drawing.Size(135, 23);
+            this.txtPassDate.StringValue = "__/__/____";
+            this.txtPassDate.TabIndex = 5;
+            this.txtPassDate.Text = "__/__/____";
             // 
             // NguoiSuDungAddEditForm
             // 
@@ -786,5 +811,6 @@
         private System.Windows.Forms.Button bntPhanQuyenCtct;
         private V6CheckBox v6chk_set_vattu_ketoan_banhang;
         private V6ColorTextBox txtInherit_type;
+        private V6DateTimeColor txtPassDate;
     }
 }

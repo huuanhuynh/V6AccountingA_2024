@@ -149,6 +149,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             TxtCodeUser.Text =
                 UtilityHelper.EnCrypt(TxtUser_name.Text.Trim() + TxtPassword1.Text.Trim() +
                                         (chkIs_admin.Checked ? "1" : "0"));
+
+            if (Mode == V6Mode.Add)
+            {
+                txtPassDate.Value = V6Setting.M_SV_DATE;
+            }
+            else if (Mode == V6Mode.Edit)
+            {
+                string old_pass = ObjectAndString.ObjectToString(DataOld["Password".ToUpper()]);
+                string new_pass = TxtPassword.Text.Trim();
+                if (new_pass != old_pass)
+                {
+                    txtPassDate.Value = V6Setting.M_SV_DATE;
+                }
+            }
         }
 
         public override void SetData(IDictionary<string, object> d)

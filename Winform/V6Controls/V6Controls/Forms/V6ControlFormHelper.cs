@@ -932,23 +932,25 @@ namespace V6Controls.Forms
             fields = "," + fields.ToLower() + ",";
             try
             {
-                if (row == null) return;
+                //if (row == null) return;
                 Control parent = control.Parent;
                 if (parent != null)
                 {
                     foreach (Control c in parent.Controls)
                     {
-                        var NAME = c.AccessibleName;
-                        if (!string.IsNullOrEmpty(NAME)
-                            && row.Table.Columns.Contains(NAME) && fields.Contains("," + NAME.ToLower() + ","))
+                        if (string.IsNullOrEmpty(c.AccessibleName)) continue;
+                        var NAME = (c.AccessibleName ?? "").ToUpper();
+                        //Chỉ xử lý các control có AccessibleName trong fields
+                        if (fields.Contains("," + NAME.ToLower() + ","))
                         {
+                            if (row == null || !row.Table.Columns.Contains(NAME))
+                            {
+                                //Gán rỗng hoặc mặc định
+                                SetControlValue(c, null);
+                                continue;
+                            }
+
                             SetControlValue(c, row[NAME]);
-                        }
-                        else if (!string.IsNullOrEmpty(c.AccessibleName) &&
-                                 fields.Contains("," + c.AccessibleName.ToLower() + ","))
-                        {
-                            //Gán rỗng hoặc mặc định
-                            SetControlValue(c, null);
                         }
                     }
                 }
