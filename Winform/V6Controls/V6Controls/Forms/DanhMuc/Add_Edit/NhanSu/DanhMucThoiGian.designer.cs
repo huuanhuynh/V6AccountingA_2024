@@ -64,9 +64,9 @@
             this.label5.Location = new System.Drawing.Point(18, 21);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 17);
+            this.label5.Size = new System.Drawing.Size(85, 17);
             this.label5.TabIndex = 2;
-            this.label5.Text = "Mã Thời gian";
+            this.label5.Text = "Mã thời gian";
             // 
             // v6Label17
             // 

@@ -461,6 +461,12 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\V6valid.Designer.cs">
       <DependentUpon>V6valid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ViTriChiTietAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ViTriChiTietAddEditForm.Designer.cs">
+      <DependentUpon>ViTriChiTietAddEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSPDHAddEditForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -899,11 +905,11 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\NhomNhaCungCap.Designer.cs">
       <DependentUpon>NhomNhaCungCap.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomTieuKhoanAddEditForm.cs">
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanLoaiCacTaiKhoanAddEditForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomTieuKhoanAddEditForm.Designer.cs">
-      <DependentUpon>NhomTieuKhoanAddEditForm.cs</DependentUpon>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanLoaiCacTaiKhoanAddEditForm.Designer.cs">
+      <DependentUpon>PhanLoaiCacTaiKhoanAddEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\NhomVatTuAddEditForm.cs">
       <SubType>UserControl</SubType>
@@ -1480,6 +1486,9 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6valid.resx">
       <DependentUpon>V6valid.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ViTriChiTietAddEditForm.resx">
+      <DependentUpon>ViTriChiTietAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSPDHAddEditForm.resx">
       <DependentUpon>YeuToChiPhiSPDHAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1693,8 +1702,8 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomNhaCungCap.resx">
       <DependentUpon>NhomNhaCungCap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomTieuKhoanAddEditForm.resx">
-      <DependentUpon>NhomTieuKhoanAddEditForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanLoaiCacTaiKhoanAddEditForm.resx">
+      <DependentUpon>PhanLoaiCacTaiKhoanAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomVatTuAddEditForm.resx">
       <DependentUpon>NhomVatTuAddEditForm.cs</DependentUpon>

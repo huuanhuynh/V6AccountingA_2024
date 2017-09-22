@@ -67,6 +67,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Alkhct:
                     FormControl = new KhachHangChiTietFrom();
                     break;
+                case V6TableName.Alvitrict:
+                    FormControl = new ViTriChiTietAddEditForm();
+                    break;
                 case V6TableName.Alkho:
                     FormControl = new KhoHangAddEditForm();
                     break;
@@ -110,7 +113,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FormControl = new NhomKhoanMucPhiAddEditForm();
                     break;
                 case V6TableName.Alnhtk0:
-                    FormControl = new NhomTieuKhoanAddEditForm();
+                    FormControl = new PhanLoaiCacTaiKhoanAddEditForm();
                     break;
                 case V6TableName.Alnhtk:
                     FormControl = new NhomTaiKhoanAddEditForm();
@@ -403,10 +406,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Alnhvitri:
                     FormControl = new NhomViTriAddEditForm();
                     break;
-                case V6TableName.hrjobexperience:
+                case V6TableName.Hrjobexperience:
                     FormControl = new KinhNghiemLamViec();
                     break;
-                case V6TableName.hrjobexperience2:
+                case V6TableName.Hrjobexperience2:
                     FormControl = new KinhNghiemLamViec2();
                     break;
                 case V6TableName.Notable:

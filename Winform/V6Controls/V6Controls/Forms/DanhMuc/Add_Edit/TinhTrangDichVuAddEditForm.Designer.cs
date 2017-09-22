@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
+            this.txtTT_VT = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtten_tt = new V6Controls.V6ColorTextBox();
@@ -77,7 +77,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.v6VvarTextBox1);
+            this.groupBox1.Controls.Add(this.txtTT_VT);
             this.groupBox1.Controls.Add(this.v6ColorTextBox3);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtten_tt);
@@ -91,21 +91,21 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // v6VvarTextBox1
+            // txtTT_VT
             // 
-            this.v6VvarTextBox1.AccessibleName = "Tt_vt";
-            this.v6VvarTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6VvarTextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6VvarTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(193, 16);
-            this.v6VvarTextBox1.Name = "v6VvarTextBox1";
-            this.v6VvarTextBox1.Size = new System.Drawing.Size(148, 23);
-            this.v6VvarTextBox1.TabIndex = 1;
+            this.txtTT_VT.AccessibleName = "Tt_vt";
+            this.txtTT_VT.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTT_VT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTT_VT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtTT_VT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTT_VT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTT_VT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTT_VT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTT_VT.LeaveColor = System.Drawing.Color.White;
+            this.txtTT_VT.Location = new System.Drawing.Point(193, 16);
+            this.txtTT_VT.Name = "txtTT_VT";
+            this.txtTT_VT.Size = new System.Drawing.Size(148, 23);
+            this.txtTT_VT.TabIndex = 1;
             // 
             // v6ColorTextBox3
             // 
@@ -760,7 +760,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private V6VvarTextBox v6VvarTextBox1;
+        private V6VvarTextBox txtTT_VT;
         private V6ColorTextBox v6ColorTextBox16;
         private V6ColorTextBox v6ColorTextBox15;
         private V6ColorTextBox v6ColorTextBox1;

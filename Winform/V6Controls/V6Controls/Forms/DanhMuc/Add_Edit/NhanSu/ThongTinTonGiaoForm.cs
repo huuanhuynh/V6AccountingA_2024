@@ -44,7 +44,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             }
             catch (Exception ex)
             {
-                Logger.WriteToLog("BPHT DisableWhenEdit " + ex.Message);
+                Logger.WriteToLog("DisableWhenEdit " + ex.Message);
             }
         }
 
@@ -69,18 +69,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         }
         public override void ValidateData()
         {
-
             var errors = "";
             if (txtName.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
-            if (errors.Length > 0) throw new Exception(errors);
+                errors += V6Init.V6Text.CheckInfor + " !\r\n";
 
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "NAME",
                  txtName.Text.Trim(), DataOld["NAME"].ToString());
                 if (!b)
-                    throw new Exception("Không được sửa tên đã tồn tại: "
+                    throw new Exception(V6Init.V6Text.ExistData
                                                     + "NAME = " + txtName.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
@@ -88,7 +86,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "NAME",
                  txtName.Text.Trim(), txtName.Text.Trim());
                 if (!b)
-                    throw new Exception("Không được thêm tên đã tồn tại: "
+                    throw new Exception(V6Init.V6Text.ExistData
                                                     + "NAME = " + txtName.Text.Trim());
             }
 

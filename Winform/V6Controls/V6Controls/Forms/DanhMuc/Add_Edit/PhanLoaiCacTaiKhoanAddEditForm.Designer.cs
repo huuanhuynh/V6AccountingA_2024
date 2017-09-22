@@ -1,6 +1,6 @@
 ﻿namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
-    partial class NhomTieuKhoanAddEditForm
+    partial class PhanLoaiCacTaiKhoanAddEditForm
     {
         /// <summary> 
         /// Required designer variable.
@@ -35,7 +35,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtten_nh = new V6Controls.V6ColorTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtma_nh = new V6Controls.V6ColorTextBox();
+            this.Txtma_nh = new V6Controls.V6ColorTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -51,7 +51,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtten_nh);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtma_nh);
+            this.groupBox1.Controls.Add(this.Txtma_nh);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(7, 6);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
@@ -144,28 +144,28 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Tên nhóm tài khoản";
             // 
-            // txtma_nh
+            // Txtma_nh
             // 
-            this.txtma_nh.AccessibleName = "ma_nh";
-            this.txtma_nh.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Txtma_nh.AccessibleName = "ma_nh";
+            this.Txtma_nh.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtma_nh.BackColor = System.Drawing.SystemColors.Window;
-            this.txtma_nh.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtma_nh.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtma_nh.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtma_nh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtma_nh.HoverColor = System.Drawing.Color.Yellow;
-            this.txtma_nh.LeaveColor = System.Drawing.Color.White;
-            this.txtma_nh.Location = new System.Drawing.Point(228, 34);
-            this.txtma_nh.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.txtma_nh.Name = "txtma_nh";
-            this.txtma_nh.Size = new System.Drawing.Size(439, 23);
-            this.txtma_nh.TabIndex = 1;
+            this.Txtma_nh.BackColor = System.Drawing.SystemColors.Window;
+            this.Txtma_nh.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.Txtma_nh.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtma_nh.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtma_nh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.Txtma_nh.HoverColor = System.Drawing.Color.Yellow;
+            this.Txtma_nh.LeaveColor = System.Drawing.Color.White;
+            this.Txtma_nh.Location = new System.Drawing.Point(228, 34);
+            this.Txtma_nh.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.Txtma_nh.Name = "Txtma_nh";
+            this.Txtma_nh.Size = new System.Drawing.Size(439, 23);
+            this.Txtma_nh.TabIndex = 1;
             // 
             // label2
             // 
-            this.label2.AccessibleName = "ma_nh";
+            this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(73, 37);
             this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -174,14 +174,14 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã nhóm tài khoản";
             // 
-            // NhomTieuKhoanAddEditForm
+            // PhanLoaiCacTaiKhoanAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "NhomTieuKhoanAddEditForm";
+            this.Name = "PhanLoaiCacTaiKhoanAddEditForm";
             this.Size = new System.Drawing.Size(694, 190);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -198,7 +198,7 @@
         private System.Windows.Forms.Label label4;
         private V6ColorTextBox txtten_nh;
         private System.Windows.Forms.Label label5;
-        private V6ColorTextBox txtma_nh;
+        private V6ColorTextBox Txtma_nh;
         private System.Windows.Forms.Label label2;
     }
 }

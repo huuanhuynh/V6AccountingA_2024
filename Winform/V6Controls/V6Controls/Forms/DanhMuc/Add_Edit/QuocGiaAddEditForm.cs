@@ -21,10 +21,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (TxtMa_qg.Text.Trim() == "")
-                errors += "Chưa nhập mã !\r\n";
-            if (TxtTen_qg.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
+            if (TxtMa_qg.Text.Trim() == "" || TxtTen_qg.Text.Trim() == "")
+                errors += V6Init.V6Text.CheckInfor + " !\r\n";
 
             if (Mode == V6Mode.Edit)
             {
@@ -36,7 +34,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, key,
                             DataDic[key].ToString(), DataOld[key].ToString());
                         if (!b)
-                            throw new Exception("Không được thêm mã đã tồn tại: "
+                            throw new Exception(V6Init.V6Text.ExistData
                                                             + key + "=" + DataDic[key]);
                     }
                 }
@@ -54,7 +52,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, key.Key,
                         DataDic[key.Key].ToString(), "");
-                    if (!b) throw new Exception("Không được thêm mã đã tồn tại: "
+                    if (!b) throw new Exception(V6Init.V6Text.ExistData
                         + key.Key + "=" + DataDic[key.Key]);
                 }
             }

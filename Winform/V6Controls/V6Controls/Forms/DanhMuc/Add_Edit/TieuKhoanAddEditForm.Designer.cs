@@ -31,10 +31,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
+            this.txttk2 = new V6Controls.V6ColorTextBox();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox5 = new V6Controls.V6ColorTextBox();
+            this.txtten_tk2 = new V6Controls.V6ColorTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.v6ColorTextBox2 = new V6Controls.V6ColorTextBox();
@@ -49,10 +49,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.v6ColorTextBox3);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox1);
+            this.groupBox1.Controls.Add(this.txttk2);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox5);
+            this.groupBox1.Controls.Add(this.txtten_tk2);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.v6ColorTextBox2);
@@ -71,18 +71,18 @@
             this.v6ColorTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox3.EnableColorEffect = true;
-            this.v6ColorTextBox3.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox3.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox3.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox3.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox3.LimitCharacters = null;
             this.v6ColorTextBox3.Location = new System.Drawing.Point(183, 117);
             this.v6ColorTextBox3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox3.Name = "v6ColorTextBox3";
             this.v6ColorTextBox3.Size = new System.Drawing.Size(514, 23);
             this.v6ColorTextBox3.TabIndex = 7;
-            this.v6ColorTextBox3.GrayText = "";
             // 
             // label3
             // 
@@ -94,21 +94,21 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Tên 2";
             // 
-            // v6ColorTextBox1
+            // txttk2
             // 
-            this.v6ColorTextBox1.AccessibleName = "tk2";
-            this.v6ColorTextBox1.EnableColorEffect = true;
-            this.v6ColorTextBox1.EnableColorEffectOnMouseEnter = false;
-            this.v6ColorTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox1.LimitCharacters = null;
-            this.v6ColorTextBox1.Location = new System.Drawing.Point(183, 18);
-            this.v6ColorTextBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.v6ColorTextBox1.Name = "v6ColorTextBox1";
-            this.v6ColorTextBox1.Size = new System.Drawing.Size(124, 23);
-            this.v6ColorTextBox1.TabIndex = 1;
-            this.v6ColorTextBox1.GrayText = "";
+            this.txttk2.AccessibleName = "tk2";
+            this.txttk2.BackColor = System.Drawing.SystemColors.Window;
+            this.txttk2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txttk2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txttk2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txttk2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txttk2.HoverColor = System.Drawing.Color.Yellow;
+            this.txttk2.LeaveColor = System.Drawing.Color.White;
+            this.txttk2.Location = new System.Drawing.Point(183, 18);
+            this.txttk2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.txttk2.Name = "txttk2";
+            this.txttk2.Size = new System.Drawing.Size(124, 23);
+            this.txttk2.TabIndex = 1;
             // 
             // checkBox1
             // 
@@ -135,24 +135,24 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Trạng Thái";
             // 
-            // v6ColorTextBox5
+            // txtten_tk2
             // 
-            this.v6ColorTextBox5.AccessibleName = "ten_tk2";
-            this.v6ColorTextBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtten_tk2.AccessibleName = "ten_tk2";
+            this.txtten_tk2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox5.EnableColorEffect = true;
-            this.v6ColorTextBox5.EnableColorEffectOnMouseEnter = false;
-            this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.LimitCharacters = null;
-            this.v6ColorTextBox5.Location = new System.Drawing.Point(183, 82);
-            this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.v6ColorTextBox5.Name = "v6ColorTextBox5";
-            this.v6ColorTextBox5.Size = new System.Drawing.Size(514, 23);
-            this.v6ColorTextBox5.TabIndex = 5;
-            this.v6ColorTextBox5.GrayText = "";
+            this.txtten_tk2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtten_tk2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtten_tk2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtten_tk2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtten_tk2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtten_tk2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtten_tk2.LeaveColor = System.Drawing.Color.White;
+            this.txtten_tk2.Location = new System.Drawing.Point(183, 82);
+            this.txtten_tk2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.txtten_tk2.Name = "txtten_tk2";
+            this.txtten_tk2.Size = new System.Drawing.Size(514, 23);
+            this.txtten_tk2.TabIndex = 5;
             // 
             // label5
             // 
@@ -180,22 +180,22 @@
             this.v6ColorTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox2.EnableColorEffect = true;
-            this.v6ColorTextBox2.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox2.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox2.LimitCharacters = null;
             this.v6ColorTextBox2.Location = new System.Drawing.Point(183, 50);
             this.v6ColorTextBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox2.Name = "v6ColorTextBox2";
             this.v6ColorTextBox2.Size = new System.Drawing.Size(514, 23);
             this.v6ColorTextBox2.TabIndex = 3;
-            this.v6ColorTextBox2.GrayText = "";
             // 
             // label2
             // 
-            this.label2.AccessibleName = "ma_nh";
+            this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(28, 53);
             this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -222,10 +222,10 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private V6ColorTextBox v6ColorTextBox1;
+        private V6ColorTextBox txttk2;
         private V6Controls.V6CheckBox checkBox1;
         private System.Windows.Forms.Label label4;
-        private V6ColorTextBox v6ColorTextBox5;
+        private V6ColorTextBox txtten_tk2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
         private V6ColorTextBox v6ColorTextBox2;

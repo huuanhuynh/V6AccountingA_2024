@@ -207,8 +207,9 @@ namespace V6Structs
         Alreport,
         Alnhvitri,
         Alkuct,
-        hrjobexperience,
-        hrjobexperience2
+        Hrjobexperience,
+        Hrjobexperience2,
+        Alvitrict
     }
 
     public static class V6TableHelper
@@ -605,7 +606,8 @@ namespace V6Structs
                 case V6TableName.Alhtvc: result = "ma_htvc"; break;
                 case V6TableName.Alkc: result = "STT"; break;
                 case V6TableName.Alkh: result = "ma_kh"; break;
-                case V6TableName.Alkhct: result = "dia_chi"; break;
+                case V6TableName.Alkhct: result = "dia_chi"; break; 
+                case V6TableName.Alvitrict: result = "ma_vitri"; break;
                 case V6TableName.Alkho: result = "ma_kho"; break;
                 case V6TableName.Alkhtg: result = "ma_khtg"; break;
                 case V6TableName.Alkmb: result = "ma_km"; break;
@@ -896,7 +898,8 @@ namespace V6Structs
                     return lang == "V" ? "Danh mục khách hàng/ nhà cung cấp/ nhân viên" : "Customer/ Supplier/ Employee list";
                 case V6TableName.Alkhct:
                     return lang == "V" ? "Danh mục khách hàng/ nhà cung cấp/ nhân viên chi tiết" : "Customer/ Supplier/ Employee list details";
-                
+                case V6TableName.Alvitrict:
+                    return lang == "V" ? "Danh mục vị trí" : "";
                 case V6TableName.Alkho:
                     return lang == "V" ? "Danh mục kho hàng " : " Warehouse list";
 

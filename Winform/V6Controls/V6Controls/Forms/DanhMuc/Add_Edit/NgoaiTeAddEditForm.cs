@@ -23,33 +23,30 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var v = Categories.IsExistOneCode_List("ARA00", "Ma_nt", TxtMa_nt.Text);
             TxtMa_nt.Enabled = !v;
-            
+
 
         }
         public override void ValidateData()
         {
             var errors = "";
-            if (TxtMa_nt.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
-            if (TxtTen_nt.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
-            
+            if (TxtMa_nt.Text.Trim() == "" || TxtTen_nt.Text.Trim() == "")
+                errors += V6Init.V6Text.CheckInfor + " !\r\n";
 
-            if (Mode == V6Mode.Edit)
+            if (Mode == V6Structs.V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_NT",
-                 TxtMa_nt.Text.Trim(), DataOld["MA_NT"].ToString());
+                    TxtMa_nt.Text.Trim(), DataOld["MA_NT"].ToString());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_NT = " + TxtMa_nt.Text.Trim());
+                    throw new Exception(V6Init.V6Text.ExistData
+                                        + "MA_NT = " + TxtMa_nt.Text.Trim());
             }
-            else if (Mode == V6Mode.Add)
+            else if (Mode == V6Structs.V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_NT",
-                 TxtMa_nt.Text.Trim(), TxtMa_nt.Text.Trim());
+                    TxtMa_nt.Text.Trim(), TxtMa_nt.Text.Trim());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_NT = " + TxtMa_nt.Text.Trim());
+                    throw new Exception(V6Init.V6Text.ExistData
+                                        + "MA_NT = " + TxtMa_nt.Text.Trim());
             }
 
             if (errors.Length > 0) throw new Exception(errors);
