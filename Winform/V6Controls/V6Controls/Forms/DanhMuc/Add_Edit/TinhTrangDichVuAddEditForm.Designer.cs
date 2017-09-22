@@ -290,7 +290,6 @@
             this.tabPage2.Size = new System.Drawing.Size(736, 390);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // v6ColorTextBox16
             // 

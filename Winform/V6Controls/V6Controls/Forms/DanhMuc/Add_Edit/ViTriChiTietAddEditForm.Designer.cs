@@ -198,6 +198,7 @@
             this.Txtma_vt.BackColor = System.Drawing.Color.White;
             this.Txtma_vt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.Txtma_vt.BrotherFields = "ten_vt";
+            this.Txtma_vt.CheckNotEmpty = true;
             this.Txtma_vt.EnterColor = System.Drawing.Color.PaleGreen;
             this.Txtma_vt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Txtma_vt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

@@ -33,15 +33,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var v = Categories.IsExistOneCode_List(F8_table, "MA_PHI", TxtMa_phi.Text);
                 TxtMa_phi.Enabled = !v;
 
-                if (!V6Init.V6Login.IsAdmin && TxtMa_phi.Text.ToUpper() != V6Init.V6Login.Madvcs.ToUpper())
-                {
-                    TxtMa_phi.Enabled = false;
-                }
+                
 
             }
             catch (Exception ex)
             {
-                V6Tools.Logger.WriteToLog("BPHT DisableWhenEdit " + ex.Message);
+                V6Tools.Logger.WriteToLog("Phi DisableWhenEdit " + ex.Message);
             }
         }
         public override void ValidateData()

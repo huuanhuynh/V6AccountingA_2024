@@ -19,14 +19,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var v = Categories.IsExistOneCode_List("ARA00,ARI70", "MA_HD", Txtma_hd.Text);
                 Txtma_hd.Enabled = !v;
 
-                if (!V6Init.V6Login.IsAdmin && Txtma_hd.Text.ToUpper() != V6Init.V6Login.Madvcs.ToUpper())
-                {
-                    Txtma_hd.Enabled = false;
-                }
+                
             }
             catch (Exception ex)
             {
-                V6Tools.Logger.WriteToLog(" DisableWhenEdit " + ex.Message);
+                V6Tools.Logger.WriteToLog("HopDongAddEditForm DisableWhenEdit " + ex.Message);
             }
         }
         

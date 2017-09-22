@@ -284,7 +284,7 @@
             this.btnBoSung.Name = "btnBoSung";
             this.btnBoSung.Size = new System.Drawing.Size(202, 29);
             this.btnBoSung.TabIndex = 43;
-            this.btnBoSung.Text = "Bổ sung thông tin";
+            this.btnBoSung.Text = "&Bổ sung thông tin";
             this.btnBoSung.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBoSung.UseVisualStyleBackColor = true;
             this.btnBoSung.Click += new System.EventHandler(this.btnBoSung_Click);

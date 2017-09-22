@@ -9,10 +9,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             InitializeComponent();
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
         public override void DoBeforeEdit()
         {
             try
@@ -32,15 +28,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var v = Categories.IsExistOneCode_List(F8_table, "TT_VT", txtTT_VT.Text);
                 txtTT_VT.Enabled = !v;
 
-                if (!V6Init.V6Login.IsAdmin && txtTT_VT.Text.ToUpper() != V6Init.V6Login.Madvcs.ToUpper())
-                {
-                    txtTT_VT.Enabled = false;
-                }
+                
 
             }
             catch (Exception ex)
             {
-                V6Tools.Logger.WriteToLog("BPHT DisableWhenEdit " + ex.Message);
+                V6Tools.Logger.WriteToLog("TinhTrangDichVu DisableWhenEdit " + ex.Message);
             }
         }
         public override void ValidateData()

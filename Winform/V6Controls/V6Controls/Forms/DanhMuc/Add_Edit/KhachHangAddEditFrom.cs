@@ -62,7 +62,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                Logger.WriteToLog("KH DisableWhenEdit " + ex.Message);
+                Logger.WriteToLog("KhachHang DisableWhenEdit " + ex.Message);
             }
         }
 

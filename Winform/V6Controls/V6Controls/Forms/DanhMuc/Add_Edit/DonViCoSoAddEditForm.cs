@@ -12,11 +12,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             InitializeComponent();
         }
 
-        private void v6ColorTextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         public override void DoBeforeEdit()
         {
             try
@@ -26,7 +21,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".DoBeforeEdit", ex);
+                this.WriteExLog(GetType() + "DonViCoSoAddEditForm.DoBeforeEdit", ex);
             }
         }
 
