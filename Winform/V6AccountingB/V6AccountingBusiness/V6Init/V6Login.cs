@@ -418,6 +418,39 @@ namespace V6Init
             return result;
         }
 
+        /// <summary>
+        /// Lấy lại filter kho khi chọn lại dvcs.
+        /// </summary>
+        /// <param name="ma_dvcs"></param>
+        /// <returns></returns>
+        public static string GetFilterKhoByDVCS(string ma_dvcs)
+        {
+            string filter = "";
+
+            if (!string.IsNullOrEmpty(ma_dvcs))
+            {
+                filter = string.Format("MA_DVCS='{0}' and ", ma_dvcs);
+            }
+
+            filter += "(dbo.VFA_Inlist_MEMO(ma_kho, '" + UserInfo["r_kho"] + "')=1 or 1="
+                      + (IsAdmin ? 1 : 0) + ")";
+            return filter;
+        }
+        /// <summary>
+        /// Lấy lại filter kho
+        /// </summary>
+        /// <param name="fma_kho"></param>
+        /// <returns></returns>
+        public static string GetFilterKho(string fma_kho)
+        {
+            if (string.IsNullOrEmpty(fma_kho))
+            {
+                fma_kho = "MA_KHO";
+            }
+            string filter = string.Format("(dbo.VFA_Inlist_MEMO({0}, '" + UserInfo["r_kho"] + "')=1 or 1="
+                      + (IsAdmin ? 1 : 0) + ")", fma_kho);
+            return filter;
+        }
         public static DataTable GetLanguageTable()
         {
             if (GetDataMode == GetDataMode.Local)

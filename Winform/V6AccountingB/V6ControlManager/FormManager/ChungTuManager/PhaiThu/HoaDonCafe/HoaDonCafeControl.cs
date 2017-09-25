@@ -3258,14 +3258,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         {
             try
             {
-                if (txtMadvcs.Text.Trim() != "")
-                {
-                    _maKhoI.SetInitFilter(string.Format("MA_DVCS='{0}'", txtMadvcs.Text));
-                }
-                else
-                {
-                    _maKhoI.SetInitFilter("");
-                }
+                string filter = V6Login.GetFilterKhoByDVCS(txtMadvcs.Text.Trim());
+                _maKhoI.SetInitFilter(filter);
             }
             catch (Exception ex)
             {

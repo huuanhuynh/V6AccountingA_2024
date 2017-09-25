@@ -2637,6 +2637,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
         }
 
+        private void XuLyThayDoiMaDVCS()
+        {
+            try
+            {
+                string filter = V6Login.GetFilterKhoByDVCS(txtMadvcs.Text.Trim());
+                txtMaKhoX.SetInitFilter(filter);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyThayDoiMaDVCS", ex);
+            }
+        }
+
         private void XuLyThayDoiMaNt()
         {
             try
@@ -2933,12 +2946,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             {
                 Mode = V6Mode.View;
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
-                
+
+                XuLyThayDoiMaDVCS();
                 txtMadvcs.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
                 txtMaKhoX.ExistRowInTable();
                 XuLyChonMaKhoX();
                 XuLyChonMaKhoN();
+                
                 //{Tuanmh 20/02/2016
                 XuLyThayDoiMaNt();
                 //}
@@ -4424,6 +4439,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             {
                 this.WriteExLog(GetType() + ".XemPhieuNhap", ex);
             }
+        }
+
+        private void txtMadvcs_V6LostFocus(object sender)
+        {
+            XuLyThayDoiMaDVCS();
+        }
+
+        private void txtMadvcs_TextChanged(object sender, EventArgs e)
+        {
+            XuLyThayDoiMaDVCS();
         }
 
     }

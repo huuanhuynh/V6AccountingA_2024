@@ -89,26 +89,29 @@ namespace V6Controls
             }
         }
 
-        //protected override void WndProc(ref Message m)
-        //{
-        //    if (m.Msg == WmReflect + WmNotify)
-        //    {
-        //        var hdr = (NmHdr)m.GetLParam(typeof(NmHdr));
-        //        if (hdr.Code == -759) //date chosen (by keyboard)
-        //        {
-        //            _selectionComplete = true;
-        //        }
-        //    }
-        //    switch (m.Msg)
-        //    {
-        //        case WM_ENABLE:
-        //            // Prevent the message from reaching the control,
-        //            // so the colors don't get changed by the default procedure.
-        //            return; // <-- suppress WM_ENABLE message
-        //    }
 
-        //    base.WndProc(ref m);
-        //}
+        protected override void WndProc(ref Message m)
+        {
+            //Flag for right arrow key.
+            if (m.Msg == WmReflect + WmNotify)
+            {
+                var hdr = (NmHdr)m.GetLParam(typeof(NmHdr));
+                if (hdr.Code == -759) //date chosen (by keyboard)
+                {
+                    _selectionComplete = true;
+                }
+            }
+            //Disable Enable property.
+            //switch (m.Msg)
+            //{
+            //    case WM_ENABLE:
+            //        // Prevent the message from reaching the control,
+            //        // so the colors don't get changed by the default procedure.
+            //        return; // <-- suppress WM_ENABLE message
+            //}
+
+            base.WndProc(ref m);
+        }
 
         public event ControlEventHandle V6LostFocus;
         public event ControlEventHandle V6LostFocusNoChange;
