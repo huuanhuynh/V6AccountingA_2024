@@ -81,10 +81,8 @@
             // 
             // dateCuoiNgay
             // 
-            this.dateCuoiNgay.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateCuoiNgay.CustomFormat = "dd/MM/yyyy";
             this.dateCuoiNgay.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateCuoiNgay.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateCuoiNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateCuoiNgay.HoverColor = System.Drawing.Color.Yellow;
             this.dateCuoiNgay.ImeMode = System.Windows.Forms.ImeMode.On;

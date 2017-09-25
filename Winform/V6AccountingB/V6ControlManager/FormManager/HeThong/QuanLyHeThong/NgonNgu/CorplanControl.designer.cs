@@ -45,10 +45,8 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
             // 
             this.cboSFile.AccessibleName = "kieu_post";
             this.cboSFile.BackColor = System.Drawing.SystemColors.Window;
-            this.cboSFile.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboSFile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSFile.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboSFile.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboSFile.FormattingEnabled = true;
             this.cboSFile.Location = new System.Drawing.Point(51, 3);
             this.cboSFile.Name = "cboSFile";

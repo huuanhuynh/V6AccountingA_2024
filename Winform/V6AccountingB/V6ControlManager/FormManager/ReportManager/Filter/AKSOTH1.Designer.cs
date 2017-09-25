@@ -426,10 +426,8 @@
             // cbbLoaiBaoCao
             // 
             this.cbbLoaiBaoCao.BackColor = System.Drawing.SystemColors.Window;
-            this.cbbLoaiBaoCao.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cbbLoaiBaoCao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbLoaiBaoCao.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cbbLoaiBaoCao.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cbbLoaiBaoCao.FormattingEnabled = true;
             this.cbbLoaiBaoCao.Items.AddRange(new object[] {
             "Số lượng\t",
@@ -474,10 +472,8 @@
             // 
             // dateNgay_ct2
             // 
-            this.dateNgay_ct2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgay_ct2.CustomFormat = "dd/MM/yyyy";
             this.dateNgay_ct2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgay_ct2.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgay_ct2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgay_ct2.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct2.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -489,10 +485,8 @@
             // 
             // dateNgay_ct1
             // 
-            this.dateNgay_ct1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgay_ct1.CustomFormat = "dd/MM/yyyy";
             this.dateNgay_ct1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgay_ct1.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgay_ct1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgay_ct1.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct1.ImeMode = System.Windows.Forms.ImeMode.On;

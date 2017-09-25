@@ -38,11 +38,9 @@
             // 
             this.cboKieuPost.AccessibleName = "kieu_post";
             this.cboKieuPost.BackColor = System.Drawing.SystemColors.Window;
-            this.cboKieuPost.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboKieuPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboKieuPost.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboKieuPost.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboKieuPost.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboKieuPost.FormattingEnabled = true;
             this.cboKieuPost.Items.AddRange(new object[] {
             "0 - Chưa cập nhập",

@@ -62,10 +62,8 @@
             // 
             // dateNgay_ct2
             // 
-            this.dateNgay_ct2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgay_ct2.CustomFormat = "dd/MM/yyyy";
             this.dateNgay_ct2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgay_ct2.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgay_ct2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgay_ct2.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct2.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -87,10 +85,8 @@
             // 
             // dateNgay_ct1
             // 
-            this.dateNgay_ct1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgay_ct1.CustomFormat = "dd/MM/yyyy";
             this.dateNgay_ct1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgay_ct1.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgay_ct1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgay_ct1.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct1.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -115,11 +111,9 @@
             // 
             this.cboProcList.AccessibleName = "";
             this.cboProcList.BackColor = System.Drawing.SystemColors.Window;
-            this.cboProcList.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboProcList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboProcList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboProcList.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboProcList.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboProcList.FormattingEnabled = true;
             this.cboProcList.Items.AddRange(new object[] {
             "0 - Chưa cập nhập",

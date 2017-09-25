@@ -63,15 +63,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             Txtnh_kh5.VvarTextBox.SetInitFilter("loai_nh=5");
             Txtnh_kh6.VvarTextBox.SetInitFilter("loai_nh=6");
         }
-
-        public override string Kieu_post
-        {
-            get
-            {
-                return cboLevel.SelectedValue.ToString().Trim();
-            }
-        }
-
+        
         /// <summary>
         /// Lay cac tham so cho procedure
         /// </summary>
@@ -224,11 +216,5 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             ctDenSo.Enabled = !chkLike.Checked;
         }
 
-        private void cboLevel_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            cboLevel.Enabled = false;
-        }
-
-        
     }
 }

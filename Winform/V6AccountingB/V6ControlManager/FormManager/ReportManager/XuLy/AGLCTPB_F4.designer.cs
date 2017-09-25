@@ -150,11 +150,9 @@
             // 
             this.dateNam.AccessibleName = "";
             this.dateNam.BackColor = System.Drawing.SystemColors.Window;
-            this.dateNam.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNam.CustomFormat = "yyyy";
             this.dateNam.EnterColor = System.Drawing.Color.PaleGreen;
             this.dateNam.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dateNam.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNam.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNam.HoverColor = System.Drawing.Color.Yellow;
             this.dateNam.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -168,11 +166,9 @@
             // 
             this.dateThang1.AccessibleName = "";
             this.dateThang1.BackColor = System.Drawing.SystemColors.Window;
-            this.dateThang1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateThang1.CustomFormat = "MM";
             this.dateThang1.EnterColor = System.Drawing.Color.PaleGreen;
             this.dateThang1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dateThang1.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateThang1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateThang1.HoverColor = System.Drawing.Color.Yellow;
             this.dateThang1.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -186,11 +182,9 @@
             // 
             this.dateThang2.AccessibleName = "";
             this.dateThang2.BackColor = System.Drawing.SystemColors.Window;
-            this.dateThang2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateThang2.CustomFormat = "MM";
             this.dateThang2.EnterColor = System.Drawing.Color.PaleGreen;
             this.dateThang2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dateThang2.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateThang2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateThang2.HoverColor = System.Drawing.Color.Yellow;
             this.dateThang2.ImeMode = System.Windows.Forms.ImeMode.On;

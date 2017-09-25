@@ -300,14 +300,14 @@ namespace V6AccountingB
 
                         //Check pass_date
                         int M_DAY_CHANGEPASS = int.Parse(V6Options.V6OptionValues["M_DAY_CHANGEPASS"]);
-                        
+
                         if (M_DAY_CHANGEPASS > 0)
                         {
                             DateTime? pass_date = (DateTime?) V6Login.UserInfo["PASS_DATE"];
                             //Tuanmh 24/09/2017 pass_exp=1=Y 
-                            var  pass_exp =V6Login.UserInfo["PASS_EXP"].ToString().Trim();
+                            var pass_exp = V6Login.UserInfo["PASS_EXP"].ToString().Trim();
 
-                            if (pass_exp=="1")
+                            if (pass_exp == "1")
                             {
                                 int passed = 0;
                                 if (pass_date != null) passed = (V6Setting.M_SV_DATE - pass_date).Value.Days;
@@ -344,7 +344,7 @@ namespace V6AccountingB
                 {
                     this.ShowInfoMessage(V6Text.NotAllowed
                         + "\r\nSeri: " + License.Seri
-                        +"\r\nLiên hệ V6: 0936 976 976");
+                        + "\r\nLiên hệ V6: 0936 976 976");
                     Clipboard.SetText(License.Seri);
                     DialogResult = DialogResult.Cancel;
                 }

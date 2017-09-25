@@ -140,11 +140,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // cboMauIn
             // 
             this.cboMauIn.BackColor = System.Drawing.SystemColors.Window;
-            this.cboMauIn.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboMauIn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMauIn.DropDownWidth = 400;
             this.cboMauIn.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboMauIn.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboMauIn.FormattingEnabled = true;
             this.cboMauIn.Location = new System.Drawing.Point(101, 38);
             this.cboMauIn.Name = "cboMauIn";

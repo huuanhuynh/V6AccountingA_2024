@@ -89,10 +89,8 @@
             // cboKhu2
             // 
             this.cboKhu2.BackColor = System.Drawing.SystemColors.Window;
-            this.cboKhu2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboKhu2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboKhu2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboKhu2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboKhu2.FormattingEnabled = true;
             this.cboKhu2.Location = new System.Drawing.Point(15, 100);
             this.cboKhu2.Name = "cboKhu2";
@@ -103,10 +101,8 @@
             // cboBan2
             // 
             this.cboBan2.BackColor = System.Drawing.SystemColors.Window;
-            this.cboBan2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboBan2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBan2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboBan2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboBan2.FormattingEnabled = true;
             this.cboBan2.Location = new System.Drawing.Point(15, 127);
             this.cboBan2.Name = "cboBan2";

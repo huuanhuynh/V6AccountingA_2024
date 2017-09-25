@@ -4387,7 +4387,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         {
                             // Tuanmh 16/02/2016 Check level
                             var row = AM.Rows[CurrentIndex];
-                            if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), row["Xtag"].ToString()))
+                            if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
                             {
                                 Mode = V6Mode.Edit;
                                 detail1.MODE = V6Mode.View;
@@ -4429,7 +4429,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     {
                         var row = AM.Rows[CurrentIndex];
                         // Tuanmh 16/02/2016 Check level
-                        if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), row["Xtag"].ToString()))
+                        if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
                         {
                             DoDeleteThread();
                         }

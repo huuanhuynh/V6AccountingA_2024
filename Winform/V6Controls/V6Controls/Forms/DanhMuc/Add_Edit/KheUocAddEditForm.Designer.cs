@@ -227,10 +227,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNgay_ku2.BackColor = System.Drawing.Color.White;
-            this.txtNgay_ku2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNgay_ku2.CustomFormat = "dd/MM/yyyy";
             this.txtNgay_ku2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNgay_ku2.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.txtNgay_ku2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.txtNgay_ku2.HoverColor = System.Drawing.Color.Yellow;
             this.txtNgay_ku2.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -258,10 +256,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtNgay_ku1.BackColor = System.Drawing.Color.White;
-            this.TxtNgay_ku1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtNgay_ku1.CustomFormat = "dd/MM/yyyy";
             this.TxtNgay_ku1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtNgay_ku1.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.TxtNgay_ku1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.TxtNgay_ku1.HoverColor = System.Drawing.Color.Yellow;
             this.TxtNgay_ku1.ImeMode = System.Windows.Forms.ImeMode.On;

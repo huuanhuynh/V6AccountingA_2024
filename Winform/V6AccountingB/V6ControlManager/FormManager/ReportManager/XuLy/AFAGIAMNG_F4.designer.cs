@@ -238,10 +238,8 @@
             // dateNgayCT
             // 
             this.dateNgayCT.AccessibleName = "ngay_ct";
-            this.dateNgayCT.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgayCT.CustomFormat = "dd/MM/yyyy";
             this.dateNgayCT.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgayCT.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgayCT.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgayCT.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayCT.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -567,10 +565,8 @@
             // DateNgay_tg
             // 
             this.DateNgay_tg.AccessibleName = "ngay_tg";
-            this.DateNgay_tg.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.DateNgay_tg.CustomFormat = "dd/MM/yyyy";
             this.DateNgay_tg.EnterColor = System.Drawing.Color.PaleGreen;
-            this.DateNgay_tg.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.DateNgay_tg.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DateNgay_tg.HoverColor = System.Drawing.Color.Yellow;
             this.DateNgay_tg.ImeMode = System.Windows.Forms.ImeMode.On;

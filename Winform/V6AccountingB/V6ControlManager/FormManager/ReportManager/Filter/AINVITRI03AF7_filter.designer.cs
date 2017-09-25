@@ -45,10 +45,8 @@
             // 
             // dateYear
             // 
-            this.dateYear.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateYear.CustomFormat = "yyyy";
             this.dateYear.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateYear.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateYear.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateYear.HoverColor = System.Drawing.Color.Yellow;
             this.dateYear.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -60,10 +58,8 @@
             // 
             // dateMonth
             // 
-            this.dateMonth.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateMonth.CustomFormat = "MM";
             this.dateMonth.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateMonth.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateMonth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateMonth.HoverColor = System.Drawing.Color.Yellow;
             this.dateMonth.ImeMode = System.Windows.Forms.ImeMode.On;

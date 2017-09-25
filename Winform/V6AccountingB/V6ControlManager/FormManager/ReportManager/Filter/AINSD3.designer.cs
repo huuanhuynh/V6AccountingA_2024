@@ -205,10 +205,8 @@
             // 
             // dateNgay_ct2
             // 
-            this.dateNgay_ct2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgay_ct2.CustomFormat = "dd/MM/yyyy";
             this.dateNgay_ct2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgay_ct2.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgay_ct2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgay_ct2.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct2.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -246,10 +244,8 @@
             // cbbLoaiBaoCao
             // 
             this.cbbLoaiBaoCao.BackColor = System.Drawing.SystemColors.Window;
-            this.cbbLoaiBaoCao.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cbbLoaiBaoCao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbLoaiBaoCao.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cbbLoaiBaoCao.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cbbLoaiBaoCao.FormattingEnabled = true;
             this.cbbLoaiBaoCao.Items.AddRange(new object[] {
             "Tồn",
@@ -285,10 +281,8 @@
             // cbbKhoHangGuiBan
             // 
             this.cbbKhoHangGuiBan.BackColor = System.Drawing.SystemColors.Window;
-            this.cbbKhoHangGuiBan.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cbbKhoHangGuiBan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbKhoHangGuiBan.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cbbKhoHangGuiBan.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cbbKhoHangGuiBan.FormattingEnabled = true;
             this.cbbKhoHangGuiBan.Items.AddRange(new object[] {
             "1 - Chi tiết theo kho hàng gửi bán",
@@ -302,10 +296,8 @@
             // cbbKieuIn
             // 
             this.cbbKieuIn.BackColor = System.Drawing.SystemColors.Window;
-            this.cbbKieuIn.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cbbKieuIn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbKieuIn.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cbbKieuIn.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cbbKieuIn.FormattingEnabled = true;
             this.cbbKieuIn.Items.AddRange(new object[] {
             "0 - Tồn < 0",
@@ -320,10 +312,8 @@
             // cbbLoaiTonKho
             // 
             this.cbbLoaiTonKho.BackColor = System.Drawing.SystemColors.Window;
-            this.cbbLoaiTonKho.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cbbLoaiTonKho.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbLoaiTonKho.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cbbLoaiTonKho.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cbbLoaiTonKho.FormattingEnabled = true;
             this.cbbLoaiTonKho.Items.AddRange(new object[] {
             "0 - Không",

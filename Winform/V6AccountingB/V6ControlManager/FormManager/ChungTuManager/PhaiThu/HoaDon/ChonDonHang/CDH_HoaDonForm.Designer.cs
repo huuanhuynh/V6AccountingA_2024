@@ -970,11 +970,9 @@
             // v6ColorDateTimePick2
             // 
             this.v6ColorDateTimePick2.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorDateTimePick2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorDateTimePick2.CustomFormat = "dd/MM/yyyy";
             this.v6ColorDateTimePick2.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorDateTimePick2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorDateTimePick2.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.v6ColorDateTimePick2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.v6ColorDateTimePick2.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorDateTimePick2.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -996,11 +994,9 @@
             // v6ColorDateTimePick1
             // 
             this.v6ColorDateTimePick1.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorDateTimePick1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorDateTimePick1.CustomFormat = "dd/MM/yyyy";
             this.v6ColorDateTimePick1.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorDateTimePick1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorDateTimePick1.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.v6ColorDateTimePick1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.v6ColorDateTimePick1.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorDateTimePick1.ImeMode = System.Windows.Forms.ImeMode.On;

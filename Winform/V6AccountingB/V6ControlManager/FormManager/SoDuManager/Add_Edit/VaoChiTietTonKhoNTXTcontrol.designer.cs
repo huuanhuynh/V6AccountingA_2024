@@ -271,10 +271,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // dateNgayCt
             // 
             this.dateNgayCt.AccessibleName = "Ngay_ct";
-            this.dateNgayCt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgayCt.CustomFormat = "dd/MM/yyyy";
             this.dateNgayCt.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgayCt.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgayCt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgayCt.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayCt.ImeMode = System.Windows.Forms.ImeMode.On;

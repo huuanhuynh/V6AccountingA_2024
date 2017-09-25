@@ -88,11 +88,9 @@
             // 
             this.comboBox1.AccessibleName = "kieu_post";
             this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.comboBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "TCVN3 (ABC)",
@@ -152,11 +150,9 @@
             // 
             this.comboBox2.AccessibleName = "kieu_post";
             this.comboBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.comboBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "UNICODE"});

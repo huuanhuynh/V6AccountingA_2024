@@ -89,26 +89,26 @@ namespace V6Controls
             }
         }
 
-        protected override void WndProc(ref Message m)
-        {
-            if (m.Msg == WmReflect + WmNotify)
-            {
-                var hdr = (NmHdr)m.GetLParam(typeof(NmHdr));
-                if (hdr.Code == -759) //date chosen (by keyboard)
-                {
-                    _selectionComplete = true;
-                }
-            }
-            switch (m.Msg)
-            {
-                case WM_ENABLE:
-                    // Prevent the message from reaching the control,
-                    // so the colors don't get changed by the default procedure.
-                    return; // <-- suppress WM_ENABLE message
-            }
+        //protected override void WndProc(ref Message m)
+        //{
+        //    if (m.Msg == WmReflect + WmNotify)
+        //    {
+        //        var hdr = (NmHdr)m.GetLParam(typeof(NmHdr));
+        //        if (hdr.Code == -759) //date chosen (by keyboard)
+        //        {
+        //            _selectionComplete = true;
+        //        }
+        //    }
+        //    switch (m.Msg)
+        //    {
+        //        case WM_ENABLE:
+        //            // Prevent the message from reaching the control,
+        //            // so the colors don't get changed by the default procedure.
+        //            return; // <-- suppress WM_ENABLE message
+        //    }
 
-            base.WndProc(ref m);
-        }
+        //    base.WndProc(ref m);
+        //}
 
         public event ControlEventHandle V6LostFocus;
         public event ControlEventHandle V6LostFocusNoChange;
@@ -257,110 +257,29 @@ namespace V6Controls
 
         private const int WM_ENABLE = 0xa;
         
-        protected override void OnForeColorChanged(System.EventArgs e)
-        {
-            base.OnForeColorChanged(e);
-
-            // If the color is being set from OUTSIDE our control,
-            // then save the current ForeColor and set the specified color
-            if (!_SettingColors)
-            {
-                _ForeColorBackup = this.ForeColor;
-                SetColors();
-            }
-        }
-
-        protected override void OnBackColorChanged(System.EventArgs e)
-        {
-            base.OnBackColorChanged(e);
-
-            // If the color is being set from OUTSIDE our control,
-            // then save the current BackColor and set the specified color
-            if (!_SettingColors)
-            {
-                _BackColorBackup = this.BackColor;
-                SetColors();
-            }
-        }
-
-        private void SetColors()
-        {
-            // Don't change colors until the original ones have been saved,
-            // since we would lose what the original Enabled colors are supposed to be
-            if (_ColorsSaved)
-            {
-                _SettingColors = true;
-                if (this.Enabled)
-                {
-                    this.ForeColor = this._ForeColorBackup;
-                    this.BackColor = this._BackColorBackup;
-                }
-                else
-                {
-                    this.ForeColor = this.ForeColorDisabled;
-                    this.BackColor = this.BackColorDisabled;
-                }
-                _SettingColors = false;
-            }
-        }
-
-        protected override void OnEnabledChanged(System.EventArgs e)
-        {
-            base.OnEnabledChanged(e);
-
-            SetColors();
-            // change colors whenever the Enabled() state changes
-        }
-
-        public System.Drawing.Color BackColorDisabled
-        {
-            get { return _BackColorDisabled; }
-            set
-            {
-                if (!value.Equals(Color.Empty))
-                {
-                    _BackColorDisabled = value;
-                }
-                SetColors();
-            }
-        }
-
-        public System.Drawing.Color ForeColorDisabled
-        {
-            get { return _ForeColorDisabled; }
-            set
-            {
-                if (!value.Equals(Color.Empty))
-                {
-                    _ForeColorDisabled = value;
-                }
-                SetColors();
-            }
-        }
-
-        protected override System.Windows.Forms.CreateParams CreateParams
-        {
-            get
-            {
-                System.Windows.Forms.CreateParams cp = null;
-                // If the window starts out in a disabled state...
-                if (!this.Enabled)
-                {
-                    // Prevent window being initialized in a disabled state:
-                    this.Enabled = true;
-                    // temporary ENABLED state
-                    cp = base.CreateParams;
-                    // create window in ENABLED state
-                    this.Enabled = false;
-                    // toggle it back to DISABLED state 
-                }
-                else
-                {
-                    cp = base.CreateParams;
-                }
-                return cp;
-            }
-        }
+        //protected override System.Windows.Forms.CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        System.Windows.Forms.CreateParams cp = null;
+        //        // If the window starts out in a disabled state...
+        //        if (!this.Enabled)
+        //        {
+        //            // Prevent window being initialized in a disabled state:
+        //            this.Enabled = true;
+        //            // temporary ENABLED state
+        //            cp = base.CreateParams;
+        //            // create window in ENABLED state
+        //            this.Enabled = false;
+        //            // toggle it back to DISABLED state 
+        //        }
+        //        else
+        //        {
+        //            cp = base.CreateParams;
+        //        }
+        //        return cp;
+        //    }
+        //}
 
         /// <summary>
         /// Cờ readonly

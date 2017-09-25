@@ -55,11 +55,9 @@
             // 
             this.cboLoaiReport.AccessibleName = "";
             this.cboLoaiReport.BackColor = System.Drawing.SystemColors.Window;
-            this.cboLoaiReport.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboLoaiReport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLoaiReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLoaiReport.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboLoaiReport.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboLoaiReport.FormattingEnabled = true;
             this.cboLoaiReport.Location = new System.Drawing.Point(102, 12);
             this.cboLoaiReport.Name = "cboLoaiReport";
@@ -71,11 +69,9 @@
             // 
             this.cboLoaiBieuDo.AccessibleName = "";
             this.cboLoaiBieuDo.BackColor = System.Drawing.SystemColors.Window;
-            this.cboLoaiBieuDo.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboLoaiBieuDo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLoaiBieuDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLoaiBieuDo.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboLoaiBieuDo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboLoaiBieuDo.FormattingEnabled = true;
             this.cboLoaiBieuDo.Location = new System.Drawing.Point(468, 12);
             this.cboLoaiBieuDo.Name = "cboLoaiBieuDo";

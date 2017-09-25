@@ -116,11 +116,9 @@
             // dateNgay_ct2
             // 
             this.dateNgay_ct2.BackColor = System.Drawing.SystemColors.Window;
-            this.dateNgay_ct2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgay_ct2.CustomFormat = "dd/MM/yyyy";
             this.dateNgay_ct2.EnterColor = System.Drawing.Color.PaleGreen;
             this.dateNgay_ct2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dateNgay_ct2.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgay_ct2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgay_ct2.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct2.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -133,11 +131,9 @@
             // dateNgay_ct1
             // 
             this.dateNgay_ct1.BackColor = System.Drawing.SystemColors.Window;
-            this.dateNgay_ct1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgay_ct1.CustomFormat = "dd/MM/yyyy";
             this.dateNgay_ct1.EnterColor = System.Drawing.Color.PaleGreen;
             this.dateNgay_ct1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dateNgay_ct1.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgay_ct1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgay_ct1.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct1.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -334,11 +330,9 @@
             // 
             this.cboLevel.AccessibleName = "ma_level";
             this.cboLevel.BackColor = System.Drawing.SystemColors.Window;
-            this.cboLevel.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLevel.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboLevel.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboLevel.FormattingEnabled = true;
             this.cboLevel.Items.AddRange(new object[] {
             "0 - Chưa cập nhập",
@@ -348,7 +342,6 @@
             this.cboLevel.Name = "cboLevel";
             this.cboLevel.Size = new System.Drawing.Size(230, 21);
             this.cboLevel.TabIndex = 8;
-            this.cboLevel.SelectedIndexChanged += new System.EventHandler(this.cboLevel_SelectedIndexChanged);
             // 
             // v6Label2
             // 
@@ -487,11 +480,9 @@
             // 
             this.cboLevel1.AccessibleName = "ma_level1";
             this.cboLevel1.BackColor = System.Drawing.SystemColors.Window;
-            this.cboLevel1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboLevel1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLevel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLevel1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboLevel1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboLevel1.FormattingEnabled = true;
             this.cboLevel1.Items.AddRange(new object[] {
             "0 - Chưa cập nhập",

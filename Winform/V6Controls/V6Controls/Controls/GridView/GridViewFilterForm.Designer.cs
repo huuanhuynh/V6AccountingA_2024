@@ -46,10 +46,8 @@
             // comboBox1
             // 
             this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.comboBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "=",
@@ -166,10 +164,8 @@
             // 
             // dateValue
             // 
-            this.dateValue.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateValue.CustomFormat = "dd/MM/yyyy";
             this.dateValue.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateValue.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateValue.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateValue.HoverColor = System.Drawing.Color.Yellow;
             this.dateValue.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -183,10 +179,8 @@
             // 
             // dateValue2
             // 
-            this.dateValue2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateValue2.CustomFormat = "dd/MM/yyyy";
             this.dateValue2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateValue2.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateValue2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateValue2.HoverColor = System.Drawing.Color.Yellow;
             this.dateValue2.ImeMode = System.Windows.Forms.ImeMode.On;

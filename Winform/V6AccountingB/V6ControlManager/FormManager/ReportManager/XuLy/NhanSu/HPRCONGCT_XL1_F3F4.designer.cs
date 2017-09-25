@@ -206,12 +206,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             // 
             this.dateNgay.AccessibleName = "NGAY";
             this.dateNgay.BackColor = System.Drawing.SystemColors.Window;
-            this.dateNgay.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgay.CustomFormat = "dd/MM/yyyy";
             this.dateNgay.Enabled = false;
             this.dateNgay.EnterColor = System.Drawing.Color.PaleGreen;
             this.dateNgay.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dateNgay.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgay.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay.ImeMode = System.Windows.Forms.ImeMode.On;

@@ -120,11 +120,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // dateDenNgay
             // 
             this.dateDenNgay.BackColor = System.Drawing.SystemColors.Window;
-            this.dateDenNgay.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateDenNgay.CustomFormat = "dd/MM/yyyy";
             this.dateDenNgay.EnterColor = System.Drawing.Color.PaleGreen;
             this.dateDenNgay.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dateDenNgay.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateDenNgay.HoverColor = System.Drawing.Color.Yellow;
             this.dateDenNgay.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -147,11 +145,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // dateTuNgay
             // 
             this.dateTuNgay.BackColor = System.Drawing.SystemColors.Window;
-            this.dateTuNgay.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateTuNgay.CustomFormat = "dd/MM/yyyy";
             this.dateTuNgay.EnterColor = System.Drawing.Color.PaleGreen;
             this.dateTuNgay.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dateTuNgay.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTuNgay.HoverColor = System.Drawing.Color.Yellow;
             this.dateTuNgay.ImeMode = System.Windows.Forms.ImeMode.On;

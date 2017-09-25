@@ -523,10 +523,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // dateNgayHL
             // 
             this.dateNgayHL.AccessibleName = "ngay_hl";
-            this.dateNgayHL.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgayHL.CustomFormat = "dd/MM/yyyy";
             this.dateNgayHL.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgayHL.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgayHL.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgayHL.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayHL.ImeMode = System.Windows.Forms.ImeMode.On;

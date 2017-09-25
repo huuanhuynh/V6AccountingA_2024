@@ -852,10 +852,8 @@
             // 
             this.cboKieuPost.AccessibleName = "";
             this.cboKieuPost.BackColor = System.Drawing.SystemColors.Window;
-            this.cboKieuPost.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboKieuPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboKieuPost.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboKieuPost.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboKieuPost.FormattingEnabled = true;
             this.cboKieuPost.Items.AddRange(new object[] {
             "0 - Chưa cập nhập",

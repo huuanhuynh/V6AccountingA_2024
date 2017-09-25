@@ -2522,7 +2522,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         {
                             // Tuanmh 16/02/2016 Check level
                             var row = AM.Rows[CurrentIndex];
-                            if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), row["Xtag"].ToString()))
+                            if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
                             {
                                 //Tuanmh 24/07/2016 Check Debit Amount
                                 DataTable DataCheck_Edit_All = Invoice.GetCheck_Edit_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
@@ -2605,7 +2605,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     {
                         var row = AM.Rows[CurrentIndex];
                         // Tuanmh 16/02/2016 Check level
-                        if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), row["Xtag"].ToString()))
+                        if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
                         {
                             //Tuanmh 24/07/2016 Check Debit Amount
                             DataTable DataCheck_Edit_All = Invoice.GetCheck_Edit_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),

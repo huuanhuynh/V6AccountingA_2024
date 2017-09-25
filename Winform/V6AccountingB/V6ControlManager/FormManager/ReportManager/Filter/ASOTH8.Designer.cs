@@ -405,10 +405,8 @@
             // 
             // dateNgay_ct0
             // 
-            this.dateNgay_ct0.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgay_ct0.CustomFormat = "dd/MM/yyyy";
             this.dateNgay_ct0.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgay_ct0.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgay_ct0.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgay_ct0.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct0.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -510,10 +508,8 @@
             // cbbLoaiBaoCao
             // 
             this.cbbLoaiBaoCao.BackColor = System.Drawing.SystemColors.Window;
-            this.cbbLoaiBaoCao.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cbbLoaiBaoCao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbLoaiBaoCao.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cbbLoaiBaoCao.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cbbLoaiBaoCao.FormattingEnabled = true;
             this.cbbLoaiBaoCao.Items.AddRange(new object[] {
             "Số lượng\t",

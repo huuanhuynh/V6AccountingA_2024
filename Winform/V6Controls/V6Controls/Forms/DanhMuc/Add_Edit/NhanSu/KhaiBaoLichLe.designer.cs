@@ -95,10 +95,8 @@
             // txtNgay
             // 
             this.txtNgay.AccessibleName = "ngay";
-            this.txtNgay.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNgay.CustomFormat = "dd/MM/yyyy";
             this.txtNgay.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNgay.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.txtNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.txtNgay.HoverColor = System.Drawing.Color.Yellow;
             this.txtNgay.ImeMode = System.Windows.Forms.ImeMode.On;

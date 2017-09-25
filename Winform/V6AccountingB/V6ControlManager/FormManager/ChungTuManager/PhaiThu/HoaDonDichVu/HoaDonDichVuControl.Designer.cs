@@ -1395,10 +1395,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             // 
             this.cboKieuPost.AccessibleName = "kieu_post";
             this.cboKieuPost.BackColor = System.Drawing.SystemColors.Window;
-            this.cboKieuPost.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboKieuPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboKieuPost.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboKieuPost.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboKieuPost.FormattingEnabled = true;
             this.cboKieuPost.Items.AddRange(new object[] {
             "0 - Chưa cập nhập",
@@ -1671,10 +1669,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.cboMaNt.AccessibleName = "ma_nt";
             this.cboMaNt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboMaNt.BackColor = System.Drawing.SystemColors.Window;
-            this.cboMaNt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboMaNt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMaNt.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboMaNt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboMaNt.FormattingEnabled = true;
             this.cboMaNt.Items.AddRange(new object[] {
             "0 - Chưa cập nhập",
@@ -2099,10 +2095,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             // dateNgayLCT
             // 
             this.dateNgayLCT.AccessibleName = "ngay_lct";
-            this.dateNgayLCT.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgayLCT.CustomFormat = "dd/MM/yyyy";
             this.dateNgayLCT.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgayLCT.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgayLCT.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgayLCT.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayLCT.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -2115,10 +2109,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             // dateNgayCT
             // 
             this.dateNgayCT.AccessibleName = "ngay_ct";
-            this.dateNgayCT.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgayCT.CustomFormat = "dd/MM/yyyy";
             this.dateNgayCT.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgayCT.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgayCT.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgayCT.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayCT.ImeMode = System.Windows.Forms.ImeMode.On;

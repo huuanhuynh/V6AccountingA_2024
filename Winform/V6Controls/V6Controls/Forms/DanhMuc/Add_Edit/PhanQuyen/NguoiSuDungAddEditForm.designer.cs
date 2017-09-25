@@ -135,11 +135,9 @@
             // 
             this.cboInherit.AccessibleName = "Inherit_id";
             this.cboInherit.BackColor = System.Drawing.SystemColors.Window;
-            this.cboInherit.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboInherit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboInherit.DropDownWidth = 250;
             this.cboInherit.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboInherit.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboInherit.FormattingEnabled = true;
             this.cboInherit.Location = new System.Drawing.Point(212, 142);
             this.cboInherit.Name = "cboInherit";
@@ -199,11 +197,9 @@
             // 
             this.cboLevel.AccessibleName = "Level";
             this.cboLevel.BackColor = System.Drawing.SystemColors.Window;
-            this.cboLevel.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLevel.DropDownWidth = 250;
             this.cboLevel.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboLevel.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboLevel.FormattingEnabled = true;
             this.cboLevel.Location = new System.Drawing.Point(212, 191);
             this.cboLevel.Name = "cboLevel";

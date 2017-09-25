@@ -163,10 +163,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             // 
             this.cboMaubc.AccessibleName = "maubc";
             this.cboMaubc.BackColor = System.Drawing.SystemColors.Window;
-            this.cboMaubc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.cboMaubc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMaubc.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboMaubc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.cboMaubc.FormattingEnabled = true;
             this.cboMaubc.Location = new System.Drawing.Point(52, 69);
             this.cboMaubc.Name = "cboMaubc";
@@ -199,10 +197,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             // 
             // dateNgay_ct
             // 
-            this.dateNgay_ct.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgay_ct.CustomFormat = "dd/MM/yyyy";
             this.dateNgay_ct.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgay_ct.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgay_ct.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgay_ct.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -214,10 +210,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             // 
             // dateNgay_ct1
             // 
-            this.dateNgay_ct1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgay_ct1.CustomFormat = "dd/MM/yyyy";
             this.dateNgay_ct1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgay_ct1.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.dateNgay_ct1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgay_ct1.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct1.ImeMode = System.Windows.Forms.ImeMode.On;

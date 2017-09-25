@@ -406,11 +406,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // 
             this.txtngay_ct.AccessibleName = "ngay_ct";
             this.txtngay_ct.BackColor = System.Drawing.SystemColors.Window;
-            this.txtngay_ct.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtngay_ct.CustomFormat = "dd/MM/yyyy";
             this.txtngay_ct.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtngay_ct.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtngay_ct.ForeColorDisabled = System.Drawing.Color.DarkGray;
             this.txtngay_ct.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.txtngay_ct.HoverColor = System.Drawing.Color.Yellow;
             this.txtngay_ct.ImeMode = System.Windows.Forms.ImeMode.On;
