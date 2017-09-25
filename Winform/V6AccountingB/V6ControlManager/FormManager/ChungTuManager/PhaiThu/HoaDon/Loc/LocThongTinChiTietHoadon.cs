@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using V6Controls.Forms;
+using V6Init;
 using V6SqlConnect;
 using V6Structs;
 
@@ -31,8 +32,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             {
                 result += (result.Length > 0 ? and_or : "") + rAdvance;
             }
-            
-            return result;
+
+           return result;
         }
 
         public void CreateDynamicFilter2(V6TableStruct adStruct, string advAD)

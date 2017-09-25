@@ -79,20 +79,15 @@ namespace V6Init
             var o = SqlConnect.ExecuteScalar(CommandType.Text, "Select TOP 1 MA_KHO FROM ALKHO WHERE "
                 + " (dbo.VFA_Inlist_MEMO(ma_kho, '" + V6Login.UserInfo["r_kho"] + "')=1 or 1="
                 + (V6Login.IsAdmin?1:0)+")"
-            + " AND LOAI_KHO='1'");
+            + " AND LOAI_KHO='1'"
+            + " AND MA_DVCS='" + V6Login.Madvcs + "'");
 
-            if (o != null)
-            {
-                M_Ma_kho_default = o.ToString().Trim();
-            }
-            else
-            {
-                M_Ma_kho_default = "";
-            }
+            M_Ma_kho_default = (o??"").ToString().Trim();
 
+            M_Ma_kho = M_Ma_kho_default;
         }
 
-        public static string M_Ma_kho_default { get; set; }
+        public static string M_Ma_kho_default { get; private set; }
 
         public static bool IsDesignTime
         {

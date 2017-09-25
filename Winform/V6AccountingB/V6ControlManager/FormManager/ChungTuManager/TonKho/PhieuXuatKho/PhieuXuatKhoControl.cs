@@ -567,6 +567,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
             if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
+            if (!_maVt.VITRI_YN) return;
+
             try
             {
                 Invoice.GetAlVitriTon(dateNgayCT.Value, _sttRec, _maVt.Text, _maKhoI.Text);

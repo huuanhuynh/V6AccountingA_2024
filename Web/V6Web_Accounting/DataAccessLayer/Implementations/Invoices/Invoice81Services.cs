@@ -438,7 +438,7 @@ namespace DataAccessLayer.Implementations.Invoices
                 if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
                 if (where4Dvcs.Length > 0) where4Dvcs
                     = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
-
+                
                 p2Template = string.Format(p2Template, "", "", where2AD, where3NhVt, where4Dvcs);
             }
             else

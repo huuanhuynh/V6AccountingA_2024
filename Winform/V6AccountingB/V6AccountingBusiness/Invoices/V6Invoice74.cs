@@ -149,7 +149,13 @@ namespace V6AccountingBusiness.Invoices
 
         public DataTable SearchAM(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
         {
-            where4Dvcs = "";//khong dung
+            //where4Dvcs = "";//khong dung
+            var filterKho = V6Login.GetFilterKho("MA_KHO");
+            if (!string.IsNullOrEmpty(filterKho))
+            {
+                where4Dvcs += (string.IsNullOrEmpty(where4Dvcs) ? "" : " and ") + filterKho;
+            }
+
             string template =
                 "Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien"
                 + "\nFROM "+AM+" a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien"
@@ -162,10 +168,12 @@ namespace V6AccountingBusiness.Invoices
                 "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {2}"
                 + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
                 + "\n		{4})";
-            if (where2AD.Length > 0 || where3NhVt.Length > 0)// || where4Dvcs.Length > 0)
+            if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
             {
                 if (where2AD.Length > 0) where2AD = "And " + where2AD;
                 if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
+                if (where4Dvcs.Length > 0) where4Dvcs
+                    = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
                 
                 p2Template = string.Format(p2Template,"","", where2AD, where3NhVt, where4Dvcs);
             }

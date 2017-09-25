@@ -46,6 +46,11 @@ namespace V6AccountingBusiness.Invoices
 
         public DataTable SearchAM(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
         {
+            var filterKho = V6Login.GetFilterKho("MA_KHO");
+            if (!string.IsNullOrEmpty(filterKho))
+            {
+                where4Dvcs += (string.IsNullOrEmpty(where4Dvcs) ? "" : " and ") + filterKho;
+            }
             return Service83.SearchAM(AM, AD, Mact, where0Ngay, where1AM, where2AD, where3NhVt, where4Dvcs);
         }
 
