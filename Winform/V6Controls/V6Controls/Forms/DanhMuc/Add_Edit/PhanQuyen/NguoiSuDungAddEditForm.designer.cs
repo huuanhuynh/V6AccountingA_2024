@@ -43,6 +43,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtPassDate = new V6Controls.V6DateTimeColor();
             this.v6chk_set_vattu_ketoan_banhang = new V6Controls.V6CheckBox();
             this.txtR_sonb = new System.Windows.Forms.RichTextBox();
             this.txtRightKho = new System.Windows.Forms.RichTextBox();
@@ -73,7 +75,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtPassDate = new V6Controls.V6DateTimeColor();
+            this.chkPass_Exp = new V6Controls.V6CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -282,6 +284,8 @@
             this.groupBox1.AccessibleName = "groupBox1";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.chkPass_Exp);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtPassDate);
             this.groupBox1.Controls.Add(this.v6chk_set_vattu_ketoan_banhang);
             this.groupBox1.Controls.Add(this.txtR_sonb);
@@ -320,6 +324,41 @@
             this.groupBox1.Size = new System.Drawing.Size(755, 236);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // label9
+            // 
+            this.label9.AccessibleDescription = "";
+            this.label9.AutoSize = true;
+            this.label9.Enabled = false;
+            this.label9.Location = new System.Drawing.Point(504, 76);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(98, 17);
+            this.label9.TabIndex = 34;
+            this.label9.Text = "Ngày đổi pass";
+            // 
+            // txtPassDate
+            // 
+            this.txtPassDate.AccessibleName = "PASS_DATE";
+            this.txtPassDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtPassDate.BackColor = System.Drawing.Color.White;
+            this.txtPassDate.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtPassDate.Enabled = false;
+            this.txtPassDate.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtPassDate.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPassDate.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtPassDate.GrayText = null;
+            this.txtPassDate.HoverColor = System.Drawing.Color.Yellow;
+            this.txtPassDate.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtPassDate.LeaveColor = System.Drawing.Color.White;
+            this.txtPassDate.Location = new System.Drawing.Point(621, 71);
+            this.txtPassDate.Margin = new System.Windows.Forms.Padding(5);
+            this.txtPassDate.Name = "txtPassDate";
+            this.txtPassDate.Size = new System.Drawing.Size(109, 23);
+            this.txtPassDate.StringValue = "__/__/____";
+            this.txtPassDate.TabIndex = 5;
+            this.txtPassDate.Text = "__/__/____";
             // 
             // v6chk_set_vattu_ketoan_banhang
             // 
@@ -542,7 +581,7 @@
             this.TxtComment.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtComment.HoverColor = System.Drawing.Color.Yellow;
             this.TxtComment.LeaveColor = System.Drawing.Color.White;
-            this.TxtComment.Location = new System.Drawing.Point(225, 45);
+            this.TxtComment.Location = new System.Drawing.Point(153, 45);
             this.TxtComment.Margin = new System.Windows.Forms.Padding(4);
             this.TxtComment.Name = "TxtComment";
             this.TxtComment.Size = new System.Drawing.Size(321, 23);
@@ -572,7 +611,7 @@
             this.TxtPassword2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtPassword2.HoverColor = System.Drawing.Color.Yellow;
             this.TxtPassword2.LeaveColor = System.Drawing.Color.White;
-            this.TxtPassword2.Location = new System.Drawing.Point(225, 97);
+            this.TxtPassword2.Location = new System.Drawing.Point(153, 97);
             this.TxtPassword2.Margin = new System.Windows.Forms.Padding(4);
             this.TxtPassword2.Name = "TxtPassword2";
             this.TxtPassword2.PasswordChar = '*';
@@ -592,7 +631,7 @@
             this.TxtPassword1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtPassword1.HoverColor = System.Drawing.Color.Yellow;
             this.TxtPassword1.LeaveColor = System.Drawing.Color.White;
-            this.TxtPassword1.Location = new System.Drawing.Point(225, 71);
+            this.TxtPassword1.Location = new System.Drawing.Point(153, 71);
             this.TxtPassword1.Margin = new System.Windows.Forms.Padding(4);
             this.TxtPassword1.Name = "TxtPassword1";
             this.TxtPassword1.PasswordChar = '*';
@@ -633,7 +672,7 @@
             this.TxtUser_name.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtUser_name.HoverColor = System.Drawing.Color.Yellow;
             this.TxtUser_name.LeaveColor = System.Drawing.Color.White;
-            this.TxtUser_name.Location = new System.Drawing.Point(225, 17);
+            this.TxtUser_name.Location = new System.Drawing.Point(153, 17);
             this.TxtUser_name.Margin = new System.Windows.Forms.Padding(4);
             this.TxtUser_name.Name = "TxtUser_name";
             this.TxtUser_name.Size = new System.Drawing.Size(321, 23);
@@ -644,7 +683,7 @@
             this.label8.AccessibleDescription = "";
             this.label8.AutoSize = true;
             this.label8.Enabled = false;
-            this.label8.Location = new System.Drawing.Point(548, 48);
+            this.label8.Location = new System.Drawing.Point(504, 48);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(71, 17);
@@ -681,7 +720,7 @@
             this.label4.AccessibleDescription = "";
             this.label4.AutoSize = true;
             this.label4.Enabled = false;
-            this.label4.Location = new System.Drawing.Point(557, 20);
+            this.label4.Location = new System.Drawing.Point(503, 20);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 17);
@@ -721,28 +760,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên người sử dụng";
             // 
-            // txtPassDate
+            // chkPass_Exp
             // 
-            this.txtPassDate.AccessibleName = "PASS_DATE";
-            this.txtPassDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtPassDate.BackColor = System.Drawing.Color.White;
-            this.txtPassDate.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtPassDate.Enabled = false;
-            this.txtPassDate.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtPassDate.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtPassDate.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtPassDate.GrayText = null;
-            this.txtPassDate.HoverColor = System.Drawing.Color.Yellow;
-            this.txtPassDate.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtPassDate.LeaveColor = System.Drawing.Color.White;
-            this.txtPassDate.Location = new System.Drawing.Point(594, 71);
-            this.txtPassDate.Margin = new System.Windows.Forms.Padding(5);
-            this.txtPassDate.Name = "txtPassDate";
-            this.txtPassDate.Size = new System.Drawing.Size(135, 23);
-            this.txtPassDate.StringValue = "__/__/____";
-            this.txtPassDate.TabIndex = 5;
-            this.txtPassDate.Text = "__/__/____";
+            this.chkPass_Exp.AccessibleName = "Pass_Exp";
+            this.chkPass_Exp.AutoSize = true;
+            this.chkPass_Exp.Location = new System.Drawing.Point(440, 147);
+            this.chkPass_Exp.Name = "chkPass_Exp";
+            this.chkPass_Exp.Size = new System.Drawing.Size(170, 21);
+            this.chkPass_Exp.TabIndex = 35;
+            this.chkPass_Exp.Text = "Thay đổi pass hàng kỳ";
+            this.chkPass_Exp.UseVisualStyleBackColor = true;
             // 
             // NguoiSuDungAddEditForm
             // 
@@ -812,5 +839,7 @@
         private V6CheckBox v6chk_set_vattu_ketoan_banhang;
         private V6ColorTextBox txtInherit_type;
         private V6DateTimeColor txtPassDate;
+        private System.Windows.Forms.Label label9;
+        private V6CheckBox chkPass_Exp;
     }
 }

@@ -3865,7 +3865,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     {
                            // Tuanmh 16/02/2016 Check level
                          var row = AM.Rows[CurrentIndex];
-                        if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"])))
+                         if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), row["Xtag"].ToString()))
                         {
                             //Tuanmh 24/07/2016 Check Debit Amount
                              DataTable DataCheck_Edit_All = Invoice.GetCheck_Edit_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
@@ -3947,9 +3947,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 if(IsViewingAnInvoice)
                 if (V6Login.UserRight.AllowDelete("", Invoice.CodeMact))
                 {
-                     var row = AM.Rows[CurrentIndex];
-                        // Tuanmh 16/02/2016 Check level
-                    if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"])))
+                    var row = AM.Rows[CurrentIndex];
+                    // Tuanmh 16/02/2016 Check level
+                    if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), row["Xtag"].ToString()))
                     {
                         //Tuanmh 24/07/2016 Check Debit Amount
                         DataTable DataCheck_Edit_All = Invoice.GetCheck_Edit_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
@@ -3999,7 +3999,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         if (check_delete == true)
                         {
                             DoDeleteThread();
-                         }
+                        }
                     }
                     else
                     {

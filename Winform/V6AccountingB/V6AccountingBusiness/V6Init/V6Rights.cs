@@ -59,15 +59,27 @@ namespace V6Init
         {
             return true;
         }
-        public static bool CheckLevel(string Level1, int User_id2)
+
+        public static bool CheckLevel(string Level1, int User_id2, string Xtag)
         {
             // - Tuanmh 16/02/2016 Check level Level1 < Level2 
             if (IsAdmin) return true;
 
-            string Level2 = (string)(SqlConnect.ExecuteScalar(CommandType.Text, "Select Level from V6user  where user_id=" + Convert.ToString(User_id2)));
+            string Level2 =
+                (string)
+                    (SqlConnect.ExecuteScalar(CommandType.Text,
+                        "Select Level from V6user  where user_id=" + Convert.ToString(User_id2)));
             if (Level2 == null) return true;
             if (Level2.Trim() == "") Level2 = "0";
-            return Convert.ToInt32(Level1.Trim()) <= Convert.ToInt32(Level2.Trim());
+            if (Xtag == null) Xtag = "5";
+            // - Tuanmh 25/09/2017 Check level Level1 < Xtag (Khoa chunng tu)
+            bool level_return = true;
+            level_return = Convert.ToInt32(Level1.Trim()) <= Convert.ToInt32(Level2.Trim());
+            if (level_return)
+            {
+                level_return = Convert.ToInt32(Level1.Trim()) <= Convert.ToInt32(Xtag.Trim());
+            }
+            return level_return;
         }
 
         public bool AllowDelete(string itemid, string code)

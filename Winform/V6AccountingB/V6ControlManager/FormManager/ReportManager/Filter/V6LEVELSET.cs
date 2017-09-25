@@ -32,10 +32,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             TxtMa_ct.Text = "SOA";
             //TxtMa_ct.Enabled = false;
 
+            //Get login user level
+            string loginLevel = V6Login.Level;
+
             cboLevel.ValueMember = "ma_level";
             cboLevel.DisplayMember = V6Setting.IsVietnamese ? "ten_level" : "ten_level2";
             cboLevel.DataSource = V6BusinessHelper.Select("AlLevel", "ma_level,ten_level,ten_level2",
-                                    "", "", "ma_level").Data;
+                                    " RIGHT(ma_level,1)>='" + loginLevel.Trim().Right(1) + "'", "", "ma_level").Data;
             cboLevel.ValueMember = "ma_level";
             cboLevel.DisplayMember = V6Setting.IsVietnamese ? "ten_level" : "ten_level2";
 
@@ -43,15 +46,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             cboLevel1.ValueMember = "ma_level1";
             cboLevel1.DisplayMember = V6Setting.IsVietnamese ? "ten_level" : "ten_level2";
             cboLevel1.DataSource = V6BusinessHelper.Select("AlLevel", "ma_level as ma_level1,ten_level,ten_level2",
-                                    "", "", "ma_level1").Data;
+                                    " RIGHT(ma_level,1)>='" + loginLevel.Trim().Right(1)+"'", "", "ma_level1").Data;
             cboLevel1.ValueMember = "ma_level1";
             cboLevel1.DisplayMember = V6Setting.IsVietnamese ? "ten_level" : "ten_level2";
             
-
-            //Get login user level
-            var loginLevel = V6Login.Level;
+            
             cboLevel.SelectedValue = loginLevel;
-            cboLevel1.SelectedValue = "05";
+            cboLevel1.SelectedValue = loginLevel;
+
+            cboLevel.Enabled = false;
 
             Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
@@ -129,29 +132,36 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     cKey = cKey + " and ( Kieu_post='5')";
                     break;
             }
-            switch (cboLevel1.SelectedValue.ToString().Trim())
-            {
-                case "01":
-                    cKey = cKey + " and ( Xtag='1')";
-                    break;
-                case "02":
-                    cKey = cKey + " and ( Xtag='2')";
-                    break;
-                case "03":
-                    cKey = cKey + " and ( Xtag='3')";
-                    break;
-                case "04":
-                    cKey = cKey + " and ( Xtag='4')";
-                    break;
-                case "05":
-                    cKey = cKey + " and ( ISNULL(Xtag,'')='')";
-                    break;
-            }
 
             if (chkKhoaPhieu.Checked)
             {
+
                 cKey = cKey + " and ( ISNULL(Xtag,'')<>'')";
-          }
+                switch (cboLevel1.SelectedValue.ToString().Trim())
+                {
+                    case "01":
+                        cKey = cKey + " and ( Xtag='1')";
+                        break;
+                    case "02":
+                        cKey = cKey + " and ( Xtag='2')";
+                        break;
+                    case "03":
+                        cKey = cKey + " and ( Xtag='3')";
+                        break;
+                    case "04":
+                        cKey = cKey + " and ( Xtag='4')";
+                        break;
+                    case "05":
+                        cKey = cKey + " and ( ISNULL(Xtag,'')='')";
+                        break;
+                }
+
+            }
+            else
+            {
+                cKey = cKey + " and ( ISNULL(Xtag,'')='')";
+            }
+
 
 
             // Tu so den so
@@ -212,6 +222,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         private void chkLike_CheckedChanged(object sender, System.EventArgs e)
         {
             ctDenSo.Enabled = !chkLike.Checked;
+        }
+
+        private void cboLevel_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            cboLevel.Enabled = false;
         }
 
         

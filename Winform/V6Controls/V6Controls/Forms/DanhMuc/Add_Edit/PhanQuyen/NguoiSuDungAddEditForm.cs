@@ -89,6 +89,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                     txtInherit_type.Enabled = enable;
 
                     chkInherit_ch.Enabled = enable;
+                    chkPass_Exp.Enabled = enable;
                     chkIs_admin.Enabled = enable;
                     chkUser_acc.Enabled = enable;
                     chkUser_inv.Enabled = enable;
@@ -183,9 +184,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             }
 
             var error = "";
-            if (TxtUser_name.Text.Trim() == "") error += "Chưa nhập tên người dùng!\n";
-            if (TxtComment.Text.Trim() == "") error += "Chưa nhập tên người dùng đầy đủ!\n";
-            if (TxtPassword1.Text != TxtPassword2.Text) error += "Kiểm tra lại mật khẩu!\n";
+            if (TxtUser_name.Text.Trim() == "") error +=V6Text.CheckInfor+"!\n";
+            if (TxtComment.Text.Trim() == "") error += V6Text.CheckInfor + "!\n";
+            if (TxtPassword1.Text != TxtPassword2.Text) error += V6Text.Wrong + "!\n";
 
             if (Mode == V6Mode.Edit)
             {
@@ -212,7 +213,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             {
                 using (PhanQuyen phanQuyen = new PhanQuyen(Mode)
                     {
-                        Text = "Phân quyền.",
+                        Text =V6Setting.Language=="V"?"Phân quyền.":"Set rights",
                         WindowState = FormWindowState.Maximized,
                         Vrights = txtRights.Text,
                         Vrights_Add = txtRightAdd.Text,
@@ -247,7 +248,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             {
                 using (PhanQuyenDvcs phanQuyenDvcs = new PhanQuyenDvcs(Mode)
                     {
-                        Text = "Phân quyền theo đơn vị cơ sở.",
+                        Text = V6Setting.Language=="V"?"Phân quyền theo đơn vị cơ sở.":"Set agent rights",
                         //WindowState = FormWindowState.Normal,
                         Vrights_dvcs = txtRightDvcs.Text
                     })
@@ -272,7 +273,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             {
                 using (PhanQuyenKho phanQuyenKho = new PhanQuyenKho(Mode)
                 {
-                    Text = "Phân quyền theo kho.",
+                    Text = V6Setting.Language=="V"?"Phân quyền theo kho.":"Set warehouse rights",
                     Vrights_kho = txtRightKho.Text,
                     Vrights_dvcs = txtRightDvcs.Text
                 })
@@ -324,7 +325,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             {
                 using (PhanQuyenSoNoiBo phnQuyenF = new PhanQuyenSoNoiBo(Mode)
                 {
-                    Text = "Phân quyền số nội bộ.",
+                    Text =V6Setting.Language=="V"?"Phân quyền số nội bộ.":"Set book number code",
                     Vrights_sonb = txtR_sonb.Text,
                     Vrights_dvcs = txtRightDvcs.Text
                 })

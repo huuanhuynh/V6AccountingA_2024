@@ -300,16 +300,23 @@ namespace V6AccountingB
 
                         //Check pass_date
                         int M_DAY_CHANGEPASS = int.Parse(V6Options.V6OptionValues["M_DAY_CHANGEPASS"]);
+                        
                         if (M_DAY_CHANGEPASS > 0)
                         {
                             DateTime? pass_date = (DateTime?) V6Login.UserInfo["PASS_DATE"];
-                            int passed = 0;
-                            if (pass_date != null) passed = (V6Setting.M_SV_DATE - pass_date).Value.Days;
-                            if (pass_date == null || passed >= M_DAY_CHANGEPASS)
+                            //Tuanmh 24/09/2017 pass_exp=1=Y 
+                            var  pass_exp =V6Login.UserInfo["PASS_EXP"].ToString().Trim();
+
+                            if (pass_exp=="1")
                             {
-                                if (new ChangePassword().ShowDialog(this) != DialogResult.OK)
+                                int passed = 0;
+                                if (pass_date != null) passed = (V6Setting.M_SV_DATE - pass_date).Value.Days;
+                                if (pass_date == null || passed >= M_DAY_CHANGEPASS)
                                 {
-                                    return;
+                                    if (new ChangePassword().ShowDialog(this) != DialogResult.OK)
+                                    {
+                                        return;
+                                    }
                                 }
                             }
                         }

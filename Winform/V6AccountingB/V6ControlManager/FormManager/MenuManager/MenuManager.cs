@@ -687,10 +687,12 @@ namespace V6ControlManager.FormManager.MenuManager
                         string path = Path.Combine(Application.StartupPath, "V6HELP\\V6HELP.chm");
                         Help.ShowHelp(owner, "File://" + path);
                     }
-                    else if (item_id == "D0000019" || item_id == "HM000026")
+                    else if (item_id == "DPASS386")
                     {
-                        // Thư giãn || Nhân sự
-                        c = new NhanSuView(item_id, "Nhân sự", "HLNS");
+                        //Tuanmh 23/09/2017 Change pass
+                        new ChangePassword().ShowDialog();
+                        
+
                     }
                     else if (item_id == "C0108028")
                     {

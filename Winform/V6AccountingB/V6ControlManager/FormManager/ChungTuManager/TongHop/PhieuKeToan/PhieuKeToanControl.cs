@@ -1694,9 +1694,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 {
                     if (Mode == V6Mode.View)
                     {
-                           // Tuanmh 16/02/2016 Check level
-                         var row = AM.Rows[CurrentIndex];
-                        if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"])))
+                        // Tuanmh 16/02/2016 Check level
+                        var row = AM.Rows[CurrentIndex];
+                        if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), row["Xtag"].ToString()))
                         {
                             Mode = V6Mode.Edit;
                             detail1.MODE = V6Mode.View;
@@ -1727,9 +1727,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 if(IsViewingAnInvoice)
                 if (V6Login.UserRight.AllowDelete("", Invoice.CodeMact))
                 {
-                     var row = AM.Rows[CurrentIndex];
-                        // Tuanmh 16/02/2016 Check level
-                    if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"])))
+                    var row = AM.Rows[CurrentIndex];
+                    // Tuanmh 16/02/2016 Check level
+                    if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), row["Xtag"].ToString()))
                     {
                         DoDeleteThread();
                     }

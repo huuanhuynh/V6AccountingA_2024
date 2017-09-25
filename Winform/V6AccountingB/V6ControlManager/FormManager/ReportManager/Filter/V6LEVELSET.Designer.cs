@@ -348,6 +348,7 @@
             this.cboLevel.Name = "cboLevel";
             this.cboLevel.Size = new System.Drawing.Size(230, 21);
             this.cboLevel.TabIndex = 8;
+            this.cboLevel.SelectedIndexChanged += new System.EventHandler(this.cboLevel_SelectedIndexChanged);
             // 
             // v6Label2
             // 

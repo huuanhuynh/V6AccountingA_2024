@@ -124,7 +124,7 @@ namespace V6Init
                 if (UserInfo.Table.Columns.Contains("password") &&
                     (UserInfo["password"].ToString().Trim() == ePass))
                 {
-                    Message = "Đăng nhập thành công.";
+                    Message = "Login Success.";
                     Madvcs = madvcs;
 
                     var dvcsDataTable = SqlConnect.Select("ALDVCS", "*", "MA_DVCS='" + madvcs + "'").Data;
@@ -148,13 +148,13 @@ namespace V6Init
                 }
                 else
                 {
-                    Message = "Không đúng Password.";
+                    Message = "Wrong Password.";
                     return false;
                 }
             }
             else
             {
-                Message = "Không đúng UserName.";
+                Message = "Wrong UserName.";
                 return false;
             }
         }

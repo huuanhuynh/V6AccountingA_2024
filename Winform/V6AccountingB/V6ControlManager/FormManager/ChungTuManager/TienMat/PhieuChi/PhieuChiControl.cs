@@ -3284,7 +3284,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         var row = AM.Rows[CurrentIndex];
 
                         // Tuanmh 16/02/2016 Check level
-                        if (V6Rights.CheckLevel(V6Login.Level,Convert.ToInt32(row["User_id2"])))
+                        if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), row["Xtag"].ToString()))
                         {
                             Mode = V6Mode.Edit;
                             detail1.MODE = V6Mode.View;
@@ -3321,7 +3321,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     {
                         var row = AM.Rows[CurrentIndex];
                         // Tuanmh 16/02/2016 Check level
-                        if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"])))
+                        if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), row["Xtag"].ToString()))
                         {
                             DoDeleteThread();
                         }

@@ -31,13 +31,13 @@ namespace V6Controls.Forms
                 {
                     if (txtPassword1.Text == txtPassword.Text)
                     {
-                        this.ShowWarningMessage("Trùng mật khẩu đang dùng.");
+                        this.ShowWarningMessage(V6Text.CheckInfor);
                         return;
                     }
 
                     if (txtPassword1.Text != txtPassword2.Text)
                     {
-                        this.ShowWarningMessage("Mật khẩu xác nhận không đúng!");
+                        this.ShowWarningMessage(V6Text.Wrong);
                         return;
                     }
 
@@ -67,7 +67,7 @@ namespace V6Controls.Forms
                 }
                 else
                 {
-                    this.ShowWarningMessage("Nhập sai.");
+                    this.ShowWarningMessage(V6Text.Wrong);
                 }
             }
             catch (Exception ex)

@@ -179,6 +179,7 @@
         public static string Deleted { get { return V6Setting.Language == "V" ? "Đã xóa" : "Deleted"; } }
         public static string Confirm { get { return V6Setting.Language == "V" ? "Xác nhận" : "Confirm"; } }
         public static string CheckInfor { get { return V6Setting.Language == "V" ? "Kiểm tra thông tin chưa đầy đủ!" : "Check information again !"; } }
+        public static string Wrong { get { return V6Setting.Language == "V" ? "Nhập thông tin chưa đúng!" : "Wrong information !"; } }
         public static string CheckLock { get { return V6Setting.Language == "V" ? "Đã khóa số liệu!" : "Data locking !"; } }
         public static string CheckDeclare { get { return V6Setting.Language == "V" ? "Kiểm tra khai báo hệ thống quản lý !" : "Check system information again !"; } }
         
