@@ -59,6 +59,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 aldm_config = V6ControlsHelper.GetAldmConfigByTableName(_tableName);
             }
+            else
+            {
+                v6lookup_config = V6ControlsHelper.GetV6lookupConfigByTableName(_tableName);
+            }
 
             if (CurrentTable == V6TableName.V_alts || CurrentTable == V6TableName.V_alcc
                 || CurrentTable == V6TableName.V_alts01 || CurrentTable == V6TableName.V_alcc01)
@@ -82,10 +86,48 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
 
             dataGridView1.DataSource = new DataTable();
+            MyInit();
+        }
+
+        private string FILTER_FIELD
+        {
+            get
+            {
+                if (_aldm) return aldm_config == null ? null : aldm_config.FILTER_FIELD;
+                return v6lookup_config.FILTER_FIELD;
+            }
+        }
+
+        private void MyInit()
+        {
+            try
+            {
+                string filter_field = FILTER_FIELD;
+                if (!string.IsNullOrEmpty(filter_field))
+                {
+                    //Get filter data
+                    var data = V6BusinessHelper.Select(LOAD_TABLE, "distinct " + filter_field, "", "", filter_field).Data;
+                    data.Rows.Add(data.NewRow());
+                    var view = new DataView(data);
+                    view.Sort = filter_field;
+                    cboFilter.DisplayMember = filter_field;
+                    cboFilter.ValueMember = filter_field;
+                    cboFilter.DataSource = view;
+                    cboFilter.DisplayMember = filter_field;
+                    cboFilter.ValueMember = filter_field;
+                    cboFilter.Visible = true;
+                    lblFilter.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
         }
 
         private void DanhMucView_Load(object sender, EventArgs e)
         {
+
             LoadTable(CurrentTable, SelectResult.SortField);
             FormManagerHelper.HideMainMenu();
             dataGridView1.Focus();
@@ -214,11 +256,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 }
                 else
                 {
-                    string showFields = V6Lookup.ValueByTableName[_tableName, "GRDS_V1"].ToString().Trim();
-                    string formatStrings = V6Lookup.ValueByTableName[_tableName, "GRDF_V1"].ToString().Trim();
+                    string showFields = v6lookup_config.GRDS_V1;
+                    string formatStrings = v6lookup_config.GRDF_V1;
                     string headerString =
-                        V6Lookup.ValueByTableName[_tableName, V6Setting.IsVietnamese ? "GRDHV_V1" : "GRDHE_V1"]
-                            .ToString().Trim();
+                        V6Setting.IsVietnamese ? v6lookup_config.GRDHV_V1 : v6lookup_config.GRDHE_V1;
                     V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
                 }
             }
@@ -230,6 +271,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         }
 
         private AldmConfig aldm_config;
+        private V6lookupConfig v6lookup_config;
         #region ==== Do method ====
 
         public override void DoHotKey(Keys keyData)
@@ -618,14 +660,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     {
                         // Tuanmh 23/08/2017
                         //id = _aldm ? aldm_config.KEY:
-                        var id = _aldm ? aldm_config.TABLE_KEY:
-                            V6Lookup.ValueByTableName[CurrentTable.ToString(), "vValue"].ToString().Trim();
+                        var id = _aldm ? aldm_config.TABLE_KEY: v6lookup_config.vValue;
                         
-                        var id_check = _aldm ? aldm_config.DOI_MA :
-                            V6Lookup.ValueByTableName[CurrentTable.ToString(), "vValue"].ToString().Trim();
+                        var id_check = _aldm ? aldm_config.DOI_MA : v6lookup_config.vValue;
 
-                        var listTable = _aldm?aldm_config.F8_TABLE:
-                            V6Lookup.ValueByTableName[CurrentTable.ToString(), "ListTable"].ToString().Trim();
+                        var listTable = _aldm?aldm_config.F8_TABLE: v6lookup_config.ListTable;
                         var value = "";
                         var value_show = "";
 
@@ -968,14 +1007,13 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 int.TryParse(comboBox1.Text, out pageSize);
             }
             //else comboBox1.Text = "20";//gây lỗi index changed
-            LoadTable(tableName, 1, pageSize, GetWhere(), sort, true);
+            LoadTable(tableName, 1, pageSize, "", sort, true);
         }
 
-        private void LoadTable(V6TableName tableName, int page, int size, string where, string sortField, bool @ascending)
+        private string LOAD_TABLE
         {
-            try { 
-                if (page < 1) page = 1;
-                CurrentTable = tableName;
+            get
+            {
                 string load_table = CurrentTable.ToString();
                 if (CurrentTable == V6TableName.Notable)
                 {
@@ -988,6 +1026,30 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     {
                         load_table = _tableName;
                     }
+
+                    //if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
+                }
+                return load_table;
+            }
+        }
+
+        private void LoadTable(V6TableName tableName, int page, int size, string where, string sortField, bool @ascending)
+        {
+            try { 
+                if (page < 1) page = 1;
+                CurrentTable = tableName;
+                string load_table = LOAD_TABLE;
+                if (CurrentTable == V6TableName.Notable)
+                {
+                    //if (!string.IsNullOrEmpty(aldm_config.TABLE_VIEW)
+                    //    && V6BusinessHelper.IsExistDatabaseTable(aldm_config.TABLE_VIEW))
+                    //{
+                    //    load_table = aldm_config.TABLE_VIEW;
+                    //}
+                    //else
+                    //{
+                    //    load_table = _tableName;
+                    //}
                     
                     if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
                 }
@@ -1374,20 +1436,32 @@ namespace V6ControlManager.FormManager.DanhMucManager
         private FilterForm _filterForm;
         private string InitFilter;
 
+        /// <summary>
+        /// Lấy chuỗi lọc cuối cùng khi tải dữ liệu.
+        /// </summary>
+        /// <param name="where">tìm tức thời.</param>
+        /// <returns></returns>
         private string GetWhere(string where = null)
         {
-            string result;
-            if (string.IsNullOrEmpty(InitFilter))
+            string result = "";
+            if (!string.IsNullOrEmpty(InitFilter))
             {
-                result = where;
+                result = InitFilter;
             }
-            else
+
+            //Thêm lọc Filter_Field
+            if (cboFilter.Visible && cboFilter.SelectedIndex > 0)
             {
-                if (string.IsNullOrEmpty(where))
-                    result = InitFilter;
-                else
-                    result = string.Format("{0} and({1})", InitFilter, where);
+                string filter = string.Format("{0}='{1}'", FILTER_FIELD, cboFilter.SelectedValue);
+                result += string.Format("{0}{1}", result.Length > 0 ? " and " : "", filter);
             }
+
+            //Thêm lọc where
+            if (!string.IsNullOrEmpty(where))
+            {
+                result += string.Format("{0}({1})", result.Length > 0 ? " and " : "", where);
+            }
+
             return result;
         }
 
@@ -1423,6 +1497,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         private void btnAll_Click(object sender, EventArgs e)
         {
             SelectResult.Where = "";
+            cboFilter.SelectedIndex = -1;
             LoadAtPage(1);
         }
 
@@ -1548,6 +1623,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void cboFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadAtPage(1);
         }
 
         

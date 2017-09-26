@@ -381,6 +381,40 @@ namespace V6Controls
             }
             return lstConfig;
         }
+
+        /// <summary>
+        /// Lấy config trong bảng V6lookup. Nếu không có dữ liệu kiểm tra config.NoInfo.
+        /// </summary>
+        /// <param name="vMa_file">vMa_file</param>
+        /// <returns></returns>
+        public static V6lookupConfig GetV6lookupConfigByTableName(string vMa_file)
+        {
+            V6lookupConfig lstConfig = new V6lookupConfig();
+            try
+            {
+                SqlParameter[] plist = { new SqlParameter("@p", vMa_file) };
+                var executeResult = V6BusinessHelper.Select("V6lookup", "*", "vMa_file=@p", "", "", plist);
+
+                if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
+                {
+                    var tbl = executeResult.Data;
+                    var row = tbl.Rows[0];
+                    lstConfig = new V6lookupConfig(row.ToDataDictionary());
+                }
+                else
+                {
+                    lstConfig.NoInfo = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lstConfig.Error = true;
+                Logger.WriteToLog(string.Format("{0}.{1} {2}",
+                    MethodBase.GetCurrentMethod().DeclaringType,
+                    MethodBase.GetCurrentMethod().Name, ex.Message));
+            }
+            return lstConfig;
+        }
         
         public static String[] SliptString(string inputString, char typeChar)
         {
@@ -490,8 +524,6 @@ namespace V6Controls
 
     public class AldmConfig : Config
     {
-        
-
         public AldmConfig(IDictionary<string, object> data)
             : base(data)
         {
@@ -536,6 +568,10 @@ namespace V6Controls
         public string FIELD2 { get { return GetString("FIELD2"); } }
         public string A_FIELD { get { return GetString("A_FIELD"); } }
         public string A_FIELD2 { get { return GetString("A_FIELD2"); } }
+        /// <summary>
+        /// Trường chọn để lọc trong DanhMucView.
+        /// </summary>
+        public string FILTER_FIELD { get { return GetString("FILTER_FIELD"); } }
         public string NROW { get { return GetString("NROW"); } }
         public string TITLE { get { return GetString("TITLE"); } }
         public string TITLE2 { get { return GetString("TITLE2"); } }
@@ -589,6 +625,50 @@ namespace V6Controls
         /// </summary>
         public string L_ALDM { get { return GetString("L_ALDM"); } }
         public string Vorder { get { return GetString("VORDER"); } }
+    }
+
+    public class V6lookupConfig : Config
+    {
+        public V6lookupConfig(IDictionary<string, object> data)
+            : base(data)
+        {
+        }
+
+        public V6lookupConfig()
+        {
+        }
+
+        public string vVar { get { return GetString("vVar"); } }
+        public string vMa_file { get { return GetString("vMa_file"); } }
+        public string vOrder { get { return GetString("vOrder"); } }
+        public string vValue { get { return GetString("vValue"); } }
+        public string vLfScatter { get { return GetString("vLfScatter"); } }
+        public string vWidths { get { return GetString("vWidths"); } }
+        public string vFields { get { return GetString("vFields"); } }
+        public string eFields { get { return GetString("eFields"); } }
+        public string vHeaders { get { return GetString("vHeaders"); } }
+        public string eHeaders { get { return GetString("eHeaders"); } }
+        public string vUpdate { get { return GetString("vUpdate"); } }
+        public string vTitle { get { return GetString("vTitle"); } }
+        public string eTitle { get { return GetString("eTitle"); } }
+        public string VTitlenew { get { return GetString("VTitlenew"); } }
+        public string ETitlenew { get { return GetString("ETitlenew"); } }
+        public string Large_yn { get { return GetString("Large_yn"); } }
+        public string v1Title { get { return GetString("v1Title"); } }
+        public string e1Title { get { return GetString("e1Title"); } }
+        public string V_Search { get { return GetString("V_Search"); } }
+        public string ListTable { get { return GetString("ListTable"); } }
+        public string INITFILTER { get { return GetString("INITFILTER"); } }
+        public string V_HIDE { get { return GetString("V_HIDE"); } }
+        public string LOAD_AUTO { get { return GetString("LOAD_AUTO"); } }
+        public string GRDS_V1 { get { return GetString("GRDS_V1"); } }
+        public string GRDF_V1 { get { return GetString("GRDF_V1"); } }
+        public string GRDHV_V1 { get { return GetString("GRDHV_V1"); } }
+        public string GRDHE_V1 { get { return GetString("GRDHE_V1"); } }
+        public string F3 { get { return GetString("F3"); } }
+        public string F4 { get { return GetString("F4"); } }
+        public string Filter_All { get { return GetString("Filter_All"); } }
+        public string FILTER_FIELD { get { return GetString("FILTER_FIELD"); } }
     }
 
     public class StandardConfig
