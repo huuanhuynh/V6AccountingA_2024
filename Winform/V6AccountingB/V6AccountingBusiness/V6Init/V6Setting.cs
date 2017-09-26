@@ -75,12 +75,13 @@ namespace V6Init
         public static void LoadSetting(int userID)
         {
             //V6LoginInfo.Login()
-            
-            var o = SqlConnect.ExecuteScalar(CommandType.Text, "Select TOP 1 MA_KHO FROM ALKHO WHERE "
+
+            var o = SqlConnect.ExecuteScalar(
+                CommandType.Text,
+                "Select TOP 1 MA_KHO FROM ALKHO WHERE "
                 + " (dbo.VFA_Inlist_MEMO(ma_kho, '" + V6Login.UserInfo["r_kho"] + "')=1 or 1="
-                + (V6Login.IsAdmin?1:0)+")"
-            + " AND LOAI_KHO='1'"
-            + " AND MA_DVCS='" + V6Login.Madvcs + "'");
+                + (V6Login.IsAdmin ? 1 : 0) + ")" + " AND LOAI_KHO='1'"
+                + (V6Login.MadvcsCount == 1 ? " AND MA_DVCS='" + V6Login.Madvcs + "'" : ""));
 
             M_Ma_kho_default = (o??"").ToString().Trim();
 

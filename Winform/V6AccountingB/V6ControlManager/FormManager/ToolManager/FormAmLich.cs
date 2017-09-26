@@ -1,6 +1,7 @@
 ﻿using System;
 using V6Controls;
 using V6Controls.Forms;
+using V6Init;
 
 namespace V6ControlManager.FormManager.ToolManager
 {
@@ -16,9 +17,10 @@ namespace V6ControlManager.FormManager.ToolManager
         {
             try
             {
+                Text = V6Setting.IsVietnamese ? "Âm lịch Việt Nam" : "Vietnam lunar calendar";
                 var now = DateTime.Now;
                 //lichViewControl1.FocusDate = now;
-                lichViewControl1.SetData(now.Year, now.Month, now, null, null, "Lịch âm");
+                lichViewControl1.SetData(now.Year, now.Month, now, null, null, V6Setting.IsVietnamese ? "Lịch âm" : "Lunar calenda");
             }
             catch (Exception ex)
             {

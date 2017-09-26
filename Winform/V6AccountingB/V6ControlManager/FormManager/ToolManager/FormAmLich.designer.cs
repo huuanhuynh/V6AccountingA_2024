@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAmLich));
             this.lichViewControl1 = new V6Controls.Controls.LichView.LichViewControl();
             this.SuspendLayout();
             // 
@@ -36,7 +37,7 @@
             this.lichViewControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lichViewControl1.BorderColor = System.Drawing.Color.Black;
             this.lichViewControl1.CodeForm = null;
-            this.lichViewControl1.DataSource = null;
+            this.lichViewControl1.DataSource = ((System.Collections.Generic.IDictionary<int, V6Controls.Controls.LichView.LichViewCellData>)(resources.GetObject("lichViewControl1.DataSource")));
             this.lichViewControl1.DetailColor = System.Drawing.Color.Orange;
             this.lichViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lichViewControl1.FooterHeight = 0;
@@ -61,7 +62,7 @@
             this.ClientSize = new System.Drawing.Size(598, 443);
             this.Controls.Add(this.lichViewControl1);
             this.Name = "FormAmLich";
-            this.Text = "Log View";
+            this.Text = "AmLich";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.lichViewControl1, 0);

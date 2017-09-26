@@ -1137,6 +1137,13 @@ namespace V6AccountingBusiness
             return Service.GetStockAll(mact, mavt_in, makho_in, sttRec, ngayct);
         }
 
+        /// <summary>
+        /// Đọc tiền thành chữ.
+        /// </summary>
+        /// <param name="money">Số tiền cần đọc</param>
+        /// <param name="lang">V hoặc E</param>
+        /// <param name="ma_nt"></param>
+        /// <returns></returns>
         public static string MoneyToWords(decimal money, string lang, string ma_nt)
         {
             if (lang == "V")
