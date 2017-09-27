@@ -114,6 +114,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.TxtForder = new V6Controls.V6NumberTextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtFilterField = new V6Controls.V6ColorTextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -909,6 +912,9 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage3.Controls.Add(this.txtFilterField);
+            this.tabPage3.Controls.Add(this.label33);
+            this.tabPage3.Controls.Add(this.label36);
             this.tabPage3.Controls.Add(this.chkFormF4);
             this.tabPage3.Controls.Add(this.chkFormF3);
             this.tabPage3.Controls.Add(this.v6ColorTextBox6);
@@ -1446,6 +1452,47 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Sắp xếp";
             // 
+            // txtFilterField
+            // 
+            this.txtFilterField.AccessibleName = "FILTER_FIELD";
+            this.txtFilterField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFilterField.BackColor = System.Drawing.Color.White;
+            this.txtFilterField.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFilterField.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFilterField.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFilterField.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFilterField.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFilterField.LeaveColor = System.Drawing.Color.White;
+            this.txtFilterField.Location = new System.Drawing.Point(114, 262);
+            this.txtFilterField.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFilterField.Name = "txtFilterField";
+            this.txtFilterField.Size = new System.Drawing.Size(210, 23);
+            this.txtFilterField.TabIndex = 159;
+            this.toolTipV6FormControl.SetToolTip(this.txtFilterField, "Trường dữ liệu dùng để lọc, có tính chất nhóm.");
+            // 
+            // label33
+            // 
+            this.label33.AccessibleDescription = "";
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(332, 265);
+            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(302, 17);
+            this.label33.TabIndex = 160;
+            this.label33.Text = "Trường dữ liệu dùng để lọc, có tính chất nhóm.";
+            // 
+            // label36
+            // 
+            this.label36.AccessibleDescription = "descript2";
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(8, 265);
+            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(69, 17);
+            this.label36.TabIndex = 161;
+            this.label36.Text = "Filter field";
+            // 
             // Aldm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1558,5 +1605,8 @@
         private System.Windows.Forms.Label label32;
         private V6CheckBox chkFormF4;
         private V6CheckBox chkFormF3;
+        private V6ColorTextBox txtFilterField;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label36;
     }
 }

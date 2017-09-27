@@ -788,7 +788,7 @@ namespace V6Controls.Forms
                                 formName, formType, cNAME));
                         }
 
-                        GetControlValue(d, control);
+                        FillControlValueToDictionary(d, control);
                     }
 
                     if (control.Controls.Count > 0)
@@ -3771,7 +3771,7 @@ namespace V6Controls.Forms
         #region ==== APPLY LOOKUP ====
 
         private static TextBox txt;
-        private static AldmConfig LookupInfo = null;
+        private static AldmConfig Aldm_config = null;
         private static AutoCompleteStringCollection auto1;
         private static string InitFilter = "";
         private static string LookupInfo_F_NAME;
@@ -3783,11 +3783,11 @@ namespace V6Controls.Forms
         {
             if (textBox == null) return;
             txt = textBox;
-            LookupInfo = V6ControlsHelper.GetAldmConfigByTableName(tablename);
-            InitFilter = V6Login.GetInitFilter(LookupInfo.TABLE_NAME);
+            Aldm_config = V6ControlsHelper.GetAldmConfigByTableName(tablename);
+            InitFilter = V6Login.GetInitFilter(Aldm_config.TABLE_NAME);
             
             if (!string.IsNullOrEmpty(fieldvalue)) LookupInfo_F_NAME = fieldvalue;
-            else LookupInfo_F_NAME = LookupInfo == null ? null : LookupInfo.F_NAME;
+            else LookupInfo_F_NAME = Aldm_config == null ? null : Aldm_config.F_NAME;
 
             //txt.GotFocus += ApplyLookup_GotFocus;
             txt.KeyDown += ApplyLookup_KeyDown;
@@ -3823,7 +3823,7 @@ namespace V6Controls.Forms
 
         private static void RemoveLookupResource()
         {
-            LookupInfo = null;
+            Aldm_config = null;
             auto1 = null;
             GC.Collect();
         }
@@ -3863,7 +3863,7 @@ namespace V6Controls.Forms
                 {
                     if (txt.Text.Trim() != "")
                     {
-                        if (!string.IsNullOrEmpty(LookupInfo.F_NAME))
+                        if (!string.IsNullOrEmpty(Aldm_config.F_NAME))
                         {
                             if (ExistRowInTable(txt.Text.Trim()))
                             {
@@ -3879,7 +3879,7 @@ namespace V6Controls.Forms
                             }
                         }
                     }
-                    else if (!string.IsNullOrEmpty(LookupInfo.F_NAME))
+                    else if (!string.IsNullOrEmpty(Aldm_config.F_NAME))
                     {
                         DoLookup(owner);
                     }
@@ -3901,7 +3901,7 @@ namespace V6Controls.Forms
 
         private static void ApplyLookup_LostFocus(object sender, EventArgs e)
         {
-            if (LookupInfo.NoInfo) return;
+            if (Aldm_config.NoInfo) return;
             IWin32Window owner = sender as IWin32Window;
             //DoCharacterCasing();
             var textBox = (TextBox)sender;
@@ -3920,7 +3920,7 @@ namespace V6Controls.Forms
             {
                 if (textBox.Text.Trim() != "")
                 {
-                    if (!string.IsNullOrEmpty(LookupInfo.F_NAME))
+                    if (!string.IsNullOrEmpty(Aldm_config.F_NAME))
                     {
                         if (ExistRowInTable(textBox.Text.Trim()))
                         {
@@ -3933,7 +3933,7 @@ namespace V6Controls.Forms
                         }
                     }
                 }
-                else if (!string.IsNullOrEmpty(LookupInfo.F_NAME))
+                else if (!string.IsNullOrEmpty(Aldm_config.F_NAME))
                 {
                     DoLookup(owner, false);
                 }
@@ -3952,12 +3952,12 @@ namespace V6Controls.Forms
 
         private static void DoLookup(IWin32Window owner, bool multi = false)
         {
-            if (LookupInfo.NoInfo) return;
+            if (Aldm_config.NoInfo) return;
             //_frm = FindForm();
             var filter = InitFilter;
             if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
             var parentData = new SortedDictionary<string, object>();
-            var fStand = new V6LookupTextboxForm(parentData, txt.Text, LookupInfo, " 1=1 " + filter, LookupInfo_F_NAME, multi, FilterStart);
+            var fStand = new V6LookupTextboxForm(parentData, txt.Text, Aldm_config, " 1=1 " + filter, LookupInfo_F_NAME, multi, FilterStart);
             Looking = true;
             fStand.ShowDialog(owner);
         }
@@ -3974,9 +3974,9 @@ namespace V6Controls.Forms
             try
             {
                 _text_data = text;
-                if (!string.IsNullOrEmpty(LookupInfo.F_NAME))
+                if (!string.IsNullOrEmpty(Aldm_config.F_NAME))
                 {
-                    string tableName = LookupInfo.TABLE_NAME;
+                    string tableName = Aldm_config.TABLE_NAME;
                     var filter = InitFilter;
                     if (!string.IsNullOrEmpty(filter)) filter = " and (" + filter + ")";
 
@@ -4013,9 +4013,9 @@ namespace V6Controls.Forms
         private static void LoadAutoCompleteSource(TextBox txt)
         {
             //if (auto1 != null) return;
-            if (LookupInfo.NoInfo) return;
+            if (Aldm_config.NoInfo) return;
 
-            if (!string.IsNullOrEmpty(LookupInfo.TABLE_NAME) && !string.IsNullOrEmpty(LookupInfo.F_NAME) && auto1 == null)
+            if (!string.IsNullOrEmpty(Aldm_config.TABLE_NAME) && !string.IsNullOrEmpty(Aldm_config.F_NAME) && auto1 == null)
             {
                 try
                 {
@@ -4023,9 +4023,9 @@ namespace V6Controls.Forms
 
                     var selectTop = "";
 
-                    if (!string.IsNullOrEmpty(LookupInfo.F_NAME))
+                    if (!string.IsNullOrEmpty(Aldm_config.F_NAME))
                     {
-                        var tableName = LookupInfo.TABLE_NAME;
+                        var tableName = Aldm_config.TABLE_NAME;
                         var filter = InitFilter;
                         if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
                         var where = " 1=1 " + filter;
@@ -4047,7 +4047,7 @@ namespace V6Controls.Forms
                 }
                 catch (Exception ex)
                 {
-                    WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + ".LoadAutoCompleteSource " + LookupInfo.TABLE_NAME, ex);
+                    WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + ".LoadAutoCompleteSource " + Aldm_config.TABLE_NAME, ex);
                     V6ControlsHelper.DisableLookup = false;
                 }
             }
@@ -4353,7 +4353,7 @@ namespace V6Controls.Forms
         /// <param name="d">Dictionary chứa dữ liệu lấy được</param>
         /// <param name="control"></param>
         /// <returns>Dữ liệu chính của control.</returns>
-        public static void GetControlValue(IDictionary<string, object> d, Control control)
+        public static void FillControlValueToDictionary(IDictionary<string, object> d, Control control)
         {
             string cNAME = control.AccessibleName.Trim().ToUpper();
 
@@ -4463,6 +4463,94 @@ namespace V6Controls.Forms
             d[cNAME] = control.Text;
             //return control.Text;
             return;
+        }
+
+        /// <summary>
+        /// Lấy 1 giá trị của control gửi vào.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <returns></returns>
+        public static object GetControlValue(Control control)
+        {
+            //string cNAME = control.AccessibleName.Trim().ToUpper();
+
+            if (control is V6VvarTextBox)
+            {
+                return control.Text;
+            }
+            else if (control is V6NumberTextBox)
+            {
+                return ((V6NumberTextBox)control).Value;
+            }
+            if (control is V6DateTimeColor)
+            {
+                var color = control as V6DateTimeColor;
+                return color.Value;
+            }
+            else if (control is V6DateTimePick)
+            {
+                return ((V6DateTimePick)control).Value;
+            }
+            else if (control is DateTimePicker)
+            {
+                return ((DateTimePicker)control).Value;
+            }
+            else if (control is V6IndexComboBox)
+            {
+                return ((V6IndexComboBox)control).SelectedIndex;
+            }
+            else if (control is V6ComboBox)
+            {
+                var cbo = control as V6ComboBox;
+                return cbo.DataSource != null ? cbo.SelectedValue : cbo.Text;
+            }
+            else if (control is ComboBox)
+            {
+                var cbo = control as ComboBox;
+                return cbo.DataSource != null ? cbo.SelectedValue : cbo.Text;
+            }
+            else if (control is PictureBox)
+            {
+                var pic = control as PictureBox;
+                return Picture.ToJpegByteArray(pic.Image);
+            }
+            else if (control is V6LookupTextBox)
+            {
+                V6LookupTextBox ltb = (V6LookupTextBox)control;
+                //d[cNAME] = ltb.Value;
+                //if (!string.IsNullOrEmpty(ltb.AccessibleName2))
+                //{
+                //    d[ltb.AccessibleName2.ToUpper()] = ltb.Text;
+                //}
+                return ltb.Value;
+            }
+            else if (control is V6CheckTextBox)
+            {
+                return ((V6CheckTextBox)control).StringValue;
+            }
+            else if (control is CheckBox)
+            {
+                return ((CheckBox)control).Checked ? 1 : 0;
+            }
+            else if (control is RadioButton)
+            {
+                if (((RadioButton)control).Checked)
+                {
+                    //d[cNAME] = control.Text;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (control is GioiTinhControl)
+            {
+                return ((GioiTinhControl)control).Value;
+            }
+
+
+            return control.Text;
         }
 
     }

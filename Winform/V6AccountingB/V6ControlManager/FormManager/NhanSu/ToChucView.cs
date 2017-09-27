@@ -651,9 +651,12 @@ namespace V6ControlManager.FormManager.NhanSu
             toChucTreeListView1.SetData(SelectResult.Data, showFields, headerString, formatStrings);
             //treeView1.data
 
-            //lblTotalPage.Text = string.Format(V6Setting.IsVietnamese ? "Tổng cộng: {0} " : "Total {0} ",
-            //    SelectResult.TotalRows,
-            //    string.IsNullOrEmpty(SelectResult.Where)
+            //lblTotalPage.Text = string.Format(
+            //    V6Setting.IsVietnamese
+            //        ? "Trang {0}/{1} của {2} dòng {3}"
+            //        : "Page {0}/{1} of {2} row(s) {3}",
+            //    SelectResult.Page, SelectResult.TotalPages, SelectResult.TotalRows,
+            //    string.IsNullOrEmpty(_last_filter)
             //        ? ""
             //        : (V6Setting.IsVietnamese ? "(Đã lọc)" : "(filtered)"));
         }

@@ -485,16 +485,17 @@ namespace V6ControlManager.FormManager.SoDuManager
                 int.TryParse(comboBox1.Text, out pageSize);
             }
             //else comboBox1.Text = "20";//gây lỗi index changed
-            LoadTable(tableName, 1, pageSize, GetWhere(), sortField, true);
+            LoadTable(tableName, 1, pageSize, sortField, true);
         }
 
-        private void LoadTable(V6TableName tableName, int page, int size, string where, string sortField, bool ascending)
+        private void LoadTable(V6TableName tableName, int page, int size, string sortField, bool ascending)
         {
             try { 
                 if (page < 1) page = 1;
                 CurrentTable = tableName;
 
-                var sr = _categories.SelectPaging(tableName, "*", page, size, GetWhere(@where), sortField, @ascending);
+                _last_filter = GetWhere();
+                var sr = _categories.SelectPaging(tableName, "*", page, size, _last_filter, sortField, @ascending);
                 
                 SelectResult.Data = sr.Data;
                 SelectResult.Page = sr.Page;
@@ -502,7 +503,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 SelectResult.PageSize = sr.PageSize;
                 SelectResult.Fields = sr.Fields;
                 SelectResult.FieldsHeaderDictionary = sr.FieldsHeaderDictionary;
-                SelectResult.Where = where;// sr.Where;
+                SelectResult.Where = _last_filter;// sr.Where;
                 SelectResult.SortField = sr.SortField;
                 SelectResult.IsSortOrderAscending = sr.IsSortOrderAscending;
 
@@ -516,7 +517,7 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private void LoadAtPage(int page)
         {
-            LoadTable(CurrentTable, page, SelectResult.PageSize,SelectResult.Where,
+            LoadTable(CurrentTable, page, SelectResult.PageSize,
                 SelectResult.SortField, SelectResult.IsSortOrderAscending);
         }
 
@@ -554,12 +555,13 @@ namespace V6ControlManager.FormManager.SoDuManager
 
             txtCurrentPage.Text = SelectResult.Page.ToString(CultureInfo.InvariantCulture);
             txtCurrentPage.BackColor = Color.White;
+            
             lblTotalPage.Text = string.Format(
                 V6Setting.IsVietnamese
                     ? "Trang {0}/{1} của {2} dòng {3}"
                     : "Page {0}/{1} of {2} row(s) {3}",
                 SelectResult.Page, SelectResult.TotalPages, SelectResult.TotalRows,
-                string.IsNullOrEmpty(SelectResult.Where)
+                string.IsNullOrEmpty(_last_filter)
                     ? ""
                     : (V6Setting.IsVietnamese ? "(Đã lọc)" : "(filtered)"));
 
@@ -613,8 +615,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         public void First()
         {
             try { 
-            LoadTable(CurrentTable, 1, SelectResult.PageSize,
-                SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            LoadTable(CurrentTable, 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -625,8 +626,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         public void Previous()
         {
             try { 
-            LoadTable(CurrentTable, SelectResult.Page - 1, SelectResult.PageSize,
-                SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            LoadTable(CurrentTable, SelectResult.Page - 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -639,8 +639,7 @@ namespace V6ControlManager.FormManager.SoDuManager
             try
             {
                 if (SelectResult.Page == SelectResult.TotalPages) return;
-                LoadTable(CurrentTable, SelectResult.Page + 1, SelectResult.PageSize,
-                    SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+                LoadTable(CurrentTable, SelectResult.Page + 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -651,8 +650,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         public void Last()
         {
             try { 
-            LoadTable(CurrentTable, SelectResult.TotalPages, SelectResult.PageSize,
-                SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            LoadTable(CurrentTable, SelectResult.TotalPages, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -667,8 +665,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 dataGridView2.DataSource = null;
                 //dataGridView2.Refresh();
 
-                LoadTable(CurrentTable, SelectResult.Page, SelectResult.PageSize,
-                    SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+                LoadTable(CurrentTable, SelectResult.Page, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
                 //LoadAD();
                 LoadSelectedCellLocation(dataGridView1);
             }
@@ -876,6 +873,7 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private SoDuFilterForm _filterForm;
         private string InitFilter = "";
+        private string _search;
 
         public string AddInitFilter(string where, bool and = true)
         {
@@ -884,20 +882,27 @@ namespace V6ControlManager.FormManager.SoDuManager
             return InitFilter;
         }
 
-        private string GetWhere(string where = null)
+        private string GetWhere()
         {
-            string result;
-            if (string.IsNullOrEmpty(InitFilter))
+            string result = "";
+            if (!string.IsNullOrEmpty(InitFilter))
             {
-                result = where;
+                result = InitFilter;
             }
-            else
+
+            ////Thêm lọc Filter_Field
+            //if (cboFilter.Visible && cboFilter.SelectedIndex > 0)
+            //{
+            //    string filter = string.Format("{0}='{1}'", FILTER_FIELD, cboFilter.SelectedValue);
+            //    result += string.Format("{0}{1}", result.Length > 0 ? " and " : "", filter);
+            //}
+
+            //Thêm lọc where
+            if (!string.IsNullOrEmpty(_search))
             {
-                if (string.IsNullOrEmpty(where))
-                    result = InitFilter;
-                else
-                    result = string.Format("{0} and({1})", InitFilter, where);
+                result += string.Format("{0}({1})", result.Length > 0 ? " and " : "", _search);
             }
+
             return result;
         }
 
@@ -925,13 +930,13 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         void filter_FilterOkClick(string query)
         {
-            SelectResult.Where = query;
+            _search = query;
             LoadAtPage(1);
         }
 
         private void btnAll_Click(object sender, EventArgs e)
         {
-            SelectResult.Where = "";
+            _search = "";
             LoadAtPage(1);
         }
 
@@ -942,6 +947,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         }
 
         private string status2text = "";
+        private string _last_filter;
 
         private void MakeStatus2Text()
         {
@@ -1043,8 +1049,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 var new_sortOrder = column.HeaderCell.SortGlyphDirection != SortOrder.Ascending;
                 var sort_field = column.DataPropertyName;
 
-                LoadTable(CurrentTable, SelectResult.Page, SelectResult.PageSize,
-                    SelectResult.Where, sort_field, new_sortOrder);
+                LoadTable(CurrentTable, SelectResult.Page, SelectResult.PageSize, sort_field, new_sortOrder);
             }
             catch
             {

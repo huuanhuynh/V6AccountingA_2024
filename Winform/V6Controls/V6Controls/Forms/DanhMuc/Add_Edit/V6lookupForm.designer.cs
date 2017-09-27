@@ -84,6 +84,9 @@
             this.v6ColorTextBox15 = new V6Controls.V6ColorTextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
+            this.txtFilterField = new V6Controls.V6ColorTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -222,6 +225,9 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage3.Controls.Add(this.txtFilterField);
+            this.tabPage3.Controls.Add(this.label24);
+            this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Controls.Add(this.chkFilterAll);
             this.tabPage3.Controls.Add(this.chkFormF4);
             this.tabPage3.Controls.Add(this.chkFormF3);
@@ -909,6 +915,46 @@
             this.label46.TabIndex = 47;
             this.label46.Text = "Trường hiển thị";
             // 
+            // txtFilterField
+            // 
+            this.txtFilterField.AccessibleName = "FILTER_FIELD";
+            this.txtFilterField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFilterField.BackColor = System.Drawing.Color.White;
+            this.txtFilterField.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFilterField.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFilterField.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFilterField.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFilterField.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFilterField.LeaveColor = System.Drawing.Color.White;
+            this.txtFilterField.Location = new System.Drawing.Point(111, 95);
+            this.txtFilterField.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFilterField.Name = "txtFilterField";
+            this.txtFilterField.Size = new System.Drawing.Size(210, 23);
+            this.txtFilterField.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AccessibleDescription = "descript2";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(5, 98);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(69, 17);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Filter field";
+            // 
+            // label24
+            // 
+            this.label24.AccessibleDescription = "";
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(329, 98);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(302, 17);
+            this.label24.TabIndex = 4;
+            this.label24.Text = "Trường dữ liệu dùng để lọc, có tính chất nhóm.";
+            // 
             // V6lookupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -991,5 +1037,8 @@
         private V6CheckBox chkFormF4;
         private V6CheckBox chkFormF3;
         private V6CheckBox chkFilterAll;
+        private V6ColorTextBox txtFilterField;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label4;
     }
 }

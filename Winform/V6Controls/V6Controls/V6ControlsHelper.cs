@@ -383,7 +383,41 @@ namespace V6Controls
         }
 
         /// <summary>
-        /// Lấy config trong bảng V6lookup. Nếu không có dữ liệu kiểm tra config.NoInfo.
+        /// Lấy config trong bảng V6lookup bằng vVar. Nếu không có dữ liệu kiểm tra config.NoInfo.
+        /// </summary>
+        /// <param name="vVar"></param>
+        /// <returns></returns>
+        public static V6lookupConfig GetV6lookupConfig(string vVar)
+        {
+            V6lookupConfig lstConfig = new V6lookupConfig();
+            try
+            {
+                SqlParameter[] plist = { new SqlParameter("@p", vVar) };
+                var executeResult = V6BusinessHelper.Select("V6lookup", "*", "vVar=@p", "", "", plist);
+
+                if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
+                {
+                    var tbl = executeResult.Data;
+                    var row = tbl.Rows[0];
+                    lstConfig = new V6lookupConfig(row.ToDataDictionary());
+                }
+                else
+                {
+                    lstConfig.NoInfo = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lstConfig.Error = true;
+                Logger.WriteToLog(string.Format("{0}.{1} {2}",
+                    MethodBase.GetCurrentMethod().DeclaringType,
+                    MethodBase.GetCurrentMethod().Name, ex.Message));
+            }
+            return lstConfig;
+        }
+
+        /// <summary>
+        /// Lấy config trong bảng V6lookup bằng table_name. Nếu không có dữ liệu kiểm tra config.NoInfo.
         /// </summary>
         /// <param name="vMa_file">vMa_file</param>
         /// <returns></returns>
@@ -500,6 +534,7 @@ namespace V6Controls
 
         public int GetInt(string name)
         {
+            name = name.ToUpper();
             if (_data != null && _data.ContainsKey(name))
             {
                 return ObjectAndString.ObjectToInt(_data[name]);
@@ -510,10 +545,11 @@ namespace V6Controls
         /// <summary>
         /// Lấy thông tin theo trường
         /// </summary>
-        /// <param name="name">UPPER</param>
+        /// <param name="name">Tên trường dữ liệu</param>
         /// <returns></returns>
         public string GetString(string name)
         {
+            name = name.ToUpper();
             if (_data != null && _data.ContainsKey(name))
             {
                 return _data[name].ToString().Trim();

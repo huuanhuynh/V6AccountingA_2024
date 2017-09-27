@@ -543,8 +543,8 @@ namespace V6ControlManager.FormManager.NhanSu
                 CurrentTable = tableName;
 
                 //var sr = _categories.SelectPaging(tableName, "*", page, size, GetWhere(where), sortField, ascending);
-                string new_where = GetNewWhere(where);
-                var sr = V6BusinessHelper.Select(_viewName, "*", new_where, "", sortField);
+                _last_filter = GetNewWhere(where);
+                var sr = V6BusinessHelper.Select(_viewName, "*", _last_filter, "", sortField);
 
                 SelectResult.Data = sr.Data;
 
@@ -608,7 +608,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
             lblTotalPage.Text = string.Format(V6Setting.IsVietnamese ? "Tổng cộng: {0} " : "Total {0} ",
                 SelectResult.TotalRows,
-                string.IsNullOrEmpty(SelectResult.Where)
+                string.IsNullOrEmpty(_last_filter)
                     ? ""
                     : (V6Setting.IsVietnamese ? "(Đã lọc)" : "(filtered)"));
         }
@@ -1014,6 +1014,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
         private DataTable data;
         private DataView view;
+        private string _last_filter;
 
         public void LoadListMenu()
         {

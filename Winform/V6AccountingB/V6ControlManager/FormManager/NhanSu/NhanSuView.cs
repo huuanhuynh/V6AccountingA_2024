@@ -599,17 +599,18 @@ namespace V6ControlManager.FormManager.NhanSu
             CloseFilterForm();
             int pageSize = 0;
             
-            LoadTable(tableName, 1, pageSize, GetWhere(), sort, true);
+            LoadTable(tableName, 1, pageSize, sort, true);
         }
 
-        private void LoadTable(V6TableName tableName, int page, int size, string where, string sortField, bool ascending)
+        private void LoadTable(V6TableName tableName, int page, int size, string sortField, bool ascending)
         {
             try { 
                 //if (page < 1) page = 1;
                 CurrentTable = tableName;
 
                 //var sr = _categories.SelectPaging(tableName, "*", page, size, GetWhere(where), sortField, ascending);
-                var sr = V6BusinessHelper.Select(_viewName, "*", where, "", sortField);
+                _last_filter = GetWhere();
+                var sr = V6BusinessHelper.Select(_viewName, "*", _last_filter, "", sortField);
                 
                 SelectResult.Data = sr.Data;
                 
@@ -619,7 +620,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 SelectResult.PageSize = sr.PageSize;
                 SelectResult.Fields = sr.Fields;
                 SelectResult.FieldsHeaderDictionary = sr.FieldsHeaderDictionary;
-                SelectResult.Where = where;// sr.Where;
+                SelectResult.Where = _last_filter;// sr.Where;
                 SelectResult.SortField = sr.SortField;
                 SelectResult.IsSortOrderAscending = sr.IsSortOrderAscending;
 
@@ -633,7 +634,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
         private void LoadAtPage(int page)
         {
-            LoadTable(CurrentTable, page, 0, SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            LoadTable(CurrentTable, page, 0, SelectResult.SortField, SelectResult.IsSortOrderAscending);
         }
 
 
@@ -657,7 +658,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
             lblTotalPage.Text = string.Format(V6Setting.IsVietnamese ? "Tổng cộng: {0} " : "Total {0} ",
                 SelectResult.TotalRows,
-                string.IsNullOrEmpty(SelectResult.Where)
+                string.IsNullOrEmpty(_last_filter)
                     ? ""
                     : (V6Setting.IsVietnamese ? "(Đã lọc)" : "(filtered)"));
         }
@@ -666,8 +667,7 @@ namespace V6ControlManager.FormManager.NhanSu
         public void First()
         {
             try { 
-            LoadTable(CurrentTable, 1, SelectResult.PageSize,
-                SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            LoadTable(CurrentTable, 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -678,8 +678,7 @@ namespace V6ControlManager.FormManager.NhanSu
         public void Previous()
         {
             try { 
-            LoadTable(CurrentTable, SelectResult.Page - 1, SelectResult.PageSize,
-                SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            LoadTable(CurrentTable, SelectResult.Page - 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -692,8 +691,7 @@ namespace V6ControlManager.FormManager.NhanSu
             try
             {
                 if (SelectResult.Page == SelectResult.TotalPages) return;
-                LoadTable(CurrentTable, SelectResult.Page + 1, SelectResult.PageSize,
-                    SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+                LoadTable(CurrentTable, SelectResult.Page + 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -704,8 +702,7 @@ namespace V6ControlManager.FormManager.NhanSu
         public void Last()
         {
             try { 
-            LoadTable(CurrentTable, SelectResult.TotalPages, SelectResult.PageSize,
-                SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            LoadTable(CurrentTable, SelectResult.TotalPages, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -720,8 +717,7 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
-                LoadTable(CurrentTable, SelectResult.Page, SelectResult.PageSize,
-                    SelectResult.Where, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+                LoadTable(CurrentTable, SelectResult.Page, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
                 //SetFormatGridView();
             }
             catch (Exception ex)
@@ -811,21 +807,29 @@ namespace V6ControlManager.FormManager.NhanSu
 
         private FilterForm _filterForm;
         private string InitFilter;
+        private string _search;
 
-        private string GetWhere(string where = null)
+        private string GetWhere()
         {
-            string result;
-            if (string.IsNullOrEmpty(InitFilter))
+            string result = "";
+            if (!string.IsNullOrEmpty(InitFilter))
             {
-                result = where;
+                result = InitFilter;
             }
-            else
+
+            ////Thêm lọc Filter_Field
+            //if (cboFilter.Visible && cboFilter.SelectedIndex > 0)
+            //{
+            //    string filter = string.Format("{0}='{1}'", FILTER_FIELD, cboFilter.SelectedValue);
+            //    result += string.Format("{0}{1}", result.Length > 0 ? " and " : "", filter);
+            //}
+
+            //Thêm lọc where
+            if (!string.IsNullOrEmpty(_search))
             {
-                if (string.IsNullOrEmpty(where))
-                    result = InitFilter;
-                else
-                    result = string.Format("{0} and({1})", InitFilter, where);
+                result += string.Format("{0}({1})", result.Length > 0 ? " and " : "", _search);
             }
+
             return result;
         }
 
@@ -853,13 +857,13 @@ namespace V6ControlManager.FormManager.NhanSu
 
         void FilterFilterApplyEvent(string query)
         {
-            SelectResult.Where = query;
+            _search = query;
             LoadAtPage(1);
         }
 
         private void btnAll_Click(object sender, EventArgs e)
         {
-            SelectResult.Where = "";
+            _search = "";
             LoadAtPage(1);
         }
 
@@ -878,6 +882,7 @@ namespace V6ControlManager.FormManager.NhanSu
         }
 
         private string status2text = "";
+        private string _last_filter;
 
         private void MakeStatus2Text()
         {

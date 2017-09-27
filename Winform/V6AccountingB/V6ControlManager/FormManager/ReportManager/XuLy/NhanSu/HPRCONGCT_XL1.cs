@@ -39,8 +39,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 dataGridView1.ReadOnly = false;
                 dataGridView1.EditMode = DataGridViewEditMode.EditOnF2;
 
-                LookupInfo = V6ControlsHelper.GetAldmConfig("Prhlcong");
-                InitFilter = V6Login.GetInitFilter(LookupInfo.TABLE_NAME);
+                Aldm_Info = V6ControlsHelper.GetAldmConfig("Prhlcong");
+                InitFilter = V6Login.GetInitFilter(Aldm_Info.TABLE_NAME);
                 //var tblCong = V6BusinessHelper.Select("Prhlcong", "MA_CONG,TEN_CONG,TEN_CONG2", "Status='1'").Data;
                 //string displayMember = V6Setting.LanguageIsVietnamese ? "TEN_CONG" : "TEN_CONG2";
                 //string valueMember = "MA_CONG";
@@ -346,7 +346,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             return false;
         }
 
-        private AldmConfig LookupInfo;
+        private AldmConfig Aldm_Info;
         private string InitFilter = "";
         private string LookupInfo_F_NAME = "MA_CONG";
         private bool ExistRowInTable(string text)
@@ -355,7 +355,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             {
                 if (!string.IsNullOrEmpty(LookupInfo_F_NAME))
                 {
-                    string tableName = LookupInfo.TABLE_NAME;
+                    string tableName = Aldm_Info.TABLE_NAME;
                     var filter = InitFilter;
                     if (!string.IsNullOrEmpty(filter)) filter = " and (" + filter + ")";
 
@@ -384,11 +384,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
         private void DoLookup(bool multi = false)
         {
-            if (LookupInfo.NoInfo) return;
+            if (Aldm_Info.NoInfo) return;
             
             var filter = InitFilter;
             if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
-            var lookupForm = new V6LookupTextboxForm(null, edit_cell.Value.ToString().Trim(), LookupInfo, " 1=1 " + filter, LookupInfo_F_NAME, multi, false);
+            var lookupForm = new V6LookupTextboxForm(null, edit_cell.Value.ToString().Trim(), Aldm_Info, " 1=1 " + filter, LookupInfo_F_NAME, multi, false);
             //Looking = true;
             if (lookupForm.ShowDialog(this) == DialogResult.OK)
             {

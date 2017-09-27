@@ -96,9 +96,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         {
             try
             {
-                var format = V6ControlsHelper.GetAldmConfigByTableName(_table_name);
-                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, format.GRDS_V1, format.GRDF_V1,
-                    V6Setting.IsVietnamese ? format.GRDHV_V1 : format.GRDHE_V1);
+                var config = V6ControlsHelper.GetAldmConfigByTableName(_table_name);
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, config.GRDS_V1, config.GRDF_V1,
+                    V6Setting.IsVietnamese ? config.GRDHV_V1 : config.GRDHE_V1);
             }
             catch (Exception ex)
             {
