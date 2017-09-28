@@ -1297,6 +1297,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        
+        protected void ResetTonLoHsd(V6NumberTextBox _ton13, V6VvarTextBox _maLo, V6DateTimeColor _hanSd)
+        {
+            _ton13.Value = 0;
+            _maLo.Clear();
+            _hanSd.Value = null;
+        }
+
     }
 }

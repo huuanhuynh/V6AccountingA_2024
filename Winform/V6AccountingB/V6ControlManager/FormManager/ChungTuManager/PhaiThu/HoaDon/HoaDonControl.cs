@@ -1450,13 +1450,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        if (new_soLuong > 0)
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _maLo.Text = data_row["Ma_lo"].ToString().Trim();
                             _maViTri.Text = data_row["Ma_vitri"].ToString().Trim();
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
                             break;
+                        }
+                        else
+                        {
+                            ResetTonLoHsd(_ton13, _maLo, _hanSd);
+                            _maViTri.Clear();
                         }
                     }
                 }
@@ -1863,7 +1868,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 GetLoDate();
             }
-            //GetLoDate();
         }
 
         private void XuLyLayThongTinKhiChonMaKhoI()
@@ -2102,9 +2106,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 _dataLoDate = V6BusinessHelper.GetLoDate(maVt, maKhoI, _sttRec, dateNgayCT.Value);
                 if (_dataLoDate.Rows.Count == 0)
                 {
-                    _ton13.Value = 0;
-                    _maLo.Clear();
-                    _hanSd.Value = null;
+                    ResetTonLoHsd(_ton13, _maLo, _hanSd);
                 }
                 //Xử lý - tồn
                 //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
@@ -2146,12 +2148,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        if (new_soLuong > 0)
                         {
-                            _ton13.Value = new_soLuong / _heSo1.Value;
+                            _ton13.Value = new_soLuong/_heSo1.Value;
                             _maLo.Text = data_row["Ma_lo"].ToString().Trim();
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
                             break;
+                        }
+                        else
+                        {
+                            ResetTonLoHsd(_ton13, _maLo, _hanSd);
                         }
                     }
                 }

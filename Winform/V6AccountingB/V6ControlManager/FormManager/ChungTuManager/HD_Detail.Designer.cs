@@ -78,6 +78,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnChucNang.Name = "btnChucNang";
             this.btnChucNang.Size = new System.Drawing.Size(31, 23);
             this.btnChucNang.TabIndex = 38;
+            this.btnChucNang.TabStop = false;
             this.btnChucNang.Text = "...";
             this.btnChucNang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnChucNang.UseVisualStyleBackColor = true;

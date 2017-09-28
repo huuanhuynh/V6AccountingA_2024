@@ -1784,12 +1784,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        if (new_soLuong > 0)
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _maLo.Text = data_row["Ma_lo"].ToString().Trim();
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
                             break;
+                        }
+                        else
+                        {
+                            ResetTonLoHsd(_ton13, _maLo, _hanSd);
                         }
                     }
                 }
@@ -1932,13 +1936,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        if (new_soLuong > 0)
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _maLo.Text = data_row["Ma_lo"].ToString().Trim();
                             _maViTri.Text = data_row["Ma_vitri"].ToString().Trim();
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
                             break;
+                        }
+                        else
+                        {
+                            ResetTonLoHsd(_ton13, _maLo, _hanSd);
+                            _maViTri.Clear();
                         }
                     }
                 }

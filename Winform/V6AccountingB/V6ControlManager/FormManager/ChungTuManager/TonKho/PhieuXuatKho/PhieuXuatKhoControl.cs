@@ -1684,12 +1684,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        if (new_soLuong > 0)
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _maLo.Text = data_row["Ma_lo"].ToString().Trim();
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
                             break;
+                        }
+                        else
+                        {
+                            ResetTonLoHsd(_ton13, _maLo, _hanSd);
                         }
                     }
                 }
@@ -1814,7 +1818,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
                         foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
                         {
-
                             string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
                             string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
                             string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
@@ -1823,20 +1826,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
                             if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
                             {
-                                if (maVt == c_maVt && maKhoI == c_maKhoI && data_maLo == c_maLo && data_maViTri == c_maViTri)
+                                if (maVt == c_maVt && maKhoI == c_maKhoI && data_maLo == c_maLo &&
+                                    data_maViTri == c_maViTri)
                                 {
                                     new_soLuong -= c_soLuong;
                                 }
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        if (new_soLuong > 0)
                         {
-                            _ton13.Value = new_soLuong / _heSo1.Value;
+                            _ton13.Value = new_soLuong/_heSo1.Value;
                             _maLo.Text = data_row["Ma_lo"].ToString().Trim();
                             _maViTri.Text = data_row["Ma_vitri"].ToString().Trim();
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
                             break;
+                        }
+                        else
+                        {
+                            ResetTonLoHsd(_ton13, _maLo, _hanSd);
+                            _maViTri.Clear();
                         }
                     }
                 }

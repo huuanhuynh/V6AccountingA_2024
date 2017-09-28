@@ -3352,7 +3352,14 @@ namespace V6Controls.Forms
             //{
             //    args.ThrowException = false;
             //};
-            if (string.IsNullOrEmpty(showFields)) return;
+            if (string.IsNullOrEmpty(showFields))
+            {
+                if (dgv is V6ColorDataGridView)
+                {
+                    ((V6ColorDataGridView)dgv).Format();
+                }
+                return;
+            }
             //dgv.AutoGenerateColumns = true;//gây lỗi lặp ở tìm hóa đơn.
             var fieldList = showFields.Replace("[", "").Replace("]", "").Split(showFields.Contains(";") ? ';' : ',');
             var formatList = formatStrings.Split(formatStrings.Contains(";") ? ';' : ',');

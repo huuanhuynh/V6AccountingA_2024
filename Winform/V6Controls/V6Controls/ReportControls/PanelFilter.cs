@@ -76,7 +76,7 @@ namespace V6ReportControls
                     else if (",date,smalldatetime,datetime,"
                         .Contains("," + structTable[NAME].sql_data_type_string + ","))
                     {
-                        lineControl.AddDateTimePick();
+                        lineControl.AddDateTimeColor();
                     }
                     else
                     {

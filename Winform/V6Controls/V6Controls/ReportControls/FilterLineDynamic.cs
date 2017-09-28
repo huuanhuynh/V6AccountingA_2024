@@ -17,6 +17,7 @@ namespace V6ReportControls
         public V6VvarTextBox _vtextBox;
         public V6LookupTextBox _lookuptextBox;
         public V6NumberTextBox _numberTextBox;
+        public V6DateTimeColor _dateTimeColor;
         public V6DateTimePick _dateTimePick;
         public V6CheckBox _checkBox;
         public bool CheckNotEmpty;
@@ -83,7 +84,9 @@ namespace V6ReportControls
             OnTextChanged(e);
         }
 
-
+        /// <summary>
+        /// AccessibleName của textbox bên trong.
+        /// </summary>
         [DefaultValue(null)]
         public string AccessibleName2
         {
@@ -91,17 +94,22 @@ namespace V6ReportControls
             {
                 if (_textBox != null) return _textBox.AccessibleName;
                 if (_vtextBox != null) return _vtextBox.AccessibleName;
+                if (_lookuptextBox != null) return _lookuptextBox.AccessibleName;
                 if (_numberTextBox != null) return _numberTextBox.AccessibleName;
                 if (_dateTimePick != null) return _dateTimePick.AccessibleName;
-
+                if (_dateTimeColor != null) return _dateTimeColor.AccessibleName;
+                if (_checkBox != null) return _checkBox.AccessibleName;
                 return null;
             }
             set
             {
                 if (_textBox != null) _textBox.AccessibleName = value;
                 if (_vtextBox != null) _vtextBox.AccessibleName = value;
+                if (_lookuptextBox != null) _lookuptextBox.AccessibleName = value;
                 if (_numberTextBox != null) _numberTextBox.AccessibleName = value;
                 if (_dateTimePick != null) _dateTimePick.AccessibleName = value;
+                if (_dateTimeColor != null) _dateTimeColor.AccessibleName = value;
+                if (_checkBox != null) _checkBox.AccessibleName = value;
             }
         }
 
@@ -114,6 +122,7 @@ namespace V6ReportControls
                 if (_lookuptextBox != null) return _lookuptextBox.Value;
                 if (_numberTextBox != null) return _numberTextBox.Value;
                 if (_dateTimePick != null) return _dateTimePick.Value;
+                if (_dateTimeColor != null) return _dateTimeColor.Value;
                 if (_checkBox != null) return _checkBox.Checked;
                 return null;
             }
@@ -128,6 +137,7 @@ namespace V6ReportControls
                 if (_lookuptextBox != null) return _lookuptextBox.Value.ToString();
                 if (_numberTextBox != null) return _numberTextBox.Value.ToString(CultureInfo.InvariantCulture);
                 if (_dateTimePick != null) return _dateTimePick.Value.ToString("yyyyMMdd");
+                if (_dateTimeColor != null) return ObjectAndString.ObjectToString(_dateTimeColor.Value);
                 if (_checkBox != null) return _checkBox.Checked?"1":"0";
                 return "";
             }
@@ -162,6 +172,7 @@ namespace V6ReportControls
             
             if (_numberTextBox != null) type = typeof (decimal);
             else if (_dateTimePick != null) type = typeof (DateTime);
+            else if (_dateTimeColor != null) type = typeof(DateTime);
 
             if (type == typeof (string))
             {
@@ -337,7 +348,8 @@ namespace V6ReportControls
             _numberTextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _numberTextBox.KeyDown += FilterLineDynamic_KeyDown;
         }
-        public void AddDateTimePick()
+
+        public void AddDateTimePick()//Todo: them su dung cho AddDateTimeColor()
         {
             _dateTimePick = new V6DateTimePick();
             _dateTimePick.Format = DateTimePickerFormat.Custom;
@@ -360,6 +372,31 @@ namespace V6ReportControls
             _dateTimePick.LostFocus += FilterLineDynamic_LostFocus;
             _dateTimePick.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _dateTimePick.KeyDown += FilterLineDynamic_KeyDown;
+        }
+        
+        public void AddDateTimeColor()
+        {
+            _dateTimeColor = new V6DateTimeColor();
+            //_dateTimeColor.Format = DateTimePickerFormat.Custom;
+            //_dateTimeColor.CustomFormat = @"dd/MM/yyyy";
+            _dateTimeColor.Location = new Point(comboBox1.Right + 5, 1);
+            _dateTimeColor.Size = new Size(Width - comboBox1.Right - 5, 20);
+            _dateTimeColor.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            Controls.Add(_dateTimeColor);
+            Operators.Clear();
+            Operators.Add("="); Operators.Add("<>"); Operators.Add(">"); Operators.Add("<");
+            Operators.Add("is null"); Operators.Add("is not null");
+            Operator = "=";
+            _dateTimeColor.Click += FilterLineDynamic_Click;
+            _dateTimeColor.TextChanged += FilterLineDynamic_TextChanged;
+            //_dateTimeColor.ValueChanged += (o, e) =>
+            //{
+            //    OnValueChanged(this, _dateTimeColor);
+            //};
+            _dateTimeColor.GotFocus += FilterLineDynamic_GotFocus;
+            _dateTimeColor.LostFocus += FilterLineDynamic_LostFocus;
+            _dateTimeColor.V6LostFocus += FilterLineDynamic_V6LostFocus;
+            _dateTimeColor.KeyDown += FilterLineDynamic_KeyDown;
         }
         public void AddCheckBox()
         {
@@ -407,6 +444,12 @@ namespace V6ReportControls
                 if (stringValue == "M_NGAY_CT1") _dateTimePick.Value = V6Setting.M_ngay_ct1;
                 else if (stringValue == "M_NGAY_CT2") _dateTimePick.Value = V6Setting.M_ngay_ct2;
                 else if (!string.IsNullOrEmpty(stringValue)) _dateTimePick.Value = ObjectAndString.ObjectToFullDateTime(stringValue);
+            }
+            else if (_dateTimeColor != null)
+            {
+                if (stringValue == "M_NGAY_CT1") _dateTimeColor.Value = V6Setting.M_ngay_ct1;
+                else if (stringValue == "M_NGAY_CT2") _dateTimeColor.Value = V6Setting.M_ngay_ct2;
+                else if (!string.IsNullOrEmpty(stringValue)) _dateTimeColor.Value = ObjectAndString.ObjectToDate(stringValue);
             }
             else if (_checkBox != null)
             {
