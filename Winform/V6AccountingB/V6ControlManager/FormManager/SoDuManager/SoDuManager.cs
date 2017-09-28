@@ -113,6 +113,9 @@ namespace V6ControlManager.FormManager.SoDuManager
                 case V6TableName.Akhungck:
                     FormControl = new AkhungckAddEditControl();
                     break;
+                case V6TableName.Abhhvt:
+                    FormControl = new AbhhvtAddEditForm();
+                    break;
 
                 case V6TableName.Notable:
                     break;
