@@ -4225,6 +4225,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
         }
 
+        private void ChucNang_TinhHaoHut()
+        {
+            try
+            {
+                var xuatHetKho = new TinhHaoHutDataForm();
+                xuatHetKho.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
+                xuatHetKho.AcceptData += tinhHaoHut_AcceptData;
+                xuatHetKho.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".XuatHetKho: " + ex.Message);
+            }
+        }
+
         void chonExcel_AcceptData(DataTable table)
         {
             var count = 0;
@@ -4356,15 +4371,75 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     
                 }
                 ShowParentMessage(count > 0
-                ? string.Format("Đã thêm {0} chi tiết từ excel.", count) + _message
-                : "Không thêm được chi tiết nào từ excel." + _message);
+                ? string.Format("Đã thêm {0} chi tiết.", count) + _message
+                : "Không thêm được chi tiết nào." + _message);
             }
             else
             {
                 ShowParentMessage("Không có đủ thông tin!");
             }
+        }
 
+        void tinhHaoHut_AcceptData(DataTable table)
+        {
+            var count = 0;
+            _message = "";
 
+            if (table.Columns.Contains("MA_VT") && table.Columns.Contains("MA_KHO"))
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    var data = row.ToDataDictionary(_sttRec);
+                    var cMaVt = data["MA_VT"].ToString().Trim();
+                    var cMaKhoI = data["MA_KHO"].ToString().Trim();
+                    //var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
+                    //var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
+
+                    //{ Tuanmh 31/08/2016 Them thong tin ALVT
+                    _maVt.Text = cMaVt;
+                    var datavt = _maVt.Data;
+                    var tonCuoi = ObjectAndString.ObjectToDecimal(data["TON_CUOI"]);
+                    var duCuoi = ObjectAndString.ObjectToDecimal(data["DU_CUOI"]);
+                    if (cMaVt == "" || cMaKhoI == "" || (Math.Abs(tonCuoi) + Math.Abs(duCuoi) == 0)) continue;
+
+                    if (datavt != null)
+                    {
+                        //Nếu dữ liệu không (!) chứa mã nào thì thêm vào dữ liệu cho mã đó.
+                        if (!data.ContainsKey("TEN_VT")) data.Add("TEN_VT", (datavt["TEN_VT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("DVT1")) data.Add("DVT1", (datavt["DVT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("DVT")) data.Add("DVT", (datavt["DVT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("TK_VT")) data.Add("TK_VT", (datavt["TK_VT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("HE_SO1")) data.Add("HE_SO1", 1);
+                        if (!data.ContainsKey("SO_LUONG")) data.Add("SO_LUONG", data["TON_CUOI"]);
+                        if (!data.ContainsKey("SO_LUONG1")) data.Add("SO_LUONG1", data["TON_CUOI"]);
+
+                        var __tien_nt0 = ObjectAndString.ToObject<decimal>(data["DU_CUOI"]);
+                        var __tien0 = __tien_nt0;
+
+                        if (!data.ContainsKey("TIEN0")) data.Add("TIEN0", __tien0);
+
+                        if (!data.ContainsKey("TIEN_NT")) data.Add("TIEN_NT", __tien_nt0);
+                        if (!data.ContainsKey("TIEN")) data.Add("TIEN", __tien0);
+
+                    }
+
+                    data["MA_KHO_I"] = cMaKhoI;
+                    data["MA_NX_I"] = data["TK_VT"];
+
+                    if (XuLyThemDetail(data))
+                    {
+                        count++;
+                    }
+
+                }
+                ShowParentMessage(count > 0
+                ? string.Format("Đã thêm {0} chi tiết.", count) + _message
+                : "Không thêm được chi tiết nào." + _message);
+            }
+            else
+            {
+                ShowParentMessage("Không có đủ thông tin!");
+            }
         }
 
         #endregion chức năng
@@ -4382,6 +4457,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private void XuatHetKhoMenu_Click(object sender, EventArgs e)
         {
             ChucNang_XuatHetKho();
+        }
+
+        private void tinhHaoHutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChucNang_TinhHaoHut();
         }
 
         private void tabControl1_SizeChanged(object sender, EventArgs e)
@@ -4445,5 +4525,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 this.WriteExLog(GetType() + ".XemPhieuNhap", ex);
             }
         }
+
     }
 }

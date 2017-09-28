@@ -1,6 +1,6 @@
 ﻿namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 {
-    partial class XuatHetKhoDataForm
+    partial class TinhHaoHutDataForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnLoc = new System.Windows.Forms.Button();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.v6Label3 = new V6Controls.V6Label();
@@ -81,25 +81,25 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(316, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(447, 515);
             this.dataGridView1.TabIndex = 13;
@@ -354,11 +354,13 @@
             // chkTonHSD
             // 
             this.chkTonHSD.AutoSize = true;
+            this.chkTonHSD.Checked = true;
+            this.chkTonHSD.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkTonHSD.Location = new System.Drawing.Point(77, 129);
             this.chkTonHSD.Name = "chkTonHSD";
             this.chkTonHSD.Size = new System.Drawing.Size(153, 17);
             this.chkTonHSD.TabIndex = 6;
-            this.chkTonHSD.Text = "  Lấy tồn theo hạn sử dụng";
+            this.chkTonHSD.Text = "Phát sinh điều chuyển kho";
             this.chkTonHSD.UseVisualStyleBackColor = true;
             // 
             // btnHuy
@@ -399,16 +401,16 @@
             this.chkSoluong.AutoSize = true;
             this.chkSoluong.Location = new System.Drawing.Point(77, 151);
             this.chkSoluong.Name = "chkSoluong";
-            this.chkSoluong.Size = new System.Drawing.Size(103, 17);
+            this.chkSoluong.Size = new System.Drawing.Size(100, 17);
             this.chkSoluong.TabIndex = 7;
-            this.chkSoluong.Text = " Chỉ lấy số lượng";
+            this.chkSoluong.Text = "Chỉ lấy số lượng";
             this.chkSoluong.UseVisualStyleBackColor = true;
             // 
             // timerViewReport
             // 
             this.timerViewReport.Tick += new System.EventHandler(this.timerViewReport_Tick);
             // 
-            // XuatHetKhoDataForm
+            // TinhHaoHutDataForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -429,8 +431,8 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnLoc);
             this.MinimumSize = new System.Drawing.Size(780, 560);
-            this.Name = "XuatHetKhoDataForm";
-            this.Text = "XuatHetKhoDataForm";
+            this.Name = "TinhHaoHutDataForm";
+            this.Text = "TinhHaoHutDataForm";
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnLoc, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);

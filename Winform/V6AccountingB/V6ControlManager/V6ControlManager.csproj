@@ -908,6 +908,12 @@
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapChiPhiMuaHang\PhieuNhapChiPhiMuaHangControl.Designer.cs">
       <DependentUpon>PhieuNhapChiPhiMuaHangControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\TinhHaoHutDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\TinhHaoHutDataForm.Designer.cs">
+      <DependentUpon>TinhHaoHutDataForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\XuatHetKhoDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5183,6 +5189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\Loc\LocThoiGianPhieuXuatKho.resx">
       <DependentUpon>LocThoiGianPhieuXuatKho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\TinhHaoHutDataForm.resx">
+      <DependentUpon>TinhHaoHutDataForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\XuatHetKhoDataForm.resx">
       <DependentUpon>XuatHetKhoDataForm.cs</DependentUpon>

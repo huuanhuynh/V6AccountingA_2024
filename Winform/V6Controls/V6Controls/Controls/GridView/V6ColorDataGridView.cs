@@ -764,6 +764,8 @@ namespace V6Controls
         {
             foreach (DataGridViewColumn column in Columns)
             {
+                if (column.Name.ToUpper().StartsWith("USER_ID")) continue;
+
                 var dataType = column.ValueType;
                 if (dataType == typeof (decimal)
                     //|| dataType == typeof (int)
