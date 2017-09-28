@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
-using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -14,6 +12,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             InitializeComponent();
         }
+        
         public override void DoBeforeEdit()
         {
             Txtma_vt.ExistRowInTable();
@@ -26,6 +25,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             TxtMa_kho.ExistRowInTable();
             TxtMa_vitri.ExistRowInTable();
         }
+
+        private void ViTriChiTietAddEditForm_Load(object sender, EventArgs e)
+        {
+            
+        }
+
         public override SortedDictionary<string, object> GetData()
         {
             var data = base.GetData();
@@ -60,6 +65,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
 
             if (errors.Length > 0) throw new Exception(errors);
+        }
+        
+        private bool flag = true;
+        private void v6TabControl1_Enter(object sender, EventArgs e)
+        {
+            if (flag)
+            {
+                Txtma_vt.Focus();
+                flag = false;
+            }
         }
 
     }

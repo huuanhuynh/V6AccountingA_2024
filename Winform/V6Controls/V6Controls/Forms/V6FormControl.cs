@@ -21,7 +21,9 @@ namespace V6Controls.Forms
         protected int ii = 0;
         public string _sttRec { get; set; }
         protected bool _escape = false;
-        
+        /// <summary>
+        /// Thông báo hoặc hiển thị trạng thái đang chạy.
+        /// </summary>
         protected string _message = "";
         public bool Data_Loading, _load_data_success;
         

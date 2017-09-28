@@ -386,14 +386,22 @@ namespace V6Controls
             }
         }
 
+        /// <summary>
+        /// Vẽ màu viền ô hiện tại.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void V6ColorDataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (!Focused || CurrentCell == null) return;
+            //Vẽ màu viền ô hiện tại.
+            //if (!Focused) return;
+            if (CurrentCell == null) return;
             if (e.ColumnIndex == CurrentCell.ColumnIndex
                 && e.RowIndex == CurrentCell.RowIndex)
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.Border);
-                using (Pen p = new Pen(Color.LightSalmon, 1))
+                Color c = Focused ? Color.LightSalmon : Color.White;
+                using (Pen p = new Pen(c, 1))
                 {
                     Rectangle rect = e.CellBounds;
                     rect.Width -= 2;

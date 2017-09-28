@@ -3803,6 +3803,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\AINABVITRI2N.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AINVITRI05.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\HPAYROLLCALC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6604,6 +6607,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINGIA_NTXT.resx">
       <DependentUpon>AINGIA_NTXT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVITRI05.resx">
+      <DependentUpon>AINVITRI05.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HPAYROLLCALC.resx">
       <DependentUpon>HPAYROLLCALC.cs</DependentUpon>

@@ -91,7 +91,7 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Size = new System.Drawing.Size(723, 89);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
             // v6ColorTextBox2
@@ -110,7 +110,7 @@
             this.v6ColorTextBox2.Name = "v6ColorTextBox2";
             this.v6ColorTextBox2.ReadOnly = true;
             this.v6ColorTextBox2.Size = new System.Drawing.Size(403, 23);
-            this.v6ColorTextBox2.TabIndex = 45;
+            this.v6ColorTextBox2.TabIndex = 5;
             this.v6ColorTextBox2.TabStop = false;
             // 
             // v6ColorTextBox1
@@ -129,7 +129,7 @@
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
             this.v6ColorTextBox1.ReadOnly = true;
             this.v6ColorTextBox1.Size = new System.Drawing.Size(403, 23);
-            this.v6ColorTextBox1.TabIndex = 44;
+            this.v6ColorTextBox1.TabIndex = 2;
             this.v6ColorTextBox1.TabStop = false;
             // 
             // TxtMa_kho
@@ -148,7 +148,7 @@
             this.TxtMa_kho.Name = "TxtMa_kho";
             this.TxtMa_kho.ReadOnly = true;
             this.TxtMa_kho.Size = new System.Drawing.Size(144, 23);
-            this.TxtMa_kho.TabIndex = 0;
+            this.TxtMa_kho.TabIndex = 1;
             this.TxtMa_kho.TabStop = false;
             this.TxtMa_kho.VVar = "ma_kho";
             // 
@@ -159,7 +159,7 @@
             this.label6.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 17);
-            this.label6.TabIndex = 10;
+            this.label6.TabIndex = 0;
             this.label6.Text = "Mã kho";
             // 
             // TxtMa_vitri
@@ -178,7 +178,7 @@
             this.TxtMa_vitri.Name = "TxtMa_vitri";
             this.TxtMa_vitri.ReadOnly = true;
             this.TxtMa_vitri.Size = new System.Drawing.Size(144, 23);
-            this.TxtMa_vitri.TabIndex = 5;
+            this.TxtMa_vitri.TabIndex = 4;
             this.TxtMa_vitri.TabStop = false;
             this.TxtMa_vitri.VVar = "ma_vitri";
             // 
@@ -189,7 +189,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 17);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 3;
             this.label2.Text = "Mã vị trí";
             // 
             // Txtma_vt
@@ -207,7 +207,7 @@
             this.Txtma_vt.Location = new System.Drawing.Point(142, 23);
             this.Txtma_vt.Name = "Txtma_vt";
             this.Txtma_vt.Size = new System.Drawing.Size(144, 23);
-            this.Txtma_vt.TabIndex = 0;
+            this.Txtma_vt.TabIndex = 1;
             this.Txtma_vt.VVar = "ma_vt";
             // 
             // label8
@@ -217,7 +217,7 @@
             this.label8.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 17);
-            this.label8.TabIndex = 8;
+            this.label8.TabIndex = 0;
             this.label8.Text = "Mã vật tư";
             // 
             // v6TabControl1
@@ -235,7 +235,8 @@
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
             this.v6TabControl1.Size = new System.Drawing.Size(716, 409);
-            this.v6TabControl1.TabIndex = 1;
+            this.v6TabControl1.TabIndex = 0;
+            this.v6TabControl1.Enter += new System.EventHandler(this.v6TabControl1_Enter);
             // 
             // tabPage1
             // 
@@ -273,7 +274,7 @@
             this.Txtten_vt.Name = "Txtten_vt";
             this.Txtten_vt.ReadOnly = true;
             this.Txtten_vt.Size = new System.Drawing.Size(403, 23);
-            this.Txtten_vt.TabIndex = 43;
+            this.Txtten_vt.TabIndex = 2;
             this.Txtten_vt.TabStop = false;
             // 
             // txtTien
@@ -290,7 +291,7 @@
             this.txtTien.Location = new System.Drawing.Point(142, 125);
             this.txtTien.Name = "txtTien";
             this.txtTien.Size = new System.Drawing.Size(144, 23);
-            this.txtTien.TabIndex = 3;
+            this.txtTien.TabIndex = 8;
             this.txtTien.Text = "0";
             this.txtTien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTien.Value = new decimal(new int[] {
@@ -313,7 +314,7 @@
             this.txtGia.Location = new System.Drawing.Point(142, 91);
             this.txtGia.Name = "txtGia";
             this.txtGia.Size = new System.Drawing.Size(144, 23);
-            this.txtGia.TabIndex = 2;
+            this.txtGia.TabIndex = 6;
             this.txtGia.Text = "0";
             this.txtGia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGia.Value = new decimal(new int[] {
@@ -336,7 +337,7 @@
             this.txtSoLuong.Location = new System.Drawing.Point(142, 57);
             this.txtSoLuong.Name = "txtSoLuong";
             this.txtSoLuong.Size = new System.Drawing.Size(144, 23);
-            this.txtSoLuong.TabIndex = 1;
+            this.txtSoLuong.TabIndex = 4;
             this.txtSoLuong.Text = "0";
             this.txtSoLuong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSoLuong.Value = new decimal(new int[] {
@@ -362,7 +363,7 @@
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 17);
-            this.label3.TabIndex = 6;
+            this.label3.TabIndex = 5;
             this.label3.Text = "Giá";
             // 
             // label1
@@ -372,7 +373,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 17);
-            this.label1.TabIndex = 5;
+            this.label1.TabIndex = 3;
             this.label1.Text = "Số lượng";
             // 
             // tabPage2
@@ -842,6 +843,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ViTriChiTietAddEditForm";
             this.Size = new System.Drawing.Size(725, 513);
+            this.Load += new System.EventHandler(this.ViTriChiTietAddEditForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.v6TabControl1.ResumeLayout(false);

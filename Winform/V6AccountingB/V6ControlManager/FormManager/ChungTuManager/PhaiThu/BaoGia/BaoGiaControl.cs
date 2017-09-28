@@ -952,6 +952,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 if (_dataLoDate.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
+                    _maLo.Clear();
+                    _hanSd.Value = null;
                 }
                 //Xử lý - tồn
                 //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
@@ -989,7 +991,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                             }
                         }
 
-                        if (new_soLuong > 0)
+                        if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
@@ -1022,6 +1024,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 if (_dataLoDate.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
+                    _maLo.Clear();
+                    _hanSd.Value = null;
                 }
                 //Xử lý - tồn
                 //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
@@ -1058,7 +1062,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                             }
                         }
 
-                        if (new_soLuong > 0)
+                        if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _maLo.Text = data_row["Ma_lo"].ToString().Trim();

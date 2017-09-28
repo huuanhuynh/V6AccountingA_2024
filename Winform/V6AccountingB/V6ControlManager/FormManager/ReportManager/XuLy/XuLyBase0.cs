@@ -122,7 +122,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected bool _success;
         protected bool _executing;
         
-        void TinhToan()
+        protected virtual void TinhToan()
         {
             try
             {
@@ -136,7 +136,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".TinhToan!\n" + ex.Message);
+                this.WriteExLog(GetType() + ".TinhToan", ex);
+                _message = ex.Message;
                 _executing = false;
                 _success = false;
             }
@@ -263,7 +264,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var aControl = ActiveControl;
             if (aControl is V6VvarTextBox)
             {
-                return true;
+                return base.DoHotKey0(keyData);
             }
 
             if (keyData == Keys.Escape)

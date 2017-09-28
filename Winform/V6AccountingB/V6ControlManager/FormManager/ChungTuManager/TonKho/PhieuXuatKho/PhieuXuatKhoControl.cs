@@ -1247,6 +1247,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 if (_dataViTri.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
+                    _maLo.Clear();
+                    _hanSd.Value = null;
                 }
                 //Xử lý - tồn
                 //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
@@ -1284,7 +1286,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             }
                         }
 
-                        if (new_soLuong > 0)
+                        if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
@@ -1292,7 +1294,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -1319,6 +1320,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 if (_dataViTri.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
+                    _maLo.Clear();
+                    _hanSd.Value = null;
                 }
                 //Xử lý - tồn
                 //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
@@ -1356,7 +1359,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             }
                         }
 
-                        if (new_soLuong > 0)
+                        if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             break;
@@ -1395,6 +1398,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     if (_dataViTri.Rows.Count == 0)
                     {
                         _ton13.Value = 0;
+                        _maLo.Clear();
+                        _hanSd.Value = null;
                     }
 
                     //for (int i = _dataViTri.Rows.Count - 1; i >= 0; i--)
@@ -1482,20 +1487,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                 _hanSd.Value = null;
                             }
                         }
-
                     }
-
                 }
                 else
                 {
-
-
-
-
                     if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maVt.VITRI_YN || !_maKhoI.LO_YN || !_maKhoI.DATE_YN)
                         return;
-
-
 
                     if (maVt == "" || maKhoI == "" || maLo == "" || maViTri == "") return;
 
@@ -1504,6 +1501,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     if (_dataViTri.Rows.Count == 0)
                     {
                         _ton13.Value = 0;
+                        _maLo.Clear();
+                        _hanSd.Value = null;
                     }
                     //Xử lý - tồn
                     //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
@@ -1544,7 +1543,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                 }
                             }
 
-                            if (new_soLuong > 0)
+                            if (new_soLuong < 0) new_soLuong = 0;
                             {
                                 _ton13.Value = new_soLuong/_heSo1.Value;
                                 _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
@@ -1557,9 +1556,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     }
                 }
             }
-
-
-
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".GetViTriLoDate13 " + ex.Message);
@@ -1650,6 +1646,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 if (_dataViTri.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
+                    _maLo.Clear();
+                    _hanSd.Value = null;
                 }
                 //Xử lý - tồn
                 //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
@@ -1686,7 +1684,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             }
                         }
 
-                        if (new_soLuong > 0)
+                        if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _maLo.Text = data_row["Ma_lo"].ToString().Trim();
@@ -1695,7 +1693,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -1757,7 +1754,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             }
                         }
 
-                        if (new_soLuong > 0)
+                        if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _maViTri.Text = data_row["Ma_vitri"].ToString().Trim();
@@ -1765,7 +1762,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -1792,6 +1788,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 if (_dataViTri.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
+                    _maLo.Clear();
+                    _hanSd.Value = null;
                 }
                 //Xử lý - tồn
                 //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
@@ -1832,7 +1830,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             }
                         }
 
-                        if (new_soLuong > 0)
+                        if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _maLo.Text = data_row["Ma_lo"].ToString().Trim();
@@ -1842,7 +1840,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -1902,7 +1899,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                     }
                                 }
 
-                                if (new_soLuong > 0)
+                                if (new_soLuong < 0) new_soLuong = 0;
                                 {
                                     _ton13.Value = new_soLuong / _heSo1.Value;
                                     break;
