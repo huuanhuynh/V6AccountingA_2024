@@ -183,7 +183,8 @@ namespace V6ControlManager.FormManager.MenuManager
                             {
                                 if (tableNamesd == "ABSPYTCP" || tableNamesd == "ABSPDD" ||
                                     tableNamesd == "ACOSXLT_ABSPDD" || tableNamesd == "ACOSXLT_ABSPYTCP" ||
-                                    tableNamesd == "ACOSXLSX_ABSPDD" || tableNamesd == "ACOSXLSX_ABSPYTCP")
+                                    tableNamesd == "ACOSXLSX_ABSPDD" || tableNamesd == "ACOSXLSX_ABSPYTCP" ||
+                                    tableNamesd == "ABHHVT")
                                 {
                                     var filterForm = new YearMonthFilterForm(tableNamesd);
                                     if (filterForm.ShowDialog(owner) == DialogResult.OK)

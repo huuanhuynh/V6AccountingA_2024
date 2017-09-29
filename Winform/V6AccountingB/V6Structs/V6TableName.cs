@@ -209,7 +209,8 @@ namespace V6Structs
         Alkuct,
         Hrjobexperience,
         Hrjobexperience2,
-        Alvitrict
+        Alvitrict,
+        Abhhvt
     }
 
     public static class V6TableHelper
@@ -781,6 +782,7 @@ namespace V6Structs
                 case V6TableName.Alvtct1: result = "ma_vt"; break;
                 case V6TableName.Acosxlt_alpbph: result = "ma_bpht"; break;
                 case V6TableName.Acosxlsx_alpbph: result = "ma_bpht"; break;
+                case V6TableName.Abhhvt: result = "ma_vt"; break;
                 case V6TableName.Alreport1: result = "ma_bc"; break;
                 case V6TableName.Alreport: result = "ma_bc"; break;
                 case V6TableName.Alnhvitri: result = "ma_nh"; break;

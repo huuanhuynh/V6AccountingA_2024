@@ -4362,6 +4362,12 @@
     <Compile Include="FormManager\ReportManager\XuLy\XuLyBase.designer.cs">
       <DependentUpon>XuLyBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\SoDuManager\Add_Edit\AbhhvtAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\SoDuManager\Add_Edit\AbhhvtAddEditForm.designer.cs">
+      <DependentUpon>AbhhvtAddEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\SoDuManager\Add_Edit\Acosxlsx_abspddAddEditForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6886,6 +6892,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\XuLyBase.resx">
       <DependentUpon>XuLyBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\SoDuManager\Add_Edit\AbhhvtAddEditForm.resx">
+      <DependentUpon>AbhhvtAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\SoDuManager\Add_Edit\Acosxlsx_abspddAddEditForm.resx">
       <DependentUpon>Acosxlsx_abspddAddEditForm.cs</DependentUpon>
