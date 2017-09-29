@@ -47,22 +47,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 this.ShowErrorMessage(GetType() + ".LoadCombobox: " + ex.Message, "InChungTu.ViewInfoData");
             }
         }
-
-        /// <summary>
-        /// Tạm thời format kiểu số 2 số lẻ.
-        /// </summary>
-        private void FormatGridView()
-        {
-            try
-            {
-                dataGridView1.Format();
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".FormatGridView", ex);
-            }
-        }
-
+        
         private void Print()
         {
             try
@@ -152,7 +137,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 };
                     var loadData = V6BusinessHelper.ExecuteProcedure(Procedure, plist).Tables[0];
                     dataGridView1.DataSource = loadData;
-                    FormatGridView();
+                    //FormatGridView();
                 }
             }
             catch (Exception ex)

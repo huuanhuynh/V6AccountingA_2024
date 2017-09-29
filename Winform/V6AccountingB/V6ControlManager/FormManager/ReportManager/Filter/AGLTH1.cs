@@ -90,13 +90,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
 
             result.Add(new SqlParameter("@Tk", TxtTk.Text.Trim()));
+            int loai_tk = 0;
+            if (rdo_All.Checked) loai_tk = 1;
 
-            if (rdo_All.Checked)
-                result.Add(new SqlParameter("@Loai_tk", 1));
-            else
-                result.Add(new SqlParameter("@Loai_tk", 0));
-
-
+            result.Add(new SqlParameter("@Loai_tk", loai_tk));
+            
             result.Add(new SqlParameter("@StartDate", dateNgay_ct1.Value.ToString("yyyyMMdd")));
             result.Add(new SqlParameter("@EndDate", dateNgay_ct2.Value.ToString("yyyyMMdd")));
                                               

@@ -137,7 +137,7 @@ namespace V6ReportControls
                 if (_lookuptextBox != null) return _lookuptextBox.Value.ToString();
                 if (_numberTextBox != null) return _numberTextBox.Value.ToString(CultureInfo.InvariantCulture);
                 if (_dateTimePick != null) return _dateTimePick.Value.ToString("yyyyMMdd");
-                if (_dateTimeColor != null) return ObjectAndString.ObjectToString(_dateTimeColor.Value);
+                if (_dateTimeColor != null) return ObjectAndString.ObjectToString(_dateTimeColor.Value, "yyyyMMdd");
                 if (_checkBox != null) return _checkBox.Checked?"1":"0";
                 return "";
             }

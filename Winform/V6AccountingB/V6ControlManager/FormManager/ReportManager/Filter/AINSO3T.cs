@@ -5,9 +5,9 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AINSO1T : FilterBase
+    public partial class AINSO3T : FilterBase
     {
-        public AINSO1T()
+        public AINSO3T()
         {
             InitializeComponent();
            
@@ -97,6 +97,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             int tinh_dc = 0;
             if (Chk_Tinh_dc.Checked) tinh_dc = 1;
             result.Add(new SqlParameter("@Tinh_dc", tinh_dc));
+
             var and = radAnd.Checked;
 
             var cKey = "";

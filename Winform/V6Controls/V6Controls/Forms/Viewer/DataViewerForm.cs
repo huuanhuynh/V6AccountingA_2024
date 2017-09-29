@@ -80,7 +80,7 @@ namespace V6Controls.Forms.Viewer
                 dataGridView1.DataSource = _data_object;
             }
 
-            dataGridView1.Format();
+            //dataGridView1.Format();
         }
 
         public event Action<Keys> HotKeyAction;

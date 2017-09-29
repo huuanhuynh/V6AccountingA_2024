@@ -103,6 +103,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 case "AINSO1T":
                     return new AINSO1T(itemId, program, procedure, reportFile, reportCaption, reportCaption2,
                         repFileF5, repTitleF5, repTitle2F5);
+
+                case "AINSO3T":
+                    return new AINSO3T(itemId, program, procedure, reportFile, reportCaption, reportCaption2,
+                        repFileF5, repTitleF5, repTitle2F5);
                 
                 case "AAPSO1T":
                     return new AAPSO1T(itemId, program, procedure, reportFile, reportCaption, reportCaption2,

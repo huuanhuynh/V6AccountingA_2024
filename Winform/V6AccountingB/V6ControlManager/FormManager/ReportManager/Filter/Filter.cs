@@ -338,6 +338,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new AINSO1TF5();
                 case "AINSO1TF10":
                     return new AINSO1TF10();
+                case "AINSO3T":
+                    return new AINSO3T();
+                case "AINSO3TF5":
+                    return new AINSO3TF5();
+                case "AINSO3TF10":
+                    return new AINSO3TF10();
                 case "AINGIATB1":
                     return new AINGIATB1();
                 case "AINSD4":

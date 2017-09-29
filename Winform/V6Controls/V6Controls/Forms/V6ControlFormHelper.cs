@@ -3340,7 +3340,8 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
-        /// Định dạng gridview, sắp xếp thứ tự cột, gán header, format string.
+        /// <para>Định dạng gridview, sắp xếp thứ tự cột, gán header, format string.</para>
+        /// <para>Nếu không có showFields thì chạy format mặc định của V6ColorDataGridView.</para>
         /// </summary>
         /// <param name="dgv"></param>
         /// <param name="showFields">cách nhau bởi (,) hoặc (;)</param>
@@ -3354,10 +3355,6 @@ namespace V6Controls.Forms
             //};
             if (string.IsNullOrEmpty(showFields))
             {
-                if (dgv is V6ColorDataGridView)
-                {
-                    ((V6ColorDataGridView)dgv).Format();
-                }
                 return;
             }
             //dgv.AutoGenerateColumns = true;//gây lỗi lặp ở tìm hóa đơn.

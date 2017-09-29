@@ -366,7 +366,7 @@ namespace V6Controls
 
                     f.Controls.Add(newGridView);
                     newGridView.DataSource = data;
-                    newGridView.Format();
+                    //newGridView.Format();
 
                     GridViewSummary gSum = new GridViewSummary();
                     gSum.DataGridView = newGridView;

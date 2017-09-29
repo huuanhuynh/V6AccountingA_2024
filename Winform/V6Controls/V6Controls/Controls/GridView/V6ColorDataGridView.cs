@@ -228,8 +228,33 @@ namespace V6Controls
                 if (ObjectAndString.IsNumberType(dataType))
                 {
                     e.Column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    e.Column.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_TIEN"];
+                    //e.Column.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_TIEN"];
+                    string COLUMN_NAME = e.Column.Name.ToUpper();
+                    if (COLUMN_NAME.StartsWith("USER_ID")) goto FormatProvider;
+                    if (COLUMN_NAME.StartsWith("STT")) goto FormatProvider;
                     
+                    //var dataType = e.Column.ValueType;
+                    if (dataType == typeof(decimal)
+                        //|| dataType == typeof (int)
+                        || dataType == typeof(double)
+                        //|| dataType == typeof (long)
+                        //|| dataType == typeof (short)
+                        || dataType == typeof(float)
+                        //|| dataType == typeof (Int16)
+                        //|| dataType == typeof (Int32)
+                        //|| dataType == typeof (Int64)
+                        //|| dataType == typeof (uint)
+                        //|| dataType == typeof (UInt16)
+                        //|| dataType == typeof (UInt32)
+                        //|| dataType == typeof (UInt64)
+                        //|| dataType == typeof (byte)
+                        //|| dataType == typeof (sbyte)
+                        //|| dataType == typeof (Single)
+                        )
+                    {
+                        e.Column.DefaultCellStyle.Format = "N2";
+                    }
+                FormatProvider:
                     e.Column.DefaultCellStyle.FormatProvider = V6Setting.V6_number_format_info;
                 }
                 else if (dataType == typeof (string))
@@ -756,37 +781,46 @@ namespace V6Controls
             }
         }
 
-        /// <summary>
-        /// <para>Gán format mặc định.</para>
-        /// <para>2 số lẻ</para>
-        /// </summary>
-        public void Format()
-        {
-            foreach (DataGridViewColumn column in Columns)
-            {
-                if (column.Name.ToUpper().StartsWith("USER_ID")) continue;
-
-                var dataType = column.ValueType;
-                if (dataType == typeof (decimal)
-                    //|| dataType == typeof (int)
-                    || dataType == typeof (double)
-                    //|| dataType == typeof (long)
-                    //|| dataType == typeof (short)
-                    || dataType == typeof (float)
-                    //|| dataType == typeof (Int16)
-                    //|| dataType == typeof (Int32)
-                    //|| dataType == typeof (Int64)
-                    //|| dataType == typeof (uint)
-                    //|| dataType == typeof (UInt16)
-                    //|| dataType == typeof (UInt32)
-                    //|| dataType == typeof (UInt64)
-                    //|| dataType == typeof (byte)
-                    //|| dataType == typeof (sbyte)
-                    || dataType == typeof (Single))
-                {
-                    column.DefaultCellStyle.Format = "N2";
-                }
-            }
-        }
+        ///// <summary>
+        ///// <para>Gán format mặc định.</para>
+        ///// <para>2 số lẻ</para>
+        ///// <para>dd/MM/yyyy</para>
+        ///// </summary>
+        ///// <param name="exceptFields">Các trường dữ liệu không cần định dạng.</param>
+        //public void Format(string exceptFields = null) { }
+        //{
+        //    if (!string.IsNullOrEmpty(exceptFields)) exceptFields = exceptFields.ToUpper();
+        //    foreach (DataGridViewColumn column in Columns)
+        //    {
+        //        string COLUMN_NAME = column.Name.ToUpper();
+        //        if (COLUMN_NAME.StartsWith("USER_ID")) continue;
+        //        if (COLUMN_NAME.StartsWith("STT")) continue;
+        //        if (!string.IsNullOrEmpty(exceptFields))
+        //        {
+        //            if (exceptFields.Contains(COLUMN_NAME)) continue;
+        //        }
+        //        var dataType = column.ValueType;
+        //        if (dataType == typeof (decimal)
+        //            //|| dataType == typeof (int)
+        //            || dataType == typeof (double)
+        //            //|| dataType == typeof (long)
+        //            //|| dataType == typeof (short)
+        //            || dataType == typeof (float)
+        //            //|| dataType == typeof (Int16)
+        //            //|| dataType == typeof (Int32)
+        //            //|| dataType == typeof (Int64)
+        //            //|| dataType == typeof (uint)
+        //            //|| dataType == typeof (UInt16)
+        //            //|| dataType == typeof (UInt32)
+        //            //|| dataType == typeof (UInt64)
+        //            //|| dataType == typeof (byte)
+        //            //|| dataType == typeof (sbyte)
+        //            //|| dataType == typeof (Single)
+        //            )
+        //        {
+        //            column.DefaultCellStyle.Format = "N2";
+        //        }
+        //    }
+        //}
     }
 }

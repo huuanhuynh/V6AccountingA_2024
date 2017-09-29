@@ -39,11 +39,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //@Ma_dvcs VARCHAR(50) = ''
 
             var result = new List<SqlParameter>();
-
+            int zero = 0;
             result.Add(new SqlParameter("@Type","VIEW"));
             result.Add(new SqlParameter("@Year", (int)txtNam.Value));
-            result.Add(new SqlParameter("@Period1", 0));
-            result.Add(new SqlParameter("@Period2", 0));
+            result.Add(new SqlParameter("@Period1", zero));
+            result.Add(new SqlParameter("@Period2", zero));
             result.Add(new SqlParameter("@Stt_recs", ("")));
             result.Add(new SqlParameter("@User_id", V6Login.UserId));
             result.Add(new SqlParameter("@Ma_dvcs", ""));

@@ -1806,6 +1806,24 @@
     <Compile Include="FormManager\ReportManager\Filter\AGLCD1F5F5.designer.cs">
       <DependentUpon>AGLCD1F5F5.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AINSO3TF10.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AINSO3TF10.designer.cs">
+      <DependentUpon>AINSO3TF10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AINSO3TF5.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AINSO3TF5.designer.cs">
+      <DependentUpon>AINSO3TF5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AINSO3T.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AINSO3T.designer.cs">
+      <DependentUpon>AINSO3T.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\HPAYROLLCALC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3809,6 +3827,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\AINABVITRI2N.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AINSO3T.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AINVITRI05.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5671,6 +5692,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AINCDVITRIA.resx">
       <DependentUpon>AINCDVITRIA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AINSO3TF10.resx">
+      <DependentUpon>AINSO3TF10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AINSO3TF5.resx">
+      <DependentUpon>AINSO3TF5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AINSO3T.resx">
+      <DependentUpon>AINSO3T.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\HPAYROLLCALC.resx">
       <DependentUpon>HPAYROLLCALC.cs</DependentUpon>

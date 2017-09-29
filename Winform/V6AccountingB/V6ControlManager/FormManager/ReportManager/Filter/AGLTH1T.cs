@@ -127,13 +127,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Tk_sc", TxtTk_sc.Text.Trim()));
             result.Add(new SqlParameter("@Bac_tk", txtbac_tk.Value));
             result.Add(new SqlParameter("@User_id", V6Login.UserId));
+            int loai_tk = 0;
+            if (rdo_All.Checked) loai_tk = 1;
+
+            result.Add(new SqlParameter("@Loai_tk", loai_tk));
             
-            if (rdo_All.Checked)
-                result.Add(new SqlParameter("@Loai_tk", 1));
-            else
-                result.Add(new SqlParameter("@Loai_tk", 0));
-
-
             return result;
             
 

@@ -261,6 +261,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     int b = UpdateData();
                     if (b > 0)
                     {
+                        AfterUpdate();
                         return true;
                     }
                     
@@ -279,6 +280,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     bool b = InsertNew();
                     if (b)
                     {
+                        AfterInsert();
                     }
                     else
                     {
@@ -296,15 +298,28 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         public virtual bool InsertNew()
         {
-            ValidateData();
-            var result = Categories.Insert(TableName, DataDic);
-            return result;
+            try
+            {
+                FixFormData();
+                DataDic = GetData();
+                ValidateData();
+                var result = Categories.Insert(TableName, DataDic);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                this.ShowInfoMessage(ex.Message);
+                this.WriteExLog(GetType() + ".InsertNew", ex);
+                return false;
+            }
         }
 
         public virtual int UpdateData()
         {
-            if (V6Login.GetDataMode == GetDataMode.Local)
+            try
             {
+                FixFormData();
+                DataDic = GetData();
                 ValidateData();
                 //Lấy thêm UID từ DataEditNếu có.
                 if (DataOld.ContainsKey("UID"))
@@ -314,18 +329,26 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 var result = Categories.Update(TableName, DataDic, _keys);
                 return result;
             }
-            
-            if(V6Login.GetDataMode == GetDataMode.API)
+            catch (Exception ex)
             {
-                throw new Exception("Chưa tích hợp Update by API trong AddEdit Virtual.");
+                this.ShowInfoMessage(ex.Message);
+                this.WriteExLog(GetType() + ".UpdateData", ex);
+                return 0;
             }
-            return 0;
         }
 
         public override void SetData(IDictionary<string, object> d)
         {
             base.SetData(d);
             AfterSetData();
+        }
+
+        /// <summary>
+        /// Chuẩn hóa lại dữ liệu trước khi xử lý.
+        /// </summary>
+        public virtual void FixFormData()
+        {
+
         }
 
         /// <summary>
@@ -336,6 +359,22 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public virtual void ValidateData()
         {
           
+        }
+
+        /// <summary>
+        /// Được gọi sau khi thêm thành công.
+        /// </summary>
+        public virtual void AfterInsert()
+        {
+
+        }
+
+        /// <summary>
+        /// Được gọi sau khi sửa thành công.
+        /// </summary>
+        public virtual void AfterUpdate()
+        {
+
         }
 
         /// <summary>

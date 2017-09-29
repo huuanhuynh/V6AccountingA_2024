@@ -89,10 +89,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             result.Add(new SqlParameter("@StartDate", dateNgay_ct1.Value.ToString("yyyyMMdd")));
             result.Add(new SqlParameter("@EndDate", dateNgay_ct2.Value.ToString("yyyyMMdd")));
-            if (Chk_Tinh_dc.Checked)
-                result.Add(new SqlParameter("@Tinh_dc", 1));
-            else
-                result.Add(new SqlParameter("@Tinh_dc", 0));
+            int tinh_dc = 0;
+            if (Chk_Tinh_dc.Checked) tinh_dc = 1;
+
+            result.Add(new SqlParameter("@Tinh_dc", tinh_dc));
 
             var and = radAnd.Checked;
 
