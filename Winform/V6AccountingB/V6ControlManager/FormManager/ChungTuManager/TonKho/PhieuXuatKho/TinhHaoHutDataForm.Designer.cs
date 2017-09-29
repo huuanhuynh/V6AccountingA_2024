@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnLoc = new System.Windows.Forms.Button();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.v6Label3 = new V6Controls.V6Label();
@@ -61,6 +61,8 @@
             this.btnNhan = new System.Windows.Forms.Button();
             this.chkSoluong = new System.Windows.Forms.CheckBox();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +70,7 @@
             // btnLoc
             // 
             this.btnLoc.Image = global::V6ControlManager.Properties.Resources.Search;
-            this.btnLoc.Location = new System.Drawing.Point(12, 6);
+            this.btnLoc.Location = new System.Drawing.Point(12, 4);
             this.btnLoc.Name = "btnLoc";
             this.btnLoc.Size = new System.Drawing.Size(141, 40);
             this.btnLoc.TabIndex = 10;
@@ -81,25 +83,25 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(316, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(447, 515);
             this.dataGridView1.TabIndex = 13;
@@ -107,7 +109,7 @@
             // v6Label3
             // 
             this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(99, 107);
+            this.v6Label3.Location = new System.Drawing.Point(99, 116);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(170, 13);
             this.v6Label3.TabIndex = 7;
@@ -116,7 +118,7 @@
             // v6Label1
             // 
             this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(99, 81);
+            this.v6Label1.Location = new System.Drawing.Point(99, 93);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(184, 13);
             this.v6Label1.TabIndex = 4;
@@ -125,7 +127,7 @@
             // v6Label2
             // 
             this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(2, 105);
+            this.v6Label2.Location = new System.Drawing.Point(2, 114);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(70, 13);
             this.v6Label2.TabIndex = 2;
@@ -134,7 +136,7 @@
             // v6Label9
             // 
             this.v6Label9.AutoSize = true;
-            this.v6Label9.Location = new System.Drawing.Point(2, 79);
+            this.v6Label9.Location = new System.Drawing.Point(2, 91);
             this.v6Label9.Name = "v6Label9";
             this.v6Label9.Size = new System.Drawing.Size(47, 13);
             this.v6Label9.TabIndex = 1;
@@ -151,11 +153,11 @@
             this.txtKieuIn.HoverColor = System.Drawing.Color.Yellow;
             this.txtKieuIn.LeaveColor = System.Drawing.Color.White;
             this.txtKieuIn.LimitCharacters = "*10";
-            this.txtKieuIn.Location = new System.Drawing.Point(76, 104);
+            this.txtKieuIn.Location = new System.Drawing.Point(76, 113);
             this.txtKieuIn.MaxLength = 1;
             this.txtKieuIn.Name = "txtKieuIn";
             this.txtKieuIn.Size = new System.Drawing.Size(18, 20);
-            this.txtKieuIn.TabIndex = 5;
+            this.txtKieuIn.TabIndex = 3;
             // 
             // TxtVttonkho
             // 
@@ -168,16 +170,16 @@
             this.TxtVttonkho.HoverColor = System.Drawing.Color.Yellow;
             this.TxtVttonkho.LeaveColor = System.Drawing.Color.White;
             this.TxtVttonkho.LimitCharacters = "*10";
-            this.TxtVttonkho.Location = new System.Drawing.Point(76, 78);
+            this.TxtVttonkho.Location = new System.Drawing.Point(76, 90);
             this.TxtVttonkho.MaxLength = 1;
             this.TxtVttonkho.Name = "TxtVttonkho";
             this.TxtVttonkho.Size = new System.Drawing.Size(18, 20);
-            this.TxtVttonkho.TabIndex = 4;
+            this.TxtVttonkho.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 55);
+            this.label2.Location = new System.Drawing.Point(3, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 0;
@@ -191,10 +193,10 @@
             this.dateNgay_ct2.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_ct2.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgay_ct2.LeaveColor = System.Drawing.Color.White;
-            this.dateNgay_ct2.Location = new System.Drawing.Point(62, 52);
+            this.dateNgay_ct2.Location = new System.Drawing.Point(62, 68);
             this.dateNgay_ct2.Name = "dateNgay_ct2";
             this.dateNgay_ct2.Size = new System.Drawing.Size(101, 20);
-            this.dateNgay_ct2.TabIndex = 3;
+            this.dateNgay_ct2.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -356,10 +358,10 @@
             this.chkTonHSD.AutoSize = true;
             this.chkTonHSD.Checked = true;
             this.chkTonHSD.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkTonHSD.Location = new System.Drawing.Point(77, 129);
+            this.chkTonHSD.Location = new System.Drawing.Point(77, 136);
             this.chkTonHSD.Name = "chkTonHSD";
             this.chkTonHSD.Size = new System.Drawing.Size(153, 17);
-            this.chkTonHSD.TabIndex = 6;
+            this.chkTonHSD.TabIndex = 4;
             this.chkTonHSD.Text = "Phát sinh điều chuyển kho";
             this.chkTonHSD.UseVisualStyleBackColor = true;
             // 
@@ -399,10 +401,10 @@
             // chkSoluong
             // 
             this.chkSoluong.AutoSize = true;
-            this.chkSoluong.Location = new System.Drawing.Point(77, 151);
+            this.chkSoluong.Location = new System.Drawing.Point(77, 154);
             this.chkSoluong.Name = "chkSoluong";
             this.chkSoluong.Size = new System.Drawing.Size(100, 17);
-            this.chkSoluong.TabIndex = 7;
+            this.chkSoluong.TabIndex = 5;
             this.chkSoluong.Text = "Chỉ lấy số lượng";
             this.chkSoluong.UseVisualStyleBackColor = true;
             // 
@@ -410,11 +412,35 @@
             // 
             this.timerViewReport.Tick += new System.EventHandler(this.timerViewReport_Tick);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Từ ngày";
+            // 
+            // dateNgay_ct1
+            // 
+            this.dateNgay_ct1.CustomFormat = "dd/MM/yyyy";
+            this.dateNgay_ct1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dateNgay_ct1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateNgay_ct1.HoverColor = System.Drawing.Color.Yellow;
+            this.dateNgay_ct1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.dateNgay_ct1.LeaveColor = System.Drawing.Color.White;
+            this.dateNgay_ct1.Location = new System.Drawing.Point(62, 45);
+            this.dateNgay_ct1.Name = "dateNgay_ct1";
+            this.dateNgay_ct1.Size = new System.Drawing.Size(101, 20);
+            this.dateNgay_ct1.TabIndex = 0;
+            // 
             // TinhHaoHutDataForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(764, 522);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.chkSoluong);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
@@ -433,7 +459,6 @@
             this.MinimumSize = new System.Drawing.Size(780, 560);
             this.Name = "TinhHaoHutDataForm";
             this.Text = "TinhHaoHutDataForm";
-            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnLoc, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
@@ -449,6 +474,9 @@
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.chkSoluong, 0);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            this.Controls.SetChildIndex(this.dateNgay_ct1, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -488,5 +516,7 @@
         private System.Windows.Forms.Button btnNhan;
         private System.Windows.Forms.CheckBox chkSoluong;
         private System.Windows.Forms.Timer timerViewReport;
+        private System.Windows.Forms.Label label1;
+        private V6Controls.V6DateTimePick dateNgay_ct1;
     }
 }

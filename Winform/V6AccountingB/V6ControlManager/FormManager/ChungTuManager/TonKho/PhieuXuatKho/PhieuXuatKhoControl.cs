@@ -4392,9 +4392,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     var data = row.ToDataDictionary(_sttRec);
                     var cMaVt = data["MA_VT"].ToString().Trim();
                     var cMaKhoI = data["MA_KHO"].ToString().Trim();
-                    //var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
-                    //var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
-
+                    
+                   
                     //{ Tuanmh 31/08/2016 Them thong tin ALVT
                     _maVt.Text = cMaVt;
                     var datavt = _maVt.Data;
@@ -4424,7 +4423,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     }
 
                     data["MA_KHO_I"] = cMaKhoI;
-                    data["MA_NX_I"] = data["TK_VT"];
+                    //data["MA_NX_I"] = data["TK_VT"];
 
                     if (XuLyThemDetail(data))
                     {

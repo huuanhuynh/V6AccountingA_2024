@@ -26,7 +26,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             TxtVttonkho.Text = "1";
             txtKieuIn.Text = "*";
-            chkSoluong.Checked = true;
+            chkSoluong.Checked = false;
+            dateNgay_ct1.Value=V6Setting.M_ngay_ct1 ;
+            dateNgay_ct2.Value=V6Setting.M_ngay_ct2  ;
+            txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
+            if (V6Login.MadvcsCount <= 1)
+            {
+                txtMaDvcs.Enabled = false;
+            }
+
         }
 
         private DataSet _ds;
@@ -89,6 +97,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 V6Setting.M_Ma_kho = TxtMakho.StringValue;
             }
 
+            V6Setting.M_ngay_ct1 = dateNgay_ct1.Value;
             V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
 
             var result = new List<SqlParameter>();
@@ -99,6 +108,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             var and = radAnd.Checked;
 
             var cKey = "";
+            var cKey_SD = "";
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
@@ -129,12 +139,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             {
                 cKey = cKey + string.Format(" and ma_vt in (select ma_vt from alvt where {0} )", key1);
             }
-            
+
+            cKey_SD += cKey;
+
+            int tinhdc = 0;
+            if (chkTonHSD.Checked)
+            {
+                tinhdc = 1;
+            }
+
+            result.Add(new SqlParameter("@StartDate", dateNgay_ct1.Value.ToString("yyyyMMdd")));
             result.Add(new SqlParameter("@EndDate", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Tinh_dc", tinhdc));
             result.Add(new SqlParameter("@Condition", cKey));
             result.Add(new SqlParameter("@Vttonkho", TxtVttonkho.Text.Trim()));
+            result.Add(new SqlParameter("@ConditionSD", cKey_SD));
             result.Add(new SqlParameter("@Kieu_in", txtKieuIn.Text.Trim()));
-            result.Add(new SqlParameter("@Tinh_dc", chkTonHSD.Checked ? "1" : "0"));
             result.Add(new SqlParameter("@SL_GT", chkSoluong.Checked ? "1" : "2"));
             
 
