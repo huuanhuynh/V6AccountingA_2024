@@ -601,6 +601,16 @@ namespace V6Controls
             }
         }
 
+        /// <summary>
+        /// Gán lại các biến và giá trị về rỗng hoặc null.
+        /// </summary>
+        public void Reset()
+        {
+            Text = "";
+            _text_data = "";
+            Data = null;
+        }
+
         private void SetNeighborValues()
         {
             try

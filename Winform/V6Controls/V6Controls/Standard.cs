@@ -234,6 +234,7 @@ namespace V6Controls
                 if (data == null) return;
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                 V6ControlFormHelper.UpdateGridViewRow(row, data);
+                _senderTextBox.Reset();
             }
             catch (Exception ex)
             {

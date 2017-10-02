@@ -252,10 +252,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 tF10.Interval = 500;
                 tF10.Tick += tF10_Tick;
                 CheckForIllegalCrossThreadCalls = false;
-                Thread t = new Thread(F10Thread);
-                t.SetApartmentState(ApartmentState.STA);
-                t.IsBackground = true;
-                t.Start();
+                F10Thread();
+                //Thread t = new Thread(F10Thread);
+                //t.SetApartmentState(ApartmentState.STA);
+                //t.IsBackground = true;
+                //t.Start();
                 tF10.Start();
 
             }
