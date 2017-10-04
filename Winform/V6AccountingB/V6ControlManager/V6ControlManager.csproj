@@ -1800,6 +1800,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AFABCTSNV.Designer.cs">
       <DependentUpon>AFABCTSNV.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AGLCD2F5F5.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AGLCD2F5F5.designer.cs">
+      <DependentUpon>AGLCD2F5F5.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AGLCD1F5F5.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5650,6 +5656,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AFABCTSNV.resx">
       <DependentUpon>AFABCTSNV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLCD2F5F5.resx">
+      <DependentUpon>AGLCD2F5F5.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLCD1F5F5.resx">
       <DependentUpon>AGLCD1F5F5.cs</DependentUpon>
