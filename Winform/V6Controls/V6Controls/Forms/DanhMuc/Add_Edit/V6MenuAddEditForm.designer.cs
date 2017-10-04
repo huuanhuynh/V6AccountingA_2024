@@ -75,6 +75,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtPicture = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -94,10 +96,10 @@
             this.txtVBAR2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtVBAR2.HoverColor = System.Drawing.Color.Yellow;
             this.txtVBAR2.LeaveColor = System.Drawing.Color.White;
-            this.txtVBAR2.Location = new System.Drawing.Point(182, 78);
+            this.txtVBAR2.Location = new System.Drawing.Point(175, 78);
             this.txtVBAR2.Margin = new System.Windows.Forms.Padding(4);
             this.txtVBAR2.Name = "txtVBAR2";
-            this.txtVBAR2.Size = new System.Drawing.Size(539, 23);
+            this.txtVBAR2.Size = new System.Drawing.Size(545, 23);
             this.txtVBAR2.TabIndex = 9;
             // 
             // groupBox1
@@ -199,7 +201,7 @@
             this.txtV2ID.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtV2ID.HoverColor = System.Drawing.Color.Yellow;
             this.txtV2ID.LeaveColor = System.Drawing.Color.White;
-            this.txtV2ID.Location = new System.Drawing.Point(183, 18);
+            this.txtV2ID.Location = new System.Drawing.Point(175, 18);
             this.txtV2ID.Margin = new System.Windows.Forms.Padding(4);
             this.txtV2ID.Name = "txtV2ID";
             this.txtV2ID.Size = new System.Drawing.Size(139, 23);
@@ -230,10 +232,10 @@
             this.txtVBAR.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtVBAR.HoverColor = System.Drawing.Color.Yellow;
             this.txtVBAR.LeaveColor = System.Drawing.Color.White;
-            this.txtVBAR.Location = new System.Drawing.Point(182, 47);
+            this.txtVBAR.Location = new System.Drawing.Point(175, 47);
             this.txtVBAR.Margin = new System.Windows.Forms.Padding(4);
             this.txtVBAR.Name = "txtVBAR";
-            this.txtVBAR.Size = new System.Drawing.Size(539, 23);
+            this.txtVBAR.Size = new System.Drawing.Size(545, 23);
             this.txtVBAR.TabIndex = 7;
             // 
             // label3
@@ -261,6 +263,7 @@
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
+            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.txtCode);
             this.tabPage1.Controls.Add(this.txtMaCt);
             this.tabPage1.Controls.Add(this.label17);
@@ -296,7 +299,6 @@
             this.tabPage1.Size = new System.Drawing.Size(742, 342);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // txtCode
             // 
@@ -720,8 +722,11 @@
             // tabPage3
             // 
             this.tabPage3.AutoScroll = true;
+            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Controls.Add(this.chkQuickRun);
             this.tabPage3.Controls.Add(this.label19);
+            this.tabPage3.Controls.Add(this.txtPicture);
+            this.tabPage3.Controls.Add(this.label22);
             this.tabPage3.Controls.Add(this.txtKey1);
             this.tabPage3.Controls.Add(this.label18);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
@@ -731,7 +736,6 @@
             this.tabPage3.Size = new System.Drawing.Size(742, 342);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Các tùy chọn";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // chkQuickRun
             // 
@@ -772,7 +776,7 @@
             this.txtKey1.Location = new System.Drawing.Point(175, 8);
             this.txtKey1.Margin = new System.Windows.Forms.Padding(4);
             this.txtKey1.Name = "txtKey1";
-            this.txtKey1.Size = new System.Drawing.Size(541, 23);
+            this.txtKey1.Size = new System.Drawing.Size(545, 23);
             this.txtKey1.TabIndex = 1;
             // 
             // label18
@@ -805,6 +809,7 @@
             // 
             this.tabPage2.AccessibleDescription = "thong_tin_cong_no";
             this.tabPage2.AutoScroll = true;
+            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
@@ -812,7 +817,36 @@
             this.tabPage2.Size = new System.Drawing.Size(742, 342);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label22
+            // 
+            this.label22.AccessibleDescription = "";
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(2, 74);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(73, 17);
+            this.label22.TabIndex = 4;
+            this.label22.Text = "Icon menu";
+            // 
+            // txtPicture
+            // 
+            this.txtPicture.AccessibleName = "PICTURE";
+            this.txtPicture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPicture.BackColor = System.Drawing.Color.White;
+            this.txtPicture.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtPicture.Enabled = false;
+            this.txtPicture.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtPicture.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPicture.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtPicture.HoverColor = System.Drawing.Color.Yellow;
+            this.txtPicture.LeaveColor = System.Drawing.Color.White;
+            this.txtPicture.Location = new System.Drawing.Point(175, 70);
+            this.txtPicture.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPicture.Name = "txtPicture";
+            this.txtPicture.Size = new System.Drawing.Size(545, 23);
+            this.txtPicture.TabIndex = 5;
             // 
             // V6MenuAddEditForm
             // 
@@ -885,6 +919,8 @@
         private System.Windows.Forms.Label label20;
         private V6ColorTextBox txtNhatKy;
         private System.Windows.Forms.Label label21;
+        private V6ColorTextBox txtPicture;
+        private System.Windows.Forms.Label label22;
 
     }
 }

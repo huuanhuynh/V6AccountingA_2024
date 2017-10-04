@@ -10,7 +10,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public AbhhvtAddEditForm()
         {
             InitializeComponent();
-         //   TxtMa_sp.SetInitFilter("Loai_vt='55'");
+         
         }
 
        
@@ -26,6 +26,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             TxtNam.Value = V6Setting.YearFilter;
             Txtthang.Value = V6Setting.MonthFilter;
             TxtMa_vt.ExistRowInTable();
+            txtloai_hh.Text="1";
+            txtGhiChu.Text = "Nhập";
         }
 
         public override void ValidateData()

@@ -83,17 +83,26 @@
             this.label18 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnEditXml = new System.Windows.Forms.Button();
+            this.txtDmethod = new V6Controls.V6ColorTextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.v6ColorTextBox16 = new V6Controls.V6ColorTextBox();
+            this.label47 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.numDropMax = new V6Controls.V6NumberTextBox();
+            this.label30 = new System.Windows.Forms.Label();
             this.v6NumberTextBox1 = new V6Controls.V6NumberTextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.txtFfixColumn = new V6Controls.V6NumberTextBox();
             this.txtFstart = new V6Controls.V6NumberTextBox();
             this.cboOperV = new V6Controls.Controls.V6ValueComboBox();
             this.cboColorList = new V6Controls.Controls.V6ValueComboBox();
+            this.txtFieldMax = new V6Controls.V6ColorTextBox();
             this.txtFieldV = new V6Controls.V6ColorTextBox();
             this.txtFilter = new V6Controls.V6ColorTextBox();
             this.txtValueV = new V6Controls.V6ColorTextBox();
             this.cboColor = new V6Controls.V6CheckBox();
+            this.label31 = new System.Windows.Forms.Label();
             this.chkBold = new V6Controls.V6CheckBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -108,11 +117,6 @@
             this.btnExcelTemplateView = new System.Windows.Forms.Button();
             this.txtExcel2View = new System.Windows.Forms.RichTextBox();
             this.btnExcel2View = new System.Windows.Forms.Button();
-            this.btnEditXml = new System.Windows.Forms.Button();
-            this.txtDmethod = new V6Controls.V6ColorTextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox16 = new V6Controls.V6ColorTextBox();
-            this.label47 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -825,19 +829,96 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Định dạng xem và Excel";
             // 
+            // btnEditXml
+            // 
+            this.btnEditXml.AccessibleName = "";
+            this.btnEditXml.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditXml.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnEditXml.Location = new System.Drawing.Point(701, 289);
+            this.btnEditXml.Name = "btnEditXml";
+            this.btnEditXml.Size = new System.Drawing.Size(40, 25);
+            this.btnEditXml.TabIndex = 22;
+            this.btnEditXml.Text = "...";
+            this.btnEditXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditXml.UseVisualStyleBackColor = true;
+            this.btnEditXml.Click += new System.EventHandler(this.btnEditXml_Click);
+            // 
+            // txtDmethod
+            // 
+            this.txtDmethod.AccessibleName = "MMETHOD";
+            this.txtDmethod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDmethod.BackColor = System.Drawing.Color.White;
+            this.txtDmethod.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDmethod.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDmethod.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDmethod.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDmethod.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDmethod.LeaveColor = System.Drawing.Color.White;
+            this.txtDmethod.Location = new System.Drawing.Point(99, 289);
+            this.txtDmethod.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDmethod.Multiline = true;
+            this.txtDmethod.Name = "txtDmethod";
+            this.txtDmethod.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtDmethod.Size = new System.Drawing.Size(586, 74);
+            this.txtDmethod.TabIndex = 21;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(7, 292);
+            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(29, 13);
+            this.label29.TabIndex = 20;
+            this.label29.Text = "XML";
+            // 
+            // v6ColorTextBox16
+            // 
+            this.v6ColorTextBox16.AccessibleName = "EXTRA_PARA";
+            this.v6ColorTextBox16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6ColorTextBox16.BackColor = System.Drawing.Color.White;
+            this.v6ColorTextBox16.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox16.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox16.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox16.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox16.HoverColor = System.Drawing.Color.Yellow;
+            this.v6ColorTextBox16.LeaveColor = System.Drawing.Color.White;
+            this.v6ColorTextBox16.Location = new System.Drawing.Point(99, 261);
+            this.v6ColorTextBox16.Margin = new System.Windows.Forms.Padding(4);
+            this.v6ColorTextBox16.Name = "v6ColorTextBox16";
+            this.v6ColorTextBox16.Size = new System.Drawing.Size(641, 20);
+            this.v6ColorTextBox16.TabIndex = 19;
+            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox16, resources.GetString("v6ColorTextBox16.ToolTip"));
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(7, 264);
+            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(78, 13);
+            this.label47.TabIndex = 18;
+            this.label47.Text = "EXTRA_PARA";
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage2.Controls.Add(this.numDropMax);
+            this.tabPage2.Controls.Add(this.label30);
             this.tabPage2.Controls.Add(this.v6NumberTextBox1);
             this.tabPage2.Controls.Add(this.label28);
             this.tabPage2.Controls.Add(this.txtFfixColumn);
             this.tabPage2.Controls.Add(this.txtFstart);
             this.tabPage2.Controls.Add(this.cboOperV);
             this.tabPage2.Controls.Add(this.cboColorList);
+            this.tabPage2.Controls.Add(this.txtFieldMax);
             this.tabPage2.Controls.Add(this.txtFieldV);
             this.tabPage2.Controls.Add(this.txtFilter);
             this.tabPage2.Controls.Add(this.txtValueV);
             this.tabPage2.Controls.Add(this.cboColor);
+            this.tabPage2.Controls.Add(this.label31);
             this.tabPage2.Controls.Add(this.chkBold);
             this.tabPage2.Controls.Add(this.label19);
             this.tabPage2.Controls.Add(this.label23);
@@ -854,7 +935,40 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(747, 390);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Định dạng màu";
+            this.tabPage2.Text = "Định dạng màu và mở rộng";
+            // 
+            // numDropMax
+            // 
+            this.numDropMax.AccessibleName = "DROP_MAX";
+            this.numDropMax.BackColor = System.Drawing.SystemColors.Window;
+            this.numDropMax.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.numDropMax.DecimalPlaces = 0;
+            this.numDropMax.EnterColor = System.Drawing.Color.PaleGreen;
+            this.numDropMax.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.numDropMax.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.numDropMax.HoverColor = System.Drawing.Color.Yellow;
+            this.numDropMax.LeaveColor = System.Drawing.Color.White;
+            this.numDropMax.Location = new System.Drawing.Point(97, 256);
+            this.numDropMax.MaxLength = 1;
+            this.numDropMax.Name = "numDropMax";
+            this.numDropMax.Size = new System.Drawing.Size(41, 20);
+            this.numDropMax.TabIndex = 22;
+            this.numDropMax.Text = "0";
+            this.numDropMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numDropMax.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(7, 259);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(67, 13);
+            this.label30.TabIndex = 21;
+            this.label30.Text = "DROP_MAX";
             // 
             // v6NumberTextBox1
             // 
@@ -964,6 +1078,21 @@
             this.cboColorList.TabIndex = 11;
             this.cboColorList.SelectedIndexChanged += new System.EventHandler(this.cboColorList_SelectedIndexChanged);
             // 
+            // txtFieldMax
+            // 
+            this.txtFieldMax.AccessibleName = "FIELD_MAX";
+            this.txtFieldMax.BackColor = System.Drawing.Color.White;
+            this.txtFieldMax.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFieldMax.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFieldMax.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFieldMax.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFieldMax.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFieldMax.LeaveColor = System.Drawing.Color.White;
+            this.txtFieldMax.Location = new System.Drawing.Point(97, 282);
+            this.txtFieldMax.Name = "txtFieldMax";
+            this.txtFieldMax.Size = new System.Drawing.Size(643, 20);
+            this.txtFieldMax.TabIndex = 24;
+            // 
             // txtFieldV
             // 
             this.txtFieldV.AccessibleName = "FIELDV";
@@ -1020,6 +1149,15 @@
             this.cboColor.TabIndex = 9;
             this.cboColor.Text = "Sử dụng định dạng màu khi hiển thị";
             this.cboColor.UseVisualStyleBackColor = true;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(7, 285);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(66, 13);
+            this.label31.TabIndex = 23;
+            this.label31.Text = "FIELD_MAX";
             // 
             // chkBold
             // 
@@ -1158,79 +1296,6 @@
             this.btnExcel2View.UseVisualStyleBackColor = true;
             this.btnExcel2View.Click += new System.EventHandler(this.btnExcel2View_Click);
             // 
-            // btnEditXml
-            // 
-            this.btnEditXml.AccessibleName = "";
-            this.btnEditXml.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditXml.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEditXml.Location = new System.Drawing.Point(701, 289);
-            this.btnEditXml.Name = "btnEditXml";
-            this.btnEditXml.Size = new System.Drawing.Size(40, 25);
-            this.btnEditXml.TabIndex = 22;
-            this.btnEditXml.Text = "...";
-            this.btnEditXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEditXml.UseVisualStyleBackColor = true;
-            this.btnEditXml.Click += new System.EventHandler(this.btnEditXml_Click);
-            // 
-            // txtDmethod
-            // 
-            this.txtDmethod.AccessibleName = "MMETHOD";
-            this.txtDmethod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDmethod.BackColor = System.Drawing.Color.White;
-            this.txtDmethod.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtDmethod.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtDmethod.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtDmethod.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtDmethod.HoverColor = System.Drawing.Color.Yellow;
-            this.txtDmethod.LeaveColor = System.Drawing.Color.White;
-            this.txtDmethod.Location = new System.Drawing.Point(99, 289);
-            this.txtDmethod.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDmethod.Multiline = true;
-            this.txtDmethod.Name = "txtDmethod";
-            this.txtDmethod.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDmethod.Size = new System.Drawing.Size(586, 74);
-            this.txtDmethod.TabIndex = 21;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(7, 292);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(29, 13);
-            this.label29.TabIndex = 20;
-            this.label29.Text = "XML";
-            // 
-            // v6ColorTextBox16
-            // 
-            this.v6ColorTextBox16.AccessibleName = "EXTRA_PARA";
-            this.v6ColorTextBox16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox16.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox16.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox16.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox16.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox16.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox16.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox16.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox16.Location = new System.Drawing.Point(99, 261);
-            this.v6ColorTextBox16.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox16.Name = "v6ColorTextBox16";
-            this.v6ColorTextBox16.Size = new System.Drawing.Size(641, 20);
-            this.v6ColorTextBox16.TabIndex = 19;
-            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox16, resources.GetString("v6ColorTextBox16.ToolTip"));
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(7, 264);
-            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(78, 13);
-            this.label47.TabIndex = 18;
-            this.label47.Text = "EXTRA_PARA";
-            // 
             // AlbcAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1367,5 +1432,9 @@
         private System.Windows.Forms.Label label29;
         private V6ColorTextBox v6ColorTextBox16;
         private System.Windows.Forms.Label label47;
+        private V6NumberTextBox numDropMax;
+        private System.Windows.Forms.Label label30;
+        private V6ColorTextBox txtFieldMax;
+        private System.Windows.Forms.Label label31;
     }
 }
