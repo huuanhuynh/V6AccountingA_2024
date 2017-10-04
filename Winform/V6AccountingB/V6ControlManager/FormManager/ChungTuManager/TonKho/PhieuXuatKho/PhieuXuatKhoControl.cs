@@ -4249,6 +4249,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT01"))
             {
+                if (table.Rows.Count > 0)
+                {
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                    {
+                        detail1.MODE = V6Mode.Init;
+                    }
+                }
+
                 foreach (DataRow row in table.Rows)
                 {
                     var data = row.ToDataDictionary(_sttRec);
@@ -4325,6 +4333,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
             if (table.Columns.Contains("MA_VT") && table.Columns.Contains("MA_KHO"))
             {
+                if (table.Rows.Count > 0)
+                {
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                    {
+                        detail1.MODE = V6Mode.Init;
+                    }
+                }
+
                 foreach (DataRow row in table.Rows)
                 {
                     var data = row.ToDataDictionary(_sttRec);
@@ -4387,6 +4403,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
             if (table.Columns.Contains("MA_VT") && table.Columns.Contains("MA_KHO"))
             {
+                if (table.Rows.Count > 0)
+                {
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                    {
+                        detail1.MODE = V6Mode.Init;
+                    }
+                }
+
                 foreach (DataRow row in table.Rows)
                 {
                     var data = row.ToDataDictionary(_sttRec);

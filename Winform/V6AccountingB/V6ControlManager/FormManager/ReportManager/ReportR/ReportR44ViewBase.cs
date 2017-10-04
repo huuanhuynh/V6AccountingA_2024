@@ -1322,6 +1322,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
+                if (dataGridView1.CurrentRow == null)
+                {
+                    ShowMainMessage(V6Text.NoSelection);
+                    return;
+                }
+
                 var oldKeys = FilterControl.GetFilterParameters();
 
                 var view = new ReportR44ViewBase(m_itemId, _program + "F5", _program + "F5",

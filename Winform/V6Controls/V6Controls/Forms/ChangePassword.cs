@@ -29,7 +29,8 @@ namespace V6Controls.Forms
             {
                 if (V6Login.Login(txtUserName.Text, txtPassword.Text, V6Login.Madvcs))
                 {
-                    if (txtPassword1.Text == txtPassword.Text)
+                    //Không cho phép giống password cũ, không được để trống password mới
+                    if (txtPassword1.Text == txtPassword.Text || txtPassword1.Text.Trim() == "")
                     {
                         this.ShowWarningMessage(V6Text.CheckInfor);
                         return;
