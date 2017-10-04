@@ -5,9 +5,9 @@ using V6Controls.Forms;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AGLCD1F5F5 : FilterBase
+    public partial class AGLCD2F5F5 : FilterBase
     {
-        public AGLCD1F5F5()
+        public AGLCD2F5F5()
         {
             InitializeComponent();
             
@@ -36,12 +36,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             //@Ngay_ct1 SmallDateTime, --Từ ngày
             //@Ngay_ct2 SmallDateTime, --Đến ngày
-            //@BuTru char(1), 
-            //@Advance AS VARCHAR(8000) = '' 
-            //@Advance2 AS VARCHAR(8000) - Theo TK
-            //@Tk
-            //@Advance3 AS VARCHAR(8000) - Theo TK_DU
+            //@noco char(1),
+            //@Advance AS VARCHAR(8000) = '',
+            //@Advance2 AS VARCHAR(8000) = '',
+            //@Advance3  AS VARCHAR(8000) = ''
 
+            //@Advance AS VARCHAR(8000) = '111',
+            //@Advance2 AS VARCHAR(8000) = '1114',
+            //@Advance3 AS VARCHAR(8000) = '131',
             var result = new List<SqlParameter>();
             result.AddRange(InitFilters);
             

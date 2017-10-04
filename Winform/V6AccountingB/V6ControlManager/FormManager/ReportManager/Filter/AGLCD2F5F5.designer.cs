@@ -1,6 +1,6 @@
 ﻿namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    partial class AGLCD2F5
+    partial class AGLCD2F5F5
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,24 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.TK_filterLine = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
+            this.filterLineVvarTextBox1 = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // TK_filterLine
-            // 
-            this.TK_filterLine.AccessibleDescription = "FILTERL00027";
-            this.TK_filterLine.Enabled = false;
-            this.TK_filterLine.FieldCaption = "Tài khoản";
-            this.TK_filterLine.FieldName = "TK";
-            this.TK_filterLine.Location = new System.Drawing.Point(6, 49);
-            this.TK_filterLine.Name = "TK_filterLine";
-            this.TK_filterLine.Size = new System.Drawing.Size(282, 22);
-            this.TK_filterLine.TabIndex = 4;
-            this.TK_filterLine.Vvar = "TK";
             // 
             // groupBox1
             // 
@@ -55,10 +43,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
-            this.groupBox1.Controls.Add(this.TK_filterLine);
+            this.groupBox1.Controls.Add(this.filterLineVvarTextBox1);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(320, 84);
+            this.groupBox1.Size = new System.Drawing.Size(305, 100);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -90,13 +78,25 @@
             this.radAnd.Text = "Điều kiện (AND)";
             this.radAnd.UseVisualStyleBackColor = true;
             // 
-            // AGLCD2F5
+            // filterLineVvarTextBox1
+            // 
+            this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00046";
+            this.filterLineVvarTextBox1.Enabled = false;
+            this.filterLineVvarTextBox1.FieldCaption = "Tài khoản đối ứng";
+            this.filterLineVvarTextBox1.FieldName = "TK_DU";
+            this.filterLineVvarTextBox1.Location = new System.Drawing.Point(6, 46);
+            this.filterLineVvarTextBox1.Name = "filterLineVvarTextBox1";
+            this.filterLineVvarTextBox1.Size = new System.Drawing.Size(282, 22);
+            this.filterLineVvarTextBox1.TabIndex = 4;
+            this.filterLineVvarTextBox1.Vvar = "TK";
+            // 
+            // AGLCD2F5F5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
-            this.Name = "AGLCD2F5";
-            this.Size = new System.Drawing.Size(323, 90);
+            this.Name = "AGLCD2F5F5";
+            this.Size = new System.Drawing.Size(311, 106);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -104,10 +104,9 @@
         }
 
         #endregion
-
-        private V6ReportControls.FilterLineVvarTextBox TK_filterLine;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radOr;
         private System.Windows.Forms.RadioButton radAnd;
+        private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox1;
     }
 }

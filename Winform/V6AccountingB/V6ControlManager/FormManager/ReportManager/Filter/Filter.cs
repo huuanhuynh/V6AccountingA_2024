@@ -278,6 +278,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new AGLCD2();
                 case "AGLCD2F5":
                     return new AGLCD2F5();
+                case "AGLCD2F5F5":
+                    return new AGLCD2F5F5();
                 case "AGLCD3":
                     return new AGLCD3();
                 case "AGLSD2":
