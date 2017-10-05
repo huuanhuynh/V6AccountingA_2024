@@ -166,7 +166,38 @@ namespace V6Controls
                 DataDic.Add(row.DataGridView.Columns[i].DataPropertyName.ToUpper(), row.Cells[i].Value);
             }
             return DataDic;
-        } 
+        }
+
+        /// <summary>
+        /// Kiểm tra nếu không có trường dữ liệu hoặc có 1 dữ liệu rỗng, 0, null thì trả về false.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="fields">Các trường dữ liệu cần kiểm tra, chú ý có phân biệt hoa thường.</param>
+        /// <returns></returns>
+        public static bool HaveValues(this IDictionary<string, object> data, IList<string> fields)
+        {
+            if (data != null)
+            {
+                foreach (string field in fields)
+                {
+                    if (!data.ContainsKey(field))
+                    {
+                        return false;
+                    }
+                    
+                    var value = data[field];
+                    if (value == null) return false;
+                    if (ObjectAndString.IsNumberType(value.GetType()))
+                    {
+                        if (ObjectAndString.ObjectToDecimal(value) == 0) return false;
+                    }
+                    if ("" + value == "") return false;
+                }
+                return true;
+            }
+            
+            return false;
+        }
 
         public static List<SortedDictionary<string, object>> GetSelectedData(this DataGridView grid)
         {

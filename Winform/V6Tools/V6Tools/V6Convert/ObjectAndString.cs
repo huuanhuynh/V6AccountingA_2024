@@ -406,11 +406,13 @@ namespace V6Tools.V6Convert
         /// <summary>
         /// Tách chuỗi thành mảng bằng ; hoặc ,
         /// </summary>
-        /// <param name="s"></param>
+        /// <param name="s">Chuỗi cần tách</param>
+        /// <param name="removeEmptyEntries">Tùy chọn bỏ phần tử rỗng, mặc định bỏ</param>
         /// <returns></returns>
-        public static string[] SplitString(string s)
+        public static string[] SplitString(string s, bool removeEmptyEntries = true)
         {
-            return string.IsNullOrEmpty(s) ? new string[]{} : s.Split(s.Contains(";") ? new []{';'} : new []{','}, StringSplitOptions.RemoveEmptyEntries);
+            return string.IsNullOrEmpty(s) ? new string[]{} : s.Split(s.Contains(";") ? new []{';'} : new []{','},
+                removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
         }
 
         public static float ObjectToFloat(string s)

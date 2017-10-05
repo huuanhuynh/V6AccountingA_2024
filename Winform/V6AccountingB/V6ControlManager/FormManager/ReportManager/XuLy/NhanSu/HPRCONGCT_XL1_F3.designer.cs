@@ -30,6 +30,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HPRCONGCT_XL1_F3));
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.lichView1 = new V6Controls.Controls.LichView.LichViewControl();
@@ -77,7 +78,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.lichView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lichView1.BorderColor = System.Drawing.Color.Black;
             this.lichView1.CodeForm = null;
-            this.lichView1.DataSource = null;
+            this.lichView1.DataSource = ((System.Collections.Generic.IDictionary<int, V6Controls.Controls.LichView.LichViewCellData>)(resources.GetObject("lichView1.DataSource")));
             this.lichView1.DetailColor = System.Drawing.Color.Orange;
             this.lichView1.FooterHeight = 20;
             this.lichView1.FooterText = "Footer";
@@ -102,6 +103,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.Controls.Add(this.lichView1);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
+            this.MinimumSize = new System.Drawing.Size(400, 400);
             this.Name = "HPRCONGCT_XL1_F3";
             this.Load += new System.EventHandler(this.Form_Load);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);

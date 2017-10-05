@@ -653,6 +653,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new XLSTA1_Filter();
                 case "XLSCA1":
                     return new XLSCA1_Filter();
+                    //NHAN SU
+                case "XLSPRCONG2":
+                    return new XLSPRCONG2();
+
                 case "AAPPR_SOA1":
                     return new AAPPR_SOA1();
                 case "AAPPR_SOA_IN1":

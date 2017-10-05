@@ -9,18 +9,24 @@ using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
-using V6Structs;
+using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
-namespace V6ControlManager.FormManager.ReportManager.XuLy
+namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 {
-    public class XLSALVT_Control : XuLyBase
+    public class XLSPRCONG2_Control : XuLyBase
     {
         private readonly V6Categories _categories = new V6Categories();
-        private const string TABLE_NAME = "ALVT", ID_FIELD = "MA_VT", NAME_FIELD = "TEN_VT";
-        private const string CHECK_FIELDS = "MA_VT", IDS_CHECK = "MA_VT", TYPE_CHECK="01";//S Cách nhau bởi (;)
+        private const string TABLE_NAME = "PRCONG2";
+        private string[] ID_FIELDS = "NGAY,MA_NS,MA_CONG".Split(',');
+        private const string CHECK_FIELDS = "NGAY,MA_NS,MA_CONG", IDS_CHECK = "NGAY,MA_NS,MA_CONG";
+        /// <summary>
+        /// <para>01: IsExistOneCode_List</para>
+        /// <para>21: IsValidTwoCode_OneDate(</para>
+        /// </summary>
+        string TYPE_CHECK = "21";
         private DataTable data;
-        public XLSALVT_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+        public XLSPRCONG2_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
 
@@ -98,18 +104,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             while (i < dataGridView1.Rows.Count)
             {
                 DataGridViewRow row = dataGridView1.Rows[i];
+                var dataDic = row.ToDataDictionary();
                 i++; stt++;
                 try
                 {
-                    if (row.Cells[ID_FIELD].Value != DBNull.Value && row.Cells[ID_FIELD].Value.ToString().Trim() != ""
-                        && row.Cells[NAME_FIELD].Value != DBNull.Value && row.Cells[NAME_FIELD].Value.ToString().Trim() != "")
+                    if (dataDic.HaveValues(ID_FIELDS))
                     {
-                        var dataDic = new SortedDictionary<string, object>();
-                        for (int j = 0; j < dataGridView1.ColumnCount; j++)
-                        {
-                            dataDic.Add(dataGridView1.Columns[j].DataPropertyName, row.Cells[j].Value);
-                        }
-
                         if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
                         {
                             remove_list_g.Add(row);
@@ -163,6 +163,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         #endregion xử lý F8
 
+        private bool CheckTableHaveFields(DataTable table, IList<string> fields)
+        {
+            if (table == null) return false;
+            foreach (string field in fields)
+            {
+                if (!table.Columns.Contains(field)) return false;
+            }
+            return true;
+        }
 
         #region ==== Xử lý F9 ====
         protected override void XuLyF9()
@@ -171,8 +180,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (data != null)
                 {
-                    check_list = CHECK_FIELDS.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                    if (data.Columns.Contains(ID_FIELD) && data.Columns.Contains(NAME_FIELD))
+                    check_list = ObjectAndString.SplitString(CHECK_FIELDS);
+                    if (CheckTableHaveFields(data, ID_FIELDS))
                     {
                         Timer timerF9 = new Timer { Interval = 1000 };
                         timerF9.Tick += tF9_Tick;
@@ -187,7 +196,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMessage(string.Format("Dữ liệu không có {0} và {1}", ID_FIELD, NAME_FIELD));
+                        V6ControlFormHelper.ShowMessage("Dữ liệu không đủ thông tin");
                     }
                 }
                 else
@@ -203,6 +212,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private bool f9Running;
         private int total, index;
+
         private string f9Error = "";
         private string f9ErrorAll = "";
         private string[] check_list = { };
@@ -240,13 +250,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         if (check_ok)
                         {
                             var dataDic = row.ToDataDictionary();
-                            var id_list = IDS_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                            var ID0 = dataDic[id_list[0]].ToString().Trim();
+                            var id_list = ObjectAndString.SplitString(IDS_CHECK);
+                            var ma_ns = dataDic["MA_NS"].ToString().Trim();
+                            var ma_cong = dataDic["MA_CONG"].ToString().Trim();
+                            DateTime ngay = ObjectAndString.ObjectToFullDateTime(dataDic["MA_CONG"]);
                             var exist = false;
                             switch (TYPE_CHECK)
                             {
-                                case "01":
-                                    exist = _categories.IsExistOneCode_List(TABLE_NAME, id_list[0], ID0);
+                                case "21":
+                                    exist = V6BusinessHelper.IsValidTwoCode_OneDate(
+                                        TABLE_NAME, 1,
+                                        "MA_NS", ma_ns, ma_ns,
+                                        "MA_CONG", ma_cong, ma_cong,
+                                        "NGAY", ngay.ToString("yyyyMMdd"), ngay.ToString("yyyyMMdd"));
                                     break;
                             }
 
@@ -256,13 +272,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 {
                                     if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
                                     {
-                                        var ma_vt_new = dataDic["MA_VT"].ToString().Trim();
-                                        UpdateAlqddvt(ma_vt_new, ma_vt_new);
                                         remove_list_d.Add(row);
                                     }
                                     else
                                     {
-                                        var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, ID0);
+                                        var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, ma_ns);
                                         f9Error += s;
                                         f9ErrorAll += s;
                                     }
@@ -285,21 +299,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                                 if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
                                 {
-                                    var ma_vt_new = dataDic["MA_VT"].ToString().Trim();
-                                    UpdateAlqddvt(ma_vt_new, ma_vt_new);
-                                    remove_list_d.Add(row);
+                                   remove_list_d.Add(row);
                                 }
                                 else
                                 {
-                                    var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, ID0);
+                                    var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, ma_ns);
                                     f9Error += s;
                                     f9ErrorAll += s;
                                 }
                             }
+
                         }
                         else
                         {
-                            var s = "Dòng " + stt + " không có đủ " + CHECK_FIELDS;
+                            var s = "Dòng " + stt + " không có đủ " + CHECK_FIELDS + "\r\n";
                             f9Error += s;
                             f9ErrorAll += s;
                         }
@@ -309,6 +322,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         f9Error += "Dòng " + stt + ": " + ex.Message;
                         f9ErrorAll += "Dòng " + stt + ": " + ex.Message;
                     }
+
                 }
             }
             catch (Exception ex)
@@ -321,23 +335,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             f9Running = false;
         }
 
-        private void UpdateAlqddvt(string ma_vt_old, string ma_vt_new)
-        {
-            try
-            {
-                //var  = DataDic["MA_VT"].ToString().Trim();
-                //var  = EditMode == V6Mode.Edit ? DataEdit["MA_VT"].ToString().Trim() : ma_vt_new;
-
-                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_ALQDDVT",
-                    new SqlParameter("@cMa_vt_old", ma_vt_old),
-                    new SqlParameter("@cMa_vt_new", ma_vt_new));
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".UpdateAlqddvt: " + ex.Message);
-            }
-        }
-
+        
         void tF9_Tick(object sender, EventArgs e)
         {
             if (f9Running)
@@ -350,7 +348,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 ((Timer)sender).Stop();
                 RemoveDataRows(data);
-                //btnNhan.PerformClick();
                 SetStatusText("F9 finish " + (f9Error.Length > 0 ? "Error: " : "") + f9Error);
                 ShowMainMessage("F9 " + V6Text.Finish);
                 this.ShowInfoMessage("F9 " + V6Text.Finish

@@ -94,14 +94,43 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             }
         }
 
-        //public  void Getmaxstt()
-        //{
-        //    if (_mode == V6Mode.Add)
-        //    {
-        //        decimal maxvalue = V6BusinessHelper.GetMaxValueTable("V6HELP_QA", "STT", "1=1");
-        //        txtSoLuong.Value = maxvalue + 1;
-        //    }
-        //}
+        public void Tinh_gio(object sender, EventArgs e)
+        {
+            if (_mode == V6Mode.Add || _mode == V6Mode.Edit)
+            {
+                decimal gio_vao = 0;
+                decimal gio_ra = 0;
+                decimal gio = 0;
+                decimal sl_td3 = 0;
+                gio_vao = Txtgio_vao.Value;
+                gio_ra = Txtgio_ra.Value;
+
+                if (gio_vao != 0 && gio_ra != 0)
+                {
+                    if ((gio_ra - gio_vao) - 0.5m < 0)
+                    {
+                        sl_td3 = 0;
+                        gio = 0;
+                    }
+                    else if ((gio_ra - gio_vao) < 5)
+                    {
+                        sl_td3 = gio_ra - gio_vao;
+                        gio = sl_td3;
+                    }
+                    else
+                    {
+                        sl_td3 = gio_ra - gio_vao - 1;
+                    }
+                    if (sl_td3 >= ObjectAndString.ObjectToDecimal(V6Options.V6OptionValues["M_PR_SO_GIO"]))
+                    {
+                        gio = 8;
+                    }
+                    Txtsl_td3.Value = sl_td3;
+                    txtGio.Value = gio;
+
+                }
+            }
+        }
 
         private void UpdateData()
         {

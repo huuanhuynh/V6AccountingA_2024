@@ -17,7 +17,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     {
         private readonly V6Categories _categories = new V6Categories();
         private const string TABLE_NAME = "ALKH", ID_FIELD = "MA_KH", NAME_FIELD = "TEN_KH";
-        private const string CHECK_FIELDS = "MA_KH", IDS_CHECK = "MA_KH", TYPE_CHECK = "01";//S Cách nhau bởi (;)
+        private const string CHECK_FIELDS = "MA_KH", IDS_CHECK = "MA_KH";
+        /// <summary>
+        /// <para>01: _categories.IsExistOneCode_List</para>
+        /// </summary>
+        string TYPE_CHECK = "01";//S Cách nhau bởi (;)
         private DataTable data;
 
         public XLSALKH_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
@@ -177,6 +181,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         Timer timerF9 = new Timer {Interval = 1000};
                         timerF9.Tick += tF9_Tick;
+                        remove_list_d = new List<DataRow>();
                         Thread t = new Thread(F9Thread);
                         t.SetApartmentState(ApartmentState.STA);
                         CheckForIllegalCrossThreadCalls = false;
@@ -202,6 +207,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
         private bool f9Running;
+        private int total, index;
         private string f9Error = "";
         private string f9ErrorAll = "";
         private string[] check_list = { };
@@ -218,11 +224,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     goto End;
                 }
 
-                int stt = 0, skip = 0;
-
-                while (data.Rows.Count > skip)
+                int stt = 0;
+                total = data.Rows.Count;
+                for (int i = 0; i < total; i++)
                 {
-                    DataRow row = data.Rows[skip];
+                    DataRow row = data.Rows[i];
+                    index = i;
                     stt++;
                     try
                     {
@@ -254,11 +261,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 {
                                     if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
                                     {
-                                        data.Rows.Remove(row);
+                                        remove_list_d.Add(row);
                                     }
                                     else
                                     {
-                                        skip++;
                                         var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, ID0);
                                         f9Error += s;
                                         f9ErrorAll += s;
@@ -266,7 +272,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 }
                                 else
                                 {
-                                    skip++;
                                 }
                             }
                             else
@@ -283,21 +288,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                                 if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
                                 {
-                                    data.Rows.Remove(row);
+                                    remove_list_d.Add(row);
                                 }
                                 else
                                 {
-                                    skip++;
                                     var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, ID0);
                                     f9Error += s;
                                     f9ErrorAll += s;
                                 }
                             }
-
                         }
                         else
                         {
-                            skip++;
                             var s = "Dòng " + stt + " không có đủ " + CHECK_FIELDS;
                             f9Error += s;
                             f9ErrorAll += s;
@@ -305,11 +307,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     catch (Exception ex)
                     {
-                        skip++;
                         f9Error += "Dòng " + stt + ": " + ex.Message;
                         f9ErrorAll += "Dòng " + stt + ": " + ex.Message;
                     }
-
                 }
             }
             catch (Exception ex)
@@ -327,17 +327,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (f9Running)
             {
                 var cError = f9Error;
-                if (cError.Length > 0)
-                {
-                    f9Error = f9Error.Substring(cError.Length);
-                    V6ControlFormHelper.SetStatusText("F9 running "
-                                                      + (cError.Length > 0 ? "Error: " : "")
-                                                      + cError);
-                }
+                f9Error = f9Error.Substring(cError.Length);
+                V6ControlFormHelper.SetStatusText("F9 running " + index + "/" + total + ". " + cError);
             }
             else
             {
                 ((Timer)sender).Stop();
+                RemoveDataRows(data);
                 //btnNhan.PerformClick();
                 V6ControlFormHelper.SetStatusText("F9 finish "
                     + (f9Error.Length > 0 ? "Error: " : "")

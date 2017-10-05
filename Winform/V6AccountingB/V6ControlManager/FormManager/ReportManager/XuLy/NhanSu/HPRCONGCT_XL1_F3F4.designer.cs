@@ -46,6 +46,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.txtMaBp = new V6Controls.V6LookupTextBox();
             this.txtMaCong = new V6Controls.V6VvarTextBox();
             this.TXTTEN_CONG = new V6Controls.V6ColorTextBox();
+            this.Txtgio_vao = new V6Controls.V6NumberTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Txtgio_ra = new V6Controls.V6NumberTextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.Txtsl_td3 = new V6Controls.V6NumberTextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnHuy
@@ -59,7 +65,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.btnHuy.Location = new System.Drawing.Point(94, 242);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
-            this.btnHuy.TabIndex = 9;
+            this.btnHuy.TabIndex = 12;
             this.btnHuy.Text = "&Hủy";
             this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHuy.UseVisualStyleBackColor = true;
@@ -75,7 +81,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.btnNhan.Location = new System.Drawing.Point(6, 242);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
-            this.btnNhan.TabIndex = 8;
+            this.btnNhan.TabIndex = 11;
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNhan.UseVisualStyleBackColor = true;
@@ -110,12 +116,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.txtGio.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtGio.HoverColor = System.Drawing.Color.Yellow;
             this.txtGio.LeaveColor = System.Drawing.Color.White;
-            this.txtGio.Location = new System.Drawing.Point(135, 112);
-            this.txtGio.MaxLength = 2;
-            this.txtGio.MaxNumLength = 2;
+            this.txtGio.Location = new System.Drawing.Point(135, 190);
             this.txtGio.Name = "txtGio";
             this.txtGio.Size = new System.Drawing.Size(120, 20);
-            this.txtGio.TabIndex = 6;
+            this.txtGio.TabIndex = 9;
             this.txtGio.Text = "0,00";
             this.txtGio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGio.Value = new decimal(new int[] {
@@ -136,11 +140,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 112);
+            this.label1.Location = new System.Drawing.Point(17, 194);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 13);
+            this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Giờ";
+            this.label1.Text = "Số giờ";
             // 
             // txtMaNhanSu
             // 
@@ -173,7 +177,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             // v6Label7
             // 
             this.v6Label7.AutoSize = true;
-            this.v6Label7.Location = new System.Drawing.Point(17, 137);
+            this.v6Label7.Location = new System.Drawing.Point(17, 218);
             this.v6Label7.Name = "v6Label7";
             this.v6Label7.Size = new System.Drawing.Size(28, 13);
             this.v6Label7.TabIndex = 10;
@@ -190,10 +194,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.txtTien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTien.HoverColor = System.Drawing.Color.Yellow;
             this.txtTien.LeaveColor = System.Drawing.Color.White;
-            this.txtTien.Location = new System.Drawing.Point(135, 137);
+            this.txtTien.Location = new System.Drawing.Point(135, 216);
             this.txtTien.Name = "txtTien";
             this.txtTien.Size = new System.Drawing.Size(120, 20);
-            this.txtTien.TabIndex = 7;
+            this.txtTien.TabIndex = 10;
             this.txtTien.Text = "0,00";
             this.txtTien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTien.Value = new decimal(new int[] {
@@ -303,11 +307,115 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.TXTTEN_CONG.TabIndex = 5;
             this.TXTTEN_CONG.TabStop = false;
             // 
+            // Txtgio_vao
+            // 
+            this.Txtgio_vao.AccessibleName = "GIO_VAO";
+            this.Txtgio_vao.BackColor = System.Drawing.SystemColors.Window;
+            this.Txtgio_vao.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.Txtgio_vao.DecimalPlaces = 2;
+            this.Txtgio_vao.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtgio_vao.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtgio_vao.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.Txtgio_vao.HoverColor = System.Drawing.Color.Yellow;
+            this.Txtgio_vao.LeaveColor = System.Drawing.Color.White;
+            this.Txtgio_vao.Location = new System.Drawing.Point(135, 111);
+            this.Txtgio_vao.Name = "Txtgio_vao";
+            this.Txtgio_vao.Size = new System.Drawing.Size(120, 20);
+            this.Txtgio_vao.TabIndex = 6;
+            this.Txtgio_vao.Text = "0,00";
+            this.Txtgio_vao.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Txtgio_vao.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            this.Txtgio_vao.TextChanged += new System.EventHandler(this.Tinh_gio);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(17, 113);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Giờ vào";
+            // 
+            // Txtgio_ra
+            // 
+            this.Txtgio_ra.AccessibleName = "GIO_RA";
+            this.Txtgio_ra.BackColor = System.Drawing.SystemColors.Window;
+            this.Txtgio_ra.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.Txtgio_ra.DecimalPlaces = 2;
+            this.Txtgio_ra.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtgio_ra.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtgio_ra.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.Txtgio_ra.HoverColor = System.Drawing.Color.Yellow;
+            this.Txtgio_ra.LeaveColor = System.Drawing.Color.White;
+            this.Txtgio_ra.Location = new System.Drawing.Point(135, 136);
+            this.Txtgio_ra.Name = "Txtgio_ra";
+            this.Txtgio_ra.Size = new System.Drawing.Size(120, 20);
+            this.Txtgio_ra.TabIndex = 7;
+            this.Txtgio_ra.Text = "0,00";
+            this.Txtgio_ra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Txtgio_ra.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            this.Txtgio_ra.TextChanged += new System.EventHandler(this.Tinh_gio);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(17, 138);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Giờ ra";
+            // 
+            // Txtsl_td3
+            // 
+            this.Txtsl_td3.AccessibleName = "SL_TD3";
+            this.Txtsl_td3.BackColor = System.Drawing.SystemColors.Window;
+            this.Txtsl_td3.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.Txtsl_td3.DecimalPlaces = 2;
+            this.Txtsl_td3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtsl_td3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtsl_td3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.Txtsl_td3.HoverColor = System.Drawing.Color.Yellow;
+            this.Txtsl_td3.LeaveColor = System.Drawing.Color.White;
+            this.Txtsl_td3.Location = new System.Drawing.Point(135, 164);
+            this.Txtsl_td3.Name = "Txtsl_td3";
+            this.Txtsl_td3.Size = new System.Drawing.Size(120, 20);
+            this.Txtsl_td3.TabIndex = 8;
+            this.Txtsl_td3.Text = "0,00";
+            this.Txtsl_td3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Txtsl_td3.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(17, 168);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Tổng số giờ";
+            // 
             // HPRCONGCT_XL1_F3F4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 294);
+            this.Controls.Add(this.Txtsl_td3);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.Txtgio_ra);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.Txtgio_vao);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.TXTTEN_CONG);
             this.Controls.Add(this.txtMaCong);
             this.Controls.Add(this.txtMaBp);
@@ -343,6 +451,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.Controls.SetChildIndex(this.txtMaBp, 0);
             this.Controls.SetChildIndex(this.txtMaCong, 0);
             this.Controls.SetChildIndex(this.TXTTEN_CONG, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.Txtgio_vao, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.Txtgio_ra, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.Txtsl_td3, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -366,6 +480,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         private V6Controls.V6LookupTextBox txtMaBp;
         private V6Controls.V6VvarTextBox txtMaCong;
         private V6Controls.V6ColorTextBox TXTTEN_CONG;
+        private V6Controls.V6NumberTextBox Txtgio_vao;
+        private System.Windows.Forms.Label label2;
+        private V6Controls.V6NumberTextBox Txtgio_ra;
+        private System.Windows.Forms.Label label3;
+        private V6Controls.V6NumberTextBox Txtsl_td3;
+        private System.Windows.Forms.Label label4;
 
 
 
