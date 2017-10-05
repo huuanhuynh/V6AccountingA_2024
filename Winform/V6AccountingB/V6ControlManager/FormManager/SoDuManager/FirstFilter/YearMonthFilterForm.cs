@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
 using System.Windows.Forms;
-using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
-using V6ReportControls;
-using V6SqlConnect;
 using V6Structs;
 
 namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
@@ -51,7 +45,8 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
         {
             try
             {
-                if (txtYear.Value > 1900 && txtYear.Value < 9999 && V6Setting.M_Ngay_ks.Year < txtYear.Value)
+                if ((_ptablename == "ABHHVT" && txtYear.Value > 1900 && txtYear.Value < 9999)
+                    || (txtYear.Value > 1900 && txtYear.Value < 9999 && V6Setting.M_Ngay_ks.Year < txtYear.Value))
 
                 {
                     V6Setting.YearFilter = (int) txtYear.Value;
@@ -64,8 +59,8 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
                     }
                     if (TxtThang.Text != "")
                     {
-                        
-                        where +=(where==""?"":" and " )+ "thang = " + V6Setting.MonthFilter;
+
+                        where += (where == "" ? "" : " and ") + "thang = " + V6Setting.MonthFilter;
                     }
                     QueryString = where;
                     
@@ -74,7 +69,7 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
                 }
                 else
                 {
-                    this.ShowWarningMessage("Nhập năm, tháng!");
+                    this.ShowWarningMessage(V6Text.CheckLock);
                 }
             }
             catch (Exception ex)
@@ -83,28 +78,6 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
             }
         }
 
-        private void CopyAlkc2NextYear(int pyear)
-        {
-           
-            SqlParameter[] plist =
-                        {
-                            new SqlParameter("@nYear",pyear)
-                        };
-
-            V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_CopyAlkc2NextYear", plist);
-
-        }
-        private void CopyAlpb2NextYear(int pyear)
-        {
-
-            SqlParameter[] plist =
-                        {
-                            new SqlParameter("@nYear",pyear)
-                        };
-
-            V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_CopyAlpb2NextYear", plist);
-
-        }
         public override bool DoHotKey0(Keys keyData)
         {
             try

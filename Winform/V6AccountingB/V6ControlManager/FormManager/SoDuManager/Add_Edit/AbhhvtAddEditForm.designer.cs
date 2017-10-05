@@ -103,7 +103,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
-            this.groupBox1.Size = new System.Drawing.Size(677, 156);
+            this.groupBox1.Size = new System.Drawing.Size(677, 143);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -271,6 +271,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtMa_vt.BackColor = System.Drawing.Color.White;
             this.TxtMa_vt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtMa_vt.BrotherFields = "TEN_VT";
+            this.TxtMa_vt.CheckNotEmpty = true;
             this.TxtMa_vt.EnterColor = System.Drawing.Color.PaleGreen;
             this.TxtMa_vt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtMa_vt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -354,7 +355,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(5);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(677, 451);
+            this.v6TabControl1.Size = new System.Drawing.Size(677, 438);
             this.v6TabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -365,7 +366,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage1.Size = new System.Drawing.Size(669, 419);
+            this.tabPage1.Size = new System.Drawing.Size(669, 406);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
@@ -846,7 +847,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AbhhvtAddEditForm";
-            this.Size = new System.Drawing.Size(692, 631);
+            this.Size = new System.Drawing.Size(692, 618);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.v6TabControl1.ResumeLayout(false);

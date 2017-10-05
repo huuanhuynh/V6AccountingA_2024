@@ -5901,6 +5901,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 && table.Columns.Contains("TIEN_NT2") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT21"))
             {
+                if (table.Rows.Count > 0)
+                {
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                    {
+                        detail1.MODE = V6Mode.Init;
+                    }
+                }
+
                 foreach (DataRow row in table.Rows)
                 {
                     var data = row.ToDataDictionary(_sttRec);

@@ -56,6 +56,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     txtCode.Enabled = true;
                     txtNhatKy.Enabled = true;
                     txtKey1.Enabled = true;
+                    txtPicture.Enabled = true;
                 }
             }
             else
@@ -85,6 +86,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 txtCode.Enabled = false;
                 txtNhatKy.Enabled = false;
                 txtKey1.Enabled = false;
+                txtPicture.Enabled = false;
             }
         }
     }

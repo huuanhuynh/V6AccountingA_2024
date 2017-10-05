@@ -1421,6 +1421,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             try
             {
+                if (dataGridView1.CurrentRow == null)
+                {
+                    ShowMainMessage(V6Text.NoSelection);
+                    return;
+                }
+
                 var oldKeys = FilterControl.GetFilterParameters();
                 QuickReportParams quick_params = new QuickReportParams()
                 {

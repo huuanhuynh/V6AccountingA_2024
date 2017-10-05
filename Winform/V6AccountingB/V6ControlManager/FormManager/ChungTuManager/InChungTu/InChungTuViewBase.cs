@@ -183,6 +183,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : "B"; }
         }
 
+        private DataRow SelectedRow
+        {
+            get
+            {
+                if (cboMauIn.DataSource != null && cboMauIn.SelectedItem is DataRowView && cboMauIn.SelectedIndex >= 0)
+                {
+                    return ((DataRowView)cboMauIn.SelectedItem).Row;
+                }
+                return null;
+            }
+        }
+
         private string Extra_para
         {
             get
@@ -871,19 +883,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             try
             {
-                SetCrossLineRpt(rpDoc);//, crossLineNum);
+                SetCrossLineRpt(rpDoc);
 
                 if (MauTuIn == 1 && _soLienIn >= 2 && rpDoc2 != null)
                 {
-                    SetCrossLineRpt(rpDoc2);//, crossLineNum);
+                    SetCrossLineRpt(rpDoc2);
                 }
                 if (MauTuIn == 1 && _soLienIn >= 3 && rpDoc3 != null)
                 {
-                    SetCrossLineRpt(rpDoc3);//, crossLineNum);
+                    SetCrossLineRpt(rpDoc3);
                 }
                 if (MauTuIn == 1 && _soLienIn >= 4 && rpDoc4 != null)
                 {
-                    SetCrossLineRpt(rpDoc4);//, crossLineNum);
+                    SetCrossLineRpt(rpDoc4);
                 }
             }
             catch (Exception ex)
@@ -892,7 +904,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
-        private void SetCrossLineRpt(ReportDocument rpt)//, int crossLineNum)
+        private void SetCrossLineRpt(ReportDocument rpt)
         {
             int flag = 0;
             var checkField = "TEN_VT";
@@ -922,6 +934,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {
                     dropMax = ObjectAndString.ObjectToInt(Invoice.Alct.Rows[0]["drop_Max"]);
                     if (dropMax < 1) dropMax = 40;
+                    //Lấy lại thông tin dropMax theo albc (cboMauin)
+                    if (SelectedRow != null && SelectedRow.Table.Columns.Contains("DROP_MAX"))
+                    {
+                        var dropMaxT = ObjectAndString.ObjectToInt(SelectedRow["DROP_MAX"]);
+                        if (dropMaxT > 5) dropMax = dropMaxT;
+                    }
+                    //Lấy lại checkField (khác MA_VT)
+                    if (SelectedRow != null && SelectedRow.Table.Columns.Contains("FIELD_MAX"))
+                    {
+                        var checkFieldT = SelectedRow["FIELD_MAX"].ToString().Trim();
+                        if (checkFieldT.Length > 0) checkField = checkFieldT;
+                    }
                 }
                 catch
                 {
@@ -931,8 +955,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 
                 if (!_tbl.Columns.Contains(checkField))
                 {
-                    if (_tbl.Columns.Contains("DIEN_GIAII"))
-                        checkField = "DIEN_GIAII";
+                    checkField = _tbl.Columns.Contains("DIEN_GIAII") ? "DIEN_GIAII" : _tbl.Columns[0].ColumnName;
                 }
                 flag = 3;
                 int crossLineNum = CalculateCrossLine(_tbl, checkField, dropMax, lineHeight)
@@ -942,11 +965,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 flag = 5;
                 if (height <= 0) height = 10;
 
-                DuongNgang.Height = 10;
                 DuongNgang.Top = top + 30;
-
-                DuongCheo.Height = height;
+                DuongNgang.Height = 10;
+                
                 DuongCheo.Top = top;
+                DuongCheo.Height = height;
+                
                 flag = 9;
             }
             catch(Exception ex)
