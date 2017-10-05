@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtSTT = new V6Controls.V6NumberTextBox();
             this.txtMa_loai_luong = new V6Controls.V6VvarTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
@@ -76,33 +75,11 @@
             this.txtTenLoaiLg = new V6Controls.V6ColorTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtSTT = new V6Controls.V6ColorTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // txtSTT
-            // 
-            this.txtSTT.AccessibleName = "STT";
-            this.txtSTT.BackColor = System.Drawing.Color.White;
-            this.txtSTT.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtSTT.DecimalPlaces = 0;
-            this.txtSTT.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtSTT.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtSTT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtSTT.HoverColor = System.Drawing.Color.Yellow;
-            this.txtSTT.LeaveColor = System.Drawing.Color.White;
-            this.txtSTT.Location = new System.Drawing.Point(161, 5);
-            this.txtSTT.Name = "txtSTT";
-            this.txtSTT.Size = new System.Drawing.Size(75, 23);
-            this.txtSTT.TabIndex = 0;
-            this.txtSTT.Text = "0";
-            this.txtSTT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtSTT.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             // 
             // txtMa_loai_luong
             // 
@@ -876,6 +853,25 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Số thứ tự công thức";
             // 
+            // txtSTT
+            // 
+            this.txtSTT.AccessibleName = "STT";
+            this.txtSTT.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSTT.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSTT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSTT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSTT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSTT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSTT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSTT.LeaveColor = System.Drawing.Color.White;
+            this.txtSTT.Location = new System.Drawing.Point(161, 5);
+            this.txtSTT.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.txtSTT.Name = "txtSTT";
+            this.txtSTT.Size = new System.Drawing.Size(71, 23);
+            this.txtSTT.TabIndex = 0;
+            // 
             // KhaiBaoLoaiLuong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -944,7 +940,6 @@
         private V6Label v6Label1;
         private System.Windows.Forms.Label label2;
         private V6VvarTextBox txtMa_loai_luong;
-        private V6NumberTextBox txtSTT;
         private V6Label v6Label5;
         private V6ColorTextBox v6ColorTextBox17;
         private V6Label v6Label9;
@@ -952,5 +947,6 @@
         private V6ColorTextBox TxtCongThuc;
         private V6ColorTextBox txtKieu;
         private V6LabelTextBox txtten_loai_tn;
+        private V6ColorTextBox txtSTT;
     }
 }
