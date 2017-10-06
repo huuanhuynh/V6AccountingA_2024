@@ -68,6 +68,10 @@
             this.txtworkdate = new V6Controls.V6DateTimeColor();
             this.txtworkdate2 = new V6Controls.V6DateTimeColor();
             this.txtTEN_NHNV = new V6Controls.V6LabelTextBox();
+            this.txtTIEN1 = new V6Controls.V6NumberTextBox();
+            this.v6Label7 = new V6Controls.V6Label();
+            this.txtTIEN2 = new V6Controls.V6NumberTextBox();
+            this.v6Label8 = new V6Controls.V6Label();
             this.SuspendLayout();
             // 
             // v6Label18
@@ -114,11 +118,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(144, 442);
+            this.checkBox1.Location = new System.Drawing.Point(144, 497);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(5);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(111, 21);
-            this.checkBox1.TabIndex = 15;
+            this.checkBox1.TabIndex = 17;
             this.checkBox1.Text = "Có sử dụng ?";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -133,10 +137,10 @@
             this.txtMa_Cong.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMa_Cong.HoverColor = System.Drawing.Color.Yellow;
             this.txtMa_Cong.LeaveColor = System.Drawing.Color.White;
-            this.txtMa_Cong.Location = new System.Drawing.Point(144, 411);
+            this.txtMa_Cong.Location = new System.Drawing.Point(144, 466);
             this.txtMa_Cong.Name = "txtMa_Cong";
             this.txtMa_Cong.Size = new System.Drawing.Size(134, 23);
-            this.txtMa_Cong.TabIndex = 14;
+            this.txtMa_Cong.TabIndex = 16;
             this.txtMa_Cong.VVar = "MA_CONG";
             // 
             // txtTien_Khoan
@@ -275,7 +279,7 @@
             // 
             this.v6Label16.AccessibleDescription = "";
             this.v6Label16.AutoSize = true;
-            this.v6Label16.Location = new System.Drawing.Point(6, 444);
+            this.v6Label16.Location = new System.Drawing.Point(6, 499);
             this.v6Label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label16.Name = "v6Label16";
             this.v6Label16.Size = new System.Drawing.Size(73, 17);
@@ -286,7 +290,7 @@
             // 
             this.v6Label15.AccessibleDescription = "";
             this.v6Label15.AutoSize = true;
-            this.v6Label15.Location = new System.Drawing.Point(6, 414);
+            this.v6Label15.Location = new System.Drawing.Point(6, 469);
             this.v6Label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label15.Name = "v6Label15";
             this.v6Label15.Size = new System.Drawing.Size(62, 17);
@@ -402,10 +406,10 @@
             this.buttonSua.AccessibleName = "";
             this.buttonSua.Image = global::V6Controls.Properties.Resources.EditPage;
             this.buttonSua.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.buttonSua.Location = new System.Drawing.Point(6, 475);
+            this.buttonSua.Location = new System.Drawing.Point(6, 530);
             this.buttonSua.Name = "buttonSua";
             this.buttonSua.Size = new System.Drawing.Size(88, 40);
-            this.buttonSua.TabIndex = 16;
+            this.buttonSua.TabIndex = 18;
             this.buttonSua.Tag = "Return, Control";
             this.buttonSua.Text = "&Sửa";
             this.buttonSua.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -419,10 +423,10 @@
             this.buttonHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonHuy.Image = global::V6Controls.Properties.Resources.Cancel;
             this.buttonHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.buttonHuy.Location = new System.Drawing.Point(194, 475);
+            this.buttonHuy.Location = new System.Drawing.Point(194, 530);
             this.buttonHuy.Name = "buttonHuy";
             this.buttonHuy.Size = new System.Drawing.Size(88, 40);
-            this.buttonHuy.TabIndex = 18;
+            this.buttonHuy.TabIndex = 20;
             this.buttonHuy.Tag = "Escape";
             this.buttonHuy.Text = "&Hủy";
             this.buttonHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -435,10 +439,10 @@
             this.buttonNhan.AccessibleName = "";
             this.buttonNhan.Image = global::V6Controls.Properties.Resources.Apply;
             this.buttonNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.buttonNhan.Location = new System.Drawing.Point(100, 475);
+            this.buttonNhan.Location = new System.Drawing.Point(100, 530);
             this.buttonNhan.Name = "buttonNhan";
             this.buttonNhan.Size = new System.Drawing.Size(88, 40);
-            this.buttonNhan.TabIndex = 17;
+            this.buttonNhan.TabIndex = 19;
             this.buttonNhan.Tag = "Return, Control";
             this.buttonNhan.Text = "&Nhận";
             this.buttonNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -587,7 +591,7 @@
             this.ten_cong.AccessibleName = "ten_cong";
             this.ten_cong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.ten_cong.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ten_cong.Location = new System.Drawing.Point(298, 414);
+            this.ten_cong.Location = new System.Drawing.Point(298, 469);
             this.ten_cong.Name = "ten_cong";
             this.ten_cong.ReadOnly = true;
             this.ten_cong.Size = new System.Drawing.Size(251, 16);
@@ -672,10 +676,84 @@
             this.txtTEN_NHNV.TabStop = false;
             this.txtTEN_NHNV.Tag = "readonly";
             // 
+            // txtTIEN1
+            // 
+            this.txtTIEN1.AccessibleName = "TIEN1";
+            this.txtTIEN1.BackColor = System.Drawing.Color.White;
+            this.txtTIEN1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTIEN1.DecimalPlaces = 0;
+            this.txtTIEN1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTIEN1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTIEN1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTIEN1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTIEN1.LeaveColor = System.Drawing.Color.White;
+            this.txtTIEN1.Location = new System.Drawing.Point(144, 411);
+            this.txtTIEN1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTIEN1.Name = "txtTIEN1";
+            this.txtTIEN1.Size = new System.Drawing.Size(134, 23);
+            this.txtTIEN1.TabIndex = 14;
+            this.txtTIEN1.Text = "0";
+            this.txtTIEN1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTIEN1.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // v6Label7
+            // 
+            this.v6Label7.AccessibleDescription = "";
+            this.v6Label7.AutoSize = true;
+            this.v6Label7.Location = new System.Drawing.Point(6, 414);
+            this.v6Label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.v6Label7.Name = "v6Label7";
+            this.v6Label7.Size = new System.Drawing.Size(95, 17);
+            this.v6Label7.TabIndex = 170;
+            this.v6Label7.Text = "Lương cơ bản";
+            // 
+            // txtTIEN2
+            // 
+            this.txtTIEN2.AccessibleName = "TIEN2";
+            this.txtTIEN2.BackColor = System.Drawing.Color.White;
+            this.txtTIEN2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTIEN2.DecimalPlaces = 0;
+            this.txtTIEN2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTIEN2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTIEN2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTIEN2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTIEN2.LeaveColor = System.Drawing.Color.White;
+            this.txtTIEN2.Location = new System.Drawing.Point(144, 438);
+            this.txtTIEN2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTIEN2.Name = "txtTIEN2";
+            this.txtTIEN2.Size = new System.Drawing.Size(134, 23);
+            this.txtTIEN2.TabIndex = 15;
+            this.txtTIEN2.Text = "0";
+            this.txtTIEN2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTIEN2.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // v6Label8
+            // 
+            this.v6Label8.AccessibleDescription = "";
+            this.v6Label8.AutoSize = true;
+            this.v6Label8.Location = new System.Drawing.Point(6, 441);
+            this.v6Label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.v6Label8.Name = "v6Label8";
+            this.v6Label8.Size = new System.Drawing.Size(130, 17);
+            this.v6Label8.TabIndex = 172;
+            this.v6Label8.Text = "Lương tính thuế TN";
+            // 
             // ThongTinLuongCoBan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtTIEN2);
+            this.Controls.Add(this.v6Label8);
+            this.Controls.Add(this.txtTIEN1);
+            this.Controls.Add(this.v6Label7);
             this.Controls.Add(this.txtTEN_NHNV);
             this.Controls.Add(this.txtworkdate2);
             this.Controls.Add(this.txtworkdate);
@@ -719,7 +797,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongTinLuongCoBan";
-            this.Size = new System.Drawing.Size(649, 526);
+            this.Size = new System.Drawing.Size(649, 594);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -767,5 +845,9 @@
         private V6DateTimeColor txtworkdate;
         private V6DateTimeColor txtworkdate2;
         private V6LabelTextBox txtTEN_NHNV;
+        private V6NumberTextBox txtTIEN1;
+        private V6Label v6Label7;
+        private V6NumberTextBox txtTIEN2;
+        private V6Label v6Label8;
     }
 }

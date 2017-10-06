@@ -48,7 +48,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.v6LookupTextBox8 = new V6Controls.V6ColorTextBox();
+            this.v6LookupTextBox6 = new V6Controls.V6LookupTextBox();
             this.v6LookupTextBox4 = new V6Controls.V6LookupTextBox();
             this.v6LookupTextBox2 = new V6Controls.V6LookupTextBox();
             this.v6LookupTextBox1 = new V6Controls.V6LookupTextBox();
@@ -175,6 +175,13 @@
             this.TXTbirth_date.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TXTbirth_date.BackColor = System.Drawing.SystemColors.Window;
+            this.TXTbirth_date.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TXTbirth_date.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TXTbirth_date.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TXTbirth_date.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TXTbirth_date.HoverColor = System.Drawing.Color.Yellow;
+            this.TXTbirth_date.LeaveColor = System.Drawing.Color.White;
             this.TXTbirth_date.Location = new System.Drawing.Point(149, 95);
             this.TXTbirth_date.Mask = "00/00/0000    ";
             this.TXTbirth_date.Name = "TXTbirth_date";
@@ -453,7 +460,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage1.Controls.Add(this.v6LookupTextBox8);
+            this.tabPage1.Controls.Add(this.v6LookupTextBox6);
             this.tabPage1.Controls.Add(this.v6LookupTextBox4);
             this.tabPage1.Controls.Add(this.v6LookupTextBox2);
             this.tabPage1.Controls.Add(this.v6LookupTextBox1);
@@ -519,24 +526,29 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
-            // v6LookupTextBox8
+            // v6LookupTextBox6
             // 
-            this.v6LookupTextBox8.AccessibleName = "mark_language";
-            this.v6LookupTextBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.v6LookupTextBox6.AccessibleName = "mark_language";
+            this.v6LookupTextBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6LookupTextBox8.BackColor = System.Drawing.Color.White;
-            this.v6LookupTextBox8.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6LookupTextBox8.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6LookupTextBox8.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6LookupTextBox8.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6LookupTextBox8.HoverColor = System.Drawing.Color.Yellow;
-            this.v6LookupTextBox8.LeaveColor = System.Drawing.Color.White;
-            this.v6LookupTextBox8.Location = new System.Drawing.Point(501, 175);
-            this.v6LookupTextBox8.Margin = new System.Windows.Forms.Padding(5);
-            this.v6LookupTextBox8.Name = "v6LookupTextBox8";
-            this.v6LookupTextBox8.Size = new System.Drawing.Size(209, 23);
-            this.v6LookupTextBox8.TabIndex = 150;
+            this.v6LookupTextBox6.BackColor = System.Drawing.Color.White;
+            this.v6LookupTextBox6.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6LookupTextBox6.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6LookupTextBox6.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6LookupTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6LookupTextBox6.HoverColor = System.Drawing.Color.Yellow;
+            this.v6LookupTextBox6.LeaveColor = System.Drawing.Color.White;
+            this.v6LookupTextBox6.Location = new System.Drawing.Point(501, 174);
+            this.v6LookupTextBox6.Ma_dm = "HRLSTLANGUAGE";
+            this.v6LookupTextBox6.Margin = new System.Windows.Forms.Padding(5);
+            this.v6LookupTextBox6.Name = "v6LookupTextBox6";
+            this.v6LookupTextBox6.NeighborFields = "";
+            this.v6LookupTextBox6.ParentData = null;
+            this.v6LookupTextBox6.ShowTextField = "NAME";
+            this.v6LookupTextBox6.Size = new System.Drawing.Size(209, 23);
+            this.v6LookupTextBox6.TabIndex = 18;
+            this.v6LookupTextBox6.ValueField = "ID";
             // 
             // v6LookupTextBox4
             // 
@@ -1254,7 +1266,6 @@
             this.v6LookupTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6LookupTextBox5.LeaveColor = System.Drawing.Color.White;
             this.v6LookupTextBox5.Location = new System.Drawing.Point(149, 142);
-            this.v6LookupTextBox5.Ma_dm = "hrlstnationality";
             this.v6LookupTextBox5.Margin = new System.Windows.Forms.Padding(5);
             this.v6LookupTextBox5.Name = "v6LookupTextBox5";
             this.v6LookupTextBox5.NeighborFields = "";
@@ -2031,7 +2042,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.MaskedTextBox TXTbirth_date;
         private V6ColorTextBox txtSttRec0;
         private V6ColorTextBox txtSttRec;
         private V6Label v6Label1;
@@ -2135,7 +2145,8 @@
         private V6LookupTextBox v6LookupTextBox4;
         private V6LookupTextBox v6LookupTextBox2;
         private V6LookupTextBox v6LookupTextBox1;
-        private V6ColorTextBox v6LookupTextBox8;
         private V6ColorTextBox txtGhiChuHocTap;
+        private V6LookupTextBox v6LookupTextBox6;
+        private V6ColorMaskedTextBox TXTbirth_date;
     }
 }
