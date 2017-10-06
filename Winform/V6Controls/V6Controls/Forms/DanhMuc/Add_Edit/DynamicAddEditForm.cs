@@ -376,6 +376,23 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             panel1.Controls.Add(txtB);
                             left = txtB.Right + 10;
                         }
+                        if (input is V6LookupTextBox && !string.IsNullOrEmpty(defineInfo.BField))
+                        {
+                            var tT = (V6LookupTextBox)input;
+                            tT.BrotherFields = defineInfo.BField;
+                            var txtB = new V6LabelTextBox();
+                            txtB.Name = "txt" + defineInfo.BField;
+                            txtB.AccessibleName = defineInfo.BField;
+                            txtB.Top = top;
+                            txtB.Left = left;
+                            txtB.Width = panel1.Width - txtB.Left - 10;
+                            txtB.ReadOnly = true;
+                            txtB.TabStop = false;
+
+                            All_Objects[txtB.Name] = txtB;
+                            panel1.Controls.Add(txtB);
+                            left = txtB.Right + 10;
+                        }
                         //Add description
                         var description = defineInfo.DescriptionLang(V6Setting.IsVietnamese);
                         if (!string.IsNullOrEmpty(description))

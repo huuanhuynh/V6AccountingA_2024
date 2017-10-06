@@ -218,7 +218,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     goto End;
                 }
 
-                int stt = 0, skip = 0;
+                int stt = 0;
                 total = data.Rows.Count;
                 for (int i = 0; i < total; i++)
                 {
@@ -278,12 +278,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                             var ma_vt_new = dataDic["MA_VT"].ToString().Trim();
                                             UpdateAlqddvt(ma_vt_new, ma_vt_new);
                                         }
-                                        //data.Rows.Remove(row);
                                         remove_list_d.Add(row);
                                     }
                                     else
                                     {
-                                        skip++;
                                         var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, ID0);
                                         f9Error += s;
                                         f9ErrorAll += s;
@@ -292,7 +290,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 else
                                 {
                                     f9Error += "Skip " + ID0;
-                                    skip++;
                                 }
                             }
                             else
@@ -314,12 +311,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                         var ma_vt_new = dataDic["MA_VT"].ToString().Trim();
                                         UpdateAlqddvt(ma_vt_new, ma_vt_new);
                                     }
-                                    //data.Rows.Remove(row);
                                     remove_list_d.Add(row);
                                 }
                                 else
                                 {
-                                    skip++;
                                     var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, ID0);
                                     f9Error += s;
                                     f9ErrorAll += s;
@@ -329,7 +324,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else
                         {
-                            skip++;
                             var s = "Dòng " + stt + " không có đủ " + CHECK_FIELDS;
                             f9Error += s;
                             f9ErrorAll += s;
@@ -337,7 +331,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     catch (Exception ex)
                     {
-                        skip++;
                         f9Error += "Dòng " + stt + ": " + ex.Message;
                         f9ErrorAll += "Dòng " + stt + ": " + ex.Message;
                     }

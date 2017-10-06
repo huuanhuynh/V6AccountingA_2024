@@ -509,6 +509,7 @@ namespace V6Controls.Controls.LichView
             brush = new SolidBrush(cellData.Col == 5 ? _satudayColor : (cellData.Col == 6 ? _sundayColor : ForeColor));
             //Draw day
             float emSize = (float)col_width/9;
+            if (emSize < 5.5) emSize = 5.5f;
             Font dayFont = new Font(Font.FontFamily, emSize);
             g.DrawString("" + cellData.Day, dayFont, brush, cellData.Rectangle);// basePoint);
             //Draw LunarDate
@@ -528,6 +529,7 @@ namespace V6Controls.Controls.LichView
                     (int) (cellData.Rectangle.Y + Math.Ceiling(size.Height)),
                     Width, (int) (Height - size.Height));
                 emSize = (float) col_width/15;
+                if (emSize < 4.5) emSize = 4.5f;
                 Font lunarFont = new Font(Font.FontFamily, emSize);
                 var lunarDay = "" + lunarDate.LunarDay;
                 if (cellData.Date.Day == 1 || lunarDate.LunarDay == 1)
