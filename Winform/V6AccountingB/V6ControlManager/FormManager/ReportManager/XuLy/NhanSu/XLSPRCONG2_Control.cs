@@ -230,6 +230,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 }
 
                 int stt = 0;
+                DateTime last_day = V6Setting.M_SV_DATE;
                 total = data.Rows.Count;
                 for (int i = 0; i < total; i++)
                 {
@@ -253,12 +254,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                             var id_list = ObjectAndString.SplitString(IDS_CHECK);
                             var ma_ns = dataDic["MA_NS"].ToString().Trim();
                             var ma_cong = dataDic["MA_CONG"].ToString().Trim();
-                            DateTime ngay = ObjectAndString.ObjectToFullDateTime(dataDic["MA_CONG"]);
-                            var exist = false;
+                            DateTime ngay = ObjectAndString.ObjectToFullDateTime(dataDic["NGAY"]);
+                            last_day = ngay;
+                            var valid = false;
                             switch (TYPE_CHECK)
                             {
                                 case "21":
-                                    exist = V6BusinessHelper.IsValidTwoCode_OneDate(
+                                    valid = V6BusinessHelper.IsValidTwoCode_OneDate(
                                         TABLE_NAME, 1,
                                         "MA_NS", ma_ns, ma_ns,
                                         "MA_CONG", ma_cong, ma_cong,
@@ -268,7 +270,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
                             if (FilterControl.Check2) //Chỉ cập nhập mã mới.
                             {
-                                if (!exist)
+                                if (valid)
                                 {
                                     if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
                                     {
@@ -287,7 +289,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                             }
                             else
                             {
-                                if (exist) //Xóa cũ thêm mới.
+                                if (!valid) //Xóa cũ thêm mới.
                                 {
                                     var keys = new SortedDictionary<string, object>();
                                     foreach (string field in id_list)
@@ -322,7 +324,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                         f9Error += "Dòng " + stt + ": " + ex.Message;
                         f9ErrorAll += "Dòng " + stt + ": " + ex.Message;
                     }
+                }
 
+                if (total > 0)
+                {
+                    SqlParameter[] plist =
+                    {
+                        new SqlParameter("@dWork", last_day),
+                        new SqlParameter("@nUserID", V6Login.UserId)
+                    };
+                    V6BusinessHelper.ExecuteProcedureNoneQuery("HPRCONG2", plist);
                 }
             }
             catch (Exception ex)
