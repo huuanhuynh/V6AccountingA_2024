@@ -127,6 +127,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             txtControlType.Text = ((Control) sender).Text;
         }
 
+        private void cboControlType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtControlType.Text = cboControlType.SelectedText;
+        }
+
         
     }
 }

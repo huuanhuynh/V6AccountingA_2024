@@ -213,7 +213,7 @@ namespace V6Controls.Controls.ToChucTree
         //    }
         //    return false;
         //}
-        private SortedDictionary<string, object> GetItemData(TreeListViewItem item)
+        public SortedDictionary<string, object> GetItemData(TreeListViewItem item)
         {
             try
             {

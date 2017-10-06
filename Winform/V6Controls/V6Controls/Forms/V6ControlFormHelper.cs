@@ -862,21 +862,47 @@ namespace V6Controls.Forms
 
             V6VvarTextBox vT = null;
             V6LookupTextBox vL = null;
+            V6FormButton bT = null;
             //Tuanmh check null
             string controltype="";
             if (string.IsNullOrEmpty(lineInfo.ControlType)==false)
             {
                    controltype=lineInfo.ControlType.ToUpper();
             }
-              
 
-            if (controltype == "LOOKUPTEXTBOX") 
+
+            if (controltype == "VVARTEXTBOX")
+            {
+                vT = lineControl.AddVvarTextBox(lineInfo.Vvar, lineInfo.InitFilter);
+                //
+                vT.F2 = lineInfo.F2;
+                vT.FilterStart = lineInfo.FilterStart;
+            }
+            else if (controltype == "LOOKUPTEXTBOX") 
             {
                 vL = lineControl.AddLookupTextBox(lineInfo.MA_DM, lineInfo.InitFilter,
                     lineInfo.Field, lineInfo.Field2, lineInfo.BField, lineInfo.NField);
                 //
                 vL.F2 = lineInfo.F2;
                 vL.FilterStart = lineInfo.FilterStart;
+            }
+            else if (controltype == "BUTTON")
+            {
+                bT = lineControl.AddButton(lineInfo.TextLang(V6Setting.IsVietnamese));
+                int bT_width = ObjectAndString.ObjectToInt(lineInfo.Width);
+                if (bT_width > 0)
+                {
+                    bT.AutoSize = false;
+                    bT.Width = bT_width;
+                }
+            }
+            else if (controltype == "DATETIME")
+            {
+                lineControl.AddDateTimePick();
+            }
+            else if (controltype == "DATETIMECOLOR")
+            {
+                lineControl.AddDateTimeColor();
             }
             else if (ObjectAndString.IsDateTimeType(lineInfo.DataType))
             {
@@ -2003,6 +2029,19 @@ namespace V6Controls.Forms
         
 
         #region ==== Show...Message() ====
+
+        /// <summary>
+        /// Hiển thị Ucontrol lên form. Có xác nhận đóng khi nhấn X
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="owner">Form chủ, không có để null</param>
+        /// <param name="title"></param>
+        /// <param name="fullScreen"></param>
+        /// <param name="dialog"></param>
+        public static void ShowToForm(UserControl control, IWin32Window owner, string title = "Form", bool fullScreen = false, bool dialog = true)
+        {
+            control.ShowToForm(owner, title, fullScreen, dialog);
+        }
 
         public static DialogResult ShowMessage(string message, IWin32Window owner = null)
         {

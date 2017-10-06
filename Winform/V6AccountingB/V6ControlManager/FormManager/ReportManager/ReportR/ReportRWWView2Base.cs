@@ -494,7 +494,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             CreateFormProgram();
             CreateFormControls();
-            InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+            InvokeFormEvent(QuickReportManager.FormEvent.INIT);
         }
 
         private void MyInit2()
@@ -805,7 +805,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 try
                 {
                     FilterControl.LoadDataFinish(_ds);
-                    InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+                    InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
 
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = _tbl;

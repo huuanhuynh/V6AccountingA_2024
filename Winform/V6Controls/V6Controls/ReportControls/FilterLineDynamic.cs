@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Controls.Label;
 using V6Init;
 using V6Structs;
@@ -20,6 +21,7 @@ namespace V6ReportControls
         public V6DateTimeColor _dateTimeColor;
         public V6DateTimePick _dateTimePick;
         public V6CheckBox _checkBox;
+        public V6FormButton _button;
         public bool CheckNotEmpty;
         
         /// <summary>
@@ -139,7 +141,7 @@ namespace V6ReportControls
                 if (_dateTimePick != null) return _dateTimePick.Value.ToString("yyyyMMdd");
                 if (_dateTimeColor != null) return ObjectAndString.ObjectToString(_dateTimeColor.Value, "yyyyMMdd");
                 if (_checkBox != null) return _checkBox.Checked?"1":"0";
-                return "";
+                return null;
             }
         }
 
@@ -398,6 +400,7 @@ namespace V6ReportControls
             _dateTimeColor.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _dateTimeColor.KeyDown += FilterLineDynamic_KeyDown;
         }
+
         public void AddCheckBox()
         {
             _checkBox = new V6CheckBox();
@@ -419,6 +422,31 @@ namespace V6ReportControls
             _checkBox.GotFocus += FilterLineDynamic_GotFocus;
             _checkBox.LostFocus += FilterLineDynamic_LostFocus;
             _checkBox.KeyDown += FilterLineDynamic_KeyDown;
+        }
+
+        public V6FormButton AddButton(string text)
+        {
+            _button = new V6FormButton();
+            _button.UseVisualStyleBackColor = true;
+            _button.AutoSize = true;
+            _button.Text = text;
+            _button.Location = new Point(0, 0);
+            Controls.Add(_button);
+            
+            label1.Visible = false;
+            comboBox1.Visible = false;
+            checkBox1.Visible = false;
+
+            _button.Click += FilterLineDynamic_Click;
+            //_button.TextChanged += FilterLineDynamic_TextChanged;
+            //_button.CheckedChanged += (o, e) =>
+            //{
+            //    OnValueChanged(this, _button);
+            //};
+            //_button.GotFocus += FilterLineDynamic_GotFocus;
+            //_button.LostFocus += FilterLineDynamic_LostFocus;
+            //_button.KeyDown += FilterLineDynamic_KeyDown;
+            return _button;
         }
 
         public void SetValue(string stringValue)

@@ -931,7 +931,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 try
                 {
                     FilterControl.LoadDataFinish(_ds);
-                    InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+                    InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
 
                     dataGridView1.TableSource = _tbl;
 

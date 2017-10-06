@@ -80,11 +80,11 @@
             this.txtAccessibleName2 = new V6Controls.V6VvarTextBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.lblControlTypeCheckBox = new System.Windows.Forms.Label();
             this.lblControlTypeLookupTextBox = new System.Windows.Forms.Label();
             this.lblControlTypeTextBox = new System.Windows.Forms.Label();
             this.lblControlType = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
+            this.txtNField = new V6Controls.V6ColorTextBox();
             this.txtToUpper = new V6Controls.V6ColorTextBox();
             this.label39 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -119,7 +119,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.txtNField = new V6Controls.V6ColorTextBox();
+            this.lblControlTypeVvarTextBox = new System.Windows.Forms.Label();
+            this.cboControlType = new System.Windows.Forms.ComboBox();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -707,6 +708,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage1.Controls.Add(this.cboControlType);
             this.tabPage1.Controls.Add(this.txtField2);
             this.tabPage1.Controls.Add(this.label51);
             this.tabPage1.Controls.Add(this.label52);
@@ -720,7 +722,7 @@
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label29);
-            this.tabPage1.Controls.Add(this.lblControlTypeCheckBox);
+            this.tabPage1.Controls.Add(this.lblControlTypeVvarTextBox);
             this.tabPage1.Controls.Add(this.lblControlTypeLookupTextBox);
             this.tabPage1.Controls.Add(this.lblControlTypeTextBox);
             this.tabPage1.Controls.Add(this.lblControlType);
@@ -863,18 +865,6 @@
             this.label29.TabIndex = 2;
             this.label29.Text = "Key data";
             // 
-            // lblControlTypeCheckBox
-            // 
-            this.lblControlTypeCheckBox.AccessibleDescription = "";
-            this.lblControlTypeCheckBox.AutoSize = true;
-            this.lblControlTypeCheckBox.Location = new System.Drawing.Point(516, 10);
-            this.lblControlTypeCheckBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblControlTypeCheckBox.Name = "lblControlTypeCheckBox";
-            this.lblControlTypeCheckBox.Size = new System.Drawing.Size(70, 17);
-            this.lblControlTypeCheckBox.TabIndex = 2;
-            this.lblControlTypeCheckBox.Text = "CheckBox";
-            this.lblControlTypeCheckBox.Click += new System.EventHandler(this.lblControlType_Click);
-            // 
             // lblControlTypeLookupTextBox
             // 
             this.lblControlTypeLookupTextBox.AccessibleDescription = "";
@@ -921,6 +911,23 @@
             this.label40.Size = new System.Drawing.Size(114, 17);
             this.label40.TabIndex = 38;
             this.label40.Text = "Bật Upper khi gõ";
+            // 
+            // txtNField
+            // 
+            this.txtNField.AccessibleName = "NField";
+            this.txtNField.BackColor = System.Drawing.Color.White;
+            this.txtNField.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNField.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNField.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNField.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNField.GrayText = " NeighborField";
+            this.txtNField.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNField.LeaveColor = System.Drawing.Color.White;
+            this.txtNField.Location = new System.Drawing.Point(287, 111);
+            this.txtNField.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNField.Name = "txtNField";
+            this.txtNField.Size = new System.Drawing.Size(150, 23);
+            this.txtNField.TabIndex = 5;
             // 
             // txtToUpper
             // 
@@ -1393,22 +1400,35 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
-            // txtNField
+            // lblControlTypeVvarTextBox
             // 
-            this.txtNField.AccessibleName = "NField";
-            this.txtNField.BackColor = System.Drawing.Color.White;
-            this.txtNField.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNField.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNField.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtNField.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtNField.GrayText = " NeighborField";
-            this.txtNField.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNField.LeaveColor = System.Drawing.Color.White;
-            this.txtNField.Location = new System.Drawing.Point(287, 111);
-            this.txtNField.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNField.Name = "txtNField";
-            this.txtNField.Size = new System.Drawing.Size(150, 23);
-            this.txtNField.TabIndex = 5;
+            this.lblControlTypeVvarTextBox.AccessibleDescription = "";
+            this.lblControlTypeVvarTextBox.AutoSize = true;
+            this.lblControlTypeVvarTextBox.Location = new System.Drawing.Point(516, 10);
+            this.lblControlTypeVvarTextBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblControlTypeVvarTextBox.Name = "lblControlTypeVvarTextBox";
+            this.lblControlTypeVvarTextBox.Size = new System.Drawing.Size(87, 17);
+            this.lblControlTypeVvarTextBox.TabIndex = 2;
+            this.lblControlTypeVvarTextBox.Text = "VvarTextBox";
+            this.lblControlTypeVvarTextBox.Click += new System.EventHandler(this.lblControlType_Click);
+            // 
+            // cboControlType
+            // 
+            this.cboControlType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboControlType.FormattingEnabled = true;
+            this.cboControlType.Items.AddRange(new object[] {
+            "Button",
+            "TextBox",
+            "LookupTextBox",
+            "VvarTextBox",
+            "CheckBox",
+            "DateTime",
+            "DateTimeColor"});
+            this.cboControlType.Location = new System.Drawing.Point(640, 8);
+            this.cboControlType.Name = "cboControlType";
+            this.cboControlType.Size = new System.Drawing.Size(121, 24);
+            this.cboControlType.TabIndex = 51;
+            this.cboControlType.SelectedIndexChanged += new System.EventHandler(this.cboControlType_SelectedIndexChanged);
             // 
             // ALREPORT1_FilterEditorForm
             // 
@@ -1527,9 +1547,10 @@
         private System.Windows.Forms.Label label54;
         private V6VvarTextBox txtAccessibleName2;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label lblControlTypeCheckBox;
         private System.Windows.Forms.Label lblControlTypeLookupTextBox;
         private System.Windows.Forms.Label lblControlTypeTextBox;
         private V6ColorTextBox txtNField;
+        private System.Windows.Forms.Label lblControlTypeVvarTextBox;
+        private System.Windows.Forms.ComboBox cboControlType;
     }
 }

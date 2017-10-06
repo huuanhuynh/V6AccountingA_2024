@@ -1083,6 +1083,12 @@
     <Compile Include="Controls\DropDownButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\ToChucTreeSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ToChucTreeSelectForm.Designer.cs">
+      <DependentUpon>ToChucTreeSelectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\V6ControlFormHelper.cs" />
     <Compile Include="Forms\V6Message.cs">
       <SubType>Code</SubType>
@@ -1797,6 +1803,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiAddEditForm.resx">
       <DependentUpon>YeuToChiPhiAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ToChucTreeSelectForm.resx">
+      <DependentUpon>ToChucTreeSelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\V6MessageForm.resx">
       <DependentUpon>V6MessageForm.cs</DependentUpon>

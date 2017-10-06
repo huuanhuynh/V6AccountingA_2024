@@ -964,7 +964,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 try
                 {
                     FilterControl.LoadDataFinish(_ds);
-                    InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+                    InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
                     treeListViewAuto1.SetData(_tbl3, Report_GRDSV1,
                         V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1, Report_GRDFV1);
                     //treeListViewAuto1.ExpandAll();

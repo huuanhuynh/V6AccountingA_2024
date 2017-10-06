@@ -835,7 +835,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 try
                 {
                     FilterControl.LoadDataFinish(_ds);
-                    InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+                    InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
 
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = _tbl;

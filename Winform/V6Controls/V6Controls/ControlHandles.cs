@@ -11,6 +11,7 @@ namespace V6Controls
     /// <returns></returns>
     public delegate void HandleData(SortedDictionary<string, object> data);
     public delegate void DataTableHandler(DataTable table);
+    public delegate void DataSelectHandler(string idList, List<IDictionary<string, object>> dataList);
     /// <summary>
     /// Xử lý dữ liệu kết quả (nếu muốn)
     /// </summary>
