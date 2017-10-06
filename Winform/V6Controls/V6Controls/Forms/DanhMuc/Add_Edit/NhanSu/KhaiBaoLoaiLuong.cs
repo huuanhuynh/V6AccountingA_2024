@@ -38,8 +38,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                     //code_field = row[""].ToString().Trim();
                 }
 
-                var v = Categories.IsExistOneCode_List(F8_table, "MA_LOAI_TN", TXTLOAITN.Text);
-                TXTLOAITN.Enabled = !v;
+                var v = Categories.IsExistOneCode_List(F8_table, "MA_LOAI_LG", txtMa_loai_luong.Text);
+                txtMa_loai_luong.Enabled = !v;
 
 
             }

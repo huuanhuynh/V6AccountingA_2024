@@ -48,6 +48,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.v6LookupTextBox6 = new V6Controls.V6LookupTextBox();
             this.v6LookupTextBox4 = new V6Controls.V6LookupTextBox();
             this.v6LookupTextBox2 = new V6Controls.V6LookupTextBox();
             this.v6LookupTextBox1 = new V6Controls.V6LookupTextBox();
@@ -134,7 +135,6 @@
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.v6LookupTextBox6 = new V6Controls.V6LookupTextBox();
             this.groupBox2.SuspendLayout();
             this.panelGioiTinh.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
@@ -525,6 +525,30 @@
             this.tabPage1.Size = new System.Drawing.Size(718, 495);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
+            // 
+            // v6LookupTextBox6
+            // 
+            this.v6LookupTextBox6.AccessibleName = "mark_language";
+            this.v6LookupTextBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6LookupTextBox6.BackColor = System.Drawing.Color.White;
+            this.v6LookupTextBox6.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6LookupTextBox6.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6LookupTextBox6.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6LookupTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6LookupTextBox6.HoverColor = System.Drawing.Color.Yellow;
+            this.v6LookupTextBox6.LeaveColor = System.Drawing.Color.White;
+            this.v6LookupTextBox6.Location = new System.Drawing.Point(501, 174);
+            this.v6LookupTextBox6.Ma_dm = "HRLSTLANGUAGE";
+            this.v6LookupTextBox6.Margin = new System.Windows.Forms.Padding(5);
+            this.v6LookupTextBox6.Name = "v6LookupTextBox6";
+            this.v6LookupTextBox6.NeighborFields = "";
+            this.v6LookupTextBox6.ParentData = null;
+            this.v6LookupTextBox6.ShowTextField = "NAME";
+            this.v6LookupTextBox6.Size = new System.Drawing.Size(209, 23);
+            this.v6LookupTextBox6.TabIndex = 18;
+            this.v6LookupTextBox6.ValueField = "ID";
             // 
             // v6LookupTextBox4
             // 
@@ -1242,7 +1266,6 @@
             this.v6LookupTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6LookupTextBox5.LeaveColor = System.Drawing.Color.White;
             this.v6LookupTextBox5.Location = new System.Drawing.Point(149, 142);
-            this.v6LookupTextBox5.Ma_dm = "hrlstnationality";
             this.v6LookupTextBox5.Margin = new System.Windows.Forms.Padding(5);
             this.v6LookupTextBox5.Name = "v6LookupTextBox5";
             this.v6LookupTextBox5.NeighborFields = "";
@@ -1990,30 +2013,6 @@
             this.tabPage4.Size = new System.Drawing.Size(718, 495);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Thông tin khác";
-            // 
-            // v6LookupTextBox6
-            // 
-            this.v6LookupTextBox6.AccessibleName = "mark_language";
-            this.v6LookupTextBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6LookupTextBox6.BackColor = System.Drawing.Color.White;
-            this.v6LookupTextBox6.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6LookupTextBox6.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6LookupTextBox6.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6LookupTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6LookupTextBox6.HoverColor = System.Drawing.Color.Yellow;
-            this.v6LookupTextBox6.LeaveColor = System.Drawing.Color.White;
-            this.v6LookupTextBox6.Location = new System.Drawing.Point(501, 174);
-            this.v6LookupTextBox6.Ma_dm = "HRLSTLANGUAGE";
-            this.v6LookupTextBox6.Margin = new System.Windows.Forms.Padding(5);
-            this.v6LookupTextBox6.Name = "v6LookupTextBox6";
-            this.v6LookupTextBox6.NeighborFields = "";
-            this.v6LookupTextBox6.ParentData = null;
-            this.v6LookupTextBox6.ShowTextField = "NAME";
-            this.v6LookupTextBox6.Size = new System.Drawing.Size(209, 23);
-            this.v6LookupTextBox6.TabIndex = 18;
-            this.v6LookupTextBox6.ValueField = "ID";
             // 
             // NhanSuAddEditForm
             // 
