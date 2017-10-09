@@ -137,5 +137,20 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
 
             }
         }
+
+        private void txtYear_Leave(object sender, EventArgs e)
+        {
+           
+                try
+                {
+                    var txt = (V6NumberTextBox)sender;
+                    if (txt.Value <= 0) txt.Value = V6Setting.M_SV_DATE.Year;
+                }
+                catch (Exception)
+                {
+
+                }
+        
+        }
     }
 }

@@ -32,16 +32,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         public override void ValidateData()
         {
             var errors = "";
-            if (txtMaTg.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
-          
 
+            if (txtNam.Value <= 0)
+            {
+                errors += V6Text.CheckInfor + " !\r\n";
+            }
+            if (txtMaTg.Text.Trim() == "")
+                errors += V6Text.CheckInfor + "\r\n";
+           
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_TG",
                  txtMaTg.Text.Trim(), DataOld["MA_TG"].ToString());
                 if (!b)
-                    throw new Exception("Không được sửa mã đã tồn tại: "
+                    throw new Exception(V6Text.EditDenied
                                                     + "MA_TG = " + txtMaTg.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
@@ -49,11 +53,85 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_TG",
                  txtMaTg.Text.Trim(), txtMaTg.Text.Trim());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
+                    throw new Exception(V6Text.AddDenied
                                                     + "MA_TG = " + txtMaTg.Text.Trim());
             }
 
             if (errors.Length > 0) throw new Exception(errors);
+        }
+
+        private void txtKy_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var txt = (V6NumberTextBox)sender;
+                if (txt.Value < 1) txt.Value = 0;
+                if (txt.Value > 12) txt.Value = 12;
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void txtThag_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var txt = (V6NumberTextBox)sender;
+                if (txt.Value < 1) txt.Value = 0;
+                if (txt.Value > 12) txt.Value = 12;
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void txtNam_TextChanged_1(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void txtKy_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                var txt = (V6NumberTextBox)sender;
+                if (txt.Value < 1) txt.Value = 1;
+                if (txt.Value > 12) txt.Value = 12;
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void txtThag_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                var txt = (V6NumberTextBox)sender;
+                if (txt.Value < 1) txt.Value = 1;
+                if (txt.Value > 12) txt.Value = 12;
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void txtNam_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                var txt = (V6NumberTextBox)sender;
+                if (txt.Value <= 0) txt.Value = V6Setting.M_SV_DATE.Year;
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }

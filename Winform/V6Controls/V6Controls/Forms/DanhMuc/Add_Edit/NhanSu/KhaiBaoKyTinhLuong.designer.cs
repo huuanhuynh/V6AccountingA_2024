@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.DateNGAY2 = new V6Controls.V6DateTimePick();
+            this.DateNGAY1 = new V6Controls.V6DateTimePick();
             this.txtMaTg = new V6Controls.V6VvarTextBox();
             this.txttenTg = new V6Controls.V6LabelTextBox();
-            this.txtSoNgay = new V6Controls.V6ColorTextBox();
-            this.txtNgay2 = new V6Controls.V6DateTimeColor();
-            this.txtNgay1 = new V6Controls.V6DateTimeColor();
-            this.txtNam = new V6Controls.V6ColorTextBox();
-            this.txtThag = new V6Controls.V6ColorTextBox();
-            this.txtKy = new V6Controls.V6ColorTextBox();
+            this.txtSoNgay = new V6Controls.V6NumberTextBox();
+            this.txtNam = new V6Controls.V6NumberTextBox();
+            this.txtThag = new V6Controls.V6NumberTextBox();
+            this.txtKy = new V6Controls.V6NumberTextBox();
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
@@ -51,14 +51,14 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.DateNGAY2);
+            this.groupBox1.Controls.Add(this.DateNGAY1);
             this.groupBox1.Controls.Add(this.txtMaTg);
             this.groupBox1.Controls.Add(this.txttenTg);
             this.groupBox1.Controls.Add(this.txtSoNgay);
-            this.groupBox1.Controls.Add(this.txtNgay2);
-            this.groupBox1.Controls.Add(this.txtNgay1);
             this.groupBox1.Controls.Add(this.txtNam);
             this.groupBox1.Controls.Add(this.txtThag);
             this.groupBox1.Controls.Add(this.txtKy);
@@ -75,9 +75,37 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
-            this.groupBox1.Size = new System.Drawing.Size(488, 315);
-            this.groupBox1.TabIndex = 84;
+            this.groupBox1.Size = new System.Drawing.Size(488, 271);
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // DateNGAY2
+            // 
+            this.DateNGAY2.AccessibleName = "NGAY2";
+            this.DateNGAY2.CustomFormat = "dd/MM/yyyy";
+            this.DateNGAY2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.DateNGAY2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateNGAY2.HoverColor = System.Drawing.Color.Yellow;
+            this.DateNGAY2.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.DateNGAY2.LeaveColor = System.Drawing.Color.White;
+            this.DateNGAY2.Location = new System.Drawing.Point(146, 165);
+            this.DateNGAY2.Name = "DateNGAY2";
+            this.DateNGAY2.Size = new System.Drawing.Size(135, 23);
+            this.DateNGAY2.TabIndex = 5;
+            // 
+            // DateNGAY1
+            // 
+            this.DateNGAY1.AccessibleName = "NGAY1";
+            this.DateNGAY1.CustomFormat = "dd/MM/yyyy";
+            this.DateNGAY1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.DateNGAY1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateNGAY1.HoverColor = System.Drawing.Color.Yellow;
+            this.DateNGAY1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.DateNGAY1.LeaveColor = System.Drawing.Color.White;
+            this.DateNGAY1.Location = new System.Drawing.Point(146, 136);
+            this.DateNGAY1.Name = "DateNGAY1";
+            this.DateNGAY1.Size = new System.Drawing.Size(135, 23);
+            this.DateNGAY1.TabIndex = 4;
             // 
             // txtMaTg
             // 
@@ -94,7 +122,7 @@
             this.txtMaTg.Location = new System.Drawing.Point(146, 20);
             this.txtMaTg.Name = "txtMaTg";
             this.txtMaTg.Size = new System.Drawing.Size(135, 23);
-            this.txtMaTg.TabIndex = 41;
+            this.txtMaTg.TabIndex = 0;
             this.txtMaTg.VVar = "ma_tg";
             // 
             // txttenTg
@@ -113,8 +141,8 @@
             // txtSoNgay
             // 
             this.txtSoNgay.AccessibleName = "so_ngay";
-            this.txtSoNgay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.txtSoNgay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSoNgay.BackColor = System.Drawing.SystemColors.Window;
             this.txtSoNgay.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -124,61 +152,24 @@
             this.txtSoNgay.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSoNgay.HoverColor = System.Drawing.Color.Yellow;
             this.txtSoNgay.LeaveColor = System.Drawing.Color.White;
-            this.txtSoNgay.Location = new System.Drawing.Point(146, 181);
+            this.txtSoNgay.Location = new System.Drawing.Point(146, 194);
             this.txtSoNgay.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtSoNgay.Name = "txtSoNgay";
             this.txtSoNgay.Size = new System.Drawing.Size(135, 23);
-            this.txtSoNgay.TabIndex = 47;
-            // 
-            // txtNgay2
-            // 
-            this.txtNgay2.AccessibleName = "ngay2";
-            this.txtNgay2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNgay2.BackColor = System.Drawing.Color.White;
-            this.txtNgay2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNgay2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNgay2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtNgay2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtNgay2.GrayText = null;
-            this.txtNgay2.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNgay2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtNgay2.LeaveColor = System.Drawing.Color.White;
-            this.txtNgay2.Location = new System.Drawing.Point(146, 155);
-            this.txtNgay2.Margin = new System.Windows.Forms.Padding(5);
-            this.txtNgay2.Name = "txtNgay2";
-            this.txtNgay2.Size = new System.Drawing.Size(135, 23);
-            this.txtNgay2.StringValue = "__/__/____";
-            this.txtNgay2.TabIndex = 46;
-            this.txtNgay2.Text = "__/__/____";
-            // 
-            // txtNgay1
-            // 
-            this.txtNgay1.AccessibleName = "ngay1";
-            this.txtNgay1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNgay1.BackColor = System.Drawing.Color.White;
-            this.txtNgay1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNgay1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNgay1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtNgay1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtNgay1.GrayText = null;
-            this.txtNgay1.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNgay1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtNgay1.LeaveColor = System.Drawing.Color.White;
-            this.txtNgay1.Location = new System.Drawing.Point(146, 128);
-            this.txtNgay1.Margin = new System.Windows.Forms.Padding(5);
-            this.txtNgay1.Name = "txtNgay1";
-            this.txtNgay1.Size = new System.Drawing.Size(135, 23);
-            this.txtNgay1.StringValue = "__/__/____";
-            this.txtNgay1.TabIndex = 45;
-            this.txtNgay1.Text = "__/__/____";
+            this.txtSoNgay.TabIndex = 6;
+            this.txtSoNgay.Text = "0,000";
+            this.txtSoNgay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSoNgay.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            196608});
             // 
             // txtNam
             // 
             this.txtNam.AccessibleName = "Nam";
-            this.txtNam.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.txtNam.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNam.BackColor = System.Drawing.SystemColors.Window;
             this.txtNam.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -188,17 +179,26 @@
             this.txtNam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNam.HoverColor = System.Drawing.Color.Yellow;
             this.txtNam.LeaveColor = System.Drawing.Color.White;
-            this.txtNam.Location = new System.Drawing.Point(146, 101);
+            this.txtNam.Location = new System.Drawing.Point(146, 107);
             this.txtNam.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtNam.Name = "txtNam";
             this.txtNam.Size = new System.Drawing.Size(69, 23);
-            this.txtNam.TabIndex = 44;
+            this.txtNam.TabIndex = 3;
+            this.txtNam.Text = "0,000";
+            this.txtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNam.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            196608});
+            this.txtNam.TextChanged += new System.EventHandler(this.txtNam_TextChanged_1);
+            this.txtNam.Leave += new System.EventHandler(this.txtNam_Leave);
             // 
             // txtThag
             // 
             this.txtThag.AccessibleName = "thang";
-            this.txtThag.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.txtThag.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtThag.BackColor = System.Drawing.SystemColors.Window;
             this.txtThag.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -208,17 +208,26 @@
             this.txtThag.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtThag.HoverColor = System.Drawing.Color.Yellow;
             this.txtThag.LeaveColor = System.Drawing.Color.White;
-            this.txtThag.Location = new System.Drawing.Point(146, 74);
+            this.txtThag.Location = new System.Drawing.Point(146, 78);
             this.txtThag.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtThag.Name = "txtThag";
             this.txtThag.Size = new System.Drawing.Size(69, 23);
-            this.txtThag.TabIndex = 43;
+            this.txtThag.TabIndex = 2;
+            this.txtThag.Text = "0,000";
+            this.txtThag.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtThag.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            196608});
+            this.txtThag.TextChanged += new System.EventHandler(this.txtThag_TextChanged);
+            this.txtThag.Leave += new System.EventHandler(this.txtThag_Leave);
             // 
             // txtKy
             // 
             this.txtKy.AccessibleName = "ky";
-            this.txtKy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.txtKy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtKy.BackColor = System.Drawing.SystemColors.Window;
             this.txtKy.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -228,17 +237,26 @@
             this.txtKy.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtKy.HoverColor = System.Drawing.Color.Yellow;
             this.txtKy.LeaveColor = System.Drawing.Color.White;
-            this.txtKy.Location = new System.Drawing.Point(146, 47);
+            this.txtKy.Location = new System.Drawing.Point(146, 49);
             this.txtKy.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtKy.Name = "txtKy";
             this.txtKy.Size = new System.Drawing.Size(69, 23);
-            this.txtKy.TabIndex = 42;
+            this.txtKy.TabIndex = 1;
+            this.txtKy.Text = "0,000";
+            this.txtKy.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKy.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            196608});
+            this.txtKy.TextChanged += new System.EventHandler(this.txtKy_TextChanged);
+            this.txtKy.Leave += new System.EventHandler(this.txtKy_Leave);
             // 
             // v6Label5
             // 
             this.v6Label5.AccessibleDescription = "";
             this.v6Label5.AutoSize = true;
-            this.v6Label5.Location = new System.Drawing.Point(16, 184);
+            this.v6Label5.Location = new System.Drawing.Point(16, 197);
             this.v6Label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label5.Name = "v6Label5";
             this.v6Label5.Size = new System.Drawing.Size(114, 17);
@@ -249,7 +267,7 @@
             // 
             this.v6Label4.AccessibleDescription = "";
             this.v6Label4.AutoSize = true;
-            this.v6Label4.Location = new System.Drawing.Point(16, 158);
+            this.v6Label4.Location = new System.Drawing.Point(16, 170);
             this.v6Label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label4.Name = "v6Label4";
             this.v6Label4.Size = new System.Drawing.Size(95, 17);
@@ -260,7 +278,7 @@
             // 
             this.v6Label3.AccessibleDescription = "";
             this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(16, 131);
+            this.v6Label3.Location = new System.Drawing.Point(16, 141);
             this.v6Label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(93, 17);
@@ -271,7 +289,7 @@
             // 
             this.v6Label2.AccessibleDescription = "";
             this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(16, 104);
+            this.v6Label2.Location = new System.Drawing.Point(16, 110);
             this.v6Label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(37, 17);
@@ -281,22 +299,22 @@
             // checkBox1
             // 
             this.checkBox1.AccessibleName = "status";
-            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(152, 225);
+            this.checkBox1.Location = new System.Drawing.Point(152, 223);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(5);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(111, 21);
-            this.checkBox1.TabIndex = 48;
+            this.checkBox1.TabIndex = 7;
             this.checkBox1.Text = "Có sử dụng ?";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 226);
+            this.label4.Location = new System.Drawing.Point(16, 224);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(73, 17);
@@ -307,7 +325,7 @@
             // 
             this.v6Label1.AccessibleDescription = "";
             this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(16, 77);
+            this.v6Label1.Location = new System.Drawing.Point(16, 81);
             this.v6Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(49, 17);
@@ -318,7 +336,7 @@
             // 
             this.v6Label17.AccessibleDescription = "";
             this.v6Label17.AutoSize = true;
-            this.v6Label17.Location = new System.Drawing.Point(16, 50);
+            this.v6Label17.Location = new System.Drawing.Point(16, 52);
             this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label17.Name = "v6Label17";
             this.v6Label17.Size = new System.Drawing.Size(24, 17);
@@ -335,15 +353,15 @@
             this.label5.TabIndex = 49;
             this.label5.Text = "Mã thời gian";
             // 
-            // KhaiBaoKiTinhLuong
+            // KhaiBaoKyTinhLuong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "KhaiBaoKiTinhLuong";
-            this.Size = new System.Drawing.Size(506, 339);
+            this.Name = "KhaiBaoKyTinhLuong";
+            this.Size = new System.Drawing.Size(506, 285);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -355,12 +373,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private V6VvarTextBox txtMaTg;
         private V6LabelTextBox txttenTg;
-        private V6ColorTextBox txtSoNgay;
-        private V6DateTimeColor txtNgay2;
-        private V6DateTimeColor txtNgay1;
-        private V6ColorTextBox txtNam;
-        private V6ColorTextBox txtThag;
-        private V6ColorTextBox txtKy;
+        private V6NumberTextBox txtSoNgay;
+        private V6NumberTextBox txtNam;
+        private V6NumberTextBox txtThag;
+        private V6NumberTextBox txtKy;
         private V6Label v6Label5;
         private V6Label v6Label4;
         private V6Label v6Label3;
@@ -370,5 +386,7 @@
         private V6Label v6Label1;
         private V6Label v6Label17;
         private System.Windows.Forms.Label label5;
+        private V6DateTimePick DateNGAY2;
+        private V6DateTimePick DateNGAY1;
     }
 }

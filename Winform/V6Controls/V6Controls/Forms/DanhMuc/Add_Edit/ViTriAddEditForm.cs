@@ -13,6 +13,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public ViTriAddEditForm()
         {
             InitializeComponent();
+            MyInit();
+        }
+        private void MyInit()
+        {
+            txtNH_VITRI1.SetInitFilter("Loai_nh=1");
+            txtNH_VITRI2.SetInitFilter("Loai_nh=2");
+            txtNH_VITRI3.SetInitFilter("Loai_nh=3");
+            txtNH_VITRI4.SetInitFilter("Loai_nh=4");
+            txtNH_VITRI5.SetInitFilter("Loai_nh=5");
+            txtNH_VITRI6.SetInitFilter("Loai_nh=6");
+
+            KeyField1 = "MA_VITRI";
         }
         public override void DoBeforeEdit()
         {

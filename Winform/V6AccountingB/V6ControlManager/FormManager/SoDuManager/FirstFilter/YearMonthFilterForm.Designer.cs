@@ -101,6 +101,8 @@
             0,
             0,
             0});
+           
+            this.txtYear.Leave += new System.EventHandler(this.txtYear_Leave);
             // 
             // label2
             // 
@@ -165,6 +167,7 @@
             this.ShowInTaskbar = false;
             this.Text = "Lọc năm";
             this.Load += new System.EventHandler(this.FilterForm_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnFilter, 0);
             this.Controls.SetChildIndex(this.txtYear, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);

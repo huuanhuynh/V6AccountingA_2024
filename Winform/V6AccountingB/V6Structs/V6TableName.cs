@@ -1242,7 +1242,7 @@ namespace V6Structs
                 case V6TableName.PRLICHLE:
                     return lang == "V" ? "Khai báo lịch lễ..." : "";
                 case V6TableName.Hrxky:
-                    return lang == "V" ? "Khai báo kì tính lương" : "";
+                    return lang == "V" ? "Khai báo kỳ tính lương" : "";
                 case V6TableName.Prhlthuetn:
                     return lang == "V" ? "Danh mục thuế thu nhập cá nhân" : "";
                 case V6TableName.prhlphucap:
