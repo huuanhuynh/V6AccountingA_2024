@@ -73,7 +73,28 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.ThongTinDinhNghia
                     SetInfo(info, gctd2v, gctd2e, gctd2f, gctd2u);
                     info = row["m_gc_td3"].ToString().Trim();
                     SetInfo(info, gctd3v, gctd3e, gctd3f, gctd3u);
-                    
+
+                    //ms1, 2, 3
+                    info = row["m_s1"].ToString().Trim();
+                    SetInfo(info, ms1v, ms1e, ms1f, ms1u);
+                    info = row["m_s2"].ToString().Trim();
+                    SetInfo(info, ms2v, ms2e, ms2f, ms2u);
+                    info = row["m_s3"].ToString().Trim();
+                    SetInfo(info, ms3v, ms3e, ms3f, ms3u);
+                    //ms1, 2, 3
+                    info = row["m_s4"].ToString().Trim();
+                    SetInfo(info, ms4v, ms4e, ms4f, ms4u);
+                    info = row["m_s5"].ToString().Trim();
+                    SetInfo(info, ms5v, ms5e, ms5f, ms5u);
+                    info = row["m_s6"].ToString().Trim();
+                    SetInfo(info, ms6v, ms6e, ms6f, ms6u);
+                    //ms 1, 2, 3
+                    info = row["m_s7"].ToString().Trim();
+                    SetInfo(info, ms7v, ms7e, ms7f, ms7u);
+                    info = row["m_s8"].ToString().Trim();
+                    SetInfo(info, ms8v, ms8e, ms8f, ms8u);
+                    info = row["m_s9"].ToString().Trim();
+                    SetInfo(info, ms9v, ms9e, ms9f, ms9u);
                 }
             }
             catch (Exception ex)
@@ -143,6 +164,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.ThongTinDinhNghia
                 DataDic.Add("M_GC_TD1", GenInfo(gctd1v, gctd1e, gctd1f, gctd1u));
                 DataDic.Add("M_GC_TD2", GenInfo(gctd2v, gctd2e, gctd2f, gctd2u));
                 DataDic.Add("M_GC_TD3", GenInfo(gctd3v, gctd3e, gctd3f, gctd3u));
+
+                //Thêm
+                DataDic.Add("M_S1", GenInfo(ms1v, ms1e, ms1f, ms1u));
+                DataDic.Add("M_S2", GenInfo(ms2v, ms2e, ms2f, ms2u));
+                DataDic.Add("M_S3", GenInfo(ms3v, ms3e, ms3f, ms3u));
+
+                DataDic.Add("M_S4", GenInfo(ms4v, ms4e, ms4f, ms4u));
+                DataDic.Add("M_S5", GenInfo(ms5v, ms5e, ms5f, ms5u));
+                DataDic.Add("M_S6", GenInfo(ms6v, ms6e, ms6f, ms6u));
+
+                DataDic.Add("M_S7", GenInfo(ms7v, ms7e, ms7f, ms7u));
+                DataDic.Add("M_S8", GenInfo(ms8v, ms8e, ms8f, ms8u));
+                DataDic.Add("M_S9", GenInfo(ms9v, ms9e, ms9f, ms9u));
+                
                 
                 var a = V6BusinessHelper.UpdateSimple(V6TableName.Altt, DataDic, key);
                 if (a > 0) return true;

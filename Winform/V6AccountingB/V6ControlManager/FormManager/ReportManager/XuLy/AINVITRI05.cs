@@ -104,7 +104,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.dataGridViewDetail1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewDetail1.Size = new System.Drawing.Size(353, 169);
             this.dataGridViewDetail1.Space_Bar = true;
-            this.dataGridViewDetail1.TabIndex = 6;
+            this.dataGridViewDetail1.TabIndex = 3;
             this.dataGridViewDetail1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridViewDetail1_KeyDown);
             // 
             // listBoxAlvitri
@@ -113,7 +113,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.listBoxAlvitri.Location = new System.Drawing.Point(3, 26);
             this.listBoxAlvitri.Name = "listBoxAlvitri";
             this.listBoxAlvitri.Size = new System.Drawing.Size(195, 147);
-            this.listBoxAlvitri.TabIndex = 7;
+            this.listBoxAlvitri.TabIndex = 2;
             this.listBoxAlvitri.SelectedIndexChanged += new System.EventHandler(this.listBoxAlvitri_SelectedIndexChanged);
             // 
             // dataGridViewDetail2
@@ -139,7 +139,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.dataGridViewDetail2.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewDetail2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewDetail2.Size = new System.Drawing.Size(353, 169);
-            this.dataGridViewDetail2.TabIndex = 6;
+            this.dataGridViewDetail2.TabIndex = 7;
             // 
             // dataGridViewAlvitri
             // 
@@ -189,7 +189,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.radThemMoi.Location = new System.Drawing.Point(306, 389);
             this.radThemMoi.Name = "radThemMoi";
             this.radThemMoi.Size = new System.Drawing.Size(71, 17);
-            this.radThemMoi.TabIndex = 4;
+            this.radThemMoi.TabIndex = 0;
             this.radThemMoi.TabStop = true;
             this.radThemMoi.Text = "Thêm mới";
             this.toolTipV6FormControl.SetToolTip(this.radThemMoi, "Xóa cũ và thêm lại");
@@ -208,7 +208,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtMavitri1.Location = new System.Drawing.Point(3, 3);
             this.txtMavitri1.Name = "txtMavitri1";
             this.txtMavitri1.Size = new System.Drawing.Size(117, 20);
-            this.txtMavitri1.TabIndex = 8;
+            this.txtMavitri1.TabIndex = 0;
             this.txtMavitri1.VVar = "MA_VITRI";
             // 
             // txtMavitri2
@@ -224,7 +224,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtMavitri2.Location = new System.Drawing.Point(3, 177);
             this.txtMavitri2.Name = "txtMavitri2";
             this.txtMavitri2.Size = new System.Drawing.Size(117, 20);
-            this.txtMavitri2.TabIndex = 8;
+            this.txtMavitri2.TabIndex = 4;
             this.txtMavitri2.VVar = "MA_VITRI";
             // 
             // btnFilter1
@@ -232,7 +232,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.btnFilter1.Location = new System.Drawing.Point(123, 3);
             this.btnFilter1.Name = "btnFilter1";
             this.btnFilter1.Size = new System.Drawing.Size(75, 23);
-            this.btnFilter1.TabIndex = 9;
+            this.btnFilter1.TabIndex = 1;
             this.btnFilter1.Text = "Lọc";
             this.btnFilter1.UseVisualStyleBackColor = true;
             this.btnFilter1.Click += new System.EventHandler(this.btnFilter1_Click);
@@ -242,7 +242,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.btnFilter2.Location = new System.Drawing.Point(123, 175);
             this.btnFilter2.Name = "btnFilter2";
             this.btnFilter2.Size = new System.Drawing.Size(75, 23);
-            this.btnFilter2.TabIndex = 9;
+            this.btnFilter2.TabIndex = 5;
             this.btnFilter2.Text = "Lọc";
             this.btnFilter2.UseVisualStyleBackColor = true;
             this.btnFilter2.Click += new System.EventHandler(this.btnFilter2_Click);
@@ -402,7 +402,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             //ReLoad();
             LoadDataVitriCT1(ma_vitri1);
+            dataGridViewAlvitri_SelectionChanged(null, null);
         }
+
+        protected override void DoAfterExecuteSuccess()
+        {
+            LoadDataVitriCT1(ma_vitri1);
+            dataGridViewAlvitri_SelectionChanged(null, null);
+        }
+
         /// <summary>
         /// Khi sửa thành công, cập nhập lại dòng được sửa, chưa kiểm ok cancel.
         /// </summary>
@@ -417,6 +425,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     //ReLoad();
                     LoadDataVitriCT1(ma_vitri1);
+                    dataGridViewAlvitri_SelectionChanged(null, null);
                 }
                 else
                 {
@@ -498,6 +507,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 //ReLoad();
                 LoadDataVitriCT1(ma_vitri1);
+                dataGridViewAlvitri_SelectionChanged(null, null);
             }
             catch (Exception ex)
             {

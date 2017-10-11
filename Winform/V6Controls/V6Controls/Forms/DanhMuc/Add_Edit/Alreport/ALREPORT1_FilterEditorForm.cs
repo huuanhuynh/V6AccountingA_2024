@@ -129,7 +129,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
 
         private void cboControlType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtControlType.Text = cboControlType.SelectedText;
+            txtControlType.Text = cboControlType.SelectedItem.ToString();
         }
 
         

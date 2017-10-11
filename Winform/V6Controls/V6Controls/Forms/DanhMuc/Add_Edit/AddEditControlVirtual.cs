@@ -16,7 +16,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public V6TableName TableName { get; set; }
         protected V6TableStruct _structTable;
         public V6Mode Mode = V6Mode.Add;
-
+        /// <summary>
+        /// Bật tắt tính năng gọi hàm Reload sau khi insert hoặc update thành công.
+        /// </summary>
+        public bool ReloadFlag;
         /// <summary>
         /// Gán trường mã của Table trong AddEditControl.MyInit để chạy CopyData_Here2Data
         /// </summary>
@@ -299,8 +302,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        public bool ReloadFlag;
-
         private void UpdateV6Option()
         {
             try
@@ -318,7 +319,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         public virtual bool DoInsertOrUpdate(bool showMessage = true)
         {
-            ReloadFlag = false;
+            //ReloadFlag = false;
             if (Mode==V6Mode.Edit)
             {
                 try
