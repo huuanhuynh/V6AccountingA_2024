@@ -470,7 +470,7 @@ namespace V6Controls
             catch (Exception ex)
             {
                 if (ex is ObjectDisposedException) return;
-                control.ShowErrorMessage("ViewDataToNewForm: " + ex.Message);
+                control.ShowErrorMessage("UserControl ShowToForm: " + ex.Message);
             }
         }
 

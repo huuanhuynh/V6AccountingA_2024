@@ -963,13 +963,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var top = boxTop + (halfLineHeight * crossLineNum);//3840/20=192
                 var height = boxHeight - (top - boxTop);
                 flag = 5;
-                if (height <= 0) height = 10;
+                //if (height <= 0) height = 10;
+                if (height < 150) // Hide lowCrossline.
+                {
+                    height = 10;
+                    DuongNgang.Width = DuongNgang.Width + DuongCheo.Width;
+                    DuongCheo.Width = 10;
+                }
 
-                DuongNgang.Top = top + 30;
                 DuongNgang.Height = 10;
+                DuongNgang.Top = top + 30;
                 
-                DuongCheo.Top = top;
                 DuongCheo.Height = height;
+                DuongCheo.Top = top;
                 
                 flag = 9;
             }
