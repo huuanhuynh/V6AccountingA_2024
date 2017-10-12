@@ -1304,5 +1304,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
             _hanSd.Value = null;
         }
 
+        protected string GetCA()
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@dS", V6BusinessHelper.GetServerDateTime()),
+            };
+            var ca = V6BusinessHelper.ExecuteFunctionScalar("VFA_GET_CA_FROM_ALTD", plist);
+            return "" + ca;
+        }
     }
 }

@@ -109,11 +109,11 @@ namespace V6ReportControls
                 {
                     if (oper == "<>")
                     {
-                        result += string.Format(" and {3}{0} {1} {2}", FieldName, oper, FormatValue(s), tL);
+                        result += string.Format(" and {3}{0} {1} {2}", FieldName, oper, FormatValue(s.Trim()), tL);
                     }
                     else
                     {
-                        result += string.Format(" or {3}{0} {1} {2}", FieldName, oper, FormatValue(s), tL);
+                        result += string.Format(" or {3}{0} {1} {2}", FieldName, oper, FormatValue(s.Trim()), tL);
                     }
                 }
 

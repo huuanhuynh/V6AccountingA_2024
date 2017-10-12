@@ -119,8 +119,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                 foreach (string s in ss)
                 {
-                    orString += string.Format(" OR a.Ma_dvcs Like '{0}%'", s);
-                    orString1 += string.Format(" OR b.Ma_dvcs Like '{0}%'", s);
+                    orString += string.Format(" OR a.Ma_dvcs Like '{0}%'", s.Trim());
+                    orString1 += string.Format(" OR b.Ma_dvcs Like '{0}%'", s.Trim());
                 }
                 orString = orString.Substring(4);
                 orString1 = orString1.Substring(4);
@@ -139,8 +139,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                 foreach (string s in ss2)
                 {
-                    orString2 += string.Format(" OR a.Ma_kho Like '{0}%'", s);
-                    orString21 += string.Format(" OR b.Ma_kho Like '{0}%'", s);
+                    orString2 += string.Format(" OR a.Ma_kho Like '{0}%'", s.Trim());
+                    orString21 += string.Format(" OR b.Ma_kho Like '{0}%'", s.Trim());
                 }
                 orString2 = orString2.Substring(4);
                 orString21 = orString21.Substring(4);
