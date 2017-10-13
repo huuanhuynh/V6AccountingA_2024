@@ -131,7 +131,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 var orString = "";
                 foreach (string s in ss)
                 {
-                    orString += string.Format(" OR TK Like '{0}%'", s);
+                    orString += string.Format(" OR TK Like '{0}%'", s.Trim());
                 }
                 orString = orString.Substring(4);
                 cKey = cKey + string.Format(" AND ({0})", orString);
@@ -140,7 +140,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 var orString2 = "";
                 foreach (string s in ss)
                 {
-                    orString2 += string.Format(" OR TK_DU Like '{0}%'", s);
+                    orString2 += string.Format(" OR TK_DU Like '{0}%'", s.Trim());
                 }
                 orString2 = orString2.Substring(4);
                 cKey2 = cKey2 + string.Format(" AND ({0})", orString2);
@@ -153,7 +153,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                      orString2 = "";
                     foreach (string s in ss2)
                     {
-                        orString2 += string.Format(" OR TK_DU Like '{0}%'", s);
+                        orString2 += string.Format(" OR TK_DU Like '{0}%'", s.Trim());
                     }
                     orString2 = orString2.Substring(4);
                     cKey = cKey + string.Format(" AND ({0})", orString2);
@@ -162,7 +162,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                      orString2 = "";
                     foreach (string s in ss2)
                     {
-                        orString2 += string.Format(" OR TK Like '{0}%'", s);
+                        orString2 += string.Format(" OR TK Like '{0}%'", s.Trim());
                     }
                     orString2 = orString2.Substring(4);
                     cKey2 = cKey2 + string.Format(" AND ({0})", orString2);
@@ -178,7 +178,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     var orString = "";
                     foreach (string s in ss)
                     {
-                        orString += string.Format(" OR TK Like '{0}%'", s);
+                        orString += string.Format(" OR TK Like '{0}%'", s.Trim());
                     }
                     orString = orString.Substring(4);
                     cKey = cKey + string.Format(" AND ({0})", orString);
@@ -187,7 +187,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     var orString2 = "";
                     foreach (string s in ss)
                     {
-                        orString2 += string.Format(" OR TK_DU Like '{0}%'", s);
+                        orString2 += string.Format(" OR TK_DU Like '{0}%'", s.Trim());
                     }
                     orString2 = orString2.Substring(4);
                     cKey2 = cKey2 + string.Format(" AND ({0})", orString2);

@@ -31,6 +31,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #region ==== Properties and Fields
         public V6Invoice81 Invoice = new V6Invoice81();
         private string _maGd = "1";
+        private string _m_Ma_td = "0";
 
         #endregion properties and fields
 
@@ -112,13 +113,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
             
             cboKieuPost.SelectedIndex = 0;
+            _maGd = (Invoice.Alct.Rows[0]["M_MA_GD"] ?? "1").ToString().Trim();
+            _m_Ma_td = (Invoice.Alct.Rows[0]["M_MA_TD"] ?? "0").ToString().Trim();
 
             LoadDetailControls();
             detail1.AddContexMenu(menuDetail1);
             LoadDetail3Controls();
             ResetForm();
             
-            _maGd = (Invoice.Alct.Rows[0]["M_MA_GD"] ?? "1").ToString().Trim();
             txtLoaiPhieu.SetInitFilter(string.Format("Ma_ct = '{0}'", Invoice.Mact));
 
             LoadAll();
@@ -131,7 +133,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _tang, _xuat_dd;
-        private V6VvarTextBox _maVt, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _maViTri; //_maKho
+        private V6VvarTextBox _maVt, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _maViTri,_maTdi; //_maKho
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt2, _giaNt21,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
         private V6NumberTextBox _ton13,_gia,_gia_nt, _tien, _tienNt, _pt_cki;
         private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4,_ggNt,_gg;
@@ -630,6 +632,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                 CheckMaViTri();
                             };
                         }
+                        break;
+                    case "MA_TD_I":
+                        _maTdi = (V6VvarTextBox)control;
+                        _maTdi.Upper();
+                        _maTdi.FilterStart = true;
+                        _maTdi.EnableTag(_m_Ma_td == "0");
                         break;
 
                 }
@@ -2296,6 +2304,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
 
                 SetDefaultDataDetail(Invoice, detail1.panelControls);
+
+                if (_m_Ma_td == "1" && Txtma_td_ph.Text != "")
+                {
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                    {
+                        _maTdi.Text = Txtma_td_ph.Text;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -4347,6 +4363,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     GetTyGiaDefault();
                     GetDefault_Other();
                     SetDefaultData(Invoice);
+                    Txtma_td_ph.Text = base.GetCA();
                     detail1.DoAddButtonClick();
                     SetDefaultDetail();
                     detail3.MODE = V6Mode.Init;
@@ -4761,7 +4778,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.ShowErrorMessage(GetType() + ".XuLyDetailClickAdd: " + ex.Message);
             }
         }
-
+        
         private bool XuLyThemDetail(SortedDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
@@ -6251,6 +6268,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".XemPhieuNhap", ex);
+            }
+        }
+        
+
+        private void Txtma_td_ph_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_m_Ma_td == "1" && Txtma_td_ph.Text != "")
+                {
+                    V6ControlFormHelper.UpdateDKlist(AD, "MA_TD_I", Txtma_td_ph.Text);
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                    {
+                        _maTdi.Text = Txtma_td_ph.Text;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Txtma_td_ph_Leave", ex);
             }
         }
 

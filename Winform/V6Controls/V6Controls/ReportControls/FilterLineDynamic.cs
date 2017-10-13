@@ -217,7 +217,7 @@ namespace V6ReportControls
                     string[] sss = sValue.Split(',');
                     foreach (string s in sss)
                     {
-                        result += string.Format(" or {0} {1} {2}", FieldName, oper, FormatValue(s));
+                        result += string.Format(" or {0} {1} {2}", FieldName, oper, FormatValue(s.Trim()));
                     }
 
                     if (result.Length > 4)
