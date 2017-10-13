@@ -1402,9 +1402,6 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThueTNCN.resx">
       <DependentUpon>DanhMucThueTNCN.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoNgayNghiLe1.resx">
-      <DependentUpon>KhaiBaoNgayNghiLe.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLichLe.resx">
       <DependentUpon>KhaiBaoLichLe.cs</DependentUpon>
     </EmbeddedResource>
