@@ -104,7 +104,7 @@
             this.txtNgay.Location = new System.Drawing.Point(136, 19);
             this.txtNgay.Name = "txtNgay";
             this.txtNgay.Size = new System.Drawing.Size(134, 23);
-            this.txtNgay.TabIndex = 2;
+            this.txtNgay.TabIndex = 0;
             this.txtNgay.Value = new System.DateTime(2017, 3, 20, 0, 0, 0, 0);
             // 
             // txtten_kh
@@ -135,7 +135,7 @@
             this.txtMaCong.Location = new System.Drawing.Point(136, 50);
             this.txtMaCong.Name = "txtMaCong";
             this.txtMaCong.Size = new System.Drawing.Size(52, 23);
-            this.txtMaCong.TabIndex = 0;
+            this.txtMaCong.TabIndex = 1;
             this.txtMaCong.VVar = "MA_cong";
             this.txtMaCong.MouseLeave += new System.EventHandler(this.txtMaCong_MouseLeave);
             // 
@@ -154,7 +154,7 @@
             this.TXTSO_GIO.Margin = new System.Windows.Forms.Padding(4);
             this.TXTSO_GIO.Name = "TXTSO_GIO";
             this.TXTSO_GIO.Size = new System.Drawing.Size(134, 23);
-            this.TXTSO_GIO.TabIndex = 1;
+            this.TXTSO_GIO.TabIndex = 2;
             this.TXTSO_GIO.Text = "0,00";
             this.TXTSO_GIO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TXTSO_GIO.Value = new decimal(new int[] {

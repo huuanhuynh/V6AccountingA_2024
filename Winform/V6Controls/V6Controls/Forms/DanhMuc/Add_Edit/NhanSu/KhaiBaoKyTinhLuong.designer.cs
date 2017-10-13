@@ -191,7 +191,7 @@
             0,
             0,
             196608});
-            this.txtNam.TextChanged += new System.EventHandler(this.txtNam_TextChanged_1);
+           
             this.txtNam.Leave += new System.EventHandler(this.txtNam_Leave);
             // 
             // txtThag

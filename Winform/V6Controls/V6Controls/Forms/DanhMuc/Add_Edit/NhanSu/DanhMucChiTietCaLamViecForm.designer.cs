@@ -34,6 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtten_kh = new V6Controls.V6LabelTextBox();
+            this.txtMaCong = new V6Controls.V6VvarTextBox();
             this.txtGio_kt = new V6Controls.V6ColorMaskedTextBox();
             this.txtGio_Bd = new V6Controls.V6ColorMaskedTextBox();
             this.TXTNGAY_HL = new V6Controls.V6DateTimeColor();
@@ -43,7 +45,7 @@
             this.v6Label7 = new V6Controls.V6Label();
             this.txtLoai = new V6Controls.V6ColorTextBox();
             this.v6Label6 = new V6Controls.V6Label();
-            this.txtKcMin = new V6Controls.V6ColorTextBox();
+            this.txtKcMin = new V6Controls.V6NumberTextBox();
             this.v6Label2 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
             this.checkBox1 = new V6Controls.V6CheckBox();
@@ -81,8 +83,6 @@
             this.txtTenCa = new V6Controls.V6ColorTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtten_kh = new V6Controls.V6LabelTextBox();
-            this.txtMaCong = new V6Controls.V6VvarTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -192,9 +192,47 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
+            // txtten_kh
+            // 
+            this.txtten_kh.AccessibleName = "ten_cong";
+            this.txtten_kh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtten_kh.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtten_kh.Location = new System.Drawing.Point(205, 169);
+            this.txtten_kh.Name = "txtten_kh";
+            this.txtten_kh.ReadOnly = true;
+            this.txtten_kh.Size = new System.Drawing.Size(251, 16);
+            this.txtten_kh.TabIndex = 63;
+            this.txtten_kh.TabStop = false;
+            this.txtten_kh.Tag = "readonly";
+            // 
+            // txtMaCong
+            // 
+            this.txtMaCong.AccessibleName = "ma_cong";
+            this.txtMaCong.BackColor = System.Drawing.Color.White;
+            this.txtMaCong.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaCong.BrotherFields = "ten_cong,he_so";
+            this.txtMaCong.CheckNotEmpty = true;
+            this.txtMaCong.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaCong.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaCong.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaCong.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaCong.LeaveColor = System.Drawing.Color.White;
+            this.txtMaCong.Location = new System.Drawing.Point(158, 166);
+            this.txtMaCong.Name = "txtMaCong";
+            this.txtMaCong.Size = new System.Drawing.Size(41, 23);
+            this.txtMaCong.TabIndex = 62;
+            this.txtMaCong.VVar = "MA_cong";
+            // 
             // txtGio_kt
             // 
             this.txtGio_kt.AccessibleName = "Gio_kt";
+            this.txtGio_kt.BackColor = System.Drawing.SystemColors.Window;
+            this.txtGio_kt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGio_kt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGio_kt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGio_kt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGio_kt.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGio_kt.LeaveColor = System.Drawing.Color.White;
             this.txtGio_kt.Location = new System.Drawing.Point(235, 27);
             this.txtGio_kt.Mask = "00:00";
             this.txtGio_kt.Name = "txtGio_kt";
@@ -205,6 +243,13 @@
             // txtGio_Bd
             // 
             this.txtGio_Bd.AccessibleName = "Gio_bd";
+            this.txtGio_Bd.BackColor = System.Drawing.SystemColors.Window;
+            this.txtGio_Bd.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGio_Bd.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGio_Bd.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGio_Bd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGio_Bd.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGio_Bd.LeaveColor = System.Drawing.Color.White;
             this.txtGio_Bd.Location = new System.Drawing.Point(158, 27);
             this.txtGio_Bd.Mask = "00:00";
             this.txtGio_Bd.Name = "txtGio_Bd";
@@ -354,6 +399,13 @@
             this.txtKcMin.Name = "txtKcMin";
             this.txtKcMin.Size = new System.Drawing.Size(74, 23);
             this.txtKcMin.TabIndex = 4;
+            this.txtKcMin.Text = "0";
+            this.txtKcMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKcMin.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            196608});
             // 
             // v6Label2
             // 
@@ -884,7 +936,7 @@
             this.tabPage3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.tabPage3.Size = new System.Drawing.Size(630, 393);
+            this.tabPage3.Size = new System.Drawing.Size(666, 393);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
@@ -957,37 +1009,6 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Mã ca";
             // 
-            // txtten_kh
-            // 
-            this.txtten_kh.AccessibleName = "ten_cong";
-            this.txtten_kh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.txtten_kh.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtten_kh.Location = new System.Drawing.Point(205, 169);
-            this.txtten_kh.Name = "txtten_kh";
-            this.txtten_kh.ReadOnly = true;
-            this.txtten_kh.Size = new System.Drawing.Size(251, 16);
-            this.txtten_kh.TabIndex = 63;
-            this.txtten_kh.TabStop = false;
-            this.txtten_kh.Tag = "readonly";
-            // 
-            // txtMaCong
-            // 
-            this.txtMaCong.AccessibleName = "ma_cong";
-            this.txtMaCong.BackColor = System.Drawing.Color.White;
-            this.txtMaCong.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMaCong.BrotherFields = "ten_cong,he_so";
-            this.txtMaCong.CheckNotEmpty = true;
-            this.txtMaCong.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMaCong.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMaCong.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMaCong.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMaCong.LeaveColor = System.Drawing.Color.White;
-            this.txtMaCong.Location = new System.Drawing.Point(158, 166);
-            this.txtMaCong.Name = "txtMaCong";
-            this.txtMaCong.Size = new System.Drawing.Size(41, 23);
-            this.txtMaCong.TabIndex = 62;
-            this.txtMaCong.VVar = "MA_cong";
-            // 
             // DanhMucChiTietCaLamViecForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1055,7 +1076,7 @@
         private V6Label v6Label3;
         private V6Label v6Label4;
         private System.Windows.Forms.Label label2;
-        private V6ColorTextBox txtKcMin;
+        private V6NumberTextBox txtKcMin;
         private V6Label v6Label2;
         private V6Label v6Label1;
         private V6ColorTextBox txtLoai;

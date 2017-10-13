@@ -70,7 +70,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             }
             catch (Exception)
             {
-
+                
             }
         }
 
@@ -88,10 +88,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             }
         }
 
-        private void txtNam_TextChanged_1(object sender, EventArgs e)
-        {
-           
-        }
+       
 
         private void txtKy_Leave(object sender, EventArgs e)
         {
