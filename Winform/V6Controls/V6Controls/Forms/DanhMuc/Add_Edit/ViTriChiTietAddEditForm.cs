@@ -28,7 +28,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void ViTriChiTietAddEditForm_Load(object sender, EventArgs e)
         {
-            
+            ReloadFlag = true;
         }
 
         public override SortedDictionary<string, object> GetData()

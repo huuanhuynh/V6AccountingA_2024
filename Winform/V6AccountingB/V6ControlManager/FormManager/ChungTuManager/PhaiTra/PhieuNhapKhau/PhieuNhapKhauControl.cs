@@ -4254,7 +4254,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     _ten_kh22.Text = txtTenKh.Text;
                     _dia_chi22.Text = txtDiaChi.Text;
                     _ma_so_thue22.Text = txtMaSoThue.Text;
-                    _t_tien22.Value = txtTongTien0.Value;
+                    _t_tien22.Value = txtTongTien0.Value + TxtT_nk.Value;
                     _t_tien_nt22.Value = txtTongTienNt0.Value;
                     _thue_suat22.Value = txtThueSuat.Value;
                     _tk_thue_no22.Text = txtTkThueNo.Text.Trim();

@@ -34,6 +34,22 @@ namespace V6ControlManager.FormManager.MenuManager
         /// TABLE_NAME = codeform.Substring(1).ToUpper();
         /// </summary>
         private static string TABLE_NAME;
+        public static readonly SortedDictionary<string, string> CheckV6Tables = new SortedDictionary<string, string>()
+        {
+            {"ALDM", "ALDM"},
+            {"V6LOOKUP", "V6LOOKUP"},
+            {"ALREPORT", "ALREPORT"},
+            {"ALREPORT1", "ALREPORT1"},
+            {"", ""},
+        };
+        public static readonly SortedDictionary<string, string> CheckAdminTables = new SortedDictionary<string, string>()
+        {
+            {"V6USER", "V6USER"},
+            {"V6CLIENTS", "V6CLIENTS"},
+            {"ALSTT", "ALSTT"},
+            {"V6OPTION", "V6OPTION"},
+        };
+
         public static V6Control GenControl(Control owner, MenuButton mButton, MouseEventArgs e)
         {
             try
@@ -77,11 +93,11 @@ namespace V6ControlManager.FormManager.MenuManager
                             break;
                         case "2"://DanhMucView
                             #region ==== DanhMucView ====
-                            if (TABLE_NAME == "ALDM" || TABLE_NAME == "V6LOOKUP" || TABLE_NAME == "ALREPORT1" || TABLE_NAME == "ALREPORT")
+                            if (CheckV6Tables.ContainsKey(TABLE_NAME))
                             {
                                 check = CheckPasswordV6(owner);
                             }
-                            else if (TABLE_NAME == "V6USER")
+                            else if (CheckAdminTables.ContainsKey(TABLE_NAME) || codeform.StartsWith("8"))
                             {
                                 if (mouse_left && ctrl_is_down)
                                 {
@@ -610,7 +626,7 @@ namespace V6ControlManager.FormManager.MenuManager
                         case "H":
                             #region ==== // Danhmucview format Aldm ====
                             TABLE_NAME = codeform.Substring(1).ToUpper();
-                            if (TABLE_NAME == "V6USER")
+                            if (CheckAdminTables.ContainsKey(TABLE_NAME) || codeform.StartsWith("8"))
                             {
                                 if (mouse_left && ctrl_is_down)
                                 {
@@ -621,7 +637,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                     check = CheckPassword(owner);
                                 }
                             }
-                            else if (TABLE_NAME == "ALDM" || TABLE_NAME == "V6LOOKUP" )
+                            else if (CheckV6Tables.ContainsKey(TABLE_NAME))
                             {
                                 check = CheckPasswordV6(owner);
                             }
@@ -729,7 +745,7 @@ namespace V6ControlManager.FormManager.MenuManager
         /// </summary>
         /// <param name="owner"></param>
         /// <returns></returns>
-        private static bool CheckPassword(IWin32Window owner)
+        public static bool CheckPassword(IWin32Window owner)
         {
             return new ConfirmPassword().ShowDialog(owner) == DialogResult.OK;
         }
@@ -749,7 +765,7 @@ namespace V6ControlManager.FormManager.MenuManager
         /// </summary>
         /// <param name="owner"></param>
         /// <returns></returns>
-        private static bool CheckPasswordV6(IWin32Window owner)
+        public static bool CheckPasswordV6(IWin32Window owner)
         {
             return new ConfirmPasswordV6().ShowDialog(owner) == DialogResult.OK;
         }

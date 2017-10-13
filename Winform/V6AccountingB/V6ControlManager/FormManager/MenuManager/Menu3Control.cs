@@ -163,14 +163,35 @@ namespace V6ControlManager.FormManager.MenuManager
 
                 if (ControlsDictionary.ContainsKey(item_id) && !ControlsDictionary[item_id].IsDisposed)
                 {
-                    var check = true;
+                    bool check = true, mouse_left = false, ctrl_is_down = false;
                     if (codeform != null)
                     {
-                        var TABLE_NAME = (codeform.Length > 1 ? codeform.Substring(1) : "").ToUpper();
-                        if (TABLE_NAME == "V6USER" || TABLE_NAME == "V6CLIENTS" || TABLE_NAME == "ALSTT" || TABLE_NAME == "V6OPTION"
+                        var code = codeform.Substring(0, 1);
+                        var FORM_NAME = codeform.Substring(1).ToUpper();
+                        var TABLE_NAME = codeform.Substring(1).ToUpper();
+                        
+                        if (e == null || e.Button == MouseButtons.Left)
+                        {
+                            mouse_left = true;
+                        }
+                        if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
+                        {
+                            ctrl_is_down = true;
+                        }
+
+                        //var TABLE_NAME = (codeform.Length > 1 ? codeform.Substring(1) : "").ToUpper();
+                        if (MenuManager.CheckAdminTables.ContainsKey(TABLE_NAME)
                             || codeform.StartsWith("8"))
                         {
-                            check = new ConfirmPassword().ShowDialog(this) == DialogResult.OK;
+                            if (mouse_left && ctrl_is_down)
+                            {
+                                check = MenuManager.CheckPasswordV6(this);
+                            }
+                            else
+                            {
+                                check = MenuManager.CheckPassword(this);
+                            }
+                            //check = new ConfirmPassword().ShowDialog(this) == DialogResult.OK;
                         }
                     }
 
