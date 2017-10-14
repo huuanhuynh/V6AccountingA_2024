@@ -9,6 +9,8 @@ using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6SqlConnect;
+using V6Tools;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -43,7 +45,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var result = "";
                 if (cboDanhMuc.SelectedIndex >= 0)
                 {
-                    result = listAl.Rows[cboDanhMuc.SelectedIndex]["ID_CHECK"].ToString().Trim();
+                    result = listAl.Rows[cboDanhMuc.SelectedIndex]["ID_CHECK"].ToString().Trim().ToUpper();
                 }
                 return result;
             }
@@ -220,6 +222,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 int stt = 0;
                 total = data.Rows.Count;
+                var id_list = IDS_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
                 for (int i = 0; i < total; i++)
                 {
                     DataRow row = data.Rows[i];
@@ -239,25 +243,33 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         if (check_ok)
                         {
                             var dataDic = row.ToDataDictionary();
-                            var id_list = IDS_CHECK.Split(new[] {';'}, StringSplitOptions.RemoveEmptyEntries);
+                            
+                            var keys = new SortedDictionary<string, object>();
+                            foreach (string id in id_list)
+                            {
+                                keys.Add(id, row[id]);
+                            }
                             var ID0 = dataDic[id_list[0].ToUpper()].ToString().Trim();
                             string ID_FIELD1, ID_FIELD2;
                             string ID1, ID2;
                             var exist = false;
                             switch (TYPE_CHECK)
                             {
-                                case "00":
+                                case "AL":
+                                    exist = V6BusinessHelper.CheckDataExistStruct(_table_name , keys);
+                                    break;
+                                case "00":// All
                                     exist = false;
                                     break;
-                                case "01":
+                                case "01":// OneCode
                                     exist = _categories.IsExistOneCode_List(_table_name, id_list[0], ID0);
                                     break;
-                                case "02":
+                                case "02"://TwoCode
                                     ID_FIELD1 = id_list[1].ToUpper();
                                     ID1 = dataDic[ID_FIELD1].ToString().Trim();
                                     exist = _categories.IsExistTwoCode_List(_table_name, id_list[0], ID0, ID_FIELD1, ID1);
                                     break;
-                                case "03":
+                                case "03"://ThreeCode
                                     ID_FIELD1 = id_list[1];
                                     ID_FIELD2 = id_list[2].ToUpper();
                                     ID1 = dataDic[ID_FIELD1].ToString().Trim();
@@ -265,6 +277,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     exist = V6BusinessHelper.IsExistThreeCode_List(_table_name,
                                         id_list[0], ID0, ID_FIELD1, ID1, ID_FIELD2, ID2);
                                     break;
+                                
                             }
                             
                             if (chkChiNhapMaMoi.Checked) //Chỉ cập nhập mã mới.
@@ -296,7 +309,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             {
                                 if (exist) //Xóa cũ thêm mới.
                                 {
-                                    var keys = new SortedDictionary<string, object> ();
+                                    keys = new SortedDictionary<string, object> ();
                                     foreach (string field in id_list)
                                     {
                                         keys.Add(field.ToUpper(), row[field]);

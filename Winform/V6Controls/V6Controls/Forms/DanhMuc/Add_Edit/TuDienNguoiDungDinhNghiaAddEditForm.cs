@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using V6AccountingBusiness;
 using V6Structs;
 
@@ -37,28 +38,32 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 V6Tools.Logger.WriteToLog("TuDienNguoiDungDinhNghiaAddEditForm DisableWhenEdit " + ex.Message);
             }
         }
+
         public override void ValidateData()
         {
             var errors = "";
             if (Txtma_td.Text.Trim() == "" || TxtTen_td.Text.Trim() == "")
                 errors += V6Init.V6Text.CheckInfor + " !\r\n";
 
-            if (Mode == V6Structs.V6Mode.Edit)
-            {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_TD",
-                    Txtma_td.Text.Trim(), DataOld["MA_TD"].ToString());
-                if (!b)
-                    throw new Exception(V6Init.V6Text.ExistData
-                                        + "MA_TD = " + Txtma_td.Text.Trim());
-            }
-            else if (Mode == V6Structs.V6Mode.Add)
-            {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_TD",
-                    Txtma_td.Text.Trim(), Txtma_td.Text.Trim());
-                if (!b)
-                    throw new Exception(V6Init.V6Text.ExistData
-                                        + "MA_TD = " + Txtma_td.Text.Trim());
-            }
+            var KEY_LIST = new[] {"MA_TD"};
+            errors += CheckValid(TableName.ToString(), KEY_LIST);
+
+            //if (Mode == V6Mode.Edit)
+            //{
+            //    bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_TD",
+            //        Txtma_td.Text.Trim(), DataOld["MA_TD"].ToString());
+            //    if (!b)
+            //        throw new Exception(V6Init.V6Text.ExistData
+            //                            + "MA_TD = " + Txtma_td.Text.Trim());
+            //}
+            //else if (Mode == V6Mode.Add)
+            //{
+            //    bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_TD",
+            //        Txtma_td.Text.Trim(), Txtma_td.Text.Trim());
+            //    if (!b)
+            //        throw new Exception(V6Init.V6Text.ExistData
+            //                            + "MA_TD = " + Txtma_td.Text.Trim());
+            //}
 
             if (errors.Length > 0) throw new Exception(errors);
         }

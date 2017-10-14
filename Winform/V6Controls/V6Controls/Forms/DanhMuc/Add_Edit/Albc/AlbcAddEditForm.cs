@@ -118,7 +118,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                         {"LAN", txtLAN.Text},
                         {"REPORT", txtReportFileNew.Text}
                     };
-                    if (V6BusinessHelper.CheckDataEsist("Albc", data))
+                    if (V6BusinessHelper.CheckDataExist("Albc", data))
                     {
                         errors += "Tên FILE REPORT đã tồn tại. Vui lòng đổi thông tin khác!\n";
                     }

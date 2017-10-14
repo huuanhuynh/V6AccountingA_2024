@@ -32,7 +32,7 @@
             this.TXTma_lnx = new V6Controls.V6VvarTextBox();
             this.txtten_loai = new V6Controls.V6ColorTextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox4 = new V6Controls.V6ColorTextBox();
+            this.TxtLoai = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -82,7 +82,7 @@
             this.groupBox1.Controls.Add(this.TXTma_lnx);
             this.groupBox1.Controls.Add(this.txtten_loai);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox4);
+            this.groupBox1.Controls.Add(this.TxtLoai);
             this.groupBox1.Controls.Add(this.v6ColorTextBox3);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
@@ -139,21 +139,23 @@
             this.label7.TabIndex = 4;
             this.label7.Text = "Tên loại nhập xuất";
             // 
-            // v6ColorTextBox4
+            // TxtLoai
             // 
-            this.v6ColorTextBox4.AccessibleName = "loai";
-            this.v6ColorTextBox4.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox4.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox4.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox4.Location = new System.Drawing.Point(170, 14);
-            this.v6ColorTextBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox4.Name = "v6ColorTextBox4";
-            this.v6ColorTextBox4.Size = new System.Drawing.Size(116, 23);
-            this.v6ColorTextBox4.TabIndex = 1;
+            this.TxtLoai.AccessibleName = "loai";
+            this.TxtLoai.BackColor = System.Drawing.Color.White;
+            this.TxtLoai.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtLoai.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtLoai.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtLoai.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtLoai.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtLoai.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtLoai.LeaveColor = System.Drawing.Color.White;
+            this.TxtLoai.LimitCharacters = "NXnx";
+            this.TxtLoai.Location = new System.Drawing.Point(170, 14);
+            this.TxtLoai.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtLoai.Name = "TxtLoai";
+            this.TxtLoai.Size = new System.Drawing.Size(116, 23);
+            this.TxtLoai.TabIndex = 1;
             // 
             // v6ColorTextBox3
             // 
@@ -779,7 +781,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private V6ColorTextBox v6ColorTextBox4;
+        private V6ColorTextBox TxtLoai;
         private V6ColorTextBox v6ColorTextBox3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

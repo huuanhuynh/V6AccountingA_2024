@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Init;
+using V6SqlConnect;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -605,6 +606,41 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public virtual void DoBeforeView()
         {
             
+        }
+
+        /// <summary>
+        /// Kiểm tra dữ liệu, Trả về chuỗi lỗi, nếu hợp lệ trả về null hoặc rỗng.
+        /// </summary>
+        protected string CheckValid(string tableName, IList<string> KEY_LIST)
+        {
+            var keys_new = new SortedDictionary<string, object>();
+            foreach (string KEY in KEY_LIST)
+            {
+                keys_new.Add(KEY, DataDic[KEY]);
+            }
+            string where_new = SqlGenerator.GenWhere(V6BusinessHelper.GetTableStruct(tableName), keys_new);
+            bool exist_new = V6BusinessHelper.CheckDataExistStruct(tableName, keys_new);
+
+            if (Mode == V6Mode.Edit)
+            {
+                SortedDictionary<string, object> keys_old = new SortedDictionary<string, object>();
+                foreach (string KEY in KEY_LIST)
+                {
+                    keys_old.Add(KEY, DataOld[KEY]);
+                }
+                string where_old = SqlGenerator.GenWhere(V6BusinessHelper.GetTableStruct(tableName), keys_old);
+                //bool exist_old = V6BusinessHelper.CheckDataExistStruct(TableName, keys_old);
+
+                if (where_new != where_old && exist_new)
+                    return V6Text.EditDenied + " " + where_new;
+            }
+            else if (Mode == V6Mode.Add)
+            {
+                if (exist_new)
+                    return V6Text.AddDenied + " " + where_new;
+            }
+
+            return "";
         }
         
     }

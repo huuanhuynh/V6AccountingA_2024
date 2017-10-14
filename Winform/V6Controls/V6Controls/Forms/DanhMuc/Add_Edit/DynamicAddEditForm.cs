@@ -1,17 +1,14 @@
 ﻿using System;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
-using Microsoft.CSharp;
 using V6AccountingBusiness;
 using V6Controls.Controls;
 using V6Init;
+using V6SqlConnect;
 using V6Structs;
 using V6Tools.V6Convert;
 
@@ -912,9 +909,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // check code
             //_dataRow;// aldm
             var GRD_COL = _dataRow["GRD_COL"].ToString().Trim().ToUpper();
-            var KEY_LIST = ObjectAndString.SplitString(_dataRow["KEY"].ToString().Trim());
+            var KEY_LIST = ObjectAndString.SplitString(_dataRow["KEY"].ToString().Trim().ToUpper());
             string KEY1 = "", KEY2 = "", KEY3 = "", KEY4 = "";
-            if (GRD_COL == "ONECODE" && KEY_LIST.Length > 0)
+            
+            if (GRD_COL == "AL" && KEY_LIST.Length > 0)
+            {
+                errors += CheckValid(TableName, KEY_LIST);
+            }
+            else if (GRD_COL == "ONECODE" && KEY_LIST.Length > 0)
             {
                 KEY1 = KEY_LIST[0].Trim().ToUpper();
                 if (Mode == V6Mode.Edit)
@@ -1042,6 +1044,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 DoNothing();
             }
 
+            end:
             if (errors.Length > 0) throw new Exception(errors);
         }
 

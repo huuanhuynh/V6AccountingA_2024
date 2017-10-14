@@ -213,11 +213,32 @@ namespace V6AccountingBusiness
             return Service.CheckAltt(ma_dm);
         }
 
-        public static bool CheckDataEsist(string tableName, SortedDictionary<string, object> data)
+        public static bool CheckDataExist(string tableName, IDictionary<string, object> data)
         {
             try
             {
                 var where = SqlGenerator.GenSqlWhere(data);
+                var sql = "select COUNT(*) count0 from [" + tableName + "] where " + where;
+                var result = (int)SqlConnect.ExecuteScalar(CommandType.Text, sql);
+                return result == 1;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Kiểm tra dữ liệu có tồn tại hay không, key dư được bỏ qua
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static bool CheckDataExistStruct(string tableName, IDictionary<string, object> data)
+        {
+            try
+            {
+                var where = SqlGenerator.GenWhere(GetTableStruct(tableName), data);
                 var sql = "select COUNT(*) count0 from [" + tableName + "] where " + where;
                 var result = (int)SqlConnect.ExecuteScalar(CommandType.Text, sql);
                 return result == 1;

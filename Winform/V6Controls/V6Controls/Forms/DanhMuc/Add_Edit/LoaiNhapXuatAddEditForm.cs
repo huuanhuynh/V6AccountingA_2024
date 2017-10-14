@@ -40,21 +40,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (TXTma_lnx.Text.Trim() == "" || txtten_loai.Text.Trim() == "")
+            if (TXTma_lnx.Text.Trim() == "" || txtten_loai.Text.Trim() == "" || TxtLoai.Text.Trim() == "")
                 errors += V6Init.V6Text.CheckInfor + " !\r\n";
 
             if (Mode == V6Structs.V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_LNX",
-                    TXTma_lnx.Text.Trim(), DataOld["MA_LNX"].ToString());
+                bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 0, "MA_LNX", TXTma_lnx.Text.Trim(), DataOld["MA_LNX"].ToString(),
+                    "LOAI",TxtLoai.Text.Trim(), DataOld["LOAI"].ToString());
                 if (!b)
                     throw new Exception(V6Init.V6Text.ExistData
                                         + "MA_LNX = " + TXTma_lnx.Text.Trim());
             }
             else if (Mode == V6Structs.V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_LNX",
-                    TXTma_lnx.Text.Trim(), TXTma_lnx.Text.Trim());
+                bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 1, "MA_LNX",TXTma_lnx.Text.Trim(), TXTma_lnx.Text.Trim(),
+                    "LOAI",TxtLoai.Text.Trim(),TxtLoai.Text.Trim());
                 if (!b)
                     throw new Exception(V6Init.V6Text.ExistData
                                         + "MA_LNX = " + TXTma_lnx.Text.Trim());
