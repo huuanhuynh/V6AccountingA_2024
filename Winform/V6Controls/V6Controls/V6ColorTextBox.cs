@@ -171,11 +171,14 @@ namespace V6Controls
 
         void V6LimitTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !string.IsNullOrEmpty(LimitCharacters))
+            if (!char.IsControl(e.KeyChar))// && !string.IsNullOrEmpty(LimitCharacters))
             {
                 var c = e.KeyChar;
                 //var c = (char)e.KeyCode;
-                if (!LimitCharacters.Contains(c)) e.Handled = true;
+                if (!string.IsNullOrEmpty(_lmChars) && !_lmChars.Contains(c))
+                {
+                    e.Handled = true;
+                }
                 else
                 {
                     if (MaxLength == 1)

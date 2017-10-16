@@ -12,6 +12,7 @@ using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonBaoGia;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang;
+using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNhap;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuXuat;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc;
 using V6Controls;
@@ -2666,12 +2667,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     ChonDonHangBanMenu.Enabled = false;
                     chonBaoGiaToolStripMenuItem.Enabled = false;
                     chonTuExcelToolStripMenuItem.Enabled = false;
+                    chonPhieuNhapToolStripMenuItem.Enabled = false;
                 }
                 else
                 {
                     ChonDonHangBanMenu.Enabled = true;
                     chonBaoGiaToolStripMenuItem.Enabled = true;
                     chonTuExcelToolStripMenuItem.Enabled = true;
+                    chonPhieuNhapToolStripMenuItem.Enabled = true;
 
                     XuLyKhoaThongTinKhachHang();
 
@@ -5799,6 +5802,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 var chonExcel = new LoadExcelDataForm();
                 chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT2,SO_LUONG1,GIA_NT21";
+                chonExcel.MA_CT = Invoice.Mact;
                 chonExcel.AcceptData += chonExcel_AcceptData;
                 chonExcel.ShowDialog(this);
             }
@@ -6291,7 +6295,66 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        
+        private void chonPhieuNhapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            XuLyChonPhieuNhap();
+        }
+
+
+        private void XuLyChonPhieuNhap()
+        {
+            try
+            {
+                var ma_kh = txtMaKh.Text.Trim();
+                var ma_dvcs = txtMadvcs.Text.Trim();
+                var message = "";
+                if (ma_kh != "" && ma_dvcs != "")
+                {
+                    CPN_HoaDonForm chon = new CPN_HoaDonForm(dateNgayCT.Value.Date, txtMadvcs.Text, txtMaKh.Text);
+                    chon.AcceptSelectEvent += chon_AcceptSelectEvent;
+                    chon.ShowDialog(this);
+                }
+                else
+                {
+                    if (ma_kh == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID needs to enter!\n";
+                    if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID needs to enter!";
+                    this.ShowWarningMessage(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".XuLyChonPhieuXuat: " + ex.Message);
+            }
+        }
+
+        void chonpn0_AcceptSelectEvent(List<SortedDictionary<string, object>> selectedDataList)
+        {
+            try
+            {
+                detail1.MODE = V6Mode.View;
+                AD.Rows.Clear();
+                int addCount = 0, failCount = 0;
+                foreach (SortedDictionary<string, object> data in selectedDataList)
+                {
+                    if (XuLyThemDetail(data)) addCount++;
+                    else failCount++;
+                }
+                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
+                if (addCount > 0)
+                {
+                    co_chon_don_hang = true;
+                }
+                else
+                {
+                    co_chon_don_hang = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".chonpx_AcceptSelectEvent: " + ex.Message);
+            }
+        }
+
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using V6Init;
@@ -17,7 +18,25 @@ namespace V6Controls.Forms
         private DataTable data;
         public event DataTableHandler AcceptData;
         public string CheckFields = null;
+        /// <summary>
+        /// Dùng kiểm tra thông tin khác khi tải dữ liệu Excel.
+        /// </summary>
+        public string MA_CT;
 
+        private void LoadExcelDataForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(MA_CT))
+                {
+                    btnXemMauExcel.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Form_Load", ex);
+            }
+        }
         protected virtual void OnAcceptData(DataTable table)
         {
             var handler = AcceptData;
@@ -59,6 +78,10 @@ namespace V6Controls.Forms
             {
                 if (!V6ControlFormHelper.CheckDataFields(data, ObjectAndString.SplitString(CheckFields)))
                     this.ShowWarningMessage("Dữ liệu không hợp lệ! " + CheckFields);
+            }
+            if (!string.IsNullOrEmpty(MA_CT))
+            {
+                //Check khác
             }
             dataGridView1.DataSource = data;
         }
@@ -137,6 +160,39 @@ namespace V6Controls.Forms
                 this.ShowErrorException(GetType() + ".chk", ex);
             }
         }
+
+        private void btnXemMauExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //IMPORT_EXCEL MA_CT + _AD
+                string path1 = Application.StartupPath;
+                string file1 = MA_CT + "_AD.XLS";
+                path1 = Path.Combine(path1, "IMPORT_EXCEL");
+                path1 = Path.Combine(path1, file1);
+                if (File.Exists(path1))
+                {
+                    //Copy to tempfolder
+                    string path2 = V6ControlsHelper.CreateV6SoftLocalAppDataDirectory();
+                    path2 = Path.Combine(path2, file1);
+                    if(File.Exists(path2)) File.Delete(path2);
+                    File.Copy(path1, path2);
+
+                    ProcessStartInfo info1 = new ProcessStartInfo(path2);
+                    Process.Start(info1);
+                }
+                else
+                {
+                    ShowTopMessage(string.Format("{0} [{1}]", V6Text.NotExist, file1));
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XemMauExcel", ex);
+            }
+        }
+
+        
 
         
 

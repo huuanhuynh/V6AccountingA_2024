@@ -416,6 +416,36 @@
     <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonBaoGia\CBG_HoaDonKetQua.Designer.cs">
       <DependentUpon>CBG_HoaDonKetQua.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_KetQua_HoaDon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_KetQua_HoaDon.Designer.cs">
+      <DependentUpon>CPN_KetQua_HoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_ThoiGian_HoaDon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_ThoiGian_HoaDon.Designer.cs">
+      <DependentUpon>CPN_ThoiGian_HoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_CT_HoaDon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_CT_HoaDon.Designer.cs">
+      <DependentUpon>CPN_CT_HoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_ThongTin_HoaDon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_ThongTin_HoaDon.Designer.cs">
+      <DependentUpon>CPN_ThongTin_HoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_HoaDonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_HoaDonForm.Designer.cs">
+      <DependentUpon>CPN_HoaDonForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuXuat\CPX_HoaDonForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -835,6 +865,18 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TongHop\PhieuKeToan\Loc\TimPhieuKeToanForm.Designer.cs">
       <DependentUpon>TimPhieuKeToanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\ChonPhieuXuat\CPX_PhieuNhapKhoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\ChonPhieuXuat\CPX_PhieuNhapKhoForm.Designer.cs">
+      <DependentUpon>CPX_PhieuNhapKhoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\ChonPhieuXuat\CPX_PhieuNhapKhoFormKetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\ChonPhieuXuat\CPX_PhieuNhapKhoFormKetQua.Designer.cs">
+      <DependentUpon>CPX_PhieuNhapKhoFormKetQua.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\Loc\LocKetQuaPhieuNhapKho.cs">
       <SubType>UserControl</SubType>
@@ -4990,6 +5032,18 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonBaoGia\CBG_HoaDonKetQua.resx">
       <DependentUpon>CBG_HoaDonKetQua.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_KetQua_HoaDon.resx">
+      <DependentUpon>CPN_KetQua_HoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_CT_HoaDon.resx">
+      <DependentUpon>CPN_CT_HoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_ThongTin_HoaDon.resx">
+      <DependentUpon>CPN_ThongTin_HoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_HoaDonForm.resx">
+      <DependentUpon>CPN_HoaDonForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuXuat\CPX_HoaDonForm.resx">
       <DependentUpon>CPX_HoaDonForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -5188,6 +5242,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TongHop\PhieuKeToan\Loc\TimPhieuKeToanForm.resx">
       <DependentUpon>TimPhieuKeToanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\ChonPhieuXuat\CPX_PhieuNhapKhoForm.resx">
+      <DependentUpon>CPX_PhieuNhapKhoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\ChonPhieuXuat\CPX_PhieuNhapKhoFormKetQua.resx">
+      <DependentUpon>CPX_PhieuNhapKhoFormKetQua.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\Loc\LocKetQuaPhieuNhapKho.resx">
       <DependentUpon>LocKetQuaPhieuNhapKho.cs</DependentUpon>

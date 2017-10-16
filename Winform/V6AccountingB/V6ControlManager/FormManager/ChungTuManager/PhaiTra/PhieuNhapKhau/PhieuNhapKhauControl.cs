@@ -5588,6 +5588,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             {
                 var chonExcel = new LoadExcelDataForm();
                 chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
+                chonExcel.MA_CT = Invoice.Mact;
                 chonExcel.AcceptData += chonExcel_AcceptData;
                 chonExcel.ShowDialog(this);
             }

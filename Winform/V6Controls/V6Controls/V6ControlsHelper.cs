@@ -22,8 +22,11 @@ namespace V6Controls
         public static bool DisableLookup { get; set; }
 
         private static string V6SoftLocalAppData_Directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "V6Soft");
-
-        public static void CreateV6SoftLocalAppDataDirectory()
+        /// <summary>
+        /// Tạo thư mục tạm cho chương trình.
+        /// </summary>
+        /// <returns>Đường dẫn thư mục.</returns>
+        internal static string CreateV6SoftLocalAppDataDirectory()
         {
             try
             {
@@ -33,6 +36,7 @@ namespace V6Controls
             {
                 //
             }
+            return V6SoftLocalAppData_Directory;
         }
 
         public static void DeleteAllFileInV6SoftLocalAppData()

@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
+using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPhieuXuat;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc;
 using V6Controls;
 using V6Controls.Forms;
@@ -3419,6 +3420,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             {
                 var chonExcel = new LoadExcelDataForm();
                 chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
+                chonExcel.MA_CT = Invoice.Mact;
                 chonExcel.AcceptData += chonExcel_AcceptData;
                 chonExcel.ShowDialog(this);
             }
@@ -3534,6 +3536,77 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         private void menuXemPhieuNhap_Click(object sender, EventArgs e)
         {
             XemPhieuNhapView(dateNgayCT.Value, Invoice.Mact, _maKhoI.Text, _maVt.Text);
+        }
+
+        private void btnChonPX_Click(object sender, EventArgs e)
+        {
+            if (txtLoaiPhieu.Text == "A")
+            {
+                ChonPhieuXuat_A();
+            }
+            else
+            {
+                this.ShowMessage("Không phải phiếu loại A.");
+            }
+        }
+
+        private void ChonPhieuXuat_A()
+        {
+            try
+            {
+                try
+                {
+                    var ma_kh = txtMaKh.Text.Trim();
+                    var ma_dvcs = txtMadvcs.Text.Trim();
+                    var message = "";
+                    if (ma_kh != "" && ma_dvcs != "")
+                    {
+                        CPX_PhieuNhapKhoForm chon = new CPX_PhieuNhapKhoForm(dateNgayCT.Value, txtMadvcs.Text, txtMaKh.Text);
+                        chon.AcceptSelectEvent += chon_AcceptSelectEvent;
+                        chon.ShowDialog(this);
+                    }
+                    else
+                    {
+                        if (ma_kh == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID needs to enter!\n";
+                        if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID needs to enter!";
+                        this.ShowWarningMessage(message);
+                        if (ma_kh == "") txtMaKh.Focus();
+                        else if (ma_dvcs == "") txtMadvcs.Focus();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    this.ShowErrorMessage(GetType() + ".XuLyChonPhieuXuat: " + ex.Message, "HoaDonControl");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".ChonPhieuXuat_A: " + ex.Message, "Hoa don ban hang Error");
+            }
+        }
+
+        void chon_AcceptSelectEvent(List<SortedDictionary<string, object>> selectedDataList)
+        {
+            try
+            {
+                detail1.MODE = V6Mode.View;
+                AD.Rows.Clear();
+                int addCount = 0, failCount = 0;
+                foreach (SortedDictionary<string, object> data in selectedDataList)
+                {
+                    if (XuLyThemDetail(data)) addCount++;
+                    else failCount++;
+                }
+                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
+                //if (addCount > 0)
+                //{
+                //    co_chon_don_hang = true;
+                //}
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".chon_AcceptSelectEvent", ex);
+            }
         }
 
     }

@@ -11,16 +11,15 @@ using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
-using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
-namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuXuat
+namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPhieuXuat
 {
-    public partial class CPX_HoaDonForm : V6Form
+    public partial class CPX_PhieuNhapKhoForm : V6Form
     {
         V6Invoice84 Invoice = new V6Invoice84();
         //private readonly HoaDonControl _PhieuNhapMuaForm;
-        private CPX_HoaDonKetQua _locKetQua;
+        private CPX_PhieuNhapKhoKetQua _locKetQua;
         private string _ma_dvcs, _ma_kh;
         private DateTime _ngayCt;
         //private bool __ready = false;
@@ -40,12 +39,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuXu
                 _viewMode = value;
             }
         }
-        public CPX_HoaDonForm()
+        public CPX_PhieuNhapKhoForm()
         {
             InitializeComponent();
         }
 
-        public CPX_HoaDonForm(DateTime ngayCt, string ma_dvcs, string ma_kh)
+        public CPX_PhieuNhapKhoForm(DateTime ngayCt, string ma_dvcs, string ma_kh)
         {
             InitializeComponent();
             //_PhieuNhapMuaForm = phieuNhapMuaForm;
@@ -60,7 +59,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuXu
         private void MyInit()
         {
             InitTuyChon();
-            _locKetQua = new CPX_HoaDonKetQua(Invoice)
+            _locKetQua = new CPX_PhieuNhapKhoKetQua(Invoice)
             { Dock = DockStyle.Fill, Visible = false };
             panel1.Controls.Add(_locKetQua);
 
@@ -425,7 +424,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuXu
                 var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
                 var w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
 
-                tAM = Invoice.SearchPhieuXuat_HoaDon(_ngayCt, where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
+                tAM = Invoice.SearchPhieuXuat_PhieuNhapKho(_ngayCt, where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
                 if (tAM != null && tAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;

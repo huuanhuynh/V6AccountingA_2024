@@ -1069,6 +1069,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.btnChonPX.TabIndex = 2;
             this.btnChonPX.Text = "Chọn PX";
             this.btnChonPX.UseVisualStyleBackColor = true;
+            this.btnChonPX.Click += new System.EventHandler(this.btnChonPX_Click);
             // 
             // lblTongSoDong
             // 
@@ -1928,7 +1929,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.toolStripMenuItem2,
             this.toolStripMenuItem3});
             this.menuDetail1.Name = "menuChucNang";
-            this.menuDetail1.Size = new System.Drawing.Size(162, 92);
+            this.menuDetail1.Size = new System.Drawing.Size(162, 70);
             // 
             // menuXemPhieuNhap
             // 

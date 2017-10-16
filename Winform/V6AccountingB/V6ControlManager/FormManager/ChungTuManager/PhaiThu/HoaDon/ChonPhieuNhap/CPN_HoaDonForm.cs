@@ -5,6 +5,8 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC;
+using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC.ChonPhieuNhap;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -12,14 +14,15 @@ using V6SqlConnect;
 using V6Structs;
 using Timer = System.Windows.Forms.Timer;
 
-namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC.ChonPhieuNhap
+namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNhap
 {
-    public partial class CPN_PhieuXuatTraLaiNCC_Form : V6Form
+    public partial class CPN_HoaDonForm : V6Form
     {
-        private readonly PhieuXuatTraLaiNCCControl _PhieuXuatTraLaiNCCForm;
-        private CPNKetQuaPhieuXuatTraLaiNCC _locKetQua;
-        private V6Invoice71 Invoice = new V6Invoice71();
+        //private readonly PhieuXuatTraLaiNCCControl _PhieuXuatTraLaiNCCForm;
+        private CPN_KetQua_HoaDon _locKetQua;
+        private V6Invoice74 Invoice = new V6Invoice74();
         private string _ma_dvcs, _ma_kh;
+        private DateTime _ngayCt;
         //private bool __ready = false;
         private bool _viewMode;
         //private List<string> _orderListAD;
@@ -37,16 +40,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                 _viewMode = value;
             }
         }
-        public CPN_PhieuXuatTraLaiNCC_Form()
+        public CPN_HoaDonForm()
         {
             InitializeComponent();
         }
 
-        public CPN_PhieuXuatTraLaiNCC_Form(PhieuXuatTraLaiNCCControl PhieuXuatTraLaiNCCForm, string ma_dvcs, string ma_kh)
+        public CPN_HoaDonForm(DateTime ngayCt, string ma_dvcs, string ma_kh)
         {
             InitializeComponent();
-            _PhieuXuatTraLaiNCCForm = PhieuXuatTraLaiNCCForm;
+            //_PhieuXuatTraLaiNCCForm = PhieuXuatTraLaiNCCForm;
             //_orderListAD = orderListAD;
+            _ngayCt = ngayCt;
             _ma_dvcs = ma_dvcs;
             _ma_kh = ma_kh;
             MyInit();
@@ -55,7 +59,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         private void MyInit()
         {
             InitTuyChon();
-            _locKetQua =  new CPNKetQuaPhieuXuatTraLaiNCC(Invoice)
+            _locKetQua =  new CPN_KetQua_HoaDon(Invoice)
             { Dock = DockStyle.Fill, Visible = false };
             panel1.Controls.Add(_locKetQua);
 
@@ -201,7 +205,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                 var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
                 var w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
 
-                tAM = Invoice.SearchPhieuNhap_TraNCC(where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
+                tAM = Invoice.SearchPhieuNhap_HoaDon(_ngayCt, where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
                 if (tAM != null && tAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;

@@ -347,7 +347,7 @@ namespace V6AccountingBusiness.Invoices
             return null;
         }
 
-        public DataTable SearchPhieuNhap(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
+        public DataTable SearchPhieuNhap_TraNCC(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
         {//!!!!!!
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
