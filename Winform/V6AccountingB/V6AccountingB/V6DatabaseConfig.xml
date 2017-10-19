@@ -114,10 +114,29 @@
     <Type>0</Type>
     <Key>1MyiGdzr4dUg0njmmdo/yUZAoF2wV8KJ9/oYAJ0sJzP/L2SKcUBWiQ==</Key>
   </DatabaseList>
+  <DatabaseList>
+    <Stt>7</Stt>
+    <Server>192.168.1.99\SQLSERVER2K8</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Database>CRV_NB17</Database>
+    <Database2>CRV_NB17</Database2>
+    <UserId>sa</UserId>
+    <UserId2>sa</UserId2>
+    <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
+    <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>CRV_NB17 - CERAVI</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>1qprhGujgAIg0njmmdo/yUZAoF2wV8KJ/4UOmIWPOLsO2W9O+OTOtg==</Key>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>
     <CheckServer>0</CheckServer>
-    <PasswordV6>Ai0I9gx1t2OUAygIZXqi4g==</PasswordV6>
+    <PasswordV6>bHyNgIHonRs=</PasswordV6>
   </ServerConfig>
 </Config>

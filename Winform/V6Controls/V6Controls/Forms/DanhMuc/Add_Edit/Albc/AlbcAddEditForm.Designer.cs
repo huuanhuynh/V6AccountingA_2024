@@ -117,6 +117,9 @@
             this.btnExcelTemplateView = new System.Windows.Forms.Button();
             this.txtExcel2View = new System.Windows.Forms.RichTextBox();
             this.btnExcel2View = new System.Windows.Forms.Button();
+            this.label32 = new System.Windows.Forms.Label();
+            this.txtSoLien = new V6Controls.V6NumberTextBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -905,6 +908,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage2.Controls.Add(this.txtSoLien);
+            this.tabPage2.Controls.Add(this.label32);
             this.tabPage2.Controls.Add(this.numDropMax);
             this.tabPage2.Controls.Add(this.label30);
             this.tabPage2.Controls.Add(this.v6NumberTextBox1);
@@ -921,6 +926,7 @@
             this.tabPage2.Controls.Add(this.label31);
             this.tabPage2.Controls.Add(this.chkBold);
             this.tabPage2.Controls.Add(this.label19);
+            this.tabPage2.Controls.Add(this.label33);
             this.tabPage2.Controls.Add(this.label23);
             this.tabPage2.Controls.Add(this.label20);
             this.tabPage2.Controls.Add(this.label27);
@@ -955,6 +961,7 @@
             this.numDropMax.TabIndex = 22;
             this.numDropMax.Text = "0";
             this.numDropMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTipV6FormControl.SetToolTip(this.numDropMax, "Giới hạn ký tự trên 1 dòng (tên vt)");
             this.numDropMax.Value = new decimal(new int[] {
             0,
             0,
@@ -989,6 +996,7 @@
             this.v6NumberTextBox1.TabIndex = 20;
             this.v6NumberTextBox1.Text = "0";
             this.v6NumberTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTipV6FormControl.SetToolTip(this.v6NumberTextBox1, "Tự tải lại dữ liệu khi đổi mẫu");
             this.v6NumberTextBox1.Value = new decimal(new int[] {
             0,
             0,
@@ -1092,6 +1100,7 @@
             this.txtFieldMax.Name = "txtFieldMax";
             this.txtFieldMax.Size = new System.Drawing.Size(643, 20);
             this.txtFieldMax.TabIndex = 24;
+            this.toolTipV6FormControl.SetToolTip(this.txtFieldMax, "Trường tính DROP_MAX, mặc định là TEN_VT (để trống)");
             // 
             // txtFieldV
             // 
@@ -1184,9 +1193,9 @@
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(5, 35);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(74, 13);
+            this.label23.Size = new System.Drawing.Size(72, 13);
             this.label23.TabIndex = 2;
-            this.label23.Text = "Giá trị so sánh";
+            this.label23.Text = "Phép so sánh";
             // 
             // label20
             // 
@@ -1295,6 +1304,49 @@
             this.btnExcel2View.Text = "Excel config view";
             this.btnExcel2View.UseVisualStyleBackColor = true;
             this.btnExcel2View.Click += new System.EventHandler(this.btnExcel2View_Click);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(7, 311);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(52, 13);
+            this.label32.TabIndex = 25;
+            this.label32.Text = "SO_LIEN";
+            // 
+            // txtSoLien
+            // 
+            this.txtSoLien.AccessibleName = "SO_LIEN";
+            this.txtSoLien.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSoLien.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSoLien.DecimalPlaces = 0;
+            this.txtSoLien.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSoLien.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSoLien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSoLien.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSoLien.LeaveColor = System.Drawing.Color.White;
+            this.txtSoLien.Location = new System.Drawing.Point(97, 308);
+            this.txtSoLien.MaxLength = 1;
+            this.txtSoLien.Name = "txtSoLien";
+            this.txtSoLien.Size = new System.Drawing.Size(41, 20);
+            this.txtSoLien.TabIndex = 26;
+            this.txtSoLien.Text = "0";
+            this.txtSoLien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTipV6FormControl.SetToolTip(this.txtSoLien, "Số liên mặc định khi chọn mẫu, có thể chọn lại khi in.");
+            this.txtSoLien.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(309, 35);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(171, 13);
+            this.label33.TabIndex = 2;
+            this.label33.Text = "Điều kiện in đậm [FIELD] = Value?";
             // 
             // AlbcAddEditForm
             // 
@@ -1436,5 +1488,8 @@
         private System.Windows.Forms.Label label30;
         private V6ColorTextBox txtFieldMax;
         private System.Windows.Forms.Label label31;
+        private V6NumberTextBox txtSoLien;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label33;
     }
 }

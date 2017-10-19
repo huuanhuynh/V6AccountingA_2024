@@ -195,6 +195,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
+        private int SelectedSoLien
+        {
+            get
+            {
+                var row = SelectedRow;
+                int result = 0;
+                if (row != null)
+                {
+                    result = ObjectAndString.ObjectToInt(row["SO_LIEN"]);
+                }
+                if (result <= 0) result = Invoice_SoLien;
+                return result;
+            }
+        }
+
+        private int Invoice_SoLien
+        {
+            get { return Invoice.SoLien == 0 ? 1 : Invoice.SoLien; }
+        }
+
         private string Extra_para
         {
             get
@@ -748,7 +768,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 }
                 txtReportTitle.Text = ReportTitle;
 
-                numSoLien.Value = Invoice.SoLien == 0 ? 1 : Invoice.SoLien;
+                numSoLien.Value = SelectedSoLien;
+                
                 if (numSoLien.Value > 0) numSoLien.Enabled = true;
 
                 if (!V6Login.IsAdmin)
@@ -1864,6 +1885,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             if (!IsReady || string.IsNullOrEmpty(MA_NT)) return;
 
             txtReportTitle.Text = ReportTitle;
+            numSoLien.Value = SelectedSoLien;
             if (ReloadData == "1")
                 MakeReport(false, null, (int)numSoLien.Value);
             else

@@ -51,11 +51,15 @@
             this.v6Label22 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
+            this.txtma_gd = new V6Controls.V6ColorTextBox();
+            this.v6Label16 = new V6Controls.V6Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtma_gd);
+            this.groupBox1.Controls.Add(this.v6Label16);
             this.groupBox1.Controls.Add(this.panelFilter1);
             this.groupBox1.Controls.Add(this.chkLike);
             this.groupBox1.Controls.Add(this.taiKhoanThue);
@@ -357,6 +361,30 @@
             this.v6Label8.TabIndex = 0;
             this.v6Label8.Text = "CT từ số";
             // 
+            // txtma_gd
+            // 
+            this.txtma_gd.AccessibleName = "MA_GD";
+            this.txtma_gd.BackColor = System.Drawing.SystemColors.Window;
+            this.txtma_gd.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtma_gd.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtma_gd.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtma_gd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtma_gd.HoverColor = System.Drawing.Color.Yellow;
+            this.txtma_gd.LeaveColor = System.Drawing.Color.White;
+            this.txtma_gd.Location = new System.Drawing.Point(365, 48);
+            this.txtma_gd.Name = "txtma_gd";
+            this.txtma_gd.Size = new System.Drawing.Size(132, 20);
+            this.txtma_gd.TabIndex = 30;
+            // 
+            // v6Label16
+            // 
+            this.v6Label16.AutoSize = true;
+            this.v6Label16.Location = new System.Drawing.Point(283, 50);
+            this.v6Label16.Name = "v6Label16";
+            this.v6Label16.Size = new System.Drawing.Size(56, 13);
+            this.v6Label16.TabIndex = 29;
+            this.v6Label16.Text = "Loại phiếu";
+            // 
             // CPN_ThongTin_HoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -395,5 +423,7 @@
         private V6Controls.V6CheckBox chkLike;
         private V6ReportControls.PanelFilter panelFilter1;
         public V6Controls.V6VvarTextBox maKhach;
+        private V6Controls.V6ColorTextBox txtma_gd;
+        private V6Controls.V6Label v6Label16;
     }
 }

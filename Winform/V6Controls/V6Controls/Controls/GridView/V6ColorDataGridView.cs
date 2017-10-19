@@ -822,5 +822,9 @@ namespace V6Controls
         //        }
         //    }
         //}
+        public void Format(string GRDSV1, string GRDFV1, string GRDH)
+        {
+            V6ControlFormHelper.FormatGridViewAndHeader(this, GRDSV1, GRDFV1, GRDH);
+        }
     }
 }

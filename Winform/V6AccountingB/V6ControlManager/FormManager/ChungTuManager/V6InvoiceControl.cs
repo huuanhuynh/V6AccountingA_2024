@@ -386,7 +386,26 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             return result;
         }
+
         protected string GetAlVitriTonInitFilter()
+        {
+            var result = "";
+            try
+            {
+                //foreach (DataRow row in AD.Rows)
+                //{
+                //    result += " And Stt_rec <> '" + row["STT_REC_TT"].ToString().Trim() + "'";
+                //}
+                //if (result.Length > 4) result = result.Substring(4);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".GetAlVitriTonInitFilter: " + ex.Message);
+            }
+            return result;
+        }
+
+        protected string GetAlLoTonInitFilter()
         {
             var result = "";
             try

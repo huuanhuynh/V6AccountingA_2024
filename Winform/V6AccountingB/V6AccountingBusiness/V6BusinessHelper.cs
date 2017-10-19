@@ -229,10 +229,10 @@ namespace V6AccountingBusiness
         }
 
         /// <summary>
-        /// Kiểm tra dữ liệu có tồn tại hay không, key dư được bỏ qua
+        /// Kiểm tra dữ liệu có tồn tại hay không, dữ liệu dư được bỏ qua
         /// </summary>
-        /// <param name="tableName"></param>
-        /// <param name="data"></param>
+        /// <param name="tableName">Bảng dữ liệu để kiểm tra</param>
+        /// <param name="data">Dữ liệu được kiểm tra</param>
         /// <returns></returns>
         public static bool CheckDataExistStruct(string tableName, IDictionary<string, object> data)
         {

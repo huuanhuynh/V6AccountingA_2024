@@ -726,7 +726,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".GetViTriLoDate13 " + ex.Message);
+                this.ShowErrorMessage(GetType() + ".FixAlVitriTon " + ex.Message);
             }
         }
 

@@ -42,7 +42,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNh
             try
             {
                 string grd_show = "", grd_format = "", grd_header = "";
-                var data = V6BusinessHelper.Select("ALDM", "*", "ma_dm='AMAD86A'").Data;
+                var data = V6BusinessHelper.Select("ALDM", "*", "ma_dm='AMAD81K'").Data;
                 if (data.Rows.Count > 0)
                 {
                     var row = data.Rows[0];

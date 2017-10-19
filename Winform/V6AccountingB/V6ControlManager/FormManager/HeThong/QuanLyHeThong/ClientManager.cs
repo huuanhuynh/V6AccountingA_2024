@@ -48,9 +48,9 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
         {
             try
             {
-                var column = gridView1.Columns["Name"];
-                if (column != null) column.Width = 300;
-                gridView1.ShowColumns("NAME", "ALLOW");
+                //var column = gridView1.Columns["Name"];
+                //if (column != null) column.Width = 300;
+                gridView1.Format("NAME,ALLOW", "C300,N0:40", V6Setting.IsVietnamese ? "Tên máy,Cho phép" : "Name,Allow");
             }
             catch (Exception ex)
             {

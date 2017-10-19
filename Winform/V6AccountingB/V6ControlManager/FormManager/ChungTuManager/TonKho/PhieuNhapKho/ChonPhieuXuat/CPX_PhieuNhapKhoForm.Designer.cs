@@ -36,7 +36,7 @@
             this.v6ColorTextBox6 = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox3 = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox24 = new V6Controls.V6VvarTextBox();
-            this.v6ColorTextBox25 = new V6Controls.V6VvarTextBox();
+            this.txtMa_vv_i = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox26 = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox27 = new V6Controls.V6VvarTextBox();
             this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
@@ -147,7 +147,7 @@
             this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox6);
             this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox3);
             this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox24);
-            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox25);
+            this.grbThongTinChiTiet.Controls.Add(this.txtMa_vv_i);
             this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox26);
             this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox27);
             this.grbThongTinChiTiet.Controls.Add(this.v6VvarTextBox1);
@@ -266,20 +266,20 @@
             this.v6ColorTextBox24.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox24.TabIndex = 25;
             // 
-            // v6ColorTextBox25
+            // txtMa_vv_i
             // 
-            this.v6ColorTextBox25.AccessibleName = "MA_VV_I";;
-            this.v6ColorTextBox25.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorTextBox25.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox25.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox25.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox25.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox25.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox25.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox25.Location = new System.Drawing.Point(368, 71);
-            this.v6ColorTextBox25.Name = "v6ColorTextBox25";
-            this.v6ColorTextBox25.Size = new System.Drawing.Size(132, 20);
-            this.v6ColorTextBox25.TabIndex = 21;
+            this.txtMa_vv_i.AccessibleName = "MA_VV_I";
+            this.txtMa_vv_i.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMa_vv_i.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMa_vv_i.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMa_vv_i.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMa_vv_i.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMa_vv_i.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMa_vv_i.LeaveColor = System.Drawing.Color.White;
+            this.txtMa_vv_i.Location = new System.Drawing.Point(368, 71);
+            this.txtMa_vv_i.Name = "txtMa_vv_i";
+            this.txtMa_vv_i.Size = new System.Drawing.Size(132, 20);
+            this.txtMa_vv_i.TabIndex = 21;
             // 
             // v6ColorTextBox26
             // 
@@ -686,6 +686,13 @@
             this.soTienDen.Name = "soTienDen";
             this.soTienDen.Size = new System.Drawing.Size(132, 20);
             this.soTienDen.TabIndex = 23;
+            this.soTienDen.Text = "0,000";
+            this.soTienDen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.soTienDen.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            196608});
             // 
             // taiKhoanNo
             // 
@@ -773,6 +780,13 @@
             this.soTienTu.Name = "soTienTu";
             this.soTienTu.Size = new System.Drawing.Size(132, 20);
             this.soTienTu.TabIndex = 9;
+            this.soTienTu.Text = "0,000";
+            this.soTienTu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.soTienTu.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            196608});
             // 
             // maKhach
             // 
@@ -1269,6 +1283,7 @@
             this.Text = "Tìm chứng từ";
             this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.CDH_PNMForm_VisibleChanged);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
@@ -1333,7 +1348,7 @@
         private V6Controls.V6VvarTextBox v6ColorTextBox6;
         private V6Controls.V6VvarTextBox v6ColorTextBox3;
         private V6Controls.V6VvarTextBox v6ColorTextBox24;
-        private V6Controls.V6VvarTextBox v6ColorTextBox25;
+        private V6Controls.V6VvarTextBox txtMa_vv_i;
         private V6Controls.V6VvarTextBox v6ColorTextBox26;
         private V6Controls.V6VvarTextBox v6ColorTextBox27;
         private V6Controls.V6VvarTextBox v6VvarTextBox1;
