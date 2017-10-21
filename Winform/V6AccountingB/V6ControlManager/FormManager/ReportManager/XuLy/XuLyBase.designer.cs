@@ -234,7 +234,7 @@
             this.Controls.Add(this.dataGridView2);
             this.Name = "XuLyBase";
             this.Size = new System.Drawing.Size(974, 654);
-            this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.SizeChanged += new System.EventHandler(this.XuLyBase_SizeChanged);
             this.VisibleChanged += new System.EventHandler(this.XuLyBase_VisibleChanged);
             this.contextMenuStrip1.ResumeLayout(false);

@@ -60,9 +60,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
         
-        private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
-            
+            LoadDefaultData(4, "", _program, m_itemId, "");
         }
 
         

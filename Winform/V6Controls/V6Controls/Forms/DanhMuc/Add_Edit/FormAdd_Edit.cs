@@ -12,6 +12,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public AddEditControlVirtual FormControl;
         private readonly V6TableName _tableName = V6TableName.Notable;
         private readonly string _tableNameString;
+        private string _tableView;
         
         public event HandleResultData InsertSuccessEvent;
         public event HandleResultData UpdateSuccessEvent;
@@ -112,6 +113,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (aldm.Rows.Count == 1)
             {
                 is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
+                _tableView = aldm.Rows[0]["TABLE_VIEW"].ToString();
+
                 if (is_aldm)
                 {
                     Text = FormControl.Mode + " - " + (V6Setting.IsVietnamese ? aldm.Rows[0]["TITLE"] : aldm.Rows[0]["TITLE2"]);
@@ -170,7 +173,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         
         private void btnInfos_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ProcessUserDefineInfo(_tableName.ToString(), FormControl, this, _tableName.ToString());
+            V6ControlFormHelper.ProcessUserDefineInfo(
+                string.IsNullOrEmpty(_tableView) ?_tableNameString : _tableView,
+                FormControl, this, _tableName.ToString());
         }
 
     }

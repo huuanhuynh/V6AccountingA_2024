@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Controls;
 using V6Controls.Controls.Label;
@@ -965,7 +966,7 @@ namespace V6Controls.Forms
                     foreach (Control c in parent.Controls)
                     {
                         if (string.IsNullOrEmpty(c.AccessibleName)) continue;
-                        var NAME = (c.AccessibleName ?? "").ToUpper();
+                        var NAME = c is RadioButton ? c.Name : (c.AccessibleName ?? "").ToUpper();
                         //Chỉ xử lý các control có AccessibleName trong fields
                         if (fields.Contains("," + NAME.ToLower() + ","))
                         {
@@ -1007,7 +1008,7 @@ namespace V6Controls.Forms
                 {
                     foreach (Control c in parent.Controls)
                     {
-                        var aNAME = c.AccessibleName;
+                        var aNAME = c is RadioButton ? c.Name : c.AccessibleName;
                         if (string.IsNullOrEmpty(aNAME)) continue;
                         aNAME = aNAME.ToUpper();
                         if (!neighbor_field.ContainsKey(aNAME)) continue;
@@ -1293,12 +1294,12 @@ namespace V6Controls.Forms
             try
             {
                 var tagString = string.Format(";{0};", control.Tag ?? "");
-                var cancelall = control is DataGridView || tagString.Contains(";cancelall;");
+                var cancelall = control is DataGridView || control is ICrystalReportViewer || tagString.Contains(";cancelall;");
                 var canceldata = tagString.Contains(";canceldata;");
                 var cancelset = tagString.Contains(";cancelset;");
                 if (canceldata||cancelset||cancelall) goto CANCELALL;
                 
-                var NAME = control.AccessibleName;
+                var NAME = control is RadioButton ? control.Name : control.AccessibleName;
                 if (data != null && !string.IsNullOrEmpty(NAME) && data.ContainsKey(NAME.ToUpper()))
                 {
                     NAME = NAME.ToUpper();
@@ -1355,7 +1356,7 @@ namespace V6Controls.Forms
             try
             {
                 var tagString = string.Format(";{0};", control.Tag ?? "");
-                var cancelall = control is DataGridView || tagString.Contains(";cancelall;");
+                var cancelall = control is DataGridView || control is ICrystalReportViewer || tagString.Contains(";cancelall;");
                 var canceldata = tagString.Contains(";canceldata;");
                 var cancelset = tagString.Contains(";cancelset;");
                 if (canceldata || cancelset || cancelall) goto CANCELALL;
@@ -1554,7 +1555,7 @@ namespace V6Controls.Forms
             {
                 var tagString = string.Format(";{0};", control.Tag ?? "");
 
-                var cancelall = control is DataGridView || tagString.Contains(";cancelall;");
+                var cancelall = control is DataGridView || control is ICrystalReportViewer || tagString.Contains(";cancelall;");
                 if (cancelall) goto CANCELALL;
                 var cancel = tagString != "" && tagString.Contains(";cancel;");
                 if (cancel) goto CANCEL;
@@ -3756,7 +3757,7 @@ namespace V6Controls.Forms
             try
             {
                 var tagString = string.Format(";{0};", control.Tag ?? "");
-                var cancellang = control is DataGridView || tagString.Contains(";canceltriple;");
+                var cancellang = control is DataGridView || control is ICrystalReportViewer || tagString.Contains(";canceltriple;");
                 if (cancellang) return;
 
                 ApplyControlTripleClickRecusive(control);
@@ -4378,6 +4379,7 @@ namespace V6Controls.Forms
             }
             else if (control is RadioButton)
             {
+                ((RadioButton)control).Checked = ObjectAndString.ObjectToBool(value);
                 if (value.ToString().Trim() == control.Text)
                 {
                     ((RadioButton)control).Checked = true;
@@ -4402,7 +4404,7 @@ namespace V6Controls.Forms
         /// <returns>Dữ liệu chính của control.</returns>
         public static void FillControlValueToDictionary(IDictionary<string, object> d, Control control)
         {
-            string cNAME = control.AccessibleName.Trim().ToUpper();
+            string cNAME = control is RadioButton ? control.Name.ToUpper() : control.AccessibleName.Trim().ToUpper();
 
             if (control is V6VvarTextBox)
             {

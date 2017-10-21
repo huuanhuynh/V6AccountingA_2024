@@ -129,7 +129,7 @@
             this.Controls.Add(this.grbDieuKienLoc);
             this.Name = "XuLyBase0";
             this.Size = new System.Drawing.Size(571, 420);
-            this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.XuLyBase_VisibleChanged);
             this.contextMenuStrip1.ResumeLayout(false);
             this.grbDieuKienLoc.ResumeLayout(false);

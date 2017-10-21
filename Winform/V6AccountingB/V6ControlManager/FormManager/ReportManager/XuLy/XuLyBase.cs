@@ -185,7 +185,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //    FixGridView1();
 
             LoadComboboxSource();
-
+            
             if (!V6Login.IsAdmin)
             {
                 exportToExcel.Visible = false;
@@ -233,9 +233,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
-            //SetStatus2Text();
+            LoadDefaultData(4, "", _program, m_itemId, "");
         }
 
         
