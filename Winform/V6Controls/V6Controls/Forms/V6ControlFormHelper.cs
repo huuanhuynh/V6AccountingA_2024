@@ -1892,7 +1892,11 @@ namespace V6Controls.Forms
                 Name = accessibleName,
                 AccessibleName = accessibleName,
                 Carry = carry,
-                VVar = vvar, CheckOnLeave = checkOnLeave, CheckNotEmpty = checkNotEmpty,
+                VVar = vvar,
+                CheckOnLeave = checkOnLeave,
+                CheckNotEmpty = checkNotEmpty,
+                F5 = checkOnLeave, // F5 = false => chạy v6lostfocus (checkton)
+                F2 = false,
                 GrayText = caption,
                 Width = width,
                 Visible = visible,

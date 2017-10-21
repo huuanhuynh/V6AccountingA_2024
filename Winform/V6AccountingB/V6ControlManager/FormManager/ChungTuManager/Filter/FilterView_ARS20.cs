@@ -48,17 +48,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
         {
             try
             {
-                var aldm_data = V6BusinessHelper.Select("aldm", "GRDS_V1,GRDF_V1,GRDHV_V1,GRDHE_V1", "ma_dm='" + "ARS20" + "'").Data;
+                var aldm_data = V6BusinessHelper.Select("aldm", "GRDS_V1,GRDF_V1,GRDHV_V1,GRDHE_V1,Title,Title2", "ma_dm='" + "ARS20" + "'").Data;
                 if (aldm_data != null && aldm_data.Rows.Count > 0)
                 {
-
+                    Text = aldm_data.Rows[0][V6Setting.IsVietnamese ? "Title" : "Title2"].ToString().Trim();
                     Report_GRDSV1 = aldm_data.Rows[0][0].ToString().Trim();
                     Report_GRDFV1 = aldm_data.Rows[0][1].ToString().Trim();
                     Report_GRDHV_V1 = aldm_data.Rows[0][2].ToString().Trim();
                     Report_GRDHE_V1 = aldm_data.Rows[0][3].ToString().Trim();
-
                 }
-                
+
+                taiKhoan.VvarTextBox.Text = "131";
             }
             catch (Exception ex)
             {
@@ -206,6 +206,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                 if (txtMaKh.IsSelected)
                 {
                     result += string.Format(" and {0}", txtMaKh.QueryCheck);
+                }
+                if (taiKhoan.IsSelected)
+                {
+                    result += string.Format(" and {0}", taiKhoan.QueryCheck);
                 }
                 if (Txtma_nvien.Text.Trim() != "")
                 {

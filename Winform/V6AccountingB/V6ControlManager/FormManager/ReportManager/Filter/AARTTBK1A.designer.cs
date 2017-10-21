@@ -63,6 +63,8 @@
             this.chkLike = new V6Controls.V6CheckBox();
             this.ctTuSo = new V6Controls.V6VvarTextBox();
             this.v6Label8 = new V6Controls.V6Label();
+            this.v6Label1 = new V6Controls.V6Label();
+            this.txtAdd = new V6Controls.V6NumberTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,7 +116,7 @@
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox3);
             this.groupBox1.Location = new System.Drawing.Point(3, 126);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(291, 479);
+            this.groupBox1.Size = new System.Drawing.Size(290, 479);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -419,11 +421,11 @@
             // v6Label7
             // 
             this.v6Label7.AutoSize = true;
-            this.v6Label7.Location = new System.Drawing.Point(22, 92);
+            this.v6Label7.Location = new System.Drawing.Point(232, 74);
             this.v6Label7.Name = "v6Label7";
-            this.v6Label7.Size = new System.Drawing.Size(41, 13);
+            this.v6Label7.Size = new System.Drawing.Size(61, 13);
             this.v6Label7.TabIndex = 44;
-            this.v6Label7.Text = "Đến số";
+            this.v6Label7.Text = "Thêm dòng";
             // 
             // chkLike
             // 
@@ -463,10 +465,45 @@
             this.v6Label8.TabIndex = 43;
             this.v6Label8.Text = "CT từ số";
             // 
+            // v6Label1
+            // 
+            this.v6Label1.AutoSize = true;
+            this.v6Label1.Location = new System.Drawing.Point(22, 95);
+            this.v6Label1.Name = "v6Label1";
+            this.v6Label1.Size = new System.Drawing.Size(41, 13);
+            this.v6Label1.TabIndex = 45;
+            this.v6Label1.Text = "Đến số";
+            // 
+            // txtAdd
+            // 
+            this.txtAdd.AccessibleName = "ADD";
+            this.txtAdd.BackColor = System.Drawing.Color.White;
+            this.txtAdd.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtAdd.DecimalPlaces = 0;
+            this.txtAdd.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtAdd.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtAdd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtAdd.HoverColor = System.Drawing.Color.Yellow;
+            this.txtAdd.LeaveColor = System.Drawing.Color.White;
+            this.txtAdd.Location = new System.Drawing.Point(235, 93);
+            this.txtAdd.Name = "txtAdd";
+            this.txtAdd.Size = new System.Drawing.Size(36, 20);
+            this.txtAdd.TabIndex = 46;
+            this.txtAdd.TabStop = false;
+            this.txtAdd.Text = "0";
+            this.txtAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAdd.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
             // AARTTBK1A
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtAdd);
+            this.Controls.Add(this.v6Label1);
             this.Controls.Add(this.ctDenSo);
             this.Controls.Add(this.v6Label7);
             this.Controls.Add(this.chkLike);
@@ -482,7 +519,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AARTTBK1A";
-            this.Size = new System.Drawing.Size(297, 608);
+            this.Size = new System.Drawing.Size(296, 608);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -527,5 +564,7 @@
         private V6Controls.V6CheckBox chkLike;
         private V6Controls.V6VvarTextBox ctTuSo;
         private V6Controls.V6Label v6Label8;
+        private V6Controls.V6Label v6Label1;
+        private V6Controls.V6NumberTextBox txtAdd;
     }
 }

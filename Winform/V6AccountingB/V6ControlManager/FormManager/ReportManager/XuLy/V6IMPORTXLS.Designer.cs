@@ -77,11 +77,13 @@
             // 
             this.btnBrowse.AccessibleDescription = "XULYB00007";
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowse.Location = new System.Drawing.Point(5, 80);
+            this.btnBrowse.Image = global::V6ControlManager.Properties.Resources.Search24;
+            this.btnBrowse.Location = new System.Drawing.Point(70, 45);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(60, 40);
+            this.btnBrowse.Size = new System.Drawing.Size(107, 40);
             this.btnBrowse.TabIndex = 6;
-            this.btnBrowse.Text = "Tìm";
+            this.btnBrowse.Text = "Tìm file Excel";
+            this.btnBrowse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnTim_Click);
             // 
@@ -115,18 +117,15 @@
             // groupBox1
             // 
             this.groupBox1.AccessibleDescription = "XULYG00001";
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.chkChiNhapMaMoi);
             this.groupBox1.Controls.Add(this.chkChuyenMa);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.v6Label3);
             this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.v6Label2);
-            this.groupBox1.Location = new System.Drawing.Point(10, 134);
+            this.groupBox1.Location = new System.Drawing.Point(10, 175);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(269, 108);
+            this.groupBox1.Size = new System.Drawing.Size(269, 112);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tùy chọn";
@@ -174,10 +173,10 @@
             // 
             // txtFile
             // 
-            this.txtFile.Location = new System.Drawing.Point(70, 45);
+            this.txtFile.Location = new System.Drawing.Point(8, 90);
             this.txtFile.Name = "txtFile";
             this.txtFile.ReadOnly = true;
-            this.txtFile.Size = new System.Drawing.Size(209, 75);
+            this.txtFile.Size = new System.Drawing.Size(270, 75);
             this.txtFile.TabIndex = 5;
             this.txtFile.Text = "";
             // 

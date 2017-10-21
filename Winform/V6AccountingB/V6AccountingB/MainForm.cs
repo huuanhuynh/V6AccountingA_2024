@@ -274,7 +274,10 @@ namespace V6AccountingB
         }
 
         //Remove mainform_keydown
-
+        /// <summary>
+        /// Bật tính năng menu
+        /// </summary>
+        private bool _control_m;
         /// <summary>
         /// Định nghĩa phím nóng cho chính mình. Nếu không có sẽ gọi vào bên trong currentControl.
         /// </summary>
@@ -285,6 +288,22 @@ namespace V6AccountingB
             {
                 do_hot_key = true;
                 if (_locked) return;
+
+                if (_control_m)
+                {
+                    _control_m = false;
+                    string keyChar = keyData.ToString().ToUpper();
+                    foreach (MenuButton button in menuMain.Buttons)
+                    {
+                        if (button.Text.ToUpper().StartsWith(keyChar))
+                        {
+                            menuMain.SelectedButton = button;
+                            menuMain_Click(menuMain, new MenuControl.ButtonClickEventArgs(button, new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1)));
+                            return;
+                        }
+                    }
+                    return;
+                }
 
                 if (keyData == (Keys.Control | Keys.Up))
                 {
@@ -307,6 +326,10 @@ namespace V6AccountingB
 
                     menuMain.SelectedButton = button;
                     menuMain_Click(menuMain, new MenuControl.ButtonClickEventArgs(button, new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1)));
+                }
+                else if (keyData == (Keys.Control | Keys.M))
+                {
+                    _control_m = true;
                 }
                 else// if ((keyData & Keys.Control) != 0 || (keyData & Keys.Alt) != 0)
                 {

@@ -675,7 +675,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new V6LEVELDOWN();
                 case "V6LEVELSET":
                     return new V6LEVELSET();
-
+                case "AAPPR_XULY_SOA":
+                    return new AAPPR_XULY_SOA();
                 #endregion he thong
 
                 #region ==== Tổng hợp ====

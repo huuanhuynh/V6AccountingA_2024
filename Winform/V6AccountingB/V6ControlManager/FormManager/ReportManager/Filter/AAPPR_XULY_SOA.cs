@@ -1,80 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using V6AccountingBusiness;
 using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AARTTBK1A : FilterBase
+    public partial class AAPPR_XULY_SOA: FilterBase
     {
-        public AARTTBK1A()
+        public AAPPR_XULY_SOA()
         {
             InitializeComponent();
-            txtTk.VvarTextBox.SetInitFilter("tk_cn=1");
-
             F3 = true;
+            F4 = true;
             F5 = false;
+            F9 = true;
+            
+            dateNgay_ct1.Value = V6Setting.M_SV_DATE;
+            dateNgay_ct2.Value = V6Setting.M_SV_DATE;
 
-            txtTk.VvarTextBox.Text = (V6Setting.M_TK_CN ?? "131").Trim();
+            TxtXtag.Text = "2";
             ctDenSo.Enabled = false;
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            chkHoaDonDaIn.Checked = true;
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
+
             if (V6Login.MadvcsCount <= 1)
             {
                 txtMaDvcs.Enabled = false;
             }
+            TxtMa_ct.Text = "SOA";
+            TxtMa_ct.Enabled = false;
 
+            cboMa_xuly.ValueMember = "MA_XULY";
+            cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
+            cboMa_xuly.DataSource = V6BusinessHelper.Select("Alxuly", "ma_xuly,Ten_xuly,Ten_xuly2",
+                                "Ma_ct=@mact", "", "Ma_xuly",
+                                new SqlParameter("@mact", TxtMa_ct.Text)).Data;
+            cboMa_xuly.ValueMember = "Ma_xuly";
+            cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
+            
 
+            cboMa_xuly.SelectedValue = "02";// Nhận hàng
             Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
             Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
             Txtnh_kh4.VvarTextBox.SetInitFilter("loai_nh=4");
             Txtnh_kh5.VvarTextBox.SetInitFilter("loai_nh=5");
             Txtnh_kh6.VvarTextBox.SetInitFilter("loai_nh=6");
-
-            Txtnh_vt1.VvarTextBox.SetInitFilter("loai_nh=1");
-            Txtnh_vt2.VvarTextBox.SetInitFilter("loai_nh=2");
-            Txtnh_vt3.VvarTextBox.SetInitFilter("loai_nh=3");
-            Txtnh_vt4.VvarTextBox.SetInitFilter("loai_nh=4");
-            Txtnh_vt5.VvarTextBox.SetInitFilter("loai_nh=5");
-            Txtnh_vt6.VvarTextBox.SetInitFilter("loai_nh=6");
-
-            SetHideFields("V");
         }
 
-        public void SetHideFields(string lang)
+        public override string Kieu_post
         {
-            _hideFields = new SortedDictionary<string, string>();
-            if (lang == "V")
+            get
             {
-                _hideFields.Add("TAG", "TAG");
-                _hideFields.Add("STT_REC", "STT_REC");
-                _hideFields.Add("STT_REC0", "STT_REC0");
-                _hideFields.Add("STT_REC_TT", "STT_REC_TT");
-                _hideFields.Add("MA_TT", "MA_TT");
-                _hideFields.Add("MA_GD", "MA_GD");
-
-                _hideFields.Add("T_TT_NT0", "T_TT_NT0");
-                _hideFields.Add("T_TT_NT", "T_TT_NT");
-                _hideFields.Add("DA_TT_NT", "DA_TT_NT");
-                _hideFields.Add("CON_PT_NT", "CON_PT_NT");
-                _hideFields.Add("T_TIEN_NT2", "T_TIEN_NT2");
-                _hideFields.Add("T_THUE_NT", "T_THUE_NT");
-
-                               
-
-            }
-            else
-            {
-                _hideFields.Add("TAG", "TAG");
-                _hideFields.Add("STT_REC", "STT_REC");
-                _hideFields.Add("STT_REC0", "STT_REC0");
-                _hideFields.Add("STT_REC_TT", "STT_REC_TT");
-                _hideFields.Add("MA_TT", "MA_TT");
-                _hideFields.Add("MA_GD", "MA_GD");
-
+                return cboMa_xuly.SelectedValue.ToString().Trim();
             }
         }
 
@@ -84,57 +63,24 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-            //@Ngay_ct1 SmallDateTime,
-            //@Ngay_ct2 SmallDateTime,
-            //@Ngay_ct2_ptt SmallDateTime,
-            //@In_tt char(1)='0',
-            //@cKey nvarchar(MAX)
-
             var result = new List<SqlParameter>();
-
-            if (txtTk.VvarTextBox.Text.Trim() == "")
-            {
-                throw new Exception("Chưa chọn tài khoản!");
-            }
-
-            V6Setting.M_TK = txtTk.VvarTextBox.Text;
-            V6Setting.M_TK_CN = txtTk.VvarTextBox.Text;
-            V6Setting.M_ngay_ct1 = dateNgay_ct1.Value;
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
-
-
-            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@Ngay_ct2_ptt", dateNgay_ct2_ptt.Value.ToString("yyyyMMdd")));
-
-            if (rdo_khongintattoan.Checked) 
-
-                result.Add(new SqlParameter("@In_tt", "0"));
-            else
-                result.Add(new SqlParameter("@In_tt", "1"));
-
-            
-             
-            
+            result.Add(new SqlParameter("@ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@ma_ct", TxtMa_ct.Text.Trim()));
             var and = radAnd.Checked;
             
-            string cKey;
+            var cKey = "";
             
+
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_DVCS","MA_KH","MA_BP","MA_NVIEN","TK","MA_HTTT"
+                "MA_DVCS","MA_BP", "MA_KH", "MA_NX", "MA_TD_PH", "MA_NVIEN", "MA_XULY"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {
                 "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6"
             }, and);
-            var key2 = GetFilterStringByFields(new List<string>()
-            {
-                "NH_VT1","NH_VT2","NH_VT3", "NH_VT4", "NH_VT5", "NH_VT6","MA_VT"
-                
-            }, and);
-
-
+           
             if (!string.IsNullOrEmpty(key0))
             {
                 if (and)
@@ -155,10 +101,31 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0} )", key1);
             }
-            if (!string.IsNullOrEmpty(key2))
+
+            switch (TxtXtag.Text.Trim())
             {
-                cKey = cKey + string.Format(" and stt_rec in (select DISTINCT stt_rec from AD81 where ma_ct IN ('SOA','SOF') AND ma_vt in (select ma_vt from alvt where {0} ))", key2);
+                case "0":
+                    cKey = cKey + " and ( Xtag=' ' or Xtag IS NULL )";
+                    break;
+                case "1":
+                    cKey = cKey + " and ( Xtag='1' OR Kieu_post='1' )";
+                    break;
+                case "2":
+                    cKey = cKey + " and ( Xtag='2'  OR Kieu_post='2')";
+                    break;
+                case "5":
+                    cKey = cKey + " and ( Xtag='5'  OR Kieu_post='5')";
+                    break;
             }
+            if (chkHoaDonDaIn.Checked)
+            {
+                cKey = cKey + " and [Sl_in] > 0";
+            }
+            else
+            {
+                cKey = cKey + " and [Sl_in] = 0";
+            }
+
 
             // Tu so den so
             var tu_so = ctTuSo.Text.Trim().Replace("'", "");
@@ -207,19 +174,18 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     ;
                 }
             }
- 
 
-            result.Add(new SqlParameter("@cKey", cKey));
-            result.Add(new SqlParameter("@cAdd", txtAdd.Value));
+
+            result.Add(new SqlParameter("@advance", cKey));
+
+          
             return result;
         }
-
 
         private void chkLike_CheckedChanged(object sender, System.EventArgs e)
         {
             ctDenSo.Enabled = !chkLike.Checked;
         }
-
 
         
     }

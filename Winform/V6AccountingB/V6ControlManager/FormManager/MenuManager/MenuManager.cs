@@ -448,6 +448,17 @@ namespace V6ControlManager.FormManager.MenuManager
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
                                 var programX = codeform.Substring(1);
+                                AldmConfig config = V6ControlsHelper.GetAldmConfig(programX);
+
+                                if (config.HaveInfo && config.CHECK_ADMIN && V6Login.IsAdmin)
+                                {
+                                    check = CheckPassword(owner);
+                                }
+                                else if (config.HaveInfo && config.CHECK_V6)
+                                {
+                                    check = CheckPasswordV6(owner);
+                                }
+                                if (!check) return null;
                                 c = XuLy.GetXuLyControlX(item_id, programX, programX, repFile, mButton.Text);
                             }
                             break;

@@ -1650,6 +1650,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.Designer.cs">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AAPPR_XULY_SOA.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AAPPR_XULY_SOA.Designer.cs">
+      <DependentUpon>AAPPR_XULY_SOA.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOC_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3854,6 +3860,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_CA1_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_XULY_SOA.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOC_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3982,6 +3991,12 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\NhanSu\XLSPRCONG2_Control.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\V6EDITALAB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\V6EDITALAB.Designer.cs">
+      <DependentUpon>V6EDITALAB.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\V6LEVELSET.cs">
       <SubType>UserControl</SubType>
@@ -5630,6 +5645,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.resx">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_XULY_SOA.resx">
+      <DependentUpon>AAPPR_XULY_SOA.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_SOC_IN1.resx">
       <DependentUpon>AAPPR_SOC_IN1.cs</DependentUpon>
     </EmbeddedResource>
@@ -6811,6 +6829,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVITRI03_F3F4.resx">
       <DependentUpon>AINVITRI03_F3F4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\V6EDITALAB.resx">
+      <DependentUpon>V6EDITALAB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ZACOSXLT_TINHGIA_F3.resx">
       <DependentUpon>ZACOSXLT_TINHGIA_F3.cs</DependentUpon>

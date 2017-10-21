@@ -61,10 +61,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
 
 
             var aldm_data =
-                V6BusinessHelper.Select("aldm", "GRDS_V1,GRDF_V1,GRDHV_V1,GRDHE_V1", "ma_dm='" + maDm + "'").Data;
+                V6BusinessHelper.Select("aldm", "GRDS_V1,GRDF_V1,GRDHV_V1,GRDHE_V1,Title,Title2", "ma_dm='" + maDm + "'").Data;
             if (aldm_data != null && aldm_data.Rows.Count > 0)
             {
-
+                Text = aldm_data.Rows[0][V6Setting.IsVietnamese?"Title":"Title2"].ToString().Trim();
                 Report_GRDSV1 = aldm_data.Rows[0][0].ToString().Trim();
                 Report_GRDFV1 = aldm_data.Rows[0][1].ToString().Trim();
                 Report_GRDHV_V1 = aldm_data.Rows[0][2].ToString().Trim();

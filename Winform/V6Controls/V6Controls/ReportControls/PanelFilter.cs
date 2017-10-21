@@ -123,6 +123,7 @@ namespace V6ReportControls
         /// <param name="adv">Field:vvar;Field2:vvar2:Field2 like '%'</param>
         public void AddMultiFilterLine(V6TableStruct structTable, string adv)
         {
+            _maxIndex = -1;
             var spliter = ObjectAndString.SplitString(adv);
             foreach (string s in spliter)
             {

@@ -41,6 +41,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.nhomKhach6 = new V6ReportControls.FilterLineVvarTextBox();
             this.nhomKhach1 = new V6ReportControls.FilterLineVvarTextBox();
             this.nhomKhach2 = new V6ReportControls.FilterLineVvarTextBox();
+            this.taiKhoan = new V6ReportControls.FilterLineVvarTextBox();
             this.txtMaKh = new V6ReportControls.FilterLineVvarTextBox();
             this.nhomKhach3 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtma_nvien = new V6Controls.V6VvarTextBox();
@@ -71,6 +72,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.panel1.Controls.Add(this.nhomKhach6);
             this.panel1.Controls.Add(this.nhomKhach1);
             this.panel1.Controls.Add(this.nhomKhach2);
+            this.panel1.Controls.Add(this.taiKhoan);
             this.panel1.Controls.Add(this.txtMaKh);
             this.panel1.Controls.Add(this.nhomKhach3);
             this.panel1.Controls.Add(this.Txtma_nvien);
@@ -93,7 +95,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             this.nhomKhach4.FieldCaption = "Nhóm khách hàng 4";
             this.nhomKhach4.FieldName = "NH_KH4";
-            this.nhomKhach4.IsSelected = false;
             this.nhomKhach4.Location = new System.Drawing.Point(313, 29);
             this.nhomKhach4.Name = "nhomKhach4";
             this.nhomKhach4.Size = new System.Drawing.Size(292, 22);
@@ -104,7 +105,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             this.nhomKhach5.FieldCaption = "Nhóm khách hàng 5";
             this.nhomKhach5.FieldName = "NH_KH5";
-            this.nhomKhach5.IsSelected = false;
             this.nhomKhach5.Location = new System.Drawing.Point(313, 52);
             this.nhomKhach5.Name = "nhomKhach5";
             this.nhomKhach5.Size = new System.Drawing.Size(292, 22);
@@ -115,7 +115,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             this.nhomKhach6.FieldCaption = "Nhóm khách hàng 6";
             this.nhomKhach6.FieldName = "NH_KH6";
-            this.nhomKhach6.IsSelected = false;
             this.nhomKhach6.Location = new System.Drawing.Point(313, 75);
             this.nhomKhach6.Name = "nhomKhach6";
             this.nhomKhach6.Size = new System.Drawing.Size(292, 22);
@@ -126,7 +125,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             this.nhomKhach1.FieldCaption = "Nhóm khách hàng 1";
             this.nhomKhach1.FieldName = "NH_KH1";
-            this.nhomKhach1.IsSelected = false;
             this.nhomKhach1.Location = new System.Drawing.Point(15, 29);
             this.nhomKhach1.Name = "nhomKhach1";
             this.nhomKhach1.Size = new System.Drawing.Size(292, 22);
@@ -137,18 +135,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             this.nhomKhach2.FieldCaption = "Nhóm khách hàng 2";
             this.nhomKhach2.FieldName = "NH_KH2";
-            this.nhomKhach2.IsSelected = false;
             this.nhomKhach2.Location = new System.Drawing.Point(15, 52);
             this.nhomKhach2.Name = "nhomKhach2";
             this.nhomKhach2.Size = new System.Drawing.Size(292, 22);
             this.nhomKhach2.TabIndex = 30;
             this.nhomKhach2.Vvar = "NH_KH";
             // 
+            // taiKhoan
+            // 
+            this.taiKhoan.FieldCaption = "Tài khoản";
+            this.taiKhoan.FieldName = "TK";
+            this.taiKhoan.Location = new System.Drawing.Point(313, 98);
+            this.taiKhoan.Name = "taiKhoan";
+            this.taiKhoan.Size = new System.Drawing.Size(292, 22);
+            this.taiKhoan.TabIndex = 31;
+            this.taiKhoan.Vvar = "TK";
+            // 
             // txtMaKh
             // 
             this.txtMaKh.FieldCaption = "Mã khách hàng";
             this.txtMaKh.FieldName = "MA_KH";
-            this.txtMaKh.IsSelected = false;
             this.txtMaKh.Location = new System.Drawing.Point(15, 98);
             this.txtMaKh.Name = "txtMaKh";
             this.txtMaKh.Size = new System.Drawing.Size(292, 22);
@@ -159,7 +165,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             this.nhomKhach3.FieldCaption = "Nhóm khách hàng 3";
             this.nhomKhach3.FieldName = "NH_KH3";
-            this.nhomKhach3.IsSelected = false;
             this.nhomKhach3.Location = new System.Drawing.Point(15, 75);
             this.nhomKhach3.Name = "nhomKhach3";
             this.nhomKhach3.Size = new System.Drawing.Size(292, 22);
@@ -305,11 +310,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // btnVSearch
             // 
             this.btnVSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVSearch.Location = new System.Drawing.Point(756, 40);
+            this.btnVSearch.Image = global::V6ControlManager.Properties.Resources.Search;
+            this.btnVSearch.Location = new System.Drawing.Point(711, 40);
             this.btnVSearch.Name = "btnVSearch";
-            this.btnVSearch.Size = new System.Drawing.Size(61, 57);
+            this.btnVSearch.Size = new System.Drawing.Size(88, 40);
             this.btnVSearch.TabIndex = 1;
             this.btnVSearch.Text = "Tìm";
+            this.btnVSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVSearch.UseVisualStyleBackColor = true;
             this.btnVSearch.Click += new System.EventHandler(this.btnVSearch_Click);
             // 
@@ -413,6 +420,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
         private V6ReportControls.FilterLineVvarTextBox nhomKhach2;
         private V6ReportControls.FilterLineVvarTextBox nhomKhach3;
         private V6ReportControls.FilterLineVvarTextBox txtMaKh;
+        private V6ReportControls.FilterLineVvarTextBox taiKhoan;
 
     }
 }

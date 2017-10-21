@@ -236,6 +236,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 case "HRORGVIEW1":
                     return new HRORGVIEW1(itemId, program, procedure, reportFile, text);
+                case "V6EDITALAB":
+                    return new V6EDITALAB(itemId, program, procedure, reportFile, text);
             }
             return new XuLyBase0(itemId, program, procedure, reportFile, text);
         }

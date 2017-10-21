@@ -533,7 +533,8 @@ namespace V6Controls
             _data = data;
         }
 
-        public bool NoInfo { get; set; }
+        public bool NoInfo { get; internal set; }
+        public bool HaveInfo { get { return !NoInfo; } }
         public bool Error { get; set; }
 
         public int GetInt(string name)
@@ -635,6 +636,8 @@ namespace V6Controls
         /// Cấu hình có sử dụng F4 để thêm khi đang chọn lookup.
         /// </summary>
         public bool F4 { get { return GetString("F4") == "1"; } }
+        public bool CHECK_ADMIN { get { return GetString("CHECK_ADMIN") == "1"; } }
+        public bool CHECK_V6 { get { return GetString("CHECK_V6") == "1"; } }
         public string CTRL_F4 { get { return GetString("CTRL_F4"); } }
         public string DUPDATE { get { return GetString("DUPDATE"); } }
         public string TRANSFORM { get { return GetString("TRANSFORM"); } }

@@ -574,6 +574,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     }
 
                     GetLoDate13();
+
+                    if (_maLo.GotFocusText == _maLo.LostFocusText
+                        && (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO)))
+                    {
+                        if (_soLuong1.Value > _ton13.Value)
+                        {
+                            _soLuong1.Value = _ton13.Value;
+                            //TinhTienNt2();
+                            TinhTienVon1();
+                        }
+                    }
                 }
                 else
                 {

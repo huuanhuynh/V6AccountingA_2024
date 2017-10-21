@@ -755,6 +755,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     }
 
                     GetLoDate13();
+
+                    if (_maLo.GotFocusText == _maLo.LostFocusText
+                        && (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO)))
+                    {
+                        if (_soLuong1.Value > _ton13.Value)
+                        {
+                            _soLuong1.Value = _ton13.Value;
+                            //TinhTienNt2();
+                            TinhTienVon1();
+                        }
+                    }
                 }
                 else
                 {
@@ -807,7 +818,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     {
                         string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
                         string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
-                        string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                        string c_maKhoI = txtMaKhoX.Text.Trim().ToUpper();// row["Ma_kho__i"].ToString().Trim().ToUpper();
                         string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
                         //string c_maVi_Tri = row["Ma_vi_tri"].ToString().Trim().ToUpper();
 
@@ -4472,7 +4483,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             try
             {
                 var chonExcel = new LoadExcelDataForm();
-                chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
+                chonExcel.CheckFields = "MA_VT,TIEN_NT0,SO_LUONG1,GIA_NT01";
                 chonExcel.MA_CT = Invoice.Mact;
                 chonExcel.AcceptData += chonExcel_AcceptData;
                 chonExcel.ShowDialog(this);
@@ -4488,7 +4499,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             var count = 0;
             _message = "";
 
-            if (table.Columns.Contains("MA_VT") && table.Columns.Contains("MA_KHO_I")
+            if (table.Columns.Contains("MA_VT")
                 && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT01"))
             {
@@ -4504,9 +4515,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 {
                     var data = row.ToDataDictionary(_sttRec);
                     var cMaVt = data["MA_VT"].ToString().Trim();
-                    var cMaKhoI = data["MA_KHO_I"].ToString().Trim();
+                    //var cMaKhoI = data["MA_KHO_I"].ToString().Trim();
                     var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
-                    var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
+                    //var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
 
                     //{ Tuanmh 31/08/2016 Them thong tin ALVT
                     _maVt.Text = cMaVt;
@@ -4544,7 +4555,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
 
 
-                    if (exist && exist2)
+                    if (exist)// && exist2)
                     {
                         if (XuLyThemDetail(data))
                         {
@@ -4554,7 +4565,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     else
                     {
                         if (!exist) _message += " Danh mục vật tư không tồn tại mã: " + cMaVt;
-                        if (!exist2) _message += " Danh mục kho không tồn tại mã: " + cMaKhoI;
+                        //if (!exist2) _message += " Danh mục kho không tồn tại mã: " + cMaKhoI;
                     }
                 }
                 ShowParentMessage(count > 0
