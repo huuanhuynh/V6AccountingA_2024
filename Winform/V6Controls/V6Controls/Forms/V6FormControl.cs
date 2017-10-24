@@ -237,12 +237,13 @@ namespace V6Controls.Forms
         /// <param name="loai">1ct 4report</param>
         /// <param name="mact"></param>
         /// <param name="madm"></param>
+        /// <param name="itemId"></param>
         /// <param name="adv"></param>
-        protected void LoadTag(int loai, string mact, string madm, string adv = "")
+        protected void LoadTag(int loai, string mact, string madm, string itemId, string adv = "")
         {
             try
             {
-                var data = GetTagData(loai, mact, madm, adv);
+                var data = GetTagData(loai, mact, madm, itemId, adv);
                 V6ControlFormHelper.SetFormTagDictionary(this, data);
             }
             catch (Exception ex)

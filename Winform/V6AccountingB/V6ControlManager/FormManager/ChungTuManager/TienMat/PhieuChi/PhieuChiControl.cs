@@ -2965,7 +2965,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void DoEditThread()
         {
+            V6ControlFormHelper.AddLastAction("\nDoEditThread(), ReadyForEdit() Begin: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
             ReadyForEdit();
+            V6ControlFormHelper.AddLastAction("\nReadyForEdit() End: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
             Timer checkEdit = new Timer();
             checkEdit.Interval = 500;
             checkEdit.Tick += checkEdit_Tick;
@@ -3020,8 +3022,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             if (flagEditFinish)
             {
-                ((Timer)sender).Stop();
-
+                ((Timer) sender).Stop();
+                //Ghi log add edit time.
+                this.WriteToLog(string.Format("AddEditTime({0})", _sttRec), "Xem LastAction! ");
+                
                 if (flagEditSuccess)
                 {
                     V6ControlFormHelper.ShowMainMessage(V6Text.EditSuccess);
@@ -3036,18 +3040,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     Mode = V6Mode.Edit;
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer) sender).Dispose();
+            }
+            else
+            {
+                V6ControlFormHelper.AddLastAction("\ncheckEdit_Tick(): " + Invoice.V6Message);
             }
         }
 
         private void DoEdit()
         {
+            V6ControlFormHelper.AddLastAction("\nDoEdit() Begin: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
             try
             {
                 CheckForIllegalCrossThreadCalls = false;
                 var keys = new SortedDictionary<string, object> { { "STT_REC", _sttRec } };
+                V6ControlFormHelper.AddLastAction("\nInvoice.UpdateInvoice() Begin: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                 if (Invoice.UpdateInvoice(addDataAM, editDataAD, editDataAD2, editDataAD3, keys))
                 {
+                    V6ControlFormHelper.AddLastAction("\nInvoice.UpdateInvoice() End Succes: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                     flagEditSuccess = true;
                     ADTables.Remove(_sttRec);
                     AD2Tables.Remove(_sttRec);
@@ -3055,6 +3066,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 }
                 else
                 {
+                    V6ControlFormHelper.AddLastAction("\nInvoice.UpdateInvoice() End Fail: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                     flagEditSuccess = false;
                     editErrorMessage = "Sửa không thành công";
                     Invoice.PostErrorLog(_sttRec, "S");
@@ -3067,6 +3079,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 Invoice.PostErrorLog(_sttRec, "S", ex);
             }
             flagEditFinish = true;
+            V6ControlFormHelper.AddLastAction("\nDoEdit() End: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
         }
         #endregion edit
 
@@ -4024,6 +4037,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void TinhToanTruocKhiLuu()
         {
+            V6ControlFormHelper.AddLastAction("\nTinhToanTruocKhiLuu() Begin: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
             try
             {
                 SqlParameter[] plist =
@@ -4068,6 +4082,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 this.WriteExLog(GetType() + ".TinhToanTruocKhiLuu", ex);
             }
+            V6ControlFormHelper.AddLastAction("\nTinhToanTruocKhiLuu() End: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
         }
 
 

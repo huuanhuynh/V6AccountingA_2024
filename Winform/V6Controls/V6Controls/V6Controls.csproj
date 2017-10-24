@@ -1185,6 +1185,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ReportControls\DataGridViewPrinter.cs" />
+    <Compile Include="ReportControls\FilterGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportControls\FilterGroup.Designer.cs">
+      <DependentUpon>FilterGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportControls\FilterLineBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1848,6 +1854,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportControls\FilterGroup.resx">
+      <DependentUpon>FilterGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportControls\FilterLineBase.resx">
       <DependentUpon>FilterLineBase.cs</DependentUpon>

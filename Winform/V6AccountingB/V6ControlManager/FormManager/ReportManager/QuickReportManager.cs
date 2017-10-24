@@ -14,6 +14,7 @@ using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6ReportControls;
 
 namespace V6ControlManager.FormManager.ReportManager
 {
@@ -48,7 +49,7 @@ namespace V6ControlManager.FormManager.ReportManager
             string err = "";
             try
             {
-                int i = 0;
+                int i = 0, lineTop = 35;
                 foreach (DataRow row in dataALREPORT1.Rows)
                 {
                     var ten = row["ten"].ToString();
@@ -57,11 +58,12 @@ namespace V6ControlManager.FormManager.ReportManager
                         string define = row["filter"].ToString().Trim();
                         
 
-                        var lineControl = V6ControlFormHelper.MadeLineDynamicControl(define);
-                        All_Objects[lineControl.Name] = lineControl;
+                        var lineControl0 = V6ControlFormHelper.MadeLineDynamicControl(define);
+                        All_Objects[lineControl0.Name] = lineControl0;
 
-                        if (lineControl != null)
+                        if (lineControl0 is FilterLineDynamic)
                         {
+                            FilterLineDynamic lineControl = lineControl0 as FilterLineDynamic;
                             var key1 = row["key1"].ToString().Trim();
                             var key2 = row["key2"].ToString().Trim();
                             var key3 = row["key3"].ToString().Trim();
@@ -75,7 +77,8 @@ namespace V6ControlManager.FormManager.ReportManager
 
 
                             //Vị trí
-                            lineControl.Location = new Point(3, 35 + 25 * i);
+                            lineControl.Location = new Point(3, lineTop);
+                            lineTop += lineControl.Height;
                             filterControl.AddLineControls(lineControl);
                             //panel1.Controls.Add(lineControl);
 
@@ -203,6 +206,27 @@ namespace V6ControlManager.FormManager.ReportManager
                                 }//end for
                             }
                             
+                        }
+                        else if (lineControl0 is FilterGroup)
+                        {
+                            //Copy code
+                            FilterGroup lineControl = lineControl0 as FilterGroup;
+                            var key1 = row["key1"].ToString().Trim();
+                            var key2 = row["key2"].ToString().Trim();
+                            var key3 = row["key3"].ToString().Trim();
+                            var key4 = row["key4"].ToString().Trim();
+                            var loai_key = row["loai_key"].ToString().Trim();
+                            lineControl.DefineInfo.Key1 = key1;
+                            lineControl.DefineInfo.Key2 = key2;
+                            lineControl.DefineInfo.Key3 = key3;
+                            lineControl.DefineInfo.Key4 = key4;
+                            lineControl.DefineInfo.Loai_key = loai_key;
+
+
+                            //Vị trí
+                            lineControl.Location = new Point(3, lineTop);
+                            lineTop += lineControl.Height;
+                            filterControl.AddLineGroupControls(lineControl);
                         }
                         i++;
                     }

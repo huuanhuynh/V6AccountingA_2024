@@ -100,7 +100,7 @@ namespace V6AccountingBusiness.Invoices
             List<SortedDictionary<string, object>> adList3
             )
         {
-
+            V6Message = "InsertInvoice, begin " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             var amSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AMStruct, am);
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction(AM);
 
@@ -159,9 +159,9 @@ namespace V6AccountingBusiness.Invoices
                         new SqlParameter("@UserID", V6Login.UserId),
                         new SqlParameter("@Save_voucher", "1")
                     };
-
+                    V6Message = "Insert ok, begin Comit " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                     V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_CA1_POST_MAIN", pList);
-
+                    V6Message = "Insert ok, end Comit " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                     //TRANSACTION.Commit();
                     return true;
                 }
@@ -208,8 +208,11 @@ namespace V6AccountingBusiness.Invoices
                         new SqlParameter("@UserID", V6Login.UserId),
                         new SqlParameter("@Save_voucher", "1")
                     };
+            V6Message = "UpdateInvoice Start VPA_CA1_POST_MAIN_BEFORE " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_CA1_POST_MAIN_BEFORE", pList0);
+            V6Message = "UpdateInvoice Start VPA_CA1_POST_MAIN_BEFORE Finish " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
 
+            V6Message = "GenUpdateAMSql " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AM, AMStruct, am, keys);
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("Invoice51Update");
             //Delete AD
@@ -246,7 +249,9 @@ namespace V6AccountingBusiness.Invoices
 
             if (insert_success && j == adList.Count && j2 == adList2.Count && j3 == adList3.Count)
             {
+                V6Message = "Update ok, begin Comit " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 TRANSACTION.Commit();
+                V6Message = "Update ok, end Comit " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 try
                 {
                     int apgia = 0;
@@ -264,8 +269,9 @@ namespace V6AccountingBusiness.Invoices
                         new SqlParameter("@UserID", V6Login.UserId),
                         new SqlParameter("@Save_voucher", "1")
                     };
+                    V6Message = "VPA_CA1_POST_MAIN begin " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                     V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_CA1_POST_MAIN", pList);
-
+                    V6Message = "VPA_CA1_POST_MAIN end " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                     //TRANSACTION.Commit();
                     return true;
                 }

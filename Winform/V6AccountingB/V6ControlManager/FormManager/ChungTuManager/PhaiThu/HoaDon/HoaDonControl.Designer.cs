@@ -1154,7 +1154,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.txtGC_UD1.Location = new System.Drawing.Point(436, 74);
             this.txtGC_UD1.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_UD1.Name = "txtGC_UD1";
-            this.txtGC_UD1.Size = new System.Drawing.Size(432, 20);
+            this.txtGC_UD1.Size = new System.Drawing.Size(396, 20);
             this.txtGC_UD1.TabIndex = 9;
             // 
             // label1

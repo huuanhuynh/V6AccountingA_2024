@@ -25,9 +25,10 @@ namespace V6Structs
                 {
                     if (ss.Contains(":"))
                     {
-                        var split = ss.Split(':');
-                        var key = split[0];
-                        var value = split[1];
+                        //var split = ss.Split(':');
+                        int index = ss.IndexOf(':');
+                        var key = ss.Substring(0, index);// split[0];
+                        var value = ss.Substring(index + 1);// split[1];
                         SetDefine(key, value);
                     }
                 }

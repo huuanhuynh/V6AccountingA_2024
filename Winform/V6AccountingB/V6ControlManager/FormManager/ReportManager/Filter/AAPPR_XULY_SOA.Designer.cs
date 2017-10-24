@@ -48,6 +48,7 @@
             this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lineMa_xuly = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox5 = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox2 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_kh6 = new V6ReportControls.FilterLineVvarTextBox();
@@ -63,7 +64,6 @@
             this.filterLineVvarTextBox3 = new V6ReportControls.FilterLineVvarTextBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
-            this.filterLineVvarTextBox6 = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -205,7 +205,7 @@
             // 
             // cboMa_xuly
             // 
-            this.cboMa_xuly.AccessibleName = "Ma_xuly";
+            this.cboMa_xuly.AccessibleName = "Ma_xuly1";
             this.cboMa_xuly.BackColor = System.Drawing.SystemColors.Window;
             this.cboMa_xuly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMa_xuly.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -314,7 +314,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.filterLineVvarTextBox6);
+            this.groupBox1.Controls.Add(this.lineMa_xuly);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox5);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox2);
             this.groupBox1.Controls.Add(this.Txtnh_kh6);
@@ -336,6 +336,18 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // lineMa_xuly
+            // 
+            this.lineMa_xuly.AccessibleDescription = "FILTERL00009";
+            this.lineMa_xuly.AccessibleName2 = "MA_XULY";
+            this.lineMa_xuly.FieldCaption = "Mã xử lý";
+            this.lineMa_xuly.FieldName = "MA_XULY";
+            this.lineMa_xuly.Location = new System.Drawing.Point(3, 190);
+            this.lineMa_xuly.Name = "lineMa_xuly";
+            this.lineMa_xuly.Size = new System.Drawing.Size(294, 22);
+            this.lineMa_xuly.TabIndex = 15;
+            this.lineMa_xuly.Vvar = "MA_XULY";
             // 
             // filterLineVvarTextBox5
             // 
@@ -505,17 +517,6 @@
             this.radAnd.Text = "Tất cả điều kiện (and)";
             this.radAnd.UseVisualStyleBackColor = true;
             // 
-            // filterLineVvarTextBox6
-            // 
-            this.filterLineVvarTextBox6.AccessibleDescription = "FILTERL00009";
-            this.filterLineVvarTextBox6.FieldCaption = "Mã xử lý";
-            this.filterLineVvarTextBox6.FieldName = "MA_XULY";
-            this.filterLineVvarTextBox6.Location = new System.Drawing.Point(3, 190);
-            this.filterLineVvarTextBox6.Name = "filterLineVvarTextBox6";
-            this.filterLineVvarTextBox6.Size = new System.Drawing.Size(294, 22);
-            this.filterLineVvarTextBox6.TabIndex = 15;
-            this.filterLineVvarTextBox6.Vvar = "MA_XULY";
-            // 
             // AAPPR_XULY_SOA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -586,6 +587,6 @@
         private V6Controls.V6Label v6Label5;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox2;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox5;
-        private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox6;
+        private V6ReportControls.FilterLineVvarTextBox lineMa_xuly;
     }
 }

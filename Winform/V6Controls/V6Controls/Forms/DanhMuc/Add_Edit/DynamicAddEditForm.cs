@@ -493,7 +493,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             //virtual
             LoadDetails();
 
-            LoadTag(2, "", TableName.ToString());
+            LoadTag(2, "", TableName.ToString(), ItemID);
         }
 
         protected override void LoadAll()

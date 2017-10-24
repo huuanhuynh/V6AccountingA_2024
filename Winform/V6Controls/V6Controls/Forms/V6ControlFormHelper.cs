@@ -24,7 +24,10 @@ using V6Tools.V6Convert;
 using Data_Table = V6Tools.V6Export.Data_Table;
 
 namespace V6Controls.Forms
-{   
+{
+    /// <summary>
+    /// Các hàm chức năng liên quan đến form và control.
+    /// </summary>
     public static class V6ControlFormHelper
     {
         /// <summary>
@@ -844,7 +847,7 @@ namespace V6Controls.Forms
         /// </summary>
         /// <param name="define">Chuỗi thông tin (field:ngay_ct1;textv:Từ ngày;textE:From;where_field:ngay_ct;type:D;loai_key:10;oper:and;sqltype:smalldatetime;limitchar:ABCabc123;defaultValue:m_ngay_ct1)</param>
         /// <returns></returns>
-        public static FilterLineDynamic MadeLineDynamicControl(string define)
+        public static UserControl MadeLineDynamicControl(string define)
         {
             //string define = row["filter"].ToString().Trim();
             DefineInfo lineInfo = new DefineInfo(define);
@@ -871,8 +874,21 @@ namespace V6Controls.Forms
                    controltype=lineInfo.ControlType.ToUpper();
             }
 
-
-            if (controltype == "VVARTEXTBOX")
+            if (controltype == "FILTERGROUP")
+            {
+                FilterGroup filter = new FilterGroup()
+                {
+                    Name = "line" + lineInfo.Field.ToUpper(),
+                    //FieldName = lineInfo.Field.ToUpper(),
+                    FieldCaption = V6Setting.IsVietnamese ? lineInfo.TextV : lineInfo.TextE,
+                    DefineInfo = lineInfo,
+                    Enabled = lineInfo.Enabled,
+                    Visible = lineInfo.Visible,
+                };
+                filter.GenControls(V6Setting.IsVietnamese ? lineInfo.DescriptionV : lineInfo.DescriptionE);
+                return filter;
+            }
+            else if (controltype == "VVARTEXTBOX")
             {
                 vT = lineControl.AddVvarTextBox(lineInfo.Vvar, lineInfo.InitFilter);
                 //

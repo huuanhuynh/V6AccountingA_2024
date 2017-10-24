@@ -192,81 +192,102 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 string last_key = "";
                 foreach (Control control in groupBox1.Controls)
                 {
-                    var line = control as FilterLineDynamic;
-                    if (line == null) continue;
-                    if (line.DefineInfo.Key1.ToUpper() != parameterName.ToUpper()) continue;
-
-                    if (line.CheckNotEmpty && line.StringValue == "")
+                    if (control is FilterGroup)
                     {
-                        throw new Exception(line.FieldName);
+                        var group = control as FilterGroup;
+                        if (group.DefineInfo.Key1.ToUpper() != parameterName.ToUpper()) continue;
+
+                        last_key = group.DefineInfo.Loai_key;
+
+                        switch (last_key)
+                        {
+                            case "A1"://1value
+                                object_value = group.StringValue;
+                                break;
+                            case "11"://1value
+                                {
+                                    object_value = group.ObjectValue;
+                                }
+                                break;
+                        }
                     }
-                    last_key = line.DefineInfo.Loai_key;
-
-                    switch (last_key)
+                    else if (control is FilterLineDynamic)
                     {
-                        case "10"://ngay
-                            if (line.IsSelected)
-                            string_value = line.StringValue;
-                            break;
-                        case "A1"://1value
-                            object_value = line.StringValue;
-                            break;
-                        case "11"://1value
-                            if (line.IsSelected)
-                            {
-                                object_value = line.ObjectValue;
-                            }
-                            else
-                            {
-                                object_value = null;
-                            }
-                            break;
-                        case "21"://in alkh
-                            if (line.IsSelected)
-                            in_fieldList_Alkh.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
-                        case "22"://in alvt
-                            if (line.IsSelected)
-                            in_fieldList_Alvt.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
-                        case "23"://in altk
-                            if (line.IsSelected)
-                            in_fieldList_Altk.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
-                        case "24"://in alvv
-                            if (line.IsSelected)
-                            in_fieldList_Alvv.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
-                        case "25"://in alphi
-                            if (line.IsSelected)
-                                in_fieldList_Alphi.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
-                        case "26"://in alhd
-                            if (line.IsSelected)
-                                in_fieldList_Alhd.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
-                        case "27"://in alku
-                            if (line.IsSelected)
-                                in_fieldList_Alku.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
-                        case "28"://in alsp
-                            if (line.IsSelected)
-                                in_fieldList_Alsp.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
+                        var line = control as FilterLineDynamic;
+                        if (line.DefineInfo.Key1.ToUpper() != parameterName.ToUpper()) continue;
 
-                        case "30"://advance, cộng dồn
-                            if(line.IsSelected)
-                            string_value = string.Format("{0}{1} {2}", string_value, and_or, line.Query);
-                            break;
-                    }// end switch
+                        if (line.CheckNotEmpty && line.StringValue == "")
+                        {
+                            throw new Exception(line.FieldName);
+                        }
+                        last_key = line.DefineInfo.Loai_key;
+
+                        switch (last_key)
+                        {
+                            case "10"://ngay
+                                if (line.IsSelected)
+                                    string_value = line.StringValue;
+                                break;
+                            case "A1"://1value
+                                object_value = line.StringValue;
+                                break;
+                            case "11"://1value
+                                if (line.IsSelected)
+                                {
+                                    object_value = line.ObjectValue;
+                                }
+                                else
+                                {
+                                    object_value = null;
+                                }
+                                break;
+                            case "21"://in alkh
+                                if (line.IsSelected)
+                                    in_fieldList_Alkh.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+                            case "22"://in alvt
+                                if (line.IsSelected)
+                                    in_fieldList_Alvt.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+                            case "23"://in altk
+                                if (line.IsSelected)
+                                    in_fieldList_Altk.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+                            case "24"://in alvv
+                                if (line.IsSelected)
+                                    in_fieldList_Alvv.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+                            case "25"://in alphi
+                                if (line.IsSelected)
+                                    in_fieldList_Alphi.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+                            case "26"://in alhd
+                                if (line.IsSelected)
+                                    in_fieldList_Alhd.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+                            case "27"://in alku
+                                if (line.IsSelected)
+                                    in_fieldList_Alku.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+                            case "28"://in alsp
+                                if (line.IsSelected)
+                                    in_fieldList_Alsp.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+
+                            case "30"://advance, cộng dồn
+                                if (line.IsSelected)
+                                    string_value = string.Format("{0}{1} {2}", string_value, and_or, line.Query);
+                                break;
+                        }// end switch
+                    }
                 }// end for lines
 
                 switch (last_key)
@@ -315,81 +336,103 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 string last_key = "";
                 foreach (Control control in groupBox1.Controls)
                 {
-                    var line = control as FilterLineDynamic;
-                    if (line == null) continue;
-                    if (line.DefineInfo.Key2.ToUpper() != parameterName.ToUpper()) continue;
-
-                    if (line.CheckNotEmpty && line.StringValue == "")
+                    if (control is FilterGroup)
                     {
-                        throw new Exception(line.FieldName);
+                        var group = control as FilterGroup;
+                        if (group.DefineInfo.Key1.ToUpper() != parameterName.ToUpper()) continue;
+
+                        last_key = group.DefineInfo.Loai_key;
+
+                        switch (last_key)
+                        {
+                            case "A1"://1value
+                                object_value = group.StringValue;
+                                break;
+                            case "11"://1value
+                                {
+                                    object_value = group.ObjectValue;
+                                }
+                                break;
+                        }
                     }
-                    last_key = line.DefineInfo.Loai_key;
-
-                    switch (last_key)
+                    else if (control is FilterLineDynamic)
                     {
-                        case "10"://ngay
-                            if (line.IsSelected)
-                                string_value = line.StringValue;
-                            break;
-                        case "A1"://1value
-                            object_value = line.StringValue;
-                            break;
-                        case "11"://1value
-                            if (line.IsSelected)
-                            {
-                                object_value = line.ObjectValue;
-                            }
-                            else
-                            {
-                                object_value = null;
-                            }
-                            break;
-                        case "21"://in alkh
-                            if (line.IsSelected)
-                                in_fieldList_Alkh.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
-                        case "22"://in alvt
-                            if (line.IsSelected)
-                                in_fieldList_Alvt.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
-                        case "23"://in altk
-                            if (line.IsSelected)
-                                in_fieldList_Altk.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
-                        case "24"://in alvv
-                            if (line.IsSelected)
-                                in_fieldList_Alvv.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
-                        case "25"://in alphi
-                            if (line.IsSelected)
-                                in_fieldList_Alphi.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
-                        case "26"://in alhd
-                            if (line.IsSelected)
-                                in_fieldList_Alhd.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
-                        case "27"://in alku
-                            if (line.IsSelected)
-                                in_fieldList_Alku.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
-                        case "28"://in alsp
-                            if (line.IsSelected)
-                                in_fieldList_Alsp.Add(line.FieldName);
-                            //string_value = line.StringValue;
-                            break;
+                        var line = control as FilterLineDynamic;
+                        if (line == null) continue;
+                        if (line.DefineInfo.Key2.ToUpper() != parameterName.ToUpper()) continue;
 
-                        case "30"://advance, cộng dồn
-                            if (line.IsSelected)
-                                string_value = string.Format("{0}{1} {2}", string_value, and_or, line.Query);
-                            break;
-                    }// end switch
+                        if (line.CheckNotEmpty && line.StringValue == "")
+                        {
+                            throw new Exception(line.FieldName);
+                        }
+                        last_key = line.DefineInfo.Loai_key;
+
+                        switch (last_key)
+                        {
+                            case "10"://ngay
+                                if (line.IsSelected)
+                                    string_value = line.StringValue;
+                                break;
+                            case "A1"://1value
+                                object_value = line.StringValue;
+                                break;
+                            case "11"://1value
+                                if (line.IsSelected)
+                                {
+                                    object_value = line.ObjectValue;
+                                }
+                                else
+                                {
+                                    object_value = null;
+                                }
+                                break;
+                            case "21"://in alkh
+                                if (line.IsSelected)
+                                    in_fieldList_Alkh.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+                            case "22"://in alvt
+                                if (line.IsSelected)
+                                    in_fieldList_Alvt.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+                            case "23"://in altk
+                                if (line.IsSelected)
+                                    in_fieldList_Altk.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+                            case "24"://in alvv
+                                if (line.IsSelected)
+                                    in_fieldList_Alvv.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+                            case "25"://in alphi
+                                if (line.IsSelected)
+                                    in_fieldList_Alphi.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+                            case "26"://in alhd
+                                if (line.IsSelected)
+                                    in_fieldList_Alhd.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+                            case "27"://in alku
+                                if (line.IsSelected)
+                                    in_fieldList_Alku.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+                            case "28"://in alsp
+                                if (line.IsSelected)
+                                    in_fieldList_Alsp.Add(line.FieldName);
+                                //string_value = line.StringValue;
+                                break;
+
+                            case "30"://advance, cộng dồn
+                                if (line.IsSelected)
+                                    string_value = string.Format("{0}{1} {2}", string_value, and_or, line.Query);
+                                break;
+                        }// end switch
+                    }
                 }// end for lines
 
                 switch (last_key)
@@ -514,6 +557,33 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     }
                 };
             }
+        }
+
+        public void AddLineGroupControls(FilterGroup lineControl)
+        {
+            lineControl.Width = groupBox1.Width - 10;
+            groupBox1.Controls.Add(lineControl);
+
+            if (lineControl.DefineInfo.Visible && groupBox1.Height - 10 < lineControl.Bottom)
+            {
+                Height = groupBox1.Top + lineControl.Bottom + 20;
+            }
+
+            //if (lineControl.DefineInfo.Loai_key == "A1" && lineControl._checkBox != null)
+            //{
+            //    if (lineControl._checkBox.Checked) Advance = Alreport_advance;
+            //    lineControl._checkBox.CheckedChanged += delegate
+            //    {
+            //        if (lineControl._checkBox.Checked)
+            //        {
+            //            Advance = Alreport_advance;
+            //        }
+            //        else
+            //        {
+            //            Advance = "";
+            //        }
+            //    };
+            //}
         }
 
         

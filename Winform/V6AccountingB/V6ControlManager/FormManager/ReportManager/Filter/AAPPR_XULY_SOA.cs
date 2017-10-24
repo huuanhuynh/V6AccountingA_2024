@@ -31,12 +31,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             TxtMa_ct.Text = "SOA";
             TxtMa_ct.Enabled = false;
 
-            cboMa_xuly.ValueMember = "MA_XULY";
+            cboMa_xuly.ValueMember = "MA_XULY1";
             cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
-            cboMa_xuly.DataSource = V6BusinessHelper.Select("Alxuly", "ma_xuly,Ten_xuly,Ten_xuly2",
+            cboMa_xuly.DataSource = V6BusinessHelper.Select("Alxuly", "ma_xuly as MA_XULY1,Ten_xuly,Ten_xuly2",
                                 "Ma_ct=@mact and Status = '1'", "", "Ma_xuly",
                                 new SqlParameter("@mact", TxtMa_ct.Text)).Data;
-            cboMa_xuly.ValueMember = "Ma_xuly";
+            cboMa_xuly.ValueMember = "MA_XULY1";
             cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
             
 
@@ -124,6 +124,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             else
             {
                 cKey = cKey + " and [Sl_in] = 0";
+            }
+
+            if (lineMa_xuly.IsSelected==false)
+            {
+                cKey = cKey + " and ISNULL(ma_xuly,'')=''";
             }
 
 
