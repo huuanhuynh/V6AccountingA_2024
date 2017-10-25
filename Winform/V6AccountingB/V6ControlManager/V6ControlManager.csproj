@@ -1674,6 +1674,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOF_IN1.Designer.cs">
       <DependentUpon>AAPPR_SOF_IN1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\APO001F5.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\APO001F5.designer.cs">
+      <DependentUpon>APO001F5.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AARCD2F5.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1877,6 +1883,12 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AINSO3T.designer.cs">
       <DependentUpon>AINSO3T.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\APO001.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\APO001.Designer.cs">
+      <DependentUpon>APO001.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\HPAYROLLCALC.cs">
       <SubType>UserControl</SubType>
@@ -5663,6 +5675,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_SOF_IN1.resx">
       <DependentUpon>AAPPR_SOF_IN1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\APO001F5.resx">
+      <DependentUpon>APO001F5.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AARCD2F5.resx">
       <DependentUpon>AARCD2F5.cs</DependentUpon>
     </EmbeddedResource>
@@ -5800,6 +5815,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AINSO3T.resx">
       <DependentUpon>AINSO3T.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\APO001.resx">
+      <DependentUpon>APO001.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\HPAYROLLCALC.resx">
       <DependentUpon>HPAYROLLCALC.cs</DependentUpon>

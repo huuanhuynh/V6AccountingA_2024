@@ -477,6 +477,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new APOTH1F5();
                 case "AGLSO3M":
                     return new AGLSO3M();
+                case "APO001":
+                    return new APO001();
+                case "APO001F5":
+                    return new APO001F5();
                 #endregion Báo cáo mua hàng
                 #region === Báo cáo đơn đặt hàng   ===
                 case "ASVBK1":
