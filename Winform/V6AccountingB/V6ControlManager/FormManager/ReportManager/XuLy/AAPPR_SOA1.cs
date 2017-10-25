@@ -8,6 +8,7 @@ using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Structs;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -22,7 +23,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F4: Bổ sung thông tin.");
+            V6ControlFormHelper.SetStatusText2("F4: Bổ sung thông tin., F9. Bổ sung thông tin nhiều chứng từ ");
         }
 
         protected override void MakeReport2()
@@ -123,10 +124,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private bool f9Running;
         private string f9Error = "";
         private string f9ErrorAll = "";
+        private string TxtMa_bp_Text, TxtMa_nvien_Text;
+
         protected override void XuLyF9()
         {
             try
             {
+                AAPPR_SOA1_F9 form = new AAPPR_SOA1_F9();
+                if (form.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+                TxtMa_bp_Text = form.TxtMa_bp.Text;
+                TxtMa_nvien_Text = form.TxtMa_nvien.Text;
+
                 Timer tF9 = new Timer();
                 tF9.Interval = 500;
                 tF9.Tick += tF9_Tick;
@@ -157,26 +168,39 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     if (row.IsSelect())
                     {
-                        //string soct = row.Cells["So_ct"].Value.ToString();
-                        SqlParameter[] plist =
-                        {
-                            new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
-                            new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
-                            new SqlParameter("@Set_kieu_post", FilterControl.Kieu_post),
-                            new SqlParameter("@UserID", V6Login.UserId)
-                        };
+                        var rowData = row.ToDataDictionary();
+                        var am = new SortedDictionary<string, object>();
+                        string c_sttRec = row.Cells["STT_REC"].Value.ToString().Trim();
+                        _message = "F9: " + c_sttRec;
+                        am["MA_BP"] = TxtMa_bp_Text;
+                        am["MA_NVIEN"] = TxtMa_nvien_Text;
 
-                        V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "F9", plist);
+                        var keys = new SortedDictionary<string, object> {{"Stt_rec", c_sttRec}};
+
+                        var result = V6BusinessHelper.UpdateSimple(V6TableName.Am81, am, keys);
+                        if (result == 1)
+                        {
+                            SqlParameter[] plist =
+                            {
+                                new SqlParameter("@Stt_rec", c_sttRec),
+                                new SqlParameter("@Ma_ct", "SOA"),
+                            };
+                            V6BusinessHelper.ExecuteProcedure("AAPPR_SOA1_UPDATE", plist);
+                        }
+                        else
+                        {
+                            f9Error += "Update: " + result;
+                            f9ErrorAll += "Update: " + result;
+                        }
+
                         remove_list_g.Add(row);
                     }
                 }
                 catch (Exception ex)
                 {
-                    
                     f9Error += ex.Message;
                     f9ErrorAll += ex.Message;
                 }
-
             }
             f9Running = false;
         }
@@ -187,8 +211,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 var cError = f9Error;
                 f9Error = f9Error.Substring(cError.Length);
-                V6ControlFormHelper.SetStatusText("F9 running "
-                    + (cError.Length>0?"Error: ":"")
+                V6ControlFormHelper.SetStatusText("F9 running " + _message
+                    + (cError.Length > 0 ? " Error: " : "")
                     + cError);
             }
             else

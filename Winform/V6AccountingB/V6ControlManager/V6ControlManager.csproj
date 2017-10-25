@@ -3860,6 +3860,12 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_CA1_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F9.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F9.designer.cs">
+      <DependentUpon>AAPPR_SOA1_F9.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_XULY_SOA.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5750,9 +5756,6 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLCD1F5F5.resx">
       <DependentUpon>AGLCD1F5F5.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLSO144.resx">
-      <DependentUpon>ReportFilter44Base.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AINBK3XKH.resx">
       <DependentUpon>AINBK3XKH.cs</DependentUpon>
     </EmbeddedResource>
@@ -6052,6 +6055,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\NhanSu\XLSPRCONG2.resx">
       <DependentUpon>XLSPRCONG2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ReportFilter44Base.resx">
+      <DependentUpon>ReportFilter44Base.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\V6LEVELSET.resx">
       <DependentUpon>V6LEVELSET.cs</DependentUpon>
@@ -6724,6 +6730,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\SoDu\SoDuReportForm.resx">
       <DependentUpon>SoDuReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F9.resx">
+      <DependentUpon>AAPPR_SOA1_F9.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F4.resx">
       <DependentUpon>AAPPR_SOA1_F4.cs</DependentUpon>

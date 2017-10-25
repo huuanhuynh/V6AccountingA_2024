@@ -88,8 +88,8 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radOr;
         private System.Windows.Forms.RadioButton radAnd;
+        public System.Windows.Forms.GroupBox groupBox1;
     }
 }

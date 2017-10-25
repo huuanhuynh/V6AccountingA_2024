@@ -124,6 +124,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
 
                 FilterControl = QuickReportManager.AddFilterControl44Base(_program, panel1);
+                All_Objects["thisForm"] = this;
                 InvokeFormEvent(QuickReportManager.FormEvent.AFTERADDFILTERCONTROL);
                 QuickReportManager.MadeFilterControls(FilterControl, _program, out All_Objects);
                 All_Objects["thisForm"] = this;
@@ -152,6 +153,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private List<SqlParameter> _pList;
 
         public bool AutoPrint { get; set; }
+        public bool AutoClickNhan { get; set; }
         public string PrinterName { get; set; }
         private int _printCopy = 1;
 
@@ -714,15 +716,21 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void Form_Load(object sender, EventArgs e)
         {
             MyInit2();
+            InvokeFormEvent(QuickReportManager.FormEvent.LOAD);
             if (_ds != null && _ds.Tables.Count > 0)
             {
                 SetTBLdata();
                 ShowReport();
             }
+            else if (AutoClickNhan)
+            {
+                btnNhan.PerformClick();
+            }
         }
 
         
         public ReportFilter44Base FilterControl { get; set; }
+        public ReportFilter44Base ParentFilterControl { get; set; }
         public SortedDictionary<string, object> SelectedRowData { get; set; }
 
         
@@ -1343,11 +1351,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 view.FilterControl.ParentFilterData = FilterControl.FilterData;
 
                 view.Dock = DockStyle.Fill;
+                view.ParentFilterControl = FilterControl;
                 view.FilterControl.InitFilters = oldKeys;
 
                 view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
 
-                view.btnNhan_Click(null, null);
+                view.AutoClickNhan = true;
                 view.ShowToForm(this, "Chi tiết", true);
 
                 SetStatus2Text();

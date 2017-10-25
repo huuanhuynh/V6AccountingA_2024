@@ -181,7 +181,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// Tùy trường hợp có dùng hay không khi gọi từ report này qua report khác
         /// </summary>
         public List<SqlParameter> InitFilters = new List<SqlParameter>();
-        private IDictionary<string,object> _parentRow;
+
+        public IDictionary<string, object> ParentRowData;
         public virtual string Kieu_post { get; set; }
 
         /// <summary>
@@ -234,17 +235,17 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             return result;
         }
 
-        protected delegate void SetParentRowHandle(IDictionary<string,object> row);
+        public delegate void SetParentRowHandle(IDictionary<string,object> row);
 
-        protected event SetParentRowHandle SetParentRowEvent;
+        public event SetParentRowHandle SetParentRowEvent;
         
         public void SetParentRow(IDictionary<string,object> currentRow)
         {
-            _parentRow = currentRow;
-            OnSetParentRow(_parentRow);
+            ParentRowData = currentRow;
+            OnSetParentRow(ParentRowData);
         }
 
-        protected virtual void OnSetParentRow(IDictionary<string,object> currentRow)
+        public virtual void OnSetParentRow(IDictionary<string,object> currentRow)
         {
             var handler = SetParentRowEvent;
             if (handler != null) handler(currentRow);

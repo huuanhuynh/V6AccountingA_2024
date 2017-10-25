@@ -73,6 +73,7 @@
             this.btnNhan = new System.Windows.Forms.Button();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cboControlType = new System.Windows.Forms.ComboBox();
             this.txtField2 = new V6Controls.V6VvarTextBox();
             this.label51 = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
@@ -80,6 +81,7 @@
             this.txtAccessibleName2 = new V6Controls.V6VvarTextBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
+            this.lblControlTypeVvarTextBox = new System.Windows.Forms.Label();
             this.lblControlTypeLookupTextBox = new System.Windows.Forms.Label();
             this.lblControlTypeTextBox = new System.Windows.Forms.Label();
             this.lblControlType = new System.Windows.Forms.Label();
@@ -95,7 +97,6 @@
             this.txtWidth = new V6Controls.V6ColorTextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.txtFilterStart = new V6Controls.V6ColorTextBox();
@@ -119,8 +120,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.lblControlTypeVvarTextBox = new System.Windows.Forms.Label();
-            this.cboControlType = new System.Windows.Forms.ComboBox();
+            this.label48 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -773,6 +773,24 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
+            // cboControlType
+            // 
+            this.cboControlType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboControlType.FormattingEnabled = true;
+            this.cboControlType.Items.AddRange(new object[] {
+            "Button",
+            "TextBox",
+            "LookupTextBox",
+            "VvarTextBox",
+            "CheckBox",
+            "DateTime",
+            "DateTimeColor"});
+            this.cboControlType.Location = new System.Drawing.Point(640, 8);
+            this.cboControlType.Name = "cboControlType";
+            this.cboControlType.Size = new System.Drawing.Size(121, 24);
+            this.cboControlType.TabIndex = 51;
+            this.cboControlType.SelectedIndexChanged += new System.EventHandler(this.cboControlType_SelectedIndexChanged);
+            // 
             // txtField2
             // 
             this.txtField2.AccessibleName = "Field2";
@@ -864,6 +882,18 @@
             this.label29.Size = new System.Drawing.Size(64, 17);
             this.label29.TabIndex = 2;
             this.label29.Text = "Key data";
+            // 
+            // lblControlTypeVvarTextBox
+            // 
+            this.lblControlTypeVvarTextBox.AccessibleDescription = "";
+            this.lblControlTypeVvarTextBox.AutoSize = true;
+            this.lblControlTypeVvarTextBox.Location = new System.Drawing.Point(516, 10);
+            this.lblControlTypeVvarTextBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblControlTypeVvarTextBox.Name = "lblControlTypeVvarTextBox";
+            this.lblControlTypeVvarTextBox.Size = new System.Drawing.Size(87, 17);
+            this.lblControlTypeVvarTextBox.TabIndex = 2;
+            this.lblControlTypeVvarTextBox.Text = "VvarTextBox";
+            this.lblControlTypeVvarTextBox.Click += new System.EventHandler(this.lblControlType_Click);
             // 
             // lblControlTypeLookupTextBox
             // 
@@ -1087,29 +1117,17 @@
             this.label50.Text = "Bật tắt tính năng lọc chỉ bắt đầu cho vVarTextBox lookup. Mặc định false sẽ lọc l" +
     "ike \'%abc%\'.";
             // 
-            // label48
-            // 
-            this.label48.AccessibleDescription = "";
-            this.label48.AccessibleName = "";
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(281, 166);
-            this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(194, 17);
-            this.label48.TabIndex = 23;
-            this.label48.Text = "Dòng chữ giải thích, chú thích";
-            // 
             // label46
             // 
             this.label46.AccessibleDescription = "";
             this.label46.AccessibleName = "";
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(281, 140);
+            this.label46.Location = new System.Drawing.Point(690, 138);
             this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(194, 17);
+            this.label46.Size = new System.Drawing.Size(79, 17);
             this.label46.TabIndex = 23;
-            this.label46.Text = "Dòng chữ giải thích, chú thích";
+            this.label46.Text = "FilterGroup";
             // 
             // label41
             // 
@@ -1165,7 +1183,7 @@
             this.txtDescriptionE.Location = new System.Drawing.Point(120, 164);
             this.txtDescriptionE.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescriptionE.Name = "txtDescriptionE";
-            this.txtDescriptionE.Size = new System.Drawing.Size(150, 23);
+            this.txtDescriptionE.Size = new System.Drawing.Size(572, 23);
             this.txtDescriptionE.TabIndex = 6;
             // 
             // label47
@@ -1192,7 +1210,7 @@
             this.txtDescriptionV.Location = new System.Drawing.Point(120, 138);
             this.txtDescriptionV.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescriptionV.Name = "txtDescriptionV";
-            this.txtDescriptionV.Size = new System.Drawing.Size(150, 23);
+            this.txtDescriptionV.Size = new System.Drawing.Size(572, 23);
             this.txtDescriptionV.TabIndex = 5;
             // 
             // label45
@@ -1400,35 +1418,17 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
-            // lblControlTypeVvarTextBox
+            // label48
             // 
-            this.lblControlTypeVvarTextBox.AccessibleDescription = "";
-            this.lblControlTypeVvarTextBox.AutoSize = true;
-            this.lblControlTypeVvarTextBox.Location = new System.Drawing.Point(516, 10);
-            this.lblControlTypeVvarTextBox.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblControlTypeVvarTextBox.Name = "lblControlTypeVvarTextBox";
-            this.lblControlTypeVvarTextBox.Size = new System.Drawing.Size(87, 17);
-            this.lblControlTypeVvarTextBox.TabIndex = 2;
-            this.lblControlTypeVvarTextBox.Text = "VvarTextBox";
-            this.lblControlTypeVvarTextBox.Click += new System.EventHandler(this.lblControlType_Click);
-            // 
-            // cboControlType
-            // 
-            this.cboControlType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboControlType.FormattingEnabled = true;
-            this.cboControlType.Items.AddRange(new object[] {
-            "Button",
-            "TextBox",
-            "LookupTextBox",
-            "VvarTextBox",
-            "CheckBox",
-            "DateTime",
-            "DateTimeColor"});
-            this.cboControlType.Location = new System.Drawing.Point(640, 8);
-            this.cboControlType.Name = "cboControlType";
-            this.cboControlType.Size = new System.Drawing.Size(121, 24);
-            this.cboControlType.TabIndex = 51;
-            this.cboControlType.SelectedIndexChanged += new System.EventHandler(this.cboControlType_SelectedIndexChanged);
+            this.label48.AccessibleDescription = "";
+            this.label48.AccessibleName = "";
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(690, 164);
+            this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(67, 17);
+            this.label48.TabIndex = 23;
+            this.label48.Text = "Chú thích";
             // 
             // ALREPORT1_FilterEditorForm
             // 
@@ -1530,7 +1530,6 @@
         private System.Windows.Forms.Label label46;
         private V6ColorTextBox txtDescriptionV;
         private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.Label label48;
         private V6ColorTextBox txtDescriptionE;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label50;
@@ -1552,5 +1551,6 @@
         private V6ColorTextBox txtNField;
         private System.Windows.Forms.Label lblControlTypeVvarTextBox;
         private System.Windows.Forms.ComboBox cboControlType;
+        private System.Windows.Forms.Label label48;
     }
 }

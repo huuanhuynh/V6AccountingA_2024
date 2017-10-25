@@ -13,7 +13,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F3 = true;
             F4 = true;
             F5 = false;
-            F9 = false;
+            F9 = true;
             
             dateNgay_ct1.Value = V6Setting.M_SV_DATE;
             dateNgay_ct2.Value = V6Setting.M_SV_DATE;
@@ -76,7 +76,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_DVCS","MA_BP", "MA_KH", "MA_NX"
+                "MA_DVCS","MA_BP", "MA_KH", "MA_NX","MA_NVIEN","MA_TD_PH","MA_XULY"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {
