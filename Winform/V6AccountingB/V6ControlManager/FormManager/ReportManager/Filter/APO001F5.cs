@@ -112,13 +112,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var result = new List<SqlParameter>();
             result.AddRange(InitFilters);
-
             var nhom1 = String1.Split(','); //NH_KH1,MA_KH,MA_VT
-            var listNhom = new List<string>()
-            {
-                "MA_KH",
-                "MA_VT"
-            };
+            var listNhom = new List<string>();
             foreach (var nhom in nhom1)
             {
                 listNhom.Add(nhom);
