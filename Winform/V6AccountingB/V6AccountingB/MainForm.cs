@@ -293,12 +293,37 @@ namespace V6AccountingB
                 {
                     _control_m = false;
                     string keyChar = keyData.ToString().ToUpper();
-                    foreach (MenuButton button in menuMain.Buttons)
+
+                    int index = 0;
+                    var button = menuMain.SelectedButton;
+                    //var button_old = button;
+                    if (button != null) index = menuMain.Buttons.IndexOf(button);
+                    int old_index = index;
+                    
+                    //Tìm thử bên dưới nút menu đang chọn
+                    for (int i = index + 1; i < menuMain.Buttons.Count; i++)
                     {
+                        button = menuMain.Buttons[i];
                         if (button.Text.ToUpper().StartsWith(keyChar))
                         {
                             menuMain.SelectedButton = button;
-                            menuMain_Click(menuMain, new MenuControl.ButtonClickEventArgs(button, new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1)));
+                            menuMain_Click(menuMain,
+                                new MenuControl.ButtonClickEventArgs(button,
+                                    new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1)));
+                            return;
+                        }
+                    }
+
+                    //Nếu không thấy thì chạy lại đoạn trên
+                    for (int i = 0; i < old_index; i++)
+                    {
+                        button = menuMain.Buttons[i];
+                        if (button.Text.ToUpper().StartsWith(keyChar))
+                        {
+                            menuMain.SelectedButton = button;
+                            menuMain_Click(menuMain,
+                                new MenuControl.ButtonClickEventArgs(button,
+                                    new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1)));
                             return;
                         }
                     }

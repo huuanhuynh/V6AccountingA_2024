@@ -515,6 +515,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         protected void SetInitFilterAll()
         {
+            if (V6Setting.IsDesignTime) return;
             try
             {
                 //MA_KH

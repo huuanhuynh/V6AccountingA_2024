@@ -2084,6 +2084,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
                 
                 txtMadvcs.ExistRowInTable();
+                txtLoaiPhieu.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
                 
                 XuLyThayDoiMaDVCS();

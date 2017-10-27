@@ -950,6 +950,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new AMAP01IFilter();
                 case "AMAP01K":
                     return new AMAP01KFilter();
+                case "AVGLGSSO5A":
+                    return new AVGLGSSO5A();
+                case "AVGLGSSO5AF5":
+                    return new AVGLGSSO5AF5();
 
             }
             return new FilterBase() { Visible = false };

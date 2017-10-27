@@ -41,6 +41,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnNhapXML = new System.Windows.Forms.Button();
+            this.btnXuatXML = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnEditXml = new System.Windows.Forms.Button();
             this.txtDmethod = new V6Controls.V6ColorTextBox();
@@ -70,8 +72,7 @@
             this.label46 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnXuatXML = new System.Windows.Forms.Button();
-            this.btnNhapXML = new System.Windows.Forms.Button();
+            this.chkViewSum = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -254,6 +255,34 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Các tùy chọn";
             // 
+            // btnNhapXML
+            // 
+            this.btnNhapXML.AccessibleName = "";
+            this.btnNhapXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNhapXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNhapXML.Location = new System.Drawing.Point(7, 42);
+            this.btnNhapXML.Name = "btnNhapXML";
+            this.btnNhapXML.Size = new System.Drawing.Size(202, 29);
+            this.btnNhapXML.TabIndex = 25;
+            this.btnNhapXML.Text = "Nhập XML";
+            this.btnNhapXML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNhapXML.UseVisualStyleBackColor = true;
+            this.btnNhapXML.Click += new System.EventHandler(this.btnNhapXML_Click);
+            // 
+            // btnXuatXML
+            // 
+            this.btnXuatXML.AccessibleName = "";
+            this.btnXuatXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXuatXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXuatXML.Location = new System.Drawing.Point(7, 7);
+            this.btnXuatXML.Name = "btnXuatXML";
+            this.btnXuatXML.Size = new System.Drawing.Size(202, 29);
+            this.btnXuatXML.TabIndex = 25;
+            this.btnXuatXML.Text = "Xuất XML";
+            this.btnXuatXML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXuatXML.UseVisualStyleBackColor = true;
+            this.btnXuatXML.Click += new System.EventHandler(this.btnXuatXML_Click);
+            // 
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
@@ -265,6 +294,7 @@
             this.tabPage1.Controls.Add(this.btnBoSung);
             this.tabPage1.Controls.Add(this.txtDONVITINH);
             this.tabPage1.Controls.Add(this.label15);
+            this.tabPage1.Controls.Add(this.chkViewSum);
             this.tabPage1.Controls.Add(this.ChkF7);
             this.tabPage1.Controls.Add(this.ChkF5);
             this.tabPage1.Controls.Add(this.ChkF3);
@@ -402,7 +432,7 @@
             // 
             this.ChkF7.AccessibleName = "F7";
             this.ChkF7.AutoSize = true;
-            this.ChkF7.Location = new System.Drawing.Point(729, 242);
+            this.ChkF7.Location = new System.Drawing.Point(422, 250);
             this.ChkF7.Margin = new System.Windows.Forms.Padding(4);
             this.ChkF7.Name = "ChkF7";
             this.ChkF7.Size = new System.Drawing.Size(47, 21);
@@ -414,7 +444,7 @@
             // 
             this.ChkF5.AccessibleName = "F5";
             this.ChkF5.AutoSize = true;
-            this.ChkF5.Location = new System.Drawing.Point(646, 242);
+            this.ChkF5.Location = new System.Drawing.Point(352, 250);
             this.ChkF5.Margin = new System.Windows.Forms.Padding(4);
             this.ChkF5.Name = "ChkF5";
             this.ChkF5.Size = new System.Drawing.Size(47, 21);
@@ -426,7 +456,7 @@
             // 
             this.ChkF3.AccessibleName = "F3";
             this.ChkF3.AutoSize = true;
-            this.ChkF3.Location = new System.Drawing.Point(566, 242);
+            this.ChkF3.Location = new System.Drawing.Point(282, 250);
             this.ChkF3.Margin = new System.Windows.Forms.Padding(4);
             this.ChkF3.Name = "ChkF3";
             this.ChkF3.Size = new System.Drawing.Size(47, 21);
@@ -688,33 +718,17 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
             // 
-            // btnXuatXML
+            // chkViewSum
             // 
-            this.btnXuatXML.AccessibleName = "";
-            this.btnXuatXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnXuatXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnXuatXML.Location = new System.Drawing.Point(7, 7);
-            this.btnXuatXML.Name = "btnXuatXML";
-            this.btnXuatXML.Size = new System.Drawing.Size(202, 29);
-            this.btnXuatXML.TabIndex = 25;
-            this.btnXuatXML.Text = "Xuất XML";
-            this.btnXuatXML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXuatXML.UseVisualStyleBackColor = true;
-            this.btnXuatXML.Click += new System.EventHandler(this.btnXuatXML_Click);
-            // 
-            // btnNhapXML
-            // 
-            this.btnNhapXML.AccessibleName = "";
-            this.btnNhapXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNhapXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNhapXML.Location = new System.Drawing.Point(7, 42);
-            this.btnNhapXML.Name = "btnNhapXML";
-            this.btnNhapXML.Size = new System.Drawing.Size(202, 29);
-            this.btnNhapXML.TabIndex = 25;
-            this.btnNhapXML.Text = "Nhập XML";
-            this.btnNhapXML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnNhapXML.UseVisualStyleBackColor = true;
-            this.btnNhapXML.Click += new System.EventHandler(this.btnNhapXML_Click);
+            this.chkViewSum.AccessibleName = "ViewSum";
+            this.chkViewSum.AutoSize = true;
+            this.chkViewSum.Location = new System.Drawing.Point(492, 250);
+            this.chkViewSum.Margin = new System.Windows.Forms.Padding(4);
+            this.chkViewSum.Name = "chkViewSum";
+            this.chkViewSum.Size = new System.Drawing.Size(86, 21);
+            this.chkViewSum.TabIndex = 23;
+            this.chkViewSum.Text = "View sum";
+            this.chkViewSum.UseVisualStyleBackColor = true;
             // 
             // ALREPORT_AddEdit
             // 
@@ -782,5 +796,6 @@
         private System.Windows.Forms.Label label10;
         protected System.Windows.Forms.Button btnNhapXML;
         protected System.Windows.Forms.Button btnXuatXML;
+        private V6CheckBox chkViewSum;
     }
 }

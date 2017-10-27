@@ -135,6 +135,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 case "ACOSXLT_TINHGIA":
                     return new ZACOSXLT_TINHGIA(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
 
+                case "AVGLGSSO5A":
+                    return new AVGLGSSO5A(itemId, program, procedure, reportFile, reportCaption, reportCaption2,
+                        repFileF5, repTitleF5, repTitle2F5);
                 #region ==== In liên tục ====
                 case "AAPPR_SOF_IN1":
                     return new AAPPR_SOF_IN1(itemId, program, procedure, reportFile, reportCaption, reportCaption2);

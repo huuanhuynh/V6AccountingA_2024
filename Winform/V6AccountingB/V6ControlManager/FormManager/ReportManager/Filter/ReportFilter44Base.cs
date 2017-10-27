@@ -87,6 +87,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     F3 = ObjectAndString.ObjectToBool(row["F3"]);
                     F5 = ObjectAndString.ObjectToBool(row["F5"]);
                     F7 = ObjectAndString.ObjectToBool(row["F7"]);
+                    ViewSum = ObjectAndString.ObjectToBool(row["ViewSum"]);
                     Alreport_advance = row["Advance"].ToString().Trim();
                 }
             }
