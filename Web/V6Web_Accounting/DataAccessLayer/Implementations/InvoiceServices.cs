@@ -204,9 +204,10 @@ namespace DataAccessLayer.Implementations
                 return null;
             }
         }
-        public void IncreaseSl_inAm81(string sttRec)
+
+        public void IncreaseSl_inAM(string am_table, string ma_ct, string sttRec)
         {
-            var sql = "Update Am81 Set Sl_in = Sl_in+1 Where Stt_rec=@p";
+            var sql = string.Format("Update {0} Set Sl_in = Sl_in+1 Where Stt_rec=@p", am_table, ma_ct);
             SqlConnect.ExecuteNonQuery(CommandType.Text, sql, new SqlParameter("@p", sttRec));
         }
     }

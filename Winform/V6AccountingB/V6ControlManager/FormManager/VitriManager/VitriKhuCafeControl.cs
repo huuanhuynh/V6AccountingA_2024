@@ -260,7 +260,7 @@ namespace V6ControlManager.FormManager.VitriManager
                 {
                     if (BaoGia_nd51 == 1)
                     {
-                        hoadonCafe_Invoice.IncreaseSl_inAm81(stt_rec);
+                        hoadonCafe_Invoice.IncreaseSl_inAM(stt_rec);
                     }
                     sender.Dispose();
                 };

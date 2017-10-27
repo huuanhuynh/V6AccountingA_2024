@@ -2608,6 +2608,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         c.TTT_NT = txtTongTienNt.Value;
                         c.MA_NT = _maNt;
                         c.Dock = DockStyle.Fill;
+                        c.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
+                        {
+                            if (hoadon_nd51 == 1) Invoice.IncreaseSl_inAM(stt_rec);
+                            if (!sender.IsDisposed) sender.Dispose();
+                        };
                         c.ShowToForm(this, V6Text.PrintSOA, true);
                     }
                     else

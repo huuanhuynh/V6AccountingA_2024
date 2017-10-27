@@ -524,9 +524,9 @@ namespace V6AccountingBusiness.Invoices
             throw new NotImplementedException();
         }
 
-        public void IncreaseSl_inAm81(string sttRec)
+        public void IncreaseSl_inAM(string sttRec)
         {
-            Service.IncreaseSl_inAm81(sttRec);
+            Service.IncreaseSl_inAM(AM, Mact, sttRec);
         }
 
         public virtual SortedDictionary<string, string> LoadDefaultData(string lang, string itemId)

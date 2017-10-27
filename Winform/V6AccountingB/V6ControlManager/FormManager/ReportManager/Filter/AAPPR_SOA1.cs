@@ -32,7 +32,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             ctDenSo.Enabled = false;
             chkHoaDonDaIn.Checked = true;
-
+            chkMa_bp.Checked = true;
+            chkMa_nvien.Checked = true;
             cboKieuPost.ValueMember = "kieu_post";
             cboKieuPost.DisplayMember = V6Setting.IsVietnamese ? "Ten_post" : "Ten_post2";
             cboKieuPost.DataSource = V6BusinessHelper.Select("AlPost", "Kieu_post,Ten_post,Ten_post2",
@@ -126,8 +127,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 cKey = cKey + " and [Sl_in] = 0";
             }
-
-
+            if (chkMa_bp.Checked)
+            {
+                cKey = cKey + " and ISNULL(Ma_bp,'')=''";
+            }
+            if (chkMa_nvien.Checked)
+            {
+                cKey = cKey + " and ISNULL(Ma_nvien,'')=''";
+            }
             // Tu so den so
             var tu_so = ctTuSo.Text.Trim().Replace("'", "");
             var den_so = ctDenSo.Text.Trim().Replace("'", "");

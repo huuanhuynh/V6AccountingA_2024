@@ -17,7 +17,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public V6LEVELSET(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
-            
+            dataGridView1.Control_S = true;
         }
 
         public override void SetStatus2Text()

@@ -35,6 +35,9 @@
             this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lineMa_xuly = new V6ReportControls.FilterLineVvarTextBox();
+            this.filterLineVvarTextBox5 = new V6ReportControls.FilterLineVvarTextBox();
+            this.filterLineVvarTextBox2 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_kh6 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_kh5 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_kh4 = new V6ReportControls.FilterLineVvarTextBox();
@@ -60,9 +63,8 @@
             this.chkLike = new V6Controls.V6CheckBox();
             this.ctTuSo = new V6Controls.V6VvarTextBox();
             this.v6Label8 = new V6Controls.V6Label();
-            this.lineMa_xuly = new V6ReportControls.FilterLineVvarTextBox();
-            this.filterLineVvarTextBox5 = new V6ReportControls.FilterLineVvarTextBox();
-            this.filterLineVvarTextBox2 = new V6ReportControls.FilterLineVvarTextBox();
+            this.chkMa_bp = new V6Controls.V6CheckBox();
+            this.chkMa_nvien = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -167,6 +169,40 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // lineMa_xuly
+            // 
+            this.lineMa_xuly.AccessibleDescription = "FILTERL00009";
+            this.lineMa_xuly.AccessibleName2 = "MA_XULY";
+            this.lineMa_xuly.FieldCaption = "Mã xử lý";
+            this.lineMa_xuly.FieldName = "MA_XULY";
+            this.lineMa_xuly.Location = new System.Drawing.Point(3, 160);
+            this.lineMa_xuly.Name = "lineMa_xuly";
+            this.lineMa_xuly.Size = new System.Drawing.Size(294, 22);
+            this.lineMa_xuly.TabIndex = 8;
+            this.lineMa_xuly.Vvar = "MA_XULY";
+            // 
+            // filterLineVvarTextBox5
+            // 
+            this.filterLineVvarTextBox5.AccessibleDescription = "FILTERL00008";
+            this.filterLineVvarTextBox5.FieldCaption = "Mã nhân viên";
+            this.filterLineVvarTextBox5.FieldName = "MA_NVIEN";
+            this.filterLineVvarTextBox5.Location = new System.Drawing.Point(3, 117);
+            this.filterLineVvarTextBox5.Name = "filterLineVvarTextBox5";
+            this.filterLineVvarTextBox5.Size = new System.Drawing.Size(294, 22);
+            this.filterLineVvarTextBox5.TabIndex = 6;
+            this.filterLineVvarTextBox5.Vvar = "MA_NVIEN";
+            // 
+            // filterLineVvarTextBox2
+            // 
+            this.filterLineVvarTextBox2.AccessibleDescription = "FILTERL00009";
+            this.filterLineVvarTextBox2.FieldCaption = "Mã TDN( ca)";
+            this.filterLineVvarTextBox2.FieldName = "MA_TD_PH";
+            this.filterLineVvarTextBox2.Location = new System.Drawing.Point(3, 138);
+            this.filterLineVvarTextBox2.Name = "filterLineVvarTextBox2";
+            this.filterLineVvarTextBox2.Size = new System.Drawing.Size(294, 22);
+            this.filterLineVvarTextBox2.TabIndex = 7;
+            this.filterLineVvarTextBox2.Vvar = "MA_TD";
             // 
             // Txtnh_kh6
             // 
@@ -467,44 +503,34 @@
             this.v6Label8.TabIndex = 24;
             this.v6Label8.Text = "CT từ số";
             // 
-            // lineMa_xuly
+            // chkMa_bp
             // 
-            this.lineMa_xuly.AccessibleDescription = "FILTERL00009";
-            this.lineMa_xuly.AccessibleName2 = "MA_XULY";
-            this.lineMa_xuly.FieldCaption = "Mã xử lý";
-            this.lineMa_xuly.FieldName = "MA_XULY";
-            this.lineMa_xuly.Location = new System.Drawing.Point(3, 160);
-            this.lineMa_xuly.Name = "lineMa_xuly";
-            this.lineMa_xuly.Size = new System.Drawing.Size(294, 22);
-            this.lineMa_xuly.TabIndex = 8;
-            this.lineMa_xuly.Vvar = "MA_XULY";
+            this.chkMa_bp.AccessibleDescription = "FILTERC00001";
+            this.chkMa_bp.AutoSize = true;
+            this.chkMa_bp.Location = new System.Drawing.Point(219, 138);
+            this.chkMa_bp.Name = "chkMa_bp";
+            this.chkMa_bp.Size = new System.Drawing.Size(70, 17);
+            this.chkMa_bp.TabIndex = 26;
+            this.chkMa_bp.Text = "Thiếu BP";
+            this.chkMa_bp.UseVisualStyleBackColor = true;
             // 
-            // filterLineVvarTextBox5
+            // chkMa_nvien
             // 
-            this.filterLineVvarTextBox5.AccessibleDescription = "FILTERL00008";
-            this.filterLineVvarTextBox5.FieldCaption = "Mã nhân viên";
-            this.filterLineVvarTextBox5.FieldName = "MA_NVIEN";
-            this.filterLineVvarTextBox5.Location = new System.Drawing.Point(3, 117);
-            this.filterLineVvarTextBox5.Name = "filterLineVvarTextBox5";
-            this.filterLineVvarTextBox5.Size = new System.Drawing.Size(294, 22);
-            this.filterLineVvarTextBox5.TabIndex = 6;
-            this.filterLineVvarTextBox5.Vvar = "MA_NVIEN";
-            // 
-            // filterLineVvarTextBox2
-            // 
-            this.filterLineVvarTextBox2.AccessibleDescription = "FILTERL00009";
-            this.filterLineVvarTextBox2.FieldCaption = "Mã TDN( ca)";
-            this.filterLineVvarTextBox2.FieldName = "MA_TD_PH";
-            this.filterLineVvarTextBox2.Location = new System.Drawing.Point(3, 138);
-            this.filterLineVvarTextBox2.Name = "filterLineVvarTextBox2";
-            this.filterLineVvarTextBox2.Size = new System.Drawing.Size(294, 22);
-            this.filterLineVvarTextBox2.TabIndex = 7;
-            this.filterLineVvarTextBox2.Vvar = "MA_TD";
+            this.chkMa_nvien.AccessibleDescription = "FILTERC00001";
+            this.chkMa_nvien.AutoSize = true;
+            this.chkMa_nvien.Location = new System.Drawing.Point(219, 162);
+            this.chkMa_nvien.Name = "chkMa_nvien";
+            this.chkMa_nvien.Size = new System.Drawing.Size(71, 17);
+            this.chkMa_nvien.TabIndex = 27;
+            this.chkMa_nvien.Text = "Thiếu NV";
+            this.chkMa_nvien.UseVisualStyleBackColor = true;
             // 
             // AAPPR_SOA1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkMa_nvien);
+            this.Controls.Add(this.chkMa_bp);
             this.Controls.Add(this.chkHoaDonDaIn);
             this.Controls.Add(this.ctDenSo);
             this.Controls.Add(this.v6Label7);
@@ -570,5 +596,7 @@
         private V6ReportControls.FilterLineVvarTextBox lineMa_xuly;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox5;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox2;
+        private V6Controls.V6CheckBox chkMa_bp;
+        private V6Controls.V6CheckBox chkMa_nvien;
     }
 }

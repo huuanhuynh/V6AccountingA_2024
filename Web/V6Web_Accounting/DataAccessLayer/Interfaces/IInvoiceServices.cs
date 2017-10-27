@@ -14,6 +14,6 @@ namespace DataAccessLayer.Interfaces
         decimal GetTyGia(string mant, DateTime ngayct);
         DataSet GetCheck_VC(string status, string kieuPost, string sttRec, out string message);
         DataTable GetCheck_VC_Save(string status, string kieuPost, string soct, string masonb, string sttrec, out string v6Message);
-        void IncreaseSl_inAm81(string sttRec);
+        void IncreaseSl_inAM(string am_table, string ma_ct, string sttRec);
     }
 }

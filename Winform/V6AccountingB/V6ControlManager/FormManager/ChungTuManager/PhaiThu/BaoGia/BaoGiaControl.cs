@@ -2972,9 +2972,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                         {
                             if (BaoGia_nd51 == 1)
                             {
-                                Invoice.IncreaseSl_inAm81(stt_rec);
+                                Invoice.IncreaseSl_inAM(stt_rec);
                             }
-                            sender.Dispose();
+                            if (!sender.IsDisposed) sender.Dispose();
                         };
 
                         c.ShowToForm(this, V6Text.PrintSOA, true);
