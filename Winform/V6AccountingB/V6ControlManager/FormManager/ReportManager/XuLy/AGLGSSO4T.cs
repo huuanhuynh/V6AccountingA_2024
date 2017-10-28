@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -12,14 +11,12 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public class AAPSO1T : XuLyBase
+    public class AGLGSSO4T : XuLyBase
     {
-        public AAPSO1T(string itemId, string program, string reportProcedure, string reportFile, string reportCaption,
-            string reportCaption2, string repFileF5, string repTitleF5, string repTitle2F5)
-            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false,
-                repFileF5, repTitleF5, repTitle2F5)
+        public AGLGSSO4T(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
-
+            
         }
 
         public override void SetStatus2Text()
@@ -31,6 +28,28 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             Load_Data = true;//Thay đổi cờ.
             base.MakeReport2();
+        }
+
+        protected override void XuLyXemChiTietF5()
+        {
+            var oldKeys = FilterControl.GetFilterParameters();
+
+            var _reportFileF5 = "AGLGSSO4TF5";
+            var _reportTitleF5 = "SỔ CÁI TÀI KHOẢN";
+            var _reportTitle2F5 = "Account detail";
+
+            //var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFile, _reportCaption, _reportCaption2, false);
+            var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFileF5,
+                        _reportTitleF5, _reportTitle2F5, "", "", "");
+
+            view.CodeForm = CodeForm;
+            view.Dock = DockStyle.Fill;
+            view.FilterControl.InitFilters = oldKeys;
+            view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
+            view.btnNhan_Click(null, null);
+            view.ShowToForm(this, _reportCaption, true);
+
+            SetStatus2Text();
         }
 
         #region ==== Xử lý F9 ====
@@ -47,11 +66,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                
-                 if (this.ShowConfirmMessage("Có chắc chắn in từng trang (trực tiếp ra máy in) không?") != DialogResult.Yes)
-                   {
-                       return;
-                   }
+
+                if (this.ShowConfirmMessage("Có chắc chắn in từng trang (trực tiếp ra máy in) không?") != DialogResult.Yes)
+                {
+                    return;
+                }
                 InLienTuc = true;
 
 
@@ -64,7 +83,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 p.AllowSomePages = false;
                 p.PrintToFile = false;
                 p.UseEXDialog = true; //Fix win7
-                
+
                 if (InLienTuc) // thì chọn máy in trước
                 {
                     DialogResult dr = p.ShowDialog(this);
@@ -98,15 +117,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorMessage(GetType() + ".XuLyF9: " + ex.Message);
             }
         }
-        
+
         private void F9Thread()
         {
             f9Running = true;
             f9ErrorAll = "";
 
             int i = 0;
-           
-            while(i<dataGridView1.Rows.Count)
+
+            while (i < dataGridView1.Rows.Count)
             {
                 DataGridViewRow row = dataGridView1.Rows[i];
                 i++;
@@ -115,20 +134,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     if (row.IsSelect())
                     {
 
-                        var ma_kh = (row.Cells["MA_KH"].Value ?? "").ToString().Trim();
+                        var tk = (row.Cells["TK"].Value ?? "").ToString().Trim();
 
                         var oldKeys = FilterControl.GetFilterParameters();
-                        var _reportFileF5 = "AAPSO1TF5";
-                        var _reportTitleF5 = "SỔ CHI TIẾT CÔNG NỢ";
-                        var _reportTitle2F5 = "Customer detail";
+                        var _reportFileF5 = "AGLSO1TF5";
+                        var _reportTitleF5 = "SỔ CÁI TÀI KHOẢN";
+                        var _reportTitle2F5 = "Account detail";
 
-                        var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5",_reportFileF5,
+                        var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFileF5,
                             _reportTitleF5, _reportTitle2F5, "", "", "");
-                        
+
                         view.CodeForm = CodeForm;
                         //view.FilterControl.Call1(ma_kh);
                         SortedDictionary<string, object> data = new SortedDictionary<string, object>();
-                        data.Add("MA_KH", ma_kh);
+                        data.Add("TK", tk);
                         V6ControlFormHelper.SetFormDataDictionary(view.FilterControl, data);
                         view.CodeForm = CodeForm;
                         view.Advance = FilterControl.Advance;
@@ -142,28 +161,27 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         //view.AutoPrint = FilterControl.Check1;
                         view.AutoPrint = InLienTuc;
-                        
+
                         view.PrinterName = _PrinterName;
                         view.PrintCopies = _PrintCopies;
 
-                        var f = new V6Form();
-                        f.WindowState = FormWindowState.Maximized;
-                        f.Controls.Add(view);
-                        view.Disposed += delegate
-                        {
-                            f.Close();
-                        };
                         view.btnNhan_Click(null, null);
-                        f.ShowDialog(this);
+                        view.ShowToForm(this, "", true);
+                        //var f  = new V6Form();
+                        //f.WindowState = FormWindowState.Maximized;
+                        //f.Controls.Add(view);
+                        //view.Disposed += delegate
+                        //{
+                        //    f.Close();
+                        //};
+                        //f.ShowDialog(this);
+
                         SetStatus2Text();
-                        
-                        
                         remove_list_g.Add(row);
                     }
                 }
                 catch (Exception ex)
                 {
-                    
                     f9Error += ex.Message;
                     f9ErrorAll += ex.Message;
                 }
@@ -171,7 +189,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             f9Running = false;
         }
-        
+
         void tF9_Tick(object sender, EventArgs e)
         {
             if (f9Running)
@@ -179,7 +197,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var cError = f9Error;
                 f9Error = f9Error.Substring(cError.Length);
                 V6ControlFormHelper.SetStatusText("F9 running "
-                    + (cError.Length>0?"Error: ":"")
+                    + (cError.Length > 0 ? "Error: " : "")
                     + cError);
             }
             else
@@ -204,6 +222,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         #endregion xulyF9
 
+
         
         private bool f10Running;
         private string f10Message = "";
@@ -214,10 +233,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+
                 if (this.ShowConfirmMessage("Có chắc chắn in liên tục không?") != DialogResult.Yes)
                 {
                     return;
                 }
+
 
                 InLienTuc = false;
 
@@ -252,12 +273,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 tF10.Interval = 500;
                 tF10.Tick += tF10_Tick;
                 CheckForIllegalCrossThreadCalls = false;
-                F10Thread();
-                //Thread t = new Thread(F10Thread);
-                //t.SetApartmentState(ApartmentState.STA);
-                //t.IsBackground = true;
-                //t.Start();
+                Thread t = new Thread(F10Thread);
+                t.SetApartmentState(ApartmentState.STA);
+                t.IsBackground = true;
+                t.Start();
                 tF10.Start();
+
             }
             catch (Exception ex)
             {
@@ -269,7 +290,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             f10Running = true;
             f10ErrorAll = "";
-          
+
             try
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -280,17 +301,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                 }
                 var oldKeys = FilterControl.GetFilterParameters();
-                var _reportFileF5 = "AAPSO1TF10";
-                var _reportTitleF5 = "SỔ CHI TIẾT CÔNG NỢ";
-                var _reportTitle2F5 = "Customer detail";
+                var _reportFileF5 = "AGLSO1TF10";
+                var _reportTitleF5 = "SỔ CÁI TÀI KHOẢN";
+                var _reportTitle2F5 = "Account detail";
 
-              
+
                 //var view = new ReportRViewBase(m_itemId, _program + "F10", _program + "F10", _reportFileF5,
                 //    _reportTitleF5, _reportTitle2F5, "", "", "");
                 var view = new ReportRView2Base(m_itemId, _program + "F10", _program + "F10", _reportFileF5,
                     _reportTitleF5, _reportTitle2F5, "", "", "");
 
-               
+
 
                 view.CodeForm = CodeForm;
                 view.Advance = FilterControl.Advance;
@@ -301,20 +322,22 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 view.FilterControl.InitFilters = oldKeys;
 
                 view.FilterControl.SetParentAllRow(dataGridView1);
-               
+
                 //view.AutoPrint = InLienTuc;
                 //view.PrinterName = _PrinterName;
                 //view.PrintCopies = _PrintCopies;
-
-                var f = new V6Form();
-                f.WindowState = FormWindowState.Maximized;
-                f.Controls.Add(view);
-                view.Disposed += delegate
-                {
-                    f.Dispose();
-                };
                 view.btnNhan_Click(null, null);
-                f.ShowDialog(this);
+                view.ShowToForm(this, _reportTitleF5, true);
+
+                //var f  = new V6Form();
+                //f.WindowState = FormWindowState.Maximized;
+                //f.Controls.Add(view);
+                //view.Disposed += delegate
+                //{
+                //    f.Close();
+                //};
+                //view.btnNhan_Click(null, null);
+                //f.ShowDialog(this);
                 SetStatus2Text();
             }
             catch (Exception ex)
@@ -357,6 +380,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 V6ControlFormHelper.ShowMainMessage("F10 Xử lý xong!");
             }
         }
+
         V6Invoice81 invoice = new V6Invoice81();
         protected override void ViewDetails(DataGridViewRow row)
         {
@@ -385,27 +409,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 this.ShowErrorMessage(GetType() + ".XuLyBase XuLyBoSungThongTinChungTuF4:\n" + ex.Message);
             }
-        }
-
-        protected override void XuLyXemChiTietF5()
-        {
-            //base.XuLyXemChiTietF5();
-            var oldKeys = FilterControl.GetFilterParameters();
-            var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", _reportFile + "F5", _reportCaption, _reportCaption2, "", "", "")
-            {
-                CodeForm = CodeForm
-            };
-            view.CodeForm = CodeForm;
-            view.Dock = DockStyle.Fill;
-            view.FilterControl.InitFilters = oldKeys;
-            view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
-
-            var f = new V6Form();
-            f.WindowState = FormWindowState.Maximized;
-            f.Controls.Add(view);
-            view.btnNhan_Click(null, null);
-            f.ShowDialog(this);
-            SetStatus2Text();
         }
     }
 }

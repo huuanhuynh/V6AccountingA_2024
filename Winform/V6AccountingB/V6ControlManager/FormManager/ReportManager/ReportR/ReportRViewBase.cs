@@ -154,6 +154,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private List<SqlParameter> _pList;
 
         public bool AutoPrint { get; set; }
+        public bool AutoClickNhan { get; set; }
         public string PrinterName { get; set; }
         private int _printCopy = 1;
 
@@ -724,12 +725,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 SetTBLdata();
                 ShowReport();
             }
+            else if (AutoClickNhan)
+            {
+                btnNhan.PerformClick();
+            }
         }
 
         
         public FilterBase FilterControl { get; set; }
         public SortedDictionary<string, object> SelectedRowData { get; set; }
-
+        
         private void AddFilterControl(string program)
         {
             FilterControl = Filter.Filter.GetFilterControl(program);
@@ -1352,7 +1357,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
 
-                view.btnNhan_Click(null, null);
+                view.AutoClickNhan = true;
                 view.ShowToForm(this, "Chi tiết", true);
                 
                 FilterControl.SetStatus2Text();

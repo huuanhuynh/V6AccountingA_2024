@@ -12,8 +12,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             InitializeComponent();
            
             F3 = false;
-            F5 = true;
-            F9 = true;
+            F5 = false;
+            F9 = false;
             F10 = false;
 
             SetHideFields(RTien);

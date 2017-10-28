@@ -24,7 +24,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F9: In từng trang, F10: In liên tục");
+            V6ControlFormHelper.SetStatusText2("F9: In từng trang");
         }
 
         protected override void MakeReport2()
@@ -85,10 +85,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 tF9.Tick += tF9_Tick;
                 CheckForIllegalCrossThreadCalls = false;
                 remove_list_g = new List<DataGridViewRow>();
-                Thread t = new Thread(F9Thread);
-                t.SetApartmentState(ApartmentState.STA);
-                t.IsBackground = true;
-                t.Start();
+                F9Thread();
+                //Thread t = new Thread(F9Thread);
+                //t.IsBackground = true;
+                //t.Start();
                 tF9.Start();
                 
             }
@@ -113,13 +113,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     if (row.IsSelect())
                     {
-                        var so_ctgs = row.Cells["SO_LO"].Value.ToString();
+                        //var so_ctgs = row.Cells["SO_LO"].Value.ToString();
                         var khoa_ctgs = (row.Cells["KHOA_CTGS"].Value ?? "").ToString().Trim();
 
                         var oldKeys = FilterControl.GetFilterParameters();
                         var reportFileF5 = "AVGLGSSO5AF5";
-                        var reportTitleF5 = "CHỨNG TỪ GHI SỔ SỐ: " + so_ctgs;
-                        var reportTitle2F5 = "Customer detail";
+                        var reportTitleF5 = "CHỨNG TỪ GHI SỔ SỐ: ";
+                        var reportTitle2F5 = "JOURNAL VOUCHER: ";
 
                         var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5",reportFileF5,
                             reportTitleF5, reportTitle2F5, "", "", "");
@@ -145,10 +145,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         view.PrinterName = _PrinterName;
                         view.PrintCopies = _PrintCopies;
 
-                        view.btnNhan_Click(null, null);
+                        view.AutoClickNhan = true;
                         view.ShowToForm(this, "AVGLGSSO5A", true);
                         
-                        SetStatus2Text();
                         remove_list_g.Add(row);
                     }
                 }
@@ -176,7 +175,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 ((Timer)sender).Stop();
                 RemoveGridViewRow();
+                SetStatus2Text();
                 //  btnNhan.PerformClick();
+                
                 try
                 {
                     V6Tools.PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
@@ -273,8 +274,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 var oldKeys = FilterControl.GetFilterParameters();
                 var _reportFileF5 = "AVGLGSSO5AF10";
-                var _reportTitleF5 = "SỔ CHI TIẾT CÔNG NỢ";
-                var _reportTitle2F5 = "Customer detail";
+                var _reportTitleF5 = "CHỨNG TỪ GHI SỔ";
+                var _reportTitle2F5 = "JOURNAL VOUCHER ";
 
               
                 //var view = new ReportRViewBase(m_itemId, _program + "F10", _program + "F10", _reportFileF5,

@@ -1674,6 +1674,18 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOF_IN1.Designer.cs">
       <DependentUpon>AAPPR_SOF_IN1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AGLGSSO4T.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AGLGSSO4T.designer.cs">
+      <DependentUpon>AGLGSSO4T.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AGLGSSO4TF5.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AGLGSSO4TF5.designer.cs">
+      <DependentUpon>AGLGSSO4TF5.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AVGLGSSO5AF5.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3914,6 +3926,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOF_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AGLGSSO4T.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AVGLGSSO5A.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5689,6 +5704,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_SOF_IN1.resx">
       <DependentUpon>AAPPR_SOF_IN1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLGSSO4T.resx">
+      <DependentUpon>AGLGSSO4T.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLGSSO4TF5.resx">
+      <DependentUpon>AGLGSSO4TF5.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AVGLGSSO5AF5.resx">
       <DependentUpon>AVGLGSSO5AF5.cs</DependentUpon>

@@ -105,12 +105,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 tF9.Tick += tF9_Tick;
                 CheckForIllegalCrossThreadCalls = false;
                 remove_list_g = new List<DataGridViewRow>();
-                Thread t = new Thread(F9Thread);
-                t.SetApartmentState(ApartmentState.STA);
-                t.IsBackground = true;
-                t.Start();
+                F9Thread();
+                //Thread t = new Thread(F9Thread);
+                //t.SetApartmentState(ApartmentState.STA);
+                //t.IsBackground = true;
+                //t.Start();
                 tF9.Start();
-
             }
             catch (Exception ex)
             {
