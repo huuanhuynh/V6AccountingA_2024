@@ -292,6 +292,7 @@ namespace V6Controls.Forms
             _menuPanelLocation = panelMenuLocation;
             if (isShow)
             {
+                _menuPanel.Visible = true;
                 _show = new Timer();
                 _show.Tick += show_Tick;
                 _show.Start();
@@ -373,6 +374,7 @@ namespace V6Controls.Forms
 
             if (!_checkMove)
             {
+                _menuPanel.Visible = false;
                 ((Timer)sender).Stop();
                 _isMoving = false;
                 _sender.IsShowing = false;

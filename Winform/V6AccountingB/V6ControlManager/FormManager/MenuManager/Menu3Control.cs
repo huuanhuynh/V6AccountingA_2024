@@ -336,10 +336,60 @@ namespace V6ControlManager.FormManager.MenuManager
             }
         }
 
+        //Remove mainform_keydown
+        /// <summary>
+        /// Bật tính năng menu
+        /// </summary>
+        private bool _alt_m;
+        /// <summary>
+        /// Điểu khiển phím tắt
+        /// </summary>
+        /// <param name="keyData"></param>
         public override void DoHotKey (Keys keyData)
         {
             try
             {
+                if (_alt_m)
+                {
+                    _alt_m = false;
+                    string keyChar = keyData.ToString().ToUpper();
+
+                    int index = 0;
+                    var button = menuControl1.SelectedButton;
+                    //var button_old = button;
+                    if (button != null) index = menuControl1.Buttons.IndexOf(button);
+                    int old_index = index;
+
+                    //Tìm thử bên dưới nút menu đang chọn
+                    for (int i = index + 1; i < menuControl1.Buttons.Count; i++)
+                    {
+                        button = menuControl1.Buttons[i];
+                        if (button.Text.ToUpper().StartsWith(keyChar))
+                        {
+                            menuControl1.SelectedButton = button;
+                            menuControl_Click(menuControl1,
+                                new MenuControl.ButtonClickEventArgs(button,
+                                    new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1)));
+                            return;
+                        }
+                    }
+
+                    //Nếu không thấy thì chạy lại đoạn trên
+                    for (int i = 0; i < old_index; i++)
+                    {
+                        button = menuControl1.Buttons[i];
+                        if (button.Text.ToUpper().StartsWith(keyChar))
+                        {
+                            menuControl1.SelectedButton = button;
+                            menuControl_Click(menuControl1,
+                                new MenuControl.ButtonClickEventArgs(button,
+                                    new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1)));
+                            return;
+                        }
+                    }
+                    return;
+                }
+
                 if (keyData == (Keys.Alt | Keys.Up))
                 {
                     var button = menuControl1.SelectedButton;
@@ -371,6 +421,10 @@ namespace V6ControlManager.FormManager.MenuManager
                 else if (keyData == Keys.F1)
                 {
                     V6ControlFormHelper.ShowHelp(menuControl1.SelectedButton.Key1, menuControl1.SelectedButton.Text);
+                }
+                else if (keyData == (Keys.Alt | Keys.M))
+                {
+                    _alt_m = true;
                 }
                 else
                 {
