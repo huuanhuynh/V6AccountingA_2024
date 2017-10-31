@@ -183,6 +183,7 @@
             // Chk_Tinh_dc
             // 
             this.Chk_Tinh_dc.AccessibleDescription = "FILTERC00014";
+            this.Chk_Tinh_dc.AccessibleName = "Chk_Tinh_dc";
             this.Chk_Tinh_dc.AutoSize = true;
             this.Chk_Tinh_dc.Location = new System.Drawing.Point(55, 94);
             this.Chk_Tinh_dc.Name = "Chk_Tinh_dc";

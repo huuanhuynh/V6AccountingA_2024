@@ -30,7 +30,9 @@ namespace V6ReportControls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBoxNhom = new System.Windows.Forms.GroupBox();
+            this.toolTipFilterGroup = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // groupBoxNhom
@@ -57,6 +59,7 @@ namespace V6ReportControls
         #endregion
 
         private GroupBox groupBoxNhom;
+        private ToolTip toolTipFilterGroup;
 
     }
 }

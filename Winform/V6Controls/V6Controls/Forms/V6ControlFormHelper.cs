@@ -4620,5 +4620,44 @@ namespace V6Controls.Forms
             return control.Text;
         }
 
+        /// <summary>
+        /// Áp dụng code động cho event của control
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="eventProgram"></param>
+        /// <param name="All_Objects">Các đối tượng control</param>
+        /// <param name="before">Phần cộng thêm cho tên hàm Event</param>
+        public static void ApplyControlEventByAccessibleName(Control control, Type eventProgram, Dictionary<string, object> All_Objects, string before = "")
+        {
+            string NAME = control.AccessibleName;
+            if (string.IsNullOrEmpty(NAME)) return;
+            NAME = NAME.ToUpper();
+
+            if (control is V6ColorTextBox)
+            {
+                var colorTB = control as V6ColorTextBox;
+                colorTB.V6LostFocus += delegate
+                {
+                    V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_V6LOSTFOCUS" + before, All_Objects);
+                };
+                colorTB.V6LostFocusNoChange += delegate
+                {
+                    V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_V6LOSTFOCUSNOCHANGE" + before, All_Objects);
+                };
+            }
+
+            control.GotFocus += delegate
+            {
+                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_GOTFOCUS" + before, All_Objects);
+            };
+            control.LostFocus += delegate
+            {
+                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_LOSTFOCUS" + before, All_Objects);
+            };
+            control.TextChanged += delegate
+            {
+                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_TEXTCHANGED" + before, All_Objects);
+            };
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
@@ -53,6 +54,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             try
             {
                 var selectedValue = comboBox1.SelectedValue.ToString().Trim();
+
+                if (dataGridView1.RowCount == 0)
+                {
+                    _sttRec = "";
+                    return;
+                }
                 var data = dataGridView1.CurrentRow.ToDataDictionary();
                 if (data.ContainsKey("STT_REC"))
                 {
@@ -63,6 +70,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     _sttRec = "";
                     return;
                 }
+
+                if (selectedValue.Contains("PRINT_AMAD") || selectedValue.Contains("PRINT_INFOR"))
+                {
+                    
+                }
+                else
+                {
+                    _sttRec = "";
+                    return;
+                }
+
+
                 string program = selectedValue;
                 string repFile = selectedValue;
                 string repTitle = "";

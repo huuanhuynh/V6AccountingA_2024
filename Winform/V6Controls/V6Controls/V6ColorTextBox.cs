@@ -180,6 +180,7 @@ namespace V6Controls
                     e.Handled = true;
                 }
                 else
+                    if (!(this is V6CheckTextBox))
                 {
                     if (MaxLength == 1)
                     {
@@ -601,7 +602,7 @@ namespace V6Controls
                     return; // <-- suppress WM_ENABLE message
 
             }
-
+            
             base.WndProc(ref m);
         }
 

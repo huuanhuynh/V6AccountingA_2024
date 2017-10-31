@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
+using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
@@ -56,6 +58,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     chkCheckVvar.Visible = true;
                     lblNotEmpty.Visible = true;
                     chkNotEmpty.Visible = true;
+
+                    txtDmethod.Visible = true;
+                    lblXML.Visible = true;
+                    btnEditXml.Visible = true;
                 }
             }
             else
@@ -64,6 +70,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 TxtForder.Enabled = false;
                 TxtWidth.Enabled = false;
             }
+        }
+
+        private void DoEditXml()
+        {
+            try
+            {
+                var file_xml =  TxtFcolumn.Text.Trim().ToUpper() + ".xml";
+                new XmlEditorForm(txtDmethod, file_xml, "Table0", "event,using,method,content".Split(',')).ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoEditXml", ex);
+            }
+        }
+
+        private void btnEditXml_Click(object sender, System.EventArgs e)
+        {
+            DoEditXml();
         }
     }
 }

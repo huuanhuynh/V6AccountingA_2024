@@ -136,6 +136,9 @@
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.lblXML = new System.Windows.Forms.Label();
+            this.btnEditXml = new System.Windows.Forms.Button();
+            this.txtDmethod = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox28 = new V6Controls.V6ColorTextBox();
             this.txtADV_AD = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox27 = new V6Controls.V6ColorTextBox();
@@ -1776,6 +1779,9 @@
             // 
             this.tabPage4.AutoScroll = true;
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage4.Controls.Add(this.lblXML);
+            this.tabPage4.Controls.Add(this.btnEditXml);
+            this.tabPage4.Controls.Add(this.txtDmethod);
             this.tabPage4.Controls.Add(this.v6ColorTextBox28);
             this.tabPage4.Controls.Add(this.txtADV_AD);
             this.tabPage4.Controls.Add(this.v6ColorTextBox27);
@@ -1807,6 +1813,53 @@
             this.tabPage4.Size = new System.Drawing.Size(742, 419);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Thông tin khác";
+            // 
+            // lblXML
+            // 
+            this.lblXML.AutoSize = true;
+            this.lblXML.Location = new System.Drawing.Point(651, 364);
+            this.lblXML.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblXML.Name = "lblXML";
+            this.lblXML.Size = new System.Drawing.Size(36, 17);
+            this.lblXML.TabIndex = 51;
+            this.lblXML.Text = "XML";
+            this.lblXML.Visible = false;
+            // 
+            // btnEditXml
+            // 
+            this.btnEditXml.AccessibleName = "";
+            this.btnEditXml.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditXml.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnEditXml.Location = new System.Drawing.Point(694, 360);
+            this.btnEditXml.Name = "btnEditXml";
+            this.btnEditXml.Size = new System.Drawing.Size(40, 25);
+            this.btnEditXml.TabIndex = 52;
+            this.btnEditXml.Text = "...";
+            this.btnEditXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditXml.UseVisualStyleBackColor = true;
+            this.btnEditXml.Visible = false;
+            this.btnEditXml.Click += new System.EventHandler(this.btnEditXml_Click);
+            // 
+            // txtDmethod
+            // 
+            this.txtDmethod.AccessibleName = "MMETHOD";
+            this.txtDmethod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDmethod.BackColor = System.Drawing.Color.White;
+            this.txtDmethod.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDmethod.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDmethod.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDmethod.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDmethod.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDmethod.LeaveColor = System.Drawing.Color.White;
+            this.txtDmethod.Location = new System.Drawing.Point(304, 215);
+            this.txtDmethod.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDmethod.Multiline = true;
+            this.txtDmethod.Name = "txtDmethod";
+            this.txtDmethod.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtDmethod.Size = new System.Drawing.Size(430, 138);
+            this.txtDmethod.TabIndex = 50;
+            this.txtDmethod.Visible = false;
             // 
             // v6ColorTextBox28
             // 
@@ -2332,5 +2385,8 @@
         private V6ColorTextBox v6ColorTextBox27;
         private System.Windows.Forms.Label label62;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label lblXML;
+        protected System.Windows.Forms.Button btnEditXml;
+        private V6ColorTextBox txtDmethod;
     }
 }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
+using V6Controls.Forms;
 using V6Init;
 using V6Structs;
 
@@ -167,6 +168,10 @@ namespace V6ReportControls
         //    OnMouseUp(e);
         //}
 
+        private void NH_KH1_Enter(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.SetStatusText(((Control)sender).AccessibleName);
+        }
         private void NH_KH1_Leave(object sender, EventArgs e)
         {
             var current = sender as TextBox;
@@ -280,6 +285,8 @@ namespace V6ReportControls
                         txtNH.Size = new System.Drawing.Size(20, 20);
                         txtNH.TabIndex = 8;
                         txtNH.Text = text;
+                        toolTipFilterGroup.SetToolTip(txtNH, FIELD);
+                        txtNH.Enter += NH_KH1_Enter;
                         txtNH.Leave += NH_KH1_Leave;
                         txtNH.TextChanged += NH_KH_TextChanged;
 

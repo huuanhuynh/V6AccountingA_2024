@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -1332,6 +1333,113 @@ namespace V6ControlManager.FormManager.ChungTuManager
             };
             var ca = V6BusinessHelper.ExecuteFunctionScalar("VFA_GET_CA_FROM_ALTD", plist);
             return "" + ca;
+        }
+
+        protected void ApplyDynamicFormControlEvents(Type eventProgram, Dictionary<string, object> allObjects)
+        {
+            try
+            {
+                var all_control = V6ControlFormHelper.GetAllControls(this);
+                string error = "";
+                foreach (Control control in all_control)
+                {
+                    try
+                    {
+                        V6ControlFormHelper.ApplyControlEventByAccessibleName(control, eventProgram, allObjects);
+                    }
+                    catch (Exception ex)
+                    {
+                        error += string.Format("{0}({1}) err: {2}", control.Name, control.AccessibleName, ex.Message);
+                    }
+                }
+
+                if (error.Length > 0)
+                {
+                    this.WriteToLog(GetType() + ".ApplyFormControlEvents", error);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ApplyFormControlEvents", ex);
+            }
+        }
+
+        /// <summary>
+        /// No_use
+        /// </summary>
+        protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        protected Type Event_program;
+        protected Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+        protected void CreateFormProgram(V6InvoiceBase Invoice)
+        {
+            try
+            {
+
+
+                //DMETHOD
+                if (!Invoice.Alct1.Columns.Contains("DMETHOD"))
+                {
+                    this.ShowWarningMessage("No column name [DMETHOD] in [Alct1]");
+                    return;
+                }
+
+                string using_text = "";
+                string method_text = "";
+                foreach (DataRow dataRow in Invoice.Alct1.Rows)
+                {
+                    var xml = dataRow["DMETHOD"].ToString().Trim();
+                    if (xml == "") continue;
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(new StringReader(xml));
+                    if (ds.Tables.Count <= 0) continue;
+                    var data = ds.Tables[0];
+                    foreach (DataRow event_row in data.Rows)
+                    {
+                        var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                        var method_name = event_row["method"].ToString().Trim();
+                        Event_Methods[EVENT_NAME] = method_name;
+
+                        string using_text1 = data.Columns.Contains("using") ? event_row["using"].ToString() : "";
+                        if (!using_text.Contains(using_text1))
+                        {
+                            using_text += using_text1;
+                        }
+                        method_text += event_row["content"];
+                        method_text += "\n";
+                    }
+                }
+                //MMETHOD
+                if (Invoice.Alct.Columns.Contains("MMETHOD"))
+                {
+                    var xml = Invoice.Alct.Rows[0]["MMETHOD"].ToString().Trim();
+                    if (xml == "") goto Build;
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(new StringReader(xml));
+                    if (ds.Tables.Count <= 0) goto Build;
+                    var data = ds.Tables[0];
+                    foreach (DataRow event_row in data.Rows)
+                    {
+                        var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                        var method_name = event_row["method"].ToString().Trim();
+                        Event_Methods[EVENT_NAME] = method_name;
+
+                        string using_text1 = data.Columns.Contains("using") ? event_row["using"].ToString() : "";
+                        if (!using_text.Contains(using_text1))
+                        {
+                            using_text += using_text1;
+                        }
+                        method_text += event_row["content"];
+                        method_text += "\n";
+                    }
+                }
+
+            Build:
+                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + Invoice.Mact, using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateProgram0", ex);
+            }
         }
     }
 }

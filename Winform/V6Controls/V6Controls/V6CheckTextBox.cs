@@ -75,9 +75,14 @@ namespace V6Controls
             TextAlign = HorizontalAlignment.Right;
             KeyDown += ChkTextBox_KeyDown;
             KeyPress += ChkTextBox_KeyPress;
-            
+            //TextChanged += V6CheckTextBox_TextChanged;
             ResumeLayout(false);
         }
+
+        //void V6CheckTextBox_TextChanged(object sender, System.EventArgs e)
+        //{
+        //    ;
+        //}
 
         public override string Query
         {

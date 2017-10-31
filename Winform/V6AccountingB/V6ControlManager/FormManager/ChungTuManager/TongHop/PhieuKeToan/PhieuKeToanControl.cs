@@ -1558,6 +1558,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                     else
                     {
                         ResetForm();
+                        Mode = V6Mode.Init;
                     }
                 }
                 else

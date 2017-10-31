@@ -2449,6 +2449,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     else
                     {
                         ResetForm();
+                        Mode = V6Mode.Init;
                     }
                 }
                 else

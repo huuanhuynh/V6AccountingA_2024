@@ -2302,8 +2302,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             // txtManx
             // 
             this.txtManx.AccessibleName = "ma_nx";
-            this.txtManx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtManx.BackColor = System.Drawing.SystemColors.Window;
             this.txtManx.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtManx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -2805,7 +2803,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.toolStripMenuItem2,
             this.toolStripMenuItem3});
             this.menuDetail1.Name = "menuChucNang";
-            this.menuDetail1.Size = new System.Drawing.Size(162, 92);
+            this.menuDetail1.Size = new System.Drawing.Size(162, 70);
             // 
             // menuXemPhieuNhap
             // 

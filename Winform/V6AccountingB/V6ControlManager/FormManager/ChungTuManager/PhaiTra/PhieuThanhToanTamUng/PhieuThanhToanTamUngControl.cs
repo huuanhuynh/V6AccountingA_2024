@@ -1907,6 +1907,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     else
                     {
                         ResetForm();
+                        Mode = V6Mode.Init;
                     }
                 }
                 else

@@ -291,6 +291,7 @@
             this.Chk_Tinh_dc.AutoSize = true;
             this.Chk_Tinh_dc.Location = new System.Drawing.Point(63, 81);
             this.Chk_Tinh_dc.Name = "Chk_Tinh_dc";
+            this.Chk_Tinh_dc.AccessibleName = "Chk_Tinh_dc";
             this.Chk_Tinh_dc.Size = new System.Drawing.Size(149, 17);
             this.Chk_Tinh_dc.TabIndex = 7;
             this.Chk_Tinh_dc.Text = "Tính PS điều chuyển kho";

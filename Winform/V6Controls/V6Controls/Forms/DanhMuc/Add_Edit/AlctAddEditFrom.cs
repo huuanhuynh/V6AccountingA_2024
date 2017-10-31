@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using V6AccountingBusiness.Invoices;
+using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Init;
 using V6Structs;
 using V6Tools;
@@ -70,6 +71,44 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     V6Login.ClientName + " " + GetType() + ".cboKieuPost_SelectedIndexChanged " + ex.Message,
                     Application.ProductName);
             }
+        }
+
+        public override void V6F3Execute()
+        {
+            if (f3count == 2)
+            {
+                f3count = 0;
+                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                {
+                    ShowTopMessage("V6 Confirm ......OK....");
+                    
+                    txtDmethod.Visible = true;
+                    lblXML.Visible = true;
+                    btnEditXml.Visible = true;
+                }
+            }
+            else
+            {
+                
+            }
+        }
+
+        private void DoEditXml()
+        {
+            try
+            {
+                var file_xml = txtMaCt.Text.Trim().ToUpper() + ".xml";
+                new XmlEditorForm(txtDmethod, file_xml, "Table0", "event,using,method,content".Split(',')).ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoEditXml", ex);
+            }
+        }
+
+        private void btnEditXml_Click(object sender, System.EventArgs e)
+        {
+            DoEditXml();
         }
 
     }

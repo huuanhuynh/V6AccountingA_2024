@@ -398,6 +398,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         };
                         vc.KeyDown += (sender, e) =>
                         {
+                            if (vc is V6CheckTextBox)
+                            {
+                                e.Handled = true;
+                                return;
+                            }
                             if (e.KeyCode == Keys.F12)
                             {
                                 var info = string.Format("AccName({0}), TabStop({1}), {2}",

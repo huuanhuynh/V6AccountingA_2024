@@ -77,9 +77,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                 if (table.Rows.Count == 0)
                 {
                     var newRow = table.NewRow();
-                    newRow[0] = 0;
-                    newRow[1] = "FirstCell";
-                    newRow[2] = "A4";
+                    newRow[0] = "0_event";
+                    newRow[1] = "firstCell_using";
+                    newRow[2] = "A4_method";
                     table.Rows.Add(newRow);
                 }
                 dataGridView1.DataSource = _ds.Tables[0];

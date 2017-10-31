@@ -83,6 +83,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
             cboKieuPost.SelectedIndex = 0;
 
+            All_Objects["thisForm"] = this;
+            CreateFormProgram(Invoice);
+            ApplyDynamicFormControlEvents(Event_program, All_Objects);
+
             LoadDetailControls();
             detail1.AddContexMenu(menuDetail1);
             ResetForm();
@@ -130,8 +134,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             {
                 var control = item.Value;
                 ApplyControlEnterStatus(control);
-
                 var NAME = control.AccessibleName.ToUpper();
+                All_Objects[NAME] = control;
+
+                //Dynamic event before (without last number 2 in method name)
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+                
+                #region === switch (NAME) ===
                 switch (NAME)
                 {
                     case "MA_VT":
@@ -143,8 +152,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_qg,ma_vitri";
                    
                         _maVt.V6LostFocus += MaVatTu_V6LostFocus;
-
-             
+                        
                         _maVt.V6LostFocusNoChange += delegate
                         {
                             if (_maVt.LO_YN)
@@ -523,7 +531,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         }
                         break;
                 }
-                
+                #endregion switch
+
+                //Dynamic event after (without last number 1 in method name)
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
             foreach (Control control in dynamicControlList.Values)
