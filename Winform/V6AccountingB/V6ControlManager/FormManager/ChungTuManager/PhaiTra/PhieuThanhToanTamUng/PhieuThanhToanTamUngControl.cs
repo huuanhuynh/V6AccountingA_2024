@@ -53,7 +53,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         private void MyInit()
         {   
             LoadLanguage();
-            LoadTag(Invoice, detail1.panelControls);
+            LoadTag(Invoice, detail1.Controls);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -85,7 +85,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
 
             cboKieuPost.SelectedIndex = 0;
-            
+
+            All_Objects["thisForm"] = this;
+            CreateFormProgram(Invoice);
+            ApplyDynamicFormControlEvents(Event_program, All_Objects);
+
             LoadDetailControls();
             LoadDetail2Controls();
             ResetForm();
@@ -125,6 +129,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
+                All_Objects[NAME] = control;
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+
                 switch (NAME)
                 {
                     case "TK_VT":
@@ -274,6 +281,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                         break;
 
                 }
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
             foreach (Control control in dynamicControlList.Values)

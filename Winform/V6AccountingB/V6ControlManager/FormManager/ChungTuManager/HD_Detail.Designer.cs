@@ -210,7 +210,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         #endregion
 
         public System.Windows.Forms.Panel panelControls;
-        private System.Windows.Forms.Panel panel0;
+        public System.Windows.Forms.Panel panel0;
         public V6FormButton btnNhan;
         public V6FormButton btnSua;
         public V6FormButton btnXoa;

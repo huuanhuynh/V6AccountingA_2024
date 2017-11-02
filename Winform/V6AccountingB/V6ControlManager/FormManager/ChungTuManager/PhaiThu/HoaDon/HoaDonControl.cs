@@ -62,8 +62,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         }
 
         private void MyInit()
-        {   
-            LoadTag(Invoice, detail1.panelControls);
+        {
+            LoadTag(Invoice, detail1.Controls);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -114,6 +114,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
             
             cboKieuPost.SelectedIndex = 0;
+
+            All_Objects["thisForm"] = this;
+            CreateFormProgram(Invoice);
+            ApplyDynamicFormControlEvents(Event_program, All_Objects);
+
             _maGd = (Invoice.Alct.Rows[0]["M_MA_GD"] ?? "1").ToString().Trim();
             _m_Ma_td = (Invoice.Alct.Rows[0]["M_MA_TD"] ?? "0").ToString().Trim();
 
@@ -167,6 +172,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
+                All_Objects[NAME] = control;
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+
                 switch (NAME)
                 {
                     case "MA_VT":
@@ -652,7 +660,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         break;
 
                 }
-                
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
             
             foreach (Control control in dynamicControlList.Values)
@@ -3736,7 +3744,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     panelVND.Visible = true;
                     
 
-                    var c = V6ControlFormHelper.GetControlByAccesibleName(detail1, "GIA21");
+                    var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA21");
                     if (c != null) c.Visible = true;
                     //SetColsVisible(_GridID, ["GIA21", "TIEN2"], true); //Hien ra
                     var gridViewColumn = dataGridView1.Columns["GIA21"];
@@ -5567,7 +5575,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     var a_fields = v6valid.Rows[0]["A_Field"].ToString().Trim().Split(',');
                     foreach (string field in a_fields)
                     {
-                        var control = V6ControlFormHelper.GetControlByAccesibleName(this, field);
+                        var control = V6ControlFormHelper.GetControlByAccessibleName(this, field);
                         if (control is V6DateTimeColor)
                         {
                             if (((V6DateTimeColor) control).Value == null)
@@ -5760,7 +5768,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     var a_fields = v6valid.Rows[0]["A_Field"].ToString().Trim().Split(',');
                     foreach (string field in a_fields)
                     {
-                        var control = V6ControlFormHelper.GetControlByAccesibleName(detail1, field);
+                        var control = V6ControlFormHelper.GetControlByAccessibleName(detail1, field);
                         if (control is V6DateTimeColor)
                         {
                             if (((V6DateTimeColor)control).Value == null)
@@ -6160,14 +6168,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         
         private void txtDiaChiGiaoHang_Enter(object sender, EventArgs e)
         {
-            var data = txtMaKh.Data;
-            if (data == null)
+            if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                this.ShowWarningMessage("Chưa chọn mã khách hàng!", 300);
-                return;
+                if (txtDiaChiGiaoHang.ReadOnly) return;
+                var data = txtMaKh.Data;
+                if (data == null)
+                {
+                    this.ShowWarningMessage("Chưa chọn mã khách hàng!", 300);
+                    return;
+                }
+                txtDiaChiGiaoHang.ParentData = data.ToDataDictionary();
+                txtDiaChiGiaoHang.SetInitFilter(string.Format("MA_KH='{0}'", txtMaKh.Text));
             }
-            txtDiaChiGiaoHang.ParentData = data.ToDataDictionary();
-            txtDiaChiGiaoHang.SetInitFilter(string.Format("MA_KH='{0}'", txtMaKh.Text));
         }
 
         private void btnChonPX_Click(object sender, EventArgs e)

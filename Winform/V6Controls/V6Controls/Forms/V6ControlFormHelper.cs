@@ -706,21 +706,21 @@ namespace V6Controls.Forms
         /// Nếu không có trả về null
         /// </summary>
         /// <param name="control">Control chứa hoặc chính control cần tìm.</param>
-        /// <param name="accesibleName">AccessibleName của control cần tìm không phân biệt HOA thường.</param>
+        /// <param name="accessibleName">AccessibleName của control cần tìm không phân biệt HOA thường.</param>
         /// <returns></returns>
-        public static Control GetControlByAccesibleName(Control control, string accesibleName)
+        public static Control GetControlByAccessibleName(Control control, string accessibleName)
         {
             try
             {
                 if (control == null) return null;
 
                 if (!string.IsNullOrEmpty(control.AccessibleName)
-                    && string.Equals(control.AccessibleName, accesibleName, StringComparison.CurrentCultureIgnoreCase))
+                    && string.Equals(control.AccessibleName, accessibleName, StringComparison.CurrentCultureIgnoreCase))
                 {
                     return control;
                 }
                 return control.Controls.Count > 0 ?
-                    (from Control c in control.Controls select GetControlByAccesibleName(c, accesibleName)).FirstOrDefault(o => o != null)
+                    (from Control c in control.Controls select GetControlByAccessibleName(c, accessibleName)).FirstOrDefault(o => o != null)
                     : null;
             }
             catch (Exception ex)
@@ -1394,6 +1394,12 @@ namespace V6Controls.Forms
                         SetFormTagDicRecursive(c, tagData);
                     }
                 }
+
+                control.ControlAdded += (object sender, ControlEventArgs e) =>
+                {
+                    SetFormTagDicRecursive(e.Control, tagData);
+                };
+        
             CANCELALL: ;
             }
             catch (Exception ex)
@@ -1401,6 +1407,8 @@ namespace V6Controls.Forms
                 _errors += "\r\nControlName: " + control.Name + "\r\nException: " + ex.Message;
             }
         }
+
+        
 
 
 

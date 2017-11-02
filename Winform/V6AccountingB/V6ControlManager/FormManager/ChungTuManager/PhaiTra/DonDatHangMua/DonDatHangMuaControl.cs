@@ -52,7 +52,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         private void MyInit()
         {   
             LoadLanguage();
-            LoadTag(Invoice, detail1.panelControls);
+            LoadTag(Invoice, detail1.Controls);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -85,6 +85,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
 
             cboKieuPost.SelectedIndex = 0;
             cboLoai_pb.SelectedIndex = 0;
+
+            All_Objects["thisForm"] = this;
+            CreateFormProgram(Invoice);
+            ApplyDynamicFormControlEvents(Event_program, All_Objects);
+
             LoadDetailControls();
             LoadDetail2Controls();
             ResetForm();
@@ -125,199 +130,178 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
-                if (NAME == "MA_VT")
+                All_Objects[NAME] = control;
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+
+                switch (NAME)
                 {
-                    _maVt = (V6VvarTextBox) control;
-                    _maVt.Upper();
-                    _maVt.LO_YN = false;
-                    _maVt.DATE_YN = false;
+                    case "MA_VT":
+                        _maVt = (V6VvarTextBox) control;
+                        _maVt.Upper();
+                        _maVt.LO_YN = false;
+                        _maVt.DATE_YN = false;
 
-                    _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_kho,ma_qg,ma_vitri";
-                    //_maVt.BrotherFields = "dvt";
+                        _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_kho,ma_qg,ma_vitri";
+                        //_maVt.BrotherFields = "dvt";
                    
-                    _maVt.V6LostFocus += MaVatTu_V6LostFocus;
+                        _maVt.V6LostFocus += MaVatTu_V6LostFocus;
 
 
-                    _maVt.V6LostFocusNoChange += delegate
-                    {
-                        if (_maVt.LO_YN)
+                        _maVt.V6LostFocusNoChange += delegate
                         {
-                            _maLo.Enabled = true;
+                            if (_maVt.LO_YN)
+                            {
+                                _maLo.Enabled = true;
+                            }
+                            else
+                            {
+                                _maLo.Enabled = false;
+                            }
+                        };
+                        break;
+                    case "TK_VT":
+                        _tkVt = (V6VvarTextBox)control;
+                        _tkVt.Upper();
+                        _tkVt.SetInitFilter("Loai_tk = 1");
+                        break;
+                    case "DVT1":
+                        //select * from dbo.vALqddvt WHERE ma_vt='DTBANH'
+                        _dvt1 = (V6VvarTextBox)control;
+                        _dvt1.Upper();
+                        _dvt1.SetInitFilter("");
+                        _dvt1.BrotherFields = "ten_dvt";
+                        _dvt1.V6LostFocus += Dvt1_V6LostFocus;
+                        _dvt1.V6LostFocusNoChange += Dvt1_V6LostFocusNoChange;
+                        _dvt1.GotFocus += (s, e) =>
+                        {
+                            _dvt1.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+                        };
+                        break;
+                    case "DVT":
+                        _dvt = (V6ColorTextBox)control;
+                        _dvt.Tag = "hide";
+                        break;
+                    case "MA_KHO":
+                        _maKho = (V6VvarTextBox)control;
+                        _maKho.Upper();
+                        _maKho.V6LostFocus += MaKhoV6LostFocus;
+                        _maKho.Tag = "hide";
+                        break;
+                    case "MA_KHO_I":
+                        _maKhoI = (V6VvarTextBox)control;
+                        _maKhoI.Upper();
+                        _maKhoI.LO_YN = false;
+                        _maKhoI.DATE_YN = false;
+
+                        _maKhoI.V6LostFocus += MaKhoI_V6LostFocus;
+                        break;
+                    //_maKhoI.Tag = "hide";
+                    case "TON13":
+                        _ton13 = (V6NumberTextBox)control;
+                        _ton13.Tag = "disable";
+                        break;
+                    //_ton13.V6LostFocus += Ton13_V6LostFocus;
+                    case "SO_LUONG1":
+                        _soLuong1 = (V6NumberTextBox)control;
+                        _soLuong1.V6LostFocus += SoLuong1_V6LostFocus;
+                        _soLuong1.V6LostFocusNoChange += delegate
+                        {
+
+                        };
+                        break;
+                    //_soLuong1.Tag = "hide";
+                    case "SO_LUONG":
+                        _soLuong = (V6NumberTextBox)control;
+                        _soLuong.Tag = "hide";
+                        break;
+                    case "HE_SO1":
+                        _heSo1 = (V6NumberTextBox)control;
+                        _heSo1.Tag = "hide";
+                        _heSo1.DecimalPlaces = Invoice.ADStruct.ContainsKey("HE_SO1")
+                            ? Invoice.ADStruct["HE_SO1"].MaxNumDecimal
+                            : 6;
+                        _heSo1.StringValueChange += (sender, args) =>
+                        {
+                            if (IsReady && (Mode == V6Mode.Add || Mode == V6Mode.Edit) && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))
+                            {
+                                _soLuong.Value = _soLuong1.Value * _heSo1.Value;
+                            }
+                        };
+                        break;
+                    case "GIA_NT":
+                        _giaNt = (V6NumberTextBox)control;
+                        break;
+                    case "GIA":
+                        _gia = (V6NumberTextBox)control;
+                        break;
+                    case "GIA0":
+                        _gia0 = (V6NumberTextBox)control;
+                        break;
+                    case "GIA01":
+                        _gia01 = (V6NumberTextBox)control;
+                        break;
+                    //_soLuong.Tag = "hide";
+                    case "GIA_NT0":
+                        _gia_Nt0 = (V6NumberTextBox)control;
+                        break;
+                    case "GIA_NT01":
+                        _giaNt01 = (V6NumberTextBox)control;
+                        _giaNt01.V6LostFocus += GiaNt01_V6LostFocus;
+                        break;
+                    case "TIEN":
+                        _tien = (V6NumberTextBox)control;
+                        break;
+                    case "TIEN_NT":
+                        _tienNt = (V6NumberTextBox) control;
+                        break;
+                    case "TIEN_NT0":
+                        _tienNt0 = (V6NumberTextBox)control;
+
+                        _tienNt0.Enabled = chkSua_Tien.Checked;
+                        if (chkSua_Tien.Checked)
+                        {
+                            _tienNt0.Tag = null;
                         }
                         else
                         {
-                            _maLo.Enabled = false;
+                            _tienNt0.Tag = "disable";
                         }
-                    }; 
-                }
-               
-                if (NAME == "TK_VT")
-                {
-                    _tkVt = (V6VvarTextBox)control;
-                    _tkVt.Upper();
-                    _tkVt.SetInitFilter("Loai_tk = 1");
-                }
-
-                else if (NAME == "DVT1")
-                {
-                    //select * from dbo.vALqddvt WHERE ma_vt='DTBANH'
-                    _dvt1 = (V6VvarTextBox)control;
-                    _dvt1.Upper();
-                    _dvt1.SetInitFilter("");
-                    _dvt1.BrotherFields = "ten_dvt";
-                    _dvt1.V6LostFocus += Dvt1_V6LostFocus;
-                    _dvt1.V6LostFocusNoChange += Dvt1_V6LostFocusNoChange;
-                    _dvt1.GotFocus += (s, e) =>
-                    {
-                        _dvt1.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
-                    };
-                }
-                else if (NAME == "DVT")
-                {
-                    _dvt = (V6ColorTextBox)control;
-                    _dvt.Tag = "hide";
-                }
-                else if (NAME == "MA_KHO")
-                {
-                    _maKho = (V6VvarTextBox)control;
-                    _maKho.Upper();
-                    _maKho.V6LostFocus += MaKhoV6LostFocus;
-                    _maKho.Tag = "hide";
-                }
-                else if (NAME == "MA_KHO_I")
-                {
-                    _maKhoI = (V6VvarTextBox)control;
-                    _maKhoI.Upper();
-                    _maKhoI.LO_YN = false;
-                    _maKhoI.DATE_YN = false;
-
-                    _maKhoI.V6LostFocus += MaKhoI_V6LostFocus;
-                    //_maKhoI.Tag = "hide";
-                }
-                else if (NAME == "TON13")
-                {
-                    _ton13 = (V6NumberTextBox)control;
-                    _ton13.Tag = "disable";
-                    //_ton13.V6LostFocus += Ton13_V6LostFocus;
-                }
-                else if (NAME == "SO_LUONG1")
-                {
-                    _soLuong1 = (V6NumberTextBox)control;
-                    _soLuong1.V6LostFocus += SoLuong1_V6LostFocus;
-                    _soLuong1.V6LostFocusNoChange += delegate
-                    {
-
-                    };
-                    //_soLuong1.Tag = "hide";
-                }
-                else if (NAME == "SO_LUONG")
-                {
-                    _soLuong = (V6NumberTextBox)control;
-                    _soLuong.Tag = "hide";
-                }
-                else if (NAME == "HE_SO1")
-                {
-                    _heSo1 = (V6NumberTextBox)control;
-                    _heSo1.Tag = "hide";
-                    _heSo1.DecimalPlaces = Invoice.ADStruct.ContainsKey("HE_SO1")
-                        ? Invoice.ADStruct["HE_SO1"].MaxNumDecimal
-                        : 6;
-                    _heSo1.StringValueChange += (sender, args) =>
-                    {
-                        if (IsReady && (Mode == V6Mode.Add || Mode == V6Mode.Edit) && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))
-                        {
-                            _soLuong.Value = _soLuong1.Value * _heSo1.Value;
-                        }
-                    };
-                }
-                else if (NAME == "GIA_NT")
-                {
-                    _giaNt = (V6NumberTextBox)control;
-                }
-                else if (NAME == "GIA")
-                {
-                    _gia = (V6NumberTextBox)control;
-                }
-                else if (NAME == "GIA0")
-                {
-                    _gia0 = (V6NumberTextBox)control;
-                }
-                else if (NAME == "GIA01")
-                {
-                    _gia01 = (V6NumberTextBox)control;
-                    //_soLuong.Tag = "hide";
-                }
-                else if (NAME == "GIA_NT0")
-                {
-                    _gia_Nt0 = (V6NumberTextBox)control;
                     
-                }
-                else if (NAME == "GIA_NT01")
-                {
-                    _giaNt01 = (V6NumberTextBox)control;
-                    _giaNt01.V6LostFocus += GiaNt01_V6LostFocus;
-                }
-                else if (NAME == "TIEN")
-                {
-                    _tien = (V6NumberTextBox)control;
-                }
-                else if (NAME == "TIEN_NT")
-                {
-                    _tienNt = (V6NumberTextBox) control;
-                }
-                else if (NAME == "TIEN_NT0")
-                {
-                    _tienNt0 = (V6NumberTextBox)control;
+                        _tienNt0.V6LostFocus += TienNt0_V6LostFocus;
+                        break;
+                    case "TIEN0":
+                        _tien0 = (V6NumberTextBox)control;
+                        break;
+                    //_tien2.V6LostFocus;
+                    case "CK":
+                        _ck = (V6NumberTextBox)control;
+                        break;
+                    //_tien2.V6LostFocus;
+                    case "CK_NT":
+                        _ckNt = (V6NumberTextBox)control;
+                        break;
+                    //_tien2.V6LostFocus;
+                    case "MA_LO":
+                        //_maLo = (V6ColorTextBox)control;
+                        _maLo = (V6VvarTextBox)control;
+                        _maLo.Upper();
 
-                    _tienNt0.Enabled = chkSua_Tien.Checked;
-                    if (chkSua_Tien.Checked)
-                    {
-                        _tienNt0.Tag = null;
-                    }
-                    else
-                    {
-                        _tienNt0.Tag = "disable";
-                    }
-                    
-                    _tienNt0.V6LostFocus += TienNt0_V6LostFocus;
-                }
-                else if (NAME == "TIEN0")
-                {
-                    _tien0 = (V6NumberTextBox)control;
-                    //_tien2.V6LostFocus;
-                }
-                else if (NAME == "CK")
-                {
-                    _ck = (V6NumberTextBox)control;
-                    //_tien2.V6LostFocus;
-                }
-                else if (NAME == "CK_NT")
-                {
-                    _ckNt = (V6NumberTextBox)control;
-                    //_tien2.V6LostFocus;
-                }
-                else if (NAME == "MA_LO")
-                {
-                    //_maLo = (V6ColorTextBox)control;
-                    _maLo = (V6VvarTextBox)control;
-                    _maLo.Upper();
-
-                    _maLo.GotFocus += delegate
-                    {
-                        if (_maVt.Text != "")
+                        _maLo.GotFocus += delegate
                         {
-                            _maLo.SetInitFilter("Ma_vt='" + _maVt.Text.Trim() + "'");
-                        }
-                    };
-                    _maLo.V6LostFocus += _maLo_V6LostFocus;
+                            if (_maVt.Text != "")
+                            {
+                                _maLo.SetInitFilter("Ma_vt='" + _maVt.Text.Trim() + "'");
+                            }
+                        };
+                        _maLo.V6LostFocus += _maLo_V6LostFocus;
+                        break;
+                    case "HSD":
+                        _hanSd = (V6DateTimeColor)control;
+                        _hanSd.Enabled = false;
+                        _hanSd.Tag = "disable";
+                        break;
                 }
-                else if (NAME == "HSD")
-                {
-                    _hanSd = (V6DateTimeColor)control;
-                    _hanSd.Enabled = false;
-                    _hanSd.Tag = "disable";
-                }
-                
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
             foreach (Control control in dynamicControlList.Values)
@@ -1717,7 +1701,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     TxtT_cp_ao.Visible = true;
                     TxtT_cp.Visible = true;
 
-                    var c = V6ControlFormHelper.GetControlByAccesibleName(detail1, "GIA01");
+                    var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA01");
                     if (c != null) c.Visible = true;
                     //SetColsVisible(_GridID, ["GIA21", "TIEN2"], true); //Hien ra
                     var dataGridViewColumn = dataGridView1.Columns["GIA01"];

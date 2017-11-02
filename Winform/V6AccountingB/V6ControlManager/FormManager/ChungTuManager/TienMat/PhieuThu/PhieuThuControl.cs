@@ -58,7 +58,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         private void MyInit()
         {
             LoadLanguage();
-            LoadTag(Invoice, detail1.panelControls);
+            LoadTag(Invoice, detail1.Controls);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -105,6 +105,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
             
             cboKieuPost.SelectedIndex = 0;
+
+            All_Objects["thisForm"] = this;
+            CreateFormProgram(Invoice);
+            ApplyDynamicFormControlEvents(Event_program, All_Objects);
+
             LoadDetailControls("2");
             LoadDetail3Controls();
             ResetForm();
@@ -176,6 +181,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     ApplyControlEnterStatus(control);
 
                     var NAME = control.AccessibleName.ToUpper();
+                    All_Objects[NAME] = control;
+                    V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+
                     switch (NAME)
                     {
                         case "SO_CT0":
@@ -280,7 +288,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                             break;
 
                     }
-
+                    V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
                 }
                 #endregion ----//Thêm các control động vào danh sách, thêm sự kiện cho control động
 
@@ -1800,7 +1808,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     if (_MA_GD == "3")
                         detail1.ShowIDs(new[] { "PS_CO", "lblGIA21", "lblTIEN2" });
 
-                    var c = V6ControlFormHelper.GetControlByAccesibleName(detail1, "PS_CO");
+                    var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "PS_CO");
                     if (c != null) c.Visible = true;
                     //SetColsVisible(_GridID, ["GIA21", "TIEN2"], true); //Hien ra
                     var dataGridViewColumn = dataGridView1.Columns["PS_CO"];

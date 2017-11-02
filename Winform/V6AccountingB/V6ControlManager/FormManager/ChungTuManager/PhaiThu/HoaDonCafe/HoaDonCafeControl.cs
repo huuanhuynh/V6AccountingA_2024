@@ -145,7 +145,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         private void MyInit()
         {
-            LoadTag(Invoice, detail1.panelControls);
+            LoadTag(Invoice, detail1.Controls);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -197,6 +197,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             
             cboKieuPost.SelectedIndex = 0;
 
+            All_Objects["thisForm"] = this;
+            CreateFormProgram(Invoice);
+            ApplyDynamicFormControlEvents(Event_program, All_Objects);
+
             LoadDetailControls();
             LoadDetail3Controls();
             ResetForm();
@@ -247,6 +251,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
+                All_Objects[NAME] = control;
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+
                 switch (NAME)
                 {
                     case "MA_VT":
@@ -711,7 +718,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         //}
 
                 }
-                
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
             
             foreach (Control control in dynamicControlList.Values)
@@ -3515,7 +3522,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     panelVND.Visible = true;
                     
 
-                    var c = V6ControlFormHelper.GetControlByAccesibleName(detail1, "GIA21");
+                    var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA21");
                     if (c != null) c.Visible = true;
                     //SetColsVisible(_GridID, ["GIA21", "TIEN2"], true); //Hien ra
                     var gridViewColumn = dataGridView1.Columns["GIA21"];
@@ -5660,7 +5667,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     var a_fields = v6valid.Rows[0]["A_Field"].ToString().Trim().Split(',');
                     foreach (string field in a_fields)
                     {
-                        var control = V6ControlFormHelper.GetControlByAccesibleName(this, field);
+                        var control = V6ControlFormHelper.GetControlByAccessibleName(this, field);
                         if (control is V6DateTimeColor)
                         {
                             if (((V6DateTimeColor) control).Value == null)
@@ -5848,7 +5855,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     var a_fields = v6valid.Rows[0]["A_Field"].ToString().Trim().Split(',');
                     foreach (string field in a_fields)
                     {
-                        var control = V6ControlFormHelper.GetControlByAccesibleName(detail1, field);
+                        var control = V6ControlFormHelper.GetControlByAccessibleName(detail1, field);
                         if (control is V6DateTimeColor)
                         {
                             if (((V6DateTimeColor)control).Value == null)

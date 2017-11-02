@@ -75,7 +75,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <summary>
         /// Nếu trước đó đã có hiển thị chứng từ mà bấm (mới) biến này sẽ lưu lại.
         /// </summary>
-        protected DataRow AM_old;
+        public DataRow AM_old;
         /// <summary>
         /// Luôn là bảng copy
         /// </summary>
@@ -316,13 +316,19 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return addDataAM;
         }
 
-        protected void LoadTag(V6InvoiceBase invoice, Control detailPanelControl)
+        protected void LoadTag(V6InvoiceBase invoice, ControlCollection detailPanelControls)
         {
             try
             {
                 var tagData = invoice.LoadTag(m_itemId);
                 V6ControlFormHelper.SetFormTagDictionary(this, tagData);
-                V6ControlFormHelper.SetFormTagDictionary(detailPanelControl, tagData);
+                if (detailPanelControls != null)
+                {
+                    foreach (Control control in detailPanelControls)
+                    {
+                        V6ControlFormHelper.SetFormTagDictionary(control, tagData);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -520,7 +526,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             try
             {
                 //MA_KH
-                var temp_control = V6ControlFormHelper.GetControlByAccesibleName(this, "MA_KH");
+                var temp_control = V6ControlFormHelper.GetControlByAccessibleName(this, "MA_KH");
                 if (temp_control is V6VvarTextBox)
                 {
                     var txt = temp_control as V6VvarTextBox;
@@ -534,7 +540,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
                 
                 //MA_KH_I
-                temp_control = V6ControlFormHelper.GetControlByAccesibleName(this, "MA_KH_I");
+                temp_control = V6ControlFormHelper.GetControlByAccessibleName(this, "MA_KH_I");
                 if (temp_control is V6VvarTextBox)
                 {
                     var txt = temp_control as V6VvarTextBox;
@@ -548,7 +554,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
 
                 //MA_VT
-                temp_control = V6ControlFormHelper.GetControlByAccesibleName(this, "MA_VT");
+                temp_control = V6ControlFormHelper.GetControlByAccessibleName(this, "MA_VT");
                 if (temp_control is V6VvarTextBox)
                 {
                     var txt = temp_control as V6VvarTextBox;

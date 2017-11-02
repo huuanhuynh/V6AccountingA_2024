@@ -674,7 +674,9 @@ namespace V6Controls
             control.Tag = newTagString;
             var checkTagString = ";" + newTagString + ";";
             control.Enabled = !checkTagString.Contains(";disable;");
-            control.Visible = !checkTagString.Contains(";hide;");
+            var visible = !checkTagString.Contains(";hide;");
+            if (checkTagString.Contains(";invisible;")) visible = false;
+            control.Visible = visible;
             var textbox = control as TextBox;
             if (textbox != null)
             {
