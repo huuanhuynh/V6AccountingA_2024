@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace V6Controls
 {
-    public class V6VeticalLable : Control
+    public class V6VeticalLabel : Control
     {
         private string _hideText = "Show", _showText="Hide";
         private DrawMode _dm = DrawMode.BottomUp;
@@ -17,7 +17,7 @@ namespace V6Controls
         /// <summary>
         /// VerticalLabel constructor
         /// </summary>
-        public V6VeticalLable()
+        public V6VeticalLabel()
         {
             base.CreateControl();
             InitializeComponent();

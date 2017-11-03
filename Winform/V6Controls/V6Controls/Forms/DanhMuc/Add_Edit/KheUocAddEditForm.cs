@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Controls;
 using V6Init;
 using V6Structs;
 using V6Tools;
-using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {

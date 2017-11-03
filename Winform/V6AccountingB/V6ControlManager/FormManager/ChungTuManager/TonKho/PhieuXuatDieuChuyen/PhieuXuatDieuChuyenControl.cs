@@ -87,7 +87,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
-            ApplyDynamicFormControlEvents(Event_program, All_Objects);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
 
             LoadDetailControls();
             detail1.AddContexMenu(menuDetail1);

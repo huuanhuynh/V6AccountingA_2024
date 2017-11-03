@@ -102,7 +102,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
 
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
-            ApplyDynamicFormControlEvents(Event_program, All_Objects);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
 
             LoadDetailControls();
             LoadDetail2Controls();

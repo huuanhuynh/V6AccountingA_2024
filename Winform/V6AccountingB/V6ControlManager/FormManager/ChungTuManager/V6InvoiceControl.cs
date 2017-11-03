@@ -1016,6 +1016,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     date = row0["Date_yn"].ToString().Trim() == "1";
                     vitri = row0["Vitri_yn"].ToString().Trim() == "1";
                 }
+                else
+                {
+                    //tuanmh 03/11/2017
+                    continue;
+                }
                 if (lo && date && vitri)
                 {
                     if (!mavt_list.Contains(c_mavt))
@@ -1126,6 +1131,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     DataRow row0 = lodate_data.Rows[0];
                     lo = row0["Lo_yn"].ToString().Trim() == "1";
                     date = row0["Date_yn"].ToString().Trim() == "1";
+                }
+                else
+                {
+                    //tuanmh 03/11/2017
+                    continue;
                 }
                 if (lo && date)
                 {
@@ -1254,6 +1264,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
             if (mavt_in.Length > 0) mavt_in = mavt_in.Substring(1);
             if (makho_in.Length > 0) makho_in = makho_in.Substring(1);
+
+            // Loi 03/11/2017
+            if (string.IsNullOrEmpty(mavt_in) || string.IsNullOrEmpty(makho_in))
+            {
+                return null;
+            }
+
             //Get dữ liệu tồn
             var data = Invoice.GetStockAll(mavt_in, makho_in, _sttRec, ngayCt);
             //Kiểm tra
@@ -1339,35 +1356,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
             };
             var ca = V6BusinessHelper.ExecuteFunctionScalar("VFA_GET_CA_FROM_ALTD", plist);
             return "" + ca;
-        }
-
-        protected void ApplyDynamicFormControlEvents(Type eventProgram, Dictionary<string, object> allObjects)
-        {
-            try
-            {
-                var all_control = V6ControlFormHelper.GetAllControls(this);
-                string error = "";
-                foreach (Control control in all_control)
-                {
-                    try
-                    {
-                        V6ControlFormHelper.ApplyControlEventByAccessibleName(control, eventProgram, allObjects);
-                    }
-                    catch (Exception ex)
-                    {
-                        error += string.Format("{0}({1}) err: {2}", control.Name, control.AccessibleName, ex.Message);
-                    }
-                }
-
-                if (error.Length > 0)
-                {
-                    this.WriteToLog(GetType() + ".ApplyFormControlEvents", error);
-                }
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".ApplyFormControlEvents", ex);
-            }
         }
 
         /// <summary>

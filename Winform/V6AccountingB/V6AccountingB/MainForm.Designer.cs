@@ -57,7 +57,7 @@ namespace V6AccountingB
             this.menuMain = new V6Controls.MenuControl();
             this.quickMenu1 = new V6AccountingB.QuickMenu();
             this.panelMenuShow = new System.Windows.Forms.Panel();
-            this.lblMenuShow = new V6Controls.V6VeticalLable();
+            this.lblMenuShow = new V6Controls.V6VeticalLabel();
             this.lblMainMessage = new V6Controls.V6Label();
             this.panelView = new System.Windows.Forms.Panel();
             this.lblCompanyName = new System.Windows.Forms.Label();
@@ -624,7 +624,7 @@ namespace V6AccountingB
         private System.Windows.Forms.Label lblComment;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Panel panelMenuShow;
-        private V6Controls.V6VeticalLable lblMenuShow;
+        private V6Controls.V6VeticalLabel lblMenuShow;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Timer timer1;

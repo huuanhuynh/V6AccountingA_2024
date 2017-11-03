@@ -117,7 +117,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
-            ApplyDynamicFormControlEvents(Event_program, All_Objects);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
 
             _maGd = (Invoice.Alct.Rows[0]["M_MA_GD"] ?? "1").ToString().Trim();
             _m_Ma_td = (Invoice.Alct.Rows[0]["M_MA_TD"] ?? "0").ToString().Trim();

@@ -115,7 +115,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
-            ApplyDynamicFormControlEvents(Event_program, All_Objects);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
 
             LoadDetailControls("2");
             LoadDetail2Controls();

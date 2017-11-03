@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Init;
 using V6Structs;
 using V6Tools.V6Convert;
@@ -16,7 +18,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             InitializeComponent();
         }
 
-        private void KhachHangFrom_Load(object sender, System.EventArgs e)
+        private void From_Load(object sender, EventArgs e)
         {
             SqlParameter[] plist =
             {
@@ -40,11 +42,27 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             
         }
-  
+
         public override void V6F3Execute()
         {
-            
+            if (f3count == 2)
+            {
+                f3count = 0;
+                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                {
+                    ShowTopMessage("V6 Confirm ......OK....");
+                    
+                    txtDmethod.Visible = true;
+                    lblXML.Visible = true;
+                    btnEditXml.Visible = true;
+                }
+            }
+            else
+            {
+                
+            }
         }
+        
         public override void ValidateData()
         {
             var errors = "";
@@ -118,6 +136,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             if(IsReady) Make_Mau();
             
+        }
+
+        private void DoEditXml()
+        {
+            try
+            {
+                var file_xml = TXTMA_DM.Text.Trim().ToUpper() + ".xml";
+                new XmlEditorForm(txtDmethod, file_xml, "Table0", "event,using,method,content".Split(',')).ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoEditXml", ex);
+            }
+        }
+
+        private void btnEditXml_Click(object sender, EventArgs e)
+        {
+            DoEditXml();
         }
 
     }

@@ -1287,7 +1287,7 @@
     <Compile Include="V6TabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="V6VeticalLable.cs">
+    <Compile Include="V6VeticalLabel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="V6LookupTextBox.cs">

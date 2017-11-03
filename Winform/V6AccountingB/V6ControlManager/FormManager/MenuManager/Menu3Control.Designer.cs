@@ -33,7 +33,7 @@ namespace V6ControlManager.FormManager.MenuManager
         {
             this.components = new System.ComponentModel.Container();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.lblShowHide = new V6Controls.V6VeticalLable();
+            this.lblShowHide = new V6Controls.V6VeticalLabel();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.menuControl1 = new V6Controls.MenuControl();
             this.panelMenuShow = new System.Windows.Forms.Panel();
@@ -134,7 +134,7 @@ namespace V6ControlManager.FormManager.MenuManager
 
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.Panel panelMenuShow;
-        private V6VeticalLable lblShowHide;
+        private V6VeticalLabel lblShowHide;
         private System.Windows.Forms.Panel panelView;
         private MenuControl menuControl1;
         private System.Windows.Forms.ToolTip toolTip1;
