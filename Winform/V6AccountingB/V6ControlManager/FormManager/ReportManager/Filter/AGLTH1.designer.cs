@@ -46,9 +46,10 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
-            this.txtMaDvcs.Location = new System.Drawing.Point(6, 60);
+            this.txtMaDvcs.Location = new System.Drawing.Point(6, 41);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
             this.txtMaDvcs.TabIndex = 3;
@@ -65,7 +66,7 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Location = new System.Drawing.Point(3, 135);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 126);
+            this.groupBox1.Size = new System.Drawing.Size(289, 75);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -143,6 +144,7 @@
             // rdo_Chitiet
             // 
             this.rdo_Chitiet.AccessibleDescription = "FILTERR00015";
+            this.rdo_Chitiet.AccessibleName = "Chitiet";
             this.rdo_Chitiet.AutoSize = true;
             this.rdo_Chitiet.Checked = true;
             this.rdo_Chitiet.Location = new System.Drawing.Point(161, 101);
@@ -156,6 +158,7 @@
             // rdo_All
             // 
             this.rdo_All.AccessibleDescription = "FILTERR00016";
+            this.rdo_All.AccessibleName = "All";
             this.rdo_All.AutoSize = true;
             this.rdo_All.Location = new System.Drawing.Point(25, 101);
             this.rdo_All.Name = "rdo_All";
@@ -204,7 +207,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AGLTH1";
-            this.Size = new System.Drawing.Size(295, 264);
+            this.Size = new System.Drawing.Size(295, 213);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

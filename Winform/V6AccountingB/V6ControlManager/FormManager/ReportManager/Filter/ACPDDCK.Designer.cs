@@ -85,6 +85,7 @@
             // txtMa_bpht
             // 
             this.txtMa_bpht.AccessibleDescription = "FILTERL00078";
+            this.txtMa_bpht.AccessibleName2 = "MA_BPHT";
             this.txtMa_bpht.FieldCaption = "Mã bộ phận HT";
             this.txtMa_bpht.FieldName = "MA_BPHT";
             this.txtMa_bpht.Location = new System.Drawing.Point(21, 89);
@@ -96,6 +97,7 @@
             // chkdc_ck
             // 
             this.chkdc_ck.AccessibleDescription = "FILTERC00008";
+            this.chkdc_ck.AccessibleName = "dc_ck";
             this.chkdc_ck.AutoSize = true;
             this.chkdc_ck.Location = new System.Drawing.Point(24, 66);
             this.chkdc_ck.Name = "chkdc_ck";
@@ -115,7 +117,7 @@
             this.Controls.Add(this.dateNgay_ct2);
             this.Controls.Add(this.dateNgay_ct1);
             this.Name = "ACPDDCK";
-            this.Size = new System.Drawing.Size(594, 141);
+            this.Size = new System.Drawing.Size(312, 141);
             this.ResumeLayout(false);
             this.PerformLayout();
 

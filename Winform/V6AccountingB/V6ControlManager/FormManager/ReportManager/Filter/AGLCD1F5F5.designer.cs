@@ -39,10 +39,11 @@
             // lineTaiKhoan
             // 
             this.lineTaiKhoan.AccessibleDescription = "FILTERL00027";
+            this.lineTaiKhoan.AccessibleName2 = "TK";
             this.lineTaiKhoan.Enabled = false;
             this.lineTaiKhoan.FieldCaption = "Tài khoản";
             this.lineTaiKhoan.FieldName = "TK";
-            this.lineTaiKhoan.Location = new System.Drawing.Point(6, 49);
+            this.lineTaiKhoan.Location = new System.Drawing.Point(6, 40);
             this.lineTaiKhoan.Name = "lineTaiKhoan";
             this.lineTaiKhoan.Size = new System.Drawing.Size(282, 22);
             this.lineTaiKhoan.TabIndex = 4;
@@ -60,7 +61,7 @@
             this.groupBox1.Controls.Add(this.lineTaiKhoan);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(320, 122);
+            this.groupBox1.Size = new System.Drawing.Size(320, 96);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -95,22 +96,23 @@
             // filterLineVvarTextBox1
             // 
             this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00046";
+            this.filterLineVvarTextBox1.AccessibleName2 = "TK_DU";
             this.filterLineVvarTextBox1.Enabled = false;
             this.filterLineVvarTextBox1.FieldCaption = "Tài khoản đối ứng";
             this.filterLineVvarTextBox1.FieldName = "TK_DU";
-            this.filterLineVvarTextBox1.Location = new System.Drawing.Point(6, 77);
+            this.filterLineVvarTextBox1.Location = new System.Drawing.Point(6, 65);
             this.filterLineVvarTextBox1.Name = "filterLineVvarTextBox1";
             this.filterLineVvarTextBox1.Size = new System.Drawing.Size(282, 22);
             this.filterLineVvarTextBox1.TabIndex = 4;
             this.filterLineVvarTextBox1.Vvar = "TK";
             // 
-            // AGLCD1F5
+            // AGLCD1F5F5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
-            this.Name = "AGLCD1F5";
-            this.Size = new System.Drawing.Size(323, 128);
+            this.Name = "AGLCD1F5F5";
+            this.Size = new System.Drawing.Size(323, 102);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

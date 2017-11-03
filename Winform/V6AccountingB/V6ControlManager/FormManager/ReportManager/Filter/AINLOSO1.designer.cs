@@ -165,6 +165,7 @@
             // TxtMakho
             // 
             this.TxtMakho.AccessibleDescription = "FILTERL00006";
+            this.TxtMakho.AccessibleName2 = "MA_KHO";
             this.TxtMakho.FieldCaption = "Mã kho";
             this.TxtMakho.FieldName = "MA_KHO";
             this.TxtMakho.Location = new System.Drawing.Point(6, 52);
@@ -201,6 +202,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 77);
@@ -212,6 +214,7 @@
             // Chk_Tinh_dc
             // 
             this.Chk_Tinh_dc.AccessibleDescription = "FILTERC00014";
+            this.Chk_Tinh_dc.AccessibleName = "CK_TINH_DC";
             this.Chk_Tinh_dc.AutoSize = true;
             this.Chk_Tinh_dc.Location = new System.Drawing.Point(71, 113);
             this.Chk_Tinh_dc.Name = "Chk_Tinh_dc";

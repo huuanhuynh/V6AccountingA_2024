@@ -79,9 +79,10 @@
             // ma_kh_filterLine
             // 
             this.ma_kh_filterLine.AccessibleDescription = "FILTERL00185";
+            this.ma_kh_filterLine.AccessibleName2 = "MA_KH";
             this.ma_kh_filterLine.Enabled = false;
             this.ma_kh_filterLine.FieldCaption = "Mã nhóm khách";
-            this.ma_kh_filterLine.FieldName = "MA";
+            this.ma_kh_filterLine.FieldName = "MA_KH";
             this.ma_kh_filterLine.Location = new System.Drawing.Point(6, 40);
             this.ma_kh_filterLine.Name = "ma_kh_filterLine";
             this.ma_kh_filterLine.Operator = "=";

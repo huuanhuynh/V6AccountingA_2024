@@ -51,9 +51,9 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
-            this.groupBox1.Location = new System.Drawing.Point(3, 88);
+            this.groupBox1.Location = new System.Drawing.Point(3, 45);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 126);
+            this.groupBox1.Size = new System.Drawing.Size(289, 112);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -61,6 +61,7 @@
             // filter_tk
             // 
             this.filter_tk.AccessibleDescription = "FILTERL00027";
+            this.filter_tk.AccessibleName2 = "TK";
             this.filter_tk.FieldCaption = "Tài khoản";
             this.filter_tk.FieldName = "TK";
             this.filter_tk.Location = new System.Drawing.Point(3, 75);
@@ -72,6 +73,7 @@
             // filter_ma_dvcs
             // 
             this.filter_ma_dvcs.AccessibleDescription = "FILTERL00005";
+            this.filter_ma_dvcs.AccessibleName2 = "MA_DVCS";
             this.filter_ma_dvcs.FieldCaption = "Mã đơn vị";
             this.filter_ma_dvcs.FieldName = "MA_DVCS";
             this.filter_ma_dvcs.Location = new System.Drawing.Point(3, 52);
@@ -159,7 +161,7 @@
             this.Controls.Add(this.dateNgay_ct);
             this.Controls.Add(this.groupBox1);
             this.Name = "AGLSD1";
-            this.Size = new System.Drawing.Size(295, 280);
+            this.Size = new System.Drawing.Size(295, 170);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

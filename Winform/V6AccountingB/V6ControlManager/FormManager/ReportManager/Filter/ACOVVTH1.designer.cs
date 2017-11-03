@@ -57,8 +57,8 @@
             this.v6Label4 = new V6Controls.V6Label();
             this.v6Label5 = new V6Controls.V6Label();
             this.TxtLoai_bc = new V6Controls.V6VvarTextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rdo_k_tk_du = new System.Windows.Forms.RadioButton();
+            this.rdo_tk_du = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -145,6 +145,7 @@
             // filterLineVvarTextBox1
             // 
             this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00027";
+            this.filterLineVvarTextBox1.AccessibleName2 = "MA_VV";
             this.filterLineVvarTextBox1.FieldCaption = "Tài khoản";
             this.filterLineVvarTextBox1.FieldName = "MA_VV";
             this.filterLineVvarTextBox1.Location = new System.Drawing.Point(7, 64);
@@ -156,6 +157,7 @@
             // filterLineVvarTextBox11
             // 
             this.filterLineVvarTextBox11.AccessibleDescription = "FILTERL00004";
+            this.filterLineVvarTextBox11.AccessibleName2 = "MA_CT";
             this.filterLineVvarTextBox11.FieldCaption = "Mã chứng từ";
             this.filterLineVvarTextBox11.FieldName = "MA_CT";
             this.filterLineVvarTextBox11.Location = new System.Drawing.Point(7, 130);
@@ -167,6 +169,7 @@
             // txtTk_du
             // 
             this.txtTk_du.AccessibleDescription = "FILTERL00096";
+            this.txtTk_du.AccessibleName2 = "TK_DU";
             this.txtTk_du.FieldCaption = "TK đối ứng";
             this.txtTk_du.FieldName = "TK_DU";
             this.txtTk_du.Location = new System.Drawing.Point(7, 108);
@@ -178,6 +181,7 @@
             // filterLineVvarTextBox4
             // 
             this.filterLineVvarTextBox4.AccessibleDescription = "FILTERL00097";
+            this.filterLineVvarTextBox4.AccessibleName2 = "MA_NX";
             this.filterLineVvarTextBox4.FieldCaption = "Mã NX";
             this.filterLineVvarTextBox4.FieldName = "MA_NX";
             this.filterLineVvarTextBox4.Location = new System.Drawing.Point(7, 152);
@@ -189,6 +193,7 @@
             // TxtMakho
             // 
             this.TxtMakho.AccessibleDescription = "FILTERL00006";
+            this.TxtMakho.AccessibleName2 = "MA_KHO";
             this.TxtMakho.FieldCaption = "Mã kho";
             this.TxtMakho.FieldName = "MA_KHO";
             this.TxtMakho.Location = new System.Drawing.Point(7, 262);
@@ -200,6 +205,7 @@
             // Txtnh_vv1
             // 
             this.Txtnh_vv1.AccessibleDescription = "FILTERL00101";
+            this.Txtnh_vv1.AccessibleName2 = "NH_VV1";
             this.Txtnh_vv1.FieldCaption = "Nhóm vụ việc 1";
             this.Txtnh_vv1.FieldName = "NH_VV1";
             this.Txtnh_vv1.Location = new System.Drawing.Point(7, 196);
@@ -211,6 +217,7 @@
             // Txtnh_vv2
             // 
             this.Txtnh_vv2.AccessibleDescription = "FILTERL00102";
+            this.Txtnh_vv2.AccessibleName2 = "NH_VV2";
             this.Txtnh_vv2.FieldCaption = "Nhóm vụ việc 2";
             this.Txtnh_vv2.FieldName = "NH_VV2";
             this.Txtnh_vv2.Location = new System.Drawing.Point(7, 218);
@@ -222,6 +229,7 @@
             // Txtnh_vv3
             // 
             this.Txtnh_vv3.AccessibleDescription = "FILTERL00103";
+            this.Txtnh_vv3.AccessibleName2 = "NH_VV3";
             this.Txtnh_vv3.FieldCaption = "Nhóm vụ việc 3";
             this.Txtnh_vv3.FieldName = "NH_VV3";
             this.Txtnh_vv3.Location = new System.Drawing.Point(7, 240);
@@ -243,6 +251,7 @@
             // filterLineVvarTextBox7
             // 
             this.filterLineVvarTextBox7.AccessibleDescription = "FILTERL00065";
+            this.filterLineVvarTextBox7.AccessibleName2 = "MA_VV";
             this.filterLineVvarTextBox7.FieldCaption = "Mã vụ việc";
             this.filterLineVvarTextBox7.FieldName = "MA_VV";
             this.filterLineVvarTextBox7.Location = new System.Drawing.Point(7, 86);
@@ -254,6 +263,7 @@
             // Txtnh_kh6
             // 
             this.Txtnh_kh6.AccessibleDescription = "FILTERL00016";
+            this.Txtnh_kh6.AccessibleName2 = "NH_KH6";
             this.Txtnh_kh6.FieldCaption = "Nhóm khách hàng 6";
             this.Txtnh_kh6.FieldName = "NH_KH6";
             this.Txtnh_kh6.Location = new System.Drawing.Point(7, 394);
@@ -275,6 +285,7 @@
             // Txtnh_kh5
             // 
             this.Txtnh_kh5.AccessibleDescription = "FILTERL00015";
+            this.Txtnh_kh5.AccessibleName2 = "NH_KH5";
             this.Txtnh_kh5.FieldCaption = "Nhóm khách hàng 5";
             this.Txtnh_kh5.FieldName = "NH_KH5";
             this.Txtnh_kh5.Location = new System.Drawing.Point(7, 372);
@@ -286,6 +297,7 @@
             // Txtnh_kh4
             // 
             this.Txtnh_kh4.AccessibleDescription = "FILTERL00014";
+            this.Txtnh_kh4.AccessibleName2 = "NH_KH4";
             this.Txtnh_kh4.FieldCaption = "Nhóm khách hàng 4";
             this.Txtnh_kh4.FieldName = "NH_KH4";
             this.Txtnh_kh4.Location = new System.Drawing.Point(7, 350);
@@ -297,6 +309,7 @@
             // Txtnh_kh1
             // 
             this.Txtnh_kh1.AccessibleDescription = "FILTERL00011";
+            this.Txtnh_kh1.AccessibleName2 = "NH_KH1";
             this.Txtnh_kh1.FieldCaption = "Nhóm khách hàng 1";
             this.Txtnh_kh1.FieldName = "NH_KH1";
             this.Txtnh_kh1.Location = new System.Drawing.Point(7, 284);
@@ -308,6 +321,7 @@
             // Txtnh_kh2
             // 
             this.Txtnh_kh2.AccessibleDescription = "FILTERL00012";
+            this.Txtnh_kh2.AccessibleName2 = "NH_KH2";
             this.Txtnh_kh2.FieldCaption = "Nhóm khách hàng 2";
             this.Txtnh_kh2.FieldName = "NH_KH2";
             this.Txtnh_kh2.Location = new System.Drawing.Point(7, 306);
@@ -319,6 +333,7 @@
             // Txtnh_kh3
             // 
             this.Txtnh_kh3.AccessibleDescription = "FILTERL00013";
+            this.Txtnh_kh3.AccessibleName2 = "NH_KH3";
             this.Txtnh_kh3.FieldCaption = "Nhóm khách hàng 3";
             this.Txtnh_kh3.FieldName = "NH_KH3";
             this.Txtnh_kh3.Location = new System.Drawing.Point(7, 328);
@@ -355,6 +370,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(7, 42);
@@ -366,6 +382,7 @@
             // filterLineVvarTextBox3
             // 
             this.filterLineVvarTextBox3.AccessibleDescription = "FILTERL00007";
+            this.filterLineVvarTextBox3.AccessibleName2 = "MA_KH";
             this.filterLineVvarTextBox3.FieldCaption = "Mã khách hàng";
             this.filterLineVvarTextBox3.FieldName = "MA_KH";
             this.filterLineVvarTextBox3.Location = new System.Drawing.Point(7, 174);
@@ -396,7 +413,7 @@
             // 
             // TxtLoai_bc
             // 
-            this.TxtLoai_bc.AccessibleName = "";
+            this.TxtLoai_bc.AccessibleName = "Loai_bc";
             this.TxtLoai_bc.BackColor = System.Drawing.SystemColors.Window;
             this.TxtLoai_bc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtLoai_bc.EnterColor = System.Drawing.Color.PaleGreen;
@@ -411,38 +428,40 @@
             this.TxtLoai_bc.Size = new System.Drawing.Size(18, 20);
             this.TxtLoai_bc.TabIndex = 4;
             // 
-            // radioButton1
+            // rdo_k_tk_du
             // 
-            this.radioButton1.AccessibleDescription = "FILTERR00008";
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(5, 79);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(166, 17);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Không theo tài khoản đối ứng";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rdo_k_tk_du.AccessibleDescription = "FILTERR00008";
+            this.rdo_k_tk_du.AccessibleName = "k_tk_du";
+            this.rdo_k_tk_du.AutoSize = true;
+            this.rdo_k_tk_du.Location = new System.Drawing.Point(5, 79);
+            this.rdo_k_tk_du.Name = "rdo_k_tk_du";
+            this.rdo_k_tk_du.Size = new System.Drawing.Size(166, 17);
+            this.rdo_k_tk_du.TabIndex = 3;
+            this.rdo_k_tk_du.TabStop = true;
+            this.rdo_k_tk_du.Text = "Không theo tài khoản đối ứng";
+            this.rdo_k_tk_du.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rdo_tk_du
             // 
-            this.radioButton2.AccessibleDescription = "FILTERR00007";
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Checked = true;
-            this.radioButton2.Location = new System.Drawing.Point(5, 56);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(136, 17);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Theo tài khoản đối ứng";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rdo_tk_du.AccessibleDescription = "FILTERR00007";
+            this.rdo_tk_du.AccessibleName = "tk_du";
+            this.rdo_tk_du.AutoSize = true;
+            this.rdo_tk_du.Checked = true;
+            this.rdo_tk_du.Location = new System.Drawing.Point(5, 56);
+            this.rdo_tk_du.Name = "rdo_tk_du";
+            this.rdo_tk_du.Size = new System.Drawing.Size(136, 17);
+            this.rdo_tk_du.TabIndex = 2;
+            this.rdo_tk_du.TabStop = true;
+            this.rdo_tk_du.Text = "Theo tài khoản đối ứng";
+            this.rdo_tk_du.UseVisualStyleBackColor = true;
             // 
             // ACOVVTH1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.rdo_k_tk_du);
             this.Controls.Add(this.v6Label4);
-            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.rdo_tk_du);
             this.Controls.Add(this.v6Label5);
             this.Controls.Add(this.TxtLoai_bc);
             this.Controls.Add(this.groupBox1);
@@ -489,7 +508,7 @@
         private V6Controls.V6Label v6Label5;
         private V6Controls.V6VvarTextBox TxtLoai_bc;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rdo_k_tk_du;
+        private System.Windows.Forms.RadioButton rdo_tk_du;
     }
 }

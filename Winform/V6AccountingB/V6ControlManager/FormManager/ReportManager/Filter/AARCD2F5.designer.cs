@@ -39,6 +39,7 @@
             // ma_kh_filterLine
             // 
             this.ma_kh_filterLine.AccessibleDescription = "FILTERL00007";
+            this.ma_kh_filterLine.AccessibleName2 = "MA_KH";
             this.ma_kh_filterLine.Enabled = false;
             this.ma_kh_filterLine.FieldCaption = "Mã khách hàng";
             this.ma_kh_filterLine.FieldName = "MA_KH";
@@ -69,6 +70,7 @@
             // TK_filterLine
             // 
             this.TK_filterLine.AccessibleDescription = "FILTERL00027";
+            this.TK_filterLine.AccessibleName2 = "TK";
             this.TK_filterLine.Enabled = false;
             this.TK_filterLine.FieldCaption = "Tài khoản";
             this.TK_filterLine.FieldName = "TK";

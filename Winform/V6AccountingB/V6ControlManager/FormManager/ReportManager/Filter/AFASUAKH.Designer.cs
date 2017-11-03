@@ -80,9 +80,9 @@
             this.groupBox1.Controls.Add(this.TxtSO_THE_TS);
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
-            this.groupBox1.Location = new System.Drawing.Point(3, 132);
+            this.groupBox1.Location = new System.Drawing.Point(3, 84);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(317, 201);
+            this.groupBox1.Size = new System.Drawing.Size(300, 202);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -90,6 +90,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(9, 53);
@@ -101,6 +102,7 @@
             // filterLineVvarTextBox1
             // 
             this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00116";
+            this.filterLineVvarTextBox1.AccessibleName2 = "LOAI_TS";
             this.filterLineVvarTextBox1.FieldCaption = "Loại TS";
             this.filterLineVvarTextBox1.FieldName = "LOAI_TS";
             this.filterLineVvarTextBox1.Location = new System.Drawing.Point(9, 76);
@@ -112,6 +114,7 @@
             // filterLineVvarTextBox16
             // 
             this.filterLineVvarTextBox16.AccessibleDescription = "FILTERL00111";
+            this.filterLineVvarTextBox16.AccessibleName2 = "NH_TS1";
             this.filterLineVvarTextBox16.FieldCaption = "Nhóm TS 1";
             this.filterLineVvarTextBox16.FieldName = "NH_TS1";
             this.filterLineVvarTextBox16.Location = new System.Drawing.Point(9, 122);
@@ -123,6 +126,7 @@
             // filterLineVvarTextBox15
             // 
             this.filterLineVvarTextBox15.AccessibleDescription = "FILTERL00112";
+            this.filterLineVvarTextBox15.AccessibleName2 = "NH_TS2";
             this.filterLineVvarTextBox15.FieldCaption = "Nhóm TS 2";
             this.filterLineVvarTextBox15.FieldName = "NH_TS2";
             this.filterLineVvarTextBox15.Location = new System.Drawing.Point(9, 145);
@@ -134,6 +138,7 @@
             // filterLineVvarTextBox9
             // 
             this.filterLineVvarTextBox9.AccessibleDescription = "FILTERL00113";
+            this.filterLineVvarTextBox9.AccessibleName2 = "NH_TS3";
             this.filterLineVvarTextBox9.FieldCaption = "Nhóm TS 3";
             this.filterLineVvarTextBox9.FieldName = "NH_TS3";
             this.filterLineVvarTextBox9.Location = new System.Drawing.Point(9, 168);
@@ -145,6 +150,7 @@
             // TxtSO_THE_TS
             // 
             this.TxtSO_THE_TS.AccessibleDescription = "FILTERL00117";
+            this.TxtSO_THE_TS.AccessibleName2 = "SO_THE_TS";
             this.TxtSO_THE_TS.FieldCaption = "Mã TS";
             this.TxtSO_THE_TS.FieldName = "SO_THE_TS";
             this.TxtSO_THE_TS.Location = new System.Drawing.Point(9, 99);
@@ -231,7 +237,7 @@
             // 
             this.v6Label1.AccessibleDescription = "FILTERL00108";
             this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(7, 108);
+            this.v6Label1.Location = new System.Drawing.Point(7, 63);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(64, 13);
             this.v6Label1.TabIndex = 17;
@@ -248,7 +254,7 @@
             this.TxtMa_bp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtMa_bp.HoverColor = System.Drawing.Color.Yellow;
             this.TxtMa_bp.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_bp.Location = new System.Drawing.Point(117, 106);
+            this.TxtMa_bp.Location = new System.Drawing.Point(117, 61);
             this.TxtMa_bp.Name = "TxtMa_bp";
             this.TxtMa_bp.Size = new System.Drawing.Size(100, 20);
             this.TxtMa_bp.TabIndex = 2;
@@ -266,7 +272,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AFASUAKH";
-            this.Size = new System.Drawing.Size(323, 350);
+            this.Size = new System.Drawing.Size(306, 289);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

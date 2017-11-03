@@ -52,7 +52,7 @@
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Location = new System.Drawing.Point(3, 88);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 126);
+            this.groupBox1.Size = new System.Drawing.Size(289, 90);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -60,6 +60,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(3, 46);
@@ -175,7 +176,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AGLCD3";
-            this.Size = new System.Drawing.Size(295, 280);
+            this.Size = new System.Drawing.Size(295, 181);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

@@ -68,13 +68,15 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
-            this.txtMaDvcs.Location = new System.Drawing.Point(5, 69);
+            this.txtMaDvcs.Location = new System.Drawing.Point(10, 69);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
             this.txtMaDvcs.TabIndex = 20;
             this.txtMaDvcs.Vvar = "MA_DVCS";
+            this.txtMaDvcs.Load += new System.EventHandler(this.txtMaDvcs_Load);
             // 
             // txtNam
             // 
@@ -160,7 +162,7 @@
             this.Controls.Add(this.v6Label1);
             this.Controls.Add(this.TxtSo_the_ts);
             this.Name = "AFADCCTBP";
-            this.Size = new System.Drawing.Size(594, 116);
+            this.Size = new System.Drawing.Size(301, 116);
             this.ResumeLayout(false);
             this.PerformLayout();
 

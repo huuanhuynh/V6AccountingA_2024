@@ -47,6 +47,7 @@
             // lineMaDvcs
             // 
             this.lineMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.lineMaDvcs.AccessibleName2 = "MA_DVCS";
             this.lineMaDvcs.FieldCaption = "Mã đơn vị";
             this.lineMaDvcs.FieldName = "MA_DVCS";
             this.lineMaDvcs.Location = new System.Drawing.Point(6, 67);
@@ -78,6 +79,7 @@
             // lineMakho
             // 
             this.lineMakho.AccessibleDescription = "FILTERL00006";
+            this.lineMakho.AccessibleName2 = "MA_KHO";
             this.lineMakho.FieldCaption = "Mã kho";
             this.lineMakho.FieldName = "MA_KHO";
             this.lineMakho.Location = new System.Drawing.Point(6, 39);
@@ -115,6 +117,7 @@
             // filterLineVvarTextBox1
             // 
             this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00020";
+            this.filterLineVvarTextBox1.AccessibleName2 = "MA_VT";
             this.filterLineVvarTextBox1.FieldCaption = "Mã vật tư";
             this.filterLineVvarTextBox1.FieldName = "MA_VT";
             this.filterLineVvarTextBox1.Location = new System.Drawing.Point(6, 123);
@@ -127,6 +130,7 @@
             // lineMaVitri
             // 
             this.lineMaVitri.AccessibleDescription = "FILTERL00160";
+            this.lineMaVitri.AccessibleName2 = "MA_VITRI";
             this.lineMaVitri.FieldCaption = "Mã vị trí";
             this.lineMaVitri.FieldName = "MA_VITRI";
             this.lineMaVitri.Location = new System.Drawing.Point(6, 95);
@@ -172,7 +176,7 @@
             // 
             // txtVtTonKho
             // 
-            this.txtVtTonKho.AccessibleName = "";
+            this.txtVtTonKho.AccessibleName = "VT_TONKHO";
             this.txtVtTonKho.BackColor = System.Drawing.Color.White;
             this.txtVtTonKho.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtVtTonKho.Enabled = false;
@@ -192,7 +196,7 @@
             // 
             // txtKieuIn
             // 
-            this.txtKieuIn.AccessibleName = "";
+            this.txtKieuIn.AccessibleName = "KIEU_IN";
             this.txtKieuIn.BackColor = System.Drawing.Color.White;
             this.txtKieuIn.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtKieuIn.Enabled = false;

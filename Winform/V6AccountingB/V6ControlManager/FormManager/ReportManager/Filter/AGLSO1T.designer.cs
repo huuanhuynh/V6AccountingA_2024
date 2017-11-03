@@ -48,6 +48,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 60);
@@ -68,7 +69,7 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Location = new System.Drawing.Point(3, 132);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 224);
+            this.groupBox1.Size = new System.Drawing.Size(289, 120);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -76,6 +77,7 @@
             // txtTk
             // 
             this.txtTk.AccessibleDescription = "FILTERL00027";
+            this.txtTk.AccessibleName2 = "TK";
             this.txtTk.FieldCaption = "Tài khoản";
             this.txtTk.FieldName = "TK";
             this.txtTk.Location = new System.Drawing.Point(6, 84);
@@ -176,7 +178,7 @@
             // 
             // TxtTk_sc
             // 
-            this.TxtTk_sc.AccessibleName = "";
+            this.TxtTk_sc.AccessibleName = "TK_SC";
             this.TxtTk_sc.BackColor = System.Drawing.SystemColors.Window;
             this.TxtTk_sc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtTk_sc.EnterColor = System.Drawing.Color.PaleGreen;
@@ -203,7 +205,7 @@
             // 
             // txtbac_tk
             // 
-            this.txtbac_tk.AccessibleName = "";
+            this.txtbac_tk.AccessibleName = "BAC_TK";
             this.txtbac_tk.BackColor = System.Drawing.Color.White;
             this.txtbac_tk.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtbac_tk.DecimalPlaces = 0;
@@ -240,7 +242,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AGLSO1T";
-            this.Size = new System.Drawing.Size(295, 359);
+            this.Size = new System.Drawing.Size(295, 255);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

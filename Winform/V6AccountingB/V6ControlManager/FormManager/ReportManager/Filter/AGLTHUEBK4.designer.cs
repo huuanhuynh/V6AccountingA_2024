@@ -49,6 +49,7 @@
             // chkNhomCt
             // 
             this.chkNhomCt.AccessibleDescription = "FILTERC00012";
+            this.chkNhomCt.AccessibleName = "NHOM_CT";
             this.chkNhomCt.AutoSize = true;
             this.chkNhomCt.Location = new System.Drawing.Point(131, 57);
             this.chkNhomCt.Name = "chkNhomCt";
@@ -122,7 +123,7 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Location = new System.Drawing.Point(3, 123);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 233);
+            this.groupBox1.Size = new System.Drawing.Size(289, 162);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -130,6 +131,7 @@
             // filterLineVvarTextBox11
             // 
             this.filterLineVvarTextBox11.AccessibleDescription = "FILTERL00004";
+            this.filterLineVvarTextBox11.AccessibleName2 = "MA_CT";
             this.filterLineVvarTextBox11.FieldCaption = "Mã chứng từ";
             this.filterLineVvarTextBox11.FieldName = "MA_CT";
             this.filterLineVvarTextBox11.Location = new System.Drawing.Point(6, 108);
@@ -141,6 +143,7 @@
             // txtTk_thue_no
             // 
             this.txtTk_thue_no.AccessibleDescription = "FILTERL00142";
+            this.txtTk_thue_no.AccessibleName2 = "TK_THUE_NO";
             this.txtTk_thue_no.FieldCaption = "Tài khoản thuế";
             this.txtTk_thue_no.FieldName = "TK_THUE_NO";
             this.txtTk_thue_no.Location = new System.Drawing.Point(6, 131);
@@ -152,6 +155,7 @@
             // Txtma_kh
             // 
             this.Txtma_kh.AccessibleDescription = "FILTERL00007";
+            this.Txtma_kh.AccessibleName2 = "MA_KH";
             this.Txtma_kh.FieldCaption = "Mã khách";
             this.Txtma_kh.FieldName = "MA_KH";
             this.Txtma_kh.Location = new System.Drawing.Point(6, 85);
@@ -163,6 +167,7 @@
             // Txtmau_bc
             // 
             this.Txtmau_bc.AccessibleDescription = "FILTERL00141";
+            this.Txtmau_bc.AccessibleName2 = "MAU_BC";
             this.Txtmau_bc.FieldCaption = "Mẫu BC";
             this.Txtmau_bc.FieldName = "MAU_BC";
             this.Txtmau_bc.Location = new System.Drawing.Point(6, 62);
@@ -198,6 +203,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 39);
@@ -208,7 +214,7 @@
             // 
             // txtMa_tc
             // 
-            this.txtMa_tc.AccessibleName = "";
+            this.txtMa_tc.AccessibleName = "MA_TC";
             this.txtMa_tc.BackColor = System.Drawing.SystemColors.Window;
             this.txtMa_tc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMa_tc.CheckNotEmpty = true;
@@ -245,7 +251,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AGLTHUEBK4";
-            this.Size = new System.Drawing.Size(295, 359);
+            this.Size = new System.Drawing.Size(295, 288);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

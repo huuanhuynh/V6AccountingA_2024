@@ -62,6 +62,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 61);
@@ -73,6 +74,7 @@
             // filterLineVvarTextBox3
             // 
             this.filterLineVvarTextBox3.AccessibleDescription = "FILTERL00007";
+            this.filterLineVvarTextBox3.AccessibleName2 = "MA_KH";
             this.filterLineVvarTextBox3.FieldCaption = "Mã khách hàng";
             this.filterLineVvarTextBox3.FieldName = "MA_KH";
             this.filterLineVvarTextBox3.Location = new System.Drawing.Point(6, 83);
@@ -117,6 +119,7 @@
             // Txtnh_vt6
             // 
             this.Txtnh_vt6.AccessibleDescription = "FILTERL00036";
+            this.Txtnh_vt6.AccessibleName2 = "NH_VT6";
             this.Txtnh_vt6.FieldCaption = "Nhóm vật tư 6";
             this.Txtnh_vt6.FieldName = "NH_VT6";
             this.Txtnh_vt6.Location = new System.Drawing.Point(6, 440);
@@ -128,6 +131,7 @@
             // Txtnh_vt4
             // 
             this.Txtnh_vt4.AccessibleDescription = "FILTERL00034";
+            this.Txtnh_vt4.AccessibleName2 = "NH_VT4";
             this.Txtnh_vt4.FieldCaption = "Nhóm vật tư 4";
             this.Txtnh_vt4.FieldName = "NH_VT4";
             this.Txtnh_vt4.Location = new System.Drawing.Point(6, 396);
@@ -139,6 +143,7 @@
             // Txtnh_vt5
             // 
             this.Txtnh_vt5.AccessibleDescription = "FILTERL00035";
+            this.Txtnh_vt5.AccessibleName2 = "NH_VT5";
             this.Txtnh_vt5.FieldCaption = "Nhóm vật tư 5";
             this.Txtnh_vt5.FieldName = "NH_VT5";
             this.Txtnh_vt5.Location = new System.Drawing.Point(6, 418);
@@ -150,6 +155,7 @@
             // Txtnh_vt3
             // 
             this.Txtnh_vt3.AccessibleDescription = "FILTERL00033";
+            this.Txtnh_vt3.AccessibleName2 = "NH_VT3";
             this.Txtnh_vt3.FieldCaption = "Nhóm vật tư 3";
             this.Txtnh_vt3.FieldName = "NH_VT3";
             this.Txtnh_vt3.Location = new System.Drawing.Point(6, 374);
@@ -161,6 +167,7 @@
             // Txtnh_vt1
             // 
             this.Txtnh_vt1.AccessibleDescription = "FILTERL00031";
+            this.Txtnh_vt1.AccessibleName2 = "NH_VT1";
             this.Txtnh_vt1.FieldCaption = "Nhóm vật tư 1";
             this.Txtnh_vt1.FieldName = "NH_VT1";
             this.Txtnh_vt1.Location = new System.Drawing.Point(6, 330);
@@ -172,6 +179,7 @@
             // Txtnh_vt2
             // 
             this.Txtnh_vt2.AccessibleDescription = "FILTERL00032";
+            this.Txtnh_vt2.AccessibleName2 = "NH_VT2";
             this.Txtnh_vt2.FieldCaption = "Nhóm vật tư 2";
             this.Txtnh_vt2.FieldName = "NH_VT2";
             this.Txtnh_vt2.Location = new System.Drawing.Point(6, 352);
@@ -183,6 +191,7 @@
             // Txtma_vt
             // 
             this.Txtma_vt.AccessibleDescription = "FILTERL00020";
+            this.Txtma_vt.AccessibleName2 = "MA_VT";
             this.Txtma_vt.FieldCaption = "Mã vật tư";
             this.Txtma_vt.FieldName = "MA_VT";
             this.Txtma_vt.Location = new System.Drawing.Point(6, 308);
@@ -194,6 +203,7 @@
             // filterLineVvarTextBox1
             // 
             this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00030";
+            this.filterLineVvarTextBox1.AccessibleName2 = "MA_HTTT";
             this.filterLineVvarTextBox1.FieldCaption = "Mã hình thức TT";
             this.filterLineVvarTextBox1.FieldName = "MA_HTTT";
             this.filterLineVvarTextBox1.Location = new System.Drawing.Point(6, 149);
@@ -205,6 +215,7 @@
             // filterLineVvarTextBox2
             // 
             this.filterLineVvarTextBox2.AccessibleDescription = "FILTERL00029";
+            this.filterLineVvarTextBox2.AccessibleName2 = "MA_NVIEN";
             this.filterLineVvarTextBox2.FieldCaption = "Mã nhân viên";
             this.filterLineVvarTextBox2.FieldName = "MA_NVIEN";
             this.filterLineVvarTextBox2.Location = new System.Drawing.Point(6, 127);
@@ -216,6 +227,7 @@
             // filterLineVvarTextBox4
             // 
             this.filterLineVvarTextBox4.AccessibleDescription = "FILTERL00008";
+            this.filterLineVvarTextBox4.AccessibleName2 = "MA_BP";
             this.filterLineVvarTextBox4.FieldCaption = "Mã bộ phận";
             this.filterLineVvarTextBox4.FieldName = "MA_BP";
             this.filterLineVvarTextBox4.Location = new System.Drawing.Point(6, 105);
@@ -227,6 +239,7 @@
             // Txtnh_kh6
             // 
             this.Txtnh_kh6.AccessibleDescription = "FILTERL00016";
+            this.Txtnh_kh6.AccessibleName2 = "NH_KH6";
             this.Txtnh_kh6.FieldCaption = "Nhóm khách hàng 6";
             this.Txtnh_kh6.FieldName = "NH_KH6";
             this.Txtnh_kh6.Location = new System.Drawing.Point(6, 281);
@@ -238,6 +251,7 @@
             // txtTk
             // 
             this.txtTk.AccessibleDescription = "FILTERL00027";
+            this.txtTk.AccessibleName2 = "TK";
             this.txtTk.FieldCaption = "Tài khoản";
             this.txtTk.FieldName = "TK";
             this.txtTk.Location = new System.Drawing.Point(6, 39);
@@ -249,6 +263,7 @@
             // Txtnh_kh5
             // 
             this.Txtnh_kh5.AccessibleDescription = "FILTERL00015";
+            this.Txtnh_kh5.AccessibleName2 = "NH_KH5";
             this.Txtnh_kh5.FieldCaption = "Nhóm khách hàng 5";
             this.Txtnh_kh5.FieldName = "NH_KH5";
             this.Txtnh_kh5.Location = new System.Drawing.Point(6, 259);
@@ -271,6 +286,7 @@
             // Txtnh_kh4
             // 
             this.Txtnh_kh4.AccessibleDescription = "FILTERL00014";
+            this.Txtnh_kh4.AccessibleName2 = "NH_KH4";
             this.Txtnh_kh4.FieldCaption = "Nhóm khách hàng 4";
             this.Txtnh_kh4.FieldName = "NH_KH4";
             this.Txtnh_kh4.Location = new System.Drawing.Point(6, 237);
@@ -294,6 +310,7 @@
             // Txtnh_kh1
             // 
             this.Txtnh_kh1.AccessibleDescription = "FILTERL00011";
+            this.Txtnh_kh1.AccessibleName2 = "NH_KH1";
             this.Txtnh_kh1.FieldCaption = "Nhóm khách hàng 1";
             this.Txtnh_kh1.FieldName = "NH_KH1";
             this.Txtnh_kh1.Location = new System.Drawing.Point(6, 171);
@@ -305,6 +322,7 @@
             // Txtnh_kh2
             // 
             this.Txtnh_kh2.AccessibleDescription = "FILTERL00012";
+            this.Txtnh_kh2.AccessibleName2 = "NH_KH2";
             this.Txtnh_kh2.FieldCaption = "Nhóm khách hàng 2";
             this.Txtnh_kh2.FieldName = "NH_KH2";
             this.Txtnh_kh2.Location = new System.Drawing.Point(6, 193);
@@ -316,6 +334,7 @@
             // Txtnh_kh3
             // 
             this.Txtnh_kh3.AccessibleDescription = "FILTERL00013";
+            this.Txtnh_kh3.AccessibleName2 = "NH_KH3";
             this.Txtnh_kh3.FieldCaption = "Nhóm khách hàng 3";
             this.Txtnh_kh3.FieldName = "NH_KH3";
             this.Txtnh_kh3.Location = new System.Drawing.Point(6, 215);
@@ -370,6 +389,7 @@
             // 
             // txtSo_ngay
             // 
+            this.txtSo_ngay.AccessibleName = "So_ngay";
             this.txtSo_ngay.BackColor = System.Drawing.SystemColors.Window;
             this.txtSo_ngay.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtSo_ngay.DecimalPlaces = 0;

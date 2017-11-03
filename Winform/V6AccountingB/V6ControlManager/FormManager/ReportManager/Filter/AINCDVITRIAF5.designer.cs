@@ -40,6 +40,7 @@
             // ma_vt_filterLine
             // 
             this.ma_vt_filterLine.AccessibleDescription = "FILTERL00020";
+            this.ma_vt_filterLine.AccessibleName2 = "MA_VT";
             this.ma_vt_filterLine.Enabled = false;
             this.ma_vt_filterLine.FieldCaption = "Mã vật tư";
             this.ma_vt_filterLine.FieldName = "MA_VT";
@@ -70,6 +71,7 @@
             // TxtMavitri
             // 
             this.TxtMavitri.AccessibleDescription = "FILTERL00160";
+            this.TxtMavitri.AccessibleName2 = "MA_VITRI";
             this.TxtMavitri.Enabled = false;
             this.TxtMavitri.FieldCaption = "Mã vị trí";
             this.TxtMavitri.FieldName = "MA_VITRI";

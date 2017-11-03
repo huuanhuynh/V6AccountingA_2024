@@ -47,9 +47,10 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
-            this.txtMaDvcs.Location = new System.Drawing.Point(6, 60);
+            this.txtMaDvcs.Location = new System.Drawing.Point(6, 41);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
             this.txtMaDvcs.TabIndex = 2;
@@ -66,7 +67,7 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Location = new System.Drawing.Point(3, 162);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 194);
+            this.groupBox1.Size = new System.Drawing.Size(289, 74);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -144,6 +145,7 @@
             // rdo_goptk
             // 
             this.rdo_goptk.AccessibleDescription = "FILTERR00005";
+            this.rdo_goptk.AccessibleName = "goptk";
             this.rdo_goptk.AutoSize = true;
             this.rdo_goptk.Location = new System.Drawing.Point(161, 140);
             this.rdo_goptk.Name = "rdo_goptk";
@@ -155,6 +157,7 @@
             // rdo_khonggoptk
             // 
             this.rdo_khonggoptk.AccessibleDescription = "FILTERR00006";
+            this.rdo_khonggoptk.AccessibleName = "khonggoptk";
             this.rdo_khonggoptk.AutoSize = true;
             this.rdo_khonggoptk.Checked = true;
             this.rdo_khonggoptk.Location = new System.Drawing.Point(25, 140);
@@ -227,7 +230,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AGLSO1A";
-            this.Size = new System.Drawing.Size(295, 359);
+            this.Size = new System.Drawing.Size(295, 239);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

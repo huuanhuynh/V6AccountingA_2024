@@ -38,6 +38,7 @@
             // Tk_filterLine
             // 
             this.Tk_filterLine.AccessibleDescription = "FILTERL00027";
+            this.Tk_filterLine.AccessibleName2 = "TK_DU";
             this.Tk_filterLine.Enabled = false;
             this.Tk_filterLine.FieldCaption = "Tài khoản ";
             this.Tk_filterLine.FieldName = "TK_DU";
@@ -90,12 +91,12 @@
             this.radAnd.Text = "Điều kiện (AND)";
             this.radAnd.UseVisualStyleBackColor = true;
             // 
-            // AGLSO1TF5
+            // AGLGSSO4TF5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
-            this.Name = "AGLSO1TF5";
+            this.Name = "AGLGSSO4TF5";
             this.Size = new System.Drawing.Size(323, 90);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

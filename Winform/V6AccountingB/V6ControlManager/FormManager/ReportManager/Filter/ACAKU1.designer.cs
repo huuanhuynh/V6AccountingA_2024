@@ -40,9 +40,9 @@
             this.Txtnh_ku2 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_ku1 = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.v6Label2 = new V6Controls.V6Label();
             this.TxtTk = new V6Controls.V6VvarTextBox();
-            this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,6 +123,7 @@
             // filterLineVvarTextBox7
             // 
             this.filterLineVvarTextBox7.AccessibleDescription = "FILTERL00065";
+            this.filterLineVvarTextBox7.AccessibleName2 = "MA_VV";
             this.filterLineVvarTextBox7.FieldCaption = "Mã vụ việc";
             this.filterLineVvarTextBox7.FieldName = "MA_VV";
             this.filterLineVvarTextBox7.Location = new System.Drawing.Point(6, 94);
@@ -134,6 +135,7 @@
             // filterLineVvarTextBox10
             // 
             this.filterLineVvarTextBox10.AccessibleDescription = "FILTERL00064";
+            this.filterLineVvarTextBox10.AccessibleName2 = "MA_KU";
             this.filterLineVvarTextBox10.FieldCaption = "Mã khế ước";
             this.filterLineVvarTextBox10.FieldName = "MA_KU";
             this.filterLineVvarTextBox10.Location = new System.Drawing.Point(6, 71);
@@ -145,6 +147,7 @@
             // Txtnh_ku3
             // 
             this.Txtnh_ku3.AccessibleDescription = "FILTERL00073";
+            this.Txtnh_ku3.AccessibleName2 = "NH_KU3";
             this.Txtnh_ku3.FieldCaption = "Nhóm khế ước 3";
             this.Txtnh_ku3.FieldName = "NH_KU3";
             this.Txtnh_ku3.Location = new System.Drawing.Point(6, 163);
@@ -156,6 +159,7 @@
             // Txtnh_ku2
             // 
             this.Txtnh_ku2.AccessibleDescription = "FILTERL00072";
+            this.Txtnh_ku2.AccessibleName2 = "NH_KU2";
             this.Txtnh_ku2.FieldCaption = "Nhóm khế ước 2";
             this.Txtnh_ku2.FieldName = "NH_KU2";
             this.Txtnh_ku2.Location = new System.Drawing.Point(6, 140);
@@ -167,6 +171,7 @@
             // Txtnh_ku1
             // 
             this.Txtnh_ku1.AccessibleDescription = "FILTERL00071";
+            this.Txtnh_ku1.AccessibleName2 = "NH_KU1";
             this.Txtnh_ku1.FieldCaption = "Nhóm khế ước 1";
             this.Txtnh_ku1.FieldName = "NH_KU1";
             this.Txtnh_ku1.Location = new System.Drawing.Point(6, 117);
@@ -196,6 +201,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
             // 
+            // txtMaDvcs
+            // 
+            this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
+            this.txtMaDvcs.FieldCaption = "Mã đơn vị";
+            this.txtMaDvcs.FieldName = "MA_DVCS";
+            this.txtMaDvcs.Location = new System.Drawing.Point(6, 48);
+            this.txtMaDvcs.Name = "txtMaDvcs";
+            this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
+            this.txtMaDvcs.TabIndex = 2;
+            this.txtMaDvcs.Vvar = "MA_DVCS";
+            // 
             // v6Label2
             // 
             this.v6Label2.AccessibleDescription = "FILTERL00027";
@@ -221,17 +238,6 @@
             this.TxtTk.Size = new System.Drawing.Size(100, 20);
             this.TxtTk.TabIndex = 2;
             this.TxtTk.VVar = "TK";
-            // 
-            // txtMaDvcs
-            // 
-            this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
-            this.txtMaDvcs.FieldCaption = "Mã đơn vị";
-            this.txtMaDvcs.FieldName = "MA_DVCS";
-            this.txtMaDvcs.Location = new System.Drawing.Point(6, 48);
-            this.txtMaDvcs.Name = "txtMaDvcs";
-            this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
-            this.txtMaDvcs.TabIndex = 2;
-            this.txtMaDvcs.Vvar = "MA_DVCS";
             // 
             // ACAKU1
             // 

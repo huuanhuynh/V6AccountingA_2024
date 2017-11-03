@@ -71,7 +71,7 @@
             // 
             // txtMaKh
             // 
-            this.txtMaKh.AccessibleName = "ma_kh";
+            this.txtMaKh.AccessibleName = "MA_KH";
             this.txtMaKh.BackColor = System.Drawing.Color.AntiqueWhite;
             this.txtMaKh.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaKh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -143,6 +143,7 @@
             // lineMaKho
             // 
             this.lineMaKho.AccessibleDescription = "FILTERL00006";
+            this.lineMaKho.AccessibleName2 = "MA_KHO";
             this.lineMaKho.FieldCaption = "Mã kho";
             this.lineMaKho.FieldName = "MA_KHO";
             this.lineMaKho.Location = new System.Drawing.Point(6, 42);
@@ -154,6 +155,7 @@
             // lineMaVatTu
             // 
             this.lineMaVatTu.AccessibleDescription = "FILTERL00020";
+            this.lineMaVatTu.AccessibleName2 = "MA_VT";
             this.lineMaVatTu.FieldCaption = "Mã vật tư";
             this.lineMaVatTu.FieldName = "MA_VT";
             this.lineMaVatTu.Location = new System.Drawing.Point(6, 88);
@@ -165,6 +167,7 @@
             // lineMaVitri
             // 
             this.lineMaVitri.AccessibleDescription = "FILTERL00160";
+            this.lineMaVitri.AccessibleName2 = "MA_VITRI";
             this.lineMaVitri.FieldCaption = "Mã vị trí";
             this.lineMaVitri.FieldName = "MA_VITRI";
             this.lineMaVitri.Location = new System.Drawing.Point(6, 65);
