@@ -1542,9 +1542,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
             else if (keyData == Keys.F4)
             {
-                if (Mode == V6Mode.Edit && detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit)
+                if (Mode == V6Mode.Edit)
                 {
-                    detail1.OnMoiClick();
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit
+                        && _maVt.Text != "" && _maKhoI.Text != "")
+                    {
+                        detail1.btnNhan.PerformClick();
+                    }
+
+                    if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit)
+                    {
+                        detail1.OnMoiClick();
+                    }
                 }
             }
             else if (keyData == Keys.F6)

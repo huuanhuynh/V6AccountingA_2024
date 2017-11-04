@@ -716,6 +716,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             CreateFormProgram();
             CreateFormControls();
             InvokeFormEvent(QuickReportManager.FormEvent.INIT);
+            crystalReportViewer1.GotFocus += crystalReportViewer1_GotFocus;
+        }
+
+        private int _viewer_focus_count = 0;
+        void crystalReportViewer1_GotFocus(object sender, EventArgs e)
+        {
+            //if (_viewer_focus_count>0)
+            //{
+            //    return;
+            //}
+            //_viewer_focus_count++;
+            //try
+            //{
+            //    btnIn.Focus();
+            //}
+            //catch (Exception ex)
+            //{
+                
+            //}
         }
 
         private void LoadComboboxSource()
@@ -1265,7 +1284,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         Print(PrinterName);
                         if (!IsDisposed) Dispose();
                     }
-                    if (!dataGridView1.IsDisposed) dataGridView1.Focus();
+                    //if (!dataGridView1.IsDisposed) dataGridView1.Focus();
+                    //btnIn.Focus();
                 }
                 catch (Exception ex)
                 {
@@ -1301,7 +1321,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         Dispose();
                     }
 
-                    dataGridView1.Focus();
+                    //dataGridView1.Focus();
                 }
                 catch (Exception ex)
                 {
@@ -1620,6 +1640,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
             }
+            //btnIn.Focus();
         }
 
         private void Print(string printerName)
@@ -2088,6 +2109,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
             }
+        }
+
+        private void panel1_Leave(object sender, EventArgs e)
+        {
+            //btnIn.Focus();
         }
 
         
