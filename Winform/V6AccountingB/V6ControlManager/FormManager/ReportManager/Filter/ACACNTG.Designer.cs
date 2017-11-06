@@ -166,7 +166,7 @@
             // 
             // txtAp_tg_gd
             // 
-            this.txtAp_tg_gd.AccessibleName = "Ap_tg_gd";
+            this.txtAp_tg_gd.AccessibleName = "AP_TG_GD";
             this.txtAp_tg_gd.BackColor = System.Drawing.SystemColors.Window;
             this.txtAp_tg_gd.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtAp_tg_gd.DecimalPlaces = 0;
@@ -212,7 +212,7 @@
             // 
             // txtKieu_tg_gs
             // 
-            this.txtKieu_tg_gs.AccessibleName = "Kieu_tg_gs";
+            this.txtKieu_tg_gs.AccessibleName = "KIEU_TG_GS";
             this.txtKieu_tg_gs.BackColor = System.Drawing.SystemColors.Window;
             this.txtKieu_tg_gs.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtKieu_tg_gs.DecimalPlaces = 0;
@@ -339,7 +339,7 @@
             // txtTyGia
             // 
             this.txtTyGia.AccessibleDescription = "";
-            this.txtTyGia.AccessibleName = "ty_gia";
+            this.txtTyGia.AccessibleName = "TY_GIA";
             this.txtTyGia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTyGia.BackColor = System.Drawing.Color.White;
             this.txtTyGia.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -384,7 +384,7 @@
             // 
             // txtLoai_cl
             // 
-            this.txtLoai_cl.AccessibleName = "Loai_cl";
+            this.txtLoai_cl.AccessibleName = "LOAI_CL";
             this.txtLoai_cl.BackColor = System.Drawing.SystemColors.Window;
             this.txtLoai_cl.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtLoai_cl.DecimalPlaces = 0;

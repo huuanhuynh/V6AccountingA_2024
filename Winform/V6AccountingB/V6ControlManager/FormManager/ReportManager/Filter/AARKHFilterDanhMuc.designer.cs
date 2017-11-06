@@ -181,6 +181,7 @@
             // chkHienMa
             // 
             this.chkHienMa.AccessibleDescription = "FILTERC00005";
+            this.chkHienMa.AccessibleName = "HIEN_MA";
             this.chkHienMa.AutoSize = true;
             this.chkHienMa.Location = new System.Drawing.Point(173, 22);
             this.chkHienMa.Name = "chkHienMa";

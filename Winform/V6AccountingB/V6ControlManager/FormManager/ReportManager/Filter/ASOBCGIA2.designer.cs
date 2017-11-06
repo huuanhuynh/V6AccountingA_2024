@@ -59,6 +59,7 @@
             // txtma_gia
             // 
             this.txtma_gia.AccessibleDescription = "FILTERL00186";
+            this.txtma_gia.AccessibleName2 = "MA_GIA";
             this.txtma_gia.FieldCaption = "Mã giá";
             this.txtma_gia.FieldName = "MA_GIA";
             this.txtma_gia.Location = new System.Drawing.Point(5, 52);

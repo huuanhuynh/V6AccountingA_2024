@@ -144,7 +144,7 @@
             // rdo_Chitiet
             // 
             this.rdo_Chitiet.AccessibleDescription = "FILTERR00015";
-            this.rdo_Chitiet.AccessibleName = "Chitiet";
+            this.rdo_Chitiet.AccessibleName = "CHI_TIET";
             this.rdo_Chitiet.AutoSize = true;
             this.rdo_Chitiet.Checked = true;
             this.rdo_Chitiet.Location = new System.Drawing.Point(161, 101);

@@ -258,7 +258,7 @@
             // chkNhomCt
             // 
             this.chkNhomCt.AccessibleDescription = "FILTERC00012";
-            this.chkNhomCt.AccessibleName = "NhomCT";
+            this.chkNhomCt.AccessibleName = "NHOM_CT";
             this.chkNhomCt.AutoSize = true;
             this.chkNhomCt.Location = new System.Drawing.Point(131, 58);
             this.chkNhomCt.Name = "chkNhomCt";
@@ -279,7 +279,7 @@
             // 
             // txtLoai
             // 
-            this.txtLoai.AccessibleName = "Loai";
+            this.txtLoai.AccessibleName = "LOAI";
             this.txtLoai.BackColor = System.Drawing.SystemColors.Window;
             this.txtLoai.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtLoai.EnterColor = System.Drawing.Color.PaleGreen;

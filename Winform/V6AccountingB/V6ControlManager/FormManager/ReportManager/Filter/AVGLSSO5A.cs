@@ -85,8 +85,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
             result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@so_ct1", lineTuSo.StringValue));
-            result.Add(new SqlParameter("@so_ct2", lineDenSo.StringValue));
+            result.Add(new SqlParameter("@so_ct1", ctTuSo.ToString()));
+            result.Add(new SqlParameter("@so_ct2", ctDenSo.ToString()));
             result.Add(new SqlParameter("@ct_goc", ""));
 
             var and = radAnd.Checked;

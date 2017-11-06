@@ -462,7 +462,7 @@
             // 
             // TxtGroupby
             // 
-            this.TxtGroupby.AccessibleName = "Groupby";
+            this.TxtGroupby.AccessibleName = "GROUP_BY";
             this.TxtGroupby.BackColor = System.Drawing.SystemColors.Window;
             this.TxtGroupby.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtGroupby.EnterColor = System.Drawing.Color.PaleGreen;
@@ -499,7 +499,7 @@
             this.TxtTk.LeaveColor = System.Drawing.Color.White;
             this.TxtTk.Location = new System.Drawing.Point(100, 55);
             this.TxtTk.Name = "TxtTk";
-            this.TxtTk.Size = new System.Drawing.Size(193, 20);
+            this.TxtTk.Size = new System.Drawing.Size(192, 20);
             this.TxtTk.TabIndex = 2;
             // 
             // AGLBK2BT

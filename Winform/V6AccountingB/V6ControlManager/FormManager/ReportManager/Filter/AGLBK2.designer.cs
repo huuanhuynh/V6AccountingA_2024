@@ -439,7 +439,7 @@
             // 
             // TxtGroupby
             // 
-            this.TxtGroupby.AccessibleName = "Groupby";
+            this.TxtGroupby.AccessibleName = "GROUP_BY";
             this.TxtGroupby.BackColor = System.Drawing.SystemColors.Window;
             this.TxtGroupby.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtGroupby.EnterColor = System.Drawing.Color.PaleGreen;
@@ -486,7 +486,7 @@
             // 
             // TxtLoai_bc
             // 
-            this.TxtLoai_bc.AccessibleName = "Loai_bc";
+            this.TxtLoai_bc.AccessibleName = "LOAI_BC";
             this.TxtLoai_bc.BackColor = System.Drawing.SystemColors.Window;
             this.TxtLoai_bc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtLoai_bc.EnterColor = System.Drawing.Color.PaleGreen;

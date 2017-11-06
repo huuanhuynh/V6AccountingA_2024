@@ -120,7 +120,7 @@
             // chk_Luy_ke
             // 
             this.chk_Luy_ke.AccessibleDescription = "FILTERC00010";
-            this.chk_Luy_ke.AccessibleName = "luy_ke";
+            this.chk_Luy_ke.AccessibleName = "LUY_KE";
             this.chk_Luy_ke.AutoSize = true;
             this.chk_Luy_ke.Location = new System.Drawing.Point(63, 109);
             this.chk_Luy_ke.Margin = new System.Windows.Forms.Padding(4);
@@ -132,7 +132,7 @@
             // 
             // cboMaubc
             // 
-            this.cboMaubc.AccessibleName = "maubc";
+            this.cboMaubc.AccessibleName = "MAU_BC";
             this.cboMaubc.BackColor = System.Drawing.SystemColors.Window;
             this.cboMaubc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMaubc.ForeColor = System.Drawing.SystemColors.WindowText;

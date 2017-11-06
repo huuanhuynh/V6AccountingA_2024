@@ -512,7 +512,7 @@
             // 
             // ctDenSo
             // 
-            this.ctDenSo.AccessibleName = "ctDenSo";
+            this.ctDenSo.AccessibleName = "CT_DENSO";
             this.ctDenSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctDenSo.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.ctDenSo.Enabled = false;
@@ -553,7 +553,7 @@
             // 
             // ctTuSo
             // 
-            this.ctTuSo.AccessibleName = "ctTuSo";
+            this.ctTuSo.AccessibleName = "CT_TUSO";
             this.ctTuSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctTuSo.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.ctTuSo.CheckOnLeave = false;

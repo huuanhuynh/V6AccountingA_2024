@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lineKhoaCTGS = new V6ReportControls.FilterLineVvarTextBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
-            this.lineKhoaCTGS = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +50,18 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // lineKhoaCTGS
+            // 
+            this.lineKhoaCTGS.AccessibleName2 = "KHOA_CTGS0";
+            this.lineKhoaCTGS.Enabled = false;
+            this.lineKhoaCTGS.FieldCaption = "Khóa";
+            this.lineKhoaCTGS.FieldName = "KHOA_CTGS0";
+            this.lineKhoaCTGS.Location = new System.Drawing.Point(7, 39);
+            this.lineKhoaCTGS.Name = "lineKhoaCTGS";
+            this.lineKhoaCTGS.Size = new System.Drawing.Size(282, 22);
+            this.lineKhoaCTGS.TabIndex = 4;
+            this.lineKhoaCTGS.Vvar = "";
             // 
             // radOr
             // 
@@ -75,18 +87,7 @@
             this.radAnd.Text = "Điều kiện (AND)";
             this.radAnd.UseVisualStyleBackColor = true;
             // 
-            // lineKhoaCTGS
-            // 
-            this.lineKhoaCTGS.Enabled = false;
-            this.lineKhoaCTGS.FieldCaption = "Khóa";
-            this.lineKhoaCTGS.FieldName = "KHOA_CTGS0";
-            this.lineKhoaCTGS.Location = new System.Drawing.Point(7, 39);
-            this.lineKhoaCTGS.Name = "lineKhoaCTGS";
-            this.lineKhoaCTGS.Size = new System.Drawing.Size(282, 22);
-            this.lineKhoaCTGS.TabIndex = 4;
-            this.lineKhoaCTGS.Vvar = "";
-            // 
-            // AVGLSSO5AF5
+            // AVGLGSSO5AF5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

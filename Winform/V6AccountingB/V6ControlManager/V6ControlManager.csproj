@@ -5711,6 +5711,12 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLGSSO4TF5.resx">
       <DependentUpon>AGLGSSO4TF5.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AKSOTH6.resx">
+      <DependentUpon>AKSOTH6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\APOBK4.resx">
+      <DependentUpon>APOBK4.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AVGLGSSO5AF5.resx">
       <DependentUpon>AVGLGSSO5AF5.cs</DependentUpon>
     </EmbeddedResource>

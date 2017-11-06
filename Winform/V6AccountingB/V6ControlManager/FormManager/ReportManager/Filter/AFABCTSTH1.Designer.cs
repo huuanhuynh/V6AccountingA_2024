@@ -211,7 +211,7 @@
             // 
             // txtdau_cuoi
             // 
-            this.txtdau_cuoi.AccessibleName = "dau_cuoi";
+            this.txtdau_cuoi.AccessibleName = "DAU_CUOI";
             this.txtdau_cuoi.BackColor = System.Drawing.SystemColors.Window;
             this.txtdau_cuoi.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtdau_cuoi.DecimalPlaces = 0;

@@ -122,6 +122,7 @@
             // checkBox2
             // 
             this.checkBox2.AccessibleDescription = "FILTERC00017";
+            this.checkBox2.AccessibleName = "CAP_NHAT_MA_MOI";
             this.checkBox2.AutoSize = true;
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -136,6 +137,7 @@
             // checkBox1
             // 
             this.checkBox1.AccessibleDescription = "FILTERC00016";
+            this.checkBox1.AccessibleName = "CHUYEN_MA";
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(9, 19);
             this.checkBox1.Name = "checkBox1";
