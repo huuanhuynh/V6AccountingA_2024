@@ -4132,7 +4132,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (_post && _print_flag)
                 {
                     _print_flag = false;
-                    In(_sttRec_In, true, 3);
+                    In(_sttRec_In, V6PrintMode.AutoPrint, 3);
                     SetStatus2Text();
                 }
             }
@@ -4535,7 +4535,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        private void In(string sttRec_In, bool auto, int sec = 3)
+        private void In(string sttRec_In, V6PrintMode printMode, int sec = 3)
         {
             try
             {
@@ -4560,7 +4560,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                             if (!sender.IsDisposed) sender.Dispose();
                         };
 
-                        c.AutoPrint = auto;
+                        c.PrintMode = printMode;
 
                         c.ShowToForm(this, V6Text.PrintSOA, true);
 
@@ -5563,7 +5563,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         
         private void btnIn_Click(object sender, EventArgs e)
         {
-            In(_sttRec, false);
+            In(_sttRec, V6PrintMode.DoNoThing);
             SetStatus2Text();
         }
 

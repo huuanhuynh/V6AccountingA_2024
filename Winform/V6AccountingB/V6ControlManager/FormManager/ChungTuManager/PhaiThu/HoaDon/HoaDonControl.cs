@@ -1739,9 +1739,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         #region ==== Override Methods ====
 
+       
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("Chứng từ.");
+            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ?
+                "F4-Nhận/thêm chi tiết,F9-Lưu và in." :
+                "F4-Add details,F9-Save and print.");
         }
         
         public override bool DoHotKey0(Keys keyData)
@@ -4247,10 +4250,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
 
                 ((Timer)sender).Dispose();
-                if (_print_flag)
+                if (_print_flag != V6PrintMode.DoNoThing)
                 {
-                    _print_flag = false;
-                    In(_sttRec_In, true, 3);
+                    var temp = _print_flag;
+                    _print_flag = V6PrintMode.DoNoThing;
+                    In(_sttRec_In, temp, 3);
                     SetStatus2Text();
                 }
             }
@@ -4370,10 +4374,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
 
                 ((Timer)sender).Dispose();
-                if (_print_flag)
+                if (_print_flag != V6PrintMode.DoNoThing)
                 {
-                    _print_flag = false;
-                    In(_sttRec_In, true, 3);
+                    var temp = _print_flag;
+                    _print_flag = V6PrintMode.DoNoThing;
+                    In(_sttRec_In, temp, 3);
                     SetStatus2Text();
                 }
             }
@@ -4739,7 +4744,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void In(string sttRec_In, bool auto, int sec = 3)
+        private void In(string sttRec_In, V6PrintMode printMode, int sec = 3)
         {
             try
             {
@@ -4763,7 +4768,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             if (hoadon_nd51 == 1) Invoice.IncreaseSl_inAM(stt_rec);
                             if (!sender.IsDisposed) sender.Dispose();
                         };
-                        c.AutoPrint = auto;
+                        c.PrintMode = printMode;
                         c.ShowToForm(this, V6Text.PrintSOA, true);
                     }
                     else
@@ -4836,7 +4841,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             Parent.Dispose();
         }
 
-        private bool _print_flag = false;
+        private V6PrintMode _print_flag = V6PrintMode.DoNoThing;
         private string _sttRec_In = "";
         private string _status = "";
         /// <summary>
@@ -4874,7 +4879,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         //public string MA_KHOPH { get { return txtMa_khoPH.Text.Trim(); } set { txtMa_khoPH.Text = value; } }
         //public string MA_VITRIPH { get { return txtMa_vitriPH.Text.Trim(); } set { txtMa_vitriPH.Text = value; } }
         /// <summary>
-        /// Lưu và in, có hiển thị form in trước 3 giây.
+        /// Lưu và in (click nút in, chọn máy in, không in ngay), có hiển thị form in trước 3 giây.
         /// </summary>
         private void LuuVaIn()
         {
@@ -4890,28 +4895,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 //Luu(MA_KHOPH, MA_VITRIPH, true);
                 //Status = "3";
 
-                var payform = new PayForm(TongThanhToan, txtTongTienNt2.DecimalPlaces);
-                var dr = payform.ShowDialog(this);
-                if (dr == DialogResult.Yes) // luu va in
+                //var payform = new PayForm(TongThanhToan, txtTongTienNt2.DecimalPlaces);
+                //var dr = payform.ShowDialog(this);
+                //if (dr == DialogResult.Yes) // luu va in
                 {
-                    _print_flag = true;
+                    _print_flag = V6PrintMode.AutoClickPrint;
                     _sttRec_In = _sttRec;
-                    txtSL_UD1.Value = payform.KhachDua;
+                    //txtSL_UD1.Value = payform.KhachDua;
                     Luu();
                     Mode = V6Mode.View;// Status = "3";
                 }
-                else if (dr == DialogResult.OK) // luu ko in
-                {
-                    _print_flag = false;
-                    _sttRec_In = _sttRec;
-                    txtSL_UD1.Value = payform.KhachDua;
-                    Luu();
-                    Mode = V6Mode.View;// Status = "3";
-                }
-                else
-                {
-                    DoNothing();
-                }
+                //else if (dr == DialogResult.OK) // luu ko in
+                //{
+                //    _print_flag = false;
+                //    _sttRec_In = _sttRec;
+                //    txtSL_UD1.Value = payform.KhachDua;
+                //    Luu();
+                //    Mode = V6Mode.View;// Status = "3";
+                //}
+                //else
+                //{
+                //    DoNothing();
+                //}
             }
         }
 
@@ -5576,7 +5581,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            In(_sttRec, false);
+            In(_sttRec, V6PrintMode.DoNoThing);
         }
 
         private void txtTongThanhToanNt_TextChanged(object sender, EventArgs e)
