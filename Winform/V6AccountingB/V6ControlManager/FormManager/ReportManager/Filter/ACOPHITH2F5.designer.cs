@@ -56,6 +56,7 @@
             // txtma_phi
             // 
             this.txtma_phi.AccessibleDescription = "FILTERL00069";
+            this.txtma_phi.AccessibleName2 = "MA_PHI";
             this.txtma_phi.Enabled = false;
             this.txtma_phi.FieldCaption = "Mã phí";
             this.txtma_phi.FieldName = "MA_PHI";
@@ -69,6 +70,7 @@
             // txtTk_du
             // 
             this.txtTk_du.AccessibleDescription = "FILTERL00046";
+            this.txtTk_du.AccessibleName2 = "TK_DU";
             this.txtTk_du.Enabled = false;
             this.txtTk_du.FieldCaption = "TK đối ứng";
             this.txtTk_du.FieldName = "TK_DU";

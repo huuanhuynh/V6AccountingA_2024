@@ -41,6 +41,7 @@
             // ma_vt_filterLine
             // 
             this.ma_vt_filterLine.AccessibleDescription = "FILTERL00020";
+            this.ma_vt_filterLine.AccessibleName2 = "MA_VT";
             this.ma_vt_filterLine.Enabled = false;
             this.ma_vt_filterLine.FieldCaption = "Mã vật tư";
             this.ma_vt_filterLine.FieldName = "MA_VT";
@@ -72,6 +73,7 @@
             // TxtMakho
             // 
             this.TxtMakho.AccessibleDescription = "FILTERL00006";
+            this.TxtMakho.AccessibleName2 = "MA_KHO";
             this.TxtMakho.Enabled = false;
             this.TxtMakho.FieldCaption = "Mã kho";
             this.TxtMakho.FieldName = "MA_KHO";
@@ -85,6 +87,7 @@
             // ma_lo_filterLine
             // 
             this.ma_lo_filterLine.AccessibleDescription = "FILTERL00159";
+            this.ma_lo_filterLine.AccessibleName2 = "MA_LO";
             this.ma_lo_filterLine.Enabled = false;
             this.ma_lo_filterLine.FieldCaption = "Mã lô";
             this.ma_lo_filterLine.FieldName = "MA_LO";
@@ -133,12 +136,12 @@
             this.ma_kh_filterLine.TabIndex = 4;
             this.ma_kh_filterLine.Vvar = "MA_VT";
             // 
-            // AINCDHSDGF5
+            // AINCDHSDG_NHOMF5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
-            this.Name = "AINCDHSDGF5";
+            this.Name = "AINCDHSDG_NHOMF5";
             this.Size = new System.Drawing.Size(323, 157);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

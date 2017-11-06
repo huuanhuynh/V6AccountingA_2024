@@ -94,7 +94,7 @@
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Location = new System.Drawing.Point(3, 132);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(588, 185);
+            this.groupBox1.Size = new System.Drawing.Size(299, 193);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -102,6 +102,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(9, 42);
@@ -113,6 +114,7 @@
             // filterLineVvarTextBox1
             // 
             this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00116";
+            this.filterLineVvarTextBox1.AccessibleName2 = "LOAI_TS";
             this.filterLineVvarTextBox1.FieldCaption = "Loại TS";
             this.filterLineVvarTextBox1.FieldName = "LOAI_TS";
             this.filterLineVvarTextBox1.Location = new System.Drawing.Point(9, 65);
@@ -124,6 +126,7 @@
             // filterLineVvarTextBox16
             // 
             this.filterLineVvarTextBox16.AccessibleDescription = "FILTERL00111";
+            this.filterLineVvarTextBox16.AccessibleName2 = "NH_TS1";
             this.filterLineVvarTextBox16.FieldCaption = "Nhóm TS 1";
             this.filterLineVvarTextBox16.FieldName = "NH_TS1";
             this.filterLineVvarTextBox16.Location = new System.Drawing.Point(9, 111);
@@ -135,6 +138,7 @@
             // filterLineVvarTextBox15
             // 
             this.filterLineVvarTextBox15.AccessibleDescription = "FILTERL00112";
+            this.filterLineVvarTextBox15.AccessibleName2 = "NH_TS2";
             this.filterLineVvarTextBox15.FieldCaption = "Nhóm TS 2";
             this.filterLineVvarTextBox15.FieldName = "NH_TS2";
             this.filterLineVvarTextBox15.Location = new System.Drawing.Point(9, 134);
@@ -146,6 +150,7 @@
             // filterLineVvarTextBox9
             // 
             this.filterLineVvarTextBox9.AccessibleDescription = "FILTERL00113";
+            this.filterLineVvarTextBox9.AccessibleName2 = "NH_TS3";
             this.filterLineVvarTextBox9.FieldCaption = "Nhóm TS 3";
             this.filterLineVvarTextBox9.FieldName = "NH_TS3";
             this.filterLineVvarTextBox9.Location = new System.Drawing.Point(9, 157);
@@ -157,6 +162,7 @@
             // TxtSO_THE_TS
             // 
             this.TxtSO_THE_TS.AccessibleDescription = "FILTERL00117";
+            this.TxtSO_THE_TS.AccessibleName2 = "SO_THE_TS";
             this.TxtSO_THE_TS.FieldCaption = "Mã TS";
             this.TxtSO_THE_TS.FieldName = "SO_THE_TS";
             this.TxtSO_THE_TS.Location = new System.Drawing.Point(9, 88);
@@ -304,7 +310,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AFABCKHNV";
-            this.Size = new System.Drawing.Size(594, 363);
+            this.Size = new System.Drawing.Size(305, 328);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

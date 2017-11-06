@@ -54,7 +54,7 @@
             this.groupBox1.Controls.Add(this.ma_kh_filterLine);
             this.groupBox1.Location = new System.Drawing.Point(3, 55);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 197);
+            this.groupBox1.Size = new System.Drawing.Size(301, 170);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -62,6 +62,7 @@
             // ma_vt_filterLine
             // 
             this.ma_vt_filterLine.AccessibleDescription = "FILTERL00020";
+            this.ma_vt_filterLine.AccessibleName2 = "MA_VT";
             this.ma_vt_filterLine.Enabled = false;
             this.ma_vt_filterLine.FieldCaption = "Mã vật tư";
             this.ma_vt_filterLine.FieldName = "MA_VT";
@@ -75,6 +76,7 @@
             // ma_nx_filterLine
             // 
             this.ma_nx_filterLine.AccessibleDescription = "FILTERL00098";
+            this.ma_nx_filterLine.AccessibleName2 = "MA_NX";
             this.ma_nx_filterLine.Enabled = false;
             this.ma_nx_filterLine.FieldCaption = "Mã NX";
             this.ma_nx_filterLine.FieldName = "MA_NX";
@@ -87,6 +89,7 @@
             // ma_bp_filterLine
             // 
             this.ma_bp_filterLine.AccessibleDescription = "FILTERL00008";
+            this.ma_bp_filterLine.AccessibleName2 = "MA_BP";
             this.ma_bp_filterLine.Enabled = false;
             this.ma_bp_filterLine.FieldCaption = "Mã bộ phận";
             this.ma_bp_filterLine.FieldName = "MA_BP";
@@ -100,6 +103,7 @@
             // ma_vv_filterLine
             // 
             this.ma_vv_filterLine.AccessibleDescription = "FILTERL00065";
+            this.ma_vv_filterLine.AccessibleName2 = "MA_VV";
             this.ma_vv_filterLine.Enabled = false;
             this.ma_vv_filterLine.FieldCaption = "Mã vụ việc";
             this.ma_vv_filterLine.FieldName = "MA_VV";
@@ -138,6 +142,7 @@
             // ma_kh_filterLine
             // 
             this.ma_kh_filterLine.AccessibleDescription = "FILTERL00007";
+            this.ma_kh_filterLine.AccessibleName2 = "MA_KH";
             this.ma_kh_filterLine.Enabled = false;
             this.ma_kh_filterLine.FieldCaption = "Mã khách";
             this.ma_kh_filterLine.FieldName = "MA_KH";
@@ -154,7 +159,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "AHINTH3F5";
-            this.Size = new System.Drawing.Size(307, 255);
+            this.Size = new System.Drawing.Size(307, 228);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

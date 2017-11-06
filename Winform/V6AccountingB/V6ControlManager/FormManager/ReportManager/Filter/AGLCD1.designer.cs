@@ -49,6 +49,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 39);
@@ -68,7 +69,7 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Location = new System.Drawing.Point(3, 132);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 126);
+            this.groupBox1.Size = new System.Drawing.Size(289, 79);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -166,7 +167,7 @@
             // 
             // TxtGroupby
             // 
-            this.TxtGroupby.AccessibleName = "";
+            this.TxtGroupby.AccessibleName = "Groupby";
             this.TxtGroupby.BackColor = System.Drawing.SystemColors.Window;
             this.TxtGroupby.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtGroupby.EnterColor = System.Drawing.Color.PaleGreen;
@@ -213,6 +214,7 @@
             // 
             // chkKieu_f5
             // 
+            this.chkKieu_f5.AccessibleName = "Kieu_f5";
             this.chkKieu_f5.AutoSize = true;
             this.chkKieu_f5.Location = new System.Drawing.Point(193, 15);
             this.chkKieu_f5.Name = "chkKieu_f5";
@@ -239,7 +241,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AGLCD1";
-            this.Size = new System.Drawing.Size(295, 280);
+            this.Size = new System.Drawing.Size(295, 214);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

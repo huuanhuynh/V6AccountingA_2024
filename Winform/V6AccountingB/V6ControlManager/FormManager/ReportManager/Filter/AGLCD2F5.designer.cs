@@ -38,6 +38,7 @@
             // TK_filterLine
             // 
             this.TK_filterLine.AccessibleDescription = "FILTERL00027";
+            this.TK_filterLine.AccessibleName2 = "TK";
             this.TK_filterLine.Enabled = false;
             this.TK_filterLine.FieldCaption = "Tài khoản";
             this.TK_filterLine.FieldName = "TK";

@@ -56,6 +56,7 @@
             // txtma_lo
             // 
             this.txtma_lo.AccessibleDescription = "FILTERL00159";
+            this.txtma_lo.AccessibleName2 = "MA_LO";
             this.txtma_lo.Enabled = false;
             this.txtma_lo.FieldCaption = "Mã lô";
             this.txtma_lo.FieldName = "MA_LO";
@@ -94,6 +95,7 @@
             // ma_vt_filterLine
             // 
             this.ma_vt_filterLine.AccessibleDescription = "FILTERL00020";
+            this.ma_vt_filterLine.AccessibleName2 = "MA_VT";
             this.ma_vt_filterLine.Enabled = false;
             this.ma_vt_filterLine.FieldCaption = "Mã vật tư";
             this.ma_vt_filterLine.FieldName = "MA_VT";

@@ -46,7 +46,7 @@
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox1);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(305, 100);
+            this.groupBox1.Size = new System.Drawing.Size(305, 84);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -81,6 +81,7 @@
             // filterLineVvarTextBox1
             // 
             this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00046";
+            this.filterLineVvarTextBox1.AccessibleName2 = "TK_DU";
             this.filterLineVvarTextBox1.Enabled = false;
             this.filterLineVvarTextBox1.FieldCaption = "Tài khoản đối ứng";
             this.filterLineVvarTextBox1.FieldName = "TK_DU";
@@ -96,7 +97,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "AGLCD2F5F5";
-            this.Size = new System.Drawing.Size(311, 106);
+            this.Size = new System.Drawing.Size(311, 90);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

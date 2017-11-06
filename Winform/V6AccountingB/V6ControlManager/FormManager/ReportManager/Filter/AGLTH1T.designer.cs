@@ -50,6 +50,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(5, 39);
@@ -78,6 +79,7 @@
             // txtTk
             // 
             this.txtTk.AccessibleDescription = "FILTERL00027";
+            this.txtTk.AccessibleName2 = "TK";
             this.txtTk.FieldCaption = "Tài khoản";
             this.txtTk.FieldName = "TK";
             this.txtTk.Location = new System.Drawing.Point(5, 63);
@@ -178,7 +180,7 @@
             // 
             // TxtTk_sc
             // 
-            this.TxtTk_sc.AccessibleName = "";
+            this.TxtTk_sc.AccessibleName = "TK_SC";
             this.TxtTk_sc.BackColor = System.Drawing.SystemColors.Window;
             this.TxtTk_sc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtTk_sc.EnterColor = System.Drawing.Color.PaleGreen;
@@ -205,7 +207,7 @@
             // 
             // txtbac_tk
             // 
-            this.txtbac_tk.AccessibleName = "";
+            this.txtbac_tk.AccessibleName = "BAC_TK";
             this.txtbac_tk.BackColor = System.Drawing.Color.White;
             this.txtbac_tk.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtbac_tk.DecimalPlaces = 0;
@@ -230,6 +232,7 @@
             // rdo_Chitiet
             // 
             this.rdo_Chitiet.AccessibleDescription = "FILTERR00015";
+            this.rdo_Chitiet.AccessibleName = "Chitiet";
             this.rdo_Chitiet.AutoSize = true;
             this.rdo_Chitiet.Checked = true;
             this.rdo_Chitiet.Location = new System.Drawing.Point(131, 112);
@@ -243,6 +246,7 @@
             // rdo_All
             // 
             this.rdo_All.AccessibleDescription = "FILTERR00016";
+            this.rdo_All.AccessibleName = "All";
             this.rdo_All.AutoSize = true;
             this.rdo_All.Location = new System.Drawing.Point(5, 112);
             this.rdo_All.Name = "rdo_All";

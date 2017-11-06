@@ -166,6 +166,7 @@
             // 
             // txtAp_tg_gd
             // 
+            this.txtAp_tg_gd.AccessibleName = "Ap_tg_gd";
             this.txtAp_tg_gd.BackColor = System.Drawing.SystemColors.Window;
             this.txtAp_tg_gd.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtAp_tg_gd.DecimalPlaces = 0;
@@ -211,6 +212,7 @@
             // 
             // txtKieu_tg_gs
             // 
+            this.txtKieu_tg_gs.AccessibleName = "Kieu_tg_gs";
             this.txtKieu_tg_gs.BackColor = System.Drawing.SystemColors.Window;
             this.txtKieu_tg_gs.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtKieu_tg_gs.DecimalPlaces = 0;
@@ -299,6 +301,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(9, 44);
@@ -381,6 +384,7 @@
             // 
             // txtLoai_cl
             // 
+            this.txtLoai_cl.AccessibleName = "Loai_cl";
             this.txtLoai_cl.BackColor = System.Drawing.SystemColors.Window;
             this.txtLoai_cl.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtLoai_cl.DecimalPlaces = 0;

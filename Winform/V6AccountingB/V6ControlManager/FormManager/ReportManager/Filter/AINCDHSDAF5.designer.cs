@@ -42,10 +42,11 @@
             // ma_vt_filterLine
             // 
             this.ma_vt_filterLine.AccessibleDescription = "FILTERL00020";
+            this.ma_vt_filterLine.AccessibleName2 = "MA_VT";
             this.ma_vt_filterLine.Enabled = false;
             this.ma_vt_filterLine.FieldCaption = "Mã vật tư";
             this.ma_vt_filterLine.FieldName = "MA_VT";
-            this.ma_vt_filterLine.Location = new System.Drawing.Point(6, 49);
+            this.ma_vt_filterLine.Location = new System.Drawing.Point(6, 40);
             this.ma_vt_filterLine.Name = "ma_vt_filterLine";
             this.ma_vt_filterLine.Operator = "=";
             this.ma_vt_filterLine.Size = new System.Drawing.Size(282, 22);
@@ -66,7 +67,7 @@
             this.groupBox1.Controls.Add(this.ma_vt_filterLine);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(320, 168);
+            this.groupBox1.Size = new System.Drawing.Size(320, 143);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -74,10 +75,11 @@
             // TxtMA_VITRI
             // 
             this.TxtMA_VITRI.AccessibleDescription = "FILTERL00160";
+            this.TxtMA_VITRI.AccessibleName2 = "MA_VITRI";
             this.TxtMA_VITRI.Enabled = false;
             this.TxtMA_VITRI.FieldCaption = "Mã vị trí";
             this.TxtMA_VITRI.FieldName = "MA_VITRI";
-            this.TxtMA_VITRI.Location = new System.Drawing.Point(6, 130);
+            this.TxtMA_VITRI.Location = new System.Drawing.Point(6, 113);
             this.TxtMA_VITRI.Name = "TxtMA_VITRI";
             this.TxtMA_VITRI.Operator = "=";
             this.TxtMA_VITRI.Size = new System.Drawing.Size(282, 22);
@@ -87,10 +89,11 @@
             // TxtMakho
             // 
             this.TxtMakho.AccessibleDescription = "FILTERL00006";
+            this.TxtMakho.AccessibleName2 = "MA_KHO";
             this.TxtMakho.Enabled = false;
             this.TxtMakho.FieldCaption = "Mã kho";
             this.TxtMakho.FieldName = "MA_KHO";
-            this.TxtMakho.Location = new System.Drawing.Point(6, 103);
+            this.TxtMakho.Location = new System.Drawing.Point(6, 89);
             this.TxtMakho.Name = "TxtMakho";
             this.TxtMakho.Operator = "=";
             this.TxtMakho.Size = new System.Drawing.Size(282, 22);
@@ -100,10 +103,11 @@
             // ma_lo_filterLine
             // 
             this.ma_lo_filterLine.AccessibleDescription = "FILTERL00159";
+            this.ma_lo_filterLine.AccessibleName2 = "MA_LO";
             this.ma_lo_filterLine.Enabled = false;
             this.ma_lo_filterLine.FieldCaption = "Mã lô";
             this.ma_lo_filterLine.FieldName = "MA_LO";
-            this.ma_lo_filterLine.Location = new System.Drawing.Point(6, 76);
+            this.ma_lo_filterLine.Location = new System.Drawing.Point(6, 64);
             this.ma_lo_filterLine.Name = "ma_lo_filterLine";
             this.ma_lo_filterLine.Operator = "=";
             this.ma_lo_filterLine.Size = new System.Drawing.Size(282, 22);
@@ -154,7 +158,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "AINCDHSDAF5";
-            this.Size = new System.Drawing.Size(323, 185);
+            this.Size = new System.Drawing.Size(323, 149);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

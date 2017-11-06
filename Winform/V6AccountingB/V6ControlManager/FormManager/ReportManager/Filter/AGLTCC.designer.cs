@@ -70,6 +70,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(3, 53);
@@ -154,7 +155,7 @@
             // 
             // txtma_maubc
             // 
-            this.txtma_maubc.AccessibleName = "";
+            this.txtma_maubc.AccessibleName = "MA_MAUBC";
             this.txtma_maubc.BackColor = System.Drawing.SystemColors.Window;
             this.txtma_maubc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtma_maubc.CheckNotEmpty = true;

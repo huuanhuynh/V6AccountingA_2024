@@ -14,6 +14,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public KhoHangAddEditForm()
         {
             InitializeComponent();
+            TxtTk_dl.SetInitFilter("loai_tk=1");
             if (V6Login.MadvcsTotal > 0)
             {
                 TxtMa_dvcs.CheckNotEmpty = true;

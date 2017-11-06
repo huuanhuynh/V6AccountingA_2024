@@ -56,6 +56,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 39);
@@ -87,6 +88,7 @@
             // txtma_thue
             // 
             this.txtma_thue.AccessibleDescription = "FILTERL00143";
+            this.txtma_thue.AccessibleName2 = "MA_THUE";
             this.txtma_thue.FieldCaption = "Mã thuế";
             this.txtma_thue.FieldName = "MA_THUE";
             this.txtma_thue.Location = new System.Drawing.Point(6, 131);
@@ -98,6 +100,7 @@
             // filterLineVvarTextBox11
             // 
             this.filterLineVvarTextBox11.AccessibleDescription = "FILTERL00004";
+            this.filterLineVvarTextBox11.AccessibleName2 = "MA_CT";
             this.filterLineVvarTextBox11.FieldCaption = "Mã chứng từ";
             this.filterLineVvarTextBox11.FieldName = "MA_CT";
             this.filterLineVvarTextBox11.Location = new System.Drawing.Point(6, 85);
@@ -120,6 +123,7 @@
             // txtTk_thue_co
             // 
             this.txtTk_thue_co.AccessibleDescription = "FILTERL00142";
+            this.txtTk_thue_co.AccessibleName2 = "TK_THUE_CO";
             this.txtTk_thue_co.FieldCaption = "Tài khoản thuế";
             this.txtTk_thue_co.FieldName = "TK_THUE_CO";
             this.txtTk_thue_co.Location = new System.Drawing.Point(6, 108);
@@ -144,6 +148,7 @@
             // Txtma_kh
             // 
             this.Txtma_kh.AccessibleDescription = "FILTERL00007";
+            this.Txtma_kh.AccessibleName2 = "MA_KH";
             this.Txtma_kh.FieldCaption = "Mã khách";
             this.Txtma_kh.FieldName = "MA_KH";
             this.Txtma_kh.Location = new System.Drawing.Point(6, 62);
@@ -226,6 +231,7 @@
             // 
             // txtFileName
             // 
+            this.txtFileName.AccessibleName = "FileName";
             this.txtFileName.BackColor = System.Drawing.Color.AntiqueWhite;
             this.txtFileName.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtFileName.EnterColor = System.Drawing.Color.PaleGreen;
@@ -252,6 +258,7 @@
             // chkNhomCt
             // 
             this.chkNhomCt.AccessibleDescription = "FILTERC00012";
+            this.chkNhomCt.AccessibleName = "NhomCT";
             this.chkNhomCt.AutoSize = true;
             this.chkNhomCt.Location = new System.Drawing.Point(131, 58);
             this.chkNhomCt.Name = "chkNhomCt";
@@ -272,7 +279,7 @@
             // 
             // txtLoai
             // 
-            this.txtLoai.AccessibleName = "";
+            this.txtLoai.AccessibleName = "Loai";
             this.txtLoai.BackColor = System.Drawing.SystemColors.Window;
             this.txtLoai.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtLoai.EnterColor = System.Drawing.Color.PaleGreen;

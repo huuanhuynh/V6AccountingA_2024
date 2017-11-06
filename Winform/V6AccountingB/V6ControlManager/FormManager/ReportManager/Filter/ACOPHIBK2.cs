@@ -215,5 +215,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
         }
 
+        private void Txtnh_kh1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

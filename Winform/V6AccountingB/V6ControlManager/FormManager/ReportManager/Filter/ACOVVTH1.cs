@@ -75,7 +75,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
             int Detail = 1;
 
-            if (radioButton2.Checked)
+            if (rdo_tk_du.Checked)
                 Detail = 0;
             else
                 Detail = 1;

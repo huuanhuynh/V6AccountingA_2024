@@ -54,7 +54,7 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Location = new System.Drawing.Point(6, 57);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(285, 153);
+            this.groupBox1.Size = new System.Drawing.Size(285, 115);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -74,10 +74,11 @@
             // txtma_ct
             // 
             this.txtma_ct.AccessibleDescription = "FILTERL00004";
-            this.txtma_ct.AccessibleName = "MA_CT";
+            this.txtma_ct.AccessibleName = "";
+            this.txtma_ct.AccessibleName2 = "MA_CT";
             this.txtma_ct.FieldCaption = "Mã chứng từ";
             this.txtma_ct.FieldName = "MA_CT";
-            this.txtma_ct.Location = new System.Drawing.Point(6, 75);
+            this.txtma_ct.Location = new System.Drawing.Point(6, 64);
             this.txtma_ct.Name = "txtma_ct";
             this.txtma_ct.Size = new System.Drawing.Size(277, 22);
             this.txtma_ct.TabIndex = 5;
@@ -99,10 +100,11 @@
             // txtMa_kh
             // 
             this.txtMa_kh.AccessibleDescription = "FILTERL00007";
-            this.txtMa_kh.AccessibleName = "ma_kh";
+            this.txtMa_kh.AccessibleName = "";
+            this.txtMa_kh.AccessibleName2 = "MA_KH";
             this.txtMa_kh.FieldCaption = "Mã khách hàng";
             this.txtMa_kh.FieldName = "MA_KH";
-            this.txtMa_kh.Location = new System.Drawing.Point(6, 48);
+            this.txtMa_kh.Location = new System.Drawing.Point(6, 41);
             this.txtMa_kh.Name = "txtMa_kh";
             this.txtMa_kh.Size = new System.Drawing.Size(277, 22);
             this.txtMa_kh.TabIndex = 4;
@@ -111,10 +113,11 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
-            this.txtMaDvcs.AccessibleName = "MA_DVCS";
+            this.txtMaDvcs.AccessibleName = "";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
-            this.txtMaDvcs.Location = new System.Drawing.Point(6, 102);
+            this.txtMaDvcs.Location = new System.Drawing.Point(6, 88);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(277, 22);
             this.txtMaDvcs.TabIndex = 6;
@@ -176,7 +179,7 @@
             this.Controls.Add(this.dateNgay_ct2);
             this.Controls.Add(this.dateNgay_ct1);
             this.Name = "AGLTHUE20";
-            this.Size = new System.Drawing.Size(294, 213);
+            this.Size = new System.Drawing.Size(294, 175);
             this.Load += new System.EventHandler(this.ARSD0_AR0_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

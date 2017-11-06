@@ -59,6 +59,7 @@
             // Tk_filterLine
             // 
             this.Tk_filterLine.AccessibleDescription = "FILTERL00027";
+            this.Tk_filterLine.AccessibleName2 = "TK";
             this.Tk_filterLine.Enabled = false;
             this.Tk_filterLine.FieldCaption = "Tài khoản";
             this.Tk_filterLine.FieldName = "TK";
@@ -72,6 +73,7 @@
             // Tk_du_filterLine
             // 
             this.Tk_du_filterLine.AccessibleDescription = "FILTERL00046";
+            this.Tk_du_filterLine.AccessibleName2 = "TK_DU";
             this.Tk_du_filterLine.Enabled = false;
             this.Tk_du_filterLine.FieldCaption = "TK đối ứng";
             this.Tk_du_filterLine.FieldName = "TK_DU";
@@ -85,6 +87,7 @@
             // txtma_phi
             // 
             this.txtma_phi.AccessibleDescription = "FILTERL00069";
+            this.txtma_phi.AccessibleName2 = "MA_PHI";
             this.txtma_phi.Enabled = false;
             this.txtma_phi.FieldCaption = "Mã phí";
             this.txtma_phi.FieldName = "MA_PHI";

@@ -104,10 +104,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
-       
-      
+        private void txtMaDvcs_Load(object sender, EventArgs e)
+        {
 
-        
-        
+        }
     }
 }

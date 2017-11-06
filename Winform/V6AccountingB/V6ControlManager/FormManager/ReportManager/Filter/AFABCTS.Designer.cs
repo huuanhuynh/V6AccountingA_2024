@@ -90,16 +90,16 @@
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Location = new System.Drawing.Point(3, 132);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(296, 185);
+            this.groupBox1.Size = new System.Drawing.Size(296, 191);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
             // 
             // txtMaDvcs
             // 
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
-            this.txtMaDvcs.IsSelected = false;
             this.txtMaDvcs.Location = new System.Drawing.Point(9, 43);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
@@ -108,9 +108,9 @@
             // 
             // filterLineVvarTextBox1
             // 
+            this.filterLineVvarTextBox1.AccessibleName2 = "LOAI_TS";
             this.filterLineVvarTextBox1.FieldCaption = "Loại TS";
             this.filterLineVvarTextBox1.FieldName = "LOAI_TS";
-            this.filterLineVvarTextBox1.IsSelected = false;
             this.filterLineVvarTextBox1.Location = new System.Drawing.Point(9, 66);
             this.filterLineVvarTextBox1.Name = "filterLineVvarTextBox1";
             this.filterLineVvarTextBox1.Size = new System.Drawing.Size(282, 22);
@@ -119,9 +119,9 @@
             // 
             // filterLineVvarTextBox16
             // 
+            this.filterLineVvarTextBox16.AccessibleName2 = "NH_TS1";
             this.filterLineVvarTextBox16.FieldCaption = "Nhóm TS 1";
             this.filterLineVvarTextBox16.FieldName = "NH_TS1";
-            this.filterLineVvarTextBox16.IsSelected = false;
             this.filterLineVvarTextBox16.Location = new System.Drawing.Point(9, 112);
             this.filterLineVvarTextBox16.Name = "filterLineVvarTextBox16";
             this.filterLineVvarTextBox16.Size = new System.Drawing.Size(282, 22);
@@ -130,9 +130,9 @@
             // 
             // filterLineVvarTextBox15
             // 
+            this.filterLineVvarTextBox15.AccessibleName2 = "NH_TS2";
             this.filterLineVvarTextBox15.FieldCaption = "Nhóm TS 2";
             this.filterLineVvarTextBox15.FieldName = "NH_TS2";
-            this.filterLineVvarTextBox15.IsSelected = false;
             this.filterLineVvarTextBox15.Location = new System.Drawing.Point(9, 135);
             this.filterLineVvarTextBox15.Name = "filterLineVvarTextBox15";
             this.filterLineVvarTextBox15.Size = new System.Drawing.Size(282, 22);
@@ -141,9 +141,9 @@
             // 
             // filterLineVvarTextBox9
             // 
+            this.filterLineVvarTextBox9.AccessibleName2 = "NH_TS3";
             this.filterLineVvarTextBox9.FieldCaption = "Nhóm TS 3";
             this.filterLineVvarTextBox9.FieldName = "NH_TS3";
-            this.filterLineVvarTextBox9.IsSelected = false;
             this.filterLineVvarTextBox9.Location = new System.Drawing.Point(9, 158);
             this.filterLineVvarTextBox9.Name = "filterLineVvarTextBox9";
             this.filterLineVvarTextBox9.Size = new System.Drawing.Size(282, 22);
@@ -152,9 +152,9 @@
             // 
             // TxtSO_THE_TS
             // 
+            this.TxtSO_THE_TS.AccessibleName2 = "SO_THE_TS";
             this.TxtSO_THE_TS.FieldCaption = "Mã TS";
             this.TxtSO_THE_TS.FieldName = "SO_THE_TS";
-            this.TxtSO_THE_TS.IsSelected = false;
             this.TxtSO_THE_TS.Location = new System.Drawing.Point(9, 89);
             this.TxtSO_THE_TS.Name = "TxtSO_THE_TS";
             this.TxtSO_THE_TS.Size = new System.Drawing.Size(282, 22);
@@ -297,7 +297,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AFABCTS";
-            this.Size = new System.Drawing.Size(302, 363);
+            this.Size = new System.Drawing.Size(302, 326);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
