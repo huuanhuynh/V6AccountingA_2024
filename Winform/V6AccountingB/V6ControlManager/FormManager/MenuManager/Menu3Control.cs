@@ -280,9 +280,9 @@ namespace V6ControlManager.FormManager.MenuManager
         {
             try
             {
-                var button = (V6VeticalLable)sender;
+                var button = (V6VeticalLabel)sender;
                 var selectedText = menuControl1.SelectedButton == null ? V6Text.ShowMenu : menuControl1.SelectedButton.Text;
-                V6ControlFormHelper.ShowHideMenu((V6VeticalLable)sender, selectedText,
+                V6ControlFormHelper.ShowHideMenu((V6VeticalLabel)sender, selectedText,
                     panelMenu, panelMenuShow, panelView,
                     this, new Point(0,0), !button.IsShowing);
 

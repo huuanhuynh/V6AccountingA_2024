@@ -622,7 +622,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             sender.Dispose();
                         };
 
-                        c.AutoPrint = FilterControl.Check1;
+                        c.PrintMode = FilterControl.Check1 ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
                         c.PrintCopies = _PrintCopies;
                         c.ShowToForm(this, V6Text.PrintIXA, true);
 

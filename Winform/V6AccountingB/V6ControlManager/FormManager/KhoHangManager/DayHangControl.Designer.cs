@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.v6VeticalLable1 = new V6Controls.V6VeticalLable();
+            this.v6VeticalLable1 = new V6Controls.V6VeticalLabel();
             this.SuspendLayout();
             // 
             // v6VeticalLable1
@@ -64,6 +64,6 @@
 
         #endregion
 
-        private V6Controls.V6VeticalLable v6VeticalLable1;
+        private V6Controls.V6VeticalLabel v6VeticalLable1;
     }
 }

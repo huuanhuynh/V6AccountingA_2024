@@ -34,7 +34,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                 {
                     if (property.CanRead && property.CanWrite)
                     {
-                        Control c = V6ControlFormHelper.GetControlByAccesibleName(this, property.Name);
+                        Control c = V6ControlFormHelper.GetControlByAccessibleName(this, property.Name);
                         if (c != null)
                         {
                             SetControlValue(c, property.GetValue(Info, null));
@@ -43,7 +43,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                 }
                 foreach (FieldInfo field in typeof(DefineInfo).GetFields())
                 {
-                    Control c = V6ControlFormHelper.GetControlByAccesibleName(this, field.Name);
+                    Control c = V6ControlFormHelper.GetControlByAccessibleName(this, field.Name);
                     if (c != null)
                     {
                         SetControlValue(c, field.GetValue(Info));

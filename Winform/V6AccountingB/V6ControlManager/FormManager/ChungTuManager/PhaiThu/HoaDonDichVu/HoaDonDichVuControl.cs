@@ -55,7 +55,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         private void MyInit()
         {
             LoadLanguage();
-            LoadTag(Invoice, detail1.panelControls);
+            LoadTag(Invoice, detail1.Controls);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -105,6 +105,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
             
             cboKieuPost.SelectedIndex = 0;
+
+            All_Objects["thisForm"] = this;
+            CreateFormProgram(Invoice);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+
             LoadDetailControls();
             LoadDetail3Controls();
             ResetForm();
@@ -133,6 +138,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
+                All_Objects[NAME] = control;
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+
                 switch (NAME)
                 {
                     case "TK_DT":
@@ -261,7 +269,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
 
                         break;
                 }
-                
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
             foreach (Control control in dynamicControlList.Values)
@@ -1447,7 +1455,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     detail1.ShowIDs(new[] { "GIA2", "lblGIA2", "TIEN2", "lblTIEN2" });
                     panelVND.Visible = true;
                     
-                    var c = V6ControlFormHelper.GetControlByAccesibleName(detail1, "GIA2");
+                    var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA2");
                     if (c != null) c.Visible = true;
                     
                     
@@ -3037,7 +3045,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     var a_fields = v6valid.Rows[0]["A_Field"].ToString().Trim().Split(',');
                     foreach (string field in a_fields)
                     {
-                        var control = V6ControlFormHelper.GetControlByAccesibleName(this, field);
+                        var control = V6ControlFormHelper.GetControlByAccessibleName(this, field);
                         if (control is V6DateTimeColor)
                         {
                             if (((V6DateTimeColor)control).Value == null)

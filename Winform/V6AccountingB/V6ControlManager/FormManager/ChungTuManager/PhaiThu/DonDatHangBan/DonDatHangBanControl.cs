@@ -57,7 +57,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private void MyInit()
         {   
             LoadLanguage();
-            LoadTag(Invoice, detail1.panelControls);
+            LoadTag(Invoice, detail1.Controls);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -91,6 +91,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             dataGridViewColumn = dataGridView1.Columns["STT_REC0"];
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
             cboKieuPost.SelectedIndex = 0;
+
+            All_Objects["thisForm"] = this;
+            CreateFormProgram(Invoice);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
 
             LoadDetailControls();
             ResetForm();
@@ -137,6 +141,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 ApplyControlEnterStatus(control);
                 
                 var NAME = control.AccessibleName.ToUpper();
+                All_Objects[NAME] = control;
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+
                 switch (NAME)
                 {
                     case "MA_VT":
@@ -434,7 +441,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         if(_hanSd.Tag == null || _hanSd.Tag.ToString() != "hide") _hanSd.Tag = "disable";
                         break;
                 }
-                
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
             foreach (Control control in dynamicControlList.Values)
@@ -1797,7 +1804,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     panelVND.Visible = true;
                     
 
-                    var c = V6ControlFormHelper.GetControlByAccesibleName(detail1, "GIA21");
+                    var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA21");
                     if (c != null) c.Visible = true;
                     //SetColsVisible(_GridID, ["GIA21", "TIEN2"], true); //Hien ra
                     var dataGridViewColumn = dataGridView1.Columns["GIA21"];

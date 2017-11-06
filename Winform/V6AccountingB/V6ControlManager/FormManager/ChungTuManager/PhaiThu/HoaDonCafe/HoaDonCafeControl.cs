@@ -145,7 +145,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         private void MyInit()
         {
-            LoadTag(Invoice, detail1.panelControls);
+            LoadTag(Invoice, detail1.Controls);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -197,6 +197,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             
             cboKieuPost.SelectedIndex = 0;
 
+            All_Objects["thisForm"] = this;
+            CreateFormProgram(Invoice);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+
             LoadDetailControls();
             LoadDetail3Controls();
             ResetForm();
@@ -247,6 +251,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
+                All_Objects[NAME] = control;
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+
                 switch (NAME)
                 {
                     case "MA_VT":
@@ -711,7 +718,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         //}
 
                 }
-                
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
             
             foreach (Control control in dynamicControlList.Values)
@@ -1535,9 +1542,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
             else if (keyData == Keys.F4)
             {
-                if (Mode == V6Mode.Edit && detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit)
+                if (Mode == V6Mode.Edit)
                 {
-                    detail1.OnMoiClick();
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit
+                        && _maVt.Text != "" && _maKhoI.Text != "")
+                    {
+                        detail1.btnNhan.PerformClick();
+                    }
+
+                    if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit)
+                    {
+                        detail1.OnMoiClick();
+                    }
                 }
             }
             else if (keyData == Keys.F6)
@@ -3515,7 +3531,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     panelVND.Visible = true;
                     
 
-                    var c = V6ControlFormHelper.GetControlByAccesibleName(detail1, "GIA21");
+                    var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA21");
                     if (c != null) c.Visible = true;
                     //SetColsVisible(_GridID, ["GIA21", "TIEN2"], true); //Hien ra
                     var gridViewColumn = dataGridView1.Columns["GIA21"];
@@ -4116,7 +4132,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (_post && _print_flag)
                 {
                     _print_flag = false;
-                    In(_sttRec_In, true, 3);
+                    In(_sttRec_In, V6PrintMode.AutoPrint, 3);
                     SetStatus2Text();
                 }
             }
@@ -4519,7 +4535,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        private void In(string sttRec_In, bool auto, int sec = 3)
+        private void In(string sttRec_In, V6PrintMode printMode, int sec = 3)
         {
             try
             {
@@ -4544,7 +4560,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                             if (!sender.IsDisposed) sender.Dispose();
                         };
 
-                        c.AutoPrint = auto;
+                        c.PrintMode = printMode;
 
                         c.ShowToForm(this, V6Text.PrintSOA, true);
 
@@ -5547,7 +5563,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         
         private void btnIn_Click(object sender, EventArgs e)
         {
-            In(_sttRec, false);
+            In(_sttRec, V6PrintMode.DoNoThing);
             SetStatus2Text();
         }
 
@@ -5660,7 +5676,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     var a_fields = v6valid.Rows[0]["A_Field"].ToString().Trim().Split(',');
                     foreach (string field in a_fields)
                     {
-                        var control = V6ControlFormHelper.GetControlByAccesibleName(this, field);
+                        var control = V6ControlFormHelper.GetControlByAccessibleName(this, field);
                         if (control is V6DateTimeColor)
                         {
                             if (((V6DateTimeColor) control).Value == null)
@@ -5848,7 +5864,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     var a_fields = v6valid.Rows[0]["A_Field"].ToString().Trim().Split(',');
                     foreach (string field in a_fields)
                     {
-                        var control = V6ControlFormHelper.GetControlByAccesibleName(detail1, field);
+                        var control = V6ControlFormHelper.GetControlByAccessibleName(detail1, field);
                         if (control is V6DateTimeColor)
                         {
                             if (((V6DateTimeColor)control).Value == null)

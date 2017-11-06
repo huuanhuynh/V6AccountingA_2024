@@ -126,7 +126,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         var c = new InChungTuViewBase(Invoice, program, program, _reportFile, repTitle, repTitle2,
                             "", "", "", sttRec);
-                        c.AutoPrint = FilterControl.Check1;
+                        c.PrintMode = FilterControl.Check1 ? V6PrintMode.AutoPrint : V6PrintMode.DoNoThing;
                         c.PrinterName = _PrinterName;
                         c.PrintCopies = _PrintCopies;
                         c.Report_Stt_rec = sttRec;

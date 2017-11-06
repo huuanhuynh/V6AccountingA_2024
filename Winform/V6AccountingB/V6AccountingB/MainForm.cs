@@ -372,7 +372,7 @@ namespace V6AccountingB
 
         private void lblMenuShow_Click(object sender, EventArgs e)
         {
-            var lable = (V6VeticalLable)sender;
+            var lable = (V6VeticalLabel)sender;
 
             V6ControlFormHelper.ShowHideMenu(lable,
                 menuMain.SelectedButton == null ? V6Text.ShowMenu : menuMain.SelectedButton.Text,

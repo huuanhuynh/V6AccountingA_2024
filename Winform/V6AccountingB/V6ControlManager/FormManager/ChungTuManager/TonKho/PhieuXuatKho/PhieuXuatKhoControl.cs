@@ -56,7 +56,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private void MyInit()
         {   
             LoadLanguage();
-            LoadTag(Invoice, detail1.panelControls);
+            LoadTag(Invoice, detail1.Controls);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -135,6 +135,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     ApplyControlEnterStatus(control);
 
                     var NAME = control.AccessibleName.ToUpper();
+                    All_Objects[NAME] = control;
+                    V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+
                     switch (NAME)
                     {
                         case "MA_VT":
@@ -533,7 +536,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             }
                             break;
                     }
-
+                    V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
                 }
 
                 foreach (Control control in dynamicControlList.Values)
@@ -2801,7 +2804,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     detail1.ShowIDs(new[] { "GIA21", "lblGIA21", "TIEN2", "lblTIEN2" });
                     panelVND.Visible = true;
                     
-                    var c = V6ControlFormHelper.GetControlByAccesibleName(detail1, "GIA21");
+                    var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA21");
                     if (c != null) c.Visible = true;
                     
                     

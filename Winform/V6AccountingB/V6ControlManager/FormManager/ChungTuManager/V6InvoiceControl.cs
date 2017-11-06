@@ -75,7 +75,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <summary>
         /// Nếu trước đó đã có hiển thị chứng từ mà bấm (mới) biến này sẽ lưu lại.
         /// </summary>
-        protected DataRow AM_old;
+        public DataRow AM_old;
         /// <summary>
         /// Luôn là bảng copy
         /// </summary>
@@ -316,13 +316,19 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return addDataAM;
         }
 
-        protected void LoadTag(V6InvoiceBase invoice, Control detailPanelControl)
+        protected void LoadTag(V6InvoiceBase invoice, ControlCollection detailPanelControls)
         {
             try
             {
                 var tagData = invoice.LoadTag(m_itemId);
                 V6ControlFormHelper.SetFormTagDictionary(this, tagData);
-                V6ControlFormHelper.SetFormTagDictionary(detailPanelControl, tagData);
+                if (detailPanelControls != null)
+                {
+                    foreach (Control control in detailPanelControls)
+                    {
+                        V6ControlFormHelper.SetFormTagDictionary(control, tagData);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -520,7 +526,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             try
             {
                 //MA_KH
-                var temp_control = V6ControlFormHelper.GetControlByAccesibleName(this, "MA_KH");
+                var temp_control = V6ControlFormHelper.GetControlByAccessibleName(this, "MA_KH");
                 if (temp_control is V6VvarTextBox)
                 {
                     var txt = temp_control as V6VvarTextBox;
@@ -534,7 +540,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
                 
                 //MA_KH_I
-                temp_control = V6ControlFormHelper.GetControlByAccesibleName(this, "MA_KH_I");
+                temp_control = V6ControlFormHelper.GetControlByAccessibleName(this, "MA_KH_I");
                 if (temp_control is V6VvarTextBox)
                 {
                     var txt = temp_control as V6VvarTextBox;
@@ -548,7 +554,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
 
                 //MA_VT
-                temp_control = V6ControlFormHelper.GetControlByAccesibleName(this, "MA_VT");
+                temp_control = V6ControlFormHelper.GetControlByAccessibleName(this, "MA_VT");
                 if (temp_control is V6VvarTextBox)
                 {
                     var txt = temp_control as V6VvarTextBox;
@@ -1010,6 +1016,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     date = row0["Date_yn"].ToString().Trim() == "1";
                     vitri = row0["Vitri_yn"].ToString().Trim() == "1";
                 }
+                else
+                {
+                    //tuanmh 03/11/2017
+                    continue;
+                }
                 if (lo && date && vitri)
                 {
                     if (!mavt_list.Contains(c_mavt))
@@ -1120,6 +1131,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     DataRow row0 = lodate_data.Rows[0];
                     lo = row0["Lo_yn"].ToString().Trim() == "1";
                     date = row0["Date_yn"].ToString().Trim() == "1";
+                }
+                else
+                {
+                    //tuanmh 03/11/2017
+                    continue;
                 }
                 if (lo && date)
                 {
@@ -1248,6 +1264,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
             if (mavt_in.Length > 0) mavt_in = mavt_in.Substring(1);
             if (makho_in.Length > 0) makho_in = makho_in.Substring(1);
+
+            // Loi 03/11/2017
+            if (string.IsNullOrEmpty(mavt_in) || string.IsNullOrEmpty(makho_in))
+            {
+                return null;
+            }
+
             //Get dữ liệu tồn
             var data = Invoice.GetStockAll(mavt_in, makho_in, _sttRec, ngayCt);
             //Kiểm tra
@@ -1333,35 +1356,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
             };
             var ca = V6BusinessHelper.ExecuteFunctionScalar("VFA_GET_CA_FROM_ALTD", plist);
             return "" + ca;
-        }
-
-        protected void ApplyDynamicFormControlEvents(Type eventProgram, Dictionary<string, object> allObjects)
-        {
-            try
-            {
-                var all_control = V6ControlFormHelper.GetAllControls(this);
-                string error = "";
-                foreach (Control control in all_control)
-                {
-                    try
-                    {
-                        V6ControlFormHelper.ApplyControlEventByAccessibleName(control, eventProgram, allObjects);
-                    }
-                    catch (Exception ex)
-                    {
-                        error += string.Format("{0}({1}) err: {2}", control.Name, control.AccessibleName, ex.Message);
-                    }
-                }
-
-                if (error.Length > 0)
-                {
-                    this.WriteToLog(GetType() + ".ApplyFormControlEvents", error);
-                }
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".ApplyFormControlEvents", ex);
-            }
         }
 
         /// <summary>

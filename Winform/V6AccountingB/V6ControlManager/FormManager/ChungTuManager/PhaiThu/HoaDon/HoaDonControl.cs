@@ -15,6 +15,7 @@ using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNhap;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuXuat;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc;
+using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -62,8 +63,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         }
 
         private void MyInit()
-        {   
-            LoadTag(Invoice, detail1.panelControls);
+        {
+            LoadTag(Invoice, detail1.Controls);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -114,6 +115,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
             
             cboKieuPost.SelectedIndex = 0;
+
+            All_Objects["thisForm"] = this;
+            CreateFormProgram(Invoice);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+
             _maGd = (Invoice.Alct.Rows[0]["M_MA_GD"] ?? "1").ToString().Trim();
             _m_Ma_td = (Invoice.Alct.Rows[0]["M_MA_TD"] ?? "0").ToString().Trim();
 
@@ -167,6 +173,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
+                All_Objects[NAME] = control;
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+
                 switch (NAME)
                 {
                     case "MA_VT":
@@ -652,7 +661,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         break;
 
                 }
-                
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
             
             foreach (Control control in dynamicControlList.Values)
@@ -1730,9 +1739,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         #region ==== Override Methods ====
 
+       
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("Chứng từ.");
+            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ?
+                "F4-Nhận/thêm chi tiết,F9-Lưu và in." :
+                "F4-Add details,F9-Save and print.");
         }
         
         public override bool DoHotKey0(Keys keyData)
@@ -1793,6 +1805,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         btnQuayRa.PerformClick();
                     }
                 }
+            }
+            else if (keyData == Keys.F4)
+            {
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    if ((detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                        && _maVt.Text != "" && _maKhoI.Text != "")
+                    {
+                        detail1.btnNhan.PerformClick();
+                    }
+
+                    if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit)
+                    {
+                        detail1.OnMoiClick();
+                    }
+                }
+            }
+            else if (keyData == Keys.F9)
+            {
+                LuuVaIn();
             }
             else
             {
@@ -3736,7 +3768,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     panelVND.Visible = true;
                     
 
-                    var c = V6ControlFormHelper.GetControlByAccesibleName(detail1, "GIA21");
+                    var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA21");
                     if (c != null) c.Visible = true;
                     //SetColsVisible(_GridID, ["GIA21", "TIEN2"], true); //Hien ra
                     var gridViewColumn = dataGridView1.Columns["GIA21"];
@@ -4218,6 +4250,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
 
                 ((Timer)sender).Dispose();
+                if (_print_flag != V6PrintMode.DoNoThing)
+                {
+                    var temp = _print_flag;
+                    _print_flag = V6PrintMode.DoNoThing;
+                    In(_sttRec_In, temp, 3);
+                    SetStatus2Text();
+                }
             }
         }
 
@@ -4335,6 +4374,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
 
                 ((Timer)sender).Dispose();
+                if (_print_flag != V6PrintMode.DoNoThing)
+                {
+                    var temp = _print_flag;
+                    _print_flag = V6PrintMode.DoNoThing;
+                    In(_sttRec_In, temp, 3);
+                    SetStatus2Text();
+                }
             }
         }
 
@@ -4698,7 +4744,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void In()
+        private void In(string sttRec_In, V6PrintMode printMode, int sec = 3)
         {
             try
             {
@@ -4712,7 +4758,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         var repTitle2 = Invoice.Alct.Rows[0]["TIEU_DE2"].ToString().Trim();
 
                         var c = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
-                            "", "", "", _sttRec);
+                            "", "", "", sttRec_In);
                         c.TTT = txtTongThanhToan.Value;
                         c.TTT_NT = txtTongThanhToanNt.Value;
                         c.MA_NT = _maNt;
@@ -4722,7 +4768,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             if (hoadon_nd51 == 1) Invoice.IncreaseSl_inAM(stt_rec);
                             if (!sender.IsDisposed) sender.Dispose();
                         };
-
+                        c.PrintMode = printMode;
                         c.ShowToForm(this, V6Text.PrintSOA, true);
                     }
                     else
@@ -4793,6 +4839,85 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
             }
             Parent.Dispose();
+        }
+
+        private V6PrintMode _print_flag = V6PrintMode.DoNoThing;
+        private string _sttRec_In = "";
+        private string _status = "";
+        /// <summary>
+        /// Gán Status đổi luôn cả Mode. 0Init12NewEdit3View
+        /// </summary>
+        //public string Status
+        //{
+        //    get
+        //    {
+        //        return _status;
+        //    }
+        //    set
+        //    {
+        //        _status = value;
+        //        OnBillChanged();
+        //        switch (value)
+        //        {
+        //            case "0":
+        //                if (IsViewingAnInvoice) Mode = V6Mode.View;
+        //                else Mode = V6Mode.Init;
+        //                break;
+        //            case "1":
+        //                Mode = V6Mode.Edit;
+        //                break;
+        //            case "2":
+        //                Mode = V6Mode.Edit;
+        //                break;
+        //            case "3":
+        //                Mode = V6Mode.View;
+        //                break;
+        //        }
+        //    }
+        //}
+        public decimal TongThanhToan { get { return txtTongThanhToanNt.Value; } }
+        //public string MA_KHOPH { get { return txtMa_khoPH.Text.Trim(); } set { txtMa_khoPH.Text = value; } }
+        //public string MA_VITRIPH { get { return txtMa_vitriPH.Text.Trim(); } set { txtMa_vitriPH.Text = value; } }
+        /// <summary>
+        /// Lưu và in (click nút in, chọn máy in, không in ngay), có hiển thị form in trước 3 giây.
+        /// </summary>
+        private void LuuVaIn()
+        {
+            if ((Mode == V6Mode.Add || Mode == V6Mode.Edit))
+            {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    ShowMainMessage("Chưa hoàn tất chi tiết!");
+                    return;
+                }
+                //_print_flag = true;
+                //_sttRec_In = _sttRec;
+                //Luu(MA_KHOPH, MA_VITRIPH, true);
+                //Status = "3";
+
+                //var payform = new PayForm(TongThanhToan, txtTongTienNt2.DecimalPlaces);
+                //var dr = payform.ShowDialog(this);
+                //if (dr == DialogResult.Yes) // luu va in
+                {
+                    _print_flag = V6PrintMode.AutoClickPrint;
+                    _sttRec_In = _sttRec;
+                    //txtSL_UD1.Value = payform.KhachDua;
+                    Luu();
+                    Mode = V6Mode.View;// Status = "3";
+                }
+                //else if (dr == DialogResult.OK) // luu ko in
+                //{
+                //    _print_flag = false;
+                //    _sttRec_In = _sttRec;
+                //    txtSL_UD1.Value = payform.KhachDua;
+                //    Luu();
+                //    Mode = V6Mode.View;// Status = "3";
+                //}
+                //else
+                //{
+                //    DoNothing();
+                //}
+            }
         }
 
         #region ==== Navigation function ====
@@ -5456,7 +5581,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            In();
+            In(_sttRec, V6PrintMode.DoNoThing);
         }
 
         private void txtTongThanhToanNt_TextChanged(object sender, EventArgs e)
@@ -5567,7 +5692,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     var a_fields = v6valid.Rows[0]["A_Field"].ToString().Trim().Split(',');
                     foreach (string field in a_fields)
                     {
-                        var control = V6ControlFormHelper.GetControlByAccesibleName(this, field);
+                        var control = V6ControlFormHelper.GetControlByAccessibleName(this, field);
                         if (control is V6DateTimeColor)
                         {
                             if (((V6DateTimeColor) control).Value == null)
@@ -5760,7 +5885,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     var a_fields = v6valid.Rows[0]["A_Field"].ToString().Trim().Split(',');
                     foreach (string field in a_fields)
                     {
-                        var control = V6ControlFormHelper.GetControlByAccesibleName(detail1, field);
+                        var control = V6ControlFormHelper.GetControlByAccessibleName(detail1, field);
                         if (control is V6DateTimeColor)
                         {
                             if (((V6DateTimeColor)control).Value == null)
@@ -6160,14 +6285,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         
         private void txtDiaChiGiaoHang_Enter(object sender, EventArgs e)
         {
-            var data = txtMaKh.Data;
-            if (data == null)
+            if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                this.ShowWarningMessage("Chưa chọn mã khách hàng!", 300);
-                return;
+                if (txtDiaChiGiaoHang.ReadOnly) return;
+                var data = txtMaKh.Data;
+                if (data == null)
+                {
+                    this.ShowWarningMessage("Chưa chọn mã khách hàng!", 300);
+                    return;
+                }
+                txtDiaChiGiaoHang.ParentData = data.ToDataDictionary();
+                txtDiaChiGiaoHang.SetInitFilter(string.Format("MA_KH='{0}'", txtMaKh.Text));
             }
-            txtDiaChiGiaoHang.ParentData = data.ToDataDictionary();
-            txtDiaChiGiaoHang.SetInitFilter(string.Format("MA_KH='{0}'", txtMaKh.Text));
         }
 
         private void btnChonPX_Click(object sender, EventArgs e)

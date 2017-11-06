@@ -56,7 +56,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         private void MyInit()
         {   
             LoadLanguage();
-            LoadTag(Invoice, detail1.panelControls);
+            LoadTag(Invoice, detail1.Controls);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -90,6 +90,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
             cboKieuPost.SelectedIndex = 0;
             cboLoai_pb.SelectedIndex = 0;
+
+            All_Objects["thisForm"] = this;
+            CreateFormProgram(Invoice);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+
             LoadDetailControls();
             //detail1.AddContexMenu(menuDetail1);
             LoadDetail2Controls();
@@ -146,6 +151,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
+                All_Objects[NAME] = control;
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+
                 switch (NAME)
                 {
                     case "MA_VT":
@@ -424,7 +432,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         }
                         break;
                 }
-
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
             foreach (Control control in dynamicControlList.Values)
@@ -1811,7 +1819,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     TxtT_cp_ao.Visible = true;
                     TxtT_cp.Visible = true;
 
-                    var c = V6ControlFormHelper.GetControlByAccesibleName(detail1, "GIA01");
+                    var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA01");
                     if (c != null) c.Visible = true;
                     //SetColsVisible(_GridID, ["GIA21", "TIEN2"], true); //Hien ra
                     var dataGridViewColumn = dataGridView1.Columns["GIA01"];

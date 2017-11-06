@@ -64,7 +64,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private void MyInit()
         {
             LoadLanguage();
-            LoadTag(Invoice, detail1.panelControls);
+            LoadTag(Invoice, detail1.Controls);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -112,6 +112,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
             
             cboKieuPost.SelectedIndex = 0;
+
+            All_Objects["thisForm"] = this;
+            CreateFormProgram(Invoice);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+
             LoadDetailControls("2");
             LoadDetail2Controls();
             LoadDetail3Controls();
@@ -187,6 +192,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     ApplyControlEnterStatus(control);
                     
                     var NAME = control.AccessibleName.ToUpper();
+                    All_Objects[NAME] = control;
+                    V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+
                     switch (NAME)
                     {
                         case "MA_KH_T":
@@ -404,7 +412,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             break;
 
                     }
-
+                    V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
                 }
 
                 //Bo sung cac f cung
@@ -469,150 +477,134 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     ApplyControlEnterStatus(control);
                     
                     var NAME = control.AccessibleName.ToUpper();
-                    if (NAME == "SO_CT0")
-                    {
-                        _so_ct022 = control as V6ColorTextBox;
-                        if (_so_ct022 != null)
-                        {
 
-                        }
-                    }
-                    else if (NAME == "SO_SERI0")
+                    switch (NAME)
                     {
-                        _so_seri022 = control as V6ColorTextBox;
-                        if (_so_seri022 != null)
-                        {
-                            _so_seri022.Upper();
-                        }
-                    }
-                    else if (NAME == "MAU_BC")
-                    {
-                        _mau_bc = control as V6NumberTextBox;
-                        if (_mau_bc != null)
-                        {
-                            _mau_bc.LimitCharacters = "123458";
-                            _mau_bc.MaxNumLength = 1;
-                            _mau_bc.MaxLength = 1;
-                            _mau_bc.GotFocus += _mau_bc_GotFocus;
-                        }
-                    }
-                    else if (NAME == "TEN_KH")
-                    {
-                        _ten_kh22 = control as V6ColorTextBox;
-                        if (_ten_kh22 != null)
-                        {
-
-                        }
-                    }
-                    else if (NAME == "DIA_CHI")
-                    {
-                        _dia_chi22 = control as V6ColorTextBox;
-                        if (_dia_chi22 != null)
-                        {
-
-                        }
-                    }
-                    else if (NAME == "MA_SO_THUE")
-                    {
-                        _ma_so_thue22 = control as V6ColorTextBox;
-                        if (_ma_so_thue22 != null)
-                        {
-
-                        }
-                    }
-                    else if (NAME == "MA_KH")
-                    {
-                        _ma_kh22 = control as V6VvarTextBox;
-                        if (_ma_kh22 != null)
-                        {
-                            _ma_kh22.CheckOnLeave = true;
-                            _ma_kh22.V6LostFocus += delegate
+                        case "SO_CT0":
+                            _so_ct022 = control as V6ColorTextBox;
+                            if (_so_ct022 != null)
                             {
-                                XuLyChonMaKhach22();
-                            };
-                        }
-                    }
-                    else if (NAME == "TK_THUE_NO")
-                    {
 
-                        _tk_thue_no22 = (V6VvarTextBox)control;
-                        _tk_thue_no22.Upper();
-                        _tk_thue_no22.SetInitFilter("Loai_tk=1");
-                        _tk_thue_no22.FilterStart = true;
-
-                    }
-                    else if (NAME == "TK_DU")
-                    {
-
-                        _tk_du22 = (V6VvarTextBox)control;
-                        _tk_du22.Upper();
-                        _tk_du22.SetInitFilter("Loai_tk=1");
-                        _tk_du22.FilterStart=true;
-
-                    }
-                    //private V6ColorDateTime ;
-                    //private V6NumberTextBox _t_tien22, ;
-                    else if (NAME == "NGAY_CT0")
-                    {
-                        _ngay_ct022 = control as V6DateTimeColor;
-                        if (_ngay_ct022 != null)
-                        {
-
-                        }
-                    }
-                    else if (NAME == "GIA_NT0")
-                    {
-                        _gia_Nt022 = control as V6NumberTextBox;
-                        if (_gia_Nt022 != null)
-                        {
-
-                        }
-                    }
-                    else if (NAME == "T_TIEN")
-                    {
-                        _t_tien22 = control as V6NumberTextBox;
-                        if (_ngay_ct022 != null)
-                        {
-
-                        }
-                    }
-                    else if (NAME == "T_TIEN_NT")
-                    {
-                        _t_tien_nt22 = control as V6NumberTextBox;
-                        if (_t_tien_nt22 != null)
-                        {
-                            _t_tien_nt22.V6LostFocus += delegate
+                            }
+                            break;
+                        case "SO_SERI0":
+                            _so_seri022 = control as V6ColorTextBox;
+                            if (_so_seri022 != null)
                             {
-                                TinhTienThue22();
-                            };
-                        }
-                    }
-                    else if (NAME == "THUE_SUAT")
-                    {
-                        _thue_suat22 = control as V6NumberTextBox;
-                        if (_thue_suat22 != null)
-                        {
-                            _thue_suat22.V6LostFocus += delegate
+                                _so_seri022.Upper();
+                            }
+                            break;
+                        case "MAU_BC":
+                            _mau_bc = control as V6NumberTextBox;
+                            if (_mau_bc != null)
                             {
-                                TinhTienThue22();
-                            };
-                        }
-                    }
-                    else if (NAME == "T_THUE")
-                    {
-                        _t_thue22 = control as V6NumberTextBox;
-                        if (_t_thue22 != null)
-                        {
+                                _mau_bc.LimitCharacters = "123458";
+                                _mau_bc.MaxNumLength = 1;
+                                _mau_bc.MaxLength = 1;
+                                _mau_bc.GotFocus += _mau_bc_GotFocus;
+                            }
+                            break;
+                        case "TEN_KH":
+                            _ten_kh22 = control as V6ColorTextBox;
+                            if (_ten_kh22 != null)
+                            {
 
-                        }
-                    }
-                    else if (NAME == "T_THUE_NT")
-                    {
-                        _t_thue_nt22 = control as V6NumberTextBox;
-                        if (_t_thue_nt22 != null)
-                        {
+                            }
+                            break;
+                        case "DIA_CHI":
+                            _dia_chi22 = control as V6ColorTextBox;
+                            if (_dia_chi22 != null)
+                            {
 
-                        }
+                            }
+                            break;
+                        case "MA_SO_THUE":
+                            _ma_so_thue22 = control as V6ColorTextBox;
+                            if (_ma_so_thue22 != null)
+                            {
+
+                            }
+                            break;
+                        case "MA_KH":
+                            _ma_kh22 = control as V6VvarTextBox;
+                            if (_ma_kh22 != null)
+                            {
+                                _ma_kh22.CheckOnLeave = true;
+                                _ma_kh22.V6LostFocus += delegate
+                                {
+                                    XuLyChonMaKhach22();
+                                };
+                            }
+                            break;
+                        case "TK_THUE_NO":
+
+                            _tk_thue_no22 = (V6VvarTextBox)control;
+                            _tk_thue_no22.Upper();
+                            _tk_thue_no22.SetInitFilter("Loai_tk=1");
+                            _tk_thue_no22.FilterStart = true;
+                            break;
+                        case "TK_DU":
+
+                            _tk_du22 = (V6VvarTextBox)control;
+                            _tk_du22.Upper();
+                            _tk_du22.SetInitFilter("Loai_tk=1");
+                            _tk_du22.FilterStart=true;
+                            break;
+                        case "NGAY_CT0":
+                            _ngay_ct022 = control as V6DateTimeColor;
+                            if (_ngay_ct022 != null)
+                            {
+
+                            }
+                            break;
+                        case "GIA_NT0":
+                            _gia_Nt022 = control as V6NumberTextBox;
+                            if (_gia_Nt022 != null)
+                            {
+
+                            }
+                            break;
+                        case "T_TIEN":
+                            _t_tien22 = control as V6NumberTextBox;
+                            if (_ngay_ct022 != null)
+                            {
+
+                            }
+                            break;
+                        case "T_TIEN_NT":
+                            _t_tien_nt22 = control as V6NumberTextBox;
+                            if (_t_tien_nt22 != null)
+                            {
+                                _t_tien_nt22.V6LostFocus += delegate
+                                {
+                                    TinhTienThue22();
+                                };
+                            }
+                            break;
+                        case "THUE_SUAT":
+                            _thue_suat22 = control as V6NumberTextBox;
+                            if (_thue_suat22 != null)
+                            {
+                                _thue_suat22.V6LostFocus += delegate
+                                {
+                                    TinhTienThue22();
+                                };
+                            }
+                            break;
+                        case "T_THUE":
+                            _t_thue22 = control as V6NumberTextBox;
+                            if (_t_thue22 != null)
+                            {
+
+                            }
+                            break;
+                        case "T_THUE_NT":
+                            _t_thue_nt22 = control as V6NumberTextBox;
+                            if (_t_thue_nt22 != null)
+                            {
+
+                            }
+                            break;
                     }
                 }
 
@@ -2372,7 +2364,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     //_psno.VisibleTag();
                     detail1.ShowIDs(new[]{"ps_no","tt", "thue"});
                     
-                    var c = V6ControlFormHelper.GetControlByAccesibleName(detail1, "PS_NO");
+                    var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "PS_NO");
                     if (c != null) c.Visible = true;
 
                     //SetColsVisible

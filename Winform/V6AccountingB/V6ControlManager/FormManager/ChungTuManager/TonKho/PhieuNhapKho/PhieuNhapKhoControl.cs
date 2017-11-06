@@ -55,7 +55,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         private void MyInit()
         {   
             LoadLanguage();
-            LoadTag(Invoice, detail1.panelControls);
+            LoadTag(Invoice, detail1.Controls);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -85,7 +85,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
-            ApplyDynamicFormControlEvents(Event_program, All_Objects);
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
 
             LoadDetailControls();
             detail1.AddContexMenu(menuDetail1);
@@ -1814,7 +1814,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         panelVND.Visible = false;
                         lblDocSoTien.Visible = false;
                     }
-                    var c = V6ControlFormHelper.GetControlByAccesibleName(detail1, "GIA01");
+                    var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA01");
                     if (c != null) c.Visible = true;
                     
                     

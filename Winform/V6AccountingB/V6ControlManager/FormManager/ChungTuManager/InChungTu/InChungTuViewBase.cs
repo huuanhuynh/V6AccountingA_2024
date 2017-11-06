@@ -716,6 +716,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             CreateFormProgram();
             CreateFormControls();
             InvokeFormEvent(QuickReportManager.FormEvent.INIT);
+            crystalReportViewer1.GotFocus += crystalReportViewer1_GotFocus;
+        }
+
+        private int _viewer_focus_count = 0;
+        void crystalReportViewer1_GotFocus(object sender, EventArgs e)
+        {
+            //if (_viewer_focus_count>0)
+            //{
+            //    return;
+            //}
+            //_viewer_focus_count++;
+            //try
+            //{
+            //    btnIn.Focus();
+            //}
+            //catch (Exception ex)
+            //{
+                
+            //}
         }
 
         private void LoadComboboxSource()
@@ -789,7 +808,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
             MyInit2();
-            MakeReport(AutoPrint, PrinterName, (int)numSoLien.Value, _printCopy);
+            MakeReport(PrintMode, PrinterName, (int)numSoLien.Value, _printCopy);
         }
 
         private void SetFormReportFilter()
@@ -832,7 +851,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         public void btnNhan_Click(object sender, EventArgs e)
         {
             btnNhanImage = btnNhan.Image;
-            MakeReport(false, null, (int) numSoLien.Value);
+            MakeReport(V6PrintMode.DoNoThing, null, (int) numSoLien.Value);
         }
 
         //private const int nameLineLength = 40;
@@ -1213,7 +1232,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             _dataLoading = false;
         }
 
-        private bool _forcePrint;
+        //private bool _forcePrint;
         public string PrinterName { get; set; }
         private int _soLienIn = 1, _printCopy = 1;
 
@@ -1224,16 +1243,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         }
 
         //public bool xong { get; set; }
-        public bool AutoPrint { get; set; }
-
+        public V6PrintMode PrintMode { get; set; }
+        
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="forcePrint">In luôn</param>
+        /// <param name="printMode">In luôn hoặc không?</param>
         /// <param name="printerName">Nếu forcePrint=true thì bắt buộc có printerName</param>
         /// <param name="soLien"></param>
         /// <param name="printCopy"></param>
-        public void MakeReport(bool forcePrint, string printerName,
+        public void MakeReport(V6PrintMode printMode, string printerName,
             int soLien, int printCopy = 1)
         {
             //if (_dataLoading)
@@ -1242,7 +1261,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             //}
             try
             {
-                _forcePrint = forcePrint;
+                //_forcePrint = forcePrint;
+                PrintMode = printMode;
                 PrinterName = printerName;
                 _soLienIn = soLien;
                 if (_soLienIn < 1) _soLienIn = 1;
@@ -1260,12 +1280,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     FormatGridView();
 
                     ViewReport();
-                    if (_forcePrint)
+                    if (PrintMode == V6PrintMode.AutoPrint)
                     {
                         Print(PrinterName);
                         if (!IsDisposed) Dispose();
                     }
-                    if (!dataGridView1.IsDisposed) dataGridView1.Focus();
+                    else if (PrintMode == V6PrintMode.AutoClickPrint)
+                    {
+                        btnIn.PerformClick();
+                    }
+                    //if (!dataGridView1.IsDisposed) dataGridView1.Focus();
+                    //btnIn.Focus();
                 }
                 catch (Exception ex)
                 {
@@ -1295,13 +1320,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
                     
                     ViewReport();
-                    if (_forcePrint)
+                    if (PrintMode == V6PrintMode.AutoPrint)
                     {
                         Print(PrinterName);
-                        Dispose();
+                        if (!IsDisposed) Dispose();
+                    }
+                    else if (PrintMode == V6PrintMode.AutoClickPrint)
+                    {
+                        btnIn.PerformClick();
                     }
 
-                    dataGridView1.Focus();
+                    //dataGridView1.Focus();
                 }
                 catch (Exception ex)
                 {
@@ -1431,7 +1460,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             else
             {
                 if (ReloadData == "1")
-                    MakeReport(false, null, (int)numSoLien.Value);
+                    MakeReport(V6PrintMode.DoNoThing, null, (int)numSoLien.Value);
                 else
                     ViewReport();
             }
@@ -1448,7 +1477,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             if (((RadioButton) sender).Checked)
             {
                 if (ReloadData == "1")
-                    MakeReport(false, null, (int)numSoLien.Value);
+                    MakeReport(V6PrintMode.DoNoThing, null, (int)numSoLien.Value);
                 else
                     ViewReport();
             }
@@ -1620,6 +1649,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
             }
+            //btnIn.Focus();
         }
 
         private void Print(string printerName)
@@ -1887,7 +1917,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             txtReportTitle.Text = ReportTitle;
             numSoLien.Value = SelectedSoLien;
             if (ReloadData == "1")
-                MakeReport(false, null, (int)numSoLien.Value);
+                MakeReport(V6PrintMode.DoNoThing, null, (int)numSoLien.Value);
             else
                 ViewReport();
         }
@@ -2090,6 +2120,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
+        private void panel1_Leave(object sender, EventArgs e)
+        {
+            //btnIn.Focus();
+        }
+
         
+    }
+
+    public enum V6PrintMode
+    {
+        DoNoThing = 0,
+        AutoPrint = 1,
+        AutoClickPrint = 2,
     }
 }

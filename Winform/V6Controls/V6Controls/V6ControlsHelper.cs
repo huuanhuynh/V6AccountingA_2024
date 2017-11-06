@@ -522,7 +522,7 @@ namespace V6Controls
 
     public class Config
     {
-        protected IDictionary<string, object> _data;
+        public IDictionary<string, object> DATA;
 
         public Config()
         {
@@ -530,7 +530,7 @@ namespace V6Controls
         }
         public Config(IDictionary<string, object> data)
         {
-            _data = data;
+            DATA = data;
         }
 
         public bool NoInfo { get; internal set; }
@@ -540,9 +540,9 @@ namespace V6Controls
         public int GetInt(string name)
         {
             name = name.ToUpper();
-            if (_data != null && _data.ContainsKey(name))
+            if (DATA != null && DATA.ContainsKey(name))
             {
-                return ObjectAndString.ObjectToInt(_data[name]);
+                return ObjectAndString.ObjectToInt(DATA[name]);
             }
             return 0;
         }
@@ -555,9 +555,9 @@ namespace V6Controls
         public string GetString(string name)
         {
             name = name.ToUpper();
-            if (_data != null && _data.ContainsKey(name))
+            if (DATA != null && DATA.ContainsKey(name))
             {
-                return _data[name].ToString().Trim();
+                return DATA[name].ToString().Trim();
             }
             return null;
         }
@@ -639,6 +639,7 @@ namespace V6Controls
         public bool CHECK_ADMIN { get { return GetString("CHECK_ADMIN") == "1"; } }
         public bool CHECK_V6 { get { return GetString("CHECK_V6") == "1"; } }
         public string CTRL_F4 { get { return GetString("CTRL_F4"); } }
+        public string DMETHOD { get { return GetString("DMETHOD"); } }
         public string DUPDATE { get { return GetString("DUPDATE"); } }
         public string TRANSFORM { get { return GetString("TRANSFORM"); } }
         public string STT13 { get { return GetString("STT13"); } }
@@ -661,6 +662,7 @@ namespace V6Controls
         public string GRDHV_V1 { get { return GetString("GRDHV_V1"); } }
         public string GRDHE_V1 { get { return GetString("GRDHE_V1"); } }
         public bool IsGroup { get { return GetString("IS_GROUP") == "1"; } }
+        public bool IS_ALDM { get { return GetString("IS_ALDM") == "1"; } }
 
         public string TABLE_KEY { get { return GetString("TABLE_KEY"); } }
         /// <summary>
@@ -668,6 +670,7 @@ namespace V6Controls
         /// </summary>
         public string L_ALDM { get { return GetString("L_ALDM"); } }
         public string Vorder { get { return GetString("VORDER"); } }
+        
     }
 
     public class V6lookupConfig : Config

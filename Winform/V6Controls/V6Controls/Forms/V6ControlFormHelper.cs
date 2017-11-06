@@ -247,9 +247,9 @@ namespace V6Controls.Forms
         #region ==== SHOW HIDE MENU ====
 
         public static MenuControl MainMenu;
-        public static V6VeticalLable lblMenuMain { get; set; }
+        public static V6VeticalLabel lblMenuMain { get; set; }
         //private static Timer _hide, _show;
-        private static V6VeticalLable _sender;
+        private static V6VeticalLabel _menu_v_label;
         private static Control _menuPanel, _menuShowControl, _viewControl, _containerControl;
         private static Point _menuPanelLocation;
         private static bool _checkMove;
@@ -257,12 +257,12 @@ namespace V6Controls.Forms
         private static string _selectedText = "";
         static Timer _hide, _show;
 
-        public static void SetHideMenuLabel(V6VeticalLable label, string selectedText)
+        public static void SetHideMenuLabel(V6VeticalLabel label, string selectedText)
         {
-            _sender = label;
+            _menu_v_label = label;
             _selectedText = selectedText;
-            if(_sender != null)
-                _sender.HideText = _selectedText;
+            if(_menu_v_label != null)
+                _menu_v_label.HideText = _selectedText;
         }
 
         public static void HideMainMenu()
@@ -276,14 +276,14 @@ namespace V6Controls.Forms
             if(!lblMenuMain.IsShowing) lblMenuMain.PerformClick();
         }
 
-        public static void ShowHideMenu(V6VeticalLable sender, string selectText,
+        public static void ShowHideMenu(V6VeticalLabel sender, string selectText,
             Control panelMenuControl, Control panelMenuShowControl, Control panelViewControl,
             Control container, Point panelMenuLocation, bool isShow)
         {
             if (_isMoving) return;
 
             
-            _sender = sender;
+            _menu_v_label = sender;
             _selectedText = selectText;
             _menuPanel = panelMenuControl;
             _menuShowControl = panelMenuShowControl;
@@ -355,7 +355,7 @@ namespace V6Controls.Forms
                 ((Timer) sender).Stop();
                 _isMoving = false;
                 //_sender.HideText = _sender.Text;
-                _sender.IsShowing = true;
+                _menu_v_label.IsShowing = true;
                 _viewControl.Width = _containerControl.Width - _menuPanel.Width - 25;
             }
             else
@@ -377,8 +377,8 @@ namespace V6Controls.Forms
                 _menuPanel.Visible = false;
                 ((Timer)sender).Stop();
                 _isMoving = false;
-                _sender.IsShowing = false;
-                _sender.HideText = _selectedText;
+                _menu_v_label.IsShowing = false;
+                _menu_v_label.HideText = _selectedText;
             }
             else
             {
@@ -706,21 +706,21 @@ namespace V6Controls.Forms
         /// Nếu không có trả về null
         /// </summary>
         /// <param name="control">Control chứa hoặc chính control cần tìm.</param>
-        /// <param name="accesibleName">AccessibleName của control cần tìm không phân biệt HOA thường.</param>
+        /// <param name="accessibleName">AccessibleName của control cần tìm không phân biệt HOA thường.</param>
         /// <returns></returns>
-        public static Control GetControlByAccesibleName(Control control, string accesibleName)
+        public static Control GetControlByAccessibleName(Control control, string accessibleName)
         {
             try
             {
                 if (control == null) return null;
 
                 if (!string.IsNullOrEmpty(control.AccessibleName)
-                    && string.Equals(control.AccessibleName, accesibleName, StringComparison.CurrentCultureIgnoreCase))
+                    && string.Equals(control.AccessibleName, accessibleName, StringComparison.CurrentCultureIgnoreCase))
                 {
                     return control;
                 }
                 return control.Controls.Count > 0 ?
-                    (from Control c in control.Controls select GetControlByAccesibleName(c, accesibleName)).FirstOrDefault(o => o != null)
+                    (from Control c in control.Controls select GetControlByAccessibleName(c, accessibleName)).FirstOrDefault(o => o != null)
                     : null;
             }
             catch (Exception ex)
@@ -1394,6 +1394,12 @@ namespace V6Controls.Forms
                         SetFormTagDicRecursive(c, tagData);
                     }
                 }
+
+                control.ControlAdded += (object sender, ControlEventArgs e) =>
+                {
+                    SetFormTagDicRecursive(e.Control, tagData);
+                };
+        
             CANCELALL: ;
             }
             catch (Exception ex)
@@ -1401,6 +1407,8 @@ namespace V6Controls.Forms
                 _errors += "\r\nControlName: " + control.Name + "\r\nException: " + ex.Message;
             }
         }
+
+        
 
 
 
@@ -4636,28 +4644,67 @@ namespace V6Controls.Forms
             if (control is V6ColorTextBox)
             {
                 var colorTB = control as V6ColorTextBox;
-                colorTB.V6LostFocus += delegate
+                colorTB.V6LostFocus += (sender)=>
                 {
+                    All_Objects["sender"] = sender;
                     V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_V6LOSTFOCUS" + before, All_Objects);
                 };
-                colorTB.V6LostFocusNoChange += delegate
+                colorTB.V6LostFocusNoChange += (sender) =>
                 {
+                    All_Objects["sender"] = sender;
                     V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_V6LOSTFOCUSNOCHANGE" + before, All_Objects);
                 };
             }
 
-            control.GotFocus += delegate
+            control.GotFocus += (sender, e) =>
             {
+                All_Objects["sender"] = sender;
+                All_Objects["e"] = e;
                 V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_GOTFOCUS" + before, All_Objects);
             };
-            control.LostFocus += delegate
+            control.LostFocus += (sender, e) =>
             {
+                All_Objects["sender"] = sender;
+                All_Objects["e"] = e;
                 V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_LOSTFOCUS" + before, All_Objects);
             };
-            control.TextChanged += delegate
+            control.TextChanged += (sender, e) =>
             {
+                All_Objects["sender"] = sender;
+                All_Objects["e"] = e;
                 V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_TEXTCHANGED" + before, All_Objects);
             };
+        }
+
+        public static void ApplyDynamicFormControlEvents(Control thisForm, Type eventProgram, Dictionary<string, object> allObjects)
+        {
+            if (eventProgram == null) return;
+
+            try
+            {
+                var all_control = V6ControlFormHelper.GetAllControls(thisForm);
+                string error = "";
+                foreach (Control control in all_control)
+                {
+                    try
+                    {
+                        V6ControlFormHelper.ApplyControlEventByAccessibleName(control, eventProgram, allObjects);
+                    }
+                    catch (Exception ex)
+                    {
+                        error += string.Format("{0}({1}) err: {2}", control.Name, control.AccessibleName, ex.Message);
+                    }
+                }
+
+                if (error.Length > 0)
+                {
+                    thisForm.WriteToLog(thisForm.GetType() + ".ApplyFormControlEvents", error);
+                }
+            }
+            catch (Exception ex)
+            {
+                thisForm.WriteExLog(thisForm.GetType() + ".ApplyFormControlEvents", ex);
+            }
         }
     }
 }
