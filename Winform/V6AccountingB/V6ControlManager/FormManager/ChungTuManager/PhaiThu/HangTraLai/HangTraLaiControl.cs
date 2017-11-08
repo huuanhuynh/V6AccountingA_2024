@@ -766,8 +766,37 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     }
                 }
             }
+            else if (keyData == Keys.F4)
+            {
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                    {
+                        string error = ValidateDetailData(Invoice, detail1.GetData());
+                        if (string.IsNullOrEmpty(error))
+                        {
+                            detail1.btnNhan.PerformClick();
+                        }
+                        else
+                        {
+                            ShowMainMessage(error);
+                        }
+                    }
+
+                    if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit)
+                    {
+                        detail1.OnMoiClick();
+                    }
+                }
+            }
+            else if (keyData == Keys.F9)
+            {
+                LuuVaIn();
+            }
             else
+            {
                 return base.DoHotKey0(keyData);
+            }
 
             return true;
         }
@@ -2428,7 +2457,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     Mode = V6Mode.Add;
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer)sender). Dispose();
+                if (_print_flag != V6PrintMode.DoNoThing)
+                {
+                    var temp = _print_flag;
+                    _print_flag = V6PrintMode.DoNoThing;
+                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    SetStatus2Text();
+                }
             }
         }
 
@@ -2547,7 +2583,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     Mode = V6Mode.Edit;
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer)sender). Dispose();
+                if (_print_flag != V6PrintMode.DoNoThing)
+                {
+                    var temp = _print_flag;
+                    _print_flag = V6PrintMode.DoNoThing;
+                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    SetStatus2Text();
+                }
             }
         }
 
@@ -2650,7 +2693,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     ShowParentMessage(V6Text.DeleteFail + ": " + deleteErrorMessage);
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer)sender). Dispose();
             }
         }
 
@@ -2976,6 +3019,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 }
             }
             Parent.Dispose();
+        }
+
+        public decimal TongThanhToan { get { return txtTongThanhToan.Value; } }
+        public decimal TongThanhToanNT { get { return txtTongThanhToanNt.Value; } }
+        /// <summary>
+        /// Lưu và in (click nút in, chọn máy in, không in ngay), có hiển thị form in trước 3 giây.
+        /// </summary>
+        private void LuuVaIn()
+        {
+            if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+            {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    ShowMainMessage("Chưa hoàn tất chi tiết!");
+                    return;
+                }
+
+                _print_flag = V6PrintMode.AutoClickPrint;
+                _sttRec_In = _sttRec;
+
+                Luu();
+                Mode = V6Mode.View;// Status = "3";
+            }
+            else if (Mode == V6Mode.View)
+            {
+                BasePrint(Invoice, _sttRec, V6PrintMode.AutoClickPrint, TongThanhToan, TongThanhToanNT, true);
+            }
         }
 
         #region ==== Navigation function ====

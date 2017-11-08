@@ -523,6 +523,11 @@ namespace V6AccountingBusiness.Invoices
         {
             throw new NotImplementedException();
         }
+        
+        public virtual DataTable GetSodu0_All_Cust(string sttRec, string trim, string filterString)
+        {
+            throw new NotImplementedException();
+        }
 
         public void IncreaseSl_inAM(string sttRec)
         {

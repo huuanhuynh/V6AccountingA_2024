@@ -16,7 +16,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
     /// Nếu còn 1 dòng thì bấm enter ở vsearch là chọn luôn.
     /// Có thể cần nâng cấp phần phân trang giống danh mục view
     /// </summary>
-    public partial class FilterView_ARS20 : Form
+    public partial class FilterView_ARSODU0 : Form
     {
         private V6InvoiceBase Invoice;
         internal string InitStrFilter;
@@ -32,7 +32,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
         public string Report_GRDFV1 = "";
         public string Report_GRDHV_V1 = "";
         public string Report_GRDHE_V1 = "";
-        public FilterView_ARS20(V6InvoiceBase invoice, V6ColorTextBox sender, string sttRec, string maDvcs, string initStrFilter)
+        public FilterView_ARSODU0(V6InvoiceBase invoice, V6ColorTextBox sender, string sttRec, string maDvcs, string initStrFilter)
         {
             InitializeComponent();
 
@@ -62,7 +62,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Init : " + ex.Message, "ChungTuManager FilterView_ARS20");
+                this.ShowErrorMessage(GetType() + ".Init : " + ex.Message, "ChungTuManager FilterView_ARSODU0");
             }
         }
 
@@ -288,7 +288,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             //    Close();
             //}
         }
-
+        
         private void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_senderTextBox != null) _senderTextBox.SetLooking(false);

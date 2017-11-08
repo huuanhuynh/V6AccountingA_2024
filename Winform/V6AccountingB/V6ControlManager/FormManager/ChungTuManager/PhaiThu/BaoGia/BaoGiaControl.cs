@@ -680,6 +680,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     }
                 }
             }
+            else if (keyData == Keys.F4)
+            {
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                    {
+                        string error = ValidateDetailData(Invoice, detail1.GetData());
+                        if (string.IsNullOrEmpty(error))
+                        {
+                            detail1.btnNhan.PerformClick();
+                        }
+                        else
+                        {
+                            ShowMainMessage(error);
+                        }
+                    }
+
+                    if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit)
+                    {
+                        detail1.OnMoiClick();
+                    }
+                }
+            }
             else if (keyData == Keys.F9)
             {
                 var row = AM.Rows[CurrentIndex];
@@ -712,6 +735,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     V6ControlFormHelper.NoRightWarning();
                 }
                 return false;
+            }
+            else if (keyData == Keys.F9)
+            {
+                LuuVaIn();
             }
             else if (keyData == Keys.F10)
             {
@@ -2487,7 +2514,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     Mode = V6Mode.Add;
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer)sender). Dispose();
+                if (_print_flag != V6PrintMode.DoNoThing)
+                {
+                    var temp = _print_flag;
+                    _print_flag = V6PrintMode.DoNoThing;
+                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    SetStatus2Text();
+                }
             }
         }
 
@@ -2596,7 +2630,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     Mode = V6Mode.Edit;
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer)sender). Dispose();
+                if (_print_flag != V6PrintMode.DoNoThing)
+                {
+                    var temp = _print_flag;
+                    _print_flag = V6PrintMode.DoNoThing;
+                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    SetStatus2Text();
+                }
             }
         }
 
@@ -2701,7 +2742,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     ShowParentMessage(V6Text.DeleteFail + ": " + deleteErrorMessage);
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer)sender). Dispose();
             }
         }
 
@@ -3054,6 +3095,35 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 }
             }
             Parent.Dispose();
+        }
+
+        public decimal TongThanhToan { get { return txtTongThanhToan.Value; } }
+        public decimal TongThanhToanNT { get { return txtTongThanhToanNt.Value; } }
+        //public string MA_KHOPH { get { return txtMa_khoPH.Text.Trim(); } set { txtMa_khoPH.Text = value; } }
+        //public string MA_VITRIPH { get { return txtMa_vitriPH.Text.Trim(); } set { txtMa_vitriPH.Text = value; } }
+        /// <summary>
+        /// Lưu và in (click nút in, chọn máy in, không in ngay), có hiển thị form in trước 3 giây.
+        /// </summary>
+        private void LuuVaIn()
+        {
+            if ((Mode == V6Mode.Add || Mode == V6Mode.Edit))
+            {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    ShowMainMessage("Chưa hoàn tất chi tiết!");
+                    return;
+                }
+
+                _print_flag = V6PrintMode.AutoClickPrint;
+                _sttRec_In = _sttRec;
+
+                Luu();
+                Mode = V6Mode.View;// Status = "3";
+            }
+            else if (Mode == V6Mode.View)
+            {
+                BasePrint(Invoice, _sttRec, V6PrintMode.AutoClickPrint, TongThanhToan, TongThanhToanNT, true);
+            }
         }
 
         #region ==== Navigation function ====

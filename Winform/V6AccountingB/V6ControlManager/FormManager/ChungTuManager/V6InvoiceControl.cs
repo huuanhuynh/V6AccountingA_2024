@@ -768,6 +768,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
         #endregion Tính toán trong chi tiết ====================================================
 
 
+        private void V6InvoiceControl_Load(object sender, EventArgs e)
+        {
+            SetInitFilterAll();
+            LoadLanguage();
+        }
+
         protected bool ValidateNgayCt(string maCt, DateTimePicker dateNgayCT)
         {
             try
@@ -790,10 +796,73 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return false;
         }
 
-        private void V6InvoiceControl_Load(object sender, EventArgs e)
+        V6ValidConfig GetV6ValidConfig(string ma_ct)
         {
-            SetInitFilterAll();
-            LoadLanguage();
+            //get
+            {
+                if (_V6ValidConfig != null) return _V6ValidConfig;
+                _V6ValidConfig = V6ControlsHelper.GetV6ValidConfig(ma_ct);
+                return _V6ValidConfig;
+            }
+        }
+
+        private V6ValidConfig _V6ValidConfig;
+
+        /// <summary>
+        /// <para>Kiểm tra dữ liệu chi tiết hợp lệ quy định trong V6Valid.</para>
+        /// <para>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</para>
+        /// </summary>
+        /// <param name="Invoice"></param>
+        /// <param name="data"></param>
+        /// <returns>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</returns>
+        protected string ValidateDetailData(V6InvoiceBase Invoice, SortedDictionary<string, object> data)
+        {
+            string error = "";
+            try
+            {
+                var config = GetV6ValidConfig(Invoice.Mact);
+                //var v6valid = V6BusinessHelper.Select("V6Valid", "A_Field",
+                //    "ma_ct='" + Invoice.Mact + "' and ma='" + Invoice.AD + "'").Data;
+                if (config != null && config.HaveInfo)
+                {
+                    var a_fields = ObjectAndString.SplitString(config.A_field);
+                    foreach (string field in a_fields)
+                    {
+                        string FIELD = field.Trim().ToUpper();
+                        if (!data.ContainsKey(FIELD))
+                        {
+                            error += string.Format("{0}: [{1}]\n", V6Text.NoData, FIELD);
+                            continue;
+                        }
+
+                        V6ColumnStruct columnS = Invoice.ADStruct[FIELD];
+                        object value = data[FIELD];
+                        if (ObjectAndString.IsDateTimeType(columnS.DataType))
+                        {
+                            if (value == null) error += "Chưa nhập giá trị: [" + FIELD + "]\n";
+                        }
+                        else if (ObjectAndString.IsNumberType(columnS.DataType))
+                        {
+                            if (ObjectAndString.ObjectToDecimal(value) == 0) error += "Chưa nhập giá trị: [" + FIELD + "]\n";
+                        }
+                        else // string
+                        {
+                            if (string.IsNullOrEmpty("" + value)) error += "Chưa nhập giá trị: [" + FIELD + "]\n";
+                        }
+
+                    }
+                }
+                else
+                {
+                    ShowMainMessage("No V6Valid info!");
+                }
+            }
+            catch (Exception ex)
+            {
+                error += ex.Message;
+                this.WriteExLog(GetType() + ".ValidateData_Detail", ex);
+            }
+            return error;
         }
 
         protected void XuLyHienThiChietKhau_PhieuNhap(bool ckChung, bool suaTienCk,
@@ -1308,6 +1377,52 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
         #endregion CheckTon
 
+        /// <summary>
+        /// Biến tạm: stt_rec để in sau khi lưu thành công.
+        /// </summary>
+        protected string _sttRec_In = "";
+        protected V6PrintMode _print_flag = V6PrintMode.DoNoThing;
+        protected void BasePrint(V6InvoiceBase Invoice, string sttRec_In, V6PrintMode printMode,
+            decimal tongThanhToan_Value, decimal tongThanhToanNT_Value, bool closeAfterPrint, int sec = 3)
+        {
+            try
+            {
+                if (IsViewingAnInvoice)
+                {
+                    if (V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
+                    {
+                        var program = Invoice.PrintReportProcedure;
+                        var repFile = Invoice.Alct.Rows[0]["FORM"].ToString().Trim();
+                        var repTitle = Invoice.Alct.Rows[0]["TIEU_DE_CT"].ToString().Trim();
+                        var repTitle2 = Invoice.Alct.Rows[0]["TIEU_DE2"].ToString().Trim();
+
+                        var c = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
+                            "", "", "", sttRec_In);
+                        c.TTT = tongThanhToan_Value;
+                        c.TTT_NT = tongThanhToanNT_Value;
+                        c.MA_NT = _maNt;
+                        c.Dock = DockStyle.Fill;
+                        c.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
+                        {
+                            if (hoadon_nd51 == 1) Invoice.IncreaseSl_inAM(stt_rec);
+                            if (!sender.IsDisposed) sender.Dispose();
+                        };
+                        c.PrintMode = printMode;
+                        c.Close_after_print = closeAfterPrint;
+                        c.ShowToForm(this, V6Text.PrintSOA, true);
+                    }
+                    else
+                    {
+                        V6ControlFormHelper.NoRightWarning();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".In: " + ex.Message);
+            }
+        }
+
         protected void XemPhieuNhapView(DateTime ngayCT, string maCT, string maKho, string maVt)
         {
             try
@@ -1434,6 +1549,23 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 this.WriteExLog(GetType() + ".CreateProgram0", ex);
             }
+        }
+
+        protected object InvokeFormEvent(string eventName)
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(eventName))
+                {
+                    var method_name = Event_Methods[eventName];
+                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+            }
+            return null;
         }
     }
 }

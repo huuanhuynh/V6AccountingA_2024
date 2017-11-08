@@ -65,9 +65,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.txtMA_UD3 = new V6Controls.V6ColorTextBox();
-            this.txtMA_UD2 = new V6Controls.V6ColorTextBox();
-            this.txtMA_UD1 = new V6Controls.V6ColorTextBox();
+            this.txtMA_UD3 = new V6Controls.V6VvarTextBox();
+            this.txtMA_UD2 = new V6Controls.V6VvarTextBox();
+            this.txtMA_UD1 = new V6Controls.V6VvarTextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
@@ -2619,9 +2619,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label22;
-        private V6ColorTextBox txtMA_UD3;
-        private V6ColorTextBox txtMA_UD2;
-        private V6ColorTextBox txtMA_UD1;
+        private V6Controls.V6VvarTextBox txtMA_UD3;
+        private V6Controls.V6VvarTextBox txtMA_UD2;
+        private V6Controls.V6VvarTextBox txtMA_UD1;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;

@@ -15,7 +15,6 @@ using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNhap;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuXuat;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc;
-using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -118,6 +117,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
+            InvokeFormEvent("INIT");
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
 
             _maGd = (Invoice.Alct.Rows[0]["M_MA_GD"] ?? "1").ToString().Trim();
@@ -1810,10 +1810,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
                 {
-                    if ((detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                        && _maVt.Text != "" && _maKhoI.Text != "")
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                     {
-                        detail1.btnNhan.PerformClick();
+                        string error = ValidateDetailData(Invoice, detail1.GetData());
+                        if (string.IsNullOrEmpty(error))
+                        {
+                            detail1.btnNhan.PerformClick();
+                        }
+                        else
+                        {
+                            ShowMainMessage(error);
+                        }
                     }
 
                     if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit)
@@ -4249,12 +4256,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     Mode = V6Mode.Add;
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer)sender). Dispose();
                 if (_print_flag != V6PrintMode.DoNoThing)
                 {
                     var temp = _print_flag;
                     _print_flag = V6PrintMode.DoNoThing;
-                    In(_sttRec_In, temp, 3);
+                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
             }
@@ -4373,12 +4380,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     Mode = V6Mode.Edit;
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer)sender). Dispose();
                 if (_print_flag != V6PrintMode.DoNoThing)
                 {
                     var temp = _print_flag;
                     _print_flag = V6PrintMode.DoNoThing;
-                    In(_sttRec_In, temp, 3);
+                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
             }
@@ -4482,7 +4489,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     ShowParentMessage(V6Text.DeleteFail + ": " + deleteErrorMessage);
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer)sender). Dispose();
             }
         }
 
@@ -4744,7 +4751,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void In(string sttRec_In, V6PrintMode printMode, int sec = 3)
+        private void In0(string sttRec_In, V6PrintMode printMode, bool closeAfterPrint, int sec = 3)
         {
             try
             {
@@ -4769,6 +4776,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             if (!sender.IsDisposed) sender.Dispose();
                         };
                         c.PrintMode = printMode;
+                        c.Close_after_print = closeAfterPrint;
                         c.ShowToForm(this, V6Text.PrintSOA, true);
                     }
                     else
@@ -4841,9 +4849,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             Parent.Dispose();
         }
 
-        private V6PrintMode _print_flag = V6PrintMode.DoNoThing;
-        private string _sttRec_In = "";
-        private string _status = "";
+        
+        
+        //private string _status = "";
         /// <summary>
         /// Gán Status đổi luôn cả Mode. 0Init12NewEdit3View
         /// </summary>
@@ -4875,7 +4883,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         //        }
         //    }
         //}
-        public decimal TongThanhToan { get { return txtTongThanhToanNt.Value; } }
+        public decimal TongThanhToan { get { return txtTongThanhToan.Value; } }
+        public decimal TongThanhToanNT { get { return txtTongThanhToanNt.Value; } }
         //public string MA_KHOPH { get { return txtMa_khoPH.Text.Trim(); } set { txtMa_khoPH.Text = value; } }
         //public string MA_VITRIPH { get { return txtMa_vitriPH.Text.Trim(); } set { txtMa_vitriPH.Text = value; } }
         /// <summary>
@@ -4890,33 +4899,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     ShowMainMessage("Chưa hoàn tất chi tiết!");
                     return;
                 }
-                //_print_flag = true;
-                //_sttRec_In = _sttRec;
-                //Luu(MA_KHOPH, MA_VITRIPH, true);
-                //Status = "3";
 
-                //var payform = new PayForm(TongThanhToan, txtTongTienNt2.DecimalPlaces);
-                //var dr = payform.ShowDialog(this);
-                //if (dr == DialogResult.Yes) // luu va in
-                {
-                    _print_flag = V6PrintMode.AutoClickPrint;
-                    _sttRec_In = _sttRec;
-                    //txtSL_UD1.Value = payform.KhachDua;
-                    Luu();
-                    Mode = V6Mode.View;// Status = "3";
-                }
-                //else if (dr == DialogResult.OK) // luu ko in
-                //{
-                //    _print_flag = false;
-                //    _sttRec_In = _sttRec;
-                //    txtSL_UD1.Value = payform.KhachDua;
-                //    Luu();
-                //    Mode = V6Mode.View;// Status = "3";
-                //}
-                //else
-                //{
-                //    DoNothing();
-                //}
+                _print_flag = V6PrintMode.AutoClickPrint;
+                _sttRec_In = _sttRec;
+                
+                Luu();
+                Mode = V6Mode.View;// Status = "3";
+            }
+            else if (Mode == V6Mode.View)
+            {
+                BasePrint(Invoice, _sttRec, V6PrintMode.AutoClickPrint, TongThanhToan, TongThanhToanNT, true);
             }
         }
 
@@ -5581,7 +5573,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            In(_sttRec, V6PrintMode.DoNoThing);
+            BasePrint(Invoice, _sttRec, V6PrintMode.AutoClickPrint, TongThanhToan, TongThanhToanNT, false);
         }
 
         private void txtTongThanhToanNt_TextChanged(object sender, EventArgs e)

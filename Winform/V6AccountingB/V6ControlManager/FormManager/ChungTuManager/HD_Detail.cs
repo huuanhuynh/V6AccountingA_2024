@@ -290,6 +290,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        /// <summary>
+        /// <para>Lấy data của HD_Detail control.</para>
+        /// <para>Hàm này được viết lại để bỏ qua tag "cancel" của control.</para>
+        /// </summary>
+        /// <returns></returns>
         public SortedDictionary<string, object> GetData()
         {
             var t = Tag;

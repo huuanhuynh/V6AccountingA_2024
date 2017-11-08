@@ -2364,7 +2364,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     Mode = V6Mode.Add;
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer)sender). Dispose();
+                if (_print_flag != V6PrintMode.DoNoThing)
+                {
+                    var temp = _print_flag;
+                    _print_flag = V6PrintMode.DoNoThing;
+                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    SetStatus2Text();
+                }
             }
         }
 
@@ -2456,7 +2463,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     Mode = V6Mode.Edit;
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer)sender). Dispose();
+                if (_print_flag != V6PrintMode.DoNoThing)
+                {
+                    var temp = _print_flag;
+                    _print_flag = V6PrintMode.DoNoThing;
+                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    SetStatus2Text();
+                }
             }
         }
 
@@ -2560,7 +2574,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     ShowParentMessage(V6Text.DeleteFail + ": " + deleteErrorMessage);
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer)sender). Dispose();
             }
         }
 
@@ -2803,7 +2817,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             }
         }
 
-        private void In()
+        private void In0()
         {
             try
             {
@@ -2895,6 +2909,35 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 }
             }
             Parent.Dispose();
+        }
+
+        public decimal TongThanhToan { get { return txtTongThanhToan.Value; } }
+        public decimal TongThanhToanNT { get { return txtTongThanhToanNt.Value; } }
+        //public string MA_KHOPH { get { return txtMa_khoPH.Text.Trim(); } set { txtMa_khoPH.Text = value; } }
+        //public string MA_VITRIPH { get { return txtMa_vitriPH.Text.Trim(); } set { txtMa_vitriPH.Text = value; } }
+        /// <summary>
+        /// Lưu và in (click nút in, chọn máy in, không in ngay), có hiển thị form in trước 3 giây.
+        /// </summary>
+        private void LuuVaIn()
+        {
+            if ((Mode == V6Mode.Add || Mode == V6Mode.Edit))
+            {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    ShowMainMessage("Chưa hoàn tất chi tiết!");
+                    return;
+                }
+
+                _print_flag = V6PrintMode.AutoClickPrint;
+                _sttRec_In = _sttRec;
+
+                Luu();
+                Mode = V6Mode.View;// Status = "3";
+            }
+            else if (Mode == V6Mode.View)
+            {
+                BasePrint(Invoice, _sttRec, V6PrintMode.AutoClickPrint, TongThanhToan, TongThanhToanNT, true);
+            }
         }
 
         #region ==== Navigation function ====
@@ -3269,7 +3312,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         }
         private void btnIn_Click(object sender, EventArgs e)
         {
-            In();
+            BasePrint(Invoice, _sttRec, V6PrintMode.DoNoThing, txtTongThanhToan.Value, txtTongThanhToanNt.Value, false);
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
@@ -3868,6 +3911,207 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         private void tabControl1_SizeChanged(object sender, EventArgs e)
         {
             FixDataGridViewSize(dataGridView1, dataGridView3);
+        }
+
+        private void ChucNang_TroGiup()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".ChucNang TroGiup: " + ex.Message, "PhieuNhapMua Error");
+            }
+        }
+
+        private void ChucNang_ChonTuExcel()
+        {
+            try
+            {
+                var chonExcel = new LoadExcelDataForm();
+                chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
+                chonExcel.MA_CT = Invoice.Mact;
+                chonExcel.AcceptData += chonExcel_AcceptData;
+                chonExcel.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".ChonTuExcel: " + ex.Message);
+            }
+        }
+
+        void chonExcel_AcceptData(DataTable table)
+        {
+            //var count = 0;
+            //_message = "";
+
+            //if (table.Columns.Contains("MA_VT") && table.Columns.Contains("MA_KHO_I")
+            //    && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
+            //    && table.Columns.Contains("GIA_NT01"))
+            //{
+            //    if (table.Rows.Count > 0)
+            //    {
+            //        if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+            //        {
+            //            detail1.MODE = V6Mode.Init;
+            //        }
+            //    }
+
+            //    foreach (DataRow row in table.Rows)
+            //    {
+            //        var data = row.ToDataDictionary(_sttRec);
+            //        var cMaVt = data["MA_VT"].ToString().Trim();
+            //        var cMaKhoI = data["MA_KHO_I"].ToString().Trim();
+            //        var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
+            //        var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
+
+            //        //{ Tuanmh 31/08/2016 Them thong tin ALVT
+            //        _maVt.Text = cMaVt;
+            //        var datavt = _maVt.Data;
+
+
+            //        if (datavt != null)
+            //        {
+            //            //Nếu dữ liệu không (!) chứa mã nào thì thêm vào dữ liệu cho mã đó.
+            //            if (!data.ContainsKey("TEN_VT")) data.Add("TEN_VT", (datavt["TEN_VT"] ?? "").ToString().Trim());
+            //            if (!data.ContainsKey("DVT1")) data.Add("DVT1", (datavt["DVT"] ?? "").ToString().Trim());
+            //            if (!data.ContainsKey("DVT")) data.Add("DVT", (datavt["DVT"] ?? "").ToString().Trim());
+            //            if (!data.ContainsKey("TK_VT")) data.Add("TK_VT", (datavt["TK_VT"] ?? "").ToString().Trim());
+            //            if (!data.ContainsKey("HE_SO1")) data.Add("HE_SO1", 1);
+            //            if (!data.ContainsKey("SO_LUONG")) data.Add("SO_LUONG", data["SO_LUONG1"]);
+
+            //            var __tien_nt0 = ObjectAndString.ToObject<decimal>(data["TIEN_NT0"]);
+            //            var __gia_nt0 = ObjectAndString.ObjectToDecimal(data["GIA_NT01"]);
+            //            var __tien0 = V6BusinessHelper.Vround(__tien_nt0 * txtTyGia.Value, M_ROUND);
+            //            var __gia0 = V6BusinessHelper.Vround(__gia_nt0 * txtTyGia.Value, M_ROUND_GIA);
+
+            //            if (!data.ContainsKey("TIEN0")) data.Add("TIEN0", __tien0);
+
+            //            if (!data.ContainsKey("TIEN_NT")) data.Add("TIEN_NT", data["TIEN_NT0"]);
+            //            if (!data.ContainsKey("TIEN")) data.Add("TIEN", __tien0);
+            //            if (!data.ContainsKey("GIA01")) data.Add("GIA01", __gia0);
+            //            if (!data.ContainsKey("GIA0")) data.Add("GIA0", __gia0);
+            //            if (!data.ContainsKey("GIA")) data.Add("GIA", __gia0);
+            //            if (!data.ContainsKey("GIA1")) data.Add("GIA1", __gia0);
+            //            if (!data.ContainsKey("GIA_NT0")) data.Add("GIA_NT0", data["GIA_NT01"]);
+            //            if (!data.ContainsKey("GIA_NT")) data.Add("GIA_NT", data["GIA_NT01"]);
+            //            if (!data.ContainsKey("GIA_NT1")) data.Add("GIA_NT1", data["GIA_NT01"]);
+            //        }
+            //        //}
+
+
+
+            //        if (exist && exist2)
+            //        {
+            //            if (XuLyThemDetail(data))
+            //            {
+            //                count++;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            if (!exist) _message += " Danh mục vật tư không tồn tại mã: " + cMaVt;
+            //            if (!exist2) _message += " Danh mục kho không tồn tại mã: " + cMaKhoI;
+            //        }
+            //    }
+            //    ShowParentMessage(count > 0
+            //    ? string.Format("Đã thêm {0} chi tiết từ excel.", count) + _message
+            //    : "Không thêm được chi tiết nào từ excel." + _message);
+            //}
+            //else
+            //{
+            //    ShowParentMessage("Không có đủ thông tin!");
+            //}
+        }
+
+        private void ChucNang_ThuCongNo()
+        {
+            try
+            {
+                if (_MA_GD == "3")
+                {
+                    detail1.MODE = V6Mode.View;
+
+
+                    var initFilter = GetSoCt0InitFilter();
+                    var f = new FilterView_ARSODU0(Invoice, new V6ColorTextBox(), _sttRec, txtMadvcs.Text, initFilter);
+                    f.MultiSeletion = true;
+                    f.ChoseEvent += data =>
+                    {
+                        var dic = detail1.GetData();
+
+                        dic["SO_CT0"] = data.Cells["SO_CT"].Value;
+                        dic["TK_I"] = data.Cells["TK"].Value;
+                        if (data.Cells["MA_NT"].ToString().Trim() == _mMaNt0)
+                        {
+                            dic["T_TT_NT0"] = data.Cells["TC_TT"].Value;
+                            dic["T_TT_QD"] = data.Cells["T_TT_QD"].Value;
+                            dic["PHAI_TT_NT"] = data.Cells["CL_TT"].Value;
+                            dic["TIEN"] = data.Cells["CL_TT"].Value;
+                            dic["TIEN_NT"] = data.Cells["CL_TT"].Value;
+                            dic["TIEN_TT"] = data.Cells["CL_TT"].Value;
+                            dic["TT_QD"] = data.Cells["CL_TT"].Value;
+                            dic["PS_CO"] = data.Cells["CL_TT"].Value;
+                            dic["PS_CO_NT"] = data.Cells["CL_TT"].Value;
+                        }
+                        else
+                        {
+                            dic["T_TT_NT0"] = data.Cells["TC_TT"].Value;
+                            dic["T_TT_QD"] = data.Cells["T_TT_QD"].Value;
+                            dic["PHAI_TT_NT"] = data.Cells["CL_TT"].Value;
+                            dic["TIEN"] = data.Cells["CL_TT"].Value;
+                            dic["TIEN_NT"] = data.Cells["CL_TT"].Value;
+                            dic["TIEN_TT"] = data.Cells["CL_TT"].Value;
+                            dic["TT_QD"] = data.Cells["CL_TT"].Value;
+                            dic["PS_CO"] = data.Cells["CL_TT"].Value;
+                            dic["PS_CO_NT"] = data.Cells["CL_TT"].Value;
+                        }
+
+
+                        dic["MA_NT_I"] = data.Cells["MA_NT"].Value;
+                        dic["STT_REC_TT"] = data.Cells["STT_REC"].Value;
+                        dic["NGAY_CT0"] = data.Cells["NGAY_CT"].Value;
+                        dic["SO_SERI0"] = data.Cells["SO_SERI"].Value;
+
+                        dic["MA_KH_I"] = data.Cells["MA_KH"].Value;
+                        dic["TEN_KH_I"] = data.Cells["TEN_KH"].Value;
+
+                        //{Tuanmh 21/08/2016
+                        if (Txtdien_giai.Text != "")
+                        {
+                            dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + V6BusinessHelper.V6_DTOC((DateTime)data.Cells["NGAY_CT"].Value);
+                        }
+                        else
+                        {
+                            dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + V6BusinessHelper.V6_DTOC((DateTime)data.Cells["NGAY_CT"].Value);
+                        }
+                        //}
+
+                        XuLyThemDetail(dic);
+                    };
+                    f.ShowDialog(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ChucNang_ThuCongNo", ex);
+            }
+        }
+
+        private void TroGiupMenu_Click(object sender, EventArgs e)
+        {
+            ChucNang_TroGiup();
+        }
+
+        private void chonTuExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChucNang_ChonTuExcel();
+        }
+
+        private void ThuCongNo_Click(object sender, EventArgs e)
+        {
+            ChucNang_ThuCongNo();
         }
 
         
