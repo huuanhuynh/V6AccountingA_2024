@@ -70,8 +70,8 @@
             // groupBox1
             // 
             this.groupBox1.AccessibleDescription = "FILTERG00001";
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.Txtten_ns);
             this.groupBox1.Controls.Add(this.lineMaNS);
@@ -108,6 +108,7 @@
             // lineMaNS
             // 
             this.lineMaNS.AccessibleDescription = "FILTERL00235";
+            this.lineMaNS.AccessibleName2 = "MA_NS";
             this.lineMaNS.FieldCaption = "Mã nhân sự";
             this.lineMaNS.FieldName = "MA_NS";
             this.lineMaNS.Location = new System.Drawing.Point(4, 47);
@@ -142,14 +143,14 @@
             this.radAnd.Text = "Tất cả điều kiện (and)";
             this.radAnd.UseVisualStyleBackColor = true;
             // 
-            // HRAPPFAMILY_filter
+            // HHRJOBEXPERIENCE_filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.v6Label9);
             this.Controls.Add(this.txtSttRec);
             this.Controls.Add(this.groupBox1);
-            this.Name = "HRAPPFAMILY_filter";
+            this.Name = "HHRJOBEXPERIENCE_filter";
             this.Size = new System.Drawing.Size(307, 174);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

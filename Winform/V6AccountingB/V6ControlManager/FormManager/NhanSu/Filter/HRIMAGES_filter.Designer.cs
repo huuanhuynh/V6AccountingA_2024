@@ -108,6 +108,7 @@
             // lineMaNS
             // 
             this.lineMaNS.AccessibleDescription = "FILTERL00235";
+            this.lineMaNS.AccessibleName2 = "MA_NS";
             this.lineMaNS.FieldCaption = "Mã nhân sự";
             this.lineMaNS.FieldName = "MA_NS";
             this.lineMaNS.Location = new System.Drawing.Point(4, 47);

@@ -80,7 +80,7 @@
             // chkHoaDonDaIn
             // 
             this.chkHoaDonDaIn.AccessibleDescription = "FILTERC00001";
-            this.chkHoaDonDaIn.AccessibleName = "DA_IN";
+            this.chkHoaDonDaIn.AccessibleName = "CHK_DA_IN";
             this.chkHoaDonDaIn.AutoSize = true;
             this.chkHoaDonDaIn.Checked = true;
             this.chkHoaDonDaIn.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -181,7 +181,7 @@
             // 
             // TxtXtag
             // 
-            this.TxtXtag.AccessibleName = "XTAG";
+            this.TxtXtag.AccessibleName = "CHK_LOC_CT";
             this.TxtXtag.BackColor = System.Drawing.SystemColors.Window;
             this.TxtXtag.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtXtag.EnterColor = System.Drawing.Color.PaleGreen;

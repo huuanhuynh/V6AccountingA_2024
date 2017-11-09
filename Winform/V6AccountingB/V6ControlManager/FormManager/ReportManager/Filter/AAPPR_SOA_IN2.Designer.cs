@@ -355,7 +355,7 @@
             // 
             // TxtXtag
             // 
-            this.TxtXtag.AccessibleName = "";
+            this.TxtXtag.AccessibleName = "CHK_LOC_CT";
             this.TxtXtag.BackColor = System.Drawing.Color.AntiqueWhite;
             this.TxtXtag.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtXtag.Enabled = false;
@@ -375,7 +375,7 @@
             // chkInLienTuc
             // 
             this.chkInLienTuc.AccessibleDescription = "FILTERC00003";
-            this.chkInLienTuc.AccessibleName = "IN_LIEN_TUC";
+            this.chkInLienTuc.AccessibleName = "CHK_IN_LT";
             this.chkInLienTuc.AutoSize = true;
             this.chkInLienTuc.Location = new System.Drawing.Point(5, 106);
             this.chkInLienTuc.Name = "chkInLienTuc";
@@ -388,7 +388,7 @@
             // chkHoaDonDaIn
             // 
             this.chkHoaDonDaIn.AccessibleDescription = "FILTERC00001";
-            this.chkHoaDonDaIn.AccessibleName = "DA_IN";
+            this.chkHoaDonDaIn.AccessibleName = "CHK_DA_IN";
             this.chkHoaDonDaIn.AutoSize = true;
             this.chkHoaDonDaIn.Checked = true;
             this.chkHoaDonDaIn.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -404,7 +404,7 @@
             // Chkpx_dain
             // 
             this.Chkpx_dain.AccessibleDescription = "FILTERC00004";
-            this.Chkpx_dain.AccessibleName = "PHIEU_XUAT_DA_IN";
+            this.Chkpx_dain.AccessibleName = "CHK_PX_DA_IN";
             this.Chkpx_dain.AutoSize = true;
             this.Chkpx_dain.Location = new System.Drawing.Point(84, 106);
             this.Chkpx_dain.Name = "Chkpx_dain";

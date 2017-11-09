@@ -120,7 +120,7 @@
             // chk_Luy_ke
             // 
             this.chk_Luy_ke.AccessibleDescription = "FILTERC00010";
-            this.chk_Luy_ke.AccessibleName = "LUY_KE";
+            this.chk_Luy_ke.AccessibleName = "CHK_LUY_KE";
             this.chk_Luy_ke.AutoSize = true;
             this.chk_Luy_ke.Location = new System.Drawing.Point(61, 123);
             this.chk_Luy_ke.Margin = new System.Windows.Forms.Padding(4);

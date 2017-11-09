@@ -582,7 +582,7 @@
             // 
             // chkGiamTru
             // 
-            this.chkGiamTru.AccessibleName = "GIAM_TRU";
+            this.chkGiamTru.AccessibleName = "CHK_GIAM_TRU";
             this.chkGiamTru.AutoSize = true;
             this.chkGiamTru.Location = new System.Drawing.Point(200, 30);
             this.chkGiamTru.Name = "chkGiamTru";

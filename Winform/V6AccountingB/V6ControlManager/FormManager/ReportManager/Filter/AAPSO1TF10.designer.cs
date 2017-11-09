@@ -38,6 +38,7 @@
             // Ma_kh_filterLine
             // 
             this.Ma_kh_filterLine.AccessibleDescription = "FILTERL00007";
+            this.Ma_kh_filterLine.AccessibleName2 = "MA_KH";
             this.Ma_kh_filterLine.Enabled = false;
             this.Ma_kh_filterLine.FieldCaption = "Mã khách";
             this.Ma_kh_filterLine.FieldName = "MA_KH";

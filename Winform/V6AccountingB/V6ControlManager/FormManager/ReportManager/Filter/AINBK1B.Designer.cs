@@ -175,6 +175,7 @@
             // 
             // txtKind
             // 
+            this.txtKind.AccessibleName = "LOAI_BC";
             this.txtKind.BackColor = System.Drawing.SystemColors.Window;
             this.txtKind.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtKind.DecimalPlaces = 0;

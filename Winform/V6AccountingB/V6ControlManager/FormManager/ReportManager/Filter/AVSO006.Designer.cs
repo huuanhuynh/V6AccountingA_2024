@@ -517,7 +517,7 @@
             // chkGiamTru
             // 
             this.chkGiamTru.AccessibleDescription = "FILTERC00013";
-            this.chkGiamTru.AccessibleName = "GIAM_TRU";
+            this.chkGiamTru.AccessibleName = "CHK_GIAM_TRU";
             this.chkGiamTru.AutoSize = true;
             this.chkGiamTru.Location = new System.Drawing.Point(236, 9);
             this.chkGiamTru.Name = "chkGiamTru";

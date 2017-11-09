@@ -148,9 +148,9 @@
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox3);
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
-            this.groupBox1.Location = new System.Drawing.Point(3, 166);
+            this.groupBox1.Location = new System.Drawing.Point(3, 134);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 305);
+            this.groupBox1.Size = new System.Drawing.Size(301, 297);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -316,7 +316,7 @@
             // 
             this.v6Label2.AccessibleDescription = "FILTERO00001";
             this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(10, 105);
+            this.v6Label2.Location = new System.Drawing.Point(10, 80);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(70, 13);
             this.v6Label2.TabIndex = 8;
@@ -326,7 +326,7 @@
             // 
             this.v6Label3.AccessibleDescription = "FILTERL00024";
             this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(133, 121);
+            this.v6Label3.Location = new System.Drawing.Point(133, 96);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(75, 13);
             this.v6Label3.TabIndex = 11;
@@ -336,7 +336,7 @@
             // 
             this.v6Label4.AccessibleDescription = "FILTERL00023";
             this.v6Label4.AutoSize = true;
-            this.v6Label4.Location = new System.Drawing.Point(133, 102);
+            this.v6Label4.Location = new System.Drawing.Point(133, 77);
             this.v6Label4.Name = "v6Label4";
             this.v6Label4.Size = new System.Drawing.Size(137, 13);
             this.v6Label4.TabIndex = 10;
@@ -344,7 +344,7 @@
             // 
             // TxtXtag
             // 
-            this.TxtXtag.AccessibleName = "XTAG";
+            this.TxtXtag.AccessibleName = "CHK_LOC_CT";
             this.TxtXtag.BackColor = System.Drawing.SystemColors.Window;
             this.TxtXtag.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtXtag.Enabled = false;
@@ -354,7 +354,7 @@
             this.TxtXtag.HoverColor = System.Drawing.Color.Yellow;
             this.TxtXtag.LeaveColor = System.Drawing.Color.White;
             this.TxtXtag.LimitCharacters = "012";
-            this.TxtXtag.Location = new System.Drawing.Point(115, 102);
+            this.TxtXtag.Location = new System.Drawing.Point(115, 77);
             this.TxtXtag.MaxLength = 1;
             this.TxtXtag.Name = "TxtXtag";
             this.TxtXtag.Size = new System.Drawing.Size(18, 20);
@@ -363,9 +363,9 @@
             // chkHoaDonDaIn
             // 
             this.chkHoaDonDaIn.AccessibleDescription = "FILTERC00001";
-            this.chkHoaDonDaIn.AccessibleName = "DA_IN";
+            this.chkHoaDonDaIn.AccessibleName = "CHK_DA_IN";
             this.chkHoaDonDaIn.AutoSize = true;
-            this.chkHoaDonDaIn.Location = new System.Drawing.Point(115, 139);
+            this.chkHoaDonDaIn.Location = new System.Drawing.Point(115, 114);
             this.chkHoaDonDaIn.Name = "chkHoaDonDaIn";
             this.chkHoaDonDaIn.Size = new System.Drawing.Size(95, 17);
             this.chkHoaDonDaIn.TabIndex = 13;
@@ -391,7 +391,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AAPPR_SOA_IN3";
-            this.Size = new System.Drawing.Size(307, 472);
+            this.Size = new System.Drawing.Size(307, 434);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

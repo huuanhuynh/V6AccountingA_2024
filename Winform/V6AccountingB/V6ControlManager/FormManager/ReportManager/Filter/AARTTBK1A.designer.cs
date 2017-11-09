@@ -379,7 +379,7 @@
             // 
             // rdo_intattoan
             // 
-            this.rdo_intattoan.AccessibleName = "IN_TAT_TOAN";
+            this.rdo_intattoan.AccessibleName = "RDO_IN_TT";
             this.rdo_intattoan.AutoSize = true;
             this.rdo_intattoan.Location = new System.Drawing.Point(161, 112);
             this.rdo_intattoan.Name = "rdo_intattoan";
@@ -391,7 +391,7 @@
             // 
             // rdo_khongintattoan
             // 
-            this.rdo_khongintattoan.AccessibleName = "KHON_IN_TAT_TOAN";
+            this.rdo_khongintattoan.AccessibleName = "RDO_KHONG_IN_TT";
             this.rdo_khongintattoan.AutoSize = true;
             this.rdo_khongintattoan.Checked = true;
             this.rdo_khongintattoan.Location = new System.Drawing.Point(25, 112);
