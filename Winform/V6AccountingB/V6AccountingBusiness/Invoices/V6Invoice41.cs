@@ -339,6 +339,19 @@ namespace V6AccountingBusiness.Invoices
             return Alct0;
         }
 
+        public override DataTable GetSodu0_All_Cust(string sttRec, string madvcs, string Keys)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@stt_rec", sttRec), 
+                new SqlParameter("@ma_dvcs", madvcs),
+                new SqlParameter("@advance", Keys)
+            };
+            var result = V6BusinessHelper.ExecuteProcedure("ACACTTA1_CUSTS_InitSd", plist).Tables[0];
+            Alct0 = result;
+            return Alct0;
+        }
+
         public DataRow GetGiaBan(string field, string mact, DateTime ngayct,
             string mant, string mavt, string dvt1, string makh, string magia)
         {

@@ -716,26 +716,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             CreateFormProgram();
             CreateFormControls();
             InvokeFormEvent(QuickReportManager.FormEvent.INIT);
-            crystalReportViewer1.GotFocus += crystalReportViewer1_GotFocus;
+            crystalReportViewer1.ViewChanged += crystalReportViewer1_ViewChanged;
+        }
+
+        void crystalReportViewer1_ViewChanged(object sender, EventArgs e)
+        {
+            DoNothing();
         }
 
         private int _viewer_focus_count = 0;
-        void crystalReportViewer1_GotFocus(object sender, EventArgs e)
-        {
-            //if (_viewer_focus_count>0)
-            //{
-            //    return;
-            //}
-            //_viewer_focus_count++;
-            //try
-            //{
-            //    btnIn.Focus();
-            //}
-            //catch (Exception ex)
-            //{
-                
-            //}
-        }
+        
 
         private void LoadComboboxSource()
         {
@@ -1235,14 +1225,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         //private bool _forcePrint;
         public string PrinterName { get; set; }
         private int _soLienIn = 1, _printCopy = 1;
-
+        
         public int PrintCopies
         {
             get { return _printCopy; }
             set { _printCopy = value; }
         }
 
-        //public bool xong { get; set; }
+        public bool Close_after_print { get; set; }
         public V6PrintMode PrintMode { get; set; }
         
         /// <summary>
@@ -1747,6 +1737,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     {
                         //xong = true;
                         CallPrintSuccessEvent();
+                        if (Close_after_print)
+                        {
+                            if (!IsDisposed) Dispose();
+                        }
                     }
                 }
                 catch (Exception ex)

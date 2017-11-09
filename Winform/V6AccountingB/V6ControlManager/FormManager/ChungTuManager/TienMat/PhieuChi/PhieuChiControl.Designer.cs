@@ -72,9 +72,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.txtMA_UD3 = new V6Controls.V6ColorTextBox();
-            this.txtMA_ = new V6Controls.V6ColorTextBox();
-            this.txtMA_UD1 = new V6Controls.V6ColorTextBox();
+            this.txtMA_UD3 = new V6Controls.V6VvarTextBox();
+            this.txtMA_UD2 = new V6Controls.V6VvarTextBox();
+            this.txtMA_UD1 = new V6Controls.V6VvarTextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
@@ -417,7 +417,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.tabKhac.Controls.Add(this.label17);
             this.tabKhac.Controls.Add(this.label22);
             this.tabKhac.Controls.Add(this.txtMA_UD3);
-            this.tabKhac.Controls.Add(this.txtMA_);
+            this.tabKhac.Controls.Add(this.txtMA_UD2);
             this.tabKhac.Controls.Add(this.txtMA_UD1);
             this.tabKhac.Controls.Add(this.label30);
             this.tabKhac.Controls.Add(this.label31);
@@ -745,23 +745,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.txtMA_UD3.Size = new System.Drawing.Size(135, 20);
             this.txtMA_UD3.TabIndex = 6;
             // 
-            // txtMA_
+            // txtMA_UD2
             // 
-            this.txtMA_.AccessibleName = "MA_UD2";
-            this.txtMA_.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtMA_UD2.AccessibleName = "MA_UD2";
+            this.txtMA_UD2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtMA_.BackColor = System.Drawing.SystemColors.Window;
-            this.txtMA_.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMA_.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMA_.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMA_.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMA_.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMA_.LeaveColor = System.Drawing.Color.White;
-            this.txtMA_.Location = new System.Drawing.Point(143, 27);
-            this.txtMA_.Margin = new System.Windows.Forms.Padding(5);
-            this.txtMA_.Name = "txtMA_";
-            this.txtMA_.Size = new System.Drawing.Size(135, 20);
-            this.txtMA_.TabIndex = 4;
+            this.txtMA_UD2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMA_UD2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMA_UD2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMA_UD2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMA_UD2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMA_UD2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMA_UD2.LeaveColor = System.Drawing.Color.White;
+            this.txtMA_UD2.Location = new System.Drawing.Point(143, 27);
+            this.txtMA_UD2.Margin = new System.Windows.Forms.Padding(5);
+            this.txtMA_UD2.Name = "txtMA_UD2";
+            this.txtMA_UD2.Size = new System.Drawing.Size(135, 20);
+            this.txtMA_UD2.TabIndex = 4;
             // 
             // txtMA_UD1
             // 
@@ -2537,9 +2537,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private Label label16;
         private Label label17;
         private Label label22;
-        private V6ColorTextBox txtMA_UD3;
-        private V6ColorTextBox txtMA_;
-        private V6ColorTextBox txtMA_UD1;
+        private V6Controls.V6VvarTextBox txtMA_UD3;
+        private V6Controls.V6VvarTextBox txtMA_UD2;
+        private V6Controls.V6VvarTextBox txtMA_UD1;
         private Label label30;
         private Label label31;
         private Label label32;

@@ -2,7 +2,7 @@
 
 namespace V6ControlManager.FormManager.ChungTuManager.Filter
 {
-    partial class FilterView_ARS20
+    partial class FilterView_ARSODU0
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterView_ARS20));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterView_ARSODU0));
             this.panel1 = new System.Windows.Forms.Panel();
             this.nhomKhach4 = new V6ReportControls.FilterLineVvarTextBox();
             this.nhomKhach5 = new V6ReportControls.FilterLineVvarTextBox();
@@ -366,7 +366,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
-            // FilterView_ARS20
+            // FilterView_ARSODU0
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -381,7 +381,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.MaximumSize = new System.Drawing.Size(1024, 768);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 400);
-            this.Name = "FilterView_ARS20";
+            this.Name = "FilterView_ARSODU0";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_FormClosing);

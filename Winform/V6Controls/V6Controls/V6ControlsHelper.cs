@@ -454,13 +454,43 @@ namespace V6Controls
             return lstConfig;
         }
         
+
+        public static V6ValidConfig GetV6ValidConfig(string ma_ct)
+        {
+            V6ValidConfig lstConfig = new V6ValidConfig();
+            try
+            {
+                SqlParameter[] plist = { new SqlParameter("@p", ma_ct) };
+                var executeResult = V6BusinessHelper.Select("V6Valid", "*", "[ma_ct]=@p", "", "", plist);
+
+                if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
+                {
+                    var tbl = executeResult.Data;
+                    var row = tbl.Rows[0];
+                    lstConfig = new V6ValidConfig(row.ToDataDictionary());
+                }
+                else
+                {
+                    lstConfig.NoInfo = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lstConfig.Error = true;
+                Logger.WriteToLog(string.Format("{0}.{1} {2}",
+                    MethodBase.GetCurrentMethod().DeclaringType,
+                    MethodBase.GetCurrentMethod().Name, ex.Message));
+            }
+            return lstConfig;
+        }
+
         public static String[] SliptString(string inputString, char typeChar)
         {
             if (inputString != "" && typeChar != ' ')
             {
                 return inputString.Split(typeChar);
             }
-            
+
             throw new ArgumentException("SliptString : tham số không hợp lệ");
         }
 
@@ -784,5 +814,29 @@ namespace V6Controls
         
     }
 
+    public class V6ValidConfig : Config
+    {
+        public V6ValidConfig(IDictionary<string, object> data)
+            : base(data)
+        {
+        }
+
+        public V6ValidConfig()
+        {
+        }
+
+        public int stt { get { return GetInt("stt"); } }
+        public string nhom { get { return GetString("nhom"); } }
+        public int attribute { get { return GetInt("attribute"); } }
+        public string ma_ct { get { return GetString("ma_ct"); } }
+        public string ma { get { return GetString("ma"); } }
+        public string ten { get { return GetString("ten"); } }
+        public string table_name { get { return GetString("table_name"); } }
+        public string table_view { get { return GetString("table_view"); } }
+        public string A_field { get { return GetString("A_field"); } }
+        public string A_field2 { get { return GetString("A_field2"); } }
+        public string UID { get { return GetString("UID"); } }
+
+    }
     
 }
