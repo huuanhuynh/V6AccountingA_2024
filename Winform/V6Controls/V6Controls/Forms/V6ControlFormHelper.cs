@@ -2521,7 +2521,7 @@ namespace V6Controls.Forms
         /// <param name="orderList">Danh sách các cột đã sắp xếp</param>
         public static void ReorderDataGridViewColumns(V6ColorDataGridView dgv, string[] orderList, int i=-1)
         {
-            dgv.AutoGenerateColumns = false;
+            dgv.AutoGenerateColumns = dgv.Columns.Count == 0;
             try
             {
                 var start = i;
@@ -3295,7 +3295,8 @@ namespace V6Controls.Forms
                     }
                 }
 
-                dgv.AutoGenerateColumns = false;
+                dgv.AutoGenerateColumns = dgv.Columns.Count == 0;
+
                 var index = dgv.Columns.Cast<DataGridViewColumn>().Count(column => column.Frozen && column.Visible);
                 for (int i = 0; i < showColumns.Length; i++)
                 {
@@ -3487,16 +3488,16 @@ namespace V6Controls.Forms
             }
         }
 
-        public static void FormatGridViewHideColumns(V6ColorDataGridView dataGridView1, string Mact)
+        public static void FormatGridViewHideColumns(V6ColorDataGridView dgv, string Mact)
         {
             if (!V6Login.IsAdmin)
             {
-                dataGridView1.AutoGenerateColumns = false;
+                dgv.AutoGenerateColumns = dgv.Columns.Count == 0;
                 var alctct = V6BusinessHelper.GetAlctCt(Mact);
                 if (alctct != null && alctct.Rows.Count > 0)
                 {
                     var GRD_HIDE = alctct.Rows[0]["GRD_HIDE"].ToString();
-                    dataGridView1.HideColumns(ObjectAndString.SplitString(GRD_HIDE));
+                    dgv.HideColumns(ObjectAndString.SplitString(GRD_HIDE));
                 }
             }
         }

@@ -432,7 +432,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         #endregion detail form
 
         #region ==== Override Methods ====
-        
+
+        public override void SetStatus2Text()
+        {
+            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ?
+                "F4-Nhận/thêm chi tiết,F7-Lưu và in." :
+                "F4-Add details,F7-Save and print.");
+        }
+
         public override bool DoHotKey0(Keys keyData)
         {
             if (keyData == (Keys.LButton | Keys.Space))//pageUp
@@ -490,7 +497,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                     }
                 }
             }
-            else if (keyData == Keys.F9)
+            else if (keyData == Keys.F7)
             {
                 LuuVaIn();
             }
@@ -1360,7 +1367,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                     Mode = V6Mode.Add;
                 }
                 
-                ((Timer)sender). Dispose();
+                ((Timer)sender).Dispose();
                 if (_print_flag != V6PrintMode.DoNoThing)
                 {
                     var temp = _print_flag;
@@ -1479,7 +1486,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                     Mode = V6Mode.Edit;
                 }
 
-                ((Timer)sender). Dispose();
+                ((Timer)sender).Dispose();
                 if (_print_flag != V6PrintMode.DoNoThing)
                 {
                     var temp = _print_flag;
@@ -1589,7 +1596,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                     ShowParentMessage(V6Text.DeleteFail + ": " + deleteErrorMessage);
                 }
 
-                ((Timer)sender). Dispose();
+                ((Timer)sender).Dispose();
             }
         }
 
@@ -2493,7 +2500,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         #region ==== AM Events ====
         private void PhieuKeToan_Load(object sender, EventArgs e)
         {
-            V6ControlFormHelper.SetStatusText2("Phiếu nhập mua.");
+            SetStatus2Text();
             btnMoi.Focus();
         }
 
@@ -2822,7 +2829,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         {
             if (Visible)
             {
-                V6ControlFormHelper.SetStatusText2("Chứng từ.");
+                SetStatus2Text();
             }
         }
 

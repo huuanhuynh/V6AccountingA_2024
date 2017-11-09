@@ -2408,7 +2408,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.MinimumSize = new System.Drawing.Size(600, 450);
             this.Name = "PhieuChiControl";
             this.Size = new System.Drawing.Size(899, 575);
-            this.Load += new System.EventHandler(this.HoaDonBanHangKiemPhieuXuat_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.HoaDonBanHangKiemPhieuXuat_VisibleChanged);
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);

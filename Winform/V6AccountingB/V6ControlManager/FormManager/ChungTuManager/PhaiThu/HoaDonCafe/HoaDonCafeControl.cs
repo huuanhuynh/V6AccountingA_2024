@@ -1466,8 +1466,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         public override void SetStatus2Text()
         {
             V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ?
-                "F3-Sửa số lượng, F4-Thêm chi tiết, F6-Chuyển vị trí, F9-Lưu và in, F8-Dọn dẹp." :
-                "F3-Edit quantity, F4-Add details, F6-Move location, F9-Save and print, F8-Reset.");
+                "F3-Sửa số lượng, F4-Thêm chi tiết, F6-Chuyển vị trí, F7-Lưu và in, F8-Dọn dẹp." :
+                "F3-Edit quantity, F4-Add details, F6-Move location, F7-Save and print, F8-Reset.");
         }
         
         public override bool DoHotKey0(Keys keyData)
@@ -1572,7 +1572,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 DonBan();
             }
-            else if (keyData == Keys.F9)
+            else if (keyData == Keys.F7)
             {
                 LuuVaIn();
             }
@@ -4015,7 +4015,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
 
                 End:
-                ((Timer)sender). Dispose();
+                ((Timer)sender).Dispose();
                 //if (_post && _print_flag != V6PrintMode.DoNoThing)
                 //{
                 //    var temp = _print_flag;
@@ -4143,7 +4143,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
 
             End:
-                ((Timer)sender). Dispose();
+                ((Timer)sender).Dispose();
                 if (_post && _print_flag != V6PrintMode.DoNoThing)
                 {
                     var temp = _print_flag;
@@ -4262,7 +4262,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     ShowParentMessage(V6Text.DeleteFail + ": " + deleteErrorMessage);
                 }
 
-                ((Timer)sender). Dispose();
+                ((Timer)sender).Dispose();
             }
         }
 
@@ -5293,7 +5293,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         #endregion details
 
         #region ==== AM Events ====
-        private void HoaDonBanHangKiemPhieuXuat_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             btnMoi.Focus();
         }

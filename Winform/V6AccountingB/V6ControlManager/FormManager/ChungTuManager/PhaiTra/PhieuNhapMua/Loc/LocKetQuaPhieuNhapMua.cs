@@ -56,7 +56,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
         
         private void FormatGridView3()
         {
-            dataGridView3.AutoGenerateColumns = false;
+            dataGridView3.AutoGenerateColumns = dataGridView3.Columns.Count == 0;
             foreach (DataGridViewColumn column in dataGridView3.Columns)
             {
                 column.HeaderText = CorpLan2.GetFieldHeader(column.DataPropertyName);

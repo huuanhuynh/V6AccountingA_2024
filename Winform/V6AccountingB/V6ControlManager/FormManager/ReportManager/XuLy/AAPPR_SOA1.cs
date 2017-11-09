@@ -301,6 +301,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var sttRec = row.Cells["Stt_rec"].Value.ToString().Trim();
                 var data = invoice.LoadAd81(sttRec);
                 dataGridView2.DataSource = data;
+                _tbl2 = data;
+                if (data == null)
+                {
+                    this.WriteToLog(GetType() + ".ViewDetails", "data is null.");
+                }
             }
             catch (Exception ex)
             {

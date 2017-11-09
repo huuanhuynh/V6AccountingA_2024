@@ -15,14 +15,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     public class AAPPR_XULY_SOA : XuLyBase
     {
         public AAPPR_XULY_SOA(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
-            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
+            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
             dataGridView1.Control_S = true;
         }
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F9: Xử lý chứng từ, F8: Hủy xử lý.");
+            V6ControlFormHelper.SetStatusText2("F4: Ghi chú, F9: Xử lý chứng từ, F8: Hủy xử lý.");
         }
 
         protected override void MakeReport2()

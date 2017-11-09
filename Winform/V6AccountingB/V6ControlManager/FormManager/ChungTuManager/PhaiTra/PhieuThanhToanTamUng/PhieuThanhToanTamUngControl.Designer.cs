@@ -2350,7 +2350,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.Name = "PhieuThanhToanTamUngControl";
             this.Size = new System.Drawing.Size(899, 583);
             
-            this.Load += new System.EventHandler(this.HoaDonBanHangKiemPhieuXuat_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.HoaDonBanHangKiemPhieuXuat_VisibleChanged);
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);

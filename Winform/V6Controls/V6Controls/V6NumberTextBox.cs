@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.ComponentModel;
 using System.Drawing;
+using V6Tools.V6Convert;
 
 namespace V6Controls
 {
@@ -274,7 +275,7 @@ namespace V6Controls
             {
                 try
                 {
-                    Value = decimal.Parse(CarryString);
+                    Value = ObjectAndString.StringToDecimal(CarryString);// decimal.Parse(CarryString);
                 }
                 catch
                 {

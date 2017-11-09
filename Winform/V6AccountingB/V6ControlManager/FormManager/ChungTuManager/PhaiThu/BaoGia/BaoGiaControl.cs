@@ -520,78 +520,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("Chứng từ.");
+            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ?
+                "F4-Nhận/thêm chi tiết,F7-Lưu và in. F9-Xử lý trạng thái" :
+                "F4-Add details,F7-Save and print. F9-Status handling");
         }
 
-        //public override void DoHotKey(Keys keyData)
-        //{
-        //    if (keyData == Keys.F9)
-        //    {
-        //        var row = AM.Rows[CurrentIndex];
-
-        //        if (V6BusinessHelper.CheckEditVoucher_SOR(row["STT_REC_PT"].ToString().Trim(), "AM81") == 1)
-        //        {
-        //            this.ShowWarningMessage(V6Text.EditDenied);
-        //            return;
-        //        }
-
-        //        if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
-        //        {
-        //            if (Mode == V6Mode.View)
-        //            {
-        //                // Tuanmh 16/02/2016 Check level
-
-        //                if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"])))
-        //                {
-        //                    XuLyF9();
-        //                }
-        //                else
-        //                {
-        //                    V6ControlFormHelper.NoRightWarning();
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            V6ControlFormHelper.NoRightWarning();
-        //        }
-        //    }
-        //    else if (keyData == Keys.F10)
-        //    {
-        //        var row = AM.Rows[CurrentIndex];
-
-        //        if (V6BusinessHelper.CheckEditVoucher_SOR(row["STT_REC_PT"].ToString().Trim(), "AM81") == 1)
-        //        {
-        //            this.ShowWarningMessage(V6Text.EditDenied);
-        //            return;
-        //        }
-
-        //        if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
-        //        {
-        //            if (Mode == V6Mode.View)
-        //            {
-        //                // Tuanmh 16/02/2016 Check level
-
-        //                if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"])))
-        //                {
-        //                    XuLyF10();
-        //                }
-        //                else
-        //                {
-        //                    V6ControlFormHelper.NoRightWarning();
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            V6ControlFormHelper.NoRightWarning();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        base.DoHotKey(keyData);
-        //    }
-        //}
 
         private void XuLyF9()
         {
@@ -703,7 +636,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     }
                 }
             }
-            else if (keyData == Keys.F9)
+            else if (keyData == Keys.F7)
+            {
+                LuuVaIn();
+            }
+            else if (keyData == Keys. F9)
             {
                 var row = AM.Rows[CurrentIndex];
 
@@ -735,10 +672,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     V6ControlFormHelper.NoRightWarning();
                 }
                 return false;
-            }
-            else if (keyData == Keys.F9)
-            {
-                LuuVaIn();
             }
             else if (keyData == Keys.F10)
             {
@@ -2514,7 +2447,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     Mode = V6Mode.Add;
                 }
 
-                ((Timer)sender). Dispose();
+                ((Timer)sender).Dispose();
                 if (_print_flag != V6PrintMode.DoNoThing)
                 {
                     var temp = _print_flag;
@@ -2630,7 +2563,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     Mode = V6Mode.Edit;
                 }
 
-                ((Timer)sender). Dispose();
+                ((Timer)sender).Dispose();
                 if (_print_flag != V6PrintMode.DoNoThing)
                 {
                     var temp = _print_flag;
@@ -2742,7 +2675,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     ShowParentMessage(V6Text.DeleteFail + ": " + deleteErrorMessage);
                 }
 
-                ((Timer)sender). Dispose();
+                ((Timer)sender).Dispose();
             }
         }
 
@@ -3455,7 +3388,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         #region ==== AM Events ====
         private void BaoGiaBanHangKiemPhieuXuat_Load(object sender, EventArgs e)
         {
-            //V6ControlFormHelper.SetStatusText2("Chứng từ.");
+            SetStatus2Text();
             btnMoi.Focus();
         }
 
@@ -3727,7 +3660,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         {
             if (Visible)
             {
-                //V6ControlFormHelper.SetStatusText2("Chứng từ.");
+                SetStatus2Text();
             }
         }
 

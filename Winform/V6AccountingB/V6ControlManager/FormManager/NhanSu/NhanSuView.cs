@@ -32,17 +32,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 //vTitle, eTitle
                 var groupFields = ObjectAndString.SplitString(V6Lookup.GetValueByTableName(_tableName, "vTitle"));
                 var groupNameFields = ObjectAndString.SplitString(V6Lookup.GetValueByTableName(_tableName, "eTitle"));
-                //treeListViewAuto1.SetGroupAndNameFieldList(groupFields, groupNameFields);
-
-                //treeListViewAuto1.SetGroupAndNameFieldList(
-                //        new string[] { "MA_DVCS", "MA_BPNS", "MA_NS" },
-                //        new string[] { "MA_DVCS", "MA_BPNS", "MA_NS" });
-                //treeListViewAuto1.AutoGenerateColumns = false;
-                //treeListViewAuto1.Columns.Add("ID", "Mã", 200, HorizontalAlignment.Center, -1);
-                //treeListViewAuto1.Columns.Add("ten_ns", "Tên nhân sự", 200, HorizontalAlignment.Center, -1);
-                //treeListViewAuto1.Columns.Add("ten_ns2", "Tên 2", 100, HorizontalAlignment.Center, -1);
-                //treeListViewAuto1.Columns.Add("dia_chi", "Địa chỉ", 250, HorizontalAlignment.Center, -1);
-
+                
                 //LoadListMenu();
             }
             catch (Exception ex)

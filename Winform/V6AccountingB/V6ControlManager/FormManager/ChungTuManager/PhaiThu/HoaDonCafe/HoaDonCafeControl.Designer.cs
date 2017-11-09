@@ -3420,7 +3420,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.MinimumSize = new System.Drawing.Size(600, 450);
             this.Name = "HoaDonCafeControl";
             this.Size = new System.Drawing.Size(899, 586);
-            this.Load += new System.EventHandler(this.HoaDonBanHangKiemPhieuXuat_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
