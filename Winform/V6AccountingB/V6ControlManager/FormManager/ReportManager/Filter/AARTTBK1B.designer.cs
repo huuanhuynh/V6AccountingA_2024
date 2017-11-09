@@ -79,7 +79,7 @@
             // 
             // txtngay_dn
             // 
-            this.txtngay_dn.AccessibleName = "ngay_dn";
+            this.txtngay_dn.AccessibleName = "NGAY_DN";
             this.txtngay_dn.BackColor = System.Drawing.SystemColors.Window;
             this.txtngay_dn.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtngay_dn.DecimalPlaces = 0;
@@ -438,6 +438,7 @@
             // rdo_intattoan
             // 
             this.rdo_intattoan.AccessibleDescription = "FILTERR00003";
+            this.rdo_intattoan.AccessibleName = "RDO_IN_TT";
             this.rdo_intattoan.AutoSize = true;
             this.rdo_intattoan.Location = new System.Drawing.Point(161, 147);
             this.rdo_intattoan.Name = "rdo_intattoan";
@@ -450,6 +451,7 @@
             // rdo_khongintattoan
             // 
             this.rdo_khongintattoan.AccessibleDescription = "FILTERR00004";
+            this.rdo_khongintattoan.AccessibleName = "RDO_KHONG_IN_TT";
             this.rdo_khongintattoan.AutoSize = true;
             this.rdo_khongintattoan.Checked = true;
             this.rdo_khongintattoan.Location = new System.Drawing.Point(25, 147);
@@ -495,7 +497,7 @@
             // 
             // txtngay_qh1
             // 
-            this.txtngay_qh1.AccessibleName = "ngay_qh1";
+            this.txtngay_qh1.AccessibleName = "NGAY_QH1";
             this.txtngay_qh1.BackColor = System.Drawing.SystemColors.Window;
             this.txtngay_qh1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtngay_qh1.DecimalPlaces = 0;
@@ -530,7 +532,7 @@
             // 
             // txtngay_qh2
             // 
-            this.txtngay_qh2.AccessibleName = "ngay_qh2";
+            this.txtngay_qh2.AccessibleName = "NGAY_QH2";
             this.txtngay_qh2.BackColor = System.Drawing.SystemColors.Window;
             this.txtngay_qh2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtngay_qh2.DecimalPlaces = 0;

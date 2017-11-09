@@ -156,7 +156,7 @@
             // 
             // TxtMau
             // 
-            this.TxtMau.AccessibleName = "";
+            this.TxtMau.AccessibleName = "MAU";
             this.TxtMau.BackColor = System.Drawing.Color.AntiqueWhite;
             this.TxtMau.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtMau.Enabled = false;
@@ -349,6 +349,7 @@
             // filterMaDvcs
             // 
             this.filterMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.filterMaDvcs.AccessibleName2 = "MA_DVCS";
             this.filterMaDvcs.FieldCaption = "Mã DVCS";
             this.filterMaDvcs.FieldName = "MA_DVCS";
             this.filterMaDvcs.Location = new System.Drawing.Point(6, 42);

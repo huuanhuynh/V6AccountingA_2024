@@ -32,10 +32,6 @@
             this.date1 = new V6Controls.V6DateTimeColor();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radOr = new System.Windows.Forms.RadioButton();
-            this.radAnd = new System.Windows.Forms.RadioButton();
-            this.panel1 = new V6ReportControls.PanelFilter();
             this.groupBoxNhom = new System.Windows.Forms.GroupBox();
             this.chkHienMa = new System.Windows.Forms.CheckBox();
             this.nhom1 = new V6Controls.V6ColorTextBox();
@@ -45,8 +41,12 @@
             this.nhom5 = new V6Controls.V6ColorTextBox();
             this.nhom3 = new V6Controls.V6ColorTextBox();
             this.nhom4 = new V6Controls.V6ColorTextBox();
-            this.groupBox1.SuspendLayout();
+            this.radAnd = new System.Windows.Forms.RadioButton();
+            this.radOr = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new V6ReportControls.PanelFilter();
             this.groupBoxNhom.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // date2
@@ -109,57 +109,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Từ ngày";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.AccessibleDescription = "FILTERG00001";
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.AutoSize = true;
-            this.groupBox1.Controls.Add(this.radOr);
-            this.groupBox1.Controls.Add(this.radAnd);
-            this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Location = new System.Drawing.Point(2, 171);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(274, 331);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Lọc";
-            // 
-            // radOr
-            // 
-            this.radOr.AccessibleDescription = "FILTERR00002";
-            this.radOr.AutoSize = true;
-            this.radOr.Location = new System.Drawing.Point(146, 0);
-            this.radOr.Name = "radOr";
-            this.radOr.Size = new System.Drawing.Size(95, 17);
-            this.radOr.TabIndex = 1;
-            this.radOr.Text = "Điều kiện (OR)";
-            this.radOr.UseVisualStyleBackColor = true;
-            // 
-            // radAnd
-            // 
-            this.radAnd.AccessibleDescription = "FILTERR00001";
-            this.radAnd.AutoSize = true;
-            this.radAnd.Checked = true;
-            this.radAnd.Location = new System.Drawing.Point(38, 0);
-            this.radAnd.Name = "radAnd";
-            this.radAnd.Size = new System.Drawing.Size(102, 17);
-            this.radAnd.TabIndex = 0;
-            this.radAnd.TabStop = true;
-            this.radAnd.Text = "Điều kiện (AND)";
-            this.radAnd.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.LeftMargin = 0;
-            this.panel1.Location = new System.Drawing.Point(3, 16);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(268, 312);
-            this.panel1.TabIndex = 2;
-            // 
             // groupBoxNhom
             // 
             this.groupBoxNhom.AccessibleDescription = "FILTERG00002";
@@ -181,6 +130,7 @@
             // chkHienMa
             // 
             this.chkHienMa.AccessibleDescription = "FILTERC00005";
+            this.chkHienMa.AccessibleName = "HIEN_MA";
             this.chkHienMa.AutoSize = true;
             this.chkHienMa.Location = new System.Drawing.Point(173, 22);
             this.chkHienMa.Name = "chkHienMa";
@@ -320,6 +270,57 @@
             this.nhom4.Text = "0";
             this.nhom4.TextChanged += new System.EventHandler(this.nhom1_TextChanged);
             // 
+            // radAnd
+            // 
+            this.radAnd.AccessibleDescription = "FILTERR00001";
+            this.radAnd.AutoSize = true;
+            this.radAnd.Checked = true;
+            this.radAnd.Location = new System.Drawing.Point(38, 0);
+            this.radAnd.Name = "radAnd";
+            this.radAnd.Size = new System.Drawing.Size(102, 17);
+            this.radAnd.TabIndex = 0;
+            this.radAnd.TabStop = true;
+            this.radAnd.Text = "Điều kiện (AND)";
+            this.radAnd.UseVisualStyleBackColor = true;
+            // 
+            // radOr
+            // 
+            this.radOr.AccessibleDescription = "FILTERR00002";
+            this.radOr.AutoSize = true;
+            this.radOr.Location = new System.Drawing.Point(146, 0);
+            this.radOr.Name = "radOr";
+            this.radOr.Size = new System.Drawing.Size(95, 17);
+            this.radOr.TabIndex = 1;
+            this.radOr.Text = "Điều kiện (OR)";
+            this.radOr.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.AccessibleDescription = "FILTERG00001";
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.radOr);
+            this.groupBox1.Controls.Add(this.radAnd);
+            this.groupBox1.Controls.Add(this.panel1);
+            this.groupBox1.Location = new System.Drawing.Point(2, 171);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(274, 331);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Lọc";
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.LeftMargin = 0;
+            this.panel1.Location = new System.Drawing.Point(3, 16);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(268, 312);
+            this.panel1.TabIndex = 2;
+            // 
             // AARKHFilterDanhMuc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -334,25 +335,20 @@
             this.Name = "AARKHFilterDanhMuc";
             this.Size = new System.Drawing.Size(281, 513);
             this.Load += new System.EventHandler(this.FilterDanhMuc_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBoxNhom.ResumeLayout(false);
             this.groupBoxNhom.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radOr;
-        private System.Windows.Forms.RadioButton radAnd;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private V6Controls.V6DateTimeColor date1;
         private V6Controls.V6DateTimeColor date2;
-        private V6ReportControls.PanelFilter panel1;
         private System.Windows.Forms.GroupBox groupBoxNhom;
         private V6Controls.V6ColorTextBox nhom1;
         private System.Windows.Forms.Label lblGroupString;
@@ -362,5 +358,9 @@
         private V6Controls.V6ColorTextBox nhom3;
         private V6Controls.V6ColorTextBox nhom4;
         private System.Windows.Forms.CheckBox chkHienMa;
+        private System.Windows.Forms.RadioButton radAnd;
+        private System.Windows.Forms.RadioButton radOr;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private V6ReportControls.PanelFilter panel1;
     }
 }

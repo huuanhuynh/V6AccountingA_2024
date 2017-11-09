@@ -201,6 +201,7 @@
             // Chk_Chitiet
             // 
             this.Chk_Chitiet.AccessibleDescription = "FILTERC00006";
+            this.Chk_Chitiet.AccessibleName = "CHK_CHI_TIET";
             this.Chk_Chitiet.AutoSize = true;
             this.Chk_Chitiet.Location = new System.Drawing.Point(120, 117);
             this.Chk_Chitiet.Name = "Chk_Chitiet";

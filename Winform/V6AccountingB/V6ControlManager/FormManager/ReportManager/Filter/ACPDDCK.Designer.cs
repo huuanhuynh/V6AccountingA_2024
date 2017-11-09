@@ -97,7 +97,7 @@
             // chkdc_ck
             // 
             this.chkdc_ck.AccessibleDescription = "FILTERC00008";
-            this.chkdc_ck.AccessibleName = "dc_ck";
+            this.chkdc_ck.AccessibleName = "DC_CK";
             this.chkdc_ck.AutoSize = true;
             this.chkdc_ck.Location = new System.Drawing.Point(24, 66);
             this.chkdc_ck.Name = "chkdc_ck";

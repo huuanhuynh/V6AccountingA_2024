@@ -83,7 +83,7 @@
             // 
             // txtLoaiBaoCao
             // 
-            this.txtLoaiBaoCao.AccessibleName = "LOAIBAOCAO";
+            this.txtLoaiBaoCao.AccessibleName = "LOAI_BC";
             this.txtLoaiBaoCao.BackColor = System.Drawing.SystemColors.Window;
             this.txtLoaiBaoCao.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtLoaiBaoCao.DecimalPlaces = 0;
@@ -524,7 +524,7 @@
             // 
             // txtChiTietTheo
             // 
-            this.txtChiTietTheo.AccessibleName = "CHITIETTHEO";
+            this.txtChiTietTheo.AccessibleName = "CHI_TIET_THEO";
             this.txtChiTietTheo.BackColor = System.Drawing.SystemColors.Window;
             this.txtChiTietTheo.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtChiTietTheo.DecimalPlaces = 0;
@@ -582,7 +582,7 @@
             // 
             // chkGiamTru
             // 
-            this.chkGiamTru.AccessibleName = "GIAM_TRU";
+            this.chkGiamTru.AccessibleName = "CHK_GIAM_TRU";
             this.chkGiamTru.AutoSize = true;
             this.chkGiamTru.Location = new System.Drawing.Point(200, 30);
             this.chkGiamTru.Name = "chkGiamTru";

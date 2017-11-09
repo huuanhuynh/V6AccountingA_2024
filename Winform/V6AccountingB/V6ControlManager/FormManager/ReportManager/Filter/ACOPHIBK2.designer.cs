@@ -138,7 +138,7 @@
             // 
             // TxtGroupby
             // 
-            this.TxtGroupby.AccessibleName = "Groupby";
+            this.TxtGroupby.AccessibleName = "GROUP_BY";
             this.TxtGroupby.BackColor = System.Drawing.SystemColors.Window;
             this.TxtGroupby.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtGroupby.EnterColor = System.Drawing.Color.PaleGreen;
@@ -493,7 +493,7 @@
             // rdo_goptk
             // 
             this.rdo_goptk.AccessibleDescription = "FILTERR00005";
-            this.rdo_goptk.AccessibleName = "goptk";
+            this.rdo_goptk.AccessibleName = "RDO_GOP_TK";
             this.rdo_goptk.AutoSize = true;
             this.rdo_goptk.Location = new System.Drawing.Point(151, 78);
             this.rdo_goptk.Name = "rdo_goptk";
@@ -505,7 +505,7 @@
             // rdo_khonggoptk
             // 
             this.rdo_khonggoptk.AccessibleDescription = "FILTERR00006";
-            this.rdo_khonggoptk.AccessibleName = "khonggoptk";
+            this.rdo_khonggoptk.AccessibleName = "RDO_KHONG_GOP_TK";
             this.rdo_khonggoptk.AutoSize = true;
             this.rdo_khonggoptk.Checked = true;
             this.rdo_khonggoptk.Location = new System.Drawing.Point(15, 78);

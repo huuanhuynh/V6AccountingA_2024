@@ -79,7 +79,8 @@
             // ma_vt_filterLine
             // 
             this.ma_vt_filterLine.AccessibleDescription = "FILTERL00020";
-            this.ma_vt_filterLine.AccessibleName = "MA_VT";
+            this.ma_vt_filterLine.AccessibleName = "";
+            this.ma_vt_filterLine.AccessibleName2 = "MA_VT";
             this.ma_vt_filterLine.Enabled = false;
             this.ma_vt_filterLine.FieldCaption = "Mã vật tư";
             this.ma_vt_filterLine.FieldName = "MA_VT";

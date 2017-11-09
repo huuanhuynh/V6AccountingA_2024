@@ -124,7 +124,7 @@
             // 
             // txtMa_bpht
             // 
-            this.txtMa_bpht.AccessibleName = "ma_bpht";
+            this.txtMa_bpht.AccessibleName = "MA_BPHT";
             this.txtMa_bpht.BackColor = System.Drawing.SystemColors.Window;
             this.txtMa_bpht.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMa_bpht.EnterColor = System.Drawing.Color.PaleGreen;
@@ -150,7 +150,7 @@
             // 
             // txtMa_sp
             // 
-            this.txtMa_sp.AccessibleName = "Ma_vt";
+            this.txtMa_sp.AccessibleName = "MA_VT";
             this.txtMa_sp.BackColor = System.Drawing.SystemColors.Window;
             this.txtMa_sp.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMa_sp.EnterColor = System.Drawing.Color.PaleGreen;

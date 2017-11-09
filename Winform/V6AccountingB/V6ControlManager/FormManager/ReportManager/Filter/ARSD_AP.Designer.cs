@@ -76,6 +76,7 @@
             // 
             // ctDenSo
             // 
+            this.ctDenSo.AccessibleName = "CT_DENSO";
             this.ctDenSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctDenSo.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.ctDenSo.Enabled = false;
@@ -116,6 +117,7 @@
             // 
             // ctTuSo
             // 
+            this.ctTuSo.AccessibleName = "CT_TUSO";
             this.ctTuSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctTuSo.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.ctTuSo.CheckOnLeave = false;
@@ -198,7 +200,8 @@
             // txtma_ct
             // 
             this.txtma_ct.AccessibleDescription = "FILTERL00004";
-            this.txtma_ct.AccessibleName = "MA_CT";
+            this.txtma_ct.AccessibleName = "";
+            this.txtma_ct.AccessibleName2 = "MA_CT";
             this.txtma_ct.FieldCaption = "Mã chứng từ";
             this.txtma_ct.FieldName = "MA_CT";
             this.txtma_ct.Location = new System.Drawing.Point(6, 51);
@@ -223,7 +226,8 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
-            this.txtMaDvcs.AccessibleName = "MA_DVCS";
+            this.txtMaDvcs.AccessibleName = "";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 78);

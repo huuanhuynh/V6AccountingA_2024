@@ -82,7 +82,5 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 
             }
         }
-
-        
     }
 }

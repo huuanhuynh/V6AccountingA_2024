@@ -439,7 +439,7 @@
             // 
             // TxtGroupby
             // 
-            this.TxtGroupby.AccessibleName = "Groupby";
+            this.TxtGroupby.AccessibleName = "GROUP_BY";
             this.TxtGroupby.BackColor = System.Drawing.SystemColors.Window;
             this.TxtGroupby.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtGroupby.EnterColor = System.Drawing.Color.PaleGreen;
@@ -486,7 +486,7 @@
             // 
             // TxtKieu_bc
             // 
-            this.TxtKieu_bc.AccessibleName = "Kieu_bc";
+            this.TxtKieu_bc.AccessibleName = "KIEU_BC";
             this.TxtKieu_bc.BackColor = System.Drawing.SystemColors.Window;
             this.TxtKieu_bc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtKieu_bc.EnterColor = System.Drawing.Color.PaleGreen;
@@ -503,7 +503,7 @@
             // 
             // TxtKy_bc
             // 
-            this.TxtKy_bc.AccessibleName = "Ky_bc";
+            this.TxtKy_bc.AccessibleName = "KY_BC";
             this.TxtKy_bc.BackColor = System.Drawing.SystemColors.Window;
             this.TxtKy_bc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtKy_bc.DecimalPlaces = 0;

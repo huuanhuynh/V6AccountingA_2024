@@ -462,7 +462,7 @@
             // 
             // TxtGroupby
             // 
-            this.TxtGroupby.AccessibleName = "Groupby";
+            this.TxtGroupby.AccessibleName = "GROUP_BY";
             this.TxtGroupby.BackColor = System.Drawing.SystemColors.Window;
             this.TxtGroupby.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtGroupby.EnterColor = System.Drawing.Color.PaleGreen;
@@ -480,7 +480,7 @@
             // radio_kt_tk_du
             // 
             this.radio_kt_tk_du.AccessibleDescription = "FILTERR00008";
-            this.radio_kt_tk_du.AccessibleName = "kt_tk_du";
+            this.radio_kt_tk_du.AccessibleName = "RADIO_KT_TK_DU";
             this.radio_kt_tk_du.AutoSize = true;
             this.radio_kt_tk_du.Location = new System.Drawing.Point(5, 82);
             this.radio_kt_tk_du.Name = "radio_kt_tk_du";
@@ -493,7 +493,7 @@
             // radio_tk_du
             // 
             this.radio_tk_du.AccessibleDescription = "FILTERR00007";
-            this.radio_tk_du.AccessibleName = "radio_tk_du";
+            this.radio_tk_du.AccessibleName = "RDIO_TK_DU";
             this.radio_tk_du.AutoSize = true;
             this.radio_tk_du.Checked = true;
             this.radio_tk_du.Location = new System.Drawing.Point(5, 55);

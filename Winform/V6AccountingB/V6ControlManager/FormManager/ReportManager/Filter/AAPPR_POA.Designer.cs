@@ -362,7 +362,7 @@
             // 
             // TxtXtag
             // 
-            this.TxtXtag.AccessibleName = "";
+            this.TxtXtag.AccessibleName = "CHK_LOC_CT";
             this.TxtXtag.BackColor = System.Drawing.SystemColors.Window;
             this.TxtXtag.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtXtag.EnterColor = System.Drawing.Color.PaleGreen;

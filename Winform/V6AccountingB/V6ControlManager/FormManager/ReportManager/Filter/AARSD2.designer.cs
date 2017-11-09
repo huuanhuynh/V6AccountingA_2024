@@ -49,7 +49,7 @@
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
-            this.txtMaDvcs.Location = new System.Drawing.Point(6, 60);
+            this.txtMaDvcs.Location = new System.Drawing.Point(6, 44);
             this.txtMaDvcs.Name = "txtMaDvcs";
             this.txtMaDvcs.Size = new System.Drawing.Size(282, 22);
             this.txtMaDvcs.TabIndex = 3;
@@ -66,7 +66,7 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Location = new System.Drawing.Point(3, 141);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 120);
+            this.groupBox1.Size = new System.Drawing.Size(289, 80);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -217,7 +217,7 @@
             this.Controls.Add(this.dateNgay_ct0);
             this.Controls.Add(this.groupBox1);
             this.Name = "AARSD2";
-            this.Size = new System.Drawing.Size(295, 280);
+            this.Size = new System.Drawing.Size(295, 224);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

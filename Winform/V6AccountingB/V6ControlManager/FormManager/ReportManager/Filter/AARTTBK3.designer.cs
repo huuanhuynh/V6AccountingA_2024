@@ -389,7 +389,7 @@
             // 
             // txtSo_ngay
             // 
-            this.txtSo_ngay.AccessibleName = "So_ngay";
+            this.txtSo_ngay.AccessibleName = "SO_NGAY";
             this.txtSo_ngay.BackColor = System.Drawing.SystemColors.Window;
             this.txtSo_ngay.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtSo_ngay.DecimalPlaces = 0;

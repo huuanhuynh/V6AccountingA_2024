@@ -413,7 +413,7 @@
             // 
             // TxtLoai_bc
             // 
-            this.TxtLoai_bc.AccessibleName = "Loai_bc";
+            this.TxtLoai_bc.AccessibleName = "LOAI_BC";
             this.TxtLoai_bc.BackColor = System.Drawing.SystemColors.Window;
             this.TxtLoai_bc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtLoai_bc.EnterColor = System.Drawing.Color.PaleGreen;
@@ -431,7 +431,7 @@
             // rdo_k_tk_du
             // 
             this.rdo_k_tk_du.AccessibleDescription = "FILTERR00008";
-            this.rdo_k_tk_du.AccessibleName = "k_tk_du";
+            this.rdo_k_tk_du.AccessibleName = "KHONG_TK_DU";
             this.rdo_k_tk_du.AutoSize = true;
             this.rdo_k_tk_du.Location = new System.Drawing.Point(5, 79);
             this.rdo_k_tk_du.Name = "rdo_k_tk_du";
@@ -444,7 +444,7 @@
             // rdo_tk_du
             // 
             this.rdo_tk_du.AccessibleDescription = "FILTERR00007";
-            this.rdo_tk_du.AccessibleName = "tk_du";
+            this.rdo_tk_du.AccessibleName = "TK_DU";
             this.rdo_tk_du.AutoSize = true;
             this.rdo_tk_du.Checked = true;
             this.rdo_tk_du.Location = new System.Drawing.Point(5, 56);

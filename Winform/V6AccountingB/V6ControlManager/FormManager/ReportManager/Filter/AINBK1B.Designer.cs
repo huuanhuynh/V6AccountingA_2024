@@ -98,7 +98,7 @@
             // 
             // ctDenSo
             // 
-            this.ctDenSo.AccessibleName = "ctDenSo";
+            this.ctDenSo.AccessibleName = "CT_DENSO";
             this.ctDenSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctDenSo.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.ctDenSo.Enabled = false;
@@ -139,7 +139,7 @@
             // 
             // ctTuSo
             // 
-            this.ctTuSo.AccessibleName = "ctTuSo";
+            this.ctTuSo.AccessibleName = "CT_TUSO";
             this.ctTuSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctTuSo.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.ctTuSo.CheckOnLeave = false;
@@ -175,6 +175,7 @@
             // 
             // txtKind
             // 
+            this.txtKind.AccessibleName = "LOAI_BC";
             this.txtKind.BackColor = System.Drawing.SystemColors.Window;
             this.txtKind.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtKind.DecimalPlaces = 0;

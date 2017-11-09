@@ -162,7 +162,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             // 
             // cboMaubc
             // 
-            this.cboMaubc.AccessibleName = "maubc";
+            this.cboMaubc.AccessibleName = "MAU_BC";
             this.cboMaubc.BackColor = System.Drawing.SystemColors.Window;
             this.cboMaubc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMaubc.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -186,7 +186,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             // chk_Bu_tru
             // 
             this.chk_Bu_tru.AccessibleDescription = "FILTERC00011";
-            this.chk_Bu_tru.AccessibleName = "Bu_tru";
+            this.chk_Bu_tru.AccessibleName = "BU_TRU";
             this.chk_Bu_tru.AutoSize = true;
             this.chk_Bu_tru.Location = new System.Drawing.Point(80, 45);
             this.chk_Bu_tru.Margin = new System.Windows.Forms.Padding(4);

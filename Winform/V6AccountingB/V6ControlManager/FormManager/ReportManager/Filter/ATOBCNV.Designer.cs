@@ -132,6 +132,7 @@
             // txtLoai_cc
             // 
             this.txtLoai_cc.AccessibleDescription = "FILTERL00193";
+            this.txtLoai_cc.AccessibleName2 = "LOAI_CC";
             this.txtLoai_cc.FieldCaption = "Loại CC";
             this.txtLoai_cc.FieldName = "LOAI_CC";
             this.txtLoai_cc.Location = new System.Drawing.Point(9, 62);
@@ -143,6 +144,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(9, 40);
@@ -154,6 +156,7 @@
             // filterLineVvarTextBox16
             // 
             this.filterLineVvarTextBox16.AccessibleDescription = "FILTERL00201";
+            this.filterLineVvarTextBox16.AccessibleName2 = "NH_CC1";
             this.filterLineVvarTextBox16.FieldCaption = "Nhóm CC 1";
             this.filterLineVvarTextBox16.FieldName = "NH_CC1";
             this.filterLineVvarTextBox16.Location = new System.Drawing.Point(9, 106);
@@ -165,6 +168,7 @@
             // filterLineVvarTextBox15
             // 
             this.filterLineVvarTextBox15.AccessibleDescription = "FILTERL00202";
+            this.filterLineVvarTextBox15.AccessibleName2 = "NH_CC2";
             this.filterLineVvarTextBox15.FieldCaption = "Nhóm CC 2";
             this.filterLineVvarTextBox15.FieldName = "NH_CC2";
             this.filterLineVvarTextBox15.Location = new System.Drawing.Point(9, 128);
@@ -176,6 +180,7 @@
             // filterLineVvarTextBox9
             // 
             this.filterLineVvarTextBox9.AccessibleDescription = "FILTERL00203";
+            this.filterLineVvarTextBox9.AccessibleName2 = "NH_CC3";
             this.filterLineVvarTextBox9.FieldCaption = "Nhóm CC 3";
             this.filterLineVvarTextBox9.FieldName = "NH_CC3";
             this.filterLineVvarTextBox9.Location = new System.Drawing.Point(9, 150);
@@ -187,6 +192,7 @@
             // TxtSO_THE_TS
             // 
             this.TxtSO_THE_TS.AccessibleDescription = "FILTERL00194";
+            this.TxtSO_THE_TS.AccessibleName2 = "SO_THE_CC";
             this.TxtSO_THE_TS.FieldCaption = "Mã CC";
             this.TxtSO_THE_TS.FieldName = "SO_THE_CC";
             this.TxtSO_THE_TS.Location = new System.Drawing.Point(9, 84);
@@ -256,6 +262,7 @@
             // 
             // txtdau_cuoi
             // 
+            this.txtdau_cuoi.AccessibleName = "DAU_CUOI";
             this.txtdau_cuoi.BackColor = System.Drawing.SystemColors.Window;
             this.txtdau_cuoi.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtdau_cuoi.DecimalPlaces = 0;

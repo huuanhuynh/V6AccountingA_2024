@@ -51,6 +51,7 @@
             // Ma_kh_filterLine
             // 
             this.Ma_kh_filterLine.AccessibleDescription = "FILTERL00007";
+            this.Ma_kh_filterLine.AccessibleName2 = "MA_KH";
             this.Ma_kh_filterLine.Enabled = false;
             this.Ma_kh_filterLine.FieldCaption = "Mã khách";
             this.Ma_kh_filterLine.FieldName = "MA_KH";
@@ -93,6 +94,7 @@
             // Txtnh_vt6
             // 
             this.Txtnh_vt6.AccessibleDescription = "FILTERL00036";
+            this.Txtnh_vt6.AccessibleName2 = "NH_VT6";
             this.Txtnh_vt6.Enabled = false;
             this.Txtnh_vt6.FieldCaption = "Nhóm vật tư 6";
             this.Txtnh_vt6.FieldName = "NH_VT6";
@@ -106,6 +108,7 @@
             // Txtnh_vt4
             // 
             this.Txtnh_vt4.AccessibleDescription = "FILTERL00034";
+            this.Txtnh_vt4.AccessibleName2 = "NH_VT4";
             this.Txtnh_vt4.Enabled = false;
             this.Txtnh_vt4.FieldCaption = "Nhóm vật tư 4";
             this.Txtnh_vt4.FieldName = "NH_VT4";
@@ -119,6 +122,7 @@
             // Txtnh_vt5
             // 
             this.Txtnh_vt5.AccessibleDescription = "FILTERL00035";
+            this.Txtnh_vt5.AccessibleName2 = "NH_VT5";
             this.Txtnh_vt5.Enabled = false;
             this.Txtnh_vt5.FieldCaption = "Nhóm vật tư 5";
             this.Txtnh_vt5.FieldName = "NH_VT5";
@@ -132,6 +136,7 @@
             // Txtnh_kh6
             // 
             this.Txtnh_kh6.AccessibleDescription = "FILTERL00016";
+            this.Txtnh_kh6.AccessibleName2 = "NH_KH6";
             this.Txtnh_kh6.Enabled = false;
             this.Txtnh_kh6.FieldCaption = "Nhóm khách hàng 6";
             this.Txtnh_kh6.FieldName = "NH_KH6";
@@ -145,6 +150,7 @@
             // Txtnh_kh5
             // 
             this.Txtnh_kh5.AccessibleDescription = "FILTERL00015";
+            this.Txtnh_kh5.AccessibleName2 = "NH_KH5";
             this.Txtnh_kh5.Enabled = false;
             this.Txtnh_kh5.FieldCaption = "Nhóm khách hàng 5";
             this.Txtnh_kh5.FieldName = "NH_KH5";
@@ -158,6 +164,7 @@
             // Txtnh_kh4
             // 
             this.Txtnh_kh4.AccessibleDescription = "FILTERL00014";
+            this.Txtnh_kh4.AccessibleName2 = "NH_KH4";
             this.Txtnh_kh4.Enabled = false;
             this.Txtnh_kh4.FieldCaption = "Nhóm khách hàng 4";
             this.Txtnh_kh4.FieldName = "NH_KH4";
@@ -185,6 +192,7 @@
             // Txtnh_kh2
             // 
             this.Txtnh_kh2.AccessibleDescription = "FILTERL00012";
+            this.Txtnh_kh2.AccessibleName2 = "NH_KH2";
             this.Txtnh_kh2.Enabled = false;
             this.Txtnh_kh2.FieldCaption = "Nhóm khách hàng 2";
             this.Txtnh_kh2.FieldName = "NH_KH2";
@@ -198,6 +206,7 @@
             // Txtnh_vt3
             // 
             this.Txtnh_vt3.AccessibleDescription = "FILTERL00033";
+            this.Txtnh_vt3.AccessibleName2 = "NH_VT3";
             this.Txtnh_vt3.Enabled = false;
             this.Txtnh_vt3.FieldCaption = "Nhóm vật tư 3";
             this.Txtnh_vt3.FieldName = "NH_VT3";
@@ -211,6 +220,7 @@
             // Txtnh_vt1
             // 
             this.Txtnh_vt1.AccessibleDescription = "FILTERL00031";
+            this.Txtnh_vt1.AccessibleName2 = "NH_VT1";
             this.Txtnh_vt1.Enabled = false;
             this.Txtnh_vt1.FieldCaption = "Nhóm vật tư 1";
             this.Txtnh_vt1.FieldName = "NH_VT1";
@@ -224,6 +234,7 @@
             // Txtnh_vt2
             // 
             this.Txtnh_vt2.AccessibleDescription = "FILTERL00032";
+            this.Txtnh_vt2.AccessibleName2 = "NH_VT2";
             this.Txtnh_vt2.Enabled = false;
             this.Txtnh_vt2.FieldCaption = "Nhóm vật tư 2";
             this.Txtnh_vt2.FieldName = "NH_VT2";
@@ -237,6 +248,7 @@
             // Txtnh_kh3
             // 
             this.Txtnh_kh3.AccessibleDescription = "FILTERL00013";
+            this.Txtnh_kh3.AccessibleName2 = "NH_KH3";
             this.Txtnh_kh3.Enabled = false;
             this.Txtnh_kh3.FieldCaption = "Nhóm khách hàng 3";
             this.Txtnh_kh3.FieldName = "NH_KH3";
@@ -250,6 +262,7 @@
             // ma_vt_filterLine
             // 
             this.ma_vt_filterLine.AccessibleDescription = "FILTERL00020";
+            this.ma_vt_filterLine.AccessibleName2 = "MA_VT";
             this.ma_vt_filterLine.Enabled = false;
             this.ma_vt_filterLine.FieldCaption = "Mã vật tư";
             this.ma_vt_filterLine.FieldName = "MA_VT";

@@ -59,6 +59,7 @@
             // ma_nx_filterLine
             // 
             this.ma_nx_filterLine.AccessibleDescription = "FILTERL00097";
+            this.ma_nx_filterLine.AccessibleName2 = "MA_NX";
             this.ma_nx_filterLine.Enabled = false;
             this.ma_nx_filterLine.FieldCaption = "Mã NX";
             this.ma_nx_filterLine.FieldName = "MA_NX";
@@ -71,6 +72,7 @@
             // ma_bp_filterLine
             // 
             this.ma_bp_filterLine.AccessibleDescription = "FILTERL00008";
+            this.ma_bp_filterLine.AccessibleName2 = "MA_BP";
             this.ma_bp_filterLine.Enabled = false;
             this.ma_bp_filterLine.FieldCaption = "Mã bộ phận";
             this.ma_bp_filterLine.FieldName = "MA_BP";
@@ -83,6 +85,7 @@
             // ma_vv_filterLine
             // 
             this.ma_vv_filterLine.AccessibleDescription = "FILTERL00065";
+            this.ma_vv_filterLine.AccessibleName2 = "MA_VV";
             this.ma_vv_filterLine.Enabled = false;
             this.ma_vv_filterLine.FieldCaption = "Mã vụ việc";
             this.ma_vv_filterLine.FieldName = "MA_VV";
@@ -120,6 +123,7 @@
             // ma_kh_filterLine
             // 
             this.ma_kh_filterLine.AccessibleDescription = "FILTERL00007";
+            this.ma_kh_filterLine.AccessibleName2 = "MA_KH";
             this.ma_kh_filterLine.Enabled = false;
             this.ma_kh_filterLine.FieldCaption = "Mã khách";
             this.ma_kh_filterLine.FieldName = "MA_KH";

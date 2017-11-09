@@ -69,7 +69,7 @@
             // chkNhomCt
             // 
             this.chkNhomCt.AccessibleDescription = "FILTERC00012";
-            this.chkNhomCt.AccessibleName = "NhomCT";
+            this.chkNhomCt.AccessibleName = "NHOM_CT";
             this.chkNhomCt.AutoSize = true;
             this.chkNhomCt.Location = new System.Drawing.Point(131, 57);
             this.chkNhomCt.Name = "chkNhomCt";

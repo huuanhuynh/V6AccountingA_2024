@@ -205,7 +205,7 @@
             // 
             // txtDien_giai
             // 
-            this.txtDien_giai.AccessibleName = "Dien_giai";
+            this.txtDien_giai.AccessibleName = "DIEN_GIAI";
             this.txtDien_giai.BackColor = System.Drawing.SystemColors.Window;
             this.txtDien_giai.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtDien_giai.EnterColor = System.Drawing.Color.PaleGreen;

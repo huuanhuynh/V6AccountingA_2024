@@ -285,7 +285,7 @@
             // rdo_khonggoptk
             // 
             this.rdo_khonggoptk.AccessibleDescription = "FILTERR00011";
-            this.rdo_khonggoptk.AccessibleName = "khonggoptk";
+            this.rdo_khonggoptk.AccessibleName = "THEO_VV";
             this.rdo_khonggoptk.AutoSize = true;
             this.rdo_khonggoptk.Checked = true;
             this.rdo_khonggoptk.Location = new System.Drawing.Point(17, 37);
@@ -299,7 +299,7 @@
             // rdo_goptk
             // 
             this.rdo_goptk.AccessibleDescription = "FILTERR00012";
-            this.rdo_goptk.AccessibleName = "goptk";
+            this.rdo_goptk.AccessibleName = "VV_THEO_KH";
             this.rdo_goptk.AutoSize = true;
             this.rdo_goptk.Location = new System.Drawing.Point(17, 60);
             this.rdo_goptk.Name = "rdo_goptk";

@@ -38,8 +38,8 @@
             // groupBox1
             // 
             this.groupBox1.AccessibleDescription = "FILTERG00001";
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
@@ -79,7 +79,8 @@
             // ma_vt_filterLine
             // 
             this.ma_vt_filterLine.AccessibleDescription = "FILTERL00020";
-            this.ma_vt_filterLine.AccessibleName = "MA_VT";
+            this.ma_vt_filterLine.AccessibleName = "";
+            this.ma_vt_filterLine.AccessibleName2 = "MA_VT";
             this.ma_vt_filterLine.Enabled = false;
             this.ma_vt_filterLine.FieldCaption = "Mã vật tư";
             this.ma_vt_filterLine.FieldName = "MA_VT";
@@ -90,12 +91,12 @@
             this.ma_vt_filterLine.TabIndex = 6;
             this.ma_vt_filterLine.Vvar = "MA_VT";
             // 
-            // ASOTH1F5
+            // ASVBK3F5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
-            this.Name = "ASOTH1F5";
+            this.Name = "ASVBK3F5";
             this.Size = new System.Drawing.Size(307, 133);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -41,7 +41,7 @@
             // 
             this.v6Label1.AccessibleDescription = "FILTERL00117";
             this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(33, 48);
+            this.v6Label1.Location = new System.Drawing.Point(31, 48);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(39, 13);
             this.v6Label1.TabIndex = 19;
@@ -59,7 +59,7 @@
             this.TxtSo_the_ts.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtSo_the_ts.HoverColor = System.Drawing.Color.Yellow;
             this.TxtSo_the_ts.LeaveColor = System.Drawing.Color.White;
-            this.TxtSo_the_ts.Location = new System.Drawing.Point(192, 46);
+            this.TxtSo_the_ts.Location = new System.Drawing.Point(136, 46);
             this.TxtSo_the_ts.Name = "TxtSo_the_ts";
             this.TxtSo_the_ts.Size = new System.Drawing.Size(100, 20);
             this.TxtSo_the_ts.TabIndex = 18;
@@ -87,7 +87,7 @@
             this.txtNam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNam.HoverColor = System.Drawing.Color.Yellow;
             this.txtNam.LeaveColor = System.Drawing.Color.White;
-            this.txtNam.Location = new System.Drawing.Point(192, 3);
+            this.txtNam.Location = new System.Drawing.Point(136, 3);
             this.txtNam.MaxLength = 4;
             this.txtNam.MaxNumLength = 4;
             this.txtNam.Name = "txtNam";
@@ -112,7 +112,7 @@
             this.txtThang1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtThang1.HoverColor = System.Drawing.Color.Yellow;
             this.txtThang1.LeaveColor = System.Drawing.Color.White;
-            this.txtThang1.Location = new System.Drawing.Point(192, 24);
+            this.txtThang1.Location = new System.Drawing.Point(136, 24);
             this.txtThang1.MaxLength = 2;
             this.txtThang1.MaxNumLength = 2;
             this.txtThang1.Name = "txtThang1";

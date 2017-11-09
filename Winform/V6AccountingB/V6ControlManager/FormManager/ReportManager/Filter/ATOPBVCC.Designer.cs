@@ -174,6 +174,7 @@
             // txtLoai_cc
             // 
             this.txtLoai_cc.AccessibleDescription = "FILTERL00193";
+            this.txtLoai_cc.AccessibleName2 = "LOAI_CC";
             this.txtLoai_cc.FieldCaption = "Loại CC";
             this.txtLoai_cc.FieldName = "LOAI_CC";
             this.txtLoai_cc.Location = new System.Drawing.Point(11, 62);
@@ -185,6 +186,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
+            this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.FieldCaption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(11, 40);
@@ -196,6 +198,7 @@
             // filterLineVvarTextBox16
             // 
             this.filterLineVvarTextBox16.AccessibleDescription = "FILTERL00201";
+            this.filterLineVvarTextBox16.AccessibleName2 = "NH_CC1";
             this.filterLineVvarTextBox16.FieldCaption = "Nhóm CC 1";
             this.filterLineVvarTextBox16.FieldName = "NH_CC1";
             this.filterLineVvarTextBox16.Location = new System.Drawing.Point(11, 106);
@@ -207,6 +210,7 @@
             // filterLineVvarTextBox15
             // 
             this.filterLineVvarTextBox15.AccessibleDescription = "FILTERL00202";
+            this.filterLineVvarTextBox15.AccessibleName2 = "NH_CC2";
             this.filterLineVvarTextBox15.FieldCaption = "Nhóm CC 2";
             this.filterLineVvarTextBox15.FieldName = "NH_CC2";
             this.filterLineVvarTextBox15.Location = new System.Drawing.Point(11, 128);
@@ -218,6 +222,7 @@
             // filterLineVvarTextBox9
             // 
             this.filterLineVvarTextBox9.AccessibleDescription = "FILTERL00203";
+            this.filterLineVvarTextBox9.AccessibleName2 = "NH_TS3";
             this.filterLineVvarTextBox9.FieldCaption = "Nhóm TS 3";
             this.filterLineVvarTextBox9.FieldName = "NH_TS3";
             this.filterLineVvarTextBox9.Location = new System.Drawing.Point(11, 150);
@@ -229,6 +234,7 @@
             // TxtSO_THE_TS
             // 
             this.TxtSO_THE_TS.AccessibleDescription = "FILTERL00194";
+            this.TxtSO_THE_TS.AccessibleName2 = "SO_THE_CC";
             this.TxtSO_THE_TS.FieldCaption = "Mã CC";
             this.TxtSO_THE_TS.FieldName = "SO_THE_CC";
             this.TxtSO_THE_TS.Location = new System.Drawing.Point(11, 84);

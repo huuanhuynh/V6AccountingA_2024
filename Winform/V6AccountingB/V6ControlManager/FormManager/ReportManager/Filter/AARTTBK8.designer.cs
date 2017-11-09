@@ -385,7 +385,7 @@
             // rdo_intattoan
             // 
             this.rdo_intattoan.AccessibleDescription = "FILTERR00003";
-            this.rdo_intattoan.AccessibleName = "intattoan";
+            this.rdo_intattoan.AccessibleName = "RDO_IN_TT";
             this.rdo_intattoan.AutoSize = true;
             this.rdo_intattoan.Location = new System.Drawing.Point(161, 110);
             this.rdo_intattoan.Name = "rdo_intattoan";
@@ -398,7 +398,7 @@
             // rdo_khongintattoan
             // 
             this.rdo_khongintattoan.AccessibleDescription = "FILTERR00004";
-            this.rdo_khongintattoan.AccessibleName = "khongintattoan";
+            this.rdo_khongintattoan.AccessibleName = "RDO_KHONG_IN_TT";
             this.rdo_khongintattoan.AutoSize = true;
             this.rdo_khongintattoan.Checked = true;
             this.rdo_khongintattoan.Location = new System.Drawing.Point(25, 110);
@@ -434,7 +434,7 @@
             // 
             // ctDenSo
             // 
-            this.ctDenSo.AccessibleName = "ctDenSo";
+            this.ctDenSo.AccessibleName = "CT_DENSO";
             this.ctDenSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctDenSo.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.ctDenSo.Enabled = false;
@@ -475,7 +475,7 @@
             // 
             // ctTuSo
             // 
-            this.ctTuSo.AccessibleName = "ctTuSo";
+            this.ctTuSo.AccessibleName = "CT_TUSO";
             this.ctTuSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctTuSo.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.ctTuSo.CheckOnLeave = false;

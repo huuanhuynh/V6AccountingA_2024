@@ -167,7 +167,7 @@
             // 
             // TxtGroupby
             // 
-            this.TxtGroupby.AccessibleName = "Groupby";
+            this.TxtGroupby.AccessibleName = "GROUP_BY";
             this.TxtGroupby.BackColor = System.Drawing.SystemColors.Window;
             this.TxtGroupby.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtGroupby.EnterColor = System.Drawing.Color.PaleGreen;

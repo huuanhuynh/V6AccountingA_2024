@@ -150,7 +150,7 @@
             // 
             // txtMa_sp
             // 
-            this.txtMa_sp.AccessibleName = "Ma_vt";
+            this.txtMa_sp.AccessibleName = "MA_VT";
             this.txtMa_sp.BackColor = System.Drawing.SystemColors.Window;
             this.txtMa_sp.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMa_sp.EnterColor = System.Drawing.Color.PaleGreen;
