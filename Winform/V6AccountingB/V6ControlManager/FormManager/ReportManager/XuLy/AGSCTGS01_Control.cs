@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
@@ -187,6 +188,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 currentRowData["KHOA_CTGS"] = new_like_stt_rec;
                 currentRowData["THANG"] = FilterControl.Number1;
                 currentRowData["NAM"] = FilterControl.Number2;
+                SqlParameter[] plist2 =
+                    {
+                        new SqlParameter("@Year", (int)FilterControl.Number2), 
+                        new SqlParameter("@Period", (int)FilterControl.Number1), 
+                    };
+                var ngayCuoiKy = ObjectAndString.ObjectToFullDateTime(V6BusinessHelper.ExecuteFunctionScalar("vfa_GetEndDateOfPeriod", plist2));
+                currentRowData["NGAY_LO"] = ngayCuoiKy;
 
                 var fText = "Thêm: ";
                 var f = new V6Form

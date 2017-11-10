@@ -455,6 +455,13 @@ namespace V6AccountingBusiness
         {
             return SqlConnect.ExecuteScalar(CommandType.Text, sql, plist);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="funcName"></param>
+        /// <param name="plist"></param>
+        /// <returns></returns>
         public static object ExecuteFunctionScalar(string funcName, params SqlParameter[] plist)
         {
             var ptext = (plist == null || plist.Length == 0) ? "" : plist[0].ParameterName;

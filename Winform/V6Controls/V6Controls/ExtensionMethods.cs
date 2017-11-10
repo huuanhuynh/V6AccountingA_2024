@@ -429,7 +429,7 @@ namespace V6Controls
         /// <param name="title"></param>
         /// <param name="fullScreen"></param>
         /// <param name="dialog"></param>
-        public static void ShowToForm(this UserControl control, IWin32Window owner, string title = "Form", bool fullScreen = false, bool dialog = true)
+        public static DialogResult ShowToForm(this UserControl control, IWin32Window owner, string title = "Form", bool fullScreen = false, bool dialog = true)
         {
             try
             {
@@ -464,14 +464,22 @@ namespace V6Controls
                     }
                 };
 
-                if(dialog) f.ShowDialog(owner);
-                else f.Show();
+                if (dialog)
+                {
+                    return f.ShowDialog(owner);
+                }
+                else
+                {
+                    f.Show();
+                }
             }
             catch (Exception ex)
             {
-                if (ex is ObjectDisposedException) return;
+                if (ex is ObjectDisposedException) return DialogResult.Abort;
                 control.ShowErrorMessage("UserControl ShowToForm: " + ex.Message);
             }
+            //Giả không có result (Abort ít dùng).
+            return DialogResult.Abort;
         }
 
         public static void ShowFullScreen(this UserControl child)
