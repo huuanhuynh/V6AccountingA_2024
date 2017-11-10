@@ -728,7 +728,7 @@ namespace V6SqlConnect
                 if (ignoreEmptyString && key.Value is string && string.IsNullOrEmpty(key.Value as string))
                     continue;
                 
-                result += string.Format("\n{0}{1}[{2}] {3} {4}",
+                result += string.Format("{0}{1}[{2}] {3} {4}",
                     and_or, tbL,
                     key.Key, oper,
                     GenSqlStringValue(key.Value,false,oper));

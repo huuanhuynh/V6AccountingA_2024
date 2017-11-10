@@ -858,12 +858,13 @@ namespace V6Controls.Forms
             var lineControl = new FilterLineDynamic
             {
                 Name = "line" + lineInfo.Field.ToUpper(),
+                //AccessibleName = lineInfo.AccessibleName,//Không dùng
+                //AccessibleName2 = lineInfo.AccessibleName2,//Gán sau khi add textbox.
                 FieldName = lineInfo.Field.ToUpper(),
                 FieldCaption = V6Setting.IsVietnamese ? lineInfo.TextV : lineInfo.TextE,
                 DefineInfo = lineInfo,
                 Enabled = lineInfo.Enabled,
                 Visible = lineInfo.Visible,
-
             };
 
             V6VvarTextBox vT = null;
@@ -958,6 +959,8 @@ namespace V6Controls.Forms
             if (!string.IsNullOrEmpty(lineInfo.LimitChars)) lineControl.SetLimitChars(lineInfo.LimitChars);
             //NotEmpty
             if (lineInfo.NotEmpty) lineControl.SetNotEmpty(true);
+            //accibleName2
+            lineControl.AccessibleName2 = lineInfo.AccessibleName2;
 
             return lineControl;
         }

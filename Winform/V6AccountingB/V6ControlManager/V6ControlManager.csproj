@@ -1626,6 +1626,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_IXC_IN1.Designer.cs">
       <DependentUpon>AAPPR_IXC_IN1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AAPPR_IND.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AAPPR_IND.Designer.cs">
+      <DependentUpon>AAPPR_IND.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_POB_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3884,6 +3890,15 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_BC1_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IND.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IND_F4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IND_F4.designer.cs">
+      <DependentUpon>AAPPR_IND_F4.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POB_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4161,7 +4176,7 @@
       <DependentUpon>AGSCTGS02_F8.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AGSCTGS02_F4.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AGSCTGS02_F4.designer.cs">
       <DependentUpon>AGSCTGS02_F4.cs</DependentUpon>
@@ -5688,6 +5703,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_IXC_IN1.resx">
       <DependentUpon>AAPPR_IXC_IN1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_IND.resx">
+      <DependentUpon>AAPPR_IND.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_POB_IN1.resx">
       <DependentUpon>AAPPR_POB_IN1.cs</DependentUpon>
     </EmbeddedResource>
@@ -6806,6 +6824,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\SoDu\SoDuReportForm.resx">
       <DependentUpon>SoDuReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_IND_F4.resx">
+      <DependentUpon>AAPPR_IND_F4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F9.resx">
       <DependentUpon>AAPPR_SOA1_F9.cs</DependentUpon>

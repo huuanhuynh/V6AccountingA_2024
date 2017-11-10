@@ -673,6 +673,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new AAPPR_SOA_IN3();
                 case "AAPPR_POA":
                     return new AAPPR_POA();
+                case "AAPPR_IND":
+                    return new AAPPR_IND();
                 case "V6BACKUP1":
                     return new V6BACKUP1();
                 case "V6LEVELDOWN":
