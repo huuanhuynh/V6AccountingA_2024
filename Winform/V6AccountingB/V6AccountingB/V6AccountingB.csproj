@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -65,6 +66,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ERLISTNV.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormKeyV6Online.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormKeyV6Online.Designer.cs">
+      <DependentUpon>FormKeyV6Online.cs</DependentUpon>
     </Compile>
     <Compile Include="FormKey.cs">
       <SubType>Form</SubType>
@@ -102,6 +109,9 @@
     <EmbeddedResource Include="ERLISTNV.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ERLISTNV.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormKeyV6Online.resx">
+      <DependentUpon>FormKeyV6Online.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormKey.resx">
       <DependentUpon>FormKey.cs</DependentUpon>

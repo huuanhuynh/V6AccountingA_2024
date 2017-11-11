@@ -346,7 +346,7 @@ namespace V6SqlConnect
         /// <param name="keys"></param>
         /// <returns></returns>
         public static string GenUpdateSql(int UserId, string tableName, V6TableStruct structTable,
-            SortedDictionary<string, object> dataDictionary, SortedDictionary<string, object> keys)
+            IDictionary<string, object> dataDictionary, IDictionary<string, object> keys)
         {
             var serverDateTime = SqlConnect.GetServerDateTime();
             var dateString = serverDateTime.ToString("yyyyMMdd");

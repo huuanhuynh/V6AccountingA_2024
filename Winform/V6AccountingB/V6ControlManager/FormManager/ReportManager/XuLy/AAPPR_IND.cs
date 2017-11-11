@@ -239,19 +239,37 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //form them danh muc dynamic alxuly
                 SortedDictionary<string, object> data = new SortedDictionary<string, object>();
                 string var1 = "";
+                string stt_rec = "", ma_ct = "";
                 DateTime? var2 = null;
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if(!row.IsSelect()) continue;
 
                     var rData = row.ToDataDictionary();
+                    stt_rec = rData["STT_REC"].ToString().Trim();
+                    ma_ct = rData["MA_CT"].ToString().Trim();
                     var1 += "," + rData["SO_CT"].ToString().Trim();
                     var2 = ObjectAndString.ObjectToDate(rData["NGAY_CT"]);
                 }
 
                 if (var1 == "") return;
 
+                IDictionary<string, object> key = new SortedDictionary<string, object>();
+                key.Add("STT_REC", stt_rec);
+                var detailData = V6BusinessHelper.Select(ma_ct == "IND" ? invoice74.AD : invoice85.AD, key, "top 1 *").Data;
+                if (detailData.Rows.Count == 0)
+                {
+                    return;
+                }
+                var detailDic = detailData.Rows[0].ToDataDictionary();
+                
+                if(detailDic.ContainsKey("MA_VT"))
+                    data["MA_TD1"] = detailDic["MA_VT"].ToString().Trim();
+                if (detailDic.ContainsKey("SO_LUONG"))
+                    data["SL_TD1"] = detailDic["SO_LUONG"];
+
                 if (var1.Length > 0) var1 = var1.Substring(1);
+                
                 
                 data["S1"] = var1;
                 data["S7"] = var2;

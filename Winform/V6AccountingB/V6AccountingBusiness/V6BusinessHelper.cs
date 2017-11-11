@@ -536,8 +536,8 @@ namespace V6AccountingBusiness
         {
             return Update(tableName.ToString(), dataDictionary, keys);
         }
-        public static int Update(string tableName, SortedDictionary<string, object> dataDictionary,
-            SortedDictionary<string, object> keys)
+        public static int Update(string tableName, IDictionary<string, object> dataDictionary,
+            IDictionary<string, object> keys)
         {
             V6TableStruct structTable = GetTableStruct(tableName);
             var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, structTable, dataDictionary, keys);

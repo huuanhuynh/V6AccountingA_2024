@@ -228,57 +228,13 @@ namespace V6AccountingB
             return result;
         }
 
-        private static bool CheckLicenseKeyAllow(string seri, string key)
-        {
-            try
-            {
-                SqlParameter[] prList =
-                {
-                    new SqlParameter("@name", V6Login.ClientName), 
-                    new SqlParameter("@seri", seri), 
-                    new SqlParameter("@key", key), 
-                };
-                var data = SqlConnect.Select("V6ONLINES", "*", "name=@name and seri=@seri and [key]=@key", "", "", prList).Data;
-                if (data != null && data.Rows.Count == 1)
-                {
-                    var row = data.Rows[0].ToDataDictionary();
-
-                    var seri0 = License.ConvertHexToString(seri);
-                    var mahoa_seri0 = UtilityHelper.EnCrypt(seri0);
-                    var key0 = License.ConvertHexToString(key);
-                    var check_seri = mahoa_seri0 == key0;
-
-                    var allow = 1 == ObjectAndString.ObjectToInt(row["ALLOW"]);
-                    var eCodeName = (row["CODE_NAME"] ?? "").ToString().Trim();
-                    var rCodeName = eCodeName == "" ? "" : UtilityHelper.DeCrypt(eCodeName);
-                    //var allow = row["Allow"].ToString().Trim();
-                    var checkCode = row["CHECKCODE"].ToString().Trim();
-                    var is_allow =
-                            allow
-                            && rCodeName.Length > V6Login.ClientName.Length + 1
-                            && rCodeName.StartsWith(V6Login.ClientName)
-                            && rCodeName.Substring(V6Login.ClientName.Length, 1) == "1"
-                            && rCodeName.EndsWith(checkCode);
-
-                    return allow && check_seri && is_allow;
-                }
-                else
-                {
-                    Program.InsertLicenseToDatabase(seri, key);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteToLog(ex.Message);
-            }
-            return false;
-        }
+        
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
-                if (V6Login.IsNetwork || CheckLicenseKeyAllow(License.Seri, License.Key))
+                if (V6Login.IsNetwork || License.CheckLicenseV6Online(License.Seri, License.Key))
                 {
                     V6Login.SelectedLanguage = cboLang.SelectedValue.ToString().Trim().ToUpper();
                     V6Login.SelectedModule = cboModule.SelectedValue.ToString();
@@ -340,12 +296,14 @@ namespace V6AccountingB
                         errorProvider1.SetError(label0, "Nhập sai " + _count + " lần!\n" + V6Login.Message);
                     }
                 }
-                else
+                else // Hiển thị form nhập code_name = mahoa (tenmay + 1 + checkcode) 
                 {
-                    this.ShowInfoMessage(V6Text.NotAllowed
-                        + "\r\nSeri: " + License.Seri
-                        + "\r\nLiên hệ V6: 0936 976 976");
-                    Clipboard.SetText(License.Seri);
+                    FormKeyV6Online f = new FormKeyV6Online(License.Seri);
+                    f.ShowDialog(this);
+                    //this.ShowInfoMessage(V6Text.NotAllowed
+                    //    + "\r\nSeri: " + License.Seri
+                    //    + "\r\nLiên hệ V6: 0936 976 976");
+                    //Clipboard.SetText(License.Seri);
                     DialogResult = DialogResult.Cancel;
                 }
             }

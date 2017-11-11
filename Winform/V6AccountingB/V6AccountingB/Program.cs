@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
 using V6Tools;
+using V6Tools.V6Convert;
 
 //XCOPY /S /Y /I /c $(TargetDir)* Z:\
 //XCOPY /S /Y /I /c $(TargetDir)* E:\Copy\Code\V6AccountingB\EXE\
@@ -215,23 +218,69 @@ namespace V6AccountingB
             return false;
         }
 
-        internal static void InsertLicenseToDatabase(string seri, string key)
-        {
-            //SqlConnect.StartSqlConnect("V6Soft", Application.StartupPath);
-            var checkCode = SqlConnect.GetServerDateTime().ToString("yyyyMMddHH:mm:ss");
-            var NAME = V6Login.ClientName;
-            IDictionary<string, object> data = new SortedDictionary<string, object>();
-            IDictionary<string, object> keys = new SortedDictionary<string, object>();
-            data.Add("NAME", NAME);
-            data.Add("SERI", seri);
-            data.Add("KEY", key);
-            keys.AddRange(data);
-            data.Add("CHECKCODE", checkCode);
-            data.Add("CODE_NAME", UtilityHelper.EnCrypt(NAME + "0" + checkCode));
+        //internal static bool CheckLicenseV6Online(string seri, string key)
+        //{
+        //    try
+        //    {
+        //        SqlParameter[] prList =
+        //        {
+        //            new SqlParameter("@name", V6Login.ClientName), 
+        //            new SqlParameter("@seri", seri), 
+        //            new SqlParameter("@key", key), 
+        //        };
+        //        var data = SqlConnect.Select("V6ONLINES", "*", "name=@name and seri=@seri and [key]=@key", "", "", prList).Data;
+        //        if (data != null && data.Rows.Count == 1)
+        //        {
+        //            var row = data.Rows[0].ToDataDictionary();
+
+        //            var seri0 = License.ConvertHexToString(seri);
+        //            var mahoa_seri0 = UtilityHelper.EnCrypt(seri0);
+        //            var key0 = License.ConvertHexToString(key);
+        //            var check_seri = mahoa_seri0 == key0;
+
+        //            var allow = 1 == ObjectAndString.ObjectToInt(row["ALLOW"]);
+        //            var eCodeName = (row["CODE_NAME"] ?? "").ToString().Trim();
+        //            var rCodeName = eCodeName == "" ? "" : UtilityHelper.DeCrypt(eCodeName);
+        //            //var allow = row["Allow"].ToString().Trim();
+        //            var checkCode = row["CHECKCODE"].ToString().Trim();
+        //            var is_allow =
+        //                    allow
+        //                    && rCodeName.Length > V6Login.ClientName.Length + 1
+        //                    && rCodeName.StartsWith(V6Login.ClientName)
+        //                    && rCodeName.Substring(V6Login.ClientName.Length, 1) == "1"
+        //                    && rCodeName.EndsWith(checkCode);
+
+        //            return allow && check_seri && is_allow;
+        //        }
+        //        else
+        //        {
+        //            Program.InsertLicenseV6Online(seri, key);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteToLog(ex.Message);
+        //    }
+        //    return false;
+        //}
+
+        //internal static void InsertLicenseV6Online(string seri, string key)
+        //{
+        //    //SqlConnect.StartSqlConnect("V6Soft", Application.StartupPath);
+        //    var checkCode = SqlConnect.GetServerDateTime().ToString("yyyyMMddHH:mm:ss");
+        //    var NAME = V6Login.ClientName;
+        //    IDictionary<string, object> data = new SortedDictionary<string, object>();
+        //    IDictionary<string, object> keys = new SortedDictionary<string, object>();
+        //    data.Add("NAME", NAME);
+        //    data.Add("SERI", seri);
+        //    data.Add("KEY", key);
+        //    keys.AddRange(data);
+        //    data.Add("CHECKCODE", checkCode);
+        //    data.Add("CODE_NAME", UtilityHelper.EnCrypt(NAME + "0" + checkCode));
             
-            var d = V6BusinessHelper.Delete("V6ONLINES", keys);
-            bool b = V6BusinessHelper.Insert("V6ONLINES", data);
-        }
+        //    var d = V6BusinessHelper.Delete("V6ONLINES", keys);
+        //    bool b = V6BusinessHelper.Insert("V6ONLINES", data);
+        //}
 
         /// <summary>
         /// The main entry point for the application.

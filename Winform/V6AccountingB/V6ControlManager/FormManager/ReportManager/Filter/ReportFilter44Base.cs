@@ -661,6 +661,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     {
                         
                     }
+                    else if (di.Ptype.ToUpper() == "ONEVALUE")
+                    {
+                        RptExtraParameters[di.Name.ToUpper()] = di.Fname;
+                    }
                     else if (di.Ptype.ToUpper() == "FILTER")
                     {
                         foreach (Control control in groupBox1.Controls)
