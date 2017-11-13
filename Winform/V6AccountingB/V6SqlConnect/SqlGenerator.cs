@@ -346,7 +346,7 @@ namespace V6SqlConnect
         /// <param name="keys"></param>
         /// <returns></returns>
         public static string GenUpdateSql(int UserId, string tableName, V6TableStruct structTable,
-            SortedDictionary<string, object> dataDictionary, SortedDictionary<string, object> keys)
+            IDictionary<string, object> dataDictionary, IDictionary<string, object> keys)
         {
             var serverDateTime = SqlConnect.GetServerDateTime();
             var dateString = serverDateTime.ToString("yyyyMMdd");
@@ -728,7 +728,7 @@ namespace V6SqlConnect
                 if (ignoreEmptyString && key.Value is string && string.IsNullOrEmpty(key.Value as string))
                     continue;
                 
-                result += string.Format("\n{0}{1}[{2}] {3} {4}",
+                result += string.Format("{0}{1}[{2}] {3} {4}",
                     and_or, tbL,
                     key.Key, oper,
                     GenSqlStringValue(key.Value,false,oper));

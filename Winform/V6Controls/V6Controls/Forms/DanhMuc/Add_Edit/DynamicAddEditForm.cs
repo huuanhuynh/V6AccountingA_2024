@@ -881,7 +881,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     if (DataDic.ContainsKey(item.Key))
                     {
-                        if (DataDic[item.Key].ToString().Trim() == "")
+                        if ((DataDic[item.Key]??"").ToString().Trim() == "")
                         {
                             errors += string.Format(V6Text.CheckInfor +"{0}: {1}\r\n", item.Key, item.Value.TextLang(V6Setting.IsVietnamese));
                         }

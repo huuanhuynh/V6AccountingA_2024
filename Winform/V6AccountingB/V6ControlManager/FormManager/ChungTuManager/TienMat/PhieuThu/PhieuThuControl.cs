@@ -967,6 +967,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 if (btnNext.Enabled) btnNext.PerformClick();
             }
+            else if (keyData == Keys.F4)
+            {
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                    {
+                        string error = ValidateDetailData(Invoice, detail1.GetData());
+                        if (string.IsNullOrEmpty(error))
+                        {
+                            detail1.btnNhan.PerformClick();
+                        }
+                        else
+                        {
+                            ShowMainMessage(error);
+                        }
+                    }
+
+                    if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit)
+                    {
+                        detail1.OnMoiClick();
+                    }
+                }
+            }
+            else if (keyData == Keys.F7)
+            {
+                LuuVaIn();
+            }
             else if (keyData == Keys.Escape)
             {
                 if (detail1.MODE == V6Mode.Add)

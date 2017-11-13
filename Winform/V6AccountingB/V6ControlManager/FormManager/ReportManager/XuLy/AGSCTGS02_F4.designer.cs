@@ -79,7 +79,7 @@
             this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel;
             this.btnHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHuy.Location = new System.Drawing.Point(94, 197);
+            this.btnHuy.Location = new System.Drawing.Point(94, 156);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
             this.btnHuy.TabIndex = 5;
@@ -95,7 +95,7 @@
             this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNhan.Image = global::V6ControlManager.Properties.Resources.Apply;
             this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNhan.Location = new System.Drawing.Point(6, 197);
+            this.btnNhan.Location = new System.Drawing.Point(6, 156);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
             this.btnNhan.TabIndex = 4;
@@ -223,6 +223,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(543, 202);
             this.Controls.Add(this.txtMaDvcs);
             this.Controls.Add(this.v6Label3);
             this.Controls.Add(this.txtKy2);
@@ -233,9 +234,17 @@
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Name = "AGSCTGS02_F4";
-            this.Size = new System.Drawing.Size(559, 240);
-            
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
+            this.Controls.SetChildIndex(this.btnNhan, 0);
+            this.Controls.SetChildIndex(this.btnHuy, 0);
+            this.Controls.SetChildIndex(this.v6Label1, 0);
+            this.Controls.SetChildIndex(this.txtKy1, 0);
+            this.Controls.SetChildIndex(this.txtNam, 0);
+            this.Controls.SetChildIndex(this.v6Label2, 0);
+            this.Controls.SetChildIndex(this.txtKy2, 0);
+            this.Controls.SetChildIndex(this.v6Label3, 0);
+            this.Controls.SetChildIndex(this.txtMaDvcs, 0);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -253,12 +262,12 @@
         protected System.Windows.Forms.Button btnNhan;
         protected System.Windows.Forms.Button btnHuy;
         private V6Controls.V6Label v6Label1;
-        private V6Controls.V6NumberTextBox txtNam;
-        private V6Controls.V6NumberTextBox txtKy1;
+        public V6Controls.V6NumberTextBox txtNam;
+        public V6Controls.V6NumberTextBox txtKy1;
         private V6Controls.V6Label v6Label2;
         private V6Controls.V6Label v6Label3;
-        private V6Controls.V6NumberTextBox txtKy2;
-        private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
+        public V6Controls.V6NumberTextBox txtKy2;
+        public V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
 
 
 

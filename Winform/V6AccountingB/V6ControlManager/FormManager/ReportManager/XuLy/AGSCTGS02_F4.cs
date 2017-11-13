@@ -3,25 +3,24 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public partial class AGSCTGS02_F4 : V6FormControl
+    public partial class AGSCTGS02_F4 : V6Form
     {
         #region Biến toàn cục
 
         protected DataRow _am;
-        protected string _numlist, _text, _program;
+        protected string _numlist0, _text, _program;
         protected int _year, _month1, _month2;
 
         //protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         public delegate void HandleF4Success();
 
-        public event HandleF4Success UpdateSuccessEvent;
+        //public event HandleF4Success UpdateSuccessEvent;
 
         protected DataSet _ds;
         protected DataTable _tbl, _tbl2;
@@ -45,9 +44,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             InitializeComponent();
         }
 
-        public AGSCTGS02_F4(string numlist, int year,int month1,int month2, string program)
+        public AGSCTGS02_F4(int year,int month1,int month2, string program)
         {
-            _numlist = numlist;
+            //_numlist = numlist;
             _year = year;
             _month1 = month1;
             _month2 = month2;
@@ -87,48 +86,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            
-            try
-            {
-               
-                //@Type AS VARCHAR(8),
-                //@Year AS INT,
-                //@Period1 AS INT,
-                //@Period2 AS INT,
-                //@NumList VARCHAR(MAX),
-                //@User_id AS INT,
-                //@Ma_dvcs VARCHAR(50) = ''
-
-
-                SqlParameter[] plist =
-                        {
-                            new SqlParameter("@Type","NEW"),
-                            new SqlParameter("@Year",txtNam.Value),
-                            new SqlParameter("@Period1",txtKy1.Value),
-                            new SqlParameter("@Period2",txtKy2.Value),
-                            new SqlParameter("@NumList",_numlist),
-                            new SqlParameter("@User_id", V6Login.UserId),
-                            new SqlParameter("@Ma_dvcs",txtMaDvcs.StringValue)
-
-                        };
-
-                V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
-
-
-                OnUpdateSuccessEvent();
-                Dispose();
-                V6ControlFormHelper.ShowMainMessage("Thực hiện xong \n");
-
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".Update error:\n" + ex.Message);
-            }
+            DialogResult = DialogResult.OK;
         }
         
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            Dispose();
+            DialogResult = DialogResult.Cancel;
         }
         
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -146,10 +109,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected int _oldIndex = -1;
 
-        protected virtual void OnUpdateSuccessEvent()
-        {
-            var handler = UpdateSuccessEvent;
-            if (handler != null) handler();
-        }
+        //protected virtual void OnUpdateSuccessEvent()
+        //{
+        //    var handler = UpdateSuccessEvent;
+        //    if (handler != null) handler();
+        //}
     }
 }

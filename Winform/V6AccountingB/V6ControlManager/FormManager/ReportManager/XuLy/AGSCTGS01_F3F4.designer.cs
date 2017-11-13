@@ -64,6 +64,8 @@
             this.v6Label17 = new V6Controls.V6Label();
             this.v6IndexComboBox1 = new V6Controls.Controls.V6IndexComboBox();
             this.TXTkieu_ctgs = new V6Controls.V6ColorTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateNgayLo = new V6Controls.V6DateTimePick();
             this.SuspendLayout();
             // 
             // btnHuy
@@ -609,10 +611,35 @@
             this.TXTkieu_ctgs.Text = "1";
             this.TXTkieu_ctgs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(238, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 13);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "Ngày ctgs";
+            // 
+            // dateNgayLo
+            // 
+            this.dateNgayLo.AccessibleName = "NGAY_LO";
+            this.dateNgayLo.CustomFormat = "dd/MM/yyyy";
+            this.dateNgayLo.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dateNgayLo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateNgayLo.HoverColor = System.Drawing.Color.Yellow;
+            this.dateNgayLo.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.dateNgayLo.LeaveColor = System.Drawing.Color.White;
+            this.dateNgayLo.Location = new System.Drawing.Point(299, 56);
+            this.dateNgayLo.Name = "dateNgayLo";
+            this.dateNgayLo.ReadOnly = true;
+            this.dateNgayLo.Size = new System.Drawing.Size(137, 20);
+            this.dateNgayLo.TabIndex = 37;
+            // 
             // AGSCTGS01_F3F4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dateNgayLo);
             this.Controls.Add(this.TXTkieu_ctgs);
             this.Controls.Add(this.v6IndexComboBox1);
             this.Controls.Add(this.txtStt);
@@ -638,6 +665,7 @@
             this.Controls.Add(this.txtNam);
             this.Controls.Add(this.txtThang1);
             this.Controls.Add(this.v6Label9);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TXTnhom_user);
             this.Controls.Add(this.txtMaCt);
@@ -651,7 +679,6 @@
             this.Controls.Add(this.btnNhan);
             this.Name = "AGSCTGS01_F3F4";
             this.Size = new System.Drawing.Size(638, 418);
-            
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -696,6 +723,8 @@
         private V6Controls.V6Label v6Label17;
         private V6Controls.Controls.V6IndexComboBox v6IndexComboBox1;
         public V6Controls.V6ColorTextBox TXTkieu_ctgs;
+        private System.Windows.Forms.Label label2;
+        private V6Controls.V6DateTimePick dateNgayLo;
 
 
 

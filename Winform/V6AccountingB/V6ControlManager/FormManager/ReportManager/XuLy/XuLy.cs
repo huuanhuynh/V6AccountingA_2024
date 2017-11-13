@@ -65,6 +65,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new ATODCCTBP(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AAPPR_POA":
                     return new AAPPR_POA(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "AAPPR_IND":
+                    return new AAPPR_IND(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AGLCTKC":
                     return new AGLCTKC(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AGLCTPB":

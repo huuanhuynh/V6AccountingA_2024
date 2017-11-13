@@ -455,6 +455,13 @@ namespace V6AccountingBusiness
         {
             return SqlConnect.ExecuteScalar(CommandType.Text, sql, plist);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="funcName"></param>
+        /// <param name="plist"></param>
+        /// <returns></returns>
         public static object ExecuteFunctionScalar(string funcName, params SqlParameter[] plist)
         {
             var ptext = (plist == null || plist.Length == 0) ? "" : plist[0].ParameterName;
@@ -529,8 +536,8 @@ namespace V6AccountingBusiness
         {
             return Update(tableName.ToString(), dataDictionary, keys);
         }
-        public static int Update(string tableName, SortedDictionary<string, object> dataDictionary,
-            SortedDictionary<string, object> keys)
+        public static int Update(string tableName, IDictionary<string, object> dataDictionary,
+            IDictionary<string, object> keys)
         {
             V6TableStruct structTable = GetTableStruct(tableName);
             var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, structTable, dataDictionary, keys);

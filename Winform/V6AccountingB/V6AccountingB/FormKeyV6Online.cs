@@ -9,46 +9,46 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6AccountingB
 {
-    public partial class FormKey : V6Form
+    public partial class FormKeyV6Online : V6Form
     {
         private string _lblStatusOriginalText;
-        public FormKey()
+        public FormKeyV6Online()
         {
             InitializeComponent();
-            txtSeri.Text = License.GetSeri(Application.StartupPath);
+            txtSeriClient.Text = License.GetSeriClient();
             MyInit();
         }
 
-        public FormKey(string seri)
+        public FormKeyV6Online(string seri)
         {
             InitializeComponent();
-            txtSeri.Text = seri;
+            txtSeriClient.Text = License.GetSeriClient();
             MyInit();
         }
 
         private void MyInit()
         {
             _lblStatusOriginalText = lblStatus.Text;
-            DatabaseConfig.LoadDatabaseConfig("V6Soft", Application.StartupPath);
-            cboDatabase.DisplayMember = DatabaseConfig.ConfigDataDisplayMember;
-            cboDatabase.ValueMember = DatabaseConfig.ConfigDataValueMember;
-            cboDatabase.DataSource = DatabaseConfig.ConnectionConfigData;
-            cboDatabase.DisplayMember = DatabaseConfig.ConfigDataDisplayMember;
-            cboDatabase.ValueMember = DatabaseConfig.ConfigDataValueMember;
-            cboDatabase.SelectedIndex = DatabaseConfig.GetConfigDataRunIndex();
+            //DatabaseConfig.LoadDatabaseConfig("V6Soft", Application.StartupPath);
+            //cboDatabase.DisplayMember = DatabaseConfig.ConfigDataDisplayMember;
+            //cboDatabase.ValueMember = DatabaseConfig.ConfigDataValueMember;
+            //cboDatabase.DataSource = DatabaseConfig.ConnectionConfigData;
+            //cboDatabase.DisplayMember = DatabaseConfig.ConfigDataDisplayMember;
+            //cboDatabase.ValueMember = DatabaseConfig.ConfigDataValueMember;
+            //cboDatabase.SelectedIndex = DatabaseConfig.GetConfigDataRunIndex();
+            //cboDatabase.SelectedValue = V6SqlConnect.DatabaseConfig.Database;
+            lblStatus.Text = "______________________________________________";
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
             try
             {
-                var seri = txtSeri.Text;
-                var key = txtKey.Text.Trim();
-                if (License.CheckLicenseKey(seri, key))//Write, true))
+                var sericlient = txtSeriClient.Text;
+                var code_name = txtCodeName.Text.Trim();
+                if (License.CheckNewLicenseV6Online(License.Seri, License.Key, code_name))
                 {
-                    License.WriteLicenseKey(key);
-                    License.InsertLicenseV6OnlineTemp(txtSeri.Text, txtKey.Text.Trim());
-
+                    //License.UpdateLicenseV6OnlineCodeName(License.Seri, License.Key, code_name);
                     this.ShowInfoMessage(V6Setting.IsVietnamese ? "Đăng ký thành công!" : "Registration successful!");
                     DialogResult = DialogResult.OK;
                 }
@@ -69,8 +69,8 @@ namespace V6AccountingB
 
         private void cboDatabase_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DatabaseConfig.SelectedIndex = cboDatabase.SelectedIndex;
-            ResetInfos(GetDataMode.Local);
+            //DatabaseConfig.SelectedIndex = cboDatabase.SelectedIndex;
+            //ResetInfos(GetDataMode.Local);
         }
 
         private void ResetInfos(GetDataMode mode)
@@ -138,7 +138,7 @@ namespace V6AccountingB
                     //panel1.Enabled = true;
                     //txtUserName.Focus();
                     btnOK.Enabled = true;
-                    txtKey.Focus();
+                    txtCodeName.Focus();
                     
                 }
                 else
