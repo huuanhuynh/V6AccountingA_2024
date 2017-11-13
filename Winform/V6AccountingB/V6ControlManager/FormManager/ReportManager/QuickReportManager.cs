@@ -349,7 +349,10 @@ namespace V6ControlManager.FormManager.ReportManager
         public static class FormEvent
         {
             public static string INIT = "INIT";
-            public static string LOAD = "LOAD";
+            /// <summary>
+            /// Form_Load
+            /// </summary>
+            public static string INIT2 = "INIT2";
             public static string BEFORELOADDATA = "BEFORELOADDATA";
             public static string AFTERLOADDATA = "AFTERLOADDATA";
             public static string AFTERADDFILTERCONTROL = "AFTERADDFILTERCONTROL";

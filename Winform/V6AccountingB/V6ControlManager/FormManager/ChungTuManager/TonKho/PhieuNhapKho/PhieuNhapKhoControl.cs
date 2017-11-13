@@ -2620,7 +2620,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     {
                         if (string.IsNullOrEmpty(_sttRec))
                         {
-                            this.ShowWarningMessage("Chưa chọn chứng từ.");
+                            this.ShowWarningMessage(V6Text.CheckInfor);
                         }
                         else
                         {

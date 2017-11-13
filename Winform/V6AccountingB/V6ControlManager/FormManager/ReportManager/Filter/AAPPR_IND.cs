@@ -2,7 +2,6 @@
 using System.Data.SqlClient;
 using V6AccountingBusiness;
 using V6Init;
-using V6SqlConnect;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
@@ -16,7 +15,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F7 = true;
             F8 = true;
             F9 = true;
-            
+            F10 = true;
             dateNgay_ct1.Value = V6Setting.M_SV_DATE;
             dateNgay_ct2.Value = V6Setting.M_SV_DATE;
 
@@ -30,6 +29,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
             TxtMa_ct.Text = "IND,IXB";
             TxtMa_ct.Enabled = false;
+            chkDaXuLy.Checked = false;
 
             cboKieuPost.ValueMember = "kieu_post";
             cboKieuPost.DisplayMember = V6Setting.IsVietnamese ? "Ten_post" : "Ten_post2";
@@ -70,18 +70,22 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var and = radAnd.Checked;
             
             var cKey = "";
-            
-            //var key0 = GetFilterStringByFields(new List<string>()
-            //{
-            //    "MA_DVCS","MA_BP", "MA_KH", "MA_NX"
-            //}, and);
-            var key0Data = new Dictionary<string, object>();
-            if(txtMaDvcs.IsSelected) key0Data.Add("MA_DVCS", txtMaDvcs.StringValue);
-            if (lineMaBoPhan.IsSelected) key0Data.Add("MA_BP", lineMaBoPhan.StringValue);
-            if (lineMaKh.IsSelected) key0Data.Add("MA_KH", lineMaKh.StringValue);
-            if (lineMaNX.IsSelected) key0Data.Add("MA_NX", lineMaNX.StringValue);
-            
-            var key0 = SqlGenerator.GenWhere2(key0Data, "like", true, "a", false);
+
+            var key0 = GetFilterStringByFields(new List<string>()
+            {
+                "MA_DVCS","MA_BP", "MA_NVIEN", "MA_NX", "MA_XULY", "MA_KH"
+            }, and, "a");
+
+            //var key0Data = new Dictionary<string, object>();
+            //if (txtMaDvcs.IsSelected) key0Data.Add("MA_DVCS", txtMaDvcs.StringValue);
+            //if (lineMaBoPhan.IsSelected) key0Data.Add("MA_BP", lineMaBoPhan.StringValue);
+            //if (lineMaNvien.IsSelected) key0Data.Add("MA_NVIEN", lineMaNvien.StringValue);
+            //if (lineMa_xuly.IsSelected) key0Data.Add("MA_XULY", lineMa_xuly.StringValue);
+            //if (lineMaKh.IsSelected) key0Data.Add("MA_KH", lineMaKh.StringValue);
+            //if (lineMaNX.IsSelected) key0Data.Add("MA_NX", lineMaNX.StringValue);
+
+            //var key0 = SqlGenerator.GenWhere2(key0Data, "like", true, "a", false);
+
             var key1 = GetFilterStringByFields(new List<string>()
             {
                 "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6"
@@ -107,6 +111,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 cKey = cKey + string.Format(" and a.ma_kh in (select ma_kh from alkh where {0} )", key1);
             }
+
+            
+            if (chkDaXuLy.Checked)
+            {
+                cKey = cKey + " and ISNULL(a.Ma_xuly,'')<>''";
+            }
+            else
+            {
+                cKey = cKey + " and ISNULL(a.Ma_xuly,'')=''";
+            }
             //switch (TxtXtag.Text.Trim())
             //{
             //    case "0":
@@ -125,6 +139,18 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
           
             return result;
+        }
+
+        private void lineMa_xuly_Leave(object sender, System.EventArgs e)
+        {
+            if (lineMa_xuly.IsSelected)
+            {
+                chkDaXuLy.Checked = true;
+            }
+            else
+            {
+                chkDaXuLy.Checked = false;    
+            }
         }
 
     }

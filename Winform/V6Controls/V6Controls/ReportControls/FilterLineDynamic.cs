@@ -145,6 +145,19 @@ namespace V6ReportControls
             }
         }
 
+        private Type ValueType
+        {
+            get
+            {
+                Type type = typeof (string);
+                if (_numberTextBox != null) type = typeof(decimal);
+                else if (_dateTimePick != null) type = typeof(DateTime);
+                else if (_dateTimeColor != null) type = typeof(DateTime);
+                else if (_checkBox != null) type = typeof(bool);
+                return type;
+            }
+        }
+
         #region ==== EVENTS ====
 
         public event Action<object, Control> ValueChanged;
@@ -164,42 +177,6 @@ namespace V6ReportControls
         #endregion events
 
         /// <summary>
-        /// Định dạng lại giá trị cho phù hợp với query.
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        private string FormatValue(string value)
-        {
-            Type type = typeof(string);
-            
-            if (_numberTextBox != null) type = typeof (decimal);
-            else if (_dateTimePick != null) type = typeof (DateTime);
-            else if (_dateTimeColor != null) type = typeof(DateTime);
-
-            if (type == typeof (string))
-            {
-                if (",=,<>,>,>=,<,<=,".Contains("," + Operator + ","))
-                    return string.Format("N'{0}'", value.Replace("'", "''"));
-                else if(Operator == "like")
-                    return string.Format("N'%{0}%'", value.Replace("'", "''"));
-                else if(Operator == "start")
-                    return string.Format("N'{0}%'", value.Replace("'", "''"));
-                return "";
-            }
-            else if (type == typeof (decimal))
-            {
-                return value;
-            }
-            else if (type == typeof (DateTime))
-            {
-                return string.Format("'{0}'", value);
-            }
-            else
-            {
-                return string.Format("N'{0}'", value.Replace("'", "''"));
-            }
-        }
-        /// <summary>
         /// Tự kiểm tra check để lấy. Phần này luôn trả về chuỗi dù có check hay không.
         /// </summary>
         public override string Query
@@ -217,7 +194,7 @@ namespace V6ReportControls
                     string[] sss = sValue.Split(',');
                     foreach (string s in sss)
                     {
-                        result += string.Format(" or {0} {1} {2}", FieldName, oper, FormatValue(s.Trim()));
+                        result += string.Format(" or {0} {1} {2}", FieldName, oper, FormatValue(s.Trim(), ValueType));
                     }
 
                     if (result.Length > 4)
@@ -228,7 +205,7 @@ namespace V6ReportControls
                 }
                 else
                 {
-                    result = string.Format("{0} {1} {2} ", FieldName, oper, FormatValue(StringValue));
+                    result = string.Format("{0} {1} {2} ", FieldName, oper, FormatValue(StringValue, ValueType));
                 }
                 return result;
             }
