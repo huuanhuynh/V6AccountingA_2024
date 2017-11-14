@@ -109,7 +109,6 @@
             this.TXTma_lnx.Name = "TXTma_lnx";
             this.TXTma_lnx.Size = new System.Drawing.Size(116, 23);
             this.TXTma_lnx.TabIndex = 3;
-            this.TXTma_lnx.VVar = "ma_lnx";
             // 
             // txtten_loai
             // 
