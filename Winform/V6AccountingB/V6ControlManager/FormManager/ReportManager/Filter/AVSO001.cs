@@ -9,8 +9,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public AVSO001()
         {
             InitializeComponent();
-            F3 = false;
-            F5 = true;
+            F3 = true;
+            F5 = false;
             dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
             dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
 
