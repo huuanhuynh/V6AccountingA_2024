@@ -110,6 +110,7 @@
             this.TXTma_ck.AccessibleName = "ma_ck";
             this.TXTma_ck.BackColor = System.Drawing.Color.White;
             this.TXTma_ck.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TXTma_ck.CheckOnLeave = false;
             this.TXTma_ck.EnterColor = System.Drawing.Color.PaleGreen;
             this.TXTma_ck.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TXTma_ck.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
