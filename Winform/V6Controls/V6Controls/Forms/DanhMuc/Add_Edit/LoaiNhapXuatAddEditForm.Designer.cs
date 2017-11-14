@@ -100,6 +100,7 @@
             this.TXTma_lnx.AccessibleName = "ma_lnx";
             this.TXTma_lnx.BackColor = System.Drawing.SystemColors.Window;
             this.TXTma_lnx.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TXTma_lnx.CheckOnLeave = false;
             this.TXTma_lnx.EnterColor = System.Drawing.Color.PaleGreen;
             this.TXTma_lnx.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TXTma_lnx.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -109,6 +110,7 @@
             this.TXTma_lnx.Name = "TXTma_lnx";
             this.TXTma_lnx.Size = new System.Drawing.Size(116, 23);
             this.TXTma_lnx.TabIndex = 3;
+            this.TXTma_lnx.VVar = "ma_lnx";
             // 
             // txtten_loai
             // 
