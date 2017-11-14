@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -10,7 +11,9 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
+using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -18,26 +21,39 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     public partial class V6IMPORTXLS : XuLyBase
     {
         private readonly V6Categories _categories = new V6Categories();
-        private DataTable data;
-        private DataTable listAl;
+        private DataTable _data;
+        private DataTable ALIMXLS_DATA;
 
         private string _table_name;
-
+        private Type XLS_program;
         /// <summary>
-        /// Cách nhau bởi ;
+        /// KHOA, Cách nhau bởi ;
         /// </summary>
-        private string CHECK_FIELDS;
-        //{
-        //    get
-        //    {
-        //        var result = "";
-        //        if (cboDanhMuc.SelectedIndex >= 0)
-        //        {
-        //            result = listAl.Rows[cboDanhMuc.SelectedIndex]["khoa"].ToString().Trim();
-        //        }
-        //        return result;
-        //    }
-        //}
+        private string CHECK_FIELDS
+        {
+            get
+            {
+                var result = "";
+                if (cboDanhMuc.SelectedIndex >= 0)
+                {
+                    result = ALIMXLS_DATA.Rows[cboDanhMuc.SelectedIndex]["khoa"].ToString().Trim();
+                }
+                return result;
+            }
+        }
+
+        private string MA_IMEX
+        {
+            get
+            {
+                var result = "";
+                if (cboDanhMuc.SelectedIndex >= 0)
+                {
+                    result = ALIMXLS_DATA.Rows[cboDanhMuc.SelectedIndex]["MA_IMEX"].ToString().Trim().ToUpper();
+                }
+                return result;
+            }
+        }
         private string IDS_CHECK
         {
             get
@@ -45,7 +61,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var result = "";
                 if (cboDanhMuc.SelectedIndex >= 0)
                 {
-                    result = listAl.Rows[cboDanhMuc.SelectedIndex]["ID_CHECK"].ToString().Trim().ToUpper();
+                    result = ALIMXLS_DATA.Rows[cboDanhMuc.SelectedIndex]["ID_CHECK"].ToString().Trim().ToUpper();
                 }
                 return result;
             }
@@ -57,7 +73,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var result = "";
                 if (cboDanhMuc.SelectedIndex >= 0)
                 {
-                    result = listAl.Rows[cboDanhMuc.SelectedIndex]["TYPE_CHECK"].ToString().Trim();
+                    result = ALIMXLS_DATA.Rows[cboDanhMuc.SelectedIndex]["TYPE_CHECK"].ToString().Trim();
                 }
                 return result;
             }
@@ -78,21 +94,63 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 FilterControl.F10 = true;
 
                 LoadListALIMXLS();
+                CreateXlsDmethodProgram();
             }
             catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + ".Init1", ex);
             }
         }
 
-        
+        private void CreateXlsDmethodProgram()
+        {
+            try
+            {
+                //IDictionary<string, object> keys = new Dictionary<string, object>();
+                //keys.Add("MA_FILE", _program);
+                
+                if (ALIMXLS_DATA == null || ALIMXLS_DATA.Rows.Count == 0) return;
+
+                string using_text = "";
+                string method_text = "";
+
+                foreach (DataRow dataRow in ALIMXLS_DATA.Rows)
+                {
+                    var xml = dataRow["MMETHOD"].ToString().Trim();
+                    if (xml == "") return;
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(new StringReader(xml));
+                    if (ds.Tables.Count <= 0) return;
+
+                    var xml_data = ds.Tables[0];
+                    foreach (DataRow event_row in xml_data.Rows)
+                    {
+                        //var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                        //var method_name = event_row["method"].ToString().Trim();
+                        //Event_Methods[EVENT_NAME] = method_name;
+
+                        using_text += xml_data.Columns.Contains("using") ? event_row["using"] : "";
+                        method_text += event_row["content"];
+                        method_text += "\n";
+                    }
+                }
+
+                XLS_program = V6ControlsHelper.CreateProgram("XlsProgramNameSpace", "XlsProgramClass", "XlsProgram" + _program, using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateXlsDmethodProgram", ex);
+            }
+        }
+
+
         private void LoadListALIMXLS()
         {
-            listAl = V6BusinessHelper.Select("ALIMXLS", "*", "IMPORT_YN='1'", "", "stt").Data;
+            ALIMXLS_DATA = V6BusinessHelper.Select("ALIMXLS", "*", "IMPORT_YN='1'", "", "stt").Data;
 
             cboDanhMuc.ValueMember = "dbf_im";
             cboDanhMuc.DisplayMember = V6Setting.IsVietnamese ? "Ten" : "Ten2";
-            cboDanhMuc.DataSource = listAl;
+            cboDanhMuc.DataSource = ALIMXLS_DATA;
             cboDanhMuc.ValueMember = "dbf_im";
             cboDanhMuc.DisplayMember = V6Setting.IsVietnamese ? "Ten" : "Ten2";
         }
@@ -120,7 +178,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                data = V6Tools.V6Convert.Excel_File
+                _data = V6Tools.V6Convert.Excel_File
                     .Sheet1ToDataTable(txtFile.Text);
                 //Check1: chuyen ma, String12 A to U
                 string from0 = comboBox1.Text, to0 = comboBox2.Text;
@@ -134,37 +192,66 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var to = "U";
                         if (to0.StartsWith("TCVN3")) to = "A";
                         if (to0.StartsWith("VNI")) to = "V";
-                        data = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(data, from, to);
+                        _data = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(_data, from, to);
                     }
                     else
                     {
                         V6ControlFormHelper.ShowMessage("Chưa chọn mã nguồn và đích.");
                     }
                 }
-                dataGridView1.DataSource = data;
+                FixData();
+                dataGridView1.DataSource = _data;
             }
             catch (Exception)
             {
                 // ignored
             }
         }
-        
+
+        private void FixData()
+        {
+            try
+            {
+                if (_data == null) return;
+                List<DataRow> remove_list = new List<DataRow>();
+                var check_fields = ObjectAndString.SplitString(CHECK_FIELDS);
+                foreach (DataRow row in _data.Rows)
+                {
+                    bool remove = false;
+                    foreach (string field in check_fields)
+                    {
+                        if (!_data.Columns.Contains(field) || row[field] == null || row[field].ToString().Trim() == "")
+                        {
+                            remove = true;
+                            break;
+                        }
+                    }
+                    if(remove) remove_list.Add(row);
+                }
+
+                foreach (DataRow row in remove_list)
+                {
+                    _data.Rows.Remove(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".FixData", ex);
+            }
+        }
+
         #region ==== Xử lý F9 ====
         protected override void XuLyF9()
         {
             try
             {
-                CHECK_FIELDS = "";
-                if (cboDanhMuc.SelectedIndex >= 0)
-                    CHECK_FIELDS = listAl.Rows[cboDanhMuc.SelectedIndex]["khoa"].ToString().Trim();
-
-                if (data != null)
+                if (_data != null)
                 {
                     check_list = CHECK_FIELDS.Split(new []{';'}, StringSplitOptions.RemoveEmptyEntries);
                     var check_ok = true;
                     foreach (string field in check_list)
                     {
-                        if (!data.Columns.Contains(field))
+                        if (!_data.Columns.Contains(field))
                         {
                             check_ok = false;
                             break;
@@ -214,19 +301,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 f9Running = true;
                 f9ErrorAll = "";
 
-                if (data == null)
+                if (_data == null)
                 {
                     f9ErrorAll = "Dữ liệu không hợp lệ!";
                     goto End;
                 }
 
                 int stt = 0;
-                total = data.Rows.Count;
+                total = _data.Rows.Count;
                 var id_list = IDS_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
                 for (int i = 0; i < total; i++)
                 {
-                    DataRow row = data.Rows[i];
+                    DataRow row = _data.Rows[i];
                     index = i;
                     stt++;
                     try
@@ -284,6 +371,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             {
                                 if (!exist)
                                 {
+                                    InvokeBeforeInsert(dataDic);
                                     if (V6BusinessHelper.Insert(_table_name, dataDic))
                                     {
                                         if (_table_name.ToUpper() == "ALVT")
@@ -317,6 +405,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     _categories.Delete(_table_name, keys);
                                 }
 
+                                InvokeBeforeInsert(dataDic);
                                 if (V6BusinessHelper.Insert(_table_name, dataDic))
                                 {
                                     if (_table_name.ToUpper() == "ALVT")
@@ -360,6 +449,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             f9Running = false;
         }
 
+        /// <summary>
+        /// Gọi hàm động sửa dữ liệu trước khi thêm vào csdl.
+        /// </summary>
+        /// <param name="dataDic"></param>
+        private void InvokeBeforeInsert(SortedDictionary<string, object> dataDic)
+        {
+            try
+            {
+                All_Objects["dataDic"] = dataDic;
+                V6ControlsHelper.InvokeMethodDynamic(XLS_program, MA_IMEX + "BEFOREINSERT", All_Objects);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".InvokeBeforeInsert", ex);
+            }
+        }
+
         private void UpdateAlqddvt(string ma_vt_old, string ma_vt_new)
         {
             try
@@ -391,7 +497,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 Unlock();
 
                 ((Timer)sender).Stop();
-                RemoveDataRows(data);
+                RemoveDataRows(_data);
                 V6ControlFormHelper.SetStatusText("F9 finish "
                     + (f9Error.Length > 0 ? "Error: " : "")
                     + f9Error);
@@ -412,17 +518,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                CHECK_FIELDS = "";
-                if (cboDanhMuc.SelectedIndex >= 0)
-                    CHECK_FIELDS = listAl.Rows[cboDanhMuc.SelectedIndex]["khoa"].ToString().Trim();
-
-                if (data != null)
+                if (_data != null)
                 {
                     check_list = CHECK_FIELDS.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                     var check_ok = true;
                     foreach (string field in check_list)
                     {
-                        if (!data.Columns.Contains(field))
+                        if (!_data.Columns.Contains(field))
                         {
                             check_ok = false;
                             break;
@@ -470,17 +572,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 F10Running = true;
                 F10ErrorAll = "";
 
-                if (data == null)
+                if (_data == null)
                 {
                     F10ErrorAll = "Dữ liệu không hợp lệ!";
                     goto End;
                 }
 
                 int stt = 0, skip = 0;
-                total = data.Rows.Count;
+                total = _data.Rows.Count;
                 for (int i = 0; i < total; i++)
                 {
-                    DataRow row = data.Rows[i];
+                    DataRow row = _data.Rows[i];
                     index = i;
                     stt++;
                     try
@@ -577,7 +679,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 Unlock();
 
                 ((Timer)sender).Stop();
-                RemoveDataRows(data);
+                RemoveDataRows(_data);
                 V6ControlFormHelper.SetStatusText("F10 finish "
                     + (F10Error.Length > 0 ? "Error: " : "")
                     + F10Error);

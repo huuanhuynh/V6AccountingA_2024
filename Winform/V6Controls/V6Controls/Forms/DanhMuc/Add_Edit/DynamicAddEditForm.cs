@@ -259,7 +259,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                                 if (Event_program == null) return;
 
                                                 All_Objects["sender"] = s;
-                                                All_Objects["eventargs"] = e;
+                                                All_Objects["e"] = e;
                                                 V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
                                             };
                                             break;
@@ -270,7 +270,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                                 if (Event_program == null) return;
 
                                                 All_Objects["sender"] = s;
-                                                All_Objects["eventargs"] = e;
+                                                All_Objects["e"] = e;
                                                 V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
                                             };
                                             break;
@@ -284,7 +284,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                                 if (Event_program == null) return;
 
                                                 All_Objects["sender"] = s;
-                                                All_Objects["eventargs"] = e;
+                                                All_Objects["e"] = e;
                                                 V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
                                             };
                                             break;
@@ -295,7 +295,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                                 if (Event_program == null) return;
 
                                                 All_Objects["sender"] = s;
-                                                All_Objects["eventargs"] = e;
+                                                All_Objects["e"] = e;
                                                 V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
                                             };
                                             break;
@@ -306,7 +306,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                                 if (Event_program == null) return;
 
                                                 All_Objects["sender"] = s;
-                                                All_Objects["eventargs"] = e;
+                                                All_Objects["e"] = e;
                                                 V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
                                             };
                                             break;
@@ -330,7 +330,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                                 if (Event_program == null) return;
 
                                                 All_Objects["sender"] = s;
-                                                All_Objects["eventargs"] = e;
+                                                All_Objects["e"] = e;
                                                 V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
                                             };
                                             break;
@@ -341,7 +341,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                                 if (Event_program == null) return;
 
                                                 All_Objects["sender"] = s;
-                                                All_Objects["eventargs"] = e;
+                                                All_Objects["e"] = e;
                                                 V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
                                             };
                                             break;

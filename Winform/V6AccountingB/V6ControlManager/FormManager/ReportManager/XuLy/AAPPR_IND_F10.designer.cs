@@ -82,7 +82,7 @@
             this.txtMa_Xuly.BackColor = System.Drawing.Color.White;
             this.txtMa_Xuly.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMa_Xuly.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMa_Xuly.BrotherFields = "";
+            this.txtMa_Xuly.BrotherFields = "Ten_xuly";
             this.txtMa_Xuly.CheckNotEmpty = true;
             this.txtMa_Xuly.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMa_Xuly.ForeColor = System.Drawing.SystemColors.WindowText;

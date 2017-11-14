@@ -78,24 +78,24 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 var am = new SortedDictionary<string, object>();
-               //  am["GHI_CHU01"] = txtGhiChu01.Text;
-               // am["GHI_CHU02"] = txtGhiChu02.Text;
+                //am["GHI_CHU01"] = txtGhiChu01.Text;
+                am["GHI_CHU02"] = txtGhiChu02.Text;
 
                 SortedDictionary<string, object> keys
                     = new SortedDictionary<string, object> {{"Stt_rec", _sttRec}};
 
                 var result = 0;
 
-                if (am["MA_CT"].ToString()=="IND")
+                if (_am["MA_CT"].ToString()=="IND")
                 {
                     result = V6BusinessHelper.UpdateSimple("AM74", am, keys);
                 }
                 else
                 {
-                     if (am["MA_CT"].ToString()=="IXB")
-                        {
-                           result = V6BusinessHelper.UpdateSimple("AM85", am, keys);
-                        }
+                    if (_am["MA_CT"].ToString()=="IXB")
+                    {
+                        result = V6BusinessHelper.UpdateSimple("AM85", am, keys);
+                    }
                 } 
                 if (result == 1)
                 {

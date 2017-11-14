@@ -44,6 +44,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private Type Form_program;
         protected Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
+        /// <summary>
+        /// Gọi hàm động trong Event_Methods theo tên Event trên form.
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <returns></returns>
         protected object InvokeFormEvent(string eventName)
         {
             try // Dynamic invoke

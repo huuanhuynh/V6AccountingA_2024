@@ -677,7 +677,7 @@ namespace V6Controls
                 }
                 else
                 {
-                    string[] items = vSearchFields.Split(new []{','}, StringSplitOptions.RemoveEmptyEntries);
+                    string[] items = vSearchFields.Split(new []{',',';'}, StringSplitOptions.RemoveEmptyEntries);
                     foreach (string item in items)
                     {
                         result += " or " + item.Trim() + " like N'" + (_filterStart?"":"%") +

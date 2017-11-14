@@ -26,7 +26,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F4:Bổ sung thông tin, F9: Xử lý chứng từ, F10: Xử lý bổ sung, F8: Hủy xử lý.");
+            V6ControlFormHelper.SetStatusText2("F4:Bổ sung thông tin, F9: Xử lý chứng từ, F10: Xử lý bổ sung, F8: Hủy xử lý, F7: In.");
         }
 
         protected override void MakeReport2()
@@ -268,8 +268,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 var detailDic = detailData.Rows[0].ToDataDictionary();
                 
-                if(detailDic.ContainsKey("MA_VT"))
+
+                if (detailDic.ContainsKey("MA_VT"))
+                {
                     data["MA_TD1"] = detailDic["MA_VT"].ToString().Trim();
+                    
+                }
                 if (detailDic.ContainsKey("SO_LUONG"))
                     data["SL_TD1"] = detailDic["SO_LUONG"];
                 foreach (KeyValuePair<string, string> item in varDic)
@@ -284,7 +288,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 data["S1"] = var1;
                 data["S7"] = var2;
-
+                data["MA_CT"] = ma_ct;
+                data["MA_CT_ME"] = ma_ct;
+                data["STATUS"] = "1";
+                
                 All_Objects["data"] = data;
                 All_Objects["dataGridView1"] = dataGridView1;
                 All_Objects["dataGridView2"] = dataGridView2;
