@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -35,6 +36,69 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected DataTable _tbl, _tbl2;
         private DataTable MauInData;
         //private V6TableStruct _tStruct;
+
+        /// <summary>
+        /// Danh sách event_method của Form_program.
+        /// </summary>
+        private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        private Type Form_program;
+        protected Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+
+        protected object InvokeFormEvent(string eventName)
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(eventName))
+                {
+                    var method_name = Event_Methods[eventName];
+                    return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+            }
+            return null;
+        }
+
+        private void CreateFormProgram()
+        {
+            try
+            {
+                IDictionary<string, object> keys = new Dictionary<string, object>();
+                keys.Add("MA_FILE", _program);
+                var AlreportData = V6BusinessHelper.Select(V6TableName.Albc, keys, "*").Data;
+                if (AlreportData.Rows.Count == 0) return;
+
+                var dataRow = AlreportData.Rows[0];
+                var xml = dataRow["MMETHOD"].ToString().Trim();
+                if (xml == "") return;
+                DataSet ds = new DataSet();
+                ds.ReadXml(new StringReader(xml));
+                if (ds.Tables.Count <= 0) return;
+
+                var data = ds.Tables[0];
+
+                string using_text = "";
+                string method_text = "";
+                foreach (DataRow event_row in data.Rows)
+                {
+                    var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                    var method_name = event_row["method"].ToString().Trim();
+                    Event_Methods[EVENT_NAME] = method_name;
+
+                    using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                    method_text += event_row["content"];
+                    method_text += "\n";
+                }
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + _program, using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateProgram0", ex);
+            }
+        }
+
         /// <summary>
         /// Dùng cho procedure chính (program?)
         /// </summary>
@@ -177,8 +241,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void MyInit()
         {
             Text = _reportCaption;
-            
+            All_Objects["thisForm"] = this;
+            CreateFormProgram();
             AddFilterControl(_program);
+            InvokeFormEvent(QuickReportManager.FormEvent.AFTERADDFILTERCONTROL);
             if (ViewDetail)
                 ShowDetailGridView();
             //else
@@ -191,7 +257,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 exportToExcel.Visible = false;
                 //viewDataToolStripMenuItem.Visible = false;
             }
-
+            InvokeFormEvent(QuickReportManager.FormEvent.INIT);
         }
 
         private void LoadComboboxSource()
@@ -237,6 +303,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             LoadDefaultData(4, "", _program, m_itemId, "");
             LoadTag(4, "", _program, m_itemId, "");
+            InvokeFormEvent(QuickReportManager.FormEvent.INIT2);
         }
 
         
@@ -307,8 +374,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected bool _dataLoading;
         void LoadData()
         {
+            All_Objects["_plist"] = _pList;
+            object beforeLoadData = InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
             try
             {
+                if (beforeLoadData != null && !(bool)beforeLoadData)
+                {
+                    _message = V6Text.CheckInfor;
+                    Data_Loading = false;
+                    return;
+                }
+
                 _dataLoading = true;
                 _dataLoaded = false;
                 _ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, _pList.ToArray());
@@ -394,6 +470,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 try
                 {
                     FilterControl.LoadDataFinish(_ds);
+                    InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
                     if (Load_Data)
                     {
                         dataGridView1.DataSource = null;

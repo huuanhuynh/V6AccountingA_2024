@@ -35,7 +35,9 @@
             this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lineMa_xuly = new V6ReportControls.FilterLineLookupTextBox();
             this.Txtnh_kh6 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineMaNvien = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_kh5 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_kh4 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_kh1 = new V6ReportControls.FilterLineVvarTextBox();
@@ -54,6 +56,7 @@
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
             this.TxtXtag = new V6Controls.V6VvarTextBox();
+            this.chkDaXuLy = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,7 +84,7 @@
             this.TxtMa_ct.Location = new System.Drawing.Point(112, 46);
             this.TxtMa_ct.Name = "TxtMa_ct";
             this.TxtMa_ct.Size = new System.Drawing.Size(100, 20);
-            this.TxtMa_ct.TabIndex = 5;
+            this.TxtMa_ct.TabIndex = 2;
             this.TxtMa_ct.VVar = "MA_CT";
             // 
             // label2
@@ -115,7 +118,7 @@
             this.dateNgay_ct2.Location = new System.Drawing.Point(112, 25);
             this.dateNgay_ct2.Name = "dateNgay_ct2";
             this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct2.TabIndex = 3;
+            this.dateNgay_ct2.TabIndex = 1;
             // 
             // dateNgay_ct1
             // 
@@ -128,7 +131,7 @@
             this.dateNgay_ct1.Location = new System.Drawing.Point(112, 3);
             this.dateNgay_ct1.Name = "dateNgay_ct1";
             this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct1.TabIndex = 1;
+            this.dateNgay_ct1.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -136,7 +139,9 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lineMa_xuly);
             this.groupBox1.Controls.Add(this.Txtnh_kh6);
+            this.groupBox1.Controls.Add(this.lineMaNvien);
             this.groupBox1.Controls.Add(this.Txtnh_kh5);
             this.groupBox1.Controls.Add(this.Txtnh_kh4);
             this.groupBox1.Controls.Add(this.Txtnh_kh1);
@@ -151,10 +156,24 @@
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Location = new System.Drawing.Point(3, 129);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 328);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.Size = new System.Drawing.Size(301, 378);
+            this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // lineMa_xuly
+            // 
+            this.lineMa_xuly.AccessibleDescription = "FILTERL00009";
+            this.lineMa_xuly.AccessibleName2 = "MA_XULY";
+            this.lineMa_xuly.FieldCaption = "Mã xử lý";
+            this.lineMa_xuly.FieldName = "MA_XULY";
+            this.lineMa_xuly.Location = new System.Drawing.Point(4, 325);
+            this.lineMa_xuly.MA_DM = "ALXULY";
+            this.lineMa_xuly.Name = "lineMa_xuly";
+            this.lineMa_xuly.Size = new System.Drawing.Size(294, 22);
+            this.lineMa_xuly.TabIndex = 14;
+            this.lineMa_xuly.ValueField = "MA_XULY";
+            this.lineMa_xuly.Leave += new System.EventHandler(this.lineMa_xuly_Leave);
             // 
             // Txtnh_kh6
             // 
@@ -166,6 +185,18 @@
             this.Txtnh_kh6.Size = new System.Drawing.Size(294, 22);
             this.Txtnh_kh6.TabIndex = 12;
             this.Txtnh_kh6.Vvar = "NH_KH";
+            // 
+            // lineMaNvien
+            // 
+            this.lineMaNvien.AccessibleDescription = "FILTERL00008";
+            this.lineMaNvien.AccessibleName2 = "MA_NVIEN";
+            this.lineMaNvien.FieldCaption = "Mã nhân viên";
+            this.lineMaNvien.FieldName = "MA_NVIEN";
+            this.lineMaNvien.Location = new System.Drawing.Point(4, 302);
+            this.lineMaNvien.Name = "lineMaNvien";
+            this.lineMaNvien.Size = new System.Drawing.Size(294, 22);
+            this.lineMaNvien.TabIndex = 13;
+            this.lineMaNvien.Vvar = "MA_NVIEN";
             // 
             // Txtnh_kh5
             // 
@@ -310,7 +341,7 @@
             this.v6Label1.Location = new System.Drawing.Point(9, 112);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(89, 13);
-            this.v6Label1.TabIndex = 10;
+            this.v6Label1.TabIndex = 4;
             this.v6Label1.Text = "Xử lý chứng từ";
             // 
             // cboKieuPost
@@ -375,12 +406,25 @@
             this.TxtXtag.MaxLength = 1;
             this.TxtXtag.Name = "TxtXtag";
             this.TxtXtag.Size = new System.Drawing.Size(18, 20);
-            this.TxtXtag.TabIndex = 7;
+            this.TxtXtag.TabIndex = 3;
+            // 
+            // chkDaXuLy
+            // 
+            this.chkDaXuLy.AccessibleDescription = "FILTERC00001";
+            this.chkDaXuLy.AccessibleName = "CHK_DA_XULY";
+            this.chkDaXuLy.AutoSize = true;
+            this.chkDaXuLy.Location = new System.Drawing.Point(9, 91);
+            this.chkDaXuLy.Name = "chkDaXuLy";
+            this.chkDaXuLy.Size = new System.Drawing.Size(64, 17);
+            this.chkDaXuLy.TabIndex = 15;
+            this.chkDaXuLy.Text = "Đã xử lý";
+            this.chkDaXuLy.UseVisualStyleBackColor = true;
             // 
             // AAPPR_IND
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkDaXuLy);
             this.Controls.Add(this.v6Label3);
             this.Controls.Add(this.v6Label4);
             this.Controls.Add(this.TxtXtag);
@@ -395,7 +439,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AAPPR_IND";
-            this.Size = new System.Drawing.Size(307, 458);
+            this.Size = new System.Drawing.Size(307, 508);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -431,5 +475,8 @@
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh1;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh2;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh3;
+        private V6ReportControls.FilterLineLookupTextBox lineMa_xuly;
+        private V6ReportControls.FilterLineVvarTextBox lineMaNvien;
+        private V6Controls.V6CheckBox chkDaXuLy;
     }
 }

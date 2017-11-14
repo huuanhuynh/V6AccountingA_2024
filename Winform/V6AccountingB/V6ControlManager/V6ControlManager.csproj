@@ -3872,6 +3872,12 @@
     <Compile Include="FormManager\ReportManager\SoDu\SoDuReportForm.designer.cs">
       <DependentUpon>SoDuReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IND_F10.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IND_F10.designer.cs">
+      <DependentUpon>AAPPR_IND_F10.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_IXB_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6824,6 +6830,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\SoDu\SoDuReportForm.resx">
       <DependentUpon>SoDuReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_IND_F10.resx">
+      <DependentUpon>AAPPR_IND_F10.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_IND_F4.resx">
       <DependentUpon>AAPPR_IND_F4.cs</DependentUpon>

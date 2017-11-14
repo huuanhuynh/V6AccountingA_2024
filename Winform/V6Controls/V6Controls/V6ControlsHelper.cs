@@ -127,6 +127,7 @@ namespace V6Controls
                 parameters.ReferencedAssemblies.Add("System.Windows.Forms.dll");
                 parameters.ReferencedAssemblies.Add("mscorlib.dll");
                 parameters.ReferencedAssemblies.Add("System.Drawing.dll");
+                parameters.ReferencedAssemblies.Add("System.Xml.dll");
 
                 parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6Tools.dll");
                 parameters.ReferencedAssemblies.Add(Application.StartupPath + "\\V6Structs.dll");

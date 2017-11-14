@@ -716,7 +716,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void Form_Load(object sender, EventArgs e)
         {
             MyInit2();
-            InvokeFormEvent(QuickReportManager.FormEvent.LOAD);
+            InvokeFormEvent(QuickReportManager.FormEvent.INIT2);
             if (_ds != null && _ds.Tables.Count > 0)
             {
                 SetTBLdata();
@@ -967,6 +967,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 btnNhan.Image = btnNhanImage;
                 ii = 0;
 
+                FilterControl.LoadDataFinish(_ds);
+                InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
+                
                 ShowReport();
             }
             else if (Data_Loading)
@@ -1180,9 +1183,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                FilterControl.LoadDataFinish(_ds);
-                InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
-
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = _tbl1;
 

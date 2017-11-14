@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace V6ReportControls
@@ -83,6 +84,48 @@ namespace V6ReportControls
         }
 
         /// <summary>
+        /// Định dạng lại giá trị cho phù hợp với query.
+        /// </summary>
+        /// <param name="value">StringValue</param>
+        /// <param name="type">Kiểu dữ liệu typeof(string) hoặc typeof(decimal) hoặc typeof(DateTime)</param>
+        /// <returns></returns>
+        protected string FormatValue(string value, Type type)
+        {
+            //Type type = typeof(string);
+
+            //if (_numberTextBox != null) type = typeof(decimal);
+            //else if (_dateTimePick != null) type = typeof(DateTime);
+            //else if (_dateTimeColor != null) type = typeof(DateTime);
+
+            if (type == typeof(string))
+            {
+                if (",=,<>,>,>=,<,<=,".Contains("," + Operator + ","))
+                    return string.Format("N'{0}'", value.Replace("'", "''"));
+                else if (Operator == "like")
+                    return string.Format("N'%{0}%'", value.Replace("'", "''"));
+                else if (Operator == "start")
+                    return string.Format("N'{0}%'", value.Replace("'", "''"));
+                return "";
+            }
+            else if (type == typeof(decimal))
+            {
+                return value;
+            }
+            else if (type == typeof(DateTime))
+            {
+                return string.Format("'{0}'", value);
+            }
+            else if (type == typeof(bool))
+            {
+                return value.Replace("'", "''");
+            }
+            else
+            {
+                return string.Format("N'{0}'", value.Replace("'", "''"));
+            }
+        }
+
+        /// <summary>
         /// Nếu không check trả về rỗng.
         /// </summary>
         public virtual string StringValueCheck
@@ -91,7 +134,7 @@ namespace V6ReportControls
         }
 
         /// <summary>
-        /// Tự kiểm tra check để lấy. Phần này luôn trả về chuỗi dù có check hay không.
+        /// [Field] = value. Tự kiểm tra check để lấy. Phần này luôn trả về chuỗi dù có check hay không.
         /// </summary>
         public virtual string Query
         {
@@ -99,7 +142,7 @@ namespace V6ReportControls
             {
                 var oper = Operator;
                 if (oper == "start") oper = "like";
-                var result = string.Format("{0} {1} {2}", FieldName, oper, StringValue);
+                var result = string.Format("[{0}] {1} {2}", FieldName, oper, StringValue);
                 return result;
             }
         }

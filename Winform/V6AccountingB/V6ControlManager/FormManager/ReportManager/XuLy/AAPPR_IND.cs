@@ -26,7 +26,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F9: Duyệt chứng từ, F8: Hủy duyệt.");
+            V6ControlFormHelper.SetStatusText2("F4:Bổ sung thông tin, F9: Xử lý chứng từ, F10: Xử lý bổ sung, F8: Hủy xử lý.");
         }
 
         protected override void MakeReport2()
@@ -144,8 +144,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                V6ControlFormHelper.ShowMessage("Chưa xử lý.");
-                return;
                 Timer tF8 = new Timer();
                 tF8.Interval = 500;
                 tF8.Tick += tF8_Tick;
@@ -181,7 +179,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
                             new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
-                            new SqlParameter("@Set_kieu_post", FilterControl.Kieu_post),
+                            new SqlParameter("@Set_ma_xuly", ""),
                             new SqlParameter("@UserID", V6Login.UserId)
                         };
 
@@ -230,6 +228,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string f9Error = "";
         private string f9ErrorAll = "";
         private string _ma_xuly = "";
+        public Dictionary<string, string> varDic = new Dictionary<string, string>(); 
         protected override void XuLyF9()
         {
             try
@@ -241,18 +240,24 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string var1 = "";
                 string stt_rec = "", ma_ct = "";
                 DateTime? var2 = null;
+                DataGridViewRow lastRow = null;
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if(!row.IsSelect()) continue;
-
+                    lastRow = row;
                     var rData = row.ToDataDictionary();
-                    stt_rec = rData["STT_REC"].ToString().Trim();
-                    ma_ct = rData["MA_CT"].ToString().Trim();
                     var1 += "," + rData["SO_CT"].ToString().Trim();
                     var2 = ObjectAndString.ObjectToDate(rData["NGAY_CT"]);
                 }
 
                 if (var1 == "") return;
+
+                if (lastRow != null)
+                {
+                    var lastRowData = lastRow.ToDataDictionary();
+                    stt_rec = lastRowData["STT_REC"].ToString().Trim();
+                    ma_ct = lastRowData["MA_CT"].ToString().Trim();
+                }
 
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
                 key.Add("STT_REC", stt_rec);
@@ -267,13 +272,26 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     data["MA_TD1"] = detailDic["MA_VT"].ToString().Trim();
                 if (detailDic.ContainsKey("SO_LUONG"))
                     data["SL_TD1"] = detailDic["SO_LUONG"];
+                foreach (KeyValuePair<string, string> item in varDic)
+                {
+                    if (detailDic.ContainsKey(item.Value))
+                    {
+                        data[item.Key] = detailDic[item.Value];
+                    }
+                }
 
                 if (var1.Length > 0) var1 = var1.Substring(1);
-                
-                
+
                 data["S1"] = var1;
                 data["S7"] = var2;
-                data[""] = "";
+
+                All_Objects["data"] = data;
+                All_Objects["dataGridView1"] = dataGridView1;
+                All_Objects["dataGridView2"] = dataGridView2;
+                All_Objects["detailData"] = detailData;
+                All_Objects["lastRowData"] = lastRow.ToDataDictionary();
+                InvokeFormEvent("F9EVENT");
+                
                 var f = new FormAddEdit("Alxuly", V6Mode.Add, null, data);
                 f.InsertSuccessEvent += f_InsertSuccessEvent;
                 f.ShowDialog(this);
@@ -378,6 +396,39 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
         #endregion xulyF9
+
+        protected override void XuLyF10()
+        {
+            try
+            {
+                if (dataGridView1.CurrentRow == null)
+                {
+                    ShowMainMessage(V6Text.NoSelection);
+                    return;
+                }
+                var data = dataGridView1.CurrentRow.ToDataDictionary();
+                var stt_rec = data["STT_REC"].ToString().Trim();
+                var f10_Form = new AAPPR_IND_F10(stt_rec, data);
+                if (f10_Form.ShowToForm(this, "title", false, true, false) == DialogResult.OK)
+                {
+                    _ma_xuly = f10_Form.MA_XULY;
+                    Timer tF9 = new Timer();
+                    tF9.Interval = 500;
+                    tF9.Tick += tF9_Tick;
+                    Thread t = new Thread(F9Thread);
+                    t.SetApartmentState(ApartmentState.STA);
+                    CheckForIllegalCrossThreadCalls = false;
+                    remove_list_g = new List<DataGridViewRow>();
+                    t.IsBackground = true;
+                    t.Start();
+                    tF9.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".F10", ex);
+            }
+        }
 
         V6Invoice74 invoice74 = new V6Invoice74();
         V6Invoice85 invoice85 = new V6Invoice85();

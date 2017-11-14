@@ -210,26 +210,26 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             return list_result;
         }
 
-        public virtual string GetFilterStringByFields(List<string> fields, bool and)
+        public virtual string GetFilterStringByFields(List<string> fields, bool and, string table = null)
         {
-            var result = GetFilterStringByFieldsR(this, fields, and);
+            var result = GetFilterStringByFieldsR(this, fields, and, table);
             if (result.Length > 4) result = result.Substring(4);
             return result;
         }
 
-        private string GetFilterStringByFieldsR(Control control, List<string> fields, bool and)
+        private string GetFilterStringByFieldsR(Control control, List<string> fields, bool and, string table)
         {
             var result = "";
             var line = control as FilterLineBase;
             if (line != null && line.IsSelected && fields.Contains(line.FieldName.ToUpper()))
             {
-                result += (and ? "\nand " : "\nor  ") + line.Query;
+                result += (and ? "\nand " : "\nor  ") + line.GetQuery(table);
             }
             if (control.Controls.Count > 0)
             {
                 foreach (Control c in control.Controls)
                 {
-                    result += GetFilterStringByFieldsR(c, fields, and);
+                    result += GetFilterStringByFieldsR(c, fields, and, table);
                 }
             }
             return result;

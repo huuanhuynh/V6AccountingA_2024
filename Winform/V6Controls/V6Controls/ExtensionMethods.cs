@@ -424,12 +424,14 @@ namespace V6Controls
         /// <summary>
         /// Hiển thị Ucontrol lên form. Có xác nhận đóng khi nhấn X
         /// </summary>
-        /// <param name="control"></param>
-        /// <param name="owner">Form chủ, không có để null</param>
-        /// <param name="title"></param>
-        /// <param name="fullScreen"></param>
-        /// <param name="dialog"></param>
-        public static DialogResult ShowToForm(this UserControl control, IWin32Window owner, string title = "Form", bool fullScreen = false, bool dialog = true)
+        /// <param name="control">Đối tượng hiển thị trên form.</param>
+        /// <param name="owner">Form chủ, không có để null.</param>
+        /// <param name="title">Tiêu đề trên form.</param>
+        /// <param name="fullScreen">Mở rộng form khi hiển thị</param>
+        /// <param name="dialog">Hiển thị form kiểu dialog.</param>
+        /// <param name="closeConfirm">Xác nhận khi đóng form.</param>
+        public static DialogResult ShowToForm(this UserControl control, IWin32Window owner, string title = "Form",
+            bool fullScreen = false, bool dialog = true, bool closeConfirm = true)
         {
             try
             {
@@ -441,6 +443,7 @@ namespace V6Controls
                     Size = new Size(800, 600)
                 };
                 if (fullScreen) f.WindowState = FormWindowState.Maximized;
+                if (closeConfirm)
                 f.FormClosing += (sender, e) =>
                 {
                     if (!f.IsDisposed && f.ShowConfirmMessage(V6Text.CloseConfirm) != DialogResult.Yes)

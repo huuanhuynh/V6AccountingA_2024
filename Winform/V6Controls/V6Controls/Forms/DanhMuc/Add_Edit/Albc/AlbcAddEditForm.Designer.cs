@@ -85,10 +85,12 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnEditXml = new System.Windows.Forms.Button();
             this.txtDmethod = new V6Controls.V6ColorTextBox();
-            this.label29 = new System.Windows.Forms.Label();
+            this.lblXml = new System.Windows.Forms.Label();
             this.v6ColorTextBox16 = new V6Controls.V6ColorTextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txtSoLien = new V6Controls.V6NumberTextBox();
+            this.label32 = new System.Windows.Forms.Label();
             this.numDropMax = new V6Controls.V6NumberTextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.v6NumberTextBox1 = new V6Controls.V6NumberTextBox();
@@ -105,6 +107,7 @@
             this.label31 = new System.Windows.Forms.Label();
             this.chkBold = new V6Controls.V6CheckBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
@@ -117,9 +120,6 @@
             this.btnExcelTemplateView = new System.Windows.Forms.Button();
             this.txtExcel2View = new System.Windows.Forms.RichTextBox();
             this.btnExcel2View = new System.Windows.Forms.Button();
-            this.label32 = new System.Windows.Forms.Label();
-            this.txtSoLien = new V6Controls.V6NumberTextBox();
-            this.label33 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -800,7 +800,7 @@
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.btnEditXml);
             this.tabPage1.Controls.Add(this.txtDmethod);
-            this.tabPage1.Controls.Add(this.label29);
+            this.tabPage1.Controls.Add(this.lblXml);
             this.tabPage1.Controls.Add(this.v6ColorTextBox16);
             this.tabPage1.Controls.Add(this.label47);
             this.tabPage1.Controls.Add(this.txtExcel1);
@@ -844,6 +844,7 @@
             this.btnEditXml.Text = "...";
             this.btnEditXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditXml.UseVisualStyleBackColor = true;
+            this.btnEditXml.Visible = false;
             this.btnEditXml.Click += new System.EventHandler(this.btnEditXml_Click);
             // 
             // txtDmethod
@@ -865,16 +866,18 @@
             this.txtDmethod.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtDmethod.Size = new System.Drawing.Size(586, 74);
             this.txtDmethod.TabIndex = 21;
+            this.txtDmethod.Visible = false;
             // 
-            // label29
+            // lblXml
             // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(7, 292);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(29, 13);
-            this.label29.TabIndex = 20;
-            this.label29.Text = "XML";
+            this.lblXml.AutoSize = true;
+            this.lblXml.Location = new System.Drawing.Point(7, 292);
+            this.lblXml.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblXml.Name = "lblXml";
+            this.lblXml.Size = new System.Drawing.Size(29, 13);
+            this.lblXml.TabIndex = 20;
+            this.lblXml.Text = "XML";
+            this.lblXml.Visible = false;
             // 
             // v6ColorTextBox16
             // 
@@ -942,6 +945,40 @@
             this.tabPage2.Size = new System.Drawing.Size(747, 390);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Định dạng màu và mở rộng";
+            // 
+            // txtSoLien
+            // 
+            this.txtSoLien.AccessibleName = "SO_LIEN";
+            this.txtSoLien.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSoLien.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSoLien.DecimalPlaces = 0;
+            this.txtSoLien.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSoLien.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSoLien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSoLien.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSoLien.LeaveColor = System.Drawing.Color.White;
+            this.txtSoLien.Location = new System.Drawing.Point(97, 308);
+            this.txtSoLien.MaxLength = 1;
+            this.txtSoLien.Name = "txtSoLien";
+            this.txtSoLien.Size = new System.Drawing.Size(41, 20);
+            this.txtSoLien.TabIndex = 26;
+            this.txtSoLien.Text = "0";
+            this.txtSoLien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTipV6FormControl.SetToolTip(this.txtSoLien, "Số liên mặc định khi chọn mẫu, có thể chọn lại khi in.");
+            this.txtSoLien.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(7, 311);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(52, 13);
+            this.label32.TabIndex = 25;
+            this.label32.Text = "SO_LIEN";
             // 
             // numDropMax
             // 
@@ -1188,6 +1225,15 @@
             this.label19.TabIndex = 0;
             this.label19.Text = "Tên trường";
             // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(309, 35);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(171, 13);
+            this.label33.TabIndex = 2;
+            this.label33.Text = "Điều kiện in đậm [FIELD] = Value?";
+            // 
             // label23
             // 
             this.label23.AutoSize = true;
@@ -1304,49 +1350,6 @@
             this.btnExcel2View.Text = "Excel config view";
             this.btnExcel2View.UseVisualStyleBackColor = true;
             this.btnExcel2View.Click += new System.EventHandler(this.btnExcel2View_Click);
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(7, 311);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(52, 13);
-            this.label32.TabIndex = 25;
-            this.label32.Text = "SO_LIEN";
-            // 
-            // txtSoLien
-            // 
-            this.txtSoLien.AccessibleName = "SO_LIEN";
-            this.txtSoLien.BackColor = System.Drawing.SystemColors.Window;
-            this.txtSoLien.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtSoLien.DecimalPlaces = 0;
-            this.txtSoLien.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtSoLien.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtSoLien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtSoLien.HoverColor = System.Drawing.Color.Yellow;
-            this.txtSoLien.LeaveColor = System.Drawing.Color.White;
-            this.txtSoLien.Location = new System.Drawing.Point(97, 308);
-            this.txtSoLien.MaxLength = 1;
-            this.txtSoLien.Name = "txtSoLien";
-            this.txtSoLien.Size = new System.Drawing.Size(41, 20);
-            this.txtSoLien.TabIndex = 26;
-            this.txtSoLien.Text = "0";
-            this.txtSoLien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTipV6FormControl.SetToolTip(this.txtSoLien, "Số liên mặc định khi chọn mẫu, có thể chọn lại khi in.");
-            this.txtSoLien.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(309, 35);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(171, 13);
-            this.label33.TabIndex = 2;
-            this.label33.Text = "Điều kiện in đậm [FIELD] = Value?";
             // 
             // AlbcAddEditForm
             // 
@@ -1481,7 +1484,7 @@
         private System.Windows.Forms.Label label28;
         protected System.Windows.Forms.Button btnEditXml;
         private V6ColorTextBox txtDmethod;
-        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label lblXml;
         private V6ColorTextBox v6ColorTextBox16;
         private System.Windows.Forms.Label label47;
         private V6NumberTextBox numDropMax;

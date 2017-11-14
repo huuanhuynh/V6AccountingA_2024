@@ -293,6 +293,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                     txtIsUser.Visible = true;
                     txtExcel2.Visible = true;
                     txtExcel2View.Visible = true;
+                    lblXml.Visible = true;
+                    txtDmethod.Visible = true;
+                    btnEditXml.Visible = true;
 
                     //ReadOnly
                     txtMAU.ReadOnly = false;
