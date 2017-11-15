@@ -114,12 +114,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
             
             cboKieuPost.SelectedIndex = 0;
-
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
-            InvokeFormEvent("INIT");
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
-
+            
             _maGd = (Invoice.Alct.Rows[0]["M_MA_GD"] ?? "1").ToString().Trim();
             _m_Ma_td = (Invoice.Alct.Rows[0]["M_MA_TD"] ?? "0").ToString().Trim();
 
@@ -131,6 +128,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             txtLoaiPhieu.SetInitFilter(string.Format("Ma_ct = '{0}'", Invoice.Mact));
 
             LoadAll();
+            InvokeFormEvent("INIT");
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
         }
 
         #endregion contructor

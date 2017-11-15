@@ -85,8 +85,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
-            InvokeFormEvent("INIT");
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
 
             LoadDetailControls();
             detail1.AddContexMenu(menuDetail1);
@@ -96,6 +94,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             txtLoaiPhieu.SetInitFilter(string.Format("Ma_ct = '{0}'", Invoice.Mact));
 
             LoadAll();
+            InvokeFormEvent("INIT");
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
         }
         
         #endregion contructor

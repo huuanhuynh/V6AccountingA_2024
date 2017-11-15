@@ -705,12 +705,26 @@ namespace V6Controls
             if (control is TextBox)
             {
                 var c = (TextBox) control;
-                c.ReadOnly = !checkTagString.Contains(";readonly;");
+                if (checkTagString.Contains(";readonly;"))
+                {
+                    c.ReadOnly = false;
+                }
+                if (checkTagString.Contains(";hide;") || checkTagString.Contains(";invisible;"))
+                {
+                    c.Visible = true;
+                }
             }
             else if (control is DataGridView)
             {
                 var c = (DataGridView)control;
-                c.ReadOnly = !checkTagString.Contains(";readonly;");
+                if (checkTagString.Contains(";readonly;"))
+                {
+                    c.ReadOnly = false;
+                }
+                if (checkTagString.Contains(";hide;") || checkTagString.Contains(";invisible;"))
+                {
+                    c.Visible = true;
+                }
             }
 
             var newTagString = ";" + control.Tag + ";";//Lấy tagString cũ
@@ -718,6 +732,8 @@ namespace V6Controls
                 newTagString = newTagString.Replace(checkTagString, ";");
             
             control.Tag = newTagString;
+            //control.Tag = null;
+            //control.AddTagString(newTagString);
         }
 
         /// <summary>

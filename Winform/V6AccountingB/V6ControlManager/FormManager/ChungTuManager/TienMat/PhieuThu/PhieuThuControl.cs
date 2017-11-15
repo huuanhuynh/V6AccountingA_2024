@@ -108,9 +108,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
-            InvokeFormEvent("INIT");
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
-
+            
             LoadDetailControls("2");
             LoadDetail3Controls();
             ResetForm();
@@ -120,6 +118,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             txtLoaiPhieu.ChangeText(_MA_GD);
             
             LoadAll();
+            InvokeFormEvent("INIT");
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
         }
         
         #endregion contructor

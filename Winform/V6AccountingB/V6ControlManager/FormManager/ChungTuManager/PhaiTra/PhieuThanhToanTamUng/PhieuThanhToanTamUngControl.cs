@@ -88,14 +88,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
-            InvokeFormEvent("INIT");
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
-
+            
             LoadDetailControls();
             LoadDetail2Controls();
             ResetForm();
 
             LoadAll();
+            InvokeFormEvent("INIT");
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
         }
         
         #endregion contructor

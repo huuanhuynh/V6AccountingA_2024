@@ -200,9 +200,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
-            InvokeFormEvent("INIT");
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
-
+            
             LoadDetailControls();
             LoadDetail3Controls();
             ResetForm();
@@ -211,6 +209,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             txtLoaiPhieu.SetInitFilter(string.Format("Ma_ct = '{0}'", Invoice.Mact));
 
             LoadAll();
+            InvokeFormEvent("INIT");
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
         }
 
         #endregion contructor
