@@ -528,6 +528,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
             if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
             if (!_maVt.LO_YN) return;
+            //Fix Tuanmh 15/11/2017
+            if (!_maKhoI.LO_YN) return;
 
             try
             {

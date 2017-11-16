@@ -26,6 +26,37 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private string _table_name;
         private Type XLS_program;
+
+        private DataRow SelectedRow
+        {
+            get
+            {
+                if (cboDanhMuc.DataSource != null && cboDanhMuc.SelectedItem is DataRowView && cboDanhMuc.SelectedIndex >= 0)
+                {
+                    return ((DataRowView)cboDanhMuc.SelectedItem).Row;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// <para>Định nghĩa kiểm tra dữ liệu ràng buộc. FIELD:Table.FIELDX.</para>
+        /// <para>Các định nghĩa cách nhau bằng dấu '~'</para>
+        /// </summary>
+        private string ADV_AL2
+        {
+            get
+            {
+                var result = "";
+                var dataRow = SelectedRow;
+                if (dataRow != null)
+                {
+                    result = dataRow["ADV_AL2"].ToString().Trim();
+                }
+                return result;
+            }
+        }
+
         /// <summary>
         /// KHOA, Cách nhau bởi ;
         /// </summary>
@@ -201,10 +232,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 FixData();
                 dataGridView1.DataSource = _data;
+                CheckDataInGridView();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                this.ShowErrorException(GetType() + ".MakeReport2", ex);
             }
         }
 
@@ -238,6 +270,49 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 this.WriteExLog(GetType() + ".FixData", ex);
             }
+        }
+
+        /// <summary>
+        /// Kiểm tra và đánh dấu dữ liệu ko hợp lệ trên gridView.
+        /// </summary>
+        private void CheckDataInGridView()
+        {
+            try
+            {
+                string adv_al2 = ADV_AL2;
+                if (string.IsNullOrEmpty(adv_al2)) return;
+                var check_parts = adv_al2.Split('~');
+                foreach (DataGridViewRow grow in dataGridView1.Rows)
+                {
+                    foreach (string part in check_parts)
+                    {
+                        string field, table, field1;
+                        var s_ss = part.Split(':');
+                        if (s_ss.Length != 2) continue;
+                        field = s_ss[0];
+                        var t_f = s_ss[1].Split('.');
+                        if (t_f.Length != 2) continue;
+                        //Kiem tra du lieu hop le
+                        table = t_f[0];
+                        field1 = t_f[1];
+                        if (DuLieuHopLe(grow, field, table, field1)) continue;
+                        
+                        grow.DefaultCellStyle.BackColor = Color.Red;
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CheckDataInGridView", ex);
+            }
+        }
+
+        private bool DuLieuHopLe(DataGridViewRow grow, string field, string table, string field1)
+        {
+            IDictionary<string, object> checkData = new SortedDictionary<string, object>();
+            checkData.Add(field1.ToUpper(), grow.Cells[field].Value);
+            return V6BusinessHelper.CheckDataExistStruct(table, checkData);
         }
 
         #region ==== Xử lý F9 ====

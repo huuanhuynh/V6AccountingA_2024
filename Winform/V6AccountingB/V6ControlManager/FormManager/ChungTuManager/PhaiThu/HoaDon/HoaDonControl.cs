@@ -1162,6 +1162,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
             if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
             if (!_maVt.LO_YN) return;
+            //Fix Tuanmh 15/11/2017
+            if (!_maKhoI.LO_YN) return;
 
             try
             {
@@ -2024,21 +2026,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (mst != "")
                     {
                         txtTenKh.Enabled = false;
-                        txtDiaChi.Enabled = false;
                         txtMaSoThue.Enabled = false;
+
+                        //txtDiaChi.Enabled = false;
+                        txtDiaChi.Tag = "readonly";
+                        txtDiaChi.ReadOnly = true;
+                        txtDiaChi.TabStop = false;
                     }
                     else
                     {
                         txtTenKh.Enabled = true;
-                        txtDiaChi.Enabled = true;
                         txtMaSoThue.Enabled = true;
+                        // txtDiaChi.Enabled = true;
+                        txtDiaChi.Tag = null;
+                        txtDiaChi.ReadOnly = false;
+                        txtDiaChi.TabStop = true;
                     }
                 }
                 else
                 {
                     txtTenKh.Enabled = true;
-                    txtDiaChi.Enabled = true;
                     txtMaSoThue.Enabled = true;
+
+                    // txtDiaChi.Enabled = true;
+                    txtDiaChi.Tag = null;
+                    txtDiaChi.ReadOnly = false;
+                    txtDiaChi.TabStop = true;
                 }
             }
             catch (Exception ex)
