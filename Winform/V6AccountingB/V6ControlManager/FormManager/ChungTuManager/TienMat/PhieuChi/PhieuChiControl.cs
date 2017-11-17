@@ -2326,6 +2326,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             txtMaKh.Enabled = true;
             txtDiaChi.Enabled = true;
+
+            txtDiaChi.ReadOnlyTag(false);
+            txtDiaChi.TabStop = true;
+            txtTenKh.ReadOnlyTag(false);
+            txtTenKh.TabStop = true;
         }
 
         private void KhoaThongTinKH()
@@ -4547,12 +4552,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         txtTenKh.Enabled = false;
                         txtDiaChi.Enabled = false;
                         txtMaSoThue.Enabled = false;
+
+                        txtDiaChi.ReadOnlyTag();
+                        txtDiaChi.TabStop = false;
+                        txtTenKh.ReadOnlyTag();
+                        txtTenKh.TabStop = false;
                     }
                     else
                     {
                         txtTenKh.Enabled = false;
                         txtDiaChi.Enabled = true;
                         //txtMaSoThue.Enabled = true;
+
+                        txtDiaChi.ReadOnlyTag(false);
+                        txtDiaChi.TabStop = true;
+                        txtTenKh.ReadOnlyTag(false);
+                        txtTenKh.TabStop = true;
                     }
                 }
                 else
@@ -4560,6 +4575,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     txtTenKh.Enabled = true;
                     txtDiaChi.Enabled = true;
                     //txtMaSoThue.Enabled = true;
+
+                    txtDiaChi.ReadOnlyTag(false);
+                    txtDiaChi.TabStop = true;
+                    txtTenKh.ReadOnlyTag(false);
+                    txtTenKh.TabStop = true;
                 }
             }
             catch (Exception ex)

@@ -225,7 +225,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
         {
             try
             {
-                var ma_ke = cVitri.Substring(2, 2);
+                var ma_ke = (cVitri == null || cVitri.Length < 4) ? "" : cVitri.Substring(2, 2);
                 _listKeHang[ma_ke].SetDataVitriVatTu(row, cVitri, cMavt);
             }
             catch (Exception ex)

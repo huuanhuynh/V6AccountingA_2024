@@ -2028,19 +2028,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         txtTenKh.Enabled = false;
                         txtMaSoThue.Enabled = false;
 
-                        //txtDiaChi.Enabled = false;
-                        txtDiaChi.Tag = "readonly";
-                        txtDiaChi.ReadOnly = true;
+                        txtDiaChi.ReadOnlyTag();
                         txtDiaChi.TabStop = false;
+                        txtTenKh.ReadOnlyTag();
+                        txtTenKh.TabStop = false;
                     }
                     else
                     {
                         txtTenKh.Enabled = true;
                         txtMaSoThue.Enabled = true;
-                        // txtDiaChi.Enabled = true;
-                        txtDiaChi.Tag = null;
-                        txtDiaChi.ReadOnly = false;
+
+                        txtDiaChi.ReadOnlyTag(false);
                         txtDiaChi.TabStop = true;
+                        txtTenKh.ReadOnlyTag(false);
+                        txtTenKh.TabStop = true;
                     }
                 }
                 else
@@ -2048,10 +2049,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     txtTenKh.Enabled = true;
                     txtMaSoThue.Enabled = true;
 
-                    // txtDiaChi.Enabled = true;
-                    txtDiaChi.Tag = null;
-                    txtDiaChi.ReadOnly = false;
+                    txtDiaChi.ReadOnlyTag(false);
                     txtDiaChi.TabStop = true;
+                    txtTenKh.ReadOnlyTag(false);
+                    txtTenKh.TabStop = true;
                 }
             }
             catch (Exception ex)

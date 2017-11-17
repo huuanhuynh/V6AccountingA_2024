@@ -265,6 +265,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     _data.Rows.Remove(row);
                 }
+
+                //Thêm cột Excel_status
+                if (!_data.Columns.Contains(EXCEL_STATUS))
+                {
+                    _data.Columns.Add(EXCEL_STATUS, typeof (string));
+                }
             }
             catch (Exception ex)
             {
@@ -272,15 +278,28 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        private string EXCEL_STATUS = "EXCEL_STATUS";
+        private string STATUS_CANCEL = "CANCEL", STATUS_INSERT = "INSERT", STATUS_CHECKINFO = "CHECKINFO";
         /// <summary>
         /// Kiểm tra và đánh dấu dữ liệu ko hợp lệ trên gridView.
+        /// <para>Thêm thông tin Excel_status</para>
         /// </summary>
         private void CheckDataInGridView()
         {
             try
             {
                 string adv_al2 = ADV_AL2;
-                if (string.IsNullOrEmpty(adv_al2)) return;
+                if (string.IsNullOrEmpty(adv_al2))
+                {
+                    if (_data.Columns.Contains(EXCEL_STATUS))
+                    {
+                        foreach (DataRow row in _data.Rows)
+                        {
+                            row[EXCEL_STATUS] = STATUS_INSERT;
+                        }
+                    }
+                    return;
+                }
                 var check_parts = adv_al2.Split('~');
                 foreach (DataGridViewRow grow in dataGridView1.Rows)
                 {
@@ -295,9 +314,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //Kiem tra du lieu hop le
                         table = t_f[0];
                         field1 = t_f[1];
-                        if (DuLieuHopLe(grow, field, table, field1)) continue;
-                        
-                        grow.DefaultCellStyle.BackColor = Color.Red;
+                        if (DuLieuHopLe(grow, field, table, field1))
+                        {
+                            grow.Cells[EXCEL_STATUS].Value = STATUS_INSERT;
+                            continue;
+                        }
+                        else
+                        {
+                            grow.DefaultCellStyle.BackColor = Color.Red;
+                            grow.Cells[EXCEL_STATUS].Value = STATUS_CHECKINFO;
+                        }
                         break;
                     }
                 }
@@ -322,9 +348,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (_data != null)
                 {
-                    check_list = CHECK_FIELDS.Split(new []{';'}, StringSplitOptions.RemoveEmptyEntries);
+                    check_field_list = CHECK_FIELDS.Split(new []{';'}, StringSplitOptions.RemoveEmptyEntries);
                     var check_ok = true;
-                    foreach (string field in check_list)
+                    foreach (string field in check_field_list)
                     {
                         if (!_data.Columns.Contains(field))
                         {
@@ -368,7 +394,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private string f9Error = "";
         private string f9ErrorAll = "";
-        private string[] check_list = {};
+        private string[] check_field_list = {};
         private void F9Thread()
         {
             try
@@ -393,8 +419,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     stt++;
                     try
                     {
+                        // Bỏ qua các dòng có đánh dấu khác Insert.
+                        if (_data.Columns.Contains(EXCEL_STATUS))
+                        {
+                            var row_status = row[EXCEL_STATUS].ToString().Trim();
+                            if (row_status != STATUS_INSERT)
+                            {
+                                continue;
+                            }
+                        }
+
+                        // Kiểm tra có các cột cần thiết
                         var check_ok = true;
-                        foreach (string field in check_list)
+                        foreach (string field in check_field_list)
                         {
                             if (row[field] == null || row[field] == DBNull.Value || row[field].ToString().Trim() == "")
                             {
@@ -402,6 +439,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 break;
                             }
                         }
+                        // Nếu kiểm tra ok thì thực hiện F9
                         if (check_ok)
                         {
                             var dataDic = row.ToDataDictionary();
@@ -595,9 +633,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (_data != null)
                 {
-                    check_list = CHECK_FIELDS.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                    check_field_list = CHECK_FIELDS.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                     var check_ok = true;
-                    foreach (string field in check_list)
+                    foreach (string field in check_field_list)
                     {
                         if (!_data.Columns.Contains(field))
                         {
@@ -662,8 +700,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     stt++;
                     try
                     {
+                        // Bỏ qua các dòng có đánh dấu khác Insert.
+                        if (_data.Columns.Contains(EXCEL_STATUS))
+                        {
+                            var row_status = row[EXCEL_STATUS].ToString().Trim();
+                            if (row_status != STATUS_INSERT)
+                            {
+                                continue;
+                            }
+                        }
+
+                        // Kiểm tra có các cột cần thiết
                         var check_ok = true;
-                        foreach (string field in check_list)
+                        foreach (string field in check_field_list)
                         {
                             if (row[field] == null || row[field] == DBNull.Value || row[field].ToString().Trim() == "")
                             {

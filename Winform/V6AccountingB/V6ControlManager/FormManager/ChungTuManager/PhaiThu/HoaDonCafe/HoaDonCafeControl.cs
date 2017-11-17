@@ -1778,12 +1778,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         txtTenKh.Enabled = false;
                         txtDiaChi.Enabled = false;
                         txtMaSoThue.Enabled = false;
+
+                        txtDiaChi.ReadOnlyTag();
+                        txtDiaChi.TabStop = false;
+                        txtTenKh.ReadOnlyTag();
+                        txtTenKh.TabStop = false;
                     }
                     else
                     {
                         txtTenKh.Enabled = true;
                         txtDiaChi.Enabled = true;
                         txtMaSoThue.Enabled = true;
+
+                        txtDiaChi.ReadOnlyTag(false);
+                        txtDiaChi.TabStop = true;
+                        txtTenKh.ReadOnlyTag(false);
+                        txtTenKh.TabStop = true;
                     }
                 }
                 else
@@ -1791,6 +1801,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     txtTenKh.Enabled = true;
                     txtDiaChi.Enabled = true;
                     txtMaSoThue.Enabled = true;
+
+                    txtDiaChi.ReadOnlyTag(false);
+                    txtDiaChi.TabStop = true;
+                    txtTenKh.ReadOnlyTag(false);
+                    txtTenKh.TabStop = true;
                 }
             }
             catch (Exception ex)
