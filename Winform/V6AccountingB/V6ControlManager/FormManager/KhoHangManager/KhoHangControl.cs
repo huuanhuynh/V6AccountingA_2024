@@ -234,7 +234,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                 {
                     var cVitri = row["MA_VITRI"].ToString().Trim();
                     var cMavt = row["MA_VT"].ToString().Trim();
-                    var ma_day = cVitri.Substring(2, 1);//////
+                    var ma_day = (cVitri == null || cVitri.Length < 3) ? "" : cVitri.Substring(2, 1);//////
                     
                     if (_listDay.ContainsKey(ma_day))
                     {

@@ -84,6 +84,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void AddEditControlVirtual_Load(object sender, EventArgs e)
         {
             if (V6Setting.IsDesignTime) return;
+            _ready0 = true;
             //load truoc lop ke thua
             if (Mode == V6Mode.Add)
             {
@@ -99,7 +100,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 DoBeforeView();
             }
-            _ready0 = true;
         }
         
         /// <summary>
