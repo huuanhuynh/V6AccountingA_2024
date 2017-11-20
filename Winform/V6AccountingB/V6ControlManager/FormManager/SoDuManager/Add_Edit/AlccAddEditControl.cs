@@ -1328,7 +1328,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 return;
             }
-            throw new Exception("Add failed.");
+            throw new Exception(V6Text.AddFail);
         }
 
         private void detail1_ClickEdit(object sender)
@@ -1397,7 +1397,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 return;
             }
-            throw new Exception("Edit failed.");
+            throw new Exception(V6Text.EditFail);
         }
         private void detail3_EditHandle(SortedDictionary<string, object> data)
         {
@@ -1405,7 +1405,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 return;
             }
-            throw new Exception("Edit failed.");
+            throw new Exception(V6Text.EditFail);
         }
         private void detail4_EditHandle(SortedDictionary<string, object> data)
         {
@@ -1413,7 +1413,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 return;
             }
-            throw new Exception("Edit failed.");
+            throw new Exception(V6Text.EditFail);
         }
 
         private void Control_Load(object sender, EventArgs e)
@@ -1483,7 +1483,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 return;
             }
-            throw new Exception("Add failed.");
+            throw new Exception(V6Text.AddFail);
         }
         private void detail4_AddHandle(SortedDictionary<string, object> data)
         {
@@ -1491,7 +1491,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 return;
             }
-            throw new Exception("Add failed.");
+            throw new Exception(V6Text.AddFail);
         }
 
         private void detail3_ClickAdd(object sender)

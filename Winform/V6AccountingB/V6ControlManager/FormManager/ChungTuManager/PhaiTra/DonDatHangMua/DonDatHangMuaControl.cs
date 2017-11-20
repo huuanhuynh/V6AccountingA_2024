@@ -3292,7 +3292,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             {
                 return;
             }
-            throw new Exception("Add failed.");
+            throw new Exception(V6Text.AddFail);
         }
         private void hoaDonDetail2_AddHandle(SortedDictionary<string,object> data)
         {
@@ -3300,7 +3300,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             {
                 return;
             }
-            throw new Exception("Add failed.");
+            throw new Exception(V6Text.AddFail);
         }
         
 
@@ -3363,7 +3363,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             {
                 return;
             }
-            throw new Exception("Edit failed.");
+            throw new Exception(V6Text.EditFail);
         }
         private void hoaDonDetail2_EditHandle(SortedDictionary<string,object> data)
         {
@@ -3371,7 +3371,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             {
                 return;
             }
-            throw new Exception("Edit failed.");
+            throw new Exception(V6Text.EditFail);
         }
         private void hoaDonDetail1_DeleteHandle(object sender)
         {

@@ -3292,7 +3292,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 return;
             }
-            throw new Exception("Add failed.");
+            throw new Exception(V6Text.AddFail);
         }
         private void DonDatHangBanDetail1_EditHandle(SortedDictionary<string,object> data)
         {
@@ -3300,7 +3300,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 return;
             }
-            throw new Exception("Edit failed.");
+            throw new Exception(V6Text.EditFail);
         }
         private void DonDatHangBanDetail1_ClickDelete(object sender)
         {
