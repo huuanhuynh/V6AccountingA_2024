@@ -42,7 +42,7 @@
             this.checkBox3 = new V6Controls.V6CheckBox();
             this.checkBox2 = new V6Controls.V6CheckBox();
             this.v6ColorTextBox9 = new V6Controls.V6ColorTextBox();
-            this.v6ColorTextBox8 = new V6Controls.V6ColorTextBox();
+            this.v6ColorTextBox8 = new V6Controls.V6VvarTextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -331,6 +331,7 @@
             this.v6ColorTextBox8.Name = "v6ColorTextBox8";
             this.v6ColorTextBox8.Size = new System.Drawing.Size(457, 23);
             this.v6ColorTextBox8.TabIndex = 1;
+            this.v6ColorTextBox8.VVar = "LOAI_CK";
             // 
             // label20
             // 
@@ -994,7 +995,7 @@
         private V6Controls.V6CheckBox checkBox3;
         private V6Controls.V6CheckBox checkBox2;
         private V6ColorTextBox v6ColorTextBox9;
-        private V6ColorTextBox v6ColorTextBox8;
+        private V6VvarTextBox v6ColorTextBox8;
         private V6VvarTextBox TXTma_ck;
         private V6ColorTextBox v6ColorTextBox16;
         private V6ColorTextBox v6ColorTextBox15;
