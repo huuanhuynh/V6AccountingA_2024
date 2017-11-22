@@ -10,6 +10,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
+                txtMa_loai_ck.ExistRowInTable();
                 System.Collections.Generic.IDictionary<string, object> keys = new System.Collections.Generic.Dictionary<string, object>();
                 keys.Add("MA_DM", TableName);
                 var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
@@ -24,8 +25,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 var v = Categories.IsExistOneCode_List(F8_table, "MA_CK", TXTma_ck.Text);
                 TXTma_ck.Enabled = !v;
+              
 
-                
 
             }
             catch (Exception ex)
@@ -33,6 +34,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 V6Tools.Logger.WriteToLog("ChietKhauAddEditForm DisableWhenEdit " + ex.Message);
             }
         }
+
+        public override void DoBeforeAdd()
+        {
+            txtMa_loai_ck.ExistRowInTable();
+        }
+
         public ChietKhauAddEditForm()
         {
             InitializeComponent();
