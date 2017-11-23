@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
@@ -41,6 +43,23 @@ namespace V6ControlManager.FormManager.ToolManager
                 this.WriteExLog(GetType() + ".MyInit", ex);
             }
             Ready();
+        }
+
+        public override void V6F3Execute()
+        {
+            if (f3count == 3)
+            {
+                f3count = 0;
+                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                {
+                    V6ControlFormHelper.ShowMainMessage("V6 Confirm ......OK....");
+                    grbTools.Visible = true;
+                }
+            }
+            else
+            {
+                
+            }
         }
 
         private void btnTestInvoice_Click(object sender, EventArgs e)
@@ -131,6 +150,27 @@ namespace V6ControlManager.FormManager.ToolManager
         private void btnAmLich_Click(object sender, EventArgs e)
         {
             new FormAmLich().Show(this);
+        }
+
+        private void btnTeamViewer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string file = "TeamViewerQS_en.exe";
+                file = Path.GetFullPath(file);
+                if (File.Exists(file))
+                {
+                    Process.Start(file);
+                }
+                else
+                {
+                    ShowMainMessage(V6Text.NotExist + " " + file);
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
 
        

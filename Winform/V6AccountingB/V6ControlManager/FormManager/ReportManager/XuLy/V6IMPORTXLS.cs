@@ -231,6 +231,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                 }
                 FixData();
+                All_Objects["_data"] = _data;
+                V6ControlsHelper.InvokeMethodDynamic(XLS_program, MA_IMEX + "AFTERFIXDATA", All_Objects);
                 dataGridView1.DataSource = _data;
                 CheckDataInGridView();
             }
