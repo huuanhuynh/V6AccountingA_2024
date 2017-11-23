@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Controls.GridView;
@@ -34,6 +37,7 @@ namespace V6Controls
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
             this.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -49,9 +53,8 @@ namespace V6Controls
             this.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.V6ColorDataGridView_RowPostPaint);
             this.SelectionChanged += new System.EventHandler(this.V6ColorDataGridView_SelectionChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.V6ColorDataGridView_KeyDown);
-            this.CellBeginEdit += V6ColorDataGridView_CellBeginEdit;
-            this.EditingControlShowing += V6ColorDataGridView_EditingControlShowing;
-            //this.DataError += V6ColorDataGridView_DataError;
+            this.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(V6ColorDataGridView_CellBeginEdit);
+            this.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(V6ColorDataGridView_EditingControlShowing);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -68,7 +71,7 @@ namespace V6Controls
             //this.WriteExLog(GetType() + ".OnDataError", e.Exception);
             V6ControlFormHelper.AddLastError(GetType() + ".OnDataError " + e.Exception.Message);
         }
-
+        
         void V6ColorDataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             var textBox = e.Control as TextBox;

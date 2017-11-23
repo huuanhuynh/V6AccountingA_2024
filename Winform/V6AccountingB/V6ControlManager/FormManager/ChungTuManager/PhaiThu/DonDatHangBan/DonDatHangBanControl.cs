@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -1561,6 +1563,311 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 this.ShowErrorMessage(GetType() + ".TinhChietKhauChiTiet: " + ex.Message, "DonDatHangBanControl");
             }
         }
+
+
+        #region ==== TINH KHUYEN MAI ====
+        private string MA_KM_Field = "MA_KMB";
+        private void TinhChietKhauKhuyenMai()
+        {
+            try
+            {
+                if (AD.Rows.Count == 0) return;
+                XoaKhuyenMai();
+                string lstt_rec0 = "",
+                    lma_vt = "",
+                    lso_luong1 = "",
+                    lgia_nt21 = "",
+                    ltien_nt2 = "",
+                    ldvt1 = "",
+                    lgia_nt2 = "",
+                    ltien2 = "",
+                    lgia2 = "",
+                    lma_kho_i = "";
+                foreach (DataRow row in AD.Rows)
+                {
+                    lstt_rec0 += ";" + row["STT_REC0"].ToString().Trim();
+                    lma_vt += ";" + row["MA_VT"].ToString().Trim();
+                    lso_luong1 += ";" + ObjectAndString.ObjectToDecimal(row["SO_LUONG1"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
+                    lgia_nt21 += ";" + ObjectAndString.ObjectToDecimal(row["GIA_NT21"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
+                    ltien_nt2 += ";" + ObjectAndString.ObjectToDecimal(row["TIEN_NT2"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
+                    ldvt1 += ";" + row["DVT1"].ToString().Trim();
+                    lgia_nt2 += ";" + ObjectAndString.ObjectToDecimal(row["GIA_NT2"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
+                    ltien2 += ";" + ObjectAndString.ObjectToDecimal(row["TIEN2"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
+                    lgia2 += ";" + ObjectAndString.ObjectToDecimal(row["GIA2"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
+                    lma_kho_i += ";" + row["MA_KHO_I"].ToString().Trim();
+                }
+                lstt_rec0 = lstt_rec0.Substring(1);
+                lma_vt = lma_vt.Substring(1);
+                lso_luong1 = lso_luong1.Substring(1);
+                lgia_nt21 = lgia_nt21.Substring(1);
+                ltien_nt2 = ltien_nt2.Substring(1);
+                ldvt1 = ldvt1.Substring(1);
+                lgia_nt2 = lgia_nt2.Substring(1);
+                ltien2 = ltien2.Substring(1);
+                lgia2 = lgia2.Substring(1);
+                lma_kho_i = lma_kho_i.Substring(1);
+                //Select cac chuong trinh km trong thoi gian hoa don
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@cStt_rec", _sttRec),
+                    new SqlParameter("@cMode", Mode == V6Mode.Add ? "M" : "S"),
+                    new SqlParameter("@cMa_ct", Invoice.Mact),
+                    new SqlParameter("@dngay_ct", dateNgayCT.Value.ToString("yyyyMMdd")),
+                    new SqlParameter("@cMa_kh", txtMaKh.Text),
+                    new SqlParameter("@cMa_dvcs", txtMadvcs.Text),
+                    new SqlParameter("@cMa_nt", _maNt),
+                    new SqlParameter("@nT_so_luong", txtTongSoLuong.Value),
+                    new SqlParameter("@nTso_luong1", TinhTong(AD, "SO_LUONG1")),
+                    new SqlParameter("@nT_tien_nt2", TinhTong(AD, "TIEN_NT2")),
+                    new SqlParameter("@nT_tien2", TinhTong(AD, "TIEN2")),
+                    new SqlParameter("@Advance", "1=1"),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                    new SqlParameter("@lad01", lstt_rec0),
+                    new SqlParameter("@lad02", lma_vt),
+                    new SqlParameter("@lad03", lso_luong1),
+                    new SqlParameter("@lad04", lgia_nt21),
+                    new SqlParameter("@lad05", ltien_nt2),
+                    new SqlParameter("@lad06", ldvt1),
+                    new SqlParameter("@lad07", lgia_nt2),
+                    new SqlParameter("@lad08", ltien2),
+                    new SqlParameter("@lad09", lgia2),
+                    new SqlParameter("@lad10", lma_kho_i),
+                    new SqlParameter("@Advance2", "1=1"),
+                };
+                DataSet dsctkm = V6BusinessHelper.ExecuteProcedure("VPA_Get_ALKMB", plist);
+                DataTable ctkms = dsctkm.Tables[0];
+                DataTable ctkmcts = dsctkm.Tables[1];
+
+
+
+                return;
+                //Duyệt qua các chương trình KM.
+                //Duyệt qua dữ liệu AD kiểm tra đk khuyễn mãi. Nếu thỏa thêm kq km vào AD (có đánh dấu).
+                foreach (DataRow ctkm in ctkms.Rows)
+                {
+                    TinhKhuyenMai(ctkm, ctkmcts);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".TinhChietKhauKhuyenMai", ex);
+            }
+        }
+
+        private void XoaKhuyenMai()
+        {
+            if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+            try
+            {
+                var removeList = new List<DataRow>();
+                foreach (DataRow row in AD.Rows)
+                {
+                    if (IsKhuyenMai(row))
+                    {
+                        removeList.Add(row);
+                    }
+                }
+
+                foreach (DataRow row in removeList)
+                {
+                    AD.Rows.Remove(row);
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+        }
+
+        private bool IsKhuyenMai(DataRow row)
+        {
+            if (row.Table.Columns.Contains(MA_KM_Field) && ObjectAndString.ObjectToBool(row[MA_KM_Field]))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void TinhKhuyenMai(DataRow ctkm, DataTable ctkmcts)
+        {
+            //Lấy dữ liệu chương trình km lên và kiểm tra.
+            int multiply = ThoaDieuKienKhuyenMai(ctkm);
+            if (multiply > 0)
+            {
+                DataView dv = new DataView(ctkmcts);
+                dv.RowFilter = string.Format("MA_KM='{0}'", ctkm["MA_KM"].ToString().Trim());
+                DataTable ctkmct = dv.ToTable();
+                XuLyThemDetailKhuyenMai(ctkmct, multiply);
+            }
+        }
+
+        private int ThoaDieuKienKhuyenMai(DataRow ctkm)
+        {
+            try
+            {
+                string KIEU_CK = ctkm["KIEU_CK"].ToString().Trim().ToUpper();
+                switch (KIEU_CK)
+                {
+                    case "CTL01":
+                    case "CTL"://Chi tiet so luong
+                        //txtSelect0.Text = "SUM(So_luong)";
+                        //txtFrom1.Text = "AD";
+                        //txtWhere1.Text = "???";
+                        //txtGroupBy1.Text = "stt_rec";
+                        //txtHaving1.Text = "sum(so_luong)>=GT1 ...";
+                        return CheckKM_CTL(ctkm);
+                        break;
+                    case "CTT"://Chi tiet tien
+                        return CheckKM_CTT(ctkm);
+                        break;
+                    case "THL"://Tong hop luong
+                        return CheckKM_THL(ctkm);
+                        break;
+                    case "THT"://Tong hop tien
+                        return CheckKM_THT(ctkm);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// <para>Kiểm tra khuyến mãi theo Chi tiết số lượng.</para>
+        /// <para>Nếu tổng số lượng của một vài chi tiết phù hợp với chương trình km.</para>
+        /// </summary>
+        /// <param name="ctkm"></param>
+        private int CheckKM_CTL(DataRow ctkm)
+        {
+            try
+            {
+                var mavts = ObjectAndString.SplitString(ctkm["WHERE0"].ToString().Trim());
+                string where1 = ctkm["WHERE1"].ToString().Trim();
+                bool and = ctkm["OPER0"].ToString().Trim().ToUpper() == "AND";
+                decimal t_sl1 = ObjectAndString.ObjectToDecimal(ctkm["T_SL1"]);
+                decimal t_sl2 = ObjectAndString.ObjectToDecimal(ctkm["T_SL2"]);
+                decimal t_sl_AD = 0;
+
+                if (and)
+                {
+                    int max = 0;
+                    //Dò qua từng mã mavts, kiểm tra mỗi mã có đủ sl hay ko?
+                    foreach (string mavt in mavts)
+                    {
+                        t_sl_AD = 0;
+                        foreach (DataRow row in AD.Rows)
+                        {
+                            string row_mavt = row["MA_VT"].ToString().Trim().ToUpper();
+                            if (row_mavt == mavt.ToUpper())
+                            {
+                                t_sl_AD += ObjectAndString.ObjectToDecimal(row["SO_LUONG"]);
+                            }
+                        }
+                        //Kiểm tra không đủ trả về 0
+                        if (t_sl2 > 0 && t_sl2 > t_sl1)
+                        {
+                            if (t_sl_AD >= t_sl1 && t_sl_AD <= t_sl2) max = 1;
+                            else return 0;
+                        }
+                        else
+                        {
+                            max = (int)(t_sl_AD / t_sl1);
+                            if (max == 0) return 0;
+                        }
+                    }
+                    return max;
+                }
+                else
+                {
+                    //Dò qua các dòng AD, kiểm tra mã có nằm trong danh sách mavts ko? Nếu có cộng dồn t_sl_AD
+                    foreach (DataRow row in AD.Rows)
+                    {
+                        string row_mavt = row["MA_VT"].ToString().Trim().ToUpper();
+                        foreach (string mavt in mavts)
+                        {
+                            if (row_mavt == mavt.ToUpper())
+                            {
+                                t_sl_AD += ObjectAndString.ObjectToDecimal(row["SO_LUONG"]);
+                            }
+                        }
+                    }
+
+                    if (t_sl2 > 0 && t_sl2 > t_sl1)
+                    {
+                        if (t_sl_AD >= t_sl1 && t_sl_AD <= t_sl2) return 1;
+                    }
+                    else
+                    {
+                        return (int)(t_sl_AD / t_sl1);
+                    }
+                }
+                
+
+                //DataView AD_view = new DataView(AD);
+                //AD_view.RowFilter = where1;
+                //decimal t_sl_AD = TinhTong(AD_view.ToTable(), "SO_LUONG");
+                
+                
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CheckKM_CTL", ex);
+                return -1;
+            }
+            return 0;
+        }
+
+        private int CheckKM_CTT(DataRow ctkm)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CheckKM_CTT", ex);
+                return -1;
+            }
+            return 0;
+        }
+
+        private int CheckKM_THL(DataRow ctkm)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CheckKM_THL", ex);
+                return -1;
+            }
+            return 0;
+        }
+
+        private int CheckKM_THT(DataRow ctkm)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CheckKM_THT", ex);
+                return -1;
+            }
+            return 0;
+        }
+
+        private void XuLyThemDetailKhuyenMai(DataTable ctkmct, int multiply)
+        {
+            ShowMainMessage("Có khuyến mãi: " + multiply);
+        }
+
+        #endregion tinh khuyen mai
 
         private void TinhThue()
         {
@@ -3292,7 +3599,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 return;
             }
-            throw new Exception("Add failed.");
+            throw new Exception(V6Text.AddFail);
         }
         private void DonDatHangBanDetail1_EditHandle(SortedDictionary<string,object> data)
         {
@@ -3300,7 +3607,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 return;
             }
-            throw new Exception("Edit failed.");
+            throw new Exception(V6Text.EditFail);
         }
         private void DonDatHangBanDetail1_ClickDelete(object sender)
         {
@@ -3882,6 +4189,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 this.WriteExLog(GetType() + ".txtTongThueNt_V6LostFocus", ex);
             }
+        }
+
+        private void btnTinhCKKM_Click(object sender, EventArgs e)
+        {
+            TinhChietKhauKhuyenMai();
         }
     }
 }

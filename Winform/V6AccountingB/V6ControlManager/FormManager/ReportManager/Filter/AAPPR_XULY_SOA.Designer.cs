@@ -208,7 +208,7 @@
             // 
             // cboMa_xuly
             // 
-            this.cboMa_xuly.AccessibleName = "MA_XULY";
+            this.cboMa_xuly.AccessibleName = "MA_XULY1";
             this.cboMa_xuly.BackColor = System.Drawing.SystemColors.Window;
             this.cboMa_xuly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMa_xuly.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

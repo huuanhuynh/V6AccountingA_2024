@@ -4168,7 +4168,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             {
                 return;
             }
-            throw new Exception("Add failed.");
+            throw new Exception(V6Text.AddFail);
         }
         private void detail1_EditHandle(SortedDictionary<string,object> data)
         {
@@ -4176,7 +4176,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             {
                 return;
             }
-            throw new Exception("Edit failed.");
+            throw new Exception(V6Text.EditFail);
         }
         private void detail1_ClickDelete(object sender)
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -31,6 +32,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             _maCt = "S0M";
             _table2Name = "Alkmbct";
+            txtLNH_KH1.SetInitFilter("loai_nh=1");
+            txtLNH_KH2.SetInitFilter("loai_nh=2");
+            txtLNH_KH3.SetInitFilter("loai_nh=3");
+            txtLNH_KH4.SetInitFilter("loai_nh=4");
+            txtLNH_KH5.SetInitFilter("loai_nh=5");
+            txtLNH_KH6.SetInitFilter("loai_nh=6");
+            txtLNH_KH9.SetInitFilter("loai_nh=9");
+
             try
             {
                 txtMaCt.Text = _maCt;
@@ -61,7 +70,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private V6NumberTextBox _tslkm, _tu_soluong, _den_soluong, _tu_sotien, _den_sotien,
             _soluong_km, _sotien_km, _pt_ck;
         private V6DateTimeColor _ngayKetThuc, _ngayBatDau;
-        private V6ColorTextBox _ten_vt, _dvt, _ghichu_km, _ghichu_ck;
+        private V6ColorTextBox _ten_vt, _mo_ngoac, _dong_ngoac, _dvt, _ghichu_km, _ghichu_ck;
+        private ComboBox _oper;
 
         private void LoadDetailControls()
         {
@@ -82,6 +92,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 GetThongTinVt();
             };
 
+            _mo_ngoac = new V6ColorTextBox
+            {
+                AccessibleName = "DAU1",
+                GrayText = "Dấu 1",
+                Width = 30,
+            };
             _ten_vt = new V6ColorTextBox
             {
                 AccessibleName = "TEN_VT",
@@ -90,6 +106,21 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 Enabled = false,
                 Tag = "disable"
             };
+            _oper = new V6ComboBox()
+            {
+                AccessibleName = "OPER",
+                //GrayText = "So sánh",
+                Width = 60,
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                Items = { "", "and", "or" }
+            };
+            _dong_ngoac = new V6ColorTextBox
+            {
+                AccessibleName = "DAU2",
+                GrayText = "Dấu 2",
+                Width = 30,
+            };
+            
             _dvt = new V6ColorTextBox
             {
                 AccessibleName = "DVT",
@@ -127,7 +158,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 AccessibleName = "MA_SP",
                 VVar = "ma_vt",
-                GrayText = "Mã sản phẩm",
+                GrayText = "Mã vt KM",
                 //BrotherFields = "TEN_VT",
                 //NeighborFields = "TEN_VT0"
             };
@@ -159,23 +190,26 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             
             var dynamicControlList = new SortedDictionary<int, Control>();
-            
-            dynamicControlList.Add(0, _ma_vt);
-            dynamicControlList.Add(1, _ten_vt);
-            dynamicControlList.Add(2, _dvt);
-            dynamicControlList.Add(3, _tslkm);
-            dynamicControlList.Add(4, _tu_soluong);
-            dynamicControlList.Add(5, _den_soluong);
-            dynamicControlList.Add(6, _tu_sotien);
-            dynamicControlList.Add(7, _den_sotien);
+            int stt = 0;
+            dynamicControlList.Add(stt++, _ma_vt);
+            //dynamicControlList.Add(stt++, _mo_ngoac);
+            dynamicControlList.Add(stt++, _ten_vt);
+            //dynamicControlList.Add(stt++, _oper);
+            //dynamicControlList.Add(stt++, _dong_ngoac);
+            dynamicControlList.Add(stt++, _dvt);
+            dynamicControlList.Add(stt++, _tslkm);
+            dynamicControlList.Add(stt++, _tu_soluong);
+            dynamicControlList.Add(stt++, _den_soluong);
+            dynamicControlList.Add(stt++, _tu_sotien);
+            dynamicControlList.Add(stt++, _den_sotien);
 
-            dynamicControlList.Add(8, _ma_hangkm);
-            dynamicControlList.Add(9, _soluong_km);
+            dynamicControlList.Add(stt++, _ma_hangkm);
+            dynamicControlList.Add(stt++, _soluong_km);
 
-            dynamicControlList.Add(10, _sotien_km);
-            dynamicControlList.Add(11, _ghichu_km);
-            dynamicControlList.Add(12, _pt_ck);
-            dynamicControlList.Add(13, _ghichu_ck);
+            dynamicControlList.Add(stt++, _sotien_km);
+            dynamicControlList.Add(stt++, _ghichu_km);
+            dynamicControlList.Add(stt++, _pt_ck);
+            dynamicControlList.Add(stt++, _ghichu_ck);
             
             
             foreach (KeyValuePair<int, Control> item in dynamicControlList)
@@ -380,6 +414,47 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             V6ControlFormHelper.UpdateDKlist(AD, "NGAY_HL2", dateNgayHL2.Value);
         }
 
+        /// <summary>
+        /// Tạo thêm thông tin trước khi thêm chi tiết.
+        /// </summary>
+        /// <param name="data"></param>
+        private void GenMoreDetails(IDictionary<string, object> data)
+        {
+            try
+            {
+                var gen_where1 = "test where 1";
+                var gen_where2 = "test where 2";
+                string where_sl = "", where_tien = "";
+                if (ObjectAndString.ObjectToDecimal(data["T_SL2"]) != 0)
+                {
+                    where_sl = string.Format(" and (SO_LUONG >= {0} and SO_LUONG <= {1})",
+                        data["T_ST1"].ToString().Replace(",", "."),
+                        data["T_ST2"].ToString().Replace(",", "."));
+                }
+                if (ObjectAndString.ObjectToDecimal(data["T_TIEN2"]) != 0)
+                {
+                    where_tien = string.Format(" and TIEN2 >= {0}",
+                        data["T_TIEN2"].ToString().Replace(",", "."));
+                }
+                gen_where1 = string.Format("MA_VT = {0}{1}{2}",
+                    SqlGenerator.FormatStringValue( "" + data["MA_VT"]),
+                    where_sl,
+                    where_tien);
+                gen_where2 = string.Format("{0} {1} {2} {3}", data["MA_VT"], "=", data["MA_SP"], data["OPER"]);
+                //SqlGenerator.FormatStringValue()
+                //SL from to, tien?
+                //,[t_sl2] <> 0
+                // or     ,[t_tien2] <> 0
+                // ma_vt = 'ma_vt' and so_luong ... and tien2 >= 'tien2'
+                data["GEN_WHERE1"] = gen_where1;
+                data["GEN_WHERE2"] = gen_where2;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GenMoreDetails", ex);
+            }
+        }
+
         #region ==== Detail control events ====
 
         private void XuLyChonVatTu()
@@ -435,7 +510,15 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
-                if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "") error += "\nMã vật tư rỗng.";
+                if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "")
+                {
+                    if (!data.ContainsKey("MA_SP") || data["MA_SP"].ToString().Trim() == "")
+                    {
+                        error += "\nMã vật tư rỗng.";
+                        error += "\nMã vật tư KM rỗng.";
+                    }
+                }
+                
                 
                 if (error == "")
                 {
@@ -498,8 +581,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         //Kiem tra du lieu truoc khi them sua
                         var error = "";
                         if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "")
-                            error += "\nMã vật tư rỗng.";
-                        
+                        {
+                            if (!data.ContainsKey("MA_SP") || data["MA_SP"].ToString().Trim() == "")
+                            {
+                                error += "\nMã vật tư rỗng.";
+                                error += "\nMã vật tư KM rỗng.";
+                            }
+                        }
+
                         if (error == "")
                         {
                             //Sửa dòng dữ liệu.
@@ -594,11 +683,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void detail1_AddHandle(SortedDictionary<string, object> data)
         {
+            GenMoreDetails(data);
             if (ValidateData_Detail(data) && XuLyThemDetail(data))
             {
                 return;
             }
-            throw new Exception("Add failed.");
+            throw new Exception(V6Text.AddFail);
         }
 
         private void detail1_ClickEdit(object sender)
@@ -631,11 +721,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void detail1_EditHandle(SortedDictionary<string, object> data)
         {
+            GenMoreDetails(data);
             if (ValidateData_Detail(data) && XuLySuaDetail(data))
             {
                 return;
             }
-            throw new Exception("Edit failed.");
+            throw new Exception(V6Text.EditFail);
         }
         
         private void SoDu2AddEditControl0_Load(object sender, EventArgs e)
@@ -666,5 +757,120 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             XuLyChonVatTu();
         }
 
+        private void txtKieuCk_V6LostFocus(object sender)
+        {
+            if (sender == txtKieuCk)
+            {
+                XuLyChonKieuCk();
+            }
+
+            GenSql();
+        }
+
+        private void XuLyChonKieuCk()
+        {
+            try
+            {
+                var data = txtKieuCk.Data;
+                if (data == null)
+                {
+                    return;
+                }
+                txtXtype.Text = data["MA_TD1"].ToString().Trim();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XuLyChonKieuCk", ex);
+            }
+        }
+
+        private void GenSql()
+        {
+            try
+            {
+                string xType = txtXtype.Text.ToUpper();
+                string list_in = "";
+
+                switch (xType)
+                {
+                    case "KMCTL"://Chi tiet luong
+                    case "CKCTL"://Chi tiet luong
+                        txtSelect0.Text = "SUM(So_luong)";
+                        txtSelect1.Text = "SUM(So_luong) AS SO_LUONG";
+                        txtFrom1.Text = "AD";
+                        list_in = "," + txtWhere0.Text.Trim() + ",";
+                        list_in = list_in.Replace(",", "','");
+                        list_in = list_in.Substring(2, list_in.Length - 4);
+                        txtWhere1.Text = string.Format("MA_VT in ({0})", list_in);
+                        txtGroupBy1.Text = "stt_rec";
+                        if (txtTSL1.Value != 0)
+                        {
+                            if (txtTSL2.Value == 0)
+                                txtHaving1.Text = " sum(so_luong)>=" + txtTSL1.Value.ToString(CultureInfo.InvariantCulture);
+                            else
+                                txtHaving1.Text = " sum(so_luong)>=" + txtTSL1.Value.ToString(CultureInfo.InvariantCulture) + " and sum(so_luong)<=" + txtTSL2.Value.ToString(CultureInfo.InvariantCulture);
+                        }
+                        break;
+                    case "KMCTT"://Chi tiet tien
+                    case "CKCTT"://Chi tiet tien
+                         txtSelect0.Text = "SUM(TIEN2)";
+                         txtSelect1.Text = "SUM(TIEN2) AS TIEN2";
+                        txtFrom1.Text = "AD";
+                        list_in = "," + txtWhere0.Text.Trim() + ",";
+                        list_in = list_in.Replace(",", "','");
+                        list_in = list_in.Substring(2, list_in.Length - 4);
+                        txtWhere1.Text = string.Format("MA_VT in ({0})", list_in);
+                        txtGroupBy1.Text = "stt_rec";
+                        if (txtTSL1.Value != 0)
+                        {
+                            if (txtTSL2.Value == 0)
+                                txtHaving1.Text = " sum(TIEN2)>=" + txtTSL1.Value.ToString(CultureInfo.InvariantCulture);
+                            else
+                                txtHaving1.Text = " sum(TIEN2)>=" + txtTSL1.Value.ToString(CultureInfo.InvariantCulture) + " and sum(TIEN2)<=" + txtTSL2.Value.ToString(CultureInfo.InvariantCulture);
+                        }
+                        break;
+                    case "KMTHL"://Tong hop luong
+                    case "CKTHL"://Tong hop luong
+                        txtSelect0.Text = "SUM(T_So_luong)";
+                        txtSelect1.Text = "SUM(T_So_luong) AS SO_LUONG";
+                        txtFrom1.Text = "AM";
+                        list_in = "," + txtWhere0.Text.Trim() + ",";
+                        list_in = list_in.Replace(",", "','");
+                        list_in = list_in.Substring(2, list_in.Length - 4);
+                        txtWhere1.Text = string.Format("MA_VT in ({0})", list_in);
+                        txtGroupBy1.Text = "stt_rec";
+                        if (txtTSL1.Value != 0)
+                        {
+                            if (txtTSL2.Value == 0)
+                                txtHaving1.Text = " sum(t_so_luong)>=" + txtTSL1.Value.ToString(CultureInfo.InvariantCulture);
+                            else
+                                txtHaving1.Text = " sum(t_so_luong)>=" + txtTSL1.Value.ToString(CultureInfo.InvariantCulture) + " and sum(t_so_luong)<=" + txtTSL2.Value.ToString(CultureInfo.InvariantCulture);
+                        }
+                        break;
+                    case "KMTHT"://Tong hop tien
+                    case "CKTHT"://Tong hop tien
+                         txtSelect0.Text = "SUM(T_TIEN2)";
+                         txtSelect1.Text = "SUM(T_TIEN2) AS TIEN2";
+                        txtFrom1.Text = "AM";
+                        list_in = "," + txtWhere0.Text.Trim() + ",";
+                        list_in = list_in.Replace(",", "','");
+                        list_in = list_in.Substring(2, list_in.Length - 4);
+                        txtWhere1.Text = string.Format("MA_VT in ({0})", list_in);
+                        txtGroupBy1.Text = "stt_rec";
+                        if (txtTSL1.Value != 0)
+                        {
+                            if (txtTSL2.Value == 0)
+                                txtHaving1.Text = " sum(T_TIEN2)>=" + txtTSL1.Value.ToString(CultureInfo.InvariantCulture);
+                            else
+                                txtHaving1.Text = " sum(T_TIEN2)>=" + txtTSL1.Value.ToString(CultureInfo.InvariantCulture) + " and sum(T_TIEN2)<=" + txtTSL2.Value.ToString(CultureInfo.InvariantCulture);
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GenSql", ex);
+            }
+        }
     }
 }

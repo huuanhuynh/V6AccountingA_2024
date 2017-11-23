@@ -503,7 +503,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 return;
             }
-            throw new Exception("Add failed.");
+            throw new Exception(V6Text.AddFail);
         }
 
         private void detail1_ClickEdit(object sender)
@@ -540,7 +540,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 return;
             }
-            throw new Exception("Edit failed.");
+            throw new Exception(V6Text.EditFail);
         }
         
         private void SoDu2AddEditControl0_Load(object sender, EventArgs e)
