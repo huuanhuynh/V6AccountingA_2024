@@ -1571,8 +1571,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
-                if (AD.Rows.Count == 0) return;
                 XoaKhuyenMai();
+                XoaChietKhau();
+                if (AD.Rows.Count == 0) return;
+                
                 string lstt_rec0 = "",
                     lma_vt = "",
                     lso_luong1 = "",
@@ -1638,9 +1640,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 DataTable ctkms = dsctkm.Tables[0];
                 DataTable ctkmcts = dsctkm.Tables[1];
 
+                DataTable ctkm1 = dsctkm.Tables[2];
+                DataTable ctck1 = dsctkm.Tables[3];
 
+                //Áp dụng khuyến mãi
+                if (ctkm1 != null && ctkm1.Rows.Count > 0)
+                {
+                    ApDungKhuyenMai(ctkm1);
+                }
+
+                //Áp dụng chiết khấu.
+                if (ctck1 != null && ctck1.Rows.Count > 0)
+                {
+                    ApDungChietKhau(ctck1);
+                }
 
                 return;
+                // !!!! Cần lọc where.
+                ctkms = V6BusinessHelper.Select("ALKMB", "*", "").Data;
+                ctkmcts = V6BusinessHelper.Select("ALKMBct", "*", "").Data;
                 //Duyệt qua các chương trình KM.
                 //Duyệt qua dữ liệu AD kiểm tra đk khuyễn mãi. Nếu thỏa thêm kq km vào AD (có đánh dấu).
                 foreach (DataRow ctkm in ctkms.Rows)
@@ -1651,6 +1669,76 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".TinhChietKhauKhuyenMai", ex);
+            }
+        }
+
+        private void ApDungKhuyenMai(DataTable datakmct)
+        {
+            try
+            {
+                if (datakmct != null && datakmct.Rows.Count > 0)
+                    ShowMainMessage("Có khuyến mãi");
+                else return;
+
+                foreach (DataRow row in datakmct.Rows)
+                {
+                    var data = GenDataKM(row.ToDataDictionary());
+                    XuLyThemDetail(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ApDungKhuyenMai", ex);
+            }
+        }
+
+        private void ApDungChietKhau(DataTable ctck1)
+        {
+            try
+            {
+                foreach (DataRow ck_row in ctck1.Rows)
+                {
+                    var ck_stt_rec0 = ck_row["STT_REC0"].ToString().Trim();
+                    var pt_ck = ObjectAndString.ObjectToDecimal(ck_row["PT_CK"]);
+                    var ck = ObjectAndString.ObjectToDecimal(ck_row["CK"]);
+
+                    if (pt_ck == 0 && ck == 0) continue;
+                    
+                    foreach (DataRow ad_row in AD.Rows)
+                    {
+                        var ad_stt_rec0 = ad_row["STT_REC0"].ToString().Trim();
+                        if (ck_stt_rec0 == ad_stt_rec0)
+                        {
+                            if (pt_ck != 0)
+                            {
+                                ad_row["PT_CKI"] = pt_ck;
+                                //Tinh tien ck
+                                if (ck == 0)
+                                {
+                                    ad_row["CK"] = V6BusinessHelper.Vround(
+                                        ObjectAndString.ObjectToDecimal(ad_row["TIEN_2"])*pt_ck/100, M_ROUND);
+                                    
+                                    ad_row["ck_Nt"] = V6BusinessHelper.Vround(
+                                        ObjectAndString.ObjectToDecimal(ad_row["TIEN_NT2"]) * pt_ck / 100, M_ROUND_NT);
+                                    ad_row["CK"] = V6BusinessHelper.Vround(
+                                        ObjectAndString.ObjectToDecimal(ad_row["CK_NT"]) * txtTyGia.Value, M_ROUND);
+
+                                    if (_maNt == _mMaNt0)
+                                    {
+                                        ad_row["CK"] = ad_row["ck_Nt"];
+                                    }
+                                }
+                            }
+                            if (ck != 0) ad_row["CK"] = ck;
+                        }
+                    }
+                }
+
+                dataGridView1.DataSource = AD;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ApDungChietKhau", ex);
             }
         }
 
@@ -1679,9 +1767,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
         }
 
+        private void XoaChietKhau()
+        {
+            if (Mode == V6Mode.Add || Mode == V6Mode.Edit) ;
+            //Xoa theo stt_rec0, ma_kmb, gan ck = 0, pt_cki = 0;
+        }
+
         private bool IsKhuyenMai(DataRow row)
         {
-            if (row.Table.Columns.Contains(MA_KM_Field) && ObjectAndString.ObjectToBool(row[MA_KM_Field]))
+            if (row.Table.Columns.Contains(MA_KM_Field) && row["TANG"].ToString().Trim().ToLower() == "a")
             {
                 return true;
             }
@@ -1697,7 +1791,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 DataView dv = new DataView(ctkmcts);
                 dv.RowFilter = string.Format("MA_KM='{0}'", ctkm["MA_KM"].ToString().Trim());
                 DataTable ctkmct = dv.ToTable();
-                XuLyThemDetailKhuyenMai(ctkmct, multiply);
+                //XuLyThemDetailKhuyenMai(ctkmct, multiply);
             }
         }
 
@@ -1708,6 +1802,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 string KIEU_CK = ctkm["KIEU_CK"].ToString().Trim().ToUpper();
                 switch (KIEU_CK)
                 {
+                    case "KMCTL01":
                     case "CTL01":
                     case "CTL"://Chi tiet so luong
                         //txtSelect0.Text = "SUM(So_luong)";
@@ -1716,6 +1811,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         //txtGroupBy1.Text = "stt_rec";
                         //txtHaving1.Text = "sum(so_luong)>=GT1 ...";
                         return CheckKM_CTL(ctkm);
+                        break;
+                    case "CKCTL01":
+                        DoNothing();
                         break;
                     case "CTT"://Chi tiet tien
                         return CheckKM_CTT(ctkm);
@@ -1862,9 +1960,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             return 0;
         }
 
-        private void XuLyThemDetailKhuyenMai(DataTable ctkmct, int multiply)
+        //private void XuLyThemDetailKhuyenMai(DataTable datakmct, int multiply)
+        //{
+        //  foreach (DataRow row in datakmct.Rows)
+        //  {
+        //      var data = GenDataKM(row.ToDataDictionary());
+        //      XuLyThemDetail(data);
+        //   }
+        //}
+
+        /// <summary>
+        /// Thêm bớt sửa đổi dữ liệu km trước khi thêm.
+        /// </summary>
+        /// <param name="toDataDictionary"></param>
+        /// <returns></returns>
+        private IDictionary<string, object> GenDataKM(IDictionary<string, object> toDataDictionary)
         {
-            ShowMainMessage("Có khuyến mãi: " + multiply);
+            return toDataDictionary;
         }
 
         #endregion tinh khuyen mai
@@ -3355,7 +3467,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
         }
 
-        private bool XuLyThemDetail(SortedDictionary<string, object> data)
+        private bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {
