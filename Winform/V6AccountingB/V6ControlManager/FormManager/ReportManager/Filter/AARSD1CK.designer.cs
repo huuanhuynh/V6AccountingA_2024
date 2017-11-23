@@ -253,7 +253,7 @@
             // 
             // NH_KH1
             // 
-            this.NH_KH1.AccessibleName = "NH_KH1";
+            this.NH_KH1.AccessibleName = "GNH_KH1";
             this.NH_KH1.BackColor = System.Drawing.Color.White;
             this.NH_KH1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NH_KH1.EnterColor = System.Drawing.Color.PaleGreen;
@@ -283,7 +283,7 @@
             // 
             // NH_KH6
             // 
-            this.NH_KH6.AccessibleName = "NH_KH6";
+            this.NH_KH6.AccessibleName = "GNH_KH6";
             this.NH_KH6.BackColor = System.Drawing.Color.White;
             this.NH_KH6.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NH_KH6.EnterColor = System.Drawing.Color.PaleGreen;
@@ -303,7 +303,7 @@
             // 
             // NH_KH2
             // 
-            this.NH_KH2.AccessibleName = "NH_KH2";
+            this.NH_KH2.AccessibleName = "GNH_KH2";
             this.NH_KH2.BackColor = System.Drawing.Color.White;
             this.NH_KH2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NH_KH2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -323,7 +323,7 @@
             // 
             // NH_KH5
             // 
-            this.NH_KH5.AccessibleName = "NH_KH5";
+            this.NH_KH5.AccessibleName = "GNH_KH5";
             this.NH_KH5.BackColor = System.Drawing.Color.White;
             this.NH_KH5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NH_KH5.EnterColor = System.Drawing.Color.PaleGreen;
@@ -343,7 +343,7 @@
             // 
             // NH_KH3
             // 
-            this.NH_KH3.AccessibleName = "NH_KH3";
+            this.NH_KH3.AccessibleName = "GNH_KH3";
             this.NH_KH3.BackColor = System.Drawing.Color.White;
             this.NH_KH3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NH_KH3.EnterColor = System.Drawing.Color.PaleGreen;
@@ -363,7 +363,7 @@
             // 
             // NH_KH4
             // 
-            this.NH_KH4.AccessibleName = "NH_KH4";
+            this.NH_KH4.AccessibleName = "GNH_KH4";
             this.NH_KH4.BackColor = System.Drawing.Color.White;
             this.NH_KH4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NH_KH4.EnterColor = System.Drawing.Color.PaleGreen;

@@ -150,7 +150,7 @@
             // 
             // NHOMTK
             // 
-            this.NHOMTK.AccessibleName = "TK";
+            this.NHOMTK.AccessibleName = "GTK";
             this.NHOMTK.BackColor = System.Drawing.Color.White;
             this.NHOMTK.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NHOMTK.EnterColor = System.Drawing.Color.PaleGreen;
@@ -180,7 +180,7 @@
             // 
             // NHOMKH
             // 
-            this.NHOMKH.AccessibleName = "MA_KH";
+            this.NHOMKH.AccessibleName = "GMA_KH";
             this.NHOMKH.BackColor = System.Drawing.Color.White;
             this.NHOMKH.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NHOMKH.EnterColor = System.Drawing.Color.PaleGreen;
@@ -200,7 +200,7 @@
             // 
             // NHOMVV
             // 
-            this.NHOMVV.AccessibleName = "MA_VV";
+            this.NHOMVV.AccessibleName = "GMA_VV";
             this.NHOMVV.BackColor = System.Drawing.Color.White;
             this.NHOMVV.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NHOMVV.EnterColor = System.Drawing.Color.PaleGreen;

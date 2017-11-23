@@ -389,7 +389,7 @@
             // 
             // NH_VT1
             // 
-            this.NH_VT1.AccessibleName = "NH_VT1";
+            this.NH_VT1.AccessibleName = "GNH_VT1";
             this.NH_VT1.BackColor = System.Drawing.Color.White;
             this.NH_VT1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NH_VT1.EnterColor = System.Drawing.Color.PaleGreen;
@@ -419,7 +419,7 @@
             // 
             // NH_VT6
             // 
-            this.NH_VT6.AccessibleName = "NH_VT6";
+            this.NH_VT6.AccessibleName = "GNH_VT6";
             this.NH_VT6.BackColor = System.Drawing.Color.White;
             this.NH_VT6.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NH_VT6.EnterColor = System.Drawing.Color.PaleGreen;
@@ -439,7 +439,7 @@
             // 
             // NH_VT2
             // 
-            this.NH_VT2.AccessibleName = "NH_VT2";
+            this.NH_VT2.AccessibleName = "GNH_VT2";
             this.NH_VT2.BackColor = System.Drawing.Color.White;
             this.NH_VT2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NH_VT2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -459,7 +459,7 @@
             // 
             // NH_VT5
             // 
-            this.NH_VT5.AccessibleName = "NH_VT5";
+            this.NH_VT5.AccessibleName = "GNH_VT5";
             this.NH_VT5.BackColor = System.Drawing.Color.White;
             this.NH_VT5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NH_VT5.EnterColor = System.Drawing.Color.PaleGreen;
@@ -479,7 +479,7 @@
             // 
             // NH_VT3
             // 
-            this.NH_VT3.AccessibleName = "NH_VT3";
+            this.NH_VT3.AccessibleName = "GNH_VT3";
             this.NH_VT3.BackColor = System.Drawing.Color.White;
             this.NH_VT3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NH_VT3.EnterColor = System.Drawing.Color.PaleGreen;
@@ -499,7 +499,7 @@
             // 
             // NH_VT4
             // 
-            this.NH_VT4.AccessibleName = "NH_VT4";
+            this.NH_VT4.AccessibleName = "GNH_VT4";
             this.NH_VT4.BackColor = System.Drawing.Color.White;
             this.NH_VT4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.NH_VT4.EnterColor = System.Drawing.Color.PaleGreen;
