@@ -14,7 +14,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             txtKieuIn.Text = "1";
 
             F3 = false;
-            F5 = true;
+            F5 = false;
 
             TxtMakho.VvarTextBox.Text = (V6Setting.M_Ma_kho ?? "").Trim();
             

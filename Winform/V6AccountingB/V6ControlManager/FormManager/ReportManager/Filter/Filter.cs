@@ -93,6 +93,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new ASOTH2F5();
                 case "ASOTH6":
                     return new ASOTH6();
+                case "ASOTH6F5":
+                    return new ASOTH6F5();
                 case "ASOTH7":
                     return new ASOTH7();
                 case "ASOTH8":

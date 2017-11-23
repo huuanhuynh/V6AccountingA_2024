@@ -37,12 +37,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtten_loai = new V6Controls.V6LabelTextBox();
             this.checkBox5 = new V6Controls.V6CheckBox();
             this.checkBox4 = new V6Controls.V6CheckBox();
             this.checkBox3 = new V6Controls.V6CheckBox();
             this.checkBox2 = new V6Controls.V6CheckBox();
             this.v6ColorTextBox9 = new V6Controls.V6ColorTextBox();
-            this.v6ColorTextBox8 = new V6Controls.V6ColorTextBox();
+            this.txtMa_loai_ck = new V6Controls.V6VvarTextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -210,12 +211,13 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage1.Controls.Add(this.txtten_loai);
             this.tabPage1.Controls.Add(this.checkBox5);
             this.tabPage1.Controls.Add(this.checkBox4);
             this.tabPage1.Controls.Add(this.checkBox3);
             this.tabPage1.Controls.Add(this.checkBox2);
             this.tabPage1.Controls.Add(this.v6ColorTextBox9);
-            this.tabPage1.Controls.Add(this.v6ColorTextBox8);
+            this.tabPage1.Controls.Add(this.txtMa_loai_ck);
             this.tabPage1.Controls.Add(this.label20);
             this.tabPage1.Controls.Add(this.label19);
             this.tabPage1.Controls.Add(this.label18);
@@ -233,6 +235,19 @@
             this.tabPage1.Size = new System.Drawing.Size(850, 490);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
+            // 
+            // txtten_loai
+            // 
+            this.txtten_loai.AccessibleName = "ten_loai";
+            this.txtten_loai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtten_loai.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtten_loai.Location = new System.Drawing.Point(339, 27);
+            this.txtten_loai.Name = "txtten_loai";
+            this.txtten_loai.ReadOnly = true;
+            this.txtten_loai.Size = new System.Drawing.Size(408, 16);
+            this.txtten_loai.TabIndex = 113;
+            this.txtten_loai.TabStop = false;
+            this.txtten_loai.Tag = "readonly";
             // 
             // checkBox5
             // 
@@ -313,24 +328,26 @@
             this.v6ColorTextBox9.Size = new System.Drawing.Size(457, 23);
             this.v6ColorTextBox9.TabIndex = 3;
             // 
-            // v6ColorTextBox8
+            // txtMa_loai_ck
             // 
-            this.v6ColorTextBox8.AccessibleName = "loai_ck";
-            this.v6ColorTextBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtMa_loai_ck.AccessibleName = "loai_ck";
+            this.txtMa_loai_ck.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox8.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox8.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox8.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox8.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox8.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox8.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox8.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox8.Location = new System.Drawing.Point(216, 27);
-            this.v6ColorTextBox8.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox8.Name = "v6ColorTextBox8";
-            this.v6ColorTextBox8.Size = new System.Drawing.Size(457, 23);
-            this.v6ColorTextBox8.TabIndex = 1;
+            this.txtMa_loai_ck.BackColor = System.Drawing.Color.White;
+            this.txtMa_loai_ck.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMa_loai_ck.BrotherFields = "ten_loai";
+            this.txtMa_loai_ck.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMa_loai_ck.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMa_loai_ck.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMa_loai_ck.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMa_loai_ck.LeaveColor = System.Drawing.Color.White;
+            this.txtMa_loai_ck.Location = new System.Drawing.Point(216, 27);
+            this.txtMa_loai_ck.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMa_loai_ck.Name = "txtMa_loai_ck";
+            this.txtMa_loai_ck.Size = new System.Drawing.Size(116, 23);
+            this.txtMa_loai_ck.TabIndex = 1;
+            this.txtMa_loai_ck.VVar = "LOAI_CK";
             // 
             // label20
             // 
@@ -994,7 +1011,7 @@
         private V6Controls.V6CheckBox checkBox3;
         private V6Controls.V6CheckBox checkBox2;
         private V6ColorTextBox v6ColorTextBox9;
-        private V6ColorTextBox v6ColorTextBox8;
+        private V6VvarTextBox txtMa_loai_ck;
         private V6VvarTextBox TXTma_ck;
         private V6ColorTextBox v6ColorTextBox16;
         private V6ColorTextBox v6ColorTextBox15;
@@ -1020,5 +1037,6 @@
         private V6DateTimeColor v6ColorDateTimePick3;
         private V6DateTimeColor v6ColorDateTimePick2;
         private V6DateTimeColor v6ColorDateTimePick1;
+        private V6LabelTextBox txtten_loai;
     }
 }
