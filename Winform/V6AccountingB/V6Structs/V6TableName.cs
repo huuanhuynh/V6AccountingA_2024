@@ -911,7 +911,7 @@ namespace V6Structs
                 case V6TableName.Alkmb:
                     return lang == "V" ? "Khai báo khung khuyến mãi" : "Promotion list";
                 case V6TableName.Akhungck:
-                    return lang == "V" ? "Khai báo khung chiếc khấu" : "";
+                    return lang == "V" ? "Khai báo khung chiết khấu" : "";
                 case V6TableName.Alkmbct:
                     return lang == "V" ? "Khai báo khung khuyến mãi chi tiết" : "Promotion list details";
 

@@ -226,7 +226,7 @@ namespace V6Tools.V6Convert
         }
 
         /// <summary>
-        /// chuyển một object thành chuỗi hiển thị.
+        /// chuyển một object thành chuỗi hiển thị. (chưa có kiểu số)
         /// </summary>
         /// <param name="o"></param>
         /// <param name="dateFormat">Chỉ có tác dụng khi o đưa vào kiểu ngày. Cần update thêm cho kiểu số</param>
@@ -235,6 +235,10 @@ namespace V6Tools.V6Convert
         {
             if (o == null || o == DBNull.Value) return "";
             string result = "";
+            if (IsNumberType(o.GetType()))
+            {
+                //Chua xu ly.
+            }
             switch (o.GetType().ToString())
             {
                 case "System.DateTime":

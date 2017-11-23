@@ -32,9 +32,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
@@ -45,6 +45,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.STT_REC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT_REC0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabKhac = new System.Windows.Forms.TabPage();
+            this.Txtngay_ct2 = new V6Controls.V6DateTimeColor();
+            this.txtngay_ct1 = new V6Controls.V6DateTimeColor();
+            this.v6Label26 = new V6Controls.V6Label();
+            this.v6Label25 = new V6Controls.V6Label();
             this.txtGhiChuChung = new V6Controls.V6ColorTextBox();
             this.txtSoCtKemt = new V6Controls.V6ColorTextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -114,7 +118,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.chkSuaPtck = new V6Controls.V6CheckBox();
             this.txtThueSuat = new V6Controls.V6NumberTextBox();
             this.txtPtCk = new V6Controls.V6NumberTextBox();
-            this.btnChonPX = new V6Controls.Controls.V6FormButton();
+            this.btnTinhCKKM = new V6Controls.Controls.V6FormButton();
             this.lblTongSoDong = new V6Controls.V6Label();
             this.v6Label20 = new V6Controls.V6Label();
             this.v6Label30 = new V6Controls.V6Label();
@@ -196,10 +200,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.v6Label25 = new V6Controls.V6Label();
-            this.v6Label26 = new V6Controls.V6Label();
-            this.txtngay_ct1 = new V6Controls.V6DateTimeColor();
-            this.Txtngay_ct2 = new V6Controls.V6DateTimeColor();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -271,19 +271,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MA_VT,
@@ -295,8 +296,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 142);
             this.dataGridView1.TabIndex = 1;
@@ -389,6 +390,70 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.tabKhac.Size = new System.Drawing.Size(879, 194);
             this.tabKhac.TabIndex = 1;
             this.tabKhac.Text = "Khác";
+            // 
+            // Txtngay_ct2
+            // 
+            this.Txtngay_ct2.AccessibleName = "NGAY_CT2";
+            this.Txtngay_ct2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.Txtngay_ct2.BackColor = System.Drawing.Color.White;
+            this.Txtngay_ct2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.Txtngay_ct2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtngay_ct2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtngay_ct2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.Txtngay_ct2.GrayText = null;
+            this.Txtngay_ct2.HoverColor = System.Drawing.Color.Yellow;
+            this.Txtngay_ct2.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.Txtngay_ct2.LeaveColor = System.Drawing.Color.White;
+            this.Txtngay_ct2.Location = new System.Drawing.Point(673, 58);
+            this.Txtngay_ct2.Margin = new System.Windows.Forms.Padding(5);
+            this.Txtngay_ct2.Name = "Txtngay_ct2";
+            this.Txtngay_ct2.Size = new System.Drawing.Size(102, 20);
+            this.Txtngay_ct2.StringValue = "__/__/____";
+            this.Txtngay_ct2.TabIndex = 133;
+            this.Txtngay_ct2.Text = "__/__/____";
+            // 
+            // txtngay_ct1
+            // 
+            this.txtngay_ct1.AccessibleName = "NGAY_CT1";
+            this.txtngay_ct1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtngay_ct1.BackColor = System.Drawing.Color.White;
+            this.txtngay_ct1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtngay_ct1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtngay_ct1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtngay_ct1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtngay_ct1.GrayText = null;
+            this.txtngay_ct1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtngay_ct1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtngay_ct1.LeaveColor = System.Drawing.Color.White;
+            this.txtngay_ct1.Location = new System.Drawing.Point(673, 35);
+            this.txtngay_ct1.Margin = new System.Windows.Forms.Padding(5);
+            this.txtngay_ct1.Name = "txtngay_ct1";
+            this.txtngay_ct1.Size = new System.Drawing.Size(102, 20);
+            this.txtngay_ct1.StringValue = "__/__/____";
+            this.txtngay_ct1.TabIndex = 132;
+            this.txtngay_ct1.Text = "__/__/____";
+            // 
+            // v6Label26
+            // 
+            this.v6Label26.AccessibleDescription = "ASOCTSOAL00004";
+            this.v6Label26.AutoSize = true;
+            this.v6Label26.Location = new System.Drawing.Point(585, 60);
+            this.v6Label26.Name = "v6Label26";
+            this.v6Label26.Size = new System.Drawing.Size(74, 13);
+            this.v6Label26.TabIndex = 131;
+            this.v6Label26.Text = "Ngày kết thúc";
+            // 
+            // v6Label25
+            // 
+            this.v6Label25.AccessibleDescription = "ASOCTSOAL00004";
+            this.v6Label25.AutoSize = true;
+            this.v6Label25.Location = new System.Drawing.Point(584, 39);
+            this.v6Label25.Name = "v6Label25";
+            this.v6Label25.Size = new System.Drawing.Size(72, 13);
+            this.v6Label25.TabIndex = 8;
+            this.v6Label25.Text = "Ngày bắt đầu";
             // 
             // txtGhiChuChung
             // 
@@ -1276,7 +1341,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.group4.Controls.Add(this.chkSuaPtck);
             this.group4.Controls.Add(this.txtThueSuat);
             this.group4.Controls.Add(this.txtPtCk);
-            this.group4.Controls.Add(this.btnChonPX);
+            this.group4.Controls.Add(this.btnTinhCKKM);
             this.group4.Controls.Add(this.lblTongSoDong);
             this.group4.Controls.Add(this.v6Label20);
             this.group4.Controls.Add(this.v6Label30);
@@ -1597,14 +1662,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             131072});
             this.txtPtCk.V6LostFocus += new V6Controls.ControlEventHandle(this.txtPtCk_V6LostFocus);
             // 
-            // btnChonPX
+            // btnTinhCKKM
             // 
-            this.btnChonPX.Location = new System.Drawing.Point(251, 27);
-            this.btnChonPX.Name = "btnChonPX";
-            this.btnChonPX.Size = new System.Drawing.Size(75, 23);
-            this.btnChonPX.TabIndex = 2;
-            this.btnChonPX.Text = "Chọn PX";
-            this.btnChonPX.UseVisualStyleBackColor = true;
+            this.btnTinhCKKM.Location = new System.Drawing.Point(251, 27);
+            this.btnTinhCKKM.Name = "btnTinhCKKM";
+            this.btnTinhCKKM.Size = new System.Drawing.Size(100, 23);
+            this.btnTinhCKKM.TabIndex = 2;
+            this.btnTinhCKKM.Text = "Chiết khấu KM";
+            this.btnTinhCKKM.UseVisualStyleBackColor = true;
+            this.btnTinhCKKM.Click += new System.EventHandler(this.btnTinhCKKM_Click);
             // 
             // lblTongSoDong
             // 
@@ -2731,70 +2797,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // v6Label25
-            // 
-            this.v6Label25.AccessibleDescription = "ASOCTSOAL00004";
-            this.v6Label25.AutoSize = true;
-            this.v6Label25.Location = new System.Drawing.Point(584, 39);
-            this.v6Label25.Name = "v6Label25";
-            this.v6Label25.Size = new System.Drawing.Size(72, 13);
-            this.v6Label25.TabIndex = 8;
-            this.v6Label25.Text = "Ngày bắt đầu";
-            // 
-            // v6Label26
-            // 
-            this.v6Label26.AccessibleDescription = "ASOCTSOAL00004";
-            this.v6Label26.AutoSize = true;
-            this.v6Label26.Location = new System.Drawing.Point(585, 60);
-            this.v6Label26.Name = "v6Label26";
-            this.v6Label26.Size = new System.Drawing.Size(74, 13);
-            this.v6Label26.TabIndex = 131;
-            this.v6Label26.Text = "Ngày kết thúc";
-            // 
-            // txtngay_ct1
-            // 
-            this.txtngay_ct1.AccessibleName = "NGAY_CT1";
-            this.txtngay_ct1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtngay_ct1.BackColor = System.Drawing.Color.White;
-            this.txtngay_ct1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtngay_ct1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtngay_ct1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtngay_ct1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtngay_ct1.GrayText = null;
-            this.txtngay_ct1.HoverColor = System.Drawing.Color.Yellow;
-            this.txtngay_ct1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtngay_ct1.LeaveColor = System.Drawing.Color.White;
-            this.txtngay_ct1.Location = new System.Drawing.Point(673, 35);
-            this.txtngay_ct1.Margin = new System.Windows.Forms.Padding(5);
-            this.txtngay_ct1.Name = "txtngay_ct1";
-            this.txtngay_ct1.Size = new System.Drawing.Size(102, 20);
-            this.txtngay_ct1.StringValue = "__/__/____";
-            this.txtngay_ct1.TabIndex = 132;
-            this.txtngay_ct1.Text = "__/__/____";
-            // 
-            // Txtngay_ct2
-            // 
-            this.Txtngay_ct2.AccessibleName = "NGAY_CT2";
-            this.Txtngay_ct2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.Txtngay_ct2.BackColor = System.Drawing.Color.White;
-            this.Txtngay_ct2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.Txtngay_ct2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.Txtngay_ct2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.Txtngay_ct2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.Txtngay_ct2.GrayText = null;
-            this.Txtngay_ct2.HoverColor = System.Drawing.Color.Yellow;
-            this.Txtngay_ct2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.Txtngay_ct2.LeaveColor = System.Drawing.Color.White;
-            this.Txtngay_ct2.Location = new System.Drawing.Point(673, 58);
-            this.Txtngay_ct2.Margin = new System.Windows.Forms.Padding(5);
-            this.Txtngay_ct2.Name = "Txtngay_ct2";
-            this.Txtngay_ct2.Size = new System.Drawing.Size(102, 20);
-            this.Txtngay_ct2.StringValue = "__/__/____";
-            this.Txtngay_ct2.TabIndex = 133;
-            this.Txtngay_ct2.Text = "__/__/____";
-            // 
             // DonDatHangBanControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2895,7 +2897,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private V6Controls.V6CheckBox chkSuaPtck;
         private V6NumberTextBox txtThueSuat;
         private V6NumberTextBox txtPtCk;
-        private V6FormButton btnChonPX;
+        private V6FormButton btnTinhCKKM;
         private V6Label lblTongSoDong;
         private V6Label v6Label19;
         private V6VvarTextBox txtMa_thue;
