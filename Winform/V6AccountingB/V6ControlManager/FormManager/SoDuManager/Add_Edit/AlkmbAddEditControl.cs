@@ -1233,11 +1233,18 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 string xType = txtXtype.Text.ToUpper();
                 string list_in = "";
+                //KMCTL_LC,KMCTL_PC,KMTHT_LC,KMTHL_LC
+                //CKCTT_PC,CKCTL_PC,CKTHL_PC,CKTHT_PC
+                //GGCTT_TT,GGCTT_PC,GGTHT_TT
+                //KCCTL_LC
 
                 switch (xType)
                 {
-                    case "KMCTL"://Chi tiet luong
-                    case "CKCTL"://Chi tiet luong
+                    case "KMCTL_LC"://Chi tiet luong
+                    case "KMCTL_PC"://Chi tiet luong
+                    case "CKCTL_PC"://Chi tiet luong
+                    case "KCCTL_LC"://Chi tiet luong
+
                         txtSelect0.Text = "SUM(So_luong)";
                         txtSelect1.Text = "SUM(So_luong) AS SO_LUONG";
                         txtFrom1.Text = "AD";
@@ -1254,8 +1261,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                 txtHaving1.Text = " sum(so_luong)>=" + txtTSL1.Value.ToString(CultureInfo.InvariantCulture) + " and sum(so_luong)<=" + txtTSL2.Value.ToString(CultureInfo.InvariantCulture);
                         }
                         break;
-                    case "KMCTT"://Chi tiet tien
-                    case "CKCTT"://Chi tiet tien
+                    case "CKCTT_PC"://Chi tiet tien
+                    case "GGCTT_PC"://Chi tiet tien
+                    case "GGCTT_TT"://Chi tiet tien
+
                          txtSelect0.Text = "SUM(TIEN2)";
                          txtSelect1.Text = "SUM(TIEN2) AS TIEN2";
                         txtFrom1.Text = "AD";
@@ -1272,8 +1281,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                 txtHaving1.Text = " sum(TIEN2)>=" + txtTSL1.Value.ToString(CultureInfo.InvariantCulture) + " and sum(TIEN2)<=" + txtTSL2.Value.ToString(CultureInfo.InvariantCulture);
                         }
                         break;
-                    case "KMTHL"://Tong hop luong
-                    case "CKTHL"://Tong hop luong
+                    case "KMTHL_LC"://Tong hop luong
+                    case "CKTHL_PC"://Tong hop luong
+
+                        
                         txtSelect0.Text = "SUM(T_So_luong)";
                         txtSelect1.Text = "SUM(T_So_luong) AS SO_LUONG";
                         txtFrom1.Text = "AM";
@@ -1290,8 +1301,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                 txtHaving1.Text = " sum(t_so_luong)>=" + txtTSL1.Value.ToString(CultureInfo.InvariantCulture) + " and sum(t_so_luong)<=" + txtTSL2.Value.ToString(CultureInfo.InvariantCulture);
                         }
                         break;
-                    case "KMTHT"://Tong hop tien
-                    case "CKTHT"://Tong hop tien
+                    case "KMTHT_LC"://Tong hop tien
+                    case "CKTHT_PC"://Tong hop tien
+                    case "GGTHT_TT"://Tong hop tien
                          txtSelect0.Text = "SUM(T_TIEN2)";
                          txtSelect1.Text = "SUM(T_TIEN2) AS TIEN2";
                         txtFrom1.Text = "AM";

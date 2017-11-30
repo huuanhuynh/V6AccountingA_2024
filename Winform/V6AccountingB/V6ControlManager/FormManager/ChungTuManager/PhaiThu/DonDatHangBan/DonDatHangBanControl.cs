@@ -1694,6 +1694,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 DataTable ctkm1th = dsctkm.Tables[2];
                 DataTable ctck1th = dsctkm.Tables[3];
 
+                //Hiển thị chọn chương trình. [Tag]
+                if ((V6Options.M_SOA_TINH_CK_KM == "02" || V6Options.M_SOA_TINH_CK_KM == "12")
+                    && (ctkm1th.Rows.Count + ctck1th.Rows.Count > 1))
+                {
+                    new ChonKhuyenMaiForm(dsctkm).ShowDialog(this);
+                }
+
                 //Áp dụng khuyến mãi.
                 if (ctkm1 != null && ctkm1.Rows.Count > 0)
                 {
@@ -1733,6 +1740,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 decimal tong_giam = 0m, tong_giam_nt = 0m;
                 foreach (DataRow row in ctck1th.Rows)
                 {
+                    var tag = (row["tag"] ?? "").ToString().Trim();
+                    if (tag == "") continue;
                     tong_giam += ObjectAndString.ObjectToDecimal(row["T_GG"]);
                     tong_giam_nt += ObjectAndString.ObjectToDecimal(row["T_GG_NT"]);
                 }
@@ -1767,8 +1776,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                 foreach (DataRow row in datakmct.Rows)
                 {
+                    var tag = (row["tag"]??"").ToString().Trim();
+                    if (tag == "") continue;
                     var data = GenDataKM(row.ToDataDictionary());
-                    if(IsOkDataKM(data)) XuLyThemDetail(data);
+                    if (IsOkDataKM(data)) XuLyThemDetail(data);
                 }
             }
             catch (Exception ex)
@@ -1810,6 +1821,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                 foreach (DataRow ck_row in ctck1.Rows)
                 {
+                    var tag = (ck_row["tag"] ?? "").ToString().Trim();
+                    if (tag == "") continue;
+
                     var ck_ma_km = ck_row["MA_KM"].ToString().Trim();
                     var ck_stt_rec0 = ck_row["STT_REC0"].ToString().Trim();
                     var pt_ck = ObjectAndString.ObjectToDecimal(ck_row["PT_CK"]);
@@ -1900,203 +1914,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     row["CK_NT"] = 0m;
                 }
             }
+
+            txtTongGiam.Value = 0;
+            txtTongGiamNt.Value = 0;
         }
 
         private bool IsKhuyenMai(DataRow row)
         {
-            if (row.Table.Columns.Contains(MA_KM_Field) && row["TANG"].ToString().Trim().ToLower() == "a")
+            if (row.Table.Columns.Contains(MA_KM_Field)
+                && (row[MA_KM_Field]??"").ToString().Trim() != ""
+                && row["TANG"].ToString().Trim().ToLower() == "a")
             {
                 return true;
             }
             return false;
         }
-
-        private void TinhKhuyenMai(DataRow ctkm, DataTable ctkmcts)
-        {
-            //Lấy dữ liệu chương trình km lên và kiểm tra.
-            int multiply = ThoaDieuKienKhuyenMai(ctkm);
-            if (multiply > 0)
-            {
-                DataView dv = new DataView(ctkmcts);
-                dv.RowFilter = string.Format("MA_KM='{0}'", ctkm["MA_KM"].ToString().Trim());
-                DataTable ctkmct = dv.ToTable();
-                //XuLyThemDetailKhuyenMai(ctkmct, multiply);
-            }
-        }
-
-        private int ThoaDieuKienKhuyenMai(DataRow ctkm)
-        {
-            try
-            {
-                string KIEU_CK = ctkm["KIEU_CK"].ToString().Trim().ToUpper();
-                switch (KIEU_CK)
-                {
-                    case "KMCTL01":
-                    case "CTL01":
-                    case "CTL"://Chi tiet so luong
-                        //txtSelect0.Text = "SUM(So_luong)";
-                        //txtFrom1.Text = "AD";
-                        //txtWhere1.Text = "???";
-                        //txtGroupBy1.Text = "stt_rec";
-                        //txtHaving1.Text = "sum(so_luong)>=GT1 ...";
-                        return CheckKM_CTL(ctkm);
-                        break;
-                    case "CKCTL01":
-                        DoNothing();
-                        break;
-                    case "CTT"://Chi tiet tien
-                        return CheckKM_CTT(ctkm);
-                        break;
-                    case "THL"://Tong hop luong
-                        return CheckKM_THL(ctkm);
-                        break;
-                    case "THT"://Tong hop tien
-                        return CheckKM_THT(ctkm);
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                return -1;
-            }
-            return 0;
-        }
-
-        /// <summary>
-        /// <para>Kiểm tra khuyến mãi theo Chi tiết số lượng.</para>
-        /// <para>Nếu tổng số lượng của một vài chi tiết phù hợp với chương trình km.</para>
-        /// </summary>
-        /// <param name="ctkm"></param>
-        private int CheckKM_CTL(DataRow ctkm)
-        {
-            try
-            {
-                var mavts = ObjectAndString.SplitString(ctkm["WHERE0"].ToString().Trim());
-                string where1 = ctkm["WHERE1"].ToString().Trim();
-                bool and = ctkm["OPER0"].ToString().Trim().ToUpper() == "AND";
-                decimal t_sl1 = ObjectAndString.ObjectToDecimal(ctkm["T_SL1"]);
-                decimal t_sl2 = ObjectAndString.ObjectToDecimal(ctkm["T_SL2"]);
-                decimal t_sl_AD = 0;
-
-                if (and)
-                {
-                    int max = 0;
-                    //Dò qua từng mã mavts, kiểm tra mỗi mã có đủ sl hay ko?
-                    foreach (string mavt in mavts)
-                    {
-                        t_sl_AD = 0;
-                        foreach (DataRow row in AD.Rows)
-                        {
-                            string row_mavt = row["MA_VT"].ToString().Trim().ToUpper();
-                            if (row_mavt == mavt.ToUpper())
-                            {
-                                t_sl_AD += ObjectAndString.ObjectToDecimal(row["SO_LUONG"]);
-                            }
-                        }
-                        //Kiểm tra không đủ trả về 0
-                        if (t_sl2 > 0 && t_sl2 > t_sl1)
-                        {
-                            if (t_sl_AD >= t_sl1 && t_sl_AD <= t_sl2) max = 1;
-                            else return 0;
-                        }
-                        else
-                        {
-                            max = (int)(t_sl_AD / t_sl1);
-                            if (max == 0) return 0;
-                        }
-                    }
-                    return max;
-                }
-                else
-                {
-                    //Dò qua các dòng AD, kiểm tra mã có nằm trong danh sách mavts ko? Nếu có cộng dồn t_sl_AD
-                    foreach (DataRow row in AD.Rows)
-                    {
-                        string row_mavt = row["MA_VT"].ToString().Trim().ToUpper();
-                        foreach (string mavt in mavts)
-                        {
-                            if (row_mavt == mavt.ToUpper())
-                            {
-                                t_sl_AD += ObjectAndString.ObjectToDecimal(row["SO_LUONG"]);
-                            }
-                        }
-                    }
-
-                    if (t_sl2 > 0 && t_sl2 > t_sl1)
-                    {
-                        if (t_sl_AD >= t_sl1 && t_sl_AD <= t_sl2) return 1;
-                    }
-                    else
-                    {
-                        return (int)(t_sl_AD / t_sl1);
-                    }
-                }
-                
-
-                //DataView AD_view = new DataView(AD);
-                //AD_view.RowFilter = where1;
-                //decimal t_sl_AD = TinhTong(AD_view.ToTable(), "SO_LUONG");
-                
-                
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".CheckKM_CTL", ex);
-                return -1;
-            }
-            return 0;
-        }
-
-        private int CheckKM_CTT(DataRow ctkm)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".CheckKM_CTT", ex);
-                return -1;
-            }
-            return 0;
-        }
-
-        private int CheckKM_THL(DataRow ctkm)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".CheckKM_THL", ex);
-                return -1;
-            }
-            return 0;
-        }
-
-        private int CheckKM_THT(DataRow ctkm)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".CheckKM_THT", ex);
-                return -1;
-            }
-            return 0;
-        }
-
-        //private void XuLyThemDetailKhuyenMai(DataTable datakmct, int multiply)
-        //{
-        //  foreach (DataRow row in datakmct.Rows)
-        //  {
-        //      var data = GenDataKM(row.ToDataDictionary());
-        //      XuLyThemDetail(data);
-        //   }
-        //}
+        
 
         /// <summary>
         /// Thêm bớt sửa đổi dữ liệu km trước khi thêm.
@@ -3112,6 +2945,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 }
                 else
                 {
+                    if ((V6Options.M_SOA_TINH_CK_KM == "11"
+                        || V6Options.M_SOA_TINH_CK_KM == "12")
+                        && !ck_km)
+                    {
+                        TinhChietKhauKhuyenMai();
+                        TinhTongThanhToan("TinhCK_KM_LUU");
+                    }
+
                     V6ControlFormHelper.RemoveRunningList(_sttRec);
 
                     addDataAM = PreparingDataAM(Invoice);
@@ -4434,10 +4275,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
         }
 
+        private bool ck_km = false;
         private void btnTinhCKKM_Click(object sender, EventArgs e)
         {
-            TinhChietKhauKhuyenMai();
-            TinhTongThanhToan("btnTinhCKKM_Click");
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            if (shift_is_down)
+            {
+                if (this.ShowConfirmMessage("Có chắc bạn muốn xóa Chiết khấu - Khuyến mãi?") == DialogResult.Yes)
+                {
+                    XoaKhuyenMai();
+                    XoaChietKhau();
+                    ck_km = false;
+                    TinhTongThanhToan("btnTinhCKKM_Click xoa ck_km");
+                }
+            }
+            else
+            {
+                TinhChietKhauKhuyenMai();
+                ck_km = true;
+                TinhTongThanhToan("btnTinhCKKM_Click");
+            }
         }
     }
 }

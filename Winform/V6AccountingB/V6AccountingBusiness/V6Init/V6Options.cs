@@ -43,7 +43,7 @@ namespace V6Init
         
 
         /// <summary>
-        /// [UPPER_FIELD]
+        /// [UPPER_FIELD] = Trimmed value
         /// </summary>
         public static SortedDictionary<string, string> V6OptionValues
         {
@@ -239,6 +239,7 @@ namespace V6Init
                 return V6OptionValues["M_CHK_XUAT"];
             }
         }
+        
         public static int M_IP_TIEN
         {
             get
@@ -335,6 +336,21 @@ namespace V6Init
             {
                 if (V6OptionValues == null) return 0;
                 return Convert.ToInt32(V6OptionValues["M_LOCK_TIME"]);
+            }
+        }
+        /// <summary>
+        /// Kiểu tính ck_km
+        /// <para>01: Không tự động, tự chọn hết khi tính.</para>
+        /// <para>02: Không tự động, kq>2 hiển thị form chọn chương trình.</para>
+        /// <para>11: Tự động, tự chọn hết khi tính.</para>
+        /// <para>12: Tự động, kq>2 hiển thị form chọn chương trình.</para>
+        /// </summary>
+        public static string M_SOA_TINH_CK_KM
+        {
+            get
+            {
+                if (V6OptionValues == null) return "";
+                return V6OptionValues["M_SOA_TINH_CK_KM"];
             }
         }
 

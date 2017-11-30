@@ -290,6 +290,12 @@
     <Compile Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\TimBaoGiaForm.Designer.cs">
       <DependentUpon>TimBaoGiaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\ChonKhuyenMaiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\ChonKhuyenMaiForm.Designer.cs">
+      <DependentUpon>ChonKhuyenMaiForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5061,6 +5067,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\TimBaoGiaForm.resx">
       <DependentUpon>TimBaoGiaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\ChonKhuyenMaiForm.resx">
+      <DependentUpon>ChonKhuyenMaiForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\DonDatHangBanControl.resx">
       <DependentUpon>DonDatHangBanControl.cs</DependentUpon>

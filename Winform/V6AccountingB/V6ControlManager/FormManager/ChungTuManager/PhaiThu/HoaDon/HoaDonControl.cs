@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -4548,6 +4549,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
                 else
                 {
+                    if ((V6Options.M_SOA_TINH_CK_KM == "11"
+                        || V6Options.M_SOA_TINH_CK_KM == "12")
+                        && !ck_km)
+                    {
+                        TinhChietKhauKhuyenMai();
+                        TinhTongThanhToan("TinhCK_KM_LUU");
+                    }
+
                     V6ControlFormHelper.RemoveRunningList(_sttRec);
 
                     addDataAM = PreparingDataAM(Invoice);
@@ -5092,7 +5101,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
         
-        private bool XuLyThemDetail(SortedDictionary<string, object> data)
+        private bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {
@@ -6748,6 +6757,360 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.ShowErrorMessage(GetType() + ".chonpx_AcceptSelectEvent: " + ex.Message);
             }
         }
+
+        private bool ck_km = false;
+        private void btnTinhCKKM_Click(object sender, EventArgs e)
+        {
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            if (shift_is_down)
+            {
+                if (this.ShowConfirmMessage("Có chắc bạn muốn xóa Chiết khấu - Khuyến mãi?") == DialogResult.Yes)
+                {
+                    XoaKhuyenMai();
+                    XoaChietKhau();
+                    ck_km = false;
+                    TinhTongThanhToan("btnTinhCKKM_Click xoa ck_km");
+                }
+            }
+            else
+            {
+                TinhChietKhauKhuyenMai();
+                ck_km = true;
+                TinhTongThanhToan("btnTinhCKKM_Click");
+            }
+        }
+
+        #region ==== TINH KHUYEN MAI ====
+        private string MA_KM_Field = "MA_KMB";
+        private void TinhChietKhauKhuyenMai()
+        {
+            try
+            {
+                XoaKhuyenMai();
+                XoaChietKhau();
+                if (AD.Rows.Count == 0) return;
+
+                string lstt_rec0 = "",
+                    lma_vt = "",
+                    lso_luong1 = "",
+                    lso_luong = "",
+                    lgia_nt21 = "",
+                    ltien_nt2 = "",
+                    ldvt1 = "",
+                    lgia_nt2 = "",
+                    ltien2 = "",
+                    lgia2 = "",
+                    lma_kho_i = "";
+                foreach (DataRow row in AD.Rows)
+                {
+                    lstt_rec0 += ";" + row["STT_REC0"].ToString().Trim();
+                    lma_vt += ";" + row["MA_VT"].ToString().Trim();
+                    lso_luong1 += ";" + ObjectAndString.ObjectToDecimal(row["SO_LUONG1"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
+                    lso_luong += ";" + ObjectAndString.ObjectToDecimal(row["SO_LUONG"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
+                    lgia_nt21 += ";" + ObjectAndString.ObjectToDecimal(row["GIA_NT21"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
+                    ltien_nt2 += ";" + ObjectAndString.ObjectToDecimal(row["TIEN_NT2"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
+                    ldvt1 += ";" + row["DVT1"].ToString().Trim();
+                    lgia_nt2 += ";" + ObjectAndString.ObjectToDecimal(row["GIA_NT2"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
+                    ltien2 += ";" + ObjectAndString.ObjectToDecimal(row["TIEN2"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
+                    lgia2 += ";" + ObjectAndString.ObjectToDecimal(row["GIA2"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
+                    lma_kho_i += ";" + row["MA_KHO_I"].ToString().Trim();
+                }
+                lstt_rec0 = lstt_rec0.Substring(1);
+                lma_vt = lma_vt.Substring(1);
+                lso_luong1 = lso_luong1.Substring(1);
+                lso_luong = lso_luong.Substring(1);
+                lgia_nt21 = lgia_nt21.Substring(1);
+                ltien_nt2 = ltien_nt2.Substring(1);
+                ldvt1 = ldvt1.Substring(1);
+                lgia_nt2 = lgia_nt2.Substring(1);
+                ltien2 = ltien2.Substring(1);
+                lgia2 = lgia2.Substring(1);
+                lma_kho_i = lma_kho_i.Substring(1);
+                //Select cac chuong trinh km trong thoi gian hoa don
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@cStt_rec", _sttRec),
+                    new SqlParameter("@cMode", Mode == V6Mode.Add ? "M" : "S"),
+                    new SqlParameter("@cMa_ct", Invoice.Mact),
+                    new SqlParameter("@dngay_ct", dateNgayCT.Value.ToString("yyyyMMdd")),
+                    new SqlParameter("@cMa_kh", txtMaKh.Text),
+                    new SqlParameter("@cMa_dvcs", txtMadvcs.Text),
+                    new SqlParameter("@cMa_nt", _maNt),
+                    new SqlParameter("@nT_so_luong", txtTongSoLuong.Value),
+                    new SqlParameter("@nTso_luong1", TinhTong(AD, "SO_LUONG1")),
+                    new SqlParameter("@nT_tien_nt2", TinhTong(AD, "TIEN_NT2")),
+                    new SqlParameter("@nT_tien2", TinhTong(AD, "TIEN2")),
+                    new SqlParameter("@Advance", "1=1"),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                    new SqlParameter("@lad01", lstt_rec0),
+                    new SqlParameter("@lad02", lma_vt),
+                    new SqlParameter("@lad03", lso_luong1),
+                    new SqlParameter("@lad04", lgia_nt21),
+                    new SqlParameter("@lad05", ltien_nt2),
+                    new SqlParameter("@lad06", ldvt1),
+                    new SqlParameter("@lad07", lgia_nt2),
+                    new SqlParameter("@lad08", ltien2),
+                    new SqlParameter("@lad09", lgia2),
+                    new SqlParameter("@lad10", lma_kho_i),
+                    new SqlParameter("@lad11", lso_luong),
+                    new SqlParameter("@Advance2", "1=1"),
+                };
+                DataSet dsctkm = V6BusinessHelper.ExecuteProcedure("VPA_Get_ALKMB", plist);
+                DataTable ctkm1 = dsctkm.Tables[0];
+                DataTable ctck1 = dsctkm.Tables[1];
+
+                DataTable ctkm1th = dsctkm.Tables[2];
+                DataTable ctck1th = dsctkm.Tables[3];
+
+                //Hiển thị chọn chương trình. [Tag]
+                if ((V6Options.M_SOA_TINH_CK_KM == "02" || V6Options.M_SOA_TINH_CK_KM == "12")
+                    && (ctkm1th.Rows.Count + ctck1th.Rows.Count > 1))
+                {
+                    new ChonKhuyenMaiForm(dsctkm).ShowDialog(this);
+                }
+
+                //Áp dụng khuyến mãi.
+                if (ctkm1 != null && ctkm1.Rows.Count > 0)
+                {
+                    ApDungKhuyenMai(ctkm1);
+                }
+
+                //Áp dụng chiết khấu.
+                if (ctck1 != null && ctck1.Rows.Count > 0)
+                {
+                    ApDungChietKhau(ctck1);
+                }
+
+                //Áp dụng khuyến mãi tổng hợp.
+                if (ctkm1th != null && ctkm1th.Rows.Count > 0)
+                {
+                    ApDungKhuyenMaiTH(ctkm1th);
+                }
+
+                //Áp dụng chiết khấu tổng hợp.
+                if (ctck1th != null && ctck1th.Rows.Count > 0)
+                {
+                    ApDungChietKhauTH(ctck1th);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".TinhChietKhauKhuyenMai", ex);
+            }
+        }
+
+        private void ApDungChietKhauTH(DataTable ctck1th)
+        {
+            try
+            {
+                decimal tong_giam = 0m, tong_giam_nt = 0m;
+                foreach (DataRow row in ctck1th.Rows)
+                {
+                    var tag = (row["tag"] ?? "").ToString().Trim();
+                    if (tag == "") continue;
+                    tong_giam += ObjectAndString.ObjectToDecimal(row["T_GG"]);
+                    tong_giam_nt += ObjectAndString.ObjectToDecimal(row["T_GG_NT"]);
+                }
+                txtTongGiam.Value = tong_giam;
+                txtTongGiamNt.Value = tong_giam_nt;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ApDungChietKhauTH", ex);
+            }
+        }
+
+        private void ApDungKhuyenMaiTH(DataTable ctkm1th)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ApDungKhuyenMaiTH", ex);
+            }
+        }
+
+        private void ApDungKhuyenMai(DataTable datakmct)
+        {
+            try
+            {
+                if (datakmct != null && datakmct.Rows.Count > 0)
+                    ShowMainMessage("Có khuyến mãi");
+                else return;
+
+                foreach (DataRow row in datakmct.Rows)
+                {
+                    var tag = (row["tag"] ?? "").ToString().Trim();
+                    if (tag == "") continue;
+                    var data = GenDataKM(row.ToDataDictionary());
+                    if (IsOkDataKM(data)) XuLyThemDetail(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ApDungKhuyenMai", ex);
+            }
+        }
+
+        /// <summary>
+        /// Kiểm tra tính hợp lệ của dữ liệu khuyến mãi.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private bool IsOkDataKM(IDictionary<string, object> data)
+        {
+            if (!data.ContainsKey("MA_VT") || data["MA_VT"] == null || data["MA_VT"].ToString().Trim() == "")
+                return false;
+            if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"] == null || data["MA_KHO_I"].ToString().Trim() == "")
+                return false;
+
+            return true;
+        }
+
+        /// <summary>
+        /// Áp dụng kết quả chiết khấu vào dữ liệu chi tiết.
+        /// </summary>
+        /// <param name="ctck1">Dữ liệu chiết khấu.</param>
+        private void ApDungChietKhau(DataTable ctck1)
+        {
+            try
+            {
+                //Sửa thành chiết khấu riêng.
+                if (chkLoaiChietKhau.Checked)
+                {
+                    ShowParentMessage("Chiết khấu khuyến mãi không áp dụng khi đặt chiết khấu chung.");
+                    chkLoaiChietKhau.Focus();
+                    return;
+                }
+
+                foreach (DataRow ck_row in ctck1.Rows)
+                {
+                    var tag = (ck_row["tag"] ?? "").ToString().Trim();
+                    if (tag == "") continue;
+
+                    var ck_ma_km = ck_row["MA_KM"].ToString().Trim();
+                    var ck_stt_rec0 = ck_row["STT_REC0"].ToString().Trim();
+                    var pt_ck = ObjectAndString.ObjectToDecimal(ck_row["PT_CK"]);
+                    var ck = ObjectAndString.ObjectToDecimal(ck_row["CK"]);
+
+                    if (pt_ck == 0 && ck == 0) continue;
+
+                    foreach (DataRow ad_row in AD.Rows)
+                    {
+                        var ad_stt_rec0 = ad_row["STT_REC0"].ToString().Trim();
+                        if (ck_stt_rec0 == ad_stt_rec0)
+                        {
+                            if (pt_ck != 0)
+                            {
+                                ad_row["PT_CKI"] = pt_ck;
+                                //Tinh tien ck
+                                if (ck == 0)
+                                {
+                                    ad_row["CK"] = V6BusinessHelper.Vround(
+                                        ObjectAndString.ObjectToDecimal(ad_row["TIEN2"]) * pt_ck / 100, M_ROUND);
+
+                                    ad_row["ck_Nt"] = V6BusinessHelper.Vround(
+                                        ObjectAndString.ObjectToDecimal(ad_row["TIEN_NT2"]) * pt_ck / 100, M_ROUND_NT);
+                                    ad_row["CK"] = V6BusinessHelper.Vround(
+                                        ObjectAndString.ObjectToDecimal(ad_row["CK_NT"]) * txtTyGia.Value, M_ROUND);
+
+                                    if (_maNt == _mMaNt0)
+                                    {
+                                        ad_row["CK"] = ad_row["ck_Nt"];
+                                    }
+                                    ad_row["MA_KMB"] = ck_ma_km;
+                                }
+                            }
+                            if (ck != 0)
+                            {
+                                ad_row["CK"] = ck;
+                                ad_row["MA_KMB"] = ck_ma_km;
+                            }
+                        }
+                    }
+                }
+
+                dataGridView1.DataSource = AD;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ApDungChietKhau", ex);
+            }
+        }
+
+        private void XoaKhuyenMai()
+        {
+            if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                try
+                {
+                    var removeList = new List<DataRow>();
+                    foreach (DataRow row in AD.Rows)
+                    {
+                        if (IsKhuyenMai(row))
+                        {
+                            removeList.Add(row);
+                        }
+                    }
+
+                    foreach (DataRow row in removeList)
+                    {
+                        AD.Rows.Remove(row);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    this.WriteExLog(GetType() + ".XoaKhuyenMai", ex);
+                }
+        }
+
+        private void XoaChietKhau()
+        {
+            if (Mode == V6Mode.Add || Mode == V6Mode.Edit) ;
+            //Xoa theo stt_rec0, ma_kmb, gan ck = 0, pt_cki = 0;
+            //Tính lại tiền.
+            foreach (DataRow row in AD.Rows)
+            {
+                string ma_kmb = (row["MA_KMB"] ?? "").ToString().Trim();
+                if (ma_kmb != "")
+                {
+                    row["PT_CKI"] = 0m;
+                    row["CK"] = 0m;
+                    row["CK_NT"] = 0m;
+                }
+            }
+
+            txtTongGiam.Value = 0;
+            txtTongGiamNt.Value = 0;
+        }
+
+        private bool IsKhuyenMai(DataRow row)
+        {
+            if (row.Table.Columns.Contains(MA_KM_Field)
+                && (row[MA_KM_Field] ?? "").ToString().Trim() != ""
+                && row["TANG"].ToString().Trim().ToLower() == "a")
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        /// <summary>
+        /// Thêm bớt sửa đổi dữ liệu km trước khi thêm.
+        /// </summary>
+        /// <param name="toDataDictionary"></param>
+        /// <returns></returns>
+        private IDictionary<string, object> GenDataKM(IDictionary<string, object> toDataDictionary)
+        {
+            //toDataDictionary["fix_value"] = "fix_value";
+            return toDataDictionary;
+        }
+
+        #endregion tinh khuyen mai
 
 
     }
