@@ -52,6 +52,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             CurrentTable = V6TableHelper.ToV6TableName(tableName);
             _hideColumnDic = _categories.GetHideColumns(tableName);
             InitFilter = initFilter;
+            
             SelectResult = new V6SelectResult();
             SelectResult.SortField = sort;
 
@@ -63,6 +64,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 v6lookup_config = V6ControlsHelper.GetV6lookupConfigByTableName(_tableName);
             }
+
+            GetExtraInitFilter();
 
             if (CurrentTable == V6TableName.V_alts || CurrentTable == V6TableName.V_alcc
                 || CurrentTable == V6TableName.V_alts01 || CurrentTable == V6TableName.V_alcc01)
@@ -87,6 +90,33 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
             dataGridView1.DataSource = new DataTable();
             MyInit();
+        }
+
+        /// <summary>
+        /// Thay đổi InitFilter.
+        /// </summary>
+        private void GetExtraInitFilter()
+        {
+            try
+            {
+                //Lấy Thêm AdvanceFilter từ Procedure.
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@IsAldm", _aldm),
+                    new SqlParameter("@TableName", _tableName),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                };
+
+                var extra_initfilter = (V6BusinessHelper.ExecuteProcedureScalar("VPA_GetAdvanceFilter", plist) ?? "").ToString().Trim();
+                if (extra_initfilter != "")
+                {
+                    AddInitFilter(extra_initfilter);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GetExtraInitFilter", ex);
+            }
         }
 
         private void MyInit()
@@ -1024,7 +1054,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
         }
 
-        private void LoadTable(V6TableName tableName, int page, int size, string sortField, bool @ascending)
+        private void LoadTable(V6TableName tableName, int page, int size, string sortField, bool ascending)
         {
             try { 
                 if (page < 1) page = 1;
@@ -1612,10 +1642,22 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
         }
 
+        /// <summary>
+        /// Thêm chuỗi where vào InitFilter. Trả về chuỗi đã kết hợp (có thể không cần hứng).
+        /// </summary>
+        /// <param name="where">Chuỗi filter thêm</param>
+        /// <param name="and"></param>
+        /// <returns></returns>
         public string AddInitFilter(string where, bool and = true)
         {
             if (string.IsNullOrEmpty(where)) return InitFilter;
-            InitFilter += (string.IsNullOrEmpty(InitFilter) ? "" : (and ? " and " : " or ")) + where;
+            if (string.IsNullOrEmpty(InitFilter))
+            {
+                InitFilter = where;
+                return InitFilter;
+            }
+            
+            InitFilter = string.Format("({0}) {1} ({2})", InitFilter, and ? "and" : "or", where);
             return InitFilter;
         }
 
