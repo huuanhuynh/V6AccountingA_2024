@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using V6AccountingBusiness;
 using V6SqlConnect;
@@ -187,9 +188,10 @@ namespace V6Init
         /// </summary>
         public static bool IsLocal { get { return !IsNetwork; } }
 
-        public static string GetInitFilter(string tableName)
+        public static string GetInitFilter(string tableName, string filterType)
         {
             string result = "";
+            //filterType = "0";//Test
 
             switch (tableName.ToUpper().Trim())
             {
@@ -414,6 +416,22 @@ namespace V6Init
                     break;
         
                 
+            }
+            string adv_filter = null;
+            if (string.IsNullOrEmpty(filterType)) filterType = "0";
+            SqlParameter[] plist =
+                {
+                    new SqlParameter("@IsAldm", true),
+                    new SqlParameter("@TableName", tableName),
+                    new SqlParameter("@Type", filterType),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                };
+
+            adv_filter = (V6BusinessHelper.ExecuteProcedureScalar("VPA_GetAdvanceFilter", plist) ?? "").ToString().Trim();
+            if (!string.IsNullOrEmpty(adv_filter))
+            {
+                if (string.IsNullOrEmpty(result)) return adv_filter;
+                return string.Format("({0}) and ({1})", result, adv_filter);
             }
             return result;
         }

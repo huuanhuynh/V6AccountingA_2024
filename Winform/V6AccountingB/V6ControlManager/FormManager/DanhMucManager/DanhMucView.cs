@@ -100,10 +100,17 @@ namespace V6ControlManager.FormManager.DanhMucManager
             try
             {
                 //Lấy Thêm AdvanceFilter từ Procedure.
+                string filterType = V6ControlFormHelper.FindFilterType(this);
+                if (string.IsNullOrEmpty(filterType))
+                {
+                    filterType = "0";
+                }
+
                 SqlParameter[] plist =
                 {
                     new SqlParameter("@IsAldm", _aldm),
                     new SqlParameter("@TableName", _tableName),
+                    new SqlParameter("@Type", filterType),
                     new SqlParameter("@User_id", V6Login.UserId),
                 };
 
@@ -1035,8 +1042,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             get
             {
-                string load_table = CurrentTable.ToString();
-                if (CurrentTable == V6TableName.Notable)
+                string load_table = _tableName;// CurrentTable.ToString();
+                if (CurrentTable == V6TableName.Notable && aldm_config != null)
                 {
                     if (!string.IsNullOrEmpty(aldm_config.TABLE_VIEW)
                         && V6BusinessHelper.IsExistDatabaseTable(aldm_config.TABLE_VIEW))
@@ -1060,7 +1067,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 if (page < 1) page = 1;
                 CurrentTable = tableName;
                 string load_table = LOAD_TABLE;
-                if (CurrentTable == V6TableName.Notable)
+                if (aldm_config != null && CurrentTable == V6TableName.Notable)
                 {
                     //if (!string.IsNullOrEmpty(aldm_config.TABLE_VIEW)
                     //    && V6BusinessHelper.IsExistDatabaseTable(aldm_config.TABLE_VIEW))
@@ -1073,6 +1080,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     //}
                     
                     if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(sortField)) sortField = v6lookup_config.vOrder;
                 }
 
                 _last_filter = GetWhere();

@@ -127,6 +127,7 @@
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Controls.Add(this.grbDieuKienLoc);
+            this.FilterType = "4";
             this.Name = "XuLyBase0";
             this.Size = new System.Drawing.Size(571, 420);
             this.Load += new System.EventHandler(this.Form_Load);

@@ -30,11 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // AddEditControlVirtual
+            // SoDuAddEditControlVirtual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "AddEditControlVirtual";
+            this.FilterType = "1";
+            this.Name = "SoDuAddEditControlVirtual";
             this.Size = new System.Drawing.Size(310, 173);
             this.Load += new System.EventHandler(this.AddEditControlVirtual_Load);
             this.ResumeLayout(false);

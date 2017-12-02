@@ -3846,6 +3846,28 @@ namespace V6Controls.Forms
             }
         }
 
+        public static string FindFilterType(Control control)
+        {
+            if (control == null)// || (control is Form && !(control is V6Form)))
+            {
+                return null;
+            }
+            
+            if (control is V6Control)
+            {
+                string ft = ((V6Control)control).FilterType;
+                if (!string.IsNullOrEmpty(ft)) return ft;
+            }
+            if (control is V6Form)
+            {
+                string ft = ((V6Form)control).FilterType;
+                if (!string.IsNullOrEmpty(ft)) return ft;
+            }
+
+            Control parent = control.Parent;
+            return FindFilterType(parent);
+        }
+
         #region ==== APPLY LOOKUP ====
 
         private static TextBox txt;
@@ -3862,7 +3884,8 @@ namespace V6Controls.Forms
             if (textBox == null) return;
             txt = textBox;
             Aldm_config = V6ControlsHelper.GetAldmConfigByTableName(tablename);
-            InitFilter = V6Login.GetInitFilter(Aldm_config.TABLE_NAME);
+            string filterType = FindFilterType(textBox);
+            InitFilter = V6Login.GetInitFilter(Aldm_config.TABLE_NAME, filterType);
             
             if (!string.IsNullOrEmpty(fieldvalue)) LookupInfo_F_NAME = fieldvalue;
             else LookupInfo_F_NAME = Aldm_config == null ? null : Aldm_config.F_NAME;

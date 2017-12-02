@@ -530,7 +530,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 if (temp_control is V6VvarTextBox)
                 {
                     var txt = temp_control as V6VvarTextBox;
-                    var init_filter = V6Login.GetInitFilter("ALKH");
+                    var init_filter = V6Login.GetInitFilter("ALKH", V6ControlFormHelper.FindFilterType(this));
                     var init_filter_user = "[Status] <> '0'";
                     if (!string.IsNullOrEmpty(init_filter_user))
                     {
@@ -544,7 +544,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 if (temp_control is V6VvarTextBox)
                 {
                     var txt = temp_control as V6VvarTextBox;
-                    var init_filter = V6Login.GetInitFilter("ALKH");
+                    var init_filter = V6Login.GetInitFilter("ALKH", V6ControlFormHelper.FindFilterType(this));
                     var init_filter_user = "[Status] <> '0'";
                     if (!string.IsNullOrEmpty(init_filter_user))
                     {
@@ -558,7 +558,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 if (temp_control is V6VvarTextBox)
                 {
                     var txt = temp_control as V6VvarTextBox;
-                    var init_filter = V6Login.GetInitFilter("ALVT");
+                    var init_filter = V6Login.GetInitFilter("ALVT", V6ControlFormHelper.FindFilterType(this));
                     var init_filter_extra = "[Status] <> '0'";
                     if (!string.IsNullOrEmpty(init_filter_extra))
                     {

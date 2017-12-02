@@ -516,6 +516,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.Controls.Add(this.crystalReportViewer1);
             this.Controls.Add(this.treeListViewAuto1);
             this.Controls.Add(this.grbDieuKienLoc);
+            this.FilterType = "4";
             this.Name = "ReportTreeViewBase";
             this.Size = new System.Drawing.Size(974, 654);
             this.Load += new System.EventHandler(this.Form_Load);

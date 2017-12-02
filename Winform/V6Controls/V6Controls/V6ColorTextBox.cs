@@ -139,6 +139,16 @@ namespace V6Controls
             _lower = false;
         }
 
+        protected string _filterType = null;
+        public string GetFilterType()
+        {
+            if (_filterType == null)
+            {
+                _filterType = V6ControlFormHelper.FindFilterType(this);
+            }
+            return _filterType;
+        }
+
         [Category("V6")]
         [DefaultValue(null)]
         public string LimitCharacters
