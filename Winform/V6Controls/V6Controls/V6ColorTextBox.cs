@@ -140,6 +140,10 @@ namespace V6Controls
         }
 
         protected string _filterType = null;
+        /// <summary>
+        /// Lấy FilterType của form chứa nó.
+        /// </summary>
+        /// <returns></returns>
         public string GetFilterType()
         {
             if (_filterType == null)

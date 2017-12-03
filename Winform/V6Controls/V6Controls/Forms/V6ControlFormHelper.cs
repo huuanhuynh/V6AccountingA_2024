@@ -3848,9 +3848,9 @@ namespace V6Controls.Forms
 
         public static string FindFilterType(Control control)
         {
-            if (control == null)// || (control is Form && !(control is V6Form)))
+            if (control == null)
             {
-                return null;
+                return "0";
             }
             
             if (control is V6Control)
@@ -3864,8 +3864,7 @@ namespace V6Controls.Forms
                 if (!string.IsNullOrEmpty(ft)) return ft;
             }
 
-            Control parent = control.Parent;
-            return FindFilterType(parent);
+            return FindFilterType(control.Parent);
         }
 
         #region ==== APPLY LOOKUP ====

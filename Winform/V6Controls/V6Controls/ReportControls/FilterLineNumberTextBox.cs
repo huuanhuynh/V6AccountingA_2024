@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Globalization;
 using V6Controls;
+using V6Tools.V6Convert;
 
 namespace V6ReportControls
 {
@@ -63,6 +64,11 @@ namespace V6ReportControls
             {
                 return v6NumberTextBox1.Value;
             }
+        }
+
+        public override void SetValue(object value)
+        {
+            v6NumberTextBox1.Value = ObjectAndString.ObjectToDecimal(value);
         }
     }
 }

@@ -191,7 +191,6 @@ namespace V6Init
         public static string GetInitFilter(string tableName, string filterType)
         {
             string result = "";
-            //filterType = "0";//Test
 
             switch (tableName.ToUpper().Trim())
             {

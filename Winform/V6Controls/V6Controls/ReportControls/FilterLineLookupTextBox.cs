@@ -148,5 +148,10 @@ namespace V6ReportControls
             return result;
         }
 
+        public override void SetValue(object value)
+        {
+            lookupTextBox1.SetValue(value);
+        }
+
     }
 }

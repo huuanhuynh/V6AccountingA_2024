@@ -83,6 +83,11 @@ namespace V6ReportControls
             get{ return "N'base'"; }
         }
 
+        public virtual void SetValue(object value)
+        {
+            throw new NotImplementedException("No override!");
+        }
+
         /// <summary>
         /// Định dạng lại giá trị cho phù hợp với query.
         /// </summary>

@@ -130,5 +130,9 @@ namespace V6ReportControls
             return result;
         }
 
+        public override void SetValue(object value)
+        {
+            v6VvarTextBox1.Text = "" + value;
+        }
     }
 }
