@@ -142,15 +142,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
             cKey_SD += cKey;
 
-            int tinhdc = 0;
-            if (chkTonHSD.Checked)
-            {
-                tinhdc = 1;
-            }
+            int tinh_dc = 0;
+            if (Chk_Tinh_dc.Checked) tinh_dc = 1;
 
             result.Add(new SqlParameter("@StartDate", dateNgay_ct1.Value.ToString("yyyyMMdd")));
             result.Add(new SqlParameter("@EndDate", dateNgay_ct2.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@Tinh_dc", tinhdc));
+            result.Add(new SqlParameter("@Tinh_dc", tinh_dc));
             result.Add(new SqlParameter("@Condition", cKey));
             result.Add(new SqlParameter("@Vttonkho", TxtVttonkho.Text.Trim()));
             result.Add(new SqlParameter("@ConditionSD", cKey_SD));

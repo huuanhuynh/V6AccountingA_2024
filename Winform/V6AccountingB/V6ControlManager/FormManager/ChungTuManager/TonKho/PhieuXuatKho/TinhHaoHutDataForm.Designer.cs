@@ -56,7 +56,7 @@
             this.radAnd = new System.Windows.Forms.RadioButton();
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.TxtMa_vt = new V6ReportControls.FilterLineVvarTextBox();
-            this.chkTonHSD = new System.Windows.Forms.CheckBox();
+            this.Chk_Tinh_dc = new System.Windows.Forms.CheckBox();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.chkSoluong = new System.Windows.Forms.CheckBox();
@@ -88,6 +88,7 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -353,17 +354,17 @@
             this.TxtMa_vt.TabIndex = 5;
             this.TxtMa_vt.Vvar = "MA_VT";
             // 
-            // chkTonHSD
+            // Chk_Tinh_dc
             // 
-            this.chkTonHSD.AutoSize = true;
-            this.chkTonHSD.Checked = true;
-            this.chkTonHSD.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkTonHSD.Location = new System.Drawing.Point(77, 136);
-            this.chkTonHSD.Name = "chkTonHSD";
-            this.chkTonHSD.Size = new System.Drawing.Size(153, 17);
-            this.chkTonHSD.TabIndex = 4;
-            this.chkTonHSD.Text = "Phát sinh điều chuyển kho";
-            this.chkTonHSD.UseVisualStyleBackColor = true;
+            this.Chk_Tinh_dc.AutoSize = true;
+            this.Chk_Tinh_dc.Checked = true;
+            this.Chk_Tinh_dc.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Chk_Tinh_dc.Location = new System.Drawing.Point(77, 136);
+            this.Chk_Tinh_dc.Name = "Chk_Tinh_dc";
+            this.Chk_Tinh_dc.Size = new System.Drawing.Size(153, 17);
+            this.Chk_Tinh_dc.TabIndex = 4;
+            this.Chk_Tinh_dc.Text = "Phát sinh điều chuyển kho";
+            this.Chk_Tinh_dc.UseVisualStyleBackColor = true;
             // 
             // btnHuy
             // 
@@ -445,7 +446,7 @@
             this.Controls.Add(this.chkSoluong);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
-            this.Controls.Add(this.chkTonHSD);
+            this.Controls.Add(this.Chk_Tinh_dc);
             this.Controls.Add(this.v6Label3);
             this.Controls.Add(this.v6Label1);
             this.Controls.Add(this.v6Label2);
@@ -471,7 +472,7 @@
             this.Controls.SetChildIndex(this.v6Label2, 0);
             this.Controls.SetChildIndex(this.v6Label1, 0);
             this.Controls.SetChildIndex(this.v6Label3, 0);
-            this.Controls.SetChildIndex(this.chkTonHSD, 0);
+            this.Controls.SetChildIndex(this.Chk_Tinh_dc, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.chkSoluong, 0);
@@ -512,7 +513,7 @@
         private System.Windows.Forms.RadioButton radAnd;
         private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
         private V6ReportControls.FilterLineVvarTextBox TxtMa_vt;
-        private System.Windows.Forms.CheckBox chkTonHSD;
+        private System.Windows.Forms.CheckBox Chk_Tinh_dc;
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnNhan;
         private System.Windows.Forms.CheckBox chkSoluong;
