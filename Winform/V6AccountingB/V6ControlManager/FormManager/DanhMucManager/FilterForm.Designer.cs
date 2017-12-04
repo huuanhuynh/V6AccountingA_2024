@@ -39,12 +39,14 @@
             this.btnCancel.AccessibleDescription = "huy";
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(97, 257);
+            this.btnCancel.Image = global::V6ControlManager.Properties.Resources.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(97, 247);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(80, 32);
+            this.btnCancel.Size = new System.Drawing.Size(80, 42);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Tag = "Escape";
-            this.btnCancel.Text = "Hủy";
+            this.btnCancel.Text = "&Hủy";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -52,12 +54,14 @@
             // 
             this.btnFilter.AccessibleDescription = "loc";
             this.btnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFilter.Location = new System.Drawing.Point(12, 257);
+            this.btnFilter.Image = global::V6ControlManager.Properties.Resources.Apply;
+            this.btnFilter.Location = new System.Drawing.Point(12, 247);
             this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(80, 32);
+            this.btnFilter.Size = new System.Drawing.Size(80, 42);
             this.btnFilter.TabIndex = 1;
             this.btnFilter.Tag = "Return, Control";
             this.btnFilter.Text = "&Nhận";
+            this.btnFilter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFilter.UseVisualStyleBackColor = true;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
@@ -69,7 +73,7 @@
             this.panel1.AutoScroll = true;
             this.panel1.Location = new System.Drawing.Point(12, 8);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(510, 243);
+            this.panel1.Size = new System.Drawing.Size(510, 233);
             this.panel1.TabIndex = 0;
             // 
             // FilterForm
@@ -83,11 +87,17 @@
             this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(550, 1000);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(500, 200);
             this.Name = "FilterForm";
             this.Text = "Lọc";
             this.Load += new System.EventHandler(this.FilterForm_Load);
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.btnFilter, 0);
+            this.Controls.SetChildIndex(this.btnCancel, 0);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.ResumeLayout(false);
 
         }
