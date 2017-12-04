@@ -89,6 +89,7 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -178,6 +179,7 @@
             this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -232,6 +234,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.grbDieuKienLoc);
             this.Controls.Add(this.dataGridView2);
+            this.FilterType = "4";
             this.Name = "XuLyBase";
             this.Size = new System.Drawing.Size(974, 654);
             this.Load += new System.EventHandler(this.Form_Load);
@@ -255,8 +258,8 @@
         protected System.Windows.Forms.Timer timerViewReport;
         public System.Windows.Forms.Panel panel1;
         protected V6Controls.V6ColorDataGridView dataGridView1;
-        protected System.Windows.Forms.Button btnNhan;
-        protected System.Windows.Forms.Button btnHuy;
+        public System.Windows.Forms.Button btnNhan;
+        public System.Windows.Forms.Button btnHuy;
         protected V6Controls.V6ColorDataGridView dataGridView2;
         private V6Controls.Controls.V6FormButton btnSuaTTMauBC;
         private V6Controls.Controls.V6FormButton btnThemMauBC;

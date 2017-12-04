@@ -84,6 +84,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -472,6 +473,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.Controls.Add(this.crystalReportViewer1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.grbDieuKienLoc);
+            this.FilterType = "4";
             this.Name = "SoDuReportForm";
             this.Text = "Báo cáo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormBaoCaoHangTonKho_V2_FormClosing);

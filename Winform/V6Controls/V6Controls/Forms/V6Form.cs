@@ -17,6 +17,12 @@ namespace V6Controls.Forms
         protected string _message = "";
         public bool Data_Loading, _load_data_success;
         public string _sttRec { get; set; }
+        /// <summary>
+        /// Phân biệt loại initfilter. 1 cập nhập số liệu, 2 danh mục, 3 số dư, 4 báo cáo
+        /// </summary>
+        [DefaultValue(null)]
+        [Description("Phân biệt loại initfilter. 1 cập nhập số liệu, 2 danh mục, 3 số dư, 4 báo cáo")]
+        public string FilterType { get; set; }
 
         [DefaultValue(null)]
         protected Image btnNhanImage

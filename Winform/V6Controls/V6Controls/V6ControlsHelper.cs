@@ -701,6 +701,8 @@ namespace V6Controls
         /// </summary>
         public string L_ALDM { get { return GetString("L_ALDM"); } }
         public string Vorder { get { return GetString("ORDER"); } }
+
+        public string ADV_FILTER { get { return GetString("ADV_FILTER"); } }
         
     }
 

@@ -33,6 +33,7 @@
             this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
             this.btnChuyen = new System.Windows.Forms.Button();
+            this.btnSuaSoCTGS = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -94,10 +95,21 @@
             this.btnChuyen.UseVisualStyleBackColor = true;
             this.btnChuyen.Click += new System.EventHandler(this.btnChuyen_Click);
             // 
+            // btnSuaSoCTGS
+            // 
+            this.btnSuaSoCTGS.Location = new System.Drawing.Point(3, 90);
+            this.btnSuaSoCTGS.Name = "btnSuaSoCTGS";
+            this.btnSuaSoCTGS.Size = new System.Drawing.Size(223, 23);
+            this.btnSuaSoCTGS.TabIndex = 25;
+            this.btnSuaSoCTGS.Text = "Sửa số chứng từ ghi sổ";
+            this.btnSuaSoCTGS.UseVisualStyleBackColor = true;
+            this.btnSuaSoCTGS.Click += new System.EventHandler(this.btnSuaSoCTGS_Click);
+            // 
             // AGSCTGS01
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnSuaSoCTGS);
             this.Controls.Add(this.btnChuyen);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -118,5 +130,6 @@
         private V6Controls.V6DateTimePick dateNgay_ct2;
         private V6Controls.V6DateTimePick dateNgay_ct1;
         private System.Windows.Forms.Button btnChuyen;
+        private System.Windows.Forms.Button btnSuaSoCTGS;
     }
 }

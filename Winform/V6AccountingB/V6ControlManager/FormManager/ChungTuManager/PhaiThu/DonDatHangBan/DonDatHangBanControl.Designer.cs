@@ -1668,7 +1668,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.btnTinhCKKM.Name = "btnTinhCKKM";
             this.btnTinhCKKM.Size = new System.Drawing.Size(100, 23);
             this.btnTinhCKKM.TabIndex = 2;
-            this.btnTinhCKKM.Text = "Chiết khấu KM";
+            this.btnTinhCKKM.Text = "Tính CK KM";
             this.btnTinhCKKM.UseVisualStyleBackColor = true;
             this.btnTinhCKKM.Click += new System.EventHandler(this.btnTinhCKKM_Click);
             // 

@@ -135,7 +135,7 @@ namespace V6ControlManager.FormManager.MenuManager
 
                                             where = filterForm.QueryString;
                                             c = new DanhMucView(item_id, mButton.Text, TABLE_NAME,
-                                                V6Login.GetInitFilter(TABLE_NAME), null, is_aldm)
+                                                V6Login.GetInitFilter(TABLE_NAME, V6ControlFormHelper.FindFilterType(owner)), null, is_aldm)
                                             {
                                                 Name = item_id,
                                                 ReportFile = repFile,
@@ -162,7 +162,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                         if (!check) return null;
 
                                         c = new DanhMucView(item_id, mButton.Text, TABLE_NAME,
-                                            V6Login.GetInitFilter(TABLE_NAME), null, is_aldm)
+                                            V6Login.GetInitFilter(TABLE_NAME, V6ControlFormHelper.FindFilterType(owner)), null, is_aldm)
                                         {
                                             Name = item_id,
                                             ReportFile = repFile,
@@ -220,7 +220,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                 {
 
                                     c = new SoDuView(item_id, mButton.Text, tableNamesd,
-                                        V6Login.GetInitFilter(tableNamesd))
+                                        V6Login.GetInitFilter(tableNamesd, V6ControlFormHelper.FindFilterType(owner)))
                                     {
                                         Name = item_id,
                                         ReportFile = repFile,
@@ -312,7 +312,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                 else
                                 {
                                     check1 = CheckPassword(owner);
-                                    getInitFilter = V6Login.GetInitFilter(tableNameEdit);
+                                    getInitFilter = V6Login.GetInitFilter(tableNameEdit, V6ControlFormHelper.FindFilterType(owner));
                                 }
                             }
 
@@ -377,7 +377,7 @@ namespace V6ControlManager.FormManager.MenuManager
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
                                 c = new DanhMucView(item_id, mButton.Text, tableNameView,
-                                    V6Login.GetInitFilter(tableNameView), null, false)
+                                    V6Login.GetInitFilter(tableNameView, V6ControlFormHelper.FindFilterType(owner)), null, false)
                                 {
                                     Name = item_id,
                                     ReportFile = repFile,
@@ -473,6 +473,24 @@ namespace V6ControlManager.FormManager.MenuManager
                         case "B":
                             #region ==== //So du 2 //SoDuView2 ====
                             var maCt = codeform.Substring(1);
+
+                            //Check Admin,V6
+                            if (maCt == "S06")
+                            {
+                                if (mouse_left && ctrl_is_down)
+                                {
+                                    check = CheckPasswordV6(owner);
+                                }
+                                else
+                                {
+                                    if (V6Login.IsAdmin)
+                                    {
+                                        check = CheckPassword(owner);
+                                    }
+                                }
+                                if (!check) return null;
+                            }
+
 
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
@@ -684,7 +702,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                     if (!check) return null;
 
                                     c = new DanhMucView(item_id, mButton.Text, TABLE_NAME,
-                                        V6Login.GetInitFilter(TABLE_NAME), null, is_aldm)
+                                        V6Login.GetInitFilter(TABLE_NAME, V6ControlFormHelper.FindFilterType(owner)), null, is_aldm)
                                     {
                                         Name = item_id,
                                         ReportFile = repFile,

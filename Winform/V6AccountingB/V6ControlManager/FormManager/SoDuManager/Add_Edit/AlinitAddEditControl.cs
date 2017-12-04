@@ -50,7 +50,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private V6VvarTextBox _user_name;
         //private V6NumberTextBox _t_sl1, _gia2, _t_sl2,_gia_km,_sl_km;
-        private V6ColorTextBox _default1V, _default1E ;
+        private V6ColorTextBox _default1V, _default1E, _default11,_default12;
 
         private void LoadDetailControls()
         {
@@ -78,12 +78,27 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 GrayText = "Giá trị 1 English"
             };
             _default1E.Width = 200;
-            
+
+            _default11 = new V6ColorTextBox()
+            {
+                AccessibleName = "default11",
+                GrayText = "Giá trị 11"
+            };
+            _default11.Width = 100;
+            _default12 = new V6ColorTextBox()
+            {
+                AccessibleName = "default12",
+                GrayText = "Giá trị 12"
+            };
+            _default12.Width = 100;
+
             var dynamicControlList = new SortedDictionary<int, Control>();
             
             dynamicControlList.Add(0, _user_name);
             dynamicControlList.Add(6, _default1V);
             dynamicControlList.Add(7, _default1E);
+            dynamicControlList.Add(8, _default11);
+            dynamicControlList.Add(9, _default12);
             
             foreach (KeyValuePair<int, Control> item in dynamicControlList)
             {

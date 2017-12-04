@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using V6Controls;
+using V6Tools.V6Convert;
 
 namespace V6ReportControls
 {
@@ -69,5 +70,11 @@ namespace V6ReportControls
                 return v6DateTimeTextBox1.Value;
             }
         }
+
+        public override void SetValue(object value)
+        {
+            v6DateTimeTextBox1.Value = ObjectAndString.ObjectToDate(value);
+        }
+
     }
 }

@@ -132,15 +132,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     _reportProcedure, 600, _pList.ToArray());
                 
                 _success = true;
-                _executing = false;
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".TinhToan", ex);
                 _message = ex.Message;
                 _executing = false;
-                _success = false;
             }
+            _executing = false;
         }
 
         protected virtual void Nhan()

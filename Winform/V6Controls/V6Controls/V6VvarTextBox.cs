@@ -196,8 +196,13 @@ namespace V6Controls
         private string _initFilter;
         public string InitFilter
         {
-            get {
-                return _initFilter ?? V6Login.GetInitFilter(LookupInfo.TableName);
+            get
+            {
+                if (_initFilter == null)
+                {
+                    _initFilter = V6Login.GetInitFilter(LookupInfo.TableName, GetFilterType());
+                }
+                return _initFilter;
             }
         }
 

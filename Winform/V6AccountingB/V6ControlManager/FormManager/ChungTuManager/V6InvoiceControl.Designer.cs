@@ -34,6 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.FilterType = "1";
             this.Name = "V6InvoiceControl";
             this.Load += new System.EventHandler(this.V6InvoiceControl_Load);
             this.ResumeLayout(false);

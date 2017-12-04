@@ -27,6 +27,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         }
 
         //Các biến xài tùy ý.
+        public SortedDictionary<string, object> ObjectDictionary = new SortedDictionary<string, object>(); 
         public event StringValueChanged String1ValueChanged;
         public event CheckValueChanged Check1ValueChanged;
         protected virtual void OnString1ValueChanged(string oldvalue, string newvalue)

@@ -137,11 +137,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             else if(Mode == V6Mode.Add)
             {
                 if (DataOld != null) SetData(DataOld);
-                else
-                {
-                    if(_keys!=null) LoadData();
-                    else LoadDefaultData(2, "", TableName.ToString(), m_itemId);
-                }
+                else if(_keys!=null) LoadData();
+                
+                LoadDefaultData(2, "", TableName.ToString(), m_itemId);
             }
             else if (Mode == V6Mode.View)
             {

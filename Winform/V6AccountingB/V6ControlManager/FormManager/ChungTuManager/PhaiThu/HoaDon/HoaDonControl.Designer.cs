@@ -156,6 +156,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.v6Label38 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.btnTinhCKKM = new V6Controls.Controls.V6FormButton();
             this.txtimtype = new V6Controls.V6CheckBox();
             this.chkSua_Tien = new V6Controls.V6CheckBox();
             this.txtConLai = new V6Controls.V6NumberTextBox();
@@ -2098,6 +2099,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             // 
             this.group4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group4.Controls.Add(this.btnTinhCKKM);
             this.group4.Controls.Add(this.txtimtype);
             this.group4.Controls.Add(this.chkSua_Tien);
             this.group4.Controls.Add(this.txtConLai);
@@ -2127,6 +2129,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.group4.Size = new System.Drawing.Size(471, 133);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
+            // 
+            // btnTinhCKKM
+            // 
+            this.btnTinhCKKM.Location = new System.Drawing.Point(245, 14);
+            this.btnTinhCKKM.Name = "btnTinhCKKM";
+            this.btnTinhCKKM.Size = new System.Drawing.Size(100, 21);
+            this.btnTinhCKKM.TabIndex = 22;
+            this.btnTinhCKKM.Text = "Tính CK KM";
+            this.btnTinhCKKM.UseVisualStyleBackColor = true;
+            this.btnTinhCKKM.Click += new System.EventHandler(this.btnTinhCKKM_Click);
             // 
             // txtimtype
             // 
@@ -2400,7 +2412,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             // btnChucNang
             // 
             this.btnChucNang.AccessibleDescription = "ASOCTSOAB00033";
-            this.btnChucNang.Location = new System.Drawing.Point(158, 21);
+            this.btnChucNang.Location = new System.Drawing.Point(158, 22);
             this.btnChucNang.Menu = this.menuChucNang;
             this.btnChucNang.Name = "btnChucNang";
             this.btnChucNang.Size = new System.Drawing.Size(87, 29);
@@ -2413,9 +2425,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             // btnChonPX
             // 
             this.btnChonPX.AccessibleDescription = "ASOCTSOAR00032";
-            this.btnChonPX.Location = new System.Drawing.Point(251, 21);
+            this.btnChonPX.Location = new System.Drawing.Point(246, 35);
             this.btnChonPX.Name = "btnChonPX";
-            this.btnChonPX.Size = new System.Drawing.Size(75, 29);
+            this.btnChonPX.Size = new System.Drawing.Size(100, 21);
             this.btnChonPX.TabIndex = 2;
             this.btnChonPX.Text = "Chọn PX";
             this.btnChonPX.UseVisualStyleBackColor = true;
@@ -3642,5 +3654,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private V6VvarTextBox Txtma_td_ph;
         private V6Label v6Label14;
         private System.Windows.Forms.ToolStripMenuItem chonPhieuNhapToolStripMenuItem;
+        private V6FormButton btnTinhCKKM;
     }
 }

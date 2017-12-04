@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.ReportManager.XuLy;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -114,11 +115,41 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     new SqlParameter("@nam", dateNgay_ct2.Value.Year)
                 };
                 V6BusinessHelper.ExecuteProcedure("AGSCTGS01_COPY", plist);
+                var xulybase = V6ControlFormHelper.FindParent<XuLyBase>(this) as XuLyBase;
+                if (xulybase != null)
+                {
+                    xulybase.btnNhan.PerformClick();
+                }
                 V6ControlFormHelper.ShowMainMessage(V6Text.Finish);
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".ClickChuyen " + ex.Message);
+            }
+        }
+
+        private void btnSuaSoCTGS_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_ds == null) return;
+                
+                var plist = new[]
+                {
+                    new SqlParameter("@thang", dateNgay_ct1.Value.Month), 
+                    new SqlParameter("@nam", dateNgay_ct2.Value.Year)
+                };
+                V6BusinessHelper.ExecuteProcedure("AGSCTGS01_A", plist);
+                var xulybase = V6ControlFormHelper.FindParent<XuLyBase>(this) as XuLyBase;
+                if (xulybase != null)
+                {
+                    xulybase.btnNhan.PerformClick();
+                }
+                V6ControlFormHelper.ShowMainMessage(V6Text.Finish);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".SuaSoCTGS", ex);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 using V6Init;
 using V6Structs;
@@ -26,6 +27,12 @@ namespace V6Controls.Forms
         }
 
         public string CodeForm { get; set; }
+        /// <summary>
+        /// Phân biệt loại initfilter. 1 cập nhập số liệu, 2 danh mục, 3 số dư, 4 báo cáo
+        /// </summary>
+        [DefaultValue(null)]
+        [Description("Phân biệt loại initfilter. 1 cập nhập số liệu, 2 danh mục, 3 số dư, 4 báo cáo")]
+        public string FilterType { get; set; }
 
         private void V6Control_Load(object sender, EventArgs e)
         {

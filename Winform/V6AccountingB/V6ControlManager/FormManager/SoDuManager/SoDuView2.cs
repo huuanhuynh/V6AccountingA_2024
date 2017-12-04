@@ -57,7 +57,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 _tableName4 = "ADCTTSBP";
             }
             _hideColumnDic = _categories.GetHideColumns(_tableName);
-            InitFilter = V6Login.GetInitFilter(_tableName);
+            InitFilter = V6Login.GetInitFilter(_tableName, V6ControlFormHelper.FindFilterType(this));
         }
 
         private void SoDuView2_Load(object sender, EventArgs e)

@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Controls;
-using V6Controls.Controls.Label;
 using V6Init;
 using V6Structs;
 using V6Tools.V6Convert;
@@ -426,39 +425,40 @@ namespace V6ReportControls
             return _button;
         }
 
-        public void SetValue(string stringValue)
+        public override void SetValue(object value)
         {
             if (_textBox != null)
             {
-                _textBox.Text = stringValue;
+                _textBox.Text = ObjectAndString.ObjectToString(value);
             }
             else if (_vtextBox != null)
             {
-                _vtextBox.Text = stringValue;
+                _vtextBox.Text = ObjectAndString.ObjectToString(value);
             }
             else if (_lookuptextBox != null)
             {
-                _lookuptextBox.SetValue(stringValue);
+                _lookuptextBox.SetValue(value);
             }
             else if (_numberTextBox != null)
             {
-                _numberTextBox.Value = ObjectAndString.ObjectToDecimal(stringValue);
+                _numberTextBox.Value = ObjectAndString.ObjectToDecimal(value);
             }
             else if (_dateTimePick != null)
             {
-                if (stringValue == "M_NGAY_CT1") _dateTimePick.Value = V6Setting.M_ngay_ct1;
-                else if (stringValue == "M_NGAY_CT2") _dateTimePick.Value = V6Setting.M_ngay_ct2;
-                else if (!string.IsNullOrEmpty(stringValue)) _dateTimePick.Value = ObjectAndString.ObjectToFullDateTime(stringValue);
+                if ("" + value == "M_NGAY_CT1") _dateTimePick.Value = V6Setting.M_ngay_ct1;
+                else if ("" + value == "M_NGAY_CT2") _dateTimePick.Value = V6Setting.M_ngay_ct2;
+                else if (!string.IsNullOrEmpty("" + value))
+                    _dateTimePick.Value = ObjectAndString.ObjectToFullDateTime(value);
             }
             else if (_dateTimeColor != null)
             {
-                if (stringValue == "M_NGAY_CT1") _dateTimeColor.Value = V6Setting.M_ngay_ct1;
-                else if (stringValue == "M_NGAY_CT2") _dateTimeColor.Value = V6Setting.M_ngay_ct2;
-                else if (!string.IsNullOrEmpty(stringValue)) _dateTimeColor.Value = ObjectAndString.ObjectToDate(stringValue);
+                if ("" + value == "M_NGAY_CT1") _dateTimeColor.Value = V6Setting.M_ngay_ct1;
+                else if ("" + value == "M_NGAY_CT2") _dateTimeColor.Value = V6Setting.M_ngay_ct2;
+                else if (!string.IsNullOrEmpty("" + value)) _dateTimeColor.Value = ObjectAndString.ObjectToDate(value);
             }
             else if (_checkBox != null)
             {
-                _checkBox.Checked = stringValue == "1";
+                _checkBox.Checked = ObjectAndString.ObjectToBool(value);
             }
         }
 

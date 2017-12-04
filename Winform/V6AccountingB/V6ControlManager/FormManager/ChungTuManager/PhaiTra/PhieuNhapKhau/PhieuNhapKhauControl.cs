@@ -1709,7 +1709,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         }
         void SoLuong1_V6LostFocus(object sender)
         {
-           TinhTienNt0();
+            TinhTienNt0();
         }
 
         void GiaNt01_V6LostFocus(object sender)
