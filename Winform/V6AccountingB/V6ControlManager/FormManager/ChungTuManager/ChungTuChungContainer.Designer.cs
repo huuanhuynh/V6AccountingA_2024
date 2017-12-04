@@ -122,6 +122,7 @@
             this.Controls.Add(this.tsNew);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
+            this.FilterType = "1";
             this.Name = "ChungTuChungContainer";
             this.Size = new System.Drawing.Size(860, 609);
             this.panel1.ResumeLayout(false);

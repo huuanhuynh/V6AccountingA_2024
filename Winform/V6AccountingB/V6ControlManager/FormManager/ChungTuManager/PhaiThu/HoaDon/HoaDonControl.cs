@@ -6251,7 +6251,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     var text_duno = ObjectAndString.NumberToString((ObjectAndString.ObjectToDecimal(row["NO_CK"]) - ObjectAndString.ObjectToDecimal(row["CO_CK"])), 2, V6Options.M_NUM_POINT, ".");
                     var showtext = V6Setting.Language == "V" ? "Số dư nợ cuối ngày " : "Ending balance ";
 
-                    string message = string.Format(showtext + " :{0}--> {1}", dateNgayCT.Value.ToString("dd/MM/yyyy"), text_duno);
+                    string message = string.Format(showtext + ": {0}--> {1}", dateNgayCT.Value.ToString("dd/MM/yyyy"), text_duno);
                     this.ShowMessage(message);
                 }
                 else
@@ -6906,15 +6906,37 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             try
             {
                 decimal tong_giam = 0m, tong_giam_nt = 0m;
+                //decimal tong_ck0 = 0m, tong_ck_nt0 = 0m;
+                string ma_km = "";
                 foreach (DataRow row in ctck1th.Rows)
                 {
                     var tag = (row["tag"] ?? "").ToString().Trim();
                     if (tag == "") continue;
                     tong_giam += ObjectAndString.ObjectToDecimal(row["T_GG"]);
                     tong_giam_nt += ObjectAndString.ObjectToDecimal(row["T_GG_NT"]);
+                    if (ObjectAndString.ObjectToDecimal(row["T_GG"]) != 0)
+                    {
+                        ma_km = ObjectAndString.ObjectToString(row["MA_KM"]);
+                    }
                 }
-                txtTongGiam.Value = tong_giam;
-                txtTongGiamNt.Value = tong_giam_nt;
+
+                foreach (DataRow ad_row in AD.Rows)
+                {
+                    ad_row["MA_KMB"] = ma_km;
+                }
+
+                //txtTongGiam.Value = tong_giam;
+                //txtTongGiamNt.Value = tong_giam_nt;
+                //tong_ck_nt0 = txtTongCkNt.Value;
+                //tong_ck0 = txtTongCk.Value;
+                if (chkLoaiChietKhau.Checked && tong_giam!=0)
+                {
+                    chkSuaTienCk.Checked = true;
+                    txtTongCkNt.Value = tong_giam_nt;
+                    txtTongCk.Value = tong_giam;
+
+                }
+
             }
             catch (Exception ex)
             {
@@ -7072,6 +7094,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit) ;
             //Xoa theo stt_rec0, ma_kmb, gan ck = 0, pt_cki = 0;
             //Tính lại tiền.
+            bool chietkhau_yn = false;
+
             foreach (DataRow row in AD.Rows)
             {
                 string ma_kmb = (row["MA_KMB"] ?? "").ToString().Trim();
@@ -7080,11 +7104,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     row["PT_CKI"] = 0m;
                     row["CK"] = 0m;
                     row["CK_NT"] = 0m;
+                    chietkhau_yn = true;
                 }
             }
 
-            txtTongGiam.Value = 0;
-            txtTongGiamNt.Value = 0;
+            if (chietkhau_yn)
+            {
+                txtTongCk.Value = 0;
+                txtTongCkNt.Value = 0;
+            }
         }
 
         private bool IsKhuyenMai(DataRow row)

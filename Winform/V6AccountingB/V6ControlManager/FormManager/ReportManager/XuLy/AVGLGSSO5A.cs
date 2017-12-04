@@ -8,6 +8,7 @@ using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
+using V6Init;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -24,7 +25,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F9: In từng trang");
+            V6ControlFormHelper.SetStatusText2("F5: Chi tiết,F9: In từng trang");
+            
         }
 
         protected override void MakeReport2()

@@ -30,12 +30,15 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtTenKm = new V6Controls.V6ColorTextBox();
@@ -94,6 +97,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.gView4 = new V6Controls.V6ColorDataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtchonExcel = new V6Controls.Controls.V6FormButton();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.label23 = new System.Windows.Forms.Label();
             this.txtLNH_KH9 = new V6Controls.V6VvarTextBox();
@@ -138,6 +148,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gView4)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1112,6 +1123,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage3.Controls.Add(this.gView4);
+            this.tabPage3.Controls.Add(this.BtchonExcel);
             this.tabPage3.Controls.Add(this.checkBox1);
             this.tabPage3.Controls.Add(this.label23);
             this.tabPage3.Controls.Add(this.txtLNH_KH9);
@@ -1138,6 +1151,93 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Đối tượng áp dụng";
             // 
+            // gView4
+            // 
+            this.gView4.AllowUserToAddRows = false;
+            this.gView4.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.gView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gView4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gView4.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gView4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.gView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.gView4.Location = new System.Drawing.Point(3, 151);
+            this.gView4.MultiSelect = false;
+            this.gView4.Name = "gView4";
+            this.gView4.ReadOnly = true;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
+            this.gView4.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.gView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.gView4.Size = new System.Drawing.Size(790, 122);
+            this.gView4.TabIndex = 52;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "MA_KH_I";
+            this.dataGridViewTextBoxColumn1.Frozen = true;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mã khách";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "TEN_KH";
+            this.dataGridViewTextBoxColumn2.Frozen = true;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Tên khách hàng";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "UID";
+            this.dataGridViewTextBoxColumn3.HeaderText = "UID";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "STT_REC";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Rec";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "STT_REC0";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Rec0";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // BtchonExcel
+            // 
+            this.BtchonExcel.Location = new System.Drawing.Point(248, 2);
+            this.BtchonExcel.Name = "BtchonExcel";
+            this.BtchonExcel.Size = new System.Drawing.Size(280, 26);
+            this.BtchonExcel.TabIndex = 51;
+            this.BtchonExcel.Text = "Chọn danh sách khách hàng từ EXCEL ...";
+            this.BtchonExcel.UseVisualStyleBackColor = true;
+            this.BtchonExcel.Click += new System.EventHandler(this.BtchonExcel_Click);
+            // 
             // checkBox1
             // 
             this.checkBox1.AccessibleName = "status";
@@ -1145,7 +1245,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(444, 21);
+            this.checkBox1.Location = new System.Drawing.Point(103, 4);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(5);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(111, 21);
@@ -1156,7 +1256,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(362, 22);
+            this.label23.Location = new System.Drawing.Point(5, 5);
             this.label23.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(73, 17);
@@ -1177,9 +1277,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtLNH_KH9.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLNH_KH9.HoverColor = System.Drawing.Color.Yellow;
             this.txtLNH_KH9.LeaveColor = System.Drawing.Color.White;
-            this.txtLNH_KH9.Location = new System.Drawing.Point(101, 207);
+            this.txtLNH_KH9.Location = new System.Drawing.Point(500, 122);
             this.txtLNH_KH9.Name = "txtLNH_KH9";
-            this.txtLNH_KH9.Size = new System.Drawing.Size(693, 23);
+            this.txtLNH_KH9.Size = new System.Drawing.Size(294, 23);
             this.txtLNH_KH9.TabIndex = 47;
             this.txtLNH_KH9.VVar = "NH_KH";
             // 
@@ -1188,7 +1288,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label22.AccessibleDescription = "XULYL00040";
             this.label22.AccessibleName = "";
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(20, 210);
+            this.label22.Location = new System.Drawing.Point(419, 125);
             this.label22.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(80, 17);
@@ -1209,9 +1309,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtLNH_KH6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLNH_KH6.HoverColor = System.Drawing.Color.Yellow;
             this.txtLNH_KH6.LeaveColor = System.Drawing.Color.White;
-            this.txtLNH_KH6.Location = new System.Drawing.Point(101, 180);
+            this.txtLNH_KH6.Location = new System.Drawing.Point(500, 99);
             this.txtLNH_KH6.Name = "txtLNH_KH6";
-            this.txtLNH_KH6.Size = new System.Drawing.Size(693, 23);
+            this.txtLNH_KH6.Size = new System.Drawing.Size(294, 23);
             this.txtLNH_KH6.TabIndex = 40;
             this.txtLNH_KH6.VVar = "NH_KH";
             // 
@@ -1229,9 +1329,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtLNH_KH5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLNH_KH5.HoverColor = System.Drawing.Color.Yellow;
             this.txtLNH_KH5.LeaveColor = System.Drawing.Color.White;
-            this.txtLNH_KH5.Location = new System.Drawing.Point(101, 153);
+            this.txtLNH_KH5.Location = new System.Drawing.Point(101, 122);
             this.txtLNH_KH5.Name = "txtLNH_KH5";
-            this.txtLNH_KH5.Size = new System.Drawing.Size(693, 23);
+            this.txtLNH_KH5.Size = new System.Drawing.Size(314, 23);
             this.txtLNH_KH5.TabIndex = 39;
             this.txtLNH_KH5.VVar = "NH_KH";
             // 
@@ -1249,9 +1349,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtLNH_KH4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLNH_KH4.HoverColor = System.Drawing.Color.Yellow;
             this.txtLNH_KH4.LeaveColor = System.Drawing.Color.White;
-            this.txtLNH_KH4.Location = new System.Drawing.Point(101, 128);
+            this.txtLNH_KH4.Location = new System.Drawing.Point(101, 99);
             this.txtLNH_KH4.Name = "txtLNH_KH4";
-            this.txtLNH_KH4.Size = new System.Drawing.Size(693, 23);
+            this.txtLNH_KH4.Size = new System.Drawing.Size(314, 23);
             this.txtLNH_KH4.TabIndex = 38;
             this.txtLNH_KH4.VVar = "NH_KH";
             // 
@@ -1269,7 +1369,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtLNH_KH3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLNH_KH3.HoverColor = System.Drawing.Color.Yellow;
             this.txtLNH_KH3.LeaveColor = System.Drawing.Color.White;
-            this.txtLNH_KH3.Location = new System.Drawing.Point(101, 101);
+            this.txtLNH_KH3.Location = new System.Drawing.Point(101, 75);
             this.txtLNH_KH3.Name = "txtLNH_KH3";
             this.txtLNH_KH3.Size = new System.Drawing.Size(693, 23);
             this.txtLNH_KH3.TabIndex = 37;
@@ -1289,7 +1389,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtLNH_KH2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLNH_KH2.HoverColor = System.Drawing.Color.Yellow;
             this.txtLNH_KH2.LeaveColor = System.Drawing.Color.White;
-            this.txtLNH_KH2.Location = new System.Drawing.Point(101, 74);
+            this.txtLNH_KH2.Location = new System.Drawing.Point(101, 52);
             this.txtLNH_KH2.Name = "txtLNH_KH2";
             this.txtLNH_KH2.Size = new System.Drawing.Size(693, 23);
             this.txtLNH_KH2.TabIndex = 36;
@@ -1309,7 +1409,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtLNH_KH1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLNH_KH1.HoverColor = System.Drawing.Color.Yellow;
             this.txtLNH_KH1.LeaveColor = System.Drawing.Color.White;
-            this.txtLNH_KH1.Location = new System.Drawing.Point(101, 48);
+            this.txtLNH_KH1.Location = new System.Drawing.Point(101, 29);
             this.txtLNH_KH1.Name = "txtLNH_KH1";
             this.txtLNH_KH1.Size = new System.Drawing.Size(693, 23);
             this.txtLNH_KH1.TabIndex = 35;
@@ -1320,7 +1420,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label8.AccessibleDescription = "XULYL00040";
             this.label8.AccessibleName = "";
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(20, 183);
+            this.label8.Location = new System.Drawing.Point(419, 102);
             this.label8.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(80, 17);
@@ -1332,7 +1432,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label12.AccessibleDescription = "XULYL00040";
             this.label12.AccessibleName = "";
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(20, 156);
+            this.label12.Location = new System.Drawing.Point(5, 125);
             this.label12.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(80, 17);
@@ -1344,7 +1444,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label18.AccessibleDescription = "XULYL00040";
             this.label18.AccessibleName = "";
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(20, 131);
+            this.label18.Location = new System.Drawing.Point(5, 102);
             this.label18.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(80, 17);
@@ -1356,7 +1456,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label19.AccessibleDescription = "XULYL00040";
             this.label19.AccessibleName = "";
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(20, 104);
+            this.label19.Location = new System.Drawing.Point(5, 78);
             this.label19.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(80, 17);
@@ -1368,7 +1468,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label20.AccessibleDescription = "XULYL00040";
             this.label20.AccessibleName = "";
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(20, 77);
+            this.label20.Location = new System.Drawing.Point(5, 55);
             this.label20.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(80, 17);
@@ -1380,7 +1480,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label21.AccessibleDescription = "XULYL00040";
             this.label21.AccessibleName = "";
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(20, 51);
+            this.label21.Location = new System.Drawing.Point(5, 30);
             this.label21.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(80, 17);
@@ -1398,7 +1498,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(138, 19);
+            this.v6VvarTextBox1.Location = new System.Drawing.Point(641, 5);
             this.v6VvarTextBox1.Name = "v6VvarTextBox1";
             this.v6VvarTextBox1.Size = new System.Drawing.Size(153, 23);
             this.v6VvarTextBox1.TabIndex = 10;
@@ -1409,7 +1509,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label17.AccessibleDescription = "XULYL00041";
             this.label17.AccessibleName = "";
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(21, 20);
+            this.label17.Location = new System.Drawing.Point(530, 6);
             this.label17.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(105, 17);
@@ -1428,7 +1528,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabControl1.MinimumSize = new System.Drawing.Size(0, 150);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(826, 284);
+            this.tabControl1.Size = new System.Drawing.Size(826, 276);
             this.tabControl1.TabIndex = 4;
             this.tabControl1.Enter += new System.EventHandler(this.tabControl1_Enter);
             // 
@@ -1439,7 +1539,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabChiTiet.Location = new System.Drawing.Point(4, 25);
             this.tabChiTiet.Name = "tabChiTiet";
             this.tabChiTiet.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChiTiet.Size = new System.Drawing.Size(818, 255);
+            this.tabChiTiet.Size = new System.Drawing.Size(818, 247);
             this.tabChiTiet.TabIndex = 0;
             this.tabChiTiet.Tag = "canceldata";
             this.tabChiTiet.Text = "Khai báo chi tiết điều kiện";
@@ -1470,20 +1570,20 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MA_VT,
@@ -1495,10 +1595,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(814, 202);
+            this.dataGridView1.Size = new System.Drawing.Size(814, 189);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.Tag = "cancelall";
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -1551,7 +1651,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabChiTiet2.Location = new System.Drawing.Point(4, 25);
             this.tabChiTiet2.Name = "tabChiTiet2";
             this.tabChiTiet2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChiTiet2.Size = new System.Drawing.Size(818, 255);
+            this.tabChiTiet2.Size = new System.Drawing.Size(818, 247);
             this.tabChiTiet2.TabIndex = 1;
             this.tabChiTiet2.Text = "Kết quả chương trình chi tiết";
             this.tabChiTiet2.UseVisualStyleBackColor = true;
@@ -1581,20 +1681,20 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             this.gView3.AllowUserToAddRows = false;
             this.gView3.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.LightCyan;
-            this.gView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightCyan;
+            this.gView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.gView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gView3.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.gView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn6,
@@ -1606,10 +1706,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.gView3.MultiSelect = false;
             this.gView3.Name = "gView3";
             this.gView3.ReadOnly = true;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.LightYellow;
-            this.gView3.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightYellow;
+            this.gView3.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.gView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gView3.Size = new System.Drawing.Size(813, 196);
+            this.gView3.Size = new System.Drawing.Size(813, 188);
             this.gView3.TabIndex = 5;
             // 
             // dataGridViewTextBoxColumn6
@@ -1662,7 +1762,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabKetQuaChuongTrinhTongHD.Location = new System.Drawing.Point(4, 25);
             this.tabKetQuaChuongTrinhTongHD.Name = "tabKetQuaChuongTrinhTongHD";
             this.tabKetQuaChuongTrinhTongHD.Padding = new System.Windows.Forms.Padding(3);
-            this.tabKetQuaChuongTrinhTongHD.Size = new System.Drawing.Size(818, 255);
+            this.tabKetQuaChuongTrinhTongHD.Size = new System.Drawing.Size(818, 247);
             this.tabKetQuaChuongTrinhTongHD.TabIndex = 2;
             this.tabKetQuaChuongTrinhTongHD.Text = "Kết quả chương trình tổng đơn hàng";
             this.tabKetQuaChuongTrinhTongHD.UseVisualStyleBackColor = true;
@@ -1751,6 +1851,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gView4)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -1862,5 +1963,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private V6NumberTextBox v6NumberTextBox4;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label26;
+        private V6Controls.Controls.V6FormButton BtchonExcel;
+        private V6ColorDataGridView gView4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }

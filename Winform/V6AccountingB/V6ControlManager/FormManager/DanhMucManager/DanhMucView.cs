@@ -1083,7 +1083,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(sortField)) sortField = v6lookup_config.vOrder;
+                    //if (string.IsNullOrEmpty(sortField)) sortField = v6lookup_config.vOrder;
                 }
 
                 _last_filter = GetWhere();

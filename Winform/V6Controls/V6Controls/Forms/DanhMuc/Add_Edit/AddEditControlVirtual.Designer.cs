@@ -34,6 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.FilterType = "2";
             this.Name = "AddEditControlVirtual";
             this.Size = new System.Drawing.Size(310, 173);
             this.Load += new System.EventHandler(this.AddEditControlVirtual_Load);

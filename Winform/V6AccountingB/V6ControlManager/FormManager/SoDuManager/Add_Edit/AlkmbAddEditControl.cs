@@ -23,8 +23,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
     {
         private V6TableStruct _table2Struct;
         private V6TableStruct _table3Struct;
+        private V6TableStruct _table4Struct;
+
         private string _sttRec0 = "";
         private string _sttRec0_33 = "";
+        private string _sttRec0_44 = "";
 
         public AlkmbAddEditControl()
         {
@@ -38,6 +41,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             _maCt = "S0M";
             _table2Name = "Alkmbct";
             _table3Name = "Alkmbct2";
+            _table4Name = "Alkmbct3";
+
             txtLNH_KH1.SetInitFilter("loai_nh=1");
             txtLNH_KH2.SetInitFilter("loai_nh=2");
             txtLNH_KH3.SetInitFilter("loai_nh=3");
@@ -54,6 +59,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                 _table2Struct = V6BusinessHelper.GetTableStruct(_table2Name);
                 _table3Struct = V6BusinessHelper.GetTableStruct(_table3Name);
+                _table4Struct = V6BusinessHelper.GetTableStruct(_table4Name);
 
                 LoadDetailControls();
                 LoadDetail2Controls();
@@ -437,6 +443,21 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     //gView3.SetCorplan2();
                 }
 
+                //Data4
+                {
+                    string sql = "SELECT a.*,b.ten_kh as ten_kh,b.dia_chi,b.nh_kh1,b.nh_kh2,b.nh_kh3,b.nh_kh4,b.nh_kh5,b.nh_kh6 FROM "
+                                + _table4Name +
+                                 " as a left join alkh b on a.ma_kh_i=b.ma_kh  Where stt_rec = @rec";
+                    SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
+                    data4 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist)
+                        .Tables[0];
+                    SetDataToGrid(gView4, data4, txtMaCt.Text);
+                    //gView3.DataSource = data3;
+                    //gView3.HideColumnsAldm(_table3Name);
+                    //gView3.SetCorplan2();
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -475,6 +496,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                             ok = ok && V6BusinessHelper.Insert(TRANSACTION, _table3Name, row);
                         }
                         if (!ok) goto fail;
+
+                        adList = data4.ToListDataDictionary(txtSttRec.Text);
+                        foreach (SortedDictionary<string, object> row in adList)
+                        {
+                            ok = ok && V6BusinessHelper.Insert(TRANSACTION, _table4Name, row);
+                        }
 
                         if (ok)
                         {
@@ -530,8 +557,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     //Update AM
                     var amSql = SqlGenerator.GenUpdateSql(V6Login.UserId, TableName.ToString(), _TableStruct, DataDic, keys);
                     var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
-                    
-                    int j = 0, k = 0;
+
+                    int j = 0, k = 0, l = 0;
 
                     //Insert AD
                     var adList = AD.ToListDataDictionary(txtSttRec.Text);
@@ -545,6 +572,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     {
                         var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, _table3Struct, adRow, false);
                         k += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
+                    }
+                    var adList4 = data4.ToListDataDictionary(txtSttRec.Text);
+                    foreach (SortedDictionary<string, object> adRow in adList4)
+                    {
+                        var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, _table4Struct, adRow, false);
+                        l += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
                     }
                     if (insert_success && j == adList.Count && k == adList3.Count)
                     {
@@ -621,6 +654,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             V6ControlFormHelper.UpdateDKlist(data3, "NGAY_HL", dateNgayHL.Value);
             V6ControlFormHelper.UpdateDKlist(data3, "NGAY_HL2", dateNgayHL2.Value);
 
+            V6ControlFormHelper.UpdateDKlistAll(DataDic, new[] { "MA_DVCS", "MA_KM", "MA_CT" }, data4);
+            V6ControlFormHelper.UpdateDKlist(data4, "NGAY_HL", dateNgayHL.Value);
+            V6ControlFormHelper.UpdateDKlist(data4, "NGAY_HL2", dateNgayHL2.Value);
         }
 
         /// <summary>
@@ -1451,8 +1487,133 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             XuLyChonVatTuCK();
         }
+        private void ChucNang_ChonTuExcel()
+        {
+            try
+            {
+                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
 
-        
-        
+                var chonExcel = new LoadExcelDataForm();
+                chonExcel.CheckFields = "MA_KH_I";
+                chonExcel.AcceptData += chonExcel_AcceptData;
+                chonExcel.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ChonTuExcel", ex);
+            }
+        }
+
+        void chonExcel_AcceptData(DataTable table)
+        {
+            var count = 0;
+            _message = "";
+
+            if (table.Columns.Contains("MA_KH_I") && table.Rows.Count > 0)
+            {
+               
+                foreach (DataRow row in table.Rows)
+                {
+                    var data = row.ToDataDictionary(_sttRec);
+                    var cMaKh = data["MA_KH_I"].ToString().Trim();
+                    var exist = V6BusinessHelper.IsExistOneCode_List("ALKH", "MA_KH", cMaKh);
+                    
+                  
+                    if (exist)
+                    {
+                        if (XuLyThemDetail4(data))
+                        {
+                            count++;
+                        }
+                    }
+                    else
+                    {
+                        if (!exist) _message += " Danh mục khácg hàng không tồn tại mã: " + cMaKh;
+                        
+                    }
+                }
+                ShowMainMessage(count > 0
+                ? string.Format("Đã thêm {0} chi tiết từ excel.", count) + _message
+                : "Không thêm được chi tiết nào từ excel." + _message);
+            }
+            else
+            {
+                ShowMainMessage("Không có đủ thông tin!");
+            }
+
+
+        }
+
+        private bool XuLyThemDetail4(SortedDictionary<string, object> data)
+        {
+            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            {
+                this.ShowInfoMessage(V6Text.AddDenied + "\nMode: " + Mode);
+                return true;
+            }
+            try
+            {
+                _sttRec0_44 = V6BusinessHelper.GetNewSttRec0(data4);
+                data["STT_REC0"] = _sttRec0_44;
+                data["STT_REC"] = txtSttRec.Text;
+
+                //Kiem tra du lieu truoc khi them sua
+                var error = "";
+                if (!data.ContainsKey("MA_KH_I") || data["MA_KH_I"].ToString().Trim() == "")
+                {
+                   error += "\nMã khách rỗng.";
+                }
+
+
+                if (error == "")
+                {
+                    //Tạo dòng dữ liệu mới.
+                    var newRow = data4.NewRow();
+                    foreach (DataColumn column in data4.Columns)
+                    {
+                        var KEY = column.ColumnName.ToUpper();
+                        object value = ObjectAndString.ObjectTo(column.DataType,
+                            data.ContainsKey(KEY) ? data[KEY] : "") ?? DBNull.Value;
+                        newRow[KEY] = value;
+                    }
+                    //Them du lieu chung
+                    data4.Rows.Add(newRow);
+                    gView4.DataSource = data4;
+                    
+                    if (data4.Rows.Count > 0)
+                    {
+                        gView4.Rows[data4.Rows.Count - 1].Selected = true;
+                    }
+                }
+                else
+                {
+                    this.ShowWarningMessage("Kiểm tra lại dữ liệu 4:" + error);
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".Thêm chi tiết 4: " + ex.Message);
+            }
+            return true;
+        }
+
+        private void BtchonExcel_Click(object sender, EventArgs e)
+        {
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift)
+            {
+                Xoa_gView4();
+            }
+            else
+            {
+                ChucNang_ChonTuExcel();
+            }
+        }
+
+        private void Xoa_gView4()
+        {
+            gView4.Rows.Clear();
+        }
     }
 }
