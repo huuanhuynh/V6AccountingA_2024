@@ -276,6 +276,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                 CheckSoLuong1();
                             };
 
+                            _soLuong1.V6LostFocus += (sender) =>
+                            {
+                                chkSuaTienThue.Checked = false;
+                            };
+
                             if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
                             {
                                 _soLuong1.ReadOnlyTag();
@@ -1854,6 +1859,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         
         private void MaVatTu_V6LostFocus(object sender)
         {
+            chkSuaTienThue.Checked = false;
             XuLyChonMaVt(_maVt.Text);
         }
         
@@ -1883,6 +1889,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         void GiaNt21_V6LostFocus(object sender)
         {
+            chkSuaTienThue.Checked = false;
             TinhTienNt2();
         }
 
@@ -7001,18 +7008,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
-                //Sửa thành chiết khấu riêng.
-                if (chkLoaiChietKhau.Checked)
-                {
-                    ShowParentMessage("Chiết khấu khuyến mãi không áp dụng khi đặt chiết khấu chung.");
-                    chkLoaiChietKhau.Focus();
-                    return;
-                }
-
                 foreach (DataRow ck_row in ctck1.Rows)
                 {
                     var tag = (ck_row["tag"] ?? "").ToString().Trim();
                     if (tag == "") continue;
+
+                    //Sửa thành chiết khấu riêng.
+                    if (chkLoaiChietKhau.Checked)
+                    {
+                        ShowParentMessage("Chiết khấu khuyến mãi không áp dụng khi đặt chiết khấu chung.");
+                        chkLoaiChietKhau.Focus();
+                        return;
+                    }
 
                     var ck_ma_km = ck_row["MA_KM"].ToString().Trim();
                     var ck_stt_rec0 = ck_row["STT_REC0"].ToString().Trim();
