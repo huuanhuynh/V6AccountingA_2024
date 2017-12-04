@@ -16,7 +16,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
             F3 = false;
             F5 = false;
             F9 = true;
-            
+            txtDanhSachCot.Text = "GIO:X,SL_TD2:D,SL_TD3:O,GC_TD1";
+            txtSoMaCong.Value = 4;
         }
         
         /// <summary>
@@ -31,6 +32,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
         public override void UpdateValues()
         {
             String1 = txtFile.Text;
+            Number1 = txtSoMaCong.Value;
+            Tag = txtDanhSachCot.Text;
             //String2 = comboBox1.SelectedItem.ToString();
             //String3 = comboBox2.SelectedItem.ToString();
 
