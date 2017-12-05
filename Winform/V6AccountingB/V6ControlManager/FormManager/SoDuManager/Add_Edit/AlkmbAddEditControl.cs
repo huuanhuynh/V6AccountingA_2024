@@ -437,7 +437,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
                     data3 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist)
                         .Tables[0];
-                    SetDataToGrid(gView3, data3, txtMaCt.Text);
+                    SetDataToGrid(gView3, data3, txtMaCt.Text, _table3Name);
                     //gView3.DataSource = data3;
                     //gView3.HideColumnsAldm(_table3Name);
                     //gView3.SetCorplan2();
@@ -451,7 +451,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
                     data4 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist)
                         .Tables[0];
-                    SetDataToGrid(gView4, data4, txtMaCt.Text);
+                    SetDataToGrid(gView4, data4, txtMaCt.Text, _table4Name);
                     //gView3.DataSource = data3;
                     //gView3.HideColumnsAldm(_table3Name);
                     //gView3.SetCorplan2();
@@ -1613,7 +1613,43 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void Xoa_gView4()
         {
-            gView4.Rows.Clear();
+            data4.Rows.Clear();
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+
+                if (e.KeyData == (Keys.Control | Keys.F3))
+                {
+                    if (this.ShowConfirmMessage("Thay thế cột hiện tại với giá trị đang chọn?") != DialogResult.Yes) return;
+
+                    var currentRow = dataGridView1.CurrentRow;
+                    var currentCell = dataGridView1.CurrentCell;
+
+                    if (currentRow == null || currentCell == null)
+                    {
+                        ShowTopMessage(V6Text.NoSelection);
+                        return;
+                    }
+
+                    int column_index = currentCell.ColumnIndex;
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (row != currentRow)
+                        {
+                            row.Cells[column_index].Value = currentCell.Value;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".dataGridView1_KeyDown", ex);
+            }
         }
     }
 }

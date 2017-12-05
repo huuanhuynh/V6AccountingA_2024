@@ -39,11 +39,13 @@
             this.btnCancel.AccessibleDescription = "huy";
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(93, 257);
+            this.btnCancel.Image = global::V6ControlManager.Properties.Resources.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(106, 247);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(88, 40);
             this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Đóng";
+            this.btnCancel.Text = "&Hủy";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -51,11 +53,13 @@
             // 
             this.btnFilter.AccessibleDescription = "loc";
             this.btnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFilter.Location = new System.Drawing.Point(12, 257);
+            this.btnFilter.Image = global::V6ControlManager.Properties.Resources.Apply;
+            this.btnFilter.Location = new System.Drawing.Point(12, 247);
             this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(75, 23);
+            this.btnFilter.Size = new System.Drawing.Size(88, 40);
             this.btnFilter.TabIndex = 1;
-            this.btnFilter.Text = "Lọc";
+            this.btnFilter.Text = "&Nhận";
+            this.btnFilter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFilter.UseVisualStyleBackColor = true;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
@@ -70,7 +74,7 @@
             this.panel1.Size = new System.Drawing.Size(510, 233);
             this.panel1.TabIndex = 0;
             // 
-            // FilterForm
+            // SoDuFilterForm
             // 
             this.AccessibleDescription = "filter_form";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -83,10 +87,13 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(550, 1000);
             this.MinimumSize = new System.Drawing.Size(500, 200);
-            this.Name = "FilterForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Name = "SoDuFilterForm";
             this.Text = "Lọc";
             this.Load += new System.EventHandler(this.FilterForm_Load);
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.btnFilter, 0);
+            this.Controls.SetChildIndex(this.btnCancel, 0);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.ResumeLayout(false);
 
         }

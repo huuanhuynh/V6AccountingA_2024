@@ -627,10 +627,7 @@ namespace V6AccountingBusiness
         {
             return alct["m_phdbf"].ToString().Trim();
         }
-        public static string GetADname(DataRow alct)
-        {
-            return alct["m_ctdbf"].ToString().Trim();
-        }
+        
 
         public static V6TableStruct V6Struct1
         {

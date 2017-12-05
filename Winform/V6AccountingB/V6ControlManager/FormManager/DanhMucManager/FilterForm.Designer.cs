@@ -40,9 +40,9 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::V6ControlManager.Properties.Resources.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(97, 247);
+            this.btnCancel.Location = new System.Drawing.Point(106, 247);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(80, 42);
+            this.btnCancel.Size = new System.Drawing.Size(88, 42);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Tag = "Escape";
             this.btnCancel.Text = "&Hủy";
@@ -57,7 +57,7 @@
             this.btnFilter.Image = global::V6ControlManager.Properties.Resources.Apply;
             this.btnFilter.Location = new System.Drawing.Point(12, 247);
             this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(80, 42);
+            this.btnFilter.Size = new System.Drawing.Size(88, 42);
             this.btnFilter.TabIndex = 1;
             this.btnFilter.Tag = "Return, Control";
             this.btnFilter.Text = "&Nhận";
