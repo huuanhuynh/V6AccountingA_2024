@@ -3459,6 +3459,76 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.ShowErrorMessage(GetType() + ".TinhChietKhau: " + ex.Message);
             }
         }
+        private void TinhPhanBoGiamGia()
+        {
+            try
+            {
+
+                if (V6Options.V6OptionValues["M_GIAVC_GIAGIAM_CT"] == "2" ||
+                    V6Options.V6OptionValues["M_GIAVC_GIAGIAM_CT"] == "3")
+                {
+                    return;
+                }
+                
+                decimal t_gg_nt = 0, t_gg = 0;
+                
+                t_gg_nt = txtTongGiamNt.Value;
+                t_gg = txtTongGiam.Value;
+                
+                    //tính giam gia cho mỗi chi tiết
+
+                var tTienNt2 = V6BusinessHelper.TinhTong(AD, "TIEN_NT2");
+                var tyGia = txtTyGia.Value;
+                var t_tien_nt2 = txtTongTienNt2.Value;
+                txtTongTienNt2.Value = V6BusinessHelper.Vround(tTienNt2, M_ROUND_NT);
+
+                    var t_gg_nt_check = 0m;
+                    var t_gg_check = 0m;
+                    var index_gg = -1;
+
+                    for (var i = 0; i < AD.Rows.Count; i++)
+                    {
+                        if (t_tien_nt2 != 0)
+                        {
+                            var tien_nt2 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien_nt2"]);
+                            var gg_nt = V6BusinessHelper.Vround(tien_nt2 * t_gg_nt / t_tien_nt2, M_ROUND_NT);
+                            var gg = V6BusinessHelper.Vround(gg_nt * tyGia, M_ROUND);
+
+                            if (_maNt == _mMaNt0)
+                                gg = gg_nt;
+
+
+                            t_gg_nt_check = t_gg_nt_check + gg_nt;
+                            t_gg_check += gg;
+
+                            if (gg_nt != 0 && index_gg == -1)
+                                index_gg = i;
+
+
+                            //gán lại gg_nt
+                            if (AD.Columns.Contains("GG_NT")) AD.Rows[i]["GG_NT"] = gg_nt;
+                            if (AD.Columns.Contains("GG")) AD.Rows[i]["GG"] = gg;
+                            
+
+                        }
+                    }
+                    // Xu ly chenh lech
+                    // Tìm dòng có số tiền
+                    if (index_gg != -1)
+                    {
+                        decimal _gg_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["GG_NT"]) + (t_gg_nt - t_gg_nt_check);
+                        AD.Rows[index_gg]["GG_NT"] = _gg_nt;
+
+                        decimal _gg = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["GG"]) + (t_gg - t_gg_check);
+                        AD.Rows[index_gg]["GG"] = _gg;
+                    }
+                }
+              
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".TinhPhanBoGiamGia: " + ex.Message);
+            }
+        }
         
 
         private void TinhThue()
@@ -3563,7 +3633,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 HienThiTongSoDong(lblTongSoDong);
                 TinhTongValues();
                 TinhChietKhau(); //Đã tính //t_tien_nt2, T_CK_NT, PT_CK
+                TinhPhanBoGiamGia();//Tuanmh bo sung 05/12/2017
                 TinhThue();
+
                 if (string.IsNullOrEmpty(_mMaNt0)) return;
                 
                 var t_tien_nt2 = txtTongTienNt2.Value;
@@ -6913,7 +6985,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             try
             {
                 decimal tong_giam = 0m, tong_giam_nt = 0m;
-                //decimal tong_ck0 = 0m, tong_ck_nt0 = 0m;
                 string ma_km = "";
                 foreach (DataRow row in ctck1th.Rows)
                 {
@@ -6931,16 +7002,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     ad_row["MA_KMB"] = ma_km;
                 }
-
-                //txtTongGiam.Value = tong_giam;
-                //txtTongGiamNt.Value = tong_giam_nt;
-                //tong_ck_nt0 = txtTongCkNt.Value;
-                //tong_ck0 = txtTongCk.Value;
-                if (chkLoaiChietKhau.Checked && tong_giam!=0)
+                
+                if (tong_giam!=0)
                 {
-                    chkSuaTienCk.Checked = true;
-                    txtTongCkNt.Value = tong_giam_nt;
-                    txtTongCk.Value = tong_giam;
+                    txtTongGiam.Value = tong_giam;
+                    txtTongGiamNt.Value = tong_giam_nt;
 
                 }
 
@@ -7008,23 +7074,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
+                Boolean chietkhau_yn = false;
                 foreach (DataRow ck_row in ctck1.Rows)
                 {
                     var tag = (ck_row["tag"] ?? "").ToString().Trim();
                     if (tag == "") continue;
 
-                    //Sửa thành chiết khấu riêng.
-                    if (chkLoaiChietKhau.Checked)
-                    {
-                        ShowParentMessage("Chiết khấu khuyến mãi không áp dụng khi đặt chiết khấu chung.");
-                        chkLoaiChietKhau.Focus();
-                        return;
-                    }
+                    ////Sửa thành chiết khấu riêng.
+                    //if (chkLoaiChietKhau.Checked)
+                    //{
+                    //    ShowParentMessage("Chiết khấu khuyến mãi không áp dụng khi đặt chiết khấu chung.");
+                    //    chkLoaiChietKhau.Focus();
+                    //    return;
+                    //}
 
                     var ck_ma_km = ck_row["MA_KM"].ToString().Trim();
                     var ck_stt_rec0 = ck_row["STT_REC0"].ToString().Trim();
                     var pt_ck = ObjectAndString.ObjectToDecimal(ck_row["PT_CK"]);
                     var ck = ObjectAndString.ObjectToDecimal(ck_row["CK"]);
+                  
 
                     if (pt_ck == 0 && ck == 0) continue;
 
@@ -7052,17 +7120,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                         ad_row["CK"] = ad_row["ck_Nt"];
                                     }
                                     ad_row["MA_KMB"] = ck_ma_km;
+                                    chietkhau_yn = true;
                                 }
                             }
                             if (ck != 0)
                             {
                                 ad_row["CK"] = ck;
                                 ad_row["MA_KMB"] = ck_ma_km;
+                                chietkhau_yn = true;
                             }
                         }
                     }
                 }
-
+                if (chietkhau_yn)
+                {
+                    chkLoaiChietKhau.Checked = false;// Co CK rieng set lai 
+                }
                 dataGridView1.DataSource = AD;
             }
             catch (Exception ex)
@@ -7111,6 +7184,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     row["PT_CKI"] = 0m;
                     row["CK"] = 0m;
                     row["CK_NT"] = 0m;
+                    row["GG"] = 0m;
+                    row["GG_NT"] = 0m;
                     chietkhau_yn = true;
                 }
             }
@@ -7119,6 +7194,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 txtTongCk.Value = 0;
                 txtTongCkNt.Value = 0;
+                txtTongGiam.Value = 0;
+                txtTongGiamNt.Value = 0;
             }
         }
 

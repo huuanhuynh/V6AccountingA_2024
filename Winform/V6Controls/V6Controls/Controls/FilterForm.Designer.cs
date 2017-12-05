@@ -51,12 +51,12 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::V6Controls.Properties.Resources.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(100, 247);
+            this.btnCancel.Location = new System.Drawing.Point(106, 247);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(88, 40);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Tag = "Escape";
-            this.btnCancel.Text = "Hủy";
+            this.btnCancel.Text = "&Hủy";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -92,6 +92,7 @@
             this.Name = "FilterForm";
             this.Text = "Lọc";
             this.Load += new System.EventHandler(this.FilterForm_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.btnFilter, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);

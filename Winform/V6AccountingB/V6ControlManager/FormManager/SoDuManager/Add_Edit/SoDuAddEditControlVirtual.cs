@@ -181,11 +181,20 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (tableName == null) tableName = _table2Name;
                 dgv.DataSource = data;
 
-                var invoice = new V6InvoiceBase(mact);
-                dgv.SetCorplan2();
-                V6ControlFormHelper.FormatGridViewAndHeader(dgv, invoice.GRDS_AD, invoice.GRDF_AD,
+                if (string.Equals(tableName, _table2Name, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    var invoice = new V6InvoiceBase(mact);
+                    dgv.SetCorplan2();
+                    V6ControlFormHelper.FormatGridViewAndHeader(dgv, invoice.GRDS_AD, invoice.GRDF_AD,
                         V6Setting.IsVietnamese ? invoice.GRDHV_AD : invoice.GRDHE_AD);
-                dgv.HideColumnsAldm(tableName);
+                    dgv.HideColumnsAldm(tableName);
+                }
+                else
+                {
+                    AldmConfig aldm = V6ControlsHelper.GetAldmConfig(tableName);
+                    V6ControlFormHelper.FormatGridViewAndHeader(dgv, aldm.GRDS_V1, aldm.GRDF_V1,
+                        V6Setting.IsVietnamese ? aldm.GRDHV_V1 : aldm.GRDHE_V1);
+                }
             }
         }
 

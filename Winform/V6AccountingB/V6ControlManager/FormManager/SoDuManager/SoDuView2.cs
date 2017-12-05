@@ -44,18 +44,26 @@ namespace V6ControlManager.FormManager.SoDuManager
             dataGridView1.DataSource = new DataTable();
         }
 
+        private string GetADname(DataRow alct)
+        {
+            return alct["m_ctdbf"].ToString().Trim();
+        }
+        private void GetADnameList(DataRow alct)
+        {
+            if (alct["m_list_ct"] == null) return;
+
+            _DetailTableNameList = ObjectAndString.SplitString(alct["m_list_ct"].ToString().Trim());
+        }
+
         private void GetInfo(string maCt)
         {
             _maCt = maCt;
             DataTable alct = V6BusinessHelper.GetAlct(maCt);
             _tableName = V6BusinessHelper.GetAMname(alct.Rows[0]);
             CurrentTable = V6TableHelper.ToV6TableName(_tableName);
-            _tableName2 = V6BusinessHelper.GetADname(alct.Rows[0]);
-            if(maCt == "SO2")
-            {
-                _tableName3 = "ADCTTS";
-                _tableName4 = "ADCTTSBP";
-            }
+            _tableName2 = GetADname(alct.Rows[0]);
+            GetADnameList(alct.Rows[0]);
+            
             _hideColumnDic = _categories.GetHideColumns(_tableName);
             InitFilter = V6Login.GetInitFilter(_tableName, V6ControlFormHelper.FindFilterType(this));
         }
@@ -71,7 +79,11 @@ namespace V6ControlManager.FormManager.SoDuManager
         private readonly V6Categories _categories = new V6Categories();
         private SortedDictionary<string, string> _hideColumnDic;
         private string _maCt;
-        private string _tableName, _tableName2, _tableName3, _tableName4;
+        private string _tableName, _tableName2;
+        /// <summary>
+        /// _tableName3,_tableName4...
+        /// </summary>
+        private string[] _DetailTableNameList = null;
 
         public string CurrentSttRec { get; set; }
 
@@ -366,15 +378,17 @@ namespace V6ControlManager.FormManager.SoDuManager
                             == DialogResult.Yes)
                         {
                             //Xoa chi tiet truoc
-                            if (_maCt == "SO2")
+                            _categories.Delete(TRANSACTION, _tableName2, keys);
+
+                            if (_DetailTableNameList != null)
                             {
-                                _categories.Delete(TRANSACTION, _tableName2, keys);
-                                _categories.Delete(TRANSACTION, _tableName3, keys);
-                                _categories.Delete(TRANSACTION, _tableName4, keys);
-                            }
-                            else
-                            {
-                                _categories.Delete(TRANSACTION, _tableName2, keys);
+                                foreach (string table in _DetailTableNameList)
+                                {
+                                    if (V6BusinessHelper.IsExistDatabaseTable(table))
+                                    {
+                                        _categories.Delete(TRANSACTION, table, keys);
+                                    }
+                                }
                             }
 
                             //Xoa bang chinh
