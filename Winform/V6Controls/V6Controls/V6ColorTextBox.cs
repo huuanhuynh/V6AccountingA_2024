@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using V6Controls.Forms;
 using V6Controls.Functions;
+using V6Init;
 
 namespace V6Controls
 {
@@ -46,7 +47,7 @@ namespace V6Controls
             TextChanged += V6ColorTextBox_TextChanged;
 
             VisibleChanged += DisTextBox_VisibleChanged;
-
+            
             ResumeLayout(false);
 
         }
@@ -155,6 +156,7 @@ namespace V6Controls
 
         [Category("V6")]
         [DefaultValue(null)]
+        [Description("Những ký tự được phép sử dụng khi gõ.")]
         public string LimitCharacters
         {
             get { return _lmChars; }
@@ -162,9 +164,56 @@ namespace V6Controls
         }
         private string _lmChars;
 
+        [Category("V6")]
+        [DefaultValue(null)]
+        [Description("Những ký tự KHÔNG được sử dụng khi gõ.")]
+        public string LimitCharacters0
+        {
+            get
+            {
+                if(UseLimitCharacters0) LoadLitmit0Option();
+                return _lmChars0;
+            }
+            set { _lmChars0 = value; }
+        }
+        private string _lmChars0;
+        /// <summary>
+        /// Bật tính năng sử dụng LimitCharacters0 lưu trong V6Options.
+        /// </summary>
+        [DefaultValue(false)]
+        [Description("Bật tính năng sử dụng LimitCharacters0 lưu trong V6Options.")]
+        public bool UseLimitCharacters0 { get; set; }
+
+        /// <summary>
+        /// Gán chuỗi ký tự được phép sử dụng khi gõ.
+        /// </summary>
+        /// <param name="s"></param>
         public void SetLimitCharacters(string s)
         {
             LimitCharacters = s;
+        }
+        /// <summary>
+        /// Gán chuỗi ký tự KHÔNG được sử dụng khi gõ.
+        /// </summary>
+        /// <param name="s"></param>
+        public void SetLimitCharacters0(string s)
+        {
+            LimitCharacters0 = s;
+        }
+
+        private void LoadLitmit0Option()
+        {
+            if (_lmChars0 == null)
+            {
+                try
+                {
+                    LimitCharacters0 = V6Options.V6OptionValues["M_V6_LIMITCHARS0"];
+                }
+                catch (Exception)
+                {
+                    
+                }
+            }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -189,12 +238,13 @@ namespace V6Controls
             {
                 var c = e.KeyChar;
                 //var c = (char)e.KeyCode;
-                if (!string.IsNullOrEmpty(_lmChars) && !_lmChars.Contains(c))
+                if ((!string.IsNullOrEmpty(_lmChars) && !_lmChars.Contains(c))
+                    || (UseLimitCharacters0 && !string.IsNullOrEmpty(LimitCharacters0) && _lmChars0.Contains(c))
+                    )
                 {
                     e.Handled = true;
                 }
-                else
-                    if (!(this is V6CheckTextBox))
+                else if (!(this is V6CheckTextBox))
                 {
                     if (MaxLength == 1)
                     {
@@ -202,7 +252,7 @@ namespace V6Controls
                     }
                     else if (TextLength > 0 && SelectionStart == MaxLength)
                     {
-                        Text = Text.Substring(0, TextLength-1) + c;
+                        Text = Text.Substring(0, TextLength - 1) + c;
                     }
                 }
             }
@@ -462,13 +512,6 @@ namespace V6Controls
 
         private Color _ForeColorDisabled = SystemColors.WindowText;
 
-        private const int WM_ENABLE = 0xa;
-
-        //public DisTextBox()
-        //{
-        //    VisibleChanged += DisTextBox_VisibleChanged;
-        //}
-
         private void DisTextBox_VisibleChanged(object sender, System.EventArgs e)
         {
             if (!this._ColorsSaved && this.Visible)
@@ -610,13 +653,48 @@ namespace V6Controls
         {
             switch (m.Msg)
             {
-                case WM_ENABLE:
+                case Win32.WM_ENABLE:
                     // Prevent the message from reaching the control,
                     // so the colors don't get changed by the default procedure.
                     return; // <-- suppress WM_ENABLE message
 
             }
-            
+            // Trap WM_PASTE:
+            // Xử lý dữ liệu clipboard trước khi dán
+            if (m.Msg == Win32.WM_PASTE)
+            {
+                if (Clipboard.ContainsText())
+                {
+                    var clipboard = Clipboard.GetText();
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(LimitCharacters0))
+                        {
+                            foreach (char c in _lmChars0)
+                            {
+                                clipboard = clipboard.Replace("" + c, "");
+                            }
+                        }
+                        if (!string.IsNullOrEmpty(LimitCharacters))
+                        {
+                            for (int i = clipboard.Length - 1; i >= 0; i--)
+                            {
+                                char c = clipboard[i];
+                                if (!_lmChars.Contains(c))
+                                {
+                                    clipboard = clipboard.Remove(i, 1);
+                                }
+                            }
+                        }
+                        Paste(clipboard);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.WriteExLog(GetType() + ".WndProc WM_PASTE", ex);
+                    }
+                }
+                return;
+            }
             base.WndProc(ref m);
         }
 

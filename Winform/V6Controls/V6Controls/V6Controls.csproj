@@ -143,7 +143,7 @@
     <Compile Include="Controls\SyntaxHighlightingTextBox\SyntaxHighlightingTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\SyntaxHighlightingTextBox\Win32.cs" />
+    <Compile Include="Win32.cs" />
     <Compile Include="Controls\ToChucTree\ToChucTreeControl.cs">
       <SubType>Component</SubType>
     </Compile>

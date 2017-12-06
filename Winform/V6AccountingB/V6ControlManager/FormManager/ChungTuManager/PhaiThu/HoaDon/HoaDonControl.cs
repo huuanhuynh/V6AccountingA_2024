@@ -6954,6 +6954,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     new ChonKhuyenMaiForm(dsctkm).ShowDialog(this);
                 }
 
+                l_ma_km = ";";
                 //Áp dụng khuyến mãi.
                 if (ctkm1 != null && ctkm1.Rows.Count > 0)
                 {
@@ -6978,21 +6979,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     ApDungChietKhauTH(ctck1th);
                 }
 
-
+                //bỏ dấu ; ở 2 đầu chuỗi
+                l_ma_km = l_ma_km.Trim(new[] { ';' });
+                TxtL_AM_INFO.Text = l_ma_km;
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".TinhChietKhauKhuyenMai", ex);
             }
         }
+        private string l_ma_km = "";
 
         private void ApDungChietKhauTH(DataTable ctck1th)
         {
             try
             {
                 decimal tong_giam = 0m, tong_giam_nt = 0m;
-                string ma_km = "";
-                string l_ma_km = "";
+                string MA_KM = "";
+                
 
                 foreach (DataRow row in ctck1th.Rows)
                 {
@@ -7002,24 +7006,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     tong_giam_nt += ObjectAndString.ObjectToDecimal(row["T_GG_NT"]);
                     if (ObjectAndString.ObjectToDecimal(row["T_GG"]) != 0)
                     {
-                        ma_km = ObjectAndString.ObjectToString(row["MA_KM"]);
-                        if (l_ma_km == "")
+                        MA_KM = ObjectAndString.ObjectToString(row["MA_KM"]).Trim();
+                        
+                        if (!l_ma_km.Contains(";" + MA_KM + ";"))
                         {
-                            l_ma_km = ma_km.Trim();
-                        }
-                        else
-                        {
-                            l_ma_km = l_ma_km + ";" + ma_km.Trim();
+                            l_ma_km = l_ma_km + MA_KM + ";";
                         }
                     }
                 }
-                TxtL_AM_INFO.Text = l_ma_km;
 
                 foreach (DataRow ad_row in AD.Rows)
                 {
                     if ((ad_row["MA_KMB"] ?? "").ToString().Trim() == "")
                     {
-                        ad_row["MA_KMB"] = ma_km;
+                        ad_row["MA_KMB"] = MA_KM;
                     }
                 }
                 
@@ -7095,8 +7095,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             try
             {
                 Boolean chietkhau_yn = false;
-                string l_ma_km = "";
-
+                
                 foreach (DataRow ck_row in ctck1.Rows)
                 {
                     var tag = (ck_row["tag"] ?? "").ToString().Trim();
@@ -7110,11 +7109,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     //    return;
                     //}
 
-                    var ck_ma_km = ck_row["MA_KM"].ToString().Trim();
+                    var CK_MA_KM = ck_row["MA_KM"].ToString().Trim().ToUpper();
                     var ck_stt_rec0 = ck_row["STT_REC0"].ToString().Trim();
                     var pt_ck = ObjectAndString.ObjectToDecimal(ck_row["PT_CK"]);
                     var ck = ObjectAndString.ObjectToDecimal(ck_row["CK"]);
-                  
+
 
                     if (pt_ck == 0 && ck == 0) continue;
 
@@ -7142,49 +7141,37 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                     {
                                         ad_row["CK"] = ad_row["ck_Nt"];
                                     }
-                                    ad_row["MA_KMB"] = ck_ma_km;
+                                    ad_row["MA_KMB"] = CK_MA_KM;
                                     ad_row["AUTO_YN"] = "1";
                                     chietkhau_yn = true;
-                                    if (l_ma_km == "")
+                                    
+                                    if(!l_ma_km.Contains(";" + CK_MA_KM + ";"))
                                     {
-                                        l_ma_km = ck_ma_km.Trim();
-                                    }
-                                    else
-                                    {
-                                        l_ma_km = l_ma_km + ";" + ck_ma_km.Trim();
+                                        l_ma_km = l_ma_km + CK_MA_KM + ";";
                                     }
 
                                 }
                             }
+
                             if (ck != 0)
                             {
                                 ad_row["CK"] = ck;
-                                ad_row["MA_KMB"] = ck_ma_km;
+                                ad_row["MA_KMB"] = CK_MA_KM;
                                 ad_row["AUTO_YN"] = "1";
                                 chietkhau_yn = true;
-                                if (l_ma_km == "")
+
+                                if (!l_ma_km.Contains(";" + CK_MA_KM + ";"))
                                 {
-                                    l_ma_km = ck_ma_km.Trim();
-                                }
-                                else
-                                {
-                                    l_ma_km = l_ma_km + ";" + ck_ma_km.Trim();
+                                    l_ma_km = l_ma_km + CK_MA_KM + ";";
                                 }
                             }
                         }
                     }
                 }
+
                 if (chietkhau_yn)
                 {
-                    chkLoaiChietKhau.Checked = false;// Co CK rieng set lai 
-                    if (TxtL_AM_INFO.Text == "")
-                    {
-                        TxtL_AM_INFO.Text = l_ma_km;
-                    }
-                    else
-                    {
-                        TxtL_AM_INFO.Text = TxtL_AM_INFO.Text+";" + l_ma_km;    
-                    }
+                    chkLoaiChietKhau.Checked = false;// Co CK rieng set lai
                     
                 }
                 dataGridView1.DataSource = AD;

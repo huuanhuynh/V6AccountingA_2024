@@ -1157,6 +1157,7 @@
             this.TxtMa_ku.Name = "TxtMa_ku";
             this.TxtMa_ku.Size = new System.Drawing.Size(153, 23);
             this.TxtMa_ku.TabIndex = 0;
+            this.TxtMa_ku.UseLimitCharacters0 = true;
             // 
             // v6ColorTextBox3
             // 

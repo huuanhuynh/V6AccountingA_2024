@@ -136,8 +136,22 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             else if(Mode == V6Mode.Add)
             {
-                if (DataOld != null) SetData(DataOld);
-                else if(_keys!=null) LoadData();
+                var dataOld2 = new SortedDictionary<string, object>();
+                if(DataOld != null) dataOld2.AddRange(DataOld);
+                dataOld2["STATUS"] = "1";
+
+                if (DataOld != null)
+                {
+                    SetData(dataOld2);
+                }
+                else if (_keys != null)
+                {
+                    LoadData();
+                }
+                else
+                {
+                    SetData(dataOld2);
+                }
                 
                 LoadDefaultData(2, "", TableName.ToString(), m_itemId);
             }

@@ -5,7 +5,9 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using V6Controls.Forms;
 using V6Controls.Functions;
+using V6Init;
 
 namespace V6Controls
 {
@@ -138,8 +140,23 @@ namespace V6Controls
             _lower = false;
         }
 
+        protected string _filterType = null;
+        /// <summary>
+        /// Lấy FilterType của form chứa nó.
+        /// </summary>
+        /// <returns></returns>
+        public string GetFilterType()
+        {
+            if (_filterType == null)
+            {
+                _filterType = V6ControlFormHelper.FindFilterType(this);
+            }
+            return _filterType;
+        }
+
         [Category("V6")]
         [DefaultValue(null)]
+        [Description("Những ký tự được phép sử dụng khi gõ.")]
         public string LimitCharacters
         {
             get { return _lmChars; }
@@ -147,10 +164,54 @@ namespace V6Controls
         }
         private string _lmChars;
 
+        [Category("V6")]
+        [DefaultValue(null)]
+        [Description("Những ký tự KHÔNG được sử dụng khi gõ.")]
+        public string LimitCharacters0
+        {
+            get
+            {
+                if(UseLimitCharacters0) LoadLitmit0Option();
+                return _lmChars0;
+            }
+            set { _lmChars0 = value; }
+        }
+        private string _lmChars0;
+        /// <summary>
+        /// Bật tính năng sử dụng LimitCharacters0 lưu trong V6Options.
+        /// </summary>
+        [DefaultValue(false)]
+        [Description("Bật tính năng sử dụng LimitCharacters0 lưu trong V6Options.")]
+        public bool UseLimitCharacters0 { get; set; }
+
         public void SetLimitCharacters(string s)
         {
             LimitCharacters = s;
         }
+        /// <summary>
+        /// Gán chuỗi ký tự KHÔNG được sử dụng khi gõ.
+        /// </summary>
+        /// <param name="s"></param>
+        public void SetLimitCharacters0(string s)
+        {
+            LimitCharacters0 = s;
+        }
+        private void LoadLitmit0Option()
+        {
+            if (_lmChars0 == null)
+            {
+                try
+                {
+                    LimitCharacters0 = V6Options.V6OptionValues["M_V6_LIMITCHARS0"];
+                }
+                catch (Exception)
+                {
+                    
+                }
+            }
+        }
+
+        //protected override bool ProcessCmdKey(ref Me
 
         void V6LimitTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -390,13 +451,6 @@ namespace V6Controls
 
         private Color _ForeColorDisabled = SystemColors.WindowText;
 
-        private const int WM_ENABLE = 0xa;
-
-        //public DisTextBox()
-        //{
-        //    VisibleChanged += DisTextBox_VisibleChanged;
-        //}
-
         private void DisTextBox_VisibleChanged(object sender, System.EventArgs e)
         {
             if (!this._ColorsSaved && this.Visible)
@@ -533,13 +587,48 @@ namespace V6Controls
         {
             switch (m.Msg)
             {
-                case WM_ENABLE:
+                case Win32.WM_ENABLE:
                     // Prevent the message from reaching the control,
                     // so the colors don't get changed by the default procedure.
                     return; // <-- suppress WM_ENABLE message
 
             }
-
+            // Trap WM_PASTE:
+            // Xử lý dữ liệu clipboard trước khi dán
+            if (m.Msg == Win32.WM_PASTE)
+            {
+                if (Clipboard.ContainsText())
+                {
+                    var clipboard = Clipboard.GetText();
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(LimitCharacters0))
+                        {
+                            foreach (char c in _lmChars0)
+                            {
+                                clipboard = clipboard.Replace("" + c, "");
+                            }
+                        }
+                        if (!string.IsNullOrEmpty(LimitCharacters))
+                        {
+                            for (int i = clipboard.Length - 1; i >= 0; i--)
+                            {
+                                char c = clipboard[i];
+                                if (!_lmChars.Contains(c))
+                                {
+                                    clipboard = clipboard.Remove(i, 1);
+                                }
+                            }
+                        }
+                        Clipboard.SetText(clipboard);
+                        Paste(); // (clipboard);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.WriteExLog(GetType() + ".WndProc WM_PASTE", ex);
+                    }
+                }
+            }
             base.WndProc(ref m);
         }
 

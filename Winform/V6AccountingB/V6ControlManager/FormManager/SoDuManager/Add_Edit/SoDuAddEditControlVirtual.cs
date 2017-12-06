@@ -16,10 +16,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         protected V6Categories Categories;
         protected string _maCt;
         public V6TableName TableName { get; set; }
-        protected string _table2Name, _table3Name, _table4Name;
+        protected string _table2Name, _table3Name, _table4Name, _table5Name;
         protected V6TableStruct _TableStruct;
         public V6Mode Mode = V6Mode.Add;
-        protected DataTable data3, data4;
+        protected DataTable data3, data4, data5;
         /// <summary>
         /// Data đưa vào để edit.
         /// </summary>

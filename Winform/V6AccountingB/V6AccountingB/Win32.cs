@@ -8,7 +8,7 @@ namespace V6AccountingB
         public uint cbSize;
         public uint dwTime;
     }
-    public class Win32
+    internal class Win32
     {
         [DllImport("User32.dll")]
         public static extern bool LockWorkStation();
