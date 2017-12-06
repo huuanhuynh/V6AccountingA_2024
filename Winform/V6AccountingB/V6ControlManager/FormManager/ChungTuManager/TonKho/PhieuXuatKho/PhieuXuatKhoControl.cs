@@ -3456,7 +3456,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             {
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
-                    this.ShowWarningMessage("Chưa hoàn tất chi tiết!");
+                    this.ShowWarningMessage(V6Text.DetailNotComplete);
                     EnableFunctionButtons();
                 }
                 else
@@ -3615,7 +3615,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     {
                         if (string.IsNullOrEmpty(_sttRec))
                         {
-                            this.ShowWarningMessage("Chưa chọn chứng từ.");
+                            this.ShowWarningMessage(V6Text.NoSelection);
                         }
                         else
                         {
@@ -3754,7 +3754,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             {
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
-                    ShowMainMessage("Chưa hoàn tất chi tiết!");
+                    ShowMainMessage(V6Text.DetailNotComplete);
                     return;
                 }
 
@@ -3969,7 +3969,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 }
                 else
                 {
-                    this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                    this.ShowWarningMessage(V6Text.CheckData + error);
                     return false;
                 }
 
@@ -4026,14 +4026,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         }
                         else
                         {
-                            this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                            this.ShowWarningMessage(V6Text.CheckData + error);
                             return false;
                         }
                     }
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn một dòng.");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -4071,7 +4071,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn 1 dòng!");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)

@@ -873,7 +873,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else
                 {
-                    this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                    this.ShowWarningMessage(V6Text.CheckData + error);
                     return false;
                 }
 
@@ -1030,7 +1030,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         }
                         else
                         {
-                            this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                            this.ShowWarningMessage(V6Text.CheckData + error);
                             return false;
                         }
                     }
@@ -1039,7 +1039,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn một dòng.");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -1088,14 +1088,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         }
                         else
                         {
-                            this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                            this.ShowWarningMessage(V6Text.CheckData + error);
                             return false;
                         }
                     }
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn một dòng.");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -1144,14 +1144,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         }
                         else
                         {
-                            this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                            this.ShowWarningMessage(V6Text.CheckData + error);
                             return false;
                         }
                     }
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn một dòng.");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -1188,7 +1188,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn 1 dòng!");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -1222,7 +1222,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn 1 dòng!");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -1256,7 +1256,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn 1 dòng!");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)

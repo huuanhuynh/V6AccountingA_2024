@@ -9,7 +9,11 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia;
+using V6ControlManager.FormManager.DanhMucManager;
+using V6ControlManager.FormManager.SoDuManager;
+using V6ControlManager.FormManager.VitriManager;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Tools;
@@ -262,6 +266,26 @@ namespace V6ControlManager.FormManager.MenuManager
                 else if (c is BaoGiaContainer)
                 {
                     ((BaoGiaContainer)c).DisableZoomButton();
+                }
+                else if (c is VitriCafeContainer)
+                {
+                    ((VitriCafeContainer)c).DisableZoomButton();
+                }
+                else if (c is DanhMucView)
+                {
+                    ((DanhMucView)c).DisableZoomButton();
+                }
+                else if (c is CategoryView)
+                {
+                    ((CategoryView)c).DisableZoomButton();
+                }
+                else if (c is SoDuView)
+                {
+                    ((SoDuView)c).DisableZoomButton();
+                }
+                else if (c is SoDuView2)
+                {
+                    ((SoDuView2)c).DisableZoomButton();
                 }
 
                 if (c != null)

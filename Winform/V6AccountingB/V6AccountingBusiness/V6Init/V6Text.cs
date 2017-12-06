@@ -178,6 +178,7 @@
         public static string Delete { get { return V6Setting.Language == "V" ? "Xóa" : "Delete"; } }
         public static string Deleted { get { return V6Setting.Language == "V" ? "Đã xóa" : "Deleted"; } }
         public static string Confirm { get { return V6Setting.Language == "V" ? "Xác nhận" : "Confirm"; } }
+        public static string CheckData { get { return V6Setting.Language == "V" ? "Kiểm tra lại dữ liệu!" : "Check data!"; } }
         public static string CheckInfor { get { return V6Setting.Language == "V" ? "Kiểm tra thông tin chưa đầy đủ!" : "Check information again !"; } }
         public static string Wrong { get { return V6Setting.Language == "V" ? "Nhập thông tin chưa đúng!" : "Wrong information !"; } }
         public static string CheckLock { get { return V6Setting.Language == "V" ? "Đã khóa số liệu!" : "Data locking !"; } }
@@ -215,31 +216,27 @@
             }
         }
         
-        public static string SecretKeyFail { get { return V6Setting.Language == "V" ? "Sai khóa." : "No key."; } }
+        public static string DataLoading { get { return V6Setting.Language == "V" ? "Đang tải dữ liệu." : "Data loading."; } }
+        public static string DetailNotComplete { get { return V6Setting.Language == "V" ? "Chưa hoàn tất chi tiết!" : "Detail is not complete!"; } }
+        public static string ExecuteConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn thực hiện hay không?" : "Are you sure want to proceed?"; } }
+        public static string Finish { get { return V6Setting.Language == "V" ? "Hoàn thành." : "Finish."; } }
+        public static string ExportFinish { get { return V6Setting.Language == "V" ? "Xuất hoàn tất." : "Export finish."; } }
+        public static string ExportFail { get { return V6Setting.Language == "V" ? "Xuất lỗi." : "Export fail."; } }
+        public static string Exist { get { return V6Setting.Language == "V" ? "Đã tồn tại." : "Exist."; } }
+        public static string ExistData { get { return V6Setting.Language == "V" ? "Dữ liệu đã tồn tại." : "Data Exist."; } }
         public static string NoConnection { get { return V6Setting.Language == "V" ? "Không thể kết nối server!" : "Can not connect to server!"; } }
-        
+        public static string NoData { get { return V6Setting.Language == "V" ? "Không có dữ liệu." : "No data."; } }
+        public static string NoDefine { get { return V6Setting.Language == "V" ? "Chưa định nghĩa." : "No define."; } }
         /// <summary>
         /// Không có chứng từ nào như vậy!
         /// </summary>
         public static string NoInvoiceFound { get { return V6Setting.Language == "V" ? "Không có chứng từ nào như vậy!" : "No invoice found!"; } }
-
-        public static string DataLoading { get { return V6Setting.Language == "V" ? "Đang tải dữ liệu." : "Data loading."; } }
-        public static string ReportError { get { return V6Setting.Language == "V" ? "Báo cáo bị lỗi." : "Report error."; } }
-        public static string NoData { get { return V6Setting.Language == "V" ? "Không có dữ liệu." : "No data."; } }
-        public static string NoDefine { get { return V6Setting.Language == "V" ? "Chưa định nghĩa." : "No define."; } }
-        public static string NoUID { get { return V6Setting.Language == "V" ? "Không có UID." : "No UID."; } }
-        public static string NoSTTREC { get { return V6Setting.Language == "V" ? "Không có STTREC." : "No STTREC."; } }
         public static string NoSelection { get { return V6Setting.Language == "V" ? "Chưa có lựa chọn." : "No selection."; } }
-        public static string Finish { get { return V6Setting.Language == "V" ? "Hoàn thành." : "Finish."; } }
-        public static string ExportFinish { get { return V6Setting.Language == "V" ? "Xuất hoàn tất." : "Export finish."; } }
-        public static string ExportFail { get { return V6Setting.Language == "V" ? "Xuất lỗi." : "Export fail."; } }
-        
-
-        public static string Exist { get { return V6Setting.Language == "V" ? "Đã tồn tại." : "Exist."; } }
-        public static string ExistData { get { return V6Setting.Language == "V" ? "Dữ liệu đã tồn tại." : "Data Exist."; } }
+        public static string NoSTTREC { get { return V6Setting.Language == "V" ? "Không có STTREC." : "No STTREC."; } }
         public static string NotExist { get { return V6Setting.Language == "V" ? "Không tồn tại." : "Not exist."; } }
         public static string NotRunHere { get { return V6Setting.Language == "V" ? "Không xử lý ở đây." : "Not run here."; } }
         public static string NotValid { get { return V6Setting.Language == "V" ? "Không hợp lệ." : "Not valid."; } }
+        public static string NoUID { get { return V6Setting.Language == "V" ? "Không có UID." : "No UID."; } }
         public static string Voucher_exist { get { return V6Setting.Language == "V" ? "Chứng từ trùng số , vẫn cho lưu!" : "This voucher is exist, still save!"; } }
         public static string Voucher_exist_not_save { get { return V6Setting.Language == "V" ? "Chứng từ trùng số , không lưu được!" : "This voucher is exist, Not save!"; } }
         public static string Updated { get { return V6Setting.Language == "V" ? "Đã cập nhập." : "Updated."; } }
@@ -249,13 +246,13 @@
         public static string NotAllowed { get { return V6Setting.Language == "V" ? "Chưa được phép!" : "Not Allowed!"; } }
         public static string NotAnAdmin { get { return V6Setting.Language == "V" ? "Không phải admin." : "Not an admin."; } }
         public static string Ready { get { return V6Setting.Language == "V" ? "Sẵn sàng." : "Ready."; } }
+        public static string ReportError { get { return V6Setting.Language == "V" ? "Báo cáo bị lỗi." : "Report error."; } }
+        public static string SecretKeyFail { get { return V6Setting.Language == "V" ? "Sai khóa." : "No key."; } }
         /// <summary>
         /// Xuất > tồn
         /// </summary>
         public static string StockoutWarning { get { return V6Setting.Language == "V" ? "Xuất lớn hơn tồn!" : "Out > Stock!"; } }
-        public static string ExecuteConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn thực hiện hay không?" : "Are you sure want to proceed?"; } }
         
-
         #region ==== Fuctions ====
 
         

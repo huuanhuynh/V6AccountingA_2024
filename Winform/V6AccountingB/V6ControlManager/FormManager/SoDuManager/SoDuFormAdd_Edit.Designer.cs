@@ -55,7 +55,6 @@
             this.btnInfos.TabIndex = 3;
             this.btnInfos.Text = "&Thông tin về các trường định nghĩa";
             this.btnInfos.UseVisualStyleBackColor = true;
-            this.btnInfos.Visible = false;
             this.btnInfos.Click += new System.EventHandler(this.btnInfos_Click);
             // 
             // btnHuy
@@ -107,6 +106,7 @@
             this.Name = "SoDuFormAddEdit";
             this.Text = "SoDuFormAdd_Edit";
             this.Load += new System.EventHandler(this.FormAdd_Edit_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.btnInfos, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);

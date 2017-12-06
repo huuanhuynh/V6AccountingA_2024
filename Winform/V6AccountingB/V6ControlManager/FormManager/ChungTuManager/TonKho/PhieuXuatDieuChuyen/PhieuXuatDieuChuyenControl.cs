@@ -3536,7 +3536,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             {
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
-                    this.ShowWarningMessage("Chưa hoàn tất chi tiết!");
+                    this.ShowWarningMessage(V6Text.DetailNotComplete);
                     EnableFunctionButtons();
                 }
                 else
@@ -3694,7 +3694,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     {
                         if (string.IsNullOrEmpty(_sttRec))
                         {
-                            this.ShowWarningMessage("Chưa chọn chứng từ.");
+                            this.ShowWarningMessage(V6Text.NoSelection);
                         }
                         else
                         {
@@ -3831,7 +3831,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             {
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
-                    ShowMainMessage("Chưa hoàn tất chi tiết!");
+                    ShowMainMessage(V6Text.DetailNotComplete);
                     return;
                 }
 
@@ -4045,7 +4045,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 }
                 else
                 {
-                    this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                    this.ShowWarningMessage(V6Text.CheckData + error);
                     return false;
                 }
 
@@ -4101,14 +4101,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         }
                         else
                         {
-                            this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                            this.ShowWarningMessage(V6Text.CheckData + error);
                             return false;
                         }
                     }
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn một dòng.");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -4146,7 +4146,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn 1 dòng!");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -4181,21 +4181,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         private void btnMoi_Click(object sender, EventArgs e)
         {
-            //// test TCp _IP
-            //var computer_name = Environment.MachineName;
-            ////_clientList = GetClientList();
-            //var ip = Dns.GetHostAddresses(computer_name)[1].ToString();
-            ////System.Diagnostics.Debugger.Break();
-
-            //var ips = Dns.GetHostAddresses(computer_name);
-
-            //foreach (var p in ips)
-            //{
-            //    this.ShowWarningMessage("ip: "+p);
-            //}
-            
             Moi();
-
         }
 
         private void btnCopy_Click(object sender, EventArgs e)

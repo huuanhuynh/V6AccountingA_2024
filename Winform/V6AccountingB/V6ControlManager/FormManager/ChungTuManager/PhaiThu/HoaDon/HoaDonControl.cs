@@ -952,14 +952,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         }
                         else
                         {
-                            this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                            this.ShowWarningMessage(V6Text.CheckData + error);
                             return false;
                         }
                     }
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn một dòng.");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -1012,7 +1012,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
                 else
                 {
-                    this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                    this.ShowWarningMessage(V6Text.CheckData + error);
                     return false;
                 }
 
@@ -1096,7 +1096,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn 1 dòng!");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -4623,14 +4623,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
-                    this.ShowWarningMessage("Chưa hoàn tất chi tiết!");
+                    this.ShowWarningMessage(V6Text.DetailNotComplete);
                     EnableFunctionButtons();
                 }
                 else
                 {
                     if ((V6Options.M_SOA_TINH_CK_KM == "11"
                         || V6Options.M_SOA_TINH_CK_KM == "12")
-                        && !ck_km)
+                        && !ck_km && chkAuto_Ck.Checked)
                     {
                         TinhChietKhauKhuyenMai();
                         TinhTongThanhToan("TinhCK_KM_LUU");
@@ -4818,7 +4818,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     {
                         if (string.IsNullOrEmpty(_sttRec))
                         {
-                            this.ShowWarningMessage("Chưa chọn chứng từ.");
+                            this.ShowWarningMessage(V6Text.NoSelection);
                         }
                         else
                         {
@@ -4996,7 +4996,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
-                    ShowMainMessage("Chưa hoàn tất chi tiết!");
+                    ShowMainMessage(V6Text.DetailNotComplete);
                     return;
                 }
 
@@ -5259,7 +5259,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
                 else
                 {
-                    this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                    this.ShowWarningMessage(V6Text.CheckData + error);
                     return false;
                 }
 
@@ -5340,14 +5340,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         }
                         else
                         {
-                            this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                            this.ShowWarningMessage(V6Text.CheckData + error);
                             return false;
                         }
                     }
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn một dòng.");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -5385,7 +5385,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn 1 dòng!");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -6454,7 +6454,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
-                    this.ShowWarningMessage("Chưa hoàn tất chi tiết!");
+                    this.ShowWarningMessage(V6Text.DetailNotComplete);
                     return;
                 }
                 if (txtMaGia.Text.Trim() == "")
@@ -6840,6 +6840,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private bool ck_km = false;
         private void btnTinhCKKM_Click(object sender, EventArgs e)
         {
+            if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+            {
+                ShowParentMessage(V6Text.DetailNotComplete);
+                return;
+            }
+
             bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
             if (shift_is_down)
             {
@@ -6986,6 +6992,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 decimal tong_giam = 0m, tong_giam_nt = 0m;
                 string ma_km = "";
+                string l_ma_km = "";
+
                 foreach (DataRow row in ctck1th.Rows)
                 {
                     var tag = (row["tag"] ?? "").ToString().Trim();
@@ -6995,12 +7003,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (ObjectAndString.ObjectToDecimal(row["T_GG"]) != 0)
                     {
                         ma_km = ObjectAndString.ObjectToString(row["MA_KM"]);
+                        if (l_ma_km == "")
+                        {
+                            l_ma_km = ma_km.Trim();
+                        }
+                        else
+                        {
+                            l_ma_km = l_ma_km + ";" + ma_km.Trim();
+                        }
                     }
                 }
+                TxtL_AM_INFO.Text = l_ma_km;
 
                 foreach (DataRow ad_row in AD.Rows)
                 {
-                    ad_row["MA_KMB"] = ma_km;
+                    if ((ad_row["MA_KMB"] ?? "").ToString().Trim() == "")
+                    {
+                        ad_row["MA_KMB"] = ma_km;
+                    }
                 }
                 
                 if (tong_giam!=0)
@@ -7075,6 +7095,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             try
             {
                 Boolean chietkhau_yn = false;
+                string l_ma_km = "";
+
                 foreach (DataRow ck_row in ctck1.Rows)
                 {
                     var tag = (ck_row["tag"] ?? "").ToString().Trim();
@@ -7099,6 +7121,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     foreach (DataRow ad_row in AD.Rows)
                     {
                         var ad_stt_rec0 = ad_row["STT_REC0"].ToString().Trim();
+                        
                         if (ck_stt_rec0 == ad_stt_rec0)
                         {
                             if (pt_ck != 0)
@@ -7120,14 +7143,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                         ad_row["CK"] = ad_row["ck_Nt"];
                                     }
                                     ad_row["MA_KMB"] = ck_ma_km;
+                                    ad_row["AUTO_YN"] = "1";
                                     chietkhau_yn = true;
+                                    if (l_ma_km == "")
+                                    {
+                                        l_ma_km = ck_ma_km.Trim();
+                                    }
+                                    else
+                                    {
+                                        l_ma_km = l_ma_km + ";" + ck_ma_km.Trim();
+                                    }
+
                                 }
                             }
                             if (ck != 0)
                             {
                                 ad_row["CK"] = ck;
                                 ad_row["MA_KMB"] = ck_ma_km;
+                                ad_row["AUTO_YN"] = "1";
                                 chietkhau_yn = true;
+                                if (l_ma_km == "")
+                                {
+                                    l_ma_km = ck_ma_km.Trim();
+                                }
+                                else
+                                {
+                                    l_ma_km = l_ma_km + ";" + ck_ma_km.Trim();
+                                }
                             }
                         }
                     }
@@ -7135,6 +7177,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 if (chietkhau_yn)
                 {
                     chkLoaiChietKhau.Checked = false;// Co CK rieng set lai 
+                    if (TxtL_AM_INFO.Text == "")
+                    {
+                        TxtL_AM_INFO.Text = l_ma_km;
+                    }
+                    else
+                    {
+                        TxtL_AM_INFO.Text = TxtL_AM_INFO.Text+";" + l_ma_km;    
+                    }
+                    
                 }
                 dataGridView1.DataSource = AD;
             }
@@ -7150,17 +7201,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 try
                 {
                     var removeList = new List<DataRow>();
+                    bool khuyenmai_yn = false;
                     foreach (DataRow row in AD.Rows)
                     {
                         if (IsKhuyenMai(row))
                         {
                             removeList.Add(row);
+                            khuyenmai_yn = true;
                         }
                     }
-
-                    foreach (DataRow row in removeList)
+                    if (khuyenmai_yn)
                     {
-                        AD.Rows.Remove(row);
+                        foreach (DataRow row in removeList)
+                        {
+                            AD.Rows.Remove(row);
+                        }
+                        TxtL_AM_INFO.Text = "";
                     }
                 }
                 catch (Exception ex)
@@ -7181,11 +7237,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 string ma_kmb = (row["MA_KMB"] ?? "").ToString().Trim();
                 if (ma_kmb != "")
                 {
+                    row["MA_KMB"] = "";
                     row["PT_CKI"] = 0m;
                     row["CK"] = 0m;
                     row["CK_NT"] = 0m;
                     row["GG"] = 0m;
                     row["GG_NT"] = 0m;
+                    row["AUTO_YN"] = "0";
                     chietkhau_yn = true;
                 }
             }
@@ -7196,6 +7254,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 txtTongCkNt.Value = 0;
                 txtTongGiam.Value = 0;
                 txtTongGiamNt.Value = 0;
+                TxtL_AM_INFO.Text = "";
             }
         }
 
@@ -7203,7 +7262,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             if (row.Table.Columns.Contains(MA_KM_Field)
                 && (row[MA_KM_Field] ?? "").ToString().Trim() != ""
-                && row["TANG"].ToString().Trim().ToLower() == "a")
+                && row["TANG"].ToString().Trim().ToLower() == "a"
+                && row["AUTO_YN"].ToString().Trim() == "1"
+                )
             {
                 return true;
             }
@@ -7214,12 +7275,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         /// <summary>
         /// Thêm bớt sửa đổi dữ liệu km trước khi thêm.
         /// </summary>
-        /// <param name="toDataDictionary"></param>
+        /// <param name="dataDic"></param>
         /// <returns></returns>
-        private IDictionary<string, object> GenDataKM(IDictionary<string, object> toDataDictionary)
+        private IDictionary<string, object> GenDataKM(IDictionary<string, object> dataDic)
         {
             //toDataDictionary["fix_value"] = "fix_value";
-            return toDataDictionary;
+            dataDic["AUTO_YN"] = "1";
+            return dataDic;
         }
 
         #endregion tinh khuyen mai

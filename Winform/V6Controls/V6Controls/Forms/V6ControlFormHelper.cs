@@ -789,9 +789,10 @@ namespace V6Controls.Forms
                             Control f = FindParent<V6Control>(control);
                             var formName = (f == null ? "null" : f.Name);
                             var formType = (f == null ? "null" : f.GetType().ToString());
-                            WriteToLog("V6ControlFormHelper.GetFormDataDictionaryRecusive",
-                                string.Format("Form [{0}] type [{1}] trùng AccessibleName [{2}]",
-                                formName, formType, cNAME));
+                            var message = string.Format("Form [{0}] type [{1}] trùng AccessibleName [{2}]",
+                                formName, formType, cNAME);
+                            ShowMainMessage(string.Format("Trùng AccessibleName [{0}]", cNAME));
+                            WriteToLog("V6ControlFormHelper.GetFormDataDictionaryRecusive", message);
                         }
 
                         FillControlValueToDictionary(d, control);
@@ -871,13 +872,13 @@ namespace V6Controls.Forms
             V6LookupTextBox vL = null;
             V6FormButton bT = null;
             //Tuanmh check null
-            string controltype="";
-            if (string.IsNullOrEmpty(lineInfo.ControlType)==false)
+            string CONTROL_TYPE = "";
+            if (string.IsNullOrEmpty(lineInfo.ControlType) == false)
             {
-                   controltype=lineInfo.ControlType.ToUpper();
+                CONTROL_TYPE = lineInfo.ControlType.ToUpper();
             }
 
-            if (controltype == "FILTERGROUP")
+            if (CONTROL_TYPE == "FILTERGROUP")
             {
                 FilterGroup filter = new FilterGroup()
                 {
@@ -891,14 +892,14 @@ namespace V6Controls.Forms
                 filter.GenControls(V6Setting.IsVietnamese ? lineInfo.DescriptionV : lineInfo.DescriptionE);
                 return filter;
             }
-            else if (controltype == "VVARTEXTBOX")
+            else if (CONTROL_TYPE == "VVARTEXTBOX")
             {
                 vT = lineControl.AddVvarTextBox(lineInfo.Vvar, lineInfo.InitFilter);
                 //
                 vT.F2 = lineInfo.F2;
                 vT.FilterStart = lineInfo.FilterStart;
             }
-            else if (controltype == "LOOKUPTEXTBOX") 
+            else if (CONTROL_TYPE == "LOOKUPTEXTBOX") 
             {
                 vL = lineControl.AddLookupTextBox(lineInfo.MA_DM, lineInfo.InitFilter,
                     lineInfo.Field, lineInfo.Field2, lineInfo.BField, lineInfo.NField);
@@ -906,7 +907,7 @@ namespace V6Controls.Forms
                 vL.F2 = lineInfo.F2;
                 vL.FilterStart = lineInfo.FilterStart;
             }
-            else if (controltype == "BUTTON")
+            else if (CONTROL_TYPE == "BUTTON")
             {
                 bT = lineControl.AddButton(lineInfo.TextLang(V6Setting.IsVietnamese));
                 int bT_width = ObjectAndString.ObjectToInt(lineInfo.Width);
@@ -916,11 +917,11 @@ namespace V6Controls.Forms
                     bT.Width = bT_width;
                 }
             }
-            else if (controltype == "DATETIME")
+            else if (CONTROL_TYPE == "DATETIME")
             {
                 lineControl.AddDateTimePick();
             }
-            else if (controltype == "DATETIMECOLOR")
+            else if (CONTROL_TYPE == "DATETIMECOLOR")
             {
                 lineControl.AddDateTimeColor();
             }
@@ -1447,16 +1448,6 @@ namespace V6Controls.Forms
                     f.UpdateSuccessEvent += data =>
                     {
                         LoadAndSetFormInfoDefine(ma_dm, control, parent);
-                        //try
-                        //{
-                        //    var key = new SortedDictionary<string, object> { { "ma_dm", ma_dm } };
-                        //    var selectResult = V6BusinessHelper.Select(V6TableName.Altt, key, "", "", "");
-                        //    SetFormInfo(control, selectResult.Data, V6Setting.Language);
-                        //}
-                        //catch (Exception ex)
-                        //{
-                        //    control.ShowErrorException(parent.GetType() + ".Load user define info error!", ex);
-                        //}
                     };
                     f.ShowDialog(control);
                 }

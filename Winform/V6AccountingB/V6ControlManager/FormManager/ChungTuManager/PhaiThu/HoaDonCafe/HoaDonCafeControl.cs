@@ -1005,14 +1005,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         }
                         else
                         {
-                            this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                            this.ShowWarningMessage(V6Text.CheckData + error);
                             return false;
                         }
                     }
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn một dòng.");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -1065,7 +1065,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 else
                 {
-                    this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                    this.ShowWarningMessage(V6Text.CheckData + error);
                     return false;
                 }
 
@@ -1149,7 +1149,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn 1 dòng!");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -4542,7 +4542,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     {
                         if (string.IsNullOrEmpty(_sttRec))
                         {
-                            this.ShowWarningMessage("Chưa chọn chứng từ.");
+                            this.ShowWarningMessage(V6Text.NoSelection);
                         }
                         else
                         {
@@ -5172,7 +5172,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 else
                 {
-                    ShowParentMessage("Kiểm tra lại dữ liệu:" + MA_VITRIPH + " " + error);
+                    ShowParentMessage(V6Text.CheckData + MA_VITRIPH + " " + error);
                     return false;
                 }
 
@@ -5253,14 +5253,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         }
                         else
                         {
-                            this.ShowWarningMessage("Kiểm tra lại dữ liệu:" + error);
+                            this.ShowWarningMessage(V6Text.CheckData + error);
                             return false;
                         }
                     }
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn một dòng.");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -5299,7 +5299,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn 1 dòng!");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -6319,7 +6319,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
-                    this.ShowWarningMessage("Chưa hoàn tất chi tiết!");
+                    this.ShowWarningMessage(V6Text.DetailNotComplete);
                     return;
                 }
                 if (txtMaGia.Text.Trim() == "")
