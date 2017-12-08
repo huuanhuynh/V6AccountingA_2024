@@ -137,7 +137,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var tk = (row.Cells["TK"].Value ?? "").ToString().Trim();
 
                         var oldKeys = FilterControl.GetFilterParameters();
-                        var _reportFileF5 = "AGLSO1TF5";
+                        var _reportFileF5 = "AGLGSSO4TF9";
                         var _reportTitleF5 = "SỔ CÁI TÀI KHOẢN";
                         var _reportTitle2F5 = "Account detail";
 
@@ -301,7 +301,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                 }
                 var oldKeys = FilterControl.GetFilterParameters();
-                var _reportFileF5 = "AGLSO1TF10";
+                var _reportFileF5 = "AGLGSSO4TF10";
                 var _reportTitleF5 = "SỔ CÁI TÀI KHOẢN";
                 var _reportTitle2F5 = "Account detail";
 

@@ -72,13 +72,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-           
-            //@ngay_ct1 varchar(8),
-            //@ngay_ct2 varchar(8),
+            //@tk nvarchar(4000),
+            //@ngay_ct1 smalldatetime,
+            //@ngay_ct2 smalldatetime,
             //@Tk_sc INT,
             //@Bac_tk INT,
-            //@Advance nvarchar(max)
-
+            //@Advance AS VARCHAR(8000),
+            //@User_id INT = 0
             var result = new List<SqlParameter>();
 
          
@@ -95,7 +95,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
             result.Add(new SqlParameter("@Tk_sc",TxtTk_sc.Text.Trim() ));
             result.Add(new SqlParameter("@Bac_tk",txtbac_tk.Value));
-
+            
             var and = radAnd.Checked;
 
             string cKey;
@@ -122,6 +122,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
 
             result.Add(new SqlParameter("@Advance", cKey));
+            result.Add(new SqlParameter("@User_id", V6Login.UserId));
             return result;
             
 
