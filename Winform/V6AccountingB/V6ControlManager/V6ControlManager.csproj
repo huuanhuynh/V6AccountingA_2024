@@ -1704,6 +1704,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AGLGSSO4TF5.designer.cs">
       <DependentUpon>AGLGSSO4TF5.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AGLGSSO4TF10.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AGLGSSO4TF10.designer.cs">
+      <DependentUpon>AGLGSSO4TF10.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ASOTH6F5.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5759,6 +5765,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLGSSO4TF5.resx">
       <DependentUpon>AGLGSSO4TF5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLGSSO4TF10.resx">
+      <DependentUpon>AGLGSSO4TF10.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ASOTH6F5.resx">
       <DependentUpon>ASOTH6F5.cs</DependentUpon>

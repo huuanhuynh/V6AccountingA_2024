@@ -26,18 +26,19 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-               
-                //@tk varchar(4000),
-                //@ngay_ct1 varchar(8),
-                //@ngay_ct2 varchar(8),
-                //@gop_tk int,
-                //@Advance VARCHAR(8000),
-                //@tk1 VARCHAR(50)       
-
-            var result = new List<SqlParameter>();
+            //@tk nvarchar(4000),
+            //@ngay_ct1 smalldatetime,
+            //@ngay_ct2 smalldatetime,
+            //@Tk_sc INT,
+            //@Bac_tk INT,
+            //@Advance AS VARCHAR(8000),
+            //@User_id INT = 0,
+            //@tk1 VARCHAR(50)
+ 
+             var result = new List<SqlParameter>();
             result.AddRange(InitFilters);
             
-            result.Add(new SqlParameter("@tk1",Tk_filterLine.StringValue.Trim()));
+            result.Add(new SqlParameter("@tk1", Tk_filterLine.StringValue));
             return result;
         }
 
