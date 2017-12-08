@@ -4628,9 +4628,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
                 else
                 {
-                    if ((V6Options.M_SOA_TINH_CK_KM == "11"
-                        || V6Options.M_SOA_TINH_CK_KM == "12")
-                        && !ck_km && chkAuto_Ck.Checked)
+                    if (chkAuto_Ck.Checked && (V6Options.M_SOA_TINH_CK_KM == "11" || V6Options.M_SOA_TINH_CK_KM == "12"))
                     {
                         TinhChietKhauKhuyenMai();
                         TinhTongThanhToan("TinhCK_KM_LUU");
@@ -6837,7 +6835,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private bool ck_km = false;
+        
         private void btnTinhCKKM_Click(object sender, EventArgs e)
         {
             if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
@@ -6853,14 +6851,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     XoaKhuyenMai();
                     XoaChietKhau();
-                    ck_km = false;
                     TinhTongThanhToan("btnTinhCKKM_Click xoa ck_km");
                 }
             }
             else
             {
                 TinhChietKhauKhuyenMai();
-                ck_km = true;
                 TinhTongThanhToan("btnTinhCKKM_Click");
             }
         }

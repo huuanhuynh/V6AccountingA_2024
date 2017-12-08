@@ -3985,7 +3985,7 @@ namespace V6Controls.Forms
             {
                 if (F2)
                 {
-                    DoLookup(owner, true);
+                    DoLookup(owner, LookupMode.Multi);
                 }
             }
         }
@@ -4020,13 +4020,13 @@ namespace V6Controls.Forms
                         }
                         else
                         {
-                            DoLookup(owner, false);
+                            DoLookup(owner, LookupMode.Single);
                         }
                     }
                 }
                 else if (!string.IsNullOrEmpty(Aldm_config.F_NAME))
                 {
-                    DoLookup(owner, false);
+                    DoLookup(owner, LookupMode.Single);
                 }
                 else
                 {
@@ -4041,7 +4041,7 @@ namespace V6Controls.Forms
             //}
         }
 
-        private static void DoLookup(IWin32Window owner, bool multi = false)
+        private static void DoLookup(IWin32Window owner, LookupMode multi = LookupMode.Single)
         {
             if (Aldm_config.NoInfo) return;
             //_frm = FindForm();
@@ -4053,7 +4053,7 @@ namespace V6Controls.Forms
             fStand.ShowDialog(owner);
         }
 
-        private static void Lookup(IWin32Window owner, bool multi = false)
+        private static void Lookup(IWin32Window owner, LookupMode multi = LookupMode.Single)
         {
             DoLookup(owner, multi);
         }

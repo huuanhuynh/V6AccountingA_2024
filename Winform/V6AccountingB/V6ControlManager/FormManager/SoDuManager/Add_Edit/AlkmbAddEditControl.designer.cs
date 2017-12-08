@@ -131,6 +131,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnChonKH = new V6Controls.Controls.V6FormButton();
             this.BtchonExcel = new V6Controls.Controls.V6FormButton();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -148,9 +149,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
+            this.txtMaKH = new V6Controls.V6VvarTextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnChonKH5 = new V6Controls.Controls.V6FormButton();
             this.gView5 = new V6Controls.V6ColorDataGridView();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1497,6 +1499,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage3.Controls.Add(this.TxtLma_kh);
             this.tabPage3.Controls.Add(this.label42);
             this.tabPage3.Controls.Add(this.gView4);
+            this.tabPage3.Controls.Add(this.btnChonKH);
             this.tabPage3.Controls.Add(this.BtchonExcel);
             this.tabPage3.Controls.Add(this.checkBox1);
             this.tabPage3.Controls.Add(this.label23);
@@ -1514,7 +1517,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage3.Controls.Add(this.label19);
             this.tabPage3.Controls.Add(this.label20);
             this.tabPage3.Controls.Add(this.label21);
-            this.tabPage3.Controls.Add(this.v6VvarTextBox1);
+            this.tabPage3.Controls.Add(this.txtMaKH);
             this.tabPage3.Controls.Add(this.label17);
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
@@ -1615,7 +1618,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // gView4
             // 
             this.gView4.AllowUserToAddRows = false;
-            this.gView4.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
             this.gView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gView4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1643,7 +1645,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.gView4.ReadOnly = true;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.gView4.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.gView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gView4.Size = new System.Drawing.Size(790, 122);
             this.gView4.TabIndex = 52;
             // 
@@ -1689,15 +1690,31 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             this.dataGridViewTextBoxColumn5.Visible = false;
             // 
+            // btnChonKH
+            // 
+            this.btnChonKH.Location = new System.Drawing.Point(394, 2);
+            this.btnChonKH.Name = "btnChonKH";
+            this.btnChonKH.Size = new System.Drawing.Size(136, 26);
+            this.btnChonKH.TabIndex = 51;
+            this.btnChonKH.Text = "Chọn KH...";
+            this.toolTipV6FormControl.SetToolTip(this.btnChonKH, "Giữ Shift khi click để xóa.");
+            this.btnChonKH.UseVisualStyleBackColor = true;
+            this.btnChonKH.Click += new System.EventHandler(this.btnChonKH_Click);
+            this.btnChonKH.MouseEnter += new System.EventHandler(this.BtchonExcel_MouseEnter);
+            this.btnChonKH.MouseHover += new System.EventHandler(this.BtchonExcel_MouseHover);
+            // 
             // BtchonExcel
             // 
-            this.BtchonExcel.Location = new System.Drawing.Point(248, 2);
+            this.BtchonExcel.Location = new System.Drawing.Point(210, 2);
             this.BtchonExcel.Name = "BtchonExcel";
-            this.BtchonExcel.Size = new System.Drawing.Size(280, 26);
+            this.BtchonExcel.Size = new System.Drawing.Size(178, 26);
             this.BtchonExcel.TabIndex = 51;
-            this.BtchonExcel.Text = "Chọn danh sách khách hàng từ EXCEL ...";
+            this.BtchonExcel.Text = "Chọn khách hàng EXCEL";
+            this.toolTipV6FormControl.SetToolTip(this.BtchonExcel, "Giữ Shift khi click để xóa.");
             this.BtchonExcel.UseVisualStyleBackColor = true;
             this.BtchonExcel.Click += new System.EventHandler(this.BtchonExcel_Click);
+            this.BtchonExcel.MouseEnter += new System.EventHandler(this.BtchonExcel_MouseEnter);
+            this.BtchonExcel.MouseHover += new System.EventHandler(this.BtchonExcel_MouseHover);
             // 
             // checkBox1
             // 
@@ -1948,22 +1965,22 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label21.TabIndex = 41;
             this.label21.Text = "Nhóm KH 1";
             // 
-            // v6VvarTextBox1
+            // txtMaKH
             // 
-            this.v6VvarTextBox1.AccessibleName = "MA_KH";
-            this.v6VvarTextBox1.BackColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6VvarTextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6VvarTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(641, 5);
-            this.v6VvarTextBox1.Name = "v6VvarTextBox1";
-            this.v6VvarTextBox1.Size = new System.Drawing.Size(153, 23);
-            this.v6VvarTextBox1.TabIndex = 10;
-            this.v6VvarTextBox1.VVar = "MA_KH";
+            this.txtMaKH.AccessibleName = "MA_KH";
+            this.txtMaKH.BackColor = System.Drawing.Color.White;
+            this.txtMaKH.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaKH.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMaKH.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaKH.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaKH.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaKH.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaKH.LeaveColor = System.Drawing.Color.White;
+            this.txtMaKH.Location = new System.Drawing.Point(641, 5);
+            this.txtMaKH.Name = "txtMaKH";
+            this.txtMaKH.Size = new System.Drawing.Size(153, 23);
+            this.txtMaKH.TabIndex = 10;
+            this.txtMaKH.VVar = "MA_KH";
             // 
             // label17
             // 
@@ -1980,6 +1997,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage4.Controls.Add(this.btnChonKH5);
             this.tabPage4.Controls.Add(this.gView5);
             this.tabPage4.Controls.Add(this.BtchonExcel5);
             this.tabPage4.Location = new System.Drawing.Point(4, 28);
@@ -1989,10 +2007,22 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Đối tượng không áp dụng";
             // 
+            // btnChonKH5
+            // 
+            this.btnChonKH5.Location = new System.Drawing.Point(543, 3);
+            this.btnChonKH5.Name = "btnChonKH5";
+            this.btnChonKH5.Size = new System.Drawing.Size(136, 26);
+            this.btnChonKH5.TabIndex = 55;
+            this.btnChonKH5.Text = "Chọn KH...";
+            this.toolTipV6FormControl.SetToolTip(this.btnChonKH5, "Giữ Shift khi click để xóa.");
+            this.btnChonKH5.UseVisualStyleBackColor = true;
+            this.btnChonKH5.Click += new System.EventHandler(this.btnChonKH5_Click);
+            this.btnChonKH5.MouseEnter += new System.EventHandler(this.BtchonExcel_MouseEnter);
+            this.btnChonKH5.MouseHover += new System.EventHandler(this.BtchonExcel_MouseHover);
+            // 
             // gView5
             // 
             this.gView5.AllowUserToAddRows = false;
-            this.gView5.AllowUserToDeleteRows = false;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
             this.gView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gView5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -2017,7 +2047,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.gView5.Location = new System.Drawing.Point(12, 151);
             this.gView5.MultiSelect = false;
             this.gView5.Name = "gView5";
-            this.gView5.ReadOnly = true;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
             this.gView5.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.gView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -2030,7 +2059,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridViewTextBoxColumn11.Frozen = true;
             this.dataGridViewTextBoxColumn11.HeaderText = "Mã khách";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
             this.dataGridViewTextBoxColumn11.Width = 120;
             // 
             // dataGridViewTextBoxColumn12
@@ -2039,7 +2067,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridViewTextBoxColumn12.Frozen = true;
             this.dataGridViewTextBoxColumn12.HeaderText = "Tên khách hàng";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.ReadOnly = true;
             this.dataGridViewTextBoxColumn12.Width = 150;
             // 
             // dataGridViewTextBoxColumn13
@@ -2047,7 +2074,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridViewTextBoxColumn13.DataPropertyName = "UID";
             this.dataGridViewTextBoxColumn13.HeaderText = "UID";
             this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.ReadOnly = true;
             this.dataGridViewTextBoxColumn13.Visible = false;
             // 
             // dataGridViewTextBoxColumn14
@@ -2055,7 +2081,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridViewTextBoxColumn14.DataPropertyName = "STT_REC";
             this.dataGridViewTextBoxColumn14.HeaderText = "Rec";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.ReadOnly = true;
             this.dataGridViewTextBoxColumn14.Visible = false;
             // 
             // dataGridViewTextBoxColumn15
@@ -2063,7 +2088,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridViewTextBoxColumn15.DataPropertyName = "STT_REC0";
             this.dataGridViewTextBoxColumn15.HeaderText = "Rec0";
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.ReadOnly = true;
             this.dataGridViewTextBoxColumn15.Visible = false;
             // 
             // BtchonExcel5
@@ -2073,8 +2097,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.BtchonExcel5.Size = new System.Drawing.Size(280, 26);
             this.BtchonExcel5.TabIndex = 53;
             this.BtchonExcel5.Text = "Chọn danh sách khách hàng từ EXCEL ...";
+            this.toolTipV6FormControl.SetToolTip(this.BtchonExcel5, "Giữ Shift khi click để xóa.");
             this.BtchonExcel5.UseVisualStyleBackColor = true;
             this.BtchonExcel5.Click += new System.EventHandler(this.BtchonExcel5_Click);
+            this.BtchonExcel5.MouseEnter += new System.EventHandler(this.BtchonExcel_MouseEnter);
+            this.BtchonExcel5.MouseHover += new System.EventHandler(this.BtchonExcel_MouseHover);
             // 
             // tabControl1
             // 
@@ -2483,7 +2510,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private V6VvarTextBox txtSelect1;
         private V6VvarTextBox txtChonMavt;
         private V6VvarTextBox txtXtype;
-        private V6VvarTextBox v6VvarTextBox1;
+        private V6VvarTextBox txtMaKH;
         private System.Windows.Forms.Label label17;
         private V6VvarTextBox txtLNH_KH9;
         private System.Windows.Forms.Label label22;
@@ -2566,5 +2593,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private V6Controls.Controls.V6FormButton BtchonExcel5;
+        private V6Controls.Controls.V6FormButton btnChonKH;
+        private V6Controls.Controls.V6FormButton btnChonKH5;
     }
 }

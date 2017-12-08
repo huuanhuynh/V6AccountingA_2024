@@ -32,11 +32,21 @@ namespace V6Controls
         
         
         private HelpProvider _helpProvider1;
-        public bool _multiSelect, _filterStart;
+        public LookupMode _lookupMode;
+        public bool _filterStart;
 
+        /// <summary>
+        /// Sự kiện xảy ra khi nhận ở lookupMode == Data.
+        /// </summary>
+        public event DataSelectHandler AcceptSelectedtData;
+        protected virtual void OnAccepSelectedtData(string idlist, List<IDictionary<string, object>> datalist)
+        {
+            var handler = AcceptSelectedtData;
+            if (handler != null) handler(idlist, datalist);
+        }
 
         public V6LookupTextboxForm(IDictionary<string, object> sender, string senderText, AldmConfig lookupInfo, string initStrFilter, string lookupInfo_F_Name,
-            bool multiSelect = false, bool filterStart = false)
+            LookupMode lookupMode = LookupMode.Single, bool filterStart = false)
         {
             _senderParentData = sender;
             _senderText = senderText;
@@ -44,7 +54,7 @@ namespace V6Controls
             //_senderTextBox = sender;
             LookupInfo = lookupInfo;
             LookupInfo_F_NAME = lookupInfo_F_Name;
-            _multiSelect = multiSelect;
+            _lookupMode = lookupMode;
             _filterStart = filterStart;
 
             InitializeComponent();
@@ -82,7 +92,7 @@ namespace V6Controls
                     "0", "1", "2",
                     LookupInfo.F3 ? ", F3-Sửa" : "",
                     LookupInfo.F4 ? ", F4-Thêm" : "");
-                toolStripStatusLabel2.Text = _multiSelect ? ", Space-Chọn/Bỏ chọn, (Ctrl+A)-Chọn tất cả, (Ctrl+U)-Bỏ chọn tất cả" : "";
+                toolStripStatusLabel2.Text = _lookupMode==LookupMode.Multi || _lookupMode == LookupMode.Data ? ", Space-Chọn/Bỏ chọn, (Ctrl+A)-Chọn tất cả, (Ctrl+U)-Bỏ chọn tất cả" : "";
             }
             catch (Exception ex)
             {
@@ -100,7 +110,7 @@ namespace V6Controls
             
             try
             {
-                if (_multiSelect && vSearchFilter.Contains(","))
+                if ((_lookupMode == LookupMode.Multi || _lookupMode == LookupMode.Data) && vSearchFilter.Contains(","))
                 {
                     var tbl = V6BusinessHelper.Select(LookupInfo.TABLE_NAME, "*", initFilter, "", LookupInfo.Vorder).Data;
                     return tbl;
@@ -110,7 +120,14 @@ namespace V6Controls
                     var where = initFilter;
                     if (!string.IsNullOrEmpty(vSearchFilter))
                     {
-                        where += " AND (" + vSearchFilter + ")";
+                        if (string.IsNullOrEmpty(where))
+                        {
+                            where = vSearchFilter;
+                        }
+                        else
+                        {
+                            where += " AND (" + vSearchFilter + ")";
+                        }
                     }
                     var tbl = V6BusinessHelper.Select(LookupInfo.TABLE_NAME, "*", where, "", LookupInfo.Vorder).Data;
                     return tbl;
@@ -395,7 +412,18 @@ namespace V6Controls
                 {
                     e.Handled = true;
 
-                    if (_multiSelect)
+                    if (_lookupMode == LookupMode.Single)
+                    {
+                        if (dataGridView1.SelectedCells.Count > 0)
+                        {
+                            var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
+                            string selectedValue = currentRow.Cells[LookupInfo_F_NAME].Value.ToString().Trim();
+
+                            XuLyEnterChonGiaTri(selectedValue);
+                            DialogResult = DialogResult.OK;
+                        }
+                    }
+                    else if (_lookupMode == LookupMode.Multi)
                     {
                         var selectedValues = "";
                         foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -411,16 +439,20 @@ namespace V6Controls
                         _senderText = selectedValues;
                         DialogResult = DialogResult.OK;
                     }
-                    else
+                    else if (_lookupMode == LookupMode.Data)
                     {
-                        if (dataGridView1.SelectedCells.Count > 0)
+                        //Gom Data
+                        List<IDictionary<string, object>> datalist = new List<IDictionary<string, object>>();
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
-                            var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
-                            string selectedValue = currentRow.Cells[LookupInfo_F_NAME].Value.ToString().Trim();
-                            
-                            XuLyEnterChonGiaTri(selectedValue);
-                            DialogResult = DialogResult.OK;
+                            if (row.IsSelect())
+                            {
+                                datalist.Add(row.ToDataDictionary());
+                            }
                         }
+                        //Gọi sự kiện AcceptData
+                        OnAccepSelectedtData("idlist", datalist);
+                        DialogResult = DialogResult.OK;
                     }
                 }
                 else if (e.KeyCode == Keys.Space)
@@ -429,11 +461,11 @@ namespace V6Controls
                 }
                 else if (e.KeyData == (Keys.Control | Keys.A))
                 {
-                    if(_multiSelect) dataGridView1.SelectAllRow();
+                    if(_lookupMode == LookupMode.Multi || _lookupMode == LookupMode.Data) dataGridView1.SelectAllRow();
                 }
                 else if (e.KeyData == (Keys.Control | Keys.U))
                 {
-                    if (_multiSelect) dataGridView1.UnSelectAllRow();
+                    if (_lookupMode == LookupMode.Multi || _lookupMode == LookupMode.Data) dataGridView1.UnSelectAllRow();
                 }
             }
             catch (Exception ex)
@@ -444,7 +476,7 @@ namespace V6Controls
 
         private void XuLyEnterChonGiaTri(string selectedValue)
         {
-            if (_multiSelect)
+            if (_lookupMode == LookupMode.Multi)
             {
                 _senderText = selectedValue;
                 selectedDataRow = null;
@@ -477,7 +509,7 @@ namespace V6Controls
             var cRow = dataGridView1.CurrentRow;
             if (cRow != null)
             {
-                if(_multiSelect) cRow.ChangeSelect();
+                if (_lookupMode == LookupMode.Multi || _lookupMode == LookupMode.Data) cRow.ChangeSelect();
             }
         }
 
@@ -671,7 +703,8 @@ namespace V6Controls
             var result = "";
             try
             {
-                if (_multiSelect && txtV_Search.Text.Contains(","))
+                if ((_lookupMode == LookupMode.Multi || _lookupMode == LookupMode.Data)
+                    && txtV_Search.Text.Contains(","))
                 {
                     return txtV_Search.Text.Trim();
                 }
@@ -766,7 +799,8 @@ namespace V6Controls
         private void V6LookupTextboxForm_Load(object sender, EventArgs e)
         {
             //Chọn dòng đã chọn cho trường hợp multi
-            if (_multiSelect && _vSearchFilter.Contains(","))
+            if ((_lookupMode == LookupMode.Multi || _lookupMode == LookupMode.Data)
+                && _vSearchFilter.Contains(","))
             {
                 var sss = _vSearchFilter.Split(',');
 

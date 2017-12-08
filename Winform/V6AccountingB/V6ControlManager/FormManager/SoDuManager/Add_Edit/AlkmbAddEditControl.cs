@@ -740,7 +740,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             try
             {
-                txtChonMavt.Lookup(true);
+                txtChonMavt.Lookup(LookupMode.Multi);
                 //xyly
                 if (txtChonMavt.Text != "")
                 {
@@ -749,7 +749,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     foreach (DataRow row in dataTable.Rows)
                     {
                         var DATA = row.ToDataDictionary();
-
+                        
                         XuLyThemDetail(DATA);
                     }
                 }
@@ -764,7 +764,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             try
             {
-                txtChonMavtKM.Lookup(true);
+                txtChonMavtKM.Lookup(LookupMode.Multi);
                 //xyly
                 if (txtChonMavtKM.Text != "")
                 {
@@ -788,7 +788,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             try
             {
-                txtChonMavtCK.Lookup(true);
+                txtChonMavtCK.Lookup(LookupMode.Multi);
                 //xyly
                 if (txtChonMavtCK.Text != "")
                 {
@@ -1859,6 +1859,78 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".dataGridView1_KeyDown", ex);
+            }
+        }
+
+        private void btnChonKH_Click(object sender, EventArgs e)
+        {
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift)
+            {
+                Xoa_gView4();
+            }
+            else
+            {
+                StandardConfig lookupInfo = V6ControlsHelper.LayThongTinCauHinh("MA_KH");
+                Standard standard = new Standard(txtMaKH, lookupInfo, txtMaKH.InitFilter, LookupMode.Data, false);
+                standard.AcceptSelectedtData += standard_AcceptSelectedtData;
+                standard.ShowDialog(this);
+            }
+        }
+
+        void standard_AcceptSelectedtData(string idList, List<IDictionary<string, object>> dataList)
+        {
+            try
+            {
+                foreach (IDictionary<string, object> data in dataList)
+                {
+                    if(data.ContainsKey("MA_KH")) data["MA_KH_I"] = data["MA_KH"];
+                    data4.AddRow(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".sf_AcceptSelectedtData", ex);
+            }
+        }
+
+        private void BtchonExcel_MouseEnter(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.SetStatusText("Giữ Shift khi click để xóa.");
+        }
+
+        private void BtchonExcel_MouseHover(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.SetStatusText("Giữ Shift khi click để xóa.");
+        }
+
+        private void btnChonKH5_Click(object sender, EventArgs e)
+        {
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift)
+            {
+                Xoa_gView5();
+            }
+            else
+            {
+                StandardConfig lookupInfo = V6ControlsHelper.LayThongTinCauHinh("MA_KH");
+                Standard standard = new Standard(txtMaKH, lookupInfo, txtMaKH.InitFilter, LookupMode.Data, false);
+                standard.AcceptSelectedtData += standard_AcceptSelectedtData5;
+                standard.ShowDialog(this);
+            }
+        }
+
+        void standard_AcceptSelectedtData5(string idList, List<IDictionary<string, object>> dataList)
+        {
+            try
+            {
+                foreach (IDictionary<string, object> data in dataList)
+                {
+                    if (data.ContainsKey("MA_KH")) data["MA_KH_I"] = data["MA_KH"];
+                    data5.AddRow(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".sf_AcceptSelectedtData5", ex);
             }
         }
     }

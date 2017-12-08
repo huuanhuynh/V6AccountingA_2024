@@ -373,7 +373,7 @@ namespace V6Controls
                 {
                     if (F2)
                     {
-                        DoLookup(true);
+                        DoLookup(LookupMode.Multi);
                     }
                 }
                 else
@@ -446,13 +446,13 @@ namespace V6Controls
                         }
                         else
                         {
-                            DoLookup(false);
+                            DoLookup(LookupMode.Single);
                         }
                     }
                 }
                 else if (_checkNotEmpty && !string.IsNullOrEmpty(LookupInfo_F_NAME))
                 {
-                    DoLookup(false);
+                    DoLookup(LookupMode.Single);
                 }
                 else
                 {
@@ -775,7 +775,7 @@ namespace V6Controls
             else CallDoV6LostFocusNoChange();
         }
 
-        protected void DoLookup(bool multi = false)
+        protected void DoLookup(LookupMode multi = LookupMode.Single)
         {
             if (V6Setting.IsDesignTime) return;
 
@@ -792,12 +792,12 @@ namespace V6Controls
                 if (dsr == DialogResult.OK)
                 {
                     Text = fStand._senderText;
-                    if (!multi) Data = fStand.selectedDataRow;
+                    if (multi == LookupMode.Single) Data = fStand.selectedDataRow;
                 }
                 else
                 {
                     //Kiem tra neu gia tri khong hop le thi xoa            
-                    if (!multi && !ExistRowInTable())
+                    if (multi == LookupMode.Single && !ExistRowInTable())
                     {
                         Clear();
                         if (CheckNotEmpty || CheckOnLeave)
@@ -818,7 +818,7 @@ namespace V6Controls
             }
         }
 
-        public void Lookup(bool multi = false)
+        public void Lookup(LookupMode multi = LookupMode.Single)
         {
             DoLookup(multi);
         }
