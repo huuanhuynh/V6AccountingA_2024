@@ -1,6 +1,6 @@
 ﻿namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
 {
-    partial class ALREPORT1_FilterEditorForm
+    partial class DefineInfoEditorForm
     {
         /// <summary> 
         /// Required designer variable.
@@ -65,7 +65,6 @@
             this.label30 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -80,15 +79,18 @@
             this.txtControlType = new V6Controls.V6ColorTextBox();
             this.txtAccessibleName2 = new V6Controls.V6VvarTextBox();
             this.label44 = new System.Windows.Forms.Label();
+            this.txtUseLimitChars0 = new V6Controls.V6ColorTextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.lblControlTypeVvarTextBox = new System.Windows.Forms.Label();
             this.lblControlTypeLookupTextBox = new System.Windows.Forms.Label();
             this.lblControlTypeTextBox = new System.Windows.Forms.Label();
             this.lblControlType = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.txtNField = new V6Controls.V6ColorTextBox();
             this.txtToUpper = new V6Controls.V6ColorTextBox();
             this.label39 = new System.Windows.Forms.Label();
+            this.txtLimitChars0 = new V6Controls.V6ColorTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label53 = new System.Windows.Forms.Label();
             this.txtMa_dm = new V6Controls.V6ColorTextBox();
@@ -97,6 +99,7 @@
             this.txtWidth = new V6Controls.V6ColorTextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.txtFilterStart = new V6Controls.V6ColorTextBox();
@@ -120,7 +123,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label48 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -172,7 +174,7 @@
             this.txtF2.MaxLength = 1;
             this.txtF2.Name = "txtF2";
             this.txtF2.Size = new System.Drawing.Size(150, 23);
-            this.txtF2.TabIndex = 14;
+            this.txtF2.TabIndex = 18;
             // 
             // label20
             // 
@@ -254,7 +256,7 @@
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(262, 17);
-            this.label19.TabIndex = 35;
+            this.label19.TabIndex = 19;
             this.label19.Text = "Bật tắt chức năng lookup chọn nhiều mã";
             // 
             // label10
@@ -352,7 +354,7 @@
             this.txtLoaiKey.Margin = new System.Windows.Forms.Padding(4);
             this.txtLoaiKey.Name = "txtLoaiKey";
             this.txtLoaiKey.Size = new System.Drawing.Size(150, 23);
-            this.txtLoaiKey.TabIndex = 17;
+            this.txtLoaiKey.TabIndex = 24;
             this.toolTipV6FormControl.SetToolTip(this.txtLoaiKey, "Các loại key trong báo cáo");
             // 
             // label38
@@ -391,7 +393,7 @@
             this.txtInitFilter.Margin = new System.Windows.Forms.Padding(4);
             this.txtInitFilter.Name = "txtInitFilter";
             this.txtInitFilter.Size = new System.Drawing.Size(150, 23);
-            this.txtInitFilter.TabIndex = 16;
+            this.txtInitFilter.TabIndex = 22;
             // 
             // label34
             // 
@@ -418,7 +420,7 @@
             this.txtVvar.Margin = new System.Windows.Forms.Padding(4);
             this.txtVvar.Name = "txtVvar";
             this.txtVvar.Size = new System.Drawing.Size(150, 23);
-            this.txtVvar.TabIndex = 13;
+            this.txtVvar.TabIndex = 16;
             // 
             // txtLimitChars
             // 
@@ -435,6 +437,7 @@
             this.txtLimitChars.Name = "txtLimitChars";
             this.txtLimitChars.Size = new System.Drawing.Size(150, 23);
             this.txtLimitChars.TabIndex = 12;
+            this.toolTipV6FormControl.SetToolTip(this.txtLimitChars, "Những ký tự cho phép nhập");
             // 
             // txtTextV
             // 
@@ -518,7 +521,7 @@
             this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(404, 34);
-            this.label33.TabIndex = 47;
+            this.label33.TabIndex = 25;
             this.label33.Text = "10: ngay, 11: 1value, 30: advance, 21,22,23,24 in alkh,vt,tk,vv.\r\nA1 check use ad" +
     "vance cho albc con.";
             // 
@@ -563,7 +566,7 @@
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(99, 17);
-            this.label25.TabIndex = 41;
+            this.label25.TabIndex = 23;
             this.label25.Text = "Lọc khi lookup";
             // 
             // label7
@@ -596,7 +599,7 @@
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(37, 17);
-            this.label23.TabIndex = 32;
+            this.label23.TabIndex = 17;
             this.label23.Text = "Vvar";
             // 
             // label1
@@ -609,17 +612,6 @@
             this.label1.Size = new System.Drawing.Size(38, 17);
             this.label1.TabIndex = 3;
             this.label1.Text = "Field";
-            // 
-            // label21
-            // 
-            this.label21.AccessibleDescription = "";
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(284, 296);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(183, 17);
-            this.label21.TabIndex = 29;
-            this.label21.Text = "Những ký tự cho phép nhập";
             // 
             // label5
             // 
@@ -718,6 +710,7 @@
             this.tabPage1.Controls.Add(this.label44);
             this.tabPage1.Controls.Add(this.txtField);
             this.tabPage1.Controls.Add(this.label30);
+            this.tabPage1.Controls.Add(this.txtUseLimitChars0);
             this.tabPage1.Controls.Add(this.txtF2);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label4);
@@ -728,7 +721,6 @@
             this.tabPage1.Controls.Add(this.lblControlType);
             this.tabPage1.Controls.Add(this.label20);
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label21);
             this.tabPage1.Controls.Add(this.txtNotEmpty);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.label23);
@@ -742,6 +734,7 @@
             this.tabPage1.Controls.Add(this.label19);
             this.tabPage1.Controls.Add(this.label40);
             this.tabPage1.Controls.Add(this.label10);
+            this.tabPage1.Controls.Add(this.label21);
             this.tabPage1.Controls.Add(this.label22);
             this.tabPage1.Controls.Add(this.label33);
             this.tabPage1.Controls.Add(this.txtTextE);
@@ -760,6 +753,7 @@
             this.tabPage1.Controls.Add(this.txtToUpper);
             this.tabPage1.Controls.Add(this.label38);
             this.tabPage1.Controls.Add(this.label39);
+            this.tabPage1.Controls.Add(this.txtLimitChars0);
             this.tabPage1.Controls.Add(this.txtLimitChars);
             this.tabPage1.Controls.Add(this.label36);
             this.tabPage1.Controls.Add(this.txtVvar);
@@ -872,6 +866,25 @@
             this.label44.TabIndex = 0;
             this.label44.Text = "Control type";
             // 
+            // txtUseLimitChars0
+            // 
+            this.txtUseLimitChars0.AccessibleName = "UseLimitChars0";
+            this.txtUseLimitChars0.BackColor = System.Drawing.Color.White;
+            this.txtUseLimitChars0.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtUseLimitChars0.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtUseLimitChars0.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtUseLimitChars0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtUseLimitChars0.GrayText = "Use";
+            this.txtUseLimitChars0.HoverColor = System.Drawing.Color.Yellow;
+            this.txtUseLimitChars0.LeaveColor = System.Drawing.Color.White;
+            this.txtUseLimitChars0.LimitCharacters = "01";
+            this.txtUseLimitChars0.Location = new System.Drawing.Point(287, 294);
+            this.txtUseLimitChars0.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUseLimitChars0.MaxLength = 1;
+            this.txtUseLimitChars0.Name = "txtUseLimitChars0";
+            this.txtUseLimitChars0.Size = new System.Drawing.Size(34, 23);
+            this.txtUseLimitChars0.TabIndex = 13;
+            // 
             // label29
             // 
             this.label29.AccessibleDescription = "";
@@ -939,8 +952,19 @@
             this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(114, 17);
-            this.label40.TabIndex = 38;
+            this.label40.TabIndex = 21;
             this.label40.Text = "Bật Upper khi gõ";
+            // 
+            // label21
+            // 
+            this.label21.AccessibleDescription = "";
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(487, 296);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(168, 17);
+            this.label21.TabIndex = 15;
+            this.label21.Text = "Ký tự cho phép hoặc cấm";
             // 
             // txtNField
             // 
@@ -974,7 +998,7 @@
             this.txtToUpper.Margin = new System.Windows.Forms.Padding(4);
             this.txtToUpper.Name = "txtToUpper";
             this.txtToUpper.Size = new System.Drawing.Size(150, 23);
-            this.txtToUpper.TabIndex = 15;
+            this.txtToUpper.TabIndex = 20;
             // 
             // label39
             // 
@@ -986,6 +1010,24 @@
             this.label39.Size = new System.Drawing.Size(64, 17);
             this.label39.TabIndex = 36;
             this.label39.Text = "ToUpper";
+            // 
+            // txtLimitChars0
+            // 
+            this.txtLimitChars0.AccessibleName = "LimitChars0";
+            this.txtLimitChars0.BackColor = System.Drawing.Color.White;
+            this.txtLimitChars0.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtLimitChars0.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLimitChars0.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLimitChars0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtLimitChars0.GrayText = "LimitChars0";
+            this.txtLimitChars0.HoverColor = System.Drawing.Color.Yellow;
+            this.txtLimitChars0.LeaveColor = System.Drawing.Color.White;
+            this.txtLimitChars0.Location = new System.Drawing.Point(329, 294);
+            this.txtLimitChars0.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLimitChars0.Name = "txtLimitChars0";
+            this.txtLimitChars0.Size = new System.Drawing.Size(150, 23);
+            this.txtLimitChars0.TabIndex = 14;
+            this.toolTipV6FormControl.SetToolTip(this.txtLimitChars0, "Những ký tự KHÔNG cho phép nhập");
             // 
             // tabPage2
             // 
@@ -1116,6 +1158,18 @@
             this.label50.TabIndex = 23;
             this.label50.Text = "Bật tắt tính năng lọc chỉ bắt đầu cho vVarTextBox lookup. Mặc định false sẽ lọc l" +
     "ike \'%abc%\'.";
+            // 
+            // label48
+            // 
+            this.label48.AccessibleDescription = "";
+            this.label48.AccessibleName = "";
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(690, 164);
+            this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(67, 17);
+            this.label48.TabIndex = 23;
+            this.label48.Text = "Chú thích";
             // 
             // label46
             // 
@@ -1418,19 +1472,7 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
-            // label48
-            // 
-            this.label48.AccessibleDescription = "";
-            this.label48.AccessibleName = "";
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(690, 164);
-            this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(67, 17);
-            this.label48.TabIndex = 23;
-            this.label48.Text = "Chú thích";
-            // 
-            // ALREPORT1_FilterEditorForm
+            // DefineInfoEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1441,8 +1483,8 @@
             this.Controls.Add(this.btnNhan);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "ALREPORT1_FilterEditorForm";
-            this.Text = "Filter editor";
+            this.Name = "DefineInfoEditorForm";
+            this.Text = "DefineInfo editor";
             this.Load += new System.EventHandler(this.From_Load);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
@@ -1490,7 +1532,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label21;
         private V6VvarTextBox txtAccessibleName;
         private System.Windows.Forms.Label label30;
         private V6ColorTextBox txtLoaiKey;
@@ -1552,5 +1593,8 @@
         private System.Windows.Forms.Label lblControlTypeVvarTextBox;
         private System.Windows.Forms.ComboBox cboControlType;
         private System.Windows.Forms.Label label48;
+        private V6ColorTextBox txtUseLimitChars0;
+        private V6ColorTextBox txtLimitChars0;
+        private System.Windows.Forms.Label label21;
     }
 }

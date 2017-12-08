@@ -886,6 +886,87 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
+        public void EditPlist(List<SqlParameter> _plist)
+        {
+            SqlParameter p0 = null, p1 = null, p2 = null, p3 = null,
+                p4 = null, p5 = null, p6 = null, p7 = null,
+                p8 = null, p9 = null, p10 = null;
+            SqlParameter[] plist = new SqlParameter[10];
+            foreach (SqlParameter p in _plist)
+            {
+                switch (p.ParameterName.ToUpper())
+                {
+                    case "@LST_EMP":
+                        p0 = p;
+                        break;
+                    case "@LST_EMP01":
+                        p1 = p;
+                        plist[0] = p;
+                        break;
+                    case "@LST_EMP02":
+                        p2 = p;
+                        plist[1] = p;
+                        break;
+                    case "@LST_EMP03":
+                        p3 = p;
+                        plist[2] = p;
+                        break;
+                    case "@LST_EMP04":
+                        p4 = p;
+                        plist[3] = p;
+                        break;
+                    case "@LST_EMP05":
+                        p5 = p;
+                        plist[4] = p;
+                        break;
+                    case "@LST_EMP06":
+                        p6 = p;
+                        plist[5] = p;
+                        break;
+                    case "@LST_EMP07":
+                        p7 = p;
+                        plist[6] = p;
+                        break;
+                    case "@LST_EMP08":
+                        p8 = p;
+                        plist[7] = p;
+                        break;
+                    case "@LST_EMP09":
+                        p9 = p;
+                        plist[8] = p;
+                        break;
+                    case "@LST_EMP10":
+                        p10 = p;
+                        plist[9] = p;
+                        break;
+                }
+            }
+            string longString = p0.Value.ToString();
+            int count = 0;
+            while (longString.Length>0)
+            {
+                if (longString.Length > 8000)
+                {
+                    //Tim vi tri dau phay (,).
+                    int index = 8000;
+                    char c = longString[index];
+                    while (c != ',')
+                    {
+                        c = longString[--index];
+                    }
+                    //Da tim ra.
+                    plist[count].Value = longString.Substring(0, index);
+                    longString = longString.Substring(index + 1);
+                }
+                else //Phan cuoi cung.
+                {
+                    plist[count].Value = longString;
+                    longString = "";
+                }
+                count++;
+            }
+        }
+
         void LoadData()
         {
             All_Objects["_plist"] = _pList;
