@@ -157,9 +157,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.v6Label38 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
             this.chkAuto_Ck = new V6Controls.V6CheckBox();
             this.btnTinhCKKM = new V6Controls.Controls.V6FormButton();
-            this.txtimtype = new V6Controls.V6CheckBox();
             this.chkSua_Tien = new V6Controls.V6CheckBox();
             this.txtConLai = new V6Controls.V6NumberTextBox();
             this.txtTongSoLuong = new V6Controls.V6NumberTextBox();
@@ -180,6 +180,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.v6Label30 = new V6Controls.V6Label();
             this.v6Label35 = new V6Controls.V6Label();
             this.v6Label32 = new V6Controls.V6Label();
+            this.v6Label28 = new V6Controls.V6Label();
             this.v6Label33 = new V6Controls.V6Label();
             this.v6Label31 = new V6Controls.V6Label();
             this.v6Label19 = new V6Controls.V6Label();
@@ -2122,9 +2123,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             // 
             this.group4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group4.Controls.Add(this.cboChuyenData);
             this.group4.Controls.Add(this.chkAuto_Ck);
             this.group4.Controls.Add(this.btnTinhCKKM);
-            this.group4.Controls.Add(this.txtimtype);
             this.group4.Controls.Add(this.chkSua_Tien);
             this.group4.Controls.Add(this.txtConLai);
             this.group4.Controls.Add(this.txtTongSoLuong);
@@ -2145,6 +2146,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.group4.Controls.Add(this.v6Label30);
             this.group4.Controls.Add(this.v6Label35);
             this.group4.Controls.Add(this.v6Label32);
+            this.group4.Controls.Add(this.v6Label28);
             this.group4.Controls.Add(this.v6Label33);
             this.group4.Controls.Add(this.v6Label31);
             this.group4.Controls.Add(this.v6Label19);
@@ -2153,6 +2155,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.group4.Size = new System.Drawing.Size(471, 133);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
+            // 
+            // cboChuyenData
+            // 
+            this.cboChuyenData.AccessibleName = "IMTYPE";
+            this.cboChuyenData.BackColor = System.Drawing.SystemColors.Window;
+            this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboChuyenData.FormattingEnabled = true;
+            this.cboChuyenData.Items.AddRange(new object[] {
+            "0 - Không chuyển",
+            "1 - Chuyển",
+            "2 - Không xử lý"});
+            this.cboChuyenData.Location = new System.Drawing.Point(356, 104);
+            this.cboChuyenData.Name = "cboChuyenData";
+            this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
+            this.cboChuyenData.TabIndex = 10;
+            this.cboChuyenData.TabStop = false;
+            this.toolTipV6FormControl.SetToolTip(this.cboChuyenData, "Chuyển dữ liệu qua Database khác.");
+            this.cboChuyenData.SelectedValueChanged += new System.EventHandler(this.cboMaNt_SelectedValueChanged);
             // 
             // chkAuto_Ck
             // 
@@ -2176,20 +2197,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.btnTinhCKKM.Text = "Tính CK &KM";
             this.btnTinhCKKM.UseVisualStyleBackColor = true;
             this.btnTinhCKKM.Click += new System.EventHandler(this.btnTinhCKKM_Click);
-            // 
-            // txtimtype
-            // 
-            this.txtimtype.AccessibleDescription = "ASOCTSOAH00055";
-            this.txtimtype.AccessibleName = "IMTYPE";
-            this.txtimtype.AutoSize = true;
-            this.txtimtype.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtimtype.Location = new System.Drawing.Point(304, 108);
-            this.txtimtype.Name = "txtimtype";
-            this.txtimtype.Size = new System.Drawing.Size(105, 17);
-            this.txtimtype.TabIndex = 21;
-            this.txtimtype.TabStop = false;
-            this.txtimtype.Text = "Chuyển DATA";
-            this.txtimtype.UseVisualStyleBackColor = true;
             // 
             // chkSua_Tien
             // 
@@ -2518,6 +2525,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.v6Label32.TabIndex = 13;
             this.v6Label32.Text = "Tk thuế";
             // 
+            // v6Label28
+            // 
+            this.v6Label28.AccessibleDescription = "ASOCTSOAH00055";
+            this.v6Label28.AutoSize = true;
+            this.v6Label28.Location = new System.Drawing.Point(310, 109);
+            this.v6Label28.Name = "v6Label28";
+            this.v6Label28.Size = new System.Drawing.Size(36, 13);
+            this.v6Label28.TabIndex = 16;
+            this.v6Label28.Text = "DATA";
+            // 
             // v6Label33
             // 
             this.v6Label33.AccessibleDescription = "ASOCTSOAH00077";
@@ -2598,7 +2615,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.group3.Location = new System.Drawing.Point(5, 52);
             this.group3.Name = "group3";
             this.group3.Size = new System.Drawing.Size(894, 117);
-            this.group3.TabIndex = 2;
+            this.group3.TabIndex = 1;
             this.group3.TabStop = false;
             // 
             // txtLoaiPhieu
@@ -3136,7 +3153,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.group2.Location = new System.Drawing.Point(425, -5);
             this.group2.Name = "group2";
             this.group2.Size = new System.Drawing.Size(474, 57);
-            this.group2.TabIndex = 1;
+            this.group2.TabIndex = 2;
             this.group2.TabStop = false;
             // 
             // v6VvarTextBox2
@@ -3663,7 +3680,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private V6ColorTextBox txtGhiChuChung;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private V6CheckBox txtimtype;
         private System.Windows.Forms.ToolStripMenuItem chonTuExcelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chonBaoGiaToolStripMenuItem;
         private V6VvarTextBox txtDiaChiGiaoHang;
@@ -3694,5 +3710,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private V6FormButton btnTinhCKKM;
         private V6ColorTextBox TxtL_AM_INFO;
         private V6CheckBox chkAuto_Ck;
+        private V6Controls.Controls.V6IndexComboBox cboChuyenData;
+        private V6Label v6Label28;
     }
 }

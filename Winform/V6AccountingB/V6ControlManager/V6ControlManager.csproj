@@ -1716,11 +1716,23 @@
     <Compile Include="FormManager\ReportManager\Filter\ASOTH6F5.designer.cs">
       <DependentUpon>ASOTH6F5.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AVGLGSSO6AF5.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AVGLGSSO6AF5.designer.cs">
+      <DependentUpon>AVGLGSSO6AF5.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AVGLGSSO5AF5.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AVGLGSSO5AF5.designer.cs">
       <DependentUpon>AVGLGSSO5AF5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AVGLGSSO6A.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AVGLGSSO6A.designer.cs">
+      <DependentUpon>AVGLGSSO6A.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AVGLSSO5A.cs">
       <SubType>UserControl</SubType>
@@ -3974,6 +3986,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\AGLGSSO4T.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AVGLGSSO6A.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AVGLGSSO5A.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5778,8 +5793,14 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\APOBK4.resx">
       <DependentUpon>APOBK4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AVGLGSSO6AF5.resx">
+      <DependentUpon>AVGLGSSO6AF5.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AVGLGSSO5AF5.resx">
       <DependentUpon>AVGLGSSO5AF5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AVGLGSSO6A.resx">
+      <DependentUpon>AVGLGSSO6A.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AVGLSSO5A.resx">
       <DependentUpon>AVGLSSO5A.cs</DependentUpon>

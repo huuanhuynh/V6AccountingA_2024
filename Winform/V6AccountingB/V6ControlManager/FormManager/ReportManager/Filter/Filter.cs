@@ -964,6 +964,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new AGLGSSO4TF5();
                 case "AGLGSSO4TF10":
                     return new AGLGSSO4TF10();
+                case "AVGLGSSO6A":
+                    return new AVGLGSSO6A();
+                case "AVGLGSSO6AF5":
+                    return new AVGLGSSO6AF5();
 
             }
             return new FilterBase() { Visible = false };

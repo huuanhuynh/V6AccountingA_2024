@@ -702,7 +702,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".AAPPR_SOA ViewDetails: " + ex.Message);
+                this.ShowErrorException(GetType() + ".ViewDetails", ex);
             }
         }
 
