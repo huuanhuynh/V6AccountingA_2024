@@ -3314,7 +3314,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.txtManx.Size = new System.Drawing.Size(59, 20);
             this.txtManx.TabIndex = 12;
             this.txtManx.VVar = "ma_nx";
-            this.txtManx.LostFocus += new System.EventHandler(this.txtManx_LostFocus);
+            this.txtManx.Leave += new System.EventHandler(this.txtManx_Leave);
             // 
             // group1
             // 

@@ -1606,7 +1606,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     }
                 }
             }
-            else if (keyData == Keys.F)
+            else if (keyData == Keys.F7)
             {
                 LuuVaIn();
             }

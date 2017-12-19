@@ -6361,7 +6361,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 ValidateNgayCt(Invoice.Mact, dateNgayCT);
         }
 
-        private void txtManx_LostFocus(object sender, EventArgs eventArgs)
+        private void txtManx_Leave(object sender, EventArgs eventArgs)
         {
             if (chkSuaTkThue.Checked)
             {
@@ -6881,7 +6881,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     lgia_nt2 = "",
                     ltien2 = "",
                     lgia2 = "",
-                    lma_kho_i = "";
+                    lma_kho_i = "", 
+                    lma_lo = "", lhsd = "", lma_vitri = "";
                 foreach (DataRow row in AD.Rows)
                 {
                     lstt_rec0 += ";" + row["STT_REC0"].ToString().Trim();
@@ -6895,6 +6896,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     ltien2 += ";" + ObjectAndString.ObjectToDecimal(row["TIEN2"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
                     lgia2 += ";" + ObjectAndString.ObjectToDecimal(row["GIA2"].ToString().Trim()).ToString(CultureInfo.InvariantCulture);
                     lma_kho_i += ";" + row["MA_KHO_I"].ToString().Trim();
+                    lma_lo += ";" + row["MA_LO"].ToString().Trim();
+                    lhsd += ";" + ObjectAndString.ObjectToString(row["HSD"], "yyyyMMdd");
+                    lma_vitri += ";" + row["MA_VITRI"].ToString().Trim();
                 }
                 lstt_rec0 = lstt_rec0.Substring(1);
                 lma_vt = lma_vt.Substring(1);
@@ -6907,6 +6911,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 ltien2 = ltien2.Substring(1);
                 lgia2 = lgia2.Substring(1);
                 lma_kho_i = lma_kho_i.Substring(1);
+                lma_lo = lma_lo.Substring(1);
+                lhsd = lhsd.Substring(1);
+                lma_vitri = lma_vitri.Substring(1);
                 //Select cac chuong trinh km trong thoi gian hoa don
                 SqlParameter[] plist =
                 {
@@ -6934,6 +6941,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     new SqlParameter("@lad09", lgia2),
                     new SqlParameter("@lad10", lma_kho_i),
                     new SqlParameter("@lad11", lso_luong),
+                    new SqlParameter("@lad12", lma_lo),//ma_lo
+                    new SqlParameter("@lad13", lhsd),//hsd
+                    new SqlParameter("@lad14", lma_vitri),//ma_vitri
                     new SqlParameter("@Advance2", "1=1"),
                 };
                 DataSet dsctkm = V6BusinessHelper.ExecuteProcedure("VPA_Get_ALKMB", plist);
@@ -7057,6 +7067,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     var tag = (row["tag"] ?? "").ToString().Trim();
                     if (tag == "") continue;
+
+                    var CK_MA_KM = row["MA_KM"].ToString().Trim().ToUpper();
+                    if (!l_ma_km.Contains(";" + CK_MA_KM + ";"))
+                    {
+                        l_ma_km = l_ma_km + CK_MA_KM + ";";
+                    }
+
                     var data = GenDataKM(row.ToDataDictionary());
                     if (IsOkDataKM(data)) XuLyThemDetail(data);
                 }
