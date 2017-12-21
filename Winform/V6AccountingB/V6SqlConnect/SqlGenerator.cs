@@ -575,6 +575,7 @@ namespace V6SqlConnect
                 if (structTable.ContainsKey(FIELD))
                 {
                     var column = structTable[FIELD];
+                    if (column.sql_data_type_string == "xml") continue;
                     // " and table.[key] = value"
                     result += string.Format("{0}{1}[{2}] {3} {4}",
                         and_or, tbL,
@@ -625,13 +626,13 @@ namespace V6SqlConnect
         /// <summary>
         /// Dùng cho filter, bỏ qua value rỗng (continue).
         /// </summary>
-        /// <param name="structTable"></param>
+        /// <param name="tableStruct"></param>
         /// <param name="keys"></param>
         /// <param name="oper">tự động thêm '%value%' khi dùng like</param>
         /// <param name="and"></param>
         /// <param name="tableLable"></param>
         /// <returns></returns>
-        public static string GenWhere2(V6TableStruct structTable, SortedDictionary<string, object> keys,
+        public static string GenWhere2(V6TableStruct tableStruct, IDictionary<string, object> keys,
             string oper = "=", bool and = true, string tableLable = "")
         {
             var and_or = and ? " AND " : " OR ";
@@ -643,9 +644,10 @@ namespace V6SqlConnect
                 if(key.Value is string && string.IsNullOrEmpty(key.Value as string))
                     continue;
                 string FIELD = key.Key.ToUpper();
-                if (structTable.ContainsKey(FIELD))
+                if (tableStruct.ContainsKey(FIELD))
                 {
-                    var column = structTable[FIELD];
+                    var column = tableStruct[FIELD];
+                    if (column.sql_data_type_string == "xml") continue;
                     // " and table.[key] = value"
                     result += string.Format("{0}{1}[{2}] {3} {4}",
                         and_or, tbL,
@@ -689,6 +691,7 @@ namespace V6SqlConnect
                 if (structTable.ContainsKey(FIELD))
                 {
                     var column = structTable[FIELD];
+                    if (column.sql_data_type_string == "xml") continue;
                     // " and table.[key] = value"
                     result += string.Format("{0}{1}[{2}] {3} {4}",
                         and_or, tbL,
@@ -860,6 +863,7 @@ namespace V6SqlConnect
 
                     return GenSqlStringValueF(text, sqltype, defaultValue, allowNull, like);
                     //break;
+                
                 default:
                     if (objValue is DateTime)
                     {

@@ -639,8 +639,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                 #endregion Công cụ , dụng cụ
                 #region ==== Hệ thống ====
-                case "AAPPR_SOA":
+                case "AAPPR_SOA"://Hệ thống/Quản lý người sử dụng/C.Duyệt, xử lý hóa đơn bán hàng.
                     return new AAPPR_SOA();
+                case "AAPPR_SOA2"://Hệ thống/Quản lý người sử dụng/K.Chuyển sang hóa đơn điện tử.
+                    return new AAPPR_SOA2();
                 case "AGLAUTOSO_CT":
                     return new XAGLAUTOSO_CT();
                 case "XLSALKH":

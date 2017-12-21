@@ -1533,6 +1533,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             crystalReportViewer1.DisplayToolbar = false;
             crystalReportViewer2.DisplayToolbar = false;
             crystalReportViewer3.DisplayToolbar = false;
+            crystalReportViewer4.DisplayToolbar = false;
             if (MauTuIn == 1)
             {
                 //Hoa don 3 lien 123
@@ -1605,14 +1606,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 crystalReportViewer2.ReportSource = rpDoc2;
                 if (_soLienIn >= 3 && rpDoc3 != null)
                 crystalReportViewer3.ReportSource = rpDoc3;
-                //if (_soLienIn >= 4 && rpDoc4 != null)
-                //    crystalReportViewer4.ReportSource = rpDoc4;
+                if (_soLienIn >= 4 && rpDoc4 != null)
+                crystalReportViewer4.ReportSource = rpDoc4;
 
                 crystalReportViewer1.Show();
                 crystalReportViewer1.Zoom(1);
                 crystalReportViewer1.Visible = true;
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
+                crystalReportViewer4.Visible = false;
+                
             }
             else
             {
@@ -1621,6 +1624,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     crystalReportViewer1.DisplayToolbar = true;
                     crystalReportViewer2.DisplayToolbar = true;
                     crystalReportViewer3.DisplayToolbar = true;
+                    crystalReportViewer4.DisplayToolbar = true;
                 }
 
                 rpDoc = new ReportDocument();
@@ -1638,6 +1642,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 crystalReportViewer1.Visible = true;
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
+                crystalReportViewer4.Visible = false;
             }
             //btnIn.Focus();
         }
@@ -1680,6 +1685,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             try
                             {
                                 rpDoc3.PrintToPrinter(1, false, 1, 1);
+                                intDaGuiDenMayIn++;
+                            }
+                            catch (Exception ex)
+                            {
+                                this.ShowErrorMessage(GetType() + ".In liên 3 lỗi:\n" + ex.Message);
+                            }
+                        }
+                        if (_soLienIn > 3)
+                        {
+                            try
+                            {
+                                rpDoc4.PrintToPrinter(1, false, 1, 1);
                                 intDaGuiDenMayIn++;
                             }
                             catch (Exception ex)
@@ -1911,9 +1928,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             txtReportTitle.Text = ReportTitle;
             numSoLien.Value = SelectedSoLien;
             if (ReloadData == "1")
-                MakeReport(V6PrintMode.DoNoThing, null, (int)numSoLien.Value);
+            {
+                MakeReport(V6PrintMode.DoNoThing, null, (int) numSoLien.Value);
+            }
             else
+            {
+                _soLienIn = (int) numSoLien.Value;
                 ViewReport();
+            }
         }
 
         private void btnThemMauBC_Click(object sender, EventArgs e)
@@ -2008,9 +2030,46 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private void btnLt_Click(object sender, EventArgs e)
         {
             var soLienIn = numSoLien.Value;
-            if (soLienIn == 3)
+            if (soLienIn == 4)
             {
-
+                if (crystalReportViewer1.Visible)
+                {
+                    crystalReportViewer1.Visible = false;
+                    crystalReportViewer2.Visible = false;
+                    crystalReportViewer3.Visible = false;
+                    crystalReportViewer4.Visible = true;
+                }
+                else if (crystalReportViewer2.Visible)
+                {
+                    crystalReportViewer1.Visible = true;
+                    crystalReportViewer2.Visible = false;
+                    crystalReportViewer3.Visible = false;
+                    crystalReportViewer4.Visible = false;
+                }
+                else if (crystalReportViewer3.Visible)
+                {
+                    crystalReportViewer1.Visible = false;
+                    crystalReportViewer2.Visible = true;
+                    crystalReportViewer3.Visible = false;
+                    crystalReportViewer4.Visible = false;
+                }
+                else if (crystalReportViewer4.Visible)
+                {
+                    crystalReportViewer1.Visible = false;
+                    crystalReportViewer2.Visible = false;
+                    crystalReportViewer3.Visible = true;
+                    crystalReportViewer4.Visible = false;
+                }
+                else
+                {
+                    crystalReportViewer1.Visible = true;
+                    crystalReportViewer2.Visible = false;
+                    crystalReportViewer3.Visible = false;
+                    crystalReportViewer4.Visible = false;
+                }
+            }
+            else if (soLienIn == 3)
+            {
                 if (crystalReportViewer1.Visible)
                 {
                     crystalReportViewer1.Visible = false;
@@ -2035,6 +2094,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     crystalReportViewer2.Visible = false;
                     crystalReportViewer3.Visible = false;
                 }
+                crystalReportViewer4.Visible = false;
             }
             else if (soLienIn == 2)
             {
@@ -2054,19 +2114,52 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     crystalReportViewer2.Visible = false;
                 }
                 crystalReportViewer3.Visible = false;
+                crystalReportViewer4.Visible = false;
             }
             else if (soLienIn == 1)
             {
                 crystalReportViewer1.Visible = true;
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
+                crystalReportViewer4.Visible = false;
             }
         }
 
         private void btnLs_Click(object sender, EventArgs e)
         {
             var soLienIn = numSoLien.Value;
-            if (soLienIn == 3)
+            if (soLienIn == 4)
+            {
+                if (crystalReportViewer1.Visible)
+                {
+                    crystalReportViewer1.Visible = false;
+                    crystalReportViewer2.Visible = true;
+                    crystalReportViewer3.Visible = false;
+                    crystalReportViewer4.Visible = false;
+                }
+                else if (crystalReportViewer2.Visible)
+                {
+                    crystalReportViewer1.Visible = false;
+                    crystalReportViewer2.Visible = false;
+                    crystalReportViewer3.Visible = true;
+                    crystalReportViewer4.Visible = false;
+                }
+                else if (crystalReportViewer3.Visible)
+                {
+                    crystalReportViewer1.Visible = false;
+                    crystalReportViewer2.Visible = false;
+                    crystalReportViewer3.Visible = false;
+                    crystalReportViewer4.Visible = true;
+                }
+                else// if (crystalReportViewer4.Visible)
+                {
+                    crystalReportViewer1.Visible = true;
+                    crystalReportViewer2.Visible = false;
+                    crystalReportViewer3.Visible = false;
+                    crystalReportViewer4.Visible = false;
+                }
+            }
+            else if (soLienIn == 3)
             {
                 if (crystalReportViewer1.Visible)
                 {
@@ -2086,6 +2179,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     crystalReportViewer2.Visible = false;
                     crystalReportViewer3.Visible = false;
                 }
+                crystalReportViewer4.Visible = false;
             }
             else if (soLienIn == 2)
             {
@@ -2105,12 +2199,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     crystalReportViewer2.Visible = false;
                 }
                 crystalReportViewer3.Visible = false;
+                crystalReportViewer4.Visible = false;
             }
             else if (soLienIn == 1)
             {
                 crystalReportViewer1.Visible = true;
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
+                crystalReportViewer4.Visible = false;
             }
         }
 

@@ -1668,6 +1668,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.Designer.cs">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOA2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOA2.Designer.cs">
+      <DependentUpon>AAPPR_SOA2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_XULY_SOA.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3953,6 +3959,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_CA1_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F9.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4968,6 +4977,10 @@
       <Project>{910141A1-9FC5-4A44-B682-425100FE9023}</Project>
       <Name>V6Structs</Name>
     </ProjectReference>
+    <ProjectReference Include="..\V6ThuePostApi\V6ThuePostApi.csproj">
+      <Project>{4AF9BDE9-3E91-4035-BB20-2CFC1E0E54A6}</Project>
+      <Name>V6ThuePostApi</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\newspaperplus.png" />
@@ -5762,6 +5775,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.resx">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_SOA2.resx">
+      <DependentUpon>AAPPR_SOA2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_XULY_SOA.resx">
       <DependentUpon>AAPPR_XULY_SOA.cs</DependentUpon>

@@ -517,16 +517,16 @@ namespace V6AccountingBusiness
         }
         public static bool Insert(string tableName, IDictionary<string, object> dataDictionary)
         {
-            V6TableStruct structTable = GetTableStruct(tableName);
-            string sql = SqlGenerator.GenInsertSql(V6Login.UserId, tableName, structTable, dataDictionary);
+            V6TableStruct tableStruct = GetTableStruct(tableName);
+            string sql = SqlGenerator.GenInsertSql(V6Login.UserId, tableName, tableStruct, dataDictionary);
             int result = SqlConnect.ExecuteNonQuery(CommandType.Text, sql);
             return result > 0;
         }
 
         public static bool Insert(SqlTransaction transaction, string tableName, SortedDictionary<string, object> dataDictionary)
         {
-            V6TableStruct structTable = GetTableStruct(tableName);
-            string sql = SqlGenerator.GenInsertSql(V6Login.UserId, tableName, structTable, dataDictionary);
+            V6TableStruct tableStruct = GetTableStruct(tableName);
+            string sql = SqlGenerator.GenInsertSql(V6Login.UserId, tableName, tableStruct, dataDictionary);
             int result = SqlConnect.ExecuteNonQuery(transaction, CommandType.Text, sql);
             return result > 0;
         }
@@ -539,8 +539,8 @@ namespace V6AccountingBusiness
         public static int Update(string tableName, IDictionary<string, object> dataDictionary,
             IDictionary<string, object> keys)
         {
-            V6TableStruct structTable = GetTableStruct(tableName);
-            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, structTable, dataDictionary, keys);
+            V6TableStruct tableStruct = GetTableStruct(tableName);
+            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, tableStruct, dataDictionary, keys);
             var result = SqlConnect.ExecuteNonQuery(CommandType.Text, sql);
             return result;
         }
@@ -548,8 +548,8 @@ namespace V6AccountingBusiness
         public static int Update(SqlTransaction tran, string tableName, SortedDictionary<string, object> dataDictionary,
             SortedDictionary<string, object> keys)
         {
-            V6TableStruct structTable = GetTableStruct(tableName);
-            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, structTable, dataDictionary, keys);
+            V6TableStruct tableStruct = GetTableStruct(tableName);
+            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, tableStruct, dataDictionary, keys);
             var result = SqlConnect.ExecuteNonQuery(tran, CommandType.Text, sql);
             return result;
         }
@@ -571,8 +571,8 @@ namespace V6AccountingBusiness
         public static int UpdateSimple(string tableName, SortedDictionary<string, object> dataDictionary,
             SortedDictionary<string, object> keys)
         {
-            V6TableStruct structTable = GetTableStruct(tableName);
-            var sql = SqlGenerator.GenUpdateSqlSimple(tableName, dataDictionary, keys, structTable);
+            V6TableStruct tableStruct = GetTableStruct(tableName);
+            var sql = SqlGenerator.GenUpdateSqlSimple(tableName, dataDictionary, keys, tableStruct);
             var result = SqlConnect.ExecuteNonQuery(CommandType.Text, sql);
             return result;
         }
@@ -580,9 +580,9 @@ namespace V6AccountingBusiness
         public static int UpdateTable(string tableName, SortedDictionary<string, object> dataDictionary,
             SortedDictionary<string, object> keys)
         {
-            V6TableStruct structTable = GetTableStruct(tableName);
+            V6TableStruct tableStruct = GetTableStruct(tableName);
             SqlParameter[] plist2;
-            var sql = SqlGenerator.GenUpdateSqlParameter(V6Login.UserId, tableName, structTable, dataDictionary, keys, out plist2);
+            var sql = SqlGenerator.GenUpdateSqlParameter(V6Login.UserId, tableName, tableStruct, dataDictionary, keys, out plist2);
             //List<SqlParameter> plist = new List<SqlParameter>();
             //foreach (KeyValuePair<string, object> item in dataDictionary)
             //{
@@ -602,8 +602,8 @@ namespace V6AccountingBusiness
 
         public static int Delete(string tableName, IDictionary<string, object> keys)
         {
-            V6TableStruct structTable = GetTableStruct(tableName);
-            string sql = SqlGenerator.GenDeleteSql(structTable, keys);
+            V6TableStruct tableStruct = GetTableStruct(tableName);
+            string sql = SqlGenerator.GenDeleteSql(tableStruct, keys);
             int result = SqlConnect.ExecuteNonQuery(CommandType.Text, sql);
             return result;
         }
@@ -763,13 +763,14 @@ namespace V6AccountingBusiness
             return Select(name.ToString(), fields, where, groupby, orderby, prList);
         }
 
-        public static V6SelectResult Select(string name, IDictionary<string, object> keys, string fields,
+        public static V6SelectResult Select(string tableName, IDictionary<string, object> keys, string fields,
             string groupby = "", string orderby = "", params SqlParameter[] prList)
         {
-            if (!V6Login.UserRight.AllowSelect(name)) return new V6SelectResult();
+            if (!V6Login.UserRight.AllowSelect(tableName)) return new V6SelectResult();
 
-            string where = SqlGenerator.GenSqlWhere(keys);
-            return Select(name.ToString(), fields, where, groupby, orderby, prList);
+            var tableStruct = GetTableStruct(tableName);
+            string where = SqlGenerator.GenWhere2(tableStruct, keys);//.GenSqlWhere(keys);
+            return Select(tableName, fields, where, groupby, orderby, prList);
         }
 
         public static V6SelectResult Select(string tableName, string fields = "*",
