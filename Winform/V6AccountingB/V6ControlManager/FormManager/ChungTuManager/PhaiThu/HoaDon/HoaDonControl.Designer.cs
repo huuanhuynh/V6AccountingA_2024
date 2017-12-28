@@ -2195,6 +2195,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.btnTinhCKKM.Size = new System.Drawing.Size(100, 21);
             this.btnTinhCKKM.TabIndex = 22;
             this.btnTinhCKKM.Text = "Tính CK &KM";
+            this.toolTipV6FormControl.SetToolTip(this.btnTinhCKKM, "Giữ Shift+Click để xóa chiết khấu khuyến mãi.");
             this.btnTinhCKKM.UseVisualStyleBackColor = true;
             this.btnTinhCKKM.Click += new System.EventHandler(this.btnTinhCKKM_Click);
             // 

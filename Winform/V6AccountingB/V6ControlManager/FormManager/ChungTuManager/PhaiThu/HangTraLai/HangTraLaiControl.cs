@@ -446,11 +446,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     case "CK":
                         _ck = (V6NumberTextBox)control;
                         break;
-                    //_tien2.V6LostFocus;
-                    case "CK_NT":
-                        _ckNt = (V6NumberTextBox)control;
+
+                   case "CK_NT":
+                        _ckNt = control as V6NumberTextBox;
+                        //Tuanmh --22/12/2017
+                        if (_ckNt != null)
+                        {
+                            _ckNt.V6LostFocus += delegate
+                            {
+                                TinhChietKhauChiTiet(true, _ck, _ckNt, txtTyGia, _tienNt2, txtPtCk);
+                            };
+                        }
                         break;
-                    //_tien2.V6LostFocus;
+                   
                     case "GIA_NT":
                         _gia_nt = control as V6NumberTextBox;
                         if (_gia_nt != null)
@@ -989,10 +997,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         }
 
         private bool co_chon_phieu_xuat { get; set; }
-        private bool chonpx = false;
+        private bool chonpx_flag = false;
         void chonpx_AcceptSelectEvent(List<SortedDictionary<string, object>> selectedDataList)
         {
-            chonpx = true;
+            chonpx_flag = true;
             try
             {
                 detail1.MODE = V6Mode.View;
@@ -1000,6 +1008,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 int addCount = 0, failCount = 0;
                 foreach (SortedDictionary<string, object> data in selectedDataList)
                 {
+                    if (!theo_hoa_don)
+                    {
+                        data["STT_REC_PX"] = "";
+                        data["STT_REC0PX"] = "";
+                    }
                     data["PN_GIA_TBI"] = "a";
                     if (XuLyThemDetail(data)) addCount++;
                     else failCount ++;
@@ -1018,7 +1031,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             {
                 this.ShowErrorMessage(GetType() + ".chonpx_AcceptSelectEvent: " + ex.Message, "HangTraLaiControl");
             }
-            chonpx = false;
+            chonpx_flag = false;
         }
 
         private void XuLyLayThongTinKhiChonMaKhoI()
@@ -1795,7 +1808,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         {
             try
             {
-                if (chonpx)
+                if (chonpx_flag)
                 {
                     chkLoaiChietKhau.Checked = false;
 
@@ -3619,6 +3632,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
+       
         private void chkLoaiChietKhau_CheckedChanged(object sender, EventArgs e)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
@@ -3626,21 +3640,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 chkSuaPtck.Enabled = chkLoaiChietKhau.Checked;
                 chkSuaTienCk.Enabled = chkLoaiChietKhau.Checked;
             }
-            if (!chkLoaiChietKhau.Checked)
+
+            if (chkLoaiChietKhau.Checked)
             {
+                _ckNt.Enabled = false;
+                _ckNt.Tag = "disable";
+            }
+            else
+            {
+                _ckNt.Enabled = true;
+                _ckNt.Tag = null;
+
                 chkSuaPtck.Checked = false;
                 txtPtCk.ReadOnly = true;
                 chkSuaTienCk.Checked = false;
                 txtTongCkNt.ReadOnly = true;
-            }
-            else
-            {
                 
             }
-            
+
             TinhTongThanhToan("LoaiChietKhau_Change");
         }
-
         private void cboMaNt_SelectedValueChanged(object sender, EventArgs e)
         {
             if (_ready0 && cboMaNt.SelectedValue != null)
@@ -3951,9 +3970,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             e.ThrowException = false;
         }
 
+        private bool theo_hoa_don = false;
         private void btnChonPX_Click(object sender, EventArgs e)
         {
-            XuLyChonPhieuXuat();
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            if (shift_is_down)
+            {
+                theo_hoa_don = false;
+                XuLyChonPhieuXuat();
+            }
+            else
+            {
+                theo_hoa_don = true;
+                XuLyChonPhieuXuat();
+            }
+
+            
         }
 
         private void btnInfos_Click(object sender, EventArgs e)

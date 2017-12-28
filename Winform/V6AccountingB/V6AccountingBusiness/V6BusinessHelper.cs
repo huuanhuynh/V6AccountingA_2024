@@ -233,12 +233,21 @@ namespace V6AccountingBusiness
         /// </summary>
         /// <param name="tableName">Bảng dữ liệu để kiểm tra</param>
         /// <param name="data">Dữ liệu được kiểm tra</param>
+        /// <param name="check_long">Check lồng</param>
         /// <returns></returns>
-        public static bool CheckDataExistStruct(string tableName, IDictionary<string, object> data)
+        public static bool CheckDataExistStruct(string tableName, IDictionary<string, object> data, bool check_long = false)
         {
             try
             {
-                var where = SqlGenerator.GenWhere(GetTableStruct(tableName), data);
+                string where = "";
+                if (check_long)
+                {
+                    where = SqlGenerator.GenWhere_CheckLong(GetTableStruct(tableName), data);
+                }
+                else
+                {
+                    where = SqlGenerator.GenWhere(GetTableStruct(tableName), data);
+                }
                 var sql = "select COUNT(*) count0 from [" + tableName + "] where " + where;
                 var result = (int)SqlConnect.ExecuteScalar(CommandType.Text, sql);
                 return result == 1;

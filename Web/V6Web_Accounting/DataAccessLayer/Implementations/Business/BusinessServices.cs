@@ -525,11 +525,22 @@ namespace DataAccessLayer.Implementations.Business
                 new SqlParameter("@cOldItems", cOldItems)
             };
 
-            object obj = SqlConnect.ExecuteScalar(CommandType.StoredProcedure, "VPA_isValidOneCode_Full", plist);
-            if (obj != null && Convert.ToInt32(obj) == 1) return true;
+            object result = 0;
+            var aldmconfig = SqlConnect.Select("ALDM", "", "MA_DM='"+cInputTable+"'").Data;
 
+            if (aldmconfig.Rows.Count == 1 && aldmconfig.Rows[0]["CHECK_LONG"].ToString() == "1")
+            {
+                result = SqlConnect.ExecuteScalar(CommandType.StoredProcedure, "VPA_isValidOneCode", plist);
+            }
+            else
+            {
+                result = SqlConnect.ExecuteScalar(CommandType.StoredProcedure, "VPA_isValidOneCode_Full", plist);
+            }
+
+            if (result != null && Convert.ToInt32(result) == 1) return true;
             return false;
         }
+
         public bool IsValidTwoCode_Full(string cInputTable, byte nStatus,
            string cInputField1, string cpInput1, string cOldItems1,
             string cInputField2, string cpInput2, string cOldItems2)

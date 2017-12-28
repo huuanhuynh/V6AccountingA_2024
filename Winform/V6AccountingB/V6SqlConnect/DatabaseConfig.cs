@@ -210,9 +210,9 @@ namespace V6SqlConnect
                 }
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                throw new Exception("ReadConfigData error: " + ex.Message);
             }
         }
 

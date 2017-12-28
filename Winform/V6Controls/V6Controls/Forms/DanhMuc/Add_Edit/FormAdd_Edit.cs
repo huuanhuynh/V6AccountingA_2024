@@ -226,7 +226,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void btnNhan_Click(object sender, EventArgs e)
         {
-
             if (FormControl.DoInsertOrUpdate())
             {
                 if (FormControl.Mode == V6Mode.Add)
@@ -277,9 +276,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         
         private void btnInfos_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ProcessUserDefineInfo(
-                string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW) ? _tableNameString : _aldmConfig.TABLE_VIEW,
-                FormControl, this, _tableName.ToString());
+            if (FormControl.Mode == V6Mode.Add || FormControl.Mode == V6Mode.Edit)
+            {
+                V6ControlFormHelper.ProcessUserDefineInfo(
+                    string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW) ? _tableNameString : _aldmConfig.TABLE_VIEW,
+                    FormControl, this, _tableName.ToString());
+            }
         }
 
     }

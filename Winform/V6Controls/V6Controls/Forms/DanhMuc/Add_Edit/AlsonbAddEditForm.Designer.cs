@@ -51,7 +51,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.TxtTransform = new V6Controls.V6ColorTextBox();
-            this.btnMa_ctnb = new System.Windows.Forms.Button();
+            this.btnMa_ctnb = new V6Controls.Controls.V6FormButton();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.v6ColorDateTime1 = new V6Controls.V6DateTimeColor();
@@ -1434,7 +1434,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private V6DateTimeColor v6ColorDateTime1;
-        private System.Windows.Forms.Button btnMa_ctnb;
+        private V6Controls.Controls.V6FormButton btnMa_ctnb;
         private System.Windows.Forms.Label label25;
         private V6ColorTextBox TxtTransform;
         private System.Windows.Forms.Label label32;

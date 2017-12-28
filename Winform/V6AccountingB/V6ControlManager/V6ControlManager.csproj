@@ -1716,6 +1716,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AGLGSSO4TF10.designer.cs">
       <DependentUpon>AGLGSSO4TF10.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AINVTBAR2F9.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AINVTBAR2F9.designer.cs">
+      <DependentUpon>AINVTBAR2F9.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ASOTH6F5.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3995,6 +4001,12 @@
     <Compile Include="FormManager\ReportManager\XuLy\AGLGSSO4T.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR2_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR2_Control.Designer.cs">
+      <DependentUpon>AINVTBAR2_Control.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AVGLGSSO6A.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5800,6 +5812,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLGSSO4TF10.resx">
       <DependentUpon>AGLGSSO4TF10.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AINVTBAR2F9.resx">
+      <DependentUpon>AINVTBAR2F9.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ASOTH6F5.resx">
       <DependentUpon>ASOTH6F5.cs</DependentUpon>
     </EmbeddedResource>
@@ -6933,6 +6948,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVITRI05.resx">
       <DependentUpon>AINVITRI05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVTBAR2_Control.resx">
+      <DependentUpon>AINVTBAR2_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HPAYROLLCALC.resx">
       <DependentUpon>HPAYROLLCALC.cs</DependentUpon>

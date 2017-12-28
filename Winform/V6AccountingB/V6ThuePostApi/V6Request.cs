@@ -11,8 +11,8 @@ namespace V6ThuePostApi
         /// <param name="password"></param>
         public static void Login(string username, string password)
         {
-            RequestSender.username = username;
-            RequestSender.password = password;
+            RequestSender._username = username;
+            RequestSender._password = password;
         }
 
         /// <summary>

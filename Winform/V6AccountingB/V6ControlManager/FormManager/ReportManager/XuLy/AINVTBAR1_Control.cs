@@ -199,7 +199,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (_ds == null || _ds.Tables.Count == 0) return;
                 dataGridView1.DataSource = _ds.Tables[0];
-                
+                dataGridView1.Focus();
             }
             catch (Exception ex)
             {

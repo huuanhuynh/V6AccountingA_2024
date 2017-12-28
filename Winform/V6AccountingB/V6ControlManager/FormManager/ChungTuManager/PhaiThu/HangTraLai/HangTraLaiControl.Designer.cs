@@ -1577,6 +1577,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.btnChonPX.Size = new System.Drawing.Size(75, 23);
             this.btnChonPX.TabIndex = 2;
             this.btnChonPX.Text = "Chọn PX";
+            this.toolTipV6FormControl.SetToolTip(this.btnChonPX, "Giữ Shift+Click để nhập không theo hóa đơn.");
             this.btnChonPX.UseVisualStyleBackColor = true;
             this.btnChonPX.Click += new System.EventHandler(this.btnChonPX_Click);
             // 

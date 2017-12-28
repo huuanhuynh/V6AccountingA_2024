@@ -668,6 +668,7 @@ namespace V6Controls
         /// </summary>
         public bool F4 { get { return GetString("F4") == "1"; } }
         public bool CHECK_ADMIN { get { return GetString("CHECK_ADMIN") == "1"; } }
+        public bool CHECK_LONG { get { return GetString("CHECK_LONG") == "1"; } }
         public bool CHECK_V6 { get { return GetString("CHECK_V6") == "1"; } }
         public string CTRL_F4 { get { return GetString("CTRL_F4"); } }
         public string DMETHOD { get { return GetString("DMETHOD"); } }

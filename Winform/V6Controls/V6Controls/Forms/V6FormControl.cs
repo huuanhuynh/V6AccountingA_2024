@@ -5,7 +5,9 @@ using System.Drawing;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Init;
+using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms
 {
@@ -221,13 +223,79 @@ namespace V6Controls.Forms
             try
             {
                 var data = GetDefaultData(V6Setting.Language, 4, mact, madm, itemId, adv);
-                var data0 = new SortedDictionary<string, object>();
-                data0.AddRange(data);
-                V6ControlFormHelper.SetFormDataDictionary(this, data0, false);
+                SetDefaultDataInfoToForm(data);
+                //var data0 = new SortedDictionary<string, object>();
+                //data0.AddRange(data);
+                //V6ControlFormHelper.SetFormDataDictionary(this, data0, false);
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".LoadDefaultData", ex);
+            }
+        }
+
+        protected void SetDefaultDataInfoToForm(SortedDictionary<string, DefaultValueInfo> data)
+        {
+            try
+            {
+                SortedDictionary<string, object> someData = new SortedDictionary<string, object>();
+                string log_key = "", errors = "";
+
+                foreach (KeyValuePair<string, DefaultValueInfo> item in data)
+                {
+                    log_key = item.Key;
+                    try
+                    {
+                        var valueInfo = item.Value;
+                        switch (valueInfo.Type1)
+                        {
+                            case "0":
+                                someData[valueInfo.Name] = valueInfo.Value;
+                                break;
+                            case "1":
+                                if (!string.IsNullOrEmpty(valueInfo.Value))
+                                {
+                                    someData[valueInfo.Name] = valueInfo.Value;
+                                }
+                                break;
+                            case "2":
+                                var formValue = V6ControlFormHelper.GetFormValue(this, valueInfo.Name);
+                                if (formValue == null)
+                                {
+                                    someData[valueInfo.Name] = valueInfo.Value;
+                                }
+                                else if (ObjectAndString.IsNumberType(formValue.GetType()))
+                                {
+                                    var num = ObjectAndString.ObjectToDecimal(formValue);
+                                    if (num == 0)
+                                    {
+                                        someData[valueInfo.Name] = valueInfo.Value;
+                                    }
+                                }
+                                else if (string.IsNullOrEmpty(formValue.ToString().Trim()))
+                                {
+                                    someData[valueInfo.Name] = valueInfo.Value;
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errors += string.Format("{0}: {1}\n", log_key, ex.Message);
+                    }
+                }
+
+                if (errors.Length > 0)
+                {
+                    this.WriteToLog(GetType() + ".SetDefaultDataInfoToForm", errors);
+                }
+                SetSomeData(someData);
+            }
+            catch (Exception ex0)
+            {
+                this.WriteExLog(GetType() + ".SetDefaultDataInfoToForm", ex0);
             }
         }
 
@@ -275,26 +343,35 @@ namespace V6Controls.Forms
         /// <param name="itemId"></param>
         /// <param name="adv"></param>
         /// <returns></returns>
-        private SortedDictionary<string, string> GetDefaultData(string lang, int loai, string mact, string madm, string itemId, string adv = "")
+        private SortedDictionary<string, DefaultValueInfo> GetDefaultData(string lang, int loai, string mact, string madm, string itemId, string adv = "")
         {
             if (defaultData != null && defaultData.Count > 0) return defaultData;
             if (alinitData == null || alinitData.Rows.Count == 0)
                 alinitData = V6BusinessHelper.GetDefaultValueData(loai, mact, madm, itemId, adv);
-            var result = new SortedDictionary<string, string>();
+            var result = new SortedDictionary<string, DefaultValueInfo>();
             foreach (DataRow row in alinitData.Rows)
-            {
+            {   
+                //Tuanmh 25/12/2017 - Bo sung theo kieu
+                string kieu = row["kieu"].ToString().Trim();
+                if (kieu == "") continue;
+                
                 var cell = row["Default" + lang]; if (cell == null) continue;
-                var value = cell.ToString().Trim(); if (value == "") continue;
-
-                var name = row["NameVal"].ToString().Trim().ToUpper();
-                result[name] = value;
+                var value = cell.ToString().Trim();
+                var NAME = row["NameVal"].ToString().Trim().ToUpper();
+                DefaultValueInfo valueInfo = new DefaultValueInfo()
+                {
+                    Name = NAME,
+                    Value = value,
+                    Type1 = kieu,
+                };
+                result[NAME] = valueInfo;
             }
             defaultData = result;
             return result;
         }
 
         protected DataTable alinitData;
-        private SortedDictionary<string, string> defaultData;
+        private SortedDictionary<string, DefaultValueInfo> defaultData;
         private SortedDictionary<string, string> tagData;
         private SortedDictionary<string, string> readonlyData;
         private SortedDictionary<string, string> visibleData;

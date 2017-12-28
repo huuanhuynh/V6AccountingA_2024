@@ -56,7 +56,7 @@ namespace V6ReportControls
             }
         }
 
-        public void AddFilterLineControl(V6TableStruct structTable, string fieldName, string vvar, string filter)
+        public void AddFilterLineControl(V6TableStruct structTable, string fieldName, string vvar, string filter, string tableLable = null)
         {
             try
             {
@@ -83,6 +83,7 @@ namespace V6ReportControls
                         lineControl.AddNumberTextBox();
                     }
                 }
+                lineControl.TableLabel = tableLable;
                 _maxIndex++;
                 lineControl.Location = new Point(marginLeft, marginTop + 25 * _maxIndex);
                 lineControl.Width = Width - marginLeft;
@@ -120,7 +121,7 @@ namespace V6ReportControls
         /// Thêm vào các ô nhập filterLine tự động
         /// </summary>
         /// <param name="structTable"></param>
-        /// <param name="adv">Field:vvar;Field2:vvar2:Field2 like '%'</param>
+        /// <param name="adv">Field:vvar;Field2:vvar2:Field2 like '%':tableLable</param>
         public void AddMultiFilterLine(V6TableStruct structTable, string adv)
         {
             _maxIndex = -1;
@@ -130,19 +131,24 @@ namespace V6ReportControls
                 string err = "";
                 try
                 {
-                    var sss = s.Split(new[] {':'}, 3);
+                    var sss = s.Split(new[] {':'}, 4);
                     var key = sss[0];
                     var vvar = "";
+                    string tableLabel = null;
                     string filter = null;
                     if (sss.Length >= 2)
                     {
                         vvar = sss[1].Trim();
                     }
-                    if (sss.Length == 3)
+                    if (sss.Length >= 3)
                     {
                         filter = sss[2].Replace("''", "'");
                     }
-                    AddFilterLineControl(structTable, key, vvar, filter);
+                    if (sss.Length >= 4)
+                    {
+                        tableLabel = sss[3].Trim();
+                    }
+                    AddFilterLineControl(structTable, key, vvar, filter, tableLabel);
                 }
                 catch (Exception ex)
                 {

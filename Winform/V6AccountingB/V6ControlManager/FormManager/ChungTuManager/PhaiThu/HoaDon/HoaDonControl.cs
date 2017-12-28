@@ -5556,8 +5556,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 _pt_cki.Enabled = true;
                 _pt_cki.Tag = null;
-                //_ckNt.Enabled = true; //Bỏ rào để sử dụng nhập tiền ck
-                //_ckNt.Tag = null;
+                if (chkSua_Tien.Checked)
+                {
+                   _ckNt.Enabled = true; //Bỏ rào để sử dụng nhập tiền ck
+                   _ckNt.Tag = null;
+                }
             }
             
             TinhTongThanhToan("LoaiChietKhau_Change");
@@ -5690,18 +5693,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
                 _tienNt2.Enabled = chkSua_Tien.Checked;
-                
+                _ckNt.Enabled = chkSua_Tien.Checked;
                 _tienNt.Enabled = chkSua_Tien.Checked && _xuat_dd.Text != "";
             }
             if (chkSua_Tien.Checked)
             {
                 _tienNt2.Tag = null;
                 _tienNt.Tag = null;
+                _ckNt.Tag = null;
             }
             else
             {
                 _tienNt2.Tag = "disable";
                 _tienNt.Tag = "disable";
+                _ckNt.Tag = "disable";
             }
         }
 

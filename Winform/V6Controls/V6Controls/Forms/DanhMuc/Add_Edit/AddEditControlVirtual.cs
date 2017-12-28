@@ -631,8 +631,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 keys_new.Add(KEY, DataDic[KEY]);
             }
+
             string where_new = SqlGenerator.GenWhere(V6BusinessHelper.GetTableStruct(tableName), keys_new);
-            bool exist_new = V6BusinessHelper.CheckDataExistStruct(tableName, keys_new);
+
+            AldmConfig config = V6ControlsHelper.GetAldmConfig(tableName);
+            bool exist_new = V6BusinessHelper.CheckDataExistStruct(tableName, keys_new, config.CHECK_LONG);
 
             if (Mode == V6Mode.Edit)
             {

@@ -69,11 +69,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 var am = new SortedDictionary<string, object>();
-                am["MA_BP"] = TxtMa_bp.Text;
-                am["MA_NVIEN"] = TxtMa_nvien.Text;
-                
-                var keys = new SortedDictionary<string, object> {{"Stt_rec", _sttRec}};
+                if (TxtMa_bp.Text.Trim() != "") am["MA_BP"] = TxtMa_bp.Text;
+                if (TxtMa_nvien.Text.Trim() != "") am["MA_NVIEN"] = TxtMa_nvien.Text;
+                if (am.Count == 0) return;
 
+                var keys = new SortedDictionary<string, object> {{"Stt_rec", _sttRec}};
                 var result = V6BusinessHelper.UpdateSimple(V6TableName.Am81, am, keys);
                 if (result == 1)
                 {

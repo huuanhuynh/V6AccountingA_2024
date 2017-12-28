@@ -930,6 +930,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                 case "AINVTBAR1":
                     return new FilterDanhMuc("ALVT");
+                case "AINVTBAR2":
+                    return new FilterDanhMuc("ALLO");
+                case "AINVTBAR2F9":
+                    return new AINVTBAR2F9();
 
                 case "ACOSXLT_TINHGIA":
                     return new ZACOSXLT_TINHGIA_Filter();

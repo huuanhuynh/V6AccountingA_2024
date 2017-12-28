@@ -52,6 +52,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>App.settings</DependentUpon>
     </Compile>
+    <Compile Include="ConfigLine.cs" />
     <Compile Include="PostObjects\ItemInfo.cs" />
     <Compile Include="PostObjects\TaxBreakdown.cs" />
     <Compile Include="PostObjects\SummarizeInfo.cs" />
@@ -61,12 +62,10 @@
     <Compile Include="PostObjects\PostObject.cs" />
     <Compile Include="PostObjects\JsonObject.cs" />
     <Compile Include="ResponseObjects\CreateInvoiceResponse.cs" />
-    <Compile Include="V6Request.cs" />
     <Compile Include="MyJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestSender0.cs" />
     <Compile Include="RequestManager.cs" />
-    <Compile Include="RequestSender.cs" />
-    <Compile Include="WebApiResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.settings">
@@ -74,7 +73,12 @@
       <LastGenOutput>App.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\V6Tools\V6Tools\V6Tools.csproj">
+      <Project>{4F797E67-948D-4EEC-ACD7-758028E9166F}</Project>
+      <Name>V6Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

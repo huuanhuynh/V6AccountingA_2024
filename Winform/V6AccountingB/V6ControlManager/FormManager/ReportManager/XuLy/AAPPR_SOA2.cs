@@ -284,7 +284,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         jsonBody = ReadData(ds);
                         string result = POST(jsonBody);
                         CreateInvoiceResponse responseObject = null;
-                        if (RequestSender.Response != null)
+                        if (RequestManager.Response != null)
                         {
                             responseObject = MyJson.ConvertJson<CreateInvoiceResponse>(result);
                         }
@@ -469,9 +469,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                V6Request.Login(username, password);
+                RequestManager.SetLogin(username, password);
                 string requestUrl = string.Format(baseUrl + methodUrl + mst);
-                string result = V6Request.Request(requestUrl, jsonBody);
+                string result = RequestManager.POST(requestUrl, jsonBody);// V6Request.Request(requestUrl, jsonBody);
                 return result;
             }
             catch (Exception ex)

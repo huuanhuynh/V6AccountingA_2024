@@ -912,7 +912,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 else if (item.Type1 == "2")
                 {
                     //Kiểm tra value trên form theo Name. rỗng mới gán
-                    var fValue = V6ControlFormHelper.GetFormValue(this, item.Name).ToString().Trim();
+                    var fValue = ObjectAndString.ObjectToString(V6ControlFormHelper.GetFormValue(this, item.Name));
                     if (!string.IsNullOrEmpty(fValue)) continue;
                 }
 

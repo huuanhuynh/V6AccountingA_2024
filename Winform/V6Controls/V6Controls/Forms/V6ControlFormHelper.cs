@@ -4255,7 +4255,7 @@ namespace V6Controls.Forms
         /// </summary>
         /// <param name="control">Đối tượng được gán dữ liệu.</param>
         /// <param name="value">Giá trị để gán.</param>
-        /// <param name="config">Status:1;Override:1;NotEmpty:0;NoOverride:0</param>
+        /// <param name="config">Status(Có sử dụng?):1;Override:1;NotEmpty(Phải có giá trị truyền vào):0;NoOverride(Chỉ gán nến control rỗng):0</param>
         public static void SetControlValue(Control control, object value, DefineInfo config)
         {
             try

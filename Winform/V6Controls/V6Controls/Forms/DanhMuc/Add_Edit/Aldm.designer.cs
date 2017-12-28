@@ -88,6 +88,8 @@
             this.label36 = new System.Windows.Forms.Label();
             this.chkFormF4 = new V6Controls.V6CheckBox();
             this.chkFormF3 = new V6Controls.V6CheckBox();
+            this.v6ColorTextBox8 = new V6Controls.V6ColorTextBox();
+            this.label37 = new System.Windows.Forms.Label();
             this.v6ColorTextBox6 = new V6Controls.V6ColorTextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.txtcach_tinh3 = new V6Controls.V6ColorTextBox();
@@ -120,8 +122,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.TxtForder = new V6Controls.V6NumberTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox8 = new V6Controls.V6ColorTextBox();
+            this.chkCheckLong = new V6Controls.V6CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -183,6 +184,7 @@
             this.tabPage1.Controls.Add(this.v6ColorTextBox10);
             this.tabPage1.Controls.Add(this.label17);
             this.tabPage1.Controls.Add(this.v6CheckBox2);
+            this.tabPage1.Controls.Add(this.chkCheckLong);
             this.tabPage1.Controls.Add(this.v6CheckBox1);
             this.tabPage1.Controls.Add(this.chkIsGroup);
             this.tabPage1.Controls.Add(this.chkIsAldm);
@@ -1068,6 +1070,37 @@
             this.chkFormF3.Text = "F3 cho phép sửa khi lookup";
             this.chkFormF3.UseVisualStyleBackColor = true;
             // 
+            // v6ColorTextBox8
+            // 
+            this.v6ColorTextBox8.AccessibleName = "ADV_FILTER";
+            this.v6ColorTextBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6ColorTextBox8.BackColor = System.Drawing.Color.White;
+            this.v6ColorTextBox8.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox8.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox8.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox8.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox8.GrayText = "Các field cách nhau bằng chấm phẩy ( ; )";
+            this.v6ColorTextBox8.HoverColor = System.Drawing.Color.Yellow;
+            this.v6ColorTextBox8.LeaveColor = System.Drawing.Color.White;
+            this.v6ColorTextBox8.Location = new System.Drawing.Point(114, 190);
+            this.v6ColorTextBox8.Margin = new System.Windows.Forms.Padding(4);
+            this.v6ColorTextBox8.Name = "v6ColorTextBox8";
+            this.v6ColorTextBox8.Size = new System.Drawing.Size(672, 23);
+            this.v6ColorTextBox8.TabIndex = 156;
+            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox8, "Các field cách nhau bởi dấu chấm phẩy (;)");
+            // 
+            // label37
+            // 
+            this.label37.AccessibleDescription = "";
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(1, 193);
+            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(91, 17);
+            this.label37.TabIndex = 157;
+            this.label37.Text = "ADV_FILTER";
+            // 
             // v6ColorTextBox6
             // 
             this.v6ColorTextBox6.AccessibleName = "L_ALDM";
@@ -1551,36 +1584,17 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Sắp xếp";
             // 
-            // label37
+            // chkCheckLong
             // 
-            this.label37.AccessibleDescription = "";
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(1, 193);
-            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(91, 17);
-            this.label37.TabIndex = 157;
-            this.label37.Text = "ADV_FILTER";
-            // 
-            // v6ColorTextBox8
-            // 
-            this.v6ColorTextBox8.AccessibleName = "ADV_FILTER";
-            this.v6ColorTextBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox8.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox8.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox8.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox8.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox8.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox8.GrayText = "Các field cách nhau bằng chấm phẩy ( ; )";
-            this.v6ColorTextBox8.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox8.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox8.Location = new System.Drawing.Point(114, 190);
-            this.v6ColorTextBox8.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox8.Name = "v6ColorTextBox8";
-            this.v6ColorTextBox8.Size = new System.Drawing.Size(672, 23);
-            this.v6ColorTextBox8.TabIndex = 156;
-            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox8, "Các field cách nhau bởi dấu chấm phẩy (;)");
+            this.chkCheckLong.AccessibleName = "CHECK_LONG";
+            this.chkCheckLong.AutoSize = true;
+            this.chkCheckLong.Location = new System.Drawing.Point(528, 164);
+            this.chkCheckLong.Margin = new System.Windows.Forms.Padding(4);
+            this.chkCheckLong.Name = "chkCheckLong";
+            this.chkCheckLong.Size = new System.Drawing.Size(120, 21);
+            this.chkCheckLong.TabIndex = 18;
+            this.chkCheckLong.Text = "Check mã lồng";
+            this.chkCheckLong.UseVisualStyleBackColor = true;
             // 
             // Aldm
             // 
@@ -1702,5 +1716,6 @@
         private V6ColorTextBox txtDmethod;
         private V6ColorTextBox v6ColorTextBox8;
         private System.Windows.Forms.Label label37;
+        private V6CheckBox chkCheckLong;
     }
 }

@@ -135,8 +135,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     return;
                 }
-                TxtMa_bp_Text = form.TxtMa_bp.Text;
-                TxtMa_nvien_Text = form.TxtMa_nvien.Text;
+                TxtMa_bp_Text = form.TxtMa_bp.Text.Trim();
+                TxtMa_nvien_Text = form.TxtMa_nvien.Text.Trim();
+                if (TxtMa_bp_Text == "" && TxtMa_nvien_Text == "")
+                {
+                    return;
+                }
 
                 Timer tF9 = new Timer();
                 tF9.Interval = 500;
@@ -172,11 +176,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var am = new SortedDictionary<string, object>();
                         string c_sttRec = row.Cells["STT_REC"].Value.ToString().Trim();
                         _message = "F9: " + c_sttRec;
-                        am["MA_BP"] = TxtMa_bp_Text;
-                        am["MA_NVIEN"] = TxtMa_nvien_Text;
+                        if (TxtMa_bp_Text != "") am["MA_BP"] = TxtMa_bp_Text;
+                        if (TxtMa_nvien_Text != "") am["MA_NVIEN"] = TxtMa_nvien_Text;
 
                         var keys = new SortedDictionary<string, object> {{"Stt_rec", c_sttRec}};
-
                         var result = V6BusinessHelper.UpdateSimple(V6TableName.Am81, am, keys);
                         if (result == 1)
                         {

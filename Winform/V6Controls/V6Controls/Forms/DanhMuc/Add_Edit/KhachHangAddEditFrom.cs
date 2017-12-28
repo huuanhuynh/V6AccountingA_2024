@@ -13,8 +13,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
     public partial class KhachHangAddEditFrom : AddEditControlVirtual
     {
-
-
         public KhachHangAddEditFrom()
         {
             InitializeComponent();
