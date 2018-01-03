@@ -639,8 +639,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                 #endregion Công cụ , dụng cụ
                 #region ==== Hệ thống ====
-                case "AAPPR_SOA":
+                case "AAPPR_SOA"://Hệ thống/Quản lý người sử dụng/C.Duyệt, xử lý hóa đơn bán hàng.
                     return new AAPPR_SOA();
+                case "AAPPR_SOA2"://Hệ thống/Quản lý người sử dụng/K.Chuyển sang hóa đơn điện tử.
+                    return new AAPPR_SOA2();
                 case "AGLAUTOSO_CT":
                     return new XAGLAUTOSO_CT();
                 case "XLSALKH":
@@ -929,6 +931,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                 case "AINVTBAR1":
                     return new FilterDanhMuc("ALVT");
+                case "AINVTBAR2":
+                    return new FilterDanhMuc("ALLO");
+                case "AINVTBAR2F9":
+                    return new AINVTBAR2F9();
+                case "AINVTBAR3":
+                    return new AINVTBAR3();
 
                 case "ACOSXLT_TINHGIA":
                     return new ZACOSXLT_TINHGIA_Filter();
@@ -965,6 +973,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new AGLGSSO4TF5();
                 case "AGLGSSO4TF10":
                     return new AGLGSSO4TF10();
+                case "AVGLGSSO6A":
+                    return new AVGLGSSO6A();
+                case "AVGLGSSO6AF5":
+                    return new AVGLGSSO6AF5();
 
             }
             return new FilterBase() { Visible = false };

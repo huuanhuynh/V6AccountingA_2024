@@ -52,6 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bin\Debug\Reports\VN\V\AINVTBAR2F9.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AINVTBAR2F9.RPT</DependentUpon>
+    </Compile>
     <Compile Include="DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -106,6 +111,10 @@
       <DependentUpon>QuickMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Win32.cs" />
+    <EmbeddedResource Include="bin\Debug\Reports\VN\V\AINVTBAR2F9.RPT">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AINVTBAR2F9.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ERLISTNV.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ERLISTNV.cs</LastGenOutput>

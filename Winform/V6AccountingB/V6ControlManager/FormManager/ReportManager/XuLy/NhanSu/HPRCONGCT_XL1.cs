@@ -382,7 +382,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             return false;
         }
 
-        private void DoLookup(bool multi = false)
+        private void DoLookup(LookupMode multi = LookupMode.Single)
         {
             if (Aldm_Info.NoInfo) return;
             
@@ -401,7 +401,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
         }
 
-        private void Lookup(bool multi = false)
+        private void Lookup(LookupMode multi = LookupMode.Single)
         {
             DoLookup(multi);
         }

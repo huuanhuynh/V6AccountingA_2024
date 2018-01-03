@@ -81,7 +81,10 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private void btnInfos_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ProcessUserDefineInfo(_tableName.ToString(), FormControl, this, _tableName.ToString());
+            if (FormControl.Mode == V6Mode.Add || FormControl.Mode == V6Mode.Edit)
+            {
+                V6ControlFormHelper.ProcessUserDefineInfo(_tableName.ToString(), FormControl, this, _tableName.ToString());
+            }
         }
     }
 }

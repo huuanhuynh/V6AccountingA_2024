@@ -98,7 +98,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnBoSung = new System.Windows.Forms.Button();
+            this.btnBoSung = new V6Controls.Controls.V6FormButton();
             this.label46 = new System.Windows.Forms.Label();
             this.Txtma_gia = new V6Controls.V6VvarTextBox();
             this.txtNhomKH6 = new V6Controls.V6VvarTextBox();
@@ -1887,7 +1887,7 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TabPage tabPage1;
-        protected System.Windows.Forms.Button btnBoSung;
+        protected V6Controls.Controls.V6FormButton btnBoSung;
         private System.Windows.Forms.Label label46;
         private V6VvarTextBox Txtma_gia;
         private V6VvarTextBox txtNhomKH6;

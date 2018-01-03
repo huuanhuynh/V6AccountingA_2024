@@ -234,7 +234,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 All_Objects["_data"] = _data;
                 V6ControlsHelper.InvokeMethodDynamic(XLS_program, MA_IMEX + "AFTERFIXDATA", All_Objects);
                 dataGridView1.DataSource = _data;
-                CheckDataInGridView();
+                CheckDataInGridView(STATUS_INSERT);
             }
             catch (Exception ex)
             {
@@ -281,12 +281,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
         private string EXCEL_STATUS = "EXCEL_STATUS";
-        private string STATUS_CANCEL = "CANCEL", STATUS_INSERT = "INSERT", STATUS_CHECKINFO = "CHECKINFO";
+        private string STATUS_CANCEL = "CANCEL", STATUS_INSERT = "INSERT", STATUS_CHECKINFO = "CHECKINFO", STATUS_UPDATE = "UPDATE";
         /// <summary>
         /// Kiểm tra và đánh dấu dữ liệu ko hợp lệ trên gridView.
         /// <para>Thêm thông tin Excel_status</para>
         /// </summary>
-        private void CheckDataInGridView()
+        private void CheckDataInGridView(string STATUS)
         {
             try
             {
@@ -297,7 +297,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         foreach (DataRow row in _data.Rows)
                         {
-                            row[EXCEL_STATUS] = STATUS_INSERT;
+                            row[EXCEL_STATUS] = STATUS;
                         }
                     }
                     return;
@@ -318,7 +318,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         field1 = t_f[1];
                         if (DuLieuHopLe(grow, field, table, field1))
                         {
-                            grow.Cells[EXCEL_STATUS].Value = STATUS_INSERT;
+                            grow.Cells[EXCEL_STATUS].Value = STATUS;
                             continue;
                         }
                         else
@@ -392,6 +392,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
         private bool f9Running;
+        /// <summary>
+        /// Tổng cộng, Vị trí đang chạy.
+        /// </summary>
         private int total, index;
 
         private string f9Error = "";
@@ -635,6 +638,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (_data != null)
                 {
+                    // 07/12/2017 Xu ly update
+                    CheckDataInGridView(STATUS_UPDATE);
+
+
                     check_field_list = CHECK_FIELDS.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                     var check_ok = true;
                     foreach (string field in check_field_list)
@@ -706,7 +713,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         if (_data.Columns.Contains(EXCEL_STATUS))
                         {
                             var row_status = row[EXCEL_STATUS].ToString().Trim();
-                            if (row_status != STATUS_INSERT)
+                            if (row_status != STATUS_UPDATE)
                             {
                                 continue;
                             }
@@ -727,12 +734,42 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             var dataDic = row.ToDataDictionary();
                             var id_list = IDS_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                             var ID0 = dataDic[id_list[0].ToUpper()].ToString().Trim();
+                            
+                            var keys1 = new SortedDictionary<string, object>();
+                            foreach (string id in id_list)
+                            {
+                                keys1.Add(id, row[id]);
+                            }
+                            
+                            string ID_FIELD1, ID_FIELD2;
+                            string ID1, ID2;
                             var exist = false;
+
                             switch (TYPE_CHECK)
                             {
-                                case "01":
+                                case "AL":
+                                    exist = V6BusinessHelper.CheckDataExistStruct(_table_name, keys1);
+                                    break;
+                                case "00":// All
+                                    exist = false;
+                                    break;
+                                case "01":// OneCode
                                     exist = _categories.IsExistOneCode_List(_table_name, id_list[0], ID0);
                                     break;
+                                case "02"://TwoCode
+                                    ID_FIELD1 = id_list[1].ToUpper();
+                                    ID1 = dataDic[ID_FIELD1].ToString().Trim();
+                                    exist = _categories.IsExistTwoCode_List(_table_name, id_list[0], ID0, ID_FIELD1, ID1);
+                                    break;
+                                case "03"://ThreeCode
+                                    ID_FIELD1 = id_list[1];
+                                    ID_FIELD2 = id_list[2].ToUpper();
+                                    ID1 = dataDic[ID_FIELD1].ToString().Trim();
+                                    ID2 = dataDic[ID_FIELD2].ToString().Trim();
+                                    exist = V6BusinessHelper.IsExistThreeCode_List(_table_name,
+                                        id_list[0], ID0, ID_FIELD1, ID1, ID_FIELD2, ID2);
+                                    break;
+
                             }
 
                             if (exist)
@@ -792,13 +829,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (F10Running)
             {
                 var cError = F10Error;
-                if (cError.Length > 0)
-                {
-                    F10Error = F10Error.Substring(cError.Length);
-                    V6ControlFormHelper.SetStatusText("F10 running "
-                                                      + (cError.Length > 0 ? "Error: " : "")
-                                                      + cError);
-                }
+                V6ControlFormHelper.SetStatusText("F10 running " + index + "/" + total + ". " + cError);
             }
             else
             {

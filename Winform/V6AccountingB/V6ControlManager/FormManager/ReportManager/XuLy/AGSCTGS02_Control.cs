@@ -232,6 +232,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     if (V6Login.UserRight.AllowAdd(Name, "S07"))
                     {
                         string khoa_ctgs = string.Format("{0}", rowdata["KHOA_CTGS"].ToString().Trim());
+                        string so_lo = string.Format("{0}", rowdata["SO_LO"].ToString().Trim());
+
                         SqlParameter[] plistr =
                         {
                             new SqlParameter("@Year", form_F4.txtNam.Value),
@@ -261,7 +263,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             {
                                 V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "_A", plist);
                                 update_count++;
-                                _message = string.Format("Updated {0}/{1}", update_count, dataGridView1.Rows.Count);
+                                _message = string.Format("Updated {0}/{1}-->{2}", update_count, dataGridView1.Rows.Count, so_lo);
                             }
                             catch (Exception ex)
                             {
@@ -270,7 +272,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 f4Error += ex.Message;
                                 f4ErrorAll += ex.Message;
                             }
-                        }
+                        }//end for ngay
+                        SqlParameter[] plistA4 =
+                        {
+                            new SqlParameter("@Year", form_F4.txtNam.Value),
+                            new SqlParameter("@Period1", form_F4.txtKy1.Value),
+                            new SqlParameter("@Period2", form_F4.txtKy2.Value),
+                            new SqlParameter("@Khoa_ctgs", khoa_ctgs),
+                            new SqlParameter("@Ma_dvcs", form_F4.txtMaDvcs.StringValueCheck),
+                            new SqlParameter("@User_id", V6Login.UserId),
+                        };
+                        V6BusinessHelper.ExecuteProcedureNoneQuery("AGSCTGS02_A4", plistA4);
                     }
                 }
 

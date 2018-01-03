@@ -98,6 +98,13 @@ namespace V6Structs
                 case "LIMITCHARS":
                     LimitChars = value;
                     break;
+                case "LIMITCHAR0":
+                case "LIMITCHARS0":
+                    LimitChars0 = value;
+                    break;
+                case "USELIMITCHARS0":
+                    UseLimitChars0 = value == "1";
+                    break;
                 case "LOAI_KEY":
                     Loai_key = value;
                     break;
@@ -264,6 +271,8 @@ namespace V6Structs
         /// Key là LimitChars hoặc LimitChar không phân biệt hoa thường.
         /// </summary>
         public string LimitChars { get; set; }
+        public string LimitChars0 { get; set; }
+        public bool UseLimitChars0 { get; set; }
         /// <summary>
         /// Trường lọc số liệu khi F5 (trường trong parent data).
         /// </summary>
@@ -289,8 +298,6 @@ namespace V6Structs
         /// Bật tắt tính năng lọc chỉ bắt đầu. Mặc định false sẽ lọc like '%abc%'.
         /// </summary>
         public bool FilterStart { get; set; }
-
-        
 
         /// <summary>
         /// Bật tắt TemplateSetting. false sẽ bỏ qua hết các xử lý của trường hợp đó.

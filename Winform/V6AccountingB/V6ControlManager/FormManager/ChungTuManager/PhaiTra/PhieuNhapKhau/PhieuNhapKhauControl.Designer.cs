@@ -147,7 +147,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.chonTuExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.v6Label45 = new V6Controls.V6Label();
             this.chkthue_nk_cp = new V6Controls.V6CheckBox();
-            this.txtimtype = new V6Controls.V6CheckBox();
             this.TxtT_cp_nt = new V6Controls.V6NumberTextBox();
             this.TxtT_cp = new V6Controls.V6NumberTextBox();
             this.chkSua_Tien = new V6Controls.V6CheckBox();
@@ -253,6 +252,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.menuXemPhieuNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
+            this.v6Label25 = new V6Controls.V6Label();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -339,6 +340,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -452,6 +454,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -666,6 +669,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.dataGridView3ChiPhi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView3ChiPhi.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1314,6 +1318,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView3.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1928,10 +1933,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // 
             this.group4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group4.Controls.Add(this.cboChuyenData);
+            this.group4.Controls.Add(this.v6Label25);
             this.group4.Controls.Add(this.btnChucNang);
             this.group4.Controls.Add(this.v6Label45);
             this.group4.Controls.Add(this.chkthue_nk_cp);
-            this.group4.Controls.Add(this.txtimtype);
             this.group4.Controls.Add(this.TxtT_cp_nt);
             this.group4.Controls.Add(this.TxtT_cp);
             this.group4.Controls.Add(this.chkSua_Tien);
@@ -2032,20 +2038,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.chkthue_nk_cp.TabStop = false;
             this.chkthue_nk_cp.Text = "CP có tính thuế";
             this.chkthue_nk_cp.UseVisualStyleBackColor = true;
-            // 
-            // txtimtype
-            // 
-            this.txtimtype.AccessibleDescription = "ASOCTSOAL00048";
-            this.txtimtype.AccessibleName = "IMTYPE";
-            this.txtimtype.AutoSize = true;
-            this.txtimtype.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtimtype.Location = new System.Drawing.Point(293, 129);
-            this.txtimtype.Name = "txtimtype";
-            this.txtimtype.Size = new System.Drawing.Size(105, 17);
-            this.txtimtype.TabIndex = 30;
-            this.txtimtype.TabStop = false;
-            this.txtimtype.Text = "Chuyển DATA";
-            this.txtimtype.UseVisualStyleBackColor = true;
             // 
             // TxtT_cp_nt
             // 
@@ -3581,7 +3573,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.toolStripMenuItem2,
             this.toolStripMenuItem3});
             this.menuDetail1.Name = "menuChucNang";
-            this.menuDetail1.Size = new System.Drawing.Size(162, 92);
+            this.menuDetail1.Size = new System.Drawing.Size(162, 70);
             // 
             // menuXemPhieuNhap
             // 
@@ -3601,6 +3593,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
             this.toolStripMenuItem3.Text = "...";
+            // 
+            // cboChuyenData
+            // 
+            this.cboChuyenData.AccessibleName = "IMTYPE";
+            this.cboChuyenData.BackColor = System.Drawing.SystemColors.Window;
+            this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboChuyenData.FormattingEnabled = true;
+            this.cboChuyenData.Items.AddRange(new object[] {
+            "0 - Không chuyển",
+            "1 - Chuyển",
+            "2 - Không xử lý"});
+            this.cboChuyenData.Location = new System.Drawing.Point(330, 127);
+            this.cboChuyenData.Name = "cboChuyenData";
+            this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
+            this.cboChuyenData.TabIndex = 36;
+            this.cboChuyenData.TabStop = false;
+            this.toolTipV6FormControl.SetToolTip(this.cboChuyenData, "Chuyển dữ liệu qua Database khác.");
+            // 
+            // v6Label25
+            // 
+            this.v6Label25.AccessibleDescription = "ASOCTSOAH00055";
+            this.v6Label25.AutoSize = true;
+            this.v6Label25.Location = new System.Drawing.Point(284, 132);
+            this.v6Label25.Name = "v6Label25";
+            this.v6Label25.Size = new System.Drawing.Size(36, 13);
+            this.v6Label25.TabIndex = 37;
+            this.v6Label25.Text = "DATA";
             // 
             // PhieuNhapKhauControl
             // 
@@ -3851,7 +3871,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private V6FormButton btnXoaPB;
         private V6FormButton btnTinhPB;
         private V6Label lblNameT;
-        private V6CheckBox txtimtype;
         private V6VvarTextBox txtMaHttt;
         private V6Label v6Label42;
         private V6NumberTextBox TxtT_tc;
@@ -3884,5 +3903,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private System.Windows.Forms.ToolStripMenuItem menuXemPhieuNhap;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private V6IndexComboBox cboChuyenData;
+        private V6Label v6Label25;
     }
 }

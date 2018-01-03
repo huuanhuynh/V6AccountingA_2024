@@ -1,10 +1,8 @@
 using System;
-using System.Runtime;
 using System.Runtime.InteropServices;
-
 using HWND = System.IntPtr;
 
-namespace UrielGuy.SyntaxHighlightingTextBox
+namespace V6Controls
 {
 	/// <summary>
 	/// Summary description for Win32.
@@ -20,6 +18,10 @@ namespace UrielGuy.SyntaxHighlightingTextBox
 		public const int WM_KEYDOWN = 0x100;
 		public const int WM_KEYUP = 0x101;
 		public const int WM_CHAR = 0x102;
+        public const int WM_ENABLE = 0xa;
+        public const int WM_COPY = 0x0301;
+        public const int WM_PASTE = 0x302;
+        public const int WM_CUT = 0x300;
 
 		public const int EM_GETSCROLLPOS  =       (WM_USER + 221);
 		public const int EM_SETSCROLLPOS  =       (WM_USER + 222);

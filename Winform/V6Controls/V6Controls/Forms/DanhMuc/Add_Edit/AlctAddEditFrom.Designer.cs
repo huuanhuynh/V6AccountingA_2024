@@ -163,6 +163,8 @@
             this.v6ColorTextBox13 = new V6Controls.V6ColorTextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.v6ColorTextBox12 = new V6Controls.V6ColorTextBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.v6ColorTextBox29 = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1782,8 +1784,10 @@
             this.tabPage4.Controls.Add(this.lblXML);
             this.tabPage4.Controls.Add(this.btnEditXml);
             this.tabPage4.Controls.Add(this.txtDmethod);
+            this.tabPage4.Controls.Add(this.v6ColorTextBox29);
             this.tabPage4.Controls.Add(this.v6ColorTextBox28);
             this.tabPage4.Controls.Add(this.txtADV_AD);
+            this.tabPage4.Controls.Add(this.label63);
             this.tabPage4.Controls.Add(this.v6ColorTextBox27);
             this.tabPage4.Controls.Add(this.label62);
             this.tabPage4.Controls.Add(this.txtADV_AM);
@@ -1817,7 +1821,7 @@
             // lblXML
             // 
             this.lblXML.AutoSize = true;
-            this.lblXML.Location = new System.Drawing.Point(651, 364);
+            this.lblXML.Location = new System.Drawing.Point(651, 392);
             this.lblXML.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblXML.Name = "lblXML";
             this.lblXML.Size = new System.Drawing.Size(36, 17);
@@ -1830,7 +1834,7 @@
             this.btnEditXml.AccessibleName = "";
             this.btnEditXml.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditXml.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEditXml.Location = new System.Drawing.Point(694, 360);
+            this.btnEditXml.Location = new System.Drawing.Point(694, 388);
             this.btnEditXml.Name = "btnEditXml";
             this.btnEditXml.Size = new System.Drawing.Size(40, 25);
             this.btnEditXml.TabIndex = 52;
@@ -1852,7 +1856,7 @@
             this.txtDmethod.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDmethod.HoverColor = System.Drawing.Color.Yellow;
             this.txtDmethod.LeaveColor = System.Drawing.Color.White;
-            this.txtDmethod.Location = new System.Drawing.Point(304, 215);
+            this.txtDmethod.Location = new System.Drawing.Point(304, 243);
             this.txtDmethod.Margin = new System.Windows.Forms.Padding(4);
             this.txtDmethod.Multiline = true;
             this.txtDmethod.Name = "txtDmethod";
@@ -2225,6 +2229,34 @@
             this.v6ColorTextBox12.TabIndex = 1;
             this.v6ColorTextBox12.Visible = false;
             // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(9, 218);
+            this.label63.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(113, 17);
+            this.label63.TabIndex = 49;
+            this.label63.Text = "Các bảng chi tiết";
+            // 
+            // v6ColorTextBox29
+            // 
+            this.v6ColorTextBox29.AccessibleName = "M_LIST_CT";
+            this.v6ColorTextBox29.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6ColorTextBox29.BackColor = System.Drawing.Color.White;
+            this.v6ColorTextBox29.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox29.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox29.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox29.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox29.HoverColor = System.Drawing.Color.Yellow;
+            this.v6ColorTextBox29.LeaveColor = System.Drawing.Color.White;
+            this.v6ColorTextBox29.Location = new System.Drawing.Point(203, 215);
+            this.v6ColorTextBox29.Margin = new System.Windows.Forms.Padding(4);
+            this.v6ColorTextBox29.Name = "v6ColorTextBox29";
+            this.v6ColorTextBox29.Size = new System.Drawing.Size(531, 23);
+            this.v6ColorTextBox29.TabIndex = 5;
+            // 
             // AlctAddEditFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2388,5 +2420,7 @@
         private System.Windows.Forms.Label lblXML;
         protected System.Windows.Forms.Button btnEditXml;
         private V6ColorTextBox txtDmethod;
+        private V6ColorTextBox v6ColorTextBox29;
+        private System.Windows.Forms.Label label63;
     }
 }

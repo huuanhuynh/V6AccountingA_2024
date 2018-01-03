@@ -1668,6 +1668,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.Designer.cs">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOA2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOA2.Designer.cs">
+      <DependentUpon>AAPPR_SOA2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_XULY_SOA.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1710,17 +1716,41 @@
     <Compile Include="FormManager\ReportManager\Filter\AGLGSSO4TF10.designer.cs">
       <DependentUpon>AGLGSSO4TF10.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AINVTBAR3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AINVTBAR3.designer.cs">
+      <DependentUpon>AINVTBAR3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AINVTBAR2F9.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AINVTBAR2F9.designer.cs">
+      <DependentUpon>AINVTBAR2F9.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ASOTH6F5.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ASOTH6F5.designer.cs">
       <DependentUpon>ASOTH6F5.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AVGLGSSO6AF5.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AVGLGSSO6AF5.designer.cs">
+      <DependentUpon>AVGLGSSO6AF5.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AVGLGSSO5AF5.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AVGLGSSO5AF5.designer.cs">
       <DependentUpon>AVGLGSSO5AF5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AVGLGSSO6A.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AVGLGSSO6A.designer.cs">
+      <DependentUpon>AVGLGSSO6A.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AVGLSSO5A.cs">
       <SubType>UserControl</SubType>
@@ -3947,6 +3977,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_CA1_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F9.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3978,6 +4011,21 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AGLGSSO4T.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR3_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR3_Control.Designer.cs">
+      <DependentUpon>AINVTBAR3_Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR2_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR2_Control.Designer.cs">
+      <DependentUpon>AINVTBAR2_Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AVGLGSSO6A.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AVGLGSSO5A.cs">
@@ -4962,6 +5010,10 @@
       <Project>{910141A1-9FC5-4A44-B682-425100FE9023}</Project>
       <Name>V6Structs</Name>
     </ProjectReference>
+    <ProjectReference Include="..\V6ThuePostApi\V6ThuePostApi.csproj">
+      <Project>{4AF9BDE9-3E91-4035-BB20-2CFC1E0E54A6}</Project>
+      <Name>V6ThuePostApi</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\newspaperplus.png" />
@@ -5757,6 +5809,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.resx">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_SOA2.resx">
+      <DependentUpon>AAPPR_SOA2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_XULY_SOA.resx">
       <DependentUpon>AAPPR_XULY_SOA.cs</DependentUpon>
     </EmbeddedResource>
@@ -5778,6 +5833,12 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLGSSO4TF10.resx">
       <DependentUpon>AGLGSSO4TF10.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AINVTBAR3.resx">
+      <DependentUpon>AINVTBAR3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AINVTBAR2F9.resx">
+      <DependentUpon>AINVTBAR2F9.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ASOTH6F5.resx">
       <DependentUpon>ASOTH6F5.cs</DependentUpon>
     </EmbeddedResource>
@@ -5787,8 +5848,14 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\APOBK4.resx">
       <DependentUpon>APOBK4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AVGLGSSO6AF5.resx">
+      <DependentUpon>AVGLGSSO6AF5.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AVGLGSSO5AF5.resx">
       <DependentUpon>AVGLGSSO5AF5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AVGLGSSO6A.resx">
+      <DependentUpon>AVGLGSSO6A.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AVGLSSO5A.resx">
       <DependentUpon>AVGLSSO5A.cs</DependentUpon>
@@ -6908,6 +6975,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVITRI05.resx">
       <DependentUpon>AINVITRI05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVTBAR3_Control.resx">
+      <DependentUpon>AINVTBAR3_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVTBAR2_Control.resx">
+      <DependentUpon>AINVTBAR2_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HPAYROLLCALC.resx">
       <DependentUpon>HPAYROLLCALC.cs</DependentUpon>

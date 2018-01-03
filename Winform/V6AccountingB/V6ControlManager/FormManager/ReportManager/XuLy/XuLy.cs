@@ -11,6 +11,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 case "AAPPR_SOA":
                     return new AAPPR_SOA(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "AAPPR_SOA2":
+                    return new AAPPR_SOA2(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AAPPR_XULY_SOA":
                     return new AAPPR_XULY_SOA(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AAPPR_SOA1":
@@ -143,6 +145,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         repFileF5, repTitleF5, repTitle2F5);
                 case "AGLGSSO4T":
                     return new AGLGSSO4T(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+
+                case "AVGLGSSO6A":
+                    return new AVGLGSSO6A(itemId, program, procedure, reportFile, reportCaption, reportCaption2,
+                        repFileF5, repTitleF5, repTitle2F5);
+
                 #region ==== In liên tục ====
                 case "AAPPR_SOF_IN1":
                     return new AAPPR_SOF_IN1(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
@@ -222,6 +229,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 case "AINVTBAR1":
                     return new AINVTBAR1_Control(itemId, program, procedure, reportFile, text);
+                case "AINVTBAR2":
+                    return new AINVTBAR2_Control(itemId, program, procedure, reportFile, text);
+                case "AINVTBAR3":
+                    return new AINVTBAR3_Control(itemId, program, procedure, reportFile, text);
 
                 case "AINVITRI01":
                     return new AINVITRI01(itemId, program, procedure, reportFile, text);

@@ -153,7 +153,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 FilterLineDynamic cc = c as FilterLineDynamic;
                 if (cc != null && cc.IsSelected)
                 {
-                    keyDynamic += and_or + cc.Query;
+                    keyDynamic += and_or + cc.GetQuery(cc.TableLabel);
                 }
             }
             if (keyDynamic.Length > 4) keyDynamic = keyDynamic.Substring(4);

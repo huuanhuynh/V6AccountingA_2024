@@ -258,13 +258,13 @@ namespace V6Controls
                 if (F5 && !ReadOnly && e.KeyCode == Keys.F5 && !string.IsNullOrEmpty(LookupInfo.FieldName))
                 {
                     LoadAutoCompleteSource();
-                    DoLookup();
+                    DoLookup(LookupMode.Single);
                 }
                 else if (!ReadOnly && e.KeyCode == Keys.F2)
                 {
                     if (F2)
                     {
-                        DoLookup(true);
+                        DoLookup(LookupMode.Multi);
                     }
                 }
                 else
@@ -304,6 +304,14 @@ namespace V6Controls
                 {
                     // Đã xử lý KeyDown Enter.
                     _checkOnLeave_OnEnter = false;
+                    //if (!Looking && gotfocustext != Text)
+                    //{
+                    //    CallDoV6LostFocus();
+                    //}
+                    //else
+                    //{
+                    //    CallDoV6LostFocusNoChange();
+                    //}
                 }
                 else
                 {
@@ -341,13 +349,13 @@ namespace V6Controls
                         }
                         else
                         {
-                            DoLookup(false);
+                            DoLookup(LookupMode.Single);
                         }
                     }
                 }
                 else if (_checkNotEmpty && !string.IsNullOrEmpty(LookupInfo.FieldName))
                 {
-                    DoLookup(false);
+                    DoLookup(LookupMode.Single);
                 }
                 else
                 {
@@ -358,6 +366,14 @@ namespace V6Controls
             else if (!_checkOnLeave && !ReadOnly && Visible && Enabled)
             {
                 ExistRowInTable(Text.Trim());
+                if (!Looking && gotfocustext != Text)
+                {
+                    CallDoV6LostFocus();
+                }
+                else
+                {
+                    CallDoV6LostFocusNoChange();
+                }
             }
         }
 
@@ -689,18 +705,18 @@ namespace V6Controls
             else CallDoV6LostFocusNoChange();
         }
 
-        protected void DoLookup(bool multi = false)
+        protected void DoLookup(LookupMode lookupMode = LookupMode.Single)
         {
             var filter = InitFilter;
             if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
-            var fStand = new Standard(this, LookupInfo, " 1=1 " + filter, multi, FilterStart);
+            var fStand = new Standard(this, LookupInfo, " 1=1 " + filter, lookupMode, FilterStart);
             Looking = true;
             fStand.ShowDialog(this);
         }
 
-        public void Lookup(bool multi = false)
+        public void Lookup(LookupMode lookupMode = LookupMode.Single)
         {
-            DoLookup(multi);
+            DoLookup(lookupMode);
         }
 
         

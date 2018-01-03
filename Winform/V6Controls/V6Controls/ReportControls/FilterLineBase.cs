@@ -36,6 +36,15 @@ namespace V6ReportControls
             get; set;
         }
 
+        /// <summary>
+        /// Nhãn đánh dấu tên bảng, dùng tùy lúc
+        /// </summary>
+        [DefaultValue(null)]
+        public string TableLabel
+        {
+            get; set;
+        }
+
         [Browsable(true)]
         [Description("Nhãn hiển thị, cẩn thận nhầm data.")]
         public override string Text

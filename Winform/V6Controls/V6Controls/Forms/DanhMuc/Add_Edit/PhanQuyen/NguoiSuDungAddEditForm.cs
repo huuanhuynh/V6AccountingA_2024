@@ -371,7 +371,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                 var data = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
 
                 //V6ControlFormHelper.ShowDataEditorForm(data, "AlctCt", "Ten_ct:R,Ma_ct:R,GRD_HIDE", "Ma_ct,User_id_ct", false, false, this);
-                V6ControlFormHelper.ShowDataEditorForm(data, "AlctCt", null, "Ma_ct,User_id_ct", false, false, false, this);
+                V6ControlFormHelper.ShowDataEditorForm(data, "AlctCt", null, "Ma_ct,User_id_ct", false, false, false, null, this);
             }
             catch (Exception ex)
             {

@@ -121,7 +121,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtTongTangGiamNt = new V6Controls.NumberTienNt();
             this.v6Label38 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
-            this.txtimtype = new V6Controls.V6CheckBox();
             this.chkSua_Tien = new V6Controls.V6CheckBox();
             this.txtConLai = new V6Controls.V6NumberTextBox();
             this.txtTongSoLuong = new V6Controls.V6NumberTextBox();
@@ -230,6 +229,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtMa_vitriPH = new V6Controls.V6ColorTextBox();
             this.txtMa_khoPH = new V6Controls.V6ColorTextBox();
             this.btnLuuTam = new System.Windows.Forms.Button();
+            this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
+            this.v6Label28 = new V6Controls.V6Label();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -344,6 +345,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1121,6 +1123,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView3.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1647,7 +1650,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             // 
             this.group4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.group4.Controls.Add(this.txtimtype);
+            this.group4.Controls.Add(this.cboChuyenData);
+            this.group4.Controls.Add(this.v6Label28);
             this.group4.Controls.Add(this.chkSua_Tien);
             this.group4.Controls.Add(this.txtConLai);
             this.group4.Controls.Add(this.txtTongSoLuong);
@@ -1671,20 +1675,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.group4.Size = new System.Drawing.Size(471, 118);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
-            // 
-            // txtimtype
-            // 
-            this.txtimtype.AccessibleDescription = "ASOCTSOAH00055";
-            this.txtimtype.AccessibleName = "IMTYPE";
-            this.txtimtype.AutoSize = true;
-            this.txtimtype.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtimtype.Location = new System.Drawing.Point(304, 95);
-            this.txtimtype.Name = "txtimtype";
-            this.txtimtype.Size = new System.Drawing.Size(105, 17);
-            this.txtimtype.TabIndex = 21;
-            this.txtimtype.TabStop = false;
-            this.txtimtype.Text = "Chuyển DATA";
-            this.txtimtype.UseVisualStyleBackColor = true;
             // 
             // chkSua_Tien
             // 
@@ -3360,6 +3350,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.btnLuuTam.UseVisualStyleBackColor = true;
             this.btnLuuTam.Click += new System.EventHandler(this.btnLuuTam_Click);
             // 
+            // cboChuyenData
+            // 
+            this.cboChuyenData.AccessibleName = "IMTYPE";
+            this.cboChuyenData.BackColor = System.Drawing.SystemColors.Window;
+            this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboChuyenData.FormattingEnabled = true;
+            this.cboChuyenData.Items.AddRange(new object[] {
+            "0 - Không chuyển",
+            "1 - Chuyển",
+            "2 - Không xử lý"});
+            this.cboChuyenData.Location = new System.Drawing.Point(356, 93);
+            this.cboChuyenData.Name = "cboChuyenData";
+            this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
+            this.cboChuyenData.TabIndex = 21;
+            this.cboChuyenData.TabStop = false;
+            this.toolTipV6FormControl.SetToolTip(this.cboChuyenData, "Chuyển dữ liệu qua Database khác.");
+            // 
+            // v6Label28
+            // 
+            this.v6Label28.AccessibleDescription = "ASOCTSOAH00055";
+            this.v6Label28.AutoSize = true;
+            this.v6Label28.Location = new System.Drawing.Point(310, 98);
+            this.v6Label28.Name = "v6Label28";
+            this.v6Label28.Size = new System.Drawing.Size(36, 13);
+            this.v6Label28.TabIndex = 22;
+            this.v6Label28.Text = "DATA";
+            // 
             // HoaDonCafeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3617,7 +3635,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private V6ColorTextBox txtGhiChuChung;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private V6CheckBox txtimtype;
         private System.Windows.Forms.ToolStripMenuItem chonTuExcelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chonBaoGiaToolStripMenuItem;
         private V6VvarTextBox txtDiaChiGiaoHang;
@@ -3641,5 +3658,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private V6ColorTextBox txtMa_khoPH;
         private System.Windows.Forms.Button btnLuuTam;
         private System.Windows.Forms.ToolStripMenuItem chonHoaDonMauToolStripMenuItem;
+        private V6IndexComboBox cboChuyenData;
+        private V6Label v6Label28;
     }
 }

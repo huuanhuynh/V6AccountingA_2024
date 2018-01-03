@@ -57,6 +57,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 return null;
             }
         }
+        /// <summary>
+        /// Danh sách các trường được edit.
+        /// </summary>
         private string ADV_AL1
         {
             get

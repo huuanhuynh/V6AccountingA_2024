@@ -180,7 +180,7 @@ namespace V6Controls
         protected override void WndProc(ref Message m)
         {
             // Trap WM_PASTE:
-            if (m.Msg == 0x302 && Clipboard.ContainsText())
+            if (m.Msg == Win32.WM_PASTE && Clipboard.ContainsText())
             {
                 var clipboard = Clipboard.GetText().Replace("\n", "").Replace(" ", "");
                 DateTime newValue = DateTime.Now;

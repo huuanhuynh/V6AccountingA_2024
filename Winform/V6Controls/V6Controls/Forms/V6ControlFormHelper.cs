@@ -425,11 +425,12 @@ namespace V6Controls.Forms
 
         public static Image LoadCopyImage(string path)
         {
+            Bitmap bm = null;
             using (Image im = Image.FromFile(path))
             {
-                Bitmap bm = new Bitmap(im);
-                return bm;
+                bm = new Bitmap(im);
             }
+            return bm;
         }
         
         public static void MoveTo(Control c, Point p)
@@ -3691,12 +3692,13 @@ namespace V6Controls.Forms
         /// <param name="allowAdd">Cho phép thêm dòng.</param>
         /// <param name="allowDelete">Cho phép xóa dòng.</param>
         /// <param name="showSum">Hiện phần tổng.</param>
+        /// <param name="defaultData">Dữ liệu mặc định khi thêm dòng mới.</param>
         /// <param name="owner">Form đang gọi để chống chìm dialog.</param>
         public static void ShowDataEditorForm(DataTable data, string tableName, string showFields, string keys,
-            bool allowAdd, bool allowDelete, bool showSum = true, IWin32Window owner = null)
+            bool allowAdd, bool allowDelete, bool showSum = true, IDictionary<string, object> defaultData = null, IWin32Window owner = null)
         {
             var f = new DataEditorForm(data, tableName, showFields, keys, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language),
-                allowAdd, allowDelete, showSum);
+                allowAdd, allowDelete, showSum, defaultData);
             f.ShowDialog(owner);
         }
 
@@ -3710,11 +3712,12 @@ namespace V6Controls.Forms
         /// <param name="allowAdd">Cho phép thêm dòng.</param>
         /// <param name="allowDelete">Cho phép xóa dòng.</param>
         /// <param name="showSum">Hiện phần tổng.</param>
+        /// <param name="defaultData">Dữ liệu mặc định khi thêm dòng mới.</param>
         /// <returns>DataEditorForm</returns>
         public static DataEditorForm MakeDataEditorForm(DataTable data, string tableName, string showFields, string keys,
-            bool allowAdd, bool allowDelete, bool showSum = true)
+            bool allowAdd, bool allowDelete, bool showSum = true, IDictionary<string, object> defaultData = null)
         {
-            var f = new DataEditorForm(data, tableName, showFields, keys, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), allowAdd, allowDelete, showSum);
+            var f = new DataEditorForm(data, tableName, showFields, keys, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), allowAdd, allowDelete, showSum, defaultData);
             return f;
         }
 
@@ -3837,6 +3840,11 @@ namespace V6Controls.Forms
             }
         }
 
+        /// <summary>
+        /// Phân biệt loại initfilter. 1 cập nhập số liệu, 2 danh mục, 3 số dư, 4 báo cáo
+        /// </summary>
+        /// <param name="control"></param>
+        /// <returns></returns>
         public static string FindFilterType(Control control)
         {
             if (control == null)
@@ -3985,7 +3993,7 @@ namespace V6Controls.Forms
             {
                 if (F2)
                 {
-                    DoLookup(owner, true);
+                    DoLookup(owner, LookupMode.Multi);
                 }
             }
         }
@@ -4020,13 +4028,13 @@ namespace V6Controls.Forms
                         }
                         else
                         {
-                            DoLookup(owner, false);
+                            DoLookup(owner, LookupMode.Single);
                         }
                     }
                 }
                 else if (!string.IsNullOrEmpty(Aldm_config.F_NAME))
                 {
-                    DoLookup(owner, false);
+                    DoLookup(owner, LookupMode.Single);
                 }
                 else
                 {
@@ -4041,7 +4049,7 @@ namespace V6Controls.Forms
             //}
         }
 
-        private static void DoLookup(IWin32Window owner, bool multi = false)
+        private static void DoLookup(IWin32Window owner, LookupMode multi = LookupMode.Single)
         {
             if (Aldm_config.NoInfo) return;
             //_frm = FindForm();
@@ -4053,7 +4061,7 @@ namespace V6Controls.Forms
             fStand.ShowDialog(owner);
         }
 
-        private static void Lookup(IWin32Window owner, bool multi = false)
+        private static void Lookup(IWin32Window owner, LookupMode multi = LookupMode.Single)
         {
             DoLookup(owner, multi);
         }
@@ -4253,7 +4261,7 @@ namespace V6Controls.Forms
         /// </summary>
         /// <param name="control">Đối tượng được gán dữ liệu.</param>
         /// <param name="value">Giá trị để gán.</param>
-        /// <param name="config">Status:1;Override:1;NotEmpty:0;NoOverride:0</param>
+        /// <param name="config">Status(Có sử dụng?):1;Override:1;NotEmpty(Phải có giá trị truyền vào):0;NoOverride(Chỉ gán nến control rỗng):0</param>
         public static void SetControlValue(Control control, object value, DefineInfo config)
         {
             try

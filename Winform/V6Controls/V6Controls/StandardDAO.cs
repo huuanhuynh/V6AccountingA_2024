@@ -71,7 +71,8 @@ namespace V6Controls
                         //Cần sửa lại config vField/eField...
                     }
 
-                    if (standard._multiSelect && vSearchFilter.Contains(","))
+                    if ((standard._lookupMode == LookupMode.Multi || standard._lookupMode == LookupMode.Data)
+                        && vSearchFilter.Contains(","))
                     {
                         var tbl = V6BusinessHelper.Select(tableName, "*", initFilter, "", lstConfig.Vorder).Data;
                         return tbl;
@@ -81,7 +82,14 @@ namespace V6Controls
                         var where = initFilter;
                         if (!string.IsNullOrEmpty(vSearchFilter))
                         {
-                            where += " AND (" + vSearchFilter + ")";
+                            if (string.IsNullOrEmpty(where))
+                            {
+                                where = vSearchFilter;
+                            }
+                            else
+                            {
+                                where += " AND (" + vSearchFilter + ")";
+                            }                            
                         }
                         var tbl = V6BusinessHelper.Select(tableName, "*", where, "", lstConfig.Vorder).Data;
                         return tbl;
@@ -323,7 +331,7 @@ namespace V6Controls
 
         public void XuLyEnterChonGiaTri(string selectedValue, V6VvarTextBox textbox)
         {
-            if (standard._multiSelect)
+            if (standard._lookupMode == LookupMode.Multi)
             {
                 try
                 {
@@ -334,7 +342,7 @@ namespace V6Controls
                     
                 }
             }
-            else
+            else if (standard._lookupMode == LookupMode.Single)
             {
                 ControlFunction.LISTVALUE.Add(selectedValue);
                 if (textbox.ReadOnly) return;

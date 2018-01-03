@@ -143,7 +143,7 @@
     <Compile Include="Controls\SyntaxHighlightingTextBox\SyntaxHighlightingTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\SyntaxHighlightingTextBox\Win32.cs" />
+    <Compile Include="Win32.cs" />
     <Compile Include="Controls\ToChucTree\ToChucTreeControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -198,11 +198,11 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT_AddEdit.designer.cs">
       <DependentUpon>ALREPORT_AddEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_FilterEditorForm.cs">
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\DefineInfoEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_FilterEditorForm.designer.cs">
-      <DependentUpon>ALREPORT1_FilterEditorForm.cs</DependentUpon>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\DefineInfoEditorForm.designer.cs">
+      <DependentUpon>DefineInfoEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_AddEdit.cs">
       <SubType>UserControl</SubType>
@@ -1373,8 +1373,8 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT_AddEdit.resx">
       <DependentUpon>ALREPORT_AddEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_FilterEditorForm.resx">
-      <DependentUpon>ALREPORT1_FilterEditorForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\DefineInfoEditorForm.resx">
+      <DependentUpon>DefineInfoEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_AddEdit.resx">
       <DependentUpon>ALREPORT1_AddEdit.cs</DependentUpon>

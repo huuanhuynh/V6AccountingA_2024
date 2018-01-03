@@ -1,0 +1,393 @@
+﻿namespace V6ControlManager.FormManager.ReportManager.Filter
+{
+    partial class AINVTBAR3
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblStatus1 = new System.Windows.Forms.Label();
+            this.txtSL_TD2 = new V6Controls.V6NumberTextBox();
+            this.txtMaSoThue = new V6Controls.V6ColorTextBox();
+            this.txtDiaChi = new V6Controls.V6ColorTextBox();
+            this.txtSL_TD1 = new V6Controls.V6NumberTextBox();
+            this.txtDVT = new V6Controls.V6ColorTextBox();
+            this.txtTenVT = new V6Controls.V6ColorTextBox();
+            this.txtTenKH = new V6Controls.V6ColorTextBox();
+            this.txtNgayHHSD = new V6Controls.V6ColorTextBox();
+            this.txtMaVT = new V6Controls.V6VvarTextBox();
+            this.txtMaKH = new V6Controls.V6VvarTextBox();
+            this.txtMalo = new V6Controls.V6VvarTextBox();
+            this.radOr = new System.Windows.Forms.RadioButton();
+            this.radAnd = new System.Windows.Forms.RadioButton();
+            this.groupBox1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.AccessibleDescription = "FILTERG00001";
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lblStatus1);
+            this.groupBox1.Controls.Add(this.txtSL_TD2);
+            this.groupBox1.Controls.Add(this.txtMaSoThue);
+            this.groupBox1.Controls.Add(this.txtDiaChi);
+            this.groupBox1.Controls.Add(this.txtSL_TD1);
+            this.groupBox1.Controls.Add(this.txtDVT);
+            this.groupBox1.Controls.Add(this.txtTenVT);
+            this.groupBox1.Controls.Add(this.txtTenKH);
+            this.groupBox1.Controls.Add(this.txtNgayHHSD);
+            this.groupBox1.Controls.Add(this.txtMaVT);
+            this.groupBox1.Controls.Add(this.txtMaKH);
+            this.groupBox1.Controls.Add(this.txtMalo);
+            this.groupBox1.Controls.Add(this.radOr);
+            this.groupBox1.Controls.Add(this.radAnd);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(282, 459);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Lọc";
+            // 
+            // lblStatus1
+            // 
+            this.lblStatus1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblStatus1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus1.ForeColor = System.Drawing.Color.Red;
+            this.lblStatus1.Location = new System.Drawing.Point(6, 415);
+            this.lblStatus1.Name = "lblStatus1";
+            this.lblStatus1.Size = new System.Drawing.Size(270, 38);
+            this.lblStatus1.TabIndex = 13;
+            this.lblStatus1.Text = "...";
+            // 
+            // txtSL_TD2
+            // 
+            this.txtSL_TD2.AccessibleDescription = "";
+            this.txtSL_TD2.AccessibleName = "SL_TD2";
+            this.txtSL_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSL_TD2.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtSL_TD2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSL_TD2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSL_TD2.DecimalPlaces = 0;
+            this.txtSL_TD2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSL_TD2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSL_TD2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSL_TD2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSL_TD2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSL_TD2.LeaveColor = System.Drawing.Color.White;
+            this.txtSL_TD2.Location = new System.Drawing.Point(4, 373);
+            this.txtSL_TD2.Name = "txtSL_TD2";
+            this.txtSL_TD2.ReadOnly = true;
+            this.txtSL_TD2.Size = new System.Drawing.Size(276, 26);
+            this.txtSL_TD2.TabIndex = 12;
+            this.txtSL_TD2.Text = "0";
+            this.txtSL_TD2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSL_TD2.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtSL_TD2.Visible = false;
+            // 
+            // txtMaSoThue
+            // 
+            this.txtMaSoThue.AccessibleName = "MA_SO_THUE";
+            this.txtMaSoThue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMaSoThue.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtMaSoThue.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaSoThue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaSoThue.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaSoThue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMaSoThue.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaSoThue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaSoThue.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaSoThue.LeaveColor = System.Drawing.Color.White;
+            this.txtMaSoThue.Location = new System.Drawing.Point(4, 294);
+            this.txtMaSoThue.Name = "txtMaSoThue";
+            this.txtMaSoThue.ReadOnly = true;
+            this.txtMaSoThue.Size = new System.Drawing.Size(276, 20);
+            this.txtMaSoThue.TabIndex = 11;
+            this.txtMaSoThue.Tag = "readonly";
+            // 
+            // txtDiaChi
+            // 
+            this.txtDiaChi.AccessibleName = "DIA_CHI";
+            this.txtDiaChi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDiaChi.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtDiaChi.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDiaChi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDiaChi.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDiaChi.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDiaChi.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDiaChi.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDiaChi.LeaveColor = System.Drawing.Color.White;
+            this.txtDiaChi.Location = new System.Drawing.Point(4, 251);
+            this.txtDiaChi.Multiline = true;
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.ReadOnly = true;
+            this.txtDiaChi.Size = new System.Drawing.Size(276, 41);
+            this.txtDiaChi.TabIndex = 10;
+            this.txtDiaChi.Tag = "readonly";
+            // 
+            // txtSL_TD1
+            // 
+            this.txtSL_TD1.AccessibleDescription = "";
+            this.txtSL_TD1.AccessibleName = "SL_TD1";
+            this.txtSL_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSL_TD1.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtSL_TD1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSL_TD1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSL_TD1.DecimalPlaces = 0;
+            this.txtSL_TD1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSL_TD1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSL_TD1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSL_TD1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSL_TD1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSL_TD1.LeaveColor = System.Drawing.Color.White;
+            this.txtSL_TD1.Location = new System.Drawing.Point(4, 115);
+            this.txtSL_TD1.Name = "txtSL_TD1";
+            this.txtSL_TD1.ReadOnly = true;
+            this.txtSL_TD1.Size = new System.Drawing.Size(276, 26);
+            this.txtSL_TD1.TabIndex = 4;
+            this.txtSL_TD1.Text = "0";
+            this.txtSL_TD1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSL_TD1.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // txtDVT
+            // 
+            this.txtDVT.AccessibleName = "DVT";
+            this.txtDVT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDVT.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtDVT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDVT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDVT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDVT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDVT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDVT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDVT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDVT.LeaveColor = System.Drawing.Color.White;
+            this.txtDVT.Location = new System.Drawing.Point(4, 143);
+            this.txtDVT.Name = "txtDVT";
+            this.txtDVT.ReadOnly = true;
+            this.txtDVT.Size = new System.Drawing.Size(276, 20);
+            this.txtDVT.TabIndex = 5;
+            this.txtDVT.Tag = "readonly";
+            // 
+            // txtTenVT
+            // 
+            this.txtTenVT.AccessibleName = "TEN_VT";
+            this.txtTenVT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTenVT.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtTenVT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTenVT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTenVT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTenVT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTenVT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTenVT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTenVT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTenVT.LeaveColor = System.Drawing.Color.White;
+            this.txtTenVT.Location = new System.Drawing.Point(4, 74);
+            this.txtTenVT.Multiline = true;
+            this.txtTenVT.Name = "txtTenVT";
+            this.txtTenVT.ReadOnly = true;
+            this.txtTenVT.Size = new System.Drawing.Size(276, 38);
+            this.txtTenVT.TabIndex = 3;
+            this.txtTenVT.Tag = "readonly";
+            // 
+            // txtTenKH
+            // 
+            this.txtTenKH.AccessibleName = "TEN_KH";
+            this.txtTenKH.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTenKH.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtTenKH.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTenKH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTenKH.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTenKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTenKH.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTenKH.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTenKH.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTenKH.LeaveColor = System.Drawing.Color.White;
+            this.txtTenKH.Location = new System.Drawing.Point(4, 208);
+            this.txtTenKH.Multiline = true;
+            this.txtTenKH.Name = "txtTenKH";
+            this.txtTenKH.ReadOnly = true;
+            this.txtTenKH.Size = new System.Drawing.Size(276, 41);
+            this.txtTenKH.TabIndex = 7;
+            this.txtTenKH.Tag = "readonly";
+            // 
+            // txtNgayHHSD
+            // 
+            this.txtNgayHHSD.AccessibleName = "NGAY_HHSD";
+            this.txtNgayHHSD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNgayHHSD.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtNgayHHSD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNgayHHSD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNgayHHSD.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNgayHHSD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNgayHHSD.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNgayHHSD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNgayHHSD.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNgayHHSD.LeaveColor = System.Drawing.Color.White;
+            this.txtNgayHHSD.Location = new System.Drawing.Point(4, 167);
+            this.txtNgayHHSD.Name = "txtNgayHHSD";
+            this.txtNgayHHSD.ReadOnly = true;
+            this.txtNgayHHSD.Size = new System.Drawing.Size(276, 26);
+            this.txtNgayHHSD.TabIndex = 6;
+            this.txtNgayHHSD.Tag = "readonly";
+            // 
+            // txtMaVT
+            // 
+            this.txtMaVT.AccessibleName = "MA_VT";
+            this.txtMaVT.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtMaVT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaVT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaVT.BrotherFields = "TEN_VT,DVT";
+            this.txtMaVT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaVT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaVT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaVT.GrayText = "Mã vật tư";
+            this.txtMaVT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaVT.LeaveColor = System.Drawing.Color.White;
+            this.txtMaVT.Location = new System.Drawing.Point(4, 349);
+            this.txtMaVT.Name = "txtMaVT";
+            this.txtMaVT.ReadOnly = true;
+            this.txtMaVT.Size = new System.Drawing.Size(276, 20);
+            this.txtMaVT.TabIndex = 9;
+            this.txtMaVT.VVar = "MA_VT";
+            this.txtMaVT.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMalo_V6LostFocus);
+            // 
+            // txtMaKH
+            // 
+            this.txtMaKH.AccessibleName = "MA_KH";
+            this.txtMaKH.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtMaKH.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaKH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaKH.BrotherFields = "TEN_KH,DIA_CHI,MA_SO_THUE";
+            this.txtMaKH.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaKH.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaKH.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaKH.GrayText = "Mã khách hàng";
+            this.txtMaKH.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaKH.LeaveColor = System.Drawing.Color.White;
+            this.txtMaKH.Location = new System.Drawing.Point(4, 323);
+            this.txtMaKH.Name = "txtMaKH";
+            this.txtMaKH.ReadOnly = true;
+            this.txtMaKH.Size = new System.Drawing.Size(276, 20);
+            this.txtMaKH.TabIndex = 8;
+            this.txtMaKH.VVar = "MA_KH";
+            this.txtMaKH.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMalo_V6LostFocus);
+            // 
+            // txtMalo
+            // 
+            this.txtMalo.AccessibleName = "ma_lo";
+            this.txtMalo.BackColor = System.Drawing.Color.White;
+            this.txtMalo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMalo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMalo.BrotherFields = "MA_KH,MA_VT,NGAY_HHSD,SL_TD1,SL_TD2,NGAY_TD1,GC_TD1";
+            this.txtMalo.CheckNotEmpty = true;
+            this.txtMalo.CheckOnLeave = false;
+            this.txtMalo.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMalo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMalo.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMalo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMalo.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMalo.LeaveColor = System.Drawing.Color.White;
+            this.txtMalo.Location = new System.Drawing.Point(4, 39);
+            this.txtMalo.Name = "txtMalo";
+            this.txtMalo.Size = new System.Drawing.Size(276, 29);
+            this.txtMalo.TabIndex = 2;
+            this.txtMalo.VVar = "ma_lo";
+            this.txtMalo.Leave += new System.EventHandler(this.txtMalo_Leave);
+            // 
+            // radOr
+            // 
+            this.radOr.AccessibleDescription = "FILTERR00002";
+            this.radOr.AutoSize = true;
+            this.radOr.Enabled = false;
+            this.radOr.Location = new System.Drawing.Point(142, 16);
+            this.radOr.Name = "radOr";
+            this.radOr.Size = new System.Drawing.Size(95, 17);
+            this.radOr.TabIndex = 1;
+            this.radOr.TabStop = true;
+            this.radOr.Text = "Điều kiện (OR)";
+            this.radOr.UseVisualStyleBackColor = true;
+            // 
+            // radAnd
+            // 
+            this.radAnd.AccessibleDescription = "FILTERR00001";
+            this.radAnd.AutoSize = true;
+            this.radAnd.Checked = true;
+            this.radAnd.Enabled = false;
+            this.radAnd.Location = new System.Drawing.Point(6, 16);
+            this.radAnd.Name = "radAnd";
+            this.radAnd.Size = new System.Drawing.Size(102, 17);
+            this.radAnd.TabIndex = 0;
+            this.radAnd.TabStop = true;
+            this.radAnd.Text = "Điều kiện (AND)";
+            this.radAnd.UseVisualStyleBackColor = true;
+            // 
+            // AINVTBAR3
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
+            this.Name = "AINVTBAR3";
+            this.Size = new System.Drawing.Size(285, 467);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radOr;
+        private System.Windows.Forms.RadioButton radAnd;
+        private V6Controls.V6VvarTextBox txtMalo;
+        private V6Controls.V6ColorTextBox txtDVT;
+        private V6Controls.V6ColorTextBox txtTenVT;
+        private V6Controls.V6ColorTextBox txtTenKH;
+        private V6Controls.V6ColorTextBox txtNgayHHSD;
+        private V6Controls.V6VvarTextBox txtMaVT;
+        private V6Controls.V6VvarTextBox txtMaKH;
+        private V6Controls.V6NumberTextBox txtSL_TD1;
+        private V6Controls.V6ColorTextBox txtMaSoThue;
+        private V6Controls.V6ColorTextBox txtDiaChi;
+        private V6Controls.V6NumberTextBox txtSL_TD2;
+        private System.Windows.Forms.Label lblStatus1;
+    }
+}

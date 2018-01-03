@@ -104,7 +104,7 @@ namespace V6Controls
             //Disable Enable property.
             //switch (m.Msg)
             //{
-            //    case WM_ENABLE:
+            //    case Win32.WM_ENABLE:
             //        // Prevent the message from reaching the control,
             //        // so the colors don't get changed by the default procedure.
             //        return; // <-- suppress WM_ENABLE message
@@ -257,32 +257,6 @@ namespace V6Controls
         private Color _BackColorDisabled = SystemColors.Control;
 
         private Color _ForeColorDisabled = Color.DarkGray;// SystemColors.WindowText;
-
-        private const int WM_ENABLE = 0xa;
-        
-        //protected override System.Windows.Forms.CreateParams CreateParams
-        //{
-        //    get
-        //    {
-        //        System.Windows.Forms.CreateParams cp = null;
-        //        // If the window starts out in a disabled state...
-        //        if (!this.Enabled)
-        //        {
-        //            // Prevent window being initialized in a disabled state:
-        //            this.Enabled = true;
-        //            // temporary ENABLED state
-        //            cp = base.CreateParams;
-        //            // create window in ENABLED state
-        //            this.Enabled = false;
-        //            // toggle it back to DISABLED state 
-        //        }
-        //        else
-        //        {
-        //            cp = base.CreateParams;
-        //        }
-        //        return cp;
-        //    }
-        //}
 
         /// <summary>
         /// Cờ readonly

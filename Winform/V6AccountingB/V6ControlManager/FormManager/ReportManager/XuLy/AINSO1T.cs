@@ -119,12 +119,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var ma_vt = (row.Cells["MA_VT"].Value ?? "").ToString().Trim();
 
                         var oldKeys = FilterControl.GetFilterParameters();
-                        var _reportFileF5 = "AINSO1TF5";
-                        var _reportTitleF5 = "SỔ CHI TIẾT VẬT TƯ";
-                        var _reportTitle2F5 = "Item detail";
+                        var reportFileF5 = "AINSO1TF5";
+                        var reportTitleF5 = "THẺ KHO";
+                        var reportTitle2F5 = "Item detail";
 
-                        var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5",_reportFileF5,
-                            _reportTitleF5, _reportTitle2F5, "", "", "");
+                        var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5", reportFileF5,
+                            reportTitleF5, reportTitle2F5, "", "", "");
                         
                         view.CodeForm = CodeForm;
                         //view.FilterControl.Call1(ma_vt);

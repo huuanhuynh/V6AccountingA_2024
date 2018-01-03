@@ -78,7 +78,10 @@ namespace V6ControlManager.FormManager.ReportManager
 
                             //Vị trí
                             lineControl.Location = new Point(3, lineTop);
-                            lineTop += lineControl.Height;
+                            if (lineControl.DefineInfo.Visible)
+                            {
+                                lineTop += lineControl.Height;
+                            }
                             filterControl.AddLineControls(lineControl);
                             //panel1.Controls.Add(lineControl);
 

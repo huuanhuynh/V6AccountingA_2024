@@ -6,9 +6,9 @@ using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
 {
-    public partial class ALREPORT1_FilterEditorForm : V6Form
+    public partial class DefineInfoEditorForm : V6Form
     {
-        public ALREPORT1_FilterEditorForm()
+        public DefineInfoEditorForm()
         {
             InitializeComponent();
         }
@@ -16,7 +16,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
         private string _define;
         private DefineInfo Info;
         public string FILTER_DEFINE { get; private set; }
-        public ALREPORT1_FilterEditorForm(string define)
+        public DefineInfoEditorForm(string define)
         {
             _define = define;
             InitializeComponent();
@@ -37,7 +37,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                         Control c = V6ControlFormHelper.GetControlByAccessibleName(this, property.Name);
                         if (c != null)
                         {
-                            SetControlValue(c, property.GetValue(Info, null));
+                            object value = property.GetValue(Info, null);
+                            if (value is bool)
+                            {
+                                value = (bool) value ? "1" : "0";
+                            }
+                            SetControlValue(c, value);
                         }
                     }
                 }
@@ -46,17 +51,23 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                     Control c = V6ControlFormHelper.GetControlByAccessibleName(this, field.Name);
                     if (c != null)
                     {
-                        SetControlValue(c, field.GetValue(Info));
+                        object value = field.GetValue(Info);
+                        if (value is bool)
+                        {
+                            value = (bool)value ? "1" : "0";
+                        }
+                        SetControlValue(c, value);
                     }
                 }
 
                 //Fix lại các trường có kiểu khác string.
-                txtNotEmpty.Text = Info.NotEmpty ? "1" : "0";
-                txtEnabled.Text = Info.Enabled ? "1" : "0";
-                txtVisible.Text = Info.Visible ? "1" : "0";
-                txtF2.Text = Info.F2 ? "1" : "0";
-                txtFilterStart.Text = Info.FilterStart ? "1" : "";
-                txtToUpper.Text = Info.ToUpper ? "1" : "";
+                //txtNotEmpty.Text = Info.NotEmpty ? "1" : "0";
+                //txtEnabled.Text = Info.Enabled ? "1" : "0";
+                //txtVisible.Text = Info.Visible ? "1" : "0";
+                //txtF2.Text = Info.F2 ? "1" : "0";
+                //txtUseLimitChars0.Text = Info.UseLimitChars0 ? "1" : "0";
+                //txtFilterStart.Text = Info.FilterStart ? "1" : "";
+                //txtToUpper.Text = Info.ToUpper ? "1" : "";
 
                 //Tự động gán các loại text
                 //txtControlType.Text = Info.ControlType;

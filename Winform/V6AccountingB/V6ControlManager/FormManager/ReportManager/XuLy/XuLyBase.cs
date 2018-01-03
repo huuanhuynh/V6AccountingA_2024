@@ -398,15 +398,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     _tbl = _ds.Tables[0];
                     _tbl.TableName = "DataTable1";
                 }
-                //if (_ds.Tables.Count > 1)
+                
+                //if (this is AAPPR_SOA1)
                 //{
-                //    _tbl2 = _ds.Tables[1];
-                //    _tbl2.TableName = "DataTable2";
+                //    DoNothing();
                 //}
                 //else
-                //{
-                //    _tbl2 = null;
-                //}
+                if (_ds.Tables.Count > 1)
+                {
+                    _tbl2 = _ds.Tables[1];
+                    _tbl2.TableName = "DataTable2";
+                }
+                else
+                {
+                    _tbl2 = null;
+                }
                 
                 _dataLoaded = true;
             }

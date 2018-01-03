@@ -77,6 +77,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.crystalReportViewer2 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.crystalReportViewer3 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.panelCRview = new System.Windows.Forms.Panel();
+            this.crystalReportViewer4 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -98,6 +99,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -436,7 +438,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
             this.crystalReportViewer1.DisplayStatusBar = false;
             this.crystalReportViewer1.DisplayToolbar = false;
-            this.crystalReportViewer1.Location = new System.Drawing.Point(1, 3);
+            this.crystalReportViewer1.Location = new System.Drawing.Point(0, 3);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
             this.crystalReportViewer1.ReuseParameterValuesOnRefresh = true;
             this.crystalReportViewer1.ShowCloseButton = false;
@@ -639,10 +641,35 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.panelCRview.Controls.Add(this.crystalReportViewer1);
             this.panelCRview.Controls.Add(this.crystalReportViewer3);
             this.panelCRview.Controls.Add(this.crystalReportViewer2);
+            this.panelCRview.Controls.Add(this.crystalReportViewer4);
             this.panelCRview.Location = new System.Drawing.Point(307, 189);
             this.panelCRview.Name = "panelCRview";
             this.panelCRview.Size = new System.Drawing.Size(667, 460);
             this.panelCRview.TabIndex = 1;
+            // 
+            // crystalReportViewer4
+            // 
+            this.crystalReportViewer4.ActiveViewIndex = -1;
+            this.crystalReportViewer4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.crystalReportViewer4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.crystalReportViewer4.Cursor = System.Windows.Forms.Cursors.Default;
+            this.crystalReportViewer4.DisplayStatusBar = false;
+            this.crystalReportViewer4.DisplayToolbar = false;
+            this.crystalReportViewer4.Location = new System.Drawing.Point(0, 3);
+            this.crystalReportViewer4.Name = "crystalReportViewer4";
+            this.crystalReportViewer4.ReuseParameterValuesOnRefresh = true;
+            this.crystalReportViewer4.ShowCloseButton = false;
+            this.crystalReportViewer4.ShowCopyButton = false;
+            this.crystalReportViewer4.ShowGroupTreeButton = false;
+            this.crystalReportViewer4.ShowLogo = false;
+            this.crystalReportViewer4.ShowParameterPanelButton = false;
+            this.crystalReportViewer4.ShowRefreshButton = false;
+            this.crystalReportViewer4.Size = new System.Drawing.Size(667, 457);
+            this.crystalReportViewer4.TabIndex = 39;
+            this.crystalReportViewer4.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.crystalReportViewer4.Visible = false;
             // 
             // InChungTuViewBase
             // 
@@ -730,5 +757,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private System.Windows.Forms.Button btnLt;
         public System.Windows.Forms.Panel panelCRview;
         private System.Windows.Forms.ToolStripMenuItem ExporttoExceltemplate;
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer4;
     }
 }

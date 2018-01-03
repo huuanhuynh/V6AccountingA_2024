@@ -19,10 +19,11 @@ namespace V6Controls.Forms.Viewer
         private object _data;
         private string _tableName, _showFields;
         private string[] _keyFields;
+        private IDictionary<string, object> _defaultData = null;
         private bool newRowNeeded;
 
         public DataEditorForm(object data, string tableName, string showFields, string keyFields, string title,
-            bool allowAdd, bool allowDelete, bool showSum = true)
+            bool allowAdd, bool allowDelete, bool showSum = true, IDictionary<string, object> defaultData = null)
         {
             InitializeComponent();
             if (!showSum)
@@ -32,6 +33,7 @@ namespace V6Controls.Forms.Viewer
             }
             dataGridView1.AllowUserToAddRows = allowAdd;
             dataGridView1.AllowUserToDeleteRows = allowDelete;
+            _defaultData = defaultData;
             Text = title;
             _data = data;
             _tableName = tableName;
@@ -402,17 +404,70 @@ namespace V6Controls.Forms.Viewer
         }
 
         string delete_info = "";
-
-        private void AddData(IDictionary<string, object> data)
+        
+        private IDictionary<string, object> AddData(IDictionary<string, object> data)
         {
             try
             {
                 toolStripStatusLabel1.Text = V6Text.Add + _tableName;
+
+                //Gán dữ liệu mặc định
+                if (_defaultData != null)
+                {
+                    data.AddRange(_defaultData, true);
+                }
+                //Remove UID in data
+                if (data.ContainsKey("UID")) data.Remove("UID");
+                //Tạo keys giả
+                IDictionary<string, object> keys = new Dictionary<string, object>();
+                foreach (string field in _keyFields)
+                {
+                    var FIELD = field.ToUpper();
+                    if(FIELD != "UID")
+                    {
+                        object value = "0";
+                        if (_defaultData != null && _defaultData.ContainsKey(FIELD))
+                        {
+                            value = _defaultData[FIELD];
+                        }
+                        data[FIELD] = value;
+                        keys.Add(FIELD, value);
+                    }
+                }
+                //Full string keys neu key rong
+                if (keys.Count == 0)
+                {
+                    foreach (DataGridViewColumn column in dataGridView1.Columns)
+                    {
+                        string FIELD = column.DataPropertyName.ToUpper();
+                        if (FIELD != "TIME0" && FIELD != "TIME2"
+                            && column.ValueType == typeof (string))
+                        {
+                            if(data.ContainsKey(FIELD)) keys[FIELD] = data[FIELD];
+                        }
+                    }
+                    //keys.AddRange(data);
+                }
                 
                 var result = V6BusinessHelper.Insert(_tableName, data);
                 if (result)
                 {
                     toolStripStatusLabel1.Text = string.Format("{0} {1}", _tableName, V6Text.AddSuccess);
+                    
+                    var selectResult = V6BusinessHelper.Select(_tableName, keys, "*");
+                    if (selectResult.TotalRows == 1)
+                    {
+                        return selectResult.Data.Rows[0].ToDataDictionary();
+                    }
+                    else if (selectResult.TotalRows > 1)
+                    {
+                        toolStripStatusLabel1.Text = "Có 2 dòng gần giống nhau.";
+                        return selectResult.Data.Rows[selectResult.TotalRows - 1].ToDataDictionary();
+                    }
+                    else
+                    {
+                        toolStripStatusLabel1.Text = "Dữ liệu không xác định.";
+                    }
                 }
             }
             catch (Exception ex)
@@ -420,6 +475,7 @@ namespace V6Controls.Forms.Viewer
                 toolStripStatusLabel1.Text = string.Format("{0} {1}", _tableName, V6Text.AddFail);
                 Logger.WriteToLog("DataEditorForm UpdateData " + ex.Message, Application.ProductName);
             }
+            return null;
         }
         
 
@@ -535,8 +591,21 @@ namespace V6Controls.Forms.Viewer
 
         private void dataGridView1_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
-            var newData = e.Row.ToDataDictionary();
-            AddData(newData);
+            var currentRow = dataGridView1.CurrentRow;
+            if (currentRow == null) return;
+
+            var newData = currentRow.ToDataDictionary();
+            var afterData = AddData(newData);
+            if (afterData != null)
+            {
+                foreach (KeyValuePair<string, object> item in afterData)
+                {
+                    if (dataGridView1.Columns.Contains(item.Key))
+                    {
+                        currentRow.Cells[item.Key].Value = item.Value;
+                    }
+                }
+            }
         }
 
         

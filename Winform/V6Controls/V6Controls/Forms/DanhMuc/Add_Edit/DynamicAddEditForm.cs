@@ -130,6 +130,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     Control input = null;
                     if (defineInfo.ControlType != null)
                     {
+                        //Tạo control theo loại.
                         if (defineInfo.ControlType.ToUpper() == "BUTTON")
                         {
                             input = new V6FormButton()
@@ -138,6 +139,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                 AccessibleName = "",
                                 Text = defineInfo.TextLang(V6Setting.IsVietnamese),
                                 UseVisualStyleBackColor = true
+                            };
+                        }
+                        else if (defineInfo.ControlType.ToUpper() == "V6VVARTEXTBOX")
+                        {
+                            input = new V6VvarTextBox()
+                            {
+                                VVar = defineInfo.Vvar,
                             };
                         }
                         else if (defineInfo.ControlType.ToUpper() == "LOOKUPTEXTBOX")
@@ -200,12 +208,23 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         tT.SetInitFilter(defineInfo.InitFilter);
                         tT.F2 = defineInfo.F2;
                     }
+
                     if (input != null)
                     {
+                        //Thêm một số thuộc tính khác.
                         if (!(input is V6NumberTextBox) && !(input is V6DateTimeColor) &&!(input is Button))
                         {
                             if (input is V6ColorTextBox)
                             V6ColorTextBox_MaxLength.Add((V6ColorTextBox) input, defineInfo.MaxLength);
+                        }
+                        if (input is V6ColorTextBox)
+                        {
+                            if (defineInfo.UseLimitChars0)
+                            {
+                                var tb = input as V6ColorTextBox;
+                                tb.UseLimitCharacters0 = defineInfo.UseLimitChars0;
+                                tb.LimitCharacters0 = defineInfo.LimitChars0;
+                            }
                         }
                         
                         //Bao lại các thuộc tính nếu chưa có.

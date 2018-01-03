@@ -120,6 +120,8 @@
             this.btnExcelTemplateView = new System.Windows.Forms.Button();
             this.txtExcel2View = new System.Windows.Forms.RichTextBox();
             this.btnExcel2View = new System.Windows.Forms.Button();
+            this.btnNhapXML = new System.Windows.Forms.Button();
+            this.btnXuatXML = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -798,6 +800,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage1.Controls.Add(this.btnNhapXML);
+            this.tabPage1.Controls.Add(this.btnXuatXML);
             this.tabPage1.Controls.Add(this.btnEditXml);
             this.tabPage1.Controls.Add(this.txtDmethod);
             this.tabPage1.Controls.Add(this.lblXml);
@@ -837,7 +841,7 @@
             this.btnEditXml.AccessibleName = "";
             this.btnEditXml.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditXml.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEditXml.Location = new System.Drawing.Point(701, 289);
+            this.btnEditXml.Location = new System.Drawing.Point(701, 313);
             this.btnEditXml.Name = "btnEditXml";
             this.btnEditXml.Size = new System.Drawing.Size(40, 25);
             this.btnEditXml.TabIndex = 22;
@@ -859,7 +863,7 @@
             this.txtDmethod.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDmethod.HoverColor = System.Drawing.Color.Yellow;
             this.txtDmethod.LeaveColor = System.Drawing.Color.White;
-            this.txtDmethod.Location = new System.Drawing.Point(99, 289);
+            this.txtDmethod.Location = new System.Drawing.Point(99, 313);
             this.txtDmethod.Margin = new System.Windows.Forms.Padding(4);
             this.txtDmethod.Multiline = true;
             this.txtDmethod.Name = "txtDmethod";
@@ -871,7 +875,7 @@
             // lblXml
             // 
             this.lblXml.AutoSize = true;
-            this.lblXml.Location = new System.Drawing.Point(7, 292);
+            this.lblXml.Location = new System.Drawing.Point(7, 316);
             this.lblXml.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblXml.Name = "lblXml";
             this.lblXml.Size = new System.Drawing.Size(29, 13);
@@ -891,7 +895,7 @@
             this.v6ColorTextBox16.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox16.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox16.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox16.Location = new System.Drawing.Point(99, 261);
+            this.v6ColorTextBox16.Location = new System.Drawing.Point(99, 290);
             this.v6ColorTextBox16.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox16.Name = "v6ColorTextBox16";
             this.v6ColorTextBox16.Size = new System.Drawing.Size(641, 20);
@@ -901,7 +905,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(7, 264);
+            this.label47.Location = new System.Drawing.Point(7, 293);
             this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(78, 13);
@@ -1351,6 +1355,34 @@
             this.btnExcel2View.UseVisualStyleBackColor = true;
             this.btnExcel2View.Click += new System.EventHandler(this.btnExcel2View_Click);
             // 
+            // btnNhapXML
+            // 
+            this.btnNhapXML.AccessibleName = "";
+            this.btnNhapXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNhapXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNhapXML.Location = new System.Drawing.Point(305, 258);
+            this.btnNhapXML.Name = "btnNhapXML";
+            this.btnNhapXML.Size = new System.Drawing.Size(202, 29);
+            this.btnNhapXML.TabIndex = 26;
+            this.btnNhapXML.Text = "Nhập XML";
+            this.btnNhapXML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNhapXML.UseVisualStyleBackColor = true;
+            this.btnNhapXML.Click += new System.EventHandler(this.btnNhapXML_Click);
+            // 
+            // btnXuatXML
+            // 
+            this.btnXuatXML.AccessibleName = "";
+            this.btnXuatXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXuatXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXuatXML.Location = new System.Drawing.Point(97, 258);
+            this.btnXuatXML.Name = "btnXuatXML";
+            this.btnXuatXML.Size = new System.Drawing.Size(202, 29);
+            this.btnXuatXML.TabIndex = 27;
+            this.btnXuatXML.Text = "Xuất XML format";
+            this.btnXuatXML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXuatXML.UseVisualStyleBackColor = true;
+            this.btnXuatXML.Click += new System.EventHandler(this.btnXuatXML_Click);
+            // 
             // AlbcAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1494,5 +1526,7 @@
         private V6NumberTextBox txtSoLien;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
+        protected System.Windows.Forms.Button btnNhapXML;
+        protected System.Windows.Forms.Button btnXuatXML;
     }
 }

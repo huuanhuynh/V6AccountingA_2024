@@ -270,7 +270,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void ChonDanhSachDonVi()
         {
-            txtDanhSachDonVi.Lookup(true);
+            txtDanhSachDonVi.Lookup(LookupMode.Multi);
         }
 
         private void btnSaveAs_Click(object sender, EventArgs e)

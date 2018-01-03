@@ -7,9 +7,10 @@
     {
         public string Value = "";
         /// <summary>
-        /// 0: Value = 0 hoặc null vẫn gán lên form.
-        /// 1: Value khác null mới gán
-        /// 2: Kiểm tra form = null(rỗng) mới gán
+        /// <para>Kiểu</para>
+        /// <para>0: Value = 0 hoặc null vẫn gán lên form.</para>
+        /// <para>1: Value khác null mới gán.</para>
+        /// <para>2: Kiểm tra form = null(rỗng) mới gán.</para>
         /// </summary>
         public string Type1 = "";
 

@@ -1556,6 +1556,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 if (btnNext.Enabled) btnNext.PerformClick();
             }
+            else if (keyData == (Keys.Control | Keys.Enter))
+            {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    detail1.btnNhan.PerformClick();
+                }
+                else if (detail3.MODE == V6Mode.Add || detail3.MODE == V6Mode.Edit)
+                {
+                    detail3.btnNhan.PerformClick();
+                }
+                else
+                {
+                    btnLuu.PerformClick();
+                }
+            }
             else if (keyData == Keys.Escape)
             {
                 if (detail1.MODE == V6Mode.Add)
@@ -1606,7 +1621,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     }
                 }
             }
-            else if (keyData == Keys.F)
+            else if (keyData == Keys.F7)
             {
                 LuuVaIn();
             }
