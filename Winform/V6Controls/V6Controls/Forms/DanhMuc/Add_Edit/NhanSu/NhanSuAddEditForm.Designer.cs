@@ -1209,7 +1209,8 @@
             // 
             // v6LookupTextBox12
             // 
-            this.v6LookupTextBox12.AccessibleName = "";
+            this.v6LookupTextBox12.AccessibleName = "education";
+            this.v6LookupTextBox12.AccessibleName2 = "";
             this.v6LookupTextBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -1224,7 +1225,7 @@
             this.v6LookupTextBox12.Location = new System.Drawing.Point(501, 35);
             this.v6LookupTextBox12.Margin = new System.Windows.Forms.Padding(5);
             this.v6LookupTextBox12.Name = "v6LookupTextBox12";
-            this.v6LookupTextBox12.NeighborFields = "ETHNIC_ID";
+            this.v6LookupTextBox12.NeighborFields = "";
             this.v6LookupTextBox12.ParentData = null;
             this.v6LookupTextBox12.Size = new System.Drawing.Size(209, 23);
             this.v6LookupTextBox12.TabIndex = 13;

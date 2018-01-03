@@ -1,0 +1,493 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Threading;
+using System.Windows.Forms;
+using V6AccountingBusiness;
+using V6Controls;
+using V6Controls.Forms;
+using V6Init;
+using V6Tools.V6Convert;
+using Timer = System.Windows.Forms.Timer;
+
+namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
+{
+    public class XLSHRPERSONAL_Control : XuLyBase
+    {
+        private readonly V6Categories _categories = new V6Categories();
+
+        private const string TABLE_NAME = "HRPERSONAL";
+        //  private string[] ID_FIELDS = "NGAY,MA_NS".Split(',');
+        private string ID_FIELDS = "EMP_ID";
+        private string CHECK_FIELDS = "EMP_ID", IDS_CHECK = "EMP_ID";
+        /// <summary>
+        /// <para>01: IsExistOneCode_List</para>
+        /// <para>21: IsValidTwoCode_OneDate(</para>
+        /// </summary>
+        string TYPE_CHECK = "21";
+        private DataTable data;
+        public XLSHRPERSONAL_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
+        {
+
+        }
+
+        public override void SetStatus2Text()
+        {
+            V6ControlFormHelper.SetStatusText2("F9 Chuyển");
+        }
+
+        protected override void MakeReport2()
+        {
+            try
+            {
+                FilterControl.UpdateValues();
+
+                data = V6Tools.V6Convert.Excel_File
+                    .Sheet1ToDataTable(FilterControl.String1);
+                if (FilterControl.Check1)
+                {
+                    if (!string.IsNullOrEmpty(FilterControl.String2) && !string.IsNullOrEmpty(FilterControl.String3))
+                    {
+                        var from = "A";
+                        if (FilterControl.String2.StartsWith("TCVN3")) from = "A";
+                        if (FilterControl.String2.StartsWith("VNI")) from = "V";
+                        var to = "U";
+                        if (FilterControl.String3.StartsWith("TCVN3")) to = "A";
+                        if (FilterControl.String3.StartsWith("VNI")) to = "V";
+                        data = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(data, from, to);
+                    }
+                    else
+                    {
+                        V6ControlFormHelper.ShowMessage("Chưa chọn mã nguồn và đích.");
+                    }
+                }
+                dataGridView1.DataSource = data;
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+        }
+
+        #region ==== Xử lý F8 ==== Đang chạy giống F9 (copy chưa sửa lại)
+        protected override void XuLyF8()
+        {
+            return;
+            try
+            {
+                Timer tF8 = new Timer();
+                tF8.Interval = 500;
+                tF8.Tick += tF8_Tick;
+                Thread t = new Thread(F8Thread);
+                CheckForIllegalCrossThreadCalls = false;
+                t.IsBackground = true;
+                t.Start();
+                tF8.Start();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".XuLyF8: " + ex.Message);
+            }
+        }
+
+        private bool F8Running;
+        private string F8Error = "";
+        private string F8ErrorAll = "";
+        private void F8Thread()
+        {
+            F8Running = true;
+            F8ErrorAll = "";
+
+            int i = 0, stt = 0;
+
+            while (i < dataGridView1.Rows.Count)
+            {
+                DataGridViewRow row = dataGridView1.Rows[i];
+                var dataDic = row.ToDataDictionary();
+                i++; stt++;
+                try
+                {
+                    string temp1_f8 = "";
+                    string checkfield_f8 = "";
+                    string danhSachField_f8 = FilterControl.Tag.ToString();
+                    var danhSachFied1_f8 = danhSachField_f8.Split(',');
+                    int soMaCong_f8 = Convert.ToInt32(FilterControl.Number1);
+                    string[] field_ma_cong_f8;
+                    for (int j = 0; j < soMaCong_f8; j++)
+                    {
+                        field_ma_cong_f8 = danhSachFied1_f8[j].Split(':');
+                        checkfield_f8 = field_ma_cong_f8[0];
+                        temp1_f8 = temp1_f8 + checkfield_f8;
+                    }
+                    if (temp1_f8.Length > 0)
+                    {
+                        temp1_f8 = "NGAY,MA_NS," + temp1_f8;
+                    }
+                    else
+                    {
+                        temp1_f8 = "NGAY,MA_NS";
+                    }
+
+                    string[] ID_FIELDS_NEW_F8 = temp1_f8.Split(',');
+                    if (dataDic.HaveValues(ID_FIELDS_NEW_F8))
+                    {
+                        if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
+                        {
+                            remove_list_g.Add(row);
+                        }
+                        else
+                        {
+                            F8Error += "Dòng " + stt + " thêm không được.";
+                            F8ErrorAll += "Dòng " + stt + " thêm không được.";
+                        }
+                    }
+                    else
+                    {
+                        F8Error += "Dòng " + stt + " không có đủ MA_KH và TEN_KH.";
+                        F8ErrorAll += "Dòng " + stt + " không có đủ MA_KH và TEN_KH.";
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    F8Error += "Dòng " + stt + ": " + ex.Message;
+                    F8ErrorAll += "Dòng " + stt + ": " + ex.Message;
+                }
+
+            }
+            F8Running = false;
+        }
+
+        void tF8_Tick(object sender, EventArgs e)
+        {
+            if (F8Running)
+            {
+                var cError = F8Error;
+                F8Error = F8Error.Substring(cError.Length);
+                V6ControlFormHelper.SetStatusText("F8 running "
+                    + (cError.Length > 0 ? "Error: " : "")
+                    + cError);
+            }
+            else
+            {
+                ((Timer)sender).Stop();
+                //btnNhan.PerformClick();
+                V6ControlFormHelper.SetStatusText("F8 running "
+                    + (F8Error.Length > 0 ? "Error: " : "")
+                    + F8Error);
+
+                this.ShowErrorMessage(GetType() + ".F8 finish "
+                    + (F8ErrorAll.Length > 0 ? "Error: " : "")
+                    + F8ErrorAll);
+                V6ControlFormHelper.ShowMainMessage("F8 finish!");
+            }
+        }
+        #endregion xử lý F8
+
+        private bool CheckTableHaveFields(DataTable table, IList<string> fields)
+        {
+            if (table == null) return false;
+            foreach (string field in fields)
+            {
+                if (!table.Columns.Contains(field)) return false;
+            }
+            return true;
+        }
+
+        private string danhSachCacCot;
+        #region ==== Xử lý F9 ====
+        protected override void XuLyF9()
+        {
+            try
+            {
+                if (data != null)
+                {
+                    //"GIO:X,SL_TD2:D,SL_TD3:O,GC_TD1";
+                    int soCot = Convert.ToInt32(FilterControl.Number1);
+                    //"GIO,SL_TD2,SL_TD3,GC_TD1";
+                    string danhSachField = FilterControl.Tag.ToString();
+                    var danhSachFied1 = danhSachField.Split(',');
+                    string temp1 = "";
+                    string checkfield = "";
+                    string[] field_genders;
+                    //cắt chuỗi lần 2
+                    for (int j = 0; j < soCot; j++)
+                    {
+                        field_genders = danhSachFied1[j].Split(':');
+                        checkfield = field_genders[0];
+                        if (checkfield != "")
+                        {
+                            if (temp1 != "")
+                            {
+                                temp1 = temp1 + "," + checkfield;
+                            }
+                            else
+                            {
+                                temp1 = checkfield;
+                            }
+                        }
+                    }
+                    if (temp1.Length > 0)
+                    {
+                        danhSachCacCot = temp1;
+                        checkfield = CHECK_FIELDS + "," + temp1;
+                        temp1 = "EMP_ID," + temp1;
+                    }
+                    else
+                    {
+                        checkfield = CHECK_FIELDS;
+                        temp1 = "EMP_ID";
+                        danhSachCacCot = "";
+                    }
+
+                    string[] ID_FIELDS_NEW = temp1.Split(',');
+
+
+                    check_list = ObjectAndString.SplitString(checkfield);
+                    DataTable table = new DataTable();
+                    if (!table.Columns.Contains("EMP_ID"))
+                    {
+                        Timer timerF9 = new Timer { Interval = 1000 };
+                        timerF9.Tick += tF9_Tick;
+                        remove_list_d = new List<DataRow>();
+                        Thread t = new Thread(F9Thread);
+                        t.SetApartmentState(ApartmentState.STA);
+                        CheckForIllegalCrossThreadCalls = false;
+                        t.IsBackground = true;
+                        t.Start();
+                        timerF9.Start();
+                        V6ControlFormHelper.SetStatusText("F9 running");
+                    }
+                    else
+                    {
+                        V6ControlFormHelper.ShowMessage("Dữ liệu không đủ thông tin");
+                    }
+                }
+                else
+                {
+                    V6ControlFormHelper.ShowMessage("Chưa có dữ liệu.");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".XuLyF9: " + ex.Message);
+            }
+        }
+
+        private bool f9Running;
+        private int total, index;
+
+        private string f9Error = "";
+        private string f9ErrorAll = "";
+        private string[] check_list = { };
+
+        private bool CheckValidDSCot(SortedDictionary<string, object> currentRow, string dsFields)
+        {
+            string[] columns = dsFields.Split(',');
+            bool result = false;
+            foreach (var field in columns)
+            {
+                if (ObjectAndString.ObjectToString(currentRow[field]) != "")
+                {
+                    result = true;
+                    break;
+                }
+            }
+            return result;
+        }
+        private void F9Thread()
+        {
+            try
+            {
+                f9Running = true;
+                f9ErrorAll = "";
+
+                if (data == null)
+                {
+                    f9ErrorAll = "Dữ liệu không hợp lệ!";
+                    goto End;
+                }
+                int soCot = Convert.ToInt32(FilterControl.Number1);
+                var danhSachCot = FilterControl.Tag.ToString();
+                var splitColums = danhSachCot.Split(',');
+                int stt = 0;
+                //DateTime last_day = V6Setting.M_SV_DATE;
+                total = data.Rows.Count;
+
+                for (int i = 0; i < total; i++)
+                {
+                    DataRow row = data.Rows[i];
+                    index = i;
+                    stt++;
+                    try
+                    {
+                        var dataDic = row.ToDataDictionary();
+
+                        var check_ok = false;
+                        //foreach (string field in check_list)
+                        //{
+                        //Kiem tra xem 1 trong 4 cot cuoi co thoa man dieu kien.
+                        var checkResult1 = CheckValidDSCot(dataDic, danhSachCacCot);
+                        var checkResult2 = false;
+                        if (
+                             (ObjectAndString.ObjectToString(dataDic["EMP_ID"]) != ""))
+                        {
+                            checkResult2 = true;
+                        }
+                        //}
+                        check_ok = checkResult1 && checkResult2;
+                        if (check_ok)
+                        {
+                            var id_list = ObjectAndString.SplitString(IDS_CHECK);
+                            var ma_cong = "";
+                            var gender = 1;
+                            var emp_id = dataDic["EMP_ID"].ToString().Trim();
+
+                            var valid = false;
+                            if (soCot == 0)
+                            {
+                                soCot = 1;
+                            }
+                            var insert_ok = false;
+                            bool check = check_ok;
+
+
+                            for (int j = 0; j < soCot; j++)
+                            {
+
+                                var field_gender = splitColums[j].Split(':');
+                                // TRẢ VỀ S11,1
+                                if (field_gender.Length >= 1)
+                                {
+                                    if (dataDic.ContainsKey(field_gender[0]))
+                                    {
+                                        if (ObjectAndString.ObjectToInt(field_gender[0]) == 1)
+                                        {
+                                            dataDic["GENDER"] = 1;
+                                        }
+                                        else
+                                        {
+                                            dataDic["GENDER"] = 0;
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (check)
+                            {
+
+                                switch (TYPE_CHECK)
+                                {
+                                    case "21":
+                                        valid = V6BusinessHelper.IsValidOneCode_Full(
+                                            TABLE_NAME, 1,
+                                            "EMP_ID", emp_id, emp_id
+                                            );
+                                        break;
+                                }
+                                // insert
+
+                                if (FilterControl.Check2) //Chỉ cập nhập mã mới.
+                                {
+                                    if (valid)
+                                    {
+                                        dataDic["STT_REC"] = V6BusinessHelper.GetNewLikeSttRec("HR1", "STT_REC", "M");
+                                        if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
+                                        {
+                                            insert_ok = true;
+                                            //remove_list_d.Add(row);
+                                        }
+                                        else
+                                        {
+                                            var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, emp_id);
+                                            f9Error += s;
+                                            f9ErrorAll += s;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (!valid) //Xóa cũ thêm mới.
+                                    {
+                                        var keys = new SortedDictionary<string, object>();
+                                        foreach (string field in id_list)
+                                        {
+                                            keys.Add(field.ToUpper(), row[field]);
+                                        }
+                                        _categories.Delete(TABLE_NAME, keys);
+                                    }
+                                    dataDic["STT_REC"] = V6BusinessHelper.GetNewLikeSttRec("HR1", "STT_REC", "M");
+
+                                    if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
+                                    {
+                                        //remove_list_d.Add(row);
+                                        insert_ok = true;
+                                    }
+                                    else
+                                    {
+                                        var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, emp_id);
+                                        f9Error += s;
+                                        f9ErrorAll += s;
+                                    }
+                                }
+
+
+                            }
+                            if (insert_ok)
+                            {
+                                remove_list_d.Add(row);
+                            }
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        f9Error += "Dòng " + stt + ": " + ex.Message;
+                        f9ErrorAll += "Dòng " + stt + ": " + ex.Message;
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                f9Error += ex.Message;
+                f9ErrorAll += ex.Message;
+            }
+
+            End:
+            f9Running = false;
+        }
+
+
+        void tF9_Tick(object sender, EventArgs e)
+        {
+            if (f9Running)
+            {
+                var cError = f9Error;
+                f9Error = f9Error.Substring(cError.Length);
+                V6ControlFormHelper.SetStatusText("F9 running " + index + "/" + total + ". " + cError);
+            }
+            else
+            {
+                ((Timer)sender).Stop();
+                RemoveDataRows(data);
+                SetStatusText("F9 finish " + (f9Error.Length > 0 ? "Error: " : "") + f9Error);
+                ShowMainMessage("F9 " + V6Text.Finish);
+                this.ShowInfoMessage("F9 " + V6Text.Finish
+                    + (f9ErrorAll.Length > 0 ? "Error: " : "")
+                    + f9ErrorAll);
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                }
+            }
+        }
+        #endregion xử lý F9
+
+
+    }
+}

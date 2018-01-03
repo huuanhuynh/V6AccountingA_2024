@@ -1950,6 +1950,12 @@
     <Compile Include="FormManager\ReportManager\Filter\HPAYROLLCALC.Designer.cs">
       <DependentUpon>HPAYROLLCALC.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\NhanSu\XLSHRPERSONAL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\NhanSu\XLSHRPERSONAL.Designer.cs">
+      <DependentUpon>XLSHRPERSONAL.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\NhanSu\XLSPRCONG2.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4082,6 +4088,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\NhanSu\HPRCONGCT_XL0.Designer.cs">
       <DependentUpon>HPRCONGCT_XL0.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\NhanSu\XLSHRPERSONAL_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\NhanSu\XLSPRCONG2_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6180,6 +6189,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\NhanSu\HPRCONGCT_Filter.resx">
       <DependentUpon>HPRCONGCT_Filter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\NhanSu\XLSHRPERSONAL.resx">
+      <DependentUpon>XLSHRPERSONAL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\NhanSu\XLSPRCONG2.resx">
       <DependentUpon>XLSPRCONG2.cs</DependentUpon>
     </EmbeddedResource>
@@ -6956,6 +6968,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\HPRCONGCT_XL0.resx">
       <DependentUpon>HPRCONGCT_XL0.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\XLSHRPERSONAL_Control.resx">
+      <DependentUpon>XLSHRPERSONAL_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\XLSPRCONG2_Control.resx">
       <DependentUpon>XLSPRCONG2_Control.cs</DependentUpon>

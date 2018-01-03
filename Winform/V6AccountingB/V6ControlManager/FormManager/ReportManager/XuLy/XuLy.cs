@@ -43,7 +43,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     //NHAN SU
                 case "XLSPRCONG2":
                     return new XLSPRCONG2_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
-
+                case "XLSHRPERSONAL":
+                    return new XLSHRPERSONAL_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AFASUAKH":
                     return new AFASUAKH(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "ATOSUAPB":
