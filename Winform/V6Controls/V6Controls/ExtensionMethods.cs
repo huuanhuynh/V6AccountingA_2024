@@ -513,8 +513,19 @@ namespace V6Controls
 
         #region ==== DataTable ====
 
-        public static DataRow AddRow(this DataTable table, IDictionary<string, object> data)
+        public static DataRow AddRow(this DataTable table, IDictionary<string, object> data, bool autoAddColumns = false)
         {
+            if (autoAddColumns)
+            {
+                foreach (string key in data.Keys)
+                {
+                    if (!table.Columns.Contains(key))
+                    {
+                        table.Columns.Add(key);
+                    }
+                }
+            }
+
             var newRow = table.NewRow();
             foreach (DataColumn column in table.Columns)
             {
@@ -655,6 +666,37 @@ namespace V6Controls
         #endregion dataTable
 
         #region ==== Control ====
+
+        /// <summary>
+        /// Báo động bằng BackColor.
+        /// </summary>
+        /// <param name="c"></param>
+        public static void Alert(this Control c)
+        {
+            Timer t = new Timer()
+            {
+                Interval = 800
+            };
+            var oldBackColor = c.BackColor;
+            var alertColor = Color.Red == oldBackColor ? Color.Yellow : Color.Red;
+            var tickCount = 0;
+            t.Tick += (sender, e) =>
+            {
+                tickCount++;
+                if (tickCount < 6)
+                {
+                    c.BackColor = c.BackColor == oldBackColor ? alertColor : oldBackColor;
+                }
+                else
+                {
+                    t.Stop();
+                    c.BackColor = oldBackColor;
+                    t.Dispose();
+                }
+            };
+            t.Start();
+        }
+
 
         public static void SetAllVvarBrotherFields(this Control control)
         {

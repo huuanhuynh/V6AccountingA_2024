@@ -425,11 +425,12 @@ namespace V6Controls.Forms
 
         public static Image LoadCopyImage(string path)
         {
+            Bitmap bm = null;
             using (Image im = Image.FromFile(path))
             {
-                Bitmap bm = new Bitmap(im);
-                return bm;
+                bm = new Bitmap(im);
             }
+            return bm;
         }
         
         public static void MoveTo(Control c, Point p)
@@ -3839,6 +3840,11 @@ namespace V6Controls.Forms
             }
         }
 
+        /// <summary>
+        /// Phân biệt loại initfilter. 1 cập nhập số liệu, 2 danh mục, 3 số dư, 4 báo cáo
+        /// </summary>
+        /// <param name="control"></param>
+        /// <returns></returns>
         public static string FindFilterType(Control control)
         {
             if (control == null)

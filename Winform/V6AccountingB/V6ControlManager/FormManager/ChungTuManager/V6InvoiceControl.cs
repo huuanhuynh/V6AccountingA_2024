@@ -525,6 +525,57 @@ namespace V6ControlManager.FormManager.ChungTuManager
             if (V6Setting.IsDesignTime) return;
             try
             {
+                string M_V6_ADV_FILTER = V6Options.V6OptionValues["M_V6_ADV_FILTER"];
+                string[] infos = ObjectAndString.SplitString(M_V6_ADV_FILTER);//"MA_SONB:ALSONB:1;");
+
+                foreach (string info in infos)
+                {
+                    var sss = info.Split(':');
+                    string NAME = "", tableName = "", status = "";
+                    if (sss.Length > 1)
+                    {
+                        NAME = sss[0].ToUpper();
+                        tableName = sss[1];
+                        status = sss.Length > 2 ? sss[2] : "";
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+
+                    var tempControl = V6ControlFormHelper.GetControlByAccessibleName(this, NAME);
+                    if (tempControl is V6VvarTextBox)
+                    {
+                        var txt = tempControl as V6VvarTextBox;
+
+                        var old_filter = txt.InitFilter;
+                        var adv_filter = V6Login.GetInitFilter(tableName, V6ControlFormHelper.FindFilterType(this));
+                        if (status == "1")
+                        {
+                            var adv_filter_extra = "[Status] <> '0'";
+                            if (!string.IsNullOrEmpty(adv_filter_extra))
+                            {
+                                adv_filter += (string.IsNullOrEmpty(adv_filter) ? "" : " and ") + adv_filter_extra;
+                            }
+                        }
+                        var new_filter = old_filter;
+                        if (string.IsNullOrEmpty(new_filter))
+                        {
+                            new_filter = adv_filter;
+                        }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(adv_filter))
+                            {
+                                new_filter = string.Format("({0}) and ({1})", old_filter, adv_filter);
+                            }
+                        }
+                        txt.SetInitFilter(new_filter);
+                    }
+                }
+
+                return;
                 //MA_KH
                 var temp_control = V6ControlFormHelper.GetControlByAccessibleName(this, "MA_KH");
                 if (temp_control is V6VvarTextBox)
@@ -565,6 +616,33 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         init_filter += (string.IsNullOrEmpty(init_filter) ? "" : " and ") + init_filter_extra;
                     }
                     txt.SetInitFilter(init_filter);
+                }
+
+                //MA_SONB
+                temp_control = V6ControlFormHelper.GetControlByAccessibleName(this, "MA_SONB");
+                if (temp_control is V6VvarTextBox)
+                {
+                    var txt = temp_control as V6VvarTextBox;
+                    var old_filter = txt.InitFilter;
+                    var adv_filter = V6Login.GetInitFilter("ALSONB", V6ControlFormHelper.FindFilterType(this));
+                    var adv_filter_extra = "[Status] <> '0'";
+                    if (!string.IsNullOrEmpty(adv_filter_extra))
+                    {
+                        adv_filter += (string.IsNullOrEmpty(adv_filter) ? "" : " and ") + adv_filter_extra;
+                    }
+                    var new_filter = old_filter;
+                    if (string.IsNullOrEmpty(new_filter))
+                    {
+                        new_filter = adv_filter;
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(adv_filter))
+                        {
+                            new_filter = string.Format("({0}) and ({1})", old_filter, adv_filter);
+                        }
+                    }
+                    txt.SetInitFilter(new_filter);
                 }
             }
             catch (Exception ex)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -343,6 +344,69 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             {
                 this.WriteExLog(GetType() + ".DoEditXml", ex);
             }
+        }
+
+
+        private void DoExportXml()
+        {
+            try
+            {
+                var saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Xml|*.xml");
+                if (string.IsNullOrEmpty(saveFile)) return;
+
+                DataSet exportDataSet = new DataSet("ALBCEXCELFORMAT");
+                DataTable dataTable = new DataTable("ExcelConfig");
+                IDictionary<string, object> data = V6ControlFormHelper.GetFormDataDictionary(tabPage1);
+                //Bỏ qua một số dữ liệu
+                if (data.ContainsKey("EXTRA_PARA")) data.Remove("EXTRA_PARA");
+                if (data.ContainsKey("MMETHOD")) data.Remove("MMETHOD");
+                dataTable.AddRow(data, true);
+                exportDataSet.Tables.Add(dataTable.Copy());
+                
+                FileStream fs = new FileStream(saveFile, FileMode.Create);
+                exportDataSet.WriteXml(fs);
+                fs.Close();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".DoExportXml", ex);
+            }
+        }
+
+        private void DoImportXml()
+        {
+            try
+            {
+                var openFile = V6ControlFormHelper.ChooseOpenFile(this, "Xml|*.xml");
+                if (string.IsNullOrEmpty(openFile)) return;
+                FileStream fs = new FileStream(openFile, FileMode.Open);
+                DataSet exportDataSet = new DataSet("ALBCEXCELFORMAT");
+                exportDataSet.ReadXml(fs);
+                fs.Close();
+                if (exportDataSet.Tables.Count > 0 && exportDataSet.Tables[0].Rows.Count > 0)
+                {
+                    var data = exportDataSet.Tables[0].Rows[0].ToDataDictionary();
+                    //Bỏ qua một số dữ liệu
+                    if (data.ContainsKey("EXTRA_PARA")) data.Remove("EXTRA_PARA");
+                    if (data.ContainsKey("MMETHOD")) data.Remove("MMETHOD");
+                    //Gán lên form.
+                    V6ControlFormHelper.SetSomeDataDictionary(tabPage1, data);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".DoImportXml", ex);
+            }
+        }
+
+        private void btnXuatXML_Click(object sender, EventArgs e)
+        {
+            DoExportXml();
+        }
+
+        private void btnNhapXML_Click(object sender, EventArgs e)
+        {
+            DoImportXml();
         }
     }
 }

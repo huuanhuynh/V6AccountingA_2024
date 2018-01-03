@@ -187,7 +187,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public virtual string Kieu_post { get; set; }
 
         /// <summary>
-        /// Lấy danh sach tham so
+        /// Lấy danh sách tham số.
         /// </summary>
         /// <returns></returns>
         public virtual List<SqlParameter> GetFilterParameters()

@@ -188,6 +188,12 @@ namespace V6Init
         /// </summary>
         public static bool IsLocal { get { return !IsNetwork; } }
 
+        /// <summary>
+        /// .
+        /// </summary>
+        /// <param name="tableName">.</param>
+        /// <param name="filterType">Phân biệt loại initfilter. 1 cập nhập số liệu, 2 danh mục, 3 số dư, 4 báo cáo</param>
+        /// <returns></returns>
         public static string GetInitFilter(string tableName, string filterType)
         {
             string result = "";

@@ -304,6 +304,14 @@ namespace V6Controls
                 {
                     // Đã xử lý KeyDown Enter.
                     _checkOnLeave_OnEnter = false;
+                    //if (!Looking && gotfocustext != Text)
+                    //{
+                    //    CallDoV6LostFocus();
+                    //}
+                    //else
+                    //{
+                    //    CallDoV6LostFocusNoChange();
+                    //}
                 }
                 else
                 {
@@ -358,6 +366,14 @@ namespace V6Controls
             else if (!_checkOnLeave && !ReadOnly && Visible && Enabled)
             {
                 ExistRowInTable(Text.Trim());
+                if (!Looking && gotfocustext != Text)
+                {
+                    CallDoV6LostFocus();
+                }
+                else
+                {
+                    CallDoV6LostFocusNoChange();
+                }
             }
         }
 
