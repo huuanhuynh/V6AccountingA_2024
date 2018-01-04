@@ -21,8 +21,15 @@ namespace V6Tools.V6Convert
             }
         }
 
-        public static DataTable Sheet1ToDataTable(string fileName)
+        /// <summary>
+        /// Đọc dữ liệu trong Sheet1
+        /// </summary>
+        /// <param name="fileName">Tên file Excel.</param>
+        /// <param name="beginRow">Dòng bắt đầu (Column name).</param>
+        /// <returns></returns>
+        public static DataTable Sheet1ToDataTable(string fileName, int beginRow = 0)
         {
+            if (beginRow < 0) beginRow = 0;
             DataTable sheetTable = new DataTable();
             try
             {
@@ -80,7 +87,7 @@ namespace V6Tools.V6Convert
                     //Tao tieu de table tu row 0
                     for (int col = 0; col <= lastCol; col++)
                     {
-                        text = workbook.getText(0, col);
+                        text = workbook.getText(beginRow, col);
                         var type = workbook.getType(1, col);
 
                         if (sheetTable.Columns.Contains(text))
@@ -94,7 +101,7 @@ namespace V6Tools.V6Convert
                     }
 
                     //Lay du lieu tu row 1
-                    for (int rowIndex = 1; rowIndex <= lastRow; rowIndex++)
+                    for (int rowIndex = beginRow + 1; rowIndex <= lastRow; rowIndex++)
                     {
                         //get the last column of this row.
                         int lastColForRow = workbook.getLastColForRow(rowIndex);

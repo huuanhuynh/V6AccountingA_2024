@@ -44,9 +44,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             try
             {
                 FilterControl.UpdateValues();
-
+                int beginRow = (int) FilterControl.Number2 - 1;
                 data = V6Tools.V6Convert.Excel_File
-                    .Sheet1ToDataTable(FilterControl.String1);
+                    .Sheet1ToDataTable(FilterControl.String1, beginRow);
                 if (FilterControl.Check1)
                 {
                     if (!string.IsNullOrEmpty(FilterControl.String2) && !string.IsNullOrEmpty(FilterControl.String3))
@@ -312,6 +312,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 }
                 int soCot = Convert.ToInt32(FilterControl.Number1);
                 var danhSachCot = FilterControl.Tag.ToString();
+                string danhSachCot2 = ObjectAndString.ObjectToString(FilterControl.ObjectDictionary["DS_COT2"]).Trim();
                 var splitColums = danhSachCot.Split(',');
                 int stt = 0;
                 //DateTime last_day = V6Setting.M_SV_DATE;
@@ -324,124 +325,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     stt++;
                     try
                     {
-                        var dataDic = row.ToDataDictionary();
+                        
+                        XuLyThemMotNhanSu(stt, row, soCot, danhSachCot, danhSachCot2, splitColums);
+                        
 
-                        var check_ok = false;
-                        //foreach (string field in check_list)
-                        //{
-                        //Kiem tra xem 1 trong 4 cot cuoi co thoa man dieu kien.
-                        var checkResult1 = CheckValidDSCot(dataDic, danhSachCacCot);
-                        var checkResult2 = false;
-                        if (
-                             (ObjectAndString.ObjectToString(dataDic["EMP_ID"]) != ""))
-                        {
-                            checkResult2 = true;
-                        }
-                        //}
-                        check_ok = checkResult1 && checkResult2;
-                        if (check_ok)
-                        {
-                            var id_list = ObjectAndString.SplitString(IDS_CHECK);
-                            var ma_cong = "";
-                            var gender = 1;
-                            var emp_id = dataDic["EMP_ID"].ToString().Trim();
-
-                            var valid = false;
-                            if (soCot == 0)
-                            {
-                                soCot = 1;
-                            }
-                            var insert_ok = false;
-                            bool check = check_ok;
-
-
-                            for (int j = 0; j < soCot; j++)
-                            {
-
-                                var field_gender = splitColums[j].Split(':');
-                                // TRẢ VỀ S11,1
-                                if (field_gender.Length >= 1)
-                                {
-                                    if (dataDic.ContainsKey(field_gender[0]))
-                                    {
-                                        if (ObjectAndString.ObjectToInt(field_gender[0]) == 1)
-                                        {
-                                            dataDic["GENDER"] = 1;
-                                        }
-                                        else
-                                        {
-                                            dataDic["GENDER"] = 0;
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (check)
-                            {
-
-                                switch (TYPE_CHECK)
-                                {
-                                    case "21":
-                                        valid = V6BusinessHelper.IsValidOneCode_Full(
-                                            TABLE_NAME, 1,
-                                            "EMP_ID", emp_id, emp_id
-                                            );
-                                        break;
-                                }
-                                // insert
-
-                                if (FilterControl.Check2) //Chỉ cập nhập mã mới.
-                                {
-                                    if (valid)
-                                    {
-                                        dataDic["STT_REC"] = V6BusinessHelper.GetNewLikeSttRec("HR1", "STT_REC", "M");
-                                        if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
-                                        {
-                                            insert_ok = true;
-                                            //remove_list_d.Add(row);
-                                        }
-                                        else
-                                        {
-                                            var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, emp_id);
-                                            f9Error += s;
-                                            f9ErrorAll += s;
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    if (!valid) //Xóa cũ thêm mới.
-                                    {
-                                        var keys = new SortedDictionary<string, object>();
-                                        foreach (string field in id_list)
-                                        {
-                                            keys.Add(field.ToUpper(), row[field]);
-                                        }
-                                        _categories.Delete(TABLE_NAME, keys);
-                                    }
-                                    dataDic["STT_REC"] = V6BusinessHelper.GetNewLikeSttRec("HR1", "STT_REC", "M");
-
-                                    if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
-                                    {
-                                        //remove_list_d.Add(row);
-                                        insert_ok = true;
-                                    }
-                                    else
-                                    {
-                                        var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, emp_id);
-                                        f9Error += s;
-                                        f9ErrorAll += s;
-                                    }
-                                }
-
-
-                            }
-                            if (insert_ok)
-                            {
-                                remove_list_d.Add(row);
-                            }
-
-                        }
                     }
                     catch (Exception ex)
                     {
@@ -459,6 +346,251 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
             End:
             f9Running = false;
+        }
+
+        private void XuLyThemMotNhanSu(int stt, DataRow row, int soCot, string danhSachCot, string danhSachCot2, string[] splitColums)
+        {
+            var dataDic = row.ToDataDictionary();
+            var check_ok = false;
+            //foreach (string field in check_list)
+            //{
+            //Kiem tra xem 1 trong 4 cot cuoi co thoa man dieu kien.
+            var checkResult1 = CheckValidDSCot(dataDic, danhSachCacCot);
+            bool checkResult2 = ObjectAndString.ObjectToString(dataDic["EMP_ID"]) != "";
+            //}
+            check_ok = checkResult1 && checkResult2;
+
+            if (check_ok)
+            {
+                var id_list = ObjectAndString.SplitString(IDS_CHECK);
+                var ma_cong = "";
+                var gender = 1;
+                var emp_id = dataDic["EMP_ID"].ToString().Trim();
+
+                var valid = false;
+                if (soCot == 0)
+                {
+                    soCot = 1;
+                }
+                var insert_ok = false;
+                bool check = check_ok;
+
+
+                for (int j = 0; j < soCot; j++)
+                {
+
+                    var field_gender = splitColums[j].Split(':');
+                    // TRẢ VỀ S11,1
+                    if (field_gender.Length >= 1)
+                    {
+                        if (dataDic.ContainsKey(field_gender[0]))
+                        {
+                            if (ObjectAndString.ObjectToInt(field_gender[0]) == 1)
+                            {
+                                dataDic["GENDER"] = 1;
+                            }
+                            else
+                            {
+                                dataDic["GENDER"] = 0;
+                            }
+                        }
+                    }
+                }
+
+                if (check)
+                {
+
+                    switch (TYPE_CHECK)
+                    {
+                        case "21":
+                            valid = V6BusinessHelper.IsValidOneCode_Full(
+                                TABLE_NAME, 1,
+                                "EMP_ID", emp_id, emp_id
+                                );
+                            break;
+                    }
+                    // insert
+
+                    if (FilterControl.Check2) //Chỉ cập nhập mã mới.
+                    {
+                        if (valid)
+                        {
+                            dataDic["STT_REC"] = V6BusinessHelper.GetNewLikeSttRec("HR1", "STT_REC", "M");
+                            if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
+                            {
+                                insert_ok = true;
+                                //remove_list_d.Add(row);
+                            }
+                            else
+                            {
+                                var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, emp_id);
+                                f9Error += s;
+                                f9ErrorAll += s;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (!valid) //Xóa cũ thêm mới.
+                        {
+                            var keys = new SortedDictionary<string, object>();
+                            foreach (string field in id_list)
+                            {
+                                keys.Add(field.ToUpper(), row[field]);
+                            }
+                            _categories.Delete(TABLE_NAME, keys);
+                        }
+                        dataDic["STT_REC"] = V6BusinessHelper.GetNewLikeSttRec("HR1", "STT_REC", "M");
+
+                        if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
+                        {
+                            //remove_list_d.Add(row);
+                            insert_ok = true;
+                        }
+                        else
+                        {
+                            var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, emp_id);
+                            f9Error += s;
+                            f9ErrorAll += s;
+                        }
+                    }
+                }
+
+                if (insert_ok)
+                {
+                    XuLyThemBangBoSung(dataDic, danhSachCot2);
+                    remove_list_d.Add(row);
+                }
+
+            }
+        }
+
+        private void XuLyThemBangBoSung(SortedDictionary<string, object> dataDic, string danhSachCot2)
+        {
+            try
+            {
+                var dscot2ds = ObjectAndString.XmlStringToDataSet(danhSachCot2);
+                DataTable xmlConfig = dscot2ds.Tables[0];
+                string[] columns = "TABLENAME,FIRST_NAME,MID_NAME,LAST_NAME,TACH3,BIRTH_DATE,DATA".Split(',');
+                foreach (string column in columns)
+                {
+                    if (!xmlConfig.Columns.Contains(column))
+                    {
+                        xmlConfig.Columns.Add(column);
+                    }
+                }
+
+                int stt = 1;
+                foreach (DataRow row in xmlConfig.Rows)
+                {
+                    try
+                    {
+                        var insert_data = new SortedDictionary<string, object>();
+                        insert_data["STT_REC"] = dataDic["STT_REC"];
+                        insert_data["STT_REC0"] = ("00000" + stt).Right(5);
+                        string tableName = row["TABLENAME"].ToString().Trim();
+                        string firstName = row["FIRST_NAME"].ToString().Trim();
+                        string midName = row["MID_NAME"].ToString().Trim();
+                        string lastName = row["LAST_NAME"].ToString().Trim();
+
+                        if (firstName != "" && dataDic.ContainsKey(firstName))
+                        {
+                            firstName = dataDic[firstName].ToString().Trim();
+                            insert_data["FIRST_NAME"] = firstName;
+                        }
+                        else
+                        {
+                            firstName = "";
+                        }
+                        
+                        if (midName != "" && dataDic.ContainsKey(midName))
+                        {
+                            midName = dataDic[midName].ToString().Trim();
+                            insert_data["MID_NAME"] = midName;
+                        }
+                        else
+                        {
+                            midName = "";
+                        }
+                        
+                        if (lastName != "" && dataDic.ContainsKey(lastName))
+                        {
+                            lastName = dataDic[lastName].ToString().Trim();
+                            insert_data["LAST_NAME"] = lastName;
+                        }
+                        else
+                        {
+                            lastName = "";
+                        }
+
+                        string tach3 = row["TACH3"].ToString().Trim();
+                        if (tach3 != "" && dataDic.ContainsKey(tach3))
+                        {
+                            string fullName = dataDic[tach3].ToString().Trim();
+                            if (string.IsNullOrEmpty(fullName))
+                            {
+                                continue;
+                            }
+
+                            var sss = fullName.Split(' ');
+                            if (sss.Length <= 1)
+                            {
+                                firstName = fullName;
+                                insert_data["FIRST_NAME"] = firstName;
+                            }
+                            else
+                            {
+                                lastName = sss[0];
+                                insert_data["LAST_NAME"] = lastName;
+                                firstName = sss[sss.Length - 1];
+                                insert_data["FIRST_NAME"] = firstName;
+                                int length = fullName.Length - lastName.Length - firstName.Length - 2;
+                                midName = length > 0 ? fullName.Substring(lastName.Length + 1, length) : "";
+                                insert_data["MID_NAME"] = midName;
+                            }
+                        }
+                        else
+                        {
+                            if (string.IsNullOrEmpty(firstName + midName + lastName))
+                            {
+                                continue;
+                            }
+                        }
+
+                        string birthDate = row["BIRTH_DATE"].ToString().Trim();
+                        if (birthDate != "" && dataDic.ContainsKey(birthDate))
+                        {
+                            insert_data["BIRTH_DATE"] = ObjectAndString.ObjectToString(dataDic[birthDate]);
+                        }
+                        string dataFix = row["DATA"].ToString().Trim();
+                        if (dataFix != "")
+                        {
+                            var sss = dataFix.Split(';');
+                            foreach (string s in sss)
+                            {
+                                var ss = s.Split(':');
+                                if (ss.Length >= 2)
+                                {
+                                    insert_data[ss[0]] = ss[1];
+                                }
+                            }
+                        }
+
+                        if (V6BusinessHelper.Insert(tableName, insert_data))
+                        {
+                            stt++;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        this.WriteExLog(GetType() + ".XuLyThemBangBoSung_For", ex);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XuLyThemBangBoSung", ex);
+            }
         }
 
 

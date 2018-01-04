@@ -81,8 +81,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 var dataRow = AlreportData.Rows[0];
                 var xml = dataRow["MMETHOD"].ToString().Trim();
                 if (xml == "") return;
-                DataSet ds = new DataSet();
-                ds.ReadXml(new StringReader(xml));
+                var ds = ObjectAndString.XmlStringToDataSet(xml);
+                //ds.ReadXml(new StringReader(xml));
                 if (ds.Tables.Count <= 0) return;
 
                 var data = ds.Tables[0];

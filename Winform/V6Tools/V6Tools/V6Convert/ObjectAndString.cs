@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 
 
 namespace V6Tools.V6Convert
@@ -447,6 +449,20 @@ namespace V6Tools.V6Convert
             if (g > 255) g = 255;
             if (b > 255) b = 255;
             return Color.FromArgb(r, g, b);
+        }
+
+        public static DataSet XmlStringToDataSet(string xml)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                ds.ReadXml(new StringReader(xml));
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }

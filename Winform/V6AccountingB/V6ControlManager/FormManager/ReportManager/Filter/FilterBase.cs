@@ -65,7 +65,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// Dùng procedure này để lấy dữ liệu. Code trong phần gọi proc của formReportBase.
         /// </summary>
         public string ProcedureName;
-        public decimal Number1, Number2, Number3;
+
+        public decimal Number1;
+        public decimal Number2;
+        public decimal Number3;
+
         /// <summary>
         /// Gán giá trị ở Filter GetFilterParameters
         /// </summary>

@@ -25,6 +25,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             ma_vt_filterLine.VvarTextBox.Text = row["MA_VT"].ToString().Trim();
             GIA2NumberTextBox.NumberTextBox.Value = ObjectAndString.ObjectToDecimal(row["GIA2"]);
+
+            GIA2NumberTextBox.IsSelected = true;
+            ma_vt_filterLine.IsSelected = true;
+
         }
 
         /// <summary>

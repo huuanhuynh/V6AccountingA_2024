@@ -64,6 +64,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     if (row.ContainsKey(PARENT_FIELD))
                     {
                         line.SetValue(ObjectAndString.ObjectToString(row[PARENT_FIELD]));
+                        if (line.DefineInfo.Enabled == false)
+                        {
+                            line.IsSelected = true;
+                        }
                     }
                 }
             }
