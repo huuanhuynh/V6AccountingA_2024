@@ -271,7 +271,7 @@
             this.txtma_vttg.Name = "txtma_vttg";
             this.txtma_vttg.Size = new System.Drawing.Size(150, 23);
             this.txtma_vttg.TabIndex = 1;
-            this.txtma_vttg.VVar = "ma_vttg";
+            this.txtma_vttg.UseLimitCharacters0 = true;
             // 
             // v6ColorTextBox16
             // 

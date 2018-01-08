@@ -162,6 +162,7 @@
             this.txtMa_ytcp.Name = "txtMa_ytcp";
             this.txtMa_ytcp.Size = new System.Drawing.Size(171, 23);
             this.txtMa_ytcp.TabIndex = 1;
+            this.txtMa_ytcp.UseLimitCharacters0 = true;
             // 
             // label5
             // 
@@ -1149,7 +1150,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "YeuToChiPhiSXLTAddEditForm";
             this.Size = new System.Drawing.Size(823, 525);
-            
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.v6TabControl1.ResumeLayout(false);

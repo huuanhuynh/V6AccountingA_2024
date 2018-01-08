@@ -109,6 +109,7 @@
             this.txtma_mauhd.Name = "txtma_mauhd";
             this.txtma_mauhd.Size = new System.Drawing.Size(183, 23);
             this.txtma_mauhd.TabIndex = 1;
+            this.txtma_mauhd.UseLimitCharacters0 = true;
             this.txtma_mauhd.VVar = "ma_mauhd";
             // 
             // label7

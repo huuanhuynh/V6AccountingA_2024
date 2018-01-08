@@ -670,7 +670,7 @@ namespace H_document
         void document_PrintPage(object sender, PrintPageEventArgs e)
         {
             SelectedObjects = null;
-            DrawPage(e.Graphics, Mode.Print);
+            DrawPage(e.Graphics, HMode.Print);
             e.HasMorePages = false;
         }
 
@@ -680,7 +680,7 @@ namespace H_document
         /// <param name="graphics"></param>
         public void DrawPage(Graphics graphics)
         {
-            DrawPage(graphics, Mode.PrintPreview);
+            DrawPage(graphics, HMode.PrintPreview);
         }
 
         /// <summary>
@@ -688,12 +688,12 @@ namespace H_document
         /// </summary>
         /// <param name="graphics"></param>
         /// <param name="drawMode"></param>
-        public void DrawPage(Graphics graphics, Mode drawMode)
+        public void DrawPage(Graphics graphics, HMode drawMode)
         {
             try
             {
                 if (_documentObjects == null || _documentObjects.Count == 0) return;
-                if (drawMode == Mode.Print) SelectedObjects = null;
+                if (drawMode == HMode.Print) SelectedObjects = null;
                 // Save the GraphicsState.
                 GraphicsState gs = graphics.Save();
                 graphics.SmoothingMode = SmoothingMode.HighQuality;
@@ -740,7 +740,7 @@ namespace H_document
                     Details.DrawToGraphics(graphics, Margins, _parameters, drawMode, SelectedObjects);
 
                 //Vẽ đường bao margin
-                if (drawMode != Mode.Print)// && drawMode != Mode.PrintPreview)
+                if (drawMode != HMode.Print)// && drawMode != Mode.PrintPreview)
                 {
                     Pen pen = new Pen(Color.LightGray, 0.1f);
                     pen.DashStyle = DashStyle.Dot;

@@ -243,6 +243,7 @@
             this.TxtMa_sonb.Name = "TxtMa_sonb";
             this.TxtMa_sonb.Size = new System.Drawing.Size(126, 23);
             this.TxtMa_sonb.TabIndex = 0;
+            this.TxtMa_sonb.UseLimitCharacters0 = true;
             // 
             // v6TabControl1
             // 

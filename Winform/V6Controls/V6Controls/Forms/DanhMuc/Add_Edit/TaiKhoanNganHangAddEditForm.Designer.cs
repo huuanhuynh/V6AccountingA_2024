@@ -84,6 +84,7 @@
             this.txtTK.Name = "txtTK";
             this.txtTK.Size = new System.Drawing.Size(138, 20);
             this.txtTK.TabIndex = 0;
+            this.txtTK.UseLimitCharacters0 = true;
             this.txtTK.VVar = "tk";
             // 
             // label1

@@ -269,7 +269,7 @@
             this.point1.TabIndex = 9;
             this.point1.TextChanged += new System.EventHandler(this.only2_TextChanged);
             // 
-            // bengin1
+            // begin1
             // 
             this.begin1.AccessibleName = "Begin1";
             this.begin1.BackColor = System.Drawing.SystemColors.Window;
@@ -301,6 +301,7 @@
             this.TxtMa_nt.Name = "TxtMa_nt";
             this.TxtMa_nt.Size = new System.Drawing.Size(129, 23);
             this.TxtMa_nt.TabIndex = 1;
+            this.TxtMa_nt.UseLimitCharacters0 = true;
             // 
             // checkBox1
             // 

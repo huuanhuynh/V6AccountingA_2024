@@ -654,6 +654,7 @@
             this.txtma_phuong.Name = "txtma_phuong";
             this.txtma_phuong.Size = new System.Drawing.Size(150, 23);
             this.txtma_phuong.TabIndex = 1;
+            this.txtma_phuong.UseLimitCharacters0 = true;
             this.txtma_phuong.VVar = "ma_phuong";
             // 
             // v6ColorTextBox3

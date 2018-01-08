@@ -1698,6 +1698,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     }
                 }
                 TinhTienNt2();
+                TinhTienVon();
             }
             catch (Exception ex)
             {
@@ -2763,7 +2764,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void TinhTienVon()
         {
-            
+            TinhGiaNt();
+
             _tienNt.Value = V6BusinessHelper.Vround((_soLuong.Value * _gia_nt.Value), M_ROUND_NT);
             _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * txtTyGia.Value), M_ROUND);
             if (_maNt == _mMaNt0)
@@ -2772,22 +2774,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
             }
         }
-        private void TinhGiaVon()
-        {
-            if (_soLuong.Value != 0)
-            {
-
-                _gia_nt.Value = V6BusinessHelper.Vround((_tienNt.Value / _soLuong.Value), M_ROUND_GIA_NT);
-                _gia.Value = V6BusinessHelper.Vround((_tien.Value / _soLuong.Value), M_ROUND_GIA);
-
-                if (_maNt == _mMaNt0)
-                {
-                    _gia.Value = _gia_nt.Value;
-
-                }
-            }
-        }
-        
+       
         private void TinhTienVon_GiaVon()
         {
             _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * txtTyGia.Value), M_ROUND);
@@ -2839,6 +2826,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".TinhGiaNt2: " + ex.Message);
+            }
+        }
+
+        private void TinhGiaNt()
+        {
+            try
+            {
+
+                _gia.Value = V6BusinessHelper.Vround((_gia_nt.Value * txtTyGia.Value), M_ROUND_GIA_NT);
+                if (_maNt == _mMaNt0)
+                {
+                    _gia.Value = _gia_nt.Value;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".TinhGiaNt: " + ex.Message);
             }
         }
 

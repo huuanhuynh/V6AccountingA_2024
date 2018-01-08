@@ -139,6 +139,7 @@
             this.TxtMa_dvcs.Name = "TxtMa_dvcs";
             this.TxtMa_dvcs.Size = new System.Drawing.Size(171, 23);
             this.TxtMa_dvcs.TabIndex = 1;
+            this.TxtMa_dvcs.UseLimitCharacters0 = true;
             // 
             // TxtNH_DVCS1
             // 

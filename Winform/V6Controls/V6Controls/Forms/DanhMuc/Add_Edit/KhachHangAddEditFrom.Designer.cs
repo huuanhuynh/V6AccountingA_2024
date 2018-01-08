@@ -210,6 +210,7 @@
             this.txtMaKH.Name = "txtMaKH";
             this.txtMaKH.Size = new System.Drawing.Size(184, 23);
             this.txtMaKH.TabIndex = 0;
+            this.txtMaKH.UseLimitCharacters0 = true;
             // 
             // v6ColorTextBox3
             // 

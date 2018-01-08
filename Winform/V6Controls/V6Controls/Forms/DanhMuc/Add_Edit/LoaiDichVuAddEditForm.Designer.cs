@@ -37,6 +37,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtdvt = new V6Controls.V6ColorTextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtgia_nt = new V6Controls.V6NumberTextBox();
             this.checkBox1 = new V6Controls.V6CheckBox();
@@ -69,8 +71,6 @@
             this.v6ColorDateTimePick2 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.txtdvt = new V6Controls.V6ColorTextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -114,6 +114,7 @@
             this.txtma_loai.Name = "txtma_loai";
             this.txtma_loai.Size = new System.Drawing.Size(112, 23);
             this.txtma_loai.TabIndex = 0;
+            this.txtma_loai.UseLimitCharacters0 = true;
             // 
             // txtten_loai2
             // 
@@ -218,6 +219,35 @@
             this.tabPage1.Size = new System.Drawing.Size(713, 383);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
+            // 
+            // txtdvt
+            // 
+            this.txtdvt.AccessibleName = "DVT";
+            this.txtdvt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtdvt.BackColor = System.Drawing.SystemColors.Window;
+            this.txtdvt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtdvt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtdvt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtdvt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtdvt.HoverColor = System.Drawing.Color.Yellow;
+            this.txtdvt.LeaveColor = System.Drawing.Color.White;
+            this.txtdvt.Location = new System.Drawing.Point(131, 12);
+            this.txtdvt.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.txtdvt.Name = "txtdvt";
+            this.txtdvt.Size = new System.Drawing.Size(110, 23);
+            this.txtdvt.TabIndex = 0;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(23, 15);
+            this.label8.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(75, 17);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Đơn vị tính";
             // 
             // label7
             // 
@@ -770,35 +800,6 @@
             this.tabPage3.Size = new System.Drawing.Size(713, 383);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
-            // 
-            // txtdvt
-            // 
-            this.txtdvt.AccessibleName = "DVT";
-            this.txtdvt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtdvt.BackColor = System.Drawing.SystemColors.Window;
-            this.txtdvt.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtdvt.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtdvt.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtdvt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtdvt.HoverColor = System.Drawing.Color.Yellow;
-            this.txtdvt.LeaveColor = System.Drawing.Color.White;
-            this.txtdvt.Location = new System.Drawing.Point(131, 12);
-            this.txtdvt.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.txtdvt.Name = "txtdvt";
-            this.txtdvt.Size = new System.Drawing.Size(110, 23);
-            this.txtdvt.TabIndex = 0;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(23, 15);
-            this.label8.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 17);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "Đơn vị tính";
             // 
             // LoaiDichVuAddEditForm
             // 

@@ -47,12 +47,12 @@ namespace H_document.DocumentObjects
 
         public Image Picture { get; set; }
 
-        public override void DrawToGraphics(Graphics g, Margins margins, SortedDictionary<string, object> parameters, Mode drawMode, DocumentObject[] selectedObjects)
+        public override void DrawToGraphics(Graphics g, Margins margins, SortedDictionary<string, object> parameters, HMode drawMode, DocumentObject[] selectedObjects)
         {
             //Luôn luôn vẽ hình lên, không vẽ thì không còn là pictureObject nữa
             if(Picture != null) g.DrawImage(Picture, margins.Left + LeftF, margins.Top + TopF, WidthF, HeightF);
             //Vẽ khung bao quanh trong trường hợp không phải in
-            if (drawMode != Mode.Print)
+            if (drawMode != HMode.Print)
             {
                 Pen pen = new Pen(Color.LightGreen, 0.1f);
                 pen.DashStyle = DashStyle.DashDot;

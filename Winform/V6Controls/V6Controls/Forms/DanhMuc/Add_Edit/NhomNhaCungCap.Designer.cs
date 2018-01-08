@@ -95,6 +95,7 @@
             this.TXTMA_NH.Name = "TXTMA_NH";
             this.TXTMA_NH.Size = new System.Drawing.Size(100, 23);
             this.TXTMA_NH.TabIndex = 3;
+            this.TXTMA_NH.UseLimitCharacters0 = true;
             // 
             // checkBox1
             // 

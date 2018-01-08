@@ -126,11 +126,11 @@ namespace H_document.DocumentObjects
 
         public string[] ParameterNames = {};
 
-        public override void DrawToGraphics(Graphics g, Margins margins, SortedDictionary<string, object> parameters, Mode drawMode, DocumentObject[] selectedObjects)
+        public override void DrawToGraphics(Graphics g, Margins margins, SortedDictionary<string, object> parameters, HMode drawMode, DocumentObject[] selectedObjects)
         {
             //var fontOfNameText = new Font(FontName, FontSize, FontStyle);
             var drawText = Text;
-            if(drawMode == Mode.Print || drawMode == Mode.PrintPreview)
+            if(drawMode == HMode.Print || drawMode == HMode.PrintPreview)
             if (ParameterNames != null && parameters != null)
             {
                 foreach (string name in ParameterNames)

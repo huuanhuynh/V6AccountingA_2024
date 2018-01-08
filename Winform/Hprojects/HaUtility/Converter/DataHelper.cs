@@ -51,7 +51,7 @@ namespace HaUtility.Converter
 
         public static string ToJson<T>(this T o)
         {
-            return MyJson.ConvertToJson(o);
+            return HJson.ConvertToJson(o);
         }
         
         /// <summary>

@@ -118,6 +118,7 @@
             this.TXTma_ck.Name = "TXTma_ck";
             this.TXTma_ck.Size = new System.Drawing.Size(115, 23);
             this.TXTma_ck.TabIndex = 1;
+            this.TXTma_ck.UseLimitCharacters0 = true;
             this.TXTma_ck.VVar = "ma_ck";
             // 
             // v6ColorTextBox3

@@ -51,9 +51,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (TxtTk_me.Text.Trim() != "")
             {
-                var check_tk_me = Categories.IsExistOneCode_List("ABKH,ARA00", "Tk", TxtTk_me.Text.Trim());
-                if (check_tk_me)
-                    errors += "Tài khoản mẹ đã có phát sinh !\r\n";
+                if (TxtTk_me.Text.Trim() == TxtTk.Text.Trim())
+                {
+                    errors += "Tài khoản mẹ trùng tài khoản.\r\n";
+                }
+                else
+                {
+                    var check_tk_me = Categories.IsExistOneCode_List("ABKH,ARA00", "Tk", TxtTk_me.Text.Trim());
+                    if (check_tk_me)
+                        errors += "Tài khoản mẹ đã có phát sinh!\r\n";
+                }
             }
 
            

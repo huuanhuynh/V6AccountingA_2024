@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtMa_ytcp = new V6Controls.V6VvarTextBox();
+            this.txtTen_ytcp2 = new V6Controls.V6VvarTextBox();
+            this.txtTen_ytcp = new V6Controls.V6VvarTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtTK_DD = new V6Controls.V6VvarTextBox();
@@ -87,12 +93,6 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.txtMa_ytcp = new V6Controls.V6VvarTextBox();
-            this.txtTen_ytcp2 = new V6Controls.V6VvarTextBox();
-            this.txtTen_ytcp = new V6Controls.V6VvarTextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -114,6 +114,84 @@
             this.groupBox1.Size = new System.Drawing.Size(772, 111);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // txtMa_ytcp
+            // 
+            this.txtMa_ytcp.AccessibleName = "ma_ytcp";
+            this.txtMa_ytcp.BackColor = System.Drawing.Color.White;
+            this.txtMa_ytcp.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMa_ytcp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMa_ytcp.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMa_ytcp.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMa_ytcp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMa_ytcp.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMa_ytcp.LeaveColor = System.Drawing.Color.White;
+            this.txtMa_ytcp.Location = new System.Drawing.Point(175, 16);
+            this.txtMa_ytcp.Name = "txtMa_ytcp";
+            this.txtMa_ytcp.Size = new System.Drawing.Size(171, 23);
+            this.txtMa_ytcp.TabIndex = 1;
+            this.txtMa_ytcp.UseLimitCharacters0 = true;
+            // 
+            // txtTen_ytcp2
+            // 
+            this.txtTen_ytcp2.AccessibleName = "ten_ytcp2";
+            this.txtTen_ytcp2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTen_ytcp2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTen_ytcp2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTen_ytcp2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTen_ytcp2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTen_ytcp2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTen_ytcp2.LeaveColor = System.Drawing.Color.White;
+            this.txtTen_ytcp2.Location = new System.Drawing.Point(175, 74);
+            this.txtTen_ytcp2.Name = "txtTen_ytcp2";
+            this.txtTen_ytcp2.Size = new System.Drawing.Size(533, 23);
+            this.txtTen_ytcp2.TabIndex = 5;
+            // 
+            // txtTen_ytcp
+            // 
+            this.txtTen_ytcp.AccessibleName = "ten_ytcp";
+            this.txtTen_ytcp.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTen_ytcp.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTen_ytcp.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTen_ytcp.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTen_ytcp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTen_ytcp.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTen_ytcp.LeaveColor = System.Drawing.Color.White;
+            this.txtTen_ytcp.Location = new System.Drawing.Point(175, 45);
+            this.txtTen_ytcp.Name = "txtTen_ytcp";
+            this.txtTen_ytcp.Size = new System.Drawing.Size(533, 23);
+            this.txtTen_ytcp.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(10, 77);
+            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(109, 17);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Tên yếu tố Cp 2";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Mã yếu tố";
+            // 
+            // label2
+            // 
+            this.label2.AccessibleName = "";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 45);
+            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(97, 17);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Tên yếu tố Cp";
             // 
             // v6TabControl1
             // 
@@ -1042,86 +1120,9 @@
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(764, 402);
+            this.tabPage3.Size = new System.Drawing.Size(764, 339);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
-            // 
-            // txtMa_ytcp
-            // 
-            this.txtMa_ytcp.AccessibleName = "ma_ytcp";
-            this.txtMa_ytcp.BackColor = System.Drawing.Color.White;
-            this.txtMa_ytcp.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMa_ytcp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMa_ytcp.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMa_ytcp.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMa_ytcp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMa_ytcp.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMa_ytcp.LeaveColor = System.Drawing.Color.White;
-            this.txtMa_ytcp.Location = new System.Drawing.Point(175, 16);
-            this.txtMa_ytcp.Name = "txtMa_ytcp";
-            this.txtMa_ytcp.Size = new System.Drawing.Size(171, 23);
-            this.txtMa_ytcp.TabIndex = 1;
-            // 
-            // txtTen_ytcp2
-            // 
-            this.txtTen_ytcp2.AccessibleName = "ten_ytcp2";
-            this.txtTen_ytcp2.BackColor = System.Drawing.SystemColors.Window;
-            this.txtTen_ytcp2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTen_ytcp2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtTen_ytcp2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtTen_ytcp2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtTen_ytcp2.HoverColor = System.Drawing.Color.Yellow;
-            this.txtTen_ytcp2.LeaveColor = System.Drawing.Color.White;
-            this.txtTen_ytcp2.Location = new System.Drawing.Point(175, 74);
-            this.txtTen_ytcp2.Name = "txtTen_ytcp2";
-            this.txtTen_ytcp2.Size = new System.Drawing.Size(533, 23);
-            this.txtTen_ytcp2.TabIndex = 5;
-            // 
-            // txtTen_ytcp
-            // 
-            this.txtTen_ytcp.AccessibleName = "ten_ytcp";
-            this.txtTen_ytcp.BackColor = System.Drawing.SystemColors.Window;
-            this.txtTen_ytcp.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTen_ytcp.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtTen_ytcp.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtTen_ytcp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtTen_ytcp.HoverColor = System.Drawing.Color.Yellow;
-            this.txtTen_ytcp.LeaveColor = System.Drawing.Color.White;
-            this.txtTen_ytcp.Location = new System.Drawing.Point(175, 45);
-            this.txtTen_ytcp.Name = "txtTen_ytcp";
-            this.txtTen_ytcp.Size = new System.Drawing.Size(533, 23);
-            this.txtTen_ytcp.TabIndex = 3;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 77);
-            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(109, 17);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Tên yếu tố Cp 2";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 19);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã yếu tố";
-            // 
-            // label2
-            // 
-            this.label2.AccessibleName = "";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 45);
-            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Tên yếu tố Cp";
             // 
             // YeuToChiPhiSPDHAddEditForm
             // 
@@ -1133,7 +1134,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "YeuToChiPhiSPDHAddEditForm";
             this.Size = new System.Drawing.Size(784, 506);
-            
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.v6TabControl1.ResumeLayout(false);

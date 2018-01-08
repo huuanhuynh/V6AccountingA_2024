@@ -99,6 +99,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
             this.v6Label4 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.chkAuto_Ck = new V6Controls.V6CheckBox();
+            this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
+            this.v6Label28 = new V6Controls.V6Label();
             this.txtConLai = new V6Controls.V6NumberTextBox();
             this.btnChucNang = new V6Controls.Controls.DropDownButton();
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -199,8 +202,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
-            this.v6Label28 = new V6Controls.V6Label();
+            this.TxtL_AM_INFO = new V6Controls.V6ColorTextBox();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -352,6 +354,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.tabKhac.AccessibleDescription = "ASOCTSOAP00078";
             this.tabKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabKhac.Controls.Add(this.TxtL_AM_INFO);
             this.tabKhac.Controls.Add(this.Txtngay_ct2);
             this.tabKhac.Controls.Add(this.txtngay_ct1);
             this.tabKhac.Controls.Add(this.v6Label26);
@@ -585,7 +588,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtGC_UD1.Location = new System.Drawing.Point(436, 78);
             this.txtGC_UD1.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_UD1.Name = "txtGC_UD1";
-            this.txtGC_UD1.Size = new System.Drawing.Size(432, 20);
+            this.txtGC_UD1.Size = new System.Drawing.Size(135, 20);
             this.txtGC_UD1.TabIndex = 123;
             // 
             // label29
@@ -1327,6 +1330,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.group4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group4.Controls.Add(this.chkAuto_Ck);
             this.group4.Controls.Add(this.cboChuyenData);
             this.group4.Controls.Add(this.v6Label28);
             this.group4.Controls.Add(this.txtConLai);
@@ -1357,6 +1361,47 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.group4.Size = new System.Drawing.Size(478, 133);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
+            // 
+            // chkAuto_Ck
+            // 
+            this.chkAuto_Ck.AccessibleDescription = "ASOCTSOAL00049";
+            this.chkAuto_Ck.AccessibleName = "Auto_Ck";
+            this.chkAuto_Ck.AutoSize = true;
+            this.chkAuto_Ck.Location = new System.Drawing.Point(135, 56);
+            this.chkAuto_Ck.Name = "chkAuto_Ck";
+            this.chkAuto_Ck.Size = new System.Drawing.Size(65, 17);
+            this.chkAuto_Ck.TabIndex = 24;
+            this.chkAuto_Ck.TabStop = false;
+            this.chkAuto_Ck.Text = "Auto CK";
+            this.chkAuto_Ck.UseVisualStyleBackColor = true;
+            // 
+            // cboChuyenData
+            // 
+            this.cboChuyenData.AccessibleName = "IMTYPE";
+            this.cboChuyenData.BackColor = System.Drawing.SystemColors.Window;
+            this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboChuyenData.FormattingEnabled = true;
+            this.cboChuyenData.Items.AddRange(new object[] {
+            "0 - Không chuyển",
+            "1 - Chuyển",
+            "2 - Không xử lý"});
+            this.cboChuyenData.Location = new System.Drawing.Point(357, 106);
+            this.cboChuyenData.Name = "cboChuyenData";
+            this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
+            this.cboChuyenData.TabIndex = 38;
+            this.cboChuyenData.TabStop = false;
+            this.toolTipV6FormControl.SetToolTip(this.cboChuyenData, "Chuyển dữ liệu qua Database khác.");
+            // 
+            // v6Label28
+            // 
+            this.v6Label28.AccessibleDescription = "ASOCTSOAH00055";
+            this.v6Label28.AutoSize = true;
+            this.v6Label28.Location = new System.Drawing.Point(311, 111);
+            this.v6Label28.Name = "v6Label28";
+            this.v6Label28.Size = new System.Drawing.Size(36, 13);
+            this.v6Label28.TabIndex = 39;
+            this.v6Label28.Text = "DATA";
             // 
             // txtConLai
             // 
@@ -1656,7 +1701,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.btnTinhCKKM.Name = "btnTinhCKKM";
             this.btnTinhCKKM.Size = new System.Drawing.Size(100, 23);
             this.btnTinhCKKM.TabIndex = 2;
-            this.btnTinhCKKM.Text = "Tính CK KM";
+            this.btnTinhCKKM.Text = "Tính CK &KM";
             this.btnTinhCKKM.UseVisualStyleBackColor = true;
             this.btnTinhCKKM.Click += new System.EventHandler(this.btnTinhCKKM_Click);
             // 
@@ -1720,7 +1765,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.v6Label31.AccessibleDescription = "ASOCTSOAL00005";
             this.v6Label31.AutoSize = true;
-            this.v6Label31.Location = new System.Drawing.Point(191, 62);
+            this.v6Label31.Location = new System.Drawing.Point(228, 62);
             this.v6Label31.Name = "v6Label31";
             this.v6Label31.Size = new System.Drawing.Size(35, 13);
             this.v6Label31.TabIndex = 11;
@@ -2785,33 +2830,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // cboChuyenData
+            // TxtL_AM_INFO
             // 
-            this.cboChuyenData.AccessibleName = "IMTYPE";
-            this.cboChuyenData.BackColor = System.Drawing.SystemColors.Window;
-            this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboChuyenData.FormattingEnabled = true;
-            this.cboChuyenData.Items.AddRange(new object[] {
-            "0 - Không chuyển",
-            "1 - Chuyển",
-            "2 - Không xử lý"});
-            this.cboChuyenData.Location = new System.Drawing.Point(357, 106);
-            this.cboChuyenData.Name = "cboChuyenData";
-            this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
-            this.cboChuyenData.TabIndex = 38;
-            this.cboChuyenData.TabStop = false;
-            this.toolTipV6FormControl.SetToolTip(this.cboChuyenData, "Chuyển dữ liệu qua Database khác.");
-            // 
-            // v6Label28
-            // 
-            this.v6Label28.AccessibleDescription = "ASOCTSOAH00055";
-            this.v6Label28.AutoSize = true;
-            this.v6Label28.Location = new System.Drawing.Point(311, 111);
-            this.v6Label28.Name = "v6Label28";
-            this.v6Label28.Size = new System.Drawing.Size(36, 13);
-            this.v6Label28.TabIndex = 39;
-            this.v6Label28.Text = "DATA";
+            this.TxtL_AM_INFO.AccessibleName = "L_AM_INFO";
+            this.TxtL_AM_INFO.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtL_AM_INFO.BackColor = System.Drawing.Color.White;
+            this.TxtL_AM_INFO.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtL_AM_INFO.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtL_AM_INFO.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtL_AM_INFO.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtL_AM_INFO.GrayText = "L_AM_INFO";
+            this.TxtL_AM_INFO.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtL_AM_INFO.LeaveColor = System.Drawing.Color.White;
+            this.TxtL_AM_INFO.Location = new System.Drawing.Point(580, 78);
+            this.TxtL_AM_INFO.Margin = new System.Windows.Forms.Padding(5);
+            this.TxtL_AM_INFO.Name = "TxtL_AM_INFO";
+            this.TxtL_AM_INFO.Size = new System.Drawing.Size(288, 20);
+            this.TxtL_AM_INFO.TabIndex = 160;
             // 
             // DonDatHangBanControl
             // 
@@ -3040,5 +3077,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private V6Label v6Label25;
         private V6IndexComboBox cboChuyenData;
         private V6Label v6Label28;
+        private V6CheckBox chkAuto_Ck;
+        private V6ColorTextBox TxtL_AM_INFO;
     }
 }

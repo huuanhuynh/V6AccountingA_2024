@@ -67,20 +67,19 @@
             // Txtma_nh
             // 
             this.Txtma_nh.AccessibleName = "ma_nh";
-            this.Txtma_nh.BrotherFields = null;
-            this.Txtma_nh.Carry = false;
+            this.Txtma_nh.BackColor = System.Drawing.SystemColors.Window;
+            this.Txtma_nh.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.Txtma_nh.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.Txtma_nh.EnableColorEffect = true;
-            this.Txtma_nh.EnableColorEffectOnMouseEnter = false;
             this.Txtma_nh.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtma_nh.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtma_nh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.Txtma_nh.HoverColor = System.Drawing.Color.Yellow;
             this.Txtma_nh.LeaveColor = System.Drawing.Color.White;
-            this.Txtma_nh.LimitCharacters = null;
             this.Txtma_nh.Location = new System.Drawing.Point(228, 52);
             this.Txtma_nh.Name = "Txtma_nh";
             this.Txtma_nh.Size = new System.Drawing.Size(111, 23);
             this.Txtma_nh.TabIndex = 3;
-            this.Txtma_nh.GrayText = "";
+            this.Txtma_nh.UseLimitCharacters0 = true;
             // 
             // checkBox1
             // 
@@ -110,24 +109,22 @@
             // Txtloai_nh
             // 
             this.Txtloai_nh.AccessibleName = "loai_nh";
-            this.Txtloai_nh.Carry = false;
+            this.Txtloai_nh.BackColor = System.Drawing.SystemColors.Window;
+            this.Txtloai_nh.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.Txtloai_nh.DecimalPlaces = 0;
-            this.Txtloai_nh.EnableColorEffect = true;
-            this.Txtloai_nh.EnableColorEffectOnMouseEnter = false;
             this.Txtloai_nh.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtloai_nh.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtloai_nh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.Txtloai_nh.HoverColor = System.Drawing.Color.Yellow;
             this.Txtloai_nh.LeaveColor = System.Drawing.Color.White;
             this.Txtloai_nh.LimitCharacters = "123";
             this.Txtloai_nh.Location = new System.Drawing.Point(228, 23);
             this.Txtloai_nh.MaxLength = 1;
-            this.Txtloai_nh.MaxNumDecimal = 0;
-            this.Txtloai_nh.MaxNumLength = 0;
             this.Txtloai_nh.Name = "Txtloai_nh";
             this.Txtloai_nh.Size = new System.Drawing.Size(111, 23);
             this.Txtloai_nh.TabIndex = 1;
             this.Txtloai_nh.Text = "0";
             this.Txtloai_nh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Txtloai_nh.GrayText = "";
             this.Txtloai_nh.Value = new decimal(new int[] {
             0,
             0,
@@ -140,19 +137,18 @@
             this.v6ColorTextBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox5.Carry = false;
-            this.v6ColorTextBox5.EnableColorEffect = true;
-            this.v6ColorTextBox5.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox5.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.LimitCharacters = null;
             this.v6ColorTextBox5.Location = new System.Drawing.Point(228, 116);
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
             this.v6ColorTextBox5.Size = new System.Drawing.Size(481, 23);
             this.v6ColorTextBox5.TabIndex = 7;
-            this.v6ColorTextBox5.GrayText = "";
             // 
             // label5
             // 
@@ -170,19 +166,18 @@
             this.TxtTen_nh.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtTen_nh.Carry = false;
-            this.TxtTen_nh.EnableColorEffect = true;
-            this.TxtTen_nh.EnableColorEffectOnMouseEnter = false;
+            this.TxtTen_nh.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtTen_nh.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtTen_nh.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtTen_nh.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtTen_nh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtTen_nh.HoverColor = System.Drawing.Color.Yellow;
             this.TxtTen_nh.LeaveColor = System.Drawing.Color.White;
-            this.TxtTen_nh.LimitCharacters = null;
             this.TxtTen_nh.Location = new System.Drawing.Point(228, 84);
             this.TxtTen_nh.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.TxtTen_nh.Name = "TxtTen_nh";
             this.TxtTen_nh.Size = new System.Drawing.Size(481, 23);
             this.TxtTen_nh.TabIndex = 5;
-            this.TxtTen_nh.GrayText = "";
             // 
             // label1
             // 

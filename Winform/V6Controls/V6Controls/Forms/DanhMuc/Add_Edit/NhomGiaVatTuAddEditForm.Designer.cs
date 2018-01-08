@@ -110,6 +110,7 @@
             this.txtMa_nh.Name = "txtMa_nh";
             this.txtMa_nh.Size = new System.Drawing.Size(127, 23);
             this.txtMa_nh.TabIndex = 1;
+            this.txtMa_nh.UseLimitCharacters0 = true;
             this.txtMa_nh.VVar = "MA_nh    ";
             // 
             // v6ColorTextBox3

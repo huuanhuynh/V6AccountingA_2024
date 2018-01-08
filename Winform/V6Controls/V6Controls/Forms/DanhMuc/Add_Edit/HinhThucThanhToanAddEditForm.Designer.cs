@@ -37,7 +37,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.TxtTk_no = new V6Controls.V6VvarTextBox();
             this.txtHanTt = new V6Controls.V6NumberTextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.chkStatus = new V6Controls.V6CheckBox();
             this.txtGhiChu = new V6Controls.V6ColorTextBox();
@@ -69,8 +71,6 @@
             this.v6ColorDateTimePick2 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.TxtTk_no = new V6Controls.V6VvarTextBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -111,6 +111,7 @@
             this.txtMaHttt.Name = "txtMaHttt";
             this.txtMaHttt.Size = new System.Drawing.Size(133, 23);
             this.txtMaHttt.TabIndex = 0;
+            this.txtMaHttt.UseLimitCharacters0 = true;
             // 
             // txtTenHttt2
             // 
@@ -217,6 +218,22 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
+            // TxtTk_no
+            // 
+            this.TxtTk_no.AccessibleName = "tk_no";
+            this.TxtTk_no.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtTk_no.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtTk_no.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtTk_no.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtTk_no.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtTk_no.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtTk_no.LeaveColor = System.Drawing.Color.White;
+            this.TxtTk_no.Location = new System.Drawing.Point(196, 40);
+            this.TxtTk_no.Name = "TxtTk_no";
+            this.TxtTk_no.Size = new System.Drawing.Size(133, 23);
+            this.TxtTk_no.TabIndex = 1;
+            this.TxtTk_no.VVar = "tk";
+            // 
             // txtHanTt
             // 
             this.txtHanTt.AccessibleName = "han_tt";
@@ -239,6 +256,16 @@
             0,
             0,
             196608});
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(34, 43);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(91, 17);
+            this.label19.TabIndex = 6;
+            this.label19.Text = "Tài khoản nợ";
             // 
             // label15
             // 
@@ -773,32 +800,6 @@
             this.tabPage3.Size = new System.Drawing.Size(748, 386);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
-            // 
-            // TxtTk_no
-            // 
-            this.TxtTk_no.AccessibleName = "tk_no";
-            this.TxtTk_no.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtTk_no.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtTk_no.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtTk_no.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtTk_no.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtTk_no.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtTk_no.LeaveColor = System.Drawing.Color.White;
-            this.TxtTk_no.Location = new System.Drawing.Point(196, 40);
-            this.TxtTk_no.Name = "TxtTk_no";
-            this.TxtTk_no.Size = new System.Drawing.Size(133, 23);
-            this.TxtTk_no.TabIndex = 1;
-            this.TxtTk_no.VVar = "tk";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(34, 43);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(91, 17);
-            this.label19.TabIndex = 6;
-            this.label19.Text = "Tài khoản nợ";
             // 
             // HinhThucThanhToanAddEditForm
             // 

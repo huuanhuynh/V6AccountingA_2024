@@ -800,6 +800,7 @@
             this.txtMaKu.Name = "txtMaKu";
             this.txtMaKu.Size = new System.Drawing.Size(184, 23);
             this.txtMaKu.TabIndex = 0;
+            this.txtMaKu.UseLimitCharacters0 = true;
             // 
             // KheUocChiTietForm
             // 

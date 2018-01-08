@@ -137,7 +137,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
             try
             {
                 var file_xml = "DanhSachCot2.xml";
-                new XmlEditorForm(txtDanhSachCot2, file_xml, "Table0", "TableName,First_name,Mid_name,Last_name,Tach3,Birth_date,Data".Split(',')).ShowDialog(this);
+                new XmlEditorForm(txtDanhSachCot2, file_xml, "DanhSachCot2", "TableName,Tach3,First_name,Mid_name,Last_name,MapColumns,Data".Split(',')).ShowDialog(this);
             }
             catch (Exception ex)
             {

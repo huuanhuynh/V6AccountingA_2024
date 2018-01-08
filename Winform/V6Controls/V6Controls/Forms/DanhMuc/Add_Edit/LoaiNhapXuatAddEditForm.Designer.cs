@@ -157,6 +157,7 @@
             this.TxtLoai.Name = "TxtLoai";
             this.TxtLoai.Size = new System.Drawing.Size(116, 23);
             this.TxtLoai.TabIndex = 1;
+            this.TxtLoai.UseLimitCharacters0 = true;
             // 
             // v6ColorTextBox3
             // 

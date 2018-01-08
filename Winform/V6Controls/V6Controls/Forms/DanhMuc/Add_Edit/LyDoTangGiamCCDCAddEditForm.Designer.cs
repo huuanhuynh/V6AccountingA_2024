@@ -69,12 +69,11 @@
             // 
             this.txtloai_tg_cc.AccessibleName = "LOAI_TG_CC";
             this.txtloai_tg_cc.BackColor = System.Drawing.Color.White;
-            this.txtloai_tg_cc.BrotherFields = null;
-            this.txtloai_tg_cc.Carry = false;
+            this.txtloai_tg_cc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtloai_tg_cc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtloai_tg_cc.EnableColorEffect = true;
-            this.txtloai_tg_cc.EnableColorEffectOnMouseEnter = false;
             this.txtloai_tg_cc.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtloai_tg_cc.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtloai_tg_cc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtloai_tg_cc.HoverColor = System.Drawing.Color.Yellow;
             this.txtloai_tg_cc.LeaveColor = System.Drawing.Color.White;
             this.txtloai_tg_cc.LimitCharacters = "TG";
@@ -83,7 +82,6 @@
             this.txtloai_tg_cc.Name = "txtloai_tg_cc";
             this.txtloai_tg_cc.Size = new System.Drawing.Size(143, 23);
             this.txtloai_tg_cc.TabIndex = 0;
-            this.txtloai_tg_cc.GrayText = "";
             // 
             // TxtTen_tg_cc
             // 
@@ -91,19 +89,18 @@
             this.TxtTen_tg_cc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtTen_tg_cc.Carry = false;
-            this.TxtTen_tg_cc.EnableColorEffect = true;
-            this.TxtTen_tg_cc.EnableColorEffectOnMouseEnter = false;
+            this.TxtTen_tg_cc.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtTen_tg_cc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtTen_tg_cc.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtTen_tg_cc.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtTen_tg_cc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtTen_tg_cc.HoverColor = System.Drawing.Color.Yellow;
             this.TxtTen_tg_cc.LeaveColor = System.Drawing.Color.White;
-            this.TxtTen_tg_cc.LimitCharacters = null;
             this.TxtTen_tg_cc.Location = new System.Drawing.Point(228, 88);
             this.TxtTen_tg_cc.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.TxtTen_tg_cc.Name = "TxtTen_tg_cc";
             this.TxtTen_tg_cc.Size = new System.Drawing.Size(537, 23);
             this.TxtTen_tg_cc.TabIndex = 2;
-            this.TxtTen_tg_cc.GrayText = "";
             // 
             // label3
             // 
@@ -147,19 +144,18 @@
             this.v6ColorTextBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox5.Carry = false;
-            this.v6ColorTextBox5.EnableColorEffect = true;
-            this.v6ColorTextBox5.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox5.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.LimitCharacters = null;
             this.v6ColorTextBox5.Location = new System.Drawing.Point(228, 122);
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
             this.v6ColorTextBox5.Size = new System.Drawing.Size(537, 23);
             this.v6ColorTextBox5.TabIndex = 3;
-            this.v6ColorTextBox5.GrayText = "";
             // 
             // label5
             // 
@@ -187,20 +183,20 @@
             this.Txtma_tg_cc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Txtma_tg_cc.Carry = false;
+            this.Txtma_tg_cc.BackColor = System.Drawing.SystemColors.Window;
+            this.Txtma_tg_cc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.Txtma_tg_cc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.Txtma_tg_cc.EnableColorEffect = true;
-            this.Txtma_tg_cc.EnableColorEffectOnMouseEnter = false;
             this.Txtma_tg_cc.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtma_tg_cc.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtma_tg_cc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.Txtma_tg_cc.HoverColor = System.Drawing.Color.Yellow;
             this.Txtma_tg_cc.LeaveColor = System.Drawing.Color.White;
-            this.Txtma_tg_cc.LimitCharacters = null;
             this.Txtma_tg_cc.Location = new System.Drawing.Point(228, 54);
             this.Txtma_tg_cc.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Txtma_tg_cc.Name = "Txtma_tg_cc";
             this.Txtma_tg_cc.Size = new System.Drawing.Size(143, 23);
             this.Txtma_tg_cc.TabIndex = 1;
-            this.Txtma_tg_cc.GrayText = "";
+            this.Txtma_tg_cc.UseLimitCharacters0 = true;
             // 
             // label2
             // 

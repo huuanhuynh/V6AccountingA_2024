@@ -149,6 +149,7 @@
             this.TxtMa_vitri.Name = "TxtMa_vitri";
             this.TxtMa_vitri.Size = new System.Drawing.Size(126, 23);
             this.TxtMa_vitri.TabIndex = 4;
+            this.TxtMa_vitri.UseLimitCharacters0 = true;
             // 
             // TxtMa_kho
             // 

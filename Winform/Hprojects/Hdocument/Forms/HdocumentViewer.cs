@@ -51,10 +51,10 @@ namespace H_document.Forms
         /// <summary>
         /// Kiểu vẽ
         /// </summary>
-        [DefaultValue(H_document.Mode.PrintPreview)]
+        [DefaultValue(H_document.HMode.PrintPreview)]
         [Description("Kiểu vẽ document object ra graphics.")]
-        public Mode DrawMode { get { return _drawMode; } set { _drawMode = value; } }
-        private Mode _drawMode = Mode.PrintPreview;
+        public HMode DrawMode { get { return _drawMode; } set { _drawMode = value; } }
+        private HMode _drawMode = HMode.PrintPreview;
 
         public delegate void DocumentObjectHandler(DocumentObject obj);
         public delegate void DocumentObjectsHandler(DocumentObject[] obj);
@@ -413,7 +413,7 @@ namespace H_document.Forms
                         
                     }
                     else
-                    if (SelectedDocumentObjects != null && button == MouseButtons.Left && _drawMode == Mode.Design)
+                    if (SelectedDocumentObjects != null && button == MouseButtons.Left && _drawMode == HMode.Design)
                     {
                         if (_resizePointType > 0)
                         {
@@ -592,7 +592,7 @@ namespace H_document.Forms
             try
             {
                 Focus();
-                if (_drawMode == Mode.Design && HDocumentMaster.AddObjectType != DocObjectType.None)
+                if (_drawMode == HMode.Design && HDocumentMaster.AddObjectType != DocObjectType.None)
                 {
                     AddDocumentObject(HDocumentMaster.AddObjectType, _mouseDownPoint);
                 }

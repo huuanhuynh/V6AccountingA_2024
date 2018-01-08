@@ -161,7 +161,7 @@ namespace H_document.DocumentObjects
         /// Move or Resize
         /// </summary>
         [Browsable(false)]
-        public Mode DesignMode { get; set; }
+        public HMode DesignMode { get; set; }
 
         /// <summary>
         /// Hàm kế thừa cần gọi lại base.
@@ -171,7 +171,7 @@ namespace H_document.DocumentObjects
         /// <param name="parameters"></param>
         /// <param name="drawMode"></param>
         /// <param name="selectedObjects"></param>
-        public virtual void DrawToGraphics(Graphics graphics, Margins margins, SortedDictionary<string, object> parameters, Mode drawMode, DocumentObject[] selectedObjects)
+        public virtual void DrawToGraphics(Graphics graphics, Margins margins, SortedDictionary<string, object> parameters, HMode drawMode, DocumentObject[] selectedObjects)
         {
             //Hàm sẽ được override
             if (selectedObjects != null && selectedObjects.Contains(this))
@@ -180,7 +180,7 @@ namespace H_document.DocumentObjects
                 Pen pen = new Pen(Color.Red, 0.1f);
                 pen.DashStyle = DashStyle.Dot;
                 graphics.DrawRectangle(pen, LeftF+margins.Left, TopF+margins.Top, WidthF, HeightF);
-                if (drawMode == Mode.Design)
+                if (drawMode == HMode.Design)
                 {
                     //Vẽ ô di chuyển
                     DrawMovePoints(graphics, margins, 1f);
@@ -219,25 +219,25 @@ namespace H_document.DocumentObjects
         public virtual void SetStatus(PointF mouseDownPoint)
         {
             ResizePointType = PointType.None;
-            DesignMode = Mode.None;
+            DesignMode = HMode.None;
             if (DocumentObjectHelper.IsNear(mouseDownPoint, BottomRightResizePoint, 1f))
             {
                 ResizePointType = PointType.BottomRightResizePoint;
-                DesignMode = Mode.Resize;
+                DesignMode = HMode.Resize;
             }
             else if (DocumentObjectHelper.IsNear(mouseDownPoint, BottomCenterResizePoint, 1f))
             {
                 ResizePointType = PointType.BottomCenterResizePoint;
-                DesignMode = Mode.Resize;
+                DesignMode = HMode.Resize;
             }
             else if (DocumentObjectHelper.IsNear(mouseDownPoint, RightCenterResizePoint, 1f))
             {
                 ResizePointType = PointType.RightCenterResizePoint;
-                DesignMode = Mode.Resize;
+                DesignMode = HMode.Resize;
             }
             else if (Containt(mouseDownPoint))
             {
-                DesignMode = Mode.Move;
+                DesignMode = HMode.Move;
             }
         }
         
@@ -248,7 +248,7 @@ namespace H_document.DocumentObjects
         public virtual PointType GetStatus(PointF mouseDownPoint)
         {
             ResizePointType = PointType.None;
-            DesignMode = Mode.None;
+            DesignMode = HMode.None;
             if (DocumentObjectHelper.IsNear(mouseDownPoint, BottomRightResizePoint, 1f))
             {
                 ResizePointType = PointType.BottomRightResizePoint;

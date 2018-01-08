@@ -80,7 +80,7 @@ namespace H_document.Forms
         {
             hdocumentViewer1.DocumentChanged += hdocumentViewer1_DocumentChanged;
             hdocumentViewer1.SelectedObjectChanged += HdocumentViewer1OnSelectedObjectChanged;
-            hdocumentViewer1.DrawMode = H_document.Mode.Design;
+            hdocumentViewer1.DrawMode = H_document.HMode.Design;
         }
 
         public void SetDocument(Hdocument document)

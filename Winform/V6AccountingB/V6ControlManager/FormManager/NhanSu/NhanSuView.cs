@@ -171,6 +171,10 @@ namespace V6ControlManager.FormManager.NhanSu
                                 f.InsertSuccessEvent += f_InsertSuccess;
                                 f.ShowDialog(this);
                             }
+                            else
+                            {
+                                DoNothing();
+                            }
                         }
                         else
                         {

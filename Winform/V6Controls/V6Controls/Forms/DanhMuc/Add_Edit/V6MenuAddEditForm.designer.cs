@@ -71,12 +71,12 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.chkQuickRun = new V6Controls.V6CheckBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.txtPicture = new V6Controls.V6ColorTextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.txtKey1 = new V6Controls.V6ColorTextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtPicture = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -143,6 +143,7 @@
             this.txtITEMID.Name = "txtITEMID";
             this.txtITEMID.Size = new System.Drawing.Size(139, 23);
             this.txtITEMID.TabIndex = 5;
+            this.txtITEMID.UseLimitCharacters0 = true;
             // 
             // label11
             // 
@@ -175,6 +176,7 @@
             this.txtJOBID.Name = "txtJOBID";
             this.txtJOBID.Size = new System.Drawing.Size(139, 23);
             this.txtJOBID.TabIndex = 3;
+            this.txtJOBID.UseLimitCharacters0 = true;
             // 
             // label10
             // 
@@ -206,6 +208,7 @@
             this.txtV2ID.Name = "txtV2ID";
             this.txtV2ID.Size = new System.Drawing.Size(139, 23);
             this.txtV2ID.TabIndex = 1;
+            this.txtV2ID.UseLimitCharacters0 = true;
             // 
             // label9
             // 
@@ -760,6 +763,36 @@
             this.label19.TabIndex = 2;
             this.label19.Text = "Tìm nhanh";
             // 
+            // txtPicture
+            // 
+            this.txtPicture.AccessibleName = "PICTURE";
+            this.txtPicture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPicture.BackColor = System.Drawing.Color.White;
+            this.txtPicture.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtPicture.Enabled = false;
+            this.txtPicture.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtPicture.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPicture.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtPicture.HoverColor = System.Drawing.Color.Yellow;
+            this.txtPicture.LeaveColor = System.Drawing.Color.White;
+            this.txtPicture.Location = new System.Drawing.Point(175, 70);
+            this.txtPicture.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPicture.Name = "txtPicture";
+            this.txtPicture.Size = new System.Drawing.Size(545, 23);
+            this.txtPicture.TabIndex = 5;
+            // 
+            // label22
+            // 
+            this.label22.AccessibleDescription = "";
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(2, 74);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(73, 17);
+            this.label22.TabIndex = 4;
+            this.label22.Text = "Icon menu";
+            // 
             // txtKey1
             // 
             this.txtKey1.AccessibleName = "KEY1";
@@ -817,36 +850,6 @@
             this.tabPage2.Size = new System.Drawing.Size(742, 342);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
-            // 
-            // label22
-            // 
-            this.label22.AccessibleDescription = "";
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(2, 74);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(73, 17);
-            this.label22.TabIndex = 4;
-            this.label22.Text = "Icon menu";
-            // 
-            // txtPicture
-            // 
-            this.txtPicture.AccessibleName = "PICTURE";
-            this.txtPicture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPicture.BackColor = System.Drawing.Color.White;
-            this.txtPicture.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtPicture.Enabled = false;
-            this.txtPicture.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtPicture.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtPicture.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtPicture.HoverColor = System.Drawing.Color.Yellow;
-            this.txtPicture.LeaveColor = System.Drawing.Color.White;
-            this.txtPicture.Location = new System.Drawing.Point(175, 70);
-            this.txtPicture.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPicture.Name = "txtPicture";
-            this.txtPicture.Size = new System.Drawing.Size(545, 23);
-            this.txtPicture.TabIndex = 5;
             // 
             // V6MenuAddEditForm
             // 

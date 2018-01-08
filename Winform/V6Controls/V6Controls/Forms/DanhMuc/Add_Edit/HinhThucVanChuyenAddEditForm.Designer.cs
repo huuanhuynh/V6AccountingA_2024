@@ -108,6 +108,7 @@
             this.TXTma_htvc.Name = "TXTma_htvc";
             this.TXTma_htvc.Size = new System.Drawing.Size(166, 23);
             this.TXTma_htvc.TabIndex = 1;
+            this.TXTma_htvc.UseLimitCharacters0 = true;
             // 
             // v6ColorTextBox3
             // 

@@ -105,6 +105,7 @@
             this.txtma_tinh.Name = "txtma_tinh";
             this.txtma_tinh.Size = new System.Drawing.Size(183, 23);
             this.txtma_tinh.TabIndex = 1;
+            this.txtma_tinh.UseLimitCharacters0 = true;
             this.txtma_tinh.VVar = "ma_tinh";
             // 
             // v6ColorTextBox3

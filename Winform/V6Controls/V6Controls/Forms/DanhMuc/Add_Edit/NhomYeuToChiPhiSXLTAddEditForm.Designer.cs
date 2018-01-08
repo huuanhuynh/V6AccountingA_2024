@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtTen_nhom2 = new V6Controls.V6ColorTextBox();
+            this.txtten_nhom = new V6Controls.V6ColorTextBox();
             this.chkStatus = new V6Controls.V6CheckBox();
             this.txtNhom = new V6Controls.V6VvarTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtTen_nhom2 = new V6Controls.V6ColorTextBox();
-            this.txtten_nhom = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +60,42 @@
             this.groupBox1.Size = new System.Drawing.Size(771, 167);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // txtTen_nhom2
+            // 
+            this.txtTen_nhom2.AccessibleName = "ten_nhom2";
+            this.txtTen_nhom2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTen_nhom2.BackColor = System.Drawing.Color.White;
+            this.txtTen_nhom2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTen_nhom2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTen_nhom2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTen_nhom2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTen_nhom2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTen_nhom2.LeaveColor = System.Drawing.Color.White;
+            this.txtTen_nhom2.Location = new System.Drawing.Point(225, 98);
+            this.txtTen_nhom2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTen_nhom2.Name = "txtTen_nhom2";
+            this.txtTen_nhom2.Size = new System.Drawing.Size(526, 23);
+            this.txtTen_nhom2.TabIndex = 2;
+            // 
+            // txtten_nhom
+            // 
+            this.txtten_nhom.AccessibleName = "ten_nhom";
+            this.txtten_nhom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtten_nhom.BackColor = System.Drawing.Color.White;
+            this.txtten_nhom.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtten_nhom.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtten_nhom.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtten_nhom.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtten_nhom.HoverColor = System.Drawing.Color.Yellow;
+            this.txtten_nhom.LeaveColor = System.Drawing.Color.White;
+            this.txtten_nhom.Location = new System.Drawing.Point(225, 66);
+            this.txtten_nhom.Margin = new System.Windows.Forms.Padding(4);
+            this.txtten_nhom.Name = "txtten_nhom";
+            this.txtten_nhom.Size = new System.Drawing.Size(526, 23);
+            this.txtten_nhom.TabIndex = 1;
             // 
             // chkStatus
             // 
@@ -91,6 +127,7 @@
             this.txtNhom.Name = "txtNhom";
             this.txtNhom.Size = new System.Drawing.Size(171, 23);
             this.txtNhom.TabIndex = 0;
+            this.txtNhom.UseLimitCharacters0 = true;
             // 
             // label4
             // 
@@ -132,42 +169,6 @@
             this.label2.Size = new System.Drawing.Size(115, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Tên nhóm yếu tố";
-            // 
-            // txtTen_nhom2
-            // 
-            this.txtTen_nhom2.AccessibleName = "ten_nhom2";
-            this.txtTen_nhom2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTen_nhom2.BackColor = System.Drawing.Color.White;
-            this.txtTen_nhom2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTen_nhom2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtTen_nhom2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtTen_nhom2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtTen_nhom2.HoverColor = System.Drawing.Color.Yellow;
-            this.txtTen_nhom2.LeaveColor = System.Drawing.Color.White;
-            this.txtTen_nhom2.Location = new System.Drawing.Point(225, 98);
-            this.txtTen_nhom2.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTen_nhom2.Name = "txtTen_nhom2";
-            this.txtTen_nhom2.Size = new System.Drawing.Size(526, 23);
-            this.txtTen_nhom2.TabIndex = 2;
-            // 
-            // txtten_nhom
-            // 
-            this.txtten_nhom.AccessibleName = "ten_nhom";
-            this.txtten_nhom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtten_nhom.BackColor = System.Drawing.Color.White;
-            this.txtten_nhom.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtten_nhom.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtten_nhom.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtten_nhom.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtten_nhom.HoverColor = System.Drawing.Color.Yellow;
-            this.txtten_nhom.LeaveColor = System.Drawing.Color.White;
-            this.txtten_nhom.Location = new System.Drawing.Point(225, 66);
-            this.txtten_nhom.Margin = new System.Windows.Forms.Padding(4);
-            this.txtten_nhom.Name = "txtten_nhom";
-            this.txtten_nhom.Size = new System.Drawing.Size(526, 23);
-            this.txtten_nhom.TabIndex = 1;
             // 
             // NhomYeuToChiPhiSXLTAddEditForm
             // 

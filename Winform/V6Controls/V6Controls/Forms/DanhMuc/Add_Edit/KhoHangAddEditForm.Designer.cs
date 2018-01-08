@@ -244,6 +244,7 @@
             this.TxtMa_kho.Name = "TxtMa_kho";
             this.TxtMa_kho.Size = new System.Drawing.Size(130, 23);
             this.TxtMa_kho.TabIndex = 5;
+            this.TxtMa_kho.UseLimitCharacters0 = true;
             // 
             // label2
             // 
@@ -798,7 +799,7 @@
             this.label27.TabIndex = 156;
             this.label27.Text = "Ghi chú ĐN 1";
             // 
-            // v6ColorTextBox19
+            // txtMaTd3
             // 
             this.txtMaTd3.AccessibleName = "ma_td3";
             this.txtMaTd3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -816,7 +817,7 @@
             this.txtMaTd3.Size = new System.Drawing.Size(135, 23);
             this.txtMaTd3.TabIndex = 143;
             // 
-            // v6ColorTextBox20
+            // txtMaTd2
             // 
             this.txtMaTd2.AccessibleName = "ma_td2";
             this.txtMaTd2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -834,7 +835,7 @@
             this.txtMaTd2.Size = new System.Drawing.Size(135, 23);
             this.txtMaTd2.TabIndex = 141;
             // 
-            // v6ColorTextBox22
+            // txtMaTd1
             // 
             this.txtMaTd1.AccessibleName = "ma_td1";
             this.txtMaTd1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1242,9 +1243,6 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label27;
-        private V6Controls.V6ColorTextBox txtMaTd3;
-        private V6Controls.V6ColorTextBox txtMaTd2;
-        private V6Controls.V6ColorTextBox txtMaTd1;
         private V6NumberTextBox v6NumberTextBox3;
         private V6NumberTextBox v6NumberTextBox2;
         private V6NumberTextBox v6NumberTextBox1;
@@ -1265,5 +1263,8 @@
         private System.Windows.Forms.PictureBox ptbPHOTOGRAPH;
         protected System.Windows.Forms.Button btnXoahinh;
         protected System.Windows.Forms.Button btnChonhinh;
+        private V6VvarTextBox txtMaTd3;
+        private V6VvarTextBox txtMaTd2;
+        private V6VvarTextBox txtMaTd1;
     }
 }

@@ -984,6 +984,7 @@
             this.Txtma_td.Name = "Txtma_td";
             this.Txtma_td.Size = new System.Drawing.Size(143, 23);
             this.Txtma_td.TabIndex = 1;
+            this.Txtma_td.UseLimitCharacters0 = true;
             // 
             // v6ColorTextBox5
             // 

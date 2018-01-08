@@ -235,6 +235,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             SetControlValue(input, defineInfo.DefaultValue);
                             //input.Text = defineInfo.DefaultValue;
                         }
+                        input.Enabled = defineInfo.Enabled;
                         input.Visible = defineInfo.Visible;
                         input.Width = string.IsNullOrEmpty(defineInfo.Width)
                             ? 150
@@ -1091,6 +1092,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void DynamicAddEditForm_Load(object sender, EventArgs e)
         {
             CheckVvarTextBox();
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey("INIT2"))
+                {
+                    var method_name = Event_Methods["INIT2"];
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke INIT2", ex1);
+            }
         }
     }
 }

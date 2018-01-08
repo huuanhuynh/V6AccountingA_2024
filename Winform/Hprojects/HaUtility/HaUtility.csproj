@@ -53,7 +53,7 @@
     <Compile Include="Helper\PrinterStatus.cs" />
     <Compile Include="Helper\RegistryHelper.cs" />
     <Compile Include="Setting\IniSetting.cs" />
-    <Compile Include="MyTypes\MyJson.cs" />
+    <Compile Include="MyTypes\HJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

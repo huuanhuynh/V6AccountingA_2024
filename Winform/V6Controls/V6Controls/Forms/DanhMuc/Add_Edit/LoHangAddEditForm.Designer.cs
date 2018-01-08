@@ -1099,6 +1099,7 @@
             this.TxtMa_lo.Name = "TxtMa_lo";
             this.TxtMa_lo.Size = new System.Drawing.Size(230, 23);
             this.TxtMa_lo.TabIndex = 3;
+            this.TxtMa_lo.UseLimitCharacters0 = true;
             this.TxtMa_lo.TextChanged += new System.EventHandler(this.TxtMa_lo_TextChanged);
             // 
             // label2

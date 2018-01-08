@@ -313,7 +313,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 int soCot = Convert.ToInt32(FilterControl.Number1);
                 var danhSachCot = FilterControl.Tag.ToString();
                 string danhSachCot2 = ObjectAndString.ObjectToString(FilterControl.ObjectDictionary["DS_COT2"]).Trim();
-                var splitColums = danhSachCot.Split(',');
+                
                 int stt = 0;
                 //DateTime last_day = V6Setting.M_SV_DATE;
                 total = data.Rows.Count;
@@ -326,7 +326,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     try
                     {
                         
-                        XuLyThemMotNhanSu(stt, row, soCot, danhSachCot, danhSachCot2, splitColums);
+                        XuLyThemMotNhanSu(stt, row, soCot, danhSachCot, danhSachCot2);
                         
 
                     }
@@ -348,7 +348,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             f9Running = false;
         }
 
-        private void XuLyThemMotNhanSu(int stt, DataRow row, int soCot, string danhSachCot, string danhSachCot2, string[] splitColums)
+        private void XuLyThemMotNhanSu(int stt, DataRow row, int soCot, string danhSachCot, string danhSachCot2)
         {
             var dataDic = row.ToDataDictionary();
             var check_ok = false;
@@ -375,23 +375,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 var insert_ok = false;
                 bool check = check_ok;
 
+                var splitColums = danhSachCot.Split(',');
+                if (soCot > splitColums.Length) soCot = splitColums.Length;
 
                 for (int j = 0; j < soCot; j++)
                 {
-
-                    var field_gender = splitColums[j].Split(':');
+                    var excel_field_value = splitColums[j].Split(':');
+                    string EXCEL_FIELD = excel_field_value[0].Trim().ToUpper();
                     // TRẢ VỀ S11,1
-                    if (field_gender.Length >= 1)
+                    if (excel_field_value.Length > 1)
                     {
-                        if (dataDic.ContainsKey(field_gender[0]))
+                        if (dataDic.ContainsKey(EXCEL_FIELD) && dataDic[EXCEL_FIELD].ToString().Trim() == "1")
                         {
-                            if (ObjectAndString.ObjectToInt(field_gender[0]) == 1)
+                            string field_value = excel_field_value[1];
+                            string[] ss = field_value.Split('=');
+                            if (ss.Length == 2)
                             {
-                                dataDic["GENDER"] = 1;
-                            }
-                            else
-                            {
-                                dataDic["GENDER"] = 0;
+                                dataDic[ss[0].ToUpper()] = ss[1];
                             }
                         }
                     }
@@ -416,6 +416,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                         if (valid)
                         {
                             dataDic["STT_REC"] = V6BusinessHelper.GetNewLikeSttRec("HR1", "STT_REC", "M");
+                            dataDic["MA_CT"] = "HR1";
                             if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
                             {
                                 insert_ok = true;
@@ -441,7 +442,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                             _categories.Delete(TABLE_NAME, keys);
                         }
                         dataDic["STT_REC"] = V6BusinessHelper.GetNewLikeSttRec("HR1", "STT_REC", "M");
-
+                        dataDic["MA_CT"] = "HR1";
                         if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
                         {
                             //remove_list_d.Add(row);
@@ -471,7 +472,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             {
                 var dscot2ds = ObjectAndString.XmlStringToDataSet(danhSachCot2);
                 DataTable xmlConfig = dscot2ds.Tables[0];
-                string[] columns = "TABLENAME,FIRST_NAME,MID_NAME,LAST_NAME,TACH3,BIRTH_DATE,DATA".Split(',');
+                string[] columns = "TABLENAME,FIRST_NAME,MID_NAME,LAST_NAME,TACH3,MAPCOLUMNS,DATA".Split(',');
                 foreach (string column in columns)
                 {
                     if (!xmlConfig.Columns.Contains(column))
@@ -480,18 +481,28 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     }
                 }
 
-                int stt = 1;
+                Dictionary<string, int> table_stt = new Dictionary<string, int>();
                 foreach (DataRow row in xmlConfig.Rows)
                 {
                     try
                     {
-                        var insert_data = new SortedDictionary<string, object>();
-                        insert_data["STT_REC"] = dataDic["STT_REC"];
-                        insert_data["STT_REC0"] = ("00000" + stt).Right(5);
-                        string tableName = row["TABLENAME"].ToString().Trim();
+                        string TABLENAME = row["TABLENAME"].ToString().Trim().ToUpper();
                         string firstName = row["FIRST_NAME"].ToString().Trim();
                         string midName = row["MID_NAME"].ToString().Trim();
                         string lastName = row["LAST_NAME"].ToString().Trim();
+                        string mapColumns = row["MAPCOLUMNS"].ToString().Trim();
+
+                        //Khởi tạo stt
+                        if (!table_stt.ContainsKey(TABLENAME))
+                        {
+                            table_stt[TABLENAME] = 1;
+                        }
+
+                        var insert_data = new SortedDictionary<string, object>();
+                        insert_data["STT_REC"] = dataDic["STT_REC"];
+                        insert_data["STT_REC0"] = ("00000" + table_stt[TABLENAME]).Right(5);
+                        
+                        
 
                         if (firstName != "" && dataDic.ContainsKey(firstName))
                         {
@@ -557,28 +568,76 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                             }
                         }
 
-                        string birthDate = row["BIRTH_DATE"].ToString().Trim();
-                        if (birthDate != "" && dataDic.ContainsKey(birthDate))
+                        if (mapColumns != "")
                         {
-                            insert_data["BIRTH_DATE"] = ObjectAndString.ObjectToString(dataDic[birthDate]);
-                        }
-                        string dataFix = row["DATA"].ToString().Trim();
-                        if (dataFix != "")
-                        {
-                            var sss = dataFix.Split(';');
+                            var sss = mapColumns.Split('~');
                             foreach (string s in sss)
                             {
                                 var ss = s.Split(':');
                                 if (ss.Length >= 2)
                                 {
-                                    insert_data[ss[0]] = ss[1];
+                                    if (ss.Length >= 3)
+                                    {
+                                        string dataType = ss[2].ToUpper();
+                                        switch (dataType)
+                                        {
+                                            case "DATE":
+                                            case "DATETIME":
+                                                insert_data[ss[0]] = ObjectAndString.ObjectToDate(dataDic[ss[1].ToUpper()]);
+                                                break;
+                                            case "NUMBER":
+                                                insert_data[ss[0]] = ObjectAndString.ObjectToDecimal(dataDic[ss[1].ToUpper()]);
+                                                break;
+                                            default:
+                                                insert_data[ss[0]] = dataDic[ss[1].ToUpper()];
+                                                break;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        insert_data[ss[0]] = dataDic[ss[1].ToUpper()];
+                                    }
                                 }
                             }
                         }
 
-                        if (V6BusinessHelper.Insert(tableName, insert_data))
+                        string dataFix = row["DATA"].ToString().Trim();
+                        if (dataFix != "")
                         {
-                            stt++;
+                            var sss = dataFix.Split('~');
+                            foreach (string s in sss)
+                            {
+                                var ss = s.Split(':');
+                                if (ss.Length >= 2)
+                                {
+                                    if (ss.Length >= 3)
+                                    {
+                                        string dataType = ss[2].ToUpper();
+                                        switch (dataType)
+                                        {
+                                            case "DATE":
+                                            case "DATETIME":
+                                                insert_data[ss[0]] = ObjectAndString.ObjectToDate(ss[1]);
+                                                break;
+                                            case "NUMBER":
+                                                insert_data[ss[0]] = ObjectAndString.ObjectToDecimal(ss[1]);
+                                                break;
+                                            default:
+                                                insert_data[ss[0]] = ss[1];
+                                                break;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        insert_data[ss[0]] = ss[1];
+                                    }
+                                }
+                            }
+                        }
+
+                        if (V6BusinessHelper.Insert(TABLENAME, insert_data))
+                        {
+                            table_stt[TABLENAME]++;
                         }
                     }
                     catch (Exception ex)

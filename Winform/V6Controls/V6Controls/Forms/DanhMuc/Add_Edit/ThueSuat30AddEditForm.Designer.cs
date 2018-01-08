@@ -158,6 +158,7 @@
             this.txtma_thue.Name = "txtma_thue";
             this.txtma_thue.Size = new System.Drawing.Size(132, 23);
             this.txtma_thue.TabIndex = 1;
+            this.txtma_thue.UseLimitCharacters0 = true;
             // 
             // v6NumberTextBox1
             // 

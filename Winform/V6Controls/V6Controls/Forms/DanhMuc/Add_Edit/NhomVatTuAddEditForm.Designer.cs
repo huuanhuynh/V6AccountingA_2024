@@ -68,19 +68,19 @@
             // txtMa_nh
             // 
             this.txtMa_nh.AccessibleName = "ma_nh";
-            this.txtMa_nh.BrotherFields = null;
+            this.txtMa_nh.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMa_nh.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMa_nh.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMa_nh.EnableColorEffect = true;
-            this.txtMa_nh.EnableColorEffectOnMouseEnter = false;
             this.txtMa_nh.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMa_nh.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMa_nh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMa_nh.HoverColor = System.Drawing.Color.Yellow;
             this.txtMa_nh.LeaveColor = System.Drawing.Color.White;
-            this.txtMa_nh.LimitCharacters = null;
             this.txtMa_nh.Location = new System.Drawing.Point(199, 64);
             this.txtMa_nh.Name = "txtMa_nh";
             this.txtMa_nh.Size = new System.Drawing.Size(111, 23);
             this.txtMa_nh.TabIndex = 3;
-            this.txtMa_nh.GrayText = "";
+            this.txtMa_nh.UseLimitCharacters0 = true;
             // 
             // chkStatus
             // 
@@ -113,18 +113,18 @@
             this.txtTen_nh2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTen_nh2.EnableColorEffect = true;
-            this.txtTen_nh2.EnableColorEffectOnMouseEnter = false;
+            this.txtTen_nh2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTen_nh2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTen_nh2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTen_nh2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTen_nh2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTen_nh2.HoverColor = System.Drawing.Color.Yellow;
             this.txtTen_nh2.LeaveColor = System.Drawing.Color.White;
-            this.txtTen_nh2.LimitCharacters = null;
             this.txtTen_nh2.Location = new System.Drawing.Point(199, 135);
             this.txtTen_nh2.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.txtTen_nh2.Name = "txtTen_nh2";
             this.txtTen_nh2.Size = new System.Drawing.Size(485, 23);
             this.txtTen_nh2.TabIndex = 7;
-            this.txtTen_nh2.GrayText = "";
             // 
             // label4
             // 
@@ -142,9 +142,11 @@
             this.txtLoai_nh.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLoai_nh.EnableColorEffect = true;
-            this.txtLoai_nh.EnableColorEffectOnMouseEnter = false;
+            this.txtLoai_nh.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLoai_nh.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtLoai_nh.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLoai_nh.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLoai_nh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLoai_nh.HoverColor = System.Drawing.Color.Yellow;
             this.txtLoai_nh.LeaveColor = System.Drawing.Color.White;
             this.txtLoai_nh.LimitCharacters = "12345678";
@@ -154,7 +156,6 @@
             this.txtLoai_nh.Name = "txtLoai_nh";
             this.txtLoai_nh.Size = new System.Drawing.Size(111, 23);
             this.txtLoai_nh.TabIndex = 1;
-            this.txtLoai_nh.GrayText = "";
             // 
             // txtTen_nh
             // 
@@ -162,18 +163,18 @@
             this.txtTen_nh.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTen_nh.EnableColorEffect = true;
-            this.txtTen_nh.EnableColorEffectOnMouseEnter = false;
+            this.txtTen_nh.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTen_nh.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTen_nh.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTen_nh.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTen_nh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTen_nh.HoverColor = System.Drawing.Color.Yellow;
             this.txtTen_nh.LeaveColor = System.Drawing.Color.White;
-            this.txtTen_nh.LimitCharacters = null;
             this.txtTen_nh.Location = new System.Drawing.Point(199, 100);
             this.txtTen_nh.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.txtTen_nh.Name = "txtTen_nh";
             this.txtTen_nh.Size = new System.Drawing.Size(485, 23);
             this.txtTen_nh.TabIndex = 5;
-            this.txtTen_nh.GrayText = "";
             // 
             // label1
             // 

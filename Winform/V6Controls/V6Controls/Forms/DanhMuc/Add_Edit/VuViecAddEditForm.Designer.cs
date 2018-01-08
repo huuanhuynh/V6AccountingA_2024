@@ -144,6 +144,7 @@
             this.TxtMa_vv.Name = "TxtMa_vv";
             this.TxtMa_vv.Size = new System.Drawing.Size(136, 23);
             this.TxtMa_vv.TabIndex = 1;
+            this.TxtMa_vv.UseLimitCharacters0 = true;
             // 
             // v6ColorTextBox3
             // 

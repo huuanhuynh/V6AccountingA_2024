@@ -55,7 +55,7 @@ namespace H_document
         MouseDown, MouseUp
     }
 
-    public enum Mode
+    public enum HMode
     {
         None,
         Design, PrintPreview, Print,//vMode

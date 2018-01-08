@@ -78,6 +78,7 @@
             this.txtma_nh.Name = "txtma_nh";
             this.txtma_nh.Size = new System.Drawing.Size(100, 23);
             this.txtma_nh.TabIndex = 3;
+            this.txtma_nh.UseLimitCharacters0 = true;
             this.txtma_nh.VVar = "ma_nh";
             // 
             // checkBox1

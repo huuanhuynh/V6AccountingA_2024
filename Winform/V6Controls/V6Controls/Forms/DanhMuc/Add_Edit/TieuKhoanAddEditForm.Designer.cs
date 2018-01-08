@@ -109,6 +109,7 @@
             this.txttk2.Name = "txttk2";
             this.txttk2.Size = new System.Drawing.Size(124, 23);
             this.txttk2.TabIndex = 1;
+            this.txttk2.UseLimitCharacters0 = true;
             // 
             // checkBox1
             // 

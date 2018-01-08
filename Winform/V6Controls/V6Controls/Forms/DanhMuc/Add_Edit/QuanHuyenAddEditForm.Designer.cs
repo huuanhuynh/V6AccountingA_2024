@@ -105,6 +105,7 @@
             this.TXTma_quan.Name = "TXTma_quan";
             this.TXTma_quan.Size = new System.Drawing.Size(150, 23);
             this.TXTma_quan.TabIndex = 1;
+            this.TXTma_quan.UseLimitCharacters0 = true;
             this.TXTma_quan.VVar = "ma_quan";
             // 
             // v6ColorTextBox3

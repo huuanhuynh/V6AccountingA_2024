@@ -130,6 +130,7 @@
             this.TxtFcolumn.Name = "TxtFcolumn";
             this.TxtFcolumn.Size = new System.Drawing.Size(150, 23);
             this.TxtFcolumn.TabIndex = 0;
+            this.TxtFcolumn.UseLimitCharacters0 = true;
             // 
             // v6ColorTextBox3
             // 

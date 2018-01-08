@@ -759,6 +759,7 @@
             this.TxtMa_nvien.Name = "TxtMa_nvien";
             this.TxtMa_nvien.Size = new System.Drawing.Size(136, 23);
             this.TxtMa_nvien.TabIndex = 1;
+            this.TxtMa_nvien.UseLimitCharacters0 = true;
             // 
             // v6ColorTextBox3
             // 

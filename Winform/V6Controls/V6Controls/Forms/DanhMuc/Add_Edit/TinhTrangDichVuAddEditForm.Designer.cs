@@ -106,6 +106,7 @@
             this.txtTT_VT.Name = "txtTT_VT";
             this.txtTT_VT.Size = new System.Drawing.Size(148, 23);
             this.txtTT_VT.TabIndex = 1;
+            this.txtTT_VT.UseLimitCharacters0 = true;
             // 
             // v6ColorTextBox3
             // 

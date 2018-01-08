@@ -64,20 +64,19 @@
             // Txtma_nv
             // 
             this.Txtma_nv.AccessibleName = "ma_nv";
-            this.Txtma_nv.BrotherFields = null;
-            this.Txtma_nv.Carry = false;
+            this.Txtma_nv.BackColor = System.Drawing.SystemColors.Window;
+            this.Txtma_nv.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.Txtma_nv.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.Txtma_nv.EnableColorEffect = true;
-            this.Txtma_nv.EnableColorEffectOnMouseEnter = false;
             this.Txtma_nv.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtma_nv.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtma_nv.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.Txtma_nv.HoverColor = System.Drawing.Color.Yellow;
             this.Txtma_nv.LeaveColor = System.Drawing.Color.White;
-            this.Txtma_nv.LimitCharacters = null;
             this.Txtma_nv.Location = new System.Drawing.Point(228, 20);
             this.Txtma_nv.Name = "Txtma_nv";
             this.Txtma_nv.Size = new System.Drawing.Size(141, 23);
             this.Txtma_nv.TabIndex = 1;
-            this.Txtma_nv.GrayText = "";
+            this.Txtma_nv.UseLimitCharacters0 = true;
             // 
             // checkBox1
             // 
@@ -110,19 +109,18 @@
             this.v6ColorTextBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox5.Carry = false;
-            this.v6ColorTextBox5.EnableColorEffect = true;
-            this.v6ColorTextBox5.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox5.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.LimitCharacters = null;
             this.v6ColorTextBox5.Location = new System.Drawing.Point(228, 84);
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
             this.v6ColorTextBox5.Size = new System.Drawing.Size(555, 23);
             this.v6ColorTextBox5.TabIndex = 5;
-            this.v6ColorTextBox5.GrayText = "";
             // 
             // label5
             // 
@@ -150,19 +148,18 @@
             this.Txtten_nv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Txtten_nv.Carry = false;
-            this.Txtten_nv.EnableColorEffect = true;
-            this.Txtten_nv.EnableColorEffectOnMouseEnter = false;
+            this.Txtten_nv.BackColor = System.Drawing.SystemColors.Window;
+            this.Txtten_nv.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.Txtten_nv.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtten_nv.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtten_nv.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.Txtten_nv.HoverColor = System.Drawing.Color.Yellow;
             this.Txtten_nv.LeaveColor = System.Drawing.Color.White;
-            this.Txtten_nv.LimitCharacters = null;
             this.Txtten_nv.Location = new System.Drawing.Point(228, 52);
             this.Txtten_nv.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Txtten_nv.Name = "Txtten_nv";
             this.Txtten_nv.Size = new System.Drawing.Size(555, 23);
             this.Txtten_nv.TabIndex = 3;
-            this.Txtten_nv.GrayText = "";
             // 
             // label2
             // 

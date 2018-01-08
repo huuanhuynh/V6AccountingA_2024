@@ -98,7 +98,7 @@ namespace H_document.DocumentObjects
         public bool ViewSecondRow { get; set; }
 
 
-        public override void DrawToGraphics(Graphics g, Margins margins, SortedDictionary<string, object> parameters, Mode drawMode, DocumentObject[] selectedObjects)
+        public override void DrawToGraphics(Graphics g, Margins margins, SortedDictionary<string, object> parameters, HMode drawMode, DocumentObject[] selectedObjects)
         {
             //Vẽ lặp data chi tiết khi in và preview
             Pen penLine = new Pen(Color.Black, 0.1f);
@@ -107,7 +107,7 @@ namespace H_document.DocumentObjects
             var startTop = TopF + margins.Top;
 
             DrawHeader(g, margins, penLine, brush, drawMode, startTop);
-            if (drawMode == Mode.Print || drawMode == Mode.PrintPreview)
+            if (drawMode == HMode.Print || drawMode == HMode.PrintPreview)
             {
                 // Phần vẽ chi tiết khi in hoặc preview
                 if (Data is DataTable)
@@ -137,7 +137,7 @@ namespace H_document.DocumentObjects
             }
 
             //Vẽ khung bao quanh trong trường hợp thiết kế
-            if (drawMode == Mode.Design)
+            if (drawMode == HMode.Design)
             {
                 Pen pen = new Pen(Color.LightGreen, 0.1f);
                 pen.DashStyle = DashStyle.DashDot;
@@ -157,7 +157,7 @@ namespace H_document.DocumentObjects
         /// <param name="brush"></param>
         /// <param name="drawMode"></param>
         /// <param name="startTop"></param>
-        private void DrawHeader(Graphics g, Margins margins, Pen penLine, Brush brush, Mode drawMode,
+        private void DrawHeader(Graphics g, Margins margins, Pen penLine, Brush brush, HMode drawMode,
             float startTop)
         {
             var startLeft = LeftF + margins.Left;
@@ -186,7 +186,7 @@ namespace H_document.DocumentObjects
                 }
             }
         }
-        private void DrawOneLine(Graphics g, Margins margins, Pen penLine, Brush brush, Mode drawMode, DocumentObject[] selectedObjects,
+        private void DrawOneLine(Graphics g, Margins margins, Pen penLine, Brush brush, HMode drawMode, DocumentObject[] selectedObjects,
             float startTop, SortedDictionary<string,object> row, out float f)
         {
             var startLeft = LeftF + margins.Left;
@@ -209,7 +209,7 @@ namespace H_document.DocumentObjects
                     if (ViewLine)
                         g.DrawRectangle(penLine, startLeft2, drawTop, item.Width, HeightF);
                     var text = "";
-                    if (drawMode == Mode.Design)
+                    if (drawMode == HMode.Design)
                     {
                         if (!string.IsNullOrEmpty(item.Text)) text = item.Text;
                         else text = "{" + item.Name + "}";
@@ -221,7 +221,7 @@ namespace H_document.DocumentObjects
                             DocumentObjectHelper.DrawMovePoint(g, penLine, rPoint);
                         }
                     }
-                    else if (drawMode != Mode.Design)
+                    else if (drawMode != HMode.Design)
                     {
                         //if (!string.IsNullOrEmpty(item.Text))
                         {
@@ -262,7 +262,7 @@ namespace H_document.DocumentObjects
                     if (ViewLine)
                         g.DrawRectangle(penLine, startLeft, drawTop, item.Width, HeightF);
                     var text = "";
-                    if (drawMode == Mode.Design)
+                    if (drawMode == HMode.Design)
                     {
                         text = "{" + item.Name + "}";
                         //DrawItemResizePoint
@@ -272,7 +272,7 @@ namespace H_document.DocumentObjects
                             DocumentObjectHelper.DrawMovePoint(g, penLine, rPoint);
                         }
                     }
-                    else if (drawMode != Mode.Design)
+                    else if (drawMode != HMode.Design)
                     {
                         if (row.ContainsKey(item.Name.ToUpper()))
                         {
@@ -326,7 +326,7 @@ namespace H_document.DocumentObjects
         {
             if (GetResizePointIndex(mouseDownPoint) >= 0)
             {
-                DesignMode  = Mode.Resize;
+                DesignMode  = HMode.Resize;
                 ResizePointType = PointType.MoveItem;
             }
             else
@@ -344,7 +344,7 @@ namespace H_document.DocumentObjects
         {
             if (GetResizePointIndex(mouseDownPoint) >= 0)
             {
-                DesignMode = Mode.Resize;
+                DesignMode = HMode.Resize;
                 ResizePointType = PointType.Details;
                 return PointType.Details;
             }

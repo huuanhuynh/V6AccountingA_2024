@@ -105,6 +105,7 @@
             this.TXTMA_NH.Name = "TXTMA_NH";
             this.TXTMA_NH.Size = new System.Drawing.Size(136, 23);
             this.TXTMA_NH.TabIndex = 1;
+            this.TXTMA_NH.UseLimitCharacters0 = true;
             this.TXTMA_NH.VVar = "MA_nh      ";
             // 
             // txtten_nh2

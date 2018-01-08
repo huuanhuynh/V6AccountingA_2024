@@ -1027,6 +1027,7 @@
             this.TxtMa_dvcs.Name = "TxtMa_dvcs";
             this.TxtMa_dvcs.Size = new System.Drawing.Size(202, 23);
             this.TxtMa_dvcs.TabIndex = 1;
+            this.TxtMa_dvcs.UseLimitCharacters0 = true;
             this.TxtMa_dvcs.VVar = "MA_DVCS";
             // 
             // label41
@@ -1057,6 +1058,7 @@
             this.txtMaKH.Name = "txtMaKH";
             this.txtMaKH.Size = new System.Drawing.Size(184, 23);
             this.txtMaKH.TabIndex = 0;
+            this.txtMaKH.UseLimitCharacters0 = true;
             // 
             // label1
             // 

@@ -80,6 +80,7 @@
             this.Txtma_nh.Name = "Txtma_nh";
             this.Txtma_nh.Size = new System.Drawing.Size(147, 23);
             this.Txtma_nh.TabIndex = 3;
+            this.Txtma_nh.UseLimitCharacters0 = true;
             // 
             // v6NumberTextBox1
             // 

@@ -48,7 +48,7 @@ namespace H_document.DocumentObjects
             }
         }
 
-        public override void DrawToGraphics(Graphics g, Margins margins, SortedDictionary<string, object> parameters, Mode drawMode, DocumentObject[] selectedObjects)
+        public override void DrawToGraphics(Graphics g, Margins margins, SortedDictionary<string, object> parameters, HMode drawMode, DocumentObject[] selectedObjects)
         {
             var pen = new Pen(BaseColor,_lineWeight);
             //Vẽ các đoạn thẳng
@@ -65,7 +65,7 @@ namespace H_document.DocumentObjects
             if ((DrawLines&DrawLine.BD) == DrawLine.BD) g.DrawLine(pen, newPointB, newPointD);
 
             //Vẽ các chữ cái. designMode + selected
-            if (selectedObjects != null && selectedObjects.Contains(this) && drawMode == Mode.Design)
+            if (selectedObjects != null && selectedObjects.Contains(this) && drawMode == HMode.Design)
             {
                 g.DrawString("A", new Font("Arial", 8.25f, FontStyle.Regular), new SolidBrush(Color.Red),
                     new RectangleF(margins.Left + LeftF - 1, margins.Top + TopF - 3, 3, 3));

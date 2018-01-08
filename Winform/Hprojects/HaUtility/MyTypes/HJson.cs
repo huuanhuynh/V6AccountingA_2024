@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace HaUtility.MyTypes
 {
-    public class MyJson
+    public class HJson
     {
         private static string DateFormatString { get; set; }
         public static JsonSerializerSettings JsSetting = new JsonSerializerSettings();

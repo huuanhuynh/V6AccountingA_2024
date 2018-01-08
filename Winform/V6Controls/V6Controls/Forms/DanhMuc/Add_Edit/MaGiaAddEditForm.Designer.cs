@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtPT_GIA = new V6Controls.V6NumberTextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.Txtma_gia0 = new V6Controls.V6VvarTextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.TxtMa_gia = new V6Controls.V6VvarTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.checkBox1 = new V6Controls.V6CheckBox();
@@ -40,11 +45,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.Txtma_gia0 = new V6Controls.V6VvarTextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtPT_GIA = new V6Controls.V6NumberTextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,23 +78,90 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " ";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(324, 124);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(57, 17);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Giảm %";
+            // 
+            // txtPT_GIA
+            // 
+            this.txtPT_GIA.AccessibleName = "PT_GIA";
+            this.txtPT_GIA.BackColor = System.Drawing.Color.White;
+            this.txtPT_GIA.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtPT_GIA.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtPT_GIA.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPT_GIA.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtPT_GIA.HoverColor = System.Drawing.Color.Yellow;
+            this.txtPT_GIA.LeaveColor = System.Drawing.Color.White;
+            this.txtPT_GIA.Location = new System.Drawing.Point(419, 121);
+            this.txtPT_GIA.Name = "txtPT_GIA";
+            this.txtPT_GIA.Size = new System.Drawing.Size(129, 23);
+            this.txtPT_GIA.TabIndex = 4;
+            this.txtPT_GIA.Text = "0,000";
+            this.txtPT_GIA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPT_GIA.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            196608});
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(33, 124);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(130, 17);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Theo mã giá chuẩn";
+            // 
+            // Txtma_gia0
+            // 
+            this.Txtma_gia0.AccessibleName = "MA_GIA0";
+            this.Txtma_gia0.BackColor = System.Drawing.SystemColors.Window;
+            this.Txtma_gia0.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.Txtma_gia0.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtma_gia0.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtma_gia0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.Txtma_gia0.HoverColor = System.Drawing.Color.Yellow;
+            this.Txtma_gia0.LeaveColor = System.Drawing.Color.White;
+            this.Txtma_gia0.Location = new System.Drawing.Point(169, 121);
+            this.Txtma_gia0.Name = "Txtma_gia0";
+            this.Txtma_gia0.Size = new System.Drawing.Size(130, 23);
+            this.Txtma_gia0.TabIndex = 3;
+            this.Txtma_gia0.VVar = "MA_GIA";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(261, 195);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(108, 17);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "2 - Theo khách ";
+            // 
             // TxtMa_gia
             // 
             this.TxtMa_gia.AccessibleName = "ma_gia";
-            this.TxtMa_gia.BrotherFields = null;
-            this.TxtMa_gia.Carry = false;
+            this.TxtMa_gia.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtMa_gia.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtMa_gia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtMa_gia.EnableColorEffect = true;
-            this.TxtMa_gia.EnableColorEffectOnMouseEnter = false;
             this.TxtMa_gia.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtMa_gia.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtMa_gia.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtMa_gia.HoverColor = System.Drawing.Color.Yellow;
             this.TxtMa_gia.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_gia.LimitCharacters = null;
             this.TxtMa_gia.Location = new System.Drawing.Point(169, 37);
             this.TxtMa_gia.Name = "TxtMa_gia";
             this.TxtMa_gia.Size = new System.Drawing.Size(130, 23);
             this.TxtMa_gia.TabIndex = 0;
-            this.TxtMa_gia.GrayText = "";
+            this.TxtMa_gia.UseLimitCharacters0 = true;
             // 
             // label6
             // 
@@ -121,10 +188,11 @@
             // v6ColorTextBox4
             // 
             this.v6ColorTextBox4.AccessibleName = "Loai";
-            this.v6ColorTextBox4.Carry = false;
-            this.v6ColorTextBox4.EnableColorEffect = true;
-            this.v6ColorTextBox4.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox4.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox4.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox4.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox4.LimitCharacters = "012";
@@ -135,40 +203,37 @@
             this.v6ColorTextBox4.Size = new System.Drawing.Size(52, 23);
             this.v6ColorTextBox4.TabIndex = 5;
             this.v6ColorTextBox4.Text = "0";
-            this.v6ColorTextBox4.GrayText = "";
             // 
             // v6ColorTextBox3
             // 
-            this.v6ColorTextBox3.Carry = false;
-            this.v6ColorTextBox3.EnableColorEffect = true;
-            this.v6ColorTextBox3.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox3.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox3.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox3.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox3.LimitCharacters = null;
             this.v6ColorTextBox3.Location = new System.Drawing.Point(169, 95);
             this.v6ColorTextBox3.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox3.Name = "v6ColorTextBox3";
             this.v6ColorTextBox3.Size = new System.Drawing.Size(379, 23);
             this.v6ColorTextBox3.TabIndex = 2;
-            this.v6ColorTextBox3.GrayText = "";
             // 
             // txtten_gia
             // 
             this.txtten_gia.AccessibleName = "ten_gia";
-            this.txtten_gia.Carry = false;
-            this.txtten_gia.EnableColorEffect = true;
-            this.txtten_gia.EnableColorEffectOnMouseEnter = false;
+            this.txtten_gia.BackColor = System.Drawing.SystemColors.Window;
+            this.txtten_gia.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtten_gia.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtten_gia.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtten_gia.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtten_gia.HoverColor = System.Drawing.Color.Yellow;
             this.txtten_gia.LeaveColor = System.Drawing.Color.White;
-            this.txtten_gia.LimitCharacters = null;
             this.txtten_gia.Location = new System.Drawing.Point(169, 66);
             this.txtten_gia.Margin = new System.Windows.Forms.Padding(4);
             this.txtten_gia.Name = "txtten_gia";
             this.txtten_gia.Size = new System.Drawing.Size(379, 23);
             this.txtten_gia.TabIndex = 1;
-            this.txtten_gia.GrayText = "";
             // 
             // label5
             // 
@@ -219,80 +284,6 @@
             this.label1.Size = new System.Drawing.Size(54, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã giá ";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(261, 195);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(108, 17);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "2 - Theo khách ";
-            // 
-            // Txtma_gia0
-            // 
-            this.Txtma_gia0.AccessibleName = "MA_GIA0";
-            this.Txtma_gia0.BrotherFields = null;
-            this.Txtma_gia0.Carry = false;
-            this.Txtma_gia0.EnableColorEffect = true;
-            this.Txtma_gia0.EnableColorEffectOnMouseEnter = false;
-            this.Txtma_gia0.EnterColor = System.Drawing.Color.PaleGreen;
-            this.Txtma_gia0.HoverColor = System.Drawing.Color.Yellow;
-            this.Txtma_gia0.LeaveColor = System.Drawing.Color.White;
-            this.Txtma_gia0.LimitCharacters = null;
-            this.Txtma_gia0.Location = new System.Drawing.Point(169, 121);
-            this.Txtma_gia0.Name = "Txtma_gia0";
-            this.Txtma_gia0.Size = new System.Drawing.Size(130, 23);
-            this.Txtma_gia0.TabIndex = 3;
-            this.Txtma_gia0.GrayText = "";
-            this.Txtma_gia0.VVar = "MA_GIA";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(33, 124);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(130, 17);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Theo mã giá chuẩn";
-            // 
-            // txtPT_GIA
-            // 
-            this.txtPT_GIA.AccessibleName = "PT_GIA";
-            this.txtPT_GIA.BackColor = System.Drawing.Color.White;
-            this.txtPT_GIA.Carry = false;
-            this.txtPT_GIA.EnableColorEffect = true;
-            this.txtPT_GIA.EnableColorEffectOnMouseEnter = false;
-            this.txtPT_GIA.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtPT_GIA.HoverColor = System.Drawing.Color.Yellow;
-            this.txtPT_GIA.LeaveColor = System.Drawing.Color.White;
-            this.txtPT_GIA.LimitCharacters = null;
-            this.txtPT_GIA.Location = new System.Drawing.Point(419, 121);
-            this.txtPT_GIA.MaxNumDecimal = 0;
-            this.txtPT_GIA.MaxNumLength = 0;
-            this.txtPT_GIA.Name = "txtPT_GIA";
-            this.txtPT_GIA.Size = new System.Drawing.Size(129, 23);
-            this.txtPT_GIA.TabIndex = 4;
-            this.txtPT_GIA.Text = "0,000";
-            this.txtPT_GIA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtPT_GIA.GrayText = "";
-            this.txtPT_GIA.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            196608});
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(324, 124);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(57, 17);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "Giảm %";
             // 
             // MaGiaAddEditForm
             // 

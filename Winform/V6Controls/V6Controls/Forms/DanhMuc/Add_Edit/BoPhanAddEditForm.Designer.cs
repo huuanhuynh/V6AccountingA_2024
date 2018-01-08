@@ -111,7 +111,11 @@
             this.TxtTen_bp.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtTen_bp.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtTen_bp.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtTen_bp.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtTen_bp.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtTen_bp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtTen_bp.HoverColor = System.Drawing.Color.Yellow;
             this.TxtTen_bp.LeaveColor = System.Drawing.Color.White;
             this.TxtTen_bp.Location = new System.Drawing.Point(191, 55);
@@ -126,7 +130,11 @@
             this.v6ColorTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6ColorTextBox3.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox3.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox3.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox3.Location = new System.Drawing.Point(191, 88);
@@ -159,8 +167,11 @@
             // 
             this.TxtMa_dvcs.AccessibleName = "Ma_dvcs";
             this.TxtMa_dvcs.BackColor = System.Drawing.Color.White;
+            this.TxtMa_dvcs.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtMa_dvcs.CheckNotEmpty = true;
             this.TxtMa_dvcs.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtMa_dvcs.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtMa_dvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtMa_dvcs.HoverColor = System.Drawing.Color.Yellow;
             this.TxtMa_dvcs.LeaveColor = System.Drawing.Color.White;
             this.TxtMa_dvcs.Location = new System.Drawing.Point(665, 24);
@@ -183,14 +194,19 @@
             // TxtMa_bp
             // 
             this.TxtMa_bp.AccessibleName = "ma_bp";
+            this.TxtMa_bp.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtMa_bp.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtMa_bp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtMa_bp.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtMa_bp.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtMa_bp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtMa_bp.HoverColor = System.Drawing.Color.Yellow;
             this.TxtMa_bp.LeaveColor = System.Drawing.Color.White;
             this.TxtMa_bp.Location = new System.Drawing.Point(191, 27);
             this.TxtMa_bp.Name = "TxtMa_bp";
             this.TxtMa_bp.Size = new System.Drawing.Size(126, 23);
             this.TxtMa_bp.TabIndex = 1;
+            this.TxtMa_bp.UseLimitCharacters0 = true;
             // 
             // v6TabControl1
             // 
@@ -239,7 +255,11 @@
             // v6ColorTextBox4
             // 
             this.v6ColorTextBox4.AccessibleName = "ghi_chu";
+            this.v6ColorTextBox4.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox4.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox4.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox4.Location = new System.Drawing.Point(193, 14);
@@ -312,7 +332,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorTextBox16.BackColor = System.Drawing.Color.White;
+            this.v6ColorTextBox16.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox16.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox16.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox16.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox16.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox16.Location = new System.Drawing.Point(141, 347);
@@ -328,7 +350,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorTextBox15.BackColor = System.Drawing.Color.White;
+            this.v6ColorTextBox15.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox15.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox15.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox15.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox15.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox15.Location = new System.Drawing.Point(141, 316);
@@ -344,7 +368,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorTextBox1.BackColor = System.Drawing.Color.White;
+            this.v6ColorTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox1.Location = new System.Drawing.Point(141, 285);
@@ -401,7 +427,9 @@
             this.v6ColorTextBox19.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6ColorTextBox19.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox19.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox19.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox19.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox19.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox19.Location = new System.Drawing.Point(141, 68);
@@ -416,7 +444,9 @@
             this.v6ColorTextBox20.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6ColorTextBox20.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox20.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox20.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox20.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox20.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox20.Location = new System.Drawing.Point(141, 38);
@@ -431,7 +461,9 @@
             this.v6ColorTextBox22.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6ColorTextBox22.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox22.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox22.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox22.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox22.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox22.Location = new System.Drawing.Point(141, 9);
@@ -447,7 +479,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6NumberTextBox3.BackColor = System.Drawing.Color.White;
+            this.v6NumberTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6NumberTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6NumberTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox3.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox3.LeaveColor = System.Drawing.Color.White;
             this.v6NumberTextBox3.Location = new System.Drawing.Point(141, 254);
@@ -470,7 +505,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6NumberTextBox2.BackColor = System.Drawing.Color.White;
+            this.v6NumberTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6NumberTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6NumberTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox2.LeaveColor = System.Drawing.Color.White;
             this.v6NumberTextBox2.Location = new System.Drawing.Point(141, 223);
@@ -493,7 +531,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6NumberTextBox1.BackColor = System.Drawing.Color.White;
+            this.v6NumberTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6NumberTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6NumberTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6NumberTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox1.LeaveColor = System.Drawing.Color.White;
             this.v6NumberTextBox1.Location = new System.Drawing.Point(141, 192);
@@ -641,7 +682,11 @@
             this.v6ColorDateTimePick3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6ColorDateTimePick3.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorDateTimePick3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorDateTimePick3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorDateTimePick3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorDateTimePick3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorDateTimePick3.GrayText = null;
             this.v6ColorDateTimePick3.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorDateTimePick3.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -660,7 +705,11 @@
             this.v6ColorDateTimePick2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.v6ColorDateTimePick2.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorDateTimePick2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorDateTimePick2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorDateTimePick2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorDateTimePick2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorDateTimePick2.GrayText = null;
             this.v6ColorDateTimePick2.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorDateTimePick2.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -680,7 +729,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorDateTimePick1.BackColor = System.Drawing.Color.White;
+            this.v6ColorDateTimePick1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorDateTimePick1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorDateTimePick1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorDateTimePick1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorDateTimePick1.GrayText = null;
             this.v6ColorDateTimePick1.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorDateTimePick1.ImeMode = System.Windows.Forms.ImeMode.On;

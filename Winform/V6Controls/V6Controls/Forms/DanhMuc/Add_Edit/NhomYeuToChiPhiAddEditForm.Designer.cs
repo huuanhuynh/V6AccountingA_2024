@@ -127,6 +127,7 @@
             this.txtNhom.Name = "txtNhom";
             this.txtNhom.Size = new System.Drawing.Size(171, 23);
             this.txtNhom.TabIndex = 0;
+            this.txtNhom.UseLimitCharacters0 = true;
             // 
             // label4
             // 

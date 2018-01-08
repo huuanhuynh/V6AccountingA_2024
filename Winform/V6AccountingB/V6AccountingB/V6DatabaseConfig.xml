@@ -133,6 +133,24 @@
     <Type>0</Type>
     <Key>1qprhGujgAIg0njmmdo/yUZAoF2wV8KJ/4UOmIWPOLsO2W9O+OTOtg==</Key>
   </DatabaseList>
+  <DatabaseList>
+    <Stt>8</Stt>
+    <Server>115.78.14.82,7171</Server>
+    <Server2>115.78.14.82,7171</Server2>
+    <Database>SUN18_HRM</Database>
+    <Database2>SUN18_HRM</Database2>
+    <UserId>v6sa</UserId>
+    <UserId2>v6sa</UserId2>
+    <Epassword>5pB++Yt1HJm2NzJ1+ODsMQ==</Epassword>
+    <Epassword2>5pB++Yt1HJm2NzJ1+ODsMQ==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <Note>Dữ liệu ONLINE V6HRM 2018</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>UItEn45sbvZQBoACDVYA+T3J7bKEyWBhFFDlxMtNd/c=</Key>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>

@@ -42,7 +42,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.v6ColorTextBox16 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox15 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox2 = new V6Controls.V6ColorTextBox();
@@ -67,6 +66,7 @@
             this.v6ColorDateTimePick3 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick2 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -105,6 +105,7 @@
             this.TxtDvt.Name = "TxtDvt";
             this.TxtDvt.Size = new System.Drawing.Size(172, 23);
             this.TxtDvt.TabIndex = 1;
+            this.TxtDvt.UseLimitCharacters0 = true;
             // 
             // v6ColorTextBox3
             // 
@@ -289,17 +290,6 @@
             this.tabPage2.Size = new System.Drawing.Size(686, 343);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Size = new System.Drawing.Size(686, 343);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Thông tin khác";
             // 
             // v6ColorTextBox16
             // 
@@ -720,6 +710,17 @@
             this.v6ColorDateTimePick1.StringValue = "__/__/____";
             this.v6ColorDateTimePick1.TabIndex = 169;
             this.v6ColorDateTimePick1.Text = "__/__/____";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
+            this.tabPage3.Size = new System.Drawing.Size(686, 343);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Thông tin khác";
             // 
             // DonViTinhAddEditForm
             // 

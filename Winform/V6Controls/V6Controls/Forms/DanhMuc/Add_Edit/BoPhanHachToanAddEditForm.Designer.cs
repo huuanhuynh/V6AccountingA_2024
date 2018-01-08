@@ -219,6 +219,7 @@
             this.txtMa_bpht.Name = "txtMa_bpht";
             this.txtMa_bpht.Size = new System.Drawing.Size(203, 23);
             this.txtMa_bpht.TabIndex = 2;
+            this.txtMa_bpht.UseLimitCharacters0 = true;
             // 
             // label5
             // 
