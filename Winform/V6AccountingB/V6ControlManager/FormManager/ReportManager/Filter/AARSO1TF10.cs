@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Windows.Forms;
 using V6Controls;
 
@@ -23,7 +24,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
            Ma_kh_filterLine.VvarTextBox.Text = row.Cells["MA_KH"].Value.ToString().Trim();
         }
-        void AARCD1_F5_SetParentAllRowEvent(System.Windows.Forms.DataGridView dataGridView1)
+        void AARCD1_F5_SetParentAllRowEvent(DataGridView dataGridView1)
         {
 
             var listtk = "";
@@ -43,7 +44,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 }
                 catch (Exception ex)
                 {
-                    
+                    this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
                 }
             }
             

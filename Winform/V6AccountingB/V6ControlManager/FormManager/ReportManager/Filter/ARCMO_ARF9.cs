@@ -29,7 +29,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
         }
 
-        private DataSet _ds;
         private string _stt_rec;
         
         /// <summary>

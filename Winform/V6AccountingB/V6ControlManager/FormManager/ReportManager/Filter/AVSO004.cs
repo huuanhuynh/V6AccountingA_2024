@@ -161,7 +161,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             _ds = ds;
         }
 
-        private DataSet _ds;
         public override void FormatGridView(V6ColorDataGridView dataGridView1)
         {
             string showFields = "";

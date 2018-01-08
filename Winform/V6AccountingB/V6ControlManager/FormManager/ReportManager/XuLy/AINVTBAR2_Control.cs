@@ -189,7 +189,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 catch (Exception ex)
                 {
-
+                    this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
                 }
             };
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
@@ -197,7 +198,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             catch (Exception ex)
             {
-           //     this.ShowErrorMessage(GetType() + ".LoadDetails: " + ex.Message, "Aldmvt");
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
 

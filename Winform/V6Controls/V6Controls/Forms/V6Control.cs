@@ -151,7 +151,11 @@ namespace V6Controls.Forms
             V6ControlFormHelper.ShowMainMessage(message);
         }
 
-        public void SetStatusText(string message)
+        /// <summary>
+        /// Hiển thị message ở góc dưới bên trái.
+        /// </summary>
+        /// <param name="message"></param>
+        public virtual void SetStatusText(string message)
         {
             V6ControlFormHelper.SetStatusText(message);
         }

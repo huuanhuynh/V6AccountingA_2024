@@ -33,9 +33,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             V6ControlFormHelper.SetStatusText2("Tính giá nhập trước xuất trước (FIFO).");
         }
 
-        private void SetStatusText(string text)
+        public override void SetStatusText(string text)
         {
             lblStatus.Text = text;
+            base.SetStatusText(text);
         }
 
         /// <summary>

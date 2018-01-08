@@ -31,10 +31,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
          
         }
 
-        private DataSet _ds;
-
-        
-        
         /// <summary>
         /// Lay cac tham so cho procedure
         /// </summary>

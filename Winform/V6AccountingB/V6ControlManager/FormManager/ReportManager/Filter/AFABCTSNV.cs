@@ -101,30 +101,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         }
 
         //public override DataTable GenTableForReportType()
-        //{
-        //    DataTable tbl = new DataTable();
-        //    tbl.Columns.Add("Name", typeof(string));
-        //    tbl.Columns.Add("Value", typeof(string));
-        //    DataRow newRow = tbl.NewRow();
-        //    //newRow["Name"] = "Số lượng";
-        //    //newRow["Value"] = "Ten_vt,So_luong1,So_luong2";
-        //    tbl.Rows.Add(newRow);
 
-        //    newRow = tbl.NewRow();
-        //    // newRow["Name"] = "Tiền";
-        //    //newRow["Value"] = "Ten_vt,Tien1,Tien2";
-        //    tbl.Rows.Add(newRow);
-
-        //    return tbl;
-        //}
-
-        //Dynamic report -> After
         public override void LoadDataFinish(DataSet ds)
         {
             _ds = ds;
         }
 
-        private DataSet _ds;
         public override void FormatGridView(V6ColorDataGridView dataGridView1)
         {
             string showFields = "";

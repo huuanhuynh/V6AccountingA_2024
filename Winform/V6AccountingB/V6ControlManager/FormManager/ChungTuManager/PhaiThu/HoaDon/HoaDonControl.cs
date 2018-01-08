@@ -7237,7 +7237,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void XoaChietKhau()
         {
-            if (Mode == V6Mode.Add || Mode == V6Mode.Edit) ;
+            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            {
+                return;
+            }
             //Xoa theo stt_rec0, ma_kmb, gan ck = 0, pt_cki = 0;
             //Tính lại tiền.
             bool chietkhau_yn = false;

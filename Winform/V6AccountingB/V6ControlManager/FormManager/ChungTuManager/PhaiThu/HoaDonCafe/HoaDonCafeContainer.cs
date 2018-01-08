@@ -226,7 +226,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 else if(tabControl1.TabCount > 0)
                 {
-                    V6FormControl v6c = null;
                     Control c = tabControl1.SelectedTab.Controls[0];
                     if (c is KhuCafeControl)
                     {

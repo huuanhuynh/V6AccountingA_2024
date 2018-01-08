@@ -221,7 +221,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 }
                 else if(tabControl1.TabCount > 0)
                 {
-                    V6FormControl v6c = null;
                     Control c = tabControl1.SelectedTab.Controls[0];
                     foreach (Control control in c.Controls)
                     {

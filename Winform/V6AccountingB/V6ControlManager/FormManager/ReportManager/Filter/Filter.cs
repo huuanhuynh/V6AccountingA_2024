@@ -645,6 +645,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new AAPPR_SOA2();
                 case "AGLAUTOSO_CT":
                     return new XAGLAUTOSO_CT();
+                case "AGLAUTO_GL1":
+                    return new XAGLAUTO_GL1();
                 case "XLSALKH":
                     return new XLSALKH();
                 case "XLSALVT":

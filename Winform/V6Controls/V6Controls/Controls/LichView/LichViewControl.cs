@@ -154,7 +154,7 @@ namespace V6Controls.Controls.LichView
 
         #region ==== Properties ====
 
-        public DateTime FocusDate = DateTime.Now;
+        public DateTime FocusDate;
         
         /// <summary>
         /// Dữ liệu

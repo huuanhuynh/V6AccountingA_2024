@@ -757,7 +757,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
-        private DataSet _ds;
         public override void FormatGridView(V6ColorDataGridView dataGridView1)
         {
             string showFields = "";

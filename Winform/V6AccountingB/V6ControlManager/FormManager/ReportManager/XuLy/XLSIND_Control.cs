@@ -81,106 +81,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        #region ==== Xử lý F8 ==== Đang chạy giống F9 (copy chưa sửa lại)
-        protected override void XuLyF8()
-        {
-            return;
-            try
-            {
-                Timer tF8 = new Timer();
-                tF8.Interval = 500;
-                tF8.Tick += tF8_Tick;
-                Thread t = new Thread(F8Thread);
-                CheckForIllegalCrossThreadCalls = false;
-                t.IsBackground = true;
-                t.Start();
-                tF8.Start();
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".XuLyF8: " + ex.Message);
-            }
-        }
-
-        private bool F8Running;
-        private string F8Error = "";
-        private string F8ErrorAll = "";
-        private void F8Thread()
-        {
-            F8Running = true;
-            F8ErrorAll = "";
-
-            int i = 0, stt = 0;
-
-            while (i < dataGridView1.Rows.Count)
-            {
-                DataGridViewRow row = dataGridView1.Rows[i];
-                i++; stt++;
-                try
-                {
-                    if (row.Cells[ID_FIELD].Value != DBNull.Value && row.Cells[ID_FIELD].Value.ToString().Trim() != ""
-                        && row.Cells[NAME_FIELD].Value != DBNull.Value && row.Cells[NAME_FIELD].Value.ToString().Trim() != "")
-                    {
-                        var dataDic = new SortedDictionary<string, object>();
-                        for (int j = 0; j < dataGridView1.ColumnCount; j++)
-                        {
-                            dataDic.Add(dataGridView1.Columns[j].DataPropertyName, row.Cells[j].Value);
-                        }
-
-                        if (V6BusinessHelper.Insert(V6TableName.Alkh, dataDic))
-                        {
-                            remove_list_g.Add(row);
-                        }
-                        else
-                        {
-                            F8Error += "Dòng " + stt + " thêm không được.";
-                            F8ErrorAll += "Dòng " + stt + " thêm không được.";
-                        }
-                    }
-                    else
-                    {
-                        F8Error += "Dòng " + stt + " không có đủ MA_KH và TEN_KH.";
-                        F8ErrorAll += "Dòng " + stt + " không có đủ MA_KH và TEN_KH.";
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                    F8Error += "Dòng " + stt + ": " + ex.Message;
-                    F8ErrorAll += "Dòng " + stt + ": " + ex.Message;
-                }
-
-            }
-            F8Running = false;
-        }
-
-        void tF8_Tick(object sender, EventArgs e)
-        {
-            if (F8Running)
-            {
-                var cError = F8Error;
-                F8Error = F8Error.Substring(cError.Length);
-                V6ControlFormHelper.SetStatusText("F8 running "
-                    + (cError.Length > 0 ? "Error: " : "")
-                    + cError);
-            }
-            else
-            {
-                ((Timer)sender).Stop();
-                //btnNhan.PerformClick();
-                V6ControlFormHelper.SetStatusText("F8 running "
-                    + (F8Error.Length > 0 ? "Error: " : "")
-                    + F8Error);
-
-                this.ShowErrorMessage(GetType() + ".F8 finish "
-                    + (F8ErrorAll.Length > 0 ? "Error: " : "")
-                    + F8ErrorAll);
-                V6ControlFormHelper.ShowMainMessage("F8 finish!");
-            }
-        }
-        #endregion xử lý F8
-
-
+        
         #region ==== Xử lý F9 ====
         protected override void XuLyF9()
         {
@@ -232,10 +133,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 f9Running = true;
                 f9ErrorAll = "";
-
-                int i = 0, stt = 0;
-
-
 
                 //Gom chi tiet theo SO_CT va NGAY_CT
                 Dictionary<string, List<DataRow>> data_dictionary = new Dictionary<string, List<DataRow>>();

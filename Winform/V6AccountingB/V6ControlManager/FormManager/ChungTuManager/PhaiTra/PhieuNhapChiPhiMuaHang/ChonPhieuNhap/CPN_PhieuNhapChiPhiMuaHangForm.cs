@@ -112,8 +112,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 {
                     var listData = new List<SortedDictionary<string, object>>();
                     var amData = new SortedDictionary<string,object>();
-                    string sopn = "";
-                    DateTime? ngaypn = null;
+                    
                     if (_multiSelect)
                     {
                         foreach (DataGridViewRow row in _locKetQua.dataGridView1.Rows)

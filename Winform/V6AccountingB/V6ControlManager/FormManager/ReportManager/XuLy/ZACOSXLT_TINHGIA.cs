@@ -259,67 +259,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         #endregion F7
 
-        #region ==== Xử lý F8 ==== Đang chạy giống F9 (copy chưa sửa lại)
-        protected override void XuLyF8()
-        {
-            return;
-            try
-            {
-                Timer tF8 = new Timer();
-                tF8.Interval = 500;
-                tF8.Tick += tF8_Tick;
-                Thread t = new Thread(F8Thread);
-                CheckForIllegalCrossThreadCalls = false;
-                remove_list_g = new List<DataGridViewRow>();
-                t.IsBackground = true;
-                t.Start();
-                tF8.Start();
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".XuLyF8: " + ex.Message);
-            }
-        }
-
-        private bool F8Running;
-        private string F8Error = "";
-        private string F8ErrorAll = "";
-        private void F8Thread()
-        {
-            F8Running = true;
-            F8ErrorAll = "";
-
-            F8Running = false;
-        }
-
-        void tF8_Tick(object sender, EventArgs e)
-        {
-            if (F8Running)
-            {
-                var cError = F8Error;
-                F8Error = F8Error.Substring(cError.Length);
-                V6ControlFormHelper.SetStatusText("F8 running "
-                    + (cError.Length > 0 ? "Error: " : "")
-                    + cError);
-            }
-            else
-            {
-                ((Timer)sender).Stop();
-                RemoveGridViewRow();
-                //btnNhan.PerformClick();
-                V6ControlFormHelper.SetStatusText("F8 running "
-                    + (F8Error.Length > 0 ? "Error: " : "")
-                    + F8Error);
-
-                this.ShowErrorMessage(GetType() + ".F8 finish "
-                    + (F8ErrorAll.Length > 0 ? "Error: " : "")
-                    + F8ErrorAll);
-                V6ControlFormHelper.ShowMainMessage("F8 finish!");
-            }
-        }
-        #endregion xử lý F8
-
-
+        
         #region ==== Xử lý F9 ====
         protected override void XuLyF9()
         {

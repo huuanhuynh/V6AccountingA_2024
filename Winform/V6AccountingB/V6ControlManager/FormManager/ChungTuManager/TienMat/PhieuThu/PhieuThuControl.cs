@@ -1642,10 +1642,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             _MA_GD = txtLoaiPhieu.Text.Trim().ToUpper();
             try
             {
-                //DataTable alct = new DataTable();
-                var index = 0;
                 //Loại 1
-                
                 if (_MA_GD == "1")
                 {
                     LoadDetailControls(_MA_GD);
@@ -1691,7 +1688,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         gridViewColumn.Visible = true;
                         gridViewColumn.DisplayIndex = 1;
                     }
-                    index = 2;
                 }
                 //Loại 3
                 if (_MA_GD == "3")
@@ -1711,7 +1707,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         gridViewColumn.Visible = true;
                         gridViewColumn.DisplayIndex = 1;
                     }
-                    index = 2;
                 }
 
                 GridViewFormat();
@@ -2016,11 +2011,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         private void ReorderDataGridViewColumns()
         {
-
-            var i = 0;
             if (_MA_GD == "1" || _MA_GD == "A")
             {
-                i = 0;
                 var dataGridViewColumn = dataGridView1.Columns["TK_I"];
                 if (dataGridViewColumn != null)
                 {
@@ -2037,7 +2029,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             }
             else //if (_maGd == "2")
             {
-                i = 2;
                 var dataGridViewColumn = dataGridView1.Columns["TK_I"];
                 if (dataGridViewColumn != null)
                 {

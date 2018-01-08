@@ -214,9 +214,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void SetStatusText(string text)
+        public override void SetStatusText(string text)
         {
             lblStatus.Text = text;
+            base.SetStatusText(text);
         }
 
         private void TinhGia_TB6()

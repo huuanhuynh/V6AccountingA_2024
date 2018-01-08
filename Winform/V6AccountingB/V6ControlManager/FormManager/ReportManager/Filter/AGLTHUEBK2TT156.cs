@@ -33,7 +33,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             SetHideFields(RTien);
         }
 
-        private DataSet _ds;
         public override void LoadDataFinish(DataSet ds)
         {
             _ds = ds;

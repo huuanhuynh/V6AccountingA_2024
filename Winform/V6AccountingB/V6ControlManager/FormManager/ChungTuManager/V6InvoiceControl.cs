@@ -1030,8 +1030,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 // Tuanmh 25/05/2017
                 if (ty_gia == 0 || chkSua_Tien.Checked) return;
 
-                decimal temp;
-
                 foreach (DataRow row in AD.Rows)
                 {
                     FixTyGia(row, ty_gia, "Tien", "Tien_nt", M_ROUND);

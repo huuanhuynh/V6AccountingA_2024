@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
@@ -169,7 +170,7 @@ namespace V6ControlManager.FormManager.ToolManager
             }
             catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
 

@@ -182,7 +182,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             }
             catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
 

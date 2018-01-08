@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Windows.Forms;
 using V6Controls;
 
@@ -46,9 +47,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 }
                 catch (Exception ex)
                 {
-                    
+                    this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
                 }
-
             }
 
             

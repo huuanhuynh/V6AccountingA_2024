@@ -177,18 +177,6 @@ namespace V6ControlManager.FormManager.KhoHangManager
             }
         }
 
-        void day_SizeChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                Resort();
-            }
-            catch (Exception ex)
-            {
-                
-            }
-        }
-
         //public override bool DoHotKey0(Keys keyData)
         //{
         //    try

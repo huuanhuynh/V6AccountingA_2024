@@ -124,10 +124,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             result.Add(new SqlParameter("@advance", cKey));
             return result;
-
-
-
-            return result;
         }
 
         

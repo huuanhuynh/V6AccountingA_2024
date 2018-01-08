@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -63,7 +64,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
             }
             catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
         private void LoadData()
@@ -149,7 +150,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
             }
             catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
 

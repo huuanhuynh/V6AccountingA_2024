@@ -29,8 +29,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             
         }
 
-        private DataSet _ds;
-
         private void FixButtonText()
         {
             var nMonth = dateNgay_ct1.Value.Month + 1;
