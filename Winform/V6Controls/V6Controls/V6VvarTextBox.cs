@@ -559,7 +559,7 @@ namespace V6Controls
                 if (!string.IsNullOrEmpty(LookupInfo.FieldName))
                 {
                     string tableName = LookupInfo.TableName;
-                    var filter = InitFilter;
+                    string filter = HaveValueChanged ? InitFilter : null;
                     if (!string.IsNullOrEmpty(filter)) filter = " and (" + filter + ")";
 
                     SqlParameter[] plist =

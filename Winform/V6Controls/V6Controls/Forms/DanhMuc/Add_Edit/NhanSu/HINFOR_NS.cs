@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using V6Tools;
 using V6Tools.V6Convert;
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
@@ -18,6 +19,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         public void MyInit()
         {
             
+        }
+
+        public override void SetData(IDictionary<string, object> d)
+        {
+            base.SetData(d);
         }
 
         private void TXTNGAY_SINH_TextChanged(object sender, System.EventArgs e)

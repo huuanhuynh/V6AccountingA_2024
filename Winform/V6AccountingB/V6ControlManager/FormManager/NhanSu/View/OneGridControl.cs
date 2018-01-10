@@ -398,7 +398,8 @@ namespace V6ControlManager.FormManager.NhanSu.View
         public override void SetParentData(IDictionary<string, object> nhanSuData)
         {
             FilterControl.SetParentRow(nhanSuData);
-            V6ControlFormHelper.SetSomeDataDictionary(ThongTinControl2, nhanSuData);
+            //V6ControlFormHelper.SetSomeDataDictionary(ThongTinControl2, nhanSuData);
+            ThongTinControl2.SetData(nhanSuData);
         }
        
         private void gridView1_SelectionChanged(object sender, EventArgs e)

@@ -389,6 +389,10 @@ namespace V6Tools
         /// </summary>
         public int LeapMonth { get; set; }
 
+        /// <summary>
+        /// Ngày {0} tháng {1} năm {2}
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("Ngày {0} tháng {1} năm {2}", LunarDay, LunarMonth, YearString);

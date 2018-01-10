@@ -25,15 +25,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
                 var sqlTk = "";
                 if (txtDieuKienTK.Text == "1")
                 {
-                    sqlTk = string.Format("(TK_I = '{0}' and PS_NO_NT <> 0)", txtTaiKhoan.Text);
+                    sqlTk = string.Format("(TK_I like '{0}%' and PS_NO_NT <> 0)", txtTaiKhoan.Text);
                 }
                 else if (txtDieuKienTK.Text == "2")
                 {
-                    sqlTk = string.Format("(TK_I = '{0}' and PS_CO_NT <> 0)", txtTaiKhoan.Text);
+                    sqlTk = string.Format("(TK_I like '{0}%' and PS_CO_NT <> 0)", txtTaiKhoan.Text);
                 }
                 else
                 {
-                    sqlTk = string.Format("TK_I = '{0}'", txtTaiKhoan.Text);
+                    sqlTk = string.Format("TK_I like '{0}%'", txtTaiKhoan.Text);
                 }
 
                 result += (result.Length > 0 ? and_or : "") + sqlTk;

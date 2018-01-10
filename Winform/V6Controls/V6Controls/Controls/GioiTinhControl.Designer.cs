@@ -42,6 +42,7 @@
             this.radNam.Size = new System.Drawing.Size(47, 17);
             this.radNam.TabIndex = 0;
             this.radNam.TabStop = true;
+            this.radNam.Tag = "cancelall";
             this.radNam.Text = "Nam";
             this.radNam.UseVisualStyleBackColor = true;
             // 
@@ -54,6 +55,7 @@
             this.radNu.Size = new System.Drawing.Size(39, 17);
             this.radNu.TabIndex = 1;
             this.radNu.TabStop = true;
+            this.radNu.Tag = "cancelall";
             this.radNu.Text = "Nữ";
             this.radNu.UseVisualStyleBackColor = true;
             // 

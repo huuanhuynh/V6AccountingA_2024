@@ -173,7 +173,20 @@ namespace V6ControlManager.FormManager.NhanSu
                             }
                             else
                             {
-                                DoNothing();
+                                //Tạo data nhóm.
+                                //if (treeListViewAuto1.SelectedItems[0].Level != 2)
+                                {
+                                    DoNothing();
+                                    return;
+                                }
+
+                                var initData = new SortedDictionary<string, object>();
+                                initData[""] = "";
+
+                                var f = new FormAddEdit(CurrentTable, V6Mode.Add, null, null);
+                                f.InsertSuccessEvent += f_InsertSuccess;
+                                f.ShowDialog(this);
+                                
                             }
                         }
                         else

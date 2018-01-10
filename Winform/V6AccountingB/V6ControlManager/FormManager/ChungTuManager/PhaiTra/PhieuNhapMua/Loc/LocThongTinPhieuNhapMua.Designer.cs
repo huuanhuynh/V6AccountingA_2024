@@ -179,7 +179,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
             // 
             // taiKhoanCo
             // 
-            this.taiKhoanCo.AccessibleName = "tk_co";
+            this.taiKhoanCo.AccessibleName = "MA_NX";
             this.taiKhoanCo.BackColor = System.Drawing.SystemColors.Window;
             this.taiKhoanCo.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.taiKhoanCo.CheckOnLeave = false;

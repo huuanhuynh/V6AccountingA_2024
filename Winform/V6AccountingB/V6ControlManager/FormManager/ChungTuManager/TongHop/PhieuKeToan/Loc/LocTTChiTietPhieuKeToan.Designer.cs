@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
+            this.v6Label4 = new V6Controls.V6Label();
             this.panelFilter2 = new V6ReportControls.PanelFilter();
             this.v6ColorTextBox4 = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox5 = new V6Controls.V6VvarTextBox();
@@ -56,8 +58,6 @@
             this.v6Label34 = new V6Controls.V6Label();
             this.v6Label35 = new V6Controls.V6Label();
             this.v6Label36 = new V6Controls.V6Label();
-            this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
-            this.v6Label4 = new V6Controls.V6Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,6 +100,32 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc thông tin chi tiết";
+            // 
+            // v6VvarTextBox1
+            // 
+            this.v6VvarTextBox1.AccessibleName = "dien_giaii";
+            this.v6VvarTextBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6VvarTextBox1.CheckOnLeave = false;
+            this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6VvarTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
+            this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
+            this.v6VvarTextBox1.Location = new System.Drawing.Point(88, 201);
+            this.v6VvarTextBox1.Name = "v6VvarTextBox1";
+            this.v6VvarTextBox1.Size = new System.Drawing.Size(410, 20);
+            this.v6VvarTextBox1.TabIndex = 35;
+            // 
+            // v6Label4
+            // 
+            this.v6Label4.AccessibleDescription = "SEARCHL00012";
+            this.v6Label4.AutoSize = true;
+            this.v6Label4.Location = new System.Drawing.Point(7, 204);
+            this.v6Label4.Name = "v6Label4";
+            this.v6Label4.Size = new System.Drawing.Size(75, 13);
+            this.v6Label4.TabIndex = 34;
+            this.v6Label4.Text = "Diễn giải chứa";
             // 
             // panelFilter2
             // 
@@ -260,7 +286,6 @@
             // 
             // txtTaiKhoan
             // 
-            this.txtTaiKhoan.AccessibleName = "tk_i";
             this.txtTaiKhoan.BackColor = System.Drawing.SystemColors.Window;
             this.txtTaiKhoan.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTaiKhoan.CheckOnLeave = false;
@@ -455,32 +480,6 @@
             this.v6Label36.Size = new System.Drawing.Size(71, 13);
             this.v6Label36.TabIndex = 16;
             this.v6Label36.Text = "Mã hợp đồng";
-            // 
-            // v6VvarTextBox1
-            // 
-            this.v6VvarTextBox1.AccessibleName = "dien_giaii";
-            this.v6VvarTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6VvarTextBox1.CheckOnLeave = false;
-            this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6VvarTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(88, 201);
-            this.v6VvarTextBox1.Name = "v6VvarTextBox1";
-            this.v6VvarTextBox1.Size = new System.Drawing.Size(410, 20);
-            this.v6VvarTextBox1.TabIndex = 35;
-            // 
-            // v6Label4
-            // 
-            this.v6Label4.AccessibleDescription = "SEARCHL00012";
-            this.v6Label4.AutoSize = true;
-            this.v6Label4.Location = new System.Drawing.Point(7, 204);
-            this.v6Label4.Name = "v6Label4";
-            this.v6Label4.Size = new System.Drawing.Size(75, 13);
-            this.v6Label4.TabIndex = 34;
-            this.v6Label4.Text = "Diễn giải chứa";
             // 
             // LocTTChiTietPhieuKeToan
             // 

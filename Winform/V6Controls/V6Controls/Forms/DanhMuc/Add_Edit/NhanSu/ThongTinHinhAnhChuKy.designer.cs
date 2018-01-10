@@ -44,7 +44,6 @@
             // 
             this.btnXoachuky.AccessibleDescription = "";
             this.btnXoachuky.AccessibleName = "";
-            this.btnXoachuky.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnXoachuky.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnXoachuky.Location = new System.Drawing.Point(413, 298);
             this.btnXoachuky.Name = "btnXoachuky";
@@ -59,7 +58,6 @@
             // 
             this.btnChonchuky.AccessibleDescription = "";
             this.btnChonchuky.AccessibleName = "";
-            this.btnChonchuky.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnChonchuky.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnChonchuky.Location = new System.Drawing.Point(313, 298);
             this.btnChonchuky.Name = "btnChonchuky";
@@ -74,7 +72,6 @@
             // 
             this.btnXoahinh.AccessibleDescription = "";
             this.btnXoahinh.AccessibleName = "";
-            this.btnXoahinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnXoahinh.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnXoahinh.Location = new System.Drawing.Point(133, 298);
             this.btnXoahinh.Name = "btnXoahinh";
@@ -89,7 +86,6 @@
             // 
             this.btnChonhinh.AccessibleDescription = "";
             this.btnChonhinh.AccessibleName = "";
-            this.btnChonhinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnChonhinh.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnChonhinh.Location = new System.Drawing.Point(36, 298);
             this.btnChonhinh.Name = "btnChonhinh";
@@ -139,6 +135,7 @@
             this.txtSttRec0.Name = "txtSttRec0";
             this.txtSttRec0.Size = new System.Drawing.Size(53, 23);
             this.txtSttRec0.TabIndex = 40;
+            this.txtSttRec0.Visible = false;
             // 
             // txtSttRec
             // 
@@ -157,6 +154,7 @@
             this.txtSttRec.Name = "txtSttRec";
             this.txtSttRec.Size = new System.Drawing.Size(109, 23);
             this.txtSttRec.TabIndex = 41;
+            this.txtSttRec.Visible = false;
             // 
             // ThongTinHinhAnhChuKy
             // 

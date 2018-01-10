@@ -4438,7 +4438,9 @@ namespace V6Controls.Forms
             }
             else if (control is GioiTinhControl)
             {
-                ((GioiTinhControl)control).Value = value.ToString().Trim();
+                bool nam = ObjectAndString.ObjectToBool(value);
+                if(nam) ((GioiTinhControl)control).Value = "1";
+                else ((GioiTinhControl)control).Value = "0";
             }
             else
             {

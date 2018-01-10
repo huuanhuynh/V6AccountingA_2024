@@ -151,6 +151,24 @@
     <Type>0</Type>
     <Key>UItEn45sbvZQBoACDVYA+T3J7bKEyWBhFFDlxMtNd/c=</Key>
   </DatabaseList>
+  <DatabaseList>
+    <Stt>9</Stt>
+    <Server>192.168.1.99\SQLSERVER2K8</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Database>TH_K17</Database>
+    <Database2>TH_K17</Database2>
+    <UserId>sa</UserId>
+    <UserId2>sa</UserId2>
+    <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
+    <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <Note>Dữ liệu THANH HUNG</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>HK076kgfwCcg0njmmdo/yUZAoF2wV8KJYoUSKcJGsjXp2CdF43g85g==</Key>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>

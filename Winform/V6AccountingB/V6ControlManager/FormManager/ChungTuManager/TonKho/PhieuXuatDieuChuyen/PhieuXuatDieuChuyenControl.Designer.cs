@@ -1,4 +1,5 @@
-﻿using V6Controls;
+﻿using System;
+using V6Controls;
 using V6Controls.Controls;
 
 namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
@@ -32,9 +33,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
@@ -51,12 +52,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label1 = new System.Windows.Forms.Label();
             this.txtGC_UD3 = new V6Controls.V6ColorTextBox();
             this.txtGC_UD2 = new V6Controls.V6ColorTextBox();
-            this.txtGC_UD1 = new V6Controls.V6ColorTextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
             this.txtSL_UD3 = new V6Controls.V6NumberTextBox();
             this.txtSL_UD2 = new V6Controls.V6NumberTextBox();
+            this.txtMaKH2 = new V6Controls.V6VvarTextBox();
             this.txtSL_UD1 = new V6Controls.V6NumberTextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -70,10 +70,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
+            this.txtTenKH2 = new V6Controls.V6ColorTextBox();
             this.txtNGAY_UD3 = new V6Controls.V6DateTimeColor();
             this.txtNGAY_UD2 = new V6Controls.V6DateTimeColor();
             this.txtNGAY_UD1 = new V6Controls.V6DateTimeColor();
             this.btnInfos = new System.Windows.Forms.Button();
+            this.v6Label9 = new V6Controls.V6Label();
             this.group5 = new System.Windows.Forms.GroupBox();
             this.panelVND = new System.Windows.Forms.Panel();
             this.txtTongTien = new V6Controls.V6NumberTextBox();
@@ -81,6 +83,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtTongTienNt = new V6Controls.NumberTienNt();
             this.v6Label4 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
+            this.v6Label28 = new V6Controls.V6Label();
             this.btnChucNang = new V6Controls.Controls.DropDownButton();
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ChonDonHangMuaMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -172,8 +176,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.menuXemPhieuNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
-            this.v6Label28 = new V6Controls.V6Label();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -244,20 +246,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MA_VT,
@@ -269,8 +271,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 163);
             this.dataGridView1.TabIndex = 1;
@@ -329,12 +331,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.tabKhac.Controls.Add(this.label1);
             this.tabKhac.Controls.Add(this.txtGC_UD3);
             this.tabKhac.Controls.Add(this.txtGC_UD2);
-            this.tabKhac.Controls.Add(this.txtGC_UD1);
             this.tabKhac.Controls.Add(this.label29);
             this.tabKhac.Controls.Add(this.label28);
-            this.tabKhac.Controls.Add(this.label27);
             this.tabKhac.Controls.Add(this.txtSL_UD3);
             this.tabKhac.Controls.Add(this.txtSL_UD2);
+            this.tabKhac.Controls.Add(this.txtMaKH2);
             this.tabKhac.Controls.Add(this.txtSL_UD1);
             this.tabKhac.Controls.Add(this.label16);
             this.tabKhac.Controls.Add(this.label17);
@@ -348,10 +349,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.tabKhac.Controls.Add(this.label33);
             this.tabKhac.Controls.Add(this.label34);
             this.tabKhac.Controls.Add(this.label35);
+            this.tabKhac.Controls.Add(this.txtTenKH2);
             this.tabKhac.Controls.Add(this.txtNGAY_UD3);
             this.tabKhac.Controls.Add(this.txtNGAY_UD2);
             this.tabKhac.Controls.Add(this.txtNGAY_UD1);
             this.tabKhac.Controls.Add(this.btnInfos);
+            this.tabKhac.Controls.Add(this.v6Label9);
             this.tabKhac.Location = new System.Drawing.Point(4, 22);
             this.tabKhac.Name = "tabKhac";
             this.tabKhac.Padding = new System.Windows.Forms.Padding(3);
@@ -377,7 +380,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtGhiChuChung.Multiline = true;
             this.txtGhiChuChung.Name = "txtGhiChuChung";
             this.txtGhiChuChung.Size = new System.Drawing.Size(432, 37);
-            this.txtGhiChuChung.TabIndex = 179;
+            this.txtGhiChuChung.TabIndex = 27;
             // 
             // txtSoCtKemt
             // 
@@ -393,7 +396,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtSoCtKemt.Margin = new System.Windows.Forms.Padding(5);
             this.txtSoCtKemt.Name = "txtSoCtKemt";
             this.txtSoCtKemt.Size = new System.Drawing.Size(135, 20);
-            this.txtSoCtKemt.TabIndex = 177;
+            this.txtSoCtKemt.TabIndex = 25;
             // 
             // label2
             // 
@@ -406,7 +409,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 13);
-            this.label2.TabIndex = 178;
+            this.label2.TabIndex = 26;
             this.label2.Text = "Ghi chú chung";
             // 
             // label1
@@ -420,14 +423,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 13);
-            this.label1.TabIndex = 176;
+            this.label1.TabIndex = 24;
             this.label1.Text = "Số chứng từ kèm theo";
             // 
             // txtGC_UD3
             // 
             this.txtGC_UD3.AccessibleName = "GC_UD3";
-            this.txtGC_UD3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtGC_UD3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGC_UD3.BackColor = System.Drawing.Color.White;
             this.txtGC_UD3.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -440,13 +442,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtGC_UD3.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_UD3.Name = "txtGC_UD3";
             this.txtGC_UD3.Size = new System.Drawing.Size(432, 20);
-            this.txtGC_UD3.TabIndex = 175;
+            this.txtGC_UD3.TabIndex = 23;
             // 
             // txtGC_UD2
             // 
             this.txtGC_UD2.AccessibleName = "GC_UD2";
-            this.txtGC_UD2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtGC_UD2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGC_UD2.BackColor = System.Drawing.Color.White;
             this.txtGC_UD2.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -459,27 +460,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtGC_UD2.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_UD2.Name = "txtGC_UD2";
             this.txtGC_UD2.Size = new System.Drawing.Size(432, 20);
-            this.txtGC_UD2.TabIndex = 174;
-            // 
-            // txtGC_UD1
-            // 
-            this.txtGC_UD1.AccessibleName = "";
-            this.txtGC_UD1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGC_UD1.BackColor = System.Drawing.Color.White;
-            this.txtGC_UD1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtGC_UD1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtGC_UD1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtGC_UD1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtGC_UD1.HoverColor = System.Drawing.Color.Yellow;
-            this.txtGC_UD1.LeaveColor = System.Drawing.Color.White;
-            this.txtGC_UD1.Location = new System.Drawing.Point(436, 87);
-            this.txtGC_UD1.Margin = new System.Windows.Forms.Padding(5);
-            this.txtGC_UD1.Name = "txtGC_UD1";
-            this.txtGC_UD1.Size = new System.Drawing.Size(432, 20);
-            this.txtGC_UD1.TabIndex = 173;
-            this.txtGC_UD1.Visible = false;
+            this.txtGC_UD2.TabIndex = 19;
             // 
             // label29
             // 
@@ -492,7 +473,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label29.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(72, 13);
-            this.label29.TabIndex = 172;
+            this.label29.TabIndex = 22;
             this.label29.Text = "Ghi chú ĐN 3";
             // 
             // label28
@@ -506,29 +487,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label28.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(72, 13);
-            this.label28.TabIndex = 171;
+            this.label28.TabIndex = 18;
             this.label28.Text = "Ghi chú ĐN 2";
-            // 
-            // label27
-            // 
-            this.label27.AccessibleDescription = "M_GC_TD1,GC_UD1";
-            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(304, 90);
-            this.label27.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(72, 13);
-            this.label27.TabIndex = 170;
-            this.label27.Text = "Ghi chú ĐN 1";
-            this.label27.Visible = false;
             // 
             // txtSL_UD3
             // 
             this.txtSL_UD3.AccessibleName = "SL_UD3";
-            this.txtSL_UD3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtSL_UD3.BackColor = System.Drawing.Color.White;
             this.txtSL_UD3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtSL_UD3.EnterColor = System.Drawing.Color.PaleGreen;
@@ -540,7 +504,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtSL_UD3.Margin = new System.Windows.Forms.Padding(5);
             this.txtSL_UD3.Name = "txtSL_UD3";
             this.txtSL_UD3.Size = new System.Drawing.Size(135, 20);
-            this.txtSL_UD3.TabIndex = 169;
+            this.txtSL_UD3.TabIndex = 11;
             this.txtSL_UD3.Text = "0,000";
             this.txtSL_UD3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSL_UD3.Value = new decimal(new int[] {
@@ -552,8 +516,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // txtSL_UD2
             // 
             this.txtSL_UD2.AccessibleName = "SL_UD2";
-            this.txtSL_UD2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtSL_UD2.BackColor = System.Drawing.Color.White;
             this.txtSL_UD2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtSL_UD2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -565,7 +527,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtSL_UD2.Margin = new System.Windows.Forms.Padding(5);
             this.txtSL_UD2.Name = "txtSL_UD2";
             this.txtSL_UD2.Size = new System.Drawing.Size(135, 20);
-            this.txtSL_UD2.TabIndex = 167;
+            this.txtSL_UD2.TabIndex = 7;
             this.txtSL_UD2.Text = "0,000";
             this.txtSL_UD2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSL_UD2.Value = new decimal(new int[] {
@@ -574,11 +536,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             0,
             196608});
             // 
+            // txtMaKH2
+            // 
+            this.txtMaKH2.AccessibleName = "ma_kh2";
+            this.txtMaKH2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaKH2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaKH2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaKH2.BrotherFields = "TEN_KH";
+            this.txtMaKH2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaKH2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaKH2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaKH2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaKH2.LeaveColor = System.Drawing.Color.White;
+            this.txtMaKH2.Location = new System.Drawing.Point(733, 34);
+            this.txtMaKH2.Name = "txtMaKH2";
+            this.txtMaKH2.NeighborFields = "TEN_KH2";
+            this.txtMaKH2.Size = new System.Drawing.Size(135, 20);
+            this.txtMaKH2.TabIndex = 29;
+            this.txtMaKH2.VVar = "ma_kh";
+            this.txtMaKH2.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMaKH2_TextChanged);
+            // 
             // txtSL_UD1
             // 
             this.txtSL_UD1.AccessibleName = "SL_UD1";
-            this.txtSL_UD1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtSL_UD1.BackColor = System.Drawing.Color.White;
             this.txtSL_UD1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtSL_UD1.EnterColor = System.Drawing.Color.PaleGreen;
@@ -590,7 +570,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtSL_UD1.Margin = new System.Windows.Forms.Padding(5);
             this.txtSL_UD1.Name = "txtSL_UD1";
             this.txtSL_UD1.Size = new System.Drawing.Size(135, 20);
-            this.txtSL_UD1.TabIndex = 165;
+            this.txtSL_UD1.TabIndex = 3;
             this.txtSL_UD1.Text = "0,000";
             this.txtSL_UD1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSL_UD1.Value = new decimal(new int[] {
@@ -610,7 +590,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label16.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(48, 13);
-            this.label16.TabIndex = 168;
+            this.label16.TabIndex = 10;
             this.label16.Text = "SL ĐN 3";
             // 
             // label17
@@ -624,7 +604,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label17.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(48, 13);
-            this.label17.TabIndex = 166;
+            this.label17.TabIndex = 6;
             this.label17.Text = "SL ĐN 2";
             // 
             // label22
@@ -638,14 +618,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label22.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(48, 13);
-            this.label22.TabIndex = 164;
+            this.label22.TabIndex = 2;
             this.label22.Text = "SL ĐN 1";
             // 
             // txtMA_UD3
             // 
             this.txtMA_UD3.AccessibleName = "MA_UD3";
-            this.txtMA_UD3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtMA_UD3.BackColor = System.Drawing.SystemColors.Window;
             this.txtMA_UD3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMA_UD3.EnterColor = System.Drawing.Color.PaleGreen;
@@ -657,13 +635,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtMA_UD3.Margin = new System.Windows.Forms.Padding(5);
             this.txtMA_UD3.Name = "txtMA_UD3";
             this.txtMA_UD3.Size = new System.Drawing.Size(135, 20);
-            this.txtMA_UD3.TabIndex = 157;
+            this.txtMA_UD3.TabIndex = 9;
             // 
             // txtMA_UD2
             // 
             this.txtMA_UD2.AccessibleName = "MA_UD2";
-            this.txtMA_UD2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtMA_UD2.BackColor = System.Drawing.SystemColors.Window;
             this.txtMA_UD2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMA_UD2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -675,13 +651,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtMA_UD2.Margin = new System.Windows.Forms.Padding(5);
             this.txtMA_UD2.Name = "txtMA_UD2";
             this.txtMA_UD2.Size = new System.Drawing.Size(135, 20);
-            this.txtMA_UD2.TabIndex = 155;
+            this.txtMA_UD2.TabIndex = 5;
             // 
             // txtMA_UD1
             // 
             this.txtMA_UD1.AccessibleName = "MA_UD1";
-            this.txtMA_UD1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtMA_UD1.BackColor = System.Drawing.Color.White;
             this.txtMA_UD1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMA_UD1.EnterColor = System.Drawing.Color.PaleGreen;
@@ -693,7 +667,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtMA_UD1.Margin = new System.Windows.Forms.Padding(5);
             this.txtMA_UD1.Name = "txtMA_UD1";
             this.txtMA_UD1.Size = new System.Drawing.Size(135, 20);
-            this.txtMA_UD1.TabIndex = 153;
+            this.txtMA_UD1.TabIndex = 1;
             // 
             // label30
             // 
@@ -706,7 +680,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label30.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(60, 13);
-            this.label30.TabIndex = 162;
+            this.label30.TabIndex = 20;
             this.label30.Text = "Ngày ĐN 3";
             // 
             // label31
@@ -720,7 +694,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label31.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(60, 13);
-            this.label31.TabIndex = 160;
+            this.label31.TabIndex = 16;
             this.label31.Text = "Ngày ĐN 2";
             // 
             // label32
@@ -734,7 +708,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label32.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(60, 13);
-            this.label32.TabIndex = 158;
+            this.label32.TabIndex = 12;
             this.label32.Text = "Ngày ĐN 1";
             // 
             // label33
@@ -748,7 +722,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label33.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(50, 13);
-            this.label33.TabIndex = 156;
+            this.label33.TabIndex = 8;
             this.label33.Text = "Mã ĐN 3";
             // 
             // label34
@@ -762,7 +736,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label34.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(50, 13);
-            this.label34.TabIndex = 154;
+            this.label34.TabIndex = 4;
             this.label34.Text = "Mã ĐN 2";
             // 
             // label35
@@ -776,14 +750,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.label35.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(50, 13);
-            this.label35.TabIndex = 152;
+            this.label35.TabIndex = 0;
             this.label35.Text = "Mã ĐN 1";
+            // 
+            // txtTenKH2
+            // 
+            this.txtTenKH2.AccessibleName = "TEN_KH2";
+            this.txtTenKH2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTenKH2.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtTenKH2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTenKH2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTenKH2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTenKH2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTenKH2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTenKH2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTenKH2.LeaveColor = System.Drawing.Color.White;
+            this.txtTenKH2.Location = new System.Drawing.Point(579, 56);
+            this.txtTenKH2.Name = "txtTenKH2";
+            this.txtTenKH2.ReadOnly = true;
+            this.txtTenKH2.Size = new System.Drawing.Size(289, 20);
+            this.txtTenKH2.TabIndex = 30;
+            this.txtTenKH2.Tag = "readonly";
             // 
             // txtNGAY_UD3
             // 
             this.txtNGAY_UD3.AccessibleName = "NGAY_UD3";
-            this.txtNGAY_UD3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNGAY_UD3.BackColor = System.Drawing.SystemColors.Window;
             this.txtNGAY_UD3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNGAY_UD3.EnterColor = System.Drawing.Color.PaleGreen;
@@ -798,14 +790,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtNGAY_UD3.Name = "txtNGAY_UD3";
             this.txtNGAY_UD3.Size = new System.Drawing.Size(135, 20);
             this.txtNGAY_UD3.StringValue = "__/__/____";
-            this.txtNGAY_UD3.TabIndex = 163;
+            this.txtNGAY_UD3.TabIndex = 21;
             this.txtNGAY_UD3.Text = "__/__/____";
             // 
             // txtNGAY_UD2
             // 
             this.txtNGAY_UD2.AccessibleName = "NGAY_UD2";
-            this.txtNGAY_UD2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNGAY_UD2.BackColor = System.Drawing.SystemColors.Window;
             this.txtNGAY_UD2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNGAY_UD2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -820,14 +810,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtNGAY_UD2.Name = "txtNGAY_UD2";
             this.txtNGAY_UD2.Size = new System.Drawing.Size(135, 20);
             this.txtNGAY_UD2.StringValue = "__/__/____";
-            this.txtNGAY_UD2.TabIndex = 161;
+            this.txtNGAY_UD2.TabIndex = 17;
             this.txtNGAY_UD2.Text = "__/__/____";
             // 
             // txtNGAY_UD1
             // 
             this.txtNGAY_UD1.AccessibleName = "NGAY_UD1";
-            this.txtNGAY_UD1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNGAY_UD1.BackColor = System.Drawing.Color.White;
             this.txtNGAY_UD1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNGAY_UD1.EnterColor = System.Drawing.Color.PaleGreen;
@@ -842,19 +830,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtNGAY_UD1.Name = "txtNGAY_UD1";
             this.txtNGAY_UD1.Size = new System.Drawing.Size(135, 20);
             this.txtNGAY_UD1.StringValue = "__/__/____";
-            this.txtNGAY_UD1.TabIndex = 159;
+            this.txtNGAY_UD1.TabIndex = 13;
             this.txtNGAY_UD1.Text = "__/__/____";
             // 
             // btnInfos
             // 
             this.btnInfos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInfos.Location = new System.Drawing.Point(674, 8);
+            this.btnInfos.Location = new System.Drawing.Point(674, 3);
             this.btnInfos.Name = "btnInfos";
             this.btnInfos.Size = new System.Drawing.Size(197, 29);
-            this.btnInfos.TabIndex = 151;
+            this.btnInfos.TabIndex = 31;
             this.btnInfos.Text = "&Thông tin về các trường định nghĩa";
             this.btnInfos.UseVisualStyleBackColor = true;
             this.btnInfos.Click += new System.EventHandler(this.btnInfos_Click);
+            // 
+            // v6Label9
+            // 
+            this.v6Label9.AutoSize = true;
+            this.v6Label9.Location = new System.Drawing.Point(636, 37);
+            this.v6Label9.Name = "v6Label9";
+            this.v6Label9.Size = new System.Drawing.Size(67, 13);
+            this.v6Label9.TabIndex = 28;
+            this.v6Label9.Text = "Mã KH nhập";
             // 
             // group5
             // 
@@ -966,6 +963,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.group4.Size = new System.Drawing.Size(413, 86);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
+            // 
+            // cboChuyenData
+            // 
+            this.cboChuyenData.AccessibleName = "IMTYPE";
+            this.cboChuyenData.BackColor = System.Drawing.SystemColors.Window;
+            this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboChuyenData.FormattingEnabled = true;
+            this.cboChuyenData.Items.AddRange(new object[] {
+            "0 - Không chuyển",
+            "1 - Chuyển",
+            "2 - Không xử lý"});
+            this.cboChuyenData.Location = new System.Drawing.Point(295, 61);
+            this.cboChuyenData.Name = "cboChuyenData";
+            this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
+            this.cboChuyenData.TabIndex = 38;
+            this.cboChuyenData.TabStop = false;
+            this.toolTipV6FormControl.SetToolTip(this.cboChuyenData, "Chuyển dữ liệu qua Database khác.");
+            // 
+            // v6Label28
+            // 
+            this.v6Label28.AccessibleDescription = "ASOCTSOAH00055";
+            this.v6Label28.AutoSize = true;
+            this.v6Label28.Location = new System.Drawing.Point(249, 66);
+            this.v6Label28.Name = "v6Label28";
+            this.v6Label28.Size = new System.Drawing.Size(36, 13);
+            this.v6Label28.TabIndex = 39;
+            this.v6Label28.Text = "DATA";
             // 
             // btnChucNang
             // 
@@ -1631,9 +1656,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6Label10.AutoSize = true;
             this.v6Label10.Location = new System.Drawing.Point(3, 34);
             this.v6Label10.Name = "v6Label10";
-            this.v6Label10.Size = new System.Drawing.Size(82, 13);
+            this.v6Label10.Size = new System.Drawing.Size(63, 13);
             this.v6Label10.TabIndex = 0;
-            this.v6Label10.Text = "Mã khách hàng";
+            this.v6Label10.Text = "Mã KH xuất";
             // 
             // group2
             // 
@@ -2241,34 +2266,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
             this.toolStripMenuItem3.Text = "...";
             // 
-            // cboChuyenData
-            // 
-            this.cboChuyenData.AccessibleName = "IMTYPE";
-            this.cboChuyenData.BackColor = System.Drawing.SystemColors.Window;
-            this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboChuyenData.FormattingEnabled = true;
-            this.cboChuyenData.Items.AddRange(new object[] {
-            "0 - Không chuyển",
-            "1 - Chuyển",
-            "2 - Không xử lý"});
-            this.cboChuyenData.Location = new System.Drawing.Point(295, 61);
-            this.cboChuyenData.Name = "cboChuyenData";
-            this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
-            this.cboChuyenData.TabIndex = 38;
-            this.cboChuyenData.TabStop = false;
-            this.toolTipV6FormControl.SetToolTip(this.cboChuyenData, "Chuyển dữ liệu qua Database khác.");
-            // 
-            // v6Label28
-            // 
-            this.v6Label28.AccessibleDescription = "ASOCTSOAH00055";
-            this.v6Label28.AutoSize = true;
-            this.v6Label28.Location = new System.Drawing.Point(249, 66);
-            this.v6Label28.Name = "v6Label28";
-            this.v6Label28.Size = new System.Drawing.Size(36, 13);
-            this.v6Label28.TabIndex = 39;
-            this.v6Label28.Text = "DATA";
-            // 
             // PhieuXuatDieuChuyenControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2439,10 +2436,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private DropDownButton btnChucNang;
         private V6ColorTextBox txtGC_UD3;
         private V6ColorTextBox txtGC_UD2;
-        private V6ColorTextBox txtGC_UD1;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label27;
         private V6NumberTextBox txtSL_UD3;
         private V6NumberTextBox txtSL_UD2;
         private V6NumberTextBox txtSL_UD1;
@@ -2471,5 +2466,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private V6IndexComboBox cboChuyenData;
         private V6Label v6Label28;
+        private V6VvarTextBox txtMaKH2;
+        private V6ColorTextBox txtTenKH2;
+        private V6Label v6Label9;
     }
 }

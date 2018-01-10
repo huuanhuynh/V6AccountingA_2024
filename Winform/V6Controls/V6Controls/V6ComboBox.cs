@@ -4,6 +4,9 @@ using System.Windows.Forms;
 
 namespace V6Controls
 {
+    /// <summary>
+    /// Combobox dùng Datasource.
+    /// </summary>
     public class V6ComboBox : ComboBox
     {
         public V6ComboBox()
