@@ -62,6 +62,7 @@ namespace V6ReportControls
             {
                 var NAME = fieldName.Trim().ToUpper();
                 FilterLineDynamic lineControl = new FilterLineDynamic();
+                lineControl.Name = "line" + NAME;
                 lineControl.FieldName = NAME;
                 lineControl.FieldCaption = CorpLan2.GetFieldHeader(NAME);
                 if (structTable.ContainsKey(NAME))

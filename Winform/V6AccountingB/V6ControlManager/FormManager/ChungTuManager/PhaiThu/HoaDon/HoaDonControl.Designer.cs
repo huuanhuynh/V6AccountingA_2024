@@ -51,6 +51,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.chonTuExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xemCongNoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chonPhieuNhapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDetail1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuXemPhieuNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -299,9 +300,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.TroGiupMenu,
             this.chonTuExcelToolStripMenuItem,
             this.xemCongNoToolStripMenuItem,
-            this.chonPhieuNhapToolStripMenuItem});
+            this.chonPhieuNhapToolStripMenuItem,
+            this.inKhacToolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(181, 136);
+            this.menuChucNang.Size = new System.Drawing.Size(181, 180);
             // 
             // ChonDonHangBanMenu
             // 
@@ -343,6 +345,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.chonPhieuNhapToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.chonPhieuNhapToolStripMenuItem.Text = "Chọn phiếu nhập";
             this.chonPhieuNhapToolStripMenuItem.Click += new System.EventHandler(this.chonPhieuNhapToolStripMenuItem_Click);
+            // 
+            // inKhacToolStripMenuItem
+            // 
+            this.inKhacToolStripMenuItem.Name = "inKhacToolStripMenuItem";
+            this.inKhacToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.inKhacToolStripMenuItem.Text = "In khác";
+            this.inKhacToolStripMenuItem.Click += new System.EventHandler(this.inKhacToolStripMenuItem_Click);
             // 
             // menuDetail1
             // 
@@ -3713,5 +3722,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private V6CheckBox chkAuto_Ck;
         private V6Controls.Controls.V6IndexComboBox cboChuyenData;
         private V6Label v6Label28;
+        private System.Windows.Forms.ToolStripMenuItem inKhacToolStripMenuItem;
     }
 }

@@ -1179,6 +1179,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             try
             {
                 FilterControl.LoadDataFinish(_ds);
+                All_Objects["_ds"] = _ds;
                 InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
 
                 dataGridView1.DataSource = null;

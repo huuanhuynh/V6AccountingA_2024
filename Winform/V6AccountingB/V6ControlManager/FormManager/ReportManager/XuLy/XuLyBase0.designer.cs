@@ -146,8 +146,8 @@
         private System.Windows.Forms.ToolStripMenuItem printGrid;
         protected System.Windows.Forms.Timer timerViewReport;
         public System.Windows.Forms.Panel panel1;
-        protected System.Windows.Forms.Button btnNhan;
-        protected System.Windows.Forms.Button btnHuy;
+        public System.Windows.Forms.Button btnNhan;
+        public System.Windows.Forms.Button btnHuy;
 
 
 

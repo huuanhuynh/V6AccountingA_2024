@@ -7299,6 +7299,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         #endregion tinh khuyen mai
 
+        #region ==== In khác ====
+        private void inKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent("INKHAC");
+        }
+
+
+        #endregion ==== In khác ====
 
     }
 }

@@ -481,6 +481,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 try
                 {
                     FilterControl.LoadDataFinish(_ds);
+                    All_Objects["_ds"] = _ds;
                     InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
                     if (Load_Data)
                     {

@@ -963,6 +963,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 try
                 {
                     FilterControl.LoadDataFinish(_ds);
+                    All_Objects["_ds"] = _ds;
                     InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
 
                     dataGridView1.TableSource = _tbl;

@@ -1049,6 +1049,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 ii = 0;
 
                 FilterControl.LoadDataFinish(_ds);
+                All_Objects["_ds"] = _ds;
                 InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
                 
                 ShowReport();
