@@ -1492,9 +1492,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                 if (readOnly)
                 {
                     detail1.MODE = V6Mode.Lock;
+
+                    ChonDonHangMuaMenu.Enabled = false;
+                    TroGiupMenu.Enabled = false;
+                    chonTuExcelToolStripMenuItem.Enabled = false;
                 }
-                else
+                else //Cac truong hop khac
                 {
+                    ChonDonHangMuaMenu.Enabled = true;
+                    TroGiupMenu.Enabled = true;
+                    chonTuExcelToolStripMenuItem.Enabled = true;
+
                     XuLyKhoaThongTinKhachHang();
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;

@@ -2416,9 +2416,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 if (readOnly)
                 {
                     detail1.MODE = V6Mode.Lock;
+
+                    XuatHetKhoMenu.Enabled = false;
+                    TroGiupMenu.Enabled = false;
+                    chonTuExcelToolStripMenuItem.Enabled = false;
+                    tinhHaoHutToolStripMenuItem.Enabled = false;
                 }
-                else
+                else //Cac truong hop khac
                 {
+                    XuatHetKhoMenu.Enabled = true;
+                    TroGiupMenu.Enabled = true;
+                    chonTuExcelToolStripMenuItem.Enabled = true;
+                    tinhHaoHutToolStripMenuItem.Enabled = true;
+
                     XuLyKhoaThongTinKhachHang();
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;

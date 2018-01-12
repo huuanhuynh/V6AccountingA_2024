@@ -147,6 +147,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.ChonDonHangMuaMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.TroGiupMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonTuExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xuLyKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.v6Label45 = new V6Controls.V6Label();
             this.chkthue_nk_cp = new V6Controls.V6CheckBox();
             this.TxtT_cp_nt = new V6Controls.V6NumberTextBox();
@@ -254,7 +255,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.menuXemPhieuNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.xuLyKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -2011,6 +2011,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.btnChucNang.Name = "btnChucNang";
             this.btnChucNang.Size = new System.Drawing.Size(87, 23);
             this.btnChucNang.TabIndex = 35;
+            this.btnChucNang.Tag = "cancel";
             this.btnChucNang.Text = "Chức năng";
             this.btnChucNang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnChucNang.UseVisualStyleBackColor = true;
@@ -2023,7 +2024,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.chonTuExcelToolStripMenuItem,
             this.xuLyKhacToolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(185, 114);
+            this.menuChucNang.Size = new System.Drawing.Size(185, 92);
             // 
             // ChonDonHangMuaMenu
             // 
@@ -2045,6 +2046,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.chonTuExcelToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.chonTuExcelToolStripMenuItem.Text = "Chọn từ excel";
             this.chonTuExcelToolStripMenuItem.Click += new System.EventHandler(this.chonTuExcelToolStripMenuItem_Click);
+            // 
+            // xuLyKhacToolStripMenuItem
+            // 
+            this.xuLyKhacToolStripMenuItem.Name = "xuLyKhacToolStripMenuItem";
+            this.xuLyKhacToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.xuLyKhacToolStripMenuItem.Text = "Xử lý khác";
+            this.xuLyKhacToolStripMenuItem.Click += new System.EventHandler(this.xuLyKhacToolStripMenuItem_Click);
             // 
             // v6Label45
             // 
@@ -3623,13 +3631,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
             this.toolStripMenuItem3.Text = "...";
-            // 
-            // xuLyKhacToolStripMenuItem
-            // 
-            this.xuLyKhacToolStripMenuItem.Name = "xuLyKhacToolStripMenuItem";
-            this.xuLyKhacToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.xuLyKhacToolStripMenuItem.Text = "Xử lý khác";
-            this.xuLyKhacToolStripMenuItem.Click += new System.EventHandler(this.xuLyKhacToolStripMenuItem_Click);
             // 
             // PhieuNhapKhauControl
             // 

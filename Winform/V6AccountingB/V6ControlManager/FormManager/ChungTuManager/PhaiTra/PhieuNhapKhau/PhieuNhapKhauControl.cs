@@ -2068,9 +2068,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     detail2.MODE = V6Mode.Lock;
                     detail3.MODE = V6Mode.Lock;
                     dataGridView3ChiPhi.ReadOnly = true;
+
+                    ChonDonHangMuaMenu.Enabled = false;
+                    TroGiupMenu.Enabled = false;
+                    chonTuExcelToolStripMenuItem.Enabled = false;
                 }
-                else
+                else //Cac truong hop khac
                 {
+                    ChonDonHangMuaMenu.Enabled = true;
+                    TroGiupMenu.Enabled = true;
+                    chonTuExcelToolStripMenuItem.Enabled = true;
+
                     XuLyKhoaThongTinKhachHang();
                     SetGridViewChiPhiEditAble(TxtLoai_pb.Text, chkSua_Tien.Checked, dataGridView3ChiPhi);
 
