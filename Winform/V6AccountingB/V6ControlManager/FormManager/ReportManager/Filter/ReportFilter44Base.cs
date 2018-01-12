@@ -628,7 +628,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             RptExtraParameters = new SortedDictionary<string, object>();
             try
             {
-                
+                //Sample Info:
+                //Name:M_TEN_CTY;NOTEMPTY:1;Ptype:FILTER_BROTHER;Field:MA_DVCS;Fname:TEN_DVCS   // Lấy TEN_DVCS theo MA_DVCS trong FilterControl.
+                //~Name:NGAY;Ptype:TABLE2;Field:R_DMY                                           // Lấy R_DMY trong table2 data.
+                //~Name:SOTIENVIETBANGCHU_TIENBAN;Ptype:TABLE2;FIELD:CON_PT                     // Đọc số tiền trong table2 chỉ với Name = SOTIENVIETBANGCHU_TIENBAN
+                //~Name:SOTIENVIETBANGCHU_TIENBANNT;Ptype:TABLE2;FIELD:DU_CK                    // Đọc số tiền trong table2 chỉ với Name = SOTIENVIETBANGCHU_TIENBANNT
 
                 if (string.IsNullOrEmpty(ExtraParameterInfo)) return;
                 var sss = ExtraParameterInfo.Split('~');
@@ -646,7 +650,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         if (di.Name.ToUpper() == "SOTIENVIETBANGCHU_TIENBANNT")
                         {
                             var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);// "T_TIEN_NT2_IN"]);
-                            var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
+                            var ma_nt = V6Options.M_MA_NT0;
+                            if (dataTable2.Columns.Contains("MA_NT"))
+                            {
+                                ma_nt = (_tbl2Row["MA_NT"] ?? ma_nt).ToString().Trim();
+                            }
                             RptExtraParameters[di.Name] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, LAN, ma_nt);
                         }
                         else if (di.Name.ToUpper() == "SOTIENVIETBANGCHU_TIENBAN")
