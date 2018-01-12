@@ -4396,6 +4396,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
         }
 
+        private void inKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent("INKHAC");
+        }
+
 
     }
 }

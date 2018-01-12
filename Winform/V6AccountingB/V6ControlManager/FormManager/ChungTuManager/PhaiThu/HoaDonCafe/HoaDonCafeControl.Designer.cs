@@ -121,6 +121,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtTongTangGiamNt = new V6Controls.NumberTienNt();
             this.v6Label38 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
+            this.v6Label28 = new V6Controls.V6Label();
             this.chkSua_Tien = new V6Controls.V6CheckBox();
             this.txtConLai = new V6Controls.V6NumberTextBox();
             this.txtTongSoLuong = new V6Controls.V6NumberTextBox();
@@ -139,6 +141,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.TroGiupMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonTuExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chonHoaDonMauToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnChonPX = new V6Controls.Controls.V6FormButton();
             this.lblTongSoDong = new V6Controls.V6Label();
             this.v6Label20 = new V6Controls.V6Label();
@@ -229,8 +232,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtMa_vitriPH = new V6Controls.V6ColorTextBox();
             this.txtMa_khoPH = new V6Controls.V6ColorTextBox();
             this.btnLuuTam = new System.Windows.Forms.Button();
-            this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
-            this.v6Label28 = new V6Controls.V6Label();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1676,6 +1677,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
             // 
+            // cboChuyenData
+            // 
+            this.cboChuyenData.AccessibleName = "IMTYPE";
+            this.cboChuyenData.BackColor = System.Drawing.SystemColors.Window;
+            this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboChuyenData.FormattingEnabled = true;
+            this.cboChuyenData.Items.AddRange(new object[] {
+            "0 - Không chuyển",
+            "1 - Chuyển",
+            "2 - Không xử lý"});
+            this.cboChuyenData.Location = new System.Drawing.Point(356, 93);
+            this.cboChuyenData.Name = "cboChuyenData";
+            this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
+            this.cboChuyenData.TabIndex = 21;
+            this.cboChuyenData.TabStop = false;
+            this.toolTipV6FormControl.SetToolTip(this.cboChuyenData, "Chuyển dữ liệu qua Database khác.");
+            // 
+            // v6Label28
+            // 
+            this.v6Label28.AccessibleDescription = "ASOCTSOAH00055";
+            this.v6Label28.AutoSize = true;
+            this.v6Label28.Location = new System.Drawing.Point(310, 98);
+            this.v6Label28.Name = "v6Label28";
+            this.v6Label28.Size = new System.Drawing.Size(36, 13);
+            this.v6Label28.TabIndex = 22;
+            this.v6Label28.Text = "DATA";
+            // 
             // chkSua_Tien
             // 
             this.chkSua_Tien.AccessibleDescription = "ASOCTSOAR00026";
@@ -1916,9 +1945,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.chonBaoGiaToolStripMenuItem,
             this.TroGiupMenu,
             this.chonTuExcelToolStripMenuItem,
-            this.chonHoaDonMauToolStripMenuItem});
+            this.chonHoaDonMauToolStripMenuItem,
+            this.inKhacToolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(181, 114);
+            this.menuChucNang.Size = new System.Drawing.Size(181, 158);
             // 
             // ChonDonHangBanMenu
             // 
@@ -1953,6 +1983,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.chonHoaDonMauToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.chonHoaDonMauToolStripMenuItem.Text = "Chọn hóa đơn mẫu";
             this.chonHoaDonMauToolStripMenuItem.Click += new System.EventHandler(this.chonHoaDonMauToolStripMenuItem_Click);
+            // 
+            // inKhacToolStripMenuItem
+            // 
+            this.inKhacToolStripMenuItem.Name = "inKhacToolStripMenuItem";
+            this.inKhacToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.inKhacToolStripMenuItem.Text = "In khác";
+            this.inKhacToolStripMenuItem.Click += new System.EventHandler(this.inKhacToolStripMenuItem_Click);
             // 
             // btnChonPX
             // 
@@ -3350,34 +3387,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.btnLuuTam.UseVisualStyleBackColor = true;
             this.btnLuuTam.Click += new System.EventHandler(this.btnLuuTam_Click);
             // 
-            // cboChuyenData
-            // 
-            this.cboChuyenData.AccessibleName = "IMTYPE";
-            this.cboChuyenData.BackColor = System.Drawing.SystemColors.Window;
-            this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboChuyenData.FormattingEnabled = true;
-            this.cboChuyenData.Items.AddRange(new object[] {
-            "0 - Không chuyển",
-            "1 - Chuyển",
-            "2 - Không xử lý"});
-            this.cboChuyenData.Location = new System.Drawing.Point(356, 93);
-            this.cboChuyenData.Name = "cboChuyenData";
-            this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
-            this.cboChuyenData.TabIndex = 21;
-            this.cboChuyenData.TabStop = false;
-            this.toolTipV6FormControl.SetToolTip(this.cboChuyenData, "Chuyển dữ liệu qua Database khác.");
-            // 
-            // v6Label28
-            // 
-            this.v6Label28.AccessibleDescription = "ASOCTSOAH00055";
-            this.v6Label28.AutoSize = true;
-            this.v6Label28.Location = new System.Drawing.Point(310, 98);
-            this.v6Label28.Name = "v6Label28";
-            this.v6Label28.Size = new System.Drawing.Size(36, 13);
-            this.v6Label28.TabIndex = 22;
-            this.v6Label28.Text = "DATA";
-            // 
             // HoaDonCafeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3660,5 +3669,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private System.Windows.Forms.ToolStripMenuItem chonHoaDonMauToolStripMenuItem;
         private V6IndexComboBox cboChuyenData;
         private V6Label v6Label28;
+        private System.Windows.Forms.ToolStripMenuItem inKhacToolStripMenuItem;
     }
 }

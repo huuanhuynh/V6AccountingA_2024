@@ -4409,5 +4409,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         #endregion tinh khuyen mai
 
+        private void inKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent("INKHAC");
+        }
+
     }
 }

@@ -5056,6 +5056,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             FixDataGridViewSize(dataGridView1, dataGridView2, dataGridView3);
         }
 
+        private void inKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent("INKHAC");
+        }
+
         
 
     }

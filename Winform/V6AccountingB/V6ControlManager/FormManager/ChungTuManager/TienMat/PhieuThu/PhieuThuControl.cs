@@ -4175,6 +4175,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             ChucNang_ThuCongNo();
         }
 
+        private void xuLyKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent("INKHAC");
+        }
+
         
     }
 }

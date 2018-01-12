@@ -3099,5 +3099,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         {
             FixDataGridViewSize(dataGridView1, dataGridView2);
         }
+
+        private void inKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent("INKHAC");
+        }
     }
 }

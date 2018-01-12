@@ -45,6 +45,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.STT_REC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT_REC0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabKhac = new System.Windows.Forms.TabPage();
+            this.TxtL_AM_INFO = new V6Controls.V6ColorTextBox();
             this.Txtngay_ct2 = new V6Controls.V6DateTimeColor();
             this.txtngay_ct1 = new V6Controls.V6DateTimeColor();
             this.v6Label26 = new V6Controls.V6Label();
@@ -108,6 +109,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.ChonDonHangMuaMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.TroGiupMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonTuExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chkSua_Tien = new V6Controls.V6CheckBox();
             this.txtTongSoLuong = new V6Controls.V6NumberTextBox();
             this.cboKieuPost = new V6Controls.V6ComboBox();
@@ -202,7 +204,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.TxtL_AM_INFO = new V6Controls.V6ColorTextBox();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -394,6 +395,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.tabKhac.Size = new System.Drawing.Size(879, 194);
             this.tabKhac.TabIndex = 1;
             this.tabKhac.Text = "Khác";
+            // 
+            // TxtL_AM_INFO
+            // 
+            this.TxtL_AM_INFO.AccessibleName = "L_AM_INFO";
+            this.TxtL_AM_INFO.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtL_AM_INFO.BackColor = System.Drawing.Color.White;
+            this.TxtL_AM_INFO.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtL_AM_INFO.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtL_AM_INFO.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtL_AM_INFO.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtL_AM_INFO.GrayText = "L_AM_INFO";
+            this.TxtL_AM_INFO.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtL_AM_INFO.LeaveColor = System.Drawing.Color.White;
+            this.TxtL_AM_INFO.Location = new System.Drawing.Point(580, 78);
+            this.TxtL_AM_INFO.Margin = new System.Windows.Forms.Padding(5);
+            this.TxtL_AM_INFO.Name = "TxtL_AM_INFO";
+            this.TxtL_AM_INFO.Size = new System.Drawing.Size(288, 20);
+            this.TxtL_AM_INFO.TabIndex = 160;
             // 
             // Txtngay_ct2
             // 
@@ -1446,9 +1467,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.menuChucNang.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ChonDonHangMuaMenu,
             this.TroGiupMenu,
-            this.chonTuExcelToolStripMenuItem});
+            this.chonTuExcelToolStripMenuItem,
+            this.inKhacToolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(185, 70);
+            this.menuChucNang.Size = new System.Drawing.Size(185, 114);
             // 
             // ChonDonHangMuaMenu
             // 
@@ -1470,6 +1492,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.chonTuExcelToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.chonTuExcelToolStripMenuItem.Text = "Chọn từ excel";
             this.chonTuExcelToolStripMenuItem.Click += new System.EventHandler(this.chonTuExcelToolStripMenuItem_Click);
+            // 
+            // inKhacToolStripMenuItem
+            // 
+            this.inKhacToolStripMenuItem.Name = "inKhacToolStripMenuItem";
+            this.inKhacToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.inKhacToolStripMenuItem.Text = "Xử lý khác";
+            this.inKhacToolStripMenuItem.Click += new System.EventHandler(this.inKhacToolStripMenuItem_Click);
             // 
             // chkSua_Tien
             // 
@@ -2830,26 +2859,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // TxtL_AM_INFO
-            // 
-            this.TxtL_AM_INFO.AccessibleName = "L_AM_INFO";
-            this.TxtL_AM_INFO.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtL_AM_INFO.BackColor = System.Drawing.Color.White;
-            this.TxtL_AM_INFO.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtL_AM_INFO.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtL_AM_INFO.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtL_AM_INFO.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtL_AM_INFO.GrayText = "L_AM_INFO";
-            this.TxtL_AM_INFO.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtL_AM_INFO.LeaveColor = System.Drawing.Color.White;
-            this.TxtL_AM_INFO.Location = new System.Drawing.Point(580, 78);
-            this.TxtL_AM_INFO.Margin = new System.Windows.Forms.Padding(5);
-            this.TxtL_AM_INFO.Name = "TxtL_AM_INFO";
-            this.TxtL_AM_INFO.Size = new System.Drawing.Size(288, 20);
-            this.TxtL_AM_INFO.TabIndex = 160;
-            // 
             // DonDatHangBanControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3079,5 +3088,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private V6Label v6Label28;
         private V6CheckBox chkAuto_Ck;
         private V6ColorTextBox TxtL_AM_INFO;
+        private System.Windows.Forms.ToolStripMenuItem inKhacToolStripMenuItem;
     }
 }

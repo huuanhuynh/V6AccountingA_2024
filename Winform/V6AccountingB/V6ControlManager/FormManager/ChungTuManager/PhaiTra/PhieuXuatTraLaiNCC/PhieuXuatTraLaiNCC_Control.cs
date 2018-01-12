@@ -4214,5 +4214,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                 this.WriteExLog(GetType() + ".XemPhieuNhap", ex);
             }
         }
+
+        private void xuLyKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent("INKHAC");
+        }
     }
 }

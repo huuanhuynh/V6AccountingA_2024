@@ -4100,5 +4100,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                 this.WriteExLog(GetType() + ".txtTongThueNt_V6LostFocus", ex);
             }
         }
+
+        private void inKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent("INKHAC");
+        }
     }
 }
