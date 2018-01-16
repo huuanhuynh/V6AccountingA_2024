@@ -61,6 +61,7 @@
     <Compile Include="PostObjects\GeneralInvoiceInfo.cs" />
     <Compile Include="PostObjects\PostObject.cs" />
     <Compile Include="PostObjects\JsonObject.cs" />
+    <Compile Include="ResponseObjects\CreateInvoiceResponse_Result.cs" />
     <Compile Include="ResponseObjects\CreateInvoiceResponse.cs" />
     <Compile Include="MyJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -111,7 +111,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             responseObject = new CreateInvoiceResponse()
                             {
                                 description = "Response is null.",
-                                result = result
+                                result = null
                             };
 
                             this.WriteToLog(GetType() + ".F9Thread", string.Format("{0}-{1}:{2}\njson:{3}",

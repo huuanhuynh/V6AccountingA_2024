@@ -934,6 +934,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
+        private Dictionary<string, ReportObject> GetRprObjects(ReportDocument rpt)
+        {
+            var result = new Dictionary<string, ReportObject>();
+            foreach (ReportObject o in rpt.ReportDefinition.ReportObjects)
+            {
+                result[o.Name] = o;
+            }
+            return result;
+        }
+
         private void SetCrossLineRpt(ReportDocument rpt)
         {
             int flag = 0;

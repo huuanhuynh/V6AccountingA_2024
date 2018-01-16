@@ -4620,6 +4620,12 @@
     <Compile Include="FormManager\SoDuManager\Add_Edit\AbhhvtAddEditForm.designer.cs">
       <DependentUpon>AbhhvtAddEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\SoDuManager\Add_Edit\AbnghiBsAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\SoDuManager\Add_Edit\AbnghiBsAddEditForm.designer.cs">
+      <DependentUpon>AbnghiBsAddEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\SoDuManager\Add_Edit\Acosxlsx_abspddAddEditForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -7272,6 +7278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\SoDuManager\Add_Edit\AbhhvtAddEditForm.resx">
       <DependentUpon>AbhhvtAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\SoDuManager\Add_Edit\AbnghiBsAddEditForm.resx">
+      <DependentUpon>AbnghiBsAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\SoDuManager\Add_Edit\Acosxlsx_abspddAddEditForm.resx">
       <DependentUpon>Acosxlsx_abspddAddEditForm.cs</DependentUpon>

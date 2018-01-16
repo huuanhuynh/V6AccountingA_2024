@@ -1,5 +1,6 @@
 ﻿using System;
 using V6ControlManager.FormManager.SoDuManager.Add_Edit;
+using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6Structs;
 
@@ -115,6 +116,9 @@ namespace V6ControlManager.FormManager.SoDuManager
                     break;
                 case V6TableName.Abhhvt:
                     FormControl = new AbhhvtAddEditForm();
+                    break;
+                case V6TableName.Abnghi:
+                    FormControl = new AbnghiBsAddEditForm();
                     break;
 
                 case V6TableName.Notable:

@@ -61,17 +61,13 @@ namespace V6ThuePostApi.PostObjects
             }
             else if (value is string)
             {
-                result = "\"" + value + "\"";
+                result = "\"" + value.ToString().Replace("\"", "\\\"") + "\"";
             }
             else if (value is DateTime)
             {
                 DateTime date = (DateTime) value;
                 result = "" + (long)(date - new DateTime(1970, 1, 1)).TotalMilliseconds;
             }
-            //else if (value is Boolean)
-            //{
-                
-            //}
             else if (value is IEnumerable)
             {
                 result = ListToJson((IEnumerable)value);
@@ -79,6 +75,10 @@ namespace V6ThuePostApi.PostObjects
             else if (IsNumber(value))
             {
                 result = "" + value;
+            }
+            else if (value is bool)
+            {
+                result += (bool)value ? "true" : "false";
             }
             else
             {

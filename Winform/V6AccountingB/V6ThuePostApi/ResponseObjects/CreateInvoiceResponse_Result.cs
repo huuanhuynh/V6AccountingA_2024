@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace V6ThuePostApi.ResponseObjects
+{
+    public class CreateInvoiceResponse_Result
+    {
+        public string supplierTaxCode { get; set; }
+        public string invoiceNo { get; set; }
+        public string transactionID { get; set; }
+        public string reservationCode { get; set; }
+    }
+}

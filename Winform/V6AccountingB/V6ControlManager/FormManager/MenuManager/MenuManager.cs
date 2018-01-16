@@ -193,20 +193,20 @@ namespace V6ControlManager.FormManager.MenuManager
                             #endregion danhmucview
                         case "3":
                             #region ==== //cap nhap so du //SoDuView ====
-                            var tableNamesd = codeform.Substring(1);
+                            var TABLE_NAME_SD = codeform.Substring(1).ToUpper();
 
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
-                                if (tableNamesd == "ABSPYTCP" || tableNamesd == "ABSPDD" ||
-                                    tableNamesd == "ACOSXLT_ABSPDD" || tableNamesd == "ACOSXLT_ABSPYTCP" ||
-                                    tableNamesd == "ACOSXLSX_ABSPDD" || tableNamesd == "ACOSXLSX_ABSPYTCP" ||
-                                    tableNamesd == "ABHHVT")
+                                if (TABLE_NAME_SD == "ABSPYTCP" || TABLE_NAME_SD == "ABSPDD" ||
+                                    TABLE_NAME_SD == "ACOSXLT_ABSPDD" || TABLE_NAME_SD == "ACOSXLT_ABSPYTCP" ||
+                                    TABLE_NAME_SD == "ACOSXLSX_ABSPDD" || TABLE_NAME_SD == "ACOSXLSX_ABSPYTCP" ||
+                                    TABLE_NAME_SD == "ABHHVT" || TABLE_NAME_SD == "ABNGHI")
                                 {
-                                    var filterForm = new YearMonthFilterForm(tableNamesd);
+                                    var filterForm = new YearMonthFilterForm(TABLE_NAME_SD);
                                     if (filterForm.ShowDialog(owner) == DialogResult.OK)
                                     {
                                         var where = filterForm.QueryString;
-                                        c = new SoDuView(item_id, mButton.Text, tableNamesd)
+                                        c = new SoDuView(item_id, mButton.Text, TABLE_NAME_SD)
                                         {
                                             Name = item_id,
                                             ReportFile = repFile,
@@ -219,8 +219,8 @@ namespace V6ControlManager.FormManager.MenuManager
                                 else
                                 {
 
-                                    c = new SoDuView(item_id, mButton.Text, tableNamesd,
-                                        V6Login.GetInitFilter(tableNamesd, V6ControlFormHelper.FindFilterType(owner)))
+                                    c = new SoDuView(item_id, mButton.Text, TABLE_NAME_SD,
+                                        V6Login.GetInitFilter(TABLE_NAME_SD, V6ControlFormHelper.FindFilterType(owner)))
                                     {
                                         Name = item_id,
                                         ReportFile = repFile,
