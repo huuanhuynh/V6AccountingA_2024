@@ -622,7 +622,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
 
         /// <summary>
-        /// Kiểm tra dữ liệu, Trả về chuỗi lỗi, nếu hợp lệ trả về null hoặc rỗng.
+        /// Kiểm tra dữ liệu để thêm hoặc sửa, Trả về chuỗi lỗi, nếu hợp lệ trả về null hoặc rỗng.
         /// </summary>
         protected string CheckValid(string tableName, IList<string> KEY_LIST)
         {

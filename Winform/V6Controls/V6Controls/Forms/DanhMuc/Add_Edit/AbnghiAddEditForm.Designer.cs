@@ -131,7 +131,6 @@
             this.tabPage1.Size = new System.Drawing.Size(745, 374);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
-            
             // 
             // v6Label3
             // 
@@ -407,6 +406,7 @@
             this.v6ColorTextBox16.BackColor = System.Drawing.Color.White;
             this.v6ColorTextBox16.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox16.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox16.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox16.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox16.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox16.LeaveColor = System.Drawing.Color.White;
@@ -425,6 +425,7 @@
             this.v6ColorTextBox15.BackColor = System.Drawing.Color.White;
             this.v6ColorTextBox15.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox15.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox15.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox15.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox15.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox15.LeaveColor = System.Drawing.Color.White;
@@ -443,6 +444,7 @@
             this.v6ColorTextBox1.BackColor = System.Drawing.Color.White;
             this.v6ColorTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
@@ -499,8 +501,10 @@
             this.v6ColorTextBox19.AccessibleName = "ma_td3";
             this.v6ColorTextBox19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.v6ColorTextBox19.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox19.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox19.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox19.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox19.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox19.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox19.LeaveColor = System.Drawing.Color.White;
@@ -515,8 +519,10 @@
             this.v6ColorTextBox20.AccessibleName = "ma_td2";
             this.v6ColorTextBox20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.v6ColorTextBox20.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox20.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox20.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox20.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox20.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox20.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox20.LeaveColor = System.Drawing.Color.White;
@@ -531,8 +537,10 @@
             this.v6ColorTextBox22.AccessibleName = "ma_td1";
             this.v6ColorTextBox22.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.v6ColorTextBox22.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox22.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox22.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox22.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox22.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox22.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox22.LeaveColor = System.Drawing.Color.White;
@@ -984,7 +992,7 @@
             this.txtTenDvcs.AccessibleName = "TEN_DVCS";
             this.txtTenDvcs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTenDvcs.BackColor = System.Drawing.SystemColors.Control;
+            this.txtTenDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtTenDvcs.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTenDvcs.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTenDvcs.Location = new System.Drawing.Point(265, 52);
@@ -1001,7 +1009,7 @@
             this.txtTenKh.AccessibleName = "TEN_KH";
             this.txtTenKh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTenKh.BackColor = System.Drawing.SystemColors.Control;
+            this.txtTenKh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtTenKh.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTenKh.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTenKh.Location = new System.Drawing.Point(265, 23);
@@ -1034,7 +1042,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AbnghiAddEditForm";
             this.Size = new System.Drawing.Size(758, 523);
-            this.Load += new System.EventHandler(this.KhachHangFrom_Load);
+            this.Load += new System.EventHandler(this.From_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

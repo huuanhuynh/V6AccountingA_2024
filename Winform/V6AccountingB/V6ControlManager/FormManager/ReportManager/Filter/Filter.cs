@@ -980,6 +980,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 case "AVGLGSSO6AF5":
                     return new AVGLGSSO6AF5();
 
+                case "ASENDMAIL":
+                    return new Sms.XASENDMAIL();
+
             }
             return new FilterBase() { Visible = false };
         }
