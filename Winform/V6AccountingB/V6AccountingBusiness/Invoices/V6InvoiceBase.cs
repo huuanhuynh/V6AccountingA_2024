@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using DataAccessLayer.Implementations;
 using V6Init;
+using V6SqlConnect;
 using V6Structs;
 using V6Tools;
 
@@ -86,6 +87,28 @@ namespace V6AccountingBusiness.Invoices
                 {
                     return 0;
                 }
+            }
+        }
+        
+        /// <summary>
+        /// Cờ đánh dấu có ghi log chi tiết khi thực hiện insert/update hay không?
+        /// </summary>
+        public bool WRITE_LOG
+        {
+            get
+            {
+                try
+                {
+                    if (Alct.Columns.Contains("WRITE_LOG"))
+                    {
+                        return Alct.Rows[0]["WRITE_LOG"].ToString() == "1";
+                    }
+                }
+                catch (Exception)
+                {
+                    //
+                }
+                return false;
             }
         }
 
@@ -718,5 +741,90 @@ namespace V6AccountingBusiness.Invoices
                 _templateSettingAD[defineInfo.Name.ToUpper()] = defineInfo;
             }
         }
+
+        /// <summary>
+        /// Thêm dữ liệu vào bảng AD
+        /// </summary>
+        /// <param name="name">Tên hàm đang chạy. MethodBase.GetCurrentMethod().Name</param>
+        /// <param name="transaction"></param>
+        /// <param name="dataList">Dữ liệu sẽ thêm.</param>
+        /// <param name="isnew">Tạo phiếu mới.</param>
+        /// <returns>Số dòng thêm được.</returns>
+        protected int InsertADlist(string name, SqlTransaction transaction, List<SortedDictionary<string, object>> dataList, bool isnew)
+        {
+            int j = 0;
+            foreach (SortedDictionary<string, object> adRow in dataList)
+            {
+                if (InsertIntoTransaction(name, transaction, ADStruct, adRow, false))
+                {
+                    j++;
+                }
+            }
+            return j;
+        }
+        /// <summary>
+        /// Thêm dữ liệu vào bảng AD2
+        /// </summary>
+        /// <param name="name">Tên hàm đang chạy.</param>
+        /// <param name="transaction"></param>
+        /// <param name="dataList">Dữ liệu sẽ thêm.</param>
+        /// <param name="isnew">Tạo phiếu mới.</param>
+        /// <returns>Số dòng thêm được.</returns>
+        protected int InsertAD2list(string name, SqlTransaction transaction, List<SortedDictionary<string, object>> dataList, bool isnew)
+        {
+            int j = 0;
+            foreach (SortedDictionary<string, object> adRow in dataList)
+            {
+                if (InsertIntoTransaction(name, transaction, AD2Struct, adRow, false))
+                {
+                    j++;
+                }
+            }
+            return j;
+        }
+        /// <summary>
+        /// Thêm dữ liệu vào bảng AD3
+        /// </summary>
+        /// <param name="name">Tên hàm đang chạy.</param>
+        /// <param name="transaction"></param>
+        /// <param name="dataList">Dữ liệu sẽ thêm.</param>
+        /// <param name="isnew">Tạo phiếu mới.</param>
+        /// <returns>Số dòng thêm được.</returns>
+        protected int InsertAD3list(string name, SqlTransaction transaction, List<SortedDictionary<string, object>> dataList, bool isnew)
+        {
+            int j = 0;
+            foreach (SortedDictionary<string, object> adRow in dataList)
+            {
+                if (InsertIntoTransaction(name, transaction, AD3Struct, adRow, false))
+                {
+                    j++;
+                }
+            }
+            return j;
+        }
+
+        protected bool InsertIntoTransaction(string info, SqlTransaction TRANSACTION, V6TableStruct tableStruct, IDictionary<string, object> data, bool isnew)
+        {
+            var insertSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, tableStruct, data, isnew);
+            int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, insertSql);
+            if (WRITE_LOG)
+            {
+                object stt_rec = data["STT_REC"];
+                object stt_rec0 = data["STT_REC0"];
+                Logger.WriteToLog(
+                    string.Format(info + " Insert " + tableStruct.TableName + " Ma_ct {0} stt_rec {1} row {2} result {3}.\n{4}",
+                    Mact, stt_rec, stt_rec0, execute, insertSql));
+            }
+            return execute > 0;
+        }
+
+        protected void WriteLogTransactionComplete(object stt_rec)
+        {
+            if (WRITE_LOG)
+            {
+                Logger.WriteToLog(string.Format("Mact {0} stt_rec {1} TRANSACTION COMMITTED.", Mact, stt_rec));
+            }
+        }
+        
     }
 }

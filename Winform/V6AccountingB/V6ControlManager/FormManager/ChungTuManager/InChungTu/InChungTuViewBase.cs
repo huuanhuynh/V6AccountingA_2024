@@ -713,6 +713,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void MyInit()
         {
+            if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
             CreateFormProgram();
             CreateFormControls();
             InvokeFormEvent(QuickReportManager.FormEvent.INIT);
@@ -783,8 +784,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
                 if (!V6Login.IsAdmin)
                 {
-                    exportToExcel.Visible = false;
-                    //viewDataToolStripMenuItem.Visible = false;
+                    var menuRow = V6Menu.GetRowByMact(Invoice.Mact);
+                    if (menuRow != null)
+                    {
+                        var key3 = menuRow["Key3"].ToString().Trim().ToUpper();
+                        var user_acc = V6Login.UserInfo["USER_ACC"].ToString().Trim();
+                        if (user_acc != "1")
+                        {
+                            if (!key3.Contains("1")) ExporttoExcelTemplate.Visible = false;
+                            //if (!key3.Contains("2")) exportToExcelView.Visible = false;
+                            if (!key3.Contains("3")) exportToExcel.Visible = false;
+                            //if (!key3.Contains("4")) exportToXmlToolStripMenuItem.Visible = false;
+                            if (!key3.Contains("5")) printGrid.Visible = false;
+                            //if (!key3.Contains("6")) viewDataToolStripMenuItem.Visible = false;
+                        }
+                    }
                 }
 
                 Ready();

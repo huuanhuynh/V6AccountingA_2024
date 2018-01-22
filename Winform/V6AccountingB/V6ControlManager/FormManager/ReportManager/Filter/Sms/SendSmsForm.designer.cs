@@ -1,6 +1,6 @@
-﻿namespace V6MultiSms
+﻿namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 {
-    partial class Form1
+    partial class SendSmsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SendSmsForm));
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnKetNoi = new System.Windows.Forms.Button();
             this.txtConnectPort = new System.Windows.Forms.TextBox();
@@ -609,7 +609,7 @@
             this.Controls.Add(this.btnChonHet);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(580, 600);
-            this.Name = "Form1";
+            this.Name = "SendSmsForm";
             this.Text = "V6MultiSms";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);

@@ -43,6 +43,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkPass_Exp = new V6Controls.V6CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtPassDate = new V6Controls.V6DateTimeColor();
             this.v6chk_set_vattu_ketoan_banhang = new V6Controls.V6CheckBox();
@@ -75,7 +76,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.chkPass_Exp = new V6Controls.V6CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -321,6 +321,17 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // chkPass_Exp
+            // 
+            this.chkPass_Exp.AccessibleName = "Pass_Exp";
+            this.chkPass_Exp.AutoSize = true;
+            this.chkPass_Exp.Location = new System.Drawing.Point(440, 147);
+            this.chkPass_Exp.Name = "chkPass_Exp";
+            this.chkPass_Exp.Size = new System.Drawing.Size(170, 21);
+            this.chkPass_Exp.TabIndex = 35;
+            this.chkPass_Exp.Text = "Thay đổi pass hàng kỳ";
+            this.chkPass_Exp.UseVisualStyleBackColor = true;
+            // 
             // label9
             // 
             this.label9.AccessibleDescription = "";
@@ -414,9 +425,9 @@
             this.bntPhanQuyenCtct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.bntPhanQuyenCtct.Location = new System.Drawing.Point(20, 179);
             this.bntPhanQuyenCtct.Name = "bntPhanQuyenCtct";
-            this.bntPhanQuyenCtct.Size = new System.Drawing.Size(204, 29);
+            this.bntPhanQuyenCtct.Size = new System.Drawing.Size(402, 29);
             this.bntPhanQuyenCtct.TabIndex = 27;
-            this.bntPhanQuyenCtct.Text = "&5.Phân quyền ẩn, chỉ đọc";
+            this.bntPhanQuyenCtct.Text = "&5.Phân quyền ẩn, chỉ đọc, khóa ngày chi tiết theo chứng từ";
             this.bntPhanQuyenCtct.UseVisualStyleBackColor = true;
             this.bntPhanQuyenCtct.Click += new System.EventHandler(this.bntPhanQuyenCtct_Click);
             // 
@@ -755,17 +766,6 @@
             this.label1.Size = new System.Drawing.Size(127, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên người sử dụng";
-            // 
-            // chkPass_Exp
-            // 
-            this.chkPass_Exp.AccessibleName = "Pass_Exp";
-            this.chkPass_Exp.AutoSize = true;
-            this.chkPass_Exp.Location = new System.Drawing.Point(440, 147);
-            this.chkPass_Exp.Name = "chkPass_Exp";
-            this.chkPass_Exp.Size = new System.Drawing.Size(170, 21);
-            this.chkPass_Exp.TabIndex = 35;
-            this.chkPass_Exp.Text = "Thay đổi pass hàng kỳ";
-            this.chkPass_Exp.UseVisualStyleBackColor = true;
             // 
             // NguoiSuDungAddEditForm
             // 

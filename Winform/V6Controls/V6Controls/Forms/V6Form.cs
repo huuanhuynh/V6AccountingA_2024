@@ -14,6 +14,8 @@ namespace V6Controls.Forms
         /// </summary>
         protected int ii = 0;
         protected bool _ready;
+        public string ItemID { get { return m_itemId; } }
+        protected string m_itemId = null;
         protected string _message = "";
         public bool Data_Loading, _load_data_success;
         public string _sttRec { get; set; }

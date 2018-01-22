@@ -210,10 +210,10 @@ namespace V6SqlConnect
         /// <param name="UserId"></param>
         /// <param name="structTable"></param>
         /// <param name="dataDictionary"></param>
-        /// <param name="isnew"></param>
+        /// <param name="isnew">Cờ tạo timeString</param>
         /// <returns></returns>
         public static string GenInsertAMSql(int UserId, V6TableStruct structTable,
-            SortedDictionary<string, object> dataDictionary, bool isnew=true)
+            IDictionary<string, object> dataDictionary, bool isnew=true)
         {
             //GetStructureTableAndColumnsStruct();
             string fields = "";

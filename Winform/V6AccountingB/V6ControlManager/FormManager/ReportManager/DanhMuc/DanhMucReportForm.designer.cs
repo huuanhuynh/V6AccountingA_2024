@@ -472,6 +472,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             // 
             this.chkHienTatCa.AccessibleDescription = "REPORTC00001";
             this.chkHienTatCa.AutoSize = true;
+            this.chkHienTatCa.Enabled = false;
             this.chkHienTatCa.Location = new System.Drawing.Point(442, 64);
             this.chkHienTatCa.Name = "chkHienTatCa";
             this.chkHienTatCa.Size = new System.Drawing.Size(75, 17);

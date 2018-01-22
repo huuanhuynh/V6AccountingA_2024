@@ -48,13 +48,14 @@ namespace V6Controls
             this.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.V6ColorDataGridView_CellBeginEdit);
             this.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.V6ColorDataGridView_CellPainting);
+            this.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.V6ColorDataGridView_CellParsing);
             this.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.V6ColorDataGridView_ColumnAdded);
+            this.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.V6ColorDataGridView_EditingControlShowing);
             this.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.V6ColorDataGridView_RowPostPaint);
             this.SelectionChanged += new System.EventHandler(this.V6ColorDataGridView_SelectionChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.V6ColorDataGridView_KeyDown);
-            this.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(V6ColorDataGridView_CellBeginEdit);
-            this.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(V6ColorDataGridView_EditingControlShowing);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -89,6 +90,20 @@ namespace V6Controls
             EditingCell = CurrentCell;
             EditingRow = CurrentCell.OwningRow;
             EditingColumn = CurrentCell.OwningColumn;
+        }
+
+
+        private void V6ColorDataGridView_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
+        {
+            if (ObjectAndString.IsDateTimeType(Columns[e.ColumnIndex].ValueType))
+            {
+                DateTime dateTime;
+                if (DateTime.TryParseExact(e.Value.ToString(), "d/M/yyyy", null, DateTimeStyles.None, out dateTime))
+                {
+                    e.Value = dateTime;
+                    e.ParsingApplied = true;
+                }
+            }
         }
 
         [DefaultValue(false)]
@@ -829,5 +844,6 @@ namespace V6Controls
         {
             V6ControlFormHelper.FormatGridViewAndHeader(this, GRDSV1, GRDFV1, GRDH);
         }
+
     }
 }

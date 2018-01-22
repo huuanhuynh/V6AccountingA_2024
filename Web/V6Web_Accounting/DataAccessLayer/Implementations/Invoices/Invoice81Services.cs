@@ -7,6 +7,7 @@ using System.Transactions;
 using DataAccessLayer.Interfaces.Invoices;
 using V6SqlConnect;
 using V6Structs;
+using V6Tools;
 using IsolationLevel = System.Transactions.IsolationLevel;
 
 namespace DataAccessLayer.Implementations.Invoices
@@ -16,15 +17,16 @@ namespace DataAccessLayer.Implementations.Invoices
 
         public bool InsertInvoice(int userId, V6TableStruct AMStruct, V6TableStruct ADStruct, V6TableStruct AD3Struct,
             SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList, List<SortedDictionary<string, object>> adList3,
-            out string message)
+            bool write_log, out string message)
         {
+            object stt_rec = am["STT_REC"];
             var insert_am_sql = SqlGenerator.GenInsertAMSql(userId, AMStruct, am);
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction(AMStruct.TableName);
 
             //Delete AD
             SortedDictionary<string, object> keys = new SortedDictionary<string, object>()
             {
-                {"STT_REC",am["STT_REC"]}
+                {"STT_REC", stt_rec}
             };
             var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
             SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
@@ -39,17 +41,32 @@ namespace DataAccessLayer.Implementations.Invoices
             foreach (SortedDictionary<string, object> adRow in adList)
             {
                 var adSql = SqlGenerator.GenInsertAMSql(userId, ADStruct, adRow);
-                j += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
+                int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
+                if (write_log)
+                {
+                    object stt_rec0 = adRow["STT_REC0"];
+                    Logger.WriteToLog(string.Format("InsertInvoice81 {0} AD row {1} result {2}.\n{3}", stt_rec, stt_rec0, execute, adSql));
+                }
+                j += (execute > 0 ? 1 : 0);
             }
             foreach (SortedDictionary<string, object> adRow in adList3)
             {
                 var adSql = SqlGenerator.GenInsertAMSql(userId, AD3Struct, adRow);
-                j3 += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
+                int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
+                if (write_log)
+                {
+                    object stt_rec0 = adRow["STT_REC0"];
+                    Logger.WriteToLog(string.Format("InsertInvoice81 {0} AD3 row {1} result {2}.\n{3}", stt_rec, stt_rec0, execute, adSql));
+                }
+                j3 += (execute > 0 ? 1 : 0);
             }
             if (insert_success && j == adList.Count && j3 == adList3.Count)
             {
                 TRANSACTION.Commit();
-
+                if (write_log)
+                {
+                    Logger.WriteToLog(string.Format("InsertInvoice81 {0} TRANSACTION COMMITTED.", stt_rec));
+                }
                 int apgia = 0;
                 SqlParameter[] pList =
                 {
@@ -130,8 +147,10 @@ namespace DataAccessLayer.Implementations.Invoices
             List<SortedDictionary<string, object>> adList,
             List<SortedDictionary<string, object>> adList3,
             SortedDictionary<string, object> keys,
+            bool write_log,
             out string message)
         {
+            object stt_rec = am["STT_REC"];
             var amSql = SqlGenerator.GenUpdateAMSql(userId, AMStruct.TableName, AMStruct, am, keys);
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("Update81");
 
@@ -150,17 +169,33 @@ namespace DataAccessLayer.Implementations.Invoices
             foreach (SortedDictionary<string, object> adRow in adList)
             {
                 var adSql = SqlGenerator.GenInsertAMSql(userId, ADStruct, adRow, false);
-                j += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
+                int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
+                if (write_log)
+                {
+                    object stt_rec0 = adRow["STT_REC0"];
+                    Logger.WriteToLog(string.Format("UpdateInvoice81 {0} AD row {1} result {2}.\n{3}", stt_rec, stt_rec0, execute, adSql));
+                }
+                j += (execute > 0 ? 1 : 0);
             }
             //Insert AD3
             foreach (SortedDictionary<string, object> adRow in adList3)
             {
                 var ad3Sql = SqlGenerator.GenInsertAMSql(userId, AD3Struct, adRow);
-                j3 += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad3Sql) > 0 ? 1 : 0);
+                int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad3Sql);
+                if (write_log)
+                {
+                    object stt_rec0 = adRow["STT_REC0"];
+                    Logger.WriteToLog(string.Format("UpdateInvoice81 {0} AD3 row {1} result {2}.\n{3}", stt_rec, stt_rec0, execute, ad3Sql));
+                }
+                j3 += (execute > 0 ? 1 : 0);
             }
             if (insert_success && j == adList.Count && j3 == adList3.Count)
             {
                 TRANSACTION.Commit();
+                if (write_log)
+                {
+                    Logger.WriteToLog(string.Format("UpdateInvoice81 {0} TRANSACTION COMMITTED.", stt_rec));
+                }
                 try
                 {
                     int apgia = 0;
@@ -243,178 +278,7 @@ namespace DataAccessLayer.Implementations.Invoices
             }
         }
 
-
-        //private TransactionOptions CreateTransactionOptions()
-        //{
-        //    return new TransactionOptions
-        //    {
-        //        IsolationLevel = IsolationLevel.ReadCommitted,
-        //        Timeout = TimeSpan.FromMinutes(5)
-        //    };
-        //}
-
-        //public bool InsertInvoice(int userId, V6TableStruct AMStruct, V6TableStruct ADStruct, V6TableStruct AD3Struct,
-        //    SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList, List<SortedDictionary<string, object>> adList3,
-        //    out string message)
-        //{
-        //    var insert_am_sql = SqlGenerator.GenInsertAMSql(userId, AMStruct, am);
-        //    //SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction(AMStruct.TableName);
-
-        //    using (var tsCope = new TransactionScope(TransactionScopeOption.Required, CreateTransactionOptions()))
-        //    {
-        //        //Delete AD
-        //        var keys = new SortedDictionary<string, object>()
-        //        {
-        //            {"STT_REC",am["STT_REC"]}
-        //        };
-        //        var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
-        //        SqlConnect.ExecuteNonQuery(CommandType.Text, deleteAdSql);
-        //        deleteAdSql = SqlGenerator.GenDeleteSql(AD3Struct, keys);
-        //        SqlConnect.ExecuteNonQuery(CommandType.Text, deleteAdSql);
-        //        //Delete AM
-        //        var deleteAMSql = SqlGenerator.GenDeleteSql(AMStruct, keys);
-        //        SqlConnect.ExecuteNonQuery(CommandType.Text, deleteAMSql);
-
-        //        var insert_success = SqlConnect.ExecuteNonQuery(CommandType.Text, insert_am_sql) > 0;
-        //        int j = 0, j3 = 0;
-        //        foreach (SortedDictionary<string, object> adRow in adList)
-        //        {
-        //            var adSql = SqlGenerator.GenInsertAMSql(userId, ADStruct, adRow);
-        //            j += (SqlConnect.ExecuteNonQuery(CommandType.Text, adSql) > 0 ? 1 : 0);
-        //        }
-        //        foreach (SortedDictionary<string, object> adRow in adList3)
-        //        {
-        //            var adSql = SqlGenerator.GenInsertAMSql(userId, AD3Struct, adRow);
-        //            j3 += (SqlConnect.ExecuteNonQuery(CommandType.Text, adSql) > 0 ? 1 : 0);
-        //        }
-        //        if (insert_success && j == adList.Count && j3 == adList3.Count)
-        //        {
-        //            tsCope.Complete();
-        //            // Continue...
-        //        }
-        //        else
-        //        {
-        //            Transaction.Current.Rollback();
-        //            message = "Rollback: "
-        //                      + (!insert_success ? "Thêm AM không thành công." : "")
-        //                      + (j != adList.Count ? "Thêm AD không hoàn tất." : "")
-        //                      + (j3 != adList3.Count ? "Thêm AD3 không hoàn tất." : "");
-        //            return false;
-        //        }
-        //    }
-
-        //    //Continue:
-        //    try
-        //    {
-        //        int apgia = 0;
-        //        SqlParameter[] pList =
-        //                {
-        //                    new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
-        //                    new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
-        //                    new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
-        //                    new SqlParameter("@Ma_nx", am["MA_NX"].ToString()),
-        //                    new SqlParameter("@Loai_ck", am["LOAI_CK"].ToString()),
-        //                    new SqlParameter("@Mode", "M"),
-        //                    new SqlParameter("@nKieu_Post", am["KIEU_POST"].ToString()),
-        //                    new SqlParameter("@Ap_gia", apgia),
-        //                    new SqlParameter("@UserID", userId),
-        //                    new SqlParameter("@Save_voucher", "1")
-        //                };
-        //        var result = SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOA_POST_MAIN", pList);
-        //        message = string.Format("Success, ({0} affected).", result);
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        message = ex.Message;
-        //        message = "POST lỗi: " + message;
-        //        //TRANSACTION.Rollback();
-        //        return false;
-        //    }
-        //}
-
-
-        //public bool UpdateInvoice(int userId, V6TableStruct AMStruct, V6TableStruct ADStruct, V6TableStruct AD3Struct,
-        //    SortedDictionary<string, object> am,
-        //    List<SortedDictionary<string, object>> adList,
-        //    List<SortedDictionary<string, object>> adList3,
-        //    SortedDictionary<string, object> keys,
-        //    out string message)
-        //{
-        //    var amSql = SqlGenerator.GenUpdateAMSql(userId, AMStruct.TableName, AMStruct, am, keys);
-        //    //SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("Update81");
-        //    using (var tsCope = new TransactionScope(TransactionScopeOption.Required, CreateTransactionOptions()))
-        //    {
-        //        //Delete AD
-        //        var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
-        //        SqlConnect.ExecuteNonQuery(CommandType.Text, deleteAdSql);
-        //        //Delete AD3
-        //        var deleteAd3Sql = SqlGenerator.GenDeleteSql(AD3Struct, keys);
-        //        SqlConnect.ExecuteNonQuery(CommandType.Text, deleteAd3Sql);
-
-        //        //Update AM
-        //        var insert_success = SqlConnect.ExecuteNonQuery(CommandType.Text, amSql) > 0;
-        //        int j = 0, j3 = 0;
-
-        //        //Insert AD
-        //        foreach (SortedDictionary<string, object> adRow in adList)
-        //        {
-        //            var adSql = SqlGenerator.GenInsertAMSql(userId, ADStruct, adRow, false);
-        //            j += (SqlConnect.ExecuteNonQuery(CommandType.Text, adSql) > 0 ? 1 : 0);
-        //        }
-        //        //Insert AD3
-        //        foreach (SortedDictionary<string, object> adRow in adList3)
-        //        {
-        //            var ad3Sql = SqlGenerator.GenInsertAMSql(userId, AD3Struct, adRow);
-        //            j3 += (SqlConnect.ExecuteNonQuery(CommandType.Text, ad3Sql) > 0 ? 1 : 0);
-        //        }
-        //        if (insert_success && j == adList.Count && j3 == adList3.Count)
-        //        {
-        //            tsCope.Complete();
-        //            // Continue...
-        //        }
-        //        else
-        //        {
-        //            Transaction.Current.Rollback();
-        //            message = "Rollback: "
-        //                      + (!insert_success ? "Thêm AM không thành công." : "")
-        //                      + (j != adList.Count ? "Thêm AD không hoàn tất." : "")
-        //                      + (j3 != adList3.Count ? "Thêm AD3 không hoàn tất." : "");
-        //            return false;
-        //        }
-        //    }
-
-        //    try
-        //    {
-        //        int apgia = 0;
-        //        SqlParameter[] pList =
-        //                {
-        //                new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
-        //                new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
-        //                new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
-        //                new SqlParameter("@Ma_nx", am["MA_NX"].ToString()),
-        //                new SqlParameter("@Loai_ck", am["LOAI_CK"].ToString()),
-        //                new SqlParameter("@Mode", "S"),
-        //                new SqlParameter("@nKieu_Post", am["KIEU_POST"].ToString()),
-        //                new SqlParameter("@Ap_gia", apgia),
-        //                new SqlParameter("@UserID", userId),
-        //                new SqlParameter("@Save_voucher", "1")
-        //            };
-
-        //        var result = SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOA_POST_MAIN", pList);
-        //        message = string.Format("Success, ({0} affected).", result);
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        message = ex.Message;
-        //        message = "POST lỗi: " + message;
-        //        //TRANSACTION.Rollback();
-        //        return false;
-        //    }
-        //}
-
-
+        
         public DataTable SearchAM(string tableNameAM, string tableNameAD, string mact,
             string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
         {

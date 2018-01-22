@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows.Forms;
 using GSM;
 using V6AccountingBusiness;
+using V6Controls.Forms;
 using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
@@ -21,7 +22,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             MyInit();
         }
 
-        GSM_Phone smsModem = new GSM_Phone();
+        private GSM_Phone smsModem;
         List<GSM.GSM_Phone> listModem;
         private bool _hardExit = false;
         DataTable tableData;
@@ -37,7 +38,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
         void MyInit()
         {
-
+            smsModem = V6ControlFormHelper.SmsModem;
             string[] portNames = SerialPort.GetPortNames();
             foreach (var item in portNames)
             {
@@ -126,7 +127,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         private void btnGui1_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Gửi tin nhắn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                == System.Windows.Forms.DialogResult.No)
+                == DialogResult.No)
                 return;
             if (txtSendTo.Text.Trim() == "")
             {

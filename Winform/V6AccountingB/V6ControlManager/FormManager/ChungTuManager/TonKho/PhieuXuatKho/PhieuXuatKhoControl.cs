@@ -3207,6 +3207,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     ShowParentMessage(V6Text.AddSuccess);
                     ViewInvoice(_sttRec, V6Mode.Add);
                     btnMoi.Focus();
+                    All_Objects["mode"] = Mode;
+                    InvokeFormEvent("AFTERADDSUCCESS");
+                    InvokeFormEvent("AFTERSAVESUCCESS");
                 }
                 else
                 {
@@ -3322,6 +3325,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     ShowParentMessage(V6Text.EditSuccess);
                     ViewInvoice(_sttRec, V6Mode.Edit);
                     btnMoi.Focus();
+                    All_Objects["mode"] = Mode;
+                    InvokeFormEvent("AFTEREDITSUCCESS");
+                    InvokeFormEvent("AFTERSAVESUCCESS");
                 }
                 else
                 {

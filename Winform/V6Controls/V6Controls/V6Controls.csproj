@@ -1957,6 +1957,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Hprojects\GsmModem\GsmModem.csproj">
+      <Project>{C76A2608-2BEF-4398-95EC-C8C418828DDE}</Project>
+      <Name>GsmModem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Hprojects\GsmSerialPort\GsmSerialPort.csproj">
+      <Project>{0a85d3e6-9463-4e5a-a001-dd2401ec190a}</Project>
+      <Name>GsmSerialPort</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Hprojects\HaUtility\HaUtility.csproj">
       <Project>{0A11F974-1C92-457B-837A-911A8EF85055}</Project>
       <Name>HaUtility</Name>

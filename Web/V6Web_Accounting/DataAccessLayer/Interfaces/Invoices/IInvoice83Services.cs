@@ -9,13 +9,13 @@ namespace DataAccessLayer.Interfaces.Invoices
     {
         bool InsertInvoice(int userId, V6TableStruct AMStruct, V6TableStruct ADStruct, V6TableStruct AD3Struct,
             SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList, List<SortedDictionary<string, object>> adList3,
-            out string message, bool post);
+            bool write_log, out string message, bool post);
         bool UpdateInvoice(int userId, V6TableStruct AMStruct, V6TableStruct ADStruct, V6TableStruct AD3Struct,
             SortedDictionary<string, object> am,
             List<SortedDictionary<string, object>> adList,
-             List<SortedDictionary<string, object>> adList3,
+            List<SortedDictionary<string, object>> adList3,
             SortedDictionary<string, object> keys,
-            out string message, bool post);
+            bool write_log, out string message, bool post);
         DataTable SearchAM(string tableNameAM, string tableNameAD, string mact,
             string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs);
         DataTable LoadAd(string AD, string sttRec);

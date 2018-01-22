@@ -4029,6 +4029,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     ShowParentMessage(V6Text.AddSuccess);
                     //ViewInvoice(_sttRec, V6Mode.Add);
                     btnMoi.Focus();
+                    All_Objects["mode"] = Mode;
+                    InvokeFormEvent("AFTERADDSUCCESS");
+                    InvokeFormEvent("AFTERSAVESUCCESS");
                 }
                 else
                 {
@@ -4156,6 +4159,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     //if (_post) ViewInvoice(_sttRec, V6Mode.Edit);
                     //Status = "3";
                     btnMoi.Focus();
+                    All_Objects["mode"] = Mode;
+                    InvokeFormEvent("AFTEREDITSUCCESS");
+                    InvokeFormEvent("AFTERSAVESUCCESS");
 
                 }
                 else

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using DataAccessLayer.Implementations.Invoices;
 using V6Init;
 using V6SqlConnect;
+using V6Tools;
 
 namespace V6AccountingBusiness.Invoices
 {
@@ -28,76 +30,15 @@ namespace V6AccountingBusiness.Invoices
         public bool InsertInvoice(SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList)
         {
             return SERVICE.InsertInvoice(V6Login.UserId, AMStruct, ADStruct,
-                am, adList, out V6Message);
-
-            var insert_am_sql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AMStruct, am);
-            SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction(AM);
-
-            //Delete AD
-            SortedDictionary<string, object> keys = new SortedDictionary<string, object>()
-            {
-                {"STT_REC",am["STT_REC"]}
-            };
-            var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
-            SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
-            //Delete AM
-            var deleteAMSql = SqlGenerator.GenDeleteSql(AMStruct, keys);
-            SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAMSql);
-
-
-            var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, insert_am_sql) > 0;
-            var j = 0;
-            foreach (SortedDictionary<string, object> adRow in adList)
-            {
-                var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow);
-                j += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql)>0?1:0);
-            }
-            if (insert_success && j == adList.Count)
-            {
-                TRANSACTION.Commit();
-                try
-                {
-                    SqlParameter[] pList =
-                    {
-                        new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
-                        new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
-                        new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
-                        new SqlParameter("@Mode", "M"),
-                        new SqlParameter("@nKieu_Post", am["KIEU_POST"].ToString()),
-                        new SqlParameter("@UserID", V6Login.UserId),
-                        new SqlParameter("@Save_voucher", "1")
-                    };
-
-                    V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_IXA_POST_MAIN", pList);
-
-                    //TRANSACTION.Commit();
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    V6Message = ex.Message;
-                    V6Message = "POST lỗi: " + V6Message;
-                    //TRANSACTION.Rollback();
-                    return false;
-                }
-            }
-            else//
-            {
-                if (!insert_success) V6Message = "Thêm AM không thành công.";
-                if (j != adList.Count) V6Message += "Thêm AD không hoàn tất.";
-                V6Message += " Bắt đầu RollBack.";
-                TRANSACTION.Rollback();
-                V6Message += " RollBack xong.";
-                return false;
-            }
+                am, adList, WRITE_LOG, out V6Message);
         }
         
         public bool UpdateInvoice(SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList,
-            SortedDictionary<string,object> keys )
+            SortedDictionary<string,object> keys)
         {
-
+            object stt_rec = am["STT_REC"];
             var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AM, AMStruct, am, keys);
-            SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("AM81Update");
+            SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("AM84Update");
             
             //Delete AD
             var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
@@ -105,17 +46,13 @@ namespace V6AccountingBusiness.Invoices
             
             //Update AM
             var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
-            var j = 0;
+            var currentMethodName = MethodBase.GetCurrentMethod().Name;
+            var j = InsertADlist(currentMethodName, TRANSACTION, adList, false);
 
-            //Insert AD
-            foreach (SortedDictionary<string, object> adRow in adList)
-            {
-                var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow, false);
-                j += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
-            }
             if (insert_success && j == adList.Count)
             {
                 TRANSACTION.Commit();
+                WriteLogTransactionComplete(stt_rec);
                 try
                 {
                     SqlParameter[] pList =
@@ -130,8 +67,6 @@ namespace V6AccountingBusiness.Invoices
                     };
 
                     V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_IXA_POST_MAIN", pList);
-
-                    //TRANSACTION.Commit();
                     return true;
                 }
                 catch (Exception ex)

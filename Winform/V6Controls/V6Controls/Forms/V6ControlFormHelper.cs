@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Windows.Forms;
+using GSM;
 using V6AccountingBusiness;
 using V6Controls.Controls;
 using V6Controls.Controls.Label;
@@ -968,6 +969,55 @@ namespace V6Controls.Forms
         }
 
         #endregion
+
+        #region ==== SEND ====
+        public static GSM_Phone SmsModem = new GSM_Phone();
+
+        public static GSM_Phone.SendSmsStatus SendSms(string message, string number, out string returnMessage)
+        {
+            GSM_Phone.SendSmsStatus result = GSM_Phone.SendSmsStatus.UNKNOWN;
+
+            if (SmsModem.GSM_PORT == null)
+            {
+                
+            }
+
+            if (SmsModem.GSM_PORT != null)
+            {
+                if (!SmsModem.GSM_PORT.IsOpen)
+                    SmsModem.OpenPort();
+
+
+                result = SmsModem.SendMessage_PDU(number, message, true);
+                switch (result)
+                {
+                    case GSM_Phone.SendSmsStatus.ERROR:
+                        returnMessage = "Gửi lỗi!";
+                        break;
+                    case GSM_Phone.SendSmsStatus.NONE:
+                        returnMessage = "Không gửi được hay gì đó!";
+                        break;
+                    case GSM_Phone.SendSmsStatus.OK:
+                        returnMessage = "OK";
+                        break;
+                    case GSM_Phone.SendSmsStatus.UNKNOWN:
+                        returnMessage = "Không biết gửi được không";
+                        break;
+                    default:
+                        returnMessage = "???";
+                        break;
+                }
+
+            }
+            else
+            {
+                returnMessage = "Chưa kết nối!";
+            }
+
+            return result;
+        }
+        #endregion send
+
 
         #region ==== SET... ====
         /// <summary>

@@ -77,6 +77,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtKey3 = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -728,6 +730,8 @@
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Controls.Add(this.chkQuickRun);
             this.tabPage3.Controls.Add(this.label19);
+            this.tabPage3.Controls.Add(this.txtKey3);
+            this.tabPage3.Controls.Add(this.label23);
             this.tabPage3.Controls.Add(this.txtPicture);
             this.tabPage3.Controls.Add(this.label22);
             this.tabPage3.Controls.Add(this.txtKey1);
@@ -851,6 +855,35 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
             // 
+            // label23
+            // 
+            this.label23.AccessibleDescription = "";
+            this.label23.Location = new System.Drawing.Point(2, 105);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(165, 37);
+            this.label23.TabIndex = 4;
+            this.label23.Text = "Key3 (Phân quyền\r\nclick phải report)";
+            // 
+            // txtKey3
+            // 
+            this.txtKey3.AccessibleName = "KEY3";
+            this.txtKey3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtKey3.BackColor = System.Drawing.Color.White;
+            this.txtKey3.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtKey3.Enabled = false;
+            this.txtKey3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtKey3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtKey3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtKey3.HoverColor = System.Drawing.Color.Yellow;
+            this.txtKey3.LeaveColor = System.Drawing.Color.White;
+            this.txtKey3.Location = new System.Drawing.Point(175, 101);
+            this.txtKey3.Margin = new System.Windows.Forms.Padding(4);
+            this.txtKey3.Name = "txtKey3";
+            this.txtKey3.Size = new System.Drawing.Size(545, 23);
+            this.txtKey3.TabIndex = 5;
+            // 
             // V6MenuAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -924,6 +957,8 @@
         private System.Windows.Forms.Label label21;
         private V6ColorTextBox txtPicture;
         private System.Windows.Forms.Label label22;
+        private V6ColorTextBox txtKey3;
+        private System.Windows.Forms.Label label23;
 
     }
 }

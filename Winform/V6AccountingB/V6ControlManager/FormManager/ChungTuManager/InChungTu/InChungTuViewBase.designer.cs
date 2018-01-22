@@ -31,12 +31,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ExporttoExceltemplate = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExporttoExcelTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
@@ -95,26 +95,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Location = new System.Drawing.Point(307, 68);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(662, 94);
             this.dataGridView1.TabIndex = 4;
@@ -125,18 +125,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ExporttoExceltemplate,
+            this.ExporttoExcelTemplate,
             this.exportToExcel,
             this.printGrid});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(209, 70);
             // 
-            // ExporttoExceltemplate
+            // ExporttoExcelTemplate
             // 
-            this.ExporttoExceltemplate.Name = "ExporttoExceltemplate";
-            this.ExporttoExceltemplate.Size = new System.Drawing.Size(208, 22);
-            this.ExporttoExceltemplate.Text = "Export to Excel (template)";
-            this.ExporttoExceltemplate.Click += new System.EventHandler(this.ExporttoExceltemplate_Click);
+            this.ExporttoExcelTemplate.Name = "ExporttoExcelTemplate";
+            this.ExporttoExcelTemplate.Size = new System.Drawing.Size(208, 22);
+            this.ExporttoExcelTemplate.Text = "Export to Excel (template)";
+            this.ExporttoExcelTemplate.Click += new System.EventHandler(this.ExporttoExceltemplate_Click);
             // 
             // exportToExcel
             // 
@@ -574,6 +574,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             // 
             this.chkHienTatCa.AccessibleDescription = "ASOCTSOA-INB00005";
             this.chkHienTatCa.AutoSize = true;
+            this.chkHienTatCa.Enabled = false;
             this.chkHienTatCa.Location = new System.Drawing.Point(438, 40);
             this.chkHienTatCa.Name = "chkHienTatCa";
             this.chkHienTatCa.Size = new System.Drawing.Size(37, 17);
@@ -756,7 +757,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private System.Windows.Forms.Button btnLs;
         private System.Windows.Forms.Button btnLt;
         public System.Windows.Forms.Panel panelCRview;
-        private System.Windows.Forms.ToolStripMenuItem ExporttoExceltemplate;
+        private System.Windows.Forms.ToolStripMenuItem ExporttoExcelTemplate;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer4;
     }
 }

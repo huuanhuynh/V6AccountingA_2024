@@ -8,7 +8,8 @@ namespace DataAccessLayer.Interfaces.Invoices
     public interface IInvoice84Services
     {
         bool InsertInvoice(int UserId, V6TableStruct AMStruct, V6TableStruct ADStruct,
-            SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList, out string message);
+            SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList,
+            bool write_log, out string message);
 
         //bool UpdateInvoice(int userId, V6TableStruct AMStruct, V6TableStruct ADStruct,
         //    SortedDictionary<string, object> am,

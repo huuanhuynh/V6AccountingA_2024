@@ -2574,11 +2574,11 @@
     <Compile Include="FormManager\ReportManager\Filter\NhanSu\HPRCONGCT_Filter.Designer.cs">
       <DependentUpon>HPRCONGCT_Filter.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\Sms\Form1.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Sms\SendSmsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\Sms\Form1.designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormManager\ReportManager\Filter\Sms\SendSmsForm.designer.cs">
+      <DependentUpon>SendSmsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDMAIL.cs">
       <SubType>UserControl</SubType>
@@ -6300,8 +6300,8 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ReportFilter44Base.resx">
       <DependentUpon>ReportFilter44Base.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\Sms\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Sms\SendSmsForm.resx">
+      <DependentUpon>SendSmsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Sms\XASENDMAIL.resx">
       <DependentUpon>XASENDMAIL.cs</DependentUpon>

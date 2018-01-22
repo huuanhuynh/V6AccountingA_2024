@@ -1,28 +1,25 @@
-﻿using GSM;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.IO.Ports;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using GSM;
 using V6AccountingBusiness;
+using V6Controls.Forms;
 
-namespace V6MultiSms
+namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 {
-    public partial class Form1 : Form
+    public partial class SendSmsForm : Form
     {
-        GSM_Phone smsModem = new GSM_Phone();
+        GSM_Phone smsModem;
         List<GSM.GSM_Phone> listModem;
         private bool _hardExit = false;
         DataTable tableData;
 
-        public Form1()
+        public SendSmsForm()
         {
             InitializeComponent();
             
@@ -33,7 +30,7 @@ namespace V6MultiSms
 
         void MyInit()
         {
-
+            smsModem = V6ControlFormHelper.SmsModem;
             string[] portNames = SerialPort.GetPortNames();
             foreach (var item in portNames)
             {

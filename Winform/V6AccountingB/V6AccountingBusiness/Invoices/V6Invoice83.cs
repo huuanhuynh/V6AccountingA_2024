@@ -32,7 +32,7 @@ namespace V6AccountingBusiness.Invoices
             bool post)
         {
             return Service83.InsertInvoice(V6Login.UserId, AMStruct, ADStruct, AD3Struct,
-                am, adList, adList3, out V6Message, post);
+                am, adList, adList3, WRITE_LOG, out V6Message, post);
         }
         
         public bool UpdateInvoice(SortedDictionary<string, object> am,
@@ -41,7 +41,7 @@ namespace V6AccountingBusiness.Invoices
             SortedDictionary<string,object> keys, bool post)
         {
             return Service83.UpdateInvoice(V6Login.UserId, AMStruct, ADStruct, AD3Struct,
-                am, adList, adList3, keys, out V6Message, post);
+                am, adList, adList3, keys, WRITE_LOG, out V6Message, post);
         }
 
         public DataTable SearchAM(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)

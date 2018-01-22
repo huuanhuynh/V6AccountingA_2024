@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
@@ -88,20 +89,14 @@ namespace V6AccountingBusiness.Invoices
             SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAMSql);
 
             var insert_success = (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0);
-            int j = 0, j3 = 0;
-            foreach (SortedDictionary<string, object> adRow in adList)
-            {
-                var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow);
-                j += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql)>0?1:0);
-            }
-            foreach (SortedDictionary<string, object> adRow in adList3)
-            {
-                var ad3Sql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AD3Struct, adRow);
-                j3 += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad3Sql) > 0 ? 1 : 0);
-            }
+            var currentMethodName = MethodBase.GetCurrentMethod().Name;
+            var j = InsertADlist(currentMethodName, TRANSACTION, adList, true);
+            var j3 = InsertAD3list(currentMethodName, TRANSACTION, adList3, true);
+
             if (insert_success && j == adList.Count && j3 == adList3.Count)
             {
                 TRANSACTION.Commit();
+                WriteLogTransactionComplete(am["STT_REC"]);
                 try
                 {
                     int apgia = 0;
@@ -121,8 +116,6 @@ namespace V6AccountingBusiness.Invoices
                     };
 
                     V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_TA1_POST_MAIN", pList);
-
-                    //TRANSACTION.Commit();
                     return true;
                 }
                 catch (Exception ex)
@@ -178,23 +171,15 @@ namespace V6AccountingBusiness.Invoices
             var deleteAd3Sql = SqlGenerator.GenDeleteSql(AD3Struct, keys);
             SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAd3Sql);
             //Update AM //??? co nen theo doi nhung thay doi tren form va truyen valueDic vua đủ.
-            var insert_success = (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0 );
-            int j = 0, j3 = 0;
-            //Insert AD
-            foreach (SortedDictionary<string, object> adRow in adList)
-            {
-                var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow);
-                j += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
-            }
-            //Insert AD3
-            foreach (SortedDictionary<string, object> adRow in adList3)
-            {
-                var ad3Sql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AD3Struct, adRow);
-                j3 += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad3Sql) > 0 ? 1 : 0);
-            }
+            var insert_success = (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0);
+            var currentMethodName = MethodBase.GetCurrentMethod().Name;
+            var j = InsertADlist(currentMethodName, TRANSACTION, adList, false);
+            var j3 = InsertAD3list(currentMethodName, TRANSACTION, adList3, false);
+
             if (insert_success && j == adList.Count && j3 == adList3.Count)
             {
                 TRANSACTION.Commit();
+                WriteLogTransactionComplete(am["STT_REC"]);
                 try
                 {
                     int apgia = 0;
@@ -213,8 +198,6 @@ namespace V6AccountingBusiness.Invoices
                         new SqlParameter("@Save_voucher", "1")
                     };
                     V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_TA1_POST_MAIN", pList);
-
-                    //TRANSACTION.Commit();
                     return true;
                 }
                 catch (Exception ex)

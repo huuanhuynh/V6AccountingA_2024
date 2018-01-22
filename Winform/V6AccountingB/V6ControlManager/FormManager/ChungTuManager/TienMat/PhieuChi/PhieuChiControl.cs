@@ -2805,19 +2805,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                 if (Invoice.InsertInvoice(addDataAM, addDataADList, addDataAD2, addDataAD3))
                 {
-                    flagSuccess = true;
+                    flagAddSuccess = true;
                     Mode = V6Mode.View;
                 }
                 else
                 {
-                    flagSuccess = false;
+                    flagAddSuccess = false;
                     addErrorMessage = "Thêm không thành công";
                     Invoice.PostErrorLog(_sttRec, "M");
                 }
             }
             catch (Exception ex)
             {
-                flagSuccess = false;
+                flagAddSuccess = false;
                 addErrorMessage = ex.Message;
                 Invoice.PostErrorLog(_sttRec, "M", ex);
             }
@@ -2844,19 +2844,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private bool flagAddFinish, flagSuccess;
+        private bool flagAddFinish, flagAddSuccess;
         void checkAdd_Tick(object sender, EventArgs e)
         {
             if (flagAddFinish)
             {
                 ((Timer)sender).Stop();
 
-                if (flagSuccess)
+                if (flagAddSuccess)
                 {
                     V6ControlFormHelper.ShowMainMessage(V6Text.AddSuccess);
                     ShowParentMessage(V6Text.AddSuccess);
                     ViewInvoice(_sttRec, V6Mode.Add);
                     btnMoi.Focus();
+                    All_Objects["mode"] = Mode;
+                    InvokeFormEvent("AFTERADDSUCCESS");
+                    InvokeFormEvent("AFTERSAVESUCCESS");
                 }
                 else
                 {
@@ -2966,6 +2969,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     ShowParentMessage(V6Text.EditSuccess);
                     ViewInvoice(_sttRec, V6Mode.Edit);
                     btnMoi.Focus();
+                    All_Objects["mode"] = Mode;
+                    InvokeFormEvent("AFTEREDITSUCCESS");
+                    InvokeFormEvent("AFTERSAVESUCCESS");
                 }
                 else
                 {

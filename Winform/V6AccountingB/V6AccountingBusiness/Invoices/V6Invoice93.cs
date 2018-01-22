@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using V6Init;
 using V6SqlConnect;
 
@@ -39,15 +40,13 @@ namespace V6AccountingBusiness.Invoices
 
 
             var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, insert_am_sql) > 0;
-            var j = 0;
-            foreach (SortedDictionary<string, object> adRow in adList)
-            {
-                var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow);
-                j += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql)>0?1:0);
-            }
+            var currentMethodName = MethodBase.GetCurrentMethod().Name;
+            var j = InsertADlist(currentMethodName, TRANSACTION, adList, true);
+            
             if (insert_success && j == adList.Count)
             {
                 TRANSACTION.Commit();
+                WriteLogTransactionComplete(am["STT_REC"]);
                 try
                 {
                     int apgia = 0;
@@ -94,25 +93,20 @@ namespace V6AccountingBusiness.Invoices
         {
 
             var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AM, AMStruct, am, keys);
-            SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("AM81Update");
+            SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("Invoice93Update");
             
             //Delete AD
             var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
             SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
-            
             //Update AM
             var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
-            var j = 0;
-
-            //Insert AD
-            foreach (SortedDictionary<string, object> adRow in adList)
-            {
-                var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow, false);
-                j += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
-            }
+            var currentMethodName = MethodBase.GetCurrentMethod().Name;
+            var j = InsertADlist(currentMethodName, TRANSACTION, adList, false);
+            
             if (insert_success && j == adList.Count)
             {
                 TRANSACTION.Commit();
+                WriteLogTransactionComplete(am["STT_REC"]);
                 try
                 {
                     int apgia = 0;

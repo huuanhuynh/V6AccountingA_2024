@@ -492,6 +492,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.chkHienTatCa.AccessibleDescription = "REPORTC00001";
             this.chkHienTatCa.AutoSize = true;
+            this.chkHienTatCa.Enabled = false;
             this.chkHienTatCa.Location = new System.Drawing.Point(442, 40);
             this.chkHienTatCa.Name = "chkHienTatCa";
             this.chkHienTatCa.Size = new System.Drawing.Size(37, 17);

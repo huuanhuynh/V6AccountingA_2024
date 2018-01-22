@@ -391,7 +391,7 @@ namespace V6Controls.Forms.Viewer
                             var UPDATE_FIELD = field.ToUpper();
                             var update_value = dataGridView1.CurrentRow.Cells[field].Value;
                             keys.Add(UPDATE_FIELD, update_value);
-                            delete_info += UPDATE_FIELD + " = " + update_value + ". ";
+                            delete_info += UPDATE_FIELD + " = " + ObjectAndString.ObjectToString(update_value) + ". ";
                         }
                         if (keys.Count > 0) DeleteData(keys, selectedRowIndex);
                     }
@@ -528,12 +528,12 @@ namespace V6Controls.Forms.Viewer
                 var UPDATE_FIELD = dataGridView1.Columns[columnIndex].DataPropertyName.ToUpper();
                 var update_value = row.Cells[columnIndex].Value;
                 updateData.Add(UPDATE_FIELD, update_value);
-                update_info += UPDATE_FIELD + " = " + update_value + ". ";
+                update_info += UPDATE_FIELD + " = " + ObjectAndString.ObjectToString(update_value) + ". ";
                 foreach (string FIELD in updateFieldList)
                 {
                     update_value = row.Cells[FIELD].Value;
                     updateData[FIELD] = update_value;
-                    update_info += FIELD + " = " + update_value + ". ";
+                    update_info += FIELD + " = " + ObjectAndString.ObjectToString(update_value) + ". ";
                 }
 
                 var result = V6BusinessHelper.UpdateSimple(_tableName, updateData, keys);

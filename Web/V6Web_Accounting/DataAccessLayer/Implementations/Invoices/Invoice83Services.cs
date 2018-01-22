@@ -6,6 +6,7 @@ using System.Threading;
 using DataAccessLayer.Interfaces.Invoices;
 using V6SqlConnect;
 using V6Structs;
+using V6Tools;
 
 namespace DataAccessLayer.Implementations.Invoices
 {
@@ -14,15 +15,16 @@ namespace DataAccessLayer.Implementations.Invoices
 
         public bool InsertInvoice(int userId, V6TableStruct AMStruct, V6TableStruct ADStruct, V6TableStruct AD3Struct,
             SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList, List<SortedDictionary<string, object>> adList3,
-            out string message, bool post)
+            bool write_log, out string message, bool post)
         {
+            object stt_rec = am["STT_REC"];
             var insert_am_sql = SqlGenerator.GenInsertAMSql(userId, AMStruct, am);
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction(AMStruct.TableName);
 
             //Delete AD
             SortedDictionary<string, object> keys = new SortedDictionary<string, object>()
             {
-                {"STT_REC",am["STT_REC"]}
+                {"STT_REC", am["STT_REC"]}
             };
             var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
             SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
@@ -37,17 +39,32 @@ namespace DataAccessLayer.Implementations.Invoices
             foreach (SortedDictionary<string, object> adRow in adList)
             {
                 var adSql = SqlGenerator.GenInsertAMSql(userId, ADStruct, adRow);
-                j += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
+                int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
+                if (write_log)
+                {
+                    object stt_rec0 = adRow["STT_REC0"];
+                    Logger.WriteToLog(string.Format("InsertInvoice83 {0} AD row {1} result {2}.\n{3}", stt_rec, stt_rec0, execute, adSql));
+                }
+                j += (execute > 0 ? 1 : 0);
             }
             foreach (SortedDictionary<string, object> adRow in adList3)
             {
                 var adSql = SqlGenerator.GenInsertAMSql(userId, AD3Struct, adRow);
-                j3 += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
+                int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
+                if (write_log)
+                {
+                    object stt_rec0 = adRow["STT_REC0"];
+                    Logger.WriteToLog(string.Format("InsertInvoice83 {0} AD3 row {1} result {2}.\n{3}", stt_rec, stt_rec0, execute, adSql));
+                }
+                j3 += (execute > 0 ? 1 : 0);
             }
             if (insert_success && j == adList.Count && j3 == adList3.Count)
             {
                 TRANSACTION.Commit();
-
+                if (write_log)
+                {
+                    Logger.WriteToLog(string.Format("InsertInvoice83 {0} TRANSACTION COMMITTED.", stt_rec));
+                }
                 if (!post)
                 {
                     //message = "Insert AM AD Success.";
@@ -164,8 +181,9 @@ namespace DataAccessLayer.Implementations.Invoices
             List<SortedDictionary<string, object>> adList,
             List<SortedDictionary<string, object>> adList3,
             SortedDictionary<string, object> keys,
-            out string message, bool post)
+            bool write_log, out string message, bool post)
         {
+            object stt_rec = am["STT_REC"];
             var amSql = SqlGenerator.GenUpdateAMSql(userId, AMStruct.TableName, AMStruct, am, keys);
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("Update83");
 
@@ -184,18 +202,33 @@ namespace DataAccessLayer.Implementations.Invoices
             foreach (SortedDictionary<string, object> adRow in adList)
             {
                 var adSql = SqlGenerator.GenInsertAMSql(userId, ADStruct, adRow, false);
-                j += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
+                int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
+                if (write_log)
+                {
+                    object stt_rec0 = adRow["STT_REC0"];
+                    Logger.WriteToLog(string.Format("UpdateInvoice81 {0} AD row {1} result {2}.\n{3}", stt_rec, stt_rec0, execute, adSql));
+                }
+                j += (execute > 0 ? 1 : 0);
             }
             //Insert AD3
             foreach (SortedDictionary<string, object> adRow in adList3)
             {
                 var ad3Sql = SqlGenerator.GenInsertAMSql(userId, AD3Struct, adRow);
-                j3 += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad3Sql) > 0 ? 1 : 0);
+                int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad3Sql);
+                if (write_log)
+                {
+                    object stt_rec0 = adRow["STT_REC0"];
+                    Logger.WriteToLog(string.Format("UpdateInvoice81 {0} AD row {1} result {2}.\n{3}", stt_rec, stt_rec0, execute, ad3Sql));
+                }
+                j3 += (execute > 0 ? 1 : 0);
             }
             if (insert_success && j == adList.Count && j3 == adList3.Count)
             {
                 TRANSACTION.Commit();
-
+                if (write_log)
+                {
+                    Logger.WriteToLog(string.Format("UpdateInvoice83 {0} TRANSACTION COMMITTED.", stt_rec));
+                }
                 if (!post)
                 {
                     //message = "Update AM AD Success.";

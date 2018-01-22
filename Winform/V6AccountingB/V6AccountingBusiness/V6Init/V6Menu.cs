@@ -136,6 +136,19 @@ namespace V6Init
             if (data.Rows.Count > 0) return data.Rows[0];
             return null;
         }
+
+        public static DataRow GetRowByMact(string mact)
+        {
+            var sql = "Select * from V6Menu Where MA_CT = @mact";
+            SqlParameter[] prList =
+            {
+                new SqlParameter("@mact", mact)
+            };
+            DataTable data = SqlConnect.ExecuteDataset(CommandType.Text, sql, prList).Tables[0];
+            if (data.Rows.Count > 0) return data.Rows[0];
+            return null;
+        }
+
         public static DataTable GetKey2Pr2()
         {
             int type = 1;

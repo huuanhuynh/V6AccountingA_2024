@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using V6Init;
 using V6SqlConnect;
 
@@ -76,26 +77,15 @@ namespace V6AccountingBusiness.Invoices
             SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAMSql);
 
             var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, insert_am_sql) > 0;
-            int j = 0, j2 = 0, j3 = 0;
-            foreach (SortedDictionary<string, object> adRow in adList)
-            {
-                var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow);
-                j += SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0;
-            }
-            foreach (SortedDictionary<string, object> adRow in adList2)
-            {
-                var ad2Sql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AD2Struct, adRow);
-                j2 += SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad2Sql) > 0 ? 1 : 0;
-            }
-            foreach (SortedDictionary<string, object> adRow in adList3)
-            {
-                var ad3Sql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AD3Struct, adRow);
-                j3 += SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad3Sql) > 0 ? 1 : 0;
-            }
+            var currentMethodName = MethodBase.GetCurrentMethod().Name;
+            var j = InsertADlist(currentMethodName, TRANSACTION, adList, true);
+            var j2 = InsertAD2list(currentMethodName, TRANSACTION, adList2, true);
+            var j3 = InsertAD3list(currentMethodName, TRANSACTION, adList3, true);
 
             if (insert_success && j == adList.Count && j2 == adList2.Count && j3 == adList3.Count)
             {
                 TRANSACTION.Commit();
+                WriteLogTransactionComplete(am["STT_REC"]);
                 try
                 {
                     SqlParameter[] plist =
@@ -165,30 +155,15 @@ namespace V6AccountingBusiness.Invoices
             
             //Update AM
             var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
-            int j = 0, j2 = 0, j3 = 0;
-
-            //Insert AD
-            foreach (SortedDictionary<string, object> adRow in adList)
-            {
-                var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow, false);
-                j += SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0;
-            }
-            //Insert AD2
-            foreach (SortedDictionary<string, object> adRow in adList2)
-            {
-                var ad2Sql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AD2Struct, adRow, false);
-                j2 += SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad2Sql) > 0 ? 1 : 0;
-            }
-            //Insert AD3
-            foreach (SortedDictionary<string, object> adRow in adList3)
-            {
-                var ad3Sql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AD3Struct, adRow, false);
-                j3 += SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad3Sql) > 0 ? 1 : 0;
-            }
+            var currentMethodName = MethodBase.GetCurrentMethod().Name;
+            var j = InsertADlist(currentMethodName, TRANSACTION, adList, false);
+            var j2 = InsertAD2list(currentMethodName, TRANSACTION, adList2, false);
+            var j3 = InsertAD3list(currentMethodName, TRANSACTION, adList3, false);
 
             if (insert_success && j == adList.Count && j2 == adList2.Count && j3 == adList3.Count)
             {
                 TRANSACTION.Commit();
+                WriteLogTransactionComplete(am["STT_REC"]);
                 try
                 {
                     SqlParameter[] plist =
