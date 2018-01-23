@@ -139,7 +139,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 SetStatus2Text();
                 //gridViewSummary1.Visible = FilterControl.ViewSum;
 
-                InvokeFormEvent(QuickReportManager.FormEvent.AFTERADDFILTERCONTROL);
+                InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
             }
             catch (Exception ex)
             {
@@ -716,7 +716,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
             CreateFormProgram();
             CreateFormControls();
-            InvokeFormEvent(QuickReportManager.FormEvent.INIT);
+            InvokeFormEvent(FormDynamicEvent.INIT);
             crystalReportViewer1.ViewChanged += crystalReportViewer1_ViewChanged;
         }
 
@@ -1194,7 +1194,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         
         void LoadData()
         {
-            object beforeLoadData = InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+            object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
 
             try
             {
@@ -1327,7 +1327,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {
                     FilterControl.LoadDataFinish(_ds);
                     All_Objects["_ds"] = _ds;
-                    InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
+                    InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = _tbl;
                     //FormHelper.SetGridHeaderTextAndFormat(dataGridView1, m_XmlConfig.m_GridFormatDictionary, MainForm.myMessage, MainForm.CurrentLang);

@@ -125,7 +125,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 FilterControl = QuickReportManager.AddFilterControl44Base(_program, panel1);
                 All_Objects["thisForm"] = this;
-                InvokeFormEvent(QuickReportManager.FormEvent.AFTERADDFILTERCONTROL);
+                InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
                 QuickReportManager.MadeFilterControls(FilterControl, _program, out All_Objects);
                 All_Objects["thisForm"] = this;
                 SetStatus2Text();
@@ -606,7 +606,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
             CreateFormProgram();
             CreateFormControls();
-            InvokeFormEvent(QuickReportManager.FormEvent.INIT);
+            InvokeFormEvent(FormDynamicEvent.INIT);
         }
 
         /// <summary>
@@ -728,7 +728,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void Form_Load(object sender, EventArgs e)
         {
             MyInit2();
-            InvokeFormEvent(QuickReportManager.FormEvent.INIT2);
+            InvokeFormEvent(FormDynamicEvent.INIT2);
             if (_ds != null && _ds.Tables.Count > 0)
             {
                 SetTBLdata();
@@ -982,7 +982,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         void LoadData()
         {
             All_Objects["_plist"] = _pList;
-            object beforeLoadData = InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+            object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
 
             try
             {
@@ -1062,7 +1062,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 FilterControl.LoadDataFinish(_ds);
                 All_Objects["_ds"] = _ds;
-                InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
+                InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
                 
                 ShowReport();
             }

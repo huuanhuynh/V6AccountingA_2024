@@ -297,7 +297,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 All_Objects["dataGridView2"] = dataGridView2;
                 All_Objects["detailData"] = detailData;
                 All_Objects["lastRowData"] = lastRow.ToDataDictionary();
-                InvokeFormEvent("F9EVENT");
+                InvokeFormEvent(FormDynamicEvent.F9EVENT);
                 
                 var f = new FormAddEdit("Alxuly", V6Mode.Add, null, data);
                 f.InsertSuccessEvent += f_InsertSuccessEvent;

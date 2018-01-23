@@ -346,20 +346,6 @@ namespace V6ControlManager.FormManager.ReportManager
             view.ShowToForm(owner, quickParams.FormTitle, true);
         }
 
-        /// <summary>
-        /// Tập hợp các event động trên form report.
-        /// </summary>
-        public static class FormEvent
-        {
-            public static string INIT = "INIT";
-            /// <summary>
-            /// Form_Load
-            /// </summary>
-            public static string INIT2 = "INIT2";
-            public static string BEFORELOADDATA = "BEFORELOADDATA";
-            public static string AFTERLOADDATA = "AFTERLOADDATA";
-            public static string AFTERADDFILTERCONTROL = "AFTERADDFILTERCONTROL";
-        }
     }
 
     public struct QuickReportParams

@@ -1627,6 +1627,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        /// <summary>
+        /// <para>Gọi hàm viết code động theo Event được định nghĩa trước.</para>
+        /// <para>Hàm không quăng lỗi, lỗi được ghi log.</para>
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <returns></returns>
         protected object InvokeFormEvent(string eventName)
         {
             try // Dynamic invoke

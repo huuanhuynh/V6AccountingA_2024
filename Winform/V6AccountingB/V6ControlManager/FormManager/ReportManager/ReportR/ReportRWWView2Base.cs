@@ -130,7 +130,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
 
                 FilterControl = QuickReportManager.AddFilterControl44Base(_program, panel1);
-                InvokeFormEvent(QuickReportManager.FormEvent.AFTERADDFILTERCONTROL);
+                InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
                 QuickReportManager.MadeFilterControls(FilterControl, _program, out All_Objects);
                 All_Objects["thisForm"] = this;
                 SetStatus2Text();
@@ -495,7 +495,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
             CreateFormProgram();
             CreateFormControls();
-            InvokeFormEvent(QuickReportManager.FormEvent.INIT);
+            InvokeFormEvent(FormDynamicEvent.INIT);
         }
 
         private void MyInit2()
@@ -727,7 +727,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         void LoadData()
         {
             All_Objects["_plist"] = _pList;
-            object beforeLoadData = InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+            object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
 
             try
             {
@@ -819,7 +819,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 try
                 {
                     FilterControl.LoadDataFinish(_ds);
-                    InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
+                    InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
 
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = _tbl;

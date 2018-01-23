@@ -126,7 +126,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             txtLoaiPhieu.ChangeText(_MA_GD);
             
             LoadAll();
-            InvokeFormEvent("INIT");
+            InvokeFormEvent(FormDynamicEvent.INIT);
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
         }
         
@@ -2831,6 +2831,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 Timer checkAdd = new Timer();
                 checkAdd.Interval = 500;
                 checkAdd.Tick += checkAdd_Tick;
+                InvokeFormEvent(FormDynamicEvent.BEFOREADD);
+                InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
                 new Thread(DoAdd)
                 {
                     IsBackground = true
@@ -2858,8 +2860,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     ViewInvoice(_sttRec, V6Mode.Add);
                     btnMoi.Focus();
                     All_Objects["mode"] = Mode;
-                    InvokeFormEvent("AFTERADDSUCCESS");
-                    InvokeFormEvent("AFTERSAVESUCCESS");
+                    InvokeFormEvent(FormDynamicEvent.AFTERADDSUCCESS);
+                    InvokeFormEvent(FormDynamicEvent.AFTERSAVESUCCESS);
                 }
                 else
                 {
@@ -2910,7 +2912,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             checkEdit.Tick += checkEdit_Tick;
             flagEditFinish = false;
             flagEditSuccess = false;
-
+            InvokeFormEvent(FormDynamicEvent.BEFOREEDIT);
+            InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
             new Thread(DoEdit)
             {
                 IsBackground = true
@@ -2970,8 +2973,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     ViewInvoice(_sttRec, V6Mode.Edit);
                     btnMoi.Focus();
                     All_Objects["mode"] = Mode;
-                    InvokeFormEvent("AFTEREDITSUCCESS");
-                    InvokeFormEvent("AFTERSAVESUCCESS");
+                    InvokeFormEvent(FormDynamicEvent.AFTEREDITSUCCESS);
+                    InvokeFormEvent(FormDynamicEvent.AFTERSAVESUCCESS);
                 }
                 else
                 {
@@ -3043,7 +3046,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         checkDelete.Tick += checkDelete_Tick;
                         flagDeleteFinish = false;
                         flagDeleteSuccess = false;
-
+                        InvokeFormEvent(FormDynamicEvent.BEFOREDELETE);
                         new Thread(DoDelete)
                         {
                             IsBackground = true
@@ -3073,6 +3076,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                 if (flagDeleteSuccess)
                 {
+                    InvokeFormEvent(FormDynamicEvent.AFTERDELETESUCCESS);
                     V6ControlFormHelper.ShowMainMessage(V6Text.DeleteSuccess);
                     ShowParentMessage(V6Text.DeleteSuccess);
                     //View lai cai khac
@@ -5064,7 +5068,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void inKhacToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            InvokeFormEvent("INKHAC");
+            InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
 
         

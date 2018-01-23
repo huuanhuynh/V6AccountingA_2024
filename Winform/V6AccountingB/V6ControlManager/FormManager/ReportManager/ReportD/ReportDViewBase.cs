@@ -134,7 +134,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 SetStatus2Text();
                 gridViewSummary1.Visible = FilterControl.ViewSum;
 
-                InvokeFormEvent(QuickReportManager.FormEvent.AFTERADDFILTERCONTROL);
+                InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
             }
             catch (Exception ex)
             {
@@ -553,7 +553,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
             CreateFormProgram();
             CreateFormControls();
-            InvokeFormEvent(QuickReportManager.FormEvent.INIT);
+            InvokeFormEvent(FormDynamicEvent.INIT);
         }
 
         private void MyInit2()
@@ -829,7 +829,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         
         void LoadData()
         {
-            object beforeLoadData = InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+            object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
 
             try
             {
@@ -978,7 +978,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 {
                     FilterControl.LoadDataFinish(_ds);
                     All_Objects["_ds"] = _ds;
-                    InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
+                    InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
 
                     dataGridView1.TableSource = _tbl;
 

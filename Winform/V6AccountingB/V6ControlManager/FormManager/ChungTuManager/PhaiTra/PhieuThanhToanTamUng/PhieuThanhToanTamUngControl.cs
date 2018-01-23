@@ -94,7 +94,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             ResetForm();
 
             LoadAll();
-            InvokeFormEvent("INIT");
+            InvokeFormEvent(FormDynamicEvent.INIT);
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
         }
         
@@ -1742,7 +1742,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             checkAdd.Tick += checkAdd_Tick;
             flagAddFinish = false;
             flagAddSuccess = false;
-
+            InvokeFormEvent(FormDynamicEvent.BEFOREADD);
+            InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
             new Thread(DoAdd)
             {
                 IsBackground = true
@@ -1765,8 +1766,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     ViewInvoice(_sttRec, V6Mode.Add);
                     btnMoi.Focus();
                     All_Objects["mode"] = Mode;
-                    InvokeFormEvent("AFTERADDSUCCESS");
-                    InvokeFormEvent("AFTERSAVESUCCESS");
+                    InvokeFormEvent(FormDynamicEvent.AFTERADDSUCCESS);
+                    InvokeFormEvent(FormDynamicEvent.AFTERSAVESUCCESS);
                 }
                 else
                 {
@@ -1839,7 +1840,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             checkEdit.Tick += checkEdit_Tick;
             flagEditFinish = false;
             flagEditSuccess = false;
-
+            InvokeFormEvent(FormDynamicEvent.BEFOREEDIT);
+            InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
             new Thread(DoEdit)
             {
                 IsBackground = true
@@ -1889,8 +1891,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     ViewInvoice(_sttRec, V6Mode.Edit);
                     btnMoi.Focus();
                     All_Objects["mode"] = Mode;
-                    InvokeFormEvent("AFTEREDITSUCCESS");
-                    InvokeFormEvent("AFTERSAVESUCCESS");
+                    InvokeFormEvent(FormDynamicEvent.AFTEREDITSUCCESS);
+                    InvokeFormEvent(FormDynamicEvent.AFTERSAVESUCCESS);
                 }
                 else
                 {
@@ -1959,7 +1961,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                         checkDelete.Tick += checkDelete_Tick;
                         flagDeleteFinish = false;
                         flagDeleteSuccess = false;
-
+                        InvokeFormEvent(FormDynamicEvent.BEFOREDELETE);
                         new Thread(DoDelete)
                         {
                             IsBackground = true
@@ -1988,6 +1990,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
                 if (flagDeleteSuccess)
                 {
+                    InvokeFormEvent(FormDynamicEvent.AFTERDELETESUCCESS);
                     V6ControlFormHelper.ShowMainMessage(V6Text.DeleteSuccess);
                     ShowParentMessage(V6Text.DeleteSuccess);
                     //View lai cai khac
@@ -3671,7 +3674,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
         private void inKhacToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            InvokeFormEvent("INKHAC");
+            InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
     }
 }

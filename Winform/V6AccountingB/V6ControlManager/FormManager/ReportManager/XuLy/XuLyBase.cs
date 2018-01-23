@@ -249,7 +249,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             All_Objects["thisForm"] = this;
             CreateFormProgram();
             AddFilterControl(_program);
-            InvokeFormEvent(QuickReportManager.FormEvent.AFTERADDFILTERCONTROL);
+            InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
             if (ViewDetail)
                 ShowDetailGridView();
             //else
@@ -275,7 +275,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                 }
             }
-            InvokeFormEvent(QuickReportManager.FormEvent.INIT);
+            InvokeFormEvent(FormDynamicEvent.INIT);
         }
 
         private void LoadComboboxSource()
@@ -321,7 +321,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             LoadDefaultData(4, "", _program, m_itemId, "");
             LoadTag(4, "", _program, m_itemId, "");
-            InvokeFormEvent(QuickReportManager.FormEvent.INIT2);
+            InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
         
@@ -393,7 +393,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         void LoadData()
         {
             All_Objects["_plist"] = _pList;
-            object beforeLoadData = InvokeFormEvent(QuickReportManager.FormEvent.BEFORELOADDATA);
+            object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
             try
             {
                 if (beforeLoadData != null && !(bool)beforeLoadData)
@@ -495,7 +495,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     FilterControl.LoadDataFinish(_ds);
                     All_Objects["_ds"] = _ds;
-                    InvokeFormEvent(QuickReportManager.FormEvent.AFTERLOADDATA);
+                    InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
                     if (Load_Data)
                     {
                         dataGridView1.DataSource = null;
