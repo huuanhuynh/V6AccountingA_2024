@@ -30,10 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SendSmsForm));
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnKetNoi = new System.Windows.Forms.Button();
             this.txtConnectPort = new System.Windows.Forms.TextBox();
-            this.btnNgatKetNoi = new System.Windows.Forms.Button();
             this.btnChonHet = new System.Windows.Forms.Button();
             this.btnDaoLuaChon = new System.Windows.Forms.Button();
             this.btnBoChonHet = new System.Windows.Forms.Button();
@@ -51,12 +49,10 @@
             this.txtThongTin1 = new System.Windows.Forms.TextBox();
             this.txtTenNguoiNhan = new System.Windows.Forms.TextBox();
             this.grbKetNoi = new System.Windows.Forms.GroupBox();
-            this.btnTimModem = new System.Windows.Forms.Button();
             this.btnGui1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtSendTo = new System.Windows.Forms.TextBox();
             this.btnGuiDanhSach = new System.Windows.Forms.Button();
-            this.btnThoat = new System.Windows.Forms.Button();
             this.timerGuiDanhSach = new System.Windows.Forms.Timer(this.components);
             this.timerSend = new System.Windows.Forms.Timer(this.components);
             this.btnChonTen = new System.Windows.Forms.Button();
@@ -68,6 +64,7 @@
             this.btnXuatFileText = new System.Windows.Forms.Button();
             this.chkThemVao = new System.Windows.Forms.CheckBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cboSoDienThoai = new System.Windows.Forms.ComboBox();
             this.lblNoiDung = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -80,25 +77,15 @@
             this.cboTenNguoiNhan = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.Check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.grbThemNguoi.SuspendLayout();
             this.grbKetNoi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(140, 21);
-            this.comboBox1.TabIndex = 1;
-            // 
             // btnKetNoi
             // 
-            this.btnKetNoi.Location = new System.Drawing.Point(9, 46);
+            this.btnKetNoi.Location = new System.Drawing.Point(10, 19);
             this.btnKetNoi.Name = "btnKetNoi";
             this.btnKetNoi.Size = new System.Drawing.Size(75, 23);
             this.btnKetNoi.TabIndex = 2;
@@ -114,16 +101,6 @@
             this.txtConnectPort.Size = new System.Drawing.Size(188, 20);
             this.txtConnectPort.TabIndex = 3;
             this.txtConnectPort.Text = "Chưa kết nối";
-            // 
-            // btnNgatKetNoi
-            // 
-            this.btnNgatKetNoi.Location = new System.Drawing.Point(119, 47);
-            this.btnNgatKetNoi.Name = "btnNgatKetNoi";
-            this.btnNgatKetNoi.Size = new System.Drawing.Size(75, 23);
-            this.btnNgatKetNoi.TabIndex = 4;
-            this.btnNgatKetNoi.Text = "Ngắt kết nối";
-            this.btnNgatKetNoi.UseVisualStyleBackColor = true;
-            this.btnNgatKetNoi.Click += new System.EventHandler(this.btnNgatKetNoi_Click);
             // 
             // btnChonHet
             // 
@@ -279,27 +256,14 @@
             // grbKetNoi
             // 
             this.grbKetNoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.grbKetNoi.Controls.Add(this.btnTimModem);
-            this.grbKetNoi.Controls.Add(this.comboBox1);
             this.grbKetNoi.Controls.Add(this.btnKetNoi);
             this.grbKetNoi.Controls.Add(this.txtConnectPort);
-            this.grbKetNoi.Controls.Add(this.btnNgatKetNoi);
             this.grbKetNoi.Location = new System.Drawing.Point(563, 12);
             this.grbKetNoi.Name = "grbKetNoi";
             this.grbKetNoi.Size = new System.Drawing.Size(200, 105);
             this.grbKetNoi.TabIndex = 0;
             this.grbKetNoi.TabStop = false;
             this.grbKetNoi.Text = "Kết nối";
-            // 
-            // btnTimModem
-            // 
-            this.btnTimModem.Location = new System.Drawing.Point(152, 18);
-            this.btnTimModem.Name = "btnTimModem";
-            this.btnTimModem.Size = new System.Drawing.Size(42, 23);
-            this.btnTimModem.TabIndex = 5;
-            this.btnTimModem.Text = "Tìm";
-            this.btnTimModem.UseVisualStyleBackColor = true;
-            this.btnTimModem.Click += new System.EventHandler(this.btnTimModem_Click);
             // 
             // btnGui1
             // 
@@ -339,17 +303,6 @@
             this.btnGuiDanhSach.Text = "Gửi theo danh sách chọn";
             this.btnGuiDanhSach.UseVisualStyleBackColor = true;
             this.btnGuiDanhSach.Click += new System.EventHandler(this.btnGuiDanhSach_Click);
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnThoat.Location = new System.Drawing.Point(676, 512);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(87, 46);
-            this.btnThoat.TabIndex = 6;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = true;
-            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // timerGuiDanhSach
             // 
@@ -448,6 +401,18 @@
             this.dataGridView1.Size = new System.Drawing.Size(539, 341);
             this.dataGridView1.TabIndex = 31;
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
+            // 
+            // Check
+            // 
+            this.Check.DataPropertyName = "Check";
+            this.Check.FalseValue = "";
+            this.Check.Frozen = true;
+            this.Check.HeaderText = "Gửi";
+            this.Check.Name = "Check";
+            this.Check.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Check.ToolTipText = "Chọn được gửi hay không";
+            this.Check.TrueValue = "1";
+            this.Check.Width = 40;
             // 
             // cboSoDienThoai
             // 
@@ -567,19 +532,7 @@
             this.label3.TabIndex = 37;
             this.label3.Text = "Tên";
             // 
-            // Check
-            // 
-            this.Check.DataPropertyName = "Check";
-            this.Check.FalseValue = "";
-            this.Check.Frozen = true;
-            this.Check.HeaderText = "Gửi";
-            this.Check.Name = "Check";
-            this.Check.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Check.ToolTipText = "Chọn được gửi hay không";
-            this.Check.TrueValue = "1";
-            this.Check.Width = 40;
-            // 
-            // Form1
+            // SendSmsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -597,7 +550,6 @@
             this.Controls.Add(this.chkIgnore);
             this.Controls.Add(this.txtChonTen);
             this.Controls.Add(this.btnChonTen);
-            this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnGuiDanhSach);
             this.Controls.Add(this.txtSendTo);
             this.Controls.Add(this.label4);
@@ -627,10 +579,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button btnKetNoi;
         private System.Windows.Forms.TextBox txtConnectPort;
-        private System.Windows.Forms.Button btnNgatKetNoi;
         private System.Windows.Forms.Button btnChonHet;
         private System.Windows.Forms.Button btnDaoLuaChon;
         private System.Windows.Forms.Button btnBoChonHet;
@@ -652,9 +602,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtSendTo;
         private System.Windows.Forms.Button btnGuiDanhSach;
-        private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.Timer timerGuiDanhSach;
-        private System.Windows.Forms.Button btnTimModem;
         private System.Windows.Forms.Timer timerSend;
         private System.Windows.Forms.Button btnChonTen;
         private System.Windows.Forms.TextBox txtChonTen;

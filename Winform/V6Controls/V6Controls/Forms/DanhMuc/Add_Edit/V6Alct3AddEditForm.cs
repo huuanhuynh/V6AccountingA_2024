@@ -35,7 +35,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
         public override void V6F3Execute()
         {
-            if (f3count == 2)
+            if (f3count == 3)
             {
                 f3count = 0;
                 if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)

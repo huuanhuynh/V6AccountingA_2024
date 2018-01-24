@@ -972,7 +972,7 @@ namespace V6Controls.Forms
 
         #region ==== SEND ====
         public static GSM_Phone SmsModem = new GSM_Phone();
-
+        public static string SmsModem_SettingPort = "";
         public static GSM_Phone.SendSmsStatus SendSms(string message, string number, out string returnMessage)
         {
             GSM_Phone.SendSmsStatus result = GSM_Phone.SendSmsStatus.UNKNOWN;

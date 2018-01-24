@@ -143,6 +143,18 @@
     <Compile Include="Controls\SyntaxHighlightingTextBox\SyntaxHighlightingTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\EmailSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmailSettingForm.Designer.cs">
+      <DependentUpon>EmailSettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SmsModemSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SmsModemSettingForm.Designer.cs">
+      <DependentUpon>SmsModemSettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Win32.cs" />
     <Compile Include="Controls\ToChucTree\ToChucTreeControl.cs">
       <SubType>Component</SubType>
@@ -1513,6 +1525,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSXLTAddEditForm.resx">
       <DependentUpon>YeuToChiPhiSXLTAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmailSettingForm.resx">
+      <DependentUpon>EmailSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SmsModemSettingForm.resx">
+      <DependentUpon>SmsModemSettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FindForm.resx">
       <DependentUpon>FindForm.cs</DependentUpon>

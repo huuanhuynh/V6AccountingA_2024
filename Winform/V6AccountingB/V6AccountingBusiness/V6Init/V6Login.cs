@@ -169,7 +169,13 @@ namespace V6Init
         }
 
         public static string LoginToken { get; set; }
+        /// <summary>
+        /// Số lượng DVCS theo user. dbo.VFA_Inlist_MEMO(ma_dvcs, '" + V6Login.UserInfo["r_dvcs"] + "')=1
+        /// </summary>
         public static int MadvcsCount { get; set; }
+        /// <summary>
+        /// Tổng số DVCS lưu trong Aldvcs. Select Count(Ma_dvcs) from Aldvcs
+        /// </summary>
         public static int MadvcsTotal { get; set; }
 
         public static string SelectedLanguage

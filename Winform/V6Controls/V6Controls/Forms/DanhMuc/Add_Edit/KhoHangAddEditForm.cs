@@ -23,15 +23,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     TxtMa_dvcs.Text = V6Login.Madvcs;
                     TxtMa_dvcs.Enabled = false;
                 }
-            
             }
             else
             {
                 TxtMa_dvcs.Enabled = false;
             }
-        
-
         }
+
         public override void DoBeforeEdit()
         {
             try
