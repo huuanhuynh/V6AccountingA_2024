@@ -101,6 +101,7 @@
     <Compile Include="H.Setting.cs" />
     <Compile Include="InternalClass\Class1.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="EmailSender.cs" />
     <Compile Include="MyMessage.cs" />
     <Compile Include="MyProcedureParam.cs" />
     <Compile Include="SQLHelper.cs" />

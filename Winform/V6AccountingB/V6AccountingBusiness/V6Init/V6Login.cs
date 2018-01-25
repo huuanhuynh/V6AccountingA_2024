@@ -32,7 +32,48 @@ namespace V6Init
                 }
             }
         }
-        public static DataRow UserInfo { get; set; }
+
+        public static DataRow UserInfo
+        {
+            get
+            {
+                return _userInfo;
+            }
+            set
+            {
+                _userInfo = value;
+                GetXmlInfo();
+            }
+        }
+        private static DataRow _userInfo = null;
+
+        public static DataTable Xml_info { get { return _xml_info; } }
+        private static DataTable _xml_info;
+
+        private static void GetXmlInfo()
+        {
+            try
+            {
+                if (_userInfo != null && _userInfo.Table.Columns.Contains("XML_INFO"))
+                {
+                    DataSet ds = new DataSet("DataSet");
+                    ds.ReadXml(new StringReader(_userInfo[""].ToString()));
+                    if (ds.Tables.Count > 0)
+                    {
+                        var table = ds.Tables[0];
+                        _xml_info = table;
+                        return;
+                    }
+                }
+            }
+            catch
+            {
+                //
+            }
+            _xml_info = null;
+        }
+
+        
         private static string _uName = "";
 
         public static int UserId

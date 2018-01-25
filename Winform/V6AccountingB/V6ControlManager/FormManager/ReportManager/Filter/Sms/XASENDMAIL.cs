@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows.Forms;
 using GSM;
 using V6AccountingBusiness;
+using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 
@@ -22,9 +23,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             MyInit();
         }
 
-        private GSM_Phone smsModem;
-        List<GSM.GSM_Phone> listModem;
-        private bool _hardExit = false;
         DataTable tableData;
 
         //public Form1()
@@ -38,7 +36,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
         void MyInit()
         {
-            smsModem = V6ControlFormHelper.SmsModem;
             ViewConnecting();
             //string[] portNames = SerialPort.GetPortNames();
             //foreach (var item in portNames)
@@ -58,9 +55,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         {
             try
             {
-                if (smsModem != null && smsModem.GSM_PORT.IsOpen)
+                if (V6ControlFormHelper.SmsModem != null && V6ControlFormHelper.SmsModem.GSM_PORT.IsOpen)
                 {
-                    txtConnectPort.Text = "Đã kết nối " + smsModem.PortName + ":" + smsModem.Operator;
+                    txtConnectPort.Text = "Đã kết nối " + V6ControlFormHelper.SmsModem.PortName + ":" + V6ControlFormHelper.SmsModem.Operator;
                 }
                 else
                 {
@@ -85,7 +82,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
         private void btnNgatKetNoi_Click(object sender, EventArgs e)
         {
-            smsModem.ClosePort();
+            V6ControlFormHelper.SmsModem.ClosePort();
             txtConnectPort.Text = "Đã ngắt kết nối.";
         }
 
@@ -127,13 +124,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
             try
             {
-                if (smsModem.GSM_PORT != null)
+                if (V6ControlFormHelper.SmsModem.GSM_PORT != null)
                 {
-                    if (!smsModem.GSM_PORT.IsOpen)
-                        smsModem.OpenPort();
+                    if (!V6ControlFormHelper.SmsModem.GSM_PORT.IsOpen)
+                        V6ControlFormHelper.SmsModem.OpenPort();
                     
                     
-                    var a = smsModem.SendMessage_PDU(txtSendTo.Text.Trim(), txtMessage.Text, true);
+                    var a = V6ControlFormHelper.SmsModem.SendMessage_PDU(txtSendTo.Text.Trim(), txtMessage.Text, true);
                     switch (a)
                     {
                         case GSM_Phone.SendSmsStatus.ERROR:
@@ -190,10 +187,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
             try
             {
-                if (smsModem.GSM_PORT != null)
+                if (V6ControlFormHelper.SmsModem.GSM_PORT != null)
                 {
-                    if (!smsModem.GSM_PORT.IsOpen)
-                        smsModem.OpenPort();
+                    if (!V6ControlFormHelper.SmsModem.GSM_PORT.IsOpen)
+                        V6ControlFormHelper.SmsModem.OpenPort();
 
                     sending = true;
                     Thread t = new Thread(SendFromGrid);
@@ -217,10 +214,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             {
                 AutoConnect();
 
-                if (smsModem.GSM_PORT != null)
+                if (V6ControlFormHelper.SmsModem.GSM_PORT != null)
                 {
-                    if (!smsModem.GSM_PORT.IsOpen)
-                        smsModem.OpenPort();
+                    if (!V6ControlFormHelper.SmsModem.GSM_PORT.IsOpen)
+                        V6ControlFormHelper.SmsModem.OpenPort();
 
                     sending = true;
                     Thread t = new Thread(SendFromTable);
@@ -249,11 +246,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         {
             try
             {
-                smsModem = new GSM_Phone();
-                string port=smsModem.AutoConnect(V6ControlFormHelper.SmsModem_SettingPort);
+                V6ControlFormHelper.SmsModem = new GSM_Phone();
+                string port=V6ControlFormHelper.SmsModem.AutoConnect(V6ControlFormHelper.SmsModem_SettingPort);
                 if(port!=null)
                 {
-                    V6ControlFormHelper.SmsModem_SettingPort = smsModem.PortName;
+                    V6ControlFormHelper.SmsModem_SettingPort = V6ControlFormHelper.SmsModem.PortName;
                     //Program.setting.SaveSetting();
                 }
                 else
@@ -299,6 +296,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             //{
             //    if(dataGridView1.Columns[i].Name)
             //}
+            string error_messages = "";
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
@@ -318,7 +316,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
                 if(checkSend == "1")
                 {
-                    if(tugo_noidung_tinnhan)
+                    if (tugo_noidung_tinnhan)
                     {
                         sms = messageText;
                     }
@@ -328,33 +326,58 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                     }
 
                     string smsRieng = TaoTinNhanRieng(sms, tt);
-                    try
+
+                    if (chkGuiSMS.Checked)
                     {
-                        var a = smsModem.SendMessage_PDU(row.Cells[columnSoDienThoai].Value.ToString().Trim(), smsRieng);
-                        switch (a)
+                        
+                        try
                         {
-                            case GSM_Phone.SendSmsStatus.ERROR:
-                                indexGuiLoi.Add(i);
-                                break;
-                            case GSM_Phone.SendSmsStatus.NONE:
-                                indexGuiLoi.Add(i);
-                                break;
-                            case GSM_Phone.SendSmsStatus.OK:
-                                indexDaGui.Add(i);
-                                break;
-                            case GSM_Phone.SendSmsStatus.UNKNOWN:
-                                indexDaGui.Add(i);
-                                break;
-                            default:
-                                break;
+                            var a =
+                                V6ControlFormHelper.SmsModem.SendMessage_PDU(
+                                    row.Cells[columnSoDienThoai].Value.ToString().Trim(), smsRieng);
+                            switch (a)
+                            {
+                                case GSM_Phone.SendSmsStatus.ERROR:
+                                    indexGuiLoi.Add(i);
+                                    break;
+                                case GSM_Phone.SendSmsStatus.NONE:
+                                    indexGuiLoi.Add(i);
+                                    break;
+                                case GSM_Phone.SendSmsStatus.OK:
+                                    indexDaGui.Add(i);
+                                    break;
+                                case GSM_Phone.SendSmsStatus.UNKNOWN:
+                                    indexDaGui.Add(i);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            error_messages += "SMS: " + ex.Message + "\n";
+                            indexGuiLoi.Add(i);
                         }
                     }
-                    catch (Exception ex)
+
+                    if (chkGuiEmail.Checked)
                     {
-                        MessageBox.Show(ex.Message);
-                        indexGuiLoi.Add(i);
+                        try
+                        {
+                            V6ControlFormHelper.SendEmail("sender", "password", "sendto", "subject", smsRieng, "");
+                        }
+                        catch (Exception ex)
+                        {
+                            error_messages += "Email: " + ex.Message + "\n";
+                            indexGuiLoi.Add(i);
+                        }
                     }
                 }
+            }
+
+            if (error_messages.Length > 0)
+            {
+                this.ShowErrorMessage(error_messages);
             }
             //sau khi gui xong
             sending = false;
@@ -397,7 +420,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
                     try
                     {
-                        var a = smsModem.SendMessage_PDU(row[0].ToString().Trim(), smsRieng);
+                        var a = V6ControlFormHelper.SmsModem.SendMessage_PDU(row[0].ToString().Trim(), smsRieng);
                         switch (a)
                         {
                             case GSM_Phone.SendSmsStatus.ERROR:
@@ -739,6 +762,27 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         {
             //e.Cancel = true;
             e.ThrowException = false;
+        }
+
+        private void btnGuiEmail_Click(object sender, EventArgs e)
+        {
+            new EmailSettingForm().ShowDialog(this);
+        }
+
+        private void chkGuiSMS_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkGuiSMS.Checked && !chkGuiEmail.Checked)
+            {
+                chkGuiEmail.Checked = true;
+            }
+        }
+
+        private void chkGuiEmail_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkGuiSMS.Checked && !chkGuiEmail.Checked)
+            {
+                chkGuiSMS.Checked = true;
+            }
         }
 
     }

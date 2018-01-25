@@ -972,14 +972,21 @@ namespace V6Controls.Forms
 
         #region ==== SEND ====
         public static GSM_Phone SmsModem = new GSM_Phone();
+        public static List<GSM.GSM_Phone> listModem = null;
         public static string SmsModem_SettingPort = "";
         public static GSM_Phone.SendSmsStatus SendSms(string message, string number, out string returnMessage)
         {
             GSM_Phone.SendSmsStatus result = GSM_Phone.SendSmsStatus.UNKNOWN;
 
-            if (SmsModem.GSM_PORT == null)
+            if (SmsModem.GSM_PORT == null || !SmsModem.IsConnected)
             {
-                
+                new SmsModemSettingForm().ShowDialog();
+            }
+
+            if (SmsModem.GSM_PORT == null || !SmsModem.IsConnected)
+            {
+                returnMessage = "Không có kết nối.";
+                return GSM_Phone.SendSmsStatus.ERROR;
             }
 
             if (SmsModem.GSM_PORT != null)
@@ -1016,6 +1023,21 @@ namespace V6Controls.Forms
 
             return result;
         }
+
+        public static bool SendEmail(string sender, string password, string sendto, string subject, string body, params string[] attachments)
+        {
+            try
+            {
+                EmailSender eSender = new EmailSender();
+                eSender.SendEmail(sender, password, sendto, subject, body, attachments);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         #endregion send
 
 

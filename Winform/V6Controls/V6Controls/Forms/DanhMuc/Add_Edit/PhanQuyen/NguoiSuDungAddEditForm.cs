@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
@@ -414,6 +415,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             {
                 this.ShowErrorException(GetType() + "PhanQuyenCtct_Check", ex);
             }
+        }
+
+        private void DoEditXml()
+        {
+            try
+            {
+                var file_xml = TxtUser_name.Text.Trim().ToUpper() + ".xml";
+                new XmlEditorForm(txtDmethod, file_xml, "Table0", "KEY,VALUE,NOTE,ENCRYPT".Split(',')).ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoEditXml", ex);
+            }
+        }
+
+        private void btnEditXml_Click(object sender, EventArgs e)
+        {
+            DoEditXml();
         }
 
     }

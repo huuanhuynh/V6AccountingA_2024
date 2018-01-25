@@ -3,6 +3,7 @@ using System.Data;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using V6Tools;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 {
@@ -86,13 +87,38 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             }
         }
 
+        private DataSet CloneWithEncrype_yn(DataSet ds)
+        {
+            var dsc = ds.Clone();
+            foreach (DataTable table in dsc.Tables)
+            {
+                if (table.Columns.Contains("Value") && table.Columns.Contains("Encrype_yn"))
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+
+                        string yn = row["Encrype_yn"].ToString().Trim();
+                        if (yn == "1")
+                        {
+                            string value = row["Value"].ToString();
+                            if (value != "" && UtilityHelper.DeCrypt(value.Trim()) == "")
+                            {
+                                row["Value"] = UtilityHelper.EnCrypt(value);
+                            }
+                        }
+                    }
+                }
+            }
+            return dsc;
+        }
+
         private void Write()
         {
             try
             {
                 StringBuilder sb = new StringBuilder();
                 TextWriter tw = new StringWriter(sb);
-                _ds.WriteXml(tw);
+                CloneWithEncrype_yn(_ds).WriteXml(tw);
                 Text_control.Text = sb.ToString();
             }
             catch (Exception ex)
@@ -116,7 +142,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                 {
                     if (string.IsNullOrEmpty(saveFile.FileName)) return;
                     FileStream fs = new FileStream(saveFile.FileName, FileMode.Create);
-                    _ds.WriteXml(fs);
+                    CloneWithEncrype_yn(_ds).WriteXml(fs);
                     fs.Close();
                 }
             }

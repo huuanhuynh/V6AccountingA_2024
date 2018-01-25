@@ -8,13 +8,13 @@ namespace V6Controls.Forms
 {
     public partial class SmsModemSettingForm : V6Form
     {
-        private GSM_Phone smsModem;
-        List<GSM.GSM_Phone> listModem;
+        //private GSM_Phone V6ControlFormHelper.SmsModem;
+        //List<GSM.GSM_Phone> V6ControlFormHelper.listModem;
 
         public SmsModemSettingForm()
         {
             InitializeComponent();
-            smsModem = V6ControlFormHelper.SmsModem;
+            LoadModemList();
         }
 
         private void btnTimModem_Click(object sender, EventArgs e)
@@ -24,7 +24,7 @@ namespace V6Controls.Forms
 
         private void LoadModemList()
         {
-            listModem = new List<GSM_Phone>();
+            V6ControlFormHelper.listModem = new List<GSM_Phone>();
             string[] portNames = SerialPort.GetPortNames();
             foreach (string port in portNames)
             {
@@ -32,12 +32,12 @@ namespace V6Controls.Forms
                 if (newModem.Connect(port, 9600, 8, 300, 300))
                 {
                     newModem.ClosePort();
-                    listModem.Add(newModem);
+                    V6ControlFormHelper.listModem.Add(newModem);
                 }
             }
 
             comboBox1.Items.Clear();
-            foreach (GSM_Phone modem in listModem)
+            foreach (GSM_Phone modem in V6ControlFormHelper.listModem)
             {
                 comboBox1.Items.Add("" + modem.PortName + ": " + modem.Nhà_mạng);
             }
@@ -54,41 +54,41 @@ namespace V6Controls.Forms
 
         private void Connect()
         {
-            if (listModem == null) listModem = new List<GSM_Phone>();
+            if (V6ControlFormHelper.listModem == null) V6ControlFormHelper.listModem = new List<GSM_Phone>();
             string s = comboBox1.Text;
             if (s != "" && s.StartsWith("COM") && s.Contains(":"))
             {
                 string com = s.Substring(0, s.IndexOf(':'));
-                foreach (var item in listModem)
+                foreach (var item in V6ControlFormHelper.listModem)
                 {
                     if (item.PortName == com)
                     {
-                        smsModem = item;
-                        smsModem.OpenPort();
-                        txtConnectPort.Text = "Đã kết nối " + smsModem.PortName + ":" + smsModem.Operator;
+                        V6ControlFormHelper.SmsModem = item;
+                        V6ControlFormHelper.SmsModem.OpenPort();
+                        txtConnectPort.Text = "Đã kết nối " + V6ControlFormHelper.SmsModem.PortName + ":" + V6ControlFormHelper.SmsModem.Operator;
                         btnNgatKetNoi.Enabled = true;
-                        V6ControlFormHelper.SmsModem_SettingPort = smsModem.PortName;
+                        V6ControlFormHelper.SmsModem_SettingPort = V6ControlFormHelper.SmsModem.PortName;
                         return;
                     }
                 }
                 //khong co trong list modem
-                smsModem = new GSM_Phone();
-                if (smsModem.Connect(com, 9600, 8, 300, 300))
+                V6ControlFormHelper.SmsModem = new GSM_Phone();
+                if (V6ControlFormHelper.SmsModem.Connect(com, 9600, 8, 300, 300))
                 {
-                    txtConnectPort.Text = "Đã kết nối " + smsModem.PortName + ":" + smsModem.Operator;
-                    V6ControlFormHelper.SmsModem_SettingPort = smsModem.PortName;
-                    listModem.Add(smsModem);
+                    txtConnectPort.Text = "Đã kết nối " + V6ControlFormHelper.SmsModem.PortName + ":" + V6ControlFormHelper.SmsModem.Operator;
+                    V6ControlFormHelper.SmsModem_SettingPort = V6ControlFormHelper.SmsModem.PortName;
+                    V6ControlFormHelper.listModem.Add(V6ControlFormHelper.SmsModem);
                     return;
                 }
             }
             else if (s != "" && s.StartsWith("COM") && s.Length > 3)
             {
-                smsModem = new GSM_Phone();
-                if (smsModem.Connect(s, 9600, 8, 300, 300))
+                V6ControlFormHelper.SmsModem = new GSM_Phone();
+                if (V6ControlFormHelper.SmsModem.Connect(s, 9600, 8, 300, 300))
                 {
-                    txtConnectPort.Text = "Đã kết nối " + smsModem.PortName + ":" + smsModem.Operator;
-                    V6ControlFormHelper.SmsModem_SettingPort = smsModem.PortName;
-                    listModem.Add(smsModem);
+                    txtConnectPort.Text = "Đã kết nối " + V6ControlFormHelper.SmsModem.PortName + ":" + V6ControlFormHelper.SmsModem.Operator;
+                    V6ControlFormHelper.SmsModem_SettingPort = V6ControlFormHelper.SmsModem.PortName;
+                    V6ControlFormHelper.listModem.Add(V6ControlFormHelper.SmsModem);
                     return;
                 }
             }

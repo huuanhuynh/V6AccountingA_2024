@@ -2118,6 +2118,8 @@ namespace GSM
             set { newCallSoundFile = value; }
         }
 
+        public bool IsConnected { get { return GSM_PORT != null && GSM_PORT.IsOpen; } }
+
         private void PlayNewCallSound()
         {
             if (EnableNewCallSound && File.Exists(newCallSoundFile))
