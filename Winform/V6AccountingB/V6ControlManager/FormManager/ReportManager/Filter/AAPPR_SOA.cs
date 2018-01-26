@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using V6AccountingBusiness;
 using V6Init;
+using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {

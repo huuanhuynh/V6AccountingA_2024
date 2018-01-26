@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using V6AccountingBusiness;
 using V6Controls;
+using V6Tools;
 
 namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
 {

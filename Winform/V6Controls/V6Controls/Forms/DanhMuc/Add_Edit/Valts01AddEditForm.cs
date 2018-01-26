@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using V6Init;
 using V6Structs;
+using V6Tools;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {

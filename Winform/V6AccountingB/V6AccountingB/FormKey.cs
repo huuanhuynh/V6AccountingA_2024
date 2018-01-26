@@ -5,6 +5,7 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
+using V6Tools;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6AccountingB

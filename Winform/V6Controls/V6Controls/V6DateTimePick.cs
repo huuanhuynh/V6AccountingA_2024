@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Threading;
 using V6Init;
 using V6SqlConnect;
+using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6Controls

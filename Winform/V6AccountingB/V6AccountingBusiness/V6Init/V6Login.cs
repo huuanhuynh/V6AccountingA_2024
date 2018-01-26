@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using V6AccountingBusiness;
+using V6AccountingBusiness.V6Init.User;
 using V6SqlConnect;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -47,8 +48,8 @@ namespace V6Init
         }
         private static DataRow _userInfo = null;
 
-        public static DataTable Xml_info { get { return _xml_info; } }
-        private static DataTable _xml_info;
+        public static UserXmlInfo XmlInfo { get { return _xmlInfo; } }
+        private static UserXmlInfo _xmlInfo;
 
         private static void GetXmlInfo()
         {
@@ -61,7 +62,7 @@ namespace V6Init
                     if (ds.Tables.Count > 0)
                     {
                         var table = ds.Tables[0];
-                        _xml_info = table;
+                        _xmlInfo = new UserXmlInfo(table.ToDataDictionary("KEY", "VALUE"));
                         return;
                     }
                 }
@@ -70,7 +71,7 @@ namespace V6Init
             {
                 //
             }
-            _xml_info = null;
+            _xmlInfo = null;
         }
 
         

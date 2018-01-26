@@ -84,14 +84,14 @@
     <Compile Include="V6Init\CorpLan1.cs" />
     <Compile Include="V6Init\CorpLan2.cs" />
     <Compile Include="V6Init\CorpLang.cs" />
-    <Compile Include="V6Init\ExtensionMethod.cs" />
     <Compile Include="V6Init\License.cs" />
+    <Compile Include="V6Init\User\UserXmlInfo.cs" />
     <Compile Include="V6Init\V6Alnt.cs" />
     <Compile Include="V6Init\V6Login.cs" />
     <Compile Include="V6Init\V6Lookup.cs" />
     <Compile Include="V6Init\V6Menu.cs" />
     <Compile Include="V6Init\V6Options.cs" />
-    <Compile Include="V6Init\V6Rights.cs" />
+    <Compile Include="V6Init\User\V6Rights.cs" />
     <Compile Include="V6Init\V6Setting.cs" />
     <Compile Include="V6Init\V6Soft.cs" />
     <Compile Include="V6Init\V6Text.cs" />

@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using V6SqlConnect;
+using V6Tools;
 
 namespace V6Init
 {

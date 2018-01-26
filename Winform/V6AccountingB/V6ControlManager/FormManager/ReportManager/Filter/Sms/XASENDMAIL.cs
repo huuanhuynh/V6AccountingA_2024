@@ -268,11 +268,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         List<int> indexDaGui = new List<int>();
         List<int> indexGuiLoi = new List<int>();
         string messageText = "";
+        private string sender = "", email_password = "", sendto;
 
         string columnCheck = "Check";
         string columnSoDienThoai = "";
         string columnTenNguoiNhan = "";
         string columnNoiDung = "";
+        private string columnEmailAddress = "";
 
         bool tugo_noidung_tinnhan = true;
         
@@ -284,7 +286,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             indexDaGui = new List<int>();
             indexGuiLoi = new List<int>();
             messageText = txtMessage.Text;
-
+            sender = V6Login.XmlInfo.Email;
+            email_password = V6Login.XmlInfo.EmailPassword;
+            
             columnSoDienThoai = cboSoDienThoai.Text;
             columnTenNguoiNhan = cboTenNguoiNhan.Text;
             columnNoiDung = cboTuDuLieu.Text;
@@ -364,7 +368,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                     {
                         try
                         {
-                            V6ControlFormHelper.SendEmail("sender", "password", "sendto", "subject", smsRieng, "");
+                            sendto = row.Cells[columnEmailAddress].Value.ToString();
+                            V6ControlFormHelper.SendEmail(sender, email_password, sendto, "subject", smsRieng, "");
                         }
                         catch (Exception ex)
                         {

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>V6Tools</RootNamespace>
     <AssemblyName>V6Tools</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChuyenMaTiengViet.cs" />
+    <Compile Include="ExtensionMethod.cs" />
     <Compile Include="LunarSolar.cs" />
     <Compile Include="ExcelDataReader\ExcelDataReader.cs" />
     <Compile Include="ExcelDataReader\ExcelDataReaderCore.cs" />

@@ -7,6 +7,7 @@ using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.ReportR
 {

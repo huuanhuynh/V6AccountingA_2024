@@ -4,6 +4,7 @@ using V6AccountingBusiness;
 using V6Structs;
 using V6Controls.Controls;
 using V6ControlManager.FormManager.DanhMucManager;
+using V6Tools;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
