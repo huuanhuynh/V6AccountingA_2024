@@ -116,7 +116,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             if (MessageBox.Show("Gửi tin nhắn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 == DialogResult.No)
                 return;
-            if (txtSendTo.Text.Trim() == "")
+            if (txtSmsTo.Text.Trim() == "")
             {
                 MessageBox.Show("Chưa nhập số!");
                 return;
@@ -130,7 +130,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                         V6ControlFormHelper.SmsModem.OpenPort();
                     
                     
-                    var a = V6ControlFormHelper.SmsModem.SendMessage_PDU(txtSendTo.Text.Trim(), txtMessage.Text, true);
+                    var a = V6ControlFormHelper.SmsModem.SendMessage_PDU(txtSmsTo.Text.Trim(), txtMessage.Text, true);
                     switch (a)
                     {
                         case GSM_Phone.SendSmsStatus.ERROR:
@@ -292,6 +292,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             columnSoDienThoai = cboSoDienThoai.Text;
             columnTenNguoiNhan = cboTenNguoiNhan.Text;
             columnNoiDung = cboTuDuLieu.Text;
+            columnEmailAddress = cboEmailTo.Text;
             
             tugo_noidung_tinnhan = radTuGoNoiDung.Checked;
 
@@ -634,6 +635,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                 cboTenNguoiNhan.Items.Clear();
                 cboTuDuLieu.Items.Clear();
                 cboChenTT.Items.Clear();
+                cboEmailTo.Items.Clear();
                 //Thêm tên cột vào các combobox
                 for (int i = 0; i < data.Columns.Count; i++)
                 {
@@ -641,10 +643,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                     cboTenNguoiNhan.Items.Add(data.Columns[i].ColumnName);
                     cboTuDuLieu.Items.Add(data.Columns[i].ColumnName);
                     cboChenTT.Items.Add(data.Columns[i].ColumnName);
+                    cboEmailTo.Items.Add(data.Columns[i].ColumnName);
                 }
                 if (cboSoDienThoai.Items.Count > 0) cboSoDienThoai.SelectedIndex = 0;
                 if (cboTenNguoiNhan.Items.Count > 1) cboTenNguoiNhan.SelectedIndex = 1;
                 if (cboTuDuLieu.Items.Count > 2) cboTuDuLieu.SelectedIndex = 2;
+                if (cboEmailTo.Items.Count > 3) cboEmailTo.SelectedIndex = 3;
             }
 
         }
@@ -771,7 +775,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
         private void btnGuiEmail_Click(object sender, EventArgs e)
         {
-            new EmailSettingForm().ShowDialog(this);
+            //new EmailSettingForm().ShowDialog(this);
+            V6ControlFormHelper.SendEmail(V6Login.XmlInfo.Email, V6Login.XmlInfo.EmailPassword, txtEmailTo.Text, "V6Soft",
+                txtMessage.Text);
         }
 
         private void chkGuiSMS_CheckedChanged(object sender, EventArgs e)

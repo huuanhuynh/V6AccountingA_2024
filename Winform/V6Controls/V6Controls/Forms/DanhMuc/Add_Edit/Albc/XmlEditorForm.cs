@@ -89,15 +89,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
         private DataSet CloneWithEncrype_yn(DataSet ds)
         {
-            var dsc = ds.Clone();
+            var dsc = ds.Copy();
             foreach (DataTable table in dsc.Tables)
             {
-                if (table.Columns.Contains("Value") && table.Columns.Contains("Encrype_yn"))
+                if (table.Columns.Contains("Value") && table.Columns.Contains("Encrypt_yn"))
                 {
                     foreach (DataRow row in table.Rows)
                     {
 
-                        string yn = row["Encrype_yn"].ToString().Trim();
+                        string yn = row["Encrypt_yn"].ToString().Trim();
                         if (yn == "1")
                         {
                             string value = row["Value"].ToString();

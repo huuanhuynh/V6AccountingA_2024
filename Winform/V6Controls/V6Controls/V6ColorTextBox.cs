@@ -349,7 +349,7 @@ namespace V6Controls
         [Category("V6")]
         public string LostFocusText
         {
-            get { return lostfocustext; }
+            get { return Text; }
         }
 
         [Category("V6")]
@@ -357,7 +357,7 @@ namespace V6Controls
         {
             get
             {
-                return gotfocustext.Trim()!=lostfocustext.Trim();
+                return gotfocustext.Trim()!=Text.Trim();
             }
         }
 

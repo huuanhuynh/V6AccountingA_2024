@@ -3,6 +3,9 @@ using V6Tools;
 
 namespace V6AccountingBusiness.V6Init.User
 {
+    /// <summary>
+    /// Cần nâng cấp phần value.
+    /// </summary>
     public class UserXmlInfo
     {
         private IDictionary<string, string> _infoData = new SortedDictionary<string, string>(); 

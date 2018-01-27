@@ -55,10 +55,10 @@ namespace V6Init
         {
             try
             {
-                if (_userInfo != null && _userInfo.Table.Columns.Contains("XML_INFO"))
+                if (_userInfo != null && _userInfo.Table.Columns.Contains("XML_INFOR"))
                 {
                     DataSet ds = new DataSet("DataSet");
-                    ds.ReadXml(new StringReader(_userInfo[""].ToString()));
+                    ds.ReadXml(new StringReader(_userInfo["XML_INFOR"].ToString()));
                     if (ds.Tables.Count > 0)
                     {
                         var table = ds.Tables[0];

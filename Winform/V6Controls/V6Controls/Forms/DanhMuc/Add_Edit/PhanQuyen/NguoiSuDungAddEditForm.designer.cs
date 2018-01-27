@@ -43,7 +43,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnEditXml = new System.Windows.Forms.Button();
-            this.txtDmethod = new V6Controls.V6ColorTextBox();
+            this.txtXmlInfor = new V6Controls.V6ColorTextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkPass_Exp = new V6Controls.V6CheckBox();
@@ -272,7 +272,7 @@
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Controls.Add(this.btnEditXml);
-            this.tabPage3.Controls.Add(this.txtDmethod);
+            this.tabPage3.Controls.Add(this.txtXmlInfor);
             this.tabPage3.Controls.Add(this.label10);
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
@@ -296,25 +296,25 @@
             this.btnEditXml.UseVisualStyleBackColor = true;
             this.btnEditXml.Click += new System.EventHandler(this.btnEditXml_Click);
             // 
-            // txtDmethod
+            // txtXmlInfor
             // 
-            this.txtDmethod.AccessibleName = "XML_INFO";
-            this.txtDmethod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtXmlInfor.AccessibleName = "XML_INFOR";
+            this.txtXmlInfor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDmethod.BackColor = System.Drawing.Color.White;
-            this.txtDmethod.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtDmethod.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtDmethod.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtDmethod.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtDmethod.HoverColor = System.Drawing.Color.Yellow;
-            this.txtDmethod.LeaveColor = System.Drawing.Color.White;
-            this.txtDmethod.Location = new System.Drawing.Point(102, 9);
-            this.txtDmethod.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDmethod.Multiline = true;
-            this.txtDmethod.Name = "txtDmethod";
-            this.txtDmethod.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDmethod.Size = new System.Drawing.Size(581, 102);
-            this.txtDmethod.TabIndex = 75;
+            this.txtXmlInfor.BackColor = System.Drawing.Color.White;
+            this.txtXmlInfor.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtXmlInfor.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtXmlInfor.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtXmlInfor.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtXmlInfor.HoverColor = System.Drawing.Color.Yellow;
+            this.txtXmlInfor.LeaveColor = System.Drawing.Color.White;
+            this.txtXmlInfor.Location = new System.Drawing.Point(102, 9);
+            this.txtXmlInfor.Margin = new System.Windows.Forms.Padding(4);
+            this.txtXmlInfor.Multiline = true;
+            this.txtXmlInfor.Name = "txtXmlInfor";
+            this.txtXmlInfor.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtXmlInfor.Size = new System.Drawing.Size(581, 102);
+            this.txtXmlInfor.TabIndex = 75;
             // 
             // label10
             // 
@@ -891,7 +891,7 @@
         private System.Windows.Forms.Label label9;
         private V6CheckBox chkPass_Exp;
         protected System.Windows.Forms.Button btnEditXml;
-        private V6ColorTextBox txtDmethod;
+        private V6ColorTextBox txtXmlInfor;
         private System.Windows.Forms.Label label10;
     }
 }

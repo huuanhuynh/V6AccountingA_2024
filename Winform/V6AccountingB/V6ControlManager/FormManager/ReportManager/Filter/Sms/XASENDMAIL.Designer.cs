@@ -71,16 +71,17 @@
             this.txtThongTin1 = new V6Controls.V6ColorTextBox();
             this.txtTenNguoiNhan = new V6Controls.V6ColorTextBox();
             this.txtSoDienThoai = new V6Controls.V6ColorTextBox();
-            this.txtSendTo = new V6Controls.V6ColorTextBox();
+            this.txtSmsTo = new V6Controls.V6ColorTextBox();
             this.grbKetNoi = new System.Windows.Forms.GroupBox();
             this.btnGui1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.btnGuiEmail = new System.Windows.Forms.Button();
-            this.textBox1 = new V6Controls.V6ColorTextBox();
+            this.txtEmailTo = new V6Controls.V6ColorTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chkGuiSMS = new System.Windows.Forms.CheckBox();
             this.chkGuiEmail = new System.Windows.Forms.CheckBox();
+            this.chkGuiSMS = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cboEmailTo = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbThemNguoi.SuspendLayout();
@@ -240,18 +241,18 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(15, 383);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 13);
+            this.label2.Size = new System.Drawing.Size(106, 13);
             this.label2.TabIndex = 57;
-            this.label2.Text = "Chọn số điện thoại từ";
+            this.label2.Text = "Số điện thoại / Email";
             // 
             // cboSoDienThoai
             // 
             this.cboSoDienThoai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboSoDienThoai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSoDienThoai.FormattingEnabled = true;
-            this.cboSoDienThoai.Location = new System.Drawing.Point(165, 380);
+            this.cboSoDienThoai.Location = new System.Drawing.Point(127, 380);
             this.cboSoDienThoai.Name = "cboSoDienThoai";
-            this.cboSoDienThoai.Size = new System.Drawing.Size(127, 21);
+            this.cboSoDienThoai.Size = new System.Drawing.Size(93, 21);
             this.cboSoDienThoai.TabIndex = 45;
             // 
             // dataGridView1
@@ -558,20 +559,20 @@
             this.txtSoDienThoai.Size = new System.Drawing.Size(188, 20);
             this.txtSoDienThoai.TabIndex = 1;
             // 
-            // txtSendTo
+            // txtSmsTo
             // 
-            this.txtSendTo.BackColor = System.Drawing.SystemColors.Window;
-            this.txtSendTo.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtSendTo.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtSendTo.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtSendTo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtSendTo.GrayText = "Số điện thoại";
-            this.txtSendTo.HoverColor = System.Drawing.Color.Yellow;
-            this.txtSendTo.LeaveColor = System.Drawing.Color.White;
-            this.txtSendTo.Location = new System.Drawing.Point(6, 19);
-            this.txtSendTo.Name = "txtSendTo";
-            this.txtSendTo.Size = new System.Drawing.Size(131, 20);
-            this.txtSendTo.TabIndex = 40;
+            this.txtSmsTo.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSmsTo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSmsTo.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSmsTo.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSmsTo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSmsTo.GrayText = "Số điện thoại";
+            this.txtSmsTo.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSmsTo.LeaveColor = System.Drawing.Color.White;
+            this.txtSmsTo.Location = new System.Drawing.Point(6, 19);
+            this.txtSmsTo.Name = "txtSmsTo";
+            this.txtSmsTo.Size = new System.Drawing.Size(131, 20);
+            this.txtSmsTo.TabIndex = 0;
             // 
             // grbKetNoi
             // 
@@ -590,7 +591,7 @@
             this.btnGui1.Location = new System.Drawing.Point(148, 19);
             this.btnGui1.Name = "btnGui1";
             this.btnGui1.Size = new System.Drawing.Size(46, 23);
-            this.btnGui1.TabIndex = 41;
+            this.btnGui1.TabIndex = 1;
             this.btnGui1.Text = "Gửi 1";
             this.btnGui1.UseVisualStyleBackColor = true;
             this.btnGui1.Click += new System.EventHandler(this.btnGui1_Click);
@@ -609,25 +610,25 @@
             this.btnGuiEmail.Location = new System.Drawing.Point(148, 48);
             this.btnGuiEmail.Name = "btnGuiEmail";
             this.btnGuiEmail.Size = new System.Drawing.Size(46, 23);
-            this.btnGuiEmail.TabIndex = 41;
+            this.btnGuiEmail.TabIndex = 3;
             this.btnGuiEmail.Text = "Gửi 1";
             this.btnGuiEmail.UseVisualStyleBackColor = true;
             this.btnGuiEmail.Click += new System.EventHandler(this.btnGuiEmail_Click);
             // 
-            // textBox1
+            // txtEmailTo
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.textBox1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.textBox1.GrayText = "Email";
-            this.textBox1.HoverColor = System.Drawing.Color.Yellow;
-            this.textBox1.LeaveColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(6, 50);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(131, 20);
-            this.textBox1.TabIndex = 40;
+            this.txtEmailTo.BackColor = System.Drawing.SystemColors.Window;
+            this.txtEmailTo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtEmailTo.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtEmailTo.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtEmailTo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtEmailTo.GrayText = "Email";
+            this.txtEmailTo.HoverColor = System.Drawing.Color.Yellow;
+            this.txtEmailTo.LeaveColor = System.Drawing.Color.White;
+            this.txtEmailTo.Location = new System.Drawing.Point(6, 50);
+            this.txtEmailTo.Name = "txtEmailTo";
+            this.txtEmailTo.Size = new System.Drawing.Size(131, 20);
+            this.txtEmailTo.TabIndex = 2;
             // 
             // groupBox2
             // 
@@ -641,17 +642,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tùy chọn gửi";
             // 
-            // chkGuiSMS
-            // 
-            this.chkGuiSMS.AutoSize = true;
-            this.chkGuiSMS.Location = new System.Drawing.Point(11, 16);
-            this.chkGuiSMS.Name = "chkGuiSMS";
-            this.chkGuiSMS.Size = new System.Drawing.Size(68, 17);
-            this.chkGuiSMS.TabIndex = 55;
-            this.chkGuiSMS.Text = "Gửi SMS";
-            this.chkGuiSMS.UseVisualStyleBackColor = true;
-            this.chkGuiSMS.CheckedChanged += new System.EventHandler(this.chkGuiSMS_CheckedChanged);
-            // 
             // chkGuiEmail
             // 
             this.chkGuiEmail.AutoSize = true;
@@ -663,11 +653,22 @@
             this.chkGuiEmail.UseVisualStyleBackColor = true;
             this.chkGuiEmail.CheckedChanged += new System.EventHandler(this.chkGuiEmail_CheckedChanged);
             // 
+            // chkGuiSMS
+            // 
+            this.chkGuiSMS.AutoSize = true;
+            this.chkGuiSMS.Location = new System.Drawing.Point(11, 16);
+            this.chkGuiSMS.Name = "chkGuiSMS";
+            this.chkGuiSMS.Size = new System.Drawing.Size(68, 17);
+            this.chkGuiSMS.TabIndex = 55;
+            this.chkGuiSMS.Text = "Gửi SMS";
+            this.chkGuiSMS.UseVisualStyleBackColor = true;
+            this.chkGuiSMS.CheckedChanged += new System.EventHandler(this.chkGuiSMS_CheckedChanged);
+            // 
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.txtSendTo);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.txtSmsTo);
+            this.groupBox3.Controls.Add(this.txtEmailTo);
             this.groupBox3.Controls.Add(this.btnGui1);
             this.groupBox3.Controls.Add(this.btnGuiEmail);
             this.groupBox3.Location = new System.Drawing.Point(561, 378);
@@ -676,6 +677,16 @@
             this.groupBox3.TabIndex = 39;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thử nghiệm";
+            // 
+            // cboEmailTo
+            // 
+            this.cboEmailTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cboEmailTo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEmailTo.FormattingEnabled = true;
+            this.cboEmailTo.Location = new System.Drawing.Point(220, 380);
+            this.cboEmailTo.Name = "cboEmailTo";
+            this.cboEmailTo.Size = new System.Drawing.Size(93, 21);
+            this.cboEmailTo.TabIndex = 45;
             // 
             // XASENDMAIL
             // 
@@ -687,6 +698,7 @@
             this.Controls.Add(this.cboTenNguoiNhan);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.cboEmailTo);
             this.Controls.Add(this.cboSoDienThoai);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.chkThemVao);
@@ -764,16 +776,17 @@
         private V6Controls.V6ColorTextBox txtThongTin1;
         private V6Controls.V6ColorTextBox txtTenNguoiNhan;
         private V6Controls.V6ColorTextBox txtSoDienThoai;
-        private V6Controls.V6ColorTextBox txtSendTo;
+        private V6Controls.V6ColorTextBox txtSmsTo;
         private System.Windows.Forms.GroupBox grbKetNoi;
         private System.Windows.Forms.Button btnGui1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnGuiEmail;
-        private V6Controls.V6ColorTextBox textBox1;
+        private V6Controls.V6ColorTextBox txtEmailTo;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox chkGuiEmail;
         private System.Windows.Forms.CheckBox chkGuiSMS;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox cboEmailTo;
 
 
     }

@@ -422,7 +422,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             try
             {
                 var file_xml = TxtUser_name.Text.Trim().ToUpper() + ".xml";
-                new XmlEditorForm(txtDmethod, file_xml, "Table0", "KEY,VALUE,NOTE,ENCRYPT".Split(',')).ShowDialog(this);
+                new XmlEditorForm(txtXmlInfor, file_xml, "Table0", "KEY,VALUE,NOTE,ENCRYPT_YN".Split(',')).ShowDialog(this);
             }
             catch (Exception ex)
             {

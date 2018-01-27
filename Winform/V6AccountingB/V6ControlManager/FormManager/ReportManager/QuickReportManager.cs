@@ -347,6 +347,18 @@ namespace V6ControlManager.FormManager.ReportManager
             view.ShowToForm(owner, quickParams.FormTitle, true);
         }
 
+        public static void MakePdfInvoice(string proc, string sttRec, string file, string fileName, string fileType)
+        {
+            try
+            {
+                //@stt_rec, @isInvoice, @ReportFile
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
     }
 
     public struct QuickReportParams
