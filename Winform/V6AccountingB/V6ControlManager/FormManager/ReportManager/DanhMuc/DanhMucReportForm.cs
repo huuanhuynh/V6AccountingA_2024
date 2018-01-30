@@ -1034,7 +1034,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
         private void exportToExcelTemplate_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ExportExcelTemplate(this, _tbl, _tbl2, ReportDocumentParameters,
+            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl, _tbl2, ReportDocumentParameters,
                 MAU, LAN, ReportFile, ExcelTemplateFileFull, ReportTitle);
         }
 

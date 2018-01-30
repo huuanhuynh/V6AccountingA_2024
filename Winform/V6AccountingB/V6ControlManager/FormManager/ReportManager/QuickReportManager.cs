@@ -7,6 +7,8 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6ControlManager.FormManager.ReportManager.ReportD;
@@ -16,6 +18,7 @@ using V6Controls.Forms;
 using V6Init;
 using V6ReportControls;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager
 {
@@ -346,17 +349,352 @@ namespace V6ControlManager.FormManager.ReportManager
 
             view.ShowToForm(owner, quickParams.FormTitle, true);
         }
-
-        public static void MakePdfInvoice(string proc, string sttRec, string file, string fileName, string fileType)
+        
+        /// <summary>
+        /// Xuất dữ liệu report thành pdf hoặc excel.
+        /// </summary>
+        /// <param name="owner">Form nền.</param>
+        /// <param name="proc">Tên sql procedure.</param>
+        /// <param name="parameters">Các tham số cho procedure.</param>
+        /// <param name="Ma_File"></param>
+        /// <param name="LAN">EVB</param>
+        /// <param name="exportFile">Tên file xuất lưu.</param>
+        /// <param name="MAU">VN/FC</param>
+        public static void ExportReport(IWin32Window owner, string proc, SqlParameter[] parameters, string Ma_File, string MAU, string LAN, string exportFile)
         {
             try
             {
-                //@stt_rec, @isInvoice, @ReportFile
+                if (string.IsNullOrEmpty(exportFile))
+                {
+                    V6ControlFormHelper.ShowWarningMessage("exportFile!");
+                    return;
+                }
+                string ext = Path.GetExtension(exportFile).ToLower();
+                if (ext == ".pdf" || ext.StartsWith(".doc") || ext.StartsWith(".xls"))
+                {
+                    //DoNothing;
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(ext))
+                    {
+                        ext = "(extension is null)";
+                    }
+                    V6ControlFormHelper.ShowWarningMessage(V6Text.Unsupported + " " + ext);
+                    return;
+                }
+
+
+
+                var MauInData = Albc.GetRow(MAU, LAN, Ma_File);
+                DataSet ds = LoadData_ER(proc, parameters);
+                DataTable tbl = ds.Tables[0];
+                DataTable tbl2 = ds.Tables[1];
+                var ReportDocumentParameters = GetAllReportParams(LAN, MauInData, tbl2);
+                
+                
+
+                if (ext == ".pdf" || ext.StartsWith(".doc"))
+                {
+                    string reportFile = string.Format(@"Reports\{0}\{1}\{2}.rpt", MAU, LAN, Ma_File);
+                    ReportDocument rpt = LoadRpt_ER(ds, reportFile);
+                    SetAllReportParams(rpt, ReportDocumentParameters);
+                    SetCrossLineRpt(rpt, MauInData, tbl);
+                    if (ext == ".pdf")
+                    {
+                        rpt.ExportToDisk(ExportFormatType.PortableDocFormat, exportFile);
+                    }
+                    else if (ext.StartsWith(".doc"))
+                    {
+                        rpt.ExportToDisk(ExportFormatType.WordForWindows, exportFile);
+                    }
+                }
+                else if (ext.StartsWith(".xls"))
+                {
+                    string ReportFile = MauInData["Report"].ToString().Trim();
+                    //string ReportTitle = MauInData["Title"].ToString().Trim();
+                    string ExcelTemplateFileFull = string.Format(@"Reports\{0}\{1}\{2}.xls", MAU, LAN, Ma_File);
+                    if (File.Exists(ExcelTemplateFileFull))
+                    {
+                        V6ControlFormHelper.ExportExcelTemplate(owner, tbl, tbl2, ReportDocumentParameters,
+                            MAU, LAN, ReportFile, ExcelTemplateFileFull, exportFile);
+                    }
+                    else
+                    {
+                        V6ControlFormHelper.ShowWarningMessage("Không có file mẫu: " + ExcelTemplateFileFull, owner);
+                        return;
+                    }
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(ext))
+                    {
+                        ext = "(extension is null)";
+                    }
+                    V6ControlFormHelper.ShowWarningMessage(V6Text.Unsupported + " " + ext);
+                    return;
+                }
+
+                V6ControlFormHelper.ShowMessage(V6Text.ExportFinish + "\n" + exportFile, owner);
             }
             catch (Exception ex)
             {
-                
+                V6ControlFormHelper.ShowErrorException("Quick.ExportReport", ex);
             }
+        }
+
+        private static void SetCrossLineRpt(ReportDocument rpt, DataRow MauInData, DataTable _tbl)
+        {
+            int flag = 0;
+            var checkField = "TEN_VT";
+            try
+            {
+                bool IsInvoice = ObjectAndString.ObjectToInt(MauInData["ND51"]) == 1;
+                if (!IsInvoice) return;
+
+                var Khung = rpt.ReportDefinition.ReportObjects["Khung"];
+                var DuongNgang = rpt.ReportDefinition.ReportObjects["DuongNgang"];
+                var DuongCheo = rpt.ReportDefinition.ReportObjects["DuongCheo"];
+                flag = 1;
+                //var Section1 = rpt.ReportDefinition.Sections["ReportHeaderSection1"];
+                //var Section2 = rpt.ReportDefinition.Sections["Section3"];
+                //var h1 = Section1.Height;
+                //var h2 = Section2.Height;
+
+
+
+                int boxTop = Khung.Top;// 6500;
+                int boxHeight = Khung.Height;// 3840;
+                int lineHeight = DuongNgang.Height;
+
+                int halfLineHeight = lineHeight / 2;// boxHeight/20;//192, 20 is maxLine
+
+                int dropMax = 40;
+                try
+                {
+                    //dropMax = ObjectAndString.ObjectToInt(Invoice.Alct.Rows[0]["drop_Max"]);
+                    if (dropMax < 1) dropMax = 40;
+                    //Lấy lại thông tin dropMax theo albc (cboMauin)
+                    if (MauInData != null && MauInData.Table.Columns.Contains("DROP_MAX"))
+                    {
+                        var dropMaxT = ObjectAndString.ObjectToInt(MauInData["DROP_MAX"]);
+                        if (dropMaxT > 5) dropMax = dropMaxT;
+                    }
+                    //Lấy lại checkField (khác MA_VT)
+                    if (MauInData != null && MauInData.Table.Columns.Contains("FIELD_MAX"))
+                    {
+                        var checkFieldT = MauInData["FIELD_MAX"].ToString().Trim();
+                        if (checkFieldT.Length > 0) checkField = checkFieldT;
+                    }
+                }
+                catch
+                {
+                    flag = 2;
+                }
+
+
+                if (!_tbl.Columns.Contains(checkField))
+                {
+                    checkField = _tbl.Columns.Contains("DIEN_GIAII") ? "DIEN_GIAII" : _tbl.Columns[0].ColumnName;
+                }
+                flag = 3;
+                int crossLineNum = CalculateCrossLine(_tbl, checkField, dropMax, lineHeight);
+                    //+ (int)numCrossAdd.Value; // điều chỉnh
+                var top = boxTop + (halfLineHeight * crossLineNum);//3840/20=192
+                var height = boxHeight - (top - boxTop);
+                flag = 5;
+                //if (height <= 0) height = 10;
+                if (height < 150) // Hide lowCrossline.
+                {
+                    height = 10;
+                    DuongNgang.Width = DuongNgang.Width + DuongCheo.Width;
+                    DuongCheo.Width = 10;
+                }
+
+                DuongNgang.Height = 10;
+                DuongNgang.Top = top + 30;
+
+                DuongCheo.Height = height;
+                DuongCheo.Top = top;
+
+                flag = 9;
+            }
+            catch (Exception ex)
+            {
+                if (flag == 3)
+                    V6ControlFormHelper.ShowMessage("Kiểm tra thông tin trường tính toán drop_line [" + checkField + "]");
+                V6ControlFormHelper.WriteExLog("QuickReportManager" + ".SetCrossLineRpt", ex);
+            }
+        }
+
+        private static int CalculateCrossLine(DataTable t, string field, int lengOfName, int twLineHeight)
+        {
+            var dropLineHeightBase = 300;
+            var lineDroppedHeight = 600;
+            var dropLineHeight1 = lineDroppedHeight - twLineHeight;
+            //Mỗi dòng drop sẽ nhân với DropLineHeight
+            //var dropCount = 0;
+            var dropHeight = 0;
+            foreach (DataRow r in t.Rows)
+            {
+                try
+                {
+                    var len = r[field].ToString().Trim().Length;
+                    if (len > 1) len--;
+
+                    var dropCount = len / lengOfName;
+                    if (dropCount > 0)
+                    {
+                        dropHeight += dropLineHeight1;
+                        if (dropCount > 1) dropHeight += dropLineHeightBase * (dropCount - 1);
+                        //if (dropCount > 2) dropHeight += dropLineHeightBase;
+                        //if (dropCount > 3) dropHeight += dropLineHeightBase;
+                        //if (dropCount > 4) dropHeight += dropLineHeightBase;
+                    }
+                }
+                catch
+                {
+                    // ignored
+                }
+            }
+
+
+            //var dropHeight = dropLineHeight * dropCount;
+            //số 2 ở đây là vì mỗi dòng có 2 cross line
+            return t.Rows.Count * 2 + dropHeight / (twLineHeight / 2);
+        }
+
+        private static SortedDictionary<string, object> GetAllReportParams(string LAN, DataRow MauInData, DataTable _tbl2)
+        {
+            SortedDictionary<string, object>  ReportDocumentParameters = new SortedDictionary<string, object>();
+
+            ReportDocumentParameters.Add("Decimals", 0);
+            ReportDocumentParameters.Add("ThousandsSeparator", V6Options.M_NUM_SEPARATOR);
+            ReportDocumentParameters.Add("DecimalSymbol", V6Options.M_NUM_POINT);
+            ReportDocumentParameters.Add("DecimalsSL", V6Options.M_IP_R_SL);
+            ReportDocumentParameters.Add("DecimalsDG", V6Options.M_IP_R_GIA);
+            ReportDocumentParameters.Add("DecimalsDGNT", V6Options.M_IP_R_GIANT);
+            ReportDocumentParameters.Add("DecimalsTT", V6Options.M_IP_R_TIEN);
+            ReportDocumentParameters.Add("DecimalsTTNT", V6Options.M_IP_R_TIENNT);
+
+            ReportDocumentParameters.Add("Mau?", 0);
+            ReportDocumentParameters.Add("BanSao?", false);
+            int MauTuIn = ObjectAndString.ObjectToInt(MauInData["MAU_TU_IN"]);
+            ReportDocumentParameters.Add("ViewInfo", MauTuIn == 1);
+            ReportDocumentParameters.Add(
+                "Info",
+                "In bởi  Phần mềm V6 Accounting2016.NET - Cty phần mềm V6 (www.v6corp.com) - MST: 0303180249 - ĐT: 08.62570563"
+            );
+            ReportDocumentParameters.Add("ViewCrossLine", true);
+
+
+            //ReportDocumentParameters.Add("CrossLineNum", crossLineNum + numCrossAdd.Value);
+            decimal TTT = ObjectAndString.ObjectToDecimal(_tbl2.Rows[0]["TTT"]);
+            decimal TTT_NT = ObjectAndString.ObjectToDecimal(_tbl2.Rows[0]["TTT_NT"]);
+            string MA_NT = _tbl2.Rows[0]["MA_NT"].ToString().Trim();
+            ReportDocumentParameters.Add("SoTienVietBangChu", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
+            ReportDocumentParameters.Add("SoTienVietBangChuNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
+
+            //ReportDocumentParameters.Add("ChuoiMaHoa", V6BusinessHelper.GetChuoiMaHoa(""));
+
+            ReportDocumentParameters.Add("Title", MauInData["Title"].ToString().Trim());// "txtReportTitle.Text.Trim()");
+            // V6Soft
+            ReportDocumentParameters.Add("M_TEN_CTY", V6Soft.V6SoftValue["M_TEN_CTY"].ToUpper());
+            ReportDocumentParameters.Add("M_TEN_TCTY", V6Soft.V6SoftValue["M_TEN_TCTY"].ToUpper());
+            ReportDocumentParameters.Add("M_DIA_CHI", V6Soft.V6SoftValue["M_DIA_CHI"]);
+
+
+            ReportDocumentParameters.Add("M_TEN_CTY2", V6Soft.V6SoftValue["M_TEN_CTY2"].ToUpper());
+            ReportDocumentParameters.Add("M_TEN_TCTY2", V6Soft.V6SoftValue["M_TEN_TCTY2"].ToUpper());
+            ReportDocumentParameters.Add("M_DIA_CHI2", V6Soft.V6SoftValue["M_DIA_CHI2"]);
+            // V6option
+            ReportDocumentParameters.Add("M_MA_THUE", V6Options.V6OptionValues["M_MA_THUE"]);
+            ReportDocumentParameters.Add("M_RTEN_VSOFT", V6Options.V6OptionValues["M_RTEN_VSOFT"]);
+
+            ReportDocumentParameters.Add("M_TEN_NLB", "");// txtM_TEN_NLB.Text.Trim());
+            ReportDocumentParameters.Add("M_TEN_NLB2", "");// txtM_TEN_NLB2.Text.Trim());
+            ReportDocumentParameters.Add("M_TEN_KHO_BD", V6Options.V6OptionValues["M_TEN_KHO_BD"]);
+            ReportDocumentParameters.Add("M_TEN_KHO2_BD", V6Options.V6OptionValues["M_TEN_KHO2_BD"]);
+            ReportDocumentParameters.Add("M_DIA_CHI_BD", V6Options.V6OptionValues["M_DIA_CHI_BD"]);
+            ReportDocumentParameters.Add("M_DIA_CHI2_BD", V6Options.V6OptionValues["M_DIA_CHI2_BD"]);
+
+            ReportDocumentParameters.Add("M_TEN_GD", V6Options.V6OptionValues["M_TEN_GD"]);
+            ReportDocumentParameters.Add("M_TEN_GD2", V6Options.V6OptionValues["M_TEN_GD2"]);
+            ReportDocumentParameters.Add("M_TEN_KTT", V6Options.V6OptionValues["M_TEN_KTT"]);
+            ReportDocumentParameters.Add("M_TEN_KTT2", V6Options.V6OptionValues["M_TEN_KTT2"]);
+
+            ReportDocumentParameters.Add("M_SO_QD_CDKT", V6Options.V6OptionValues["M_SO_QD_CDKT"]);
+            ReportDocumentParameters.Add("M_SO_QD_CDKT2", V6Options.V6OptionValues["M_SO_QD_CDKT2"]);
+            ReportDocumentParameters.Add("M_NGAY_QD_CDKT", V6Options.V6OptionValues["M_NGAY_QD_CDKT"]);
+            ReportDocumentParameters.Add("M_NGAY_QD_CDKT2", V6Options.V6OptionValues["M_NGAY_QD_CDKT2"]);
+
+            ReportDocumentParameters.Add("M_RFONTNAME", V6Options.V6OptionValues["M_RFONTNAME"]);
+            ReportDocumentParameters.Add("M_R_FONTSIZE", V6Options.V6OptionValues["M_R_FONTSIZE"]);
+
+
+            V6Login.SetCompanyInfo(ReportDocumentParameters);
+
+            //if (FilterControl.RptExtraParameters != null)
+            //{
+            //    ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);
+            //}
+
+            //var rptExtraParametersD = FilterControl.GetRptParametersD(Extra_para, LAN);
+
+            //if (rptExtraParametersD != null)
+            //{
+            //    ReportDocumentParameters.AddRange(rptExtraParametersD, true);
+            //}
+
+            
+
+            return ReportDocumentParameters;
+        }
+
+        private static void SetAllReportParams(ReportDocument rpt, SortedDictionary<string, object> ReportDocumentParameters)
+        {
+            string errors = "";
+            foreach (KeyValuePair<string, object> item in ReportDocumentParameters)
+            {
+                try
+                {
+                    rpt.SetParameterValue(item.Key, item.Value);
+                }
+                catch (Exception ex)
+                {
+                    errors += "rpDoc " + item.Key + ": " + ex.Message + "\n";
+                }
+            }
+
+
+            if (errors != "")
+            {
+                V6ControlFormHelper.AddLastError("QuickReportManager" + ".SetAllReportParams\r\nFile: "
+                    + "ReportFileFull" + "\r\nError: " + errors);
+            }
+        }
+
+        private static ReportDocument LoadRpt_ER(DataSet ds, string reportFile)
+        {
+            var rpDoc = new ReportDocument();
+            if (File.Exists(reportFile)) rpDoc.Load(reportFile);
+            else V6ControlFormHelper.ShowWarningMessage(V6Text.NotExist + ": " + reportFile);
+            rpDoc.SetDataSource(ds);
+            return rpDoc;
+        }
+
+        private static DataSet LoadData_ER(string proc, SqlParameter[] _pList)
+        {
+            DataSet ds = V6BusinessHelper.ExecuteProcedure(proc, _pList);
+            if (ds.Tables.Count > 0)
+            {
+                ds.Tables[0].TableName = "DataTable1";
+            }
+            if (ds.Tables.Count > 1)
+            {
+                ds.Tables[1].TableName = "DataTable2";
+            }
+            return ds;
         }
 
     }

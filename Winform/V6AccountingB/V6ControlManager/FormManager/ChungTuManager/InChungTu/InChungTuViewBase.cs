@@ -1864,7 +1864,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void ExporttoExceltemplate_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ExportExcelTemplate(this, _tbl, _tbl1, ReportDocumentParameters,
+            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl, _tbl1, ReportDocumentParameters,
               MAU, LAN, ReportFile, ExcelTemplateFileFull, ReportTitle);
         }
 

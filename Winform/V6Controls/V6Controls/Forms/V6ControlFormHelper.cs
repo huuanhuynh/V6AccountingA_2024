@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Windows.Forms;
@@ -23,6 +24,7 @@ using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 using Data_Table = V6Tools.V6Export.Data_Table;
+using Timer = System.Windows.Forms.Timer;
 
 namespace V6Controls.Forms
 {
@@ -1036,6 +1038,32 @@ namespace V6Controls.Forms
             {
                 return false;
             }
+        }
+
+        public static void SendEmailT(string sender, string password, string sendto, string subject, string body, params string[] attachments)
+        {
+            try
+            {
+                _sender = sender;
+                _password = password;
+                _sendto = sendto;
+                _subject = subject;
+                _body = body;
+                _attachments = attachments;
+                Thread t = new Thread(SendEmailThread);
+                t.Start();
+            }
+            catch (Exception)
+            {
+                
+            }
+        }
+
+        private static string _sender, _password, _sendto, _subject, _body;
+        private static string[] _attachments;
+        private static void SendEmailThread()
+        {
+            SendEmail(_sender, _password, _sendto, _subject, _body, _attachments);
         }
 
         #endregion send
@@ -2636,7 +2664,7 @@ namespace V6Controls.Forms
         /// <param name="ReportFile">key albc</param>
         /// <param name="ExcelTemplateFileFull">File excel mẫu.</param>
         /// <param name="defaultSaveName">Tên file lưu gợi ý.</param>
-        public static void ExportExcelTemplate(IWin32Window owner, DataTable data, DataTable tbl2,
+        public static void ExportExcelTemplate_ChooseFile(IWin32Window owner, DataTable data, DataTable tbl2,
             SortedDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string defaultSaveName)
         {
@@ -2656,129 +2684,271 @@ namespace V6Controls.Forms
                 };
                 if (save.ShowDialog(owner) == DialogResult.OK)
                 {
-                    try
+                    ExportExcelTemplate(owner, data, tbl2, ReportDocumentParameters, MAU, LAN, ReportFile, ExcelTemplateFileFull, save.FileName);
+                    //try
+                    //{
+                    //    var albc_row = Albc.GetRow(MAU, LAN, ReportFile);
+                    //    if (albc_row != null)
+                    //    {
+                    //        var firstCell = "A4"; //auto
+                    //        bool drawLine = true, insertRow = true;
+                    //        var xlm = albc_row["EXCEL2"].ToString().Trim();
+                    //        var excelColumns = albc_row["EXCEL1"].ToString().Trim();
+                    //        DataSet ds = new DataSet();
+                    //        StringReader sReader = new StringReader(xlm);
+                    //        ds.ReadXml(sReader);
+
+                    //        var parameters = new SortedDictionary<string, object>();
+                    //        if (ds.Tables.Count > 0)
+                    //        {
+                    //            var paramTable = ds.Tables[0];
+                    //            foreach (DataRow row in paramTable.Rows)
+                    //            {
+                    //                var type = row["type"].ToString().Trim();
+                    //                var KEY = row["key"].ToString().Trim().ToUpper();
+                    //                var content = row["content"].ToString().Trim();
+                    //                if (type == "0")
+                    //                {
+                    //                    if (KEY == "FIRSTCELL")
+                    //                        firstCell = content;
+                    //                    else if (KEY == "DRAWLINE")
+                    //                        drawLine = content == "1";
+                    //                    else if (KEY == "INSERTROW")
+                    //                        insertRow = content == "1";
+                    //                }
+                    //                else if (type == "1")//Lay value trong parameter
+                    //                {
+                    //                    // 1 Nhóm ký tự giữa hai dấu ngoặc móc.
+                    //                    // Nếu không có ? sẽ lấy 1 nhóm từ đầu đến cuối.
+                    //                    // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
+                    //                    if (content.Contains("{") && content.Contains("}"))
+                    //                    {
+                    //                        var regex = new Regex("{(.+?)}");
+                    //                        foreach (Match match in regex.Matches(content))
+                    //                        {
+                    //                            var MATCH_KEY = match.Groups[1].Value.ToUpper();
+                    //                            if (ReportDocumentParameters.ContainsKey(MATCH_KEY))
+                    //                                content = content.Replace(match.Groups[0].Value,
+                    //                                    ObjectAndString.ObjectToString(
+                    //                                        ReportDocumentParameters[MATCH_KEY]));
+                    //                        }
+                    //                        parameters.Add(KEY, content);
+                    //                    }
+                    //                    else
+                    //                    {
+                    //                        var P_KEY = content.ToUpper();
+                    //                        if (ReportDocumentParameters.ContainsKey(P_KEY))
+                    //                        {
+                    //                            parameters.Add(KEY, ReportDocumentParameters[P_KEY]);
+                    //                        }
+                    //                    }
+                    //                }
+                    //                else if (type == "2" && tbl2 != null && tbl2.Rows.Count > 0)//Lay value trong tbl2
+                    //                {
+                    //                    var tbl2_row = tbl2.Rows[0];
+
+                    //                    if (content.Contains("{") && content.Contains("}"))
+                    //                    {
+                    //                        var regex = new Regex("{(.+?)}");
+                    //                        foreach (Match match in regex.Matches(content))
+                    //                        {
+                    //                            var matchKey = match.Groups[1].Value;
+                    //                            if (tbl2.Columns.Contains(matchKey))
+                    //                            {
+                    //                                content = content.Replace(match.Groups[0].Value,
+                    //                                    ObjectAndString.ObjectToString(tbl2_row[matchKey]));
+
+                    //                            }
+                    //                        }
+                    //                        if (parameters.ContainsKey(KEY))
+                    //                        {
+                    //                            ShowWarningMessage("Trùng khóa cấu hình excel: key=" + KEY);
+                    //                            continue;
+                    //                        }
+                    //                        parameters.Add(KEY, content);
+                    //                    }
+                    //                    else
+                    //                    {
+                    //                        if (tbl2.Columns.Contains(content))
+                    //                        {
+                    //                            parameters.Add(KEY, tbl2_row[content]);
+                    //                        }
+                    //                    }
+                    //                }
+                    //            }
+
+                    //        }
+                    //        else
+                    //        {
+                    //            //Không có thông tin xml
+                    //        }
+
+                    //        if (Data_Table.ToExcelTemplate(
+                    //            ExcelTemplateFileFull, data, save.FileName, firstCell,
+                    //            excelColumns.Replace("[", "").Replace("]", "").Split(excelColumns.Contains(";") ? ';' : ','),
+                    //            parameters, V6Setting.V6_number_format_info,
+                    //            insertRow, drawLine))
+                    //        {
+                    //            ShowInfoMessage(V6Text.ExportFinish, 500);
+                    //        }
+                    //        else
+                    //        {
+                    //            ShowInfoMessage(V6Text.ExportFail + Data_Table.Message);
+                    //        }
+
+                    //    }
+                    //    else
+                    //    {
+                    //        ShowWarningMessage("Không lấy được thông tin cấu hình!");
+                    //    }
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    var methodInfo = MethodBase.GetCurrentMethod();
+                    //    var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                    //    ShowErrorException(address, ex);
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                var methodInfo = MethodBase.GetCurrentMethod();
+                var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                ShowErrorException(address, ex);
+            }
+        }
+        
+        public static void ExportExcelTemplate(IWin32Window owner, DataTable data, DataTable tbl2,
+            SortedDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
+            string ReportFile, string ExcelTemplateFileFull, string saveFileName)
+        {
+            
+            if (data == null)
+            {
+                //ShowTopMessage(V6Text.NoData);
+                return;
+            }
+            try
+            {
+                try
+                {
+                    var albc_row = Albc.GetRow(MAU, LAN, ReportFile);
+                    if (albc_row != null)
                     {
-                        var albc_row = Albc.GetRow(MAU, LAN, ReportFile);
-                        if (albc_row != null)
+                        var firstCell = "A4"; //auto
+                        bool drawLine = true, insertRow = true;
+                        var xlm = albc_row["EXCEL2"].ToString().Trim();
+                        var excelColumns = albc_row["EXCEL1"].ToString().Trim();
+                        DataSet ds = new DataSet();
+                        StringReader sReader = new StringReader(xlm);
+                        ds.ReadXml(sReader);
+
+                        var parameters = new SortedDictionary<string, object>();
+                        if (ds.Tables.Count > 0)
                         {
-                            var firstCell = "A4"; //auto
-                            bool drawLine = true, insertRow = true;
-                            var xlm = albc_row["EXCEL2"].ToString().Trim();
-                            var excelColumns = albc_row["EXCEL1"].ToString().Trim();
-                            DataSet ds = new DataSet();
-                            StringReader sReader = new StringReader(xlm);
-                            ds.ReadXml(sReader);
-
-                            var parameters = new SortedDictionary<string, object>();
-                            if (ds.Tables.Count > 0)
+                            var paramTable = ds.Tables[0];
+                            foreach (DataRow row in paramTable.Rows)
                             {
-                                var paramTable = ds.Tables[0];
-                                foreach (DataRow row in paramTable.Rows)
+                                var type = row["type"].ToString().Trim();
+                                var KEY = row["key"].ToString().Trim().ToUpper();
+                                var content = row["content"].ToString().Trim();
+                                if (type == "0")
                                 {
-                                    var type = row["type"].ToString().Trim();
-                                    var KEY = row["key"].ToString().Trim().ToUpper();
-                                    var content = row["content"].ToString().Trim();
-                                    if (type == "0")
+                                    if (KEY == "FIRSTCELL")
+                                        firstCell = content;
+                                    else if (KEY == "DRAWLINE")
+                                        drawLine = content == "1";
+                                    else if (KEY == "INSERTROW")
+                                        insertRow = content == "1";
+                                }
+                                else if (type == "1") //Lay value trong parameter
+                                {
+                                    // 1 Nhóm ký tự giữa hai dấu ngoặc móc.
+                                    // Nếu không có ? sẽ lấy 1 nhóm từ đầu đến cuối.
+                                    // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
+                                    if (content.Contains("{") && content.Contains("}"))
                                     {
-                                        if (KEY == "FIRSTCELL")
-                                            firstCell = content;
-                                        else if (KEY == "DRAWLINE")
-                                            drawLine = content == "1";
-                                        else if (KEY == "INSERTROW")
-                                            insertRow = content == "1";
+                                        var regex = new Regex("{(.+?)}");
+                                        foreach (Match match in regex.Matches(content))
+                                        {
+                                            var MATCH_KEY = match.Groups[1].Value.ToUpper();
+                                            if (ReportDocumentParameters.ContainsKey(MATCH_KEY))
+                                                content = content.Replace(match.Groups[0].Value,
+                                                    ObjectAndString.ObjectToString(
+                                                        ReportDocumentParameters[MATCH_KEY]));
+                                        }
+                                        parameters.Add(KEY, content);
                                     }
-                                    else if (type == "1")//Lay value trong parameter
+                                    else
                                     {
-                                        // 1 Nhóm ký tự giữa hai dấu ngoặc móc.
-                                        // Nếu không có ? sẽ lấy 1 nhóm từ đầu đến cuối.
-                                        // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
-                                        if (content.Contains("{") && content.Contains("}"))
+                                        var P_KEY = content.ToUpper();
+                                        if (ReportDocumentParameters.ContainsKey(P_KEY))
                                         {
-                                            var regex = new Regex("{(.+?)}");
-                                            foreach (Match match in regex.Matches(content))
-                                            {
-                                                var MATCH_KEY = match.Groups[1].Value.ToUpper();
-                                                if (ReportDocumentParameters.ContainsKey(MATCH_KEY))
-                                                    content = content.Replace(match.Groups[0].Value,
-                                                        ObjectAndString.ObjectToString(
-                                                            ReportDocumentParameters[MATCH_KEY]));
-                                            }
-                                            parameters.Add(KEY, content);
-                                        }
-                                        else
-                                        {
-                                            var P_KEY = content.ToUpper();
-                                            if (ReportDocumentParameters.ContainsKey(P_KEY))
-                                            {
-                                                parameters.Add(KEY, ReportDocumentParameters[P_KEY]);
-                                            }
-                                        }
-                                    }
-                                    else if (type == "2" && tbl2 != null && tbl2.Rows.Count > 0)//Lay value trong tbl2
-                                    {
-                                        var tbl2_row = tbl2.Rows[0];
-
-                                        if (content.Contains("{") && content.Contains("}"))
-                                        {
-                                            var regex = new Regex("{(.+?)}");
-                                            foreach (Match match in regex.Matches(content))
-                                            {
-                                                var matchKey = match.Groups[1].Value;
-                                                if (tbl2.Columns.Contains(matchKey))
-                                                {
-                                                    content = content.Replace(match.Groups[0].Value,
-                                                        ObjectAndString.ObjectToString(tbl2_row[matchKey]));
-
-                                                }
-                                            }
-                                            if (parameters.ContainsKey(KEY))
-                                            {
-                                                ShowWarningMessage("Trùng khóa cấu hình excel: key=" + KEY);
-                                                continue;
-                                            }
-                                            parameters.Add(KEY, content);
-                                        }
-                                        else
-                                        {
-                                            if (tbl2.Columns.Contains(content))
-                                            {
-                                                parameters.Add(KEY, tbl2_row[content]);
-                                            }
+                                            parameters.Add(KEY, ReportDocumentParameters[P_KEY]);
                                         }
                                     }
                                 }
+                                else if (type == "2" && tbl2 != null && tbl2.Rows.Count > 0) //Lay value trong tbl2
+                                {
+                                    var tbl2_row = tbl2.Rows[0];
 
+                                    if (content.Contains("{") && content.Contains("}"))
+                                    {
+                                        var regex = new Regex("{(.+?)}");
+                                        foreach (Match match in regex.Matches(content))
+                                        {
+                                            var matchKey = match.Groups[1].Value;
+                                            if (tbl2.Columns.Contains(matchKey))
+                                            {
+                                                content = content.Replace(match.Groups[0].Value,
+                                                    ObjectAndString.ObjectToString(tbl2_row[matchKey]));
+                                            }
+                                        }
+                                        if (parameters.ContainsKey(KEY))
+                                        {
+                                            ShowWarningMessage("Trùng khóa cấu hình excel: key=" + KEY);
+                                            continue;
+                                        }
+                                        parameters.Add(KEY, content);
+                                    }
+                                    else
+                                    {
+                                        if (tbl2.Columns.Contains(content))
+                                        {
+                                            parameters.Add(KEY, tbl2_row[content]);
+                                        }
+                                    }
+                                }
                             }
-                            else
-                            {
-                                //Không có thông tin xml
-                            }
-
-                            if (Data_Table.ToExcelTemplate(
-                                ExcelTemplateFileFull, data, save.FileName, firstCell,
-                                excelColumns.Replace("[", "").Replace("]", "").Split(excelColumns.Contains(";") ? ';' : ','),
-                                parameters, V6Setting.V6_number_format_info,
-                                insertRow, drawLine))
-                            {
-                                ShowInfoMessage(V6Text.ExportFinish, 500);
-                            }
-                            else
-                            {
-                                ShowInfoMessage(V6Text.ExportFail + Data_Table.Message);
-                            }
-
                         }
                         else
                         {
-                            ShowWarningMessage("Không lấy được thông tin cấu hình!");
+                            //Không có thông tin xml
+                        }
+
+                        if (Data_Table.ToExcelTemplate(
+                            ExcelTemplateFileFull, data, saveFileName, firstCell,
+                            excelColumns.Replace("[", "").Replace("]", "").Split(excelColumns.Contains(";") ? ';' : ','),
+                            parameters, V6Setting.V6_number_format_info,
+                            insertRow, drawLine))
+                        {
+                            ShowInfoMessage(V6Text.ExportFinish, 500);
+                        }
+                        else
+                        {
+                            ShowInfoMessage(V6Text.ExportFail + Data_Table.Message);
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        var methodInfo = MethodBase.GetCurrentMethod();
-                        var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                        ShowErrorException(address, ex);
+                        ShowWarningMessage("Không lấy được thông tin cấu hình!");
                     }
+                }
+                catch (Exception ex)
+                {
+                    var methodInfo = MethodBase.GetCurrentMethod();
+                    var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                    ShowErrorException(address, ex);
                 }
             }
             catch (Exception ex)

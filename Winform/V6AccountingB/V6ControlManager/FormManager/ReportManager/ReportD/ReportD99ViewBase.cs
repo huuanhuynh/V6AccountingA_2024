@@ -1173,7 +1173,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             current_report_index = currentReport;
             if (sobangtach == 0)
             {
-                V6ControlFormHelper.ShowMessage(V6Text.NoData);
+                V6ControlFormHelper.ShowMessage(V6Text.NoData, this);
                 return;
             }
             if (ReloadData == "1")

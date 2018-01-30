@@ -252,7 +252,9 @@
         /// Xuất > tồn
         /// </summary>
         public static string StockoutWarning { get { return V6Setting.Language == "V" ? "Xuất lớn hơn tồn!" : "Out > Stock!"; } }
-        
+
+        public static string Unsupported { get { return V6Setting.Language == "V" ? "Chưa hỗ trợ!" : "Unsupported!"; } }
+
         #region ==== Fuctions ====
 
         
