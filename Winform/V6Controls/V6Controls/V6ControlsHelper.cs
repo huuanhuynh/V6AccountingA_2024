@@ -180,6 +180,7 @@ namespace V6Controls
         public static object InvokeMethodDynamic(Type program, string methodName, IDictionary<string, object> All_Objects)
         {
             if (program == null) return null;
+            All_Objects["All_Objects"] = All_Objects;
             var method = program.GetMethod(methodName);
             if (method != null)
             {

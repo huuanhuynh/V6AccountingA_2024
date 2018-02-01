@@ -20,7 +20,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             InitializeComponent();
             MyInit();
             V6ControlFormHelper.SetFormControlsReadOnly(this,true);
-            
+            V6ControlFormHelper.LoadAndSetFormInfoDefine("hrgeneral2", this, Parent);
         }
 
         public void MyInit()
@@ -127,6 +127,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             V6ControlFormHelper.SetFormDataDictionary(this, DataOld);
             V6ControlFormHelper.SetFormControlsReadOnly(this, true);
             button.Enabled = true;
+        }
+
+        private void btnInfos_Click(object sender, EventArgs e)
+        {
+            //if (Mode == V6Mode.Add || FormControl.Mode == V6Mode.Edit)
+            {
+                V6ControlFormHelper.ProcessUserDefineInfo("hrgeneral2",
+                    this, Parent, "hrgeneral2");
+            }
         }
     }
 }

@@ -2104,6 +2104,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
             GetGia();
             GetTon13();
+            TinhTienNt2();
             if (_maVt.VITRI_YN)
             {
                 if (_maVt.LO_YN && _maVt.DATE_YN)
@@ -2660,7 +2661,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 GetGia();
                 CheckSoLuong1();
-                //TinhTienNt2();
+                TinhTienNt2();
             }
             else
             {
@@ -4347,7 +4348,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     ShowParentMessage(V6Text.AddSuccess);
                     ViewInvoice(_sttRec, V6Mode.Add);
                     btnMoi.Focus();
-                    All_Objects["mode"] = Mode;
+                    
+                    All_Objects["mode"] = V6Mode.Add;
+                    All_Objects["AM_DATA"] = addDataAM;
+                    All_Objects["STT_REC"] = _sttRec;
+                    All_Objects["MA_CT"] = Invoice.Mact;
+                    All_Objects["MA_NT"] = MA_NT;
+                    All_Objects["MA_NX"] = txtManx.Text;
+                    All_Objects["LOAI_CK"] = chkLoaiChietKhau.Checked ? "1" : "0";
+                    All_Objects["MODE"] = "M";
+                    All_Objects["KIEU_POST"] = cboKieuPost.SelectedValue;
+                    //All_Objects["AP_GIA"] = apgia;
+                    All_Objects["USER_ID"] = V6Login.UserId;
+                    //All_Objects["SAVE_VOUCHER"] = _sttRec;
                     InvokeFormEvent(FormDynamicEvent.AFTERADDSUCCESS);
                     InvokeFormEvent(FormDynamicEvent.AFTERSAVESUCCESS);
                 }
@@ -4475,7 +4488,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     ShowParentMessage(V6Text.EditSuccess);
                     ViewInvoice(_sttRec, V6Mode.Edit);
                     btnMoi.Focus();
-                    All_Objects["mode"] = Mode;
+
+                    All_Objects["mode"] = V6Mode.Edit;
+                    All_Objects["AM_DATA"] = addDataAM;
+                    All_Objects["STT_REC"] = _sttRec;
+                    All_Objects["MA_CT"] = Invoice.Mact;
+                    All_Objects["MA_NT"] = MA_NT;
+                    All_Objects["MA_NX"] = txtManx.Text;
+                    All_Objects["LOAI_CK"] = chkLoaiChietKhau.Checked ? "1" : "0";
+                    All_Objects["MODE"] = "S";
+                    All_Objects["KIEU_POST"] = cboKieuPost.SelectedValue;
+                    //All_Objects["AP_GIA"] = apgia;
+                    All_Objects["USER_ID"] = V6Login.UserId;
+                    //All_Objects["SAVE_VOUCHER"] = _sttRec;
                     InvokeFormEvent(FormDynamicEvent.AFTEREDITSUCCESS);
                     InvokeFormEvent(FormDynamicEvent.AFTERSAVESUCCESS);
                 }
@@ -4574,6 +4599,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 if (flagDeleteSuccess)
                 {
+                    All_Objects["mode"] = V6Mode.Delete;
+                    All_Objects["AM_DATA"] = addDataAM;
+                    All_Objects["STT_REC"] = _sttRec;
+                    All_Objects["MA_CT"] = Invoice.Mact;
+                    All_Objects["USER_ID"] = V6Login.UserId;
                     InvokeFormEvent(FormDynamicEvent.AFTERDELETESUCCESS);
                     V6ControlFormHelper.ShowMainMessage(V6Text.DeleteSuccess);
                     ShowParentMessage(V6Text.DeleteSuccess);
