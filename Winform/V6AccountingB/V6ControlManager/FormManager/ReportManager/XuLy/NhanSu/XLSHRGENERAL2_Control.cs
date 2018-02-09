@@ -15,11 +15,11 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 {
-    public class XLSHRPERSONAL_Control : XuLyBase
+    public class XLSHRGENERAL2_Control : XuLyBase
     {
         private readonly V6Categories _categories = new V6Categories();
 
-        private const string TABLE_NAME = "HRPERSONAL";
+        private const string TABLE_NAME = "HRGENERAL2";
         //  private string[] ID_FIELDS = "NGAY,MA_NS".Split(',');
         private string ID_FIELDS = "EMP_ID";
         private string CHECK_FIELDS = "EMP_ID", IDS_CHECK = "EMP_ID";
@@ -29,7 +29,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         /// </summary>
         string TYPE_CHECK = "21";
         private DataTable data;
-        public XLSHRPERSONAL_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+        public XLSHRGENERAL2_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
 
@@ -58,7 +58,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                         var to = "U";
                         if (FilterControl.String3.StartsWith("TCVN3")) to = "A";
                         if (FilterControl.String3.StartsWith("VNI")) to = "V";
-                        data = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(data, from, to);
+                        data = Data_Table.ChuyenMaTiengViet(data, from, to);
                     }
                     else
                     {
@@ -247,17 +247,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             //}
             check_ok = checkResult1 && checkResult2;
 
+            var emp_id = dataDic["EMP_ID"].ToString().Trim();
+
             if (check_ok)
             {
                 var id_list = ObjectAndString.SplitString(IDS_CHECK);
-                var emp_id = dataDic["EMP_ID"].ToString().Trim();
 
                 var valid = false;
                 if (soCot == 0)
                 {
                     soCot = 1;
                 }
-                var insert_ok = false;
+                var insert_update_ok = false;
                 bool check = check_ok;
 
                 var splitColums = danhSachCot.Split(',');
@@ -284,28 +285,35 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
                 if (check)
                 {
-
-                    switch (TYPE_CHECK)
+                    string stt_rec = "" + V6BusinessHelper.ExecuteScalar("Select stt_rec from HRPERSONAL where emp_id=@p", new SqlParameter("@p", emp_id));
+                    stt_rec = stt_rec.Trim();
+                    if (stt_rec != "")
                     {
-                        case "21":
-                            valid = V6BusinessHelper.IsValidOneCode_Full(
-                                TABLE_NAME, 1,
-                                "EMP_ID", emp_id, emp_id
-                                );
-                            break;
-                    }
-                    // insert
+                        IDictionary<string, object> key = new Dictionary<string, object>() { { "STT_REC", stt_rec } };
+                        bool exist = V6BusinessHelper.CheckDataExist(TABLE_NAME, key);
 
-                    if (FilterControl.Check2) //Chỉ cập nhập mã mới.
-                    {
-                        if (valid)
+                        dataDic["STT_REC"] = stt_rec;
+                        dataDic["MA_CT"] = "HR1";
+                        // insert
+                        if (exist)
                         {
-                            dataDic["STT_REC"] = V6BusinessHelper.GetNewLikeSttRec("HR1", "STT_REC", "M");
-                            dataDic["MA_CT"] = "HR1";
+                            if (V6BusinessHelper.Update(TABLE_NAME, dataDic, key) > 0)
+                            {
+                                insert_update_ok = true;
+                            }
+                            else
+                            {
+                                var s = string.Format("Dòng {0,3}-ID:{1} sửa không được", stt, emp_id);
+                                f9Error += s;
+                                f9ErrorAll += s;
+                            }
+                        }
+                        else
+                        {
+
                             if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
                             {
-                                insert_ok = true;
-                                //remove_list_d.Add(row);
+                                insert_update_ok = true;
                             }
                             else
                             {
@@ -315,34 +323,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                             }
                         }
                     }
-                    else
-                    {
-                        if (!valid) //Xóa cũ thêm mới.
-                        {
-                            var keys = new SortedDictionary<string, object>();
-                            foreach (string field in id_list)
-                            {
-                                keys.Add(field.ToUpper(), row[field]);
-                            }
-                            _categories.Delete(TABLE_NAME, keys);
-                        }
-                        dataDic["STT_REC"] = V6BusinessHelper.GetNewLikeSttRec("HR1", "STT_REC", "M");
-                        dataDic["MA_CT"] = "HR1";
-                        if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
-                        {
-                            //remove_list_d.Add(row);
-                            insert_ok = true;
-                        }
-                        else
-                        {
-                            var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, emp_id);
-                            f9Error += s;
-                            f9ErrorAll += s;
-                        }
-                    }
                 }
 
-                if (insert_ok)
+                if (insert_update_ok)
                 {
                     XuLyThemBangBoSung(dataDic, danhSachCot2);
                     remove_list_d.Add(row);

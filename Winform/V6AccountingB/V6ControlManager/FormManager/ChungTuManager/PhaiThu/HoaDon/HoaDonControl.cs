@@ -4314,7 +4314,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #region ==== Add Thread ====
         private bool flagAddFinish, flagAddSuccess;
         private SortedDictionary<string, object> addDataAM;
-        private List<SortedDictionary<string, object>> adDataAdd, addDataAD3;
+        private List<SortedDictionary<string, object>> addDataAD, addDataAD3;
         private string addErrorMessage = "";
 
         private void DoAddThread()
@@ -4387,7 +4387,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
-                adDataAdd = dataGridView1.GetData(_sttRec);
+                addDataAD = dataGridView1.GetData(_sttRec);
                 addDataAD3 = dataGridView3.GetData(_sttRec);
             }
             catch (Exception ex)
@@ -4402,7 +4402,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 CheckForIllegalCrossThreadCalls = false;
 
-                if (Invoice.InsertInvoice(addDataAM, adDataAdd, addDataAD3))
+                if (Invoice.InsertInvoice(addDataAM, addDataAD, addDataAD3))
                 {
                     flagAddSuccess = true;
                 }

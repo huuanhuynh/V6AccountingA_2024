@@ -85,7 +85,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             try
             {
-
+                Check1 = chkAutoF9.Checked;
                
                 if (txtMaKH.Data != null)
                 {
@@ -176,5 +176,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             if (!IsDisposed && txtMalo.Text != "") txtMalo_V6LostFocus(sender);
         }
+        
     }
 }

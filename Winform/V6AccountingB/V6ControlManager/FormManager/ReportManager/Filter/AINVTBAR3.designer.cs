@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkAutoF9 = new System.Windows.Forms.CheckBox();
             this.lblStatus1 = new System.Windows.Forms.Label();
             this.txtSL_TD2 = new V6Controls.V6NumberTextBox();
             this.txtMaSoThue = new V6Controls.V6ColorTextBox();
@@ -52,6 +53,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.chkAutoF9);
             this.groupBox1.Controls.Add(this.lblStatus1);
             this.groupBox1.Controls.Add(this.txtSL_TD2);
             this.groupBox1.Controls.Add(this.txtMaSoThue);
@@ -68,17 +70,28 @@
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(282, 459);
+            this.groupBox1.Size = new System.Drawing.Size(282, 506);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // chkAutoF9
+            // 
+            this.chkAutoF9.AccessibleName = "AUTOF9";
+            this.chkAutoF9.AutoSize = true;
+            this.chkAutoF9.Location = new System.Drawing.Point(6, 405);
+            this.chkAutoF9.Name = "chkAutoF9";
+            this.chkAutoF9.Size = new System.Drawing.Size(157, 17);
+            this.chkAutoF9.TabIndex = 14;
+            this.chkAutoF9.Text = "Tự động xử lý sau khi scan.";
+            this.chkAutoF9.UseVisualStyleBackColor = true;
             // 
             // lblStatus1
             // 
             this.lblStatus1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatus1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus1.ForeColor = System.Drawing.Color.Red;
-            this.lblStatus1.Location = new System.Drawing.Point(6, 415);
+            this.lblStatus1.Location = new System.Drawing.Point(6, 462);
             this.lblStatus1.Name = "lblStatus1";
             this.lblStatus1.Size = new System.Drawing.Size(270, 38);
             this.lblStatus1.TabIndex = 13;
@@ -366,7 +379,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "AINVTBAR3";
-            this.Size = new System.Drawing.Size(285, 467);
+            this.Size = new System.Drawing.Size(285, 514);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -389,5 +402,6 @@
         private V6Controls.V6ColorTextBox txtDiaChi;
         private V6Controls.V6NumberTextBox txtSL_TD2;
         private System.Windows.Forms.Label lblStatus1;
+        private System.Windows.Forms.CheckBox chkAutoF9;
     }
 }

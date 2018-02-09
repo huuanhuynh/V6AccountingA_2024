@@ -1981,6 +1981,12 @@
     <Compile Include="FormManager\ReportManager\Filter\HPAYROLLCALC.Designer.cs">
       <DependentUpon>HPAYROLLCALC.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\NhanSu\XLSHRGENERAL2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\NhanSu\XLSHRGENERAL2.Designer.cs">
+      <DependentUpon>XLSHRGENERAL2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\NhanSu\XLSHRPERSONAL.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4155,6 +4161,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\NhanSu\HPRCONGCT_XL0.Designer.cs">
       <DependentUpon>HPRCONGCT_XL0.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\NhanSu\XLSHRGENERAL2_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\NhanSu\XLSHRPERSONAL_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6292,6 +6301,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\NhanSu\HPRCONGCT_Filter.resx">
       <DependentUpon>HPRCONGCT_Filter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\NhanSu\XLSHRGENERAL2.resx">
+      <DependentUpon>XLSHRGENERAL2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\NhanSu\XLSHRPERSONAL.resx">
       <DependentUpon>XLSHRPERSONAL.cs</DependentUpon>
     </EmbeddedResource>
@@ -7086,6 +7098,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\HPRCONGCT_XL0.resx">
       <DependentUpon>HPRCONGCT_XL0.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\XLSHRGENERAL2_Control.resx">
+      <DependentUpon>XLSHRGENERAL2_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\XLSHRPERSONAL_Control.resx">
       <DependentUpon>XLSHRPERSONAL_Control.cs</DependentUpon>

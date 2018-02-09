@@ -250,6 +250,12 @@ namespace V6ControlManager.FormManager.MenuManager
                                 c = new ReportR44ViewBase(item_id, program, program, repFile, repTitle, repTitle2,
                                     repFileF5, repTitleF5, repTitle2F5);
                             }
+                            else if (codeform.StartsWith("45"))
+                            {
+                                program = codeform.Substring(2);
+                                c = new ReportR45ViewBase(item_id, program, program, repFile, repTitle, repTitle2,
+                                    repFileF5, repTitleF5, repTitle2F5);
+                            }
                             else
                             {
                                 c = new ReportRViewBase(item_id, program, program, repFile, repTitle, repTitle2,

@@ -268,18 +268,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 try
                 {
                     ViewData();
-                    //dataGridView1.Height = panel1.Height - 10;
-                    foreach (DataGridViewColumn column in dataGridView1.Columns)
-                    {
-                        if (column.DataPropertyName == "SL_IN" || column.DataPropertyName == "GIA_IN")
-                        {
-                            column.ReadOnly = false;
-                        }
-                        else
-                        {
-                            column.ReadOnly = true;
-                        }
-                    }
                     
                     DoAfterExecuteSuccess();
                     V6ControlFormHelper.ShowMainMessage("Tải dữ liệu xong!\r\n" + _message);
@@ -325,6 +313,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        protected override void DoAfterExecuteSuccess()
+        {
+            if (FilterControl.Check1 && dataGridView1.Rows.Count > 0)
+            {
+                XuLyF9();
             }
         }
 
