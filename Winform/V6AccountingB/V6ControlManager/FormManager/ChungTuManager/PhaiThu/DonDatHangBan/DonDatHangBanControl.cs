@@ -113,9 +113,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _tang, _xuat_dd;
-        private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo;
+        private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _ma_thue_i, _tk_thue_i;
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt2, _giaNt21,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
-        private V6NumberTextBox _ton13,_gia,_gia_nt, _tien, _tienNt, _pt_cki;
+        private V6NumberTextBox _ton13, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         private V6DateTimeColor _hanSd;
 
         
@@ -227,6 +227,36 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         _maKhoI.DATE_YN = false;
 
                         _maKhoI.V6LostFocus += MaKhoI_V6LostFocus;
+                        break;
+                    case "MA_THUE_I":
+                        _ma_thue_i = control as V6VvarTextBox;
+                        if (_ma_thue_i != null)
+                        {
+                            _ma_thue_i.V6LostFocus += delegate
+                            {
+                                XuLyThayDoiMaThue_i();
+                                Tinh_thue_ct();
+                            };
+                        }
+                        break;
+                    case "TK_THUE_I":
+                        _tk_thue_i = control as V6VvarTextBox;
+                        break;
+                    case "THUE_SUAT_I":
+                        _thue_suat_i = control as V6NumberTextBox;
+                        break;
+                    case "THUE":
+                        _thue = control as V6NumberTextBox;
+                        break;
+                    case "THUE_NT":
+                        _thue_nt = control as V6NumberTextBox;
+                        if (_thue_nt != null)
+                        {
+                            _thue_nt.V6LostFocus += delegate
+                            {
+                                Tinh_TienThue_TheoTienThueNt(_thue_nt.Value, txtTyGia.Value, _thue, M_ROUND);
+                            };
+                        }
                         break;
                     case "TON13":
                         _ton13 = (V6NumberTextBox)control;
@@ -653,11 +683,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             //    }
             //}
             TinhTienNt2();
+            Tinh_thue_ct();
         }
 
         void GiaNt21_V6LostFocus(object sender)
         {
             TinhTienNt2();
+            Tinh_thue_ct();
         }
 
         #endregion events
@@ -983,6 +1015,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     _tkGv.Text = "";
                     _tkCkI.Text = "";
                     _tkVt.Text = "";
+
+                    _ma_thue_i.Text = "";
+                    _thue_suat_i.Value = 0;
                 }
                 else
                 {
@@ -990,6 +1025,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     _tkGv.Text = (data["tk_gv"] ?? "").ToString().Trim();
                     _tkCkI.Text = (data["tk_ck"] ?? "").ToString().Trim();
                     _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();
+
+                    if (M_SOA_MULTI_VAT == "1")
+                    {
+                        _ma_thue_i.Text = (data["ma_thue"] ?? "").ToString().Trim();
+                        _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["thue_suat"]);
+                    }
                 }
                 
                 if (_maVt.LO_YN == false)
@@ -1219,6 +1260,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     _gia.Enabled =  _xuat_dd.Text != "" && _gia_nt.Value==0;
 
                     dateNgayLCT.Enabled = Invoice.M_NGAY_CT;
+
+                    if (M_SOA_MULTI_VAT == "1")
+                    {
+                        txtMa_thue.ReadOnly = true;
+                        txtTongThue.ReadOnly = true;
+                        txtTongThueNt.ReadOnly = true;
+                    }
+                    else
+                    {
+                        txtMa_thue.ReadOnly = false;
+                        txtTongThue.ReadOnly = !chkSuaTienThue.Checked;
+                        txtTongThueNt.ReadOnly = !chkSuaTienThue.Checked;
+                    }
                 }
 
                 //Cac truong hop khac
@@ -1718,7 +1772,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 TinhTongValues();
                 TinhChietKhau(); //Đã tính //t_tien_nt2, T_CK_NT, PT_CK
                 TinhGiamGia();
-                TinhThue();
+
+                if (M_SOA_MULTI_VAT == "1")
+                {
+                    TinhTongThue_ct();
+                }
+                else
+                {
+                    TinhThue();
+                }
+
                 if (string.IsNullOrEmpty(_mMaNt0)) return;
                 
                 var t_tien_nt2 = txtTongTienNt2.Value;
@@ -1742,6 +1805,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, ex.Message), "Lỗi-TTT("+debug+")");
             }
+        }
+
+        private void TinhTongThue_ct()
+        {
+            var t_thue_nt = TinhTong("THUE_NT");
+            var t_thue = TinhTong("THUE");
+
+            txtTongThueNt.Value = V6BusinessHelper.Vround(t_thue_nt, M_ROUND_NT);
+            txtTongThue.Value = V6BusinessHelper.Vround(t_thue, M_ROUND);
+            
+            txtMa_thue.ReadOnly = true;
+            txtTongThueNt.ReadOnly = true;
+            txtTongThue.ReadOnly = true;
         }
 
         #endregion tính toán
@@ -1893,6 +1969,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 var column = dataGridView1.Columns["TIEN_NT2"];
                 if (column != null)
                     column.HeaderText = (V6Setting.IsVietnamese ? "Thành tiền " : "Amount ") + _maNt;
+                column = dataGridView1.Columns["THUE_NT"];
+                if (column != null)
+                    column.HeaderText = (V6Setting.IsVietnamese ? "Thuế " : "Tax ") + _maNt;
 
                 viewColumn = dataGridView1.Columns["GIA21"];
                 if (viewColumn != null)
@@ -1900,6 +1979,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 column = dataGridView1.Columns["TIEN2"];
                 if (column != null)
                     column.HeaderText = (V6Setting.IsVietnamese ? "Thành tiền " : "Amount ") + _mMaNt0;
+                column = dataGridView1.Columns["THUE"];
+                if (column != null)
+                    column.HeaderText = (V6Setting.IsVietnamese ? "Thuế " : "Tax ") + _mMaNt0;
 
                 if (_maNt.ToUpper() != _mMaNt0.ToUpper())
                 {
@@ -1912,7 +1994,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                     txtTyGia.Enabled = true;
                     //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], true);
-                    detail1.ShowIDs(new[] { "GIA21", "lblGIA21", "TIEN2", "lblTIEN2" });
+                    detail1.ShowIDs(new[] { "GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "THUE", "THUE_NT" });
                     panelVND.Visible = true;
                     
 
@@ -1924,7 +2006,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                     dataGridViewColumn = dataGridView1.Columns["TIEN2"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = true;
-
+                    dataGridViewColumn = dataGridView1.Columns["THUE"];
+                    if (dataGridViewColumn != null) dataGridViewColumn.Visible = true;
+                    
                     dataGridViewColumn = dataGridView1.Columns["GIA"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = true;
 
@@ -1945,6 +2029,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     _gia2.Visible = true;
                     _gia21.Visible = true;
                     _tien2.Visible = true;
+                    _thue.Visible = true;
                     _gia21.Visible = true;
                     
                     _ck.Visible = true;
@@ -1953,6 +2038,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     _gia2.Tag = null;
                     _gia21.Tag = null;
                     _tien2.Tag = null;
+                    _thue.Tag = null;
                     _gia21.Tag = null;
                     _ck.Tag = null;
 
@@ -1972,7 +2058,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     txtTyGia.Enabled = false;
                     txtTyGia.Value = 1;
                     //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], false);
-                    detail1.HideIDs(new[] { "GIA21", "lblGIA21", "TIEN2", "lblTIEN2" });
+                    detail1.HideIDs(new[] { "GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "THUE"});
                     panelVND.Visible = false;
                     //SetColsVisible(_GridID, ["GIA21", "TIEN2"], false); //An di
 
@@ -1984,7 +2070,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                     dataGridViewColumn = dataGridView1.Columns["TIEN2"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
-
+                    dataGridViewColumn = dataGridView1.Columns["THUE"];
+                    if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
+                    
                     dataGridViewColumn = dataGridView1.Columns["GIA2"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
 
@@ -2004,6 +2092,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     _gia2.Visible = false;
                     _gia21.Visible = false;
                     _tien2.Visible = false;
+                    _thue.Visible = false;
                     _gia21.Visible = false;
                     _ck.Visible = false;
 
@@ -2013,6 +2102,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     _gia2.Tag = "hide";
                     _gia21.Tag = "hide";
                     _tien2.Tag = "hide";
+                    _thue.Tag = "hide";
                     _gia21.Tag = "hide";
                     _ck.Tag = "hide";
 
@@ -2115,8 +2205,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
-                var alThue = V6BusinessHelper.Select("ALTHUE", "*",
-                    "MA_THUE = '" + txtMa_thue.Text.Trim() + "'");
+                var alThue = V6BusinessHelper.Select("ALTHUE", "*", "MA_THUE = '" + txtMa_thue.Text.Trim() + "'");
                 if (alThue.TotalRows > 0)
                 {
                     txtTkThueCo.Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
@@ -2129,6 +2218,31 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 this.ShowErrorException(GetType() + ".XuLyThayDoiMaThue", ex);
             }
             TinhTongThanhToan("XuLyThayDoiMaThue");
+        }
+
+        private void XuLyThayDoiMaThue_i()
+        {
+            try
+            {
+                var alThue = V6BusinessHelper.Select("ALTHUE", "*", "MA_THUE = '" + _ma_thue_i.Text.Trim() + "'");
+                if (alThue.TotalRows > 0)
+                {
+                    _tk_thue_i.Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
+                    _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(alThue.Data.Rows[0]["THUE_SUAT"]);
+                    //txtTkThueNo.Text = txtManx.Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyThayDoiMaThue_i", ex);
+            }
+            //TinhTongThanhToan("XuLyThayDoiMaThue_i");
+        }
+
+        private void Tinh_thue_ct()
+        {
+            if (M_SOA_MULTI_VAT == "1")
+            Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat_i.Value, _tienNt2.Value - _ckNt.Value, _tien2.Value - _ck.Value, _thue_nt, _thue);
         }
         
         /// <summary>
@@ -3539,7 +3653,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             try
             {
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
                     txtTongThueNt.ReadOnly = !chkSuaTienThue.Checked;
+                }
 
                 TinhTongThanhToan("ckhSuaTienThue");
             }
@@ -4449,6 +4565,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private void inKhacToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InvokeFormEvent(FormDynamicEvent.INKHAC);
+        }
+
+        private void txtManx_Leave(object sender, EventArgs e)
+        {
+            if (chkSuaTkThue.Checked)
+            {
+                if (txtTkThueNo.Text.Trim() == "") txtTkThueNo.Text = txtManx.Text;
+            }
+            else
+            {
+                txtTkThueNo.Text = txtManx.Text;
+            }
         }
 
     }

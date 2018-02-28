@@ -3915,6 +3915,12 @@
       <DependentUpon>ChartReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\QuickReportManager.cs" />
+    <Compile Include="FormManager\ReportManager\ReportR\ReportR45ViewBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportR45ViewBase.designer.cs">
+      <DependentUpon>ReportR45ViewBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\ReportR\ReportRWWView2Base.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6975,6 +6981,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ChartReportForm.resx">
       <DependentUpon>ChartReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR45ViewBase.resx">
+      <DependentUpon>ReportR45ViewBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportRWWView2Base.resx">
       <DependentUpon>ReportRWWView2Base.cs</DependentUpon>

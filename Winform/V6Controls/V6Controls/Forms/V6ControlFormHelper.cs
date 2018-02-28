@@ -2863,6 +2863,7 @@ namespace V6Controls.Forms
                                 }
                                 else if (type == "1") //Lay value trong parameter
                                 {
+                                    if (ReportDocumentParameters == null) continue;
                                     // 1 Nhóm ký tự giữa hai dấu ngoặc móc.
                                     // Nếu không có ? sẽ lấy 1 nhóm từ đầu đến cuối.
                                     // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
@@ -2916,6 +2917,30 @@ namespace V6Controls.Forms
                                         if (tbl2.Columns.Contains(content))
                                         {
                                             parameters.Add(KEY, tbl2_row[content]);
+                                        }
+                                    }
+                                }
+                                else if (type == "3")//V6Soft.V6SoftValue
+                                {
+                                    if (content.Contains("{") && content.Contains("}"))
+                                    {
+                                        var regex = new Regex("{(.+?)}");
+                
+                                        foreach (Match match in regex.Matches(content))
+                                        {
+                                            var MATCH_KEY = match.Groups[1].Value.ToUpper();
+                                            if (V6Soft.V6SoftValue.ContainsKey(MATCH_KEY))
+                                                content = content.Replace(match.Groups[0].Value,
+                                                    ObjectAndString.ObjectToString(V6Soft.V6SoftValue[MATCH_KEY]));
+                                        }
+                                        parameters.Add(KEY, content);
+                                    }
+                                    else
+                                    {
+                                        var P_KEY = content.ToUpper();
+                                        if (V6Soft.V6SoftValue.ContainsKey(P_KEY))
+                                        {
+                                            parameters.Add(KEY, V6Soft.V6SoftValue[P_KEY]);
                                         }
                                     }
                                 }

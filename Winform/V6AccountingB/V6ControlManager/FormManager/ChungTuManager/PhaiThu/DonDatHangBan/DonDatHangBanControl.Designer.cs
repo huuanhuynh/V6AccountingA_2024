@@ -2424,6 +2424,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtManx.Size = new System.Drawing.Size(59, 20);
             this.txtManx.TabIndex = 12;
             this.txtManx.VVar = "ma_nx";
+            this.txtManx.Leave += new System.EventHandler(this.txtManx_Leave);
             // 
             // Txtma_nk
             // 

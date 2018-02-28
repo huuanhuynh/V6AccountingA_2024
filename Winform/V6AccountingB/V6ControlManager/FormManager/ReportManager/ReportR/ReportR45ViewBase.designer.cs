@@ -51,7 +51,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.lblMauIn = new System.Windows.Forms.Label();
             this.lblTieuDe = new System.Windows.Forms.Label();
             this.txtReportTitle = new System.Windows.Forms.TextBox();
-            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
             this.btnIn = new System.Windows.Forms.Button();
@@ -218,35 +217,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.txtReportTitle.Size = new System.Drawing.Size(861, 20);
             this.txtReportTitle.TabIndex = 2;
             // 
-            // crystalReportViewer1
-            // 
-            this.crystalReportViewer1.ActiveViewIndex = -1;
-            this.crystalReportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.crystalReportViewer1.DisplayStatusBar = false;
-            this.crystalReportViewer1.Location = new System.Drawing.Point(307, 425);
-            this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ShowCloseButton = false;
-            this.crystalReportViewer1.ShowCopyButton = false;
-            this.crystalReportViewer1.ShowGroupTreeButton = false;
-            this.crystalReportViewer1.ShowLogo = false;
-            this.crystalReportViewer1.ShowParameterPanelButton = false;
-            this.crystalReportViewer1.ShowRefreshButton = false;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(662, 224);
-            this.crystalReportViewer1.TabIndex = 14;
-            this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            this.crystalReportViewer1.DoubleClick += new System.EventHandler(this.crystalReportViewer1_DoubleClick);
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
             this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -266,9 +244,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(662, 336);
+            this.dataGridView1.Size = new System.Drawing.Size(662, 564);
             this.dataGridView1.TabIndex = 13;
-            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -507,7 +484,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.gridViewSummary1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gridViewSummary1.DataGridView = this.dataGridView1;
-            this.gridViewSummary1.Location = new System.Drawing.Point(307, 400);
+            this.gridViewSummary1.Location = new System.Drawing.Point(307, 628);
             this.gridViewSummary1.Name = "gridViewSummary1";
             this.gridViewSummary1.Size = new System.Drawing.Size(662, 23);
             this.gridViewSummary1.TabIndex = 0;
@@ -541,7 +518,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.Controls.Add(this.lblMauIn);
             this.Controls.Add(this.lblTieuDe);
             this.Controls.Add(this.txtReportTitle);
-            this.Controls.Add(this.crystalReportViewer1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.grbDieuKienLoc);
             this.Controls.Add(this.gridViewSummary1);
@@ -582,7 +558,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.RadioButton rTiengViet;
         private System.Windows.Forms.RadioButton rEnglish;
         private System.Windows.Forms.RadioButton rBothLang;
-        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
         private System.Windows.Forms.Label lblTieuDe;
         private System.Windows.Forms.Label lblNguoiLapBieu2;
         private System.Windows.Forms.Label lblNguoiLapBieu;

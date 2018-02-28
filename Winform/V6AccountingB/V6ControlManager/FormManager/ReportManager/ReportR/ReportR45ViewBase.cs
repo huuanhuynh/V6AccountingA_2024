@@ -9,7 +9,6 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
-using CrystalDecisions.CrystalReports.Engine;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.DanhMucManager;
@@ -20,7 +19,6 @@ using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6ReportControls;
-using V6RptEditor;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -31,7 +29,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
     {
         #region Biến toàn cục
         DataGridViewPrinter _myDataGridViewPrinter;
-        private ReportDocument _rpDoc;
+        //private ReportDocument _rpDoc;
 
         private string _reportProcedure;
         //private string _program, _reportFile, _reportTitle, _reportTitle2;
@@ -841,42 +839,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);
             }
-
-            string errors = "";
-            foreach (KeyValuePair<string, object> item in ReportDocumentParameters)
-            {
-                try
-                {
-                    _rpDoc.SetParameterValue(item.Key, item.Value);
-                }
-                catch (Exception ex)
-                {
-                    errors += "\n" + item.Key + ": " + ex.Message;
-                }
-            }
-            if (errors != "")
-            {
-                this.ShowErrorMessage(GetType() + ".SetAllReportParams: " + ReportFileFull + " " + errors);
-            }
-
-            //SetReportParams2();
         }
-
-        ///// <summary>
-        ///// Các tham số thêm từ filter
-        ///// </summary>
-        //private void SetReportParams2()//!!!! them ParamDic
-        //{
-
-        //    if (FilterControl._parameters != null)
-        //    {
-        //        foreach (KeyValuePair<string, object> key_value_pair in FilterControl._parameters)
-        //        {
-        //            _rpDoc.SetParameterValue(key_value_pair.Key, key_value_pair.Value);
-        //        }
-        //    }
-        //}
-
+        
         #region ==== LoadData MakeReport ====
         
         /// <summary>
@@ -1079,41 +1043,37 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private void Print(string printerName)
-        {
-            int intDaGuiDenMayIn = 0;
-            bool printerOnline = PrinterStatus.CheckPrinterOnline(printerName);
-            var setPrinterOk = PrinterStatus.SetDefaultPrinter(printerName);
-            var printerError = string.Compare("Error", PrinterStatus.getDefaultPrinterProperties("Status"), StringComparison.OrdinalIgnoreCase) == 0;
-
-            if (setPrinterOk && printerOnline && !printerError)
-            {
-                try
-                {
-                    _rpDoc.PrintToPrinter(_printCopy, false, 0, 0);
-
-                    //if (!xemMau)
-                    //    timer1.Start();
-                    
-                        //xong = true;
-                        CallPrintSuccessEvent();
-                    
-                }
-                catch (Exception ex)
-                {
-                    this.ShowErrorMessage(GetType() + ".In lỗi!\n" + ex.Message, "V6Soft");
-                }
-            }
-            else
-            {
-                //isInHoaDonClicked = false;
-                btnIn.Enabled = true;
-                this.ShowErrorMessage(GetType() + ".Không thể truy cập máy in!", "V6Soft");
-            }
-            //reset default printer
-            //try { V6Tools.PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter); }
-            //catch { }
-        }
+        //private void Print(string printerName)
+        //{
+        //    int intDaGuiDenMayIn = 0;
+        //    bool printerOnline = PrinterStatus.CheckPrinterOnline(printerName);
+        //    var setPrinterOk = PrinterStatus.SetDefaultPrinter(printerName);
+        //    var printerError = string.Compare("Error", PrinterStatus.getDefaultPrinterProperties("Status"), StringComparison.OrdinalIgnoreCase) == 0;
+        //    if (setPrinterOk && printerOnline && !printerError)
+        //    {
+        //        try
+        //        {
+        //            _rpDoc.PrintToPrinter(_printCopy, false, 0, 0);
+        //            //if (!xemMau)
+        //            //    timer1.Start();
+        //                //xong = true;
+        //                CallPrintSuccessEvent();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            this.ShowErrorMessage(GetType() + ".In lỗi!\n" + ex.Message, "V6Soft");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        //isInHoaDonClicked = false;
+        //        btnIn.Enabled = true;
+        //        this.ShowErrorMessage(GetType() + ".Không thể truy cập máy in!", "V6Soft");
+        //    }
+        //    //reset default printer
+        //    //try { V6Tools.PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter); }
+        //    //catch { }
+        //}
 
         private void FormatGridView()
         {
@@ -1196,8 +1156,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 if (ReloadData == "1")
                     MakeReport2();
-                else
-                    ViewReport();
+                //else
+                //    ViewReport();
             }
         }
 
@@ -1213,8 +1173,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 if (ReloadData == "1")
                     MakeReport2();
-                else
-                    ViewReport();
+                //else
+                //    ViewReport();
             }
         }
 
@@ -1282,12 +1242,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 FormatGridView();
 
-                ViewReport();
-                if (AutoPrint)
-                {
-                    Print(PrinterName);
-                    Dispose();
-                }
+                //if (AutoPrint)
+                //{
+                //    Print(PrinterName);
+                //    Dispose();
+                //}
                 gridViewSummary1.NoSumColumns = Report_GRDT_V1;
                 dataGridView1.Focus();
             }
@@ -1296,72 +1255,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 timerViewReport.Stop();
                 _load_data_success = false;
                 this.ShowErrorException(GetType() + ".ShowReport", ex);
-            }
-        }
-
-        void ViewReport()
-        {
-            if (_ds == null) return;
-            try
-            {
-                _rpDoc = new ReportDocument();
-                _rpDoc.Load(ReportFileFull);
-
-                _rpDoc.SetDataSource(_ds);
-
-                SetAllReportParams();
-
-                crystalReportViewer1.ReportSource = _rpDoc;
-                crystalReportViewer1.Show();
-                crystalReportViewer1.Zoom(1);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".ViewReport " + ReportFileFull, ex);
-            }
-        }
-        
-        
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridView1.Bottom < crystalReportViewer1.Top)
-            {
-                //Phóng lớn dataGridView
-                dataGridView1.BringToFront();
-                gridViewSummary1.BringToFront();
-                dataGridView1.Height = Height - grbDieuKienLoc.Top - 25;
-                dataGridView1.Width = Width - 5;
-                dataGridView1.Top = grbDieuKienLoc.Top;
-                dataGridView1.Left = grbDieuKienLoc.Left;
-
-                dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
-            }
-            else
-            {
-                dataGridView1.Top = grbDieuKienLoc.Top;
-                dataGridView1.Left = grbDieuKienLoc.Right + 5;
-                dataGridView1.Height = crystalReportViewer1.Top - grbDieuKienLoc.Top - 25;
-                dataGridView1.Width = crystalReportViewer1.Width;
-                dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-            }
-        }
-
-        private void crystalReportViewer1_DoubleClick(object sender, EventArgs e)
-        {
-            if (crystalReportViewer1.Top > dataGridView1.Bottom)
-            {
-                crystalReportViewer1.BringToFront();
-                crystalReportViewer1.Height = crystalReportViewer1.Bottom - grbDieuKienLoc.Top;
-                crystalReportViewer1.Width = crystalReportViewer1.Right - grbDieuKienLoc.Left;
-                crystalReportViewer1.Top = grbDieuKienLoc.Top;
-                crystalReportViewer1.Left = grbDieuKienLoc.Left;
-            }
-            else
-            {
-                crystalReportViewer1.Left = grbDieuKienLoc.Right + 5;
-                crystalReportViewer1.Top = dataGridView1.Bottom + 25;
-                crystalReportViewer1.Height = Height - crystalReportViewer1.Top - 10;
-                crystalReportViewer1.Width = dataGridView1.Width;
             }
         }
 
@@ -1536,17 +1429,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     this.ShowErrorMessage(V6Text.NoData);
                     return;
                 }
+                Point p = this.PointToScreen(btnIn.Location);
+                p.Y += contextMenuStrip1.Height/2 + btnIn.Height - 5;
+                
+                contextMenuStrip1.Show(p);
 
-                crystalReportViewer1.PrintReport();
-                return;
-
-                var dfp = DefaultPrinter;
-                var selectedPrinter = V6ControlFormHelper.PrintRpt(this, _rpDoc, dfp);
-                if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != dfp)
-                {
-                    print_one = true;
-                    DefaultPrinter = selectedPrinter;
-                }
             }
             catch (Exception ex)
             {
@@ -1562,8 +1449,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             txtReportTitle.Text = ReportTitle;
             if (ReloadData == "1")
                 MakeReport2();
-            else
-                ViewReport();
+            //else
+            //    ViewReport();
         }
 
         private void btnSuaTTMauBC_Click(object sender, EventArgs e)
@@ -1640,17 +1527,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void btnSuaMau_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var f = new FormRptEditor();
-                f.rptPath = ReportFileFull;
-                f.ShowDialog(this);
-                SetStatus2Text();
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
-            }
+            //try
+            //{
+            //    var f = new FormRptEditor();
+            //    f.rptPath = ReportFileFull;
+            //    f.ShowDialog(this);
+            //    SetStatus2Text();
+            //}
+            //catch (Exception ex)
+            //{
+            //    this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
+            //}
         }
         
         private void btnSuaLine_Click(object sender, EventArgs e)

@@ -473,7 +473,7 @@ namespace V6Controls.Forms.Viewer
             catch (Exception ex)
             {
                 toolStripStatusLabel1.Text = string.Format("{0} {1}", _tableName, V6Text.AddFail);
-                Logger.WriteToLog("DataEditorForm UpdateData " + ex.Message, Application.ProductName);
+                this.WriteExLog(GetType() + ".AddData", ex);
             }
             return null;
         }

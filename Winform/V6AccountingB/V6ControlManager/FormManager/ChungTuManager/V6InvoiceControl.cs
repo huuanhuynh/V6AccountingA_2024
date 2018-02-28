@@ -118,6 +118,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
         protected int M_ROUND_NT = V6Setting.RoundTienNt;
         protected int M_ROUND_GIA = V6Setting.RoundGia;
         protected int M_ROUND_GIA_NT = V6Setting.RoundGiaNt;
+        protected string M_SOA_HT_KM_CK = V6Options.V6OptionValues["M_SOA_HT_KM_CK"];
+        protected string M_SOA_MULTI_VAT = V6Options.V6OptionValues["M_SOA_MULTI_VAT"];
 
         /// <summary>
         /// List thứ tự field chi tiết.
@@ -780,6 +782,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        /// <summary>
+        /// Tính và gán vào control
+        /// </summary>
+        /// <param name="thueSuat"></param>
+        /// <param name="tienNt"></param>
+        /// <param name="tien"></param>
+        /// <param name="txtTienThueNt">control thue_nt</param>
+        /// <param name="txtTienThue">control thue</param>
         protected void Tinh_TienThueNtVaTienThue_TheoThueSuat(decimal thueSuat, decimal tienNt, decimal tien, V6NumberTextBox txtTienThueNt, V6NumberTextBox txtTienThue)
         {
             try
