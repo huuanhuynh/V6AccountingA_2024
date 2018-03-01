@@ -111,7 +111,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
             this.v6Label28 = new V6Controls.V6Label();
             this.chkSuaThue = new V6Controls.V6CheckBox();
-            this.chkSua_Tien = new V6Controls.V6CheckBox();
+            this.chkSuaTien = new V6Controls.V6CheckBox();
             this.cboKieuPost = new V6Controls.V6ComboBox();
             this.lblTongSoDong = new V6Controls.V6Label();
             this.v6Label20 = new V6Controls.V6Label();
@@ -1350,7 +1350,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.group4.Controls.Add(this.btnChucNang);
             this.group4.Controls.Add(this.v6Label28);
             this.group4.Controls.Add(this.chkSuaThue);
-            this.group4.Controls.Add(this.chkSua_Tien);
+            this.group4.Controls.Add(this.chkSuaTien);
             this.group4.Controls.Add(this.cboKieuPost);
             this.group4.Controls.Add(this.lblTongSoDong);
             this.group4.Controls.Add(this.v6Label20);
@@ -1401,18 +1401,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.chkSuaThue.UseVisualStyleBackColor = true;
             this.chkSuaThue.CheckedChanged += new System.EventHandler(this.chkSuaThue_CheckedChanged);
             // 
-            // chkSua_Tien
+            // chkSuaTien
             // 
-            this.chkSua_Tien.AccessibleDescription = "ACACTCA1H00038";
-            this.chkSua_Tien.AccessibleName = "sua_tien";
-            this.chkSua_Tien.AutoSize = true;
-            this.chkSua_Tien.Location = new System.Drawing.Point(6, 38);
-            this.chkSua_Tien.Name = "chkSua_Tien";
-            this.chkSua_Tien.Size = new System.Drawing.Size(65, 17);
-            this.chkSua_Tien.TabIndex = 2;
-            this.chkSua_Tien.Text = "Sửa tiền";
-            this.chkSua_Tien.UseVisualStyleBackColor = true;
-            this.chkSua_Tien.CheckedChanged += new System.EventHandler(this.chkSua_Tien_CheckedChanged);
+            this.chkSuaTien.AccessibleDescription = "ACACTCA1H00038";
+            this.chkSuaTien.AccessibleName = "sua_tien";
+            this.chkSuaTien.AutoSize = true;
+            this.chkSuaTien.Location = new System.Drawing.Point(6, 38);
+            this.chkSuaTien.Name = "chkSuaTien";
+            this.chkSuaTien.Size = new System.Drawing.Size(65, 17);
+            this.chkSuaTien.TabIndex = 2;
+            this.chkSuaTien.Text = "Sửa tiền";
+            this.chkSuaTien.UseVisualStyleBackColor = true;
+            this.chkSuaTien.CheckedChanged += new System.EventHandler(this.chkSuaTien_CheckedChanged);
             // 
             // cboKieuPost
             // 
@@ -2551,7 +2551,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private System.Windows.Forms.DataGridViewTextBoxColumn UID;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT_REC;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT_REC0;
-        private V6Controls.V6CheckBox chkSua_Tien;
+        private V6Controls.V6CheckBox chkSuaTien;
         private V6FormButton btnChonNhieuHD;
         private V6ColorTextBox Txtma_nk;
         private V6VvarTextBox Txtma_nvien;

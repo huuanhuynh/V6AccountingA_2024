@@ -345,8 +345,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             _tienNt = control as V6NumberTextBox;
                             if (_tienNt != null)
                             {
-                                _tienNt.Enabled = chkSua_Tien.Checked;
-                                if (chkSua_Tien.Checked)
+                                _tienNt.Enabled = chkSuaTien.Checked;
+                                if (chkSuaTien.Checked)
                                 {
                                     _tienNt.Tag = null;
                                 }
@@ -448,7 +448,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                     {
                                         _gia_nt1.Enabled = true;
                                         _gia_nt.Enabled = true;
-                                        if (chkSua_Tien.Checked)
+                                        if (chkSuaTien.Checked)
                                         {
                                             _tienNt.Enabled = true;
                                         }
@@ -2442,7 +2442,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
                     bool is_gia_dichdanh = _maVt.GIA_TON == 2 || _xuat_dd.Text != "";
 
-                    _tienNt.Enabled = chkSua_Tien.Checked && is_gia_dichdanh;
+                    _tienNt.Enabled = chkSuaTien.Checked && is_gia_dichdanh;
                     _tien.Enabled = is_gia_dichdanh && _tienNt.Value == 0 && _maNt != _mMaNt0;
 
                     _gia_nt.Enabled = is_gia_dichdanh;
@@ -2695,7 +2695,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                XuLyThayDoiTyGia(txtTyGia, chkSua_Tien);
+                XuLyThayDoiTyGia(txtTyGia, chkSuaTien);
                 TinhTongThanhToan("TyGia_V6LostFocus " + ((Control)sender).AccessibleName);
             }
         }
@@ -4346,13 +4346,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             In();
         }
         
-        private void chkSua_Tien_CheckedChanged(object sender, EventArgs e)
+        private void chkSuaTien_CheckedChanged(object sender, EventArgs e)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                _tienNt.Enabled = chkSua_Tien.Checked && _xuat_dd.Text != "";
+                _tienNt.Enabled = chkSuaTien.Checked && _xuat_dd.Text != "";
             }
-            if (chkSua_Tien.Checked)
+            if (chkSuaTien.Checked)
             {
                 _tienNt.Tag = null;
             }

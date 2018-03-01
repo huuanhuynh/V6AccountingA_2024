@@ -4195,7 +4195,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                XuLyThayDoiTyGia(txtTyGia, chkSua_Tien);
+                XuLyThayDoiTyGia(txtTyGia, chkSuaTien);
                 foreach (DataRow row in AD.Rows)
                 {
                     row["TIEN_TT"] = row["PS_NO"];
@@ -4306,11 +4306,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         }
 
-        private void chkSua_Tien_CheckedChanged(object sender, EventArgs e)
+        private void chkSuaTien_CheckedChanged(object sender, EventArgs e)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
-                _tienNt.Enabled = chkSua_Tien.Checked;
-            if (chkSua_Tien.Checked)
+                _tienNt.Enabled = chkSuaTien.Checked;
+            if (chkSuaTien.Checked)
             {
                 _tienNt.Tag = null;
             }

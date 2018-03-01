@@ -2795,7 +2795,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                XuLyThayDoiTyGia(txtTyGia, chkSua_Tien);
+                XuLyThayDoiTyGia(txtTyGia, chkSuaTien);
                 TinhTongThanhToan("TyGia_V6LostFocus " + ((Control)sender).AccessibleName);
             }
         }
@@ -2890,7 +2890,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             In();
         }
         
-        private void chkSua_Tien_CheckedChanged(object sender, EventArgs e)
+        private void chkSuaTien_CheckedChanged(object sender, EventArgs e)
         {
             //!!!
         }

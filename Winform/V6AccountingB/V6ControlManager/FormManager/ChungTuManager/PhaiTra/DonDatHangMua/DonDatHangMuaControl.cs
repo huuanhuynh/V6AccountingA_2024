@@ -259,8 +259,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     case "TIEN_NT0":
                         _tienNt0 = (V6NumberTextBox)control;
 
-                        _tienNt0.Enabled = chkSua_Tien.Checked;
-                        if (chkSua_Tien.Checked)
+                        _tienNt0.Enabled = chkSuaTien.Checked;
+                        if (chkSuaTien.Checked)
                         {
                             _tienNt0.Tag = null;
                         }
@@ -1145,7 +1145,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     XuLyKhoaThongTinKhachHang();
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;
-                    _tienNt0.Enabled = chkSua_Tien.Checked;
+                    _tienNt0.Enabled = chkSuaTien.Checked;
                     _dvt1.Enabled = true;
 
                     dateNgayLCT.Enabled = Invoice.M_NGAY_CT;
@@ -3530,7 +3530,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                XuLyThayDoiTyGia(txtTyGia, chkSua_Tien);
+                XuLyThayDoiTyGia(txtTyGia, chkSuaTien);
                 TinhTongThanhToan("TyGia_V6LostFocus " + ((Control)sender).AccessibleName);
             }
         }
@@ -3675,11 +3675,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
 
         }
 
-        private void chkSua_Tien_CheckedChanged(object sender, EventArgs e)
+        private void chkSuaTien_CheckedChanged(object sender, EventArgs e)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
-                _tienNt0.Enabled = chkSua_Tien.Checked;
-            if (chkSua_Tien.Checked)
+                _tienNt0.Enabled = chkSuaTien.Checked;
+            if (chkSuaTien.Checked)
             {
                 _tienNt0.Tag = null;
             }

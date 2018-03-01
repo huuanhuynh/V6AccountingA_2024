@@ -369,8 +369,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         _tienNt0 = control as V6NumberTextBox;
                         if (_tienNt0 != null)
                         {
-                            _tienNt0.Enabled = chkSua_Tien.Checked;
-                            if (chkSua_Tien.Checked)
+                            _tienNt0.Enabled = chkSuaTien.Checked;
+                            if (chkSuaTien.Checked)
                             {
                                 _tienNt0.Tag = null;
                             }
@@ -1317,10 +1317,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 else
                 {
                     XuLyKhoaThongTinKhachHang();
-                    SetGridViewChiPhiEditAble(TxtLoai_pb.Text, chkSua_Tien.Checked, dataGridView3ChiPhi);
+                    SetGridViewChiPhiEditAble(TxtLoai_pb.Text, chkSuaTien.Checked, dataGridView3ChiPhi);
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;
-                    _tienNt0.Enabled = chkSua_Tien.Checked;
+                    _tienNt0.Enabled = chkSuaTien.Checked;
                     _dvt1.Enabled = true;
 
                     dateNgayLCT.Enabled = Invoice.M_NGAY_CT;
@@ -3734,7 +3734,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                XuLyThayDoiTyGia(txtTyGia, chkSua_Tien);
+                XuLyThayDoiTyGia(txtTyGia, chkSuaTien);
                 TinhTongThanhToan("TyGia_V6LostFocus " + ((Control)sender).AccessibleName);
             }
         }
@@ -3874,11 +3874,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
         }
 
-        private void chkSua_Tien_CheckedChanged(object sender, EventArgs e)
+        private void chkSuaTien_CheckedChanged(object sender, EventArgs e)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
-                _tienNt0.Enabled = chkSua_Tien.Checked;
-            if (chkSua_Tien.Checked)
+                _tienNt0.Enabled = chkSuaTien.Checked;
+            if (chkSuaTien.Checked)
             {
                 _tienNt0.Tag = null;
             }
@@ -3889,7 +3889,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
             if (!dataGridView3ChiPhi.ReadOnly)
             {
-                dataGridView3ChiPhi.SetEditColumn(chkSua_Tien.Checked ? "CP,CP_NT".Split(',') : "CP_NT".Split(','));
+                dataGridView3ChiPhi.SetEditColumn(chkSuaTien.Checked ? "CP,CP_NT".Split(',') : "CP_NT".Split(','));
             }
         }
 
@@ -3935,7 +3935,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             else if (cboLoai_pb.SelectedIndex == 2)
                 loai_pb = "2";
 
-            SetGridViewChiPhiEditAble(TxtLoai_pb.Text, chkSua_Tien.Checked, dataGridView3ChiPhi);
+            SetGridViewChiPhiEditAble(TxtLoai_pb.Text, chkSuaTien.Checked, dataGridView3ChiPhi);
 
             if (loai_pb == "1" || loai_pb == "2")
             {

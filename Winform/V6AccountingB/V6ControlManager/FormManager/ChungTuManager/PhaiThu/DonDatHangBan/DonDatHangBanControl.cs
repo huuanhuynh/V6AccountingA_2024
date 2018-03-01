@@ -316,8 +316,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         _tienNt2 = (V6NumberTextBox)control;
                         if (_tienNt2 != null)
                         {
-                            _tienNt2.Enabled = chkSua_Tien.Checked;
-                            if (chkSua_Tien.Checked)
+                            _tienNt2.Enabled = chkSuaTien.Checked;
+                            if (chkSuaTien.Checked)
                             {
                                 _tienNt2.Tag = null;
                             }
@@ -355,8 +355,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         _tienNt = control as V6NumberTextBox;
                         if (_tienNt != null)
                         {
-                            _tienNt.Enabled = chkSua_Tien.Checked;
-                            if (chkSua_Tien.Checked)
+                            _tienNt.Enabled = chkSuaTien.Checked;
+                            if (chkSuaTien.Checked)
                             {
                                 _tienNt.Tag = null;
                             }
@@ -385,7 +385,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         break;
                     //_tien2.V6LostFocus;
                     case "CK_NT":
-                        _ckNt = (V6NumberTextBox)control;
+                        _ckNt = control as V6NumberTextBox;
+                        if (_ckNt != null)
+                        {
+                            _ckNt.V6LostFocus += delegate
+                            {
+                                Tinh_thue_ct();
+                            };
+                        }
                         break;
                     case "PT_CKI":
                         _pt_cki = control as V6NumberTextBox;
@@ -396,6 +403,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             _pt_cki.V6LostFocus += delegate
                             {
                                 TinhChietKhauChiTiet();
+                                Tinh_thue_ct();
                             };
                         }
                         break;
@@ -442,7 +450,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             if (_xuat_dd.Text != "")
                             {
                                 _gia_nt.Enabled = true;
-                                if (chkSua_Tien.Checked)
+                                if (chkSuaTien.Checked)
                                     _tienNt.Enabled = true;
                                 else _tienNt.Enabled = false;
                             }
@@ -1247,15 +1255,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;
 
-                    _tienNt2.Enabled = chkSua_Tien.Checked;
+                    _tienNt2.Enabled = chkSuaTien.Checked;
                     _dvt1.Enabled = true;
 
-                    _tienNt.Enabled = chkSua_Tien.Checked && _xuat_dd.Text!="";
+                    _tienNt.Enabled = chkSuaTien.Checked && _xuat_dd.Text!="";
 
                     //{Tuanmh 20/02/2016
                     _ckNt.Enabled = !chkLoaiChietKhau.Checked;
                     _ck.Enabled = !chkLoaiChietKhau.Checked;
-                    _gia21.Enabled = chkSua_Tien.Checked && _giaNt21.Value==0;
+                    _gia21.Enabled = chkSuaTien.Checked && _giaNt21.Value==0;
                     _gia_nt.Enabled =  _xuat_dd.Text != "";
                     _gia.Enabled =  _xuat_dd.Text != "" && _gia_nt.Value==0;
 
@@ -3722,23 +3730,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         }
 
-        private void chkSua_Tien_CheckedChanged(object sender, EventArgs e)
+        private void chkSuaTien_CheckedChanged(object sender, EventArgs e)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                _tienNt2.Enabled = chkSua_Tien.Checked;
-                
-                _tienNt.Enabled = chkSua_Tien.Checked && _xuat_dd.Text != "";
+                _tienNt2.Enabled = chkSuaTien.Checked;
+                _tienNt.Enabled = chkSuaTien.Checked && _xuat_dd.Text != "";
+                _ckNt.Enabled = chkSuaTien.Checked;
             }
-            if (chkSua_Tien.Checked)
+            if (chkSuaTien.Checked)
             {
                 _tienNt2.Tag = null;
                 _tienNt.Tag = null;
+                _ckNt.Tag = null;
             }
             else
             {
                 _tienNt2.Tag = "disable";
                 _tienNt.Tag = "disable";
+                _ckNt.Tag = "disable";
             }
         }
 
@@ -4052,7 +4062,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                XuLyThayDoiTyGia(txtTyGia, chkSua_Tien);
+                XuLyThayDoiTyGia(txtTyGia, chkSuaTien);
                 TinhTongThanhToan("TyGia_V6LostFocus " + ((Control)sender).AccessibleName);
             }
         }

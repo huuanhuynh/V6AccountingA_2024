@@ -1026,11 +1026,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;
 
-                    //_tienNt2. Enabled = chkSua_Tien.Checked;
+                    //_tienNt2. Enabled = chkSuaTien.Checked;
                     
                     //{Tuanmh 20/02/2016
                     
-                    _gia2.Enabled = chkSua_Tien.Checked && _giaNt2.Value==0;
+                    _gia2.Enabled = chkSuaTien.Checked && _giaNt2.Value==0;
 
                     dateNgayLCT.Enabled = Invoice.M_NGAY_CT;
                 }
@@ -3097,14 +3097,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
         }
 
-        private void chkSua_Tien_CheckedChanged(object sender, EventArgs e)
+        private void chkSuaTien_CheckedChanged(object sender, EventArgs e)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                //_tienNt2. Enabled = chkSua_Tien.Checked;
+                //_tienNt2. Enabled = chkSuaTien.Checked;
                 
             }
-            if (chkSua_Tien.Checked)
+            if (chkSuaTien.Checked)
             {
                 _tienNt2.Tag = null;
             }
@@ -3569,7 +3569,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                XuLyThayDoiTyGia(txtTyGia, chkSua_Tien);
+                XuLyThayDoiTyGia(txtTyGia, chkSuaTien);
                 TinhTongThanhToan("TyGia_V6LostFocus " + ((Control)sender).AccessibleName);
             }
         }

@@ -118,8 +118,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
         protected int M_ROUND_NT = V6Setting.RoundTienNt;
         protected int M_ROUND_GIA = V6Setting.RoundGia;
         protected int M_ROUND_GIA_NT = V6Setting.RoundGiaNt;
-        protected string M_SOA_HT_KM_CK = V6Options.V6OptionValues["M_SOA_HT_KM_CK"];
-        protected string M_SOA_MULTI_VAT = V6Options.V6OptionValues["M_SOA_MULTI_VAT"];
+        protected string M_SOA_HT_KM_CK = V6Options.V6OptionValues != null ? V6Options.V6OptionValues["M_SOA_HT_KM_CK"] : "null";
+        protected string M_SOA_MULTI_VAT = V6Options.V6OptionValues != null ? V6Options.V6OptionValues["M_SOA_MULTI_VAT"] : "null";
 
         /// <summary>
         /// List thứ tự field chi tiết.
@@ -1031,14 +1031,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     row[fieldTien] = V6BusinessHelper.Vround(temp * ty_gia, round);
             }
         }
-        protected void XuLyThayDoiTyGia(V6NumberTextBox txtTyGia, CheckBox chkSua_Tien)
+        protected void XuLyThayDoiTyGia(V6NumberTextBox txtTyGia, CheckBox chkSuaTien)
         {
             try
             {
                 var ty_gia = txtTyGia.Value;
 
                 // Tuanmh 25/05/2017
-                if (ty_gia == 0 || chkSua_Tien.Checked) return;
+                if (ty_gia == 0 || chkSuaTien.Checked) return;
 
                 foreach (DataRow row in AD.Rows)
                 {

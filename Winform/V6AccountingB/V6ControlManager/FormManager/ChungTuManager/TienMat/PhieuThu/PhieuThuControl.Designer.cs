@@ -104,7 +104,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.TroGiupMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonTuExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xuLyKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chkSua_Tien = new V6Controls.V6CheckBox();
+            this.chkSuaTien = new V6Controls.V6CheckBox();
             this.cboKieuPost = new V6Controls.V6ComboBox();
             this.btnChonPX = new V6Controls.Controls.V6FormButton();
             this.lblTongSoDong = new V6Controls.V6Label();
@@ -1133,7 +1133,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.group4.Controls.Add(this.cboChuyenData);
             this.group4.Controls.Add(this.v6Label28);
             this.group4.Controls.Add(this.btnChucNang);
-            this.group4.Controls.Add(this.chkSua_Tien);
+            this.group4.Controls.Add(this.chkSuaTien);
             this.group4.Controls.Add(this.cboKieuPost);
             this.group4.Controls.Add(this.btnChonPX);
             this.group4.Controls.Add(this.lblTongSoDong);
@@ -1224,19 +1224,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.xuLyKhacToolStripMenuItem.Text = "Xử lý khác";
             this.xuLyKhacToolStripMenuItem.Click += new System.EventHandler(this.xuLyKhacToolStripMenuItem_Click);
             // 
-            // chkSua_Tien
+            // chkSuaTien
             // 
-            this.chkSua_Tien.AccessibleDescription = "ACACTTA1H00002";
-            this.chkSua_Tien.AccessibleName = "sua_tien";
-            this.chkSua_Tien.AutoSize = true;
-            this.chkSua_Tien.Location = new System.Drawing.Point(6, 43);
-            this.chkSua_Tien.Name = "chkSua_Tien";
-            this.chkSua_Tien.Size = new System.Drawing.Size(65, 17);
-            this.chkSua_Tien.TabIndex = 21;
-            this.chkSua_Tien.Tag = "";
-            this.chkSua_Tien.Text = "Sửa tiền";
-            this.chkSua_Tien.UseVisualStyleBackColor = true;
-            this.chkSua_Tien.CheckedChanged += new System.EventHandler(this.chkSua_Tien_CheckedChanged);
+            this.chkSuaTien.AccessibleDescription = "ACACTTA1H00002";
+            this.chkSuaTien.AccessibleName = "sua_tien";
+            this.chkSuaTien.AutoSize = true;
+            this.chkSuaTien.Location = new System.Drawing.Point(6, 43);
+            this.chkSuaTien.Name = "chkSuaTien";
+            this.chkSuaTien.Size = new System.Drawing.Size(65, 17);
+            this.chkSuaTien.TabIndex = 21;
+            this.chkSuaTien.Tag = "";
+            this.chkSuaTien.Text = "Sửa tiền";
+            this.chkSuaTien.UseVisualStyleBackColor = true;
+            this.chkSuaTien.CheckedChanged += new System.EventHandler(this.chkSuaTien_CheckedChanged);
             // 
             // cboKieuPost
             // 
@@ -2304,7 +2304,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         private V6VvarTextBox txtMadvcs;
         private V6ColorTextBox txtTenDVCS;
         private V6Label v6Label13;
-        private V6Controls.V6CheckBox chkSua_Tien;
+        private V6Controls.V6CheckBox chkSuaTien;
         private V6FormButton btnChonNhieuHD;
         private V6ColorTextBox Txtma_nk;
         private V6VvarTextBox Txtma_nvien;

@@ -143,7 +143,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.v6Label28 = new V6Controls.V6Label();
             this.TxtT_cp_nt = new V6Controls.V6NumberTextBox();
             this.TxtT_cp = new V6Controls.V6NumberTextBox();
-            this.chkSua_Tien = new V6Controls.V6CheckBox();
+            this.chkSuaTien = new V6Controls.V6CheckBox();
             this.txtTongSoLuong1 = new V6Controls.V6NumberTextBox();
             this.cboKieuPost = new V6Controls.V6ComboBox();
             this.txtTkThueNo = new V6Controls.V6VvarTextBox();
@@ -1916,7 +1916,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.group4.Controls.Add(this.v6Label28);
             this.group4.Controls.Add(this.TxtT_cp_nt);
             this.group4.Controls.Add(this.TxtT_cp);
-            this.group4.Controls.Add(this.chkSua_Tien);
+            this.group4.Controls.Add(this.chkSuaTien);
             this.group4.Controls.Add(this.txtTongSoLuong1);
             this.group4.Controls.Add(this.cboKieuPost);
             this.group4.Controls.Add(this.txtTkThueNo);
@@ -2028,19 +2028,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             0,
             196608});
             // 
-            // chkSua_Tien
+            // chkSuaTien
             // 
-            this.chkSua_Tien.AccessibleDescription = "APOCTPOAH00053";
-            this.chkSua_Tien.AccessibleName = "sua_tien";
-            this.chkSua_Tien.AutoSize = true;
-            this.chkSua_Tien.Location = new System.Drawing.Point(7, 48);
-            this.chkSua_Tien.Name = "chkSua_Tien";
-            this.chkSua_Tien.Size = new System.Drawing.Size(65, 17);
-            this.chkSua_Tien.TabIndex = 20;
-            this.chkSua_Tien.TabStop = false;
-            this.chkSua_Tien.Text = "Sửa tiền";
-            this.chkSua_Tien.UseVisualStyleBackColor = true;
-            this.chkSua_Tien.CheckedChanged += new System.EventHandler(this.chkSua_Tien_CheckedChanged);
+            this.chkSuaTien.AccessibleDescription = "APOCTPOAH00053";
+            this.chkSuaTien.AccessibleName = "sua_tien";
+            this.chkSuaTien.AutoSize = true;
+            this.chkSuaTien.Location = new System.Drawing.Point(7, 48);
+            this.chkSuaTien.Name = "chkSuaTien";
+            this.chkSuaTien.Size = new System.Drawing.Size(65, 17);
+            this.chkSuaTien.TabIndex = 20;
+            this.chkSuaTien.TabStop = false;
+            this.chkSuaTien.Text = "Sửa tiền";
+            this.chkSuaTien.UseVisualStyleBackColor = true;
+            this.chkSuaTien.CheckedChanged += new System.EventHandler(this.chkSuaTien_CheckedChanged);
             // 
             // txtTongSoLuong1
             // 
@@ -3672,7 +3672,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private V6NumberTextBox v6NumberTextBox1;
         private V6VvarTextBox v6VvarTextBox2;
         private V6VvarTextBox v6VvarTextBox1;
-        private V6Controls.V6CheckBox chkSua_Tien;
+        private V6Controls.V6CheckBox chkSuaTien;
         private V6Label v6Label14;
         private V6ColorTextBox txtSoCt0;
         private V6Label v6Label13;
