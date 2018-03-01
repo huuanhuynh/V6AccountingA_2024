@@ -409,6 +409,49 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
+        #region ===== EXTRA_INFOR =====
+        public SortedDictionary<string, string> EXTRA_INFOR
+        {
+            get
+            {
+                if (_extraInfor == null || _extraInfor.Count == 0)
+                {
+                    GetExtraInfor();
+                }
+                return _extraInfor;
+            }
+        }
+
+        private SortedDictionary<string, string> _extraInfor = null;
+
+        private void GetExtraInfor()
+        {
+            _extraInfor = new SortedDictionary<string, string>();
+            string s = _alct.Rows[0]["EXTRA_INFOR"].ToString().Trim();
+            if (s != "")
+            {
+                var sss = s.Split(';');
+                foreach (string ss in sss)
+                {
+                    var ss1 = ss.Split(':');
+                    if (ss1.Length > 1)
+                    {
+                        _extraInfor[ss1[0].ToUpper()] = ss1[1];
+                    }
+                }
+            }
+        }
+
+        public string PrintMode
+        {
+            get
+            {
+                if (EXTRA_INFOR.ContainsKey("PRINTMODE")) return EXTRA_INFOR["PRINTMODE"];
+                return "0";
+            }
+        }
+        #endregion EXTRA_INFOR
+
         /// <summary>
         /// Ghi log vào csdl.
         /// </summary>
@@ -452,6 +495,31 @@ namespace V6AccountingBusiness.Invoices
              string manx, DateTime ngayct, string mact, decimal tongthanhtoan, string mode, int user_id)
         {
             return Service.GetCheck_Edit_All(status, kieu_post, soct, masonb, sttrec, madvcs, makh, manx, ngayct, mact, tongthanhtoan,mode,user_id, out V6Message);
+        }
+
+        public DataTable GetCheck_Print_All(string status, string kieuPost, string soct, string sttrec,
+           DateTime ngayct, string mact, int user_id)//, out string v6Message)
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {     
+                    new SqlParameter("@status", status),
+                    new SqlParameter("@kieu_post", kieuPost),
+                    new SqlParameter("@So_ct", soct),
+                    new SqlParameter("@Ngay_ct",  ngayct.ToString("yyyyMMdd")),
+                    new SqlParameter("@Ma_ct", mact),
+                    new SqlParameter("@Stt_rec",sttrec),
+                    new SqlParameter("@User_id",user_id)
+                };
+                V6Message = "Success";
+                return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_CHECK_PRINT_ALL", plist).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                V6Message = ex.Message;
+                return null;
+            }
         }
 
         /// <summary>

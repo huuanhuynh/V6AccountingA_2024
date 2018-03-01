@@ -136,6 +136,7 @@
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.chkWriteLog = new V6Controls.V6CheckBox();
             this.lblXML = new System.Windows.Forms.Label();
             this.btnEditXml = new System.Windows.Forms.Button();
             this.txtDmethod = new V6Controls.V6ColorTextBox();
@@ -165,7 +166,8 @@
             this.v6ColorTextBox13 = new V6Controls.V6ColorTextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.v6ColorTextBox12 = new V6Controls.V6ColorTextBox();
-            this.chkWriteLog = new V6Controls.V6CheckBox();
+            this.label64 = new System.Windows.Forms.Label();
+            this.txtExtraInfo = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -830,9 +832,11 @@
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.cboKieuPost);
+            this.tabPage2.Controls.Add(this.label64);
             this.tabPage2.Controls.Add(this.v6VvarTextBox7);
             this.tabPage2.Controls.Add(this.label60);
             this.tabPage2.Controls.Add(this.txtform);
+            this.tabPage2.Controls.Add(this.txtExtraInfo);
             this.tabPage2.Controls.Add(this.label44);
             this.tabPage2.Controls.Add(this.v6VvarTextBox4);
             this.tabPage2.Controls.Add(this.v6VvarTextBox6);
@@ -1820,6 +1824,19 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Thông tin khác";
             // 
+            // chkWriteLog
+            // 
+            this.chkWriteLog.AccessibleName = "WRITE_LOG";
+            this.chkWriteLog.AutoSize = true;
+            this.chkWriteLog.Location = new System.Drawing.Point(151, 277);
+            this.chkWriteLog.Margin = new System.Windows.Forms.Padding(4);
+            this.chkWriteLog.Name = "chkWriteLog";
+            this.chkWriteLog.Size = new System.Drawing.Size(109, 21);
+            this.chkWriteLog.TabIndex = 53;
+            this.chkWriteLog.Text = "WRITE_LOG";
+            this.chkWriteLog.UseVisualStyleBackColor = true;
+            this.chkWriteLog.Visible = false;
+            // 
             // lblXML
             // 
             this.lblXML.AutoSize = true;
@@ -2259,18 +2276,33 @@
             this.v6ColorTextBox12.TabIndex = 1;
             this.v6ColorTextBox12.Visible = false;
             // 
-            // chkWriteLog
+            // label64
             // 
-            this.chkWriteLog.AccessibleName = "WRITE_LOG";
-            this.chkWriteLog.AutoSize = true;
-            this.chkWriteLog.Location = new System.Drawing.Point(151, 277);
-            this.chkWriteLog.Margin = new System.Windows.Forms.Padding(4);
-            this.chkWriteLog.Name = "chkWriteLog";
-            this.chkWriteLog.Size = new System.Drawing.Size(109, 21);
-            this.chkWriteLog.TabIndex = 53;
-            this.chkWriteLog.Text = "WRITE_LOG";
-            this.chkWriteLog.UseVisualStyleBackColor = true;
-            this.chkWriteLog.Visible = false;
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(23, 258);
+            this.label64.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(103, 17);
+            this.label64.TabIndex = 16;
+            this.label64.Text = "Thông tin thêm";
+            // 
+            // txtExtraInfo
+            // 
+            this.txtExtraInfo.AccessibleName = "EXTRA_INFOR";
+            this.txtExtraInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtExtraInfo.BackColor = System.Drawing.Color.White;
+            this.txtExtraInfo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtExtraInfo.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtExtraInfo.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtExtraInfo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtExtraInfo.HoverColor = System.Drawing.Color.Yellow;
+            this.txtExtraInfo.LeaveColor = System.Drawing.Color.White;
+            this.txtExtraInfo.Location = new System.Drawing.Point(196, 252);
+            this.txtExtraInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExtraInfo.Name = "txtExtraInfo";
+            this.txtExtraInfo.Size = new System.Drawing.Size(538, 23);
+            this.txtExtraInfo.TabIndex = 17;
             // 
             // AlctAddEditFrom
             // 
@@ -2438,5 +2470,7 @@
         private V6ColorTextBox v6ColorTextBox29;
         private System.Windows.Forms.Label label63;
         private V6CheckBox chkWriteLog;
+        private System.Windows.Forms.Label label64;
+        private V6ColorTextBox txtExtraInfo;
     }
 }

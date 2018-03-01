@@ -1473,6 +1473,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
+                bool check_print = CheckPrint(Invoice);
+                if (!check_print)
+                {
+                    return;
+                }
+
                 if (IsViewingAnInvoice)
                 {
                     if (V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
@@ -1507,6 +1513,65 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 this.ShowErrorMessage(GetType() + ".In: " + ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Kiểm tra được phép in hay không.
+        /// </summary>
+        /// <param name="Invoice"></param>
+        /// <returns></returns>
+        protected bool CheckPrint(V6InvoiceBase Invoice)
+        {
+            bool check_print = true;
+            try
+            {
+                var amRow = AM.Rows[CurrentIndex];
+                DataTable DataCheck_Edit_All = Invoice.GetCheck_Print_All(amRow["KIEU_POST"].ToString().Trim(),
+                    amRow["KIEU_POST"].ToString().Trim(),
+                    amRow["SO_CT"].ToString().Trim(), _sttRec, ObjectAndString.ObjectToFullDateTime(amRow["NGAY_CT"]),
+                    Invoice.Mact, V6Login.UserId);
+
+                if (DataCheck_Edit_All != null && DataCheck_Edit_All.Rows.Count > 0)
+                {
+                    var chksave_all = DataCheck_Edit_All.Rows[0]["chksave_all"].ToString();
+                    var chk_yn = DataCheck_Edit_All.Rows[0]["chk_yn"].ToString();
+                    var mess = DataCheck_Edit_All.Rows[0]["mess"].ToString().Trim();
+                    var mess2 = DataCheck_Edit_All.Rows[0]["mess2"].ToString().Trim();
+                    var message = V6Setting.IsVietnamese ? mess : mess2;
+
+                    switch (chksave_all)
+                    {
+                        case "00":
+                        case "04":
+                            // Save: OK --Loai_kh in ALKH
+                            // Save: OK --Thau
+                            break;
+                        case "01":
+                        case "02":
+                        case "03":
+
+                            if (message != "") this.ShowWarningMessage(message);
+                            if (chk_yn == "0")
+                            {
+                                check_print = false;
+                            }
+                            break;
+
+                        case "06":
+                        case "07":
+                        case "08":
+                            // Save but mess
+                            if (message != "") this.ShowWarningMessage(message);
+                            check_print = true;
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CheckPrint", ex);
+            }
+            return check_print;
         }
 
         protected void XemPhieuNhapView(DateTime ngayCT, string maCT, string maKho, string maVt)

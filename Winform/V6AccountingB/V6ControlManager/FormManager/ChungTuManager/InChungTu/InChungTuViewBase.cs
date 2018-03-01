@@ -1263,7 +1263,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         /// 
         /// </summary>
         /// <param name="printMode">In luôn hoặc không?</param>
-        /// <param name="printerName">Nếu forcePrint=true thì bắt buộc có printerName</param>
+        /// <param name="printerName">Nếu printMode=AutoPrint thì bắt buộc có printerName</param>
         /// <param name="soLien"></param>
         /// <param name="printCopy"></param>
         public void MakeReport(V6PrintMode printMode, string printerName,

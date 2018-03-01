@@ -3871,7 +3871,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         }
         private void btnIn_Click(object sender, EventArgs e)
         {
-            In();
+            V6PrintMode printMode = V6PrintMode.DoNoThing;
+            if (Invoice.PrintMode == "1") printMode = V6PrintMode.AutoPrint;
+            if (Invoice.PrintMode == "2") printMode = V6PrintMode.AutoClickPrint;
+            BasePrint(Invoice, _sttRec, printMode, TongThanhToan, TongThanhToanNT, false);
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
