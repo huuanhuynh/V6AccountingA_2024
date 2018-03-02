@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using V6Controls;
-using V6Init;
 using V6Tools;
 using V6Tools.V6Convert;
 
-namespace V6ControlManager.FormManager.ReportManager.Filter
+namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
 {
     public partial class AINVTBAR2F9 : FilterBase
     {

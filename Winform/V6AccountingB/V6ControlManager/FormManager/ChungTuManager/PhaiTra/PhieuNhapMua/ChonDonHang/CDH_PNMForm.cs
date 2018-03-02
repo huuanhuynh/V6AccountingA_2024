@@ -17,9 +17,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
 {
     public partial class CDH_PNMForm : V6Form
     {
-        private readonly PhieuNhapMuaControl _PhieuNhapMuaForm;
+        //private readonly PhieuNhapMuaControl _PhieuNhapMuaForm;
         private CDH_PNMKetQua _locKetQua;
         V6Invoice92 Invoice = new V6Invoice92();
+        private DateTime _ngayCt;
         private string _ma_dvcs, _ma_kh;
         //private bool __ready = false;
         private bool _viewMode;
@@ -43,10 +44,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
             InitializeComponent();
         }
 
-        public CDH_PNMForm(PhieuNhapMuaControl phieuNhapMuaForm, string ma_dvcs, string ma_kh)
+        public CDH_PNMForm(DateTime ngayCt, string ma_dvcs, string ma_kh)
         {
             InitializeComponent();
-            _PhieuNhapMuaForm = phieuNhapMuaForm;
+            _ngayCt = ngayCt;
+            //_PhieuNhapMuaForm = phieuNhapMuaForm;
             //_orderListAD = orderListAD;
             _ma_dvcs = ma_dvcs;
             _ma_kh = ma_kh;
@@ -421,7 +423,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
                 var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
                 var w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
 
-                tAM = Invoice.SearchDonHang(where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
+                tAM = Invoice.SearchDonHang(_ngayCt, where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
                 if (tAM != null && tAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;

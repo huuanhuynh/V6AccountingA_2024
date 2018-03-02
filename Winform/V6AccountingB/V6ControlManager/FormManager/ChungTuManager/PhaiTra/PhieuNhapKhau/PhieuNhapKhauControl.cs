@@ -5686,7 +5686,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     var message = "";
                     if (ma_kh != "" && ma_dvcs != "")
                     {
-                        CDH_PNKForm chon = new CDH_PNKForm(txtMadvcs.Text, txtMaKh.Text);
+                        CDH_PNKForm chon = new CDH_PNKForm(dateNgayCT.Value, txtMadvcs.Text, txtMaKh.Text);
                         chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                         chon.ShowDialog(this);
                     }

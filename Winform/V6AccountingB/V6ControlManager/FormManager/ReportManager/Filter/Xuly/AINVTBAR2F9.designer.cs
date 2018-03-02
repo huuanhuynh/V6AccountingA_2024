@@ -1,4 +1,4 @@
-﻿namespace V6ControlManager.FormManager.ReportManager.Filter
+﻿namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
 {
     partial class AINVTBAR2F9
     {

@@ -5120,7 +5120,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     var message = "";
                     if (ma_kh != "" && ma_dvcs != "")
                     {
-                        CDH_PNMForm chon = new CDH_PNMForm(this, txtMadvcs.Text, txtMaKh.Text);
+                        CDH_PNMForm chon = new CDH_PNMForm(dateNgayCT.Value, txtMadvcs.Text, txtMaKh.Text);
                         chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                         chon.ShowDialog(this);
                     }

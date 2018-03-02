@@ -1717,16 +1717,22 @@
     <Compile Include="FormManager\ReportManager\Filter\AGLGSSO4TF10.designer.cs">
       <DependentUpon>AGLGSSO4TF10.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\AINVTBAR3.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR5.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\AINVTBAR3.designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR5.designer.cs">
+      <DependentUpon>AINVTBAR5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR3.designer.cs">
       <DependentUpon>AINVTBAR3.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\AINVTBAR2F9.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR2F9.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\AINVTBAR2F9.designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR2F9.designer.cs">
       <DependentUpon>AINVTBAR2F9.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ASOTH6F5.cs">
@@ -4044,6 +4050,12 @@
     <Compile Include="FormManager\ReportManager\XuLy\AGLGSSO4T.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR5_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR5_Control.Designer.cs">
+      <DependentUpon>AINVTBAR5_Control.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AINVTBAR3_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5884,10 +5896,13 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLGSSO4TF10.resx">
       <DependentUpon>AGLGSSO4TF10.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\AINVTBAR3.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR5.resx">
+      <DependentUpon>AINVTBAR5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR3.resx">
       <DependentUpon>AINVTBAR3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\AINVTBAR2F9.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR2F9.resx">
       <DependentUpon>AINVTBAR2F9.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ASOTH6F5.resx">
@@ -7042,6 +7057,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVITRI05.resx">
       <DependentUpon>AINVITRI05.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVTBAR5_Control.resx">
+      <DependentUpon>AINVTBAR5_Control.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVTBAR3_Control.resx">
       <DependentUpon>AINVTBAR3_Control.cs</DependentUpon>
     </EmbeddedResource>
@@ -7688,6 +7706,7 @@
     <Content Include="Resources\Person16.png" />
     <Content Include="Resources\PersonGroup16.png" />
     <None Include="Resources\TeamViewer32.png" />
+    <None Include="Resources\pp32.png" />
     <Content Include="Resources\ToolBox16.png" />
     <Content Include="Resources\TreeBlack16.png" />
     <Content Include="Resources\TreeFolderYellowk16.png" />

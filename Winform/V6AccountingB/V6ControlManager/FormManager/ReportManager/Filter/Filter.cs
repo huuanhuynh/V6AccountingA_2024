@@ -941,6 +941,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new AINVTBAR2F9();
                 case "AINVTBAR3":
                     return new AINVTBAR3();
+                case "AINVTBAR5":
+                    return new AINVTBAR5();
 
                 case "ACOSXLT_TINHGIA":
                     return new ZACOSXLT_TINHGIA_Filter();

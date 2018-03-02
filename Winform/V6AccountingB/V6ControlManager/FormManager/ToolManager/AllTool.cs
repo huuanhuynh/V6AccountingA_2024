@@ -174,6 +174,27 @@ namespace V6ControlManager.FormManager.ToolManager
             }
         }
 
+        private void btnHDSDDT_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string file = "V6HELP\\HDSD_SHOW.ppsx";
+                file = Path.GetFullPath(file);
+                if (File.Exists(file))
+                {
+                    Process.Start(file);
+                }
+                else
+                {
+                    ShowMainMessage(V6Text.NotExist + " " + file);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
        
     }
 }

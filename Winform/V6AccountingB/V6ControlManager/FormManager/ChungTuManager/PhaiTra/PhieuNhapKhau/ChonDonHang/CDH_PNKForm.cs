@@ -18,6 +18,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Chon
     public partial class CDH_PNKForm : V6Form
     {
         V6Invoice92 Invoice = new V6Invoice92();
+        private DateTime _ngayCt;
         private CDH_PNKKetQua _locKetQua;
         private string _ma_dvcs, _ma_kh;
         //private bool __ready = false;
@@ -42,11 +43,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Chon
             InitializeComponent();
         }
 
-        public CDH_PNKForm(string ma_dvcs, string ma_kh)
+        public CDH_PNKForm(DateTime ngayCt, string ma_dvcs, string ma_kh)
         {
             InitializeComponent();
-            //_PhieuNhapMuaForm = phieuNhapMuaForm;
-            //_orderListAD = orderListAD;
+            _ngayCt = ngayCt;
             _ma_dvcs = ma_dvcs;
             _ma_kh = ma_kh;
             MyInit();
@@ -422,7 +422,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Chon
                 var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
                 var w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
 
-                tAM = Invoice.SearchPhieuXuat(where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
+                //tAM = Invoice.SearchPhieuXuat(where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
+                tAM = Invoice.SearchDonHang(_ngayCt, where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
+
                 if (tAM != null && tAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;

@@ -48,9 +48,10 @@
             this.grbOptions = new System.Windows.Forms.GroupBox();
             this.chkAutoFixInvoiceVvar = new System.Windows.Forms.CheckBox();
             this.chkMouseRightTriple = new System.Windows.Forms.CheckBox();
-            this.btnTeamViewer = new System.Windows.Forms.Button();
             this.grbTools = new System.Windows.Forms.GroupBox();
             this.grbFunctions = new System.Windows.Forms.GroupBox();
+            this.btnTeamViewer = new System.Windows.Forms.Button();
+            this.btnHDSDDT = new System.Windows.Forms.Button();
             this.grbOptions.SuspendLayout();
             this.grbTools.SuspendLayout();
             this.grbFunctions.SuspendLayout();
@@ -254,18 +255,6 @@
             this.chkMouseRightTriple.UseVisualStyleBackColor = true;
             this.chkMouseRightTriple.CheckedChanged += new System.EventHandler(this.chkMouseRightTriple_CheckedChanged);
             // 
-            // btnTeamViewer
-            // 
-            this.btnTeamViewer.Image = global::V6ControlManager.Properties.Resources.TeamViewer32;
-            this.btnTeamViewer.Location = new System.Drawing.Point(8, 19);
-            this.btnTeamViewer.Name = "btnTeamViewer";
-            this.btnTeamViewer.Size = new System.Drawing.Size(118, 52);
-            this.btnTeamViewer.TabIndex = 0;
-            this.btnTeamViewer.Text = "TeamViewer";
-            this.btnTeamViewer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnTeamViewer.UseVisualStyleBackColor = true;
-            this.btnTeamViewer.Click += new System.EventHandler(this.btnTeamViewer_Click);
-            // 
             // grbTools
             // 
             this.grbTools.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -300,6 +289,7 @@
             this.grbFunctions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.grbFunctions.Controls.Add(this.btnTeamViewer);
+            this.grbFunctions.Controls.Add(this.btnHDSDDT);
             this.grbFunctions.Controls.Add(this.btnAmLich);
             this.grbFunctions.Location = new System.Drawing.Point(3, 12);
             this.grbFunctions.Name = "grbFunctions";
@@ -307,6 +297,30 @@
             this.grbFunctions.TabIndex = 0;
             this.grbFunctions.TabStop = false;
             this.grbFunctions.Text = "Chức năng";
+            // 
+            // btnTeamViewer
+            // 
+            this.btnTeamViewer.Image = global::V6ControlManager.Properties.Resources.TeamViewer32;
+            this.btnTeamViewer.Location = new System.Drawing.Point(8, 19);
+            this.btnTeamViewer.Name = "btnTeamViewer";
+            this.btnTeamViewer.Size = new System.Drawing.Size(118, 52);
+            this.btnTeamViewer.TabIndex = 0;
+            this.btnTeamViewer.Text = "TeamViewer";
+            this.btnTeamViewer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTeamViewer.UseVisualStyleBackColor = true;
+            this.btnTeamViewer.Click += new System.EventHandler(this.btnTeamViewer_Click);
+            // 
+            // btnHDSDDT
+            // 
+            this.btnHDSDDT.Image = global::V6ControlManager.Properties.Resources.pp32;
+            this.btnHDSDDT.Location = new System.Drawing.Point(8, 106);
+            this.btnHDSDDT.Name = "btnHDSDDT";
+            this.btnHDSDDT.Size = new System.Drawing.Size(118, 52);
+            this.btnHDSDDT.TabIndex = 1;
+            this.btnHDSDDT.Text = "HDSD_Đào tạo";
+            this.btnHDSDDT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHDSDDT.UseVisualStyleBackColor = true;
+            this.btnHDSDDT.Click += new System.EventHandler(this.btnHDSDDT_Click);
             // 
             // AllTool
             // 
@@ -350,5 +364,6 @@
         private System.Windows.Forms.CheckBox chkAutoFixInvoiceVvar;
         private System.Windows.Forms.GroupBox grbTools;
         private System.Windows.Forms.GroupBox grbFunctions;
+        private System.Windows.Forms.Button btnHDSDDT;
     }
 }

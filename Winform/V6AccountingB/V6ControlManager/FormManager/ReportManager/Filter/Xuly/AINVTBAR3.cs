@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Windows.Forms;
 using V6ControlManager.FormManager.ReportManager.XuLy;
 using V6Controls;
 using V6Init;
 using V6Tools.V6Convert;
 
-namespace V6ControlManager.FormManager.ReportManager.Filter
+namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
 {
     public partial class AINVTBAR3 : FilterBase
     {

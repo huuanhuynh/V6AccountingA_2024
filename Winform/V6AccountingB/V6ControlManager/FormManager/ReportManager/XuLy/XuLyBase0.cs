@@ -23,6 +23,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected DataSet _ds;
         protected DataTable _tbl, _tbl2;
+        protected DataTable _tblGridView2;
         //private V6TableStruct _tStruct;
         /// <summary>
         /// Dùng cho procedure chính (program?)
@@ -294,6 +295,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 XuLyF9();
             }
+            else if (keyData == Keys.F10 && FilterControl.F10)
+            {
+                XuLyF10();
+            }
             else
             {
                 return base.DoHotKey0(keyData);
@@ -320,6 +325,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
         protected virtual void XuLyF9()
+        {
+            throw new NotImplementedException();
+        }
+        
+        protected virtual void XuLyF10()
         {
             throw new NotImplementedException();
         }
