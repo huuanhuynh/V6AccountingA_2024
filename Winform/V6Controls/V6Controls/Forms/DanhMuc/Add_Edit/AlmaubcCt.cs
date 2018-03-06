@@ -80,6 +80,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     groupBoxC.Visible = true;
                     groupBoxC.Left = groupBox1.Left;
                     break;
+                case "GLTCX":
+                    groupBoxB.Visible = true;
+                    groupBoxC.Visible = true;
+                    break;
             }
         }
     }

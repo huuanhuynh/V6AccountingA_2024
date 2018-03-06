@@ -92,7 +92,7 @@
             this.groupBox2.Controls.Add(this.chkStatus);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Location = new System.Drawing.Point(5, 141);
+            this.groupBox2.Location = new System.Drawing.Point(5, 140);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -365,11 +365,11 @@
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.txtcach_tinh);
             this.groupBox3.Controls.Add(this.txtkind);
-            this.groupBox3.Location = new System.Drawing.Point(5, 320);
+            this.groupBox3.Location = new System.Drawing.Point(5, 392);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.groupBox3.Size = new System.Drawing.Size(788, 179);
+            this.groupBox3.Size = new System.Drawing.Size(788, 165);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             // 
@@ -580,7 +580,7 @@
             this.groupBoxB.Controls.Add(this.label14);
             this.groupBoxB.Controls.Add(this.txtTK);
             this.groupBoxB.Controls.Add(this.lblTaiKhoan);
-            this.groupBoxB.Location = new System.Drawing.Point(5, 236);
+            this.groupBoxB.Location = new System.Drawing.Point(5, 224);
             this.groupBoxB.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBoxB.Name = "groupBoxB";
             this.groupBoxB.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -761,7 +761,7 @@
             this.groupBoxC.Controls.Add(this.v6VvarTextBox6);
             this.groupBoxC.Controls.Add(this.label26);
             this.groupBoxC.Controls.Add(this.label27);
-            this.groupBoxC.Location = new System.Drawing.Point(21, 227);
+            this.groupBoxC.Location = new System.Drawing.Point(5, 308);
             this.groupBoxC.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBoxC.Name = "groupBoxC";
             this.groupBoxC.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
@@ -838,7 +838,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AlmaubcCt";
-            this.Size = new System.Drawing.Size(799, 509);
+            this.Size = new System.Drawing.Size(799, 570);
             this.Load += new System.EventHandler(this.AlmaubcCt_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

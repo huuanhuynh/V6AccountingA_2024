@@ -1328,6 +1328,16 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 //GGCTT_TT,GGCTT_PC,GGTHT_TT
                 //KCCTL_LC
 
+                string where0TextTrim = txtWhere0.Text.Trim();
+                while (where0TextTrim.Contains(", "))
+                {
+                    where0TextTrim = where0TextTrim.Replace(", ", ",");
+                }
+                while (where0TextTrim.Contains(" ,"))
+                {
+                    where0TextTrim = where0TextTrim.Replace(" ,", ",");
+                }
+
                 switch (xType)
                 {
                     case "KMCTL_LC"://Chi tiet luong
@@ -1338,7 +1348,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         txtSelect0.Text = "SUM(So_luong)";
                         txtSelect1.Text = "SUM(So_luong) AS SO_LUONG";
                         txtFrom1.Text = "AD";
-                        list_in = "," + txtWhere0.Text.Trim() + ",";
+                        list_in = "," + where0TextTrim + ",";
                         list_in = list_in.Replace(",", "','");
                         list_in = list_in.Substring(2, list_in.Length - 4);
                         if (txtOper0.Text.Trim().ToUpper() == "AND")
@@ -1365,7 +1375,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                          txtSelect0.Text = "SUM(TIEN2)";
                          txtSelect1.Text = "SUM(TIEN2) AS TIEN2";
                         txtFrom1.Text = "AD";
-                        list_in = "," + txtWhere0.Text.Trim() + ",";
+                        list_in = "," + where0TextTrim + ",";
                         list_in = list_in.Replace(",", "','");
                         list_in = list_in.Substring(2, list_in.Length - 4);
                         if (txtOper0.Text.Trim().ToUpper() == "AND")
@@ -1392,7 +1402,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         txtSelect0.Text = "SUM(T_So_luong)";
                         txtSelect1.Text = "SUM(T_So_luong) AS SO_LUONG";
                         txtFrom1.Text = "AM";
-                        list_in = "," + txtWhere0.Text.Trim() + ",";
+                        list_in = "," + where0TextTrim + ",";
                         list_in = list_in.Replace(",", "','");
                         list_in = list_in.Substring(2, list_in.Length - 4);
                         if (txtOper0.Text.Trim().ToUpper() == "AND")
@@ -1418,7 +1428,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                          txtSelect0.Text = "SUM(T_TIEN2)";
                          txtSelect1.Text = "SUM(T_TIEN2) AS TIEN2";
                         txtFrom1.Text = "AM";
-                        list_in = "," + txtWhere0.Text.Trim() + ",";
+                        list_in = "," + where0TextTrim + ",";
                         list_in = list_in.Replace(",", "','");
                         list_in = list_in.Substring(2, list_in.Length - 4);
                         if (txtOper0.Text.Trim().ToUpper() == "AND")

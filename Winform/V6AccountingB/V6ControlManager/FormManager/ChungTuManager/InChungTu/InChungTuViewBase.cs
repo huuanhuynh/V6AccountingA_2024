@@ -209,6 +209,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 return result;
             }
         }
+        
+        private int ROW_MAX
+        {
+            get
+            {
+                var row = SelectedRow;
+                int result = 0;
+                if (row != null && row.Table.Columns.Contains("ROW_MAX"))
+                {
+                    result = ObjectAndString.ObjectToInt(row["ROW_MAX"]);
+                }
+                if (result <= 0) result = 0;
+                return result;
+            }
+        }
 
         private int Invoice_SoLien
         {
@@ -884,11 +899,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     var len = r[field].ToString().Trim().Length;
                     if (len > 1) len--;
                     
-                    var dropCount = len / lengOfName;
-                    if (dropCount > 0)
+                    var dropExtra = len / lengOfName;
+                    if (dropExtra > 0)
                     {
                         dropHeight += dropLineHeight1;
-                        if (dropCount > 1) dropHeight += dropLineHeightBase*(dropCount-1);
+                        if (dropExtra > 1) dropHeight += dropLineHeightBase*(dropExtra-1);
                         //if (dropCount > 2) dropHeight += dropLineHeightBase;
                         //if (dropCount > 3) dropHeight += dropLineHeightBase;
                         //if (dropCount > 4) dropHeight += dropLineHeightBase;
@@ -903,7 +918,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
             //var dropHeight = dropLineHeight * dropCount;
             //số 2 ở đây là vì mỗi dòng có 2 cross line
-            return t.Rows.Count * 2 + dropHeight / (twLineHeight / 2);
+            var dropCount = dropHeight/(twLineHeight/2);
+            if (dropCount == 0 && dropHeight > 0) dropCount = 1;
+            return t.Rows.Count * 2 + dropCount;
         }
         
         private void GenerateProcedureParameters()
@@ -968,21 +985,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
                 var Khung = rpt.ReportDefinition.ReportObjects["Khung"];
                 var DuongNgang = rpt.ReportDefinition.ReportObjects["DuongNgang"];
-                var DuongCheo = rpt.ReportDefinition.ReportObjects["DuongCheo"];
+                
                 flag = 1;
                 //var Section1 = rpt.ReportDefinition.Sections["ReportHeaderSection1"];
                 //var Section2 = rpt.ReportDefinition.Sections["Section3"];
                 //var h1 = Section1.Height;
                 //var h2 = Section2.Height;
-
                 
-
-                int boxTop = Khung.Top;// 6500;
-                int boxHeight = Khung.Height;// 3840;
+                //Biến chung
+                int boxTop = Khung.Top; // 6500;
+                int boxHeight = Khung.Height; // 3840;
+                int boxLeft = Khung.Left;
+                int boxWidth = Khung.Width;
                 int lineHeight = DuongNgang.Height;
-                
-                int halfLineHeight = lineHeight/2;// boxHeight/20;//192, 20 is maxLine
-
+                int halfLineHeight = lineHeight/2; // boxHeight/20;//192, 20 is maxLine
                 int dropMax = 40;
                 try
                 {
@@ -1005,33 +1021,80 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {
                     flag = 2;
                 }
-                
-                
+
                 if (!_tbl.Columns.Contains(checkField))
                 {
                     checkField = _tbl.Columns.Contains("DIEN_GIAII") ? "DIEN_GIAII" : _tbl.Columns[0].ColumnName;
                 }
                 flag = 3;
+
                 int crossLineNum = CalculateCrossLine(_tbl, checkField, dropMax, lineHeight)
-                    + (int)numCrossAdd.Value;
-                var top = boxTop + (halfLineHeight * crossLineNum);//3840/20=192
+                                       + (int)numCrossAdd.Value;
+                if (ROW_MAX > 0 && crossLineNum > ROW_MAX * 2)
+                {
+                    print_overflow = true;
+                }
+                else
+                {
+                    print_overflow = false;
+                }
+                var top = boxTop + (halfLineHeight * crossLineNum); //3840/20=192
                 var height = boxHeight - (top - boxTop);
                 flag = 5;
-                //if (height <= 0) height = 10;
-                if (height < 150) // Hide lowCrossline.
+
+                string duongNgangText = ((TextObject) DuongNgang).Text + "";
+                duongNgangText = duongNgangText.Trim();
+                if (duongNgangText == "")
                 {
-                    height = 10;
-                    DuongNgang.Width = DuongNgang.Width + DuongCheo.Width;
-                    DuongCheo.Width = 10;
+                    //Kiểu cũ DuongCheo = WordObject
+                    var DuongCheo = rpt.ReportDefinition.ReportObjects["DuongCheo"];
+                    if (height < 150) // Hide lowCrossline.
+                    {
+                        height = 10;
+                        DuongNgang.Width = Khung.Width;// DuongNgang.Width + DuongCheo.Width;
+                        DuongCheo.Width = 10;
+                    }
+
+                    DuongNgang.Height = 10;
+                    DuongNgang.Top = top + 30;
+
+                    DuongCheo.Height = height;
+                    DuongCheo.Top = top;
+
+                    flag = 9;
+                }
+                else
+                {
+                    
+                    if (height < 150) // Hide lowCrossline.
+                    {
+                        height = 10;
+                        //DuongNgang.Width = DuongNgang.Width + DuongCheo.Width;
+                        //DuongCheo.Width = 10;
+                    }
+
+                    DuongNgang.Height = 10;
+                    DuongNgang.Top = top;
+
+                    //Tính toán vị trí 500 anh em đường chéo DC1000 đến DC1499
+                    int numofdc = 500;
+                    int dc_left_base = DuongNgang.Width < 1000 ? boxLeft : DuongNgang.Left + DuongNgang.Width;
+                    int dc_with = boxLeft + boxWidth - dc_left_base;
+                    for (int i = 000; i < numofdc; i++)
+                    {
+                        string dc_name = "Text" + (1000 + i);
+                        var dc1xxx = rpt.ReportDefinition.ReportObjects[dc_name];
+                        int dc_left = 0, dc_top = 0;
+                        dc_left = dc_left_base + i * dc_with / numofdc;
+                        dc_top = top + i * height / numofdc;
+                        dc1xxx.Left = dc_left;
+                        dc1xxx.Top = dc_top;
+                    }
+
+                    flag = 9;
                 }
 
-                DuongNgang.Height = 10;
-                DuongNgang.Top = top + 30;
                 
-                DuongCheo.Height = height;
-                DuongCheo.Top = top;
-                
-                flag = 9;
             }
             catch(Exception ex)
             {
@@ -1063,7 +1126,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             ReportDocumentParameters.Add("ViewInfo", MauTuIn==1);
             ReportDocumentParameters.Add(
                 "Info",
-                "In bởi  Phần mềm V6 Accounting2016.NET - Cty phần mềm V6 (www.v6corp.com) - MST: 0303180249 - ĐT: 08.62570563"
+                "In bởi  Phần mềm V6 Accounting2016.NET - Cty phần mềm V6 (www.v6corp.com) - MST: 0303180249 - ĐT: 028.62570563"
             );
             ReportDocumentParameters.Add("ViewCrossLine", true);
 
@@ -1884,11 +1947,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         }
         
         private string _oldDefaultPrinter;
-
+        private bool print_overflow = false;
         private void btnIn_Click(object sender, EventArgs e)
         {
             try
             {
+                if (print_overflow)
+                {
+                    this.ShowWarningMessage(V6Text.OverFlow);
+                    return;
+                }
+
                 _soLienIn = (int) numSoLien.Value;
                 //if (!IsInvoice)
                 //{

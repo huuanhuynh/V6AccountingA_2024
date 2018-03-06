@@ -135,6 +135,7 @@
     <Compile Include="V6Reader\DbfFile.cs" />
     <Compile Include="V6Reader\ExcelFile.cs" />
     <Compile Include="V6Reader\TextFile.cs" />
+    <Compile Include="V6Writer.cs" />
     <Compile Include="XmlConfig.cs" />
   </ItemGroup>
   <ItemGroup>

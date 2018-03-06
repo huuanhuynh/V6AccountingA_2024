@@ -83,6 +83,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnNhapXML = new System.Windows.Forms.Button();
+            this.btnXuatXML = new System.Windows.Forms.Button();
             this.btnEditXml = new System.Windows.Forms.Button();
             this.txtDmethod = new V6Controls.V6ColorTextBox();
             this.lblXml = new System.Windows.Forms.Label();
@@ -91,6 +93,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtSoLien = new V6Controls.V6NumberTextBox();
             this.label32 = new System.Windows.Forms.Label();
+            this.numRowMax = new V6Controls.V6NumberTextBox();
+            this.lblRowMax = new System.Windows.Forms.Label();
             this.numDropMax = new V6Controls.V6NumberTextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.v6NumberTextBox1 = new V6Controls.V6NumberTextBox();
@@ -120,8 +124,6 @@
             this.btnExcelTemplateView = new System.Windows.Forms.Button();
             this.txtExcel2View = new System.Windows.Forms.RichTextBox();
             this.btnExcel2View = new System.Windows.Forms.Button();
-            this.btnNhapXML = new System.Windows.Forms.Button();
-            this.btnXuatXML = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -836,6 +838,34 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Định dạng xem và Excel";
             // 
+            // btnNhapXML
+            // 
+            this.btnNhapXML.AccessibleName = "";
+            this.btnNhapXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNhapXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNhapXML.Location = new System.Drawing.Point(305, 258);
+            this.btnNhapXML.Name = "btnNhapXML";
+            this.btnNhapXML.Size = new System.Drawing.Size(202, 29);
+            this.btnNhapXML.TabIndex = 26;
+            this.btnNhapXML.Text = "Nhập XML";
+            this.btnNhapXML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNhapXML.UseVisualStyleBackColor = true;
+            this.btnNhapXML.Click += new System.EventHandler(this.btnNhapXML_Click);
+            // 
+            // btnXuatXML
+            // 
+            this.btnXuatXML.AccessibleName = "";
+            this.btnXuatXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXuatXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXuatXML.Location = new System.Drawing.Point(97, 258);
+            this.btnXuatXML.Name = "btnXuatXML";
+            this.btnXuatXML.Size = new System.Drawing.Size(202, 29);
+            this.btnXuatXML.TabIndex = 27;
+            this.btnXuatXML.Text = "Xuất XML format";
+            this.btnXuatXML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXuatXML.UseVisualStyleBackColor = true;
+            this.btnXuatXML.Click += new System.EventHandler(this.btnXuatXML_Click);
+            // 
             // btnEditXml
             // 
             this.btnEditXml.AccessibleName = "";
@@ -917,6 +947,8 @@
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.txtSoLien);
             this.tabPage2.Controls.Add(this.label32);
+            this.tabPage2.Controls.Add(this.numRowMax);
+            this.tabPage2.Controls.Add(this.lblRowMax);
             this.tabPage2.Controls.Add(this.numDropMax);
             this.tabPage2.Controls.Add(this.label30);
             this.tabPage2.Controls.Add(this.v6NumberTextBox1);
@@ -961,11 +993,11 @@
             this.txtSoLien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSoLien.HoverColor = System.Drawing.Color.Yellow;
             this.txtSoLien.LeaveColor = System.Drawing.Color.White;
-            this.txtSoLien.Location = new System.Drawing.Point(97, 308);
+            this.txtSoLien.Location = new System.Drawing.Point(97, 334);
             this.txtSoLien.MaxLength = 1;
             this.txtSoLien.Name = "txtSoLien";
             this.txtSoLien.Size = new System.Drawing.Size(41, 20);
-            this.txtSoLien.TabIndex = 26;
+            this.txtSoLien.TabIndex = 28;
             this.txtSoLien.Text = "0";
             this.txtSoLien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTipV6FormControl.SetToolTip(this.txtSoLien, "Số liên mặc định khi chọn mẫu, có thể chọn lại khi in.");
@@ -978,11 +1010,44 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(7, 311);
+            this.label32.Location = new System.Drawing.Point(7, 337);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(52, 13);
-            this.label32.TabIndex = 25;
+            this.label32.TabIndex = 27;
             this.label32.Text = "SO_LIEN";
+            // 
+            // numRowMax
+            // 
+            this.numRowMax.AccessibleName = "ROW_MAX";
+            this.numRowMax.BackColor = System.Drawing.SystemColors.Window;
+            this.numRowMax.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.numRowMax.DecimalPlaces = 0;
+            this.numRowMax.EnterColor = System.Drawing.Color.PaleGreen;
+            this.numRowMax.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.numRowMax.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.numRowMax.HoverColor = System.Drawing.Color.Yellow;
+            this.numRowMax.LeaveColor = System.Drawing.Color.White;
+            this.numRowMax.Location = new System.Drawing.Point(97, 308);
+            this.numRowMax.MaxLength = 1;
+            this.numRowMax.Name = "numRowMax";
+            this.numRowMax.Size = new System.Drawing.Size(41, 20);
+            this.numRowMax.TabIndex = 26;
+            this.numRowMax.Text = "0";
+            this.numRowMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numRowMax.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // lblRowMax
+            // 
+            this.lblRowMax.AutoSize = true;
+            this.lblRowMax.Location = new System.Drawing.Point(7, 311);
+            this.lblRowMax.Name = "lblRowMax";
+            this.lblRowMax.Size = new System.Drawing.Size(63, 13);
+            this.lblRowMax.TabIndex = 25;
+            this.lblRowMax.Text = "ROW_MAX";
             // 
             // numDropMax
             // 
@@ -1355,34 +1420,6 @@
             this.btnExcel2View.UseVisualStyleBackColor = true;
             this.btnExcel2View.Click += new System.EventHandler(this.btnExcel2View_Click);
             // 
-            // btnNhapXML
-            // 
-            this.btnNhapXML.AccessibleName = "";
-            this.btnNhapXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNhapXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNhapXML.Location = new System.Drawing.Point(305, 258);
-            this.btnNhapXML.Name = "btnNhapXML";
-            this.btnNhapXML.Size = new System.Drawing.Size(202, 29);
-            this.btnNhapXML.TabIndex = 26;
-            this.btnNhapXML.Text = "Nhập XML";
-            this.btnNhapXML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnNhapXML.UseVisualStyleBackColor = true;
-            this.btnNhapXML.Click += new System.EventHandler(this.btnNhapXML_Click);
-            // 
-            // btnXuatXML
-            // 
-            this.btnXuatXML.AccessibleName = "";
-            this.btnXuatXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnXuatXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnXuatXML.Location = new System.Drawing.Point(97, 258);
-            this.btnXuatXML.Name = "btnXuatXML";
-            this.btnXuatXML.Size = new System.Drawing.Size(202, 29);
-            this.btnXuatXML.TabIndex = 27;
-            this.btnXuatXML.Text = "Xuất XML format";
-            this.btnXuatXML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXuatXML.UseVisualStyleBackColor = true;
-            this.btnXuatXML.Click += new System.EventHandler(this.btnXuatXML_Click);
-            // 
             // AlbcAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1528,5 +1565,7 @@
         private System.Windows.Forms.Label label33;
         protected System.Windows.Forms.Button btnNhapXML;
         protected System.Windows.Forms.Button btnXuatXML;
+        private V6NumberTextBox numRowMax;
+        private System.Windows.Forms.Label lblRowMax;
     }
 }

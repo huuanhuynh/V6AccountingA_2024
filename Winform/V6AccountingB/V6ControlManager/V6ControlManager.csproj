@@ -1717,6 +1717,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AGLGSSO4TF10.designer.cs">
       <DependentUpon>AGLGSSO4TF10.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AGLTMXLS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AGLTMXLS.designer.cs">
+      <DependentUpon>AGLTMXLS.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR5.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5895,6 +5901,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLGSSO4TF10.resx">
       <DependentUpon>AGLGSSO4TF10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLTMXLS.resx">
+      <DependentUpon>AGLTMXLS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR5.resx">
       <DependentUpon>AINVTBAR5.cs</DependentUpon>

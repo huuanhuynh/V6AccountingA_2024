@@ -262,9 +262,14 @@ namespace V6Tools.V6Export
             }
         }
 
+        /// <summary>
+        /// hàm rỗng
+        /// </summary>
+        /// <param name="workbook"></param>
+        /// <param name="value"></param>
         private static void SetEntry(WorkBook workbook, object value)
         {
-            
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -351,7 +356,12 @@ namespace V6Tools.V6Export
             }
         }
 
-        private static void SetParameters(WorkBook workbook, SortedDictionary<string, object> parameters)
+        /// <summary>
+        /// Gán dữ liệu vào Excel theo địa chỉ dạng Idic( key{A1:format} value{object} )
+        /// </summary>
+        /// <param name="workbook"></param>
+        /// <param name="parameters"></param>
+        private static void SetParametersAddressFormat(WorkBook workbook, IDictionary<string, object> parameters)
         {
             #region ===== Parameter {A1:dd/mm/yyyy,29-01-1987} =====
 
@@ -400,6 +410,92 @@ namespace V6Tools.V6Export
                 }
             }
             #endregion parameters
+        }
+        
+        private static void SetParametersSheetAddress(WorkBook workbook, IDictionary<string, object> parameters)
+        {
+            #region ===== Parameter {A1:dd/mm/yyyy,29-01-1987} =====
+
+            var system_date_format = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
+            //Write parameter with key is address[:format]
+            foreach (KeyValuePair<string, object> item in parameters)
+            {
+                workbook.Sheet = 0;
+                var KEY = item.Key;
+                string A1 = KEY, sheet = null, format = null;
+                if (string.IsNullOrEmpty(A1)) continue;
+
+                if (KEY.Contains(":"))
+                {
+                    var ss = KEY.Split(':');
+                    A1 = ss[1];
+                    sheet = ss[0];
+                    workbook.Sheet = ObjectAndString.ObjectToInt(sheet);
+                    if (ss.Length > 2)
+                    {
+                        format = ss[2];
+                    }
+                    else
+                    {
+                        format = null;
+                    }
+                }
+                var c_column_index = GetExcelColumn(A1);
+                var c_row_index = GetExcelRow(A1);
+                var rs = workbook.getRangeStyle(c_row_index, c_column_index, c_row_index, c_column_index);
+
+                if (ObjectAndString.IsNumberType(item.Value.GetType()))
+                {
+                    workbook.setNumber(A1, ObjectAndString.ToObject<Double>(item.Value));
+                    if (!string.IsNullOrEmpty(format))
+                    {
+                        rs.CustomFormat = format;
+                        workbook.setRangeStyle(rs, c_row_index, c_column_index, c_row_index, c_column_index);
+                    }
+                }
+                else if (item.Value is DateTime)
+                {
+                    rs.CustomFormat = system_date_format;
+                    workbook.setRangeStyle(rs, c_row_index, c_column_index, c_row_index, c_column_index);
+                    var date_string = ObjectAndString.ObjectToString(item.Value, system_date_format);
+                    workbook.setEntry(c_row_index, c_column_index, date_string);
+                    rs.CustomFormat = "DD/mm/yyyy";
+                    workbook.setRangeStyle(rs, c_row_index, c_column_index, c_row_index, c_column_index);
+                }
+                else if (string.IsNullOrEmpty(format))
+                {
+                    workbook.setEntry(c_row_index, c_column_index, ObjectAndString.ObjectToString(item.Value, system_date_format));
+                    workbook.setRangeStyle(rs, c_row_index, c_column_index, c_row_index, c_column_index);
+                }
+                else
+                {
+                    workbook.setEntry(c_row_index, c_column_index, ObjectAndString.ObjectToString(item.Value));
+                }
+            }
+            #endregion parameters
+        }
+
+        /// <summary>
+        /// Gán dữ liệu vào Excel workbook nếu ô có text = KEY
+        /// </summary>
+        /// <param name="workbook"></param>
+        /// <param name="parameters"></param>
+        private static void SetParametersByName(WorkBook workbook, IDictionary<string, object> parameters)
+        {
+            int lastRow = workbook.LastRow;
+            int lastCol = workbook.LastCol;
+            for (int r = 0; r <= lastRow; r++)
+            {
+                for (int c = 0; c <= lastCol; c++)
+                {
+                    string tName = workbook.getText(r, c).ToUpper().Trim();
+                    if (parameters.ContainsKey(tName))
+                    {
+                        //SetEntryFormat(workbook, ObjectAndString.ObjectToString(parameters[tName]), exc);
+                        workbook.setEntry(r, c, ObjectAndString.ObjectToString(parameters[tName]));
+                    }
+                }
+            }
         }
 
         static WorkBook ReadWorkBookCopy(string xlsTemplateFile, string saveFile)
@@ -512,7 +608,7 @@ namespace V6Tools.V6Export
                     startCol = GetExcelColumn(firstCell);
                 }
 
-                SetParameters(workbook, parameters);
+                SetParametersAddressFormat(workbook, parameters);
 
                 //var endRow = startRow + data.Rows.Count - (data.Rows.Count > 0 ? 1 : 0);
                 //int endCol;// startCol + data.Columns.Count - 1;
@@ -581,7 +677,7 @@ namespace V6Tools.V6Export
                     startCol = GetExcelColumn(firstCell);
                 }
 
-                SetParameters(workbook, parameters);
+                SetParametersAddressFormat(workbook, parameters);
 
                 //var endRow = startRow + data.Rows.Count - (data.Rows.Count > 0 ? 1 : 0);
                 //int endCol;// startCol + data.Columns.Count - 1;
@@ -625,7 +721,7 @@ namespace V6Tools.V6Export
                 if(File.Exists(xlsTemplateFile))
                     workBook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
 
-                SetParameters(workBook, parameters);
+                SetParametersAddressFormat(workBook, parameters);
 
                 //select sheet
                 int sheetIndex = 0;
@@ -830,6 +926,48 @@ namespace V6Tools.V6Export
                 fs.Close();
                 throw new ExportException("DataTableToXmlFile " + ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Ghi dữ liệu vào Excel và lưu thành file mới.
+        /// </summary>
+        /// <param name="xlsTemplateFile">File Excel mẫu.</param>
+        /// <param name="saveAsFile">File Excel sẽ lưu mới.</param>
+        /// <param name="mappingData">Dữ liệu theo tên.</param>
+        /// <param name="addressData">Dữ liệu theo địa chỉ. (Mới chỉ áp dụng Sheet 0)</param>
+        /// <returns></returns>
+        public static bool MappingDataToExcelFile(string xlsTemplateFile, string saveAsFile,
+            IDictionary<string, object> mappingData, IDictionary<string, object> addressData)
+        {
+            var workbook = new WorkBook();
+            workbook.setDefaultFont("Arial", 10 * 20, 1);
+            try
+            {
+                if (File.Exists(xlsTemplateFile))
+                    workbook = ReadWorkBookCopy(xlsTemplateFile, saveAsFile);
+
+                if (mappingData != null)
+                {
+                    for (int i = 0; i < workbook.NumSheets; i++)
+                    {
+                        workbook.Sheet = i;
+                        SetParametersByName(workbook, mappingData);
+                    }
+                }
+
+                if (addressData != null)
+                {
+                    workbook.Sheet = 0;
+                    SetParametersSheetAddress(workbook, addressData);
+                }
+
+                workbook.write(saveAsFile);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
         }
 
         #region ==== NPOI ====

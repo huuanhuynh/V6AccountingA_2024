@@ -195,6 +195,7 @@
         public static string EditFail { get { return V6Setting.Language == "V" ? "Sửa bị lỗi!" : "Edit fail!"; } }
         public static string Executing { get { return V6Setting.Language == "V" ? "Đang xử lý." : "Executing."; } }
         public static string Invoice { get { return V6Setting.Language == "V" ? "Chứng từ" : "Invoice"; } }
+        public static string OverFlow { get { return V6Setting.Language == "V" ? "Tràn dữ liệu!" : "OverFlow!"; } }
         public static string ReloadConfirm { get { return V6Setting.Language == "V" ? "Có chắc bạn muốn tải lại?" : "Are you sure you want to reload?"; } }
         
         public static string SelectAccount { get { return V6Setting.Language == "V" ?  "Chưa chọn tài khoản!" : "Select account please!"; } }

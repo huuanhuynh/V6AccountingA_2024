@@ -726,6 +726,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return new AGLTCB();
                 case "AGLTCC":
                     return new AGLTCC();
+                case "AGLTMXLS":
+                    return new AGLTMXLS();
                 case "AGLTCD":
                     return new AGLTCD();
                 case "AGLTCA":
