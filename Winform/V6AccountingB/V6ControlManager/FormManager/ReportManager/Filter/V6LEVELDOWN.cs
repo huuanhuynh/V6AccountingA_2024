@@ -65,6 +65,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public override List<SqlParameter> GetFilterParameters()
         {
             var result = new List<SqlParameter>();
+            String1 = TxtMa_ct.Text;
             result.Add(new SqlParameter("@ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
             result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
             result.Add(new SqlParameter("@ma_ct", TxtMa_ct.Text.Trim()));

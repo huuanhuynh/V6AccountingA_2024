@@ -366,11 +366,35 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 //string saveAsFile = Path.GetFileNameWithoutExtension(xlsTemplateFile) + DateTime.Now.ToString("yyyyMMddHHmmss") + ext;
 
                 IDictionary<string, object> mappingData = new SortedDictionary<string, object>();
-                mappingData = _ds.Tables[0].ToDataSortedDictionary("NAME", "VALUE");
+                //mappingData = _ds.Tables[0].ToDataSortedDictionary("NAME", "VALUE");
                 IDictionary<string, object> addressData = new SortedDictionary<string, object>();
-                addressData = _ds.Tables[0].ToDataSortedDictionary("FCOLUMN", "FVALUE");
-                if (V6Tools.V6Export.Data_Table.MappingDataToExcelFile(xlsTemplateFile, saveFile, mappingData,
-                    addressData))
+                //addressData = _ds.Tables[0].ToDataSortedDictionary("FCOLUMN", "FVALUE");
+
+                DataTable data = _ds.Tables[0];
+                foreach (DataRow row in data.Rows)
+                {
+                    string vType = row["VTYPE"].ToString().Trim();
+                    if (string.IsNullOrEmpty(vType) || vType == "N")//Kiểu số
+                    {
+                        string NAME = row["NAME"].ToString().Trim().ToUpper();
+                        string FCOLUMN = row["FCOLUMN"].ToString().Trim().ToUpper();
+                        object value = row["Value"];
+                        object fvalue = row["fvalue"];
+                        mappingData.Add(NAME, value);
+                        addressData.Add(FCOLUMN, fvalue);
+                    }
+                    else
+                    {
+                        string NAME = row["NAME"].ToString().Trim().ToUpper();
+                        string FCOLUMN = row["FCOLUMN"].ToString().Trim().ToUpper();
+                        object value = row[vType + "Value"];
+                        object fvalue = row[vType + "fvalue"];
+                        mappingData.Add(NAME, value);
+                        addressData.Add(FCOLUMN, fvalue);
+                    }
+                }
+
+                if (V6Tools.V6Export.Data_Table.MappingDataToExcelFile(xlsTemplateFile, saveFile, mappingData, addressData))
                 {
                     this.ShowInfoMessage(V6Text.ExportFinish + "\n" + saveFile);
                 }

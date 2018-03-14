@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Windows.Forms;
@@ -283,13 +284,87 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         #endregion xulyF9
 
-        V6Invoice81 invoice = new V6Invoice81();
+        //V6Invoice81 invoice = new V6Invoice81();
         protected override void ViewDetails(DataGridViewRow row)
         {
             try
             {
                 var sttRec = row.Cells["Stt_rec"].Value.ToString().Trim();
-                var data = invoice.LoadAd81(sttRec);
+                var maCt = FilterControl.String1;
+                DataTable data;
+                switch (maCt.ToUpper().Trim())
+                {
+                    case "SOA":
+                        data = new V6Invoice81().LoadAd81(sttRec);
+                        break;
+                    case "SOC":
+                        data = new V6Invoice83().LoadAd(sttRec);
+                        break;
+                    case "POA":
+                        data = new V6Invoice81().LoadAd81(sttRec);
+                        break;
+                    case "SOH":
+                        data = new V6Invoice91().LoadAd(sttRec);
+                        break;
+                    case "SOF":
+                        data = new V6Invoice76().LoadAD(sttRec);
+                        break;
+                    case "SOR":
+                        data = new V6Invoice93().LoadAd(sttRec);
+                        break;
+                    case "AR1":
+                        data = new V6Invoice21().LoadAd(sttRec);
+                        break;
+
+                    case "POH":
+                        data = new V6Invoice92().LoadAd(sttRec);
+                        break;
+                    case "AP1":
+                        data = new V6Invoice31().LoadAd(sttRec);
+                        break;
+                    case "POC":
+                        data = new V6Invoice73().LoadAd(sttRec);
+                        break;
+	                case "POB":
+                        data = new V6Invoice72().LoadAd(sttRec);
+                        break;
+	                case "AP2":
+                        data = new V6Invoice32().LoadAd(sttRec);
+                        break;
+	                case "IXC":
+                        data = new V6Invoice86().LoadAd(sttRec);
+                        break;
+
+	                case "BC1":
+	                case "TA1":
+                        data = new V6Invoice41(maCt).LoadAd(sttRec);
+                        break;
+                    case "BN1":
+	                case "CA1":
+                        data = new V6Invoice51(maCt).LoadAd(sttRec);
+                        break;
+
+	                case "GL1":
+	                case "AR9":
+	                case "AP9":
+                        data = new V6Invoice11(maCt).LoadAd(sttRec);
+                        break;
+
+                    case "IND":
+                        data = new V6Invoice74().LoadAd(sttRec);
+                        break;
+                    case "IXA":
+                        data = new V6Invoice84().LoadAd(sttRec);
+                        break;
+                    case "IXB":
+                        data = new V6Invoice85().LoadAd(sttRec);
+                        break;
+
+                    default:
+                        data = null;
+                        break;
+                }
+                
                 dataGridView2.DataSource = data;
             }
             catch (Exception ex)

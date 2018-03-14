@@ -211,6 +211,36 @@ namespace V6Tools
         }
 
         /// <summary>
+        /// <para>Chuyển một bảng nhiều dòng thành danh sách các Model với các trường tương ứng.</para>
+        /// <para>(Các trường không khớp sẽ bị bỏ qua).</para>
+        /// </summary>
+        /// <typeparam name="T">Kiểu Model</typeparam>
+        /// <param name="data">Bảng dữ liệu</param>
+        /// <returns>Danh sách các Model (T)</returns>
+        public static List<T> ToListModel<T>(this DataTable data) where T : new()
+        {
+            List<T> result = new List<T>();
+            foreach (DataRow row in data.Rows)
+            {
+                var t = new T();
+                foreach (PropertyInfo propertyInfo in t.GetType().GetProperties())
+                {
+                    string field = propertyInfo.Name;
+                    if (propertyInfo.CanWrite)
+                    {
+                        object o = "";
+                        if (data.Columns.Contains(field)) o = row[field];
+
+                        var value = ObjectAndString.ObjectTo(propertyInfo.PropertyType, o);
+                        propertyInfo.SetValue(t, value, null);
+                    }
+                }
+                result.Add(t);
+            }
+            return result;
+        }
+
+        /// <summary>
         /// Chuyển DataTable về ListDic
         /// </summary>
         /// <param name="data"></param>

@@ -140,8 +140,10 @@ namespace V6SqlConnect
             return _currentConnection;
         }
 
-        //Phần riêng
-        public static string Server = "";
+        /// <summary>
+        /// Tên server dữ liệu, có thể là IP.
+        /// </summary>
+        public static string Server { get; set; }
         public static string Database = "";
         public static string UserId = "";
         public static string EPassword = "";
