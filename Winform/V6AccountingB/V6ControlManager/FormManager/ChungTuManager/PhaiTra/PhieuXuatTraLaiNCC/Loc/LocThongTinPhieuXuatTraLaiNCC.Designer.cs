@@ -223,7 +223,7 @@
             // 
             // maBoPhan
             // 
-            this.maBoPhan.AccessibleName = "ma_bp";
+            this.maBoPhan.AccessibleName = "MA_BP";
             this.maBoPhan.BrotherFields = null;
             this.maBoPhan.Carry = false;
             this.maBoPhan.CheckOnLeave = false;

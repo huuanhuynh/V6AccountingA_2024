@@ -264,7 +264,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             // 
             // maKhach
             // 
-            this.maKhach.AccessibleName = "ma_bp";
+            this.maKhach.AccessibleName = "ma_kh";
             this.maKhach.BackColor = System.Drawing.SystemColors.Window;
             this.maKhach.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.maKhach.EnterColor = System.Drawing.Color.PaleGreen;

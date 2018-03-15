@@ -219,6 +219,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Loc
             // 
             // maBoPhan
             // 
+            this.maBoPhan.AccessibleName = "MA_BP";
             this.maBoPhan.BackColor = System.Drawing.SystemColors.Window;
             this.maBoPhan.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.maBoPhan.CheckOnLeave = false;
@@ -309,7 +310,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Loc
             // 
             // maKhach
             // 
-            this.maKhach.AccessibleName = "ma_bp";
+            this.maKhach.AccessibleName = "ma_kh";
             this.maKhach.BackColor = System.Drawing.SystemColors.Window;
             this.maKhach.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.maKhach.CheckOnLeave = false;

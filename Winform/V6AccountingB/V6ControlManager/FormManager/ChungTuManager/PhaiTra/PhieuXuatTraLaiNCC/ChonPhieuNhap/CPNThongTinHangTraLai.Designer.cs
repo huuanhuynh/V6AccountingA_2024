@@ -204,7 +204,7 @@
             // 
             // maBoPhan
             // 
-            this.maBoPhan.AccessibleName = "ma_bp";
+            this.maBoPhan.AccessibleName = "MA_BP";
             this.maBoPhan.BrotherFields = null;
             this.maBoPhan.EnableColorEffect = true;
             this.maBoPhan.EnableColorEffectOnMouseEnter = false;

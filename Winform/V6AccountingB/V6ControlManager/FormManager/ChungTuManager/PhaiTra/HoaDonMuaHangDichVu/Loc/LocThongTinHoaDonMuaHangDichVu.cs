@@ -15,7 +15,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         {
             InitializeComponent();
             MyInit();
-            
         }
 
         private void MyInit()

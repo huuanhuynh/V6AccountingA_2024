@@ -213,7 +213,7 @@
             // 
             // maBoPhan
             // 
-            this.maBoPhan.AccessibleName = "ma_bp";
+            this.maBoPhan.AccessibleName = "MA_BP";
             this.maBoPhan.BackColor = System.Drawing.SystemColors.Window;
             this.maBoPhan.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.maBoPhan.CheckOnLeave = false;
