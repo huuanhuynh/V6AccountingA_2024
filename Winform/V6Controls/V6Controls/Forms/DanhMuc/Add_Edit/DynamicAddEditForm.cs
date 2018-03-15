@@ -616,6 +616,26 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public override bool DoInsertOrUpdate(bool showMessage = true)
         {
             ReloadFlag = false;
+
+            try
+            {
+                FixFormData();
+                DataDic = GetData();
+                ValidateData();
+                string checkV6Valid = CheckV6Valid(DataDic, TableName.ToString());
+                if (!string.IsNullOrEmpty(checkV6Valid))
+                {
+                    this.ShowInfoMessage(checkV6Valid);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowInfoMessage(ex.Message);
+                this.WriteExLog(GetType() + ".DoInsertOrUpdate ValidateData", ex);
+                return false;
+            }
+
             if (Mode == V6Mode.Edit)
             {
                 try
@@ -712,9 +732,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                FixFormData();
-                DataDic = GetData();
-                ValidateData();
                 var result = Categories.Insert(TableName, DataDic);
                 if (result && update_stt13)
                 {
@@ -750,9 +767,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                FixFormData();
-                DataDic = GetData();
-                ValidateData();
                 //Lấy thêm UID từ DataEditNếu có.
                 if (DataOld.ContainsKey("UID"))
                 {

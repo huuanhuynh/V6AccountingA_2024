@@ -330,10 +330,33 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-
+        /// <summary>
+        /// Thực hiện thêm mới hoặc sửa khi bấm nút nhận.
+        /// </summary>
+        /// <param name="showMessage">Bật/tắt thông báo lỗi hoặc sai sót.</param>
+        /// <returns></returns>
         public virtual bool DoInsertOrUpdate(bool showMessage = true)
         {
             //ReloadFlag = false;
+            try
+            {
+                FixFormData();
+                DataDic = GetData();
+                ValidateData();
+                string checkV6Valid = CheckV6Valid(DataDic, TableName.ToString());
+                if (!string.IsNullOrEmpty(checkV6Valid))
+                {
+                    this.ShowInfoMessage(checkV6Valid);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowInfoMessage(ex.Message);
+                this.WriteExLog(GetType() + ".DoInsertOrUpdate ValidateData", ex);
+                return false;
+            }
+
             if (Mode==V6Mode.Edit)
             {
                 try
@@ -465,9 +488,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                FixFormData();
-                DataDic = GetData();
-                ValidateData();
+                
                 var result = Categories.Insert(TableName, DataDic);
                 if (result && update_stt13)
                 {
@@ -495,9 +516,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                FixFormData();
-                DataDic = GetData();
-                ValidateData();
                 //Lấy thêm UID từ DataEditNếu có.
                 if (DataOld.ContainsKey("UID"))
                 {
@@ -619,6 +637,45 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public virtual void DoBeforeView()
         {
             
+        }
+
+        /// <summary>
+        /// Kiểm tra thông tin bắt buộc ghi chú trong V6Valid (Hệ thống/Quản lý hệ thống/Thông tin bắt buộc khi nhập liệu).
+        /// </summary>
+        /// <param name="data">Dữ liệu cần kiểm tra.</param>
+        /// <param name="tableName">Bảng kiểm tra.</param>
+        /// <returns></returns>
+        protected string CheckV6Valid(IDictionary<string, object> data, string tableName)
+        {
+            string error = null;
+            try
+            {
+                var config = V6ControlsHelper.GetV6ValidConfigDanhMuc(tableName);
+
+                if (config != null && config.HaveInfo)
+                {
+                    var a_fields = ObjectAndString.SplitString(config.A_field);
+                    foreach (string field in a_fields)
+                    {
+                        string FIELD = field.Trim().ToUpper();
+
+                        if (data.ContainsKey(FIELD) && (data[FIELD] == null || data[FIELD].ToString().Trim() == ""))
+                        {
+                            error += string.Format("{0} [{1}]\n", V6Text.NoInput, FIELD);
+                        }
+                    }
+                }
+                else
+                {
+                    //ShowMainMessage("No V6Valid info!");
+                }
+            }
+            catch (Exception ex)
+            {
+                //error += ex.Message;//Lỗi chương trình không liên quan lỗi nhập liệu
+                this.WriteExLog(GetType() + ".ValidateData_Detail", ex);
+            }
+            return error;
         }
 
         /// <summary>

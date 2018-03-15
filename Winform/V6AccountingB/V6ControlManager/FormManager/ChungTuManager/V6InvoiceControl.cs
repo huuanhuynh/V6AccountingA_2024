@@ -947,7 +947,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                error += ex.Message;
+                //error += ex.Message;//Lỗi chương trình không liên quan lỗi nhập liệu
                 this.WriteExLog(GetType() + ".ValidateData_Detail", ex);
             }
             return error;

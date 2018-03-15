@@ -194,7 +194,7 @@
             this.txtAttribute.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtAttribute.HoverColor = System.Drawing.Color.Yellow;
             this.txtAttribute.LeaveColor = System.Drawing.Color.White;
-            this.txtAttribute.LimitCharacters = "12";
+            this.txtAttribute.LimitCharacters = "123";
             this.txtAttribute.Location = new System.Drawing.Point(171, 56);
             this.txtAttribute.MaxLength = 1;
             this.txtAttribute.Name = "txtAttribute";
@@ -372,9 +372,9 @@
             this.label11.Location = new System.Drawing.Point(316, 62);
             this.label11.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(256, 17);
+            this.label11.Size = new System.Drawing.Size(344, 17);
             this.label11.TabIndex = 4;
-            this.label11.Text = "1: Thông tin chung, 2: Thông tin chi tiết";
+            this.label11.Text = "1: Thông tin chung, 2: Thông tin chi tiết, 3: Danh mục";
             // 
             // label5
             // 

@@ -229,6 +229,10 @@
         public static string NoData { get { return V6Setting.Language == "V" ? "Không có dữ liệu." : "No data."; } }
         public static string NoDefine { get { return V6Setting.Language == "V" ? "Chưa định nghĩa." : "No define."; } }
         /// <summary>
+        /// Chưa nhập giá trị. (Chưa nhập liệu)
+        /// </summary>
+        public static string NoInput { get { return V6Setting.Language == "V" ? "Chưa nhập giá trị." : "No input."; } }
+        /// <summary>
         /// Không có chứng từ nào như vậy!
         /// </summary>
         public static string NoInvoiceFound { get { return V6Setting.Language == "V" ? "Không có chứng từ nào như vậy!" : "No invoice found!"; } }

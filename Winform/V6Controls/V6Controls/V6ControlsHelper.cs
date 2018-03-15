@@ -456,7 +456,11 @@ namespace V6Controls
             return lstConfig;
         }
         
-
+        /// <summary>
+        /// Lấy thông tin V6Valid cho chứng từ theo ma_ct.
+        /// </summary>
+        /// <param name="ma_ct"></param>
+        /// <returns></returns>
         public static V6ValidConfig GetV6ValidConfig(string ma_ct)
         {
             V6ValidConfig lstConfig = new V6ValidConfig();
@@ -464,6 +468,40 @@ namespace V6Controls
             {
                 SqlParameter[] plist = { new SqlParameter("@p", ma_ct) };
                 var executeResult = V6BusinessHelper.Select("V6Valid", "*", "[ma_ct]=@p", "", "", plist);
+
+                if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
+                {
+                    var tbl = executeResult.Data;
+                    var row = tbl.Rows[0];
+                    lstConfig = new V6ValidConfig(row.ToDataDictionary());
+                }
+                else
+                {
+                    lstConfig.NoInfo = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lstConfig.Error = true;
+                Logger.WriteToLog(string.Format("{0}.{1} {2}",
+                    MethodBase.GetCurrentMethod().DeclaringType,
+                    MethodBase.GetCurrentMethod().Name, ex.Message));
+            }
+            return lstConfig;
+        }
+        
+        /// <summary>
+        /// Lấy thông tin V6Valid cho danh mục theo tableName.
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public static V6ValidConfig GetV6ValidConfigDanhMuc(string tableName)
+        {
+            V6ValidConfig lstConfig = new V6ValidConfig();
+            try
+            {
+                SqlParameter[] plist = { new SqlParameter("@p", tableName) };
+                var executeResult = V6BusinessHelper.Select("V6Valid", "*", "attribute=3 and [TABLE_NAME]=@p", "", "", plist);
 
                 if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
                 {
