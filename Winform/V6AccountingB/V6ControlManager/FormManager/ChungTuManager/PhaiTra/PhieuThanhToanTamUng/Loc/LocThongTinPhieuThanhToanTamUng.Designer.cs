@@ -353,7 +353,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             // 
             // soHd
             // 
-            this.soHd.AccessibleName = "ma_kh";
+            this.soHd.AccessibleName = "so_ct0";
             this.soHd.BackColor = System.Drawing.SystemColors.Window;
             this.soHd.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.soHd.EnterColor = System.Drawing.Color.PaleGreen;
@@ -368,7 +368,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             // 
             // thueSuat
             // 
-            this.thueSuat.AccessibleName = "ma_thue";
+            this.thueSuat.AccessibleName = "thue_suat";
             this.thueSuat.BackColor = System.Drawing.SystemColors.Window;
             this.thueSuat.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.thueSuat.EnterColor = System.Drawing.Color.PaleGreen;

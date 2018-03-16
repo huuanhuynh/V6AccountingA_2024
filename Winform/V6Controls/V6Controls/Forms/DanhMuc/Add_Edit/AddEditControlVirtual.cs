@@ -126,8 +126,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         protected virtual void LoadAll()
         {
-
             LoadStruct();//MaxLength...
+            EnableFormControls_Alctct();
             V6ControlFormHelper.LoadAndSetFormInfoDefine(TableName.ToString(), this, Parent);
 
             if (Mode==V6Mode.Edit)
@@ -637,6 +637,43 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public virtual void DoBeforeView()
         {
             
+        }
+
+        /// <summary>
+        /// Bật tắt các control theo thông tin ghi chú trong Alctct
+        /// </summary>
+        protected void EnableFormControls_Alctct()
+        {
+            try
+            {
+                var alctct = V6BusinessHelper.GetAlctCt_TableName(TableName.ToString());
+                var alctct_GRD_HIDE = new string[] { };
+                var alctct_GRD_READONLY = new string[] { };
+                if (!V6Login.IsAdmin)
+                {
+                    if (alctct != null && alctct.Rows.Count > 0)
+                    {
+                        var GRD_HIDE = alctct.Rows[0]["GRD_HIDE"].ToString().ToUpper();
+                        var GRD_READONLY = alctct.Rows[0]["GRD_READONLY"].ToString().ToUpper();
+                        alctct_GRD_HIDE = ObjectAndString.SplitString(GRD_HIDE);
+                        alctct_GRD_READONLY = ObjectAndString.SplitString(GRD_READONLY);
+                    }
+                }
+                foreach (string field in alctct_GRD_HIDE)
+                {
+                    Control c = V6ControlFormHelper.GetControlByAccessibleName(this, field);
+                    if (c != null) c.InvisibleTag();
+                }
+                foreach (string field in alctct_GRD_READONLY)
+                {
+                    TextBox c = V6ControlFormHelper.GetControlByAccessibleName(this, field) as TextBox;
+                    if (c != null) c.ReadOnlyTag();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "EnableFormControls_Alctct", ex);
+            }
         }
 
         /// <summary>

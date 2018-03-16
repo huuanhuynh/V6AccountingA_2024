@@ -631,6 +631,13 @@ namespace V6AccountingBusiness
                 "", "", "").Data;
             return _alct;
         }
+        public static DataTable GetAlctCt_TableName(string tableName)
+        {
+            var _alct = Select(V6TableName.Alctct,
+                new SortedDictionary<string, object> { { "TABLE_NAME", tableName }, {"User_id_ct", V6Login.UserId} },
+                "", "", "").Data;
+            return _alct;
+        }
 
         public static string GetAMname(DataRow alct)
         {

@@ -1370,7 +1370,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 this.ShowErrorMessage(GetType() + ".EnableFormControls: " + ex.Message);
             }
         }
-
+        
         protected override void EnableNavigationButtons()
         {
             if (AM == null || AM.Rows.Count == 0)

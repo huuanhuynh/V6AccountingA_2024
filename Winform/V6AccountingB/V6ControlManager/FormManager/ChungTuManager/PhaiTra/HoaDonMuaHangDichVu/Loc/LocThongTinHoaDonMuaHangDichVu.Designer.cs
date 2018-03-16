@@ -357,7 +357,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             // 
             // soHd
             // 
-            this.soHd.AccessibleName = "ma_kh";
+            this.soHd.AccessibleName = "so_ct0";
             this.soHd.BackColor = System.Drawing.SystemColors.Window;
             this.soHd.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.soHd.EnterColor = System.Drawing.Color.PaleGreen;
