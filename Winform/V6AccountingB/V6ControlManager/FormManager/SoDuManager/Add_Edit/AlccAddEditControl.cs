@@ -1266,11 +1266,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        private bool ValidateData_Detail(SortedDictionary<string, object> dic)
+        private bool ValidateData_Detail(SortedDictionary<string, object> data)
         {
             try
             {
-                if (dic == null || dic.Count == 0)
+                if (data == null || data.Count == 0)
                 {
                     this.ShowWarningMessage(V6Text.NoData);
                     return false;

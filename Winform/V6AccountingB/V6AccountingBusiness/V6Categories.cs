@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using DataAccessLayer.Implementations;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
@@ -13,7 +12,6 @@ namespace V6AccountingBusiness
     public class V6Categories
     {
         protected string Name;
-        private readonly CategoriesServices Service = new CategoriesServices();
         public V6Categories()
         {
             Name = "Name";
@@ -31,7 +29,8 @@ namespace V6AccountingBusiness
             if (!V6Login.UserRight.AllowSelect(tableName)) return new V6SelectResult();
             SqlParameter[] plist;
             var where = SqlGenerator.GenSqlWhereOutParameters(keys, out plist);
-            return Service.Select(tableName, "", where, "", "", plist);
+            string field = "", group = "", sort = "";
+            return SqlConnect.Select(tableName, field, where, group, sort, plist);
         }
 
         /// <summary>
@@ -90,7 +89,7 @@ namespace V6AccountingBusiness
 
         public DataTable SelectTable(string tableName)
         {
-            return Service.SelectTable(tableName);
+            return SqlConnect.SelectTable(tableName);
         }
 
         #endregion select
@@ -103,7 +102,10 @@ namespace V6AccountingBusiness
 
         public bool Insert(string tableName, SortedDictionary<string, object> data)
         {
-            return Service.Insert(V6Login.UserId, tableName, data) > 0;
+            var structTable = V6SqlconnectHelper.GetTableStruct(tableName);
+            var sql = SqlGenerator.GenInsertSql(V6Login.UserId, tableName, structTable, data);
+            int result = SqlConnect.ExecuteNonQuery(CommandType.Text, sql);
+            return result > 0;
         }
 
         #endregion add
@@ -128,10 +130,16 @@ namespace V6AccountingBusiness
         /// <param name="tableName"></param>
         /// <param name="data">key toàn UPPER</param>
         /// <param name="keys"></param>
+        /// <param name="transaction"></param>
         /// <returns></returns>
-        public int Update(string tableName, SortedDictionary<string, object> data, SortedDictionary<string, object> keys)
+        public int Update(string tableName, SortedDictionary<string, object> data, SortedDictionary<string, object> keys, SqlTransaction transaction = null)
         {
-            return Service.Update(V6Login.UserId, tableName, data, keys);
+            var structTable = V6SqlconnectHelper.GetTableStruct(tableName);
+            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, structTable, data, keys);
+            var result = transaction == null
+                ? SqlConnect.ExecuteNonQuery(CommandType.Text, sql)
+                : SqlConnect.ExecuteNonQuery(transaction, CommandType.Text, sql);
+            return result;
         }
 
         #endregion edit
@@ -148,7 +156,7 @@ namespace V6AccountingBusiness
             {
                 throw new Exception("Để tránh xóa nhầm, key không được rỗng.\n Nếu muốn xóa hết hãy gọi DeleteAll!");
             }
-            return Service.Delete(V6Login.UserId, tableName, keys);
+            return Delete(V6Login.UserId, tableName, keys);
         }
 
         public int Delete(SqlTransaction tran, V6TableName tableName, SortedDictionary<string, object> keys)
@@ -162,7 +170,17 @@ namespace V6AccountingBusiness
             {
                 throw new Exception("Để tránh xóa nhầm, key không được rỗng.\n Nếu muốn xóa hết hãy gọi DeleteAll!");
             }
-            return Service.Delete(V6Login.UserId, tableName, keys, tran);
+            return Delete(V6Login.UserId, tableName, keys, tran);
+        }
+
+        public int Delete(int userId, string tableName, SortedDictionary<string, object> keys, SqlTransaction transaction = null)
+        {
+            var structTable = V6SqlconnectHelper.GetTableStruct(tableName);
+            var sql = SqlGenerator.GenDeleteSql(structTable, keys);
+            var result = transaction == null
+                ? SqlConnect.ExecuteNonQuery(CommandType.Text, sql)
+                : SqlConnect.ExecuteNonQuery(transaction, CommandType.Text, sql);
+            return result;
         }
 
         public void DeleteAll(V6TableName tableName)
@@ -215,7 +233,23 @@ namespace V6AccountingBusiness
         
         public SortedDictionary<string, string> GetHideColumns(string tableName)
         {
-            return Service.GetHideColumns(tableName);
+            var result = new SortedDictionary<string, string>();
+            tableName = tableName.Replace("'", "");
+            var data = SqlConnect.Select("V6Lookup", "Top 1 v_hide", "vMa_File='" + tableName + "'", "", "").Data;
+            if (data != null && data.Rows.Count > 0)
+            {
+                var hideFields = data.Rows[0][0].ToString();
+                hideFields = hideFields.Trim().ToUpper();
+                var sss = hideFields.Split(',');
+                foreach (string s in sss)
+                {
+                    var f = s.Trim();
+                    result.Add(f, f);
+                }
+                return result;
+            }
+            //var hideFields = new LookupService().GetValueByTableName(tableName, "v_hide");
+            return new SortedDictionary<string, string>();
         }
     }
 }

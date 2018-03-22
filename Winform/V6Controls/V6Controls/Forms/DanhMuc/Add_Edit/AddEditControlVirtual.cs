@@ -100,6 +100,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 DoBeforeView();
             }
+
+            EnableFormControls_Alctct(TableName.ToString());
         }
         
         /// <summary>
@@ -127,7 +129,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         protected virtual void LoadAll()
         {
             LoadStruct();//MaxLength...
-            EnableFormControls_Alctct();
+            //EnableFormControls_Alctct();
             V6ControlFormHelper.LoadAndSetFormInfoDefine(TableName.ToString(), this, Parent);
 
             if (Mode==V6Mode.Edit)
@@ -642,11 +644,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <summary>
         /// Bật tắt các control theo thông tin ghi chú trong Alctct
         /// </summary>
-        protected void EnableFormControls_Alctct()
+        protected void EnableFormControls_Alctct(string tableName)
         {
             try
             {
-                var alctct = V6BusinessHelper.GetAlctCt_TableName(TableName.ToString());
+                var alctct = V6BusinessHelper.GetAlctCt_TableName(tableName);
                 var alctct_GRD_HIDE = new string[] { };
                 var alctct_GRD_READONLY = new string[] { };
                 if (!V6Login.IsAdmin)

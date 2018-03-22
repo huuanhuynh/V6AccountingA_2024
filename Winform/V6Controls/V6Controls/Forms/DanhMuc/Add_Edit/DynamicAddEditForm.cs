@@ -56,6 +56,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             CreateFormProgram();
             CreateFormControls();
+            EnableFormControls_Alctct(TableName);
 
             try // Dynamic invoke
             {

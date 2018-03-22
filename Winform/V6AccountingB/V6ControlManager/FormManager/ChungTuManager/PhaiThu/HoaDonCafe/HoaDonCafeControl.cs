@@ -1489,6 +1489,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
+                    detail1.btnNhan.Focus();
                     detail1.btnNhan.PerformClick();
                 }
                 else if (detail3.MODE == V6Mode.Add || detail3.MODE == V6Mode.Edit)
@@ -1555,6 +1556,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         string error = ValidateDetailData(Invoice, detail1.GetData());
                         if (string.IsNullOrEmpty(error))
                         {
+                            detail1.btnNhan.Focus();
                             detail1.btnNhan.PerformClick();
                         }
                         else
@@ -5750,47 +5752,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     return false;
                 }
 
-                var v6valid = V6BusinessHelper.Select("V6Valid", "A_Field",
-                    "ma_ct='"+Invoice.Mact+"' and ma='"+Invoice.AM+"'").Data;
-                if (v6valid != null && v6valid.Rows.Count > 0)
-                {
-                    var a_fields = v6valid.Rows[0]["A_Field"].ToString().Trim().Split(',');
-                    foreach (string field in a_fields)
-                    {
-                        var control = V6ControlFormHelper.GetControlByAccessibleName(this, field);
-                        if (control is V6DateTimeColor)
-                        {
-                            if (((V6DateTimeColor) control).Value == null)
-                            {
-                                this.ShowWarningMessage("Chưa nhập giá trị: " + field);
-                                control.Focus();
-                                return false;
-                            }
-                        }
-                        else if (control is V6NumberTextBox)
-                        {
-                            if (((V6NumberTextBox)control).Value == 0)
-                            {
-                                this.ShowWarningMessage("Chưa nhập giá trị: " + field);
-                                control.Focus();
-                                return false;
-                            }
-                        }
-                        else if (control is TextBox)
-                        {
-                            if (string.IsNullOrEmpty(control.Text))
-                            {
-                                this.ShowWarningMessage("Chưa nhập giá trị: " + field);
-                                control.Focus();
-                                return false;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    V6ControlFormHelper.ShowMainMessage("No V6Valid info!");
-                }
+                ValidateMasterData(Invoice);
 
 
                 // Check Detail
@@ -5938,47 +5900,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     return false;
                 }
 
-                var v6valid = V6BusinessHelper.Select("V6Valid", "A_Field",
-                    "ma_ct='" + Invoice.Mact + "' and ma='" + Invoice.AD + "'").Data;
-                if (v6valid != null && v6valid.Rows.Count > 0)
-                {
-                    var a_fields = v6valid.Rows[0]["A_Field"].ToString().Trim().Split(',');
-                    foreach (string field in a_fields)
-                    {
-                        var control = V6ControlFormHelper.GetControlByAccessibleName(detail1, field);
-                        if (control is V6DateTimeColor)
-                        {
-                            if (((V6DateTimeColor)control).Value == null)
-                            {
-                                this.ShowWarningMessage("Chưa nhập giá trị: " + field);
-                                control.Focus();
-                                return false;
-                            }
-                        }
-                        else if (control is V6NumberTextBox)
-                        {
-                            if (((V6NumberTextBox)control).Value == 0)
-                            {
-                                this.ShowWarningMessage("Chưa nhập giá trị: " + field);
-                                control.Focus();
-                                return false;
-                            }
-                        }
-                        else if (control is TextBox)
-                        {
-                            if (string.IsNullOrEmpty(control.Text))
-                            {
-                                this.ShowWarningMessage("Chưa nhập giá trị: " + field);
-                                control.Focus();
-                                return false;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    V6ControlFormHelper.ShowMainMessage("No V6Valid info!");
-                }
+                ValidateDetailData(Invoice, data);
             }
             catch (Exception ex)
             {

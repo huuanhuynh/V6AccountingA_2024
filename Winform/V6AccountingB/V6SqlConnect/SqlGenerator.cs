@@ -784,7 +784,7 @@ namespace V6SqlConnect
         }
         
         public static string GenUpdateAMSql(int UserId, string tableName, V6TableStruct structTable,
-            SortedDictionary<string, object> dataDictionary, SortedDictionary<string, object> keys, bool update_info_2 = true)
+            IDictionary<string, object> dataDictionary, IDictionary<string, object> keys, bool update_info_2 = true)
         {
             //GetStructureTableAndColumnsStruct();
             string sql = "Update [" + tableName + "] Set";// field = value[, field = value[...]]

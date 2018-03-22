@@ -884,18 +884,52 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return false;
         }
 
-        V6ValidConfig GetV6ValidConfig(string ma_ct)
+        protected bool ValidateMasterData(V6InvoiceBase Invoice)
         {
-            //get
+            var v6validConfig = V6ControlsHelper.GetV6ValidConfig(Invoice.Mact, 1);
+            
+            if (v6validConfig != null && v6validConfig.HaveInfo)
             {
-                if (_V6ValidConfig != null) return _V6ValidConfig;
-                _V6ValidConfig = V6ControlsHelper.GetV6ValidConfig(ma_ct);
-                return _V6ValidConfig;
+                var a_fields = v6validConfig.A_field.Split(',');
+                foreach (string field in a_fields)
+                {
+                    var control = V6ControlFormHelper.GetControlByAccessibleName(this, field);
+                    if (control is V6DateTimeColor)
+                    {
+                        if (((V6DateTimeColor)control).Value == null)
+                        {
+                            this.ShowWarningMessage("Chưa nhập giá trị: " + field);
+                            control.Focus();
+                            return false;
+                        }
+                    }
+                    else if (control is V6NumberTextBox)
+                    {
+                        if (((V6NumberTextBox)control).Value == 0)
+                        {
+                            this.ShowWarningMessage("Chưa nhập giá trị: " + field);
+                            control.Focus();
+                            return false;
+                        }
+                    }
+                    else if (control is TextBox)
+                    {
+                        if (string.IsNullOrEmpty(control.Text))
+                        {
+                            this.ShowWarningMessage("Chưa nhập giá trị: " + field);
+                            control.Focus();
+                            return false;
+                        }
+                    }
+                }
             }
+            else
+            {
+                V6ControlFormHelper.ShowMainMessage("No V6Valid info!");
+            }
+            return true;
         }
-
-        private V6ValidConfig _V6ValidConfig;
-
+        
         /// <summary>
         /// <para>Kiểm tra dữ liệu chi tiết hợp lệ quy định trong V6Valid.</para>
         /// <para>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</para>
@@ -908,9 +942,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
             string error = "";
             try
             {
-                var config = GetV6ValidConfig(Invoice.Mact);
-                //var v6valid = V6BusinessHelper.Select("V6Valid", "A_Field",
-                //    "ma_ct='" + Invoice.Mact + "' and ma='" + Invoice.AD + "'").Data;
+                var config = V6ControlsHelper.GetV6ValidConfig(Invoice.Mact, 2);
+                
                 if (config != null && config.HaveInfo)
                 {
                     var a_fields = ObjectAndString.SplitString(config.A_field);
@@ -919,7 +952,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         string FIELD = field.Trim().ToUpper();
                         if (!data.ContainsKey(FIELD))
                         {
-                            error += string.Format("{0}: [{1}]\n", V6Text.NoData, FIELD);
+                            //error += string.Format("{0}: [{1}]\n", V6Text.NoData, FIELD);
                             continue;
                         }
 

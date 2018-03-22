@@ -756,6 +756,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             {
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
+                    detail1.btnNhan.Focus();
                     detail1.btnNhan.PerformClick();
                 }
                 else if (detail3.MODE == V6Mode.Add || detail3.MODE == V6Mode.Edit)
@@ -810,6 +811,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                         string error = ValidateDetailData(Invoice, detail1.GetData());
                         if (string.IsNullOrEmpty(error))
                         {
+                            detail1.btnNhan.Focus();
                             detail1.btnNhan.PerformClick();
                         }
                         else
@@ -2554,7 +2556,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
 
                 _print_flag = V6PrintMode.AutoClickPrint;
                 _sttRec_In = _sttRec;
-
+                btnLuu.Focus();
                 Luu();
                 Mode = V6Mode.View;// Status = "3";
             }
@@ -3178,48 +3180,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     return false;
                 }
 
-                var v6valid = V6BusinessHelper.Select("V6Valid", "A_Field",
-                    "ma_ct='" + Invoice.Mact + "' and ma='" + Invoice.AM + "'").Data;
-                if (v6valid != null && v6valid.Rows.Count > 0)
-                {
-                    var a_fields = v6valid.Rows[0]["A_Field"].ToString().Trim().Split(',');
-                    foreach (string field in a_fields)
-                    {
-                        var control = V6ControlFormHelper.GetControlByAccessibleName(this, field);
-                        if (control is V6DateTimeColor)
-                        {
-                            if (((V6DateTimeColor)control).Value == null)
-                            {
-                                this.ShowWarningMessage("Chưa nhập giá trị: " + field);
-                                control.Focus();
-                                return false;
-                            }
-                        }
-                        else if (control is V6NumberTextBox)
-                        {
-                            if (((V6NumberTextBox)control).Value == 0)
-                            {
-                                this.ShowWarningMessage("Chưa nhập giá trị: " + field);
-                                control.Focus();
-                                return false;
-                            }
-                        }
-                        else if (control is TextBox)
-                        {
-                            if (string.IsNullOrEmpty(control.Text))
-                            {
-                                this.ShowWarningMessage("Chưa nhập giá trị: " + field);
-                                control.Focus();
-                                return false;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    V6ControlFormHelper.ShowMainMessage("No V6Valid info!");
-                }
-
+                ValidateMasterData(Invoice);
 
                 // Check Detail
                 if (AD.Rows.Count == 0)
@@ -3354,121 +3315,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             return false;
         }
 
-        //private bool ValidateData_Master()
-        //{
-        //    try
-        //    {
-        //        // Check Master
-        //        if (!ValidateNgayCt(Invoice.Mact, dateNgayCT))
-        //        {
-        //            return false;
-        //        }
-
-        //        if (V6Login.MadvcsTotal > 0 && txtMadvcs.Text.Trim() == "")
-        //        {
-        //            this.ShowWarningMessage("Chưa nhập mã đơn vị!");
-        //            txtMadvcs.Focus();
-        //            return false;
-        //        }
-        //        if (txtMaKh.Text.Trim() == "")
-        //        {
-        //            this.ShowWarningMessage("Chưa nhập mã khách hàng!");
-        //            txtMaKh.Focus();
-        //            return false;
-        //        }
-        //        if (txtManx.Text.Trim() == "")
-        //        {
-        //            this.ShowWarningMessage("Chưa nhập tài khoản!");
-        //            txtManx.Focus();
-        //            return false;
-        //        }
-        //        if (cboKieuPost.SelectedIndex == -1)
-        //        {
-        //            this.ShowWarningMessage("Chưa chọn kiểu post!");
-        //            cboKieuPost.Focus();
-        //            return false;
-        //        }
-
-        //        // Check Detail
-        //        if (AD.Rows.Count == 0)
-        //        {
-        //            this.ShowWarningMessage("Chưa nhập chi tiết!");
-        //            return false;
-        //        }
-        //        //Check nh_dk
-        //        var groupDic = new SortedDictionary<string, decimal[]>();
-        //        foreach (DataRow row in AD3.Rows)
-        //        {
-        //            var nhomDK = row["Nh_dk"].ToString().Trim();
-        //            var ps_no = ObjectAndString.ObjectToDecimal(row["Ps_no_nt"]);
-        //            var ps_co = ObjectAndString.ObjectToDecimal(row["Ps_co_nt"]);
-        //            if (groupDic.ContainsKey(nhomDK))
-        //            {
-        //                var group = groupDic[nhomDK];
-        //                group[0] += ps_no;
-        //                group[1] += ps_co;
-        //                groupDic[nhomDK] = group;
-        //            }
-        //            else
-        //            {
-        //                var group = new decimal[] { 0, 0 };
-        //                group[0] += ps_no;
-        //                group[1] += ps_co;
-        //                groupDic[nhomDK] = group;
-        //            }
-        //        }
-        //        var checkChiTietError = "";
-        //        foreach (KeyValuePair<string, decimal[]> item in groupDic)
-        //        {
-        //            var group = item.Value;
-        //            if (group[0] != group[1])
-        //            {
-        //                checkChiTietError += string.Format("Kiểm tra nhóm định khoản (Phát sinh nợ <> Phát sinh có) {0}\n", item.Key);
-        //            }
-        //        }
-        //        if (checkChiTietError.Length > 0)
-        //        {
-        //            this.ShowWarningMessage(checkChiTietError);
-        //            return false;
-        //        }
-
-        //        //Tuanmh 16/02/2016 Check Voucher Is exist 
-        //        {
-        //            DataTable DataCheckVC = Invoice.GetCheck_VC_Save(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-        //                TxtSo_ct.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec);
-        //            if (DataCheckVC != null && DataCheckVC.Rows.Count > 0)
-        //            {
-        //                var chkso_ct = DataCheckVC.Rows[0]["chkso_ct"].ToString();
-        //                switch (chkso_ct)
-        //                {
-        //                    case "0":
-        //                        // Save: OK
-        //                        break;
-        //                    case "1":
-        //                        // Save: OK But Notice
-        //                        this.ShowWarningMessage(V6Text.Voucher_exist);
-        //                        break;
-        //                    case "2":
-        //                        // Save: Not Save
-        //                        this.ShowWarningMessage(V6Text.Voucher_exist_not_save);
-        //                        return false;
-
-        //                }
-
-        //            }
-        //        }
-                
-        //        //OK
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.WriteExLog(GetType() + ".ValidateData_Master", ex);
-        //    }
-        //    return false;
-        //}
-
-        private bool ValidateData_Detail(SortedDictionary<string, object> dic)
+        private bool ValidateData_Detail(SortedDictionary<string, object> data)
         {
             try
             {
@@ -3477,6 +3324,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     this.ShowWarningMessage("Tài khoản không phải chi tiết !");
                     return false;
                 }
+
+                ValidateDetailData(Invoice, data);
             }
             catch (Exception ex)
             {

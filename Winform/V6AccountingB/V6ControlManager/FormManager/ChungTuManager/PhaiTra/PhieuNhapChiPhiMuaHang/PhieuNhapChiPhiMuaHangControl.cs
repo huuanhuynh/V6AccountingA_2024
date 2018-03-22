@@ -885,6 +885,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             {
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
+                    detail1.btnNhan.Focus();
                     detail1.btnNhan.PerformClick();
                 }
                 //else if (detail3.MODE == V6Mode.Add || detail3.MODE == V6Mode.Edit)
@@ -929,6 +930,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         string error = ValidateDetailData(Invoice, detail1.GetData());
                         if (string.IsNullOrEmpty(error))
                         {
+                            detail1.btnNhan.Focus();
                             detail1.btnNhan.PerformClick();
                         }
                         else
@@ -2936,7 +2938,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
                 _print_flag = V6PrintMode.AutoClickPrint;
                 _sttRec_In = _sttRec;
-
+                btnLuu.Focus();
                 Luu();
                 Mode = V6Mode.View;// Status = "3";
             }
@@ -4125,6 +4127,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     return false;
                 }
 
+                ValidateMasterData(Invoice);
+
+
                 // Check Detail
                 if (AD.Rows.Count == 0)
                 {
@@ -4184,6 +4189,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 //    this.ShowWarningMessage("Tài khoản không phải chi tiết !");
                 //    return false;
                 //}
+
+                ValidateDetailData(Invoice, data);
             }
             catch (Exception ex)
             {

@@ -455,19 +455,20 @@ namespace V6Controls
             }
             return lstConfig;
         }
-        
+
         /// <summary>
         /// Lấy thông tin V6Valid cho chứng từ theo ma_ct.
         /// </summary>
         /// <param name="ma_ct"></param>
+        /// <param name="attribute"></param>
         /// <returns></returns>
-        public static V6ValidConfig GetV6ValidConfig(string ma_ct)
+        public static V6ValidConfig GetV6ValidConfig(string ma_ct, int attribute)
         {
             V6ValidConfig lstConfig = new V6ValidConfig();
             try
             {
-                SqlParameter[] plist = { new SqlParameter("@p", ma_ct) };
-                var executeResult = V6BusinessHelper.Select("V6Valid", "*", "[ma_ct]=@p", "", "", plist);
+                SqlParameter[] plist = { new SqlParameter("@p1", ma_ct), new SqlParameter("@p2", attribute) };
+                var executeResult = V6BusinessHelper.Select("V6Valid", "*", "[ma_ct]=@p1 and [attribute]=@p2", "", "", plist);
 
                 if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
                 {

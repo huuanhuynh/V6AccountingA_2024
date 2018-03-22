@@ -139,6 +139,24 @@ namespace V6Tools
             }
         }
 
+        /// <summary>
+        /// Hàm tạo ra một Object mới là Dictionary hoặc SortedDictionary với các Key đã được UPPER.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static IDictionary<string, object> ToUpperKeys(this IDictionary<string, object> target)
+        {
+            IDictionary<string, object> result;
+            if (target is SortedDictionary<string, object>) result = new SortedDictionary<string, object>();
+            else result = new Dictionary<string, object>();
+
+            foreach (var element in target)
+            {
+                result[element.Key.ToUpper()] = element.Value;
+            }
+            return result;
+        }
+
         #region ==== DataTable ====
 
         public static DataRow AddRow(this DataTable table, IDictionary<string, object> data, bool autoAddColumns = false)

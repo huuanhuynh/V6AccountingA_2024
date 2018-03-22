@@ -502,7 +502,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         }
 
 
-        private bool ValidateData_Detail(SortedDictionary<string, object> dic)
+        private bool ValidateData_Detail(SortedDictionary<string, object> data)
         {
             try
             {
