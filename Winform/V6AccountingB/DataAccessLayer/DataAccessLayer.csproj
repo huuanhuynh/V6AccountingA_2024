@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\Business\BusinessServices.cs" />
+    <Compile Include="Implementations\Invoices\Invoice82Services.cs" />
     <Compile Include="Implementations\Invoices\Invoice83Services.cs" />
     <Compile Include="Implementations\Invoices\Invoice84Services.cs" />
     <Compile Include="Implementations\Invoices\Invoice81Services.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Interfaces\IInvoiceServices.cs" />
     <Compile Include="Interfaces\IMenuServices.cs" />
     <Compile Include="Interfaces\ILoginServices.cs" />
+    <Compile Include="Interfaces\Invoices\IInvoice82Services.cs" />
     <Compile Include="Interfaces\Invoices\IInvoice83Services.cs" />
     <Compile Include="Interfaces\Invoices\IInvoice84Services.cs" />
     <Compile Include="Interfaces\Invoices\IInvoice81Services.cs" />

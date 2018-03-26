@@ -54,6 +54,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>app.settings</DependentUpon>
     </Compile>
+    <Compile Include="Invoices\V6Invoice82.cs" />
     <Compile Include="Invoices\V6Invoice83.cs" />
     <Compile Include="Invoices\V6Invoice93.cs" />
     <Compile Include="V6BusinessHelper.cs" />

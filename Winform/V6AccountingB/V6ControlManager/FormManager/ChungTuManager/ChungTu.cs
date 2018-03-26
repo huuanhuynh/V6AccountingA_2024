@@ -11,6 +11,7 @@ using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu;
+using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichVu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMuaHang;
@@ -218,6 +219,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 #region ==== Phải thu ====
                 case "SOA":
                     return new HoaDonControl(itemId, sttRec) { Name = itemId };
+                case "SOB":
+                    return new HoaDonDichVuCoSLControl(itemId, sttRec) { Name = itemId };
                 case "SOH":
                     return new DonDatHangBanControl(itemId, sttRec) { Name = itemId };
                 case "SOR":

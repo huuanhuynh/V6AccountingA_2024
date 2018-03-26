@@ -332,6 +332,108 @@
     <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\TimDonDatHangBanForm.Designer.cs">
       <DependentUpon>TimDonDatHangBanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonBaoGia\CBG_HoaDon2Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonBaoGia\CBG_HoaDon2Form.Designer.cs">
+      <DependentUpon>CBG_HoaDon2Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonBaoGia\CBG_HoaDon2KetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonBaoGia\CBG_HoaDon2KetQua.Designer.cs">
+      <DependentUpon>CBG_HoaDon2KetQua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonDonHang\CDH_HoaDon2Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonDonHang\CDH_HoaDon2Form.Designer.cs">
+      <DependentUpon>CDH_HoaDon2Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonDonHang\CDH_HoaDon2KetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonDonHang\CDH_HoaDon2KetQua.Designer.cs">
+      <DependentUpon>CDH_HoaDon2KetQua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuNhap\CPN_CT_HoaDon2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuNhap\CPN_CT_HoaDon2.Designer.cs">
+      <DependentUpon>CPN_CT_HoaDon2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuNhap\CPN_HoaDon2Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuNhap\CPN_HoaDon2Form.Designer.cs">
+      <DependentUpon>CPN_HoaDon2Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuNhap\CPN_KetQua_HoaDon2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuNhap\CPN_KetQua_HoaDon2.Designer.cs">
+      <DependentUpon>CPN_KetQua_HoaDon2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuNhap\CPN_ThoiGian_HoaDon2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuNhap\CPN_ThoiGian_HoaDon2.Designer.cs">
+      <DependentUpon>CPN_ThoiGian_HoaDon2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuNhap\CPN_ThongTin_HoaDon2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuNhap\CPN_ThongTin_HoaDon2.Designer.cs">
+      <DependentUpon>CPN_ThongTin_HoaDon2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuXuat\CPX_HoaDon2Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuXuat\CPX_HoaDon2Form.Designer.cs">
+      <DependentUpon>CPX_HoaDon2Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuXuat\CPX_HoaDon2KetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuXuat\CPX_HoaDon2KetQua.Designer.cs">
+      <DependentUpon>CPX_HoaDon2KetQua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\HoaDonDichVuCoSLControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\HoaDonDichVuCoSLControl.Designer.cs">
+      <DependentUpon>HoaDonDichVuCoSLControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\LocKetQuaHoaDon2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\LocKetQuaHoaDon2.Designer.cs">
+      <DependentUpon>LocKetQuaHoaDon2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\LocThoiGianHoaDon2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\LocThoiGianHoaDon2.Designer.cs">
+      <DependentUpon>LocThoiGianHoaDon2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\LocThongTinChiTietHoaDon2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\LocThongTinChiTietHoaDon2.Designer.cs">
+      <DependentUpon>LocThongTinChiTietHoaDon2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\LocThongTinHoaDon2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\LocThongTinHoaDon2.Designer.cs">
+      <DependentUpon>LocThongTinHoaDon2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\TimHoaDon2Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\TimHoaDon2Form.Designer.cs">
+      <DependentUpon>TimHoaDon2Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDonCafe\PayForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5225,6 +5327,54 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\TimDonDatHangBanForm.resx">
       <DependentUpon>TimDonDatHangBanForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonBaoGia\CBG_HoaDon2Form.resx">
+      <DependentUpon>CBG_HoaDon2Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonBaoGia\CBG_HoaDon2KetQua.resx">
+      <DependentUpon>CBG_HoaDon2KetQua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonDonHang\CDH_HoaDon2Form.resx">
+      <DependentUpon>CDH_HoaDon2Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonDonHang\CDH_HoaDon2KetQua.resx">
+      <DependentUpon>CDH_HoaDon2KetQua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuNhap\CPN_CT_HoaDon2.resx">
+      <DependentUpon>CPN_CT_HoaDon2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuNhap\CPN_HoaDon2Form.resx">
+      <DependentUpon>CPN_HoaDon2Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuNhap\CPN_KetQua_HoaDon2.resx">
+      <DependentUpon>CPN_KetQua_HoaDon2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuNhap\CPN_ThongTin_HoaDon2.resx">
+      <DependentUpon>CPN_ThongTin_HoaDon2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuXuat\CPX_HoaDon2Form.resx">
+      <DependentUpon>CPX_HoaDon2Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\ChonPhieuXuat\CPX_HoaDon2KetQua.resx">
+      <DependentUpon>CPX_HoaDon2KetQua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\HoaDonDichVuCoSLControl.resx">
+      <DependentUpon>HoaDonDichVuCoSLControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\LocKetQuaHoaDon2.resx">
+      <DependentUpon>LocKetQuaHoaDon2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\LocThoiGianHoaDon2.resx">
+      <DependentUpon>LocThoiGianHoaDon2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\LocThongTinChiTietHoaDon2.resx">
+      <DependentUpon>LocThongTinChiTietHoaDon2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\LocThongTinHoaDon2.resx">
+      <DependentUpon>LocThongTinHoaDon2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\Loc\TimHoaDon2Form.resx">
+      <DependentUpon>TimHoaDon2Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDonCafe\PayForm.resx">
       <DependentUpon>PayForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -7709,6 +7859,7 @@
     <None Include="Resources\Barcode24.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\GhiChu.txt" />
     <Content Include="Resources\Box16.png" />
     <Content Include="Resources\HammerBlack16.png" />
     <Content Include="Resources\House16.png" />
