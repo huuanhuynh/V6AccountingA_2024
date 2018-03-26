@@ -48,10 +48,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //@Ma_dvcs varchar(50),
             //@Tk as varchar(50) = ''
 
+            //txtMaDvcs.StringValue.Trim() + "%"
+            var ma_dvcs = txtMaDvcs.IsSelected ? txtMaDvcs.StringValue.Trim() + "%" : "%";
+
             var result = new List<SqlParameter>
             {
                 new SqlParameter("@Ngay", dateNgay_ct.Value.ToString("yyyyMMdd")),
-                new SqlParameter("@Ma_dvcs", txtMaDvcs.StringValue.Trim() + "%"),
+                new SqlParameter("@Ma_dvcs",ma_dvcs),
                 new SqlParameter("@Tk", TxtTk.Text.Trim() + "%")
             };
             

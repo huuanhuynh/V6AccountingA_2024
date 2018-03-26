@@ -259,6 +259,8 @@ namespace V6Controls
                 row.DataGridView.DefaultCellStyle.SelectionBackColor = Color.Brown;
                 row.DataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
             }
+
+            if (row.DataGridView is V6ColorDataGridView) ((V6ColorDataGridView)row.DataGridView).OnRowSelectChanged();
         }
         /// <summary>
         /// Hàm mở rộng, bỏ chọn, gán Tag = "";
@@ -287,6 +289,8 @@ namespace V6Controls
                 row.DataGridView.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
                 row.DataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
             }
+
+            if(row.DataGridView is V6ColorDataGridView) ((V6ColorDataGridView)row.DataGridView).OnRowSelectChanged();
         }
         /// <summary>
         /// Hàm mở rộng, chọn theo điều kiện

@@ -169,6 +169,25 @@
     <Type>0</Type>
     <Key>HK076kgfwCcg0njmmdo/yUZAoF2wV8KJYoUSKcJGsjXp2CdF43g85g==</Key>
   </DatabaseList>
+  <DatabaseList>
+    <Stt>10</Stt>
+    <Server>tony-db-server.database.windows.net</Server>
+    <Server2>tony-db-server.database.windows.net</Server2>
+    <Database>v6soft-2018</Database>
+    <Database2>v6soft-2018</Database2>
+    <UserId>tonytram</UserId>
+    <UserId2>tonytram</UserId2>
+    <Epassword>mgBfUi0Gawjp2CdF43g85g==</Epassword>
+    <Epassword2>mgBfUi0Gawjp2CdF43g85g==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>DATABASE ONLINE AZURE</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>8tNoYpFwYBP/OPdM/hJhZ6478J5tB7K3LqUuT0OQW0WGRJQNBbNQma0vnJiZdM7n6dgnReN4POY=</Key>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>

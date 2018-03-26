@@ -30,11 +30,13 @@
         {
             this.tabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtUser_pre = new V6Controls.V6VvarTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cboInherit = new V6Controls.V6ComboBox();
             this.chkUser_sale = new V6Controls.V6CheckBox();
             this.chkUser_acc = new V6Controls.V6CheckBox();
             this.chkUser_inv = new V6Controls.V6CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cboLevel = new V6Controls.V6ComboBox();
             this.chkIs_admin = new V6Controls.V6CheckBox();
@@ -106,11 +108,13 @@
             // 
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage1.Controls.Add(this.txtUser_pre);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.cboInherit);
             this.tabPage1.Controls.Add(this.chkUser_sale);
             this.tabPage1.Controls.Add(this.chkUser_acc);
             this.tabPage1.Controls.Add(this.chkUser_inv);
+            this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.cboLevel);
             this.tabPage1.Controls.Add(this.chkIs_admin);
@@ -123,6 +127,25 @@
             this.tabPage1.Size = new System.Drawing.Size(747, 290);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
+            // 
+            // txtUser_pre
+            // 
+            this.txtUser_pre.AccessibleName = "USER_PRE";
+            this.txtUser_pre.BackColor = System.Drawing.Color.White;
+            this.txtUser_pre.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtUser_pre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtUser_pre.CheckOnLeave = false;
+            this.txtUser_pre.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtUser_pre.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtUser_pre.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtUser_pre.HoverColor = System.Drawing.Color.Yellow;
+            this.txtUser_pre.LeaveColor = System.Drawing.Color.White;
+            this.txtUser_pre.Location = new System.Drawing.Point(212, 244);
+            this.txtUser_pre.Name = "txtUser_pre";
+            this.txtUser_pre.Size = new System.Drawing.Size(184, 23);
+            this.txtUser_pre.TabIndex = 35;
+            this.txtUser_pre.UseLimitCharacters0 = true;
+            this.txtUser_pre.VVar = "MA_NVIEN";
             // 
             // label7
             // 
@@ -185,6 +208,17 @@
             this.chkUser_inv.Text = "Là phòng vật tư - quản lý số lượng";
             this.chkUser_inv.UseVisualStyleBackColor = true;
             this.chkUser_inv.CheckedChanged += new System.EventHandler(this.v6chk_set_vattu_ketoan_banhang_CheckedChanged);
+            // 
+            // label11
+            // 
+            this.label11.AccessibleDescription = "";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(20, 247);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(93, 17);
+            this.label11.TabIndex = 28;
+            this.label11.Text = "Mã nhân viên";
             // 
             // label6
             // 
@@ -893,5 +927,7 @@
         protected System.Windows.Forms.Button btnEditXml;
         private V6ColorTextBox txtXmlInfor;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private V6VvarTextBox txtUser_pre;
     }
 }

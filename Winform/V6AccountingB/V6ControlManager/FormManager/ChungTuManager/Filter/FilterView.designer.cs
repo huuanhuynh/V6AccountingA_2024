@@ -42,6 +42,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
+            this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -69,7 +70,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.txtV_Search.Name = "txtV_Search";
             this.txtV_Search.Size = new System.Drawing.Size(195, 20);
             this.txtV_Search.TabIndex = 2;
-            this.txtV_Search.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtVSearch_KeyDown);
             // 
             // btnESC
             // 
@@ -119,6 +119,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -128,6 +129,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Control_A = true;
             this.dataGridView1.Location = new System.Drawing.Point(0, 32);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -135,11 +137,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(732, 469);
+            this.dataGridView1.Size = new System.Drawing.Size(732, 450);
+            this.dataGridView1.Space_Bar = true;
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+            //this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+            // 
+            // gridViewSummary1
+            // 
+            this.gridViewSummary1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridViewSummary1.DataGridView = this.dataGridView1;
+            this.gridViewSummary1.Location = new System.Drawing.Point(0, 482);
+            this.gridViewSummary1.Name = "gridViewSummary1";
+            this.gridViewSummary1.Size = new System.Drawing.Size(732, 22);
+            this.gridViewSummary1.TabIndex = 3;
             // 
             // FilterView
             // 
@@ -147,6 +159,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnESC;
             this.ClientSize = new System.Drawing.Size(732, 526);
+            this.Controls.Add(this.gridViewSummary1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
@@ -160,7 +173,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Standard_FormClosing);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Standard_KeyDown);
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.dataGridView1, 0);
+            this.Controls.SetChildIndex(this.statusStrip1, 0);
+            this.Controls.SetChildIndex(this.gridViewSummary1, 0);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -180,6 +197,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         internal Button btnESC;
+        private V6Controls.Controls.GridViewSummary gridViewSummary1;
 
     }
 }

@@ -283,6 +283,13 @@ namespace V6Controls
             }
         }
 
+        public event EventHandler RowSelectChanged;
+        public virtual void OnRowSelectChanged()
+        {
+            var handler = RowSelectChanged;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+
         private void V6ColorDataGridView_SelectionChanged(object sender, EventArgs e)
         {
             if (CurrentRow!=null && CurrentRow.IsSelect())
@@ -844,6 +851,6 @@ namespace V6Controls
         {
             V6ControlFormHelper.FormatGridViewAndHeader(this, GRDSV1, GRDFV1, GRDH);
         }
-
+        
     }
 }

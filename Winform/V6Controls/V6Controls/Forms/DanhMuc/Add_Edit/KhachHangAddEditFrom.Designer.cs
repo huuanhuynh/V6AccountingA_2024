@@ -929,7 +929,7 @@
             // 
             // v6VvarTextBox2
             // 
-            this.v6VvarTextBox2.AccessibleName = "ma_nvien";
+            this.v6VvarTextBox2.AccessibleName = "MA_SNVIEN";
             this.v6VvarTextBox2.BackColor = System.Drawing.SystemColors.Window;
             this.v6VvarTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6VvarTextBox2.EnterColor = System.Drawing.Color.PaleGreen;

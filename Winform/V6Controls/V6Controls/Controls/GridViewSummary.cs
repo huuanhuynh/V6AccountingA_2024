@@ -88,6 +88,11 @@ namespace V6Controls.Controls
                 FixThisSizeLocation(dgv);
 
                 dgv.SelectionChanged += dgv_SelectionChanged;
+                if (dgv is V6ColorDataGridView)
+                {
+                    var dgv6 = dgv as V6ColorDataGridView;
+                    dgv6.RowSelectChanged += dgv_SelectionChanged;
+                }
                 dgv.Paint += dgv_Paint;
                 dgv.DataSourceChanged += dgv_DataSourceChanged;
                 dgv.SizeChanged += dgv_SizeChanged;
@@ -236,15 +241,23 @@ namespace V6Controls.Controls
             }
 
 
-            if ((_dgv.SelectionMode == DataGridViewSelectionMode.FullRowSelect && _dgv.SelectedRows.Count > 1)
-                || (_dgv.SelectionMode != DataGridViewSelectionMode.FullRowSelect && _dgv.SelectedCells.Count > 1))
+            //if ((_dgv.SelectionMode == DataGridViewSelectionMode.FullRowSelect && _dgv.SelectedRows.Count > 1)
+            //    || (_dgv.SelectionMode != DataGridViewSelectionMode.FullRowSelect && _dgv.SelectedCells.Count > 1))
             {
                 // Lấy những dòng được chọn để tính tổng
                 var rows = new SortedDictionary<int, DataGridViewRow>();
+
+                foreach (DataGridViewRow row in _dgv.Rows)
+                {
+                    if (row.IsSelect()) rows[row.Index] = row;
+                }
+
+                if(rows.Count == 0)
                 foreach (DataGridViewCell cell in _dgv.SelectedCells)
                 {
                     rows[cell.RowIndex] = cell.OwningRow;
                 }
+
                 // Trường hợp chọn từ 2 dòng trở lên
                 if (rows.Count > 1)
                 {

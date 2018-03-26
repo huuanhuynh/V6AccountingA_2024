@@ -16,7 +16,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
     /// Form chọn dữ liệu có filter. Nếu không gán dữ liệu cho control nào thì gửi sender bằng null hoặc new V6ColorTextBox.
     /// Có thể cần nâng cấp phần phân trang giống danh mục view.
     /// </summary>
-    public partial class FilterView : Form
+    public partial class FilterView : V6Form
     {
         //public string CONSTRING = "";
         public string DataField { get; set; }
@@ -150,19 +150,31 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             }
         }
 
-        
-        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        public override bool DoHotKey0(Keys keyData)
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
+                if (keyData == Keys.Enter)
                 {
-                    e.Handled = true;
+                    if (txtV_Search.Focused && dataGridView1.Rows.Count != 1)
+                    {
+                        if (txtV_Search.Text.Trim() == "")
+                        {
+                            btnVSearch.PerformClick();
+                        }
+                        else
+                        {
+                            btnVSearch.PerformClick();
+                        }
+                        return true;
+                    }
+
+                    //e.Handled = true;
                     if (MultiSeletion)
                     {
                         foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
-                            if(row.IsSelect())
+                            if (row.IsSelect())
                                 OnChoseEvent(row);
                         }
 
@@ -181,7 +193,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                             V6ControlFormHelper.SetControlValue(_senderTextBox, selectedValue);
                             _senderTextBox.Tag = currentRow;
                         }
-                        
+
                         if (dataGridView1.CurrentRow != null)
                         {
                             SelectedRowData = dataGridView1.CurrentRow.ToDataDictionary();
@@ -189,24 +201,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                         DialogResult = DialogResult.OK;
                         if (_senderTextBox != null) _senderTextBox.SetLooking(false);
                     }
+                    return true;
                 }
-                else if (e.KeyCode == Keys.Space && MultiSeletion)
+                else if (keyData == Keys.Space && MultiSeletion)
                 {
                     var cRow = dataGridView1.CurrentRow;
                     if (cRow != null)
                     {
                         cRow.ChangeSelect();
                     }
+                    return true;
                 }
-                else if (e.KeyCode == Keys.Escape)
+                else if (keyData == Keys.Escape)
                 {
                     DialogResult = DialogResult.Cancel;
+                    return true;
+                }
+                else
+                {
+                    return base.DoHotKey0(keyData);
                 }
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(string.Format("{0} {1} {2} {3}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, ex.Message));
             }
+            return false;
         }
         
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -287,23 +307,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             }
             return result;
         }
-
-        private void txtVSearch_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (txtV_Search.Text.Trim() == "")
-            {
-                btnVSearch.PerformClick();
-            }
-            else if (dataGridView1.Rows.Count == 1)
-            {
-                dataGridView1_KeyDown(dataGridView1, new KeyEventArgs(e.KeyData));
-            }
-            else
-            {
-                btnVSearch.PerformClick();
-            }
-        }
-
+        
         private void btnVSearch_Click(object sender, EventArgs e)
         {
             try
@@ -316,13 +320,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             }
         }
 
-        private void Standard_KeyDown(object sender, KeyEventArgs e)
-        {
-            //if (e.KeyCode == Keys.Escape)
-            //{
-            //    Close();
-            //}
-        }
         #endregion        
 
         private void Standard_FormClosing(object sender, FormClosingEventArgs e)

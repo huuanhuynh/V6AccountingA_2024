@@ -95,12 +95,12 @@ namespace V6AccountingBusiness
         #endregion select
 
         #region ==== ADD-INSERT ====
-        public bool Insert(V6TableName tableName, SortedDictionary<string, object> data)
+        public bool Insert(V6TableName tableName, IDictionary<string, object> data)
         {
             return Insert(tableName.ToString(), data);
         }
 
-        public bool Insert(string tableName, SortedDictionary<string, object> data)
+        public bool Insert(string tableName, IDictionary<string, object> data)
         {
             var structTable = V6SqlconnectHelper.GetTableStruct(tableName);
             var sql = SqlGenerator.GenInsertSql(V6Login.UserId, tableName, structTable, data);
