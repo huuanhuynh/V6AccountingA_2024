@@ -139,10 +139,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         #region ==== Khởi tạo Detail Form ====
 
 
-        private V6ColorTextBox _dvt;
+        private V6ColorTextBox _dvt, _so_bill;
         private V6CheckTextBox _tang, _xuat_dd;
-        private V6VvarTextBox _maVt, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _maViTri,_maTdi, _ma_thue_i, _tk_thue_i;
-        private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt2, _giaNt21,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
+        private V6VvarTextBox _maVt, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _maViTri,_maTdi, _ma_thue_i, _tk_thue_i, _ma_kh_i0;
+        private V6NumberTextBox _soLuong1, _soLuong, _soNgay, _heSo1, _giaNt2, _giaNt21,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
         private V6NumberTextBox _ton13, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4,_ggNt,_gg;
         private V6DateTimeColor _hanSd;
@@ -243,7 +243,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                         _dvt = (V6ColorTextBox)control;
                         _dvt.Tag = "hide";
                         break;
-                    
+                    case "SO_BILL":
+                        _so_bill = control as V6VvarTextBox;
+                        if (_so_bill != null)
+                        {
+                            _so_bill.CharacterCasing = CharacterCasing.Upper;
+                            _so_bill.V6LostFocus += delegate
+                            {
+                                CheckSoBill();
+                            };
+                        }
+                        break;
+                    //case "MA_KH_I":
+                    //    _ma_kh_i = control as V6VvarTextBox;
+                    //    if (_ma_kh_i != null)
+                    //    {
+                            
+                    //    }
+                    //    break;
                     case "MA_KHO_I":
                         _maKhoI = (V6VvarTextBox)control;
                         _maKhoI.Upper();
@@ -323,6 +340,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     case "SO_LUONG":
                         _soLuong = (V6NumberTextBox)control;
                         _soLuong.Tag = "hide";
+                        break;
+                    case "SO_NGAY":
+                        _soNgay = control as V6NumberTextBox;
+                        if (_soNgay != null)
+                        {
+                            _soNgay.V6LostFocus += delegate
+                            {
+                                chkSuaTienThue.Checked = false;
+                                TinhTienNt2();
+                                Tinh_thue_ct();
+                            };
+                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            {
+                                _soNgay.InvisibleTag();
+                            }
+                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            {
+                                _soNgay.ReadOnlyTag();
+                            }
+                        }
                         break;
                     case "HE_SO1":
                         _heSo1 = (V6NumberTextBox)control;
@@ -732,6 +769,39 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             detail1.SetStruct(Invoice.ADStruct);
             detail1.MODE = detail1.MODE;
             V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView1, _alct1Dic, _maNt, _mMaNt0);
+        }
+
+        private void CheckSoBill()
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Ma_vt", _maVt.Text),
+                    new SqlParameter("@So_bill", _so_bill.Text),
+                    new SqlParameter("@Stt_rec", _sttRec)
+                };
+                DataTable dataCheck = V6BusinessHelper.ExecuteProcedure("VPA_CHECK_SO_BILL", plist).Tables[0];
+
+                if (dataCheck != null && dataCheck.Rows.Count > 0)
+                {
+                    var chk_yn = dataCheck.Rows[0]["chk_yn"].ToString();
+                    var mess = dataCheck.Rows[0]["mess"].ToString().Trim();
+                    var mess2 = dataCheck.Rows[0]["mess2"].ToString().Trim();
+                    var message = V6Setting.IsVietnamese ? mess : mess2;
+
+                    switch (chk_yn)
+                    {
+                        case "1":
+                            if (message != "") this.ShowWarningMessage(message);
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CheckSoBill", ex);
+            }
         }
 
         private V6ColorTextBox _operTT_33, _nh_dk_33;
@@ -2737,8 +2807,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             try
             {
                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
-                _tienNt2.Value = V6BusinessHelper.Vround((_soLuong1.Value * _giaNt21.Value), M_ROUND_NT);
-                _tien2.Value = V6BusinessHelper.Vround((_tienNt2.Value * txtTyGia.Value), M_ROUND);
+                var so_ngay = _soNgay == null ? 1m : _soNgay.Value;
+                if (so_ngay == 0) so_ngay = 1;
+                _tienNt2.Value = V6BusinessHelper.Vround(_soLuong1.Value * _giaNt21.Value * so_ngay, M_ROUND_NT);
+                _tien2.Value = V6BusinessHelper.Vround(_tienNt2.Value * txtTyGia.Value, M_ROUND);
 
                 if (_maNt == _mMaNt0)
                 {
@@ -2757,6 +2829,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 this.ShowErrorException(GetType() + ".TinhTienNt2", ex);
             }
         }
+
         private void TinhGiamGiaCt()
         {
             try
