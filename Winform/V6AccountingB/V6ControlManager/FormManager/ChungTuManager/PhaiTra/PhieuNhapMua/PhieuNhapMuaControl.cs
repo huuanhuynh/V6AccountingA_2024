@@ -1654,6 +1654,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         void TienNt0_V6LostFocus(object sender)
         {
             _tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * txtTyGia.Value), M_ROUND);
+            if (_maNt == _mMaNt0)
+            {
+                _tien0.Value = _tienNt0.Value;
+            }
             TinhTienNt();//Da tinh gia nt trong tinhtiennt
             //TinhGiaNt();
         }

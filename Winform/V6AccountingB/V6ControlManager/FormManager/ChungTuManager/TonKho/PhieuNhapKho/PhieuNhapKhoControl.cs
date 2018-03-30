@@ -357,6 +357,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
                             _tienNt0.V6LostFocus += delegate
                             {
+                                _tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * txtTyGia.Value), M_ROUND);
+                                if (_maNt == _mMaNt0)
+                                {
+                                    _tien0.Value = _tienNt0.Value;
+                                }
                                 TinhTienVon_GiaVon();
                             };
                             if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
