@@ -319,15 +319,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                         _soLuong1 = control as V6NumberTextBox;
                         if (_soLuong1 != null)
                         {
+                            _soLuong1.V6LostFocus += (sender) =>
+                            {
+                                CheckSoLuong1();
+                                chkSuaTienThue.Checked = false;
+                                Tinh_thue_ct();
+                            };
+
                             _soLuong1.LostFocus += delegate
                             {
                                 CheckSoLuong1();
-                            };
-
-                            _soLuong1.V6LostFocus += (sender) =>
-                            {
-                                chkSuaTienThue.Checked = false;
-                                Tinh_thue_ct();
                             };
 
                             if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))

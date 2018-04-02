@@ -220,9 +220,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             _soLuong1.LostFocus += delegate
                             {
                                 CheckSoLuong1();
-                            };
-                            _soLuong1.LostFocus += delegate
-                            {
                                 SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
                             };
                             if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))

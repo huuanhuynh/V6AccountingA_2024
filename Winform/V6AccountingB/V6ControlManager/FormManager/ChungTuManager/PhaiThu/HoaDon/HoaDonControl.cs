@@ -302,15 +302,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         _soLuong1 = control as V6NumberTextBox;
                         if (_soLuong1 != null)
                         {
+                            _soLuong1.V6LostFocus += (sender) =>
+                            {
+                                CheckSoLuong1();
+                                chkSuaTienThue.Checked = false;
+                                Tinh_thue_ct();
+                            };
+
                             _soLuong1.LostFocus += delegate
                             {
                                 CheckSoLuong1();
-                            };
-
-                            _soLuong1.V6LostFocus += (sender) =>
-                            {
-                                chkSuaTienThue.Checked = false;
-                                Tinh_thue_ct();
                             };
 
                             if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
@@ -6579,6 +6580,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     var soLuong = ObjectAndString.ObjectToDecimal(row["SO_LUONG"]);
                     var soLuong1 = ObjectAndString.ObjectToDecimal(row["SO_LUONG1"]);
                     var tienNt2 = ObjectAndString.ObjectToDecimal(row["TIEN_NT2"]);
+                    var tien2 = ObjectAndString.ObjectToDecimal(row["TIEN2"]);
 
                     var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Value,
                         cboMaNt.SelectedValue.ToString().Trim(), maVatTu, dvt1, txtMaKh.Text, txtMaGia.Text);
@@ -6587,8 +6589,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     row["GIA_NT21"] = giaNt21;
                     //_soLuong.Value = _soLuong1.Value * _heSo1.Value;
                     tienNt2 = V6BusinessHelper.Vround((soLuong1 * giaNt21), M_ROUND_NT);
+                    tien2 = V6BusinessHelper.Vround((_tienNt2.Value * txtTyGia.Value), M_ROUND);
+                    
                     row["tien_Nt2"] = tienNt2;
-                    _tien2.Value = V6BusinessHelper.Vround((_tienNt2.Value * txtTyGia.Value), M_ROUND);
+                    row["tien2"] = tien2;
+                    
+                    //_tien2.Value = V6BusinessHelper.Vround((_tienNt2.Value * txtTyGia.Value), M_ROUND);
 
                     if (_maNt == _mMaNt0)
                     {
@@ -6616,7 +6622,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (soLuong != 0)
                     {
                         row["gia_nt2"] = V6BusinessHelper.Vround((tienNt2 / soLuong), M_ROUND_GIA_NT);
-                        var tien2 = ObjectAndString.ObjectToDecimal(row["tien2"]);
+                        //var tien2 = ObjectAndString.ObjectToDecimal(row["tien2"]);
                         row["gia2"] = V6BusinessHelper.Vround((tien2 / soLuong), M_ROUND_GIA);
 
                         if (_maNt == _mMaNt0)
@@ -6654,6 +6660,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         if (_maNt == _mMaNt0)
                         {
                             row["gg"] = ggNt;
+                        }
+                    }
+
+                    //TinhThueCt
+                    if (M_SOA_MULTI_VAT == "1")
+                    {
+                        try
+                        {
+                            var thue_suat_i = ObjectAndString.ObjectToDecimal(row["THUE_SUAT_I"]);
+                            row["THUE_NT"] = V6BusinessHelper.Vround(tienNt2 *  thue_suat_i/ 100, M_ROUND_NT);
+                            row["THUE"] = V6BusinessHelper.Vround(tien2 * thue_suat_i / 100, M_ROUND);
+
+                            if (_maNt == _mMaNt0)
+                            {
+                                row["THUE"] = row["THUE_NT"];
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            this.WriteExLog(GetType() + ".ApGiaBan TinhThueCt", ex);
                         }
                     }
 
