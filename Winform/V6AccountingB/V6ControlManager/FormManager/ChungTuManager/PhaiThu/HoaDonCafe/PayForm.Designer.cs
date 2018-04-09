@@ -94,6 +94,7 @@
             this.btnIn.Name = "btnIn";
             this.btnIn.Size = new System.Drawing.Size(88, 40);
             this.btnIn.TabIndex = 2;
+            this.btnIn.Tag = "F7";
             this.btnIn.Text = "Lưu và &In";
             this.btnIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnIn.UseVisualStyleBackColor = true;
@@ -287,6 +288,7 @@
             this.Name = "PayForm";
             this.Text = "PayForm";
             this.Load += new System.EventHandler(this.PayForm_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.button1, 0);

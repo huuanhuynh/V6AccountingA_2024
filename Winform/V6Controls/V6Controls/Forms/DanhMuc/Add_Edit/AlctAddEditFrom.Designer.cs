@@ -71,9 +71,11 @@
             this.v6ColorTextBox4 = new V6Controls.V6ColorTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.cboKieuPost = new V6Controls.V6ComboBox();
+            this.label64 = new System.Windows.Forms.Label();
             this.v6VvarTextBox7 = new V6Controls.V6VvarTextBox();
             this.label60 = new System.Windows.Forms.Label();
             this.txtform = new V6Controls.V6VvarTextBox();
+            this.txtExtraInfo = new V6Controls.V6ColorTextBox();
             this.label44 = new System.Windows.Forms.Label();
             this.v6VvarTextBox4 = new V6Controls.V6VvarTextBox();
             this.v6VvarTextBox6 = new V6Controls.V6VvarTextBox();
@@ -166,8 +168,6 @@
             this.v6ColorTextBox13 = new V6Controls.V6ColorTextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.v6ColorTextBox12 = new V6Controls.V6ColorTextBox();
-            this.label64 = new System.Windows.Forms.Label();
-            this.txtExtraInfo = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -876,6 +876,16 @@
             this.cboKieuPost.TabStop = false;
             this.cboKieuPost.SelectedIndexChanged += new System.EventHandler(this.cboKieuPost_SelectedIndexChanged);
             // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(23, 258);
+            this.label64.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(103, 17);
+            this.label64.TabIndex = 16;
+            this.label64.Text = "Thông tin thêm";
+            // 
             // v6VvarTextBox7
             // 
             this.v6VvarTextBox7.AccessibleName = "PROCEDUR";
@@ -917,6 +927,24 @@
             this.txtform.Name = "txtform";
             this.txtform.Size = new System.Drawing.Size(126, 23);
             this.txtform.TabIndex = 13;
+            // 
+            // txtExtraInfo
+            // 
+            this.txtExtraInfo.AccessibleName = "EXTRA_INFOR";
+            this.txtExtraInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtExtraInfo.BackColor = System.Drawing.Color.White;
+            this.txtExtraInfo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtExtraInfo.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtExtraInfo.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtExtraInfo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtExtraInfo.HoverColor = System.Drawing.Color.Yellow;
+            this.txtExtraInfo.LeaveColor = System.Drawing.Color.White;
+            this.txtExtraInfo.Location = new System.Drawing.Point(196, 252);
+            this.txtExtraInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExtraInfo.Name = "txtExtraInfo";
+            this.txtExtraInfo.Size = new System.Drawing.Size(538, 23);
+            this.txtExtraInfo.TabIndex = 17;
             // 
             // label44
             // 
@@ -1644,9 +1672,9 @@
             this.label17.Location = new System.Drawing.Point(9, 167);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(123, 17);
+            this.label17.Size = new System.Drawing.Size(118, 17);
             this.label17.TabIndex = 14;
-            this.label17.Text = "Sử dụng số nội bộ";
+            this.label17.Text = "Duyệt trước khi in";
             // 
             // label35
             // 
@@ -2275,34 +2303,6 @@
             this.v6ColorTextBox12.Size = new System.Drawing.Size(135, 23);
             this.v6ColorTextBox12.TabIndex = 1;
             this.v6ColorTextBox12.Visible = false;
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(23, 258);
-            this.label64.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(103, 17);
-            this.label64.TabIndex = 16;
-            this.label64.Text = "Thông tin thêm";
-            // 
-            // txtExtraInfo
-            // 
-            this.txtExtraInfo.AccessibleName = "EXTRA_INFOR";
-            this.txtExtraInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtExtraInfo.BackColor = System.Drawing.Color.White;
-            this.txtExtraInfo.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtExtraInfo.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtExtraInfo.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtExtraInfo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtExtraInfo.HoverColor = System.Drawing.Color.Yellow;
-            this.txtExtraInfo.LeaveColor = System.Drawing.Color.White;
-            this.txtExtraInfo.Location = new System.Drawing.Point(196, 252);
-            this.txtExtraInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExtraInfo.Name = "txtExtraInfo";
-            this.txtExtraInfo.Size = new System.Drawing.Size(538, 23);
-            this.txtExtraInfo.TabIndex = 17;
             // 
             // AlctAddEditFrom
             // 

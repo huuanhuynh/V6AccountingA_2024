@@ -400,6 +400,7 @@
             this.TxtXkieu_post.Name = "TxtXkieu_post";
             this.TxtXkieu_post.Size = new System.Drawing.Size(18, 20);
             this.TxtXkieu_post.TabIndex = 3;
+            this.TxtXkieu_post.TextChanged += new System.EventHandler(this.TxtXkieu_post_TextChanged);
             // 
             // ctDenSo
             // 

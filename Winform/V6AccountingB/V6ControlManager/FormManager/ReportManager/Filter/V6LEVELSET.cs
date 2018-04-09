@@ -218,5 +218,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             ctDenSo.Enabled = !chkLike.Checked;
         }
 
+        private void TxtXkieu_post_TextChanged(object sender, System.EventArgs e)
+        {
+            Kieu_post = TxtXkieu_post.Text;
+        }
+
     }
 }

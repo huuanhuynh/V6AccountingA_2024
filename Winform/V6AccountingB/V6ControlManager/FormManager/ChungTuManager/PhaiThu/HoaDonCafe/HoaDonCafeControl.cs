@@ -4032,6 +4032,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     V6ControlFormHelper.ShowMainMessage(V6Text.AddSuccess);
                     ShowParentMessage(V6Text.AddSuccess);
                     //ViewInvoice(_sttRec, V6Mode.Add);
+                    if (!_post) GetCurrentIndex();
                     btnMoi.Focus();
                     All_Objects["mode"] = V6Mode.Add;
                     All_Objects["AM_DATA"] = addDataAM;
@@ -4380,10 +4381,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             _post = post;
             try
             {
-                //Lưu chi tiết dang dở.
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
-                    //bỏ qua
+                    ShowMainMessage(V6Text.DetailNotComplete);
+                    return;
                 }
 
                 if (_post) V6ControlFormHelper.RemoveRunningList(_sttRec);
@@ -4401,7 +4402,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
                 V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD);
                 V6ControlFormHelper.UpdateDKlist(AD, "MA_KHO_I", addDataAM["MA_KHOPH"]);
-                V6ControlFormHelper.UpdateDKlist(AD, "MA_VITRI", addDataAM["MA_VITRIPH"]);
+                if (!string.IsNullOrEmpty(ma_vitriPH))
+                    V6ControlFormHelper.UpdateDKlist(AD, "MA_VITRI", addDataAM["MA_VITRIPH"]);
                 V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD2);
                 V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD3);
                 //V6ControlFormHelper.UpdateDKlistAll(GetData(), new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD);
@@ -4409,11 +4411,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 {
                     //V6ControlFormHelper.DisableControls(btnLuu, btnHuy, btnQuayRa);
                     DoAddThread();
+                    if(!post) GetCurrentIndex();
                     return;
                 }
                 if (Mode == V6Mode.Edit)
                 {
                     //V6ControlFormHelper.DisableControls(btnLuu, btnHuy, btnQuayRa);
+                    if (!post) GetCurrentIndex();
                     DoEditThread();
                     return;
                 }
@@ -4427,7 +4431,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        
+        private void GetCurrentIndex()
+        {
+            try
+            {
+                if (AM == null || AM.Rows.Count == 0)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    CurrentIndex = -1;
+                    return;
+                }
+
+                for (int i = 0; i < AM.Rows.Count; i++)
+                {
+                    var row = AM.Rows[i];
+                    if (_sttRec == row["Stt_rec"].ToString().Trim())
+                    {
+                        CurrentIndex = i;
+                        return;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+        }
+
+
         private void Moi()
         {
             try
@@ -4757,6 +4788,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         {
             if (Status == "1" || Status == "2")
             {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    ShowMainMessage(V6Text.DetailNotComplete);
+                    return;
+                }
                 //_print_flag = true;
                 //_sttRec_In = _sttRec;
                 //Luu(MA_KHOPH, MA_VITRIPH, true);

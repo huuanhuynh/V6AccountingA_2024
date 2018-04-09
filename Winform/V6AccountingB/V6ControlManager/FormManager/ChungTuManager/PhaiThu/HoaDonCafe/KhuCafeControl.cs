@@ -73,7 +73,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             var data_vitri = V6BusinessHelper.Select(V6TableName.Alvitri, keys, "*").Data;
             if (data_vitri.Rows.Count == 0)
             {
-                this.ShowWarningMessage(V6Text.NoData + " Vitri");
+                this.ShowMainMessage(V6Text.NoData + " Vitri");
                 return;
             }
 
@@ -229,7 +229,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             if (hdCafe != null)
             {
                 hdCafe.MA_KHOPH = Ma_kho;
-                hdCafe.MA_VITRIPH = selected_button.Ma_vitri;
+                if (selected_button != null) hdCafe.MA_VITRIPH = selected_button.Ma_vitri;
             }
         }
 

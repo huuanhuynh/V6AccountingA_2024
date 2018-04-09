@@ -118,8 +118,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
         protected int M_ROUND_NT = V6Setting.RoundTienNt;
         protected int M_ROUND_GIA = V6Setting.RoundGia;
         protected int M_ROUND_GIA_NT = V6Setting.RoundGiaNt;
-        protected string M_SOA_HT_KM_CK = V6Options.V6OptionValues != null ? V6Options.V6OptionValues["M_SOA_HT_KM_CK"] : "null";
-        protected string M_SOA_MULTI_VAT = V6Options.V6OptionValues != null ? V6Options.V6OptionValues["M_SOA_MULTI_VAT"] : "null";
+        public string M_SOA_HT_KM_CK = V6Options.V6OptionValues != null ? V6Options.V6OptionValues["M_SOA_HT_KM_CK"] : "null";
+        public string M_SOA_MULTI_VAT = V6Options.V6OptionValues != null ? V6Options.V6OptionValues["M_SOA_MULTI_VAT"] : "null";
 
         /// <summary>
         /// List thứ tự field chi tiết.

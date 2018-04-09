@@ -398,6 +398,7 @@
             this.TxtXtag.Name = "TxtXtag";
             this.TxtXtag.Size = new System.Drawing.Size(18, 20);
             this.TxtXtag.TabIndex = 3;
+            this.TxtXtag.TextChanged += new System.EventHandler(this.TxtXtag_TextChanged);
             // 
             // ctDenSo
             // 
