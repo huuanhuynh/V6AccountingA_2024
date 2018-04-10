@@ -609,10 +609,10 @@ namespace V6Controls.Forms
         /// <summary>
         /// Lấy 1 giá trị thông qua AccessibleName
         /// </summary>
-        /// <param name="control"></param>
-        /// <param name="name"></param>
+        /// <param name="control">Container hoặc chính control cần lấy giá trị.</param>
+        /// <param name="accessibleName"></param>
         /// <returns></returns>
-        public static object GetFormValue(Control control, string name)
+        public static object GetFormValue(Control control, string accessibleName)
         {
             try
             {
@@ -620,7 +620,7 @@ namespace V6Controls.Forms
                 object result = null;
 
                 if (!string.IsNullOrEmpty(control.AccessibleName)
-                    && control.AccessibleName.ToUpper() == name.ToUpper())
+                    && control.AccessibleName.ToUpper() == accessibleName.ToUpper())
                 {
                     var box = control as V6IndexComboBox;
                     if (box != null)
@@ -666,7 +666,7 @@ namespace V6Controls.Forms
                 {
                     foreach (Control c in control.Controls)
                     {
-                        object o = GetFormValue(c, name);
+                        object o = GetFormValue(c, accessibleName);
                         if (o != null) return o;
                     }
                 }

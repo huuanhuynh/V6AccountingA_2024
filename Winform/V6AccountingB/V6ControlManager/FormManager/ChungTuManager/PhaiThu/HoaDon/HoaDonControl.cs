@@ -259,6 +259,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         _dvt1.V6LostFocusNoChange += Dvt1_V6LostFocusNoChange;
                         _dvt1.GotFocus += (s, e) =>
                         {
+                            _dvt1.SetDataRow(null);
                             _dvt1.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
                         };
                         break;
@@ -376,6 +377,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             }
                             if (IsReady && (Mode == V6Mode.Add || Mode == V6Mode.Edit) && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))
                             {
+                                TinhSoluongQuyDoi(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
                                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
                                 TinhSoluongQuyDoi(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
                             }
@@ -671,9 +673,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         break;
                         //{ Tuanmh 01/01/2017
                     case "SL_QD":
-                        _sl_qd = (V6NumberTextBox)control;
-                        _sl_qd.Enabled = false;
-                        if (_sl_qd.Tag == null || _sl_qd.Tag.ToString() != "hide") _sl_qd.Tag = "disable";
+                        _sl_qd = control as V6NumberTextBox;
+                        if (_sl_qd != null)
+                        {
+                            if (M_CAL_SL_QD_ALL == "0")
+                            {
+                                _sl_qd.Enabled = false;
+                                if (_sl_qd.Tag == null || _sl_qd.Tag.ToString() != "hide") _sl_qd.Tag = "disable";
+                            }
+                            else if (M_CAL_SL_QD_ALL == "1")
+                            {
+                                _sl_qd.EnableTag();
+                            }
+                            _sl_qd.V6LostFocus += delegate
+                            {
+                                TinhSoluongQuyDoi(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                if (M_CAL_SL_QD_ALL == "1")
+                                {
+                                    CheckSoLuong1();
+                                    chkSuaTienThue.Checked = false;
+                                    Tinh_thue_ct();
+                                }
+                            };
+
+                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            {
+                                _sl_qd.ReadOnlyTag();
+                            }
+                        }
                         break;
                     case "SL_QD2":
                         _sl_qd2 = (V6NumberTextBox)control;
@@ -2786,6 +2813,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
+                TinhSoluongQuyDoi(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+
                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
                 _tienNt2.Value = V6BusinessHelper.Vround((_soLuong1.Value * _giaNt21.Value), M_ROUND_NT);
                 _tien2.Value = V6BusinessHelper.Vround((_tienNt2.Value * txtTyGia.Value), M_ROUND);
@@ -2800,6 +2829,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 TinhGiaNt2();
                 TinhVanChuyen();
                 TinhGiamGiaCt();
+
                 TinhSoluongQuyDoi(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
             }
             catch (Exception ex)
@@ -3746,14 +3776,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             // Tìm dòng có số tiền
             if (index != -1)
             {
-                decimal _thue_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Thue_nt"]) + (t_thue_nt - t_thue_nt_check);
-                AD.Rows[index]["Thue_nt"] = _thue_nt;
+                decimal thue_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Thue_nt"]) + (t_thue_nt - t_thue_nt_check);
+                AD.Rows[index]["Thue_nt"] = thue_nt;
 
-                decimal _thue = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Thue"]) + (t_thue - t_thue_check);
-                AD.Rows[index]["Thue"] = _thue;
+                decimal thue = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Thue"]) + (t_thue - t_thue_check);
+                AD.Rows[index]["Thue"] = thue;
             }
-
-
         }
 
         // Tuanmh 08/04/2018 Tinh lai khi thue suat chi tiet tung mat hang
@@ -3768,20 +3796,43 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             decimal tien_truocthue_nti;
 
             var ty_gia = txtTyGia.Value;
-            
-            
-            
+            var temp_maVt = new V6VvarTextBox {VVar = "MA_VT"};
+
             //tính thuế riêng cho từng chi tiết
-            
             for (var i = 0; i < AD.Rows.Count; i++)
             {
+                var row = AD.Rows[i];
+                temp_maVt.Text = ObjectAndString.ObjectToString(row["MA_VT"]).Trim();
 
+                tien_truocthue_nti = ObjectAndString.ObjectToDecimal(row["TIEN_NT2"])
+                                     + ObjectAndString.ObjectToDecimal(row["TIEN_VC_NT"])
+                                     - ObjectAndString.ObjectToDecimal(row["CK_NT"])
+                                     - ObjectAndString.ObjectToDecimal(row["GG_NT"]);
+                
+                //string mathuei = row["MA_THUE_I"].ToString().Trim();
+                //if (string.IsNullOrEmpty(mathuei))
+                {
+                    var mavt_data = temp_maVt.Data;
+                    if (mavt_data != null)
+                    {
+                        var mathue = mavt_data["MA_THUE"].ToString().Trim();
+                        if (!string.IsNullOrEmpty(mathue))
+                        {
+                            row["MA_THUE_I"] = mathue;
+                            row["THUE_SUAT_I"] = ObjectAndString.ObjectToDecimal(mavt_data["THUE_SUAT"]);
 
-                tien_truocthue_nti = ObjectAndString.ObjectToDecimal(AD.Rows[i]["TIEN_NT2"])
-                        + ObjectAndString.ObjectToDecimal(AD.Rows[i]["TIEN_VC_NT"]) - ObjectAndString.ObjectToDecimal(AD.Rows[i]["CK_NT"]) - ObjectAndString.ObjectToDecimal(AD.Rows[i]["GG_NT"]);
-                 
-                thue_suati = ObjectAndString.ObjectToDecimal(AD.Rows[i]["THUE_SUAT_I"]);
+                            var alThue = V6BusinessHelper.Select("ALTHUE", "*", "MA_THUE = '" + mathue + "'");
+                            if (alThue.TotalRows > 0)
+                            {
+                                var tk_thue_i_Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
+                                row["TK_THUE_I"] = tk_thue_i_Text;
+                                txtTkThueCo.Text = tk_thue_i_Text;
+                            }
+                        }
+                    }
+                }
 
+                thue_suati = ObjectAndString.ObjectToDecimal(row["THUE_SUAT_I"]);
 
                 if (tien_truocthue_nti != 0)
                 {
@@ -3795,16 +3846,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (!AD.Columns.Contains("Thue_nt")) AD.Columns.Add("Thue_nt", typeof (decimal));
                     if (!AD.Columns.Contains("Thue")) AD.Columns.Add("Thue", typeof (decimal));
 
-                    AD.Rows[i]["Thue_nt"] = thue_nti;
-                    AD.Rows[i]["Thue"] = thuei;
+                    row["Thue_nt"] = thue_nti;
+                    row["Thue"] = thuei;
                 }
                 else
                 {
-                    AD.Rows[i]["Thue_nt"] = 0m;
-                    AD.Rows[i]["Thue"] = 0m;
+                    row["Thue_nt"] = 0m;
+                    row["Thue"] = 0m;
                 }
             }
-            
         }
 
 

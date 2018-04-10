@@ -205,6 +205,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         _dvt1.V6LostFocusNoChange += Dvt1_V6LostFocusNoChange;
                         _dvt1.GotFocus += (s, e) =>
                         {
+                            _dvt1.SetDataRow(null);
                             _dvt1.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
                         };
                         break;
@@ -272,7 +273,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         _sl_qd = control as V6NumberTextBox;
                         if (_sl_qd != null)
                         {
-                            _sl_qd.DisableTag();
+                            if (M_CAL_SL_QD_ALL == "0")
+                            {
+                                _sl_qd.Enabled = false;
+                                if (_sl_qd.Tag == null || _sl_qd.Tag.ToString() != "hide") _sl_qd.Tag = "disable";
+                            }
+                            else if (M_CAL_SL_QD_ALL == "1")
+                            {
+                                _sl_qd.EnableTag();
+                            }
+                            _sl_qd.V6LostFocus += delegate
+                            {
+                                TinhSoluongQuyDoi(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                if (M_CAL_SL_QD_ALL == "1")
+                                {
+                                    TinhTienNt2();
+                                }
+                            };
+
+                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            {
+                                _sl_qd.ReadOnlyTag();
+                            }
                         }
                         break;
                     case "SL_QD2":

@@ -120,6 +120,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         protected int M_ROUND_GIA_NT = V6Setting.RoundGiaNt;
         public string M_SOA_HT_KM_CK = V6Options.V6OptionValues != null ? V6Options.V6OptionValues["M_SOA_HT_KM_CK"] : "null";
         public string M_SOA_MULTI_VAT = V6Options.V6OptionValues != null ? V6Options.V6OptionValues["M_SOA_MULTI_VAT"] : "null";
+        public string M_CAL_SL_QD_ALL =  V6Options.V6OptionValues != null ?V6Options.V6OptionValues["M_CAL_SL_QD_ALL"] : "null";
 
         /// <summary>
         /// List thứ tự field chi tiết.
@@ -695,15 +696,37 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        /// <summary>
+        /// Tính số lượng quy đổi.
+        /// </summary>
+        /// <param name="_soLuong1">Số lượng nhập theo DVT đang chọn.</param>
+        /// <param name="_sl_qd">Quy đổi ra sl theo DVT quy đổi (sẽ được tính toán ra).</param>
+        /// <param name="_sl_qd2"></param>
+        /// <param name="_hs_qd1">Hệ số nhân đổi DVT ra DVT qd. (1 viên = ?0.01 thùng)</param>
+        /// <param name="_hs_qd2">100 viên / thùng</param>
         protected void TinhSoluongQuyDoi(V6NumberTextBox _soLuong1
             , V6NumberTextBox _sl_qd, V6NumberTextBox _sl_qd2
             , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2)
         {
             try
             {
-                _sl_qd.Value = _soLuong1.Value * _hs_qd1.Value;
-                _sl_qd2.Value = V6BusinessHelper.Vround(
-                    (_sl_qd.Value * _hs_qd2.Value) - (((int)_sl_qd.Value) * _hs_qd2.Value), 1);
+                if (M_CAL_SL_QD_ALL == "0")
+                {
+                    //Phần nguyên, (ví dụ 1.5 thùng)
+                    _sl_qd.Value = _soLuong1.Value*_hs_qd1.Value;
+                    //Phần lẻ (ví dụ 50 viên = 0.5 thùng bên trên)
+                    var tong = _sl_qd.Value*_hs_qd2.Value;
+                    var sl_nguyen_thung = ((int) _sl_qd.Value)*_hs_qd2.Value;
+                    _sl_qd2.Value = V6BusinessHelper.Vround(tong - sl_nguyen_thung, 1);
+                }
+                else if (M_CAL_SL_QD_ALL == "1")
+                {
+                    _soLuong1.Value = _sl_qd.Value*_hs_qd1.Value;
+                }
+                else
+                {
+                    //this.ShowParentMessage();
+                }
             }
             catch (Exception ex)
             {

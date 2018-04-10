@@ -176,6 +176,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                         _dvt1.V6LostFocusNoChange += Dvt1_V6LostFocusNoChange;
                         _dvt1.GotFocus += (s, e) =>
                         {
+                            _dvt1.SetDataRow(null);
                             _dvt1.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
                         };
                         break;
