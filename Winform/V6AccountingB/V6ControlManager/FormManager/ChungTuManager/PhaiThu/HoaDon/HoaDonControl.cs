@@ -3871,7 +3871,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             txtTongThue.ReadOnly = true;
         }
 
-        private void TinhTongThanhToan(string debug)
+        public void TinhTongThanhToan(string debug)
         {
             try
             {
