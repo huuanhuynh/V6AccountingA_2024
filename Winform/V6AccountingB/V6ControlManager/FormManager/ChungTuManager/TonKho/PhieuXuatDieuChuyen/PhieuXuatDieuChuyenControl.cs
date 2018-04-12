@@ -2379,6 +2379,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             try
             {
+                _dvt1.SetDataRow(null);
                 //Gán lại dvt và dvt1
                 var data = _maVt.Data;
                 if (data == null)
@@ -4681,6 +4682,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             try
             {
                 var chonExcel = new LoadExcelDataForm();
+                chonExcel.Program = Event_program;
+                chonExcel.All_Objects = All_Objects;
+                chonExcel.DynamicFixMethodName = "DynamicFixExcel";
                 chonExcel.CheckFields = "MA_VT,TIEN_NT0,SO_LUONG1,GIA_NT01";
                 chonExcel.MA_CT = Invoice.Mact;
                 chonExcel.AcceptData += chonExcel_AcceptData;

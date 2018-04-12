@@ -1072,6 +1072,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
+                _dvt1.SetDataRow(null);
                 //Gán lại dvt và dvt1
                 var data = _maVt.Data;
                 if (data == null)
@@ -3954,6 +3955,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             try
             {
                 var chonExcel = new LoadExcelDataForm();
+                chonExcel.Program = Event_program;
+                chonExcel.All_Objects = All_Objects;
+                chonExcel.DynamicFixMethodName = "DynamicFixExcel";
                 chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
                 chonExcel.MA_CT = Invoice.Mact;
                 chonExcel.AcceptData += chonExcel_AcceptData;

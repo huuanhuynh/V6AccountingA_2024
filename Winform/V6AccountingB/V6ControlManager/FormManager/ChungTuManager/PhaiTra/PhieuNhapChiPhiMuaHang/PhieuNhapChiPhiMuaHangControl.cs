@@ -1183,6 +1183,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             try
             {
+                _dvt1.SetDataRow(null);
                 //Gán lại dvt và dvt1
                 var data = _maVt.Data;
                 if (data == null)

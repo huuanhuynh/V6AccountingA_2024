@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
@@ -22,6 +23,10 @@ namespace V6Controls.Forms
         /// Dùng kiểm tra thông tin khác khi tải dữ liệu Excel.
         /// </summary>
         public string MA_CT;
+
+        public Type Program { get; set; }
+        public IDictionary<string, object> All_Objects = new SortedDictionary<string, object>();
+        public string DynamicFixMethodName { get; set; }
 
         private void LoadExcelDataForm_Load(object sender, EventArgs e)
         {
@@ -83,6 +88,7 @@ namespace V6Controls.Forms
             {
                 //Check khác
             }
+            InvokeDynamicFix();
             dataGridView1.DataSource = data;
         }
 
@@ -192,9 +198,27 @@ namespace V6Controls.Forms
             }
         }
 
-        
+        private object InvokeDynamicFix()
+        {
+            try // Dynamic invoke
+            {
+                if (Program != null && !string.IsNullOrEmpty(DynamicFixMethodName))
+                {
+                    All_Objects["data"] = data;
+                    return V6ControlsHelper.InvokeMethodDynamic(Program, DynamicFixMethodName, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + DynamicFixMethodName, ex1);
+            }
+            return null;
+        }
 
-        
+        private void btnDynamicFix_Click(object sender, EventArgs e)
+        {
+            InvokeDynamicFix();
+        }
 
         
     }
