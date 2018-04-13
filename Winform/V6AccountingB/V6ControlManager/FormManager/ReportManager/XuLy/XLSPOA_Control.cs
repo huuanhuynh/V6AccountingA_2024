@@ -90,6 +90,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                 }
 
+                All_Objects["data"] = data;
+                InvokeFormEvent("DYNAMICFIXEXCEL");
                 dataGridView1.DataSource = data;
 
                 var alim2xls = V6BusinessHelper.Select("ALIM2XLS", "top 1 *", "MA_CT='POA'").Data;

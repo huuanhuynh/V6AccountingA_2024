@@ -188,6 +188,24 @@
     <Type>0</Type>
     <Key>8tNoYpFwYBP/OPdM/hJhZ6478J5tB7K3LqUuT0OQW0WGRJQNBbNQma0vnJiZdM7n6dgnReN4POY=</Key>
   </DatabaseList>
+  <DatabaseList>
+    <Stt>11</Stt>
+    <Server>192.168.1.99\SQLSERVER2K8</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Database>SBC2018</Database>
+    <Database2>SBC2018</Database2>
+    <UserId>sa</UserId>
+    <UserId2>sa</UserId2>
+    <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
+    <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <Note>Dữ liệu SBC2018</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>bMoDEoxN7WIIwkzH7ns7GNYbcZaB06zfNfrQWs488G2mpS186pmQBg==</Key>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>

@@ -64,6 +64,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         V6ControlFormHelper.ShowMessage("Chưa chọn mã nguồn và đích.");
                     }
                 }
+                All_Objects["data"] = data;
+                InvokeFormEvent("DYNAMICFIXEXCEL");
                 dataGridView1.DataSource = data;
                 string[] data_fields = "MA_KH,MA_VT".Split(',');
                 string[] check_fields = "MA_KH,MA_VT".Split(',');

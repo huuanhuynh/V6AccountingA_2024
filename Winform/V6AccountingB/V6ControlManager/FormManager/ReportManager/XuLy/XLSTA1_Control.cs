@@ -113,7 +113,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 //    }
                 //}
-
+                All_Objects["data"] = data;
+                InvokeFormEvent("DYNAMICFIXEXCEL");
                 dataGridView1.DataSource = data;
                 string[] data_fields = "MA_KH_I,TK_I".Split(',');
                 string[] check_fields = "MA_KH,TK".Split(',');
