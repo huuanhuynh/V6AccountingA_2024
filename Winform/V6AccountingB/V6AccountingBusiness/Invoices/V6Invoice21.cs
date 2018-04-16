@@ -175,12 +175,12 @@ namespace V6AccountingBusiness.Invoices
             where1AM += where4Dvcs;
 
             var p2Template =
-                "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {2})";
+                "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {2} {0})";
                 
             if (where2AD.Length > 0)
             {
                 if (where2AD.Length > 0) where2AD = "And " + where2AD;
-                p2Template = string.Format(p2Template,"","", where2AD);
+                p2Template = string.Format(p2Template, where0Ngay, "", where2AD);
             }
             else
             {

@@ -42,13 +42,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             this.ctDenSo = new V6Controls.V6VvarTextBox();
             this.dienGiai = new V6Controls.V6VvarTextBox();
             this.maNhanVienBH = new V6Controls.V6VvarTextBox();
-            this.maKhach = new V6Controls.V6VvarTextBox();
             this.soTienTu = new V6Controls.V6NumberTextBox();
             this.soHd = new V6Controls.V6VvarTextBox();
             this.ctTuSo = new V6Controls.V6VvarTextBox();
             this.v6Label25 = new V6Controls.V6Label();
             this.v6Label24 = new V6Controls.V6Label();
-            this.v6Label21 = new V6Controls.V6Label();
             this.v6Label29 = new V6Controls.V6Label();
             this.v6Label23 = new V6Controls.V6Label();
             this.v6Label20 = new V6Controls.V6Label();
@@ -76,13 +74,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             this.groupBox1.Controls.Add(this.ctDenSo);
             this.groupBox1.Controls.Add(this.dienGiai);
             this.groupBox1.Controls.Add(this.maNhanVienBH);
-            this.groupBox1.Controls.Add(this.maKhach);
             this.groupBox1.Controls.Add(this.soTienTu);
             this.groupBox1.Controls.Add(this.soHd);
             this.groupBox1.Controls.Add(this.ctTuSo);
             this.groupBox1.Controls.Add(this.v6Label25);
             this.groupBox1.Controls.Add(this.v6Label24);
-            this.groupBox1.Controls.Add(this.v6Label21);
             this.groupBox1.Controls.Add(this.v6Label29);
             this.groupBox1.Controls.Add(this.v6Label23);
             this.groupBox1.Controls.Add(this.v6Label20);
@@ -262,21 +258,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             this.maNhanVienBH.Size = new System.Drawing.Size(132, 20);
             this.maNhanVienBH.TabIndex = 22;
             // 
-            // maKhach
-            // 
-            this.maKhach.AccessibleName = "ma_kh";
-            this.maKhach.BackColor = System.Drawing.SystemColors.Window;
-            this.maKhach.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.maKhach.EnterColor = System.Drawing.Color.PaleGreen;
-            this.maKhach.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.maKhach.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.maKhach.HoverColor = System.Drawing.Color.Yellow;
-            this.maKhach.LeaveColor = System.Drawing.Color.White;
-            this.maKhach.Location = new System.Drawing.Point(87, 58);
-            this.maKhach.Name = "maKhach";
-            this.maKhach.Size = new System.Drawing.Size(132, 20);
-            this.maKhach.TabIndex = 10;
-            // 
             // soTienTu
             // 
             this.soTienTu.BackColor = System.Drawing.SystemColors.Window;
@@ -347,16 +328,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             this.v6Label24.Size = new System.Drawing.Size(69, 13);
             this.v6Label24.TabIndex = 21;
             this.v6Label24.Text = "Mã nviên BH";
-            // 
-            // v6Label21
-            // 
-            this.v6Label21.AccessibleDescription = "SEARCHL00004";
-            this.v6Label21.AutoSize = true;
-            this.v6Label21.Location = new System.Drawing.Point(6, 61);
-            this.v6Label21.Name = "v6Label21";
-            this.v6Label21.Size = new System.Drawing.Size(55, 13);
-            this.v6Label21.TabIndex = 9;
-            this.v6Label21.Text = "Mã khách";
             // 
             // v6Label29
             // 
@@ -476,7 +447,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
         private System.Windows.Forms.GroupBox groupBox1;
         private V6Controls.V6Label v6Label25;
         private V6Controls.V6Label v6Label24;
-        private V6Controls.V6Label v6Label21;
         private V6Controls.V6Label v6Label29;
         private V6Controls.V6Label v6Label23;
         private V6Controls.V6Label v6Label20;
@@ -490,7 +460,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
         private V6Controls.V6VvarTextBox ctDenSo;
         private V6Controls.V6VvarTextBox dienGiai;
         private V6Controls.V6VvarTextBox maNhanVienBH;
-        private V6Controls.V6VvarTextBox maKhach;
         private V6Controls.V6NumberTextBox soTienTu;
         private V6Controls.V6VvarTextBox soHd;
         private V6Controls.V6VvarTextBox ctTuSo;

@@ -77,7 +77,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// </summary>
         public DataRow AM_old;
         /// <summary>
-        /// Luôn là bảng copy
+        /// Chi tiết / chi tiết thuế / bổ sung. Luôn là bảng copy
         /// </summary>
         public DataTable AD, AD2, AD3;
         /// <summary>

@@ -4308,6 +4308,12 @@
     <Compile Include="FormManager\ReportManager\XuLy\XAGLAUTO_GL1_Base.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\XuLy44Base.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\XuLy44Base.designer.cs">
+      <DependentUpon>XuLy44Base.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ZACOSXLT_TINHGIA_F3.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -7308,6 +7314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\V6EDITALAB.resx">
       <DependentUpon>V6EDITALAB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\XuLy44Base.resx">
+      <DependentUpon>XuLy44Base.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ZACOSXLT_TINHGIA_F3.resx">
       <DependentUpon>ZACOSXLT_TINHGIA_F3.cs</DependentUpon>

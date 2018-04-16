@@ -211,14 +211,14 @@ namespace V6AccountingBusiness.Invoices
             if (where2Dvcs.Length > 0) where2Dvcs=" And "+ where2Dvcs;
 
 
-            var p2Template ="\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {0} {1})";
+            var p2Template ="\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {0} {3} {4})";
                 
             if (where3AD.Length > 0 || where4NhVt.Length > 0 || where2Dvcs.Length > 0)
             {
                 if (where3AD.Length > 0) where3AD = "And " + where3AD;
                 if (where4NhVt.Length > 0) where4NhVt = "And " + where4NhVt;
 
-                p2Template = string.Format(p2Template, where3AD, where4NhVt);
+                p2Template = string.Format(p2Template, where0Ngay, "1", "2", where3AD, where4NhVt);
             }
             else
             {

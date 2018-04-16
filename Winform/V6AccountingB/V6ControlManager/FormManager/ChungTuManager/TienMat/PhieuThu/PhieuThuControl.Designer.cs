@@ -1472,6 +1472,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.txtLoaiPhieu.TabIndex = 4;
             this.txtLoaiPhieu.VVar = "ma_gd";
             this.txtLoaiPhieu.V6LostFocus += new V6Controls.ControlEventHandle(this.txtLoaiPhieu_V6LostFocus);
+            this.txtLoaiPhieu.V6LostFocusNoChange += new V6Controls.ControlEventHandle(this.txtLoaiPhieu_V6LostFocusNoChange);
             this.txtLoaiPhieu.TextChanged += new System.EventHandler(this.txtLoaiPhieu_TextChanged);
             // 
             // txtMaKh

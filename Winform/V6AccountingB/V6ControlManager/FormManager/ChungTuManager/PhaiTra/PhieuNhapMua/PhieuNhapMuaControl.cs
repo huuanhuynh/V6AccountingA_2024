@@ -1950,7 +1950,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 TinhVanChuyen();
                 TinhGiamGiaCt();
                 TinhTienNt();
-                TinhSoluongQuyDoi();
+                TinhSoluongQuyDoi(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
             }
             catch (Exception ex)
             {
@@ -2794,21 +2794,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        private void TinhSoluongQuyDoi()
-        {
-            try
-            {
-                _sl_qd.Value = _soLuong1.Value * _hs_qd1.Value;
-                //REPLACE SL_QD2 with ROUND(SL_QD*HS_QD2-(INT(SL_QD)*HS_QD2),1)
-                _sl_qd2.Value = V6BusinessHelper.Vround(
-                    (_sl_qd.Value * _hs_qd2.Value) - (((int)_sl_qd.Value) * _hs_qd2.Value), 1);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi", ex);
-            }
-        }
-
+        
         private void TinhThue()
         {
             //Tính tiền thuế theo thuế suất

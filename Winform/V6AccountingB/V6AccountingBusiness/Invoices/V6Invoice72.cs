@@ -224,6 +224,7 @@ namespace V6AccountingBusiness.Invoices
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
             var p2Template =
                 "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {2}"
+                + " {0}"
                 + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
                 + "\n		{4})";//" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 {4})"
             if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
@@ -233,7 +234,7 @@ namespace V6AccountingBusiness.Invoices
                 if (where4Dvcs.Length > 0) where4Dvcs
                     = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
 
-                p2Template = string.Format(p2Template,"","", where2AD, where3NhVt, where4Dvcs);
+                p2Template = string.Format(p2Template, where0Ngay, "", where2AD, where3NhVt, where4Dvcs);
             }
             else
             {

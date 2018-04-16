@@ -471,9 +471,18 @@ namespace V6ControlManager.FormManager.MenuManager
                         case "Z":
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
-                                var programZ = codeform.Substring(1);
-                                c = XuLy.GetXuLyControl(item_id, programZ, programZ, repFile, mButton.ReportTitle, mButton.ReportTitle2,
-                                    repFileF5, repTitleF5, repTitle2F5);
+                                if (codeform.StartsWith("Z44"))
+                                {
+                                    var programZ = codeform.Substring(3);
+                                    c = new XuLy44Base(item_id, programZ, programZ, repFile, mButton.ReportTitle, mButton.ReportTitle2, true, repFileF5, repTitleF5, repTitle2F5);
+                                }
+                                else
+                                {
+                                    var programZ = codeform.Substring(1);
+                                    c = XuLy.GetXuLyControl(item_id, programZ, programZ, repFile, mButton.ReportTitle,
+                                        mButton.ReportTitle2,
+                                        repFileF5, repTitleF5, repTitle2F5);
+                                }
                             }
                             break;
                         case "B":

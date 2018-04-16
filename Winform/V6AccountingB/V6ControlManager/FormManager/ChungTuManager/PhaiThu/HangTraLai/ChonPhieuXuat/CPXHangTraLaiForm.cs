@@ -225,6 +225,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             txtNhomVT1.SetInitFilter("loai_nh=1");
             txtNhomVT2.SetInitFilter("loai_nh=2");
             txtNhomVT3.SetInitFilter("loai_nh=3");
+            txtNhomVT4.SetInitFilter("loai_nh=4");
+            txtNhomVT5.SetInitFilter("loai_nh=5");
+            txtNhomVT6.SetInitFilter("loai_nh=6");
 
             txtMaDVCS.Text = V6Login.Madvcs;
             if (V6Login.MadvcsCount <= 1)
@@ -262,6 +265,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
                 keys.Add("NH_VT2", txtNhomVT2.Text.Trim());
             if (txtNhomVT3.Text.Trim() != "")
                 keys.Add("NH_VT3", txtNhomVT3.Text.Trim());
+            if (txtNhomVT4.Text.Trim() != "")
+                keys.Add("NH_VT4", txtNhomVT4.Text.Trim());
+            if (txtNhomVT5.Text.Trim() != "")
+                keys.Add("NH_VT5", txtNhomVT5.Text.Trim());
+            if (txtNhomVT6.Text.Trim() != "")
+                keys.Add("NH_VT6", txtNhomVT6.Text.Trim());
 
             if (keys.Count > 0)
             {

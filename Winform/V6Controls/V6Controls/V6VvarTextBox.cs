@@ -540,26 +540,31 @@ namespace V6Controls
         /// <summary>
         /// Kiểm tra, lấy lại data, gán brothers
         /// </summary>
+        /// <param name="use_InitFilter">Luôn dùng InitFilter khi load dữ liệu. (Trường hợp nhảy ra nhảy vào không dùng)</param>
         /// <returns></returns>
-        public bool ExistRowInTable()
+        public bool ExistRowInTable(bool use_InitFilter = false)
         {
-            return ExistRowInTable(Text.Trim());
+            return ExistRowInTable(Text.Trim(), use_InitFilter);
         }
 
         /// <summary>
         /// Kiểm tra giá trị có tồn tại trong csdl hay không. Đồng thời gán dữ liệu liên quan (Brothers, Neighbor).
         /// </summary>
         /// <param name="text">Giá trị cần kiểm tra</param>
+        /// <param name="use_InitFilter">Luôn dùng InitFilter khi load dữ liệu. (Trường hợp nhảy ra nhảy vào không dùng)</param>
         /// <returns></returns>
-        public bool ExistRowInTable(string text)
+        public bool ExistRowInTable(string text, bool use_InitFilter = false)
         {
             try
             {
+                if (!use_InitFilter && _data != null && _text_data == Text) return true;
+
                 _text_data = text;
                 if (!string.IsNullOrEmpty(LookupInfo.FieldName))
                 {
                     string tableName = LookupInfo.TableName;
                     string filter = HaveValueChanged ? InitFilter : null;
+                    if (use_InitFilter) filter = InitFilter;
                     if (!string.IsNullOrEmpty(filter)) filter = " and (" + filter + ")";
 
                     SqlParameter[] plist =

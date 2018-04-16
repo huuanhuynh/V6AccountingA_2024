@@ -58,12 +58,16 @@
             this.v6Label34 = new V6Controls.V6Label();
             this.v6Label35 = new V6Controls.V6Label();
             this.v6Label36 = new V6Controls.V6Label();
+            this.maKhachi = new V6Controls.V6VvarTextBox();
+            this.v6Label21 = new V6Controls.V6Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.AccessibleDescription = "SEARCHG00002";
+            this.groupBox1.Controls.Add(this.maKhachi);
+            this.groupBox1.Controls.Add(this.v6Label21);
             this.groupBox1.Controls.Add(this.v6VvarTextBox1);
             this.groupBox1.Controls.Add(this.v6Label4);
             this.groupBox1.Controls.Add(this.panelFilter2);
@@ -481,6 +485,32 @@
             this.v6Label36.TabIndex = 16;
             this.v6Label36.Text = "Mã hợp đồng";
             // 
+            // maKhachi
+            // 
+            this.maKhachi.AccessibleName = "ma_kh_i";
+            this.maKhachi.BackColor = System.Drawing.SystemColors.Window;
+            this.maKhachi.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maKhachi.EnterColor = System.Drawing.Color.PaleGreen;
+            this.maKhachi.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.maKhachi.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.maKhachi.HoverColor = System.Drawing.Color.Yellow;
+            this.maKhachi.LeaveColor = System.Drawing.Color.White;
+            this.maKhachi.Location = new System.Drawing.Point(88, 174);
+            this.maKhachi.Name = "maKhachi";
+            this.maKhachi.Size = new System.Drawing.Size(132, 20);
+            this.maKhachi.TabIndex = 12;
+            this.maKhachi.VVar = "MA_KH";
+            // 
+            // v6Label21
+            // 
+            this.v6Label21.AccessibleDescription = "SEARCHL00004";
+            this.v6Label21.AutoSize = true;
+            this.v6Label21.Location = new System.Drawing.Point(7, 177);
+            this.v6Label21.Name = "v6Label21";
+            this.v6Label21.Size = new System.Drawing.Size(55, 13);
+            this.v6Label21.TabIndex = 11;
+            this.v6Label21.Text = "Mã khách";
+            // 
             // LocTTChiTietPhieuKeToan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -526,5 +556,7 @@
         private V6Controls.V6Label v6Label1;
         private V6Controls.V6VvarTextBox v6VvarTextBox1;
         private V6Controls.V6Label v6Label4;
+        private V6Controls.V6VvarTextBox maKhachi;
+        private V6Controls.V6Label v6Label21;
     }
 }

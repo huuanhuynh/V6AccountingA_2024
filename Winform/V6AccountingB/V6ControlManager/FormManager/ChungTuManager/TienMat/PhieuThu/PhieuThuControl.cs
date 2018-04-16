@@ -115,6 +115,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             ResetForm();
 
             _MA_GD = (Invoice.Alct.Rows[0]["M_MA_GD"] ?? "2").ToString().Trim().ToUpper();
+
+            
             txtLoaiPhieu.SetInitFilter(string.Format("Ma_ct = '{0}'", Invoice.Mact));
             txtLoaiPhieu.ChangeText(_MA_GD);
             
@@ -1651,6 +1653,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         private void XuLyThayDoiLoaiPhieuThu()
         {
             _MA_GD = txtLoaiPhieu.Text.Trim().ToUpper();
+            
             try
             {
                 //Loại 1
@@ -1770,6 +1773,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         {
             try
             {
+                
                 _MA_GD = txtLoaiPhieu.Text.Trim().ToUpper();
                 if (_MA_GD == "1")
                 {
@@ -2311,9 +2315,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 Mode = V6Mode.View;
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
+
                 XuLyThayDoiLoaiPhieuThu();
                 //Tuanmh 20/02/2016
                 XuLyThayDoiMaNt();
+
+               
 
 
                 //txtMadvcs.ExistRowInTable();
@@ -2324,7 +2331,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     //txtMaKh.ExistRowInTable();
                     if (txtMaKh.Data != null && txtMaKh.Data.Table.Columns.Contains(txtTenKh.AccessibleName))
                         txtTenKh.Text = txtMaKh.Data[txtTenKh.AccessibleName].ToString().Trim();
-                    //txtLoaiPhieu.ExistRowInTable();
+
+
                     if (txtLoaiPhieu.Data != null &&
                         txtLoaiPhieu.Data.Table.Columns.Contains(txtTenGiaoDich.AccessibleName))
                         txtTenGiaoDich.Text = txtLoaiPhieu.Data[txtTenGiaoDich.AccessibleName].ToString().Trim();
@@ -2342,6 +2350,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     if (txtMaKh.Data != null && txtMaKh.Data.Table.Columns.Contains("TEN_KH2"))
                         txtTenKh.Text = txtMaKh.Data["TEN_KH2"].ToString().Trim();
                     //txtLoaiPhieu.ExistRowInTable();
+                    
+                    
                     if (txtLoaiPhieu.Data != null &&
                         txtLoaiPhieu.Data.Table.Columns.Contains("TEN_GD2"))
                         txtTenGiaoDich.Text = txtLoaiPhieu.Data["TEN_GD2"].ToString().Trim();
@@ -3752,6 +3762,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             //{
             //    txtDiaChi.Enabled = false;
             //}
+            
         }
 
         private void HoaDonBanHangKiemPhieuXuat_VisibleChanged(object sender, EventArgs e)
@@ -3764,14 +3775,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         private void txtLoaiPhieu_TextChanged(object sender, EventArgs e)
         {
-            XuLyKhoaThongTinTheoMaGD();
+           XuLyKhoaThongTinTheoMaGD();
         }
 
         
 
         private void txtLoaiPhieu_V6LostFocus(object sender)
         {
-            XuLyThayDoiLoaiPhieuThu();
+           XuLyThayDoiLoaiPhieuThu();
         }
         
         private void v6Label3_Click(object sender, EventArgs e)
@@ -3971,6 +3982,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         private void txtMa_sonb_V6LostFocus(object sender)
         {
             GetSoPhieu();
+            //txtLoaiPhieu.SetDataRow(null);
         }
 
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -4236,6 +4248,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
 
+        private void txtLoaiPhieu_V6LostFocusNoChange(object sender)
+        {
+            //Tuanmh 15/04/2018 - SetInitFilter =null khi HaveValueChanged=false
+            
+            txtLoaiPhieu.SetInitFilter(string.Format("Ma_ct = '{0}'", Invoice.Mact));
+            //txtLoaiPhieu.SetDataRow(null);
+            txtLoaiPhieu.ExistRowInTable(true);
+        }
         
+         
     }
 }
