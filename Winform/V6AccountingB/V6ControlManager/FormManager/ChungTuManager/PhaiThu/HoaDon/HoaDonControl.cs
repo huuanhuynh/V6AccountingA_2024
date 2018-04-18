@@ -4545,6 +4545,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
                 txtMadvcs.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
+                txtLoaiPhieu.ExistRowInTable(true);
 
                 XuLyThayDoiMaDVCS();
                 //{Tuanmh 20/02/2016

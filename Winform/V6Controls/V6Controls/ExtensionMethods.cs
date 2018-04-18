@@ -688,7 +688,7 @@ namespace V6Controls
             var newTagString = ";" + control.Tag + ";";//Lấy tagString cũ
             if (newTagString.Contains(checkTagString)) //Remove checkTag khỏi tagString cũ.
                 newTagString = newTagString.Replace(checkTagString, ";");
-            
+            newTagString = newTagString.Trim(';');
             control.Tag = newTagString;
             //control.Tag = null;
             //control.AddTagString(newTagString);

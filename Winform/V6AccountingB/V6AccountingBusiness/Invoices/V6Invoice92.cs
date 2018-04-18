@@ -198,8 +198,7 @@ namespace V6AccountingBusiness.Invoices
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
             var p2Template =
-                "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {2}"
-                + " {0}"
+                "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {0} {2}"
                 + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
                 + "\n		{4})";//" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 {4})"
             if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
@@ -308,10 +307,10 @@ namespace V6AccountingBusiness.Invoices
                         = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
 
 
-                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM AD92 WHERE Ma_ct = 'POH' {2}"
+                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM AD92 WHERE Ma_ct = 'POH' {0} {2}"
                                      + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
                                      + "\n		{4})"
-                    , "0", "1", where2AD, where3NhVt, where4Dvcs);
+                    , where0Ngay, "1", where2AD, where3NhVt, where4Dvcs);
             }
             else
             {
@@ -363,10 +362,10 @@ namespace V6AccountingBusiness.Invoices
                         = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
 
 
-                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM AD92 WHERE Ma_ct = 'POH' {2}"
+                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM AD92 WHERE Ma_ct = 'POH' {0} {2}"
                                      + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
                                      + "\n		{4})"
-                    , "0", "1", where2AD, where3NhVt, where4Dvcs);
+                    , where0Ngay, "1", where2AD, where3NhVt, where4Dvcs);
             }
             else
             {

@@ -22,9 +22,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <summary>
         /// No_use
         /// </summary>
-        protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
-        protected Type Event_program;
-        protected Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+        //protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        //protected Type Event_program;
+        //protected Dictionary<string, object> All_Objects = new Dictionary<string, object>();
         
 
         /// <summary>
@@ -137,10 +137,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     }
                 }
 
-                All_Objects["thisForm"] = this;
-                CreateFormProgram();
-                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
-                InvokeFormEvent("INIT");
+                //All_Objects["thisForm"] = this;
+                //CreateFormProgram();
+                //V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+                //FormControl.InvokeFormEvent("INIT");
             }
             catch (Exception ex)
             {
@@ -152,7 +152,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                InvokeFormEvent("INIT2");
+                FormControl.InvokeFormEvent("INIT2");
             }
             catch (Exception ex)
             {
@@ -160,68 +160,68 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        protected void CreateFormProgram()
-        {
-            try
-            {
-                //DMETHOD
-                if (_aldmConfig.NoInfo || string.IsNullOrEmpty(_aldmConfig.DMETHOD))
-                {
-                    //this.ShowWarningMessage("No column name [DMETHOD]");
-                    return;
-                }
+        //protected void CreateFormProgram()
+        //{
+        //    try
+        //    {
+        //        //DMETHOD
+        //        if (_aldmConfig.NoInfo || string.IsNullOrEmpty(_aldmConfig.DMETHOD))
+        //        {
+        //            //this.ShowWarningMessage("No column name [DMETHOD]");
+        //            return;
+        //        }
 
-                string using_text = "";
-                string method_text = "";
-                //foreach (DataRow dataRow in Invoice.Alct1.Rows)
-                {
-                    var xml = _aldmConfig.DMETHOD;
-                    if (xml == "") return;
-                    DataSet ds = new DataSet();
-                    ds.ReadXml(new StringReader(xml));
-                    if (ds.Tables.Count <= 0) return;
-                    var data = ds.Tables[0];
-                    foreach (DataRow event_row in data.Rows)
-                    {
-                        var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
-                        var method_name = event_row["method"].ToString().Trim();
-                        Event_Methods[EVENT_NAME] = method_name;
+        //        string using_text = "";
+        //        string method_text = "";
+        //        //foreach (DataRow dataRow in Invoice.Alct1.Rows)
+        //        {
+        //            var xml = _aldmConfig.DMETHOD;
+        //            if (xml == "") return;
+        //            DataSet ds = new DataSet();
+        //            ds.ReadXml(new StringReader(xml));
+        //            if (ds.Tables.Count <= 0) return;
+        //            var data = ds.Tables[0];
+        //            foreach (DataRow event_row in data.Rows)
+        //            {
+        //                var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+        //                var method_name = event_row["method"].ToString().Trim();
+        //                Event_Methods[EVENT_NAME] = method_name;
 
-                        string using_text1 = data.Columns.Contains("using") ? event_row["using"].ToString() : "";
-                        if (!using_text.Contains(using_text1))
-                        {
-                            using_text += using_text1;
-                        }
-                        method_text += event_row["content"];
-                        method_text += "\n";
-                    }
-                }
+        //                string using_text1 = data.Columns.Contains("using") ? event_row["using"].ToString() : "";
+        //                if (!using_text.Contains(using_text1))
+        //                {
+        //                    using_text += using_text1;
+        //                }
+        //                method_text += event_row["content"];
+        //                method_text += "\n";
+        //            }
+        //        }
 
-            Build:
-                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".CreateProgram0", ex);
-            }
-        }
+        //    Build:
+        //        Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.WriteExLog(GetType() + ".CreateProgram0", ex);
+        //    }
+        //}
 
-        private object InvokeFormEvent(string eventName)
-        {
-            try // Dynamic invoke
-            {
-                if (Event_Methods.ContainsKey(eventName))
-                {
-                    var method_name = Event_Methods[eventName];
-                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
-                }
-            }
-            catch (Exception ex1)
-            {
-                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
-            }
-            return null;
-        }
+        //private object InvokeFormEvent(string eventName)
+        //{
+        //    try // Dynamic invoke
+        //    {
+        //        if (Event_Methods.ContainsKey(eventName))
+        //        {
+        //            var method_name = Event_Methods[eventName];
+        //            return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+        //        }
+        //    }
+        //    catch (Exception ex1)
+        //    {
+        //        this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+        //    }
+        //    return null;
+        //}
 
 
         private void btnNhan_Click(object sender, EventArgs e)
@@ -251,19 +251,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void DoInsertOrUpdateSuccess(SortedDictionary<string, object> dataDic)
         {
-            InvokeFormEvent("AFTERINSERTORUPDATE");
+            FormControl.InvokeFormEvent("AFTERINSERTORUPDATE");
+            //InvokeFormEvent();
         }
 
         private void DoUpdateSuccess(SortedDictionary<string, object> dataDic)
         {
-            InvokeFormEvent("AFTERUPDATE");
+            //FormControl.InvokeFormEvent("AFTERUPDATE");
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(dataDic);
         }
 
         private void DoInsertSuccess(SortedDictionary<string, object> dataDic)
         {
-            InvokeFormEvent("AFTERINSERT");
+            //FormControl.InvokeFormEvent("AFTERINSERT");
             var handler = InsertSuccessEvent;
             if (handler != null) handler(dataDic);
         }

@@ -108,6 +108,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
 
             EnableFormControls_Alctct(TableName.ToString());
+
+            InvokeFormEvent("INIT2");
         }
         
         /// <summary>
@@ -357,7 +359,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 FixFormData();
                 DataDic = GetData();
+                All_Objects["data"] = DataDic;
+                All_Objects["dataOld"] = DataOld;
                 ValidateData();
+                InvokeFormEvent("BEFOREINSERTORUPDATE");
                 string checkV6Valid = CheckV6Valid(DataDic, TableName.ToString());
                 if (!string.IsNullOrEmpty(checkV6Valid))
                 {
@@ -381,6 +386,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     if (b > 0)
                     {
                         AfterUpdate();
+                        InvokeFormEvent("AFTERUPDATE");
                         
                         if (TableName == V6TableName.V6user)
                         {
@@ -441,6 +447,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     if (b)
                     {
                         AfterInsert();
+                        InvokeFormEvent("AFTERINSERT");
                         
                         if (TableName == V6TableName.V6user)
                         {
