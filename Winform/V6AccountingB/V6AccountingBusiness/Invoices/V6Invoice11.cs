@@ -364,8 +364,8 @@ namespace V6AccountingBusiness.Invoices
             {
                 if (where2AD.Length > 0) where2AD = "And " + where2AD;
                
-                p2Template = string.Format("\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {2})",
-                    "","", where2AD);
+                p2Template = string.Format("\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {0} {2})",
+                    where0Ngay, "", where2AD);
             }
             else
             {

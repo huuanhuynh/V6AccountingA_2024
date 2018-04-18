@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Init;
@@ -35,6 +37,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// Dùng khi gọi form update, chứa giá trị cũ trước khi update.
         /// </summary>
         public SortedDictionary<string, object> _keys = new SortedDictionary<string, object>();
+
+        protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        protected Type Event_program;
+        protected Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
         /// <summary>
         /// Chứa data mới (trên form) dùng để insert hoặc edit.
@@ -115,15 +121,22 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             SortedDictionary<string, object> keys, SortedDictionary<string, object> data)
         {
             TableName = tableName;
+            _aldmConfig = V6ControlsHelper.GetAldmConfig(TableName.ToString());
             Mode = mode;
             _keys = keys;
             DataOld = data;
             if (Mode == V6Mode.View) V6ControlFormHelper.SetFormControlsReadOnly(this, true);
+            
             LoadAll();
             //virtual
             LoadDetails();
             
             LoadTag(2, "", TableName.ToString(), ItemID);
+
+            All_Objects["thisForm"] = this;
+            CreateFormProgram();
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+            InvokeFormEvent("INIT");
         }
 
         protected virtual void LoadAll()
@@ -598,6 +611,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
 
         protected bool update_stt13;
+        private AldmConfig _aldmConfig;
+
         protected virtual void AddStt13()
         {
             try
@@ -639,6 +654,75 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public virtual void DoBeforeView()
         {
             
+        }
+
+
+        protected void CreateFormProgram()
+        {
+            try
+            {
+                //DMETHOD
+                if (_aldmConfig.NoInfo || string.IsNullOrEmpty(_aldmConfig.DMETHOD))
+                {
+                    //this.ShowWarningMessage("No column name [DMETHOD]");
+                    return;
+                }
+
+                string using_text = "";
+                string method_text = "";
+                //foreach (DataRow dataRow in Invoice.Alct1.Rows)
+                {
+                    var xml = _aldmConfig.DMETHOD;
+                    if (xml == "") return;
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(new StringReader(xml));
+                    if (ds.Tables.Count <= 0) return;
+                    var data = ds.Tables[0];
+                    foreach (DataRow event_row in data.Rows)
+                    {
+                        var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                        var method_name = event_row["method"].ToString().Trim();
+                        Event_Methods[EVENT_NAME] = method_name;
+
+                        string using_text1 = data.Columns.Contains("using") ? event_row["using"].ToString() : "";
+                        if (!using_text.Contains(using_text1))
+                        {
+                            using_text += using_text1;
+                        }
+                        method_text += event_row["content"];
+                        method_text += "\n";
+                    }
+                }
+
+            Build:
+                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateProgram0", ex);
+            }
+        }
+
+        /// <summary>
+        /// Gọi hàm động theo tên event đã định nghĩa.
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <returns></returns>
+        public object InvokeFormEvent(string eventName)
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(eventName))
+                {
+                    var method_name = Event_Methods[eventName];
+                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+            }
+            return null;
         }
 
         /// <summary>

@@ -30,10 +30,15 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.grbTuyChon = new System.Windows.Forms.GroupBox();
-            this.lblStatusDescription = new V6Controls.V6Label();
+            this.txtNhomVT6 = new V6Controls.V6VvarTextBox();
+            this.txtNhomVT5 = new V6Controls.V6VvarTextBox();
             this.chkNSD = new V6Controls.V6CheckBox();
+            this.txtNhomVT4 = new V6Controls.V6VvarTextBox();
+            this.v6Label3 = new V6Controls.V6Label();
             this.txtNhomVT3 = new V6Controls.V6VvarTextBox();
+            this.v6Label2 = new V6Controls.V6Label();
             this.txtNhomVT2 = new V6Controls.V6VvarTextBox();
+            this.v6Label1 = new V6Controls.V6Label();
             this.txtTrangThai = new V6Controls.V6ColorTextBox();
             this.txtNhomVT1 = new V6Controls.V6VvarTextBox();
             this.v6Label21 = new V6Controls.V6Label();
@@ -41,18 +46,13 @@
             this.v6Label6 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
+            this.lblStatusDescription = new V6Controls.V6Label();
             this.locThongTinChiTiet1 = new V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc.LocTTChiTietPhieuXuatKho();
             this.locThongTin1 = new V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc.LocThongTinPhieuXuatKho();
             this.locThoiGian1 = new V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc.LocThoiGianPhieuXuatKho();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.lblDocSoTien = new V6Controls.V6Label();
-            this.txtNhomVT6 = new V6Controls.V6VvarTextBox();
-            this.txtNhomVT5 = new V6Controls.V6VvarTextBox();
-            this.txtNhomVT4 = new V6Controls.V6VvarTextBox();
-            this.v6Label3 = new V6Controls.V6Label();
-            this.v6Label2 = new V6Controls.V6Label();
-            this.v6Label1 = new V6Controls.V6Label();
             this.panel1.SuspendLayout();
             this.grbTuyChon.SuspendLayout();
             this.SuspendLayout();
@@ -98,13 +98,39 @@
             this.grbTuyChon.TabStop = false;
             this.grbTuyChon.Text = "Lọc tùy chọn";
             // 
-            // lblStatusDescription
+            // txtNhomVT6
             // 
-            this.lblStatusDescription.Location = new System.Drawing.Point(137, 74);
-            this.lblStatusDescription.Name = "lblStatusDescription";
-            this.lblStatusDescription.Size = new System.Drawing.Size(616, 31);
-            this.lblStatusDescription.TabIndex = 12;
-            this.lblStatusDescription.Text = "* Tất cả, 0 - Chưa, 1- Ghi vào sổ kho, 2-Ghi vào sổ cái";
+            this.txtNhomVT6.AccessibleName = "6";
+            this.txtNhomVT6.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNhomVT6.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNhomVT6.CheckOnLeave = false;
+            this.txtNhomVT6.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNhomVT6.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVT6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVT6.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNhomVT6.LeaveColor = System.Drawing.Color.White;
+            this.txtNhomVT6.Location = new System.Drawing.Point(621, 67);
+            this.txtNhomVT6.Name = "txtNhomVT6";
+            this.txtNhomVT6.Size = new System.Drawing.Size(132, 20);
+            this.txtNhomVT6.TabIndex = 20;
+            this.txtNhomVT6.VVar = "nh_vt";
+            // 
+            // txtNhomVT5
+            // 
+            this.txtNhomVT5.AccessibleName = "5";
+            this.txtNhomVT5.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNhomVT5.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNhomVT5.CheckOnLeave = false;
+            this.txtNhomVT5.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNhomVT5.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVT5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVT5.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNhomVT5.LeaveColor = System.Drawing.Color.White;
+            this.txtNhomVT5.Location = new System.Drawing.Point(621, 41);
+            this.txtNhomVT5.Name = "txtNhomVT5";
+            this.txtNhomVT5.Size = new System.Drawing.Size(132, 20);
+            this.txtNhomVT5.TabIndex = 18;
+            this.txtNhomVT5.VVar = "nh_vt";
             // 
             // chkNSD
             // 
@@ -113,8 +139,35 @@
             this.chkNSD.Location = new System.Drawing.Point(87, 48);
             this.chkNSD.Name = "chkNSD";
             this.chkNSD.Size = new System.Drawing.Size(15, 14);
-            this.chkNSD.TabIndex = 3;
+            this.chkNSD.TabIndex = 1;
             this.chkNSD.UseVisualStyleBackColor = true;
+            // 
+            // txtNhomVT4
+            // 
+            this.txtNhomVT4.AccessibleName = "nh_vt4";
+            this.txtNhomVT4.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNhomVT4.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNhomVT4.CheckOnLeave = false;
+            this.txtNhomVT4.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNhomVT4.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVT4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVT4.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNhomVT4.LeaveColor = System.Drawing.Color.White;
+            this.txtNhomVT4.Location = new System.Drawing.Point(621, 15);
+            this.txtNhomVT4.Name = "txtNhomVT4";
+            this.txtNhomVT4.Size = new System.Drawing.Size(132, 20);
+            this.txtNhomVT4.TabIndex = 16;
+            this.txtNhomVT4.VVar = "nh_vt";
+            // 
+            // v6Label3
+            // 
+            this.v6Label3.AccessibleDescription = "ASOCTSOAL00106";
+            this.v6Label3.AutoSize = true;
+            this.v6Label3.Location = new System.Drawing.Point(538, 70);
+            this.v6Label3.Name = "v6Label3";
+            this.v6Label3.Size = new System.Drawing.Size(74, 13);
+            this.v6Label3.TabIndex = 19;
+            this.v6Label3.Text = "Nhóm vật tư 6";
             // 
             // txtNhomVT3
             // 
@@ -130,8 +183,18 @@
             this.txtNhomVT3.Location = new System.Drawing.Point(365, 45);
             this.txtNhomVT3.Name = "txtNhomVT3";
             this.txtNhomVT3.Size = new System.Drawing.Size(132, 20);
-            this.txtNhomVT3.TabIndex = 9;
+            this.txtNhomVT3.TabIndex = 10;
             this.txtNhomVT3.VVar = "nh_vt";
+            // 
+            // v6Label2
+            // 
+            this.v6Label2.AccessibleDescription = "ASOCTSOAL00105";
+            this.v6Label2.AutoSize = true;
+            this.v6Label2.Location = new System.Drawing.Point(538, 44);
+            this.v6Label2.Name = "v6Label2";
+            this.v6Label2.Size = new System.Drawing.Size(74, 13);
+            this.v6Label2.TabIndex = 17;
+            this.v6Label2.Text = "Nhóm vật tư 5";
             // 
             // txtNhomVT2
             // 
@@ -147,8 +210,18 @@
             this.txtNhomVT2.Location = new System.Drawing.Point(365, 19);
             this.txtNhomVT2.Name = "txtNhomVT2";
             this.txtNhomVT2.Size = new System.Drawing.Size(132, 20);
-            this.txtNhomVT2.TabIndex = 7;
+            this.txtNhomVT2.TabIndex = 8;
             this.txtNhomVT2.VVar = "nh_vt";
+            // 
+            // v6Label1
+            // 
+            this.v6Label1.AccessibleDescription = "ASOCTSOAL00104";
+            this.v6Label1.AutoSize = true;
+            this.v6Label1.Location = new System.Drawing.Point(538, 18);
+            this.v6Label1.Name = "v6Label1";
+            this.v6Label1.Size = new System.Drawing.Size(74, 13);
+            this.v6Label1.TabIndex = 15;
+            this.v6Label1.Text = "Nhóm vật tư 4";
             // 
             // txtTrangThai
             // 
@@ -165,7 +238,7 @@
             this.txtTrangThai.MaxLength = 1;
             this.txtTrangThai.Name = "txtTrangThai";
             this.txtTrangThai.Size = new System.Drawing.Size(44, 20);
-            this.txtTrangThai.TabIndex = 5;
+            this.txtTrangThai.TabIndex = 3;
             // 
             // txtNhomVT1
             // 
@@ -181,7 +254,7 @@
             this.txtNhomVT1.Location = new System.Drawing.Point(87, 19);
             this.txtNhomVT1.Name = "txtNhomVT1";
             this.txtNhomVT1.Size = new System.Drawing.Size(132, 20);
-            this.txtNhomVT1.TabIndex = 1;
+            this.txtNhomVT1.TabIndex = 6;
             this.txtNhomVT1.VVar = "nh_vt";
             // 
             // v6Label21
@@ -191,7 +264,7 @@
             this.v6Label21.Location = new System.Drawing.Point(6, 74);
             this.v6Label21.Name = "v6Label21";
             this.v6Label21.Size = new System.Drawing.Size(55, 13);
-            this.v6Label21.TabIndex = 4;
+            this.v6Label21.TabIndex = 2;
             this.v6Label21.Text = "Trạng thái";
             // 
             // v6Label20
@@ -201,7 +274,7 @@
             this.v6Label20.Location = new System.Drawing.Point(6, 48);
             this.v6Label20.Name = "v6Label20";
             this.v6Label20.Size = new System.Drawing.Size(69, 13);
-            this.v6Label20.TabIndex = 2;
+            this.v6Label20.TabIndex = 0;
             this.v6Label20.Text = "Lọc theo nsd";
             // 
             // v6Label6
@@ -211,7 +284,7 @@
             this.v6Label6.Location = new System.Drawing.Point(282, 48);
             this.v6Label6.Name = "v6Label6";
             this.v6Label6.Size = new System.Drawing.Size(74, 13);
-            this.v6Label6.TabIndex = 8;
+            this.v6Label6.TabIndex = 9;
             this.v6Label6.Text = "Nhóm vật tư 3";
             // 
             // v6Label7
@@ -221,7 +294,7 @@
             this.v6Label7.Location = new System.Drawing.Point(282, 22);
             this.v6Label7.Name = "v6Label7";
             this.v6Label7.Size = new System.Drawing.Size(74, 13);
-            this.v6Label7.TabIndex = 6;
+            this.v6Label7.TabIndex = 7;
             this.v6Label7.Text = "Nhóm vật tư 2";
             // 
             // v6Label8
@@ -231,8 +304,16 @@
             this.v6Label8.Location = new System.Drawing.Point(6, 22);
             this.v6Label8.Name = "v6Label8";
             this.v6Label8.Size = new System.Drawing.Size(74, 13);
-            this.v6Label8.TabIndex = 0;
+            this.v6Label8.TabIndex = 5;
             this.v6Label8.Text = "Nhóm vật tư 1";
+            // 
+            // lblStatusDescription
+            // 
+            this.lblStatusDescription.Location = new System.Drawing.Point(137, 74);
+            this.lblStatusDescription.Name = "lblStatusDescription";
+            this.lblStatusDescription.Size = new System.Drawing.Size(616, 31);
+            this.lblStatusDescription.TabIndex = 4;
+            this.lblStatusDescription.Text = "* Tất cả, 0 - Chưa, 1- Ghi vào sổ kho, 2-Ghi vào sổ cái";
             // 
             // locThongTinChiTiet1
             // 
@@ -302,87 +383,6 @@
             this.lblDocSoTien.TabIndex = 14;
             this.lblDocSoTien.Text = "0";
             this.lblDocSoTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // txtNhomVT6
-            // 
-            this.txtNhomVT6.AccessibleName = "6";
-            this.txtNhomVT6.BackColor = System.Drawing.SystemColors.Window;
-            this.txtNhomVT6.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNhomVT6.CheckOnLeave = false;
-            this.txtNhomVT6.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNhomVT6.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtNhomVT6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtNhomVT6.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNhomVT6.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVT6.Location = new System.Drawing.Point(621, 67);
-            this.txtNhomVT6.Name = "txtNhomVT6";
-            this.txtNhomVT6.Size = new System.Drawing.Size(132, 20);
-            this.txtNhomVT6.TabIndex = 20;
-            this.txtNhomVT6.VVar = "nh_vt";
-            // 
-            // txtNhomVT5
-            // 
-            this.txtNhomVT5.AccessibleName = "5";
-            this.txtNhomVT5.BackColor = System.Drawing.SystemColors.Window;
-            this.txtNhomVT5.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNhomVT5.CheckOnLeave = false;
-            this.txtNhomVT5.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNhomVT5.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtNhomVT5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtNhomVT5.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNhomVT5.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVT5.Location = new System.Drawing.Point(621, 41);
-            this.txtNhomVT5.Name = "txtNhomVT5";
-            this.txtNhomVT5.Size = new System.Drawing.Size(132, 20);
-            this.txtNhomVT5.TabIndex = 18;
-            this.txtNhomVT5.VVar = "nh_vt";
-            // 
-            // txtNhomVT4
-            // 
-            this.txtNhomVT4.AccessibleName = "nh_vt4";
-            this.txtNhomVT4.BackColor = System.Drawing.SystemColors.Window;
-            this.txtNhomVT4.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNhomVT4.CheckOnLeave = false;
-            this.txtNhomVT4.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNhomVT4.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtNhomVT4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtNhomVT4.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNhomVT4.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVT4.Location = new System.Drawing.Point(621, 15);
-            this.txtNhomVT4.Name = "txtNhomVT4";
-            this.txtNhomVT4.Size = new System.Drawing.Size(132, 20);
-            this.txtNhomVT4.TabIndex = 16;
-            this.txtNhomVT4.VVar = "nh_vt";
-            // 
-            // v6Label3
-            // 
-            this.v6Label3.AccessibleDescription = "ASOCTSOAL00106";
-            this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(538, 70);
-            this.v6Label3.Name = "v6Label3";
-            this.v6Label3.Size = new System.Drawing.Size(74, 13);
-            this.v6Label3.TabIndex = 19;
-            this.v6Label3.Text = "Nhóm vật tư 6";
-            // 
-            // v6Label2
-            // 
-            this.v6Label2.AccessibleDescription = "ASOCTSOAL00105";
-            this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(538, 44);
-            this.v6Label2.Name = "v6Label2";
-            this.v6Label2.Size = new System.Drawing.Size(74, 13);
-            this.v6Label2.TabIndex = 17;
-            this.v6Label2.Text = "Nhóm vật tư 5";
-            // 
-            // v6Label1
-            // 
-            this.v6Label1.AccessibleDescription = "ASOCTSOAL00104";
-            this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(538, 18);
-            this.v6Label1.Name = "v6Label1";
-            this.v6Label1.Size = new System.Drawing.Size(74, 13);
-            this.v6Label1.TabIndex = 15;
-            this.v6Label1.Text = "Nhóm vật tư 4";
             // 
             // TimPhieuXuatKhoForm
             // 

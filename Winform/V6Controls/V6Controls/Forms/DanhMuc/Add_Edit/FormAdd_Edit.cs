@@ -228,6 +228,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             if (FormControl.DoInsertOrUpdate())
             {
+                DoInsertOrUpdateSuccess(FormControl.DataDic);
                 if (FormControl.Mode == V6Mode.Add)
                 {
                     V6ControlFormHelper.SetStatusText(V6Text.AddSuccess);
@@ -246,6 +247,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if(FormControl.ReloadFlag) DoReload();
                 Close();
             }
+        }
+
+        private void DoInsertOrUpdateSuccess(SortedDictionary<string, object> dataDic)
+        {
+            InvokeFormEvent("AFTERINSERTORUPDATE");
         }
 
         private void DoUpdateSuccess(SortedDictionary<string, object> dataDic)

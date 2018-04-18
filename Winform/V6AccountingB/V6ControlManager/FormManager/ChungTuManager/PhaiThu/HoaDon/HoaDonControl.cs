@@ -2615,6 +2615,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
         private void XuLyLayThongTinKhiChonMaVt()
         {
             try
@@ -2671,8 +2672,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             _tk_thue_i.Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
                             txtTkThueCo.Text = _tk_thue_i.Text;
                         }
-
-                        
                     }
                 }
 
@@ -2838,6 +2837,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.ShowErrorException(GetType() + ".TinhTienNt2", ex);
             }
         }
+
         private void TinhGiamGiaCt()
         {
             try
@@ -2859,6 +2859,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.ShowErrorMessage(GetType() + ".TinhGiamGia: " + ex.Message);
             }
         }
+
         private void TinhVanChuyen()
         {
             try
@@ -5001,7 +5002,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     Mode = V6Mode.Add;
                     txtLoaiPhieu.ChangeText(_maGd);
                     //LoadAll(V6Mode.Add);
-
                     GetSttRec(Invoice.Mact);
 
                     V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + TxtSo_ct.Text);
@@ -7574,6 +7574,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
 
         #endregion ==== In khác ====
+
+        private void txtLoaiPhieu_V6LostFocusNoChange(object sender)
+        {
+            txtLoaiPhieu.SetDataRow(null);
+            txtLoaiPhieu.ExistRowInTable(true);
+        }
 
     }
 }

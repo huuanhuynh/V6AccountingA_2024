@@ -175,7 +175,7 @@ namespace V6AccountingBusiness.Invoices
             where1AM += where4Dvcs;
 
             var p2Template =
-                "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {2} {0})";
+                "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {0} {2})";
                 
             if (where2AD.Length > 0)
             {
