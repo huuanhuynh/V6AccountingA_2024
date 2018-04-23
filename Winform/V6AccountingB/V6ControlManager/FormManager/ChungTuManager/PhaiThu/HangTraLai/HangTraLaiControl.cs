@@ -228,8 +228,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         _dvt1.V6LostFocusNoChange += Dvt1_V6LostFocusNoChange;
                         _dvt1.GotFocus += (s, e) =>
                         {
-                            _dvt1.SetDataRow(null);
                             _dvt1.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+                            _dvt1.ExistRowInTable(true);
                         };
                         break;
                     case "DVT":
@@ -985,6 +985,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         }
         void Dvt1_V6LostFocusNoChange(object sender)
         {
+            _dvt1.ExistRowInTable(true);
             if (_dvt1.Data != null)
             {
                 var he_so = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_so"]);
@@ -1340,7 +1341,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         {
             try
             {
-                _dvt1.SetDataRow(null);
+                _dvt1.ExistRowInTable(true);
                 //Gán lại dvt và dvt1
                 var data = _maVt.Data;
                 if (data == null)
@@ -1356,6 +1357,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     _dvt.Text = data["dvt"].ToString().Trim();
                     _dvt1.SetInitFilter("ma_vt='" + mavt + "'");
                     _dvt1.Text = _dvt.Text;
+                    _dvt1.ExistRowInTable(true);
                 }
 
                 if (data.Table.Columns.Contains("Nhieu_dvt"))
@@ -1415,12 +1417,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         private void XuLyThayDoiDvt1()
         {
-            if (_dvt1.Data == null) return;
-            var he_so = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_so"]);
-            if (he_so == 0) he_so = 1;
-            _heSo1.Value = he_so;
-            GetGia();
-            TinhTienNt2();
+            if (_dvt1.Data != null)
+            {
+                var he_so = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_so"]);
+                if (he_so == 0) he_so = 1;
+                _heSo1.Value = he_so;
+
+                GetGia();
+                TinhTienNt2();
+            }
+            else
+            {
+                _heSo1.Value = 1;
+            }
         }
 
         private void TinhTienNt2()
@@ -2184,6 +2193,80 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
+        // copy from soa
+        // Tuanmh 08/04/2018 Tinh lai khi thue suat chi tiet tung mat hang
+        private void TinhLaiTienThueCT()
+        {
+            if (chkSuaTienThue.Checked) return;
+
+            //Tính tiền thuế theo thuế suất
+            decimal thue_suati;
+            decimal thue_nti;
+            decimal thuei;
+            decimal tien_truocthue_nti;
+
+            var ty_gia = txtTyGia.Value;
+            var temp_maVt = new V6VvarTextBox { VVar = "MA_VT" };
+
+            //tính thuế riêng cho từng chi tiết
+            for (var i = 0; i < AD.Rows.Count; i++)
+            {
+                var row = AD.Rows[i];
+                temp_maVt.Text = ObjectAndString.ObjectToString(row["MA_VT"]).Trim();
+
+                tien_truocthue_nti = ObjectAndString.ObjectToDecimal(row["TIEN_NT2"])
+                                     //+ ObjectAndString.ObjectToDecimal(row["TIEN_VC_NT"])
+                                     - ObjectAndString.ObjectToDecimal(row["CK_NT"])
+                                     - ObjectAndString.ObjectToDecimal(row["GG_NT"]);
+
+                //string mathuei = row["MA_THUE_I"].ToString().Trim();
+                //if (string.IsNullOrEmpty(mathuei))
+                {
+                    var mavt_data = temp_maVt.Data;
+                    if (mavt_data != null)
+                    {
+                        var mathue = mavt_data["MA_THUE"].ToString().Trim();
+                        if (!string.IsNullOrEmpty(mathue))
+                        {
+                            row["MA_THUE_I"] = mathue;
+                            row["THUE_SUAT_I"] = ObjectAndString.ObjectToDecimal(mavt_data["THUE_SUAT"]);
+
+                            var alThue = V6BusinessHelper.Select("ALTHUE", "*", "MA_THUE = '" + mathue + "'");
+                            if (alThue.TotalRows > 0)
+                            {
+                                var tk_thue_i_Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
+                                row["TK_THUE_I"] = tk_thue_i_Text;
+                                txtTkThueCo.Text = tk_thue_i_Text;
+                            }
+                        }
+                    }
+                }
+
+                thue_suati = ObjectAndString.ObjectToDecimal(row["THUE_SUAT_I"]);
+
+                if (tien_truocthue_nti != 0)
+                {
+                    thue_nti = V6BusinessHelper.Vround(tien_truocthue_nti * thue_suati / 100, M_ROUND_NT);
+                    thuei = V6BusinessHelper.Vround(thue_nti * ty_gia, M_ROUND);
+
+                    if (_maNt == _mMaNt0)
+                        thuei = thue_nti;
+
+
+                    if (!AD.Columns.Contains("Thue_nt")) AD.Columns.Add("Thue_nt", typeof(decimal));
+                    if (!AD.Columns.Contains("Thue")) AD.Columns.Add("Thue", typeof(decimal));
+
+                    row["Thue_nt"] = thue_nti;
+                    row["Thue"] = thuei;
+                }
+                else
+                {
+                    row["Thue_nt"] = 0m;
+                    row["Thue"] = 0m;
+                }
+            }
+        }
+
         private void TinhTongThue_ct()
         {
             var t_thue_nt = TinhTong(AD, "THUE_NT");
@@ -2210,7 +2293,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 TinhChietKhau(); //Đã tính //t_tien_nt2, T_CK_NT, PT_CK
                 TinhGiamGia();
 
-                TinhThue();
+                if (M_SOA_MULTI_VAT == "1")
+                {
+                    TinhLaiTienThueCT();
+                    TinhTongThue_ct();
+                }
+                else
+                {
+                    TinhThue();
+                }
                 if (string.IsNullOrEmpty(_mMaNt0)) return;
                 
                 var t_tien_nt2 = txtTongTienNt2.Value;

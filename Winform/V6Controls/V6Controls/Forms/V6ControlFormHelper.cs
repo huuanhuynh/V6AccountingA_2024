@@ -2314,7 +2314,7 @@ namespace V6Controls.Forms
         #region ==== Print RptReport ====
 
         /// <summary>
-        /// Chọn máy in
+        /// Chọn máy in và in, In xong trả về tên máy đã in.
         /// </summary>
         /// <param name="owner">Form hoặc control gọi hàm này.</param>
         /// <param name="rpDoc">Đổi tượng rpt cần in.</param>
@@ -2329,17 +2329,17 @@ namespace V6Controls.Forms
             pt.AllowSomePages = true;
             if (pt.ShowDialog(owner) == DialogResult.OK)
             {
-                PrintRptToPrinter(rpDoc,
+                bool is_printed = PrintRptToPrinter(rpDoc,
                     pt.PrinterSettings.PrinterName,
                     pt.PrinterSettings.Copies,
                     pt.PrinterSettings.FromPage,
                     pt.PrinterSettings.ToPage);
-                return pt.PrinterSettings.PrinterName;
+                if (is_printed) return pt.PrinterSettings.PrinterName;
             }
             return null;
         }
 
-        public static void PrintRptToPrinter(ReportDocument rpDoc, string printerName, int copies, int startPage = 0, int endPage = 0)
+        public static bool PrintRptToPrinter(ReportDocument rpDoc, string printerName, int copies, int startPage = 0, int endPage = 0)
         {
             //rpDoc.PrintOptions.PrinterName = printerName; Câu này không có tác dụng.
             var _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
@@ -2353,6 +2353,7 @@ namespace V6Controls.Forms
                 {
                     rpDoc.PrintToPrinter(copies, false, startPage, endPage);
                     ShowMainMessage("Đã gửi in.");
+                    return true;
                 }
             }
             catch (Exception)
@@ -2361,6 +2362,7 @@ namespace V6Controls.Forms
                 throw;
             }
             PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+            return false;
         }
         #endregion print rpt
 

@@ -39,7 +39,17 @@ namespace V6Controls.Forms
             return mbox.ShowDialog(owner);
         }
         
-        
+        /// <summary>
+        /// Hiển thị hộp thông báo.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="caption"></param>
+        /// <param name="showTime">The time to display the message box by percent seconds.</param>
+        /// <param name="buttons"></param>
+        /// <param name="icon"></param>
+        /// <param name="defaultButton">0-Mặc định, 1-Nút thứ nhất, 2-Nút thứ hai</param>
+        /// <param name="owner"></param>
+        /// <returns></returns>
         public static DialogResult Show(string text, string caption, int showTime, MessageBoxButtons buttons, MessageBoxIcon icon,
             int defaultButton, IWin32Window owner = null)
         {

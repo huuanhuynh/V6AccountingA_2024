@@ -219,6 +219,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            Huy();
+        }
+
+        protected virtual void Huy()
+        {
             if (_executing)
             {
                 V6ControlFormHelper.ShowMainMessage(V6Text.Executing);

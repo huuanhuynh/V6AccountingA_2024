@@ -238,6 +238,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        protected override void Huy()
+        {
+            if (dataGridView2.Rows.Count > 0)
+            {
+                if (V6Message.Show("Chú ý: chưa tạo phiếu xuất (F10).\n" + "Bạn vẫn muốn quay ra?", "Cảnh báo!", 500, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, 2, this)
+                    != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
+            base.Huy();
+        }
+
         private string _error = "";
         private void ExecProc()
         {

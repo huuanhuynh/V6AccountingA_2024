@@ -197,6 +197,7 @@ namespace V6Tools.V6Convert
             }
             return result;
         }
+
         public static int ObjectToInt(object o)
         {
             decimal result = 0;
@@ -225,6 +226,36 @@ namespace V6Tools.V6Convert
                     break;
             }
             return (int)result;
+        }
+
+        public static long ObjectToInt64(object o)
+        {
+            long result = 0;
+            if (o == null) return 0;
+            switch (o.GetType().ToString())
+            {
+                case "System.DateTime":
+                    result = ((DateTime)o).DayOfYear;
+                    break;
+                case "System.Char":
+                case "System.Byte":
+                case "System.SByte":
+                case "System.Int16":
+                case "System.Int32":
+                case "System.Int64":
+                case "System.UInt16":
+                case "System.UInt32":
+                case "System.UInt64":
+                case "System.Decimal":
+                case "System.Double":
+                case "System.Single":
+                    result = Convert.ToInt64(o);
+                    break;
+                default:
+                    long.TryParse(StringToSystemDecimalSymbolStringNumber(o.ToString()), out result);
+                    break;
+            }
+            return result;
         }
 
         /// <summary>

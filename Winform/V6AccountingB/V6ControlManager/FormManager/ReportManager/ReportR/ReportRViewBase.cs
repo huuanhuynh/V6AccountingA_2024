@@ -434,9 +434,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
                     if(y_n) V6BusinessHelper.Update(V6TableName.Albc, udata, AlbcKeys);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    
+                    this.WriteExLog(GetType() + ".SetDefaultPrinter", ex);
                 }
             }
         }
@@ -1456,15 +1456,22 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     return;
                 }
 
-                crystalReportViewer1.PrintReport();
-                return;
+                //in thường
+                //crystalReportViewer1.PrintReport();
+                //return;
 
+                //in có kiểm soát.
                 var dfp = DefaultPrinter;
                 var selectedPrinter = V6ControlFormHelper.PrintRpt(this, _rpDoc, dfp);
-                if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != dfp)
+                if (!string.IsNullOrEmpty(selectedPrinter))
                 {
                     print_one = true;
-                    DefaultPrinter = selectedPrinter;
+                    if (selectedPrinter != dfp)
+                    {
+                        DefaultPrinter = selectedPrinter;
+                    }
+                    //Thao tác sau khi in xong.
+                    CallPrintSuccessEvent();
                 }
             }
             catch (Exception ex)

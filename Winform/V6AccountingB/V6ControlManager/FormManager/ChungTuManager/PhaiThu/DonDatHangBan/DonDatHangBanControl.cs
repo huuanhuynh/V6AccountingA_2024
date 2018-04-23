@@ -207,8 +207,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         _dvt1.V6LostFocusNoChange += Dvt1_V6LostFocusNoChange;
                         _dvt1.GotFocus += (s, e) =>
                         {
-                            _dvt1.SetDataRow(null);
                             _dvt1.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+                            _dvt1.ExistRowInTable(true);
                         };
                         break;
                     case "DVT":
@@ -666,6 +666,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         }
         void Dvt1_V6LostFocusNoChange(object sender)
         {
+            _dvt1.ExistRowInTable(true);
             if (_dvt1.Data != null)
             {
                 var he_so = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_so"]);
@@ -1072,7 +1073,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
-                _dvt1.SetDataRow(null);
                 //Gán lại dvt và dvt1
                 var data = _maVt.Data;
                 if (data == null)
@@ -1088,6 +1088,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     _dvt.Text = data["dvt"].ToString().Trim();
                     _dvt1.SetInitFilter("ma_vt='" + mavt + "'");
                     _dvt1.Text = _dvt.Text;
+                    _dvt1.ExistRowInTable(true);
                 }
 
                 if (data.Table.Columns.Contains("Nhieu_dvt"))

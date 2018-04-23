@@ -39,6 +39,7 @@ namespace V6Controls.Forms
         private readonly MessageBoxButtons _buttons;
         private readonly MessageBoxIcon _icon;
         private readonly int _defaultButton;
+        private Button _buttonDefault = null;
         private int _showTime = 0;
 
         private void MyInit()
@@ -62,14 +63,22 @@ namespace V6Controls.Forms
             {
                 case MessageBoxButtons.OK:
                     buttonOK.Visible = true;
+                    _buttonDefault = buttonOK;
                     break;
                 case MessageBoxButtons.OKCancel:
                     buttonOK.Visible = true;
                     buttonCANCEL.Visible = true;
 
                     if (_defaultButton == 1)
+                    {
                         buttonOK.Select();
-                    else buttonCANCEL.Select();
+                        _buttonDefault = buttonOK;
+                    }
+                    else
+                    {
+                        buttonCANCEL.Select();
+                        _buttonDefault = buttonCANCEL;
+                    }
                     break;
                 case MessageBoxButtons.AbortRetryIgnore:
                     break;
@@ -81,9 +90,21 @@ namespace V6Controls.Forms
                     buttonCANCEL.Visible = true;
                     buttonCANCEL.Left = button3.Left;
 
-                    if (_defaultButton == 1) buttonYES.Select();
-                    else if (_defaultButton == 2) buttonNO.Select();
-                    else buttonCANCEL.Select();
+                    if (_defaultButton == 1)
+                    {
+                        buttonYES.Select();
+                        _buttonDefault = buttonYES;
+                    }
+                    else if (_defaultButton == 2)
+                    {
+                        buttonNO.Select();
+                        _buttonDefault = buttonNO;
+                    }
+                    else
+                    {
+                        buttonCANCEL.Select();
+                        _buttonDefault = buttonCANCEL;
+                    }
                     break;
 
                 case MessageBoxButtons.YesNo:
@@ -91,8 +112,15 @@ namespace V6Controls.Forms
                     buttonNO.Visible = true;
 
                     if (_defaultButton == 1)
+                    {
                         buttonYES.Select();
-                    else buttonNO.Select();
+                        _buttonDefault = buttonYES;
+                    }
+                    else
+                    {
+                        buttonNO.Select();
+                        _buttonDefault = buttonNO;
+                    }
                     break;
                 case MessageBoxButtons.RetryCancel:
                     break;
@@ -196,7 +224,8 @@ namespace V6Controls.Forms
             if (_showTimeCount >= _showTime)
             {
                 timer1.Stop();
-                DialogResult = DialogResult.Cancel;
+                if(_buttonDefault != null) _buttonDefault.PerformClick();
+                //DialogResult = DialogResult.Cancel;
             }
         }
     }

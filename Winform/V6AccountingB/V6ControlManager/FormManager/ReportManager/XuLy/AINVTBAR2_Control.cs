@@ -545,11 +545,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             view.Dock = DockStyle.Fill;
             view.FilterControl.InitFilters = oldKeys;
 
-            //view.FilterControl.SetParentRow(row.ToDataDictionary());
-            //view.AutoPrint = FilterControl.Check1;
-            //view.AutoPrint = InLienTuc;
-            //view.PrinterName = _PrinterName;
-            //view.PrintCopies = _PrintCopies;
+            view.PrintSuccess += delegate
+            {
+                try
+                {
+                    V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "UPDATEF9", view.FilterControl.GetFilterParameters().ToArray());
+                }
+                catch (Exception ex)
+                {
+                    view.ShowTopMessage("UPDATEF9 " + ex.Message);
+                    ShowMainMessage("UPDATEF9 Error: " + ex.Message);
+                }
+                view.Dispose();
+            };
+
             view.AutoClickNhan = true;
 
             view.ShowToForm(this, reportTitleF9, true);
@@ -557,7 +566,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             f9Running = false;
         }
-
+        
         void tF9_Tick(object sender, EventArgs e)
         {
             if (f9Running)

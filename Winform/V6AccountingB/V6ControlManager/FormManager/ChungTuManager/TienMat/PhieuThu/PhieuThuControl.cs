@@ -3982,7 +3982,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         private void txtMa_sonb_V6LostFocus(object sender)
         {
             GetSoPhieu();
-            //txtLoaiPhieu.SetDataRow(null);
         }
 
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -4253,7 +4252,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             //Tuanmh 15/04/2018 - SetInitFilter =null khi HaveValueChanged=false
             
             txtLoaiPhieu.SetInitFilter(string.Format("Ma_ct = '{0}'", Invoice.Mact));
-            //txtLoaiPhieu.SetDataRow(null);
             txtLoaiPhieu.ExistRowInTable(true);
         }
         

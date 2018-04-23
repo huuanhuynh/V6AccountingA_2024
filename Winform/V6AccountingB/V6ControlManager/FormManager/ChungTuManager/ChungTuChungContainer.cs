@@ -51,23 +51,26 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         private void AddTab()
         {
+            string method_log = "";
             try
             {
                 //var BaoGia = new BaoGiaControl(m_itemId);
+                method_log += "var panel;";
                 var panel = new Panel
                 {
                     Size = new Size(800,600), Dock = DockStyle.Fill
                 };
+                method_log += "var ChungTu;";
                 var ChungTu = ChungTuF3.GetChungTuControl(MaCt, ItemID, "");
-                
+                method_log += "LeftControl;";
                 var LeftControl = new ChungTuQuickView(Invoice)
                 {
                     Width = 200, Height = panel.Height,
                     Anchor = AnchorStyles.Top|AnchorStyles.Left|AnchorStyles.Bottom
                     //Dock = DockStyle.Left
                 };
-                
 
+                method_log += "if (_showQuickViewControl);";
                 if (_showQuickViewControl)
                 {
                     LeftControl.SetDataSource(ChungTu.AM);
@@ -96,18 +99,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     {
                         LeftControl.SetSelectedRow(sttRec);
                     };
-
+                    method_log += "panel.Controls.Add(LeftControl);";
                     panel.Controls.Add(LeftControl);
                 }
 
-                
+                method_log += "ChungTu.Left = _showQu...;";
                 ChungTu.Left = _showQuickViewControl ? LeftControl.Width + 3 : 3;
                 ChungTu.Width = panel.Width - (_showQuickViewControl ? LeftControl.Width : 0) - 6;
                 ChungTu.Height = panel.Height;
                 ChungTu.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 
                 panel.Controls.Add(ChungTu);
-
+                method_log += "var tab;";
                 var tab = new TabPage(V6Text.Invoice);
                 ChungTu.ParentTabPage = tab;
                 tab.Controls.Add(panel);
@@ -124,12 +127,15 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                     }
                 };
+                method_log += "tabControl1.TabPages.Add(tab);";
                 tabControl1.TabPages.Add(tab);
+                method_log += "tabControl1.SelectTab(tab);";
                 tabControl1.SelectTab(tab);
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".AddTab: " + ex.Message, Invoice.Name);
+                this.ShowErrorException(GetType() + ".AddTab\nmethod log: " +method_log + "\n", ex);
+                //this.ShowErrorMessage(GetType() + ".AddTab: " + ex.Message, Invoice.Name);
             }
         }
 
