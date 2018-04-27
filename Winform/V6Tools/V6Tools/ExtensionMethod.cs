@@ -317,7 +317,7 @@ namespace V6Tools
             return (from DataRow row in data select row.ToDataDictionary(sttRec)).ToList();
         }
 
-        public static SortedDictionary<string, object> ToDataDictionary(this DataRow row)
+        public static SortedDictionary<string, object> DataRowToDataDictionary(DataRow row)
         {
             var DataDic = new SortedDictionary<string, object>();
             if (row == null) return DataDic;
@@ -327,9 +327,25 @@ namespace V6Tools
             }
             return DataDic;
         }
+        public static SortedDictionary<string, object> ToDataDictionary(this DataRow row)
+        {
+            return DataRowToDataDictionary(row);
+        }
 
+        public static SortedDictionary<string, object> DataRowToDataDictionary(DataRow row, string sttRec)
+        {
+            var DataDic = new SortedDictionary<string, object>();
+            if (row == null) return DataDic;
+            for (int i = 0; i < row.Table.Columns.Count; i++)
+            {
+                DataDic.Add(row.Table.Columns[i].ColumnName.ToUpper(), row[i]);
+            }
+            DataDic["STT_REC"] = sttRec;
+            return DataDic;
+        }
         public static SortedDictionary<string, object> ToDataDictionary(this DataRow row, string sttRec)
         {
+            return DataRowToDataDictionary(row, sttRec);
             var DataDic = new SortedDictionary<string, object>();
             if (row == null) return DataDic;
             for (int i = 0; i < row.Table.Columns.Count; i++)

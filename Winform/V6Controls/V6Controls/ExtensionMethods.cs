@@ -159,13 +159,7 @@ namespace V6Controls
         /// <returns>null if source is null.</returns>
         public static SortedDictionary<string, object> ToDataDictionary(this DataGridViewRow row)
         {
-            if (row == null) return null;
-            var DataDic = new SortedDictionary<string, object>();
-            for (int i = 0; i < row.DataGridView.Columns.Count; i++)
-            {
-                DataDic.Add(row.DataGridView.Columns[i].DataPropertyName.ToUpper(), row.Cells[i].Value);
-            }
-            return DataDic;
+            return V6ControlsHelper.DataGridViewRowToDataDictionary(row);
         }
 
         /// <summary>

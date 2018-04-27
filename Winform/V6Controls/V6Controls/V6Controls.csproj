@@ -155,6 +155,7 @@
     <Compile Include="Forms\SmsModemSettingForm.Designer.cs">
       <DependentUpon>SmsModemSettingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfigClass.cs" />
     <Compile Include="Win32.cs" />
     <Compile Include="Controls\ToChucTree\ToChucTreeControl.cs">
       <SubType>Component</SubType>

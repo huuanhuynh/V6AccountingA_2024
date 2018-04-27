@@ -250,7 +250,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                 c = new ReportR44ViewBase(item_id, program, program, repFile, repTitle, repTitle2,
                                     repFileF5, repTitleF5, repTitle2F5);
                             }
-                            else if (codeform.StartsWith("45"))
+                            else if (codeform.StartsWith("45")) // Không hiển thị report.
                             {
                                 program = codeform.Substring(2);
                                 c = new ReportR45ViewBase(item_id, program, program, repFile, repTitle, repTitle2,
@@ -471,10 +471,15 @@ namespace V6ControlManager.FormManager.MenuManager
                         case "Z":
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
-                                if (codeform.StartsWith("Z44"))
+                                if (codeform.StartsWith("Z44")) // có hiện chi tiết
                                 {
                                     var programZ = codeform.Substring(3);
                                     c = new XuLy44Base(item_id, programZ, programZ, repFile, mButton.ReportTitle, mButton.ReportTitle2, true, repFileF5, repTitleF5, repTitle2F5);
+                                }
+                                else if (codeform.StartsWith("Z45")) // Không hiện chi tiết
+                                {
+                                    var programZ = codeform.Substring(3);
+                                    c = new XuLy44Base(item_id, programZ, programZ, repFile, mButton.ReportTitle, mButton.ReportTitle2, false, repFileF5, repTitleF5, repTitle2F5);
                                 }
                                 else
                                 {

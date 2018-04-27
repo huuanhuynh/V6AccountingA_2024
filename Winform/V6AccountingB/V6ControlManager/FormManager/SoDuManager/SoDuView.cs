@@ -330,7 +330,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 {
                     var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
 
-                    if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " ", "Xóa?")
+                    if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " ", V6Text.DeleteConfirm)
                         == DialogResult.Yes)
                     {
                         var t = _categories.Delete(CurrentTable, keys);

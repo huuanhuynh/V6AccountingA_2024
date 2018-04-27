@@ -126,7 +126,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 FilterControl = QuickReportManager.AddFilterControl44Base(_program, panel1);
                 All_Objects["thisForm"] = this;
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
-                QuickReportManager.MadeFilterControls(FilterControl, _program, out All_Objects);
+                QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects);
                 All_Objects["thisForm"] = this;
                 SetStatus2Text();
                 //gridViewSummary1.Visible = FilterControl.ViewSum;
@@ -751,7 +751,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 XuLyHienThiFormSuaChungTuF3();
             }
-            else if (keyData == Keys.F4 && FilterControl.F4)
+            else if (keyData == Keys.F4)// && FilterControl.F4)
             {
                 XuLyBoSungThongTinChungTuF4();
             }
@@ -764,7 +764,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 XuLyF7();
             }
-            else if (keyData == Keys.F8 && FilterControl.F8)
+            else if (keyData == Keys.F8)// && FilterControl.F8)
             {
                 XuLyF8();
             }
@@ -816,6 +816,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                if (Event_Methods.ContainsKey("F3"))
+                {
+                    InvokeFormEvent("F3");
+                    return;
+                }
+
+                F3(this);
+                return;
+
                 if (dataGridView1.CurrentRow != null)
                 {
                     var currentRow = dataGridView1.CurrentRow;
@@ -823,7 +832,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         var selectedMaCt = currentRow.Cells["Ma_ct"].Value.ToString().Trim();
                         var selectedSttRec = currentRow.Cells["Stt_rec"].Value.ToString().Trim();
-                        if (selectedMaCt == "INF")// phiếu nhập điều chuyển
+                        if (selectedMaCt == "INF") // phiếu nhập điều chuyển
                         {
                             selectedMaCt = "IXB"; // phiếu xuất điều chuyển
                             selectedSttRec = selectedSttRec.Left(10) + selectedMaCt;
@@ -835,7 +844,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 "ma_CT = '" + selectedMaCt + "'").Data.Rows[0];
                             var amName = (alctRow["m_phdbf"] ?? "").ToString().Trim();
                             var adName = (alctRow["m_ctdbf"] ?? "").ToString().Trim();
-                            var fText = (alctRow[V6Setting.IsVietnamese ? "ten_ct" : "ten_ct2"] ?? "").ToString().Trim();
+                            var fText =
+                                (alctRow[V6Setting.IsVietnamese ? "ten_ct" : "ten_ct2"] ?? "").ToString().Trim();
 
                             if (amName != "" && adName != "")
                             {
@@ -859,7 +869,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         this.ShowWarningMessage("Không được phép sửa chi tiết!");
                     }
-
                 }
             }
             catch (Exception ex)
@@ -871,8 +880,92 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         protected virtual void XuLyBoSungThongTinChungTuF4()
         {
-            InvokeFormEvent("F4");
+            if (Event_Methods.ContainsKey("F4"))
+            {
+                InvokeFormEvent("F4");
+            }
+            else
+            {
+                F4(this);
+            }
         }
+
+#region ==== temp Code writing ====
+        public void F3(Control thisForm)
+        {
+            try
+            {
+                //MessageBox.Show("Test F4. Trong form config bao cao moi (advance) chi co F3F5F7.\nTam thoi bo code check FilterControl.F4");
+                //DataGridView dataGridView1 = (DataGridView) V6ControlFormHelper.GetControlByName(thisForm, "dataGridView1");
+                if (dataGridView1.DataSource == null)
+                {
+                    this.ShowWarningMessage(V6Text.NoData);
+                    return;
+                }
+                if (dataGridView1.CurrentRow == null)
+                {
+                    this.ShowWarningMessage(V6Text.NoSelection);
+                    return;
+                }
+
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                string stt_rec = row.Cells["STT_REC"].ToString();
+                SortedDictionary<string, object> key = new SortedDictionary<string, object>();
+                SortedDictionary<string, object> data = row.ToDataDictionary();
+
+                key["STT_REC"] = stt_rec;
+                FormAddEdit f = new FormAddEdit("ARS82", V6Mode.Edit, key, data);
+                f.UpdateSuccessEvent += (dataDic) =>
+                {
+                    try
+                    {
+                        V6ControlFormHelper.UpdateGridViewRow(row, dataDic);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                };
+                f.ShowDialog(thisForm);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        
+        public void F4(Control thisForm)
+        {
+            try
+            {
+                //Button btnNhan = (Button) V6ControlFormHelper.GetControlByName(thisForm, "btnNhan");
+                SaveSelectedCellLocation(dataGridView1);
+                string stt_rec = V6BusinessHelper.GetNewSttRec("ARC");
+                SortedDictionary<string, object> data = new SortedDictionary<string, object>();
+                data["STT_REC"] = stt_rec;
+                FormAddEdit f = new FormAddEdit("ARS82", V6Mode.Add, null, data);
+                f.InsertSuccessEvent += (dataDic) =>
+                {
+                    try
+                    {
+                        btnNhan.PerformClick();
+                        LoadSelectedCellLocation(dataGridView1);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                };
+                f.ShowDialog(thisForm);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+#endregion ==== temp Code writing ====
+
 
         protected virtual void XuLyXemChiTietF5()
         {
@@ -883,26 +976,71 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             view.FilterControl.InitFilters = oldKeys;
             view.FilterControl.SetParentRow(dataGridView1.CurrentRow.ToDataDictionary());
             view.btnNhan_Click(null, null);
+            //view.autocl
             view.ShowToForm(this, _reportCaption, true);
 
-            //var f = new V6Form();
-            //f.WindowState = FormWindowState.Maximized;
-            //f.Controls.Add(view);
-            //view.btnNhan_Click(null, null);
-            //f.ShowDialog(this);
             SetStatus2Text();
         }
 
         protected virtual void XuLyF7()
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (Event_Methods.ContainsKey("F7"))
+                {
+                    InvokeFormEvent("F7");
+                }
+                else
+                {
+                    //Code base
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyF7", ex);
+            }
         }
 
         protected virtual void XuLyF8()
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (Event_Methods.ContainsKey("F8"))
+                {
+                    InvokeFormEvent("F8");
+                }
+                else
+                {
+                    F8();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyF8", ex);
+            }
         }
-        
+
+        private void F8()
+        {
+            DataGridViewRow row = dataGridView1.CurrentRow;
+            SaveSelectedCellLocation(dataGridView1);
+
+            if (row != null)
+            {
+                SortedDictionary<string, object> keys = new SortedDictionary<string, object> { { "UID", row.Cells["UID"].Value } };
+                string value_show = row.Cells["STT_REC"].Value.ToString();
+                if (V6Message.Show(V6Text.DeleteConfirm + " " + value_show, V6Text.DeleteConfirm, 0, MessageBoxButtons.YesNo, MessageBoxIcon.Question, 0, this)
+                    == DialogResult.Yes)
+                {
+                    int t = V6BusinessHelper.Delete("ARS82", keys);
+                    if (t > 0)
+                    {
+                        btnNhan.PerformClick();
+                        LoadSelectedCellLocation(dataGridView1);
+                    }
+                }
+            }
+        }
 
         #region ==== Xử lý F9 ====
 

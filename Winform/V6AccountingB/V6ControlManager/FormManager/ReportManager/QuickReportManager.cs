@@ -32,10 +32,17 @@ namespace V6ControlManager.FormManager.ReportManager
             return FilterControl;
         }
 
-        public static void MadeFilterControls(ReportFilter44Base filterControl, string program, out Dictionary<string, object> all_Objects)
+        /// <summary>
+        /// Xây dựng FilterControl động theo program.
+        /// </summary>
+        /// <param name="filterControl"></param>
+        /// <param name="program"></param>
+        /// <param name="all_Objects">sẽ được gán thêm filterControl và các line.NAME, các eventArgs (sender và e).</param>
+        public static void MadeFilterControls(ReportFilter44Base filterControl, string program, Dictionary<string, object> all_Objects)
         {
             Type Event_program = null;
-            Dictionary<string, object> All_Objects = new Dictionary<string, object>(); 
+            //Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+            all_Objects["filterControl"] = filterControl;
             string all_using_text = "", all_method_text = "";
 
             SqlParameter[] plist =
@@ -63,7 +70,7 @@ namespace V6ControlManager.FormManager.ReportManager
                         
 
                         var lineControl0 = V6ControlFormHelper.MadeLineDynamicControl(define);
-                        All_Objects[lineControl0.Name] = lineControl0;
+                        all_Objects[lineControl0.Name] = lineControl0;
 
                         if (lineControl0 is FilterLineDynamic)
                         {
@@ -130,9 +137,9 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 {
                                                     if (Event_program == null) return;
 
-                                                    All_Objects["sender"] = s;
-                                                    All_Objects["e"] = e;
-                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                                    all_Objects["sender"] = s;
+                                                    all_Objects["e"] = e;
+                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, all_Objects);
                                                 };
                                                 break;
 
@@ -144,9 +151,9 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 {
                                                     if (Event_program == null) return;
 
-                                                    All_Objects["sender"] = s;
-                                                    All_Objects["e"] = e;
-                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                                    all_Objects["sender"] = s;
+                                                    all_Objects["e"] = e;
+                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, all_Objects);
                                                 };
                                                 break;
 
@@ -155,9 +162,9 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 {
                                                     if (Event_program == null) return;
 
-                                                    All_Objects["sender"] = s;
-                                                    All_Objects["e"] = e;
-                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                                    all_Objects["sender"] = s;
+                                                    all_Objects["e"] = e;
+                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, all_Objects);
                                                 };
                                                 break;
 
@@ -166,9 +173,9 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 {
                                                     if (Event_program == null) return;
 
-                                                    All_Objects["sender"] = s;
-                                                    All_Objects["e"] = e;
-                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                                    all_Objects["sender"] = s;
+                                                    all_Objects["e"] = e;
+                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, all_Objects);
                                                 };
                                                 break;
 
@@ -177,9 +184,9 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 {
                                                     if (Event_program == null) return;
 
-                                                    All_Objects["sender"] = s;
-                                                    All_Objects["eventargs"] = null;
-                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                                    all_Objects["sender"] = s;
+                                                    all_Objects["eventargs"] = null;
+                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, all_Objects);
                                                 };
                                                 break;
 
@@ -188,9 +195,9 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 {
                                                     if (Event_program == null) return;
 
-                                                    All_Objects["sender"] = s;
-                                                    All_Objects["e"] = e;
-                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                                    all_Objects["sender"] = s;
+                                                    all_Objects["e"] = e;
+                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, all_Objects);
                                                 };
                                                 break;
 
@@ -199,9 +206,9 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 {
                                                     if (Event_program == null) return;
 
-                                                    All_Objects["sender"] = s;
-                                                    All_Objects["e"] = e;
-                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                                                    all_Objects["sender"] = s;
+                                                    all_Objects["e"] = e;
+                                                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, all_Objects);
                                                 };
                                                 break;
                                         }//end switch
@@ -254,7 +261,7 @@ namespace V6ControlManager.FormManager.ReportManager
                 filterControl.ShowErrorMessage("MadeFilterControls error: " + err);
             }
 
-            all_Objects = All_Objects;
+            all_Objects = all_Objects;
         }
 
         public static void ShowQuickReport(Control owner, string itemId)

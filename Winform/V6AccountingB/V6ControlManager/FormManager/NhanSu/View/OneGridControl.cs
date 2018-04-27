@@ -198,7 +198,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                         {
                             var keys = new SortedDictionary<string, object> { { "UID", row.Cells["UID"].Value } };
 
-                            if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + value, "Xóa?")
+                            if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + value, V6Text.DeleteConfirm)
                                 == DialogResult.Yes)
                             {
                                 confirm = true;

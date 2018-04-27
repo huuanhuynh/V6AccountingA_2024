@@ -392,7 +392,7 @@ namespace V6ControlManager.FormManager.NhanSu
                             var keys = new SortedDictionary<string, object> { { "UID", data["UID"] } };
 
 
-                            if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + value, "Xóa?")
+                            if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + value, V6Text.DeleteConfirm)
                                 == DialogResult.Yes)
                             {
                                 isDeleted = _categories.Delete(CurrentTable, keys);

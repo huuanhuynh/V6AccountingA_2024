@@ -461,9 +461,9 @@ namespace V6ControlManager.FormManager.NhanSu
                         if (data.ContainsKey("UID"))
                         {
                             var keys = new SortedDictionary<string, object> {{"UID", UID}};
-                            
 
-                            if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + value, "Xóa?")
+
+                            if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + value, V6Text.DeleteConfirm)
                                 == DialogResult.Yes)
                             {
                                 SqlParameter[] plist =

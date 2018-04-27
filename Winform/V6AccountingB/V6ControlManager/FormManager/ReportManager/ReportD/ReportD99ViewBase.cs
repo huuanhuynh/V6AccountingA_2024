@@ -131,7 +131,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
                 FilterControl = QuickReportManager.AddFilterControl44Base(_program, panel1);
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
-                QuickReportManager.MadeFilterControls(FilterControl, _program, out All_Objects);
+                QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects);
                 All_Objects["thisForm"] = this;
                 gridViewSummary1.Visible = FilterControl.ViewSum;
 

@@ -617,7 +617,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
 
                         var so_the_cc = row.Cells["SO_THE_CC"].Value.ToString().Trim();
-                        if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + so_the_cc, "Xóa?")
+                        if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + so_the_cc, V6Text.DeleteConfirm)
                             == DialogResult.Yes)
                         {
                             confirm = true;
@@ -630,7 +630,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         SortedDictionary<string, object> data = new SortedDictionary<string, object>();
                         data.Add("NGAY_KH1", "");
                         var so_the_ts = row.Cells["SO_THE_TS"].Value.ToString().Trim();
-                        if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + so_the_ts, "Xóa?")
+                        if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + so_the_ts, V6Text.DeleteConfirm)
                             == DialogResult.Yes)
                         {
                             confirm = true;
@@ -643,7 +643,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         SortedDictionary<string, object> data = new SortedDictionary<string, object>();
                         data.Add("NGAY_PB1", "");
                         var so_the_cc = row.Cells["SO_THE_CC"].Value.ToString().Trim();
-                        if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + so_the_cc, "Xóa?")
+                        if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + so_the_cc, V6Text.DeleteConfirm)
                             == DialogResult.Yes)
                         {
                             confirm = true;
@@ -717,7 +717,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         {
                             var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
 
-                            if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + value_show, "Xóa?")
+                            if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + value_show, V6Text.DeleteConfirm)
                                 == DialogResult.Yes)
                             {
                                 confirm = true;

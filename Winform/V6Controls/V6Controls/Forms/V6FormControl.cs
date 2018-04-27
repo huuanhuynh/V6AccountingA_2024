@@ -91,7 +91,7 @@ namespace V6Controls.Forms
 
         protected SortedList<int,int> _rowIndex = new SortedList<int, int>();
         protected SortedList<int, int> _cellIndex = new SortedList<int, int>();
-        protected void SaveSelectedCellLocation(DataGridView dataGridView1, int saveIndex = 0)
+        public void SaveSelectedCellLocation(DataGridView dataGridView1, int saveIndex = 0)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace V6Controls.Forms
             }
         }
 
-        protected void LoadSelectedCellLocation(DataGridView dataGridView1, int saveIndex = 0)
+        public void LoadSelectedCellLocation(DataGridView dataGridView1, int saveIndex = 0)
         {
             V6ControlFormHelper.SetGridviewCurrentCellByIndex(dataGridView1, _rowIndex[saveIndex], _cellIndex[saveIndex], this);
         }

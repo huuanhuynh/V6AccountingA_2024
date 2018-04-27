@@ -28,15 +28,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 var v = Categories.IsExistOneCode_List(F8_table, "LOAI_YT", txtLoai_yt.Text);
                 txtLoai_yt.Enabled = !v;
-
-                
-
             }
             catch (Exception ex)
             {
-                V6Tools.Logger.WriteToLog("AlloaiytAddEditForm DisableWhenEdit " + ex.Message);
+                this.WriteExLog(GetType() + ".DoBeforeEdit", ex);
             }
         }
+
         public override void ValidateData()
         {
             var errors = "";
