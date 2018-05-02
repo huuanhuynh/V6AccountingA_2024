@@ -180,7 +180,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                                 if (alThue.TotalRows > 0)
                                 {
                                     _tk_thue_i.Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
-                                    txtTkThueCo.Text = _tk_thue_i.Text;
+                                    txtTkThueNo.Text = _tk_thue_i.Text;
                                 }
                             }
 
@@ -1306,7 +1306,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         if (alThue.TotalRows > 0)
                         {
                             _tk_thue_i.Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
-                            txtTkThueCo.Text = _tk_thue_i.Text;
+                            txtTkThueNo.Text = _tk_thue_i.Text;
                         }
 
 
@@ -2236,7 +2236,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                             {
                                 var tk_thue_i_Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
                                 row["TK_THUE_I"] = tk_thue_i_Text;
-                                txtTkThueCo.Text = tk_thue_i_Text;
+                                txtTkThueNo.Text = tk_thue_i_Text;
                             }
                         }
                     }
@@ -2644,7 +2644,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(alThue.Data.Rows[0]["THUE_SUAT"]);
                     V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = alThue.Data.Rows[0][THUE_SUAT] = " + alThue.Data.Rows[0]["THUE_SUAT"]);
 
-                    txtTkThueCo.Text = _tk_thue_i.Text;
+                    txtTkThueNo.Text = _tk_thue_i.Text;
                 }
                 else
                 {

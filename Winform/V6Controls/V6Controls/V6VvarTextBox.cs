@@ -229,6 +229,7 @@ namespace V6Controls
 
         protected override void V6ColorTextBox_KeyDown(object sender, KeyEventArgs e)
         {
+            _checkOnLeave_OnEnter = false;
             //Save keyDown history();
             if (string.IsNullOrEmpty(_vVar) || LookupInfo.NoInfo)
             {

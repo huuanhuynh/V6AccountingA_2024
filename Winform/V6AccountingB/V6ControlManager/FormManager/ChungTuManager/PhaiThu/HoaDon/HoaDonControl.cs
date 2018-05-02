@@ -2729,7 +2729,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     _dvt1.Text = _dvt.Text;
                     _dvt1.ExistRowInTable(true);
                 }
-
+               
                 if (data.Table.Columns.Contains("Nhieu_dvt"))
                 {
                     var nhieuDvt = data["Nhieu_dvt"].ToString().Trim();

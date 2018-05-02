@@ -24,7 +24,27 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void FilterBase_Load(object sender, EventArgs e)
         {
-            
+            FixFilterLineSize();
+        }
+
+        private void FixFilterLineSize()
+        {
+            try
+            {
+                GroupBox groupBox1 = (GroupBox) V6ControlFormHelper.GetControlByName(this, "groupBox1");
+                int filterLineFixWidth = groupBox1.Width - 8;
+                foreach (Control control in groupBox1.Controls)
+                {
+                    if (control is FilterLineBase)
+                    {
+                        control.Width = filterLineFixWidth;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".FixFilterLineSize", ex);
+            }
         }
 
         //Các biến xài tùy ý.
