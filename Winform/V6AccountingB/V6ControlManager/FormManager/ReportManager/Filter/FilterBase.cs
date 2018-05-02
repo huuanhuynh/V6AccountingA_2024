@@ -31,7 +31,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             try
             {
-                GroupBox groupBox1 = (GroupBox) V6ControlFormHelper.GetControlByName(this, "groupBox1");
+                GroupBox groupBox1 = V6ControlFormHelper.GetControlByName(this, "groupBox1") as GroupBox;
+                if (groupBox1 == null) return;
                 int filterLineFixWidth = groupBox1.Width - 8;
                 foreach (Control control in groupBox1.Controls)
                 {

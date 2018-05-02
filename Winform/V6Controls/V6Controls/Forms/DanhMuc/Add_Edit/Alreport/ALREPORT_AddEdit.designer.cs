@@ -41,6 +41,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtEBROWSE1 = new V6Controls.V6ColorTextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtVBROWSE1 = new V6Controls.V6ColorTextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.btnNhapXML = new System.Windows.Forms.Button();
             this.btnXuatXML = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -51,6 +56,7 @@
             this.btnBoSung = new System.Windows.Forms.Button();
             this.txtDONVITINH = new V6Controls.V6NumberTextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.chkViewSum = new V6Controls.V6CheckBox();
             this.ChkF7 = new V6Controls.V6CheckBox();
             this.ChkF5 = new V6Controls.V6CheckBox();
             this.ChkF3 = new V6Controls.V6CheckBox();
@@ -72,7 +78,6 @@
             this.label46 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.chkViewSum = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -245,6 +250,11 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage3.Controls.Add(this.txtEBROWSE1);
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.txtVBROWSE1);
+            this.tabPage3.Controls.Add(this.label13);
+            this.tabPage3.Controls.Add(this.label11);
             this.tabPage3.Controls.Add(this.btnNhapXML);
             this.tabPage3.Controls.Add(this.btnXuatXML);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
@@ -254,6 +264,72 @@
             this.tabPage3.Size = new System.Drawing.Size(796, 331);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Các tùy chọn";
+            // 
+            // txtEBROWSE1
+            // 
+            this.txtEBROWSE1.AccessibleName = "EBROWSE1";
+            this.txtEBROWSE1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEBROWSE1.BackColor = System.Drawing.Color.White;
+            this.txtEBROWSE1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtEBROWSE1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtEBROWSE1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtEBROWSE1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtEBROWSE1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtEBROWSE1.LeaveColor = System.Drawing.Color.White;
+            this.txtEBROWSE1.Location = new System.Drawing.Point(115, 109);
+            this.txtEBROWSE1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEBROWSE1.Name = "txtEBROWSE1";
+            this.txtEBROWSE1.Size = new System.Drawing.Size(440, 23);
+            this.txtEBROWSE1.TabIndex = 27;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 112);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(101, 17);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "Chú thích ENG";
+            // 
+            // txtVBROWSE1
+            // 
+            this.txtVBROWSE1.AccessibleName = "VBROWSE1";
+            this.txtVBROWSE1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtVBROWSE1.BackColor = System.Drawing.Color.White;
+            this.txtVBROWSE1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtVBROWSE1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtVBROWSE1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtVBROWSE1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtVBROWSE1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtVBROWSE1.LeaveColor = System.Drawing.Color.White;
+            this.txtVBROWSE1.Location = new System.Drawing.Point(115, 78);
+            this.txtVBROWSE1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtVBROWSE1.Name = "txtVBROWSE1";
+            this.txtVBROWSE1.Size = new System.Drawing.Size(440, 23);
+            this.txtVBROWSE1.TabIndex = 27;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(563, 84);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(141, 34);
+            this.label13.TabIndex = 26;
+            this.label13.Text = "Dòng chữ hướng dẫn\r\ngóc dưới bên phải.";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 81);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(90, 17);
+            this.label11.TabIndex = 26;
+            this.label11.Text = "Chú thích VN";
             // 
             // btnNhapXML
             // 
@@ -427,6 +503,18 @@
             this.label15.Size = new System.Drawing.Size(83, 17);
             this.label15.TabIndex = 17;
             this.label15.Text = "DONVITINH";
+            // 
+            // chkViewSum
+            // 
+            this.chkViewSum.AccessibleName = "ViewSum";
+            this.chkViewSum.AutoSize = true;
+            this.chkViewSum.Location = new System.Drawing.Point(492, 250);
+            this.chkViewSum.Margin = new System.Windows.Forms.Padding(4);
+            this.chkViewSum.Name = "chkViewSum";
+            this.chkViewSum.Size = new System.Drawing.Size(86, 21);
+            this.chkViewSum.TabIndex = 23;
+            this.chkViewSum.Text = "View sum";
+            this.chkViewSum.UseVisualStyleBackColor = true;
             // 
             // ChkF7
             // 
@@ -718,18 +806,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
             // 
-            // chkViewSum
-            // 
-            this.chkViewSum.AccessibleName = "ViewSum";
-            this.chkViewSum.AutoSize = true;
-            this.chkViewSum.Location = new System.Drawing.Point(492, 250);
-            this.chkViewSum.Margin = new System.Windows.Forms.Padding(4);
-            this.chkViewSum.Name = "chkViewSum";
-            this.chkViewSum.Size = new System.Drawing.Size(86, 21);
-            this.chkViewSum.TabIndex = 23;
-            this.chkViewSum.Text = "View sum";
-            this.chkViewSum.UseVisualStyleBackColor = true;
-            // 
             // ALREPORT_AddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -744,6 +820,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -797,5 +874,10 @@
         protected System.Windows.Forms.Button btnNhapXML;
         protected System.Windows.Forms.Button btnXuatXML;
         private V6CheckBox chkViewSum;
+        private V6ColorTextBox txtEBROWSE1;
+        private System.Windows.Forms.Label label12;
+        private V6ColorTextBox txtVBROWSE1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
     }
 }

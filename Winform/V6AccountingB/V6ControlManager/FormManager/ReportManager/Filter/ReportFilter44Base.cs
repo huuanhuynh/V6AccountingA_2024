@@ -93,6 +93,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     F7 = ObjectAndString.ObjectToBool(row["F7"]);
                     ViewSum = ObjectAndString.ObjectToBool(row["ViewSum"]);
                     Alreport_advance = row["Advance"].ToString().Trim();
+                    _status2Text = row[V6Setting.IsVietnamese ? "vbrowse1" : "ebrowse1"].ToString().Trim();
                 }
             }
             catch (Exception ex)
@@ -101,11 +102,18 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
-        //public override void SetStatus2Text()
-        //{
-        //      if()base.else
-        //    V6ControlFormHelper.SetStatusText2("F3:...");
-        //}
+        private string _status2Text = "";
+        public override void SetStatus2Text()
+        {
+            if (string.IsNullOrEmpty(_status2Text))
+            {
+                base.SetStatus2Text();
+            }
+            else
+            {
+                V6ControlFormHelper.SetStatusText2(_status2Text);
+            }
+        }
 
         public void SetHideFields(string Loaitien)
         {
