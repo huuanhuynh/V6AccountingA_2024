@@ -96,7 +96,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                     tempView2.RowFilter = string.Format("Isnull({0},'') = ''", "Ma_nh");
                     if (tempView2.Count == 0)
                     {
-                        for (int i = 1; i <= 6; i++)
+                        for (int i = 1; i <= 9; i++)
                         {
                             var newRow = _dataGroup.NewRow();
                             newRow["Loai_nh"] = "" + i;

@@ -303,14 +303,22 @@ namespace V6Tools
             string strMaNguon = NhanDangMaTiengViet(VnString);
             return VIETNAM_CONVERT_ToUNICODE(VnString, strMaNguon);
         }
-        public static string VIETNAM_CONVERT_ToUNICODE(string VnString, string form)
+        public static string VIETNAM_CONVERT_ToUNICODE(string VnString, string @from)
         {
-            return VIETNAM_CONVERT(VnString, form, "UNICODE");
+            return VIETNAM_CONVERT(VnString, @from, "UNICODE");
         }
-        public static string VIETNAM_CONVERT(string VnString, string form, string to)
+
+        /// <summary>
+        /// Chuyển mã văn bản tiếng Việt.
+        /// </summary>
+        /// <param name="VnString">Đoạn văn bản cần chuyển mã.</param>
+        /// <param name="from">Mã nguồn: TCVN3 (hoặc A, ABC, TCVN), VNI (V), UNICODE (UNI, U)<para>Mặc định ký tự khác sẽ tự nhận dạng</para></param>
+        /// <param name="to">Mã đích.</param>
+        /// <returns></returns>
+        public static string VIETNAM_CONVERT(string VnString, string @from, string to)
         {
             string strUniTemp = "";
-            switch (form.ToUpper())
+            switch (@from.ToUpper())
             {
                 case "U":
                 case "UNI":

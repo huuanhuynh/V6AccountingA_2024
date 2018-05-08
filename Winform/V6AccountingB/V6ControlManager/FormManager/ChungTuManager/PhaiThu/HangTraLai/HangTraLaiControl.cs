@@ -112,8 +112,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _tang, _xuat_dd;
         private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkTl, _tkGv, _tkCkI, _tkVt, _maLo, _ma_thue_i, _tk_thue_i;
-        private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt2, _giaNt21,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
-        private V6NumberTextBox _ton13, _gia, _gia_nt, _tien, _tienNt, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _hs_qd30, _hs_qd4, _ggNt, _gg, _thue_suat_i, _thue_nt, _thue;
+        private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt2, _giaNt21, _tien2, _tienNt2, _ck, _ckNt, _gia2, _gia21;
+        private V6NumberTextBox _ton13, _gia, _gia_nt, _tien, _tienNt, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _hs_qd30, _hs_qd4, _ggNt, _gg, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         private V6DateTimeColor _hanSd;
 
         
@@ -563,7 +563,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         }
                         break;
                     case "CK":
-                        _ck = (V6NumberTextBox)control;
+                        _ck = control as V6NumberTextBox;
+                        if (_ck != null)
+                        {
+                            _ck.V6LostFocus += delegate
+                            {
+                                Tinh_thue_ct();
+                            };
+                        }
                         break;
 
                    case "CK_NT":
@@ -573,7 +580,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         {
                             _ckNt.V6LostFocus += delegate
                             {
-                                TinhChietKhauChiTiet(true, _ck, _ckNt, txtTyGia, _tienNt2, txtPtCk);
+                                TinhChietKhauChiTiet(true, _ck, _ckNt, txtTyGia, _tienNt2, _pt_cki);
+                                Tinh_thue_ct();
+                            };
+                        }
+                        break;
+                   case "PT_CKI":
+                        _pt_cki = control as V6NumberTextBox;
+                        if (_pt_cki != null)
+                        {
+                            _pt_cki.Enabled = !chkLoaiChietKhau.Checked;
+                            _pt_cki.V6LostFocus += delegate
+                            {
+                                TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt2, _pt_cki);
+                                Tinh_thue_ct();
                             };
                         }
                         break;
@@ -658,6 +678,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         {
                             _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
                             _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+                            // Tuanmh 05/05/2018 sai HSD
+                            _maLo.ExistRowInTable(true);
                         };
                         break;
                     case "HSD":
@@ -1218,6 +1240,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 {
                     if (_maLo.Text.Trim() != "")
                     {
+                        //Tuanmh 05/05/2018 Sai HSD
+                        _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+
                         var data = _maLo.Data;
                         if (data != null)
                             _hanSd.Value = ObjectAndString.ObjectToDate(data["NGAY_HHSD"]);
@@ -1445,6 +1470,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     _tien2.Value = _tienNt2.Value;
                 }
 
+                TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt2, _pt_cki);
                 TinhGiaNt2();
                 TinhSoluongQuyDoi(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
             }
@@ -4039,6 +4065,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
             if (chkLoaiChietKhau.Checked)
             {
+                _pt_cki.Enabled = false;
+                _pt_cki.Tag = "disable";
                 _ckNt.Enabled = false;
                 _ckNt.Tag = "disable";
             }
@@ -4046,6 +4074,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             {
                 _ckNt.Enabled = true;
                 _ckNt.Tag = null;
+                _pt_cki.Enabled = true;
+                _pt_cki.Tag = null;
 
                 chkSuaPtck.Checked = false;
                 txtPtCk.ReadOnly = true;
@@ -4197,8 +4227,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         private void txtPtCk_V6LostFocus(object sender)
         {
-            TinhTongThanhToan("V6LostFocus txtPtCk_V6LostFocus ");
+            //TinhChietKhauChiTiet;
 
+            Tinh_thue_ct();
+            TinhTongThanhToan("V6LostFocus txtPtCk_V6LostFocus ");
         }
 
         private void chkSuaTien_CheckedChanged(object sender, EventArgs e)
@@ -4206,18 +4238,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
                 _tienNt2.Enabled = chkSuaTien.Checked;
-                
+                _ckNt.Enabled = chkSuaTien.Checked;
                 _tienNt.Enabled = chkSuaTien.Checked && _xuat_dd.Text != "";
             }
             if (chkSuaTien.Checked)
             {
                 _tienNt2.Tag = null;
                 _tienNt.Tag = null;
+                _ckNt.Tag = null;
             }
             else
             {
                 _tienNt2.Tag = "disable";
                 _tienNt.Tag = "disable";
+                _ckNt.Tag = "disable";
             }
         }
 

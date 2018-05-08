@@ -37,6 +37,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             txtNhomKH4.SetInitFilter("Loai_nh=4");
             txtNhomKH5.SetInitFilter("Loai_nh=5");
             txtNhomKH6.SetInitFilter("Loai_nh=6");
+            txtNhomKH7.SetInitFilter("Loai_nh=7");
+            txtNhomKH8.SetInitFilter("Loai_nh=8");
+            txtNhomKH9.SetInitFilter("Loai_nh=9");
 
             txtloai_kh.ExistRowInTable();
 

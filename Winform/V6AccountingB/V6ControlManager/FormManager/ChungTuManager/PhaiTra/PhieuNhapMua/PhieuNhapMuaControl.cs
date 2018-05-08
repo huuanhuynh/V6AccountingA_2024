@@ -478,6 +478,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             if (_maVt.Text != "")
                             {
                                 _maLo.SetInitFilter("Ma_vt='" + _maVt.Text.Trim() + "'");
+                                // Tuanmh 05/05/2018 sai HSD
+                                _maLo.ExistRowInTable(true);
                             }
                         };
                         _maLo.V6LostFocus += _maLo_V6LostFocus;
@@ -1360,6 +1362,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 _maLo.RefreshLoDateYnValue();
                 if (_maVt.LO_YN)
                 {
+                    //Tuanmh 05/05/2018 Sai HSD
+                    _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+
                     var data = _maLo.Data;
                     if (data != null)
                     {

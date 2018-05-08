@@ -5081,6 +5081,12 @@
     <Compile Include="FormManager\ToolManager\FormAmLich.designer.cs">
       <DependentUpon>FormAmLich.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ToolManager\FormChuyenMa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ToolManager\FormChuyenMa.designer.cs">
+      <DependentUpon>FormChuyenMa.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ToolManager\FormLogView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -7672,6 +7678,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ToolManager\FormAmLich.resx">
       <DependentUpon>FormAmLich.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ToolManager\FormChuyenMa.resx">
+      <DependentUpon>FormChuyenMa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ToolManager\FormLogView.resx">
       <DependentUpon>FormLogView.cs</DependentUpon>

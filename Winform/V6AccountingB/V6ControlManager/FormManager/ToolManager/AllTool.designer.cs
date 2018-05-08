@@ -51,8 +51,9 @@
             this.grbTools = new System.Windows.Forms.GroupBox();
             this.grbFunctions = new System.Windows.Forms.GroupBox();
             this.btnTeamViewer = new System.Windows.Forms.Button();
-            this.btnHDSDDT = new System.Windows.Forms.Button();
             this.btnHDSD2 = new System.Windows.Forms.Button();
+            this.btnHDSDDT = new System.Windows.Forms.Button();
+            this.btnChuyenMa = new System.Windows.Forms.Button();
             this.grbOptions.SuspendLayout();
             this.grbTools.SuspendLayout();
             this.grbFunctions.SuspendLayout();
@@ -292,6 +293,7 @@
             this.grbFunctions.Controls.Add(this.btnTeamViewer);
             this.grbFunctions.Controls.Add(this.btnHDSD2);
             this.grbFunctions.Controls.Add(this.btnHDSDDT);
+            this.grbFunctions.Controls.Add(this.btnChuyenMa);
             this.grbFunctions.Controls.Add(this.btnAmLich);
             this.grbFunctions.Location = new System.Drawing.Point(3, 12);
             this.grbFunctions.Name = "grbFunctions";
@@ -312,29 +314,39 @@
             this.btnTeamViewer.UseVisualStyleBackColor = true;
             this.btnTeamViewer.Click += new System.EventHandler(this.btnTeamViewer_Click);
             // 
-            // btnHDSDDT
-            // 
-            this.btnHDSDDT.Image = global::V6ControlManager.Properties.Resources.pp32;
-            this.btnHDSDDT.Location = new System.Drawing.Point(8, 106);
-            this.btnHDSDDT.Name = "btnHDSDDT";
-            this.btnHDSDDT.Size = new System.Drawing.Size(118, 52);
-            this.btnHDSDDT.TabIndex = 1;
-            this.btnHDSDDT.Text = "HDSD_Đào tạo";
-            this.btnHDSDDT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnHDSDDT.UseVisualStyleBackColor = true;
-            this.btnHDSDDT.Click += new System.EventHandler(this.btnHDSDDT_Click);
-            // 
             // btnHDSD2
             // 
             this.btnHDSD2.Image = global::V6ControlManager.Properties.Resources.pp32;
             this.btnHDSD2.Location = new System.Drawing.Point(8, 164);
             this.btnHDSD2.Name = "btnHDSD2";
             this.btnHDSD2.Size = new System.Drawing.Size(118, 52);
-            this.btnHDSD2.TabIndex = 1;
+            this.btnHDSD2.TabIndex = 3;
             this.btnHDSD2.Text = "HDSD (Auto)";
             this.btnHDSD2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHDSD2.UseVisualStyleBackColor = true;
             this.btnHDSD2.Click += new System.EventHandler(this.btnHDSDDT2_Click);
+            // 
+            // btnHDSDDT
+            // 
+            this.btnHDSDDT.Image = global::V6ControlManager.Properties.Resources.pp32;
+            this.btnHDSDDT.Location = new System.Drawing.Point(8, 106);
+            this.btnHDSDDT.Name = "btnHDSDDT";
+            this.btnHDSDDT.Size = new System.Drawing.Size(118, 52);
+            this.btnHDSDDT.TabIndex = 2;
+            this.btnHDSDDT.Text = "HDSD_Đào tạo";
+            this.btnHDSDDT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHDSDDT.UseVisualStyleBackColor = true;
+            this.btnHDSDDT.Click += new System.EventHandler(this.btnHDSDDT_Click);
+            // 
+            // btnChuyenMa
+            // 
+            this.btnChuyenMa.Location = new System.Drawing.Point(8, 222);
+            this.btnChuyenMa.Name = "btnChuyenMa";
+            this.btnChuyenMa.Size = new System.Drawing.Size(118, 23);
+            this.btnChuyenMa.TabIndex = 4;
+            this.btnChuyenMa.Text = "Chuyển mã";
+            this.btnChuyenMa.UseVisualStyleBackColor = true;
+            this.btnChuyenMa.Click += new System.EventHandler(this.btnChuyenMa_Click);
             // 
             // AllTool
             // 
@@ -381,5 +393,6 @@
         private System.Windows.Forms.Button btnHDSDDT;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnHDSD2;
+        private System.Windows.Forms.Button btnChuyenMa;
     }
 }

@@ -525,6 +525,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         {
                             _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
                             _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+                            // Tuanmh 05/05/2018 sai HSD
+                            _maLo.ExistRowInTable(true);
                         };
                         break;
                     case "HSD":
@@ -1158,6 +1160,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 {
                     if (_maLo.Text.Trim() != "")
                     {
+                        //Tuanmh 05/05/2018 Sai HSD
+                        _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+
                         var data = _maLo.Data;
                         if (data != null)
                             _hanSd.Value = ObjectAndString.ObjectToDate(data["NGAY_HHSD"]);

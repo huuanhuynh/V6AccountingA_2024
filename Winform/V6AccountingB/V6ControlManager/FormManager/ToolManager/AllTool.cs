@@ -152,6 +152,11 @@ namespace V6ControlManager.FormManager.ToolManager
         {
             new FormAmLich().Show(this);
         }
+        
+        private void btnChuyenMa_Click(object sender, EventArgs e)
+        {
+            new FormChuyenMa().Show(this);
+        }
 
         private void btnTeamViewer_Click(object sender, EventArgs e)
         {
