@@ -3804,7 +3804,7 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
-        /// Cập nhập dữ liệu lên một dòng của GridView
+        /// Cập nhập dữ liệu lên một dòng của GridView. Dữ liệu có cột nào thì cập nhập cột đó.
         /// </summary>
         /// <param name="row"></param>
         /// <param name="data"></param>

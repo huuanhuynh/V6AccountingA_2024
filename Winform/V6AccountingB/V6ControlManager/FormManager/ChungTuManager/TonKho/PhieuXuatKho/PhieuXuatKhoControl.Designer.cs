@@ -90,6 +90,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.chonTuExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tinhHaoHutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xuLyKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chkSuaTien = new V6Controls.V6CheckBox();
             this.txtTongSoLuong = new V6Controls.V6NumberTextBox();
             this.cboKieuPost = new V6Controls.V6ComboBox();
@@ -1014,9 +1015,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.TroGiupMenu,
             this.chonTuExcelToolStripMenuItem,
             this.tinhHaoHutToolStripMenuItem,
-            this.xuLyKhacToolStripMenuItem});
+            this.xuLyKhacToolStripMenuItem,
+            this.thayTheToolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(147, 114);
+            this.menuChucNang.Size = new System.Drawing.Size(147, 136);
             // 
             // XuatHetKhoMenu
             // 
@@ -1052,6 +1054,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.xuLyKhacToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.xuLyKhacToolStripMenuItem.Text = "Xử lý khác";
             this.xuLyKhacToolStripMenuItem.Click += new System.EventHandler(this.xuLyKhacToolStripMenuItem_Click);
+            // 
+            // thayTheToolStripMenuItem
+            // 
+            this.thayTheToolStripMenuItem.Name = "thayTheToolStripMenuItem";
+            this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.thayTheToolStripMenuItem.Text = "ThayThe";
+            this.thayTheToolStripMenuItem.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
             // 
             // chkSuaTien
             // 
@@ -2406,5 +2415,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private V6IndexComboBox cboChuyenData;
         private V6Label v6Label28;
         private System.Windows.Forms.ToolStripMenuItem xuLyKhacToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thayTheToolStripMenuItem;
     }
 }

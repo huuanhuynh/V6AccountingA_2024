@@ -4874,6 +4874,61 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             ChucNang_TinhHaoHut();
         }
 
+        private void xuLyKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent(FormDynamicEvent.INKHAC);
+        }
+
+        private void thayTheToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChucNang_ThayThe();
+        }
+
+        private void ChucNang_ThayThe()
+        {
+            try
+            {
+                //Hien form chuc nang co options *-1 or input
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                    {
+                        this.ShowWarningMessage(V6Text.DetailNotComplete);
+                    }
+                    else
+                    {
+                        int field_index = dataGridView1.CurrentCell.ColumnIndex;
+                        string FIELD = dataGridView1.CurrentCell.OwningColumn.DataPropertyName.ToUpper();
+                        ChucNangThayTheForm f = new ChucNangThayTheForm(ObjectAndString.IsNumberType(dataGridView1.CurrentCell.OwningColumn.ValueType));
+                        if (f.ShowDialog(this) == DialogResult.OK)
+                        {
+                            if (f.ChucNangDaChon == ChucNangType.ThayThe)
+                            {
+                                foreach (DataGridViewRow row in dataGridView1.Rows)
+                                {
+                                    row.Cells[field_index].Value = f.Value;
+                                }
+                            }
+                            else
+                            {
+                                foreach (DataGridViewRow row in dataGridView1.Rows)
+                                {
+                                    var newValue = ObjectAndString.ObjectToDecimal(row.Cells[field_index].Value)*-1;
+                                    SortedDictionary<string, object> newData = new SortedDictionary<string, object>();
+                                    newData.Add(FIELD, newValue);
+                                    V6ControlFormHelper.UpdateGridViewRow(row, newData);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ChucNang_ThayThe", ex);
+            }
+        }
+
         private void tabControl1_SizeChanged(object sender, EventArgs e)
         {
             FixDataGridViewSize(dataGridView1);
@@ -4936,10 +4991,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
         }
 
-        private void xuLyKhacToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            InvokeFormEvent(FormDynamicEvent.INKHAC);
-        }
+        
 
     }
 }
