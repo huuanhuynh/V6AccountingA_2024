@@ -332,5 +332,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             XoaHinhS();
         }
 
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                linkLabel1.LinkVisited = true;
+                if (txtHomePage.Text.Trim() != "") System.Diagnostics.Process.Start(txtHomePage.Text);
+            }
+            catch (Exception)
+            {
+                //
+            }
+        }
+
     }
 }

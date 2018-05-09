@@ -1302,6 +1302,7 @@
             // 
             // v6NumberTextBox37
             // 
+            this.v6NumberTextBox37.AccessibleName = "HAN_SD";
             this.v6NumberTextBox37.BackColor = System.Drawing.SystemColors.Window;
             this.v6NumberTextBox37.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6NumberTextBox37.DecimalPlaces = 0;
@@ -1324,6 +1325,7 @@
             // 
             // v6NumberTextBox36
             // 
+            this.v6NumberTextBox36.AccessibleName = "HAN_BH";
             this.v6NumberTextBox36.BackColor = System.Drawing.SystemColors.Window;
             this.v6NumberTextBox36.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6NumberTextBox36.DecimalPlaces = 0;
@@ -1346,6 +1348,7 @@
             // 
             // v6NumberTextBox30
             // 
+            this.v6NumberTextBox30.AccessibleName = "Cycle_kk";
             this.v6NumberTextBox30.BackColor = System.Drawing.SystemColors.Window;
             this.v6NumberTextBox30.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6NumberTextBox30.DecimalPlaces = 0;
@@ -1667,6 +1670,7 @@
             // 
             // v6ColorTextBox34
             // 
+            this.v6ColorTextBox34.AccessibleName = "PART_NO";
             this.v6ColorTextBox34.BackColor = System.Drawing.Color.White;
             this.v6ColorTextBox34.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox34.EnterColor = System.Drawing.Color.PaleGreen;

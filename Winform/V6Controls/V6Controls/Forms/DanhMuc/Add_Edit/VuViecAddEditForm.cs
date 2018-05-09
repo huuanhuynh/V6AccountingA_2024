@@ -1,5 +1,6 @@
 ﻿using System;
 using V6AccountingBusiness;
+using V6Init;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
@@ -51,6 +52,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
 
             if (errors.Length > 0) throw new Exception(errors);
+        }
+
+        private void Tinh_tien()
+        {
+            if (TxtMa_nt.Text == V6Options.V6OptionValues["M_MA_NT0"])
+            {
+                TxtTien.Value = TxtTien_nt.Value;
+            }
+        }
+
+        private void TxtMa_nt_V6LostFocus(object sender)
+        {
+            Tinh_tien();
+        }
+
+        private void TxtTien_nt_V6LostFocus(object sender)
+        {
+            Tinh_tien();
         }
     }
 }
