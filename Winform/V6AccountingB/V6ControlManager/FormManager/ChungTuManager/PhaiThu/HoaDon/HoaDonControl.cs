@@ -7582,5 +7582,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             txtLoaiPhieu.ExistRowInTable(true);
         }
 
+        private void thayTheToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChucNang_ThayThe();
+        }
+
     }
 }

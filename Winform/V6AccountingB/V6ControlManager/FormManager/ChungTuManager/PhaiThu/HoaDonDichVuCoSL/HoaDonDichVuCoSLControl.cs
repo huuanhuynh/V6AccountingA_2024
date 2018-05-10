@@ -7482,5 +7482,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
         #endregion ==== In khác ====
 
+        private void thayTheToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChucNang_ThayThe();
+        }
+
     }
 }

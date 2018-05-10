@@ -4450,6 +4450,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
 
+        private void thayTheToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChucNang_ThayThe();
+        }
+
 
     }
 }

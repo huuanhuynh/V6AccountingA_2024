@@ -6625,5 +6625,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         {
             InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
+
+        private void thayTheToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChucNang_ThayThe();
+        }
     }
 }

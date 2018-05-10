@@ -4254,6 +4254,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             txtLoaiPhieu.SetInitFilter(string.Format("Ma_ct = '{0}'", Invoice.Mact));
             txtLoaiPhieu.ExistRowInTable(true);
         }
+
+        private void thayTheToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChucNang_ThayThe();
+        }
         
          
     }
