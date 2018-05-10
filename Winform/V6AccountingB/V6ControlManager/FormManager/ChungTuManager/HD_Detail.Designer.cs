@@ -208,8 +208,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         #endregion
-
+        /// <summary>
+        /// Panel chứa control bên phải.
+        /// </summary>
         public System.Windows.Forms.Panel panelControls;
+        /// <summary>
+        /// Panel chứa control cố định bên trái
+        /// </summary>
         public System.Windows.Forms.Panel panel0;
         public V6FormButton btnNhan;
         public V6FormButton btnSua;
@@ -218,6 +223,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private System.Windows.Forms.ToolTip toolTip1;
         public V6Label lblName;
         private System.Windows.Forms.HScrollBar hScrollBar1;
+        /// <summary>
+        /// Panel chứa panelControls (có thanh kéo ngang).
+        /// </summary>
         public System.Windows.Forms.Panel panel2;
         private DropDownButton btnChucNang;
     }

@@ -10,6 +10,7 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
+using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC.ChonPhieuNhap;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -1009,6 +1010,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return error;
         }
 
+        public virtual void TinhTongThanhToan(string debug) { }
+
         protected void XuLyHienThiChietKhau_PhieuNhap(bool ckChung, bool suaTienCk,
             V6NumberTextBox _pt_cki_textbox, V6NumberTextBox _ckNt_textbox,
             V6NumberTextBox txtTongCkNt, CheckBox chkSuaPtck)
@@ -1779,6 +1782,35 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
             }
             return null;
+        }
+
+        protected void AfterReplace(Dictionary<string, object> allObjects)
+        {
+            try
+            {
+                var dataGridView1 = allObjects["dataGridView1"] as DataGridView;
+                var replaceField = allObjects["replaceField"] as string;
+                var detail1 = allObjects["detail1"] as HD_Detail;
+
+                if (replaceField == "MA_VT" && dataGridView1.Columns.Contains("TEN_VT"))
+                {
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        var txt = new V6VvarTextBox();
+                        txt.VVar = "MA_VT";
+                        txt.Text = row.Cells["MA_VT"].Value.ToString();
+                        if (txt.Data != null)
+                        {
+                            var ten_vt = txt.Data["TEN_VT"].ToString().Trim();
+                            row.Cells["TEN_VT"].Value = ten_vt;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".AfterReplace", ex);
+            }
         }
     }
 }

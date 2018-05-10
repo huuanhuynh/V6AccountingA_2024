@@ -40,24 +40,6 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
-        /// Lấy dữ liệu trên form.
-        /// </summary>
-        /// <returns></returns>
-        public virtual SortedDictionary<string, object> GetData()
-        {
-            return V6ControlFormHelper.GetFormDataDictionary( this );
-        }
-        /// <summary>
-        /// Gán dữ liệu lên form theo AccessibleName (không phân biệt hoa thường).
-        /// Dữ liệu không có sẽ gán rỗng.
-        /// </summary>
-        /// <param name="d"></param>
-        public virtual void SetData(IDictionary<string, object> d)
-        {
-            V6ControlFormHelper.SetFormDataDictionary( this, d );
-        }
-        
-        /// <summary>
         /// Giống SetData. Dùng để override lấy dữ liệu theo khóa.
         /// </summary>
         /// <param name="keyData">Dữ liệu khóa</param>

@@ -60,6 +60,44 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
+        /// Tìm kiếm và trả về control nằm trong control này hoặc chính nó nếu trùng tên (ko phân biệt hoa thường).
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Control GetControl(string name)
+        {
+            return V6ControlFormHelper.GetControlByName(this, name);
+        }
+        
+        /// <summary>
+        /// Tìm kiếm và trả về control nằm trong control này hoặc chính nó nếu trùng accessibleName (ko phân biệt hoa thường).
+        /// </summary>
+        /// <param name="accessibleName"></param>
+        /// <returns></returns>
+        public Control GetControlByAccessibleName(string accessibleName)
+        {
+            return V6ControlFormHelper.GetControlByAccessibleName(this, accessibleName);
+        }
+
+        /// <summary>
+        /// Lấy dữ liệu trên form.
+        /// </summary>
+        /// <returns></returns>
+        public virtual SortedDictionary<string, object> GetData()
+        {
+            return V6ControlFormHelper.GetFormDataDictionary(this);
+        }
+        /// <summary>
+        /// Gán dữ liệu lên form theo AccessibleName (không phân biệt hoa thường).
+        /// Dữ liệu không có sẽ gán rỗng.
+        /// </summary>
+        /// <param name="d"></param>
+        public virtual void SetData(IDictionary<string, object> d)
+        {
+            V6ControlFormHelper.SetFormDataDictionary(this, d);
+        }
+
+        /// <summary>
         /// Hàm ảo, tải dữ liệu, Cần override để sử dụng (gọi).
         /// </summary>
         /// <param name="code"></param>

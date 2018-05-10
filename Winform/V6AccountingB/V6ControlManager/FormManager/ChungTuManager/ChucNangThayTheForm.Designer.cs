@@ -1,4 +1,4 @@
-﻿namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
+﻿namespace V6ControlManager.FormManager.ChungTuManager
 {
     partial class ChucNangThayTheForm
     {

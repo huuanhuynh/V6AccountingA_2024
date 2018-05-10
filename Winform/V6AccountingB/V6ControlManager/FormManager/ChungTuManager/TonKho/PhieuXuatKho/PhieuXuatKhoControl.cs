@@ -4899,17 +4899,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     {
                         int field_index = dataGridView1.CurrentCell.ColumnIndex;
                         string FIELD = dataGridView1.CurrentCell.OwningColumn.DataPropertyName.ToUpper();
-                        ChucNangThayTheForm f = new ChucNangThayTheForm(ObjectAndString.IsNumberType(dataGridView1.CurrentCell.OwningColumn.ValueType));
+                        V6ColorTextBox textBox = detail1.GetControlByAccessibleName(FIELD) as V6ColorTextBox;
+                        Type valueType = dataGridView1.CurrentCell.OwningColumn.ValueType;
+
+                        //Check
+                        if (textBox == null)
+                        {
+                            ShowParentMessage("Không xác định được control.");
+                            return;
+                        }
+
+                        ChucNangThayTheForm f = new ChucNangThayTheForm(ObjectAndString.IsNumberType(dataGridView1.CurrentCell.OwningColumn.ValueType), textBox);
                         if (f.ShowDialog(this) == DialogResult.OK)
                         {
-                            if (f.ChucNangDaChon == ChucNangType.ThayThe)
+                            if (f.ChucNangDaChon == f._ThayThe)
                             {
                                 foreach (DataGridViewRow row in dataGridView1.Rows)
                                 {
-                                    row.Cells[field_index].Value = f.Value;
+                                    row.Cells[field_index].Value = f.Value;// ObjectAndString.ObjectTo(valueType, f.Value);
                                 }
                             }
-                            else
+                            else // Đảo ngược
                             {
                                 foreach (DataGridViewRow row in dataGridView1.Rows)
                                 {
@@ -4918,6 +4928,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                     newData.Add(FIELD, newValue);
                                     V6ControlFormHelper.UpdateGridViewRow(row, newData);
                                 }
+                            }
+
+                            All_Objects["replaceField"] = FIELD;
+                            All_Objects["dataGridView1"] = dataGridView1;
+                            All_Objects["detail1"] = detail1;
+                            if (Event_Methods.ContainsKey("AFTERREPLACE"))
+                            {
+                                InvokeFormEvent("AFTERREPLACE");
+                            }
+                            else
+                            {
+                                AfterReplace(All_Objects);
                             }
                         }
                     }

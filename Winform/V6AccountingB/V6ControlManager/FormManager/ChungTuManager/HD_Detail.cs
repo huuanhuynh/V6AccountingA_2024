@@ -10,7 +10,7 @@ using V6Structs;
 
 namespace V6ControlManager.FormManager.ChungTuManager
 {
-    public partial class HD_Detail : UserControl
+    public partial class HD_Detail : V6Control
     {
         public delegate void ClickHandle(object sender);
 
@@ -295,7 +295,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <para>Hàm này được viết lại để bỏ qua tag "cancel" của control.</para>
         /// </summary>
         /// <returns></returns>
-        public SortedDictionary<string, object> GetData()
+        public override SortedDictionary<string, object> GetData()
         {
             var t = Tag;
             Tag = null;
