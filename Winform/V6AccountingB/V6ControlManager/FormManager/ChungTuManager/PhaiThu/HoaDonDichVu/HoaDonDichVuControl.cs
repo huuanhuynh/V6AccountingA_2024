@@ -1329,7 +1329,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             txtTongThanhToan.Value = V6BusinessHelper.Vround(tTien2 + tThue + tPsNo, M_ROUND);
         }
 
-        private void TinhTongThanhToan(string debug)
+        public override void TinhTongThanhToan(string debug)
         {
             try
             {

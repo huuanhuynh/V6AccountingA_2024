@@ -3297,7 +3297,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         }
 
-        private void TinhTongThanhToan(string debug)
+        public override void TinhTongThanhToan(string debug)
         {
             try
             {

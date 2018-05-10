@@ -2847,7 +2847,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             }
         }
 
-        private void TinhTongThanhToan(string debug)
+        public override void TinhTongThanhToan(string debug)
         {
             try
             {

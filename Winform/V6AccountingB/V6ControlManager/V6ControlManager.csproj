@@ -1064,10 +1064,10 @@
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapChiPhiMuaHang\PhieuNhapChiPhiMuaHangControl.Designer.cs">
       <DependentUpon>PhieuNhapChiPhiMuaHangControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChucNangThayTheForm.cs">
+    <Compile Include="FormManager\ChungTuManager\ChucNangThayTheForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChucNangThayTheForm.Designer.cs">
+    <Compile Include="FormManager\ChungTuManager\ChucNangThayTheForm.Designer.cs">
       <DependentUpon>ChucNangThayTheForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\TinhHaoHutDataForm.cs">
@@ -5702,7 +5702,7 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatDieuChuyen\Loc\LocThoiGianPhieuXuatDieuChuyen.resx">
       <DependentUpon>LocThoiGianPhieuXuatDieuChuyen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChucNangThayTheForm.resx">
+    <EmbeddedResource Include="FormManager\ChungTuManager\ChucNangThayTheForm.resx">
       <DependentUpon>ChucNangThayTheForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\Loc\LocThoiGianPhieuXuatKho.resx">

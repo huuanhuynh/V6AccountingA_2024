@@ -1945,7 +1945,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             txtTongThanhToan.Value = V6BusinessHelper.Vround(tTienTT, M_ROUND);
         }
 
-        private void TinhTongThanhToan(string  debug)
+        public override void TinhTongThanhToan(string debug)
         {
             try
             {
