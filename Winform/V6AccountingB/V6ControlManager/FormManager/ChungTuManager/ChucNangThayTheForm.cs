@@ -70,6 +70,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     V6VvarTextBox newTextBox = new V6VvarTextBox();
                     newTextBox.VVar = source.VVar;
                     newTextBox.Size = textBox1.Size;
+                    newTextBox.LimitCharacters = source.LimitCharacters;
                     newTextBox.Location = textBox1.Location;
                     newTextBox.TabIndex = textBox1.TabIndex;
                     newTextBox.TextChanged += delegate(object sender, EventArgs args)
@@ -92,6 +93,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     newTextBox.Size = textBox1.Size;
                     newTextBox.Location = textBox1.Location;
                     newTextBox.TabIndex = textBox1.TabIndex;
+                    newTextBox.DecimalPlaces = source.DecimalPlaces;
+                    newTextBox.DecimalSymbol = source.DecimalSymbol;
+                    newTextBox.ThousandSymbol = source.ThousandSymbol;
                     newTextBox.StringValueChange += delegate(object sender, StringValueChangeEventArgs args)
                     {
                         textBox1.Text = newTextBox.Value.ToString(CultureInfo.InvariantCulture);
@@ -117,6 +121,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         textBox1.Text = newTextBox.Text;
                     };
                     newTextBox.Value = source.Value;
+                    textBox1.Text = newTextBox.Text;
                     Controls.Add(newTextBox);
                     textBox1.Visible = false;
 
@@ -127,6 +132,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
                 else
                 {
+                    textBox1.LimitCharacters = _source_textbox.LimitCharacters;
                     textBox1.Text = _source_textbox.Text;
                 }
             }

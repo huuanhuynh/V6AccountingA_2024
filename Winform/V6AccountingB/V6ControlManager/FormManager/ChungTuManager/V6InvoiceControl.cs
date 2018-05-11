@@ -1830,7 +1830,19 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             {
                                 foreach (DataGridViewRow row in dataGridView1.Rows)
                                 {
-                                    row.Cells[field_index].Value = f.Value;// ObjectAndString.ObjectTo(valueType, f.Value);
+                                    object newValue = ObjectAndString.ObjectTo(valueType, f.Value);
+                                    if (ObjectAndString.IsDateTimeType(valueType) && newValue != null)
+                                    {
+                                        DateTime newDate = (DateTime) newValue;
+                                        if (newDate < new DateTime(1700, 1, 1))
+                                        {
+                                            newValue = null;
+                                        }
+                                    }
+
+                                    SortedDictionary<string, object> newData = new SortedDictionary<string, object>();
+                                    newData.Add(FIELD, newValue);
+                                    V6ControlFormHelper.UpdateGridViewRow(row, newData);
                                 }
                             }
                             else // Đảo ngược

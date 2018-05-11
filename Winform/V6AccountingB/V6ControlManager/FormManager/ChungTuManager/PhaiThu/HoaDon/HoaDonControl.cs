@@ -2056,6 +2056,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 txtTenKh.Text = (data["ten_kh"] ?? "").ToString().Trim();
                 txtDiaChi.Text = (data["dia_chi"] ?? "").ToString().Trim();
                 txtDienThoaiKH.Text = (data["dien_thoai"] ?? "").ToString().Trim();
+                if ((data["MA_HTTT"] ?? "").ToString().Trim() != "") txtMaHttt.Text = (data["MA_HTTT"] ?? "").ToString().Trim();
                 txtHanTT.Value = ObjectAndString.ObjectToInt(data["han_tt"]);
                 // Tuanmh 28/05/2016
                 //txtMaGia.Text = (data["MA_GIA"] ?? "").ToString().Trim();
