@@ -4730,7 +4730,7 @@ namespace V6Controls.Forms
 
             if (control is V6VvarTextBox)
             {
-                d[cNAME] = control.Text;
+                d[cNAME] = ((V6VvarTextBox)control).Text;
                 //return control.Text;
                 return;
             }

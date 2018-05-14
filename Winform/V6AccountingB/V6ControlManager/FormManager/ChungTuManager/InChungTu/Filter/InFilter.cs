@@ -29,6 +29,8 @@
                     return new APOCTPOB();
                 case "APOCTPOC"://73
                     return new APOCTPOC();
+                case "APOCTPOH":
+                    return new APOCTPOH();
 
                 case "AINCTIND"://74
                     return new AINCTIND();

@@ -161,6 +161,12 @@
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\AARCTAR1.designer.cs">
       <DependentUpon>AARCTAR1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTPOH.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTPOH.designer.cs">
+      <DependentUpon>APOCTPOH.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTSOC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5260,6 +5266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\AARCTAR1.resx">
       <DependentUpon>AARCTAR1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTPOH.resx">
+      <DependentUpon>APOCTPOH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTSOC.resx">
       <DependentUpon>ASOCTSOC.cs</DependentUpon>
