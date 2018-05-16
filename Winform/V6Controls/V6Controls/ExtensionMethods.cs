@@ -471,7 +471,7 @@ namespace V6Controls
                 }
                 else
                 {
-                    f.Show();
+                    f.Show(owner);
                 }
             }
             catch (Exception ex)
@@ -535,7 +535,7 @@ namespace V6Controls
                 }
                 else
                 {
-                    f.Show();
+                    f.Show(owner);
                 }
             }
             catch (Exception ex)

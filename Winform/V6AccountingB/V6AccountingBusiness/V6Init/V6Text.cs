@@ -239,6 +239,7 @@
         public static string NoSelection { get { return V6Setting.Language == "V" ? "Chưa có lựa chọn." : "No selection."; } }
         public static string NoSTTREC { get { return V6Setting.Language == "V" ? "Không có STTREC." : "No STTREC."; } }
         public static string NotExist { get { return V6Setting.Language == "V" ? "Không tồn tại." : "Not exist."; } }
+        public static string NotFound { get { return V6Setting.Language == "V" ? "Không tìm thấy." : "Not found."; } }
         public static string NotRunHere { get { return V6Setting.Language == "V" ? "Không xử lý ở đây." : "Not run here."; } }
         public static string NotValid { get { return V6Setting.Language == "V" ? "Không hợp lệ." : "Not valid."; } }
         public static string NoUID { get { return V6Setting.Language == "V" ? "Không có UID." : "No UID."; } }

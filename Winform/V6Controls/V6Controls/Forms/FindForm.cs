@@ -10,6 +10,9 @@ namespace V6Controls.Forms
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Tìm lần đầu khi vừa thay đổi nội dung tìm kiếm.
+        /// </summary>
         private bool _first = true;
 
         public delegate void FindFormHandler(string text, bool up, bool first);
@@ -24,7 +27,14 @@ namespace V6Controls.Forms
 
         private void btnFind_Click(object sender, EventArgs e)
         {
-            OnFind();
+            if (txtFindText.Text != string.Empty)
+            {
+                OnFind();
+            }
+            else
+            {
+                txtFindText.Alert();
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

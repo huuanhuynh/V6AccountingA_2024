@@ -49,6 +49,8 @@
             this.Controls.Add(this.pdfViewer1);
             this.Name = "PdfiumViewerForm";
             this.Text = "PdfiumViewerForm";
+            this.Controls.SetChildIndex(this.pdfViewer1, 0);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.ResumeLayout(false);
 
         }

@@ -116,7 +116,7 @@
             this.v6ColorTextBox42 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox41 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox40 = new V6Controls.V6ColorTextBox();
-            this.v6ColorTextBox34 = new V6Controls.V6ColorTextBox();
+            this.txtPart_no = new V6Controls.V6ColorTextBox();
             this.label69 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
@@ -274,7 +274,6 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.AccessibleName = "part_no";
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -1276,7 +1275,7 @@
             this.tabPage3.Controls.Add(this.v6ColorTextBox42);
             this.tabPage3.Controls.Add(this.v6ColorTextBox41);
             this.tabPage3.Controls.Add(this.v6ColorTextBox40);
-            this.tabPage3.Controls.Add(this.v6ColorTextBox34);
+            this.tabPage3.Controls.Add(this.txtPart_no);
             this.tabPage3.Controls.Add(this.label69);
             this.tabPage3.Controls.Add(this.label68);
             this.tabPage3.Controls.Add(this.label67);
@@ -1668,20 +1667,20 @@
             this.v6ColorTextBox40.Size = new System.Drawing.Size(210, 23);
             this.v6ColorTextBox40.TabIndex = 7;
             // 
-            // v6ColorTextBox34
+            // txtPart_no
             // 
-            this.v6ColorTextBox34.AccessibleName = "PART_NO";
-            this.v6ColorTextBox34.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox34.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox34.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox34.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox34.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox34.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox34.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox34.Location = new System.Drawing.Point(163, 11);
-            this.v6ColorTextBox34.Name = "v6ColorTextBox34";
-            this.v6ColorTextBox34.Size = new System.Drawing.Size(210, 23);
-            this.v6ColorTextBox34.TabIndex = 1;
+            this.txtPart_no.AccessibleName = "PART_NO";
+            this.txtPart_no.BackColor = System.Drawing.Color.White;
+            this.txtPart_no.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtPart_no.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtPart_no.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPart_no.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtPart_no.HoverColor = System.Drawing.Color.Yellow;
+            this.txtPart_no.LeaveColor = System.Drawing.Color.White;
+            this.txtPart_no.Location = new System.Drawing.Point(163, 11);
+            this.txtPart_no.Name = "txtPart_no";
+            this.txtPart_no.Size = new System.Drawing.Size(210, 23);
+            this.txtPart_no.TabIndex = 1;
             // 
             // label69
             // 
@@ -3974,7 +3973,7 @@
         private V6ColorTextBox v6ColorTextBox42;
         private V6ColorTextBox v6ColorTextBox41;
         private V6ColorTextBox v6ColorTextBox40;
-        private V6ColorTextBox v6ColorTextBox34;
+        private V6ColorTextBox txtPart_no;
         private System.Windows.Forms.Label label69;
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.Label label67;

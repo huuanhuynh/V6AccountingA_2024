@@ -1182,7 +1182,7 @@ namespace V6Controls.Controls
             _filterForm.Opacity = 0.9;
             _filterForm.TopMost = true;
             //_filterForm.Location = Location;
-            _filterForm.Show();
+            _filterForm.Show(this);
         }
 
         void FilterFilterApplyEvent(string query)

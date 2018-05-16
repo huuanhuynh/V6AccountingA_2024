@@ -60,7 +60,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        private V6VvarTextBox _ma_vt;
+        private V6VvarTextBox _ma_vt, _dvt;
         private V6NumberTextBox _t_sl1, _gia2, _t_sl2,_gia_km,_sl_km;
         private V6ColorTextBox _Ghi_chukm, _Ghi_chuck ;
 
@@ -75,9 +75,44 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 GrayText = "Mã vật tư",
                 BrotherFields = "TEN_VT"
             };
+            _ma_vt.V6LostFocus += delegate(object sender)
+            {
+                XuLyDonViTinhKhiChonMaVt(_ma_vt.Text);
+            };
             _ma_vt.Upper();
             _ma_vt.FilterStart = true;
-            
+            _dvt = new V6VvarTextBox
+            {
+                AccessibleName = "dvt",
+                VVar = "dvt1",
+                GrayText = "Đơn vị tính",
+                CheckNotEmpty = true,
+                CheckOnLeave = true,
+            };
+            _dvt.GotFocus += (s, e) =>
+            {
+                _dvt.SetInitFilter("ma_vt='" + _ma_vt.Text.Trim() + "'");
+                _dvt.ExistRowInTable(true);
+            };
+            //_dvt.V6LostFocus += sender =>
+            //{
+            //    XuLyThayDoiDvt1();
+            //};
+            //_dvt.V6LostFocusNoChange += sender =>
+            //{
+            //    _dvt.ExistRowInTable(true);
+            //    if (_dvt.Data != null)
+            //    {
+            //        var he_so = ObjectAndString.ObjectToDecimal(_dvt.Data["he_so"]);
+            //        if (he_so == 0) he_so = 1;
+            //        _heSo1.Value = he_so;
+            //    }
+            //    else
+            //    {
+            //        _heSo1.Value = 1;
+            //    }
+            //};
+            _dvt.Upper();
 
             _t_sl1 = new NumberSoluong()
             {
@@ -120,14 +155,16 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             var dynamicControlList = new SortedDictionary<int, Control>();
             //t_sl1, t_sl2, t_tien1, t_tien2, sl_km, tien_km, Ghi_chukm, Ghi_chuck, T_SLKM;
-            dynamicControlList.Add(0, _ma_vt);
-            dynamicControlList.Add(1, _sl_km);
-            dynamicControlList.Add(2, _gia_km);
-            dynamicControlList.Add(3, _t_sl1);
-            dynamicControlList.Add(4, _t_sl2);
-            dynamicControlList.Add(5, _gia2);
-            dynamicControlList.Add(6, _Ghi_chukm);
-            dynamicControlList.Add(7, _Ghi_chuck);
+            int stt = 0;
+            dynamicControlList.Add(stt++, _ma_vt);
+            dynamicControlList.Add(stt++, _dvt);
+            dynamicControlList.Add(stt++, _sl_km);
+            dynamicControlList.Add(stt++, _gia_km);
+            dynamicControlList.Add(stt++, _t_sl1);
+            dynamicControlList.Add(stt++, _t_sl2);
+            dynamicControlList.Add(stt++, _gia2);
+            dynamicControlList.Add(stt++, _Ghi_chukm);
+            dynamicControlList.Add(stt++, _Ghi_chuck);
             
             foreach (KeyValuePair<int, Control> item in dynamicControlList)
             {
@@ -143,6 +180,60 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             V6ControlFormHelper.SetFormStruct(detail1, _table2Struct);
         }
+
+        private void XuLyDonViTinhKhiChonMaVt(string mavt, bool changeMavt = true)
+        {
+            try
+            {
+                //Gán lại dvt và dvt1
+                var data = _ma_vt.Data;
+                if (data == null)
+                {
+                    _dvt.ChangeText("");
+                    _dvt.SetInitFilter("");
+                    _dvt.ChangeText("");
+                    return;
+                }
+
+                if (changeMavt)
+                {
+                    _dvt.Text = data["dvt"].ToString().Trim();
+                    _dvt.SetInitFilter("ma_vt='" + mavt + "'");
+                    _dvt.Text = _dvt.Text;
+                    _dvt.ExistRowInTable(true);
+                }
+
+                if (data.Table.Columns.Contains("Nhieu_dvt"))
+                {
+                    var nhieuDvt = data["Nhieu_dvt"].ToString().Trim();
+                    if (nhieuDvt == "1")
+                    {
+                        _dvt.Tag = null;
+                        _dvt.ReadOnly = false;
+                        //if (changeMavt) _heSo1.Value = 1;
+
+                    }
+                    else
+                    {
+                        _dvt.Tag = "readonly";
+                        _dvt.ReadOnly = true;
+                        if (changeMavt) _dvt.Focus();
+                        //if (changeMavt) _heSo1.Value = 1;
+                    }
+                }
+                else
+                {
+                    _dvt.ExistRowInTable(_dvt.Text);
+                    _dvt.Tag = "readonly";
+                    _dvt.ReadOnly = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".XuLyDonViTinhKhiChonMaVt " + ex.Message);
+            }
+        }
+
 
         public override void LoadDetails()
         {
