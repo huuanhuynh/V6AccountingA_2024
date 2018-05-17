@@ -873,10 +873,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             MakeReport(V6PrintMode.DoNoThing, null, (int) numSoLien.Value);
         }
 
-        //private const int nameLineLength = 40;
-        private const int lineDroppedHeight = 600;//500
-        //private const int dropLineHeight = 15;//500-320
-
         /// <summary>
         /// Tính toán đường chéo sẽ hiện trên report
         /// </summary>
@@ -884,11 +880,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         /// <param name="field">Trường tính toán ký tự</param>
         /// <param name="lengOfName"></param>
         /// <param name="twLineHeight"></param>
+        /// <param name="fontSize"></param>
         /// <returns></returns>
-        private int CalculateCrossLine(DataTable t, string field, int lengOfName, int twLineHeight)
+        private int CalculateCrossLine(DataTable t, string field, int lengOfName, int twLineHeight, float fontSize)
         {
-            var dropLineHeightBase = 300;
-            var dropLineHeight1 = lineDroppedHeight - twLineHeight;
+            int lineDroppedHeight = 600;//Font size 10. Chiều cao tương đối của ô text khi rớt xuống 1 dòng
+            int dropLineHeightBase = 300;//Font size 10. Phần cao thêm khi rớt tiếp dòng thứ 2
+
+            lineDroppedHeight += (int)((fontSize - 10) * 50);
+            dropLineHeightBase += (int)((fontSize - 10) * 50);
+
+            var dropLineHeight1 = lineDroppedHeight - twLineHeight;//Tính phần cao thêm khi rớt dòng thứ 1.
             //Mỗi dòng drop sẽ nhân với DropLineHeight
             //var dropCount = 0;
             var dropHeight = 0;
@@ -984,7 +986,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 if (!IsInvoice) return;
 
                 var Khung = rpt.ReportDefinition.ReportObjects["Khung"];
-                var DuongNgang = rpt.ReportDefinition.ReportObjects["DuongNgang"];
+                var DuongNgang = rpt.ReportDefinition.ReportObjects["DuongNgang"] as TextObject;
                 
                 flag = 1;
                 //var Section1 = rpt.ReportDefinition.Sections["ReportHeaderSection1"];
@@ -1027,8 +1029,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     checkField = _tbl.Columns.Contains("DIEN_GIAII") ? "DIEN_GIAII" : _tbl.Columns[0].ColumnName;
                 }
                 flag = 3;
-
-                int crossLineNum = CalculateCrossLine(_tbl, checkField, dropMax, lineHeight)
+                float fontSize = ((TextObject) DuongNgang).Font.Size;
+                int crossLineNum = CalculateCrossLine(_tbl, checkField, dropMax, lineHeight, fontSize)
                                        + (int)numCrossAdd.Value;
                 if (ROW_MAX > 0 && crossLineNum > ROW_MAX * 2)
                 {

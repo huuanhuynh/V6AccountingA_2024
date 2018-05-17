@@ -501,7 +501,7 @@ namespace V6Controls
                 {
                     Text = title,
                     AutoSize = true,
-                    FormBorderStyle = FormBorderStyle.FixedSingle,
+                    FormBorderStyle = FormBorderStyle.Sizable,//.FixedSingle,
                     Size = new Size(800, 600)
                 };
                 if (fullScreen) f.WindowState = FormWindowState.Maximized;
