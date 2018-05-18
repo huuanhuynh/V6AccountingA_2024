@@ -173,7 +173,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
             if (errors.Length > 0) throw new Exception(errors);
         }
-        
+
+        public override bool DoHotKey0(Keys keyData)
+        {
+            if (keyData == Keys.F1)
+            {
+                V6ControlFormHelper.ShowHelp("ALBCADDEDIT", V6Text.Help, this);
+                return true;
+            }
+            return base.DoHotKey0(keyData);
+        }
+
         public string ReportFileNew
         {
             get { return txtMa_File.Text + txtReportFileEnd.Text.Trim().ToUpper(); }

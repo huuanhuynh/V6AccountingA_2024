@@ -401,6 +401,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         {
                             _ggNt.V6LostFocus += delegate
                             {
+                                _gg.Value = V6BusinessHelper.Vround(_ggNt.Value*txtTyGia.Value, M_ROUND);
+                                if (MA_NT == _mMaNt0) _gg.Value = _ggNt.Value;
                                 Tinh_thue_ct();
                             };
                         }
@@ -1712,6 +1714,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         _gg.DisableTag();
                         _ggNt.DisableTag();
                     }
+
+                    if (M_SOA_MULTI_VAT == "1")
+                    {
+                        txtTongGiamNt.ReadOnly = true;
+                        txtTongGiam.ReadOnly = true;
+
+                        _ggNt.EnableTag();
+                        _gg.EnableTag();
+                    }
+                    else
+                    {
+                        txtTongGiamNt.ReadOnly = false;
+                        txtTongGiam.ReadOnly = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -2073,6 +2089,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     txtTongGiam.Value = V6BusinessHelper.Vround(tGg_tmp, M_ROUND);
                     
 
+                    return;
+                }
+
+                if (M_SOA_MULTI_VAT == "1")
+                {
+                    txtTongGiamNt.Value = TinhTong(AD, "GG_NT");
+                    txtTongGiam.Value = TinhTong(AD, "GG");
                     return;
                 }
 

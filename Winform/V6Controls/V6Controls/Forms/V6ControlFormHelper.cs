@@ -226,15 +226,26 @@ namespace V6Controls.Forms
 
         #region ==== SHOW HELP ====
 
-        public static void ShowHelp(string itemId, string title = "")
+        public static void ShowHelp(string itemId, string title = "", IWin32Window owner = null)
         {
             var file = Path.Combine(Application.StartupPath, "V6HELP\\" + itemId + ".pdf");
-            if (!File.Exists(file)) return;
+            if (!File.Exists(file))
+            {
+                if (owner is V6Form)
+                {
+                    ((V6Form)owner).ShowTopMessage(V6Text.NotExist + "\n..." + file.Right(50));
+                }
+                else if (owner is V6Control)
+                {
+                    ((V6Control)owner).ShowTopMessage(V6Text.NotExist + "\n..." + file.Right(50));
+                }
+                return;
+            }
             var ext = Path.GetExtension(file).ToLower();
             if (ext == ".pdf")
             {
                 var view = new PdfiumViewerForm(file, title);
-                view.Show();
+                view.Show(owner);
             }
             else if (ext == ".doc")
             {

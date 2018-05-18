@@ -444,7 +444,8 @@ namespace V6ControlManager.FormManager.MenuManager
                 }
                 else if (keyData == Keys.F1)
                 {
-                    V6ControlFormHelper.ShowHelp(menuControl1.SelectedButton.Key1, menuControl1.SelectedButton.Text);
+                    if(menuControl1.SelectedButton != null)
+                    V6ControlFormHelper.ShowHelp(menuControl1.SelectedButton.Key1, menuControl1.SelectedButton.Text, this);
                 }
                 else if (keyData == (Keys.Alt | Keys.M))
                 {

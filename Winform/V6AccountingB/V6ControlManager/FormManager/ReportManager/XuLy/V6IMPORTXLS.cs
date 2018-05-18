@@ -147,7 +147,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 foreach (DataRow dataRow in ALIMXLS_DATA.Rows)
                 {
-                    var xml = dataRow["MMETHOD"].ToString().Trim();
+                    var xml = dataRow["DMETHOD"].ToString().Trim();
                     if (xml == "") return;
                     DataSet ds = new DataSet();
                     ds.ReadXml(new StringReader(xml));

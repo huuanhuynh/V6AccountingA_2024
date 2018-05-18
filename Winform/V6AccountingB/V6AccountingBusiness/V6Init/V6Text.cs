@@ -220,11 +220,12 @@
         public static string DataLoading { get { return V6Setting.Language == "V" ? "Đang tải dữ liệu." : "Data loading."; } }
         public static string DetailNotComplete { get { return V6Setting.Language == "V" ? "Chưa hoàn tất chi tiết!" : "Detail is not complete!"; } }
         public static string ExecuteConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn thực hiện hay không?" : "Are you sure want to proceed?"; } }
-        public static string Finish { get { return V6Setting.Language == "V" ? "Hoàn thành." : "Finish."; } }
         public static string ExportFinish { get { return V6Setting.Language == "V" ? "Xuất hoàn tất." : "Export finish."; } }
         public static string ExportFail { get { return V6Setting.Language == "V" ? "Xuất lỗi." : "Export fail."; } }
         public static string Exist { get { return V6Setting.Language == "V" ? "Đã tồn tại." : "Exist."; } }
         public static string ExistData { get { return V6Setting.Language == "V" ? "Dữ liệu đã tồn tại." : "Data Exist."; } }
+        public static string Finish { get { return V6Setting.Language == "V" ? "Hoàn thành." : "Finish."; } }
+        public static string Help { get { return V6Setting.Language == "V" ? "Trợ giúp" : "Help"; } }
         public static string NoConnection { get { return V6Setting.Language == "V" ? "Không thể kết nối server!" : "Can not connect to server!"; } }
         public static string NoData { get { return V6Setting.Language == "V" ? "Không có dữ liệu." : "No data."; } }
         public static string NoDefine { get { return V6Setting.Language == "V" ? "Chưa định nghĩa." : "No define."; } }
