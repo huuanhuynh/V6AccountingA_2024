@@ -180,7 +180,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2'").Data;
             IDictionary<string, object> defaultData = new Dictionary<string, object>();
             defaultData.Add("LOAI", "AAPPR_SOA2");
-            V6ControlFormHelper.ShowDataEditorForm(data, tableName, null, keys, true, true, true, defaultData);
+            V6ControlFormHelper.ShowDataEditorForm(data, tableName, null, keys, true, true, true, true, defaultData);
         }
 
         

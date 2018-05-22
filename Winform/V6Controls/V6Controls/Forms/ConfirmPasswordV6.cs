@@ -16,15 +16,34 @@ namespace V6Controls.Forms
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
-            if (txtUserName.Text == "V6" && txtPassword.Text != ""
+            {
+                if (txtUserName.Text == "V6" && txtPassword.Text != ""
                 && UtilityHelper.EnCrypt(txtPassword.Text) == DatabaseConfig.PasswordV6)
-            {
-                DialogResult = DialogResult.OK;
+                {
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    DialogResult = DialogResult.Cancel;
+                }
             }
-            else
+        }
+
+        public override bool DoHotKey0(Keys keyData)
+        {
+            try
             {
-                DialogResult = DialogResult.Cancel;
+                if (keyData == Keys.Escape)
+                {
+                    DialogResult = DialogResult.Cancel;
+                    return true;
+                }
             }
+            catch
+            {
+                return false;
+            }
+            return base.DoHotKey0(keyData);
         }
     }
 }

@@ -1784,7 +1784,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return null;
         }
 
-        protected void ChucNang_ThayThe()
+        /// <summary>
+        /// Chức năng sửa hàng loạt một cột dữ liệu.
+        /// </summary>
+        /// <param name="invoice"></param>
+        protected void ChucNang_ThayThe(V6InvoiceBase invoice)
         {
             try
             {
@@ -1822,7 +1826,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             ShowParentMessage("Không xác định được control.");
                             return;
                         }
-
+                        
                         ChucNangThayTheForm f = new ChucNangThayTheForm(ObjectAndString.IsNumberType(dataGridView1.CurrentCell.OwningColumn.ValueType), textBox);
                         if (f.ShowDialog(this) == DialogResult.OK)
                         {
@@ -1874,6 +1878,20 @@ namespace V6ControlManager.FormManager.ChungTuManager
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".ChucNang_ThayThe", ex);
+            }
+        }
+
+        /// <summary>
+        /// Chức năng sửa dữ liệu AD bằng cách gõ trực tiếp.
+        /// </summary>
+        /// <param name="invoice"></param>
+        protected void ChucNang_SuaNhieuDong(V6InvoiceBase invoice)
+        {
+            if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+            {
+
+                string adFields = invoice.EXTRA_INFOR.ContainsKey("ADFIELDS") ? invoice.EXTRA_INFOR["ADFIELDS"] : "";
+                V6ControlFormHelper.ShowDataEditorForm(AD, invoice.Mact + "_REPLACE", adFields, null, false, false, true, false);
             }
         }
 

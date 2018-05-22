@@ -4257,7 +4257,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         private void thayTheToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChucNang_ThayThe();
+            ChucNang_ThayThe(Invoice);
+        }
+
+        private void thayThe2toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChucNang_SuaNhieuDong(Invoice);
         }
         
          

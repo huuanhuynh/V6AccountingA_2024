@@ -52,6 +52,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.xemCongNoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chonPhieuNhapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDetail1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuXemPhieuNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,7 +88,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.STT_REC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT_REC0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabKhac = new System.Windows.Forms.TabPage();
-            this.TxtL_AM_INFO = new V6Controls.V6ColorTextBox();
+            this.TxtL_AM_INFO = new V6Controls.V6VvarTextBox();
             this.Txtma_td_ph = new V6Controls.V6VvarTextBox();
             this.v6Label14 = new V6Controls.V6Label();
             this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
@@ -240,7 +241,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
-            this.thayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayThe2toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuChucNang.SuspendLayout();
             this.menuDetail1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -303,9 +304,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.xemCongNoToolStripMenuItem,
             this.chonPhieuNhapToolStripMenuItem,
             this.inKhacToolStripMenuItem,
-            this.thayTheToolStripMenuItem});
+            this.thayTheToolStripMenuItem,
+            this.thayThe2toolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(181, 202);
+            this.menuChucNang.Size = new System.Drawing.Size(181, 224);
             // 
             // ChonDonHangBanMenu
             // 
@@ -354,6 +356,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.inKhacToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.inKhacToolStripMenuItem.Text = "In khác";
             this.inKhacToolStripMenuItem.Click += new System.EventHandler(this.inKhacToolStripMenuItem_Click);
+            // 
+            // thayTheToolStripMenuItem
+            // 
+            this.thayTheToolStripMenuItem.Name = "thayTheToolStripMenuItem";
+            this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.thayTheToolStripMenuItem.Text = "Thay thế";
+            this.thayTheToolStripMenuItem.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
             // 
             // menuDetail1
             // 
@@ -3465,12 +3474,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.v6Label1.TabIndex = 0;
             this.v6Label1.Text = "Số nội bộ";
             // 
-            // thayTheToolStripMenuItem
+            // thayThe2toolStripMenuItem
             // 
-            this.thayTheToolStripMenuItem.Name = "thayTheToolStripMenuItem";
-            this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.thayTheToolStripMenuItem.Text = "Thay thế";
-            this.thayTheToolStripMenuItem.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
+            this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
+            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
+            this.thayThe2toolStripMenuItem.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
             // 
             // HoaDonControl
             // 
@@ -3734,11 +3743,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private V6Label v6Label14;
         private System.Windows.Forms.ToolStripMenuItem chonPhieuNhapToolStripMenuItem;
         private V6FormButton btnTinhCKKM;
-        private V6ColorTextBox TxtL_AM_INFO;
+        private V6Controls.V6VvarTextBox TxtL_AM_INFO;
         private V6CheckBox chkAuto_Ck;
         private V6Controls.Controls.V6IndexComboBox cboChuyenData;
         private V6Label v6Label28;
         private System.Windows.Forms.ToolStripMenuItem inKhacToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thayTheToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thayThe2toolStripMenuItem;
     }
 }

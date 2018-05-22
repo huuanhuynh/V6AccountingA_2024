@@ -3972,13 +3972,14 @@ namespace V6Controls.Forms
         /// <param name="allowAdd">Cho phép thêm dòng.</param>
         /// <param name="allowDelete">Cho phép xóa dòng.</param>
         /// <param name="showSum">Hiện phần tổng.</param>
+        /// <param name="updateDatabase">Cập nhập trực tiếp database.</param>
         /// <param name="defaultData">Dữ liệu mặc định khi thêm dòng mới.</param>
         /// <param name="owner">Form đang gọi để chống chìm dialog.</param>
         public static void ShowDataEditorForm(DataTable data, string tableName, string showFields, string keys,
-            bool allowAdd, bool allowDelete, bool showSum = true, IDictionary<string, object> defaultData = null, IWin32Window owner = null)
+            bool allowAdd, bool allowDelete, bool showSum = true, bool updateDatabase = true, IDictionary<string, object> defaultData = null, IWin32Window owner = null)
         {
             var f = new DataEditorForm(data, tableName, showFields, keys, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language),
-                allowAdd, allowDelete, showSum, defaultData);
+                allowAdd, allowDelete, showSum, updateDatabase, defaultData);
             f.ShowDialog(owner);
         }
 
@@ -3992,12 +3993,13 @@ namespace V6Controls.Forms
         /// <param name="allowAdd">Cho phép thêm dòng.</param>
         /// <param name="allowDelete">Cho phép xóa dòng.</param>
         /// <param name="showSum">Hiện phần tổng.</param>
+        /// <param name="updateDatabase">Cập nhập trực tiếp database.</param>
         /// <param name="defaultData">Dữ liệu mặc định khi thêm dòng mới.</param>
         /// <returns>DataEditorForm</returns>
         public static DataEditorForm MakeDataEditorForm(DataTable data, string tableName, string showFields, string keys,
-            bool allowAdd, bool allowDelete, bool showSum = true, IDictionary<string, object> defaultData = null)
+            bool allowAdd, bool allowDelete, bool showSum = true, bool updateDatabase = true, IDictionary<string, object> defaultData = null)
         {
-            var f = new DataEditorForm(data, tableName, showFields, keys, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), allowAdd, allowDelete, showSum, defaultData);
+            var f = new DataEditorForm(data, tableName, showFields, keys, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), allowAdd, allowDelete, showSum, updateDatabase, defaultData);
             return f;
         }
 

@@ -21,11 +21,13 @@ namespace V6Controls.Forms.Viewer
         private string[] _keyFields;
         private IDictionary<string, object> _defaultData = null;
         private bool newRowNeeded;
+        private bool _updateDatabase;
 
         public DataEditorForm(object data, string tableName, string showFields, string keyFields, string title,
-            bool allowAdd, bool allowDelete, bool showSum = true, IDictionary<string, object> defaultData = null)
+            bool allowAdd, bool allowDelete, bool showSum = true, bool updateDatabase = true, IDictionary<string, object> defaultData = null)
         {
             InitializeComponent();
+            _updateDatabase = updateDatabase;
             if (!showSum)
             {
                 dataGridView1.Height = dataGridView1.Bottom - dataGridView1.Top + gridViewSummary1.Height;
@@ -38,7 +40,7 @@ namespace V6Controls.Forms.Viewer
             _data = data;
             _tableName = tableName;
             _showFields = showFields;
-            _keyFields = keyFields.Split(keyFields.Contains(";") ? ';' : ',');
+            _keyFields = ObjectAndString.SplitString(keyFields);
             
             MyInit();
         }
@@ -378,6 +380,12 @@ namespace V6Controls.Forms.Viewer
             }
             if (keyData == Keys.Delete && dataGridView1.AllowUserToDeleteRows && !dataGridView1.IsCurrentCellInEditMode)
             {
+                if (!_updateDatabase)
+                {
+                    if (dataGridView1.CurrentRow != null) dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
+                    //toolStripStatusLabel1.Text = string.Format("{0} {1} {2}", _tableName, V6Text.DeleteSuccess, delete_info);
+                    return true;
+                }
                 if (dataGridView1.CurrentRow != null)
                 {
                     var selectedRowIndex = dataGridView1.CurrentRow.Index;
@@ -405,6 +413,11 @@ namespace V6Controls.Forms.Viewer
 
         string delete_info = "";
         
+        /// <summary>
+        /// Thêm dữ liệu vào cơ sở dữ liệu.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         private IDictionary<string, object> AddData(IDictionary<string, object> data)
         {
             try
@@ -478,7 +491,11 @@ namespace V6Controls.Forms.Viewer
             return null;
         }
         
-
+        /// <summary>
+        /// Xóa dữ liệu trong cơ sở dữ liệu, nếu thành công xóa luôn trên dataGridview.
+        /// </summary>
+        /// <param name="keys"></param>
+        /// <param name="rowIndex"></param>
         private void DeleteData(IDictionary<string, object> keys, int rowIndex)
         {
             try
@@ -503,6 +520,11 @@ namespace V6Controls.Forms.Viewer
         }
 
         private object _cellBeginEditValue;
+        /// <summary>
+        /// Update dữ liệu vào cơ sở dữ liệu.
+        /// </summary>
+        /// <param name="rowIndex"></param>
+        /// <param name="columnIndex"></param>
         private void UpdateData(int rowIndex, int columnIndex)
         {
             var update_info = "";
@@ -562,8 +584,8 @@ namespace V6Controls.Forms.Viewer
             //Xu ly cong thuc tinh toan
             updateFieldList = new List<string>();
             if(CheckUpdateField(UPDATE_FIELD)) XuLyCongThucTinhToan();
-            //Update nhieu truong.!!!!!
-            UpdateData(e.RowIndex, e.ColumnIndex);
+            
+            if(_updateDatabase) UpdateData(e.RowIndex, e.ColumnIndex);
         }
 
         private bool CheckUpdateField(string UPDATE_FIELD)
@@ -594,15 +616,18 @@ namespace V6Controls.Forms.Viewer
             var currentRow = dataGridView1.CurrentRow;
             if (currentRow == null) return;
 
-            var newData = currentRow.ToDataDictionary();
-            var afterData = AddData(newData);
-            if (afterData != null)
+            if (_updateDatabase)
             {
-                foreach (KeyValuePair<string, object> item in afterData)
+                var newData = currentRow.ToDataDictionary();
+                var afterData = AddData(newData);
+                if (afterData != null)
                 {
-                    if (dataGridView1.Columns.Contains(item.Key))
+                    foreach (KeyValuePair<string, object> item in afterData)
                     {
-                        currentRow.Cells[item.Key].Value = item.Value;
+                        if (dataGridView1.Columns.Contains(item.Key))
+                        {
+                            currentRow.Cells[item.Key].Value = item.Value;
+                        }
                     }
                 }
             }

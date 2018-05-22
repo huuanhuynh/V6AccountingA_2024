@@ -433,10 +433,15 @@ namespace V6AccountingBusiness.Invoices
                 var sss = s.Split(';');
                 foreach (string ss in sss)
                 {
-                    var ss1 = ss.Split(':');
-                    if (ss1.Length > 1)
+                    //var ss1 = ss.Split(':');
+                    //if (ss1.Length > 1)
+                    //{
+                    //    _extraInfor[ss1[0].ToUpper()] = ss1[1];
+                    //}
+                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
+                    if (indexOf > 0)
                     {
-                        _extraInfor[ss1[0].ToUpper()] = ss1[1];
+                        _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
                     }
                 }
             }

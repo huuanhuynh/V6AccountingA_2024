@@ -103,6 +103,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.TroGiupMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonTuExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chkSuaTien = new V6Controls.V6CheckBox();
             this.txtTongSoLuong = new V6Controls.V6NumberTextBox();
             this.cboKieuPost = new V6Controls.V6ComboBox();
@@ -233,7 +234,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.v6Label50 = new V6Controls.V6Label();
             this.v6Label49 = new V6Controls.V6Label();
             this.v6Label48 = new V6Controls.V6Label();
-            this.thayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayThe2toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1369,9 +1370,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.TroGiupMenu,
             this.chonTuExcelToolStripMenuItem,
             this.inKhacToolStripMenuItem,
-            this.thayTheToolStripMenuItem});
+            this.thayTheToolStripMenuItem,
+            this.thayThe2toolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(185, 136);
+            this.menuChucNang.Size = new System.Drawing.Size(185, 158);
             // 
             // ChonDonHangMuaMenu
             // 
@@ -1400,6 +1402,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.inKhacToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.inKhacToolStripMenuItem.Text = "Xử lý khác";
             this.inKhacToolStripMenuItem.Click += new System.EventHandler(this.inKhacToolStripMenuItem_Click);
+            // 
+            // thayTheToolStripMenuItem
+            // 
+            this.thayTheToolStripMenuItem.Name = "thayTheToolStripMenuItem";
+            this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.thayTheToolStripMenuItem.Text = "Thay thế";
+            this.thayTheToolStripMenuItem.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
             // 
             // chkSuaTien
             // 
@@ -3312,12 +3321,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.v6Label48.TabIndex = 25;
             this.v6Label48.Text = "T.gian nhận";
             // 
-            // thayTheToolStripMenuItem
+            // thayThe2toolStripMenuItem
             // 
-            this.thayTheToolStripMenuItem.Name = "thayTheToolStripMenuItem";
-            this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.thayTheToolStripMenuItem.Text = "Thay thế";
-            this.thayTheToolStripMenuItem.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
+            this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
+            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
+            this.thayThe2toolStripMenuItem.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
             // 
             // BaoGiaControl
             // 
@@ -3582,5 +3591,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private V6Label v6Label28;
         private System.Windows.Forms.ToolStripMenuItem inKhacToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thayTheToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thayThe2toolStripMenuItem;
     }
 }

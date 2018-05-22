@@ -147,7 +147,10 @@ namespace V6Tools.V6Convert
                     }
                     catch
                     {
-                        return null;
+                        if (dateFormat != null && dateFormat.Length > 1)
+                        {
+                            if (!DateTime.TryParseExact(o.ToString().Trim(), dateFormat, null, DateTimeStyles.None, out result)) return null;
+                        }
                     }
                     break;
             }

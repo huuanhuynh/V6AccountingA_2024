@@ -222,6 +222,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.Txtma_nk = new V6Controls.V6ColorTextBox();
             this.btnViewInfoData = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
+            this.thayThe2toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1696,9 +1697,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.TroGiupMenu,
             this.chonTuExcelToolStripMenuItem,
             this.xuLyKhacToolStripMenuItem,
-            this.thayTheToolStripMenuItem});
+            this.thayTheToolStripMenuItem,
+            this.thayThe2toolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(185, 114);
+            this.menuChucNang.Size = new System.Drawing.Size(185, 158);
             // 
             // ChonDonHangMuaMenu
             // 
@@ -3123,6 +3125,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.lblNameT.TabIndex = 29;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // thayThe2toolStripMenuItem
+            // 
+            this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
+            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
+            this.thayThe2toolStripMenuItem.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
+            // 
             // DonDatHangMuaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3373,5 +3382,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         private V6Label v6Label28;
         private System.Windows.Forms.ToolStripMenuItem xuLyKhacToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thayTheToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thayThe2toolStripMenuItem;
     }
 }

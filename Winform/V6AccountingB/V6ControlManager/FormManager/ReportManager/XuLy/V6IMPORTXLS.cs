@@ -148,10 +148,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 foreach (DataRow dataRow in ALIMXLS_DATA.Rows)
                 {
                     var xml = dataRow["DMETHOD"].ToString().Trim();
-                    if (xml == "") return;
+                    if (xml == "") continue;
                     DataSet ds = new DataSet();
                     ds.ReadXml(new StringReader(xml));
-                    if (ds.Tables.Count <= 0) return;
+                    if (ds.Tables.Count <= 0) continue;
 
                     var xml_data = ds.Tables[0];
                     foreach (DataRow event_row in xml_data.Rows)
