@@ -3862,6 +3862,64 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                     }
                 }
+
+                //Tuanmh 24/07/2016 Check Debit Amount
+                {
+                    var mode_vc = "V";
+                    if (Mode == V6Mode.Edit)
+                    {
+                        mode_vc = "E";
+                    }
+                    else if (Mode == V6Mode.Add)
+                    {
+                        mode_vc = "A";
+
+                    }
+
+                    DataTable DataCheck_Save_All = Invoice.GetCheck_Save_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
+                        TxtSo_ct.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                        txtManx.Text.Trim(), dateNgayCT.Value, txtMa_ct.Text, txtTongThanhToan.Value, mode_vc, V6Login.UserId);
+
+
+
+                    if (DataCheck_Save_All != null && DataCheck_Save_All.Rows.Count > 0)
+                    {
+                        var chksave_all = DataCheck_Save_All.Rows[0]["chksave_all"].ToString();
+                        var chk_yn = DataCheck_Save_All.Rows[0]["chk_yn"].ToString();
+                        var mess = DataCheck_Save_All.Rows[0]["mess"].ToString().Trim();
+                        var mess2 = DataCheck_Save_All.Rows[0]["mess2"].ToString().Trim();
+                        var message = V6Setting.IsVietnamese ? mess : mess2;
+
+                        switch (chksave_all)
+                        {
+                            case "00":
+                            case "04":
+                                // Save: OK --Loai_kh in ALKH
+                                // Save: OK --Thau
+                                break;
+                            case "01":
+                            case "02":
+                            case "03":
+
+                                if (message != "") this.ShowWarningMessage(message);
+                                if (chk_yn == "0")
+                                {
+                                    return false;
+                                }
+                                break;
+
+                            case "06":
+                            case "07":
+                            case "08":
+                                // Save but mess
+                                if (message != "") this.ShowWarningMessage(message);
+                                break;
+
+
+                        }
+                    }
+                }
+
                 //OK
                 return true;
             }

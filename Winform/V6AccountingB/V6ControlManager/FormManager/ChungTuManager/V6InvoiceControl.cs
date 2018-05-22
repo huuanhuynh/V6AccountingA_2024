@@ -949,7 +949,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             else
             {
-                V6ControlFormHelper.ShowMainMessage("No V6Valid info!");
+                V6ControlFormHelper.SetStatusText("No V6Valid info!");
             }
             return true;
         }
