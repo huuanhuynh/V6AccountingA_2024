@@ -71,7 +71,7 @@
             this.v6ColorTextBox4 = new V6Controls.V6ColorTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.cboKieuPost = new V6Controls.V6ComboBox();
-            this.label64 = new System.Windows.Forms.Label();
+            this.lblThongTinThem = new System.Windows.Forms.Label();
             this.v6VvarTextBox7 = new V6Controls.V6VvarTextBox();
             this.label60 = new System.Windows.Forms.Label();
             this.txtform = new V6Controls.V6VvarTextBox();
@@ -832,7 +832,7 @@
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.cboKieuPost);
-            this.tabPage2.Controls.Add(this.label64);
+            this.tabPage2.Controls.Add(this.lblThongTinThem);
             this.tabPage2.Controls.Add(this.v6VvarTextBox7);
             this.tabPage2.Controls.Add(this.label60);
             this.tabPage2.Controls.Add(this.txtform);
@@ -876,15 +876,16 @@
             this.cboKieuPost.TabStop = false;
             this.cboKieuPost.SelectedIndexChanged += new System.EventHandler(this.cboKieuPost_SelectedIndexChanged);
             // 
-            // label64
+            // lblThongTinThem
             // 
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(23, 258);
-            this.label64.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(103, 17);
-            this.label64.TabIndex = 16;
-            this.label64.Text = "Thông tin thêm";
+            this.lblThongTinThem.AutoSize = true;
+            this.lblThongTinThem.Location = new System.Drawing.Point(23, 258);
+            this.lblThongTinThem.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblThongTinThem.Name = "lblThongTinThem";
+            this.lblThongTinThem.Size = new System.Drawing.Size(103, 17);
+            this.lblThongTinThem.TabIndex = 16;
+            this.lblThongTinThem.Text = "Thông tin thêm";
+            this.lblThongTinThem.Visible = false;
             // 
             // v6VvarTextBox7
             // 
@@ -945,6 +946,7 @@
             this.txtExtraInfo.Name = "txtExtraInfo";
             this.txtExtraInfo.Size = new System.Drawing.Size(538, 23);
             this.txtExtraInfo.TabIndex = 17;
+            this.txtExtraInfo.Visible = false;
             // 
             // label44
             // 
@@ -2470,7 +2472,7 @@
         private V6ColorTextBox v6ColorTextBox29;
         private System.Windows.Forms.Label label63;
         private V6CheckBox chkWriteLog;
-        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.Label lblThongTinThem;
         private V6ColorTextBox txtExtraInfo;
     }
 }

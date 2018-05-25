@@ -167,6 +167,18 @@ namespace V6Controls
         /// <param name="columns"></param>
         public void ShowColumns(params string[] columns)
         {
+            ShowColumns(false, columns);
+        }
+
+        /// <summary>
+        /// Ẩn tất cả các trường khác, chỉ hiện các trường được chỉ định.
+        /// </summary>
+        /// <param name="order">Có sắp xếp lại hay không.</param>
+        /// <param name="columns">Danh sách các cột hiển thị.</param>
+        public void ShowColumns(bool order, params string[] columns)
+        {
+            if (columns == null || columns.Length == 0) return;
+            int order_index = 0;
             foreach (DataGridViewColumn column in Columns)
             {
                 column.Visible = false;
@@ -175,7 +187,14 @@ namespace V6Controls
             {
                 if (string.IsNullOrEmpty(column)) continue;
                 var g_column = Columns[column];
-                if (g_column != null) g_column.Visible = true;
+                if (g_column != null)
+                {
+                    g_column.Visible = true;
+                    if (order)
+                    {
+                        g_column.DisplayIndex = order_index++;
+                    }
+                }
             }
         }
 

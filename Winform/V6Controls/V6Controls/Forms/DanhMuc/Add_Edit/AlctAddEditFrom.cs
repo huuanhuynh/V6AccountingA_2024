@@ -86,6 +86,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     lblXML.Visible = true;
                     btnEditXml.Visible = true;
                     chkWriteLog.Visible = true;
+                    txtExtraInfo.Visible = true;
+                    lblThongTinThem.Visible = true;
                 }
             }
             else

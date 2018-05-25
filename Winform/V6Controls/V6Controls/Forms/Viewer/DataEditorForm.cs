@@ -355,7 +355,7 @@ namespace V6Controls.Forms.Viewer
                         }
                     }
 
-                    dataGridView1.ShowColumns(showFieldList.ToArray());
+                    dataGridView1.ShowColumns(true, showFieldList.ToArray());
                 }
             }
             catch (Exception ex)
