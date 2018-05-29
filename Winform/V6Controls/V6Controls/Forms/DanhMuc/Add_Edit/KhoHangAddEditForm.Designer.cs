@@ -39,7 +39,7 @@
             this.TxtMa_kho = new V6Controls.V6ColorTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.v6TabControl1 = new V6Controls.V6TabControl();
+            this.tabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.TxtLoai_kho = new V6Controls.V6ColorTextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -95,7 +95,7 @@
             this.btnXoahinh = new System.Windows.Forms.Button();
             this.btnChonhinh = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.v6TabControl1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -266,22 +266,22 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Tên kho";
             // 
-            // v6TabControl1
+            // tabControl1
             // 
-            this.v6TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6TabControl1.Controls.Add(this.tabPage1);
-            this.v6TabControl1.Controls.Add(this.tabPage2);
-            this.v6TabControl1.Controls.Add(this.tabPage3);
-            this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
-            this.v6TabControl1.Location = new System.Drawing.Point(12, 157);
-            this.v6TabControl1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.v6TabControl1.Name = "v6TabControl1";
-            this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(680, 430);
-            this.v6TabControl1.TabIndex = 0;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControl1.ItemSize = new System.Drawing.Size(230, 24);
+            this.tabControl1.Location = new System.Drawing.Point(12, 157);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(680, 430);
+            this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -1179,7 +1179,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.v6TabControl1);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -1187,7 +1187,7 @@
             this.Size = new System.Drawing.Size(699, 593);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.v6TabControl1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -1210,7 +1210,7 @@
         private System.Windows.Forms.Label label3;
         private V6ColorTextBox v6ColorTextBox5;
         private System.Windows.Forms.Label label5;
-        private V6TabControl v6TabControl1;
+        private V6TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private V6Controls.V6CheckBox checkBox1;
         private V6ColorTextBox v6ColorTextBox6;

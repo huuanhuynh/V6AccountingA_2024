@@ -21,7 +21,8 @@ namespace V6Controls
     {
         public static bool DisableLookup { get; set; }
 
-        private static string V6SoftLocalAppData_Directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "V6Soft");
+        private static readonly string V6SoftLocalAppData_Directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "V6Soft");
+        private static readonly string SystemUserAppdataLocalTemp_Directory = Path.GetTempPath();
         /// <summary>
         /// Tạo thư mục tạm cho chương trình.
         /// </summary>
@@ -56,11 +57,28 @@ namespace V6Controls
             }
         }
 
+        public static void DeleteAllRptTempFiles()
+        {
+            try
+            {
+                DirectoryInfo di = new DirectoryInfo(SystemUserAppdataLocalTemp_Directory);
+
+                foreach (FileInfo file in di.GetFiles("*.rpt"))
+                {
+                    file.Delete();
+                }
+            }
+            catch
+            {
+                //
+            }
+        }
+
         public static void DeleteAllSubDirectoriesInV6SoftLocalAppData()
         {
             try
             {
-                DirectoryInfo di = new DirectoryInfo(V6SoftLocalAppData_Directory);
+                DirectoryInfo di = new DirectoryInfo(SystemUserAppdataLocalTemp_Directory);
 
                 foreach (DirectoryInfo dir in di.GetDirectories())
                 {

@@ -733,6 +733,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             CreateFormControls();
             InvokeFormEvent(FormDynamicEvent.INIT);
             crystalReportViewer1.ViewChanged += crystalReportViewer1_ViewChanged;
+            Disposed += InChungTuViewBase_Disposed;
         }
 
         void crystalReportViewer1_ViewChanged(object sender, EventArgs e)
@@ -1485,6 +1486,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private void btnHuy_Click(object sender, EventArgs e)
         {
             Dispose();
+        }
+
+        void InChungTuViewBase_Disposed(object sender, EventArgs e)
+        {
+            try
+            {
+                rpDoc.Close();
+                if (rpDoc2 != null) rpDoc2.Close();
+                if (rpDoc3 != null) rpDoc3.Close();
+                if (rpDoc4 != null) rpDoc4.Close();
+
+                rpDoc.Dispose();
+                if (rpDoc2 != null) rpDoc2.Dispose();
+                if (rpDoc3 != null) rpDoc3.Dispose();
+                if (rpDoc4 != null) rpDoc4.Dispose();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Disposed", ex);
+            }
         }
         
         #endregion Linh tinh

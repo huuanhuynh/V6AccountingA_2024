@@ -131,6 +131,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 tabControl1.TabPages.Add(tab);
                 method_log += "tabControl1.SelectTab(tab);";
                 tabControl1.SelectTab(tab);
+                Button btnMoi = V6ControlFormHelper.GetControlByName(ChungTu, "btnMoi") as Button;
+                if (btnMoi != null) btnMoi.Focus();
             }
             catch (Exception ex)
             {
