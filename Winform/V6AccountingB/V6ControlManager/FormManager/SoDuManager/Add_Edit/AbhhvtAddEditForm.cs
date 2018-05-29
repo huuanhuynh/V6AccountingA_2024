@@ -10,10 +10,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public AbhhvtAddEditForm()
         {
             InitializeComponent();
-         
         }
-
-       
 
         public override void DoBeforeEdit()
         {

@@ -4,6 +4,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
     public partial class NoRightAddEdit : AddEditControlVirtual
     {
+        public string NoRightInfo { get { return txtNoRightInfo.Text; } set { txtNoRightInfo.Text = value; } }
         public NoRightAddEdit()
         {
             InitializeComponent();
@@ -12,7 +13,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             InitializeComponent();
             label1.Text = V6Text.NoRight;
-            textBox1.Text = (text);
+            txtNoRightInfo.Text = (text);
         }
     }
 }

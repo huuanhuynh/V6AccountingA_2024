@@ -51,7 +51,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             InitializeComponent();
             
             FormControl = AddEditManager.Init_Control(tableName, tableName.ToString());
-            
+            if (FormControl is NoRightAddEdit)
+            {
+                string keys_string = "";
+                if (keys != null)
+                {
+                    foreach (KeyValuePair<string, object> item in keys)
+                    {
+                        keys_string += " " + item.Value;
+                    }
+                }
+                ((NoRightAddEdit) FormControl).NoRightInfo = keys_string;
+            }
             _tableName = tableName;
             FormControl.MyInit(tableName, mode, keys, data);
 
