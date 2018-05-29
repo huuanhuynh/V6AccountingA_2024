@@ -187,7 +187,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if (panel1 == null)
                 {
                     //Tạo tab Advance nếu có tabControl1
-                    TabControl tabControl1 = V6ControlFormHelper.GetControlByName(this, "tabControl1") as TabControl;
+                    TabControl tabControl1 = V6ControlFormHelper.GetControlByName(this, "v6TabControl1") as TabControl;
                     if (tabControl1 != null)
                     {
                         TabPage advanceTabPage = new TabPage("Advance");

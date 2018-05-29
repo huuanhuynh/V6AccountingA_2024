@@ -95,7 +95,7 @@
             this.matd1v = new V6Controls.V6ColorTextBox();
             this.btnNhan = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ms6u = new V6Controls.V6CheckBox();
@@ -147,7 +147,7 @@
             this.ms1e = new V6Controls.V6ColorTextBox();
             this.ms1v = new V6Controls.V6ColorTextBox();
             this.panel1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
@@ -1118,15 +1118,15 @@
             this.btnHuy.UseVisualStyleBackColor = true;
             this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
-            // tabControl1
+            // v6TabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(1, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(675, 365);
-            this.tabControl1.TabIndex = 36;
+            this.v6TabControl1.Controls.Add(this.tabPage1);
+            this.v6TabControl1.Controls.Add(this.tabPage2);
+            this.v6TabControl1.Location = new System.Drawing.Point(1, 0);
+            this.v6TabControl1.Name = "v6TabControl1";
+            this.v6TabControl1.SelectedIndex = 0;
+            this.v6TabControl1.Size = new System.Drawing.Size(675, 365);
+            this.v6TabControl1.TabIndex = 36;
             // 
             // tabPage1
             // 
@@ -1864,7 +1864,7 @@
             this.AutoSize = true;
             this.CancelButton = this.btnHuy;
             this.ClientSize = new System.Drawing.Size(676, 422);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.v6TabControl1);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -1876,11 +1876,11 @@
             this.Load += new System.EventHandler(this.FormAdd_Edit_Load);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
-            this.Controls.SetChildIndex(this.tabControl1, 0);
+            this.Controls.SetChildIndex(this.v6TabControl1, 0);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.v6TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -1957,7 +1957,7 @@
         private V6ColorTextBox sltd3f;
         private V6ColorTextBox ngaytd2f;
         private V6ColorTextBox matd1f;
-        private System.Windows.Forms.TabControl tabControl1;
+        private V6Controls.V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private V6CheckBox ms6u;

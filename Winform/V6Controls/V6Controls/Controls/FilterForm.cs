@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Forms;
-using V6Controls;
 using V6Controls.Forms;
 using V6Structs;
 
-namespace V6ControlManager.FormManager.DanhMucManager
+namespace V6Controls.Controls
 {
     public partial class FilterForm : V6Form
     {

@@ -73,7 +73,7 @@
             this.txtTIEN2 = new V6Controls.V6NumberTextBox();
             this.v6Label8 = new V6Controls.V6Label();
             this.btnInfos = new System.Windows.Forms.Button();
-            this.tabControl1 = new V6Controls.V6TabControl();
+            this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.v6NumberTextBox8 = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox7 = new V6Controls.V6NumberTextBox();
@@ -122,7 +122,7 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
+            this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
@@ -810,18 +810,18 @@
             this.btnInfos.UseVisualStyleBackColor = true;
             this.btnInfos.Click += new System.EventHandler(this.btnInfos_Click);
             // 
-            // tabControl1
+            // v6TabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.tabControl1.ItemSize = new System.Drawing.Size(230, 24);
-            this.tabControl1.Location = new System.Drawing.Point(4, 4);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(683, 559);
-            this.tabControl1.TabIndex = 0;
+            this.v6TabControl1.Controls.Add(this.tabPage1);
+            this.v6TabControl1.Controls.Add(this.tabPage3);
+            this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
+            this.v6TabControl1.Location = new System.Drawing.Point(4, 4);
+            this.v6TabControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.v6TabControl1.Name = "v6TabControl1";
+            this.v6TabControl1.SelectedIndex = 0;
+            this.v6TabControl1.Size = new System.Drawing.Size(683, 559);
+            this.v6TabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -1751,7 +1751,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.v6TabControl1);
             this.Controls.Add(this.btnInfos);
             this.Controls.Add(this.buttonSua);
             this.Controls.Add(this.buttonHuy);
@@ -1760,7 +1760,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongTinLuongCoBan";
             this.Size = new System.Drawing.Size(697, 621);
-            this.tabControl1.ResumeLayout(false);
+            this.v6TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -1816,7 +1816,7 @@
         private V6NumberTextBox txtTIEN2;
         private V6Label v6Label8;
         private System.Windows.Forms.Button btnInfos;
-        private V6TabControl tabControl1;
+        private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage3;
         private V6ColorTextBox v6ColorTextBox16;

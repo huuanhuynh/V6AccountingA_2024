@@ -12,7 +12,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             InitializeComponent();
         }
 
-        private void KhachHangFrom_Load(object sender, System.EventArgs e)
+        private void From_Load(object sender, System.EventArgs e)
         {
            // txtval.Focus();
         }

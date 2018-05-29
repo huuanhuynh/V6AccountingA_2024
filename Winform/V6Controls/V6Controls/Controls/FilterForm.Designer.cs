@@ -1,4 +1,4 @@
-﻿namespace V6ControlManager.FormManager.DanhMucManager
+﻿namespace V6Controls.Controls
 {
     partial class FilterForm
     {

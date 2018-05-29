@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new V6Controls.V6TabControl();
+            this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtUser_pre = new V6Controls.V6VvarTextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -81,28 +81,28 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
+            this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // v6TabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.v6TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.tabControl1.ItemSize = new System.Drawing.Size(230, 24);
-            this.tabControl1.Location = new System.Drawing.Point(4, 239);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(755, 322);
-            this.tabControl1.TabIndex = 1;
+            this.v6TabControl1.Controls.Add(this.tabPage1);
+            this.v6TabControl1.Controls.Add(this.tabPage2);
+            this.v6TabControl1.Controls.Add(this.tabPage3);
+            this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
+            this.v6TabControl1.Location = new System.Drawing.Point(4, 239);
+            this.v6TabControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.v6TabControl1.Name = "v6TabControl1";
+            this.v6TabControl1.SelectedIndex = 0;
+            this.v6TabControl1.Size = new System.Drawing.Size(755, 322);
+            this.v6TabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -856,14 +856,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.v6TabControl1);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "NguoiSuDungAddEditForm";
             this.Size = new System.Drawing.Size(763, 564);
             this.Load += new System.EventHandler(this.Form_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.v6TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -882,7 +882,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage1;
-        private V6Controls.V6TabControl tabControl1;
+        private V6Controls.V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label4;
         private V6NumberTextBox TxtUser_id;

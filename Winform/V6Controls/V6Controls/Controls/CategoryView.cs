@@ -8,7 +8,6 @@ using System.Globalization;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
-using V6ControlManager.FormManager.DanhMucManager;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.txtma_thue = new V6Controls.V6VvarTextBox();
@@ -260,7 +260,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
+            this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -272,24 +272,24 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // v6TabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.v6TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Location = new System.Drawing.Point(1, 155);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(743, 384);
-            this.tabControl1.TabIndex = 1;
+            this.v6TabControl1.Controls.Add(this.tabPage1);
+            this.v6TabControl1.Controls.Add(this.tabPage2);
+            this.v6TabControl1.Controls.Add(this.tabPage3);
+            this.v6TabControl1.Controls.Add(this.tabPage4);
+            this.v6TabControl1.Controls.Add(this.tabPage5);
+            this.v6TabControl1.Controls.Add(this.tabPage6);
+            this.v6TabControl1.Controls.Add(this.tabPage7);
+            this.v6TabControl1.Location = new System.Drawing.Point(1, 155);
+            this.v6TabControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.v6TabControl1.Name = "v6TabControl1";
+            this.v6TabControl1.SelectedIndex = 0;
+            this.v6TabControl1.Size = new System.Drawing.Size(743, 384);
+            this.v6TabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -3875,14 +3875,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.v6TabControl1);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VatTuAddEditForm";
             this.Size = new System.Drawing.Size(745, 540);
             this.Load += new System.EventHandler(this.VatTuFrom_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.v6TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -3918,7 +3918,7 @@
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TabControl tabControl1;
+        private V6Controls.V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label106;
         private System.Windows.Forms.Label label105;

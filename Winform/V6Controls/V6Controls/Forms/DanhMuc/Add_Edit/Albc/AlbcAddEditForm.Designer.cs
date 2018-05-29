@@ -81,7 +81,7 @@
             this.v6ColorTextBox2 = new V6Controls.V6ColorTextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnNhapXML = new System.Windows.Forms.Button();
             this.btnXuatXML = new System.Windows.Forms.Button();
@@ -124,7 +124,7 @@
             this.btnExcelTemplateView = new System.Windows.Forms.Button();
             this.txtExcel2View = new System.Windows.Forms.RichTextBox();
             this.btnExcel2View = new System.Windows.Forms.Button();
-            this.tabControl1.SuspendLayout();
+            this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
@@ -789,15 +789,17 @@
             this.label18.TabIndex = 16;
             this.label18.Text = "Cột không sum";
             // 
-            // tabControl1
+            // v6TabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(3, 184);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(755, 416);
-            this.tabControl1.TabIndex = 37;
+            this.v6TabControl1.Controls.Add(this.tabPage1);
+            this.v6TabControl1.Controls.Add(this.tabPage2);
+            this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
+            this.v6TabControl1.Location = new System.Drawing.Point(3, 184);
+            this.v6TabControl1.Name = "v6TabControl1";
+            this.v6TabControl1.SelectedIndex = 0;
+            this.v6TabControl1.Size = new System.Drawing.Size(755, 416);
+            this.v6TabControl1.TabIndex = 37;
             // 
             // tabPage1
             // 
@@ -831,10 +833,10 @@
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.label15);
             this.tabPage1.Controls.Add(this.label16);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(747, 390);
+            this.tabPage1.Size = new System.Drawing.Size(747, 384);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Định dạng xem và Excel";
             // 
@@ -898,7 +900,7 @@
             this.txtDmethod.Multiline = true;
             this.txtDmethod.Name = "txtDmethod";
             this.txtDmethod.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDmethod.Size = new System.Drawing.Size(586, 74);
+            this.txtDmethod.Size = new System.Drawing.Size(586, 69);
             this.txtDmethod.TabIndex = 21;
             this.txtDmethod.Visible = false;
             // 
@@ -975,10 +977,10 @@
             this.tabPage2.Controls.Add(this.label24);
             this.tabPage2.Controls.Add(this.label22);
             this.tabPage2.Controls.Add(this.lblTenMau);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(747, 390);
+            this.tabPage2.Size = new System.Drawing.Size(747, 384);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Định dạng màu và mở rộng";
             // 
@@ -1424,7 +1426,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.v6TabControl1);
             this.Controls.Add(this.chkRight_YN);
             this.Controls.Add(this.chkInherit_ch);
             this.Controls.Add(this.txtRightUser);
@@ -1460,7 +1462,7 @@
             this.Controls.Add(this.btnExcelTemplateView);
             this.Name = "AlbcAddEditForm";
             this.Size = new System.Drawing.Size(762, 603);
-            this.tabControl1.ResumeLayout(false);
+            this.v6TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -1524,7 +1526,7 @@
         private V6ColorTextBox v6ColorTextBox2;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TabControl tabControl1;
+        private V6Controls.V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private V6ColorTextBox txtFieldV;
