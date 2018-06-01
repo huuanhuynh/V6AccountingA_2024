@@ -1555,7 +1555,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         c.Dock = DockStyle.Fill;
                         c.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
                         {
-                            if (hoadon_nd51 == 1) Invoice.IncreaseSl_inAM(stt_rec);
+                            if (hoadon_nd51 > 0) Invoice.IncreaseSl_inAM(stt_rec);
                             if (!sender.IsDisposed) sender.Dispose();
                         };
                         c.PrintMode = printMode;

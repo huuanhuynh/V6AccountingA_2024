@@ -44,7 +44,6 @@
             this.txtLAN = new V6Controls.V6ColorTextBox();
             this.txtExcel1 = new V6Controls.V6ColorTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.txtExcel2 = new System.Windows.Forms.RichTextBox();
             this.btnExcel2 = new System.Windows.Forms.Button();
             this.txtSTT = new V6Controls.V6NumberTextBox();
@@ -124,6 +123,8 @@
             this.btnExcelTemplateView = new System.Windows.Forms.Button();
             this.txtExcel2View = new System.Windows.Forms.RichTextBox();
             this.btnExcel2View = new System.Windows.Forms.Button();
+            this.txtND51 = new V6Controls.V6NumberTextBox();
+            this.chkCheckPrint = new V6Controls.V6CheckBox();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -150,7 +151,7 @@
             this.label1.Location = new System.Drawing.Point(12, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 13);
-            this.label1.TabIndex = 5;
+            this.label1.TabIndex = 6;
             this.label1.Text = "Tên báo cáo";
             // 
             // txtCaption2
@@ -335,15 +336,6 @@
             this.label6.TabIndex = 16;
             this.label6.Text = "Trường xuất Excel";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(437, 11);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 13);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Cấu hình Excel";
-            // 
             // txtExcel2
             // 
             this.txtExcel2.AccessibleName = "EXCEL2";
@@ -403,7 +395,6 @@
             // 
             // chknd51
             // 
-            this.chknd51.AccessibleName = "ND51";
             this.chknd51.AutoSize = true;
             this.chknd51.Location = new System.Drawing.Point(157, 10);
             this.chknd51.Name = "chknd51";
@@ -411,6 +402,7 @@
             this.chknd51.TabIndex = 2;
             this.chknd51.Text = "Là mẫu hóa đơn";
             this.chknd51.UseVisualStyleBackColor = true;
+            this.chknd51.CheckedChanged += new System.EventHandler(this.chknd51_CheckedChanged);
             // 
             // chkStatus
             // 
@@ -1422,6 +1414,41 @@
             this.btnExcel2View.UseVisualStyleBackColor = true;
             this.btnExcel2View.Click += new System.EventHandler(this.btnExcel2View_Click);
             // 
+            // txtND51
+            // 
+            this.txtND51.AccessibleName = "ND51";
+            this.txtND51.BackColor = System.Drawing.Color.White;
+            this.txtND51.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtND51.DecimalPlaces = 0;
+            this.txtND51.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtND51.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtND51.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtND51.HoverColor = System.Drawing.Color.Yellow;
+            this.txtND51.LeaveColor = System.Drawing.Color.White;
+            this.txtND51.Location = new System.Drawing.Point(700, 129);
+            this.txtND51.Name = "txtND51";
+            this.txtND51.Size = new System.Drawing.Size(41, 20);
+            this.txtND51.TabIndex = 1;
+            this.txtND51.Text = "0";
+            this.txtND51.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtND51.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtND51.Visible = false;
+            // 
+            // chkCheckPrint
+            // 
+            this.chkCheckPrint.AutoSize = true;
+            this.chkCheckPrint.Location = new System.Drawing.Point(407, 10);
+            this.chkCheckPrint.Name = "chkCheckPrint";
+            this.chkCheckPrint.Size = new System.Drawing.Size(61, 17);
+            this.chkCheckPrint.TabIndex = 5;
+            this.chkCheckPrint.Text = "In 1 lần";
+            this.chkCheckPrint.UseVisualStyleBackColor = true;
+            this.chkCheckPrint.CheckedChanged += new System.EventHandler(this.chknd51_CheckedChanged);
+            // 
             // AlbcAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1434,6 +1461,7 @@
             this.Controls.Add(this.chkMauTuIn);
             this.Controls.Add(this.chkPrinterYn);
             this.Controls.Add(this.chkStatus);
+            this.Controls.Add(this.chkCheckPrint);
             this.Controls.Add(this.chknd51);
             this.Controls.Add(this.btnPrinterSelect);
             this.Controls.Add(this.btnExcelTemplate);
@@ -1444,7 +1472,6 @@
             this.Controls.Add(this.txtExcel2View);
             this.Controls.Add(this.txtExcel2);
             this.Controls.Add(this.txtMAU);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -1457,11 +1484,13 @@
             this.Controls.Add(this.txtCaption2);
             this.Controls.Add(this.txtPrinterDef);
             this.Controls.Add(this.txtTitle);
+            this.Controls.Add(this.txtND51);
             this.Controls.Add(this.txtSTT);
             this.Controls.Add(this.txtCaption);
             this.Controls.Add(this.btnExcelTemplateView);
             this.Name = "AlbcAddEditForm";
             this.Size = new System.Drawing.Size(762, 603);
+            this.Load += new System.EventHandler(this.AlbcAddEditForm_Load);
             this.v6TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -1489,7 +1518,6 @@
         private V6ColorTextBox txtLAN;
         private V6ColorTextBox txtExcel1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.RichTextBox txtExcel2;
         private System.Windows.Forms.Button btnExcel2;
         private V6NumberTextBox txtSTT;
@@ -1569,5 +1597,7 @@
         protected System.Windows.Forms.Button btnXuatXML;
         private V6NumberTextBox numRowMax;
         private System.Windows.Forms.Label lblRowMax;
+        private V6NumberTextBox txtND51;
+        private V6CheckBox chkCheckPrint;
     }
 }

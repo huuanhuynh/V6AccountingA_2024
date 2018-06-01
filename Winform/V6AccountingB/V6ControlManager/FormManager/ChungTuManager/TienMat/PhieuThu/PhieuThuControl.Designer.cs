@@ -52,11 +52,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.btnInfos = new System.Windows.Forms.Button();
             this.txtGhiChuChung = new V6Controls.V6ColorTextBox();
             this.txtSoCtKemt = new V6Controls.V6ColorTextBox();
-            this.txtGC_UD3 = new V6Controls.V6ColorTextBox();
+            this.txtGC_UD3 = new V6Controls.V6VvarTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtGC_UD2 = new V6Controls.V6ColorTextBox();
+            this.txtGC_UD2 = new V6Controls.V6VvarTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtGC_UD1 = new V6Controls.V6ColorTextBox();
+            this.txtGC_UD1 = new V6Controls.V6VvarTextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
@@ -2336,9 +2336,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         private V6Label v6Label2;
         private Button btnViewInfoData;
         private Button btnInfos;
-        private V6ColorTextBox txtGC_UD3;
-        private V6ColorTextBox txtGC_UD2;
-        private V6ColorTextBox txtGC_UD1;
+        private V6VvarTextBox txtGC_UD3;
+        private V6VvarTextBox txtGC_UD2;
+        private V6VvarTextBox txtGC_UD1;
         private Label label29;
         private Label label28;
         private Label label27;

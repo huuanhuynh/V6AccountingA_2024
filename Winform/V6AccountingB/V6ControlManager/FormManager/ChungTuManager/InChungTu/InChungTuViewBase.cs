@@ -304,7 +304,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
                     var data = MauInView.ToTable();
-                    result = ObjectAndString.ObjectToInt(data.Rows[cboMauIn.SelectedIndex]["ND51"]) == 1;
+                    result = (ObjectAndString.ObjectToInt(data.Rows[cboMauIn.SelectedIndex]["ND51"]) & 1)>0;
+                }
+                return result;
+            }
+        }
+        
+        private bool IsPlus
+        {
+            get
+            {
+                var result = false;
+                if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                {
+                    var data = MauInView.ToTable();
+                    result = (ObjectAndString.ObjectToInt(data.Rows[cboMauIn.SelectedIndex]["ND51"]) & 2) > 0;
                 }
                 return result;
             }

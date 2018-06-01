@@ -18,7 +18,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             InitializeComponent();
             MyInit1();
-            Ready();
         }
 
         private void MyInit1()
@@ -32,6 +31,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             {
                 Logger.WriteToLog("AlbcAddEdit Init" + ex.Message, Application.ProductName);
             }
+        }
+
+        private bool _ready2 = false;
+        private void AlbcAddEditForm_Load(object sender, EventArgs e)
+        {
+            chknd51.Checked = (1 & (int) txtND51.Value) > 0;
+            chkCheckPrint.Checked = (2 & (int) txtND51.Value) > 0;
+            _ready2 = true;
         }
 
         private void EnablePhanQuyen()
@@ -417,6 +424,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         private void btnNhapXML_Click(object sender, EventArgs e)
         {
             DoImportXml();
+        }
+
+        private void chknd51_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_ready2)
+                {
+                    string binary = chknd51.Checked ? "1" : "0";
+                    binary = (chkCheckPrint.Checked ? "1" : "0") + binary;
+                    int nd51 = Convert.ToInt32(binary, 2);
+                    txtND51.Value = nd51;
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
         }
     }
 }

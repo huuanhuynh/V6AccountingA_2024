@@ -1349,6 +1349,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
     
         private void TinhTienVon1()
         {
+            _soLuong.Value = _soLuong1.Value * _heSo1.Value;
             _tienNt0.Value = V6BusinessHelper.Vround(_soLuong1.Value * _gia_nt01.Value, M_ROUND_NT);
             _tien0.Value = V6BusinessHelper.Vround(_tienNt0.Value * txtTyGia.Value, M_ROUND);
             if (_maNt == _mMaNt0)

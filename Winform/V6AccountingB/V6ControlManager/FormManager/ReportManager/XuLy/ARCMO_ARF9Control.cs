@@ -225,6 +225,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var data2 = row2.ToDataDictionary();
 
                 var sttRec = data1["STT_REC"].ToString().Trim();
+                var sttRec0 = data1["STT_REC0"].ToString().Trim();
                 var tk = data1["TK_I"].ToString().Trim();
                 var dienGiai = data1["DIEN_GIAII"].ToString().Trim();
                 var maCt = data1["MA_CT"].ToString().Trim();
@@ -365,6 +366,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         SqlParameter[] plist =
                         {
                             new SqlParameter("@Stt_rec", sttRec),
+                            new SqlParameter("@Stt_rec0", sttRec0),
                             new SqlParameter("@Stt_rec_tt", sttRecTT),
                             new SqlParameter("@Tk", tk),
                             new SqlParameter("@Dien_giai", dienGiai),
@@ -397,6 +399,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     SqlParameter[] plist =
                     {
                         new SqlParameter("@Stt_rec", sttRec),
+                        new SqlParameter("@Stt_rec0", sttRec0),
                         new SqlParameter("@Stt_rec_tt", sttRecTT),
                         new SqlParameter("@Tk", tk),
                         new SqlParameter("@Dien_giai", dienGiai),
@@ -432,12 +435,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 SortDataGridView2();
 
                 //SortedDictionary<string, DataGridViewRow> row_list = new SortedDictionary<string, DataGridViewRow>();
-
-                foreach (DataGridViewRow row in dataGridView2.Rows)
+                // 31/05/2018 Tuanmh nhieu dong
+                foreach (DataGridViewRow row1 in dataGridView1.Rows)
                 {
-                    PhanBo1(dataGridView1.CurrentRow, row, 1);
-                    //var date_string = ObjectAndString.ObjectToString(row.Cells[order_field].Value, "yyyyMMdd");
-                    //row_list.Add(date_string, row);
+                    if (row1.IsSelect())
+                    {
+                        foreach (DataGridViewRow row in dataGridView2.Rows)
+                        {
+                            PhanBo1(row1, row, 1);
+                            //var date_string = ObjectAndString.ObjectToString(row.Cells[order_field].Value, "yyyyMMdd");
+                            //row_list.Add(date_string, row);
+                        }
+                    }
                 }
 
                 //foreach (KeyValuePair<string, DataGridViewRow> item in row_list)
@@ -740,22 +749,24 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                var row = dataGridView1.CurrentRow;
-                if (row == null) return;
-
-                if (this.ShowConfirmMessage(V6Text.DeleteConfirm) == DialogResult.Yes)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    SqlParameter[] plist =
+                    if(!row.IsSelect()) continue;
+
+                    if (this.ShowConfirmMessage(V6Text.DeleteConfirm) == DialogResult.Yes)
+                    {
+                        SqlParameter[] plist =
                         {
                             new SqlParameter("@Stt_rec", "" + row.Cells["STT_REC"].Value),
                             new SqlParameter("@Ma_ct", "" + row.Cells["MA_CT"].Value),
                             new SqlParameter("@Tk", "" + row.Cells["TK_I"].Value),
                             new SqlParameter("@Ma_kh", "" + row.Cells["MA_KH"].Value),
                         };
-                    V6BusinessHelper.ExecuteProcedure("AArttpbDel", plist);
-                    btnNhan.PerformClick();
-                    V6ControlFormHelper.ShowMainMessage(V6Text.Finish);
+                        V6BusinessHelper.ExecuteProcedure("AArttpbDel", plist);
+                    }
                 }
+                btnNhan.PerformClick();
+                V6ControlFormHelper.ShowMainMessage(V6Text.Finish);
             }
             catch (Exception ex)
             {
