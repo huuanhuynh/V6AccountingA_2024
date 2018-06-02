@@ -112,8 +112,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-             
-
                 if (dataGridView1.DataSource == null || dataGridView2.DataSource == null) return;
 
                 var row1 = dataGridView1.CurrentRow;
@@ -165,7 +163,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             }
                             sum_ttdnnt += tt_dn_nt;
                             sum_ttdn += tt_dn;
-                           
 
                             row2.Cells["tt_dn_nt"].Value = tt_dn_nt;
                             row2.Cells["tt_dn"].Value = tt_dn;
@@ -174,9 +171,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                     }
                 }
-
                // row1.Cells["DA_PB"].Value = sum_ttqd;
-
             }
             catch (Exception ex)
             {
@@ -311,11 +306,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 decimal ttQd = tt_nt_hdqd;
                 
 
-                //if (isAuto == 1)
-                //{
-                    
-                //}
-                //else
                 if(isAuto == 0 || (ma_nt_1 != ma_nt_2 && cl_tt_nt_2 > 0))
                 { 
                     APDMO_F9F3 form = new APDMO_F9F3(data1, data2);
@@ -361,6 +351,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         row2.Cells["TT_DN_NT"].Value = ttDnNt;
                         row2.Cells["TT_DN"].Value = V6BusinessHelper.Vround(ttDnNt * ty_gia_1, V6Options.M_ROUND);
                         row2.Cells["TT_QD"].Value = ttQd;
+                        //Lỗi phân bổ nhiều dòng không cập nhập còn lại 01/06/2018
+                        row2.Cells["CL_TT_NT"].Value = form.txtTienPhaiTra.Value - da_phan_bo;
 
                         SqlParameter[] plist =
                         {
@@ -381,7 +373,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     return form.DialogResult;
                 }
-                else
+                else if (cl_tt_nt_2 > 0)
                 {
                     //Gan lai cho gridview
                     //Cộng thêm đã phân bổ
@@ -391,8 +383,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     //Gán tiền đã phân bổ đợt này.
                     row2.Cells["TT_DN_NT"].Value = ttDnNt;
-                    row2.Cells["TT_DN"].Value = V6BusinessHelper.Vround(ttDnNt * ty_gia_1, V6Options.M_ROUND);
+                    row2.Cells["TT_DN"].Value = V6BusinessHelper.Vround(ttDnNt*ty_gia_1, V6Options.M_ROUND);
                     row2.Cells["TT_QD"].Value = ttQd;
+                    //Lỗi phân bổ nhiều dòng không cập nhập còn lại 01/06/2018
+                    row2.Cells["CL_TT_NT"].Value = ObjectAndString.ObjectToDecimal(row2.Cells["CL_TT_NT"].Value) - ttDnNt;
 
                     SqlParameter[] plist =
                     {
@@ -410,6 +404,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     };
                     V6BusinessHelper.ExecuteProcedureNoneQuery("AApttpbF3", plist);
                     return DialogResult.OK;
+                }
+                else
+                {
+                    return DialogResult.Cancel;
                 }
             }
             catch (Exception ex)

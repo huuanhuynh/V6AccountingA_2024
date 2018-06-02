@@ -26,17 +26,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             {
                 if (!V6Setting.IsVietnamese) NAME_FIELD = "TEN2";
 
-                var select_data = V6BusinessHelper.Select("Alreport", "*", " MA_BC NOT IN (" + NotInList + ")").Data;
+                var select_data = V6BusinessHelper.Select("Alreport", "('['+Rtrim(MA_BC)+']  '+" + NAME_FIELD + ") as MA_TEN, *", " MA_BC NOT IN (" + NotInList + ")").Data;
                 if (select_data.Rows.Count == 0)
                 {
                     this.ShowWarningMessage("NO DATA");
                     return;
                 }
 
-                listBox1.DisplayMember = NAME_FIELD;
+                listBox1.DisplayMember = "MA_TEN";
                 listBox1.ValueMember = ID_FIELD;
                 listBox1.DataSource = select_data;
-                listBox1.DisplayMember = NAME_FIELD;
+                listBox1.DisplayMember = "MA_TEN";
                 listBox1.ValueMember = ID_FIELD;
             }
             catch (Exception ex)

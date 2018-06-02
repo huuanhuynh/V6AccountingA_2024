@@ -20,6 +20,9 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
+    /// <summary>
+    /// Xử lý phân bổ. Phải thu / Cập nhập số liệu / E.Phân bổ tiền hàng...
+    /// </summary>
     public class ARCMO_ARF9Control : XuLyBase
     {
         private void InitializeComponent()
@@ -362,6 +365,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         row2.Cells["TT_DN_NT"].Value = ttDnNt;
                         row2.Cells["TT_DN"].Value = V6BusinessHelper.Vround(ttDnNt * ty_gia_1, V6Options.M_ROUND);
                         row2.Cells["TT_QD"].Value = ttQd;
+                        //Lỗi phân bổ nhiều dòng không cập nhập còn lại 01/06/2018
+                        row2.Cells["CL_TT_NT"].Value = form.txtTienPhaiTra.Value - da_phan_bo;
 
                         SqlParameter[] plist =
                         {
@@ -383,7 +388,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     return form.DialogResult;
                 }
-                else
+                else if (cl_tt_nt_2 > 0)
                 {
                     //Gan lai cho gridview
                     //Cộng thêm đã phân bổ
@@ -393,8 +398,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     //Gán tiền đã phân bổ đợt này.
                     row2.Cells["TT_DN_NT"].Value = ttDnNt;
-                    row2.Cells["TT_DN"].Value = V6BusinessHelper.Vround(ttDnNt * ty_gia_1, V6Options.M_ROUND);
+                    row2.Cells["TT_DN"].Value = V6BusinessHelper.Vround(ttDnNt*ty_gia_1, V6Options.M_ROUND);
                     row2.Cells["TT_QD"].Value = ttQd;
+                    //Lỗi phân bổ nhiều dòng không cập nhập còn lại 01/06/2018
+                    row2.Cells["CL_TT_NT"].Value = ObjectAndString.ObjectToDecimal(row2.Cells["CL_TT_NT"].Value) - ttDnNt;
 
                     SqlParameter[] plist =
                     {
@@ -413,6 +420,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     };
                     V6BusinessHelper.ExecuteProcedureNoneQuery("AArttpbF3", plist);
                     return DialogResult.OK;
+                }
+                else
+                {
+                    return DialogResult.Cancel;
                 }
             }
             catch (Exception ex)
@@ -749,21 +760,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                if (this.ShowConfirmMessage(V6Text.DeleteConfirm) != DialogResult.Yes) return;
+
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    if(!row.IsSelect()) continue;
-
-                    if (this.ShowConfirmMessage(V6Text.DeleteConfirm) == DialogResult.Yes)
+                    if (!row.IsSelect()) continue;
+                    
+                    SqlParameter[] plist =
                     {
-                        SqlParameter[] plist =
-                        {
-                            new SqlParameter("@Stt_rec", "" + row.Cells["STT_REC"].Value),
-                            new SqlParameter("@Ma_ct", "" + row.Cells["MA_CT"].Value),
-                            new SqlParameter("@Tk", "" + row.Cells["TK_I"].Value),
-                            new SqlParameter("@Ma_kh", "" + row.Cells["MA_KH"].Value),
-                        };
-                        V6BusinessHelper.ExecuteProcedure("AArttpbDel", plist);
-                    }
+                        new SqlParameter("@Stt_rec", "" + row.Cells["STT_REC"].Value),
+                        new SqlParameter("@Ma_ct", "" + row.Cells["MA_CT"].Value),
+                        new SqlParameter("@Tk", "" + row.Cells["TK_I"].Value),
+                        new SqlParameter("@Ma_kh", "" + row.Cells["MA_KH"].Value),
+                    };
+                    V6BusinessHelper.ExecuteProcedure("AArttpbDel", plist);
                 }
                 btnNhan.PerformClick();
                 V6ControlFormHelper.ShowMainMessage(V6Text.Finish);
