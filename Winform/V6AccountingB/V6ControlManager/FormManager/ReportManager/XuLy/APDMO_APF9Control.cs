@@ -429,20 +429,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 SortDataGridView2();
 
-                //SortedDictionary<string, DataGridViewRow> row_list = new SortedDictionary<string, DataGridViewRow>();
-
-                foreach (DataGridViewRow row in dataGridView2.Rows)
+                foreach (DataGridViewRow row1 in dataGridView1.Rows)
                 {
-                    PhanBo1(dataGridView1.CurrentRow, row, 1);
-                    //var date_string = ObjectAndString.ObjectToString(row.Cells[order_field].Value, "yyyyMMdd");
-                    //row_list.Add(date_string, row);
+                    if (row1.IsSelect())
+                    {
+                        foreach (DataGridViewRow row in dataGridView2.Rows)
+                        {
+                            PhanBo1(dataGridView1.CurrentRow, row, 1);
+                            //var date_string = ObjectAndString.ObjectToString(row.Cells[order_field].Value, "yyyyMMdd");
+                            //row_list.Add(date_string, row);
+                        }
+                    }
                 }
-
-                //foreach (KeyValuePair<string, DataGridViewRow> item in row_list)
-                //{
-                //    PhanBo1(dataGridView1.CurrentRow, item.Value, 1);
-                //}
-
+                
                 btnNhan.PerformClick();
 
                 if (_pbtd_errors.Length > 0)
@@ -744,22 +743,24 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                var row = dataGridView1.CurrentRow;
-                if (row == null) return;
+                if (this.ShowConfirmMessage(V6Text.DeleteConfirm) != DialogResult.Yes) return;
 
-                if (this.ShowConfirmMessage(V6Text.DeleteConfirm) == DialogResult.Yes)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
+                    if (!row.IsSelect()) continue;
+
                     SqlParameter[] plist =
-                        {
-                            new SqlParameter("@Stt_rec", "" + row.Cells["STT_REC"].Value),
-                            new SqlParameter("@Ma_ct", "" + row.Cells["MA_CT"].Value),
-                            new SqlParameter("@Tk", "" + row.Cells["TK_I"].Value),
-                            new SqlParameter("@Ma_kh", "" + row.Cells["MA_KH"].Value),
-                        };
+                    {
+                        new SqlParameter("@Stt_rec", "" + row.Cells["STT_REC"].Value),
+                        new SqlParameter("@Ma_ct", "" + row.Cells["MA_CT"].Value),
+                        new SqlParameter("@Tk", "" + row.Cells["TK_I"].Value),
+                        new SqlParameter("@Ma_kh", "" + row.Cells["MA_KH"].Value),
+                    };
                     V6BusinessHelper.ExecuteProcedure("AApttpbDel", plist);
-                    btnNhan.PerformClick();
-                    V6ControlFormHelper.ShowMainMessage(V6Text.Finish);
                 }
+                
+                btnNhan.PerformClick();
+                V6ControlFormHelper.ShowMainMessage(V6Text.Finish);
             }
             catch (Exception ex)
             {

@@ -637,7 +637,7 @@ namespace V6Tools.V6Export
         /// <param name="saveFile">Tên tập tin sẽ lưu, không được trùng với file mẫu</param>
         /// <param name="firstCell">Vị trí ô bắt đầu điền dữ liệu vd: A2.</param>
         /// <param name="columns">Danh sách cột dữ liệu sẽ lấy, null nếu lấy hết.</param>
-        /// <param name="headers">Tiêu đề cột</param>
+        /// <param name="headers">Tiêu đề cột. null hoặc rỗng sẽ bỏ qua.</param>
         /// <param name="parameters">Giá trị theo vị trí trong excel. Với key là vị trí vd: A1</param>
         /// <param name="nfi">Thông tin định dạng kiểu số</param>
         /// <param name="drawLine">Vẽ đường kẻ lên dữ liệu</param>
@@ -678,19 +678,96 @@ namespace V6Tools.V6Export
                 }
 
                 SetParametersAddressFormat(workbook, parameters);
-
-                //var endRow = startRow + data.Rows.Count - (data.Rows.Count > 0 ? 1 : 0);
-                //int endCol;// startCol + data.Columns.Count - 1;
-
+                
                 ImportDataTable(workbook, data, columns, rowInsert, false, drawLine, startRow, startCol, -1, -1);
 
                 //Nếu rowIndex = 0 thì chèn thêm một dòng
-                if (startRow == 0)
+                if (headers != null && headers.Length > 0)
                 {
-                    workbook.insertRange(startRow, startCol, startRow, startCol + headers.Length - 1, WorkBook.ShiftRows);
+                    if (startRow == 0)
+                    {
+                        workbook.insertRange(startRow, startCol, startRow, startCol + headers.Length - 1, WorkBook.ShiftRows);
+                    }
+                    SetHeaders(workbook, headers, startRow, startCol, drawLine);
                 }
-                SetHeaders(workbook, headers, startRow, startCol, drawLine);
+
+                var a = workbook.write(saveFile);
+                workbook.Dispose();
+                return true;//a false nhưng vẫn lưu file thành công???
+
+            }
+            catch (Exception ex)
+            {
+                Message = "Data_Table ToExcelTemplate " + ex.Message;
+                workbook.Dispose();
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Xuất hai bảng dữ liệu có liên kết 1 nhiều ra file excel đè lên mẫu có sẵn.
+        /// </summary>
+        /// <param name="xlsTemplateFile">File Excel mẫu</param>
+        /// <param name="data1">Dữ liệu bảng 1 (chính/AM)</param>
+        /// <param name="data2">Dữ liệu bảng nhiều</param>
+        /// <param name="saveFile">Tên tập tin sẽ lưu, không được trùng với file mẫu</param>
+        /// <param name="firstCell">Vị trí ô bắt đầu điền dữ liệu vd: A2.</param>
+        /// <param name="columns1">Danh sách cột dữ liệu sẽ lấy ở bảng 1 (A:Field,B:Field2).</param>
+        /// <param name="columns2">Danh sách cột dữ liệu sẽ lấy ở bảng 2 (A:Field,B:Field2).</param>
+        /// <param name="headers">Tiêu đề cột. null hoặc rỗng sẽ bỏ qua.</param>
+        /// <param name="parameters">Giá trị theo vị trí trong excel. Với key là vị trí vd: A1</param>
+        /// <param name="nfi">Thông tin định dạng kiểu số</param>
+        /// <param name="drawLine">Vẽ đường kẻ lên dữ liệu</param>
+        /// <param name="rowInsert">Chèn dữ liệu vào vị trí chèn, đẩy dòng xuống.</param>
+        /// <returns></returns>
+        public static bool ToExcelTemplateGroup(string xlsTemplateFile, DataTable data1, DataTable data2, string saveFile,
+            string firstCell, string[] columns1, string[] columns2, string[] headers, SortedDictionary<string, object> parameters,
+            NumberFormatInfo nfi, bool rowInsert = false, bool drawLine = false)
+        {
+            Message = "";
+            //if (!File.Exists(xlsTemplateFile)) throw new Exception("Không tồn tại: " + xlsTemplateFile);
+            var workbook = new WorkBook();
+            workbook.setDefaultFont("Arial", 10 * 20, 1);
+            try
+            {
+                if (File.Exists(xlsTemplateFile))
+                    workbook = ReadWorkBookCopy(xlsTemplateFile, saveFile);
+
+                //select sheet
+                int sheetIndex = 0;
+                workbook.Sheet = sheetIndex;
+                int sheetCount = workbook.NumSheets;
+                string sheetName = workbook.getSheetName(sheetIndex);
+                string t;
+
+                int startRow = 1, startCol = 0;
+                int lastRow = workbook.LastRow;//Dòng cuối cùng có dữ liệu của sheet
+                int lastCol = workbook.LastCol;
+                if (string.IsNullOrEmpty(firstCell))
+                {
+                    startRow = lastRow + 1;
+                    startCol = 0;
+                }
+                else
+                {
+                    startRow = GetExcelRow(firstCell);
+                    startCol = GetExcelColumn(firstCell);
+                }
+
+                SetParametersAddressFormat(workbook, parameters);
                 
+                //Chưa hoàn tất, cần viết lại hàm, xem lại hàm này để viết lại.
+                //ImportDataTable(workbook, data, columns, rowInsert, false, drawLine, startRow, startCol, -1, -1);
+
+                //Nếu rowIndex = 0 thì chèn thêm một dòng
+                if (headers != null && headers.Length > 0)
+                {
+                    if (startRow == 0)
+                    {
+                        workbook.insertRange(startRow, startCol, startRow, startCol + headers.Length - 1, WorkBook.ShiftRows);
+                    }
+                    SetHeaders(workbook, headers, startRow, startCol, drawLine);
+                }
 
                 var a = workbook.write(saveFile);
                 workbook.Dispose();

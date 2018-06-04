@@ -1447,6 +1447,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl, _tbl2, ReportDocumentParameters,
                 MAU, LAN, ReportFile, ExcelTemplateFileFull, ReportTitle);
         }
+        private void exportToExcelGroup_Click(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl, _tbl2, ReportDocumentParameters,
+                MAU, LAN, ReportFile, ExcelTemplateFileFull, ReportTitle);
+        }
 
         private void exportToXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
