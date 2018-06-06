@@ -923,8 +923,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             // TxtL_AM_INFO
             // 
             this.TxtL_AM_INFO.AccessibleName = "L_AM_INFO";
-            this.TxtL_AM_INFO.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtL_AM_INFO.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtL_AM_INFO.BackColor = System.Drawing.Color.White;
             this.TxtL_AM_INFO.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -934,10 +933,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.TxtL_AM_INFO.GrayText = "L_AM_INFO";
             this.TxtL_AM_INFO.HoverColor = System.Drawing.Color.Yellow;
             this.TxtL_AM_INFO.LeaveColor = System.Drawing.Color.White;
-            this.TxtL_AM_INFO.Location = new System.Drawing.Point(579, 74);
+            this.TxtL_AM_INFO.Location = new System.Drawing.Point(732, 31);
             this.TxtL_AM_INFO.Margin = new System.Windows.Forms.Padding(5);
             this.TxtL_AM_INFO.Name = "TxtL_AM_INFO";
-            this.TxtL_AM_INFO.Size = new System.Drawing.Size(288, 20);
+            this.TxtL_AM_INFO.Size = new System.Drawing.Size(136, 20);
             this.TxtL_AM_INFO.TabIndex = 159;
             // 
             // Txtma_td_ph
@@ -1208,7 +1207,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.txtGC_UD1.Location = new System.Drawing.Point(381, 74);
             this.txtGC_UD1.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_UD1.Name = "txtGC_UD1";
-            this.txtGC_UD1.Size = new System.Drawing.Size(195, 20);
+            this.txtGC_UD1.Size = new System.Drawing.Size(486, 20);
             this.txtGC_UD1.TabIndex = 9;
             // 
             // label1

@@ -1787,7 +1787,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     {
                         try
                         {
-                            rpDoc.PrintToPrinter(1, false, 1, 1);
+                            if (IsInvoice)
+                            {
+                                rpDoc.PrintToPrinter(1, false, 1, 1);
+                            }
+                            else
+                            {
+                                rpDoc.PrintToPrinter(1, false, 0, 0);
+                            }
                             intDaGuiDenMayIn++;
                         }
                         catch (Exception ex)
@@ -1798,7 +1805,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         if (_soLienIn > 1)
                             try
                             {
-                                rpDoc2.PrintToPrinter(1, false, 1, 1);
+                                if (IsInvoice)
+                                {
+                                    rpDoc2.PrintToPrinter(1, false, 1, 1);
+                                }
+                                else
+                                {
+                                    rpDoc2.PrintToPrinter(1, false, 0, 0);
+                                }
                                 intDaGuiDenMayIn++;
                             }
                             catch (Exception ex)
@@ -1809,7 +1823,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         {
                             try
                             {
-                                rpDoc3.PrintToPrinter(1, false, 1, 1);
+                                if (IsInvoice)
+                                {
+                                    rpDoc3.PrintToPrinter(1, false, 1, 1);
+                                }
+                                else
+                                {
+                                    rpDoc3.PrintToPrinter(1, false, 0, 0);
+                                }
                                 intDaGuiDenMayIn++;
                             }
                             catch (Exception ex)
@@ -1821,7 +1842,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         {
                             try
                             {
-                                rpDoc4.PrintToPrinter(1, false, 1, 1);
+                                if (IsInvoice)
+                                {
+                                    rpDoc4.PrintToPrinter(1, false, 1, 1);
+                                }
+                                else
+                                {
+                                    rpDoc4.PrintToPrinter(1, false, 0, 0);
+                                }
                                 intDaGuiDenMayIn++;
                             }
                             catch (Exception ex)

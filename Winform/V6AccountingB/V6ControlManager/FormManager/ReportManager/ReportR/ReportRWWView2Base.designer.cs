@@ -76,6 +76,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             this.btnSuaLine = new V6Controls.Controls.V6FormButton();
+            this.exportToExcelGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -89,13 +90,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportToExcelTemplate,
+            this.exportToExcelGroupToolStripMenuItem,
             this.exportToExcelView,
             this.exportToExcel,
             this.exportToXmlToolStripMenuItem,
             this.printGrid,
             this.viewDataToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 180);
             // 
             // exportToExcelTemplate
             // 
@@ -557,6 +559,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnSuaLine.UseVisualStyleBackColor = true;
             this.btnSuaLine.Click += new System.EventHandler(this.btnSuaLine_Click);
             // 
+            // exportToExcelGroupToolStripMenuItem
+            // 
+            this.exportToExcelGroupToolStripMenuItem.Name = "exportToExcelGroupToolStripMenuItem";
+            this.exportToExcelGroupToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.exportToExcelGroupToolStripMenuItem.Text = "Export to Excel (group)";
+            this.exportToExcelGroupToolStripMenuItem.Visible = false;
+            this.exportToExcelGroupToolStripMenuItem.Click += new System.EventHandler(this.exportToExcelGroupToolStripMenuItem_Click);
+            // 
             // ReportRWWView2Base
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -639,6 +649,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private GridViewSummary gridViewSummary1;
         private System.Windows.Forms.ToolStripMenuItem exportToExcelView;
         private V6FormButton btnSuaLine;
+        private System.Windows.Forms.ToolStripMenuItem exportToExcelGroupToolStripMenuItem;
 
 
 

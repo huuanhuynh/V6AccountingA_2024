@@ -2023,6 +2023,7 @@ namespace GSM
                 if (o0 == "45203") o1 = "Gmobile";
                 if (o0 == "45204") o1 = "Viettel";
                 if (o0 == "45205") o1 = "Vietnamobile";
+                if (",vinaphone,mobifone,viettel,vietnamobile,gmobile,".Contains(o0.ToLower())) o1 = o0;
 
                 _operator = o1;
                 
@@ -2058,7 +2059,7 @@ namespace GSM
             //+CSQ: 4,0
             //\d la so . la chuoi "" la dau "
             //+COPS: 0,0,\"45204\"
-            Regex r = new Regex(@"(\d+),(\d+),""(\d+)""");
+            Regex r = new Regex(@"(\d+),(\d+),""(.+)""");
             Match m = r.Match(info);
             if (m.Success)
             {

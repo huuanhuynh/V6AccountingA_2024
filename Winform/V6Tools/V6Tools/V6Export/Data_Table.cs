@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using NPOI.HPSF;
 using NPOI.HSSF.UserModel;
 using NPOI.POIFS.FileSystem;
@@ -45,15 +47,15 @@ namespace V6Tools.V6Export
         /// <summary>
         /// Lấy index cột trong địa chỉ ô excel. vd: A1 là cột 0
         /// </summary>
-        /// <param name="A1"></param>
+        /// <param name="A1">Địa chỉ ô excel, Chỉ cột thôi cũng được. vd A1 hoặc A</param>
         /// <returns></returns>
         private static int GetExcelColumn(string A1)
         {
             int startIndex = A1.IndexOfAny("0123456789".ToCharArray());
-            string str = A1.Substring(0, startIndex).ToUpper();
-                        
-            if (string.IsNullOrEmpty(str)) throw new Exception("Không có giá trị!");
-            if (str.Length > 2) throw new Exception("Quá dài!");
+            string str = A1.Substring(0, startIndex > 0 ? startIndex : A1.Length).ToUpper();
+
+            if (string.IsNullOrEmpty(str)) throw new Exception("GetExcelColumn: Không có giá trị!");
+            if (str.Length > 2) throw new Exception("GetExcelColumn: Quá dài!");
 
             str = str.ToUpper();
             if (str.Length == 1)
@@ -61,7 +63,7 @@ namespace V6Tools.V6Export
 
             const int max = ('Z' - 'A' + 1) * ('I' - 'A' + 1) + ('V' - 'A');
             var result = ('Z' - 'A' + 1) * (str[0] - 'A' + 1) + (str[1] - 'A');
-            if (result > max) throw new Exception("Giá trị lớn nhất là IV = " + max + ". (A=0)");
+            if (result > max) throw new Exception("GetExcelColumn: Giá trị lớn nhất là IV = " + max + ". (A=0)");
             return result;
         }
 
@@ -249,6 +251,409 @@ namespace V6Tools.V6Export
 
             
         }
+
+
+        private class ColumnInfo
+        {
+            public ColumnInfo(DataColumn dataColumn)
+            {
+                _dataColumn = dataColumn;
+            }
+
+            private DataColumn _dataColumn;
+            public int MergeFrom;
+            public int MergeTo;
+            public bool IsMerge { get { return MergeTo > MergeFrom; } }
+            public int ExcelColumnIndex { get { return MergeFrom; } private set { MergeFrom = value; } }
+            public string ColumnName { get { return _dataColumn.ColumnName; } }
+            public Type DataType { get { return _dataColumn.DataType; } }
+
+            /// <summary>
+            /// Chỉ định cột Excel.
+            /// </summary>
+            /// <param name="A">A hoặc A+B hoặc B+D</param>
+            public void SetExcelColumn(string A)
+            {
+                if (string.IsNullOrEmpty(A))
+                {
+                    MergeFrom = 0;
+                    MergeTo = 0;
+                }
+                else
+                {
+                    if (A.Contains("+"))
+                    {
+                        var ss = A.Split("+".ToCharArray(), 2);
+                        MergeFrom = GetExcelColumn(ss[0]);
+                        MergeTo = GetExcelColumn(ss[1]);
+                    }
+                    else
+                    {
+                        MergeFrom = GetExcelColumn(A);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Hàm chưa hoàn thành.
+        /// </summary>
+        /// <param name="workBook"></param>
+        /// <param name="data"></param>
+        /// <param name="data2"></param>
+        /// <param name="keys"></param>
+        /// <param name="columns1">Thông tin trường (cột) dòng chính.</param>
+        /// <param name="columns2">Thông tin trường (cột) các dòng chi tiết.</param>
+        /// <param name="columns3">Thông tin dòng tổng của mối nhóm.</param>
+        /// <param name="isShiftRows">Chèn thêm dòng cho vùng dữ liệu.</param>
+        /// <param name="isFieldNameShown"></param>
+        /// <param name="drawLine"></param>
+        /// <param name="firstRow"></param>
+        /// <param name="firstColumn"></param>
+        /// <param name="maxRows"></param>
+        /// <param name="maxColumns"></param>
+        /// <param name="autoColWidth"></param>
+        /// <param name="bPreserveTypes"></param>
+        private static void ImportDataGroup(
+            WorkBook workBook, DataTable data, DataTable data2, string[] keys, string[] columns1, string[] columns2, string[] columns3,
+            bool isShiftRows, bool isFieldNameShown, bool drawLine,
+            int firstRow, int firstColumn,
+            int maxRows, int maxColumns,
+            //IList<DataColumn> arrColumns = null,
+            bool autoColWidth = false, bool bPreserveTypes = true)
+        {
+            if (data == null)
+                throw new ArgumentNullException("data");
+
+            
+
+            //var use_arr_cols = columns != null && columns.Length > 0;
+            var columnDic1 = new SortedDictionary<int, ColumnInfo>(); //Thay đổi kiểu để nhận biết vị trí.
+            var columnDic2 = new SortedDictionary<int, ColumnInfo>();
+            var columnDic3 = new SortedDictionary<int, ColumnInfo>();
+            
+            foreach (string index_field in columns1)
+            {
+                string[] ss = index_field.Split(new []{':'}, 2, StringSplitOptions.RemoveEmptyEntries);
+                if(ss.Length < 2) throw new Exception("columns1 không đủ thông tin. Mẫu: A:MA_VT hoặc A+B:MA_VT");
+                if (data.Columns.Contains(ss[1]))
+                {
+                    ColumnInfo ci = new ColumnInfo(data.Columns[ss[1]]);
+                    ci.SetExcelColumn(ss[0]);
+                    if(columnDic1.ContainsKey(ci.ExcelColumnIndex)) throw new Exception("columns1 trùng cột.");
+                    columnDic1.Add(ci.ExcelColumnIndex, ci);
+                }
+            }
+
+            foreach (string index_field in columns2)
+            {
+                string[] ss = index_field.Split(new[] { ':' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                if (ss.Length < 2) throw new Exception("columns1 không đủ thông tin. Mẫu: A:MA_VT hoặc A+B:MA_VT");
+                if (data2.Columns.Contains(ss[1]))
+                {
+                    ColumnInfo ci = new ColumnInfo(data2.Columns[ss[1]]);
+                    ci.SetExcelColumn(ss[0]);
+                    if (columnDic2.ContainsKey(ci.ExcelColumnIndex)) throw new Exception("columns1 trùng cột.");
+                    columnDic2.Add(ci.ExcelColumnIndex, ci);
+                }
+            }
+
+            foreach (string index_field in columns3)
+            {
+                string[] ss = index_field.Split(new[] { ':' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                if (ss.Length < 2) throw new Exception("columns1 không đủ thông tin. Mẫu: A:MA_VT hoặc A+B:MA_VT");
+                if (data.Columns.Contains(ss[1]))
+                {
+                    ColumnInfo ci = new ColumnInfo(data.Columns[ss[1]]);
+                    ci.SetExcelColumn(ss[0]);
+                    if (columnDic3.ContainsKey(ci.ExcelColumnIndex)) throw new Exception("columns1 trùng cột.");
+                    columnDic3.Add(ci.ExcelColumnIndex, ci);
+                }
+            }
+
+            //var numOfRows = data.Rows.Count;
+
+            var numOfColumns1 = columnDic1.Count;
+            var numOfColumns2 = columnDic2.Count;
+            if (numOfColumns1 < 1)
+            {
+                throw new Exception("ExportExcel Column error.");
+            }
+
+            // Tạo biến
+            int lastColumnIndex1 = columnDic1.Last().Key;
+            int lastColumnIndex2 = columnDic2.Last().Key;
+            int lastColumnIndex3 = columnDic3.Last().Key;
+            int lastColumnIndex = lastColumnIndex1;
+            if (lastColumnIndex2 > lastColumnIndex) lastColumnIndex = lastColumnIndex2;
+            if (lastColumnIndex3 > lastColumnIndex) lastColumnIndex = lastColumnIndex3;
+
+            //if (maxRows > 0 && numOfRows > maxRows)
+            //    numOfRows = maxRows;
+
+            //if (maxColumns > 0 && numOfColumns1 > maxColumns)
+            //    numOfColumns1 = maxColumns;
+
+
+            #region === Điền tên cột ===
+
+            if (isFieldNameShown)
+            {
+                //Nếu hiện tên cột thì chèn thêm một dòng
+                workBook.insertRange(firstRow, firstColumn, firstRow, firstColumn + numOfColumns1 - 1,
+                    WorkBook.ShiftRows);
+                //if (use_arr_cols)
+                {
+                    for (int i = 0; i < numOfColumns1; i++)
+                    {
+                        workBook.setText(firstRow, i + firstColumn, columnDic1[i].ColumnName);
+                    }
+                }
+                firstRow++;
+            }
+
+            #endregion điền tên cột
+
+            // ImportData
+            DataView data2view = new DataView(data2);
+            // Số lượng dòng đã import.
+            int importRowCount = 0;
+            int row1Index = 0;
+            // Duyệt qua từng dòng
+            foreach (DataRow row1 in data.Rows)
+            {
+                int importRowCurrentIndex = firstRow + importRowCount;
+
+                #region ==== Điền dòng chính (nếu có) ====================================================================================================
+
+                if (columnDic1.Count > 0)
+                {
+                    RangeStyle rs = isShiftRows ?
+                        InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex) :
+                        workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                    SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                    ImportDataRow(workBook, row1, importRowCurrentIndex, columnDic1);
+                    importRowCount++;
+                    importRowCurrentIndex++;
+                }
+                
+                #endregion //Điền xong 1 dòng chính
+
+                #region ==== Điền các dòng chi tiết ========================================================================================================
+
+                string filter = "";
+                foreach (string field in keys)
+                {
+                    filter += string.Format("and [{0}] = {1}", field, GenFilterValue(row1[field], false));
+                }
+                filter = filter.Substring(4);
+                data2view.RowFilter = filter;
+                DataTable data2filter = data2view.ToTable();
+                // ==== Duyệt qua từng dòng chi tiết ====
+                foreach (DataRow row2 in data2filter.Rows)
+                {
+                    RangeStyle rs = isShiftRows ?
+                        InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex) :
+                        workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                    SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                    ImportDataRow(workBook, row2, importRowCurrentIndex, columnDic2);
+                    importRowCount++;
+                    importRowCurrentIndex++;
+                }
+
+                #endregion// Điền xong các dòng chi tiết
+
+                #region ==== Tiếp tục dòng tổng nếu có. ========================================================================================================
+
+                if (columnDic3.Count > 0)
+                {
+                    RangeStyle rs = isShiftRows ?
+                        InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex) :
+                        workBook.getRangeStyle(importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                    SetBorderRange(workBook, rs, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex);
+                    ImportDataRow(workBook, row1, importRowCurrentIndex, columnDic3);
+                    importRowCount++;
+                    importRowCurrentIndex++;
+                }
+                #endregion// Kết thúc dòng tổng.
+
+                
+                row1Index++;
+            } //end for row1
+            //if (autoColWidth) workBook.setColWidthAutoSize(columnIndex, true);
+        }
+
+        private static RangeStyle SetBorderRange(WorkBook workBook, RangeStyle range,
+            int startRow, int startCol, int endRow, int endColumn,
+            bool top = true, bool bottom = true, bool left = true, bool right = true,
+            bool horizontal = true, bool vertical = true)
+        {
+            //var startRow = firstRow - (isFieldNameShown ? 1 : 0);
+            //var startCol = firstColumn;
+            //var endRow = startRow + numOfRows - (isFieldNameShown ? 0 : 1);
+            //var endCol = startCol + numOfColumns1 - 1;
+            
+            //RangeStyle rangeStyle = workBook.getRangeStyle(startRow, startCol, endRow, endCol);
+            range.LeftBorder = left ? RangeStyle.BorderThin : RangeStyle.BorderNone;
+            range.RightBorder = right ? RangeStyle.BorderThin : RangeStyle.BorderNone;
+            range.TopBorder = top ? RangeStyle.BorderThin : RangeStyle.BorderNone;
+            range.BottomBorder = bottom ? RangeStyle.BorderThin : RangeStyle.BorderNone;
+            range.HorizontalInsideBorder = horizontal ? RangeStyle.BorderThin : RangeStyle.BorderNone;
+            range.VerticalInsideBorder = vertical ? RangeStyle.BorderThin : RangeStyle.BorderNone;
+
+            workBook.setRangeStyle(range, startRow, startCol, endRow, endColumn);
+            return range;
+        }
+
+        /// <summary>
+        /// Thêm vùng và reset format vùng đó.
+        /// </summary>
+        /// <param name="workBook"></param>
+        /// <param name="startRow"></param>
+        /// <param name="startCol"></param>
+        /// <param name="endRow"></param>
+        /// <param name="endColumn"></param>
+        private static RangeStyle InsertRange(WorkBook workBook, int startRow, int startCol, int endRow, int endColumn)
+        {
+            workBook.insertRange(startRow, startRow, endRow, endColumn, WorkBook.ShiftRows);
+            RangeStyle rangeStyle = workBook.getRangeStyle(startRow, startCol, endRow, endColumn);
+            ResetRangeStyleFormat(rangeStyle);
+            workBook.setRangeStyle(rangeStyle, startRow, startCol, endRow, endColumn);
+            return rangeStyle;
+        }
+
+        private static void ImportDataRow(WorkBook workBook, DataRow row1, int importRowIndex, SortedDictionary<int, ColumnInfo> arrColumns1)
+        {
+            try
+            {
+                foreach (KeyValuePair<int, ColumnInfo> item in arrColumns1)
+                {
+                    var column = item.Value;
+                    //var type = column.DataType;
+                    //var field = column.ColumnName;
+                    //int columnIndex = index_column.Key;
+
+                    RangeStyle rs = workBook.getRangeStyle(importRowIndex, column.ExcelColumnIndex, importRowIndex, column.ExcelColumnIndex);
+                    //Merge
+                    if (column.IsMerge)
+                    {
+                        RangeStyle rsM = workBook.getRangeStyle(importRowIndex, column.ExcelColumnIndex, importRowIndex, column.MergeTo);
+                        rsM.MergeCells = true;
+                        rsM.LeftBorder = RangeStyle.BorderThin;
+                        rsM.RightBorder = RangeStyle.BorderThin;
+                        rsM.TopBorder = RangeStyle.BorderThin;
+                        rsM.BottomBorder = RangeStyle.BorderThin;
+                        workBook.setRangeStyle(rsM, importRowIndex, column.ExcelColumnIndex, importRowIndex, column.MergeTo);
+                    }
+
+                    if (column.DataType == typeof(DateTime))
+                    {
+                        
+                        var systemFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
+                        rs.CustomFormat = systemFormat; // "dd/mm/yyyy"; // excel format
+                        // Áp định dạng.
+                        workBook.setRangeStyle(rs, importRowIndex, column.ExcelColumnIndex, importRowIndex, column.ExcelColumnIndex);
+
+                        var date_string = ObjectAndString.ObjectToString(row1[column.ColumnName], systemFormat);
+                        if (date_string != null)
+                        {
+                            workBook.setEntry(importRowIndex, column.ExcelColumnIndex, date_string);
+                        }
+                        else
+                        {
+                            workBook.setEntry(importRowIndex, column.ExcelColumnIndex, "");
+                        }
+                        //Ap lai format dd/MM/yyyy
+                        rs.CustomFormat = "dd/MM/yyyy";
+                        workBook.setRangeStyle(rs, importRowIndex, column.ExcelColumnIndex, importRowIndex, column.ExcelColumnIndex);
+                        // Sở dĩ thay đổi format là để gán đúng giá trị theo định dạng.
+                        // Đầu tiên gán theo format hệ thống cho excel nhận đúng giá trị.
+                        // Sau đó đổi lại định dạng hiển thị riêng.
+                    }
+                    else if (ObjectAndString.IsNumberType(column.DataType))
+                    {
+                        // Áp định dạng canh phải cho kiểu số
+                        rs.HorizontalAlignment = RangeStyle.HorizontalAlignmentRight;
+                        workBook.setRangeStyle(rs, importRowIndex, column.ExcelColumnIndex, importRowIndex, column.ExcelColumnIndex);
+                        workBook.setNumber(importRowIndex, column.ExcelColumnIndex, ObjectAndString.ToObject<double>(row1[column.ColumnName]));
+                    }
+                    else
+                    {
+                        workBook.setText(importRowIndex, column.ExcelColumnIndex, ObjectAndString.ObjectToString(row1[column.ColumnName]));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteExLog("Data_Table.ImportDataRow", ex, "");
+            }
+        }
+
+        public static string GenFilterValue(object value, bool allowNull, string oper = "=")
+        {
+            string s;
+            bool like = oper == "like";
+            bool start = oper == "start";
+            if (value != null)
+            {
+                switch (value.GetType().ToString())
+                {
+                    case "System.DateTime":
+                    case "System.DateTime?":
+                    case "System.Nullable`1[System.DateTime]":
+                        try
+                        {
+                            s = "'" + ((DateTime)value)
+                                .ToString("yyyyMMdd") + "'";
+                        }
+                        catch
+                        {
+                            if (allowNull)
+                                s = "null";
+                            else
+                                s = "'" + DateTime.Now.ToString("yyyyMMdd") + "'";
+                        }
+                        break;
+                    case "System.Boolean":
+                        s = (bool)value ? "1" : "0";
+                        break;
+                    case "System.Byte":
+                    case "System.Int16":
+                    case "System.Int32":
+                    case "System.Int64":
+                    case "System.Decimal":
+                    case "System.Double":
+                        try
+                        {
+                            s = value.ToString().Replace(ObjectAndString.SystemDecimalSymbol, ".");
+                        }
+                        catch
+                        {
+                            s = "0";
+                        }
+                        break;
+                    case "System.DBNull":
+                        s = "null";
+                        break;
+                    default:
+                        s = "'" + (like ? "%" : "")
+                            + value.ToString().Trim().Replace("'", "''")
+                            + (like || start ? "%" : "") + "'";
+                        break;
+                }
+            }
+            else if (allowNull)
+            {
+                s = "null";
+            }
+            else
+            {
+                s = "''";
+            }
+
+            return s;
+        }
+
         private static void ResetRangeStyleFormat(RangeStyle range)
         {
             if (range != null)
@@ -710,18 +1115,20 @@ namespace V6Tools.V6Export
         /// <param name="xlsTemplateFile">File Excel mẫu</param>
         /// <param name="data1">Dữ liệu bảng 1 (chính/AM)</param>
         /// <param name="data2">Dữ liệu bảng nhiều</param>
+        /// <param name="keys">Các cột khóa liên kết giữa 2 bảng.</param>
         /// <param name="saveFile">Tên tập tin sẽ lưu, không được trùng với file mẫu</param>
         /// <param name="firstCell">Vị trí ô bắt đầu điền dữ liệu vd: A2.</param>
         /// <param name="columns1">Danh sách cột dữ liệu sẽ lấy ở bảng 1 (A:Field,B:Field2).</param>
         /// <param name="columns2">Danh sách cột dữ liệu sẽ lấy ở bảng 2 (A:Field,B:Field2).</param>
+        /// <param name="columns3">Danh sách cột dữ liệu tổng lấy ở bảng 1 (A:Field,B:Field2).</param>
         /// <param name="headers">Tiêu đề cột. null hoặc rỗng sẽ bỏ qua.</param>
         /// <param name="parameters">Giá trị theo vị trí trong excel. Với key là vị trí vd: A1</param>
         /// <param name="nfi">Thông tin định dạng kiểu số</param>
         /// <param name="drawLine">Vẽ đường kẻ lên dữ liệu</param>
         /// <param name="rowInsert">Chèn dữ liệu vào vị trí chèn, đẩy dòng xuống.</param>
         /// <returns></returns>
-        public static bool ToExcelTemplateGroup(string xlsTemplateFile, DataTable data1, DataTable data2, string saveFile,
-            string firstCell, string[] columns1, string[] columns2, string[] headers, SortedDictionary<string, object> parameters,
+        public static bool ToExcelTemplateGroup(string xlsTemplateFile, DataTable data1, DataTable data2, string[] keys, string saveFile,
+            string firstCell, string[] columns1, string[] columns2, string[] columns3, string[] headers, SortedDictionary<string, object> parameters,
             NumberFormatInfo nfi, bool rowInsert = false, bool drawLine = false)
         {
             Message = "";
@@ -756,8 +1163,8 @@ namespace V6Tools.V6Export
 
                 SetParametersAddressFormat(workbook, parameters);
                 
-                //Chưa hoàn tất, cần viết lại hàm, xem lại hàm này để viết lại.
-                //ImportDataTable(workbook, data, columns, rowInsert, false, drawLine, startRow, startCol, -1, -1);
+                //Chưa hoàn tất.
+                ImportDataGroup(workbook, data1, data2, keys, columns1, columns2, columns3, rowInsert, false, drawLine, startRow, startCol, -1, -1);
 
                 //Nếu rowIndex = 0 thì chèn thêm một dòng
                 if (headers != null && headers.Length > 0)

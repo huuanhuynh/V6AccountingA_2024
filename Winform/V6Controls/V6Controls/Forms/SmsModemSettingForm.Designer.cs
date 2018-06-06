@@ -97,6 +97,7 @@
             this.btnNgatKetNoi.TabIndex = 4;
             this.btnNgatKetNoi.Text = "Ngắt kết nối";
             this.btnNgatKetNoi.UseVisualStyleBackColor = true;
+            this.btnNgatKetNoi.Click += new System.EventHandler(this.btnNgatKetNoi_Click);
             // 
             // SmsModemSettingForm
             // 

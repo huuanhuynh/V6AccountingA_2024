@@ -985,9 +985,16 @@ namespace V6Controls.Forms
 
         #region ==== SEND ====
         public static GSM_Phone SmsModem = new GSM_Phone();
-        public static List<GSM.GSM_Phone> listModem = null;
+        public static Dictionary<string, GSM_Phone> listModem = null;
         public static string SmsModem_SettingPort = "";
-        public static GSM_Phone.SendSmsStatus SendSms(string message, string number, out string returnMessage)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="number"></param>
+        /// <param name="returnMessage"></param>
+        /// <returns>GSM_Phone.SendSmsStatus.OK/ERROR/NONE/UNKNOWN</returns>
+        public static string SendSms(string message, string number, out string returnMessage)
         {
             GSM_Phone.SendSmsStatus result = GSM_Phone.SendSmsStatus.UNKNOWN;
 
@@ -999,7 +1006,7 @@ namespace V6Controls.Forms
             if (SmsModem.GSM_PORT == null || !SmsModem.IsConnected)
             {
                 returnMessage = "Không có kết nối.";
-                return GSM_Phone.SendSmsStatus.ERROR;
+                return GSM_Phone.SendSmsStatus.ERROR.ToString();
             }
 
             if (SmsModem.GSM_PORT != null)
@@ -1034,7 +1041,7 @@ namespace V6Controls.Forms
                 returnMessage = "Chưa kết nối!";
             }
 
-            return result;
+            return result.ToString();
         }
 
         public static bool SendEmail(string sender, string password, string sendto, string subject, string body, params string[] attachments)
@@ -2338,6 +2345,7 @@ namespace V6Controls.Forms
             pt.AllowPrintToFile = false;
             pt.AllowCurrentPage = true;
             pt.AllowSomePages = true;
+            pt.UseEXDialog = true; //Fix win7
             if (pt.ShowDialog(owner) == DialogResult.OK)
             {
                 bool is_printed = PrintRptToPrinter(rpDoc,
@@ -2708,6 +2716,7 @@ namespace V6Controls.Forms
             }
         }
         
+        
         public static void ExportExcelTemplate(IWin32Window owner, DataTable data, DataTable tbl2,
             SortedDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string saveFileName)
@@ -2844,6 +2853,258 @@ namespace V6Controls.Forms
                         if (Data_Table.ToExcelTemplate(
                             ExcelTemplateFileFull, data, saveFileName, firstCell,
                             excelColumns.Replace("[", "").Replace("]", "").Split(excelColumns.Contains(";") ? ';' : ','),
+                            parameters, V6Setting.V6_number_format_info,
+                            insertRow, drawLine))
+                        {
+                            ShowInfoMessage(V6Text.ExportFinish, 500);
+                        }
+                        else
+                        {
+                            ShowInfoMessage(V6Text.ExportFail + Data_Table.Message);
+                        }
+                    }
+                    else
+                    {
+                        ShowWarningMessage("Không lấy được thông tin cấu hình!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var methodInfo = MethodBase.GetCurrentMethod();
+                    var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                    ShowErrorException(address, ex);
+                }
+            }
+            catch (Exception ex)
+            {
+                var methodInfo = MethodBase.GetCurrentMethod();
+                var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                ShowErrorException(address, ex);
+            }
+        }
+
+        /// <summary>
+        /// Xuất Excel ra file theo file mẫu.
+        /// </summary>
+        /// <param name="owner">Form hoặc control chủ đang gọi hàm này.</param>
+        /// <param name="data">Dữ liệu nhóm.</param>
+        /// <param name="data2">Dữ liệu chi tiết.</param>
+        /// <param name="tbl3">Dữ liệu phụ (thông tin) khi type = 2.</param>
+        /// <param name="ReportDocumentParameters">Các tham số gửi vào report, dùng để xuất lên các vị trí được cấu hình xml.</param>
+        /// <param name="MAU">key albc</param>
+        /// <param name="LAN">key albc</param>
+        /// <param name="ReportFile">key albc</param>
+        /// <param name="ExcelTemplateFileFull">File excel mẫu.</param>
+        /// <param name="defaultSaveName">Tên file lưu gợi ý.</param>
+        public static void ExportExcelGroup_ChooseFile(IWin32Window owner, DataTable data, DataTable data2, DataTable tbl3,
+            SortedDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
+            string ReportFile, string ExcelTemplateFileFull, string defaultSaveName)
+        {
+
+            if (data == null)
+            {
+                //ShowTopMessage(V6Text.NoData);
+                return;
+            }
+            try
+            {
+                var save = new SaveFileDialog
+                {
+                    Filter = "Excel files (*.xls)|*.xls|Xlsx|*.xlsx",
+                    Title = "Xuất excel.",
+                    FileName = ChuyenMaTiengViet.ToUnSign(defaultSaveName)
+                };
+                if (save.ShowDialog(owner) == DialogResult.OK)
+                {
+                    ExportExcelGroup(owner, data, data2, tbl3, ReportDocumentParameters, MAU, LAN, ReportFile, ExcelTemplateFileFull, save.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                var methodInfo = MethodBase.GetCurrentMethod();
+                var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                ShowErrorException(address, ex);
+            }
+        }
+
+        /// <summary>
+        /// Xuất Excel có nhóm lên file mẫu
+        /// </summary>
+        /// <param name="owner">Form hoặc control chủ đang gọi hàm này.</param>
+        /// <param name="data">Dữ liệu nhóm.</param>
+        /// <param name="data2">Dữ liệu chi tiết.</param>
+        /// <param name="tbl3">Dữ liệu phụ (thông tin) khi type = 2.</param>
+        /// <param name="ReportDocumentParameters">Các tham số gửi vào report, dùng để xuất lên các vị trí được cấu hình xml.</param>
+        /// <param name="MAU">key albc</param>
+        /// <param name="LAN">key albc</param>
+        /// <param name="ReportFile">key albc</param>
+        /// <param name="ExcelTemplateFileFull">File excel mẫu.</param>
+        /// <param name="saveFileName">Tên file lưu gợi ý.</param>
+        public static void ExportExcelGroup(IWin32Window owner, DataTable data, DataTable data2, DataTable tbl3,
+            SortedDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
+            string ReportFile, string ExcelTemplateFileFull, string saveFileName)
+        {
+            
+            if (data == null)
+            {
+                //ShowTopMessage(V6Text.NoData);
+                return;
+            }
+            try
+            {
+                try
+                {
+                    var albc_row = Albc.GetRow(MAU, LAN, ReportFile);
+                    if (albc_row != null)
+                    {
+                        var firstCell = "A4"; //auto
+                        bool drawLine = true, insertRow = true;
+                        var xlm = albc_row["EXCEL2"].ToString().Trim();
+                        string excelColumns1 = "", excelColumns2 = "", excelColumns3 = "";
+                        string ref_key = "";
+                        DataSet ds = new DataSet();
+                        StringReader sReader = new StringReader(xlm);
+                        ds.ReadXml(sReader);
+
+                        var parameters = new SortedDictionary<string, object>();
+                        if (ds.Tables.Count > 0)
+                        {
+                            var paramTable = ds.Tables[0];
+                            foreach (DataRow row in paramTable.Rows)
+                            {
+                                var type = row["type"].ToString().Trim();
+                                var KEY = row["key"].ToString().Trim().ToUpper();
+                                var content = row["content"].ToString().Trim();
+                                if (type == "0")
+                                {
+                                    if (KEY == "FIRSTCELL")
+                                        firstCell = content;
+                                    else if (KEY == "DRAWLINE")
+                                        drawLine = content == "1";
+                                    else if (KEY == "INSERTROW")
+                                        insertRow = content == "1";
+                                }
+                                else if (type == "1") //Lay value trong parameter
+                                {
+                                    if (ReportDocumentParameters == null) continue;
+                                    // 1 Nhóm ký tự giữa hai dấu ngoặc móc.
+                                    // Nếu không có ? sẽ lấy 1 nhóm từ đầu đến cuối.
+                                    // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
+                                    if (content.Contains("{") && content.Contains("}"))
+                                    {
+                                        var regex = new Regex("{(.+?)}");
+                                        foreach (Match match in regex.Matches(content))
+                                        {
+                                            var MATCH_KEY = match.Groups[1].Value.ToUpper();
+                                            if (ReportDocumentParameters.ContainsKey(MATCH_KEY))
+                                                content = content.Replace(match.Groups[0].Value,
+                                                    ObjectAndString.ObjectToString(
+                                                        ReportDocumentParameters[MATCH_KEY]));
+                                        }
+                                        parameters.Add(KEY, content);
+                                    }
+                                    else
+                                    {
+                                        var P_KEY = content.ToUpper();
+                                        if (ReportDocumentParameters.ContainsKey(P_KEY))
+                                        {
+                                            parameters.Add(KEY, ReportDocumentParameters[P_KEY]);
+                                        }
+                                    }
+                                }
+                                else if (type == "2" && tbl3 != null && tbl3.Rows.Count > 0) //Lay value trong tbl2
+                                {
+                                    var tbl2_row = tbl3.Rows[0];
+
+                                    if (content.Contains("{") && content.Contains("}"))
+                                    {
+                                        var regex = new Regex("{(.+?)}");
+                                        foreach (Match match in regex.Matches(content))
+                                        {
+                                            var matchKey = match.Groups[1].Value;
+                                            if (tbl3.Columns.Contains(matchKey))
+                                            {
+                                                content = content.Replace(match.Groups[0].Value,
+                                                    ObjectAndString.ObjectToString(tbl2_row[matchKey]));
+                                            }
+                                        }
+                                        if (parameters.ContainsKey(KEY))
+                                        {
+                                            ShowWarningMessage("Trùng khóa cấu hình excel: key=" + KEY);
+                                            continue;
+                                        }
+                                        parameters.Add(KEY, content);
+                                    }
+                                    else
+                                    {
+                                        if (tbl3.Columns.Contains(content))
+                                        {
+                                            parameters.Add(KEY, tbl2_row[content]);
+                                        }
+                                    }
+                                }
+                                else if (type == "3")//V6Soft.V6SoftValue
+                                {
+                                    if (content.Contains("{") && content.Contains("}"))
+                                    {
+                                        var regex = new Regex("{(.+?)}");
+                
+                                        foreach (Match match in regex.Matches(content))
+                                        {
+                                            var MATCH_KEY = match.Groups[1].Value.ToUpper();
+                                            if (V6Soft.V6SoftValue.ContainsKey(MATCH_KEY))
+                                                content = content.Replace(match.Groups[0].Value,
+                                                    ObjectAndString.ObjectToString(V6Soft.V6SoftValue[MATCH_KEY]));
+                                        }
+                                        parameters.Add(KEY, content);
+                                    }
+                                    else
+                                    {
+                                        var P_KEY = content.ToUpper();
+                                        if (V6Soft.V6SoftValue.ContainsKey(P_KEY))
+                                        {
+                                            parameters.Add(KEY, V6Soft.V6SoftValue[P_KEY]);
+                                        }
+                                    }
+                                }
+                                else if (type == "E")
+                                {
+                                    if (KEY == "COLUMNS1")      // Các cột bảng chính
+                                    {
+                                        excelColumns1 = content;
+                                    }
+                                    else if (KEY == "COLUMNS2") // Các cột chi tiết
+                                    {
+                                        excelColumns2 = content;
+                                    }
+                                    else if (KEY == "COLUMNS3") // Các cột tổng trong bảng chính.
+                                    {
+                                        excelColumns3 = content;
+                                    }
+                                    else if (KEY == "REF_KEY")     // Các trường khóa liên kết.
+                                    {
+                                        ref_key = content;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //Không có thông tin xml
+                        }
+
+                        if (string.IsNullOrEmpty(ref_key))
+                        {
+                            ShowWarningMessage("REF_KEY");
+                            return;
+                        }
+
+                        if (Data_Table.ToExcelTemplateGroup(
+                            ExcelTemplateFileFull, data, data2, ObjectAndString.SplitString(ref_key), saveFileName, firstCell,
+                            ObjectAndString.SplitString(excelColumns1.Replace("[", "").Replace("]", "")),//Columns1
+                            ObjectAndString.SplitString(excelColumns2.Replace("[", "").Replace("]", "")),//Columns2
+                            ObjectAndString.SplitString(excelColumns3.Replace("[", "").Replace("]", "")),//Columns3
+                            null,//Headers
                             parameters, V6Setting.V6_number_format_info,
                             insertRow, drawLine))
                         {

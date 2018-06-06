@@ -769,6 +769,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 {
                     _tbl3 = _ds.Tables[2];
                     _tbl3.TableName = "DataTable3";
+                    exportToExcelGroupToolStripMenuItem.Visible = true;
                 }
                 else
                 {
@@ -1537,6 +1538,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void panel1_Leave(object sender, EventArgs e)
         {
             btnNhan.Focus();
+        }
+
+        private void exportToExcelGroupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.ExportExcelGroup_ChooseFile(this, _tbl, _tbl2, _tbl3, ReportDocumentParameters,
+                MAU, LAN, ReportFile, ExcelTemplateFileFull, ReportTitle);
         }
     }
 }
