@@ -801,6 +801,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     _tbl3 = _ds.Tables[2];
                     _tbl3.TableName = "DataTable3";
                     exportToExcelGroupToolStripMenuItem.Visible = true;
+                    exportToExcelTemplate.Visible = false;
                 }
                 else
                 {

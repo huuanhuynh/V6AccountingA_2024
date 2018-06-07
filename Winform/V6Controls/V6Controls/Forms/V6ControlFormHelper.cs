@@ -2967,6 +2967,7 @@ namespace V6Controls.Forms
                         ds.ReadXml(sReader);
 
                         var parameters = new SortedDictionary<string, object>();
+                        var column_config = new SortedDictionary<string, string>();
                         if (ds.Tables.Count > 0)
                         {
                             var paramTable = ds.Tables[0];
@@ -3069,7 +3070,11 @@ namespace V6Controls.Forms
                                 }
                                 else if (type == "E")
                                 {
-                                    if (KEY == "COLUMNS1")      // Các cột bảng chính
+                                    if (KEY.StartsWith("COLUMNS"))
+                                    {
+                                        column_config[KEY] = content;
+                                    }
+                                    else if (KEY == "COLUMNS1")      // Các cột bảng chính
                                     {
                                         excelColumns1 = content;
                                     }
@@ -3101,9 +3106,10 @@ namespace V6Controls.Forms
 
                         if (Data_Table.ToExcelTemplateGroup(
                             ExcelTemplateFileFull, data, data2, ObjectAndString.SplitString(ref_key), saveFileName, firstCell,
-                            ObjectAndString.SplitString(excelColumns1.Replace("[", "").Replace("]", "")),//Columns1
-                            ObjectAndString.SplitString(excelColumns2.Replace("[", "").Replace("]", "")),//Columns2
-                            ObjectAndString.SplitString(excelColumns3.Replace("[", "").Replace("]", "")),//Columns3
+                            column_config,
+                            //ObjectAndString.SplitString(excelColumns1.Replace("[", "").Replace("]", "")),//Columns1
+                            //ObjectAndString.SplitString(excelColumns2.Replace("[", "").Replace("]", "")),//Columns2
+                            //ObjectAndString.SplitString(excelColumns3.Replace("[", "").Replace("]", "")),//Columns3
                             null,//Headers
                             parameters, V6Setting.V6_number_format_info,
                             insertRow, drawLine))
