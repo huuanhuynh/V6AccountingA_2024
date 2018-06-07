@@ -54,6 +54,8 @@ namespace V6Controls.Controls
         protected string _noSumColumns;
         protected string _NO_SUM_COLUMNS_FOR_CHECK="";
 
+        public Condition SumCondition { get; set; }
+
         Pen pBoder;
         Brush bBackGround;
         Brush bTextColor;
@@ -158,6 +160,7 @@ namespace V6Controls.Controls
         {
             Graphics g = CreateGraphics();
             g.FillRectangle(bBackGround, g.VisibleClipBounds);
+            if (SumCondition != null && string.IsNullOrEmpty(SumCondition.OPER)) SumCondition.OPER = "=";
             //CaculateSumValues();
 
             foreach (DataGridViewColumn col in _dgv.Columns)
@@ -263,6 +266,7 @@ namespace V6Controls.Controls
                 {
                     foreach (DataGridViewRow row in rows.Values)
                     {
+                        if (CheckSumCondition(row))
                         foreach (DataGridViewCell cell in row.Cells)
                         {
                             if (ObjectAndString.IsNumberType(cell.ValueType))
@@ -278,6 +282,7 @@ namespace V6Controls.Controls
             SumAll:
             foreach (DataGridViewRow row in _dgv.Rows)
             {
+                if (CheckSumCondition(row))
                 foreach (DataGridViewCell cell in row.Cells)
                 {
                     if (ObjectAndString.IsNumberType(cell.ValueType))
@@ -289,6 +294,12 @@ namespace V6Controls.Controls
             return;
         }
 
+        /// <summary>
+        /// Tính tổng 1 cột của các dòng đang chọn, nếu chỉ chọn 1 dòng thì tính hết.
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="col"></param>
+        /// <returns></returns>
         private decimal SumOfSelectedRowsByColumn(DataGridView dgv, DataGridViewColumn col)
         {
             var sum = 0m;
@@ -301,7 +312,7 @@ namespace V6Controls.Controls
             {
                 foreach (DataGridViewRow row in dgv.SelectedRows)
                 {
-                    sum += ObjectAndString.ObjectToDecimal(row.Cells[col.DataPropertyName].Value);
+                    if (CheckSumCondition(row)) sum += ObjectAndString.ObjectToDecimal(row.Cells[col.DataPropertyName].Value);
                 }
                 return sum;
             }
@@ -321,7 +332,7 @@ namespace V6Controls.Controls
                 {
                     foreach (DataGridViewRow row in rows.Values)
                     {
-                        sum += ObjectAndString.ObjectToDecimal(row.Cells[col.DataPropertyName].Value);
+                        if (CheckSumCondition(row)) sum += ObjectAndString.ObjectToDecimal(row.Cells[col.DataPropertyName].Value);
                     }
                     return sum;
                 }
@@ -330,9 +341,18 @@ namespace V6Controls.Controls
             SumAll:
             foreach (DataGridViewRow row in dgv.Rows)
             {
-                sum += ObjectAndString.ObjectToDecimal(row.Cells[col.DataPropertyName].Value);
+                if (CheckSumCondition(row)) sum += ObjectAndString.ObjectToDecimal(row.Cells[col.DataPropertyName].Value);
             }
             return sum;
+        }
+
+        private bool CheckSumCondition(DataGridViewRow row)
+        {
+            if (SumCondition == null || string.IsNullOrEmpty(SumCondition.FIELD)) return true;
+            if(_dgv.Columns.Contains(SumCondition.FIELD))
+                return ObjectAndString.CheckCondition(row.Cells[SumCondition.FIELD].Value, SumCondition.OPER,SumCondition.VALUE, true);
+
+            return false;
         }
 
         internal class AConverter : ReferenceConverter
@@ -344,5 +364,12 @@ namespace V6Controls.Controls
         }
 
         
+    }
+
+    public class Condition
+    {
+        public string FIELD { get; set; }
+        public string OPER { get; set; }
+        public string VALUE { get; set; }
     }
 }

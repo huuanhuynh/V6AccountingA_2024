@@ -114,7 +114,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         private void btnGui1_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Gửi tin nhắn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                == DialogResult.No)
+                != DialogResult.Yes)
                 return;
             if (txtSmsTo.Text.Trim() == "")
             {
@@ -268,7 +268,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         List<int> indexDaGui = new List<int>();
         List<int> indexGuiLoi = new List<int>();
         string messageText = "";
-        private string sender = "", email_password = "", sendto;
+        private string _sender = "", email_password = "", sendto;
 
         string columnCheck = "Check";
         string columnSoDienThoai = "";
@@ -286,7 +286,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             indexDaGui = new List<int>();
             indexGuiLoi = new List<int>();
             messageText = txtMessage.Text;
-            sender = V6Login.XmlInfo.Email;
+            _sender = V6Login.XmlInfo.Email;
             email_password = V6Login.XmlInfo.EmailPassword;
             
             columnSoDienThoai = cboSoDienThoai.Text;
@@ -370,7 +370,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                         try
                         {
                             sendto = row.Cells[columnEmailAddress].Value.ToString();
-                            V6ControlFormHelper.SendEmail(sender, email_password, sendto, "subject", smsRieng, "");
+                            V6ControlFormHelper.SendEmail(_sender, email_password, sendto, "subject", smsRieng, "");
                         }
                         catch (Exception ex)
                         {

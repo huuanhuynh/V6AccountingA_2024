@@ -15,7 +15,8 @@ namespace V6Controls.Forms
     public partial class V6Control : UserControl
     {
         /// <summary>
-        /// Cờ báo form đã sẵn sàng, khi dùng trên form nhớ chạy hàm Ready() khi khởi tạo form xong.
+        /// <para>Cờ báo form đã sẵn sàng, khi dùng trên form nhớ chạy hàm Ready() khi khởi tạo form xong.</para>
+        /// <para>Thông thường sẽ gọi Ready() trong hàm load (từ form base) hoặc cuối Init.</para>
         /// </summary>
         public bool IsReady { get { return _ready0; } }
         protected bool _ready0;

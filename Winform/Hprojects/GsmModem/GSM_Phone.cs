@@ -1662,15 +1662,15 @@ namespace GSM
 
                 }
                 
-                if (recievedData02.EndsWith("\r\nOK\r\n"))
-                {
-                    sendStatus = SendSmsStatus.OK;
-                    sms.MessageType = Message_Type.STO_SENT;
-                }
-                else if (recievedData02.Contains("ERROR"))
+                if (recievedData02.Contains("ERROR"))
                 {
                     sendStatus = SendSmsStatus.ERROR;
                     sms.MessageType = Message_Type.STO_UNSENT;
+                }
+                else if (recievedData02.EndsWith("\r\nOK\r\n") || recievedData02 == "\r\n")
+                {
+                    sendStatus = SendSmsStatus.OK;
+                    sms.MessageType = Message_Type.STO_SENT;
                 }
                 else
                 {

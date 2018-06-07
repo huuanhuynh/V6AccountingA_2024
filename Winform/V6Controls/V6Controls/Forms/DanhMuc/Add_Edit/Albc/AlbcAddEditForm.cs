@@ -33,12 +33,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             }
         }
 
-        private bool _ready2 = false;
+        private bool _ready_nd51 = false;
         private void AlbcAddEditForm_Load(object sender, EventArgs e)
         {
             chknd51.Checked = (1 & (int) txtND51.Value) > 0;
             chkCheckPrint.Checked = (2 & (int) txtND51.Value) > 0;
-            _ready2 = true;
+            _ready_nd51 = true;
+
+            chkRight_YN_CheckedChanged(null, null);
         }
 
         private void EnablePhanQuyen()
@@ -430,7 +432,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             try
             {
-                if (_ready2)
+                if (_ready_nd51)
                 {
                     string binary = chknd51.Checked ? "1" : "0";
                     binary = (chkCheckPrint.Checked ? "1" : "0") + binary;

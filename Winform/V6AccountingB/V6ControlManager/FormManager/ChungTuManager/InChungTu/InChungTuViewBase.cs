@@ -15,6 +15,7 @@ using V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter;
 using V6ControlManager.FormManager.ReportManager;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
@@ -183,7 +184,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : "B"; }
         }
 
-        private DataRow SelectedRow
+        private DataRow MauInSelectedRow
         {
             get
             {
@@ -199,7 +200,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             get
             {
-                var row = SelectedRow;
+                var row = MauInSelectedRow;
                 int result = 0;
                 if (row != null)
                 {
@@ -214,7 +215,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             get
             {
-                var row = SelectedRow;
+                var row = MauInSelectedRow;
                 int result = 0;
                 if (row != null && row.Table.Columns.Contains("ROW_MAX"))
                 {
@@ -839,6 +840,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
+        private void GetSumCondition()
+        {
+            try
+            {
+                if (MauInSelectedRow != null)
+                {
+                    //gridViewSummary1.SumCondition = new Condition()
+                    //{
+                    //    FIELD = MauInSelectedRow["FIELD_S"].ToString().Trim(),
+                    //    OPER = MauInSelectedRow["OPER_S"].ToString().Trim(),
+                    //    VALUE = MauInSelectedRow["VALUE_S"].ToString().Trim()
+                    //};
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GetSumCondition", ex);
+            }
+        }
+
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
             MyInit2();
@@ -1022,15 +1043,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     dropMax = ObjectAndString.ObjectToInt(Invoice.Alct.Rows[0]["drop_Max"]);
                     if (dropMax < 1) dropMax = 40;
                     //Lấy lại thông tin dropMax theo albc (cboMauin)
-                    if (SelectedRow != null && SelectedRow.Table.Columns.Contains("DROP_MAX"))
+                    if (MauInSelectedRow != null && MauInSelectedRow.Table.Columns.Contains("DROP_MAX"))
                     {
-                        var dropMaxT = ObjectAndString.ObjectToInt(SelectedRow["DROP_MAX"]);
+                        var dropMaxT = ObjectAndString.ObjectToInt(MauInSelectedRow["DROP_MAX"]);
                         if (dropMaxT > 5) dropMax = dropMaxT;
                     }
                     //Lấy lại checkField (khác MA_VT)
-                    if (SelectedRow != null && SelectedRow.Table.Columns.Contains("FIELD_MAX"))
+                    if (MauInSelectedRow != null && MauInSelectedRow.Table.Columns.Contains("FIELD_MAX"))
                     {
-                        var checkFieldT = SelectedRow["FIELD_MAX"].ToString().Trim();
+                        var checkFieldT = MauInSelectedRow["FIELD_MAX"].ToString().Trim();
                         if (checkFieldT.Length > 0) checkField = checkFieldT;
                     }
                 }
@@ -2083,6 +2104,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private void cboMauIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady || string.IsNullOrEmpty(MA_NT)) return;
+
+            GetSumCondition();
 
             txtReportTitle.Text = ReportTitle;
             numSoLien.Value = SelectedSoLien;

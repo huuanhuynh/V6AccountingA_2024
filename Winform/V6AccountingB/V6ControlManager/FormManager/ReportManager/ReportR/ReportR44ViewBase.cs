@@ -203,6 +203,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : "B"; }
         }
 
+        private DataRow MauInSelectedRow
+        {
+            get
+            {
+                if (cboMauIn.SelectedIndex == -1) return null;
+                var data = MauInView.ToTable();
+                return data.Rows[cboMauIn.SelectedIndex];
+            }
+        }
+
         public string ReportFile
         {
             get
@@ -618,7 +628,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 LoadComboboxSource();
                 LoadDefaultData(4, "", _Ma_File, m_itemId, "");
-
+                
                 if (!V6Login.IsAdmin)
                 {
                     var menuRow = V6Menu.GetRow(ItemID);
@@ -653,6 +663,26 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".Init2", ex);
+            }
+        }
+
+        private void GetSumCondition()
+        {
+            try
+            {
+                if (MauInSelectedRow != null)
+                {
+                    gridViewSummary1.SumCondition = new Condition()
+                    {
+                        FIELD = MauInSelectedRow["FIELD_S"].ToString().Trim(),
+                        OPER = MauInSelectedRow["OPER_S"].ToString().Trim(),
+                        VALUE = MauInSelectedRow["VALUE_S"].ToString().Trim()
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GetSumCondition", ex);
             }
         }
 
@@ -1558,6 +1588,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void cboMauIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
+
+            GetSumCondition();
 
             txtReportTitle.Text = ReportTitle;
             if (ReloadData == "1")

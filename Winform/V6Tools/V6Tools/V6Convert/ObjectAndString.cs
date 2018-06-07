@@ -388,6 +388,26 @@ namespace V6Tools.V6Convert
         /// <summary>
         /// So sánh 2 giá trị
         /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="oper"></param>
+        /// <param name="value"></param>
+        /// <param name="any_type">Bỏ qua kiểu, chuyển kiểu value về giống obj. Ví dụ giá trị 1 và chuỗi "1" là bằng nhau.</param>
+        /// <returns></returns>
+        public static bool CheckCondition(object obj, string oper, object value, bool any_type)
+        {
+            if (any_type)
+            {
+                return CheckCondition(obj, oper, ObjectTo(obj.GetType(), value));
+            }
+            else
+            {
+                return CheckCondition(obj, oper, value);
+            }
+        }
+        
+        /// <summary>
+        /// So sánh 2 giá trị
+        /// </summary>
         /// <param name="obj">Giá trị cần so sánh.</param>
         /// <param name="oper">Biểu thức so sánh.</param>
         /// <param name="value">So với giá trị này.</param>

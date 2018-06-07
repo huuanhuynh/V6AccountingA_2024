@@ -14,6 +14,7 @@ using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
@@ -173,6 +174,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private string LAN
         {
             get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : "B"; }
+        }
+
+
+        private DataRow MauInSelectedRow
+        {
+            get
+            {
+                if (cboMauIn.SelectedIndex == -1) return null;
+                var data = MauInView.ToTable();
+                return data.Rows[cboMauIn.SelectedIndex];
+            }
         }
 
         private string Extra_para
@@ -559,6 +571,26 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
+        private void GetSumCondition()
+        {
+            try
+            {
+                if (MauInSelectedRow != null)
+                {
+                    gridViewSummary1.SumCondition = new Condition()
+                    {
+                        FIELD = MauInSelectedRow["FIELD_S"].ToString().Trim(),
+                        OPER = MauInSelectedRow["OPER_S"].ToString().Trim(),
+                        VALUE = MauInSelectedRow["VALUE_S"].ToString().Trim()
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GetSumCondition", ex);
+            }
+        }
+        
         private void LoadComboboxSource()
         {
             MauInData = Albc.GetMauInData(_Ma_File, "", "", Advance);
@@ -1347,6 +1379,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void cboMauIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
+
+            GetSumCondition();
 
             txtReportTitle.Text = ReportTitle;
             if (ReloadData == "1")

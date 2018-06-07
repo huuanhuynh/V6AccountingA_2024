@@ -308,6 +308,7 @@ namespace GsmSerialPort
                 int count2 = 0;
                 do
                 {
+                    // Có dữ liệu trả về.
                     if (ReceiveNowEvent.WaitOne(timeout, false) || this.BytesToRead > 0)
                     {
                         t = this.ReadExisting();
@@ -323,7 +324,7 @@ namespace GsmSerialPort
                 //while (!string.IsNullOrEmpty(t));
                 while (!data.EndsWith("\r\nOK\r\n") && !data.EndsWith("\r\n> ")
                     && !data.EndsWith("\r\nERROR\r\n") && !data.EndsWith("\r\nNO CARRIER\r\n")
-                    && count2 < 10);
+                    && count2 < 20);
 
                 //HasData = false;
             }

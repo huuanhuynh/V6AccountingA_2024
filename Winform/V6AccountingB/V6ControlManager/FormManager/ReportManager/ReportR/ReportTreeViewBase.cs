@@ -1440,7 +1440,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private void cboMauIn_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboMauIn_SelectedIndexChanged (object sender, EventArgs e)
         {
             if (!IsReady) return;
 

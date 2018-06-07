@@ -69,6 +69,16 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : "B"; }
         }
 
+        private DataRow MauInSelectedRow
+        {
+            get
+            {
+                if (cboMauIn.SelectedIndex == -1) return null;
+                var data = MauInView.ToTable();
+                return data.Rows[cboMauIn.SelectedIndex];
+            }
+        }
+
         private string Extra_para
         {
             get
@@ -434,7 +444,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 this.WriteExLog(GetType() + ".Init2", ex);
             }
         }
-
+        
         private void MadeControls(string tableName, string fields_vvar_filter)
         {
             string err = "";
