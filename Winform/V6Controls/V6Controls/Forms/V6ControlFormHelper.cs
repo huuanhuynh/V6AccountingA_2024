@@ -3107,9 +3107,6 @@ namespace V6Controls.Forms
                         if (Data_Table.ToExcelTemplateGroup(
                             ExcelTemplateFileFull, data, data2, ObjectAndString.SplitString(ref_key), saveFileName, firstCell,
                             column_config,
-                            //ObjectAndString.SplitString(excelColumns1.Replace("[", "").Replace("]", "")),//Columns1
-                            //ObjectAndString.SplitString(excelColumns2.Replace("[", "").Replace("]", "")),//Columns2
-                            //ObjectAndString.SplitString(excelColumns3.Replace("[", "").Replace("]", "")),//Columns3
                             null,//Headers
                             parameters, V6Setting.V6_number_format_info,
                             insertRow, drawLine))
