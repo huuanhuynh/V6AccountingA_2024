@@ -170,6 +170,11 @@ namespace V6Tools.V6Convert
             return (DateTime) date;
         }
 
+        /// <summary>
+        /// 1/true/yes
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
         public static bool ObjectToBool(object o)
         {
             if (o == null) return false;

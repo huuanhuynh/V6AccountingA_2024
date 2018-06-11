@@ -435,9 +435,9 @@ namespace V6Tools.V6Export
                     {
                         string[] ss = index_field.Split(new[] { ':' }, 2, StringSplitOptions.RemoveEmptyEntries);
                         if (ss.Length < 2) throw new Exception(item.Key + " không đủ thông tin. Mẫu: A:MA_VT hoặc A+B:MA_VT");
-                        if (data2.Columns.Contains(ss[1]))
+                        if (data.Columns.Contains(ss[1]))
                         {
-                            ColumnInfo ci = new ColumnInfo(data2.Columns[ss[1]]);
+                            ColumnInfo ci = new ColumnInfo(data.Columns[ss[1]]);
                             ci.SetExcelColumn(ss[0].Trim());
                             if (columnDic.ContainsKey(ci.ExcelColumnIndex)) throw new Exception(item.Key + " trùng cột.");
                             columnDic.Add(ci.ExcelColumnIndex, ci);
@@ -445,8 +445,11 @@ namespace V6Tools.V6Export
                     }
 
                     listColumnDic1[item.Key.ToUpper()] = columnDic;
-                    int temp_last_column = columnDic.Last().Key;
-                    if (temp_last_column > lastColumnIndex) lastColumnIndex = temp_last_column;
+                    if (columnDic.Count > 0)
+                    {
+                        int temp_last_column = columnDic.Last().Key;
+                        if (temp_last_column > lastColumnIndex) lastColumnIndex = temp_last_column;
+                    }
                 }
                 else if (item.Key.ToUpper().StartsWith("COLUMNS2")) // Các dòng chi tiết.
                 {
@@ -464,8 +467,11 @@ namespace V6Tools.V6Export
                     }
 
                     listColumnDic2[item.Key.ToUpper()] = columnDic;
-                    int temp_last_column = columnDic.Last().Key;
-                    if (temp_last_column > lastColumnIndex) lastColumnIndex = temp_last_column;
+                    if (columnDic.Count > 0)
+                    {
+                        int temp_last_column = columnDic.Last().Key;
+                        if (temp_last_column > lastColumnIndex) lastColumnIndex = temp_last_column;
+                    }
                 }
                 else if (item.Key.ToUpper().StartsWith("COLUMNS3")) // Các dòng tổng
                 {
@@ -490,8 +496,11 @@ namespace V6Tools.V6Export
                         }
                     }
                     listColumnDic3[item.Key.ToUpper()] = columnDic;
-                    int temp_last_column = columnDic.Last().Key;
-                    if (temp_last_column > lastColumnIndex) lastColumnIndex = temp_last_column;
+                    if (columnDic.Count > 0)
+                    {
+                        int temp_last_column = columnDic.Last().Key;
+                        if (temp_last_column > lastColumnIndex) lastColumnIndex = temp_last_column;
+                    }
                 }
                 //listColumnDic[item.Key.ToUpper()] = columnDic;
             }
@@ -534,7 +543,7 @@ namespace V6Tools.V6Export
                 foreach (var item in listColumnDic1)
                 {
                     var columnDic1 = item.Value;
-                    if (columnDic1.Count > 0)
+                    //if (columnDic1.Count > 0)
                     {
                         RangeStyle rs = isShiftRows
                             ? InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex,
@@ -630,7 +639,7 @@ namespace V6Tools.V6Export
                 foreach (var item in listColumnDic3)
                 {
                     var columnDic3 = item.Value;
-                    if (columnDic3.Count > 0)
+                    //if (columnDic3.Count > 0)
                     {
                         RangeStyle rs = isShiftRows ?
                             InsertRange(workBook, importRowCurrentIndex, firstColumn, importRowCurrentIndex, lastColumnIndex) :
