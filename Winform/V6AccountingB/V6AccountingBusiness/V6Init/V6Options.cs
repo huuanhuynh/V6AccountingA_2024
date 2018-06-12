@@ -316,6 +316,15 @@ namespace V6Init
                 return "1" == V6OptionValues["M_AUTO_SAVEDETAIL"];
             }
         }
+        
+        public static bool M_AUTO_MODEM_SMS
+        {
+            get
+            {
+                if (V6OptionValues == null) return false;
+                return "1" == V6OptionValues["M_AUTO_MODEM_SMS"];
+            }
+        }
         /// <summary>
         /// Cộng dồn khi lưu xuống chi tiết
         /// </summary>

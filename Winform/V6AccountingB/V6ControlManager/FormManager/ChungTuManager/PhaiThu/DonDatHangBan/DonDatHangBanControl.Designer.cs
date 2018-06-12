@@ -111,6 +111,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.chonTuExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayThe2toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chkSuaTien = new V6Controls.V6CheckBox();
             this.txtTongSoLuong = new V6Controls.V6NumberTextBox();
             this.cboKieuPost = new V6Controls.V6ComboBox();
@@ -133,6 +134,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6Label31 = new V6Controls.V6Label();
             this.v6Label19 = new V6Controls.V6Label();
             this.group3 = new System.Windows.Forms.GroupBox();
+            this.btnApGia = new V6Controls.Controls.V6FormButton();
             this.v6Label36 = new V6Controls.V6Label();
             this.Txtten_vtthue = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox4 = new V6Controls.V6ColorTextBox();
@@ -150,7 +152,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6Label16 = new V6Controls.V6Label();
             this.v6Label15 = new V6Controls.V6Label();
             this.chkLoaiChietKhau = new V6Controls.V6CheckBox();
-            this.v6Label14 = new V6Controls.V6Label();
             this.v6Label13 = new V6Controls.V6Label();
             this.v6ColorTextBox9 = new V6Controls.V6ColorTextBox();
             this.v6Label12 = new V6Controls.V6Label();
@@ -205,7 +206,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.thayThe2toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1477,7 +1477,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.thayTheToolStripMenuItem,
             this.thayThe2toolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(185, 158);
+            this.menuChucNang.Size = new System.Drawing.Size(185, 136);
             // 
             // ChonDonHangMuaMenu
             // 
@@ -1513,6 +1513,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.thayTheToolStripMenuItem.Text = "Thay thế";
             this.thayTheToolStripMenuItem.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
+            // 
+            // thayThe2toolStripMenuItem
+            // 
+            this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
+            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
+            this.thayThe2toolStripMenuItem.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
             // 
             // chkSuaTien
             // 
@@ -1827,6 +1834,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.group3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group3.Controls.Add(this.btnApGia);
             this.group3.Controls.Add(this.v6Label36);
             this.group3.Controls.Add(this.Txtten_vtthue);
             this.group3.Controls.Add(this.v6ColorTextBox4);
@@ -1844,7 +1852,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.group3.Controls.Add(this.v6Label16);
             this.group3.Controls.Add(this.v6Label15);
             this.group3.Controls.Add(this.chkLoaiChietKhau);
-            this.group3.Controls.Add(this.v6Label14);
             this.group3.Controls.Add(this.v6Label13);
             this.group3.Controls.Add(this.v6ColorTextBox9);
             this.group3.Controls.Add(this.v6Label12);
@@ -1859,11 +1866,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.group3.TabIndex = 2;
             this.group3.TabStop = false;
             // 
+            // btnApGia
+            // 
+            this.btnApGia.AccessibleDescription = "ASOCTSOAH00051";
+            this.btnApGia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApGia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnApGia.Location = new System.Drawing.Point(765, 72);
+            this.btnApGia.Name = "btnApGia";
+            this.btnApGia.Size = new System.Drawing.Size(60, 22);
+            this.btnApGia.TabIndex = 23;
+            this.btnApGia.TabStop = false;
+            this.btnApGia.Text = "Mã giá";
+            this.toolTipV6FormControl.SetToolTip(this.btnApGia, "Áp giá bán");
+            this.btnApGia.UseVisualStyleBackColor = true;
+            this.btnApGia.Click += new System.EventHandler(this.btnApGia_Click);
+            // 
             // v6Label36
             // 
             this.v6Label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label36.AutoSize = true;
-            this.v6Label36.Location = new System.Drawing.Point(646, 78);
+            this.v6Label36.Location = new System.Drawing.Point(624, 77);
             this.v6Label36.Name = "v6Label36";
             this.v6Label36.Size = new System.Drawing.Size(28, 13);
             this.v6Label36.TabIndex = 17;
@@ -1900,7 +1922,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox4.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox4.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox4.Location = new System.Drawing.Point(704, 76);
+            this.v6ColorTextBox4.Location = new System.Drawing.Point(682, 75);
             this.v6ColorTextBox4.Name = "v6ColorTextBox4";
             this.v6ColorTextBox4.Size = new System.Drawing.Size(75, 20);
             this.v6ColorTextBox4.TabIndex = 18;
@@ -2048,7 +2070,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtMaHttt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaHttt.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaHttt.LeaveColor = System.Drawing.Color.White;
-            this.txtMaHttt.Location = new System.Drawing.Point(704, 54);
+            this.txtMaHttt.Location = new System.Drawing.Point(682, 53);
             this.txtMaHttt.Name = "txtMaHttt";
             this.txtMaHttt.Size = new System.Drawing.Size(75, 20);
             this.txtMaHttt.TabIndex = 17;
@@ -2139,21 +2161,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.chkLoaiChietKhau.UseVisualStyleBackColor = true;
             this.chkLoaiChietKhau.CheckedChanged += new System.EventHandler(this.chkLoaiChietKhau_CheckedChanged);
             // 
-            // v6Label14
-            // 
-            this.v6Label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6Label14.AutoSize = true;
-            this.v6Label14.Location = new System.Drawing.Point(783, 76);
-            this.v6Label14.Name = "v6Label14";
-            this.v6Label14.Size = new System.Drawing.Size(39, 13);
-            this.v6Label14.TabIndex = 8;
-            this.v6Label14.Text = "Mã giá";
-            // 
             // v6Label13
             // 
             this.v6Label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label13.AutoSize = true;
-            this.v6Label13.Location = new System.Drawing.Point(646, 57);
+            this.v6Label13.Location = new System.Drawing.Point(624, 56);
             this.v6Label13.Name = "v6Label13";
             this.v6Label13.Size = new System.Drawing.Size(36, 13);
             this.v6Label13.TabIndex = 6;
@@ -2874,13 +2886,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // thayThe2toolStripMenuItem
-            // 
-            this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
-            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
-            this.thayThe2toolStripMenuItem.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
-            // 
             // DonDatHangBanControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2975,7 +2980,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private V6Label v6Label11;
         private V6Label v6Label16;
         private V6Label v6Label15;
-        private V6Label v6Label14;
         private V6Label v6Label17;
         private V6VvarTextBox txtMaKh;
         private V6Controls.V6CheckBox chkSuaPtck;
@@ -3113,5 +3117,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private System.Windows.Forms.ToolStripMenuItem inKhacToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thayTheToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thayThe2toolStripMenuItem;
+        private V6FormButton btnApGia;
     }
 }

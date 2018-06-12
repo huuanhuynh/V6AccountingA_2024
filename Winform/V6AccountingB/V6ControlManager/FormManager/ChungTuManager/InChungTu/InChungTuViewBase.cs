@@ -1318,6 +1318,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     proc = _reportProcedure;
                 }
                 _ds = V6BusinessHelper.ExecuteProcedure(proc, _pList.ToArray());
+                //12/06/2018 Chuyển FilterControl.LoadDataFinish(_ds); từ timer về đây.
+                FilterControl.LoadDataFinish(_ds);
                 if (_ds.Tables.Count > 0)
                 {
                     _tbl = _ds.Tables[0];
@@ -1426,7 +1428,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 btnNhan.Image = btnNhanImage;
                 try
                 {
-                    FilterControl.LoadDataFinish(_ds);
+                    //FilterControl.LoadDataFinish(_ds); // Chuyển về vị trí sau khi gán _ds
+                    //if (_tbl1.Rows.Count > 0) FilterControl.Call1(_tbl1.Rows[0]);
                     All_Objects["_ds"] = _ds;
                     InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
                     dataGridView1.DataSource = null;

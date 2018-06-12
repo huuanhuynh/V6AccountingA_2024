@@ -720,13 +720,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     txtMaSoThue.Text = "";
                     txtTenKh.Text = "";
                     txtDiaChi.Text = "";
-                    txtMaGia.Text = "";
+                    //txtMaGia.Text = "";
+                    SetControlValue(txtMaGia, null, Invoice.GetTemplateSettingAM("MA_GIA"));
                     return;
                 }
                 var mst = (data["ma_so_thue"] ?? "").ToString().Trim();
                 txtMaSoThue.Text = mst;
                 txtTenKh.Text = (data["ten_kh"] ?? "").ToString().Trim();
                 txtDiaChi.Text = (data["dia_chi"] ?? "").ToString().Trim();
+
+                // Tuanmh 28/05/2016
+                //txtMaGia.Text = (data["MA_GIA"] ?? "").ToString().Trim();
+                SetControlValue(txtMaGia, data["MA_GIA"], Invoice.GetTemplateSettingAM("MA_GIA"));
             }
             catch (Exception ex)
             {
@@ -4132,6 +4137,168 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         }
 
 
+        private void btnApGia_Click(object sender, EventArgs e)
+        {
+            ApGiaBan();
+        }
+
+        private void ApGiaBan()
+        {
+            try
+            {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    this.ShowWarningMessage(V6Text.DetailNotComplete);
+                    return;
+                }
+                if (txtMaGia.Text.Trim() == "")
+                {
+                    ShowParentMessage("Chọn mã giá trước.");
+                    return;
+                }
+                if (this.ShowConfirmMessage("Có chắc chắn áp giá bán cho tất cả mặt hàng hay không?") != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                foreach (DataRow row in AD.Rows)
+                {
+                    var maVatTu = row["MA_VT"].ToString().Trim();
+                    var dvt = row["DVT"].ToString().Trim();
+                    var dvt1 = row["DVT1"].ToString().Trim();
+                    var pt_cki = ObjectAndString.ObjectToDecimal(row["PT_CKI"]);
+                    var soLuong = ObjectAndString.ObjectToDecimal(row["SO_LUONG"]);
+                    var soLuong1 = ObjectAndString.ObjectToDecimal(row["SO_LUONG1"]);
+                    var tienNt2 = ObjectAndString.ObjectToDecimal(row["TIEN_NT2"]);
+                    var tien2 = ObjectAndString.ObjectToDecimal(row["TIEN2"]);
+
+                    var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Value,
+                        cboMaNt.SelectedValue.ToString().Trim(), maVatTu, dvt1, txtMaKh.Text, txtMaGia.Text);
+
+                    var giaNt21 = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
+                    row["GIA_NT21"] = giaNt21;
+                    //_soLuong.Value = _soLuong1.Value * _heSo1.Value;
+                    tienNt2 = V6BusinessHelper.Vround((soLuong1 * giaNt21), M_ROUND_NT);
+                    tien2 = V6BusinessHelper.Vround((_tienNt2.Value * txtTyGia.Value), M_ROUND);
+
+                    row["tien_Nt2"] = tienNt2;
+                    row["tien2"] = tien2;
+
+                    //_tien2.Value = V6BusinessHelper.Vround((_tienNt2.Value * txtTyGia.Value), M_ROUND);
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        row["tien2"] = tienNt2;
+                    }
+
+                    //TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt2, _pt_cki);
+                    var ck_nt = V6BusinessHelper.Vround(tienNt2 * pt_cki / 100, M_ROUND_NT);
+                    row["ck_nt"] = ck_nt;
+                    row["ck"] = V6BusinessHelper.Vround(ck_nt * txtTyGia.Value, M_ROUND);
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        row["ck"] = row["ck_nt"];
+                    }
+                    //End TinhChietKhauChiTiet
+
+                    //TinhGiaNt2();
+                    row["Gia21"] = V6BusinessHelper.Vround((_giaNt21.Value * txtTyGia.Value), M_ROUND_GIA_NT);
+                    if (_maNt == _mMaNt0)
+                    {
+                        row["Gia21"] = row["Gia_nt21"];
+                    }
+
+                    if (soLuong != 0)
+                    {
+                        row["gia_nt2"] = V6BusinessHelper.Vround((tienNt2 / soLuong), M_ROUND_GIA_NT);
+                        //var tien2 = ObjectAndString.ObjectToDecimal(row["tien2"]);
+                        row["gia2"] = V6BusinessHelper.Vround((tien2 / soLuong), M_ROUND_GIA);
+
+                        if (_maNt == _mMaNt0)
+                        {
+                            row["gia2"] = row["gia_nt21"];
+                            row["gia_nt2"] = row["gia_nt21"];
+                        }
+                    }
+                    //End TinhGiaNt2
+
+                    //TinhVanChuyen();
+                    if (V6Options.V6OptionValues["M_GIAVC_GIAGIAM_CT"] == "1" ||
+                    V6Options.V6OptionValues["M_GIAVC_GIAGIAM_CT"] == "3")
+                    {
+                        var hs_qd3 = ObjectAndString.ObjectToDecimal(row["hs_qd3"]);
+                        var tien_vcNt = V6BusinessHelper.Vround((soLuong1 * hs_qd3), M_ROUND_NT);
+                        row["tien_vc_Nt"] = tien_vcNt;
+                        row["tien_vc"] = V6BusinessHelper.Vround((tien_vcNt * txtTyGia.Value), M_ROUND);
+
+                        if (_maNt == _mMaNt0)
+                        {
+                            row["tien_vc"] = tien_vcNt;
+                        }
+                    }
+
+                    //TinhGiamGiaCt();
+                    if (V6Options.V6OptionValues["M_GIAVC_GIAGIAM_CT"] == "2" ||
+                    V6Options.V6OptionValues["M_GIAVC_GIAGIAM_CT"] == "3")
+                    {
+                        var hs_qd4 = ObjectAndString.ObjectToDecimal(row["hs_qd4"]);
+                        var ggNt = V6BusinessHelper.Vround((soLuong1 * hs_qd4), M_ROUND_NT);
+                        row["gg_nt"] = ggNt;
+                        row["gg"] = V6BusinessHelper.Vround((ggNt * txtTyGia.Value), M_ROUND);
+
+                        if (_maNt == _mMaNt0)
+                        {
+                            row["gg"] = ggNt;
+                        }
+                    }
+
+                    //TinhThueCt
+                    if (M_SOA_MULTI_VAT == "1")
+                    {
+                        try
+                        {
+                            var thue_suat_i = ObjectAndString.ObjectToDecimal(row["THUE_SUAT_I"]);
+                            row["THUE_NT"] = V6BusinessHelper.Vround(tienNt2 * thue_suat_i / 100, M_ROUND_NT);
+                            row["THUE"] = V6BusinessHelper.Vround(tien2 * thue_suat_i / 100, M_ROUND);
+
+                            if (_maNt == _mMaNt0)
+                            {
+                                row["THUE"] = row["THUE_NT"];
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            this.WriteExLog(GetType() + ".ApGiaBan TinhThueCt", ex);
+                        }
+                    }
+
+                    //TinhSoluongQuyDoi(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);//Nouse
+                    //====================
+
+                    if (dvt.ToUpper().Trim() == dvt1.ToUpper().Trim())
+                    {
+                        row["GIA_NT2"] = row["GIA_NT21"];
+                    }
+                    else
+                    {
+                        if (soLuong != 0)
+                        {
+                            row["GIA_NT2"] = tienNt2 / soLuong;
+                        }
+                    }
+                }
+
+                dataGridView1.DataSource = AD;
+
+                TinhTongThanhToan("ApGiaBan");
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ApGiaBan", ex);
+            }
+        }
+
         private void txtTyGia_V6LostFocus(object sender)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
@@ -4672,6 +4839,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             ChucNang_SuaNhieuDong(Invoice);
         }
+
 
     }
 }

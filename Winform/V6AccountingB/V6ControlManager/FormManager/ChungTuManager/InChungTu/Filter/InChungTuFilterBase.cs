@@ -323,9 +323,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    this.WriteExLog(GetType() + ".GetRprParameterD", ex);
                 }
                 return result;
             }

@@ -2047,6 +2047,12 @@ namespace GSM
         /// <returns>45204</returns>
         private string ParseO(string input)
         {
+            string input_lower = input.ToLower();
+            if (input_lower.Contains("vinaphone") || input_lower.Contains("45202")) return "Vinaphone";
+            if (input_lower.Contains("mobifone") || input_lower.Contains("45201")) return "Mobifone";
+            if (input_lower.Contains("gmobile") || input_lower.Contains("45203")) return "Gmobile";
+            if (input_lower.Contains("viettel") || input_lower.Contains("45204")) return "Viettel";
+            if (input_lower.Contains("vietnamobile") || input_lower.Contains("45205")) return "Vietnamobile";
 //AT+COPS?
 
 //+COPS: 0,0,"45204"

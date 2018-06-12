@@ -11,6 +11,7 @@ using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 {
@@ -79,6 +80,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         {
             Connect();
         }
+
+        private void btnTuKetNoi_Click(object sender, EventArgs e)
+        {
+            AutoConnect();
+        }
+
 
         private void btnNgatKetNoi_Click(object sender, EventArgs e)
         {
@@ -239,29 +246,34 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         
         private void Connect()
         {
-            new SmsModemSettingForm().ShowDialog();
+            V6ControlFormHelper.ConnectModemSms();
+            //new SmsModemSettingForm().ShowDialog();
             ViewConnecting();
         }
         private void AutoConnect()
         {
-            try
-            {
-                V6ControlFormHelper.SmsModem = new GSM_Phone();
-                string port=V6ControlFormHelper.SmsModem.AutoConnect(V6ControlFormHelper.SmsModem_SettingPort);
-                if(port!=null)
-                {
-                    V6ControlFormHelper.SmsModem_SettingPort = V6ControlFormHelper.SmsModem.PortName;
-                    //Program.setting.SaveSetting();
-                }
-                else
-                {
-                    MessageBox.Show("Không kết nối được với modem sms!");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Có lỗi khi kết nối với modem sms." + ex.Message);
-            }
+            V6ControlFormHelper.ConnectModemSms(true);
+            ViewConnecting();
+            return;
+            //try
+            //{
+            //    V6ControlFormHelper.SmsModem = new GSM_Phone();
+            //    string port=V6ControlFormHelper.SmsModem.AutoConnect(V6ControlFormHelper.SmsModem_SettingPort);
+            //    ObjectAndString.NumberToString(1m, 0, ",", " ");
+            //    if(port!=null)
+            //    {
+            //        V6ControlFormHelper.SmsModem_SettingPort = V6ControlFormHelper.SmsModem.PortName;
+            //        //Program.setting.SaveSetting();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Không kết nối được với modem sms!");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Có lỗi khi kết nối với modem sms." + ex.Message);
+            //}
         }
 
         bool sending = false;
@@ -796,5 +808,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             }
         }
 
+        
     }
 }

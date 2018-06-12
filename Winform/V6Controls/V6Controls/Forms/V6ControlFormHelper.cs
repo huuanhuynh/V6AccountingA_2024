@@ -984,9 +984,26 @@ namespace V6Controls.Forms
         #endregion
 
         #region ==== SEND ====
+
         public static GSM_Phone SmsModem = new GSM_Phone();
         public static Dictionary<string, GSM_Phone> listModem = null;
-        public static string SmsModem_SettingPort = "";
+        //public static string SmsModem_SettingPort = "";
+
+        public static void ConnectModemSms(bool isAuto = false)
+        {
+            if (V6Options.M_AUTO_MODEM_SMS || isAuto)
+            {
+                var f = new SmsModemSettingForm();
+                f.AutoConnect();
+                //f.Close();
+                f.Dispose();
+            }
+            else
+            {
+                new SmsModemSettingForm().ShowDialog();
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -1000,7 +1017,7 @@ namespace V6Controls.Forms
 
             if (SmsModem.GSM_PORT == null || !SmsModem.IsConnected)
             {
-                new SmsModemSettingForm().ShowDialog();
+                ConnectModemSms();
             }
 
             if (SmsModem.GSM_PORT == null || !SmsModem.IsConnected)

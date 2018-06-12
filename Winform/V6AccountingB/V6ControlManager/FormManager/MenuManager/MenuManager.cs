@@ -768,6 +768,10 @@ namespace V6ControlManager.FormManager.MenuManager
                     {
                         c = new ThongTinChuongTrinh();
                     }
+                    else if (item_id == "D0000019")
+                    {
+                        //c = new TetrisGame();
+                    }
                     else
                     {
                         c = new V6UserControlEmpty("Key:" + item_id + "; Codeform:" + codeform);

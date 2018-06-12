@@ -82,6 +82,7 @@
             this.chkGuiSMS = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cboEmailTo = new System.Windows.Forms.ComboBox();
+            this.btnTuKetNoi = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbThemNguoi.SuspendLayout();
@@ -577,6 +578,7 @@
             // grbKetNoi
             // 
             this.grbKetNoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbKetNoi.Controls.Add(this.btnTuKetNoi);
             this.grbKetNoi.Controls.Add(this.btnKetNoi);
             this.grbKetNoi.Controls.Add(this.txtConnectPort);
             this.grbKetNoi.Location = new System.Drawing.Point(561, 15);
@@ -688,6 +690,16 @@
             this.cboEmailTo.Size = new System.Drawing.Size(93, 21);
             this.cboEmailTo.TabIndex = 45;
             // 
+            // btnTuKetNoi
+            // 
+            this.btnTuKetNoi.Location = new System.Drawing.Point(87, 19);
+            this.btnTuKetNoi.Name = "btnTuKetNoi";
+            this.btnTuKetNoi.Size = new System.Drawing.Size(105, 23);
+            this.btnTuKetNoi.TabIndex = 2;
+            this.btnTuKetNoi.Text = "Tự kết nối";
+            this.btnTuKetNoi.UseVisualStyleBackColor = true;
+            this.btnTuKetNoi.Click += new System.EventHandler(this.btnTuKetNoi_Click);
+            // 
             // XASENDMAIL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -787,6 +799,7 @@
         private System.Windows.Forms.CheckBox chkGuiSMS;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cboEmailTo;
+        private System.Windows.Forms.Button btnTuKetNoi;
 
 
     }

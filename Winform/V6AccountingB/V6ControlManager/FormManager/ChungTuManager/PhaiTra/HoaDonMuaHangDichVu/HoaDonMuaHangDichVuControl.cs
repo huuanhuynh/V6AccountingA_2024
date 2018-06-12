@@ -2450,7 +2450,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     All_Objects["MA_NT"] = MA_NT;
                     All_Objects["MA_NX"] = txtManx.Text;
                     //All_Objects["LOAI_CK"] = chkLoaiChietKhau.Checked ? "1" : "0";
-                    All_Objects["MODE"] = "M";
+                    All_Objects["MODE"] = "S";
                     All_Objects["KIEU_POST"] = cboKieuPost.SelectedValue;
                     //All_Objects["AP_GIA"] = apgia;
                     All_Objects["USER_ID"] = V6Login.UserId;
