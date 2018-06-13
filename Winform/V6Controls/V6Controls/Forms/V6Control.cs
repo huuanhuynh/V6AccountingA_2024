@@ -187,7 +187,8 @@ namespace V6Controls.Forms
         /// <param name="message"></param>
         public void ShowMainMessage(string message)
         {
-            V6ControlFormHelper.ShowMainMessage(message);
+            //V6ControlFormHelper.ShowMainMessage(message);
+            V6ControlFormHelper.ShowTopMessage(message, this);
         }
 
         /// <summary>

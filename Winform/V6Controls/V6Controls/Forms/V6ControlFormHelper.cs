@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -125,7 +126,8 @@ namespace V6Controls.Forms
 
         #region ==== SHOW HIDE MESSAGE ====
 
-        public static V6Label MessageLable;
+        public static Form MainForm;
+        public static V6Label MessageLable { get;set; }
         private static Timer _mainMessageTimer;
         private static int _mainTime = -1;
         /// <summary>
@@ -134,6 +136,13 @@ namespace V6Controls.Forms
         /// <param name="message"></param>
         public static void ShowMainMessage(string message)
         {
+            ShowTopMessage(message, null);
+            return;
+            if (MessageLable.Parent != MainForm)
+            {
+                MainForm.Controls.Add(MessageLable);
+            }
+
             if (_mainMessageTimer != null && _mainMessageTimer.Enabled)
             {
                 _mainMessageTimer.Stop();
@@ -146,6 +155,35 @@ namespace V6Controls.Forms
             _mainTime = -1;
             _mainMessageTimer.Start();
         }
+
+        public static V6TopMessageForm TopMessageForm = null;
+
+        public static void CreateV6TopMessageForm()
+        {
+            if (TopMessageForm == null)
+            {
+                TopMessageForm = new V6TopMessageForm();
+                TopMessageForm.Top = -TopMessageForm.Height;
+                //TopMessageForm.Visible = false;
+                TopMessageForm.Show();
+            }
+        }
+        /// <summary>
+        /// Hiển thị một form TopMost chứa thông báo, (Không ảnh hưởng đến focus đang làm việc).
+        /// </summary>
+        /// <param name="message">Nội dung thông báo.</param>
+        /// <param name="owner">Form chủ.</param>
+        public static void ShowTopMessage(string message, IWin32Window owner)
+        {
+            CreateV6TopMessageForm();
+
+            TopMessageForm.Message = message;
+            //TopMessageForm.Visible = true;
+
+            //Form f = new V6TopMessageForm(message);
+            //f.Show(owner);
+        }
+        
 
         static void _mainMessageTimer_Tick(object sender, EventArgs e)
         {

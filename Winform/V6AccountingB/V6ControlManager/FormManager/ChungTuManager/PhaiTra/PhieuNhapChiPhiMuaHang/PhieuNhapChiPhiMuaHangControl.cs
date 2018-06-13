@@ -1131,13 +1131,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             XuLyLayThongTinKhiChonMaVt();
             XuLyDonViTinhKhiChonMaVt(mavt);
-          //  GetGia();
-          
+            //  GetGia();
+            
         }
         private void XuLyChonMaKhoI()
         {
             XuLyLayThongTinKhiChonMaKhoI();
-          
+            
         }
 
         
@@ -4517,7 +4517,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             ChucNang_SuaNhieuDong(Invoice);
         }
-
 
     }
 }

@@ -156,6 +156,12 @@
       <DependentUpon>SmsModemSettingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigClass.cs" />
+    <Compile Include="Forms\V6TopMessageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\V6TopMessageForm.Designer.cs">
+      <DependentUpon>V6TopMessageForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Win32.cs" />
     <Compile Include="Controls\ToChucTree\ToChucTreeControl.cs">
       <SubType>Component</SubType>
@@ -1829,6 +1835,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ToChucTreeSelectForm.resx">
       <DependentUpon>ToChucTreeSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\V6TopMessageForm.resx">
+      <DependentUpon>V6TopMessageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\V6MessageForm.resx">
       <DependentUpon>V6MessageForm.cs</DependentUpon>

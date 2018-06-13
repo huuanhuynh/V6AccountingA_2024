@@ -209,6 +209,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                             {
                                 _maLo.Enabled = false;
                             }
+                            GetTon13();
                         };
                         break;
                     case "TK_VT":
@@ -1883,13 +1884,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             if (_maKhoI.Text != "")
                 XuLyLayThongTinKhiChonMaKhoI();
             //}
-          //  GetGia();
-          
+            //  GetGia();
+            GetTon13();
         }
         private void XuLyChonMaKhoI()
         {
             XuLyLayThongTinKhiChonMaKhoI();
-          
+            GetTon13();
         }
 
         
@@ -6108,6 +6109,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             ChucNang_SuaNhieuDong(Invoice);
         }
 
-
+        private DataTable _dataLoDate;
+        private void GetTon13()
+        {
+            try
+            {
+                string maVt = _maVt.Text.Trim().ToUpper();
+                string maKhoI = _maKhoI.Text.Trim().ToUpper();
+                // Get ton kho theo ma_kho,ma_vt 18/01/2016
+                //if (V6Options.M_CHK_XUAT == "0")
+                {
+                    _dataLoDate = Invoice.GetStock(maVt, maKhoI, _sttRec, dateNgayCT.Value);
+                    if (_dataLoDate != null && _dataLoDate.Rows.Count > 0)
+                    {
+                        DataRow row0 = _dataLoDate.Rows[0];
+                        _ton13.Value = ObjectAndString.ObjectToDecimal(row0["ton00"]);
+                    }
+                    else
+                    {
+                        _ton13.Value = 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
     }
 }

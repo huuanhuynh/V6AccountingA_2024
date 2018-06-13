@@ -2146,7 +2146,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 string maVt = _maVt.Text.Trim().ToUpper();
                 string maKhoI = _maKhoI.Text.Trim().ToUpper();
                 // Get ton kho theo ma_kho,ma_vt 18/01/2016
-                if (V6Options.M_CHK_XUAT == "0")
+                //if (V6Options.M_CHK_XUAT == "0")
                 {
                     _dataViTri = Invoice.GetStock(maVt, maKhoI, _sttRec, dateNgayCT.Value);
                     if (_dataViTri != null && _dataViTri.Rows.Count > 0)

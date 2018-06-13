@@ -35,6 +35,8 @@ namespace V6AccountingB
             V6ControlFormHelper.StatusTextViewControl = lblStatus;
             V6ControlFormHelper.StatusTextViewControl2 = lblStatus2;
             lblMainMessage.Top = -lblMainMessage.Height;
+            
+            V6ControlFormHelper.MainForm = this;
             V6ControlFormHelper.MessageLable = lblMainMessage;
             V6ControlFormHelper.lblMenuMain = lblMenuShow;
             V6ControlFormHelper.MainMenu = menuMain;
@@ -179,6 +181,7 @@ namespace V6AccountingB
                 
                 progressBar1.Visible = false;
                 progressBar1.Dispose();
+                V6ControlFormHelper.CreateV6TopMessageForm();
                 _ready = true;
                 V6ControlFormHelper.SetStatusText(V6Text.Ready);
                 if (menuMain.SelectedButton != null)

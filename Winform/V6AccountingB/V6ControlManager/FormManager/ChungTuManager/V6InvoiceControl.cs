@@ -1308,8 +1308,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
 
                 //else //Có dữ liệu nhưng không trùng mã...
-                message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Vitri:{5}  Tồn:{0}  Xuất:{1}\n",
-                            0, item.Value, c_makho, c_mavt, c_malo, c_mavitri);
+                //message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Vitri:{5}  Tồn:{0}  Xuất:{1}\n",
+                //            0, item.Value, c_makho, c_mavt, c_malo, c_mavitri);
+                message = "";
 
             NextItem:
                 DoNothing();
@@ -1417,8 +1418,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     }
                 }
 
-                message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Tồn:{0}  Xuất:{1}\n",
-                                0, item.Value, c_makho, c_mavt, c_malo);
+                //message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Tồn:{0}  Xuất:{1}\n",
+                //                0, item.Value, c_makho, c_mavt, c_malo);
+                message = "";
 
             NextItem:
                 DoNothing();
@@ -1511,9 +1513,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     }
                 }
                 // Nếu không gặp được bộ mã trùng item.Key
-                message += string.Format("Kho:{2}  Vật tư:{3}  Tồn:{0}  Xuất:{1}\n",
-                                0, item.Value, c_makho, c_mavt);
-
+                //message += string.Format("Kho:{2}  Vật tư:{3}  Tồn:{0}  Xuất:{1}\n",
+                //                0, item.Value, c_makho, c_mavt);
+                message = "";
             NextItem:
                 DoNothing();
             }
