@@ -132,28 +132,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         private V6VvarTextBox _ma_kh22, _tk_du22, _tk_thue_no22, _ma_thue22;
         private V6DateTimeColor _ngay_ct022;
         private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _gia_Nt022;
-        string[] alctct_GRD_HIDE = new string[] { };
-        string[] alctct_GRD_READONLY = new string[] { };
         
         private void LoadDetailControls()
         {
             detail1.lblName.AccessibleName = "TEN_TK";
             //Lấy các control động
             var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
-
-            //Lấy thông tin Alctct
-            var alctct = V6BusinessHelper.GetAlctCt(Invoice.Mact);
-
-            if (!V6Login.IsAdmin)
-            {
-                if (alctct != null && alctct.Rows.Count > 0)
-                {
-                    var GRD_HIDE = alctct.Rows[0]["GRD_HIDE"].ToString().ToUpper();
-                    var GRD_READONLY = alctct.Rows[0]["GRD_READONLY"].ToString().ToUpper();
-                    alctct_GRD_HIDE = ObjectAndString.SplitString(GRD_HIDE);
-                    alctct_GRD_READONLY = ObjectAndString.SplitString(GRD_READONLY);
-                }
-            }
 
             //Thêm các control động vào danh sách
             foreach (KeyValuePair<int, Control> item in dynamicControlList)
@@ -395,11 +379,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                                     _t_tien22, _t_thue_nt22, _t_thue22);
                         };
 
-                        if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                        if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                         {
                             _t_tien_nt22.InvisibleTag();
                         }
-                        if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                        if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                         {
                             _t_tien_nt22.ReadOnlyTag();
                         }
@@ -444,11 +428,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     _t_thue22 = control as V6NumberTextBox;
                     if (_t_thue22 != null)
                     {
-                        if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                        if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                         {
                             _t_thue22.InvisibleTag();
                         }
-                        if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                        if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                         {
                             _t_thue22.ReadOnlyTag();
                         }
@@ -459,11 +443,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     _t_thue_nt22 = control as V6NumberTextBox;
                     if (_t_thue_nt22 != null)
                     {
-                        if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                        if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                         {
                             _t_thue_nt22.InvisibleTag();
                         }
-                        if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                        if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                         {
                             _t_thue_nt22.ReadOnlyTag();
                         }
@@ -1398,7 +1382,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         
         #region ==== Show Hide Enable Disable controls ====
 
-        protected override void EnableFormControls()
+        protected override void EnableVisibleControls()
         {
             try
             {
@@ -1423,6 +1407,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".EnableFormControls: " + ex.Message);
+            }
+
+            try // Ẩn hiện theo quyền trong Alctct
+            {
+                V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, Invoice.GRD_READONLY, true);
+            }
+            catch (Exception ex2)
+            {
+                this.WriteExLog(GetType() + ".EnableFormControls ex2", ex2);
             }
         }
 
@@ -1835,7 +1828,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
 
         private void GetTyGiaDefault()
         {
-            var getMant = Invoice.Alct.Rows[0]["ma_nt"].ToString().Trim();
+            var getMant = Invoice.Alct["ma_nt"].ToString().Trim();
             if (!string.IsNullOrEmpty(getMant))
             {
                 cboMaNt.SelectedValue = getMant;
@@ -1872,10 +1865,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             }
 
             //M_Ma_nk
-            Txtma_nk.Text = Invoice.Alct.Rows[0]["M_MA_NK"].ToString().Trim();
+            Txtma_nk.Text = Invoice.Alct["M_MA_NK"].ToString().Trim();
             //
-            txtManx.Text = Invoice.Alct.Rows[0]["TK_CO"].ToString().Trim();
-            cboKieuPost.SelectedValue = Invoice.Alct.Rows[0]["M_K_POST"].ToString().Trim();
+            txtManx.Text = Invoice.Alct["TK_CO"].ToString().Trim();
+            cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
 
         }
 
@@ -2920,9 +2913,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                 if (V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
                 {
                     var program = Invoice.PrintReportProcedure;
-                    var repFile = Invoice.Alct.Rows[0]["FORM"].ToString().Trim();
-                    var repTitle = Invoice.Alct.Rows[0]["TIEU_DE_CT"].ToString().Trim();
-                    var repTitle2 = Invoice.Alct.Rows[0]["TIEU_DE2"].ToString().Trim();
+                    var repFile = Invoice.Alct["FORM"].ToString().Trim();
+                    var repTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
+                    var repTitle2 = Invoice.Alct["TIEU_DE2"].ToString().Trim();
 
                     var c = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
                         "", "", "", _sttRec);
@@ -3071,7 +3064,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                 SetGridViewData();
                 
                 ResetAllVars();
-                EnableFormControls();
+                EnableVisibleControls();
                 SetFormDefaultValues();
                 btnMoi.Focus();
             }

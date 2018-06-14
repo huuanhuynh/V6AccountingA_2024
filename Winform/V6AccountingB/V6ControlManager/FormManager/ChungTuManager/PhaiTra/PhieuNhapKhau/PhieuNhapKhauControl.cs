@@ -154,27 +154,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private V6VvarTextBox _ma_kh22, _tk_du22, _tk_thue_no22, _ma_thue22;
         private V6DateTimeColor _ngay_ct022;
         private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _tien_cn_nt22, _tien_cn22;
-        string[] alctct_GRD_HIDE = new string[] { };
-        string[] alctct_GRD_READONLY = new string[] { };
         
         private void LoadDetailControls()
         {
             //Lấy các control động
             var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
-            //Lấy thông tin Alctct
-            var alctct = V6BusinessHelper.GetAlctCt(Invoice.Mact);
-
-            if (!V6Login.IsAdmin)
-            {
-                if (alctct != null && alctct.Rows.Count > 0)
-                {
-                    var GRD_HIDE = alctct.Rows[0]["GRD_HIDE"].ToString().ToUpper();
-                    var GRD_READONLY = alctct.Rows[0]["GRD_READONLY"].ToString().ToUpper();
-                    alctct_GRD_HIDE = ObjectAndString.SplitString(GRD_HIDE);
-                    alctct_GRD_READONLY = ObjectAndString.SplitString(GRD_READONLY);
-                }
-            }
-
+            
             //Thêm các control động vào danh sách
             foreach (KeyValuePair<int, Control> item in dynamicControlList)
             {
@@ -262,7 +247,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         {
 
                         };
-                        if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                        if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                         {
                             _soLuong1.ReadOnlyTag();
                         }
@@ -315,7 +300,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                                 }
                             };
 
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _sl_qd.ReadOnlyTag();
                             }
@@ -346,11 +331,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         _giaNt = control as V6NumberTextBox;
                         if (_giaNt != null)
                         {
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _giaNt.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _giaNt.ReadOnlyTag();
                             }
@@ -360,11 +345,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         _gia = control as V6NumberTextBox;
                         if (_gia != null)
                         {
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _gia.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _gia.ReadOnlyTag();
                             }
@@ -374,11 +359,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         _gia0 = control as V6NumberTextBox;
                         if (_gia0 != null)
                         {
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _gia0.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _gia0.ReadOnlyTag();
                             }
@@ -388,11 +373,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         _gia01 = control as V6NumberTextBox;
                         if (_gia01 != null)
                         {
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _gia01.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _gia01.ReadOnlyTag();
                             }
@@ -403,11 +388,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         _gia_Nt0 = control as V6NumberTextBox;
                         if (_gia_Nt0 != null)
                         {
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _gia_Nt0.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _gia_Nt0.ReadOnlyTag();
                             }
@@ -418,11 +403,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         if (_giaNt01 != null)
                         {
                             _giaNt01.V6LostFocus += GiaNt01_V6LostFocus;
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _giaNt01.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _giaNt01.ReadOnlyTag();
                             }
@@ -432,11 +417,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         _tien = control as V6NumberTextBox;
                         if (_tien != null)
                         {
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _tien.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _tien.ReadOnlyTag();
                             }
@@ -446,11 +431,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         _tienNt =  control as V6NumberTextBox;
                         if (_tienNt != null)
                         {
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _tienNt.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _tienNt.ReadOnlyTag();
                             }
@@ -471,11 +456,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                             }
 
                             _tienNt0.V6LostFocus += TienNt0_V6LostFocus;
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _tienNt0.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _tienNt0.ReadOnlyTag();
                             }
@@ -488,11 +473,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                             // Tuanmh 25/05/2017
                             _tien0.V6LostFocus += Tien0_V6LostFocus;
 
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _tien0.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _tien0.ReadOnlyTag();
                             }
@@ -703,11 +688,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                                 TienChanged(_t_tien22.Value, _thue_suat22.Value, _t_thue22);
                             };
 
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _t_tien22.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _t_tien22.ReadOnlyTag();
                             }
@@ -723,11 +708,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                                     _t_tien22, _t_thue_nt22, _t_thue22);
                             };
 
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _t_tien_nt22.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _t_tien_nt22.ReadOnlyTag();
                             }
@@ -743,11 +728,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                                     _tien_cn_nt22.Value = txtTongThanhToanNt.Value;
                             };
 
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _tien_cn_nt22.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _tien_cn_nt22.ReadOnlyTag();
                             }
@@ -763,11 +748,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                                     _tien_cn22.Value = txtTongThanhToan.Value;
                             };
 
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _tien_cn22.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _tien_cn22.ReadOnlyTag();
                             }
@@ -810,11 +795,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         _t_thue22 = control as V6NumberTextBox;
                         if (_t_thue22 != null)
                         {
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _t_thue22.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _t_thue22.ReadOnlyTag();
                             }
@@ -824,11 +809,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         _t_thue_nt22 = control as V6NumberTextBox;
                         if (_t_thue_nt22 != null)
                         {
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _t_thue_nt22.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _t_thue_nt22.ReadOnlyTag();
                             }
@@ -2089,7 +2074,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         
         #region ==== Show Hide Enable Disable controls ====
         
-        protected override void EnableFormControls()
+        protected override void EnableVisibleControls()
         {
             try
             {
@@ -2127,7 +2112,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     txtPtCk.ReadOnly = !chkSuaPtck.Checked;
                 }
 
-                if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains("TIEN"))
+                if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains("TIEN"))
                 {
                     panelNT.Visible = false;
                     panelVND.Visible = false;
@@ -2137,6 +2122,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".EnableFormControls: " + ex.Message);
+            }
+
+            try // Ẩn hiện theo quyền trong Alctct
+            {
+                V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, Invoice.GRD_READONLY, true);
+            }
+            catch (Exception ex2)
+            {
+                this.WriteExLog(GetType() + ".EnableFormControls ex2", ex2);
             }
         }
 
@@ -3002,7 +2996,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         private void GetTyGiaDefault()
         {
-            var getMant = Invoice.Alct.Rows[0]["ma_nt"].ToString().Trim();
+            var getMant = Invoice.Alct["ma_nt"].ToString().Trim();
             if (!string.IsNullOrEmpty(getMant))
             {
                 cboMaNt.SelectedValue = getMant;
@@ -3033,11 +3027,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             }
 
             //M_Ma_nk
-            Txtma_nk.Text = Invoice.Alct.Rows[0]["M_MA_NK"].ToString().Trim();
+            Txtma_nk.Text = Invoice.Alct["M_MA_NK"].ToString().Trim();
             TxtMa_gd.Text = "7";
             //
-            txtManx.Text = Invoice.Alct.Rows[0]["TK_CO"].ToString().Trim();
-            cboKieuPost.SelectedValue = Invoice.Alct.Rows[0]["M_K_POST"].ToString().Trim();
+            txtManx.Text = Invoice.Alct["TK_CO"].ToString().Trim();
+            cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
             TxtTk_i_ao.Text = txtManx.Text;
 
         }
@@ -3113,7 +3107,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], true);
                     detail1.ShowIDs(new[] { "GIA01", "lblGIA01", "TIEN0", "lblTIEN0" });
                     panelVND.Visible = true;
-                    if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains("TIEN"))
+                    if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains("TIEN"))
                     {
                         panelNT.Visible = false;
                         panelVND.Visible = false;
@@ -3166,7 +3160,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], false);
                     detail1.HideIDs(new[] { "GIA01", "lblGIA01", "TIEN0", "lblTIEN0" });
                     panelVND.Visible = false;
-                    if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains("TIEN"))
+                    if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains("TIEN"))
                     {
                         panelNT.Visible = false;
                         panelVND.Visible = false;
@@ -4152,9 +4146,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 if (V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
                 {
                     var program = Invoice.PrintReportProcedure;
-                    var repFile = Invoice.Alct.Rows[0]["FORM"].ToString().Trim();
-                    var repTitle = Invoice.Alct.Rows[0]["TIEU_DE_CT"].ToString().Trim();
-                    var repTitle2 = Invoice.Alct.Rows[0]["TIEU_DE2"].ToString().Trim();
+                    var repFile = Invoice.Alct["FORM"].ToString().Trim();
+                    var repTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
+                    var repTitle2 = Invoice.Alct["TIEU_DE2"].ToString().Trim();
 
                     var c = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
                         "", "", "", _sttRec);
@@ -4305,7 +4299,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 SetGridViewData();
                 
                 ResetAllVars();
-                EnableFormControls();
+                EnableVisibleControls();
                 SetFormDefaultValues();
                 btnMoi.Focus();
             }

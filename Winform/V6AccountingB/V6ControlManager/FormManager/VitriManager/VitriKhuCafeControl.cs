@@ -247,9 +247,9 @@ namespace V6ControlManager.FormManager.VitriManager
                 if (string.IsNullOrEmpty(clickButton.Stt_Rec)) return;
 
                 var program = hoadonCafe_Invoice.PrintReportProcedure;
-                var repFile = hoadonCafe_Invoice.Alct.Rows[0]["FORM"].ToString().Trim();
-                var repTitle = hoadonCafe_Invoice.Alct.Rows[0]["TIEU_DE_CT"].ToString().Trim();
-                var repTitle2 = hoadonCafe_Invoice.Alct.Rows[0]["TIEU_DE2"].ToString().Trim();
+                var repFile = hoadonCafe_Invoice.Alct["FORM"].ToString().Trim();
+                var repTitle = hoadonCafe_Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
+                var repTitle2 = hoadonCafe_Invoice.Alct["TIEU_DE2"].ToString().Trim();
 
                 var c = new InChungTuViewBase(hoadonCafe_Invoice, program, program, repFile, repTitle, repTitle2,
                     "", "", "", clickButton.Stt_Rec);

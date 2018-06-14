@@ -215,7 +215,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             EnableNavigationButtons();
             EnableFunctionButtons();
-            EnableFormControls();
+            EnableVisibleControls();
         }
 
         protected virtual void EnableNavigationButtons()
@@ -228,7 +228,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
             throw new System.NotImplementedException("Cần override.");
         }
 
-        protected virtual void EnableFormControls()
+        /// <summary>
+        /// Ẩn hiện, set Readonly cho các control.
+        /// </summary>
+        protected virtual void EnableVisibleControls()
         {
             throw new System.NotImplementedException("Cần override.");
         }
@@ -1545,9 +1548,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     if (V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
                     {
                         var program = Invoice.PrintReportProcedure;
-                        var repFile = Invoice.Alct.Rows[0]["FORM"].ToString().Trim();
-                        var repTitle = Invoice.Alct.Rows[0]["TIEU_DE_CT"].ToString().Trim();
-                        var repTitle2 = Invoice.Alct.Rows[0]["TIEU_DE2"].ToString().Trim();
+                        var repFile = Invoice.Alct["FORM"].ToString().Trim();
+                        var repTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
+                        var repTitle2 = Invoice.Alct["TIEU_DE2"].ToString().Trim();
 
                         var c = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
                             "", "", "", sttRec_In);
@@ -1730,9 +1733,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     }
                 }
                 //MMETHOD
-                if (Invoice.Alct.Columns.Contains("MMETHOD"))
+                if (Invoice.Alct.Table.Columns.Contains("MMETHOD"))
                 {
-                    var xml = Invoice.Alct.Rows[0]["MMETHOD"].ToString().Trim();
+                    var xml = Invoice.Alct["MMETHOD"].ToString().Trim();
                     if (xml == "") goto Build;
                     DataSet ds = new DataSet();
                     ds.ReadXml(new StringReader(xml));

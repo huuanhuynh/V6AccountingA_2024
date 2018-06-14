@@ -7,6 +7,7 @@ using V6Init;
 using V6SqlConnect;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6AccountingBusiness.Invoices
 {
@@ -34,7 +35,8 @@ namespace V6AccountingBusiness.Invoices
         public string V6Message = "";
 
         protected V6TableStruct _amStruct, _adStruct, _ad2Struct, _ad3Struct;
-        protected DataTable _alnt, _alct, _alct1, _alct3, _alpost;
+        protected DataTable _alnt, _alct1, _alct3, _alpost;
+        protected DataRow _alct, _alctct;
         
         /// <summary>
         /// Tên bảng dữ liệu AM
@@ -43,7 +45,7 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                return Alct.Rows[0]["m_phdbf"].ToString().Trim();
+                return Alct["m_phdbf"].ToString().Trim();
             }
         }
         /// <summary>
@@ -53,7 +55,7 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                return Alct.Rows[0]["m_ctdbf"].ToString().Trim();
+                return Alct["m_ctdbf"].ToString().Trim();
             }
         }
 
@@ -61,7 +63,7 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                return Alct.Rows[0]["m_gtdbf"].ToString().Trim();
+                return Alct["m_gtdbf"].ToString().Trim();
             }
         }
         /// <summary>
@@ -71,7 +73,7 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                return Alct.Rows[0]["m_ktdbf"].ToString().Trim();
+                return Alct["m_ktdbf"].ToString().Trim();
             }
         }
 
@@ -81,7 +83,7 @@ namespace V6AccountingBusiness.Invoices
             {
                 try
                 {
-                    return Convert.ToInt32(Alct.Rows[0]["so_lien"]);
+                    return Convert.ToInt32(Alct["so_lien"]);
                 }
                 catch (Exception)
                 {
@@ -99,9 +101,9 @@ namespace V6AccountingBusiness.Invoices
             {
                 try
                 {
-                    if (Alct.Columns.Contains("WRITE_LOG"))
+                    if (Alct.Table.Columns.Contains("WRITE_LOG"))
                     {
-                        return Alct.Rows[0]["WRITE_LOG"].ToString() == "1";
+                        return Alct["WRITE_LOG"].ToString() == "1";
                     }
                 }
                 catch (Exception)
@@ -142,7 +144,7 @@ namespace V6AccountingBusiness.Invoices
             return Service.GetAlnt();
         }
 
-        public DataTable Alct
+        public DataRow Alct
         {
             get
             {
@@ -157,11 +159,33 @@ namespace V6AccountingBusiness.Invoices
                 return _alct;
             }
         }
+        
+        public DataRow Alctct
+        {
+            get
+            {
+                try
+                {
+                    _alctct = _alctct ?? (_alctct = GetAlctct());
+                }
+                catch
+                {
+                    // ignored
+                }
+                return _alct;
+            }
+        }
 
-        private DataTable GetAlct()
+        private DataRow GetAlct()
         {
             var data = Service.GetAlct(Mact);
-            if (data != null && data.Rows.Count == 1) return data;
+            if (data != null && data.Rows.Count == 1) return data.Rows[0];
+            return null;
+        }
+        private DataRow GetAlctct()
+        {
+            var data = V6BusinessHelper.GetAlctCt(Mact);
+            if (data != null && data.Rows.Count == 1) return data.Rows[0];
             return null;
         }
         
@@ -170,7 +194,7 @@ namespace V6AccountingBusiness.Invoices
             get
             {
                 if(Alct!=null)
-                return Convert.ToInt32(Alct.Rows[0]["m_loc_nsd"]) == 1;
+                return Convert.ToInt32(Alct["m_loc_nsd"]) == 1;
                 return false;
             }
         }
@@ -180,7 +204,7 @@ namespace V6AccountingBusiness.Invoices
         /// </summary>
         public bool M_NGAY_CT
         {
-            get { return Convert.ToInt32(Alct.Rows[0]["m_ngay_ct"])==1; }
+            get { return Convert.ToInt32(Alct["m_ngay_ct"])==1; }
         }
 
         public virtual DataTable Alct1
@@ -228,9 +252,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["ADV_AM"].ToString().Trim();
+                    return _alct["ADV_AM"].ToString().Trim();
                 }
                 return "";
             }
@@ -243,9 +267,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["ADV_AD"].ToString().Trim();
+                    return _alct["ADV_AD"].ToString().Trim();
                 }
                 return "";
             }
@@ -255,9 +279,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["GRDS_AM"].ToString().Trim();
+                    return _alct["GRDS_AM"].ToString().Trim();
                 }
                 return "";
             }
@@ -266,9 +290,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["GRDS_AD"].ToString().Trim();
+                    return _alct["GRDS_AD"].ToString().Trim();
                 }
                 return "";
             }
@@ -277,9 +301,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["GRDF_AM"].ToString().Trim();
+                    return _alct["GRDF_AM"].ToString().Trim();
                 }
                 return "";
             }
@@ -288,9 +312,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["GRDF_AD"].ToString().Trim();
+                    return _alct["GRDF_AD"].ToString().Trim();
                 }
                 return "";
             }
@@ -299,9 +323,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["GRDHV_AM"].ToString().Trim();
+                    return _alct["GRDHV_AM"].ToString().Trim();
                 }
                 return "";
             }
@@ -310,9 +334,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["GRDHE_AM"].ToString().Trim();
+                    return _alct["GRDHE_AM"].ToString().Trim();
                 }
                 return "";
             }
@@ -321,9 +345,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["GRDHV_AD"].ToString().Trim();
+                    return _alct["GRDHV_AD"].ToString().Trim();
                 }
                 return "";
             }
@@ -332,9 +356,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["GRDHE_AD"].ToString().Trim();
+                    return _alct["GRDHE_AD"].ToString().Trim();
                 }
                 return "";
             }
@@ -344,9 +368,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["GRDS_Q1"].ToString().Trim();
+                    return _alct["GRDS_Q1"].ToString().Trim();
                 }
                 return "";
             }
@@ -355,9 +379,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["GRDF_Q1"].ToString().Trim();
+                    return _alct["GRDF_Q1"].ToString().Trim();
                 }
                 return "";
             }
@@ -366,9 +390,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["GRDHV_Q1"].ToString().Trim();
+                    return _alct["GRDHV_Q1"].ToString().Trim();
                 }
                 return "";
             }
@@ -377,9 +401,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["GRDHE_Q1"].ToString().Trim();
+                    return _alct["GRDHE_Q1"].ToString().Trim();
                 }
                 return "";
             }
@@ -390,9 +414,9 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["GRDT_AM"].ToString().Trim();
+                    return _alct["GRDT_AM"].ToString().Trim();
                 }
                 return "";
             }
@@ -401,11 +425,51 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                if (Alct != null && Alct.Rows.Count > 0)
+                if (Alct != null)
                 {
-                    return _alct.Rows[0]["GRDT_AD"].ToString().Trim();
+                    return _alct["GRDT_AD"].ToString().Trim();
                 }
                 return "";
+            }
+        }
+
+        /// <summary>
+        /// Các trường ẩn [Alctct]
+        /// </summary>
+        public string[] GRD_HIDE
+        {
+            get
+            {
+                string[] result = { };
+                if (!V6Login.IsAdmin)
+                {
+                    if (Alctct != null)
+                    {
+                        var ss = Alctct["GRD_HIDE"].ToString().ToUpper();
+                        result = ObjectAndString.SplitString(ss);
+                    }
+                }
+                return result;
+            }
+        }
+        
+        /// <summary>
+        /// Các trường chỉ đọc [Alctct]
+        /// </summary>
+        public string[] GRD_READONLY
+        {
+            get
+            {
+                string[] result = { };
+                if (!V6Login.IsAdmin)
+                {
+                    if (Alctct != null)
+                    {
+                        var ss = Alctct["GRD_READONLY"].ToString().ToUpper();
+                        result = ObjectAndString.SplitString(ss);
+                    }
+                }
+                return result;
             }
         }
 
@@ -427,7 +491,7 @@ namespace V6AccountingBusiness.Invoices
         private void GetExtraInfor()
         {
             _extraInfor = new SortedDictionary<string, string>();
-            string s = _alct.Rows[0]["EXTRA_INFOR"].ToString().Trim();
+            string s = _alct["EXTRA_INFOR"].ToString().Trim();
             if (s != "")
             {
                 var sss = s.Split(';');
@@ -769,7 +833,7 @@ namespace V6AccountingBusiness.Invoices
         private void GetAllTemplateSettingAM()
         {
             _templateSettingAM = new SortedDictionary<string, DefineInfo>();
-            var define = Alct.Rows[0]["AM_TEMPLATE"].ToString().Trim();
+            var define = Alct["AM_TEMPLATE"].ToString().Trim();
             string[] sss = define.Split('~');
             foreach (string s in sss)
             {
@@ -806,7 +870,7 @@ namespace V6AccountingBusiness.Invoices
         private void GetAllTemplateSettingAD()
         {
             _templateSettingAD = new SortedDictionary<string, DefineInfo>();
-            var define = Alct.Rows[0]["AD_TEMPLATE"].ToString().Trim();
+            var define = Alct["AD_TEMPLATE"].ToString().Trim();
             string[] sss = define.Split(new []{'~'}, StringSplitOptions.RemoveEmptyEntries);
             foreach (string s in sss)
             {

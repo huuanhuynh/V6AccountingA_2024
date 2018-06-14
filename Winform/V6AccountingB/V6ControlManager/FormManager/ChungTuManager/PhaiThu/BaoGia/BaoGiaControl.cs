@@ -124,21 +124,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         {
             //Lấy các control động
             var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
-            //Lấy thông tin Alctct
-            var alctct = V6BusinessHelper.GetAlctCt(Invoice.Mact);
-            var alctct_GRD_HIDE = new string[] { };
-            var alctct_GRD_READONLY = new string[] { };
-            if (!V6Login.IsAdmin)
-            {
-                if (alctct != null && alctct.Rows.Count > 0)
-                {
-                    var GRD_HIDE = alctct.Rows[0]["GRD_HIDE"].ToString().ToUpper();
-                    var GRD_READONLY = alctct.Rows[0]["GRD_READONLY"].ToString().ToUpper();
-                    alctct_GRD_HIDE = ObjectAndString.SplitString(GRD_HIDE);
-                    alctct_GRD_READONLY = ObjectAndString.SplitString(GRD_READONLY);
-                }
-            }
-
+            
             //Thêm các control động vào danh sách
             foreach (KeyValuePair<int, Control> item in dynamicControlList)
             {
@@ -245,7 +231,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                         {
                             
                         };
-                        if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                        if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                         {
                             _soLuong1.ReadOnlyTag();
                         }
@@ -316,11 +302,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                         _tien = (V6NumberTextBox)control;
                         if (_tien != null)
                         {
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _tien.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _tien.ReadOnlyTag();
                             }
@@ -345,11 +331,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                                 TinhGiaVon();
                             };
 
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _tienNt.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _tienNt.ReadOnlyTag();
                             }
@@ -389,11 +375,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                             {
                                 TinhTienVon();
                             };
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _gia_nt.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _gia_nt.ReadOnlyTag();
                             }
@@ -403,11 +389,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                         _gia = control as V6NumberTextBox;
                         if (_gia != null)
                         {
-                            if (!V6Login.IsAdmin && alctct_GRD_HIDE.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _gia.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && alctct_GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
                                 _gia.ReadOnlyTag();
                             }
@@ -1328,7 +1314,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         
         #region ==== Show Hide Enable Disable controls ====
 
-        protected override void EnableFormControls()
+        protected override void EnableVisibleControls()
         {
             try
             {
@@ -1373,6 +1359,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".EnableFormControls: " + ex.Message);
+            }
+
+            try // Ẩn hiện theo quyền trong Alctct
+            {
+                V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, Invoice.GRD_READONLY, true);
+            }
+            catch (Exception ex2)
+            {
+                this.WriteExLog(GetType() + ".EnableFormControls ex2", ex2);
             }
         }
         
@@ -1940,7 +1935,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         private void GetTyGiaDefault()
         {
-            var getMant = Invoice.Alct.Rows[0]["ma_nt"].ToString().Trim();
+            var getMant = Invoice.Alct["ma_nt"].ToString().Trim();
             if (!string.IsNullOrEmpty(getMant))
             {
                 cboMaNt.SelectedValue = getMant;
@@ -1971,12 +1966,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             }
 
             //M_Ma_nk
-            Txtma_nk.Text = Invoice.Alct.Rows[0]["M_MA_NK"].ToString().Trim();
+            Txtma_nk.Text = Invoice.Alct["M_MA_NK"].ToString().Trim();
             //
-            txtManx.Text = Invoice.Alct.Rows[0]["TK_NO"].ToString().Trim();
+            txtManx.Text = Invoice.Alct["TK_NO"].ToString().Trim();
             try
             {
-                cboKieuPost.SelectedValue = Invoice.Alct.Rows[0]["M_K_POST"].ToString().Trim();
+                cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
             }
             catch
             {
@@ -3011,9 +3006,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     if (V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
                     {
                         var program = Invoice.PrintReportProcedure;
-                        var repFile = Invoice.Alct.Rows[0]["FORM"].ToString().Trim();
-                        var repTitle = Invoice.Alct.Rows[0]["TIEU_DE_CT"].ToString().Trim();
-                        var repTitle2 = Invoice.Alct.Rows[0]["TIEU_DE2"].ToString().Trim();
+                        var repFile = Invoice.Alct["FORM"].ToString().Trim();
+                        var repTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
+                        var repTitle2 = Invoice.Alct["TIEU_DE2"].ToString().Trim();
 
                         var c = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
                             "", "", "", _sttRec);
@@ -3169,7 +3164,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 SetGridViewData();
                 
                 ResetAllVars();
-                EnableFormControls();
+                EnableVisibleControls();
                 SetFormDefaultValues();
             }
             catch (Exception ex)

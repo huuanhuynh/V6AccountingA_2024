@@ -782,6 +782,29 @@ namespace V6Controls.Forms
             }
         }
 
+        public static List<Control> GetListControlByAccessibleNames(Control container, IList<string> accessibleName)
+        {
+            try
+            {
+                List<Control> ControlList = new List<Control>();
+                foreach (Control c in container.Controls)
+                {
+                    if (accessibleName.Contains(c.AccessibleName, StringComparer.InvariantCultureIgnoreCase))
+                    {
+                        ControlList.Add(c);
+                    }
+
+                    List<Control> cl = GetListControlByAccessibleNames(c, accessibleName);
+                    ControlList.AddRange(cl);
+                }
+                return ControlList;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("GetListControlByAccessibleNames error!\n" + ex.Message);
+            }
+        }
+
         
         public static List<Control> GetAllControls(Control container)
         {
@@ -1232,8 +1255,8 @@ namespace V6Controls.Forms
         /// Set các control nhập liệu thành readonly (hoặc không)
         /// </summary>
         /// <param name="control"></param>
-        /// <param name="readonli"></param>
-        public static void SetFormControlsReadOnly(Control control, bool readonli)
+        /// <param name="readOnly"></param>
+        public static void SetFormControlsReadOnly(Control control, bool readOnly)
         {
             var tagString = string.Format(";{0};", control.Tag ?? "");
 
@@ -1250,14 +1273,14 @@ namespace V6Controls.Forms
             if (control is TextBox)
             {
                 var txt = control as TextBox;
-                txt.ReadOnly = readonli || readonl2;
+                txt.ReadOnly = readOnly || readonl2;
                 if (disable) txt.Enabled = false;
                 if (enable) txt.Enabled = true;
             }
             else if (control is V6DateTimePick)
             {
                 var dat = control as V6DateTimePick;
-                dat.ReadOnly = (readonli || readonl2);
+                dat.ReadOnly = (readOnly || readonl2);
                 if (disable) dat.Enabled = false;
                 if (enable) dat.Enabled = true;
             }
@@ -1269,14 +1292,14 @@ namespace V6Controls.Forms
                 || control is GioiTinhControl
                 )
             {
-                control.Enabled = !(readonli || readonl2);
+                control.Enabled = !(readOnly || readonl2);
                 if (disable) control.Enabled = false;
                 if (enable) control.Enabled = true;
             }
             else if (control is DataGridView)
             {
                 var dgv = (DataGridView)control;
-                dgv.ReadOnly = readonli || readonl2;
+                dgv.ReadOnly = readOnly || readonl2;
 
                 if (disable) control.Enabled = false;
                 if (enable) control.Enabled = true;
@@ -1285,7 +1308,7 @@ namespace V6Controls.Forms
             }
             else if (control is TextBoxBase)
             {
-                ((TextBoxBase)control).ReadOnly = readonli || readonl2;
+                ((TextBoxBase)control).ReadOnly = readOnly || readonl2;
             }
             //else
             //{
@@ -1298,7 +1321,7 @@ namespace V6Controls.Forms
             {
                 foreach (Control c in control.Controls)
                 {
-                    SetFormControlsReadOnly(c, readonli);
+                    SetFormControlsReadOnly(c, readOnly);
                 }
             }
             CANCELALL:;
@@ -4779,6 +4802,63 @@ namespace V6Controls.Forms
                 WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + ".SetControlValue " + control.Name + ":" + value, ex);
             }
         }
+        
+        public static void SetControlReadOnly(Control control, bool readOnly)
+        {
+            try
+            {
+                if (control is TextBox)
+                {
+                    var txt = control as TextBox;
+                    txt.ReadOnly = readOnly;
+                }
+                else if (control is V6DateTimePick)
+                {
+                    var dat = control as V6DateTimePick;
+                    dat.ReadOnly = readOnly;
+                }
+                else if (control is DateTimePicker
+                    || control is CheckBox
+                    || control is RadioButton
+                    || control is ComboBox
+                    || control is V6FormButton
+                    || control is GioiTinhControl
+                    )
+                {
+                    control.Enabled = !(readOnly);
+                }
+                else if (control is DataGridView)
+                {
+                    var dgv = (DataGridView)control;
+                    dgv.ReadOnly = readOnly;
+                }
+                else if (control is TextBoxBase)
+                {
+                    ((TextBoxBase)control).ReadOnly = readOnly;
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + ".SetControlReadOnly " + control.Name + "." + control.AccessibleName, ex);
+            }
+        }
+
+
+        public static void SetListControlReadOnlyByAccessibleNames(Control container, IList<string> accNameList, bool readOnly)
+        {
+            try
+            {
+                var listControl = GetListControlByAccessibleNames(container, accNameList);
+                foreach (Control control in listControl)
+                {
+                    SetControlReadOnly(control, readOnly);
+                }
+            }
+            catch (Exception ex)
+            {
+                container.WriteExLog(container.GetType() + ".SetListControlReadOnlyByAccessibleNames", ex);
+            }
+        }
 
         /// <summary>
         /// Gán dữ liệu vào control các loại. Control null sẽ bỏ qua. Value null sẽ gán rỗng hoặc mặc định.
@@ -5211,5 +5291,6 @@ namespace V6Controls.Forms
                 thisForm.WriteExLog(thisForm.GetType() + ".ApplyFormControlEvents", ex);
             }
         }
+
     }
 }

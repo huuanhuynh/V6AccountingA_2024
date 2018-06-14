@@ -29,7 +29,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             _showQuickViewControl = showQuickView;
             Invoice = V6BusinessHelper.CreateInvoice(maCt);
             
-            if (Invoice.Alct == null || Invoice.Alct.Rows.Count == 0)
+            if (Invoice.Alct == null)
             {
                 this.ShowWarningMessage("Kiểm tra mã chứng từ!");
                 Hide();

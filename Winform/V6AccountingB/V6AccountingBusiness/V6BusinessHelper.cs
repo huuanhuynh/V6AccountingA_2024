@@ -624,6 +624,11 @@ namespace V6AccountingBusiness
                 "", "", "").Data;
             return _alct;
         }
+        /// <summary>
+        /// Lấy thông tin Alctct (lọc theo Mact và user_id).
+        /// </summary>
+        /// <param name="Mact"></param>
+        /// <returns></returns>
         public static DataTable GetAlctCt(string Mact)
         {
             var _alct = Select(V6TableName.Alctct,

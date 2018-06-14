@@ -109,9 +109,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             int i = 0;
             var Invoice = new V6Invoice72();
             var program = _program + "F9";// Invoice.PrintReportProcedure;
-            //var repFile = Invoice.Alct.Rows[0]["FORM"].ToString().Trim();
-            var repTitle = Invoice.Alct.Rows[0]["TIEU_DE_CT"].ToString().Trim();
-            var repTitle2 = Invoice.Alct.Rows[0]["TIEU_DE2"].ToString().Trim();
+            //var repFile = Invoice.Alct["FORM"].ToString().Trim();
+            var repTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
+            var repTitle2 = Invoice.Alct["TIEU_DE2"].ToString().Trim();
             
             while(i<dataGridView1.Rows.Count)
             {

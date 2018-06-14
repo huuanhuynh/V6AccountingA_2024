@@ -1040,7 +1040,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 int dropMax = 40;
                 try
                 {
-                    dropMax = ObjectAndString.ObjectToInt(Invoice.Alct.Rows[0]["drop_Max"]);
+                    dropMax = ObjectAndString.ObjectToInt(Invoice.Alct["drop_Max"]);
                     if (dropMax < 1) dropMax = 40;
                     //Lấy lại thông tin dropMax theo albc (cboMauin)
                     if (MauInSelectedRow != null && MauInSelectedRow.Table.Columns.Contains("DROP_MAX"))

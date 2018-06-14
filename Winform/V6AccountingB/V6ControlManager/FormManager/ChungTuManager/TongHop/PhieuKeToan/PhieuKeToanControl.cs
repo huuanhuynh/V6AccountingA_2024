@@ -599,7 +599,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         
         #region ==== Show Hide Enable Disable controls ====
 
-        protected override void EnableFormControls()
+        protected override void EnableVisibleControls()
         {
             try
             {
@@ -627,6 +627,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".EnableFormControls: " + ex.Message);
+            }
+
+            try // Ẩn hiện theo quyền trong Alctct
+            {
+                V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, Invoice.GRD_READONLY, true);
+            }
+            catch (Exception ex2)
+            {
+                this.WriteExLog(GetType() + ".EnableFormControls ex2", ex2);
             }
         }
 
@@ -987,7 +996,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
 
         private void GetTyGiaDefault()
         {
-            var getMant = Invoice.Alct.Rows[0]["ma_nt"].ToString().Trim();
+            var getMant = Invoice.Alct["ma_nt"].ToString().Trim();
             if (!string.IsNullOrEmpty(getMant))
             {
                 cboMaNt.SelectedValue = getMant;
@@ -1018,8 +1027,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             }
 
             //M_Ma_nk
-            Txtma_nk.Text = Invoice.Alct.Rows[0]["M_MA_NK"].ToString().Trim();
-            cboKieuPost.SelectedValue = Invoice.Alct.Rows[0]["M_K_POST"].ToString().Trim();
+            Txtma_nk.Text = Invoice.Alct["M_MA_NK"].ToString().Trim();
+            cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
 
         }
 
@@ -1882,9 +1891,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 if (V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
                 {
                     var program = Invoice.PrintReportProcedure;
-                    var repFile = Invoice.Alct.Rows[0]["FORM"].ToString().Trim();
-                    var repTitle = Invoice.Alct.Rows[0]["TIEU_DE_CT"].ToString().Trim();
-                    var repTitle2 = Invoice.Alct.Rows[0]["TIEU_DE2"].ToString().Trim();
+                    var repFile = Invoice.Alct["FORM"].ToString().Trim();
+                    var repTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
+                    var repTitle2 = Invoice.Alct["TIEU_DE2"].ToString().Trim();
 
                     var c = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
                         "", "", "", _sttRec);
@@ -2035,7 +2044,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 SetGridViewData();
                 
                 ResetAllVars();
-                EnableFormControls();
+                EnableVisibleControls();
                 SetFormDefaultValues();
                 btnMoi.Focus();
             }

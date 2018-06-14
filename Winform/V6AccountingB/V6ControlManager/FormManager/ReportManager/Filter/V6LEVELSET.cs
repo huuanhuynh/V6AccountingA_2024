@@ -176,7 +176,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
             else
             {
-                var dinh_dang = invoice.Alct.Rows[0]["DinhDang"].ToString().Trim();
+                var dinh_dang = invoice.Alct["DinhDang"].ToString().Trim();
                 if (!string.IsNullOrEmpty(dinh_dang))
                 {
                     if (tu_so != "") tu_so = (dinh_dang + tu_so).Right(dinh_dang.Length);
