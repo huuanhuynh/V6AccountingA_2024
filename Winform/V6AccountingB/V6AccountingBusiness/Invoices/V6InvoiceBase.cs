@@ -172,7 +172,7 @@ namespace V6AccountingBusiness.Invoices
                 {
                     // ignored
                 }
-                return _alct;
+                return _alctct;
             }
         }
 

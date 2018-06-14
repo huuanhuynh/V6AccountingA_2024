@@ -236,6 +236,19 @@ namespace V6ControlManager.FormManager.ChungTuManager
             throw new System.NotImplementedException("Cần override.");
         }
 
+        protected void SetControlReadOnlyHide(V6InvoiceBase invoice)
+        {
+            try //  Ẩn hiện theo quyền trong Alctct
+            {
+                V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, invoice.GRD_READONLY, true);
+                V6ControlFormHelper.SetListControlVisibleByAccessibleNames(this, invoice.GRD_HIDE, false);
+            }
+            catch (Exception ex2)
+            {
+                this.WriteExLog(GetType() + ".EnableFormControls ex2", ex2);
+            }
+        }
+
         public void CallViewInvoice(string sttrec, V6Mode mode)
         {
             ViewInvoice(sttrec, mode);

@@ -1720,14 +1720,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 this.ShowErrorMessage(GetType() + ".EnableFormControls: " + ex.Message, "HangTraLaiControl");
             }
 
-            try // Ẩn hiện theo quyền trong Alctct
-            {
-                V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, Invoice.GRD_READONLY, true);
-            }
-            catch (Exception ex2)
-            {
-                this.WriteExLog(GetType() + ".EnableFormControls ex2", ex2);
-            }
+            SetControlReadOnlyHide(Invoice);
         }
 
         #region ==== DataGridView ====

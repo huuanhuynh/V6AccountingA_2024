@@ -4859,6 +4859,23 @@ namespace V6Controls.Forms
                 container.WriteExLog(container.GetType() + ".SetListControlReadOnlyByAccessibleNames", ex);
             }
         }
+        
+        public static void SetListControlVisibleByAccessibleNames(Control container, IList<string> accNameList, bool visible)
+        {
+            try
+            {
+                var listControl = GetListControlByAccessibleNames(container, accNameList);
+                foreach (Control control in listControl)
+                {
+                    control.Visible = visible;
+                    //SetControlVisible(control, visible);
+                }
+            }
+            catch (Exception ex)
+            {
+                container.WriteExLog(container.GetType() + ".SetListControlReadOnlyByAccessibleNames", ex);
+            }
+        }
 
         /// <summary>
         /// Gán dữ liệu vào control các loại. Control null sẽ bỏ qua. Value null sẽ gán rỗng hoặc mặc định.
