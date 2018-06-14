@@ -4852,6 +4852,16 @@ namespace V6Controls.Forms
                 foreach (Control control in listControl)
                 {
                     SetControlReadOnly(control, readOnly);
+                    // Ẩn dấu check liên quan
+                    if (control.Parent != null)
+                    {
+                        var chk = GetControlByName(control.Parent, "chk" + control.AccessibleName);
+                        if (chk != null)
+                        {
+                            if(readOnly) chk.InvisibleTag();
+                            else chk.VisibleTag();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -4868,12 +4878,24 @@ namespace V6Controls.Forms
                 foreach (Control control in listControl)
                 {
                     control.Visible = visible;
-                    //SetControlVisible(control, visible);
+                    // Ẩn các control liên quan lbl, chk...
+                    if (control.Parent != null)
+                    {
+                        var lbl = GetControlByName(control.Parent, "lbl" + control.AccessibleName);
+                        if (lbl != null) lbl.Visible = visible;
+
+                        var chk = GetControlByName(control.Parent, "chk" + control.AccessibleName);
+                        if (chk != null)
+                        {
+                            if (visible) chk.Visible = true;
+                            else chk.InvisibleTag();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-                container.WriteExLog(container.GetType() + ".SetListControlReadOnlyByAccessibleNames", ex);
+                container.WriteExLog(container.GetType() + ".SetListControlVisibleByAccessibleNames", ex);
             }
         }
 

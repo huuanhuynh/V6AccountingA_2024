@@ -1344,6 +1344,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
                         if (!string.IsNullOrEmpty(selectedSttRec) && !string.IsNullOrEmpty(selectedMaCt))
                         {
+                            if (!V6Login.UserRight.AllowView("", "00" + selectedMaCt))
+                            {
+                                ShowMainMessage(V6Text.NoRight);
+                                return;
+                            }
+
                             var alctRow = V6BusinessHelper.Select("Alct", "ten_ct,ten_ct2,m_phdbf,m_ctdbf",
                                 "ma_CT = '" + selectedMaCt + "'").Data.Rows[0];
                             var amName = alctRow["m_phdbf"].ToString().Trim();

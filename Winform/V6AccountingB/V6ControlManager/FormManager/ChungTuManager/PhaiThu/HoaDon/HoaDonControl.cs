@@ -186,7 +186,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                     _ma_thue_i.Text = (data["ma_thue"] ?? "").ToString().Trim();
                                     _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["thue_suat"]);
                                     V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Gán thue_suat_i.Value = maVt.Data[thue_suat] = " + data["thue_suat"]);
-                                    if(!chkSuaTienThue.Checked) Tinh_thue_ct();
+                                    if(!chkT_THUE_NT.Checked) Tinh_thue_ct();
                                 }
                                 else
                                 {
@@ -303,7 +303,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                 Tinh_TienThue_TheoTienThueNt(_thue_nt.Value, txtTyGia.Value, _thue, M_ROUND);
                             };
 
-                            if (chkSuaTienThue.Checked && M_SOA_MULTI_VAT=="1")
+                            if (chkT_THUE_NT.Checked && M_SOA_MULTI_VAT=="1")
                                 _thue_nt.Enabled = true;
                             else _thue_nt.Enabled = false;
 
@@ -328,7 +328,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             _soLuong1.V6LostFocus += (sender) =>
                             {
                                 CheckSoLuong1();
-                                chkSuaTienThue.Checked = false;
+                                chkT_THUE_NT.Checked = false;
                                 Tinh_thue_ct();
                             };
 
@@ -678,7 +678,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                 if (M_CAL_SL_QD_ALL == "1")
                                 {
                                     CheckSoLuong1();
-                                    chkSuaTienThue.Checked = false;
+                                    chkT_THUE_NT.Checked = false;
                                     Tinh_thue_ct();
                                 }
                             };
@@ -1968,7 +1968,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         
         private void MaVatTu_V6LostFocus(object sender)
         {
-            chkSuaTienThue.Checked = false;
+            chkT_THUE_NT.Checked = false;
             XuLyChonMaVt(_maVt.Text);
         }
         
@@ -1999,7 +1999,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         void GiaNt21_V6LostFocus(object sender)
         {
-            chkSuaTienThue.Checked = false;
+            chkT_THUE_NT.Checked = false;
             TinhTienNt2();
             Tinh_thue_ct();
         }
@@ -3067,8 +3067,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     else
                     {
                         txtMa_thue.ReadOnly = false;
-                        txtTongThue.ReadOnly = !chkSuaTienThue.Checked;
-                        txtTongThueNt.ReadOnly = !chkSuaTienThue.Checked;
+                        txtTongThue.ReadOnly = !chkT_THUE_NT.Checked;
+                        txtTongThueNt.ReadOnly = !chkT_THUE_NT.Checked;
                     }
                 }
 
@@ -3076,11 +3076,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 if (!readOnly)
                 {
                     chkSuaPtck.Enabled = chkLoaiChietKhau.Checked;
-                    chkSuaTienCk.Enabled = chkLoaiChietKhau.Checked;
+                    chkT_CK_NT.Enabled = chkLoaiChietKhau.Checked;
 
                     txtPtCk.ReadOnly = !chkSuaPtck.Checked;
-                    txtTongCkNt.ReadOnly = !chkSuaTienCk.Checked;
-                    txtTongThueNt.ReadOnly = !chkSuaTienThue.Checked;
+                    txtTongCkNt.ReadOnly = !chkT_CK_NT.Checked;
+                    txtTongThueNt.ReadOnly = !chkT_THUE_NT.Checked;
 
                     if (V6Options.V6OptionValues["M_GIAVC_GIAGIAM_CT"] == "2" ||
                        V6Options.V6OptionValues["M_GIAVC_GIAGIAM_CT"] == "3")
@@ -3495,7 +3495,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     //Chiết khấu chung, chia theo phần trăm
                     //Tính phần trăm chiết khấu. Nếu check sua_ptck thì lấy luôn
                     //Nếu nhập tiền chiết khấu
-                    if (chkSuaPtck.Checked || (!chkSuaTienCk.Checked && txtPtCk.Value > 0))
+                    if (chkSuaPtck.Checked || (!chkT_CK_NT.Checked && txtPtCk.Value > 0))
                     {
                         var ptck = txtPtCk.Value;
                         txtTongCkNt.ReadOnly = false;
@@ -3510,7 +3510,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         txtTongCk.Value = t_ck;
                     }
 
-                    else if (chkSuaTienCk.Checked)
+                    else if (chkT_CK_NT.Checked)
                     {
                         t_ck_nt = txtTongCkNt.Value;
                         t_ck = V6BusinessHelper.Vround(t_ck_nt * tyGia, M_ROUND);
@@ -3677,7 +3677,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
             var t_tien_truocthue = t_tien_nt2 - t_gg_nt - t_ck_nt + t_vc_nt;
 
-            if (chkSuaTienThue.Checked)//Tiền thuế gõ tự do
+            if (chkT_THUE_NT.Checked)//Tiền thuế gõ tự do
             {
                 t_thue_nt = txtTongThueNt.Value;
                 t_thue = V6BusinessHelper.Vround(t_thue_nt * ty_gia, M_ROUND);
@@ -3755,7 +3755,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         // Tuanmh 08/04/2018 Tinh lai khi thue suat chi tiet tung mat hang
         private void TinhLaiTienThueCT()
         {
-            if (chkSuaTienThue.Checked) return;
+            if (chkT_THUE_NT.Checked) return;
 
             //Tính tiền thuế theo thuế suất
             decimal thue_suati;
@@ -5382,8 +5382,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     chkSuaPtck.Enabled = false;
                     chkSuaPtck.Checked = false;
                     txtPtCk.ReadOnly = true;
-                    chkSuaTienCk.Enabled = false;
-                    chkSuaTienCk.Checked = false;
+                    chkT_CK_NT.Enabled = false;
+                    chkT_CK_NT.Checked = false;
                     txtTongCkNt.ReadOnly = true;
                     txtTongThueNt.ReadOnly = true;
                     break;
@@ -5392,8 +5392,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     chkSuaPtck.Enabled = true;
                     chkSuaPtck.Checked = false;
                     txtPtCk.ReadOnly = true;
-                    chkSuaTienCk.Enabled = true;
-                    chkSuaTienCk.Checked = false;
+                    chkT_CK_NT.Enabled = true;
+                    chkT_CK_NT.Checked = false;
                     txtTongCkNt.ReadOnly = true;
                     txtTongThueNt.ReadOnly = true;
                 break;
@@ -5845,7 +5845,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
                 chkSuaPtck.Enabled = chkLoaiChietKhau.Checked;
-                chkSuaTienCk.Enabled = chkLoaiChietKhau.Checked;
+                chkT_CK_NT.Enabled = chkLoaiChietKhau.Checked;
             }
 
             if (chkLoaiChietKhau.Checked)
@@ -5859,7 +5859,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 chkSuaPtck.Checked = false;
                 txtPtCk.ReadOnly = true;
-                chkSuaTienCk.Checked = false;
+                chkT_CK_NT.Checked = false;
                 txtTongCkNt.ReadOnly = true;
 
                 _pt_cki.Enabled = true;
@@ -5920,7 +5920,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void chkSuaTienCk_CheckedChanged(object sender, EventArgs e)
         {
             if(Mode == V6Mode.Add || Mode == V6Mode.Edit)
-                txtTongCkNt.ReadOnly = !chkSuaTienCk.Checked;
+                txtTongCkNt.ReadOnly = !chkT_CK_NT.Checked;
 
         }
 
@@ -5930,9 +5930,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
                 {
-                    txtTongThueNt.ReadOnly = !chkSuaTienThue.Checked;
+                    txtTongThueNt.ReadOnly = !chkT_THUE_NT.Checked;
 
-                    if (chkSuaTienThue.Checked && M_SOA_MULTI_VAT == "1")
+                    if (chkT_THUE_NT.Checked && M_SOA_MULTI_VAT == "1")
                     {
                         _thue_nt.Enabled = true;
                         txtTongThueNt.ReadOnly = true;
