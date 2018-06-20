@@ -68,6 +68,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.cboMauIn = new V6Controls.V6ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.chkHienTatCa = new V6Controls.V6CheckBox();
+            this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -110,9 +111,10 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.exportToExcelTemplate,
             this.exportToExcel,
             this.exportToXmlToolStripMenuItem,
-            this.printGrid});
+            this.printGrid,
+            this.exportToPdfToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(201, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(201, 136);
             // 
             // exportToExcelTemplate
             // 
@@ -452,6 +454,13 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.chkHienTatCa.UseVisualStyleBackColor = true;
             this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
             // 
+            // exportToPdfToolStripMenuItem
+            // 
+            this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
+            this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
+            this.exportToPdfToolStripMenuItem.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
+            // 
             // SoDuReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -545,6 +554,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         private System.Windows.Forms.Label label4;
         private V6Controls.V6CheckBox chkHienTatCa;
         private System.Windows.Forms.ToolStripMenuItem exportToXmlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToPdfToolStripMenuItem;
 
 
 

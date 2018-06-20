@@ -61,7 +61,7 @@
             this.txtGhiChu02 = new V6Controls.V6ColorTextBox();
             this.TxtMa_nvien = new V6Controls.V6VvarTextBox();
             this.TxtMa_bp = new V6Controls.V6VvarTextBox();
-            this.v6Label8 = new V6Controls.V6Label();
+            this.lblBPNV = new V6Controls.V6Label();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,7 +97,7 @@
             this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel;
             this.btnHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHuy.Location = new System.Drawing.Point(94, 253);
+            this.btnHuy.Location = new System.Drawing.Point(94, 213);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
             this.btnHuy.TabIndex = 3;
@@ -113,7 +113,7 @@
             this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNhan.Image = global::V6ControlManager.Properties.Resources.Apply;
             this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNhan.Location = new System.Drawing.Point(6, 253);
+            this.btnNhan.Location = new System.Drawing.Point(6, 213);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
             this.btnNhan.TabIndex = 2;
@@ -468,7 +468,7 @@
             // 
             this.TxtMa_nvien.AccessibleName = "ma_nvien";
             this.TxtMa_nvien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtMa_nvien.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtMa_nvien.BackColor = System.Drawing.Color.AntiqueWhite;
             this.TxtMa_nvien.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtMa_nvien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtMa_nvien.EnterColor = System.Drawing.Color.PaleGreen;
@@ -478,6 +478,7 @@
             this.TxtMa_nvien.LeaveColor = System.Drawing.Color.White;
             this.TxtMa_nvien.Location = new System.Drawing.Point(206, 183);
             this.TxtMa_nvien.Name = "TxtMa_nvien";
+            this.TxtMa_nvien.ReadOnly = true;
             this.TxtMa_nvien.Size = new System.Drawing.Size(91, 20);
             this.TxtMa_nvien.TabIndex = 35;
             this.TxtMa_nvien.VVar = "ma_nvien";
@@ -486,7 +487,7 @@
             // 
             this.TxtMa_bp.AccessibleName = "ma_bp";
             this.TxtMa_bp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtMa_bp.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtMa_bp.BackColor = System.Drawing.Color.AntiqueWhite;
             this.TxtMa_bp.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtMa_bp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtMa_bp.EnterColor = System.Drawing.Color.PaleGreen;
@@ -496,20 +497,21 @@
             this.TxtMa_bp.LeaveColor = System.Drawing.Color.White;
             this.TxtMa_bp.Location = new System.Drawing.Point(88, 183);
             this.TxtMa_bp.Name = "TxtMa_bp";
+            this.TxtMa_bp.ReadOnly = true;
             this.TxtMa_bp.Size = new System.Drawing.Size(97, 20);
             this.TxtMa_bp.TabIndex = 34;
             this.TxtMa_bp.VVar = "ma_bp";
             // 
-            // v6Label8
+            // lblBPNV
             // 
-            this.v6Label8.AccessibleDescription = "XULYL00046";
-            this.v6Label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6Label8.AutoSize = true;
-            this.v6Label8.Location = new System.Drawing.Point(-1, 186);
-            this.v6Label8.Name = "v6Label8";
-            this.v6Label8.Size = new System.Drawing.Size(41, 13);
-            this.v6Label8.TabIndex = 33;
-            this.v6Label8.Text = "BP/NV";
+            this.lblBPNV.AccessibleDescription = "XULYL00046";
+            this.lblBPNV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBPNV.AutoSize = true;
+            this.lblBPNV.Location = new System.Drawing.Point(-1, 186);
+            this.lblBPNV.Name = "lblBPNV";
+            this.lblBPNV.Size = new System.Drawing.Size(41, 13);
+            this.lblBPNV.TabIndex = 33;
+            this.lblBPNV.Text = "BP/NV";
             // 
             // AAPPR_SOA1_F4
             // 
@@ -517,7 +519,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TxtMa_nvien);
             this.Controls.Add(this.TxtMa_bp);
-            this.Controls.Add(this.v6Label8);
+            this.Controls.Add(this.lblBPNV);
             this.Controls.Add(this.txtMadvcs);
             this.Controls.Add(this.v6ColorTextBox3);
             this.Controls.Add(this.v6Label18);
@@ -544,8 +546,7 @@
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Name = "AAPPR_SOA1_F4";
-            this.Size = new System.Drawing.Size(559, 296);
-            
+            this.Size = new System.Drawing.Size(559, 256);
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -587,7 +588,7 @@
         private V6Controls.V6ColorTextBox txtGhiChu02;
         private V6Controls.V6VvarTextBox TxtMa_nvien;
         private V6Controls.V6VvarTextBox TxtMa_bp;
-        private V6Controls.V6Label v6Label8;
+        private V6Controls.V6Label lblBPNV;
 
 
 

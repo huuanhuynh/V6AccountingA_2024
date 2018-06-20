@@ -9,6 +9,7 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
@@ -18,6 +19,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected DataRow _am;
         protected string _text;
+        /// <summary>
+        /// FIELD1:Label1,FIELD2....
+        /// </summary>
+        protected string _fields;
         //protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
 
         protected DataSet _ds;
@@ -37,10 +42,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             InitializeComponent();
         }
 
-        public AAPPR_SOA1_F4(string stt_rec, DataRow am)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stt_rec"></param>
+        /// <param name="am"></param>
+        /// <param name="fields">FIELD1:Label1,FIELD2....</param>
+        public AAPPR_SOA1_F4(string stt_rec, DataRow am, string fields)
         {
             _sttRec = stt_rec;
             _am = am;
+            _fields = fields;
             InitializeComponent();
             MyInit();
         }
@@ -49,6 +61,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                CreateFormControls();
                 V6ControlFormHelper.SetFormDataRow(this, _am);
             }
             catch (Exception ex)
@@ -56,7 +69,71 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        
+
+        /// <summary>
+        /// FIELD:labelText
+        /// </summary>
+        Dictionary<string, string> _fieldDic = new Dictionary<string, string>();
+        private void CreateFormControls()
+        {
+            try
+            {
+                // Phân tích danh sách Field
+                string[] sss = ObjectAndString.SplitString(_fields);
+                foreach (string s in sss)
+                {
+                    string[] ss = s.Split(':');
+                    if (ss[0].Trim().Length > 0)
+                    {
+                        string label = ss[0];
+                        if (ss.Length > 1)
+                        {
+                            label = ss[1];
+                        }
+                        _fieldDic.Add(ss[0], label);
+                    }
+                }
+                // Tạo input cùng label
+                int top = TxtMa_bp.Top;
+                foreach (KeyValuePair<string, string> item in _fieldDic)
+                {
+                    //Kiem tra
+                    Control c = this.GetControlByAccessibleName(item.Key);
+                    if (c != null)
+                    {
+                        V6ControlFormHelper.SetControlReadOnly(c, false);
+                        continue;
+                    }
+
+                    top += 25;
+                    V6ColorTextBox txt = new V6VvarTextBox()
+                    {
+                        AccessibleName = item.Key,
+                        BorderStyle = BorderStyle.FixedSingle,
+                        Name = "txt" + item.Key,
+                        Top = top,
+                        Left = TxtMa_bp.Left,
+                        Width = txtGhiChu02.Width,
+                    };
+                    V6Label lbl = new V6Label()
+                    {
+                        Name = "lbl" + item.Key,
+                        Text = item.Value,
+                        Top = top,
+                        Left = lblBPNV.Left,
+                    };
+                    this.Controls.Add(txt);
+                    this.Controls.Add(lbl);
+                    this.Height += 25;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateFormControls", ex);
+            }
+        }
+
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
             //SetStatus2Text();
@@ -69,8 +146,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 var am = new SortedDictionary<string, object>();
-                if (TxtMa_bp.Text.Trim() != "") am["MA_BP"] = TxtMa_bp.Text;
-                if (TxtMa_nvien.Text.Trim() != "") am["MA_NVIEN"] = TxtMa_nvien.Text;
+                //if (TxtMa_bp.Text.Trim() != "") am["MA_BP"] = TxtMa_bp.Text;
+                //if (TxtMa_nvien.Text.Trim() != "") am["MA_NVIEN"] = TxtMa_nvien.Text;
+                var form_data = GetData();
+                foreach (KeyValuePair<string, string> item in _fieldDic)
+                {
+                    string FIELD = item.Key.ToUpper();
+                    if (form_data.ContainsKey(FIELD) && form_data[FIELD].ToString().Length > 0)
+                    {
+                        am[FIELD] = form_data[FIELD];
+                    }
+                }
+                // Xử lý thêm Fields
+                // Neu accname đã có thì bật lên,
+                // chưa có thì thêm control động.
+
                 if (am.Count == 0) return;
 
                 var keys = new SortedDictionary<string, object> {{"Stt_rec", _sttRec}};

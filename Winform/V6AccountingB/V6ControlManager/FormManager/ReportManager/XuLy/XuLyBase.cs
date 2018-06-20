@@ -111,6 +111,48 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public bool ViewDetail { get; set; }
 
+        private DataRow MauInSelectedRow
+        {
+            get
+            {
+                return MauInData.Rows[0];
+            }
+        }
+
+        #region ===== EXTRA_INFOR =====
+        public SortedDictionary<string, string> EXTRA_INFOR
+        {
+            get
+            {
+                if (_extraInfor == null || _extraInfor.Count == 0)
+                {
+                    GetExtraInfor();
+                }
+                return _extraInfor;
+            }
+        }
+
+        private SortedDictionary<string, string> _extraInfor = null;
+
+        private void GetExtraInfor()
+        {
+            _extraInfor = new SortedDictionary<string, string>();
+            string s = MauInSelectedRow["EXTRA_INFOR"].ToString().Trim();
+            if (s != "")
+            {
+                var sss = s.Split(';');
+                foreach (string ss in sss)
+                {
+                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
+                    if (indexOf > 0)
+                    {
+                        _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
+                    }
+                }
+            }
+        }
+
+        #endregion EXTRA_INFOR
 
         private string Report_GRDSV1
         {
@@ -119,8 +161,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
-                    result = MauInData.Rows[0]["GRDS_V1"].ToString().Trim();
+
+                    result = MauInSelectedRow["GRDS_V1"].ToString().Trim();
                 }
                 return result;
             }
@@ -132,8 +174,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
-                    result = MauInData.Rows[0]["GRDS_V2"].ToString().Trim();
+
+                    result = MauInSelectedRow["GRDS_V2"].ToString().Trim();
                 }
                 return result;
             }
@@ -145,8 +187,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
-                    result = MauInData.Rows[0]["GRDF_V1"].ToString().Trim();
+
+                    result = MauInSelectedRow["GRDF_V1"].ToString().Trim();
                 }
                 return result;
             }
@@ -158,8 +200,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
-                    result = MauInData.Rows[0]["GRDF_V2"].ToString().Trim();
+
+                    result = MauInSelectedRow["GRDF_V2"].ToString().Trim();
                 }
                 return result;
             }
@@ -171,8 +213,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
-                    result = MauInData.Rows[0]["GRDHV_V1"].ToString().Trim();
+
+                    result = MauInSelectedRow["GRDHV_V1"].ToString().Trim();
                 }
                 return result;
             }
@@ -184,8 +226,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
-                    result = MauInData.Rows[0]["GRDHE_V1"].ToString().Trim();
+
+                    result = MauInSelectedRow["GRDHE_V1"].ToString().Trim();
                 }
                 return result;
             }
@@ -197,8 +239,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
-                    result = MauInData.Rows[0]["GRDHV_V2"].ToString().Trim();
+
+                    result = MauInSelectedRow["GRDHV_V2"].ToString().Trim();
                 }
                 return result;
             }
@@ -210,12 +252,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
-                    result = MauInData.Rows[0]["GRDHE_V2"].ToString().Trim();
+
+                    result = MauInSelectedRow["GRDHE_V2"].ToString().Trim();
                 }
                 return result;
             }
         }
+
+        
         #endregion 
         public XuLyBase()
         {
@@ -272,6 +316,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         // if (!key3.Contains("4")) exportToXmlToolStripMenuItem.Visible = false;
                         if (!key3.Contains("5")) printGrid.Visible = false;
                         //if (!key3.Contains("6")) viewDataToolStripMenuItem.Visible = false;
+                        //if (!key3.Contains("7")) exportToPdfToolStripMenuItem.Visible = false;
                     }
                 }
             }

@@ -71,6 +71,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.chkHienTatCa = new V6Controls.V6CheckBox();
+            this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
             this.panel0.SuspendLayout();
@@ -86,9 +87,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.exportToExcel,
             this.exportToXmlToolStripMenuItem,
             this.printGrid,
-            this.viewDataToolStripMenuItem});
+            this.viewDataToolStripMenuItem,
+            this.exportToPdfToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 180);
             // 
             // exportToExcelTemplate
             // 
@@ -498,6 +500,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.chkHienTatCa.UseVisualStyleBackColor = true;
             this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
             // 
+            // exportToPdfToolStripMenuItem
+            // 
+            this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
+            this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
+            this.exportToPdfToolStripMenuItem.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
+            // 
             // ReportTreeViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -573,6 +582,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.ToolStripMenuItem exportToXmlToolStripMenuItem;
         private ImageList imageList1;
         private ToolStripMenuItem exportToExcelView;
+        private ToolStripMenuItem exportToPdfToolStripMenuItem;
 
 
 

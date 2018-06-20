@@ -316,6 +316,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                     lblXml.Visible = true;
                     txtDmethod.Visible = true;
                     btnEditXml.Visible = true;
+                    lblThongTinThem.Visible = true;
+                    txtExtraInfo.Visible = true;
 
                     //ReadOnly
                     txtMAU.ReadOnly = false;

@@ -44,6 +44,51 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : "B"; }
         }
 
+        private DataRow MauInSelectedRow
+        {
+            get
+            {
+                if (cboMauIn.SelectedIndex == -1) return null;
+                var data = MauInView.ToTable();
+                return data.Rows[cboMauIn.SelectedIndex];
+            }
+        }
+
+        #region ===== EXTRA_INFOR =====
+        public SortedDictionary<string, string> EXTRA_INFOR
+        {
+            get
+            {
+                if (_extraInfor == null || _extraInfor.Count == 0)
+                {
+                    GetExtraInfor();
+                }
+                return _extraInfor;
+            }
+        }
+
+        private SortedDictionary<string, string> _extraInfor = null;
+
+        private void GetExtraInfor()
+        {
+            _extraInfor = new SortedDictionary<string, string>();
+            string s = MauInSelectedRow["EXTRA_INFOR"].ToString().Trim();
+            if (s != "")
+            {
+                var sss = s.Split(';');
+                foreach (string ss in sss)
+                {
+                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
+                    if (indexOf > 0)
+                    {
+                        _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
+                    }
+                }
+            }
+        }
+
+        #endregion EXTRA_INFOR
+
         private string ReportFile
         {
             get
@@ -64,7 +109,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
                     var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["Caption"].ToString().Trim();
+                    result = MauInSelectedRow["Caption"].ToString().Trim();
                 }
                 return result;
             }
@@ -77,7 +122,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
                     var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["Caption2"].ToString().Trim();
+                    result = MauInSelectedRow["Caption2"].ToString().Trim();
                 }
                 return result;
             }
@@ -90,7 +135,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
                     var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["Title"].ToString().Trim();
+                    result = MauInSelectedRow["Title"].ToString().Trim();
                 }
                 return result;
             }
@@ -235,6 +280,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                         if (!key3.Contains("4")) exportToXmlToolStripMenuItem.Visible = false;
                         if (!key3.Contains("5")) printGrid.Visible = false;
                         //if (!key3.Contains("6")) viewDataToolStripMenuItem.Visible = false;
+                        if (!key3.Contains("7")) exportToPdfToolStripMenuItem.Visible = false;
                     }
                 }
                 else//Chưa gửi ItemID
@@ -862,6 +908,26 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         private void panel1_Leave(object sender, EventArgs e)
         {
             btnNhan.Focus();
+        }
+
+        private void exportToPdfToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_rpDoc == null)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
+                if (V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc, ReportTitle))
+                {
+                    ShowMainMessage(V6Text.ExportFinish);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Export PDF", ex);
+            }
         }
         
     }

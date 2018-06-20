@@ -72,7 +72,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     FormBorderStyle = FormBorderStyle.FixedSingle
                                 };
 
-                                var hoaDonForm = new AAPPR_SOA1_F4(selectedSttRec, am.Rows[0]);
+                                var hoaDonForm = new AAPPR_SOA1_F4(selectedSttRec, am.Rows[0], EXTRA_INFOR["FIELDS_F4"]);
 
                                 f.Controls.Add(hoaDonForm);
                                 hoaDonForm.Disposed += delegate

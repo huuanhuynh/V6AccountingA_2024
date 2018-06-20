@@ -78,6 +78,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.crystalReportViewer3 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.panelCRview = new System.Windows.Forms.Panel();
             this.crystalReportViewer4 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -127,9 +128,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ExporttoExcelTemplate,
             this.exportToExcel,
-            this.printGrid});
+            this.printGrid,
+            this.exportToPdfToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 114);
             // 
             // ExporttoExcelTemplate
             // 
@@ -672,6 +674,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.crystalReportViewer4.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.crystalReportViewer4.Visible = false;
             // 
+            // exportToPdfToolStripMenuItem
+            // 
+            this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
+            this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
+            this.exportToPdfToolStripMenuItem.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
+            // 
             // InChungTuViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -759,5 +768,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         public System.Windows.Forms.Panel panelCRview;
         private System.Windows.Forms.ToolStripMenuItem ExporttoExcelTemplate;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer4;
+        private System.Windows.Forms.ToolStripMenuItem exportToPdfToolStripMenuItem;
     }
 }

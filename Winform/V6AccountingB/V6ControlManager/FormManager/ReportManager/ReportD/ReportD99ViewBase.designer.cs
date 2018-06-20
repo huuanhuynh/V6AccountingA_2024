@@ -79,6 +79,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             this.btnSuaLine = new V6Controls.Controls.V6FormButton();
+            this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -128,9 +129,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.exportToExcel,
             this.exportToXmlToolStripMenuItem,
             this.printGrid,
-            this.viewDataToolStripMenuItem});
+            this.viewDataToolStripMenuItem,
+            this.exportToPdfToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 180);
             // 
             // exportToExcelTemplate
             // 
@@ -595,6 +597,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.gridViewSummary1.Location = new System.Drawing.Point(307, 399);
             this.gridViewSummary1.Name = "gridViewSummary1";
             this.gridViewSummary1.Size = new System.Drawing.Size(662, 23);
+            this.gridViewSummary1.SumCondition = null;
             this.gridViewSummary1.TabIndex = 0;
             // 
             // btnSuaLine
@@ -608,6 +611,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.toolTipV6FormControl.SetToolTip(this.btnSuaLine, "Sửa line");
             this.btnSuaLine.UseVisualStyleBackColor = true;
             this.btnSuaLine.Click += new System.EventHandler(this.btnSuaLine_Click);
+            // 
+            // exportToPdfToolStripMenuItem
+            // 
+            this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
+            this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
+            this.exportToPdfToolStripMenuItem.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
             // 
             // ReportD99ViewBase
             // 
@@ -696,6 +706,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private GridViewSummary gridViewSummary1;
         private System.Windows.Forms.ToolStripMenuItem exportToExcelView;
         private V6FormButton btnSuaLine;
+        private System.Windows.Forms.ToolStripMenuItem exportToPdfToolStripMenuItem;
 
 
 

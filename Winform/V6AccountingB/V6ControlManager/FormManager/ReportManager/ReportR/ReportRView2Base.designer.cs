@@ -76,6 +76,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
+            this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -94,9 +95,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.exportToExcel,
             this.exportToXmlToolStripMenuItem,
             this.printGrid,
-            this.viewDataToolStripMenuItem});
+            this.viewDataToolStripMenuItem,
+            this.exportToPdfToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 180);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 202);
             // 
             // exportToExcelTemplate
             // 
@@ -552,7 +554,15 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.gridViewSummary1.Location = new System.Drawing.Point(307, 233);
             this.gridViewSummary1.Name = "gridViewSummary1";
             this.gridViewSummary1.Size = new System.Drawing.Size(662, 23);
+            this.gridViewSummary1.SumCondition = null;
             this.gridViewSummary1.TabIndex = 0;
+            // 
+            // exportToPdfToolStripMenuItem
+            // 
+            this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
+            this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
+            this.exportToPdfToolStripMenuItem.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
             // 
             // ReportRView2Base
             // 
@@ -635,6 +645,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private GridViewSummary gridViewSummary1;
         private System.Windows.Forms.ToolStripMenuItem exportToExcelView;
         private System.Windows.Forms.ToolStripMenuItem exportToExcelGroupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToPdfToolStripMenuItem;
 
 
 

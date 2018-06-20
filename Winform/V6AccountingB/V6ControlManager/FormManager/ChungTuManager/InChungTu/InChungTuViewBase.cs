@@ -36,7 +36,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         public string MA_NT { get; set; }
 
         DataGridViewPrinter _myDataGridViewPrinter;
-        private ReportDocument rpDoc, rpDoc2, rpDoc3, rpDoc4;
+        private ReportDocument _rpDoc, _rpDoc2, _rpDoc3, _rpDoc4;
 
         private string _reportProcedure;
         // _reportFile = ma_file
@@ -196,6 +196,41 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
+        #region ===== EXTRA_INFOR =====
+        public SortedDictionary<string, string> EXTRA_INFOR
+        {
+            get
+            {
+                if (_extraInfor == null || _extraInfor.Count == 0)
+                {
+                    GetExtraInfor();
+                }
+                return _extraInfor;
+            }
+        }
+
+        private SortedDictionary<string, string> _extraInfor = null;
+
+        private void GetExtraInfor()
+        {
+            _extraInfor = new SortedDictionary<string, string>();
+            string s = MauInSelectedRow["EXTRA_INFOR"].ToString().Trim();
+            if (s != "")
+            {
+                var sss = s.Split(';');
+                foreach (string ss in sss)
+                {
+                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
+                    if (indexOf > 0)
+                    {
+                        _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
+                    }
+                }
+            }
+        }
+
+        #endregion EXTRA_INFOR
+
         private int SelectedSoLien
         {
             get
@@ -238,8 +273,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = "";
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["Extra_para"].ToString().Trim();
+                    result = MauInSelectedRow["Extra_para"].ToString().Trim();
                 }
                 return result;
             }
@@ -264,8 +298,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = _reportTitle;
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["Caption"].ToString().Trim();
+                    result = MauInSelectedRow["Caption"].ToString().Trim();
                 }
                 return result;
             }
@@ -277,8 +310,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = _reportTitle2;
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["Caption2"].ToString().Trim();
+                    result = MauInSelectedRow["Caption2"].ToString().Trim();
                 }
                 return result;
             }
@@ -290,8 +322,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = txtReportTitle.Text;
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["Title"].ToString().Trim();
+                    result = MauInSelectedRow["Title"].ToString().Trim();
                 }
                 return result;
             }
@@ -304,8 +335,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = false;
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = (ObjectAndString.ObjectToInt(data.Rows[cboMauIn.SelectedIndex]["ND51"]) & 1)>0;
+                    result = (ObjectAndString.ObjectToInt(MauInSelectedRow["ND51"]) & 1) > 0;
                 }
                 return result;
             }
@@ -318,8 +348,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = false;
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = (ObjectAndString.ObjectToInt(data.Rows[cboMauIn.SelectedIndex]["ND51"]) & 2) > 0;
+                    result = (ObjectAndString.ObjectToInt(MauInSelectedRow["ND51"]) & 2) > 0;
                 }
                 return result;
             }
@@ -509,8 +538,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = "";
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["GRDS_V1"].ToString().Trim();
+                    result = MauInSelectedRow["GRDS_V1"].ToString().Trim();
                 }
                 return result;
             }
@@ -522,8 +550,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = "";
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["GRDS_V2"].ToString().Trim();
+                    result = MauInSelectedRow["GRDS_V2"].ToString().Trim();
                 }
                 return result;
             }
@@ -535,8 +562,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = "";
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["GRDF_V1"].ToString().Trim();
+                    result = MauInSelectedRow["GRDF_V1"].ToString().Trim();
                 }
                 return result;
             }
@@ -548,8 +574,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = "";
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["GRDF_V2"].ToString().Trim();
+                    result = MauInSelectedRow["GRDF_V2"].ToString().Trim();
                 }
                 return result;
             }
@@ -561,8 +586,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = "";
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["GRDHV_V1"].ToString().Trim();
+                    result = MauInSelectedRow["GRDHV_V1"].ToString().Trim();
                 }
                 return result;
             }
@@ -574,8 +598,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = "";
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["GRDHE_V1"].ToString().Trim();
+                    result = MauInSelectedRow["GRDHE_V1"].ToString().Trim();
                 }
                 return result;
             }
@@ -587,8 +610,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = "";
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["GRDHV_V2"].ToString().Trim();
+                    result = MauInSelectedRow["GRDHV_V2"].ToString().Trim();
                 }
                 return result;
             }
@@ -600,8 +622,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = "";
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["GRDHE_V2"].ToString().Trim();
+                    result = MauInSelectedRow["GRDHE_V2"].ToString().Trim();
                 }
                 return result;
             }
@@ -613,8 +634,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = "";
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["GRDT_V1"].ToString().Trim();
+                    result = MauInSelectedRow["GRDT_V1"].ToString().Trim();
                 }
                 return result;
             }
@@ -626,8 +646,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = "";
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["GRDT_V2"].ToString().Trim();
+                    result = MauInSelectedRow["GRDT_V2"].ToString().Trim();
                 }
                 return result;
             }
@@ -644,10 +663,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {
                     if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                     {
-                        var data = MauInView.ToTable();
-                        var y_n = (data.Rows[cboMauIn.SelectedIndex]["Printer_yn"] ?? "").ToString().Trim();
+                        var y_n = (MauInSelectedRow["Printer_yn"] ?? "").ToString().Trim();
                         if (y_n == "1" || print_one)
-                            result = (data.Rows[cboMauIn.SelectedIndex]["Printer_def"] ?? "").ToString().Trim();
+                            result = (MauInSelectedRow["Printer_def"] ?? "").ToString().Trim();
                     }
                 }
                 catch (Exception)
@@ -689,8 +707,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var result = "";
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
-                    result = data.Rows[cboMauIn.SelectedIndex]["Reload_data"].ToString().Trim();
+                    result = MauInSelectedRow["Reload_data"].ToString().Trim();
                 }
                 return result;
             }
@@ -982,19 +999,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             try
             {
-                SetCrossLineRpt(rpDoc);
+                SetCrossLineRpt(_rpDoc);
 
-                if (MauTuIn == 1 && _soLienIn >= 2 && rpDoc2 != null)
+                if (MauTuIn == 1 && _soLienIn >= 2 && _rpDoc2 != null)
                 {
-                    SetCrossLineRpt(rpDoc2);
+                    SetCrossLineRpt(_rpDoc2);
                 }
-                if (MauTuIn == 1 && _soLienIn >= 3 && rpDoc3 != null)
+                if (MauTuIn == 1 && _soLienIn >= 3 && _rpDoc3 != null)
                 {
-                    SetCrossLineRpt(rpDoc3);
+                    SetCrossLineRpt(_rpDoc3);
                 }
-                if (MauTuIn == 1 && _soLienIn >= 4 && rpDoc4 != null)
+                if (MauTuIn == 1 && _soLienIn >= 4 && _rpDoc4 != null)
                 {
-                    SetCrossLineRpt(rpDoc4);
+                    SetCrossLineRpt(_rpDoc4);
                 }
             }
             catch (Exception ex)
@@ -1229,7 +1246,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             {
                 try
                 {
-                    rpDoc.SetParameterValue(item.Key, item.Value);
+                    _rpDoc.SetParameterValue(item.Key, item.Value);
                 }
                 catch (Exception ex)
                 {
@@ -1237,13 +1254,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 }
             }
 
-            if (MauTuIn == 1 && _soLienIn >= 2 && rpDoc2 != null)
+            if (MauTuIn == 1 && _soLienIn >= 2 && _rpDoc2 != null)
             {
                 foreach (KeyValuePair<string, object> item in ReportDocumentParameters)
                 {
                     try
                     {
-                        rpDoc2.SetParameterValue(item.Key, item.Value);
+                        _rpDoc2.SetParameterValue(item.Key, item.Value);
                     }
                     catch (Exception ex)
                     {
@@ -1251,13 +1268,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     }
                 }
             }
-            if (MauTuIn == 1 && _soLienIn >= 3 && rpDoc3 != null)
+            if (MauTuIn == 1 && _soLienIn >= 3 && _rpDoc3 != null)
             {
                 foreach (KeyValuePair<string, object> item in ReportDocumentParameters)
                 {
                     try
                     {
-                        rpDoc3.SetParameterValue(item.Key, item.Value);
+                        _rpDoc3.SetParameterValue(item.Key, item.Value);
                     }
                     catch (Exception ex)
                     {
@@ -1265,13 +1282,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     }
                 }
             }
-            if (MauTuIn == 1 && _soLienIn >= 4 && rpDoc4 != null)
+            if (MauTuIn == 1 && _soLienIn >= 4 && _rpDoc4 != null)
             {
                 foreach (KeyValuePair<string, object> item in ReportDocumentParameters)
                 {
                     try
                     {
-                        rpDoc4.SetParameterValue(item.Key, item.Value);
+                        _rpDoc4.SetParameterValue(item.Key, item.Value);
                     }
                     catch (Exception ex)
                     {
@@ -1530,15 +1547,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             try
             {
-                rpDoc.Close();
-                if (rpDoc2 != null) rpDoc2.Close();
-                if (rpDoc3 != null) rpDoc3.Close();
-                if (rpDoc4 != null) rpDoc4.Close();
+                _rpDoc.Close();
+                if (_rpDoc2 != null) _rpDoc2.Close();
+                if (_rpDoc3 != null) _rpDoc3.Close();
+                if (_rpDoc4 != null) _rpDoc4.Close();
 
-                rpDoc.Dispose();
-                if (rpDoc2 != null) rpDoc2.Dispose();
-                if (rpDoc3 != null) rpDoc3.Dispose();
-                if (rpDoc4 != null) rpDoc4.Dispose();
+                _rpDoc.Dispose();
+                if (_rpDoc2 != null) _rpDoc2.Dispose();
+                if (_rpDoc3 != null) _rpDoc3.Dispose();
+                if (_rpDoc4 != null) _rpDoc4.Dispose();
             }
             catch (Exception ex)
             {
@@ -1686,16 +1703,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             if (MauTuIn == 1)
             {
                 //Hoa don 3 lien 123
-                rpDoc = new ReportDocument();
-                rpDoc2 = new ReportDocument();
-                rpDoc3 = new ReportDocument();
-                rpDoc4 = new ReportDocument();
+                _rpDoc = new ReportDocument();
+                _rpDoc2 = new ReportDocument();
+                _rpDoc3 = new ReportDocument();
+                _rpDoc4 = new ReportDocument();
 
                 try
                 {
-                    if (File.Exists(ReportFileFull_1)) rpDoc.Load(ReportFileFull_1);
+                    if (File.Exists(ReportFileFull_1)) _rpDoc.Load(ReportFileFull_1);
                     else this.ShowWarningMessage(V6Text.NotExist + ": " + ReportFileFull_1);
-                    rpDoc.SetDataSource(_ds);
+                    _rpDoc.SetDataSource(_ds);
                 }
                 catch (Exception e1)
                 {
@@ -1706,13 +1723,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {
                     try
                     {
-                        if (File.Exists(ReportFileFull_2)) rpDoc2.Load(ReportFileFull_2);
+                        if (File.Exists(ReportFileFull_2)) _rpDoc2.Load(ReportFileFull_2);
                         else this.ShowWarningMessage(V6Text.NotExist + ": " + ReportFileFull_2);
-                        rpDoc2.SetDataSource(_ds.Copy());
+                        _rpDoc2.SetDataSource(_ds.Copy());
                     }
                     catch (Exception e2)
                     {
-                        rpDoc2 = null;
+                        _rpDoc2 = null;
                         this.ShowErrorMessage(GetType() + ".ViewReport rpDoc2.Load: " + e2.Message);
                     }
                 }
@@ -1720,13 +1737,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {
                     try
                     {
-                        if (File.Exists(ReportFileFull_3)) rpDoc3.Load(ReportFileFull_3);
+                        if (File.Exists(ReportFileFull_3)) _rpDoc3.Load(ReportFileFull_3);
                         else this.ShowWarningMessage(V6Text.NotExist + ": " + ReportFileFull_3);
-                        rpDoc3.SetDataSource(_ds.Copy());
+                        _rpDoc3.SetDataSource(_ds.Copy());
                     }
                     catch (Exception e3)
                     {
-                        rpDoc3 = null;
+                        _rpDoc3 = null;
                         this.ShowErrorMessage(GetType() + ".ViewReport rpDoc3.Load: " + e3.Message);
                     }
                 }
@@ -1735,13 +1752,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {
                     try
                     {
-                        if (File.Exists(ReportFileFull_4)) rpDoc4.Load(ReportFileFull_4);
+                        if (File.Exists(ReportFileFull_4)) _rpDoc4.Load(ReportFileFull_4);
                         else this.ShowWarningMessage(V6Text.NotExist + ": " + ReportFileFull_4);
-                        rpDoc4.SetDataSource(_ds.Copy());
+                        _rpDoc4.SetDataSource(_ds.Copy());
                     }
                     catch (Exception e4)
                     {
-                        rpDoc4 = null;
+                        _rpDoc4 = null;
                         this.ShowErrorMessage(GetType() + ".ViewReport rpDoc4.Load: " + e4.Message);
                     }
                 }
@@ -1750,13 +1767,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 SetAllReportParams();
                 SetCrossLine();
 
-                crystalReportViewer1.ReportSource = rpDoc;
-                if (_soLienIn >= 2 && rpDoc2 != null)
-                crystalReportViewer2.ReportSource = rpDoc2;
-                if (_soLienIn >= 3 && rpDoc3 != null)
-                crystalReportViewer3.ReportSource = rpDoc3;
-                if (_soLienIn >= 4 && rpDoc4 != null)
-                crystalReportViewer4.ReportSource = rpDoc4;
+                crystalReportViewer1.ReportSource = _rpDoc;
+                if (_soLienIn >= 2 && _rpDoc2 != null)
+                crystalReportViewer2.ReportSource = _rpDoc2;
+                if (_soLienIn >= 3 && _rpDoc3 != null)
+                crystalReportViewer3.ReportSource = _rpDoc3;
+                if (_soLienIn >= 4 && _rpDoc4 != null)
+                crystalReportViewer4.ReportSource = _rpDoc4;
 
                 crystalReportViewer1.Show();
                 crystalReportViewer1.Zoom(1);
@@ -1776,16 +1793,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     crystalReportViewer4.DisplayToolbar = true;
                 }
 
-                rpDoc = new ReportDocument();
-                if (File.Exists(ReportFileFull)) rpDoc.Load(ReportFileFull);
+                _rpDoc = new ReportDocument();
+                if (File.Exists(ReportFileFull)) _rpDoc.Load(ReportFileFull);
                 else this.ShowWarningMessage(V6Text.NotExist + ": " + ReportFileFull);
 
-                rpDoc.SetDataSource(_ds);
+                _rpDoc.SetDataSource(_ds);
 
                 SetAllReportParams();
                 SetCrossLine();
 
-                crystalReportViewer1.ReportSource = rpDoc;
+                crystalReportViewer1.ReportSource = _rpDoc;
                 crystalReportViewer1.Show();
                 crystalReportViewer1.Zoom(1);
                 crystalReportViewer1.Visible = true;
@@ -1813,11 +1830,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         {
                             if (IsInvoice)
                             {
-                                rpDoc.PrintToPrinter(1, false, 1, 1);
+                                _rpDoc.PrintToPrinter(1, false, 1, 1);
                             }
                             else
                             {
-                                rpDoc.PrintToPrinter(1, false, 0, 0);
+                                _rpDoc.PrintToPrinter(1, false, 0, 0);
                             }
                             intDaGuiDenMayIn++;
                         }
@@ -1831,11 +1848,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             {
                                 if (IsInvoice)
                                 {
-                                    rpDoc2.PrintToPrinter(1, false, 1, 1);
+                                    _rpDoc2.PrintToPrinter(1, false, 1, 1);
                                 }
                                 else
                                 {
-                                    rpDoc2.PrintToPrinter(1, false, 0, 0);
+                                    _rpDoc2.PrintToPrinter(1, false, 0, 0);
                                 }
                                 intDaGuiDenMayIn++;
                             }
@@ -1849,11 +1866,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             {
                                 if (IsInvoice)
                                 {
-                                    rpDoc3.PrintToPrinter(1, false, 1, 1);
+                                    _rpDoc3.PrintToPrinter(1, false, 1, 1);
                                 }
                                 else
                                 {
-                                    rpDoc3.PrintToPrinter(1, false, 0, 0);
+                                    _rpDoc3.PrintToPrinter(1, false, 0, 0);
                                 }
                                 intDaGuiDenMayIn++;
                             }
@@ -1868,11 +1885,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             {
                                 if (IsInvoice)
                                 {
-                                    rpDoc4.PrintToPrinter(1, false, 1, 1);
+                                    _rpDoc4.PrintToPrinter(1, false, 1, 1);
                                 }
                                 else
                                 {
-                                    rpDoc4.PrintToPrinter(1, false, 0, 0);
+                                    _rpDoc4.PrintToPrinter(1, false, 0, 0);
                                 }
                                 intDaGuiDenMayIn++;
                             }
@@ -1888,11 +1905,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         {
                             if (IsInvoice)
                             {
-                                rpDoc.PrintToPrinter(_soLienIn, false, 1, 1);
+                                _rpDoc.PrintToPrinter(_soLienIn, false, 1, 1);
                             }
                             else
                             {
-                                rpDoc.PrintToPrinter(_soLienIn*_printCopy, false, 0, 0);
+                                _rpDoc.PrintToPrinter(_soLienIn*_printCopy, false, 0, 0);
                             }
                             intDaGuiDenMayIn = _soLienIn;
                         }
@@ -2398,6 +2415,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private void panel1_Leave(object sender, EventArgs e)
         {
             //btnIn.Focus();
+        }
+
+        private void exportToPdfToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_rpDoc == null)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
+                if (V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc, ReportTitle))
+                {
+                    ShowMainMessage(V6Text.ExportFinish);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Export PDF", ex);
+            }
         }
 
         
