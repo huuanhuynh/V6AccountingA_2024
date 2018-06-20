@@ -787,6 +787,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 XuLyDonViTinhKhiChonMaVt(mavt);
                 GetGia();
                 GetTon13();
+                TinhTienNt2();
             }
             catch (Exception ex)
             {

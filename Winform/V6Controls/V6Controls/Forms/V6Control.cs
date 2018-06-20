@@ -155,7 +155,7 @@ namespace V6Controls.Forms
         /// </summary>
         public virtual void DisableZoomButton()
         {
-            ShowTopMessage(V6Text.NoDefine);
+            ShowTopLeftMessage(V6Text.NoDefine);
         }
 
         protected void Ready()
@@ -182,7 +182,7 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
-        /// Hiển thị thông báo trượt xuống từ góc phải của chương trình.
+        /// Hiển thị thông báo chính, giữa màn hình.
         /// </summary>
         /// <param name="message"></param>
         public void ShowMainMessage(string message)
@@ -204,12 +204,12 @@ namespace V6Controls.Forms
         /// Hiển thị một thông báo trượt xuống từ góc trên bên trái của form chứa.
         /// </summary>
         /// <param name="message"></param>
-        public void ShowTopMessage(string message)
+        public void ShowTopLeftMessage(string message)
         {
             var p = FindParent<V6Form>(20) as V6Form;
             if (p != null)
             {
-                p.ShowTopMessage(message);
+                p.ShowTopLeftMessage(message);
             }
         }
     }

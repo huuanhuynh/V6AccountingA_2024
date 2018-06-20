@@ -83,7 +83,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             {
                 Data[_field] = _newCode;
                 OnDoChangeCodeFinish(Data);
-                ShowTopMessage(V6Text.Finish);
+                ShowTopLeftMessage(V6Text.Finish);
                 Close();
             }
             catch (Exception ex)

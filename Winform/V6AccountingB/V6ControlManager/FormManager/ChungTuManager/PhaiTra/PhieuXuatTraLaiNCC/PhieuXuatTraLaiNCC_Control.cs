@@ -236,8 +236,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                             }
                             _sl_qd.V6LostFocus += delegate
                             {
+                                TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
                                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
-                                TinhSoluongQuyDoi(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
                                 if (M_CAL_SL_QD_ALL == "1")
                                 {
                                     CheckSoLuong1();
@@ -973,6 +973,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
 
             GetTon13();
             GetLoDate();
+            TinhTienVon1();
         }
 
         private void XuLyLayThongTinKhiChonMaKhoI()
@@ -1442,6 +1443,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
 
         private void TinhTienVon1()
         {
+            if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+
             _soLuong.Value = _soLuong1.Value * _heSo1.Value;
             _tienNt.Value = V6BusinessHelper.Vround((_soLuong1.Value * _gia_nt1.Value), M_ROUND_NT);
             _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * txtTyGia.Value), M_ROUND);
@@ -1450,7 +1453,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                 _tien.Value = _tienNt.Value;
 
             }
-            TinhSoluongQuyDoi(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+            if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
         }
         
         private void TinhTienVon()

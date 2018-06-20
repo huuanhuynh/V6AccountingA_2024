@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 using CrystalDecisions.Windows.Forms;
 using GSM;
 using V6AccountingBusiness;
@@ -271,11 +272,11 @@ namespace V6Controls.Forms
             {
                 if (owner is V6Form)
                 {
-                    ((V6Form)owner).ShowTopMessage(V6Text.NotExist + "\n..." + file.Right(50));
+                    ((V6Form)owner).ShowTopLeftMessage(V6Text.NotExist + "\n..." + file.Right(50));
                 }
                 else if (owner is V6Control)
                 {
-                    ((V6Control)owner).ShowTopMessage(V6Text.NotExist + "\n..." + file.Right(50));
+                    ((V6Control)owner).ShowTopLeftMessage(V6Text.NotExist + "\n..." + file.Right(50));
                 }
                 return;
             }
@@ -3758,6 +3759,63 @@ namespace V6Controls.Forms
         }
 
 
+        public static bool ExportRptToPdf_As(IWin32Window owner, ReportDocument rpt, string defaultSaveName = "")
+        {
+
+            if (rpt == null)
+            {
+                return false;
+            }
+            try
+            {
+                var save = new SaveFileDialog
+                {
+                    Filter = "Pdf files (*.pdf)|*.pdf",
+                    Title = "Xuất PDF.",
+                    FileName = ChuyenMaTiengViet.ToUnSign(defaultSaveName)
+                };
+                if (save.ShowDialog(owner) == DialogResult.OK)
+                {
+                    return ExportRptToPdf(owner, rpt, save.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                var methodInfo = MethodBase.GetCurrentMethod();
+                var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                ShowErrorException(address, ex);
+            }
+            return false;
+        }
+
+        public static bool ExportRptToPdf(IWin32Window owner, ReportDocument rpt, string fileName)
+        {
+            try
+            {
+                ExportOptions CrExportOptions;
+                DiskFileDestinationOptions CrDiskFileDestinationOptions = new DiskFileDestinationOptions();
+                PdfRtfWordFormatOptions CrFormatTypeOptions = new PdfRtfWordFormatOptions();
+                CrDiskFileDestinationOptions.DiskFileName = fileName;
+                CrExportOptions = rpt.ExportOptions;
+                
+                CrExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                CrExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                CrExportOptions.DestinationOptions = CrDiskFileDestinationOptions;
+                CrExportOptions.FormatOptions = CrFormatTypeOptions;
+                
+                rpt.Export();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                var methodInfo = MethodBase.GetCurrentMethod();
+                var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                ShowErrorException(address, ex);
+            }
+            return false;
+        }
+
+
         /// <summary>
         /// Sắp xếp thứ tự và gán formatString.
         /// </summary>
@@ -4331,7 +4389,7 @@ namespace V6Controls.Forms
                 if (string.IsNullOrEmpty(control.AccessibleDescription))
                 {
                     var vf = (V6FormControl) FindParent<V6FormControl>(control);
-                    if (vf != null) vf.ShowTopMessage("No AccessibleDescription.");
+                    if (vf != null) vf.ShowTopLeftMessage("No AccessibleDescription.");
                 }
                 else
                 {

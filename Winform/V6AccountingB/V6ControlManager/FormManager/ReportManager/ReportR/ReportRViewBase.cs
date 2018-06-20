@@ -1202,7 +1202,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (_tbl1 == null)
             {
-                ShowTopMessage(V6Text.NoData);
+                ShowTopLeftMessage(V6Text.NoData);
                 return;
             }
             try
@@ -1514,7 +1514,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                ShowTopMessage("Có lỗi khi in: " + ex.Message);
+                ShowTopLeftMessage("Có lỗi khi in: " + ex.Message);
                 this.WriteExLog(GetType() + ".btnIn_Click", ex);
             }
         }
@@ -1622,7 +1622,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (_tbl1 == null)
             {
-                ShowTopMessage(V6Text.NoData);
+                ShowTopLeftMessage(V6Text.NoData);
                 return;
             }
             try
@@ -1684,7 +1684,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (_tbl1 == null)
             {
-                ShowTopMessage(V6Text.NoData);
+                ShowTopLeftMessage(V6Text.NoData);
                 return;
             }
             try
@@ -1739,6 +1739,30 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void panel1_Leave(object sender, EventArgs e)
         {
             btnNhan.Focus();
+        }
+
+        private void exportToPdfToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_rpDoc == null)
+                {
+                    ShowMainMessage(V6Text.NoData);
+                    return;
+                }
+                if (V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc, ReportTitle))
+                {
+                    ShowMainMessage(V6Text.ExportFinish);
+                }
+                else
+                {
+                    ShowMainMessage(V6Text.ExportFail);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Export PDF", ex);
+            }
         }
     }
 }

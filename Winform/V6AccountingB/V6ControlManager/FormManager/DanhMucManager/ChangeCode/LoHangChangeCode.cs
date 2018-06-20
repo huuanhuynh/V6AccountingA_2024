@@ -145,7 +145,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             try
             {
                 OnDoChangeCodeFinish(newData);
-                ShowTopMessage("Đã thực hiện xong!");
+                ShowTopLeftMessage("Đã thực hiện xong!");
                 Close();
             }
             catch (Exception ex)

@@ -166,7 +166,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 };
                 var a = V6BusinessHelper.ExecuteProcedureNoneQuery("AARKH_UPDATE_ARS20", plist);
 
-                ShowTopMessage(V6Text.UpdateSuccess);
+                ShowTopLeftMessage(V6Text.UpdateSuccess);
             }
             catch (Exception ex)
             {
@@ -234,7 +234,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (result == 1)
                 {
-                    ShowTopMessage(V6Text.Updated + "PHOTOGRAPH");
+                    ShowTopLeftMessage(V6Text.Updated + "PHOTOGRAPH");
                 }
             }
             catch (Exception ex)
@@ -267,7 +267,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (result == 1)
                 {
-                    ShowTopMessage(V6Text.Updated + "SIGNATURE");
+                    ShowTopLeftMessage(V6Text.Updated + "SIGNATURE");
                 }
             }
             catch (Exception ex)
@@ -290,7 +290,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (result == 1)
                 {
-                    ShowTopMessage(V6Text.Updated + "PHOTOGRAPH");
+                    ShowTopLeftMessage(V6Text.Updated + "PHOTOGRAPH");
                 }
             }
             catch (Exception ex)
@@ -313,7 +313,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (result == 1)
                 {
-                    ShowTopMessage(V6Text.Updated + "SIGNATURE");
+                    ShowTopLeftMessage(V6Text.Updated + "SIGNATURE");
                 }
             }
             catch (Exception ex)

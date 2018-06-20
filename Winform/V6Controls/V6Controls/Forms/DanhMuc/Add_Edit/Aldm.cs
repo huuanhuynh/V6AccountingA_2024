@@ -51,7 +51,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 f3count = 0;
                 if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                 {
-                    ShowTopMessage("V6 Confirm ......OK....");
+                    ShowTopLeftMessage("V6 Confirm ......OK....");
                     
                     txtDmethod.Visible = true;
                     lblXML.Visible = true;

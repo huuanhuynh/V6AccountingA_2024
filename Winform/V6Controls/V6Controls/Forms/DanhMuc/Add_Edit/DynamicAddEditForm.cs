@@ -668,7 +668,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     }
                     else
                     {
-                        if (showMessage) ShowTopMessage(V6Text.UpdateFail);
+                        if (showMessage) ShowTopLeftMessage(V6Text.UpdateFail);
                     }
 
                 }
@@ -717,7 +717,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     }
                     else
                     {
-                        if (showMessage) ShowTopMessage(V6Text.AddFail);
+                        if (showMessage) ShowTopLeftMessage(V6Text.AddFail);
                     }
                     return false;
                 }

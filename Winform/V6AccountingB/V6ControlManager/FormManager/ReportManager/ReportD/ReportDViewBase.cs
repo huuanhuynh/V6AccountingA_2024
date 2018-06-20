@@ -1187,7 +1187,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             if (_tbl == null)
             {
-                ShowTopMessage(V6Text.NoData);
+                ShowTopLeftMessage(V6Text.NoData);
                 return;
             }
             try
@@ -1516,7 +1516,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             }
             catch (Exception ex)
             {
-                ShowTopMessage("Có lỗi khi in: " + ex.Message);
+                ShowTopLeftMessage("Có lỗi khi in: " + ex.Message);
                 this.WriteExLog(GetType() + ".btnIn_Click", ex);
             }
         }
@@ -1723,7 +1723,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             if (_tbl == null)
             {
-                ShowTopMessage(V6Text.NoData);
+                ShowTopLeftMessage(V6Text.NoData);
                 return;
             }
             try
@@ -1771,7 +1771,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             if (_tbl == null)
             {
-                ShowTopMessage(V6Text.NoData);
+                ShowTopLeftMessage(V6Text.NoData);
                 return;
             }
             try

@@ -553,7 +553,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 catch (Exception ex)
                 {
-                    view.ShowTopMessage("UPDATEF9 " + ex.Message);
+                    view.ShowTopLeftMessage("UPDATEF9 " + ex.Message);
                     ShowMainMessage("UPDATEF9 Error: " + ex.Message);
                 }
                 view.Dispose();

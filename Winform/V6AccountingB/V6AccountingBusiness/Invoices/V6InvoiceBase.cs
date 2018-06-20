@@ -834,6 +834,8 @@ namespace V6AccountingBusiness.Invoices
         {
             _templateSettingAM = new SortedDictionary<string, DefineInfo>();
             var define = Alct["AM_TEMPLATE"].ToString().Trim();
+            if (string.IsNullOrEmpty(define)) return;
+
             string[] sss = define.Split('~');
             foreach (string s in sss)
             {

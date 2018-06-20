@@ -150,7 +150,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 if (result == 1)
                 {
                     Dispose();
-                    ShowTopMessage(V6Text.UpdateSuccess);
+                    ShowTopLeftMessage(V6Text.UpdateSuccess);
                     OnUpdateSuccessEvent(data);
                 }
                 else
@@ -178,7 +178,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 if (result)
                 {
                     Dispose();
-                    ShowTopMessage(V6Text.AddSuccess);
+                    ShowTopLeftMessage(V6Text.AddSuccess);
                     OnInsertSuccessEvent(data);
                 }
                 else

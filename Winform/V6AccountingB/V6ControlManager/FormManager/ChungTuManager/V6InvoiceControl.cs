@@ -721,7 +721,37 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="_sl_qd2"></param>
         /// <param name="_hs_qd1">Hệ số nhân đổi DVT ra DVT qd. (1 viên = ?0.01 thùng)</param>
         /// <param name="_hs_qd2">100 viên / thùng</param>
-        protected void TinhSoluongQuyDoi(V6NumberTextBox _soLuong1
+        //protected void TinhSoluongQuyDoi(V6NumberTextBox _soLuong1
+        //    , V6NumberTextBox _sl_qd, V6NumberTextBox _sl_qd2
+        //    , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2)
+        //{
+        //    try
+        //    {
+        //        if (M_CAL_SL_QD_ALL == "0")
+        //        {
+        //            //Phần nguyên, (ví dụ 1.5 thùng)
+        //            _sl_qd.Value = _soLuong1.Value*_hs_qd1.Value;
+        //            //Phần lẻ (ví dụ 50 viên = 0.5 thùng bên trên)
+        //            var tong = _sl_qd.Value*_hs_qd2.Value;
+        //            var sl_nguyen_thung = ((int) _sl_qd.Value)*_hs_qd2.Value;
+        //            _sl_qd2.Value = V6BusinessHelper.Vround(tong - sl_nguyen_thung, 1);
+        //        }
+        //        else if (M_CAL_SL_QD_ALL == "1")
+        //        {
+        //            _soLuong1.Value = _sl_qd.Value*_hs_qd1.Value;
+        //        }
+        //        else
+        //        {
+        //            //this.ShowParentMessage();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi", ex);
+        //    }
+        //}
+
+        protected void TinhSoluongQuyDoi_0(V6NumberTextBox _soLuong1
             , V6NumberTextBox _sl_qd, V6NumberTextBox _sl_qd2
             , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2)
         {
@@ -736,18 +766,26 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     var sl_nguyen_thung = ((int) _sl_qd.Value)*_hs_qd2.Value;
                     _sl_qd2.Value = V6BusinessHelper.Vround(tong - sl_nguyen_thung, 1);
                 }
-                else if (M_CAL_SL_QD_ALL == "1")
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi_0", ex);
+            }
+        }
+        protected void TinhSoluongQuyDoi_1(V6NumberTextBox _soLuong1
+            , V6NumberTextBox _sl_qd, V6NumberTextBox _sl_qd2
+            , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2)
+        {
+            try
+            {
+                if (M_CAL_SL_QD_ALL == "1")
                 {
                     _soLuong1.Value = _sl_qd.Value*_hs_qd1.Value;
-                }
-                else
-                {
-                    //this.ShowParentMessage();
                 }
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi", ex);
+                this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi_1", ex);
             }
         }
 

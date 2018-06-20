@@ -134,7 +134,7 @@ namespace V6Controls.Forms
         /// Hiển thị một thông báo trượt xuống từ góc trên bên trái của form.
         /// </summary>
         /// <param name="message"></param>
-        public void ShowTopMessage(string message)
+        public void ShowTopLeftMessage(string message)
         {
             if (_topMessageTimer != null && _topMessageTimer.Enabled)
             {

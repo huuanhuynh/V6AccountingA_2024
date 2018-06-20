@@ -1116,8 +1116,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             XuLyLayThongTinKhiChonMaVt();
             XuLyDonViTinhKhiChonMaVt(mavt);
-            //  GetGia();
-            
+            // GetGia();
+            // TinhTienNt0();
         }
         private void XuLyChonMaKhoI()
         {

@@ -189,7 +189,7 @@ namespace V6Controls.Forms
                 }
                 else
                 {
-                    ShowTopMessage(string.Format("{0} [{1}]", V6Text.NotExist, file1));
+                    ShowTopLeftMessage(string.Format("{0} [{1}]", V6Text.NotExist, file1));
                 }
             }
             catch (Exception ex)

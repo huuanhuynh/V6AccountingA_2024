@@ -1519,7 +1519,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             else
             {
-                ShowTopMessage(V6Text.NoData);
+                ShowTopLeftMessage(V6Text.NoData);
             }
         }
 
@@ -1852,7 +1852,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                     if (currentRow == null || currentCell == null)
                     {
-                        ShowTopMessage(V6Text.NoSelection);
+                        ShowTopLeftMessage(V6Text.NoSelection);
                         return;
                     }
 

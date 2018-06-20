@@ -730,7 +730,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         {
             if (_tbl == null)
             {
-                ShowTopMessage(V6Text.NoData);
+                ShowTopLeftMessage(V6Text.NoData);
                 return;
             }
             try

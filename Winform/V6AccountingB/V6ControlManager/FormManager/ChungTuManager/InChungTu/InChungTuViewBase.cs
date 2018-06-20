@@ -1137,7 +1137,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             catch(Exception ex)
             {
                 if(flag == 3)
-                ShowTopMessage("Kiểm tra thông tin trường tính toán drop_line [" + checkField + "]");
+                ShowTopLeftMessage("Kiểm tra thông tin trường tính toán drop_line [" + checkField + "]");
                 this.WriteExLog(GetType() + ".SetCrossLineRpt", ex);
             }
         }
@@ -1552,7 +1552,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             if (_tbl == null)
             {
-                ShowTopMessage(V6Text.NoData);
+                ShowTopLeftMessage(V6Text.NoData);
                 return;
             }
             try
@@ -1658,7 +1658,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             if (_tbl == null)
             {
-                ShowTopMessage(V6Text.NoData);
+                ShowTopLeftMessage(V6Text.NoData);
                 return;
             }
             try
