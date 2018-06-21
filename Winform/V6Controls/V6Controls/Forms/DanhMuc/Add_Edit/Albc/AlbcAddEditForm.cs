@@ -132,6 +132,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                     {
                         errors += "Tên FILE REPORT đã tồn tại. Vui lòng đổi thông tin khác!\n";
                     }
+                    //Kiểm tra reportFile trùng mã file
+                    if (txtReportFileNew.Text.ToUpper() != txtMa_File.Text.ToUpper())
+                    {
+                        var key = new SortedDictionary<string, object>
+                        {
+                            {"MA_FILE", txtReportFileNew.Text}
+                        };
+                        if (V6BusinessHelper.CheckDataExist("Albc", key))
+                        {
+                            errors += "Tên FILE REPORT trùng mã file của report khác. Vui lòng đổi thông tin khác!\n";
+                        }
+                    }
+
                 }
 
                 if (errors.Length == 0)

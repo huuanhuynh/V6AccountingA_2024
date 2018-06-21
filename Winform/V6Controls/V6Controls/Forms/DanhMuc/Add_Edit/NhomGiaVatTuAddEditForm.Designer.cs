@@ -224,7 +224,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(411, 17);
             this.label20.TabIndex = 4;
-            this.label20.Text = "0 : BP khác , 1 : BP bán hàn, 2 : BP mua hàng , 3 : BP kế hoạch";
+            this.label20.Text = "0 : BP khác, 1 : BP bán hàng, 2 : BP mua hàng, 3 : BP kế hoạch";
             // 
             // v6ColorTextBox11
             // 

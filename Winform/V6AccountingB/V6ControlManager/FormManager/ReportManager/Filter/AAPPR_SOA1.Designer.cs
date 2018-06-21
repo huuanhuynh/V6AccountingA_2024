@@ -65,6 +65,7 @@
             this.v6Label8 = new V6Controls.V6Label();
             this.chkMa_bp = new V6Controls.V6CheckBox();
             this.chkMa_nvien = new V6Controls.V6CheckBox();
+            this.chkGc_ud1 = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -524,7 +525,7 @@
             this.chkMa_bp.AccessibleDescription = "FILTERC00001";
             this.chkMa_bp.AccessibleName = "CHK_MA_BP";
             this.chkMa_bp.AutoSize = true;
-            this.chkMa_bp.Location = new System.Drawing.Point(219, 138);
+            this.chkMa_bp.Location = new System.Drawing.Point(219, 121);
             this.chkMa_bp.Name = "chkMa_bp";
             this.chkMa_bp.Size = new System.Drawing.Size(70, 17);
             this.chkMa_bp.TabIndex = 26;
@@ -536,17 +537,30 @@
             this.chkMa_nvien.AccessibleDescription = "FILTERC00001";
             this.chkMa_nvien.AccessibleName = "CHK_MA_NVIEN";
             this.chkMa_nvien.AutoSize = true;
-            this.chkMa_nvien.Location = new System.Drawing.Point(219, 162);
+            this.chkMa_nvien.Location = new System.Drawing.Point(219, 140);
             this.chkMa_nvien.Name = "chkMa_nvien";
             this.chkMa_nvien.Size = new System.Drawing.Size(71, 17);
             this.chkMa_nvien.TabIndex = 27;
             this.chkMa_nvien.Text = "Thiếu NV";
             this.chkMa_nvien.UseVisualStyleBackColor = true;
             // 
+            // chkGc_ud1
+            // 
+            this.chkGc_ud1.AccessibleDescription = "FILTERC00001";
+            this.chkGc_ud1.AccessibleName = "CHK_GC_UD1";
+            this.chkGc_ud1.AutoSize = true;
+            this.chkGc_ud1.Location = new System.Drawing.Point(219, 159);
+            this.chkGc_ud1.Name = "chkGc_ud1";
+            this.chkGc_ud1.Size = new System.Drawing.Size(71, 17);
+            this.chkGc_ud1.TabIndex = 28;
+            this.chkGc_ud1.Text = "Thiếu GC";
+            this.chkGc_ud1.UseVisualStyleBackColor = true;
+            // 
             // AAPPR_SOA1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkGc_ud1);
             this.Controls.Add(this.chkMa_nvien);
             this.Controls.Add(this.chkMa_bp);
             this.Controls.Add(this.chkHoaDonDaIn);
@@ -616,5 +630,6 @@
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox2;
         private V6Controls.V6CheckBox chkMa_bp;
         private V6Controls.V6CheckBox chkMa_nvien;
+        private V6Controls.V6CheckBox chkGc_ud1;
     }
 }

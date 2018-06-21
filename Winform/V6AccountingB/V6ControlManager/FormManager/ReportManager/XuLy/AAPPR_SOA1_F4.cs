@@ -80,51 +80,69 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 // Phân tích danh sách Field
                 string[] sss = ObjectAndString.SplitString(_fields);
+                
+                int top = TxtMa_bp.Top;
                 foreach (string s in sss)
                 {
                     string[] ss = s.Split(':');
                     if (ss[0].Trim().Length > 0)
                     {
+                        string field = ss[0];
                         string label = ss[0];
+                        string vVar = "";
+                        bool checkOnLeave = false;
                         if (ss.Length > 1)
                         {
                             label = ss[1];
                         }
-                        _fieldDic.Add(ss[0], label);
+                        if (ss.Length > 2)
+                        {
+                            vVar = ss[2];
+                        }
+                        if (ss.Length > 3)
+                        {
+                            checkOnLeave = "1" == ss[3];
+                        }
+                        _fieldDic.Add(field, label);
+
+                        // Tạo input cùng label
+                        //Kiem tra
+                        Control c = this.GetControlByAccessibleName(field);
+                        if (c != null)
+                        {
+                            V6ControlFormHelper.SetControlReadOnly(c, false);
+                            continue;
+                        }
+
+                        top += 25;
+                        V6VvarTextBox txt = new V6VvarTextBox()
+                        {
+                            AccessibleName = field,
+                            BorderStyle = BorderStyle.FixedSingle,
+                            Name = "txt" + field,
+                            Top = top,
+                            Left = TxtMa_bp.Left,
+                            Width = txtGhiChu02.Width,
+                            VVar = vVar,
+                            F2 = !string.IsNullOrEmpty(vVar),
+                            CheckOnLeave = checkOnLeave,
+                        };
+                        V6Label lbl = new V6Label()
+                        {
+                            Name = "lbl" + field,
+                            Text = label,
+                            Top = top,
+                            Left = lblBPNV.Left,
+                        };
+                        this.Controls.Add(txt);
+                        this.Controls.Add(lbl);
+                        this.Height += 25;
                     }
                 }
-                // Tạo input cùng label
-                int top = TxtMa_bp.Top;
+                
                 foreach (KeyValuePair<string, string> item in _fieldDic)
                 {
-                    //Kiem tra
-                    Control c = this.GetControlByAccessibleName(item.Key);
-                    if (c != null)
-                    {
-                        V6ControlFormHelper.SetControlReadOnly(c, false);
-                        continue;
-                    }
-
-                    top += 25;
-                    V6ColorTextBox txt = new V6VvarTextBox()
-                    {
-                        AccessibleName = item.Key,
-                        BorderStyle = BorderStyle.FixedSingle,
-                        Name = "txt" + item.Key,
-                        Top = top,
-                        Left = TxtMa_bp.Left,
-                        Width = txtGhiChu02.Width,
-                    };
-                    V6Label lbl = new V6Label()
-                    {
-                        Name = "lbl" + item.Key,
-                        Text = item.Value,
-                        Top = top,
-                        Left = lblBPNV.Left,
-                    };
-                    this.Controls.Add(txt);
-                    this.Controls.Add(lbl);
-                    this.Height += 25;
+                    
                 }
 
             }
