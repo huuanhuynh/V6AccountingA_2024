@@ -1944,5 +1944,89 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 this.WriteExLog(GetType() + ".sf_AcceptSelectedtData5", ex);
             }
         }
+
+        private void gView4_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.F8)
+            try
+            {
+                if (gView4.CurrentRow != null)
+                {
+                    var cIndex = gView4.CurrentRow.Index;
+                    if (cIndex >= 0 && cIndex < data4.Rows.Count)
+                    {
+                        var currentRow = data4.Rows[cIndex];
+                        var details = "Mã khách hàng: " + currentRow["Ma_kh_i"];
+                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
+                            == DialogResult.Yes)
+                        {
+                            data4.Rows.Remove(currentRow);
+                            gView4.DataSource = data4;
+                        }
+                    }
+                }
+                else
+                {
+                    this.ShowWarningMessage(V6Text.NoSelection);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".Xóa chi tiết: " + ex.Message);
+            }
+        }
+
+        private void gView5_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F8)
+            try
+            {
+                if (gView5.CurrentRow != null)
+                {
+                    var cIndex = gView5.CurrentRow.Index;
+                    if (cIndex >= 0 && cIndex < data5.Rows.Count)
+                    {
+                        var currentRow = data5.Rows[cIndex];
+                        var details = "Mã khách hàng: " + currentRow["Ma_kh_i"];
+                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
+                            == DialogResult.Yes)
+                        {
+                            data5.Rows.Remove(currentRow);
+                            gView5.DataSource = data5;
+                        }
+                    }
+                }
+                else
+                {
+                    this.ShowWarningMessage(V6Text.NoSelection);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".Xóa chi tiết: " + ex.Message);
+            }
+        }
+
+        private void gView4_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
+
+        private void gView5_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
+
+        private void gView4_MouseHover(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.SetStatusText("F8 xóa 1 dòng");
+            V6ControlFormHelper.SetStatusText2("F8 xóa 1 dòng");
+        }
+
+        private void gView5_MouseHover(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.SetStatusText("F8 xóa 1 dòng");
+            V6ControlFormHelper.SetStatusText2("F8 xóa 1 dòng");
+        }
     }
 }

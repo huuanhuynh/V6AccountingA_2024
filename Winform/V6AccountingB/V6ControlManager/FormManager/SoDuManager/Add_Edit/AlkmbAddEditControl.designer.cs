@@ -1618,6 +1618,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // gView4
             // 
             this.gView4.AllowUserToAddRows = false;
+            this.gView4.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
             this.gView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gView4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1647,6 +1648,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.gView4.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gView4.Size = new System.Drawing.Size(790, 122);
             this.gView4.TabIndex = 52;
+            this.gView4.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.gView4_ColumnAdded);
+            this.gView4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gView4_KeyDown);
+            this.gView4.MouseHover += new System.EventHandler(this.gView4_MouseHover);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -2023,6 +2027,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // gView5
             // 
             this.gView5.AllowUserToAddRows = false;
+            this.gView5.AllowUserToDeleteRows = false;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
             this.gView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gView5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -2052,6 +2057,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.gView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gView5.Size = new System.Drawing.Size(790, 122);
             this.gView5.TabIndex = 54;
+            this.toolTipV6FormControl.SetToolTip(this.gView5, "F8 xóa 1 dòng");
+            this.gView5.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.gView5_ColumnAdded);
+            this.gView5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gView5_KeyDown);
+            this.gView5.MouseHover += new System.EventHandler(this.gView5_MouseHover);
             // 
             // dataGridViewTextBoxColumn11
             // 
@@ -2136,6 +2145,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             this.detail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.detail1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail1.CodeForm = null;
             this.detail1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.detail1.Location = new System.Drawing.Point(2, 2);
             this.detail1.MODE = V6Structs.V6Mode.Init;
@@ -2248,6 +2259,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             this.detail3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.detail3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail3.CodeForm = null;
             this.detail3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.detail3.Location = new System.Drawing.Point(2, 2);
             this.detail3.MODE = V6Structs.V6Mode.Init;

@@ -332,6 +332,7 @@ namespace V6Tools.V6Export
             Message = "";
             //if (!File.Exists(xlsTemplateFile)) throw new Exception("Không tồn tại: " + xlsTemplateFile);
             var workbook = new WorkBook();
+            workbook.PrintGridLines = false;
             workbook.setDefaultFont("Arial", 10 * 20, 1);
             try
             {
@@ -1113,6 +1114,7 @@ namespace V6Tools.V6Export
             if(!File.Exists(xlsTemplateFile)) throw new Exception("Không tồn tại: " + xlsTemplateFile);
 
             WorkBook workbook = new WorkBook();
+            workbook.PrintGridLines = false;
             workbook.setDefaultFont("Arial", 10*20, 1);
 
             xlsTemplateFile = Path.GetFullPath(xlsTemplateFile);
@@ -1191,6 +1193,7 @@ namespace V6Tools.V6Export
             Message = "";
             //if (!File.Exists(xlsTemplateFile)) throw new Exception("Không tồn tại: " + xlsTemplateFile);
             var workbook = new WorkBook();
+            workbook.PrintGridLines = false;
             workbook.setDefaultFont("Arial", 10*20, 1);
             try
             {
@@ -1260,6 +1263,7 @@ namespace V6Tools.V6Export
             Message = "";
             //if (!File.Exists(xlsTemplateFile)) throw new Exception("Không tồn tại: " + xlsTemplateFile);
             var workbook = new WorkBook();
+            workbook.PrintGridLines = false;
             workbook.setDefaultFont("Arial", 10 * 20, 1);
             try
             {
@@ -1324,6 +1328,8 @@ namespace V6Tools.V6Export
             Message = "";
             //if(!File.Exists(xlsTemplateFile)) throw new Exception("Không tồn tại: " + xlsTemplateFile);
             var workBook = new WorkBook();
+            workBook.PrintGridLines = false;
+            workBook.setDefaultFont("Arial", 10 * 20, 1);
             try
             {
                 if(File.Exists(xlsTemplateFile))
@@ -1394,6 +1400,7 @@ namespace V6Tools.V6Export
         public static void ToExcel(DataTable data, string saveAs, string title, bool line, string fontName = "")
         {
             SmartXLS.WorkBook workBook = new SmartXLS.WorkBook();
+            workBook.PrintGridLines = false;
             if (fontName == "" || !IsFontInstalled(fontName)) fontName = "Times New Roman";
             workBook.setDefaultFont(fontName, 12*20, 1);
             int startRow = 0, startCol = 0, endRow = 0, endCol = data.Columns.Count-1;
@@ -1548,6 +1555,7 @@ namespace V6Tools.V6Export
             IDictionary<string, object> mappingData, IDictionary<string, object> addressData)
         {
             var workbook = new WorkBook();
+            workbook.PrintGridLines = false;
             workbook.setDefaultFont("Arial", 10 * 20, 1);
             try
             {

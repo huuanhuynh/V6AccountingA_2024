@@ -4154,6 +4154,7 @@ namespace V6Controls.Forms
 
                 foreach (DataRow row in AD.Rows)
                 {
+                    if (row.RowState == DataRowState.Deleted) continue;
                     foreach (KeyValuePair<string, object> item in use_data)
                     {
                         row[item.Key] = ObjectAndString
