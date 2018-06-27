@@ -7,7 +7,7 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 
-namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.ChonDonHang
+namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.ChonBaoGia
 {
     public partial class CBG_HoaDonDichVuCoSLKetQua : LocKetQuaBase
     {
@@ -50,11 +50,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
                 }
 
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, grd_show, grd_format, grd_header);
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                this.WriteExLog(GetType() + ".FormatGridView", ex);
             }
         }
 

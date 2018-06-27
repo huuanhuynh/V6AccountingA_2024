@@ -41,7 +41,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
             try
             {
                 string grd_show = "", grd_format = "", grd_header = "";
-                var data = V6BusinessHelper.Select("ALDM", "*", "ma_dm='AMAD71A'").Data;
+                var data = V6BusinessHelper.Select("ALDM", "*", "ma_dm='AMAD91A'").Data;
                 if (data.Rows.Count > 0)
                 {
                     var row = data.Rows[0];
@@ -51,11 +51,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
                 }
 
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, grd_show, grd_format, grd_header);
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                this.WriteExLog(GetType() + ".FormatGridView", ex);
             }
         }
 

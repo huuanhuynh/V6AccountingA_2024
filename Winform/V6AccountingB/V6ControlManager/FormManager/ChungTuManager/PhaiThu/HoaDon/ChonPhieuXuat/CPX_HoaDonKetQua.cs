@@ -51,11 +51,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuXu
                 }
 
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, grd_show, grd_format, grd_header);
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                this.WriteExLog(GetType() + ".FormatGridView", ex);
             }
         }
 

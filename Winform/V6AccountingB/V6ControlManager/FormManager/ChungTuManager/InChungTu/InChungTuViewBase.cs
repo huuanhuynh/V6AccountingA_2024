@@ -668,9 +668,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             result = (MauInSelectedRow["Printer_def"] ?? "").ToString().Trim();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    this.WriteExLog(GetType() + ".getDefaultPrinter", ex);
                 }
                 return result;
             }

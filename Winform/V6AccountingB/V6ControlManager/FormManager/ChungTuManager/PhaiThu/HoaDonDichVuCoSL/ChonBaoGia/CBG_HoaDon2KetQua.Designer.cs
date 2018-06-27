@@ -1,4 +1,4 @@
-﻿namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.ChonDonHang
+﻿namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.ChonBaoGia
 {
     partial class CBG_HoaDonDichVuCoSLKetQua
     {

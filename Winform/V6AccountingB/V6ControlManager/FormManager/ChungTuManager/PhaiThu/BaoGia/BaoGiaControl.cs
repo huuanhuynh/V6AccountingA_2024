@@ -765,14 +765,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         void SoLuong1_V6LostFocus(object sender)
         {
-            //if (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO))
-            //{
-            //    if (_soLuong1.Value > _ton13.Value)
-            //    {
-            //        this.ShowWarningMessage("Không được xuất lớn hơn tồn!");
-            //        _soLuong1.Value = _ton13.Value;
-            //    }
-            //}
             TinhTienNt2();
         }
 
@@ -980,7 +972,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        //if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
@@ -4185,9 +4177,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                         colorList[kieu_post] = color;
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    this.WriteExLog(GetType() + ".LoadColorList", ex);
                 }
             }
         }

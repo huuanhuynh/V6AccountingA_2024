@@ -646,7 +646,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                         //    {
                         //        if (_soLuong1.Value > _ton13.Value)
                         //        {
-                        //            _soLuong1.Value = _ton13.Value;
+                        //            _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
                         //            TinhTienNt2();
                         //        }
                         //    }
@@ -1377,7 +1377,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     {
                         if (_soLuong1.Value > _ton13.Value)
                         {
-                            _soLuong1.Value = _ton13.Value;
+                            _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
                             TinhTienNt2();
                         }
                     }
@@ -1584,7 +1584,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        //if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             break;
@@ -1659,7 +1659,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        //if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
@@ -1728,7 +1728,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        //if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _maViTri.Text = data_row["Ma_vitri"].ToString().Trim();
@@ -1841,7 +1841,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     if (_soLuong1.Value > _ton13.Value)
                     {
                         ShowParentMessage(V6Text.StockoutWarning);
-                        _soLuong1.Value = _ton13.Value;
+                        _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
                     }
                 }
                 TinhTienNt2();
@@ -2401,7 +2401,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        //if (new_soLuong < 0) new_soLuong = 0;
                         {
                             if (_heSo1.Value != 0)
                             {
@@ -2622,7 +2622,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                                     }
                                 }
 
-                                if (new_soLuong < 0) new_soLuong = 0;
+                                //if (new_soLuong < 0) new_soLuong = 0;
                                 {
                                     _ton13.Value = new_soLuong / _heSo1.Value;
                                     break;

@@ -11,6 +11,7 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc;
+using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonBaoGia;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -29,6 +30,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         #region ==== Properties and Fields
         // ReSharper disable once InconsistentNaming
         public V6Invoice91 Invoice = new V6Invoice91();
+
+        private string l_ma_km = "";
+        private string _m_Ma_td;
         
         #endregion properties and fields
 
@@ -97,6 +101,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
+
+            _m_Ma_td = (Invoice.Alct["M_MA_TD"] ?? "0").ToString().Trim();
             
             LoadDetailControls();
             ResetForm();
@@ -672,14 +678,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         void SoLuong1_V6LostFocus(object sender)
         {
-            //if (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO))
-            //{
-            //    if (_soLuong1.Value > _ton13.Value)
-            //    {
-            //        this.ShowWarningMessage("Không được xuất lớn hơn tồn!");
-            //        _soLuong1.Value = _ton13.Value;
-            //    }
-            //}
             TinhTienNt2();
             Tinh_thue_ct();
         }
@@ -891,7 +889,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        //if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
@@ -4507,8 +4505,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 this.WriteExLog(GetType() + ".TinhChietKhauKhuyenMai", ex);
             }
         }
-        private string l_ma_km = "";
-
+        
         private void ApDungChietKhauTH(DataTable ctck1th)
         {
             try
@@ -4827,6 +4824,71 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private void thayThe2toolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChucNang_SuaNhieuDong(Invoice);
+        }
+
+        private void chonBaoGiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChucNang_ChonBaoGia();
+        }
+
+        private void ChucNang_ChonBaoGia()
+        {
+            try
+            {
+                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+
+                var ma_kh = txtMaKh.Text.Trim();
+                var ma_dvcs = txtMadvcs.Text.Trim();
+                var message = "";
+                if (ma_kh != "" && ma_dvcs != "")
+                {
+                    CBG_HoaDonForm chon = new CBG_HoaDonForm(txtMadvcs.Text, txtMaKh.Text);
+                    chon.AcceptSelectEvent += chon_AcceptSelectEvent;
+                    chon.ShowDialog(this);
+                }
+                else
+                {
+                    if (ma_kh == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID needs to enter!\n";
+                    if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID needs to enter!";
+                    this.ShowWarningMessage(message);
+                    if (ma_kh == "") txtMaKh.Focus();
+                    else if (ma_dvcs == "") txtMadvcs.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ChucNang_ChonBaoGia", ex);
+            }
+        }
+
+        void chon_AcceptSelectEvent(List<SortedDictionary<string, object>> selectedDataList)
+        {
+            try
+            {
+                detail1.MODE = V6Mode.View;
+                AD.Rows.Clear();
+                int addCount = 0, failCount = 0;
+                foreach (SortedDictionary<string, object> data in selectedDataList)
+                {
+                    var newData = new SortedDictionary<string, object>(data);
+                    if (_m_Ma_td == "1" && Txtma_td_ph.Text != "")
+                    {
+                        newData["MA_TD_I"] = Txtma_td_ph.Text;
+                    }
+
+                    if (XuLyThemDetail(newData)) addCount++;
+                    else failCount++;
+                }
+                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
+                //if (addCount > 0)
+                //{
+                //    co_chon_don_hang = true;
+                //}
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".chon_AcceptSelectEvent", ex);
+            }
         }
 
 

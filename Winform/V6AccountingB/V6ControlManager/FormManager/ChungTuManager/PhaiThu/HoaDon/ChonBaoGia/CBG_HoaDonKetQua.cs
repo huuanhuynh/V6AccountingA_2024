@@ -7,7 +7,7 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 
-namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
+namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonBaoGia
 {
     public partial class CBG_HoaDonKetQua : LocKetQuaBase
     {
@@ -40,7 +40,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
             try
             {
                 string grd_show = "", grd_format = "", grd_header = "";
-                var data = V6BusinessHelper.Select("ALDM", "*", "ma_dm='AMAD71A'").Data;
+                var data = V6BusinessHelper.Select("ALDM", "*", "ma_dm='AMAD93A'").Data;
                 if (data.Rows.Count > 0)
                 {
                     var row = data.Rows[0];
@@ -50,11 +50,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
                 }
 
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, grd_show, grd_format, grd_header);
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                this.WriteExLog(GetType() + ".FormatGridView", ex);
             }
         }
 

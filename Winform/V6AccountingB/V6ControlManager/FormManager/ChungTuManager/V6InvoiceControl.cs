@@ -1555,7 +1555,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     var data_mavt = row["Ma_vt"].ToString().Trim();
                     var data_makho = row["Ma_kho"].ToString().Trim();
                     var data_soluong = ObjectAndString.ObjectToDecimal(row["Ton00"]);
-                    if (c_mavt == data_mavt && c_makho == data_makho)
+                    //
+                    if (data_soluong != 0 && c_mavt == data_mavt && c_makho == data_makho)
                     {
                         if (data_soluong < item.Value)
                         {

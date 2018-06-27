@@ -470,7 +470,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         //    {
                         //        if (_soLuong1.Value > _ton13.Value)
                         //        {
-                        //            _soLuong1.Value = _ton13.Value;
+                        //            _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
                         //            TinhTienVon1();
                         //        }
                         //    }
@@ -778,7 +778,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     {
                         if (_soLuong1.Value > _ton13.Value)
                         {
-                            _soLuong1.Value = _ton13.Value;
+                            _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
                             //TinhTienNt2();
                             TinhTienVon1();
                         }
@@ -1108,7 +1108,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     if (_soLuong1.Value > _ton13.Value)
                     {
                         ShowParentMessage(V6Text.StockoutWarning);
-                        _soLuong1.Value = _ton13.Value;
+                        _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
                         
                     }
                 }
@@ -1396,7 +1396,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 if (_soLuong1.Value > _ton13.Value)
                 {
                     this.ShowWarningMessage(V6Text.StockoutWarning);
-                    _soLuong1.Value = _ton13.Value;
+                    _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
                 }
             }
             _soLuong.Value = _soLuong1.Value * _heSo1.Value;
@@ -1764,7 +1764,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        //if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
@@ -1835,7 +1835,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        //if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             break;
@@ -1911,7 +1911,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        //if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
@@ -2123,7 +2123,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             }
                         }
 
-                        if (new_soLuong < 0) new_soLuong = 0;
+                        //if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
                             _maViTri.Text = data_row["Ma_vitri"].ToString().Trim();
@@ -2275,7 +2275,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                                     }
                                 }
 
-                                if (new_soLuong < 0) new_soLuong = 0;
+                                //if (new_soLuong < 0) new_soLuong = 0;
                                 {
                                     _ton13.Value = new_soLuong / _heSo1.Value;
                                     break;
