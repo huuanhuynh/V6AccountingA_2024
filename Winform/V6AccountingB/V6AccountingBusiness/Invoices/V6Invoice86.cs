@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Reflection;
 using V6Init;
 using V6SqlConnect;
+using V6Tools;
 
 namespace V6AccountingBusiness.Invoices
 {
@@ -25,34 +26,64 @@ namespace V6AccountingBusiness.Invoices
 
         public bool InsertInvoice(SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList)
         {
+            var stt_rec = am["STT_REC"];
+            var insert_success = false;
+            var j = 0;
             var insert_am_sql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AMStruct, am);
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction(AM_TableName);
 
-            //Delete AD
-            SortedDictionary<string, object> keys = new SortedDictionary<string, object>()
+            try
             {
-                {"STT_REC",am["STT_REC"]}
-            };
-            var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
-            SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
-            //Delete AM
-            var deleteAMSql = SqlGenerator.GenDeleteSql(AMStruct, keys);
-            SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAMSql);
-            
-            var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, insert_am_sql) > 0;
-            var currentMethodName = MethodBase.GetCurrentMethod().Name;
-            var j = InsertADlist(currentMethodName, TRANSACTION, adList, true);
-            
+                //Delete AD
+                SortedDictionary<string, object> keys = new SortedDictionary<string, object>()
+                {
+                    {"STT_REC", stt_rec}
+                };
+                var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
+                SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
+                //Delete AM
+                var deleteAMSql = SqlGenerator.GenDeleteSql(AMStruct, keys);
+                SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAMSql);
+
+                insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, insert_am_sql) > 0;
+                var currentMethodName = MethodBase.GetCurrentMethod().Name;
+                j = InsertADlist(currentMethodName, TRANSACTION, adList, true);
+            }
+            catch (Exception ex)
+            {
+                #region === Rollback ===
+
+                try
+                {
+                    TRANSACTION.Rollback();
+                }
+                catch (Exception exRollback)
+                {
+                    Logger.WriteExLog(
+                        GetType() + " " + MethodBase.GetCurrentMethod().Name + " TRANSACTION ROLLBACK_ERROR " + stt_rec,
+                        exRollback, "");
+                }
+
+                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
+                V6Message = "Rollback: "
+                            + (!insert_success ? "Thêm AM không thành công." : "")
+                            + (j != adList.Count ? "Thêm AD không hoàn tất." : "");
+
+                #endregion Rollback
+
+                return false;
+            }
+
             if (insert_success && j == adList.Count)
             {
                 TRANSACTION.Commit();
-                WriteLogTransactionComplete(am["STT_REC"]);
+                WriteLogTransactionComplete(stt_rec);
                 try
                 {
                     int apgia = 0;
                     SqlParameter[] pList =
                     {
-                        new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
+                        new SqlParameter("@Stt_rec", stt_rec),
                         new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
                         new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
                         new SqlParameter("@Ma_nx", am["MA_NX"].ToString()),
@@ -62,7 +93,6 @@ namespace V6AccountingBusiness.Invoices
                         new SqlParameter("@Ap_gia", apgia),
                         new SqlParameter("@UserID", V6Login.UserId),
                         new SqlParameter("@Save_voucher", "1")
-
                     };
 
                     V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_IXC_POST_MAIN", pList);
@@ -72,59 +102,81 @@ namespace V6AccountingBusiness.Invoices
                 {
                     V6Message = ex.Message;
                     V6Message = "POST lỗi: " + V6Message;
-                    
+
                     return false;
                 }
             }
-            else//
-            {
-                if (!insert_success) V6Message = "Thêm AM không thành công.";
-                if (j != adList.Count) V6Message += "Thêm AD không hoàn tất.";
-                V6Message += " Bắt đầu RollBack.";
-                TRANSACTION.Rollback();
-                V6Message += " RollBack xong.";
-                return false;
-            }
+
+            return false;
         }
-        
-        public bool UpdateInvoice(SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList,
+
+        public bool UpdateInvoice(SortedDictionary<string, object> amData, List<SortedDictionary<string, object>> adList,
             SortedDictionary<string,object> keys )
         {
-
-            var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AM_TableName, AMStruct, am, keys);
+            var stt_rec = amData["STT_REC"];
+            var insert_success = false;
+            var j = 0;
+            var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AM_TableName, AMStruct, amData, keys);
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("AMUpdate");
-            
-            //Delete AD
-            var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
-            SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
-            
-            //Update AM
-            var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
-            var currentMethodName = MethodBase.GetCurrentMethod().Name;
-            var j = InsertADlist(currentMethodName, TRANSACTION, adList, false);
+
+            try
+            {
+                //Delete AD
+                var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
+                SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
+
+                //Update AM
+                insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
+                var currentMethodName = MethodBase.GetCurrentMethod().Name;
+                j = InsertADlist(currentMethodName, TRANSACTION, adList, false);
+            }
+            catch (Exception ex)
+            {
+                #region === Rollback ===
+
+                try
+                {
+                    TRANSACTION.Rollback();
+                }
+                catch (Exception exRollback)
+                {
+                    Logger.WriteExLog(
+                        string.Format("{0} {1} TRANSACTION ROLLBACK_ERROR {2}", GetType(),
+                            MethodBase.GetCurrentMethod().Name, stt_rec), exRollback, "");
+                }
+
+                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
+                V6Message = "Rollback: "
+                            + (!insert_success ? "Sửa AM không thành công." : "")
+                            + (j != adList.Count ? "Thêm AD không hoàn tất." : "");
+
+                #endregion Rollback
+
+                return false;
+            }
 
             if (insert_success && j == adList.Count)
             {
                 TRANSACTION.Commit();
-                WriteLogTransactionComplete(am["STT_REC"]);
+                WriteLogTransactionComplete(stt_rec);
                 try
                 {
                     int apgia = 0;
                     SqlParameter[] pList =
                     {
-                        new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
-                        new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
-                        new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
-                        new SqlParameter("@Ma_nx", am["MA_NX"].ToString()),
-                        new SqlParameter("@Loai_ck", am["LOAI_CK"].ToString()),
+                        new SqlParameter("@Stt_rec", stt_rec),
+                        new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
+                        new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
+                        new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
+                        new SqlParameter("@Loai_ck", amData["LOAI_CK"].ToString()),
                         new SqlParameter("@Mode", "S"),
-                        new SqlParameter("@nKieu_Post", am["KIEU_POST"].ToString()),
+                        new SqlParameter("@nKieu_Post", amData["KIEU_POST"].ToString()),
                         new SqlParameter("@Ap_gia", apgia),
                         new SqlParameter("@UserID", V6Login.UserId),
                         new SqlParameter("@Save_voucher", "1")
                     };
-                   
-                 
+
+
                     V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_IXC_POST_MAIN", pList);
                     return true;
                 }
@@ -132,19 +184,12 @@ namespace V6AccountingBusiness.Invoices
                 {
                     V6Message = ex.Message;
                     V6Message = "POST lỗi: " + V6Message;
-                    
+
                     return false;
                 }
             }
-            else
-            {
-                if (!insert_success) V6Message = "Thêm AM không thành công.";
-                if (j != adList.Count) V6Message += "Thêm AD không hoàn tất.";
-                V6Message += " Bắt đầu RollBack.";
-                TRANSACTION.Rollback();
-                V6Message += " RollBack xong.";
-                return false;
-            }
+
+            return false;
         }
 
         public DataTable SearchAM(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)

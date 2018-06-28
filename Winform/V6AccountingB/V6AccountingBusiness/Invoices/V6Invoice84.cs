@@ -73,7 +73,7 @@ namespace V6AccountingBusiness.Invoices
                     Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " TRANSACTION ROLLBACK_ERROR " + stt_rec, exRollback, "");
                 }
 
-                Logger.WriteExLog("InsertInvoice81 Exception", ex, "");
+                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
                 V6Message = "Rollback: "
                     + (!insert_success ? "Thêm AM không thành công." : "")
                     + (j != adList.Count ? "Thêm AD không hoàn tất." : "");
@@ -94,7 +94,7 @@ namespace V6AccountingBusiness.Invoices
                 {
                     SqlParameter[] pList =
                     {
-                        new SqlParameter("@Stt_rec", amData["STT_REC"].ToString()),
+                        new SqlParameter("@Stt_rec", stt_rec),
                         new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
                         new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
                         new SqlParameter("@Mode", "M"),
@@ -126,7 +126,7 @@ namespace V6AccountingBusiness.Invoices
 
                 TRANSACTION.Rollback();
                 V6Message = "Rollback: "
-                    + (!insert_success ? "Thêm AM không thành công." : "")
+                    + (!insert_success ? "Sửa AM không thành công." : "")
                     + (j != adList.Count ? "Thêm AD không hoàn tất." : "");
 
             }
@@ -168,7 +168,7 @@ namespace V6AccountingBusiness.Invoices
                             MethodBase.GetCurrentMethod().Name, stt_rec), exRollback, "");
                 }
 
-                Logger.WriteExLog("InsertInvoice81 Exception", ex, "");
+                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
                 V6Message = "Rollback: "
                             + (!insert_success ? "Thêm AM không thành công." : "")
                             + (j != adList.Count ? "Thêm AD không hoàn tất." : "");
@@ -186,7 +186,7 @@ namespace V6AccountingBusiness.Invoices
                 {
                     SqlParameter[] pList =
                     {
-                        new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
+                        new SqlParameter("@Stt_rec", stt_rec),
                         new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
                         new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
                         new SqlParameter("@Mode", "S"),

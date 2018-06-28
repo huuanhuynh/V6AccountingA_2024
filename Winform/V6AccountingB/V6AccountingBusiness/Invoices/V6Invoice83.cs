@@ -92,7 +92,7 @@ namespace V6AccountingBusiness.Invoices
                     Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " TRANSACTION ROLLBACK_ERROR " + stt_rec, exRollback, "");
                 }
 
-                Logger.WriteExLog("InsertInvoice81 Exception", ex, "");
+                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
                 V6Message = "Rollback: "
                     + (!insert_success ? "Thêm AM không thành công." : "")
                     + (j != adList.Count ? "Thêm AD không hoàn tất." : "")
@@ -117,7 +117,7 @@ namespace V6AccountingBusiness.Invoices
                     int apgia1 = 0;
                     SqlParameter[] pList1 =
                     {
-                        new SqlParameter("@Stt_rec", amData["STT_REC"].ToString()),
+                        new SqlParameter("@Stt_rec", stt_rec),
                         new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
                         new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
                         new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
@@ -149,7 +149,7 @@ namespace V6AccountingBusiness.Invoices
                 int apgia = 0;
                 SqlParameter[] pList =
                 {
-                    new SqlParameter("@Stt_rec", amData["STT_REC"].ToString()),
+                    new SqlParameter("@Stt_rec", stt_rec),
                     new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
                     new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
                     new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
@@ -178,7 +178,7 @@ namespace V6AccountingBusiness.Invoices
                         {
                             pList = new[]
                             {
-                                new SqlParameter("@Stt_rec", amData["STT_REC"].ToString()),
+                                new SqlParameter("@Stt_rec", stt_rec),
                                 new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
                                 new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
                                 new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
@@ -277,7 +277,7 @@ namespace V6AccountingBusiness.Invoices
                     Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " TRANSACTION ROLLBACK_ERROR " + stt_rec, exRollback, "");
                 }
 
-                Logger.WriteExLog("InsertInvoice81 Exception", ex, "");
+                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
                 V6Message = "Rollback: "
                             + (!insert_success ? "Thêm AM không thành công." : "")
                             + (j != adList.Count ? "Thêm AD không hoàn tất." : "")
@@ -302,7 +302,7 @@ namespace V6AccountingBusiness.Invoices
                     int apgia1 = 0;
                     SqlParameter[] pList1 =
                     {
-                        new SqlParameter("@Stt_rec", amData["STT_REC"].ToString()),
+                        new SqlParameter("@Stt_rec", stt_rec),
                         new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
                         new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
                         new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
@@ -334,7 +334,7 @@ namespace V6AccountingBusiness.Invoices
                     int apgia = 0;
                     SqlParameter[] pList =
                     {
-                        new SqlParameter("@Stt_rec", amData["STT_REC"].ToString()),
+                        new SqlParameter("@Stt_rec", stt_rec),
                         new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
                         new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
                         new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
@@ -362,7 +362,7 @@ namespace V6AccountingBusiness.Invoices
                             {
                                 pList = new[]
                                 {
-                                    new SqlParameter("@Stt_rec", amData["STT_REC"].ToString()),
+                                    new SqlParameter("@Stt_rec", stt_rec),
                                     new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
                                     new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
                                     new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
