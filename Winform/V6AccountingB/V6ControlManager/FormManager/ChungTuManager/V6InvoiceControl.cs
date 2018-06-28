@@ -500,7 +500,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="controlDic"></param>
         private void FixVvarBrothers(SortedDictionary<string, Control> controlDic)
         {
-            if (!V6Setting.Fixinvoicevvar) return;
+            if (!V6Setting.FixInvoiceVvar) return;
             try
             {
                 foreach (KeyValuePair<string, Control> item in controlDic)

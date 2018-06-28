@@ -30,6 +30,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
                 }
                 soTienTu.DecimalPlaces = V6Options.M_ROUND_NT;
                 soTienDen.DecimalPlaces = V6Options.M_ROUND_NT;
+
+                //txtNhomKH1.SetInitFilter("LOAI_NH = 1");
+                //txtNhomKH2.SetInitFilter("LOAI_NH = 2");
+                //txtNhomKH3.SetInitFilter("LOAI_NH = 3");
+                //txtNhomKH4.SetInitFilter("LOAI_NH = 4");
+                //txtNhomKH5.SetInitFilter("LOAI_NH = 5");
+                //txtNhomKH6.SetInitFilter("LOAI_NH = 6");
+                //txtNhomKH7.SetInitFilter("LOAI_NH = 7");
+                //txtNhomKH8.SetInitFilter("LOAI_NH = 8");
+                //txtNhomKH9.SetInitFilter("LOAI_NH = 9");
             }
             catch (Exception ex)
             {

@@ -54,6 +54,7 @@
             this.btnHDSD2 = new System.Windows.Forms.Button();
             this.btnHDSDDT = new System.Windows.Forms.Button();
             this.btnChuyenMa = new System.Windows.Forms.Button();
+            this.chkWriteExtraLog = new System.Windows.Forms.CheckBox();
             this.grbOptions.SuspendLayout();
             this.grbTools.SuspendLayout();
             this.grbFunctions.SuspendLayout();
@@ -226,6 +227,7 @@
             // 
             this.grbOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbOptions.Controls.Add(this.chkWriteExtraLog);
             this.grbOptions.Controls.Add(this.chkAutoFixInvoiceVvar);
             this.grbOptions.Controls.Add(this.chkMouseRightTriple);
             this.grbOptions.Location = new System.Drawing.Point(141, 12);
@@ -240,9 +242,9 @@
             this.chkAutoFixInvoiceVvar.AutoSize = true;
             this.chkAutoFixInvoiceVvar.Location = new System.Drawing.Point(6, 42);
             this.chkAutoFixInvoiceVvar.Name = "chkAutoFixInvoiceVvar";
-            this.chkAutoFixInvoiceVvar.Size = new System.Drawing.Size(136, 17);
+            this.chkAutoFixInvoiceVvar.Size = new System.Drawing.Size(240, 17);
             this.chkAutoFixInvoiceVvar.TabIndex = 1;
-            this.chkAutoFixInvoiceVvar.Text = "chkAutoFixInvoiceVvar";
+            this.chkAutoFixInvoiceVvar.Text = "Tự gán thông tin liên quan Vvar trong Invoice";
             this.chkAutoFixInvoiceVvar.UseVisualStyleBackColor = true;
             this.chkAutoFixInvoiceVvar.CheckedChanged += new System.EventHandler(this.chkAutoFixInvoiceVvar_CheckedChanged);
             // 
@@ -348,6 +350,17 @@
             this.btnChuyenMa.UseVisualStyleBackColor = true;
             this.btnChuyenMa.Click += new System.EventHandler(this.btnChuyenMa_Click);
             // 
+            // chkWriteExtraLog
+            // 
+            this.chkWriteExtraLog.AutoSize = true;
+            this.chkWriteExtraLog.Location = new System.Drawing.Point(6, 65);
+            this.chkWriteExtraLog.Name = "chkWriteExtraLog";
+            this.chkWriteExtraLog.Size = new System.Drawing.Size(93, 17);
+            this.chkWriteExtraLog.TabIndex = 1;
+            this.chkWriteExtraLog.Text = "WriteExtraLog";
+            this.chkWriteExtraLog.UseVisualStyleBackColor = true;
+            this.chkWriteExtraLog.CheckedChanged += new System.EventHandler(this.chkWriteExtraLog_CheckedChanged);
+            // 
             // AllTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -394,5 +407,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnHDSD2;
         private System.Windows.Forms.Button btnChuyenMa;
+        private System.Windows.Forms.CheckBox chkWriteExtraLog;
     }
 }

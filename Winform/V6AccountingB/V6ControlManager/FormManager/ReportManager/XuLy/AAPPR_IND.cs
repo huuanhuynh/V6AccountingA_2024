@@ -262,7 +262,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
                 key.Add("STT_REC", stt_rec);
-                var detailData = V6BusinessHelper.Select(ma_ct == "IND" ? invoice74.AD : invoice85.AD, key, "top 1 *").Data;
+                var detailData = V6BusinessHelper.Select(ma_ct == "IND" ? invoice74.AD_TableName : invoice85.AD_TableName, key, "top 1 *").Data;
                 if (detailData.Rows.Count == 0)
                 {
                     return;

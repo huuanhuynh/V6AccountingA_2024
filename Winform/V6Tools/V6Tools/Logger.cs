@@ -69,7 +69,8 @@ namespace V6Tools
             try
             {
                 var message = address
-                    + "\r\nException: " + ex.Message
+                    + "\r\nExceptionType: " + ex.GetType()
+                    + "\r\nExceptionMessage: " + ex.Message
                     + "\r\nStackTrace: " + ex.StackTrace
                     + (string.IsNullOrEmpty(lastActions) ? "" : "\r\nLastActions:" + lastActions);
 

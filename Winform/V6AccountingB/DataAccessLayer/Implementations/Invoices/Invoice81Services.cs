@@ -151,44 +151,63 @@ namespace DataAccessLayer.Implementations.Invoices
             out string message)
         {
             object stt_rec = am["STT_REC"];
-            var amSql = SqlGenerator.GenUpdateAMSql(userId, AMStruct.TableName, AMStruct, am, keys);
+            bool insert_success = false;
+            int j=0, j3=0;
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("Update81");
-
-            //Delete AD
-            var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
-            SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
-            //Delete AD3
-            var deleteAd3Sql = SqlGenerator.GenDeleteSql(AD3Struct, keys);
-            SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAd3Sql);
-
-            //Update AM
-            var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
-            int j = 0, j3 = 0;
-
-            //Insert AD
-            foreach (SortedDictionary<string, object> adRow in adList)
+            try
             {
-                var adSql = SqlGenerator.GenInsertAMSql(userId, ADStruct, adRow, false);
-                int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
-                if (write_log)
+                var amSql = SqlGenerator.GenUpdateAMSql(userId, AMStruct.TableName, AMStruct, am, keys);
+                //Delete AD
+                var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
+                SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
+                //Delete AD3
+                var deleteAd3Sql = SqlGenerator.GenDeleteSql(AD3Struct, keys);
+                SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAd3Sql);
+                //Update AM
+                insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
+                //Insert AD
+                foreach (SortedDictionary<string, object> adRow in adList)
                 {
-                    object stt_rec0 = adRow["STT_REC0"];
-                    Logger.WriteToLog(string.Format("UpdateInvoice81 {0} AD row {1} result {2}.\n{3}", stt_rec, stt_rec0, execute, adSql));
+                    var adSql = SqlGenerator.GenInsertAMSql(userId, ADStruct, adRow, false);
+                    int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
+                    if (write_log)
+                    {
+                        object stt_rec0 = adRow["STT_REC0"];
+                        Logger.WriteToLog(string.Format("UpdateInvoice81 {0} AD row {1} result {2}.\n{3}", stt_rec, stt_rec0, execute, adSql));
+                    }
+                    j += (execute > 0 ? 1 : 0);
                 }
-                j += (execute > 0 ? 1 : 0);
+                //Insert AD3
+                foreach (SortedDictionary<string, object> adRow in adList3)
+                {
+                    var ad3Sql = SqlGenerator.GenInsertAMSql(userId, AD3Struct, adRow);
+                    int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad3Sql);
+                    if (write_log)
+                    {
+                        object stt_rec0 = adRow["STT_REC0"];
+                        Logger.WriteToLog(string.Format("UpdateInvoice81 {0} AD3 row {1} result {2}.\n{3}", stt_rec, stt_rec0, execute, ad3Sql));
+                    }
+                    j3 += (execute > 0 ? 1 : 0);
+                }
             }
-            //Insert AD3
-            foreach (SortedDictionary<string, object> adRow in adList3)
+            catch (Exception ex)
             {
-                var ad3Sql = SqlGenerator.GenInsertAMSql(userId, AD3Struct, adRow);
-                int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad3Sql);
-                if (write_log)
+                try
                 {
-                    object stt_rec0 = adRow["STT_REC0"];
-                    Logger.WriteToLog(string.Format("UpdateInvoice81 {0} AD3 row {1} result {2}.\n{3}", stt_rec, stt_rec0, execute, ad3Sql));
+                    TRANSACTION.Rollback();
                 }
-                j3 += (execute > 0 ? 1 : 0);
+                catch (Exception ex2)
+                {
+                    Logger.WriteExLog("UpdateInvoice81 TRANSACTION ROLLBACK_ERROR " + stt_rec, ex2, "");
+                }
+                message = "Rollback: "
+                        + ex.Message + "\n"
+                        + (!insert_success ? "Thêm AM không thành công." : "")
+                        + (j != adList.Count ? "Thêm AD không hoàn tất." : "")
+                        + (j3 != adList3.Count ? "Thêm AD3 không hoàn tất." : "");
+                return false;
             }
+
             if (insert_success && j == adList.Count && j3 == adList3.Count)
             {
                 TRANSACTION.Commit();
@@ -269,7 +288,14 @@ namespace DataAccessLayer.Implementations.Invoices
             }
             else
             {
-                TRANSACTION.Rollback();
+                try
+                {
+                    TRANSACTION.Rollback();
+                }
+                catch (Exception ex2)
+                {
+                    Logger.WriteExLog("UpdateInvoice81 TRANSACTION ROLLBACK_ERROR " + stt_rec, ex2, "");
+                }
                 message = "Rollback: "
                           + (!insert_success ? "Thêm AM không thành công." : "")
                           + (j != adList.Count ? "Thêm AD không hoàn tất." : "")

@@ -37,7 +37,8 @@ namespace V6ControlManager.FormManager.ToolManager
             try
             {
                 chkMouseRightTriple.Checked = V6Setting.Triple;
-                chkAutoFixInvoiceVvar.Checked = V6Setting.Fixinvoicevvar;
+                chkAutoFixInvoiceVvar.Checked = V6Setting.FixInvoiceVvar;
+                chkWriteExtraLog.Checked = V6Setting.WriteExtraLog;
             }
             catch (Exception ex)
             {
@@ -135,11 +136,25 @@ namespace V6ControlManager.FormManager.ToolManager
 
             if (chkAutoFixInvoiceVvar.Checked)
             {
-                V6Setting.V6Special = V6Setting.V6Special + "Fixinvoicevvar";
+                V6Setting.V6Special = V6Setting.V6Special + "FixInvoiceVvar";
             }
             else
             {
-                V6Setting.V6Special = V6Setting.V6Special.Replace("Fixinvoicevvar", "");
+                V6Setting.V6Special = V6Setting.V6Special.Replace("FixInvoiceVvar", "");
+            }
+        }
+        
+        private void chkWriteExtraLog_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!IsReady) return;
+
+            if (chkWriteExtraLog.Checked)
+            {
+                V6Setting.V6Special = V6Setting.V6Special + "WriteExtraLog";
+            }
+            else
+            {
+                V6Setting.V6Special = V6Setting.V6Special.Replace("WriteExtraLog", "");
             }
         }
 

@@ -103,7 +103,7 @@ namespace V6AccountingBusiness.Invoices
         {
             V6Message = "InsertInvoice, begin " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             var amSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AMStruct, am);
-            SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction(AM);
+            SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction(AM_TableName);
 
             //Delete AD
             SortedDictionary<string, object> keys = new SortedDictionary<string, object>()
@@ -158,7 +158,7 @@ namespace V6AccountingBusiness.Invoices
                 {
                     V6Message = ex.Message;
                     V6Message = "POST lỗi: " + V6Message;
-                    //TRANSACTION.Rollback();
+                    
                     return false;
                 }
             }
@@ -202,7 +202,7 @@ namespace V6AccountingBusiness.Invoices
             V6Message = "UpdateInvoice Start VPA_CA1_POST_MAIN_BEFORE Finish " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
 
             V6Message = "GenUpdateAMSql " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AM, AMStruct, am, keys);
+            var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AM_TableName, AMStruct, am, keys);
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("Invoice51Update");
             //Delete AD
             var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
@@ -253,7 +253,7 @@ namespace V6AccountingBusiness.Invoices
                 {
                     V6Message = ex.Message;
                     V6Message = "POST lỗi: " + V6Message;
-                    //TRANSACTION.Rollback();
+                    
                     return false;
                 }
             }
@@ -275,9 +275,9 @@ namespace V6AccountingBusiness.Invoices
         {
             string template =
                 "Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien"
-                + "\nFROM "+AM+" a LEFT JOIN ALkh AS b ON a.Ma_kh = b.Ma_kh LEFT JOIN alnvien  AS f ON a.Ma_nvien = f.Ma_nvien"
+                + "\nFROM "+AM_TableName+" a LEFT JOIN ALkh AS b ON a.Ma_kh = b.Ma_kh LEFT JOIN alnvien  AS f ON a.Ma_nvien = f.Ma_nvien"
                 + "\n JOIN "
-                + "\n (SELECT Stt_rec FROM " + AM + " WHERE Ma_ct = '" + Mact + "'"
+                + "\n (SELECT Stt_rec FROM " + AM_TableName + " WHERE Ma_ct = '" + Mact + "'"
                 + "\n {0} {1} {2} {3}) AS m ON a.Stt_rec = m.Stt_rec"
                 + "\n ORDER BY a.ngay_ct, a.so_ct, a.stt_rec";
 
@@ -286,7 +286,7 @@ namespace V6AccountingBusiness.Invoices
             if (where2Dvcs.Length > 0) where2Dvcs=" And "+ where2Dvcs;
 
 
-            var p2Template ="\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {0} {3} {4})";
+            var p2Template ="\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = '" + Mact + "' {0} {3} {4})";
             
             if (where3AD.Length > 0 || where4NhVt.Length > 0 || where2Dvcs.Length > 0)
             {
@@ -307,7 +307,7 @@ namespace V6AccountingBusiness.Invoices
 
         public DataTable LoadAd(string sttRec)
         {
-            string sql = "SELECT d.Ten_tk AS Ten_tk_i,  c.* FROM [" + AD
+            string sql = "SELECT d.Ten_tk AS Ten_tk_i,  c.* FROM [" + AD_TableName
                 + "] c LEFT JOIN Altk d ON c.tk_i= d.tk "
                 + " LEFT JOIN Alkh k ON c.ma_kh_i= k.ma_kh "
                 + " Where c.stt_rec = @rec Order by c.stt_rec0";
@@ -325,7 +325,7 @@ namespace V6AccountingBusiness.Invoices
         }
         public DataTable LoadAd3(string sttRec)
         {
-            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk FROM " + AD3
+            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk FROM " + AD3_TableName
                 + " c LEFT JOIN Altk d ON c.Tk_i= d.Tk Where c.stt_rec = @rec Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];

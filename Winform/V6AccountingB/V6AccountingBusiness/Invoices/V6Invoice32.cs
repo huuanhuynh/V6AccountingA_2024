@@ -54,7 +54,7 @@ namespace V6AccountingBusiness.Invoices
             List<SortedDictionary<string, object>> adList, List<SortedDictionary<string, object>> adList2)
         {
             var insert_am_sql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AMStruct, am);
-            SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction(AM);
+            SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction(AM_TableName);
 
             //Delete AD
             SortedDictionary<string, object> keys = new SortedDictionary<string, object>()
@@ -100,7 +100,7 @@ namespace V6AccountingBusiness.Invoices
                 {
                     V6Message = ex.Message;
                     V6Message = "POST lỗi: " + V6Message;
-                    //TRANSACTION.Rollback();
+                    
                     return false;
                 }
             }
@@ -129,7 +129,7 @@ namespace V6AccountingBusiness.Invoices
             SortedDictionary<string,object> keys )
         {
 
-            var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AM, AMStruct, am, keys);
+            var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AM_TableName, AMStruct, am, keys);
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("AMUpdate");
             
             //Delete AD
@@ -170,7 +170,7 @@ namespace V6AccountingBusiness.Invoices
                 {
                     V6Message = ex.Message;
                     V6Message = "POST lỗi: " + V6Message;
-                    //TRANSACTION.Rollback();
+                    
                     return false;
                 }
             }
@@ -190,9 +190,9 @@ namespace V6AccountingBusiness.Invoices
         {
             string template =
                 "Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien,g.Ten_httt AS Ten_httt"
-                + "\nFROM "+AM+" a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien"
+                + "\nFROM "+AM_TableName+" a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien"
                 + "\n LEFT JOIN alhttt AS g ON a.Ma_httt = g.Ma_httt  JOIN "
-                + "\n (SELECT Stt_rec FROM " + AM + " WHERE Ma_ct = '" + Mact + "'"
+                + "\n (SELECT Stt_rec FROM " + AM_TableName + " WHERE Ma_ct = '" + Mact + "'"
                 + "\n {0} {1} {2}) AS m ON a.Stt_rec = m.Stt_rec"
                 + "\n ORDER BY a.ngay_ct, a.so_ct, a.stt_rec";
             if (where0Ngay.Length > 0) where0Ngay = " And " + where0Ngay;
@@ -208,7 +208,7 @@ namespace V6AccountingBusiness.Invoices
             {
                 if (where2AD.Length > 0) where2AD = "And " + where2AD;
                
-                p2Template = string.Format("\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {0} {2})",
+                p2Template = string.Format("\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = '" + Mact + "' {0} {2})",
                     where0Ngay, "", where2AD);
             }
             else
@@ -224,7 +224,7 @@ namespace V6AccountingBusiness.Invoices
         public DataTable LoadAd(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
-            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk FROM " + AD
+            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk FROM " + AD_TableName
                 + " c LEFT JOIN Altk d ON c.Tk_vt= d.Tk Where c.stt_rec = @rec Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];

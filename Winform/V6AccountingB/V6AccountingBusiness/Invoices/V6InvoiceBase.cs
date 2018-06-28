@@ -41,7 +41,7 @@ namespace V6AccountingBusiness.Invoices
         /// <summary>
         /// Tên bảng dữ liệu AM
         /// </summary>
-        public string AM
+        public string AM_TableName
         {
             get
             {
@@ -51,7 +51,7 @@ namespace V6AccountingBusiness.Invoices
         /// <summary>
         /// Tên bảng dữ liệu AD m_ctdbf
         /// </summary>
-        public string AD
+        public string AD_TableName
         {
             get
             {
@@ -69,7 +69,7 @@ namespace V6AccountingBusiness.Invoices
         /// <summary>
         /// m_ktdbf
         /// </summary>
-        public string AD3
+        public string AD3_TableName
         {
             get
             {
@@ -116,12 +116,12 @@ namespace V6AccountingBusiness.Invoices
 
         public V6TableStruct AMStruct
         {
-            get { return _amStruct ?? (_amStruct = V6BusinessHelper.GetTableStruct(AM)); }
+            get { return _amStruct ?? (_amStruct = V6BusinessHelper.GetTableStruct(AM_TableName)); }
         }
 
         public V6TableStruct ADStruct
         {
-            get { return _adStruct ?? (_adStruct = V6BusinessHelper.GetTableStruct(AD)); }
+            get { return _adStruct ?? (_adStruct = V6BusinessHelper.GetTableStruct(AD_TableName)); }
         }
 
         public V6TableStruct AD2Struct
@@ -131,7 +131,7 @@ namespace V6AccountingBusiness.Invoices
 
         public V6TableStruct AD3Struct
         {
-            get { return _ad3Struct ?? (_ad3Struct = V6BusinessHelper.GetTableStruct(AD3)); }
+            get { return _ad3Struct ?? (_ad3Struct = V6BusinessHelper.GetTableStruct(AD3_TableName)); }
         }
 
         public DataTable Alnt
@@ -691,7 +691,7 @@ namespace V6AccountingBusiness.Invoices
 
         public void IncreaseSl_inAM(string sttRec)
         {
-            Service.IncreaseSl_inAM(AM, Mact, sttRec);
+            Service.IncreaseSl_inAM(AM_TableName, Mact, sttRec);
         }
 
         public virtual SortedDictionary<string, string> LoadDefaultData(string lang, string itemId)
@@ -799,7 +799,7 @@ namespace V6AccountingBusiness.Invoices
 
         public override string ToString()
         {
-            return Name;
+            return Mact + ": " + Name;
         }
 
         public virtual string Name { get { return _base_name; } set { _base_name = value; } }

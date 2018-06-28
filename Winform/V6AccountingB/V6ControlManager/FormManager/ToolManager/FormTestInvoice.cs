@@ -110,7 +110,7 @@ namespace V6ControlManager.FormManager.ToolManager
             {
                 V6Invoice81 invoice = new V6Invoice81();
                 var where = string.IsNullOrEmpty(sttRec81) ? "" : "Stt_rec='"+sttRec81+"'";
-                var loadAM = V6BusinessHelper.Select(invoice.AM, "Top 1 *", where).Data;
+                var loadAM = V6BusinessHelper.Select(invoice.AM_TableName, "Top 1 *", where).Data;
                 if (loadAM != null && loadAM.Rows.Count == 1)
                 {
                     var amData = loadAM.Rows[0].ToDataDictionary();
@@ -188,7 +188,7 @@ namespace V6ControlManager.FormManager.ToolManager
             {
                 V6Invoice81 invoice = new V6Invoice81();
                 var where = string.IsNullOrEmpty(sttRec81u) ? "" : "Stt_rec='" + sttRec81u + "'";
-                var loadAM = V6BusinessHelper.Select(invoice.AM, "Top 1 *", where).Data;
+                var loadAM = V6BusinessHelper.Select(invoice.AM_TableName, "Top 1 *", where).Data;
                 if (loadAM != null && loadAM.Rows.Count == 1)
                 {
                     var amData = loadAM.Rows[0].ToDataDictionary();

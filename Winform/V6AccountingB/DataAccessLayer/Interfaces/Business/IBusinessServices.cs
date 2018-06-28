@@ -7,7 +7,6 @@ namespace DataAccessLayer.Interfaces.Business
 {
     public interface IBusinessServices
     {
-        DateTime GetServerDateTime();
         DataTable SelectTable(string tableName);
         V6SelectResult Select(string tableName, string fields, string where, string group, string sort);
         V6SelectResult SelectPaging(string tableName, string fields, int page, int size, string where, string sort, bool ascending);

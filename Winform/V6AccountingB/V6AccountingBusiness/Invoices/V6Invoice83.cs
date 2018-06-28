@@ -51,16 +51,16 @@ namespace V6AccountingBusiness.Invoices
             {
                 where4Dvcs += (string.IsNullOrEmpty(where4Dvcs) ? "" : " and ") + filterKho;
             }
-            return Service83.SearchAM(AM, AD, Mact, where0Ngay, where1AM, where2AD, where3NhVt, where4Dvcs);
+            return Service83.SearchAM(AM_TableName, AD_TableName, Mact, where0Ngay, where1AM, where2AD, where3NhVt, where4Dvcs);
         }
 
         public DataTable LoadAd(string sttRec)
         {
-            return Service83.LoadAd(AD, sttRec);
+            return Service83.LoadAd(AD_TableName, sttRec);
         }
         public DataTable LoadAD3(string sttRec)
         {
-            return Service83.LoadAD3(AD3, sttRec);
+            return Service83.LoadAD3(AD3_TableName, sttRec);
         }
         
         public bool DeleteInvoice(string sttrec)

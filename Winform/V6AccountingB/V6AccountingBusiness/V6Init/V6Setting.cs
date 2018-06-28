@@ -120,7 +120,7 @@ namespace V6Init
 
         private static string _V6Special = "";
         /// <summary>
-        /// Đánh dấu đặc biệt.Triple,Fixinvoicevvar
+        /// Đánh dấu đặc biệt.Triple,FixInvoiceVvar
         /// </summary>
         public static string V6Special
         {
@@ -147,9 +147,16 @@ namespace V6Init
         {
             get { return V6Special.Contains("Triple"); }
         }
-        public static bool Fixinvoicevvar
+        /// <summary>
+        /// Gán dữ liệu liên quan của các vVar textbox trong InvoiceControl.
+        /// </summary>
+        public static bool FixInvoiceVvar
         {
-            get { return V6Special.Contains("Fixinvoicevvar"); }
+            get { return V6Special.Contains("FixInvoiceVvar"); }
+        }
+        public static bool WriteExtraLog
+        {
+            get { return V6Special.Contains("WriteExtraLog"); }
         }
 
         private static string _language = "";

@@ -104,6 +104,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.chonTuExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayThe2toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chkSuaTien = new V6Controls.V6CheckBox();
             this.txtTongSoLuong = new V6Controls.V6NumberTextBox();
             this.cboKieuPost = new V6Controls.V6ComboBox();
@@ -161,7 +162,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.txtSoCtXuat = new V6Controls.V6ColorTextBox();
             this.v6Label6 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
-            this.v6Label8 = new V6Controls.V6Label();
+            this.lblMABPNV = new V6Controls.V6Label();
             this.v6Label9 = new V6Controls.V6Label();
             this.v6Label37 = new V6Controls.V6Label();
             this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
@@ -203,12 +204,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.btnTim = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
             this.groupXe = new System.Windows.Forms.GroupBox();
-            this.v6Label52 = new V6Controls.V6Label();
-            this.v6Label51 = new V6Controls.V6Label();
+            this.lblBPCV1 = new V6Controls.V6Label();
+            this.lblNVCV2 = new V6Controls.V6Label();
             this.txtten_nvien = new V6Controls.V6ColorTextBox();
             this.txtten_bp = new V6Controls.V6ColorTextBox();
             this.txtvBienSo = new V6Controls.V6VvarTextBox();
-            this.v6Label38 = new V6Controls.V6Label();
+            this.lblSO_KHUNG = new V6Controls.V6Label();
             this.txtMauSon = new V6Controls.V6ColorTextBox();
             this.txtModel = new V6Controls.V6ColorTextBox();
             this.v6DateTimePick3 = new V6Controls.V6DateTimePick();
@@ -219,22 +220,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.txtLoaiXe = new V6Controls.V6ColorTextBox();
             this.numSoKmTruoc = new V6Controls.V6NumberTextBox();
             this.numSoKm = new V6Controls.V6NumberTextBox();
-            this.v6Label45 = new V6Controls.V6Label();
+            this.lblMAU_SON = new V6Controls.V6Label();
             this.txtSoMay = new V6Controls.V6ColorTextBox();
-            this.v6Label44 = new V6Controls.V6Label();
+            this.lblMODEL = new V6Controls.V6Label();
             this.v6Label43 = new V6Controls.V6Label();
             this.txtSoKhung = new V6Controls.V6ColorTextBox();
-            this.v6Label42 = new V6Controls.V6Label();
-            this.v6Label47 = new V6Controls.V6Label();
-            this.v6Label39 = new V6Controls.V6Label();
-            this.v6Label46 = new V6Controls.V6Label();
-            this.v6Label40 = new V6Controls.V6Label();
-            this.v6Label41 = new V6Controls.V6Label();
+            this.lblHangSX = new V6Controls.V6Label();
+            this.lblSO_KM_TRUOC = new V6Controls.V6Label();
+            this.lblSO_MAY = new V6Controls.V6Label();
+            this.lblSO_KM = new V6Controls.V6Label();
+            this.lblLOAI_XE = new V6Controls.V6Label();
+            this.lblMA_VV = new V6Controls.V6Label();
             this.txtvMaNhomVv = new V6Controls.V6VvarTextBox();
             this.v6Label50 = new V6Controls.V6Label();
             this.v6Label49 = new V6Controls.V6Label();
             this.v6Label48 = new V6Controls.V6Label();
-            this.thayThe2toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1373,7 +1373,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.thayTheToolStripMenuItem,
             this.thayThe2toolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(185, 158);
+            this.menuChucNang.Size = new System.Drawing.Size(185, 136);
             // 
             // ChonDonHangMuaMenu
             // 
@@ -1409,6 +1409,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.thayTheToolStripMenuItem.Text = "Thay thế";
             this.thayTheToolStripMenuItem.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
+            // 
+            // thayThe2toolStripMenuItem
+            // 
+            this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
+            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
+            this.thayThe2toolStripMenuItem.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
             // 
             // chkSuaTien
             // 
@@ -2213,7 +2220,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.group2.Controls.Add(this.txtSoCtXuat);
             this.group2.Controls.Add(this.v6Label6);
             this.group2.Controls.Add(this.v6Label7);
-            this.group2.Controls.Add(this.v6Label8);
+            this.group2.Controls.Add(this.lblMABPNV);
             this.group2.Controls.Add(this.v6Label9);
             this.group2.Controls.Add(this.v6Label37);
             this.group2.Controls.Add(this.v6ColorTextBox1);
@@ -2305,15 +2312,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.v6Label7.TabIndex = 2;
             this.v6Label7.Text = "Người mua";
             // 
-            // v6Label8
+            // lblMABPNV
             // 
-            this.v6Label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6Label8.AutoSize = true;
-            this.v6Label8.Location = new System.Drawing.Point(281, 13);
-            this.v6Label8.Name = "v6Label8";
-            this.v6Label8.Size = new System.Drawing.Size(41, 13);
-            this.v6Label8.TabIndex = 4;
-            this.v6Label8.Text = "BP/NV";
+            this.lblMABPNV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMABPNV.AutoSize = true;
+            this.lblMABPNV.Location = new System.Drawing.Point(281, 13);
+            this.lblMABPNV.Name = "lblMABPNV";
+            this.lblMABPNV.Size = new System.Drawing.Size(41, 13);
+            this.lblMABPNV.TabIndex = 4;
+            this.lblMABPNV.Text = "BP/NV";
             // 
             // v6Label9
             // 
@@ -2831,12 +2838,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             // 
             this.groupXe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupXe.Controls.Add(this.v6Label52);
-            this.groupXe.Controls.Add(this.v6Label51);
+            this.groupXe.Controls.Add(this.lblBPCV1);
+            this.groupXe.Controls.Add(this.lblNVCV2);
             this.groupXe.Controls.Add(this.txtten_nvien);
             this.groupXe.Controls.Add(this.txtten_bp);
             this.groupXe.Controls.Add(this.txtvBienSo);
-            this.groupXe.Controls.Add(this.v6Label38);
+            this.groupXe.Controls.Add(this.lblSO_KHUNG);
             this.groupXe.Controls.Add(this.txtMauSon);
             this.groupXe.Controls.Add(this.txtModel);
             this.groupXe.Controls.Add(this.v6DateTimePick3);
@@ -2847,17 +2854,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.groupXe.Controls.Add(this.txtLoaiXe);
             this.groupXe.Controls.Add(this.numSoKmTruoc);
             this.groupXe.Controls.Add(this.numSoKm);
-            this.groupXe.Controls.Add(this.v6Label45);
+            this.groupXe.Controls.Add(this.lblMAU_SON);
             this.groupXe.Controls.Add(this.txtSoMay);
-            this.groupXe.Controls.Add(this.v6Label44);
+            this.groupXe.Controls.Add(this.lblMODEL);
             this.groupXe.Controls.Add(this.v6Label43);
             this.groupXe.Controls.Add(this.txtSoKhung);
-            this.groupXe.Controls.Add(this.v6Label42);
-            this.groupXe.Controls.Add(this.v6Label47);
-            this.groupXe.Controls.Add(this.v6Label39);
-            this.groupXe.Controls.Add(this.v6Label46);
-            this.groupXe.Controls.Add(this.v6Label40);
-            this.groupXe.Controls.Add(this.v6Label41);
+            this.groupXe.Controls.Add(this.lblHangSX);
+            this.groupXe.Controls.Add(this.lblSO_KM_TRUOC);
+            this.groupXe.Controls.Add(this.lblSO_MAY);
+            this.groupXe.Controls.Add(this.lblSO_KM);
+            this.groupXe.Controls.Add(this.lblLOAI_XE);
+            this.groupXe.Controls.Add(this.lblMA_VV);
             this.groupXe.Controls.Add(this.txtvMaNhomVv);
             this.groupXe.Controls.Add(this.v6Label50);
             this.groupXe.Controls.Add(this.v6Label49);
@@ -2868,23 +2875,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.groupXe.TabIndex = 2;
             this.groupXe.TabStop = false;
             // 
-            // v6Label52
+            // lblBPCV1
             // 
-            this.v6Label52.AutoSize = true;
-            this.v6Label52.Location = new System.Drawing.Point(8, 55);
-            this.v6Label52.Name = "v6Label52";
-            this.v6Label52.Size = new System.Drawing.Size(46, 13);
-            this.v6Label52.TabIndex = 21;
-            this.v6Label52.Text = "BP/CV1";
+            this.lblBPCV1.AutoSize = true;
+            this.lblBPCV1.Location = new System.Drawing.Point(8, 55);
+            this.lblBPCV1.Name = "lblBPCV1";
+            this.lblBPCV1.Size = new System.Drawing.Size(46, 13);
+            this.lblBPCV1.TabIndex = 21;
+            this.lblBPCV1.Text = "BP/CV1";
             // 
-            // v6Label51
+            // lblNVCV2
             // 
-            this.v6Label51.AutoSize = true;
-            this.v6Label51.Location = new System.Drawing.Point(343, 55);
-            this.v6Label51.Name = "v6Label51";
-            this.v6Label51.Size = new System.Drawing.Size(47, 13);
-            this.v6Label51.TabIndex = 23;
-            this.v6Label51.Text = "NV/CV2";
+            this.lblNVCV2.AutoSize = true;
+            this.lblNVCV2.Location = new System.Drawing.Point(343, 55);
+            this.lblNVCV2.Name = "lblNVCV2";
+            this.lblNVCV2.Size = new System.Drawing.Size(47, 13);
+            this.lblNVCV2.TabIndex = 23;
+            this.lblNVCV2.Text = "NV/CV2";
             // 
             // txtten_nvien
             // 
@@ -2943,14 +2950,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.txtvBienSo.VVar = "MA_VV";
             this.txtvBienSo.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMa_sonb_V6LostFocus);
             // 
-            // v6Label38
+            // lblSO_KHUNG
             // 
-            this.v6Label38.AutoSize = true;
-            this.v6Label38.Location = new System.Drawing.Point(6, 34);
-            this.v6Label38.Name = "v6Label38";
-            this.v6Label38.Size = new System.Drawing.Size(53, 13);
-            this.v6Label38.TabIndex = 11;
-            this.v6Label38.Text = "Số khung";
+            this.lblSO_KHUNG.AutoSize = true;
+            this.lblSO_KHUNG.Location = new System.Drawing.Point(6, 34);
+            this.lblSO_KHUNG.Name = "lblSO_KHUNG";
+            this.lblSO_KHUNG.Size = new System.Drawing.Size(53, 13);
+            this.lblSO_KHUNG.TabIndex = 11;
+            this.lblSO_KHUNG.Text = "Số khung";
             // 
             // txtMauSon
             // 
@@ -3148,14 +3155,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             0,
             0});
             // 
-            // v6Label45
+            // lblMAU_SON
             // 
-            this.v6Label45.AutoSize = true;
-            this.v6Label45.Location = new System.Drawing.Point(534, 35);
-            this.v6Label45.Name = "v6Label45";
-            this.v6Label45.Size = new System.Drawing.Size(48, 13);
-            this.v6Label45.TabIndex = 19;
-            this.v6Label45.Text = "Màu sơn";
+            this.lblMAU_SON.AutoSize = true;
+            this.lblMAU_SON.Location = new System.Drawing.Point(534, 35);
+            this.lblMAU_SON.Name = "lblMAU_SON";
+            this.lblMAU_SON.Size = new System.Drawing.Size(48, 13);
+            this.lblMAU_SON.TabIndex = 19;
+            this.lblMAU_SON.Text = "Màu sơn";
             // 
             // txtSoMay
             // 
@@ -3177,14 +3184,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.txtSoMay.Tag = "readonly";
             this.txtSoMay.TextChanged += new System.EventHandler(this.txtSoCt_TextChanged);
             // 
-            // v6Label44
+            // lblMODEL
             // 
-            this.v6Label44.AutoSize = true;
-            this.v6Label44.Location = new System.Drawing.Point(534, 13);
-            this.v6Label44.Name = "v6Label44";
-            this.v6Label44.Size = new System.Drawing.Size(36, 13);
-            this.v6Label44.TabIndex = 9;
-            this.v6Label44.Text = "Model";
+            this.lblMODEL.AutoSize = true;
+            this.lblMODEL.Location = new System.Drawing.Point(534, 13);
+            this.lblMODEL.Name = "lblMODEL";
+            this.lblMODEL.Size = new System.Drawing.Size(36, 13);
+            this.lblMODEL.TabIndex = 9;
+            this.lblMODEL.Text = "Model";
             // 
             // v6Label43
             // 
@@ -3215,59 +3222,59 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.txtSoKhung.Tag = "readonly";
             this.txtSoKhung.TextChanged += new System.EventHandler(this.txtSoCt_TextChanged);
             // 
-            // v6Label42
+            // lblHangSX
             // 
-            this.v6Label42.AutoSize = true;
-            this.v6Label42.Location = new System.Drawing.Point(270, 12);
-            this.v6Label42.Name = "v6Label42";
-            this.v6Label42.Size = new System.Drawing.Size(46, 13);
-            this.v6Label42.TabIndex = 4;
-            this.v6Label42.Text = "Hãng sx";
+            this.lblHangSX.AutoSize = true;
+            this.lblHangSX.Location = new System.Drawing.Point(270, 12);
+            this.lblHangSX.Name = "lblHangSX";
+            this.lblHangSX.Size = new System.Drawing.Size(46, 13);
+            this.lblHangSX.TabIndex = 4;
+            this.lblHangSX.Text = "Hãng sx";
             // 
-            // v6Label47
+            // lblSO_KM_TRUOC
             // 
-            this.v6Label47.AutoSize = true;
-            this.v6Label47.Location = new System.Drawing.Point(411, 35);
-            this.v6Label47.Name = "v6Label47";
-            this.v6Label47.Size = new System.Drawing.Size(35, 13);
-            this.v6Label47.TabIndex = 17;
-            this.v6Label47.Text = "Trước";
+            this.lblSO_KM_TRUOC.AutoSize = true;
+            this.lblSO_KM_TRUOC.Location = new System.Drawing.Point(411, 35);
+            this.lblSO_KM_TRUOC.Name = "lblSO_KM_TRUOC";
+            this.lblSO_KM_TRUOC.Size = new System.Drawing.Size(35, 13);
+            this.lblSO_KM_TRUOC.TabIndex = 17;
+            this.lblSO_KM_TRUOC.Text = "Trước";
             // 
-            // v6Label39
+            // lblSO_MAY
             // 
-            this.v6Label39.AutoSize = true;
-            this.v6Label39.Location = new System.Drawing.Point(140, 32);
-            this.v6Label39.Name = "v6Label39";
-            this.v6Label39.Size = new System.Drawing.Size(42, 13);
-            this.v6Label39.TabIndex = 13;
-            this.v6Label39.Text = "Số máy";
+            this.lblSO_MAY.AutoSize = true;
+            this.lblSO_MAY.Location = new System.Drawing.Point(140, 32);
+            this.lblSO_MAY.Name = "lblSO_MAY";
+            this.lblSO_MAY.Size = new System.Drawing.Size(42, 13);
+            this.lblSO_MAY.TabIndex = 13;
+            this.lblSO_MAY.Text = "Số máy";
             // 
-            // v6Label46
+            // lblSO_KM
             // 
-            this.v6Label46.AutoSize = true;
-            this.v6Label46.Location = new System.Drawing.Point(271, 34);
-            this.v6Label46.Name = "v6Label46";
-            this.v6Label46.Size = new System.Drawing.Size(37, 13);
-            this.v6Label46.TabIndex = 15;
-            this.v6Label46.Text = "Số km";
+            this.lblSO_KM.AutoSize = true;
+            this.lblSO_KM.Location = new System.Drawing.Point(271, 34);
+            this.lblSO_KM.Name = "lblSO_KM";
+            this.lblSO_KM.Size = new System.Drawing.Size(37, 13);
+            this.lblSO_KM.TabIndex = 15;
+            this.lblSO_KM.Text = "Số km";
             // 
-            // v6Label40
+            // lblLOAI_XE
             // 
-            this.v6Label40.AutoSize = true;
-            this.v6Label40.Location = new System.Drawing.Point(140, 13);
-            this.v6Label40.Name = "v6Label40";
-            this.v6Label40.Size = new System.Drawing.Size(41, 13);
-            this.v6Label40.TabIndex = 2;
-            this.v6Label40.Text = "Loại xe";
+            this.lblLOAI_XE.AutoSize = true;
+            this.lblLOAI_XE.Location = new System.Drawing.Point(140, 13);
+            this.lblLOAI_XE.Name = "lblLOAI_XE";
+            this.lblLOAI_XE.Size = new System.Drawing.Size(41, 13);
+            this.lblLOAI_XE.TabIndex = 2;
+            this.lblLOAI_XE.Text = "Loại xe";
             // 
-            // v6Label41
+            // lblMA_VV
             // 
-            this.v6Label41.AutoSize = true;
-            this.v6Label41.Location = new System.Drawing.Point(6, 13);
-            this.v6Label41.Name = "v6Label41";
-            this.v6Label41.Size = new System.Drawing.Size(42, 13);
-            this.v6Label41.TabIndex = 0;
-            this.v6Label41.Text = "Biển số";
+            this.lblMA_VV.AutoSize = true;
+            this.lblMA_VV.Location = new System.Drawing.Point(6, 13);
+            this.lblMA_VV.Name = "lblMA_VV";
+            this.lblMA_VV.Size = new System.Drawing.Size(42, 13);
+            this.lblMA_VV.TabIndex = 0;
+            this.lblMA_VV.Text = "Biển số";
             // 
             // txtvMaNhomVv
             // 
@@ -3320,13 +3327,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.v6Label48.Size = new System.Drawing.Size(64, 13);
             this.v6Label48.TabIndex = 25;
             this.v6Label48.Text = "T.gian nhận";
-            // 
-            // thayThe2toolStripMenuItem
-            // 
-            this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
-            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
-            this.thayThe2toolStripMenuItem.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
             // 
             // BaoGiaControl
             // 
@@ -3412,7 +3412,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private System.Windows.Forms.GroupBox group2;
         private V6Label v6Label6;
         private V6Label v6Label7;
-        private V6Label v6Label8;
+        private V6Label lblMABPNV;
         private V6Label v6Label9;
         private V6ColorTextBox v6ColorTextBox1;
         private V6ColorTextBox v6ColorTextBox6;
@@ -3549,25 +3549,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private DropDownButton btnChucNang;
         private System.Windows.Forms.GroupBox groupXe;
         private V6VvarTextBox txtvBienSo;
-        private V6Label v6Label38;
+        private V6Label lblSO_KHUNG;
         private V6ColorTextBox txtSoKhung;
-        private V6Label v6Label39;
-        private V6Label v6Label40;
-        private V6Label v6Label41;
+        private V6Label lblSO_MAY;
+        private V6Label lblLOAI_XE;
+        private V6Label lblMA_VV;
         private V6ColorTextBox txtLoaiXe;
         private V6ColorTextBox txtSoMay;
         private V6ColorTextBox txtModel;
         private V6ColorTextBox txtDoiXe;
         private V6ColorTextBox txtHangSx;
-        private V6Label v6Label44;
+        private V6Label lblMODEL;
         private V6Label v6Label43;
-        private V6Label v6Label42;
+        private V6Label lblHangSX;
         private V6ColorTextBox txtMauSon;
         private V6NumberTextBox numSoKmTruoc;
         private V6NumberTextBox numSoKm;
-        private V6Label v6Label45;
-        private V6Label v6Label47;
-        private V6Label v6Label46;
+        private V6Label lblMAU_SON;
+        private V6Label lblSO_KM_TRUOC;
+        private V6Label lblSO_KM;
         private V6VvarTextBox txtvMaNhomVv;
         private V6DateTimePick v6DateTimePick3;
         private V6DateTimePick v6DateTimePick2;
@@ -3581,8 +3581,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private V6ColorTextBox txtdien_thoai;
         private V6ColorTextBox txtten_nvien;
         private V6ColorTextBox txtten_bp;
-        private V6Label v6Label52;
-        private V6Label v6Label51;
+        private V6Label lblBPCV1;
+        private V6Label lblNVCV2;
         private V6ColorTextBox txtGhiChuChung;
         private V6ColorTextBox txtSoCtKemt;
         private System.Windows.Forms.Label label2;

@@ -8,18 +8,18 @@ namespace DataAccessLayer.Interfaces.Invoices
     public interface IInvoice83Services
     {
         bool InsertInvoice(int userId, V6TableStruct AMStruct, V6TableStruct ADStruct, V6TableStruct AD3Struct,
-            SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList, List<SortedDictionary<string, object>> adList3,
-            bool write_log, out string message, bool post);
+            SortedDictionary<string, object> amData, List<SortedDictionary<string, object>> adList, List<SortedDictionary<string, object>> adList3,
+            bool write_log, out string V6Message, bool post);
         bool UpdateInvoice(int userId, V6TableStruct AMStruct, V6TableStruct ADStruct, V6TableStruct AD3Struct,
             SortedDictionary<string, object> am,
             List<SortedDictionary<string, object>> adList,
             List<SortedDictionary<string, object>> adList3,
             SortedDictionary<string, object> keys,
-            bool write_log, out string message, bool post);
+            bool write_log, out string V6Message, bool post);
         DataTable SearchAM(string tableNameAM, string tableNameAD, string mact,
             string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs);
-        DataTable LoadAd(string AD, string sttRec);
-        DataTable LoadAD3(string tableName, string sttRec);
+        DataTable LoadAd(string AD_TableName, string sttRec);
+        DataTable LoadAD3(string AD3_TableName, string sttRec);
         bool DeleteInvoice(int userId, string mact, string sttrec);
         DataTable GetGiaBan(string field, string mact, DateTime ngayct, string mant, string mavt, string dvt1, string makh, string magia);
         DataTable GetLoDate(string mavt, string makho, string sttRec, DateTime ngayct);

@@ -37,7 +37,7 @@ namespace V6AccountingBusiness.Invoices
             SortedDictionary<string,object> keys)
         {
             object stt_rec = am["STT_REC"];
-            var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AM, AMStruct, am, keys);
+            var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AM_TableName, AMStruct, am, keys);
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("AM84Update");
             
             //Delete AD
@@ -73,7 +73,7 @@ namespace V6AccountingBusiness.Invoices
                 {
                     V6Message = ex.Message;
                     V6Message = "POST lỗi: " + V6Message;
-                    //TRANSACTION.Rollback();
+                    
                     return false;
                 }
             }
@@ -99,14 +99,14 @@ namespace V6AccountingBusiness.Invoices
 
             string template =
                 "Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien"
-                + "\nFROM "+AM+" a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien"
-                + "\n JOIN (SELECT Stt_rec FROM " + AM + " WHERE Ma_ct = '" + Mact + "'"
+                + "\nFROM "+AM_TableName+" a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien"
+                + "\n JOIN (SELECT Stt_rec FROM " + AM_TableName + " WHERE Ma_ct = '" + Mact + "'"
                 + "\n {0} {1} {2}) AS m ON a.Stt_rec = m.Stt_rec"
                 + "\n ORDER BY a.ngay_ct, a.so_ct, a.stt_rec";
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
             var p2Template =
-                "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {0} {2}"
+                "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = '" + Mact + "' {0} {2}"
                 + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
                 + "\n		{4})";
             if (where2AD.Length > 0 || where3NhVt.Length > 0)// || where4Dvcs.Length > 0)
@@ -131,7 +131,7 @@ namespace V6AccountingBusiness.Invoices
         public DataTable LoadAd(string sttRec)
         {
             //c=AD81, d=Alvt, e=ABVT13
-            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt,c.so_luong*0 as Ton13 FROM " + AD
+            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt,c.so_luong*0 as Ton13 FROM " + AD_TableName
                 + " c LEFT JOIN Alvt d ON c.Ma_vt= d.Ma_vt Where c.stt_rec = @rec Order by c.stt_rec0";
             SqlParameter[] listParameters = {new SqlParameter("@rec", sttRec)};
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];

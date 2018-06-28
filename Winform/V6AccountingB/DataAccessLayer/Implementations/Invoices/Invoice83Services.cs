@@ -14,17 +14,17 @@ namespace DataAccessLayer.Implementations.Invoices
     {
 
         public bool InsertInvoice(int userId, V6TableStruct AMStruct, V6TableStruct ADStruct, V6TableStruct AD3Struct,
-            SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList, List<SortedDictionary<string, object>> adList3,
-            bool write_log, out string message, bool post)
+            SortedDictionary<string, object> amData, List<SortedDictionary<string, object>> adList, List<SortedDictionary<string, object>> adList3,
+            bool write_log, out string V6Message, bool post)
         {
-            object stt_rec = am["STT_REC"];
-            var insert_am_sql = SqlGenerator.GenInsertAMSql(userId, AMStruct, am);
+            object stt_rec = amData["STT_REC"];
+            var insert_am_sql = SqlGenerator.GenInsertAMSql(userId, AMStruct, amData);
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction(AMStruct.TableName);
 
             //Delete AD
             SortedDictionary<string, object> keys = new SortedDictionary<string, object>()
             {
-                {"STT_REC", am["STT_REC"]}
+                {"STT_REC", amData["STT_REC"]}
             };
             var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
             SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
@@ -72,13 +72,13 @@ namespace DataAccessLayer.Implementations.Invoices
                     int apgia1 = 0;
                     SqlParameter[] pList1 =
                     {
-                        new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
-                        new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
-                        new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
-                        new SqlParameter("@Ma_nx", am["MA_NX"].ToString()),
-                        new SqlParameter("@Loai_ck", am["LOAI_CK"].ToString()),
+                        new SqlParameter("@Stt_rec", amData["STT_REC"].ToString()),
+                        new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
+                        new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
+                        new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
+                        new SqlParameter("@Loai_ck", amData["LOAI_CK"].ToString()),
                         new SqlParameter("@Mode", "M"),
-                        new SqlParameter("@nKieu_Post", am["KIEU_POST"].ToString()),
+                        new SqlParameter("@nKieu_Post", amData["KIEU_POST"].ToString()),
                         new SqlParameter("@Ap_gia", apgia1),
                         new SqlParameter("@UserID", userId),
                         new SqlParameter("@Save_voucher", "1")
@@ -88,13 +88,13 @@ namespace DataAccessLayer.Implementations.Invoices
                     try
                     {
                         var result = SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOC_POST_MAIN_AMAD", pList1);
-                        message = string.Format("Success, ({0} affected).", result);
+                        V6Message = string.Format("Success, ({0} affected).", result);
                         return true;
                     }
                     catch (Exception ex)
                     {
-                        message = ex.Message;
-                        message = "POST lỗi: " + message;
+                        V6Message = ex.Message;
+                        V6Message = "POST lỗi: " + V6Message;
                         return false;
                         
                     }
@@ -104,13 +104,13 @@ namespace DataAccessLayer.Implementations.Invoices
                 int apgia = 0;
                 SqlParameter[] pList =
                 {
-                    new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
-                    new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
-                    new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
-                    new SqlParameter("@Ma_nx", am["MA_NX"].ToString()),
-                    new SqlParameter("@Loai_ck", am["LOAI_CK"].ToString()),
+                    new SqlParameter("@Stt_rec", amData["STT_REC"].ToString()),
+                    new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
+                    new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
+                    new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
+                    new SqlParameter("@Loai_ck", amData["LOAI_CK"].ToString()),
                     new SqlParameter("@Mode", "M"),
-                    new SqlParameter("@nKieu_Post", am["KIEU_POST"].ToString()),
+                    new SqlParameter("@nKieu_Post", amData["KIEU_POST"].ToString()),
                     new SqlParameter("@Ap_gia", apgia),
                     new SqlParameter("@UserID", userId),
                     new SqlParameter("@Save_voucher", "1")
@@ -120,26 +120,26 @@ namespace DataAccessLayer.Implementations.Invoices
                 try
                 {
                     var result = SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOC_POST_MAIN", pList);
-                    message = string.Format("Success, ({0} affected).", result);
+                    V6Message = string.Format("Success, ({0} affected).", result);
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    message = ex.Message;
-                    if (message.Contains("Rerun the transaction."))
+                    V6Message = ex.Message;
+                    if (V6Message.Contains("Rerun the transaction."))
                     {
                         Thread.Sleep(3000);
                         try
                         {
                             pList = new[]
                             {
-                                new SqlParameter("@Stt_rec", am["STT_REC"].ToString()),
-                                new SqlParameter("@Ma_ct", am["MA_CT"].ToString()),
-                                new SqlParameter("@Ma_nt", am["MA_NT"].ToString()),
-                                new SqlParameter("@Ma_nx", am["MA_NX"].ToString()),
-                                new SqlParameter("@Loai_ck", am["LOAI_CK"].ToString()),
+                                new SqlParameter("@Stt_rec", amData["STT_REC"].ToString()),
+                                new SqlParameter("@Ma_ct", amData["MA_CT"].ToString()),
+                                new SqlParameter("@Ma_nt", amData["MA_NT"].ToString()),
+                                new SqlParameter("@Ma_nx", amData["MA_NX"].ToString()),
+                                new SqlParameter("@Loai_ck", amData["LOAI_CK"].ToString()),
                                 new SqlParameter("@Mode", "M"),
-                                new SqlParameter("@nKieu_Post", am["KIEU_POST"].ToString()),
+                                new SqlParameter("@nKieu_Post", amData["KIEU_POST"].ToString()),
                                 new SqlParameter("@Ap_gia", apgia),
                                 new SqlParameter("@UserID", userId),
                                 new SqlParameter("@Save_voucher", "1")
@@ -147,19 +147,19 @@ namespace DataAccessLayer.Implementations.Invoices
                             };
                             var result = SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOC_POST_MAIN",
                                 pList);
-                            message = string.Format("Success, ({0} affected).", result);
+                            V6Message = string.Format("Success, ({0} affected).", result);
                             return true;
                         }
                         catch (Exception ex2)
                         {
-                            message = ex2.Message;
-                            message = "POST2 lỗi: " + message;
+                            V6Message = ex2.Message;
+                            V6Message = "POST2 lỗi: " + V6Message;
                             return false;
                         }//end catch2
                     }
                     else
                     {
-                        message = "POST lỗi: " + message;
+                        V6Message = "POST lỗi: " + V6Message;
                         return false;
                     }
                 }// end catch1
@@ -167,7 +167,7 @@ namespace DataAccessLayer.Implementations.Invoices
             else
             {
                 TRANSACTION.Rollback();
-                message = "Rollback: "
+                V6Message = "Rollback: "
                     + (!insert_success ? "Thêm AM không thành công." : "")
                     + (j != adList.Count ? "Thêm AD không hoàn tất." : "")
                     + (j3 != adList3.Count ? "Thêm AD3 không hoàn tất." : "");
@@ -181,7 +181,7 @@ namespace DataAccessLayer.Implementations.Invoices
             List<SortedDictionary<string, object>> adList,
             List<SortedDictionary<string, object>> adList3,
             SortedDictionary<string, object> keys,
-            bool write_log, out string message, bool post)
+            bool write_log, out string V6Message, bool post)
         {
             object stt_rec = am["STT_REC"];
             var amSql = SqlGenerator.GenUpdateAMSql(userId, AMStruct.TableName, AMStruct, am, keys);
@@ -252,13 +252,13 @@ namespace DataAccessLayer.Implementations.Invoices
                     try
                     {
                         var result = SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOC_POST_MAIN_AMAD", pList1);
-                        message = string.Format("Success, ({0} affected).", result);
+                        V6Message = string.Format("Success, ({0} affected).", result);
                         return true;
                     }
                     catch (Exception ex)
                     {
-                        message = ex.Message;
-                        message = "POST lỗi: " + message;
+                        V6Message = ex.Message;
+                        V6Message = "POST lỗi: " + V6Message;
                         return false;
 
                     }
@@ -284,13 +284,13 @@ namespace DataAccessLayer.Implementations.Invoices
                     try
                     {
                         var result = SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOC_POST_MAIN", pList);
-                        message = string.Format("Success, ({0} affected).", result);
+                        V6Message = string.Format("Success, ({0} affected).", result);
                         return true;
                     }
                     catch (Exception ex)
                     {
-                        message = ex.Message;
-                        if (message.Contains("Rerun the transaction."))
+                        V6Message = ex.Message;
+                        if (V6Message.Contains("Rerun the transaction."))
                         {
                             Thread.Sleep(3000);
                             try
@@ -310,27 +310,27 @@ namespace DataAccessLayer.Implementations.Invoices
                                 };
                                 var result = SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOC_POST_MAIN",
                                     pList);
-                                message = string.Format("Success, ({0} affected).", result);
+                                V6Message = string.Format("Success, ({0} affected).", result);
                                 return true;
                             }
                             catch (Exception ex2)
                             {
-                                message = ex2.Message;
-                                message = "POST2 lỗi: " + message;
+                                V6Message = ex2.Message;
+                                V6Message = "POST2 lỗi: " + V6Message;
                                 return false;
                             }//end catch2
                         }
                         else
                         {
-                            message = "POST lỗi: " + message;
+                            V6Message = "POST lỗi: " + V6Message;
                             return false;
                         }
                     }// end catch1
                 }
                 catch (Exception ex)
                 {
-                    message = ex.Message;
-                    message = "POST lỗi: " + message;
+                    V6Message = ex.Message;
+                    V6Message = "POST lỗi: " + V6Message;
                     //TRANSACTION.Rollback();
                     return false;
                 }
@@ -338,7 +338,7 @@ namespace DataAccessLayer.Implementations.Invoices
             else
             {
                 TRANSACTION.Rollback();
-                message = "Rollback: "
+                V6Message = "Rollback: "
                           + (!insert_success ? "Thêm AM không thành công." : "")
                           + (j != adList.Count ? "Thêm AD không hoàn tất." : "")
                           + (j3 != adList3.Count ? "Thêm AD3 không hoàn tất." : "");
@@ -387,12 +387,12 @@ namespace DataAccessLayer.Implementations.Invoices
         /// <summary>
         /// Lấy dữ liệu chi tiết theo sttRec
         /// </summary>
-        /// <param name="AD">Tên bảng</param>
+        /// <param name="AD_TableName">Tên bảng</param>
         /// <param name="sttRec"></param>
         /// <returns></returns>
-        public DataTable LoadAd(string AD, string sttRec)
+        public DataTable LoadAd(string AD_TableName, string sttRec)
         {
-            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13 FROM [" + AD
+            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13 FROM [" + AD_TableName
                 + "] c LEFT JOIN Alvt d ON c.Ma_vt= d.Ma_vt  Where c.stt_rec = @rec Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];
@@ -401,12 +401,12 @@ namespace DataAccessLayer.Implementations.Invoices
         /// <summary>
         /// Lấy dữ liệu chi tiết 3 theo sttRec
         /// </summary>
-        /// <param name="AD3">Tên bảng</param>
+        /// <param name="AD3_TableName">Tên bảng</param>
         /// <param name="sttRec"></param>
         /// <returns></returns>
-        public DataTable LoadAD3(string AD3, string sttRec)
+        public DataTable LoadAD3(string AD3_TableName, string sttRec)
         {
-            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk FROM " + AD3
+            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk FROM " + AD3_TableName
                 + " c LEFT JOIN Altk d ON c.Tk_i= d.Tk Where c.stt_rec = @rec Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];

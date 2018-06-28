@@ -40,11 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\Business\BusinessServices.cs" />
     <Compile Include="Implementations\Invoices\Invoice82Services.cs" />
     <Compile Include="Implementations\Invoices\Invoice83Services.cs" />
     <Compile Include="Implementations\Invoices\Invoice84Services.cs" />
-    <Compile Include="Implementations\Invoices\Invoice81Services.cs" />
     <Compile Include="Implementations\LookupService.cs" />
     <Compile Include="Implementations\InvoiceServices.cs" />
     <Compile Include="Implementations\MenuServices.cs" />
@@ -73,6 +71,9 @@
       <Project>{4f797e67-948d-4eec-acd7-758028e9166f}</Project>
       <Name>V6Tools</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Implementations\Business\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
