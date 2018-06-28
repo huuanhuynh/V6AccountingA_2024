@@ -25,8 +25,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Structures", "Structures", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6Structs", "V6Structs\V6Structs.csproj", "{910141A1-9FC5-4A44-B682-425100FE9023}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{524692A1-4E6C-42FE-AF4D-484FB68214A6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SevenZip", "7zip\SevenZip.csproj", "{1FC63292-A994-4371-98C0-72564B12296F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiConnect", "..\ApiConnect\ApiConnect.csproj", "{ABC35001-3755-4AFF-88D6-B48598BBC651}"
@@ -46,8 +44,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GsmSerialPort", "..\Hprojects\GsmSerialPort\GsmSerialPort.csproj", "{0A85D3E6-9463-4E5A-A001-DD2401EC190A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GsmModem", "..\Hprojects\GsmModem\GsmModem.csproj", "{C76A2608-2BEF-4398-95EC-C8C418828DDE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{8495B9F5-C1C1-4314-94C1-DD4C44EA12B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -219,16 +215,6 @@ Global
 		{C76A2608-2BEF-4398-95EC-C8C418828DDE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C76A2608-2BEF-4398-95EC-C8C418828DDE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C76A2608-2BEF-4398-95EC-C8C418828DDE}.Release|x86.ActiveCfg = Release|Any CPU
-		{8495B9F5-C1C1-4314-94C1-DD4C44EA12B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8495B9F5-C1C1-4314-94C1-DD4C44EA12B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8495B9F5-C1C1-4314-94C1-DD4C44EA12B5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{8495B9F5-C1C1-4314-94C1-DD4C44EA12B5}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{8495B9F5-C1C1-4314-94C1-DD4C44EA12B5}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8495B9F5-C1C1-4314-94C1-DD4C44EA12B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8495B9F5-C1C1-4314-94C1-DD4C44EA12B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8495B9F5-C1C1-4314-94C1-DD4C44EA12B5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{8495B9F5-C1C1-4314-94C1-DD4C44EA12B5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{8495B9F5-C1C1-4314-94C1-DD4C44EA12B5}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -250,6 +236,5 @@ Global
 		{6F6F4CB7-BE58-4515-AE2C-E757F53628A3} = {57380B2D-A28D-405F-B3EA-9A1FFBFDCBC0}
 		{0A85D3E6-9463-4E5A-A001-DD2401EC190A} = {6F6F4CB7-BE58-4515-AE2C-E757F53628A3}
 		{C76A2608-2BEF-4398-95EC-C8C418828DDE} = {6F6F4CB7-BE58-4515-AE2C-E757F53628A3}
-		{8495B9F5-C1C1-4314-94C1-DD4C44EA12B5} = {524692A1-4E6C-42FE-AF4D-484FB68214A6}
 	EndGlobalSection
 EndGlobal

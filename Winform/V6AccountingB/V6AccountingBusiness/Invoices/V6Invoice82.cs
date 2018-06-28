@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Threading;
 using V6Init;
 using V6SqlConnect;
@@ -87,7 +88,7 @@ namespace V6AccountingBusiness.Invoices
                 }
                 catch (Exception exRollback)
                 {
-                    Logger.WriteExLog("UpdateInvoice81 TRANSACTION ROLLBACK_ERROR " + stt_rec, exRollback, "");
+                    Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " TRANSACTION ROLLBACK_ERROR " + stt_rec, exRollback, "");
                 }
 
                 Logger.WriteExLog("InsertInvoice82 Exception", ex, "");
@@ -196,8 +197,7 @@ namespace V6AccountingBusiness.Invoices
 
                 //Update AM
                 insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
-
-
+                
                 //Insert AD
                 foreach (SortedDictionary<string, object> adRow in adList)
                 {
@@ -206,7 +206,7 @@ namespace V6AccountingBusiness.Invoices
                     if (V6Setting.WriteExtraLog)
                     {
                         object stt_rec0 = adRow["STT_REC0"];
-                        Logger.WriteToLog(string.Format("UpdateInvoice82 {0} AD row {1} result {2}.\n{3}", stt_rec,
+                        Logger.WriteToLog(string.Format(GetType() + " " + MethodBase.GetCurrentMethod().Name + " {0} AD row {1} result {2}.\n{3}", stt_rec,
                             stt_rec0, execute, adSql));
                     }
                     j += (execute > 0 ? 1 : 0);
@@ -219,8 +219,8 @@ namespace V6AccountingBusiness.Invoices
                     if (V6Setting.WriteExtraLog)
                     {
                         object stt_rec0 = adRow["STT_REC0"];
-                        Logger.WriteToLog(string.Format("UpdateInvoice82 {0} AD3 row {1} result {2}.\n{3}", stt_rec,
-                            stt_rec0, execute, ad3Sql));
+                        Logger.WriteToLog(string.Format(GetType() + " " + MethodBase.GetCurrentMethod().Name + " {0} AD3 row {1} result {2}.\n{3}",
+                            stt_rec, stt_rec0, execute, ad3Sql));
                     }
                     j3 += (execute > 0 ? 1 : 0);
                 }
@@ -234,10 +234,10 @@ namespace V6AccountingBusiness.Invoices
                 }
                 catch (Exception exRollback)
                 {
-                    Logger.WriteExLog("UpdateInvoice81 TRANSACTION ROLLBACK_ERROR " + stt_rec, exRollback, "");
+                    Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " TRANSACTION ROLLBACK_ERROR " + stt_rec, exRollback, "");
                 }
 
-                Logger.WriteExLog("UpdateInvoice81 Exception", ex, "");
+                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
                 V6Message = "Rollback: "
                           + (!insert_success ? "Sửa AM không thành công." : "")
                           + (j != adList.Count ? "Thêm AD không hoàn tất." : "")
@@ -251,7 +251,7 @@ namespace V6AccountingBusiness.Invoices
                 TRANSACTION.Commit();
                 if (V6Setting.WriteExtraLog)
                 {
-                    Logger.WriteToLog(string.Format("UpdateInvoice82 {0} TRANSACTION COMMITTED.", stt_rec));
+                    Logger.WriteToLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " TRANSACTION COMMITTED " + stt_rec);
                 }
                 try
                 {

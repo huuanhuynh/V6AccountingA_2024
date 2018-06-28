@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Threading;
 using V6Init;
 using V6SqlConnect;
@@ -90,7 +91,7 @@ namespace V6AccountingBusiness.Invoices
                 }
                 catch (Exception exRollback)
                 {
-                    Logger.WriteExLog("UpdateInvoice81 TRANSACTION ROLLBACK_ERROR " + stt_rec, exRollback, "");
+                    Logger.WriteExLog(string.Format("{0} {1} TRANSACTION ROLLBACK_ERROR {2}", GetType(), MethodBase.GetCurrentMethod().Name, stt_rec), exRollback, "");
                 }
 
                 Logger.WriteExLog("InsertInvoice81 Exception", ex, "");
@@ -173,10 +174,7 @@ namespace V6AccountingBusiness.Invoices
                     }
                 }// end catch1
             }
-            else
-            {
-            
-            }
+
             return false;
         }
 
@@ -217,8 +215,8 @@ namespace V6AccountingBusiness.Invoices
                     if (V6Setting.WriteExtraLog)
                     {
                         object stt_rec0 = adRow["STT_REC0"];
-                        Logger.WriteToLog(string.Format("UpdateInvoice81 {0} AD row {1} result {2}.\n{3}", stt_rec,
-                            stt_rec0, execute, adSql));
+                        Logger.WriteToLog(string.Format("{4} {5} {0} AD row {1} result {2}.\n{3}", stt_rec,
+                            stt_rec0, execute, adSql, GetType(), MethodBase.GetCurrentMethod().Name));
                     }
                     j += (execute > 0 ? 1 : 0);
                 }
@@ -230,8 +228,8 @@ namespace V6AccountingBusiness.Invoices
                     if (V6Setting.WriteExtraLog)
                     {
                         object stt_rec0 = adRow["STT_REC0"];
-                        Logger.WriteToLog(string.Format("UpdateInvoice81 {0} AD3 row {1} result {2}.\n{3}", stt_rec,
-                            stt_rec0, execute, ad3Sql));
+                        Logger.WriteToLog(string.Format("{4} {5} {0} AD3 row {1} result {2}.\n{3}", stt_rec,
+                            stt_rec0, execute, ad3Sql, GetType(), MethodBase.GetCurrentMethod().Name));
                     }
                     j3 += (execute > 0 ? 1 : 0);
                 }
@@ -247,10 +245,10 @@ namespace V6AccountingBusiness.Invoices
                 }
                 catch (Exception exRollback)
                 {
-                    Logger.WriteExLog("UpdateInvoice81 TRANSACTION ROLLBACK_ERROR " + stt_rec, exRollback, "");
+                    Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " TRANSACTION ROLLBACK_ERROR " + stt_rec, exRollback, "");
                 }
 
-                Logger.WriteExLog("UpdateInvoice81 Exception", ex, "");
+                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
                 V6Message = "Rollback: "
                             + (!insert_success ? "Sửa AM không thành công." : "")
                             + (j != adList.Count ? "Thêm AD không hoàn tất." : "")
@@ -266,7 +264,7 @@ namespace V6AccountingBusiness.Invoices
                 TRANSACTION.Commit();
                 if (V6Setting.WriteExtraLog)
                 {
-                    Logger.WriteToLog(string.Format("UpdateInvoice81 {0} TRANSACTION COMMITTED.", stt_rec));
+                    Logger.WriteToLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " TRANSACTION COMMITTED " + stt_rec);
                 }
 
                 try
@@ -297,7 +295,7 @@ namespace V6AccountingBusiness.Invoices
                     }
                     catch (Exception exPost1)
                     {
-                        Logger.WriteExLog("UpdateInvoice81 POST1", exPost1, "");
+                        Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST1", exPost1, "");
                         V6Message = exPost1.Message;
                         if (V6Message.Contains("Rerun the transaction."))
                         {
@@ -327,7 +325,7 @@ namespace V6AccountingBusiness.Invoices
                             }
                             catch (Exception exPost2)
                             {
-                                Logger.WriteExLog("UpdateInvoice81 POST2", exPost1, "");
+                                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST2", exPost1, "");
                                 V6Message = exPost2.Message;
                                 V6Message = "POST2 lỗi: " + V6Message;
                             } //end catch2

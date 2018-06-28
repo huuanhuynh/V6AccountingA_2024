@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using DataAccessLayer.Implementations;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
@@ -13,8 +12,6 @@ namespace V6AccountingBusiness.Invoices
 {
     public class V6InvoiceBase
     {
-        protected readonly InvoiceServices Service = new InvoiceServices();
-
         public V6InvoiceBase(string maCt)
         {
             Mact = maCt;
@@ -141,7 +138,7 @@ namespace V6AccountingBusiness.Invoices
 
         private DataTable GetAlnt()
         {
-            return Service.GetAlnt();
+            return SqlConnect.Select("Alnt", null, "", "", "ma_nt").Data;
         }
 
         public DataRow Alct
@@ -178,10 +175,11 @@ namespace V6AccountingBusiness.Invoices
 
         private DataRow GetAlct()
         {
-            var data = Service.GetAlct(Mact);
+            var data = SqlConnect.Select("Alct", "*", "ma_ct='" + Mact + "'").Data;
             if (data != null && data.Rows.Count == 1) return data.Rows[0];
             return null;
         }
+
         private DataRow GetAlctct()
         {
             var data = V6BusinessHelper.GetAlctCt(Mact);
@@ -218,7 +216,20 @@ namespace V6AccountingBusiness.Invoices
 
         private DataTable GetAlct1()
         {
-            return Service.GetAlct1(Mact);
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@ma_ct", Mact),
+                new SqlParameter("@list_fix", ""),
+                new SqlParameter("@order_fix", ""),
+                new SqlParameter("@vvar_fix", ""),
+                new SqlParameter("@type_fix", ""),
+                new SqlParameter("@checkvvar_fix", ""),
+                new SqlParameter("@notempty_fix", ""),
+                new SqlParameter("@fdecimal_fix", "")
+            };
+
+            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure,
+                    "VPA_GET_AUTO_COLULMN", plist).Tables[0];
         }
 
         public virtual DataTable Alct3
@@ -232,7 +243,20 @@ namespace V6AccountingBusiness.Invoices
 
         private DataTable GetAlct3()
         {
-            return Service.GetAlct3(Mact);
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@ma_ct", Mact),
+                new SqlParameter("@list_fix", ""),
+                new SqlParameter("@order_fix", ""),
+                new SqlParameter("@vvar_fix", ""),
+                new SqlParameter("@type_fix", ""),
+                new SqlParameter("@checkvvar_fix", ""),
+                new SqlParameter("@notempty_fix", ""),
+                new SqlParameter("@fdecimal_fix", "")
+            };
+
+            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure,
+                    "VPA_GET_AUTO_COLUMN_KT", plist).Tables[0];
         }
 
         public DataTable AlPost
@@ -242,7 +266,8 @@ namespace V6AccountingBusiness.Invoices
 
         private DataTable GetAlPost()
         {
-            return Service.GetAlPost(Mact);
+            return SqlConnect.Select("AlPost", "Kieu_post,Ten_post,Ten_post2,ColorV",
+                "Ma_ct=@mact", "", "Kieu_post", new SqlParameter("@mact", Mact)).Data;
         }
 
         /// <summary>
@@ -532,38 +557,156 @@ namespace V6AccountingBusiness.Invoices
             message = message ?? V6Message;
             Logger.WriteToLog(string.Format("{0} PostErrorLog Mact: {1} Stt_rec: {2} Mode: {3} Message: {4}",
                 V6Login.ClientName, Mact, sttRec, mode, message));
-            Service.PostErrorLog(Mact, sttRec, mode, message);
+            PostErrorLog(Mact, sttRec, mode, message);
         }
 
         public void PostErrorLog(string sttRec, string mode, Exception ex)
         {
             Logger.WriteToLog(string.Format("{0} PostErrorLog Mact: {1} Stt_rec: {2} Mode: {3} Message: {4}\r\nStackTrace: {5}",
                 V6Login.ClientName, Mact, sttRec, mode, ex.Message, ex.StackTrace));
-            Service.PostErrorLog(Mact, sttRec, mode, ex.Message);
+            PostErrorLog(Mact, sttRec, mode, ex.Message);
+        }
+
+        private void PostErrorLog(string mact, string sttRec, string mode, string message)
+        {
+            try
+            {
+                SqlParameter[] plist = {
+                    new SqlParameter("@ma_ct", mact),
+                    new SqlParameter("@stt_rec", sttRec),
+                    new SqlParameter("@mode", mode), 
+                    new SqlParameter("@message", message), 
+                    new SqlParameter("@message_id", 1)
+                };
+                SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_V6_PostErrorLog", plist);
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
 
         public decimal GetTyGia(string mant, DateTime ngayct)
         {
-            return Service.GetTyGia(mant, ngayct);
+            try
+            {
+                SqlParameter[] pList =
+                {
+                    new SqlParameter("@ma_nt", mant),
+                    new SqlParameter("@ngay_ct", ngayct.ToString("yyyyMMdd"))
+                };
+
+                var resultValue = Convert.ToDecimal(
+                    SqlConnect.ExecuteScalar(CommandType.Text, "Select dbo.VFA_GetRates(@ma_nt, @ngay_ct)", pList));
+                return resultValue;
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+            return 0;
         }
 
-        public DataSet GetCheck_VC(string status, string kieu_post, string stt_rec)
+        public DataSet GetCheck_VC(string status, string kieuPost, string sttRec)
         {
-            return Service.GetCheck_VC(status, kieu_post, stt_rec, out V6Message);
+            try
+            {
+                SqlParameter[] pList =
+                {
+                    new SqlParameter("@status", status),
+                    new SqlParameter("@kieu_post", kieuPost),
+                    new SqlParameter("@Stt_rec", sttRec)
+                };
+                V6Message = "Success";
+                return SqlConnect.ExecuteDataset(CommandType.StoredProcedure,
+                        "VPA_TA1_CHECK_VC", pList);
+            }
+            catch (Exception ex)
+            {
+                V6Message = ex.Message;
+                return null;
+            }
         }
-        public DataTable GetCheck_VC_Save(string status, string kieu_post, string soct, string masonb, string sttrec)
+        public DataTable GetCheck_VC_Save(string status, string kieuPost, string soct, string masonb, string sttrec)
         {
-            return Service.GetCheck_VC_Save(status, kieu_post, soct, masonb, sttrec, out V6Message);
+            try
+            {
+                SqlParameter[] plist =
+                {     
+                    new SqlParameter("@status", status),
+                    new SqlParameter("@kieu_post", kieuPost),
+                    new SqlParameter("@So_ct", soct),
+                    new SqlParameter("@Ma_sonb", masonb), 
+                    new SqlParameter("@Stt_rec",sttrec)
+                };
+                V6Message = "Success";
+                return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_CHECK_VC_SAVE", plist).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                V6Message = ex.Message;
+                return null;
+            }
         }
-        public DataTable GetCheck_Save_All(string status, string kieu_post, string soct, string masonb, string sttrec, string madvcs, string makh,
+        public DataTable GetCheck_Save_All(string status, string kieuPost, string soct, string masonb, string sttrec, string madvcs, string makh,
              string manx, DateTime ngayct, string mact, decimal tongthanhtoan, string mode, int user_id)
         {
-            return Service.GetCheck_Save_All(status, kieu_post, soct, masonb, sttrec, madvcs, makh, manx, ngayct, mact, tongthanhtoan, mode, user_id, out V6Message);
+            try
+            {
+                SqlParameter[] plist =
+                {     
+                    new SqlParameter("@status", status),
+                    new SqlParameter("@kieu_post", kieuPost),
+                    new SqlParameter("@So_ct", soct),
+                    new SqlParameter("@Ma_sonb", masonb), 
+                    new SqlParameter("@Ma_dvcs", madvcs), 
+                    new SqlParameter("@Ma_kh", makh), 
+                    new SqlParameter("@Ma_nx", manx), 
+                    new SqlParameter("@Ngay_ct",  ngayct.ToString("yyyyMMdd")), 
+                    new SqlParameter("@Ma_ct", mact), 
+                    new SqlParameter("@T_tt", tongthanhtoan), 
+                    new SqlParameter("@Stt_rec",sttrec),
+                    new SqlParameter("@Mode",mode),
+                    new SqlParameter("@User_id",user_id)
+                };
+                V6Message = "Success";
+                return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_CHECK_SAVE_ALL", plist).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                V6Message = ex.Message;
+                return null;
+            }
         }
-        public DataTable GetCheck_Edit_All(string status, string kieu_post, string soct, string masonb, string sttrec, string madvcs, string makh,
+        public DataTable GetCheck_Edit_All(string status, string kieuPost, string soct, string masonb, string sttrec, string madvcs, string makh,
              string manx, DateTime ngayct, string mact, decimal tongthanhtoan, string mode, int user_id)
         {
-            return Service.GetCheck_Edit_All(status, kieu_post, soct, masonb, sttrec, madvcs, makh, manx, ngayct, mact, tongthanhtoan,mode,user_id, out V6Message);
+            try
+            {
+                SqlParameter[] plist =
+                {     
+                    new SqlParameter("@status", status),
+                    new SqlParameter("@kieu_post", kieuPost),
+                    new SqlParameter("@So_ct", soct),
+                    new SqlParameter("@Ma_sonb", masonb), 
+                    new SqlParameter("@Ma_dvcs", madvcs), 
+                    new SqlParameter("@Ma_kh", makh), 
+                    new SqlParameter("@Ma_nx", manx), 
+                    new SqlParameter("@Ngay_ct",  ngayct.ToString("yyyyMMdd")), 
+                    new SqlParameter("@Ma_ct", mact), 
+                    new SqlParameter("@T_tt", tongthanhtoan), 
+                    new SqlParameter("@Stt_rec",sttrec),
+                    new SqlParameter("@Mode",mode),
+                    new SqlParameter("@User_id",user_id)
+                };
+                V6Message = "Success";
+                return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_CHECK_EDIT_ALL", plist).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                V6Message = ex.Message;
+                return null;
+            }
         }
 
         public DataTable GetCheck_Print_All(string status, string kieuPost, string soct, string sttrec,
@@ -691,7 +834,8 @@ namespace V6AccountingBusiness.Invoices
 
         public void IncreaseSl_inAM(string sttRec)
         {
-            Service.IncreaseSl_inAM(AM_TableName, Mact, sttRec);
+            var sql = string.Format("Update {0} Set Sl_in = Sl_in+1 Where Stt_rec=@p", AM_TableName);
+            SqlConnect.ExecuteNonQuery(CommandType.Text, sql, new SqlParameter("@p", sttRec));
         }
 
         public virtual SortedDictionary<string, string> LoadDefaultData(string lang, string itemId)

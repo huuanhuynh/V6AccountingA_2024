@@ -126,10 +126,6 @@
       <Project>{4f797e67-948d-4eec-acd7-758028e9166f}</Project>
       <Name>V6Tools</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
-      <Project>{8495B9F5-C1C1-4314-94C1-DD4C44EA12B5}</Project>
-      <Name>DataAccessLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\V6SqlConnect\V6SqlConnect.csproj">
       <Project>{170de623-8de2-411c-8a9e-0738b8f5bd15}</Project>
       <Name>V6SqlConnect</Name>
