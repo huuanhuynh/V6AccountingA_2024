@@ -826,7 +826,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         //    }
         //    catch (Exception ex)
         //    {
-        //        this.ShowErrorException(GetType() + ".TinhTien22", ex);
+        //        this.ShowErrorException(GetType() + ".TinhTien22 " + _sttRec, ex);
         //    }
         //}
 
@@ -848,7 +848,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         //    }
         //    catch (Exception ex)
         //    {
-        //        this.ShowErrorException(GetType() + ".TinhTienThue22", ex);
+        //        this.ShowErrorException(GetType() + ".TinhTienThue22 " + _sttRec, ex);
         //    }
         //}
 
@@ -1005,7 +1005,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyDetailClickAdd", ex);
+                this.ShowErrorException(GetType() + ".XuLyDetailClickAdd " + _sttRec, ex);
             }
         }
         /// <summary>
@@ -1059,7 +1059,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TruDanTheoNhomDk", ex);
+                this.ShowErrorException(GetType() + ".TruDanTheoNhomDk " + _sttRec, ex);
             }
         }
 
@@ -1137,7 +1137,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Sửa chi tiết3", ex);
+                this.ShowErrorException(GetType() + ".Sửa chi tiết3 " + _sttRec, ex);
             }
             return true;
         }
@@ -1192,7 +1192,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Thêm chi tiết", ex);
+                this.ShowErrorException(GetType() + ".Thêm chi tiết " + _sttRec, ex);
             }
             return true;
         }
@@ -1208,7 +1208,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ValidateData_Detail", ex);
+                this.ShowErrorException(GetType() + ".ValidateData_Detail " + _sttRec, ex);
             }
             return true;
         }
@@ -1230,7 +1230,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Detail1_ClickEdit", ex);
+                this.ShowErrorException(GetType() + ".Detail1_ClickEdit " + _sttRec, ex);
             }
         }
 
@@ -1272,7 +1272,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Xóa chi tiết", ex);
+                this.ShowErrorException(GetType() + ".Xóa chi tiết " + _sttRec, ex);
             }
         }
 
@@ -1370,7 +1370,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyLayThongTinKhiChonMaLo", ex);
+                this.ShowErrorException(GetType() + ".XuLyLayThongTinKhiChonMaLo " + _sttRec, ex);
             }
         }
 
@@ -1635,7 +1635,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".XuLyLayThongTinKhiChonMaKhoI", ex);
+                this.WriteExLog(GetType() + ".XuLyLayThongTinKhiChonMaKhoI " + _sttRec, ex);
             }
         }
 
@@ -1713,7 +1713,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyChonMaKhachHang", ex);
+                this.ShowErrorException(GetType() + ".XuLyChonMaKhachHang " + _sttRec, ex);
             }
         }
         private void XuLyKhoaThongTinKhachHang()
@@ -1762,7 +1762,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyKhoaThongTinKhachHang", ex);
+                this.ShowErrorException(GetType() + ".XuLyKhoaThongTinKhachHang " + _sttRec, ex);
             }
         }
 
@@ -1795,7 +1795,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyChonMaKhach2 ", ex);
+                this.ShowErrorException(GetType() + ".XuLyChonMaKhach2 " + _sttRec, ex);
             }
         }
         private void XuLyChonMaVt(string mavt)
@@ -1854,7 +1854,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyLayThongTinKhiChonMaVt ", ex);
+                this.ShowErrorException(GetType() + ".XuLyLayThongTinKhiChonMaVt " + _sttRec, ex);
             }
         }
 
@@ -1912,7 +1912,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyDonViTinhKhiChonMaVt ", ex);
+                this.ShowErrorException(GetType() + ".XuLyDonViTinhKhiChonMaVt " + _sttRec, ex);
             }
         }
         
@@ -1952,7 +1952,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TinhTienNt0", ex);
+                this.ShowErrorException(GetType() + ".TinhTienNt0 " + _sttRec, ex);
             }
         }
 
@@ -1976,7 +1976,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TinhTienNt", ex);
+                this.ShowErrorException(GetType() + ".TinhTienNt " + _sttRec, ex);
             }
             TinhGiaNt();
         }
@@ -2012,7 +2012,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TinhGiaNt", ex);
+                this.ShowErrorException(GetType() + ".TinhGiaNt " + _sttRec, ex);
             }
         }
         #endregion methods
@@ -2114,7 +2114,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".EnableFormControls", ex);
+                this.ShowErrorException(GetType() + ".EnableFormControls " + _sttRec, ex);
             }
 
             SetControlReadOnlyHide(Invoice);
@@ -2640,7 +2640,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TinhChietKhau", ex);
+                this.ShowErrorException(GetType() + ".TinhChietKhau " + _sttRec, ex);
             }
         }
 
@@ -2742,7 +2742,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TinhGiamGia", ex);
+                this.ShowErrorException(GetType() + ".TinhGiamGia " + _sttRec, ex);
             }
         }
 
@@ -2767,7 +2767,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TinhGiamGia", ex);
+                this.ShowErrorException(GetType() + ".TinhGiamGia " + _sttRec, ex);
             }
         }
 
@@ -2790,7 +2790,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TinhVanChuyen", ex);
+                this.ShowErrorException(GetType() + ".TinhVanChuyen " + _sttRec, ex);
             }
         }
 
@@ -2925,7 +2925,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".NhapThueTuDong ", ex);
+                this.ShowErrorException(GetType() + ".NhapThueTuDong " + _sttRec, ex);
             }
             return false;
         }
@@ -3090,7 +3090,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyThayDoiMaDVCS", ex);
+                this.ShowErrorException(GetType() + ".XuLyThayDoiMaDVCS " + _sttRec, ex);
             }
         }
 
@@ -3289,7 +3289,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyThayDoiMaNt", ex);
+                this.ShowErrorException(GetType() + ".XuLyThayDoiMaNt " + _sttRec, ex);
             }
         }
 
@@ -3324,7 +3324,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".FormatNumberControl", ex);
+                this.ShowErrorException(GetType() + ".FormatNumberControl " + _sttRec, ex);
             }
         }
 
@@ -3347,7 +3347,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".FormatNumberGridView", ex);
+                this.ShowErrorException(GetType() + ".FormatNumberGridView " + _sttRec, ex);
             }
         }
         
@@ -3368,7 +3368,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyThayDoiMaThue", ex);
+                this.ShowErrorException(GetType() + ".XuLyThayDoiMaThue " + _sttRec, ex);
             }
         }
         
@@ -3507,7 +3507,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ViewInvoice", ex);
+                this.ShowErrorException(GetType() + ".ViewInvoice " + _sttRec, ex);
             }
         }
 
@@ -3543,7 +3543,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ViewInvoice", ex);
+                this.ShowErrorException(GetType() + ".ViewInvoice " + _sttRec, ex);
             }
         }
 
@@ -3655,7 +3655,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             {
                 flagAddSuccess = false;
                 addErrorMessage = ex.Message;
-                Invoice.PostErrorLog(_sttRec, "M", ex);
+                Invoice.PostErrorLog(_sttRec, "M " + _sttRec, ex);
             }
             flagAddFinish = true;
         }
@@ -3789,7 +3789,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             {
                 flagEditSuccess = false;
                 editErrorMessage = ex.Message;
-                Invoice.PostErrorLog(_sttRec, "S", ex);
+                Invoice.PostErrorLog(_sttRec, "S " + _sttRec, ex);
             }
             flagEditFinish = true;
         }
@@ -3832,7 +3832,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                Invoice.PostErrorLog(_sttRec, "X", ex);
+                Invoice.PostErrorLog(_sttRec, "X " + _sttRec, ex);
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
@@ -3903,7 +3903,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             {
                 flagDeleteSuccess = false;
                 deleteErrorMessage = ex.Message;
-                Invoice.PostErrorLog(_sttRec, "X", ex);
+                Invoice.PostErrorLog(_sttRec, "X " + _sttRec, ex);
             }
             flagDeleteFinish = true;
         }
@@ -3948,7 +3948,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Luu", ex);
+                this.ShowErrorException(GetType() + ".Luu " + _sttRec, ex);
             }
         }
 
@@ -3992,7 +3992,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Moi", ex);
+                this.ShowErrorException(GetType() + ".Moi " + _sttRec, ex);
             }
         }
 
@@ -4079,7 +4079,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Sua", ex);
+                this.ShowErrorException(GetType() + ".Sua " + _sttRec, ex);
             }
         }
 
@@ -4156,7 +4156,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Xoa", ex);
+                this.ShowErrorException(GetType() + ".Xoa " + _sttRec, ex);
             }
         }
         
@@ -4200,7 +4200,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Copy", ex);
+                this.ShowErrorException(GetType() + ".Copy " + _sttRec, ex);
             }
         }
 
@@ -4236,7 +4236,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".In", ex);
+                this.ShowErrorException(GetType() + ".In " + _sttRec, ex);
             }
         }
 
@@ -4256,7 +4256,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Xem", ex);
+                this.ShowErrorException(GetType() + ".Xem " + _sttRec, ex);
             }
         }
 
@@ -4282,7 +4282,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Tim", ex);
+                this.ShowErrorException(GetType() + ".Tim " + _sttRec, ex);
             }
         }
 
@@ -4369,7 +4369,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ResetForm", ex);
+                this.ShowErrorException(GetType() + ".ResetForm " + _sttRec, ex);
             }
         }
 
@@ -4444,7 +4444,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Huy", ex);
+                this.ShowErrorException(GetType() + ".Huy " + _sttRec, ex);
             }
         }
 
@@ -4490,7 +4490,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyDetailClickMoi", ex);
+                this.ShowErrorException(GetType() + ".XuLyDetailClickMoi " + _sttRec, ex);
             }
         }
         private void XuLyDetail2ClickAdd(object sender)
@@ -4540,7 +4540,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyDetail2ClickAdd", ex);
+                this.ShowErrorException(GetType() + ".XuLyDetail2ClickAdd " + _sttRec, ex);
             }
         }
         private bool XuLyThemDetail(SortedDictionary<string, object> data)
@@ -4593,7 +4593,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyThemDetail", ex);
+                this.ShowErrorException(GetType() + ".XuLyThemDetail " + _sttRec, ex);
             }
             return true;
         }
@@ -4644,7 +4644,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyThemDetail2", ex);
+                this.ShowErrorException(GetType() + ".XuLyThemDetail2 " + _sttRec, ex);
             }
             return true;
         }
@@ -4708,7 +4708,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLySuaDetail", ex);
+                this.ShowErrorException(GetType() + ".XuLySuaDetail " + _sttRec, ex);
             }
             return true;
         }
@@ -4771,7 +4771,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLySuaDetail2", ex);
+                this.ShowErrorException(GetType() + ".XuLySuaDetail2 " + _sttRec, ex);
             }
             return true;
         }
@@ -4810,7 +4810,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Xóa chi tiết", ex);
+                this.ShowErrorException(GetType() + ".Xóa chi tiết " + _sttRec, ex);
             }
         }
         private void XuLyDeleteDetail2()
@@ -4847,7 +4847,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Xóa chi tiết2", ex);
+                this.ShowErrorException(GetType() + ".Xóa chi tiết2 " + _sttRec, ex);
             }
         }
         
@@ -4981,7 +4981,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".hoaDonDetail1_ClickEdit", ex);
+                this.ShowErrorException(GetType() + ".hoaDonDetail1_ClickEdit " + _sttRec, ex);
             }
         }
 
@@ -5011,7 +5011,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".hoaDonDetail2_ClickEdit", ex);
+                this.ShowErrorException(GetType() + ".hoaDonDetail2_ClickEdit " + _sttRec, ex);
             }
         }
         private void hoaDonDetail1_EditHandle(SortedDictionary<string, object> data)
@@ -5151,12 +5151,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 }
                 catch (Exception ex)
                 {
-                    this.ShowErrorException(GetType() + ".XuLyChonPhieuXuat", ex);
+                    this.ShowErrorException(GetType() + ".XuLyChonPhieuXuat " + _sttRec, ex);
                 }
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ChucNang ChonDonHang", ex);
+                this.ShowErrorException(GetType() + ".ChucNang ChonDonHang " + _sttRec, ex);
             }
         }
         
@@ -5184,7 +5184,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".chonpx_AcceptSelectEvent", ex);
+                this.ShowErrorException(GetType() + ".chonpx_AcceptSelectEvent " + _sttRec, ex);
             }
         }
 
@@ -5196,7 +5196,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ChucNang TroGiup", ex);
+                this.ShowErrorException(GetType() + ".ChucNang TroGiup " + _sttRec, ex);
             }
         }
 
@@ -5215,7 +5215,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ChonTuExcel", ex);
+                this.ShowErrorException(GetType() + ".ChonTuExcel " + _sttRec, ex);
             }
         }
 
@@ -5359,7 +5359,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".chkSuaTienThue_CheckedChanged", ex);
+                this.ShowErrorException(GetType() + ".chkSuaTienThue_CheckedChanged " + _sttRec, ex);
             }
         }
 
@@ -5592,7 +5592,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TinhPhanBoChiPhi", ex);
+                this.ShowErrorException(GetType() + ".TinhPhanBoChiPhi " + _sttRec, ex);
             }
         }
 
@@ -5611,7 +5611,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XoaPhanBoChiPhi", ex);
+                this.ShowErrorException(GetType() + ".XoaPhanBoChiPhi " + _sttRec, ex);
             }
         }
 
@@ -5687,7 +5687,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TinhT_CpNt", ex);
+                this.ShowErrorException(GetType() + ".TinhT_CpNt " + _sttRec, ex);
             }
         }
 
@@ -5893,7 +5893,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".ValidateData_Master", ex);
+                this.WriteExLog(GetType() + ".ValidateData_Master " + _sttRec, ex);
                 return false;
             }
 
@@ -5913,7 +5913,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ValidateData_Detail", ex);
+                this.ShowErrorException(GetType() + ".ValidateData_Detail " + _sttRec, ex);
             }
             return true;
         }
@@ -5930,7 +5930,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ValidateData_Detail", ex);
+                this.ShowErrorException(GetType() + ".ValidateData_Detail " + _sttRec, ex);
             }
             return true;
         }
@@ -6082,7 +6082,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".dataGridView3ChiPhi_CellBeginEdit", ex);
+                this.WriteExLog(GetType() + ".dataGridView3ChiPhi_CellBeginEdit " + _sttRec, ex);
             }
         }
 
@@ -6113,7 +6113,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".dataGridView3ChiPhi_CellEndEdit", ex);
+                this.WriteExLog(GetType() + ".dataGridView3ChiPhi_CellEndEdit " + _sttRec, ex);
             }
         }
 
@@ -6148,7 +6148,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".txtTongGiamNt_V6LostFocus", ex);
+                this.WriteExLog(GetType() + ".txtTongGiamNt_V6LostFocus " + _sttRec, ex);
             }
         }
 
@@ -6165,7 +6165,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".txtTongCkNt_V6LostFocus", ex);
+                this.WriteExLog(GetType() + ".txtTongCkNt_V6LostFocus " + _sttRec, ex);
             }
         }
 
@@ -6182,7 +6182,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".txtTongThueNt_V6LostFocus", ex);
+                this.WriteExLog(GetType() + ".txtTongThueNt_V6LostFocus " + _sttRec, ex);
             }
         }
 

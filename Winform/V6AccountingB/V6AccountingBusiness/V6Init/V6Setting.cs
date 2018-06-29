@@ -154,6 +154,9 @@ namespace V6Init
         {
             get { return V6Special.Contains("FixInvoiceVvar"); }
         }
+        /// <summary>
+        /// Bật tắt ghi log ở những vị trí không phát sinh lỗi để kiểm tra chương trình.
+        /// </summary>
         public static bool WriteExtraLog
         {
             get { return V6Special.Contains("WriteExtraLog"); }

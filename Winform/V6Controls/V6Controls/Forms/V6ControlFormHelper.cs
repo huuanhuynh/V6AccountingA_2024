@@ -7,7 +7,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -157,7 +156,7 @@ namespace V6Controls.Forms
             _mainMessageTimer.Start();
         }
 
-        public static V6TopMessageForm TopMessageForm = null;
+        public static V6TopMessageForm TopMessageForm;
 
         public static void CreateV6TopMessageForm()
         {
@@ -478,7 +477,7 @@ namespace V6Controls.Forms
 
         public static Image LoadCopyImage(string path)
         {
-            Bitmap bm = null;
+            Bitmap bm;
             using (Image im = Image.FromFile(path))
             {
                 bm = new Bitmap(im);
@@ -945,9 +944,9 @@ namespace V6Controls.Forms
                 Visible = lineInfo.Visible,
             };
 
-            V6VvarTextBox vT = null;
-            V6LookupTextBox vL = null;
-            V6FormButton bT = null;
+            V6VvarTextBox vT;
+            V6LookupTextBox vL;
+            V6FormButton bT;
             //Tuanmh check null
             string CONTROL_TYPE = "";
             if (string.IsNullOrEmpty(lineInfo.ControlType) == false)
@@ -1123,6 +1122,16 @@ namespace V6Controls.Forms
             return result.ToString();
         }
 
+        /// <summary>
+        /// Gửi email và chờ kết quả.
+        /// </summary>
+        /// <param name="sender">Địa chỉ email người gửi.</param>
+        /// <param name="password">Đối với Gmail nên dùng App password.</param>
+        /// <param name="sendto">Địa chỉ email người nhận.</param>
+        /// <param name="subject">Chủ đề.</param>
+        /// <param name="body">Nội dung.</param>
+        /// <param name="attachments">Files đính kèm.</param>
+        /// <returns></returns>
         public static bool SendEmail(string sender, string password, string sendto, string subject, string body, params string[] attachments)
         {
             try
@@ -1137,6 +1146,15 @@ namespace V6Controls.Forms
             }
         }
 
+        /// <summary>
+        /// Gửi email Thread (không chờ đợi hoàn thành).
+        /// </summary>
+        /// <param name="sender">Địa chỉ email người gửi.</param>
+        /// <param name="password">Đối với Gmail nên dùng App password.</param>
+        /// <param name="sendto">Địa chỉ email người nhận.</param>
+        /// <param name="subject">Chủ đề.</param>
+        /// <param name="body">Nội dung.</param>
+        /// <param name="attachments">Files đính kèm.</param>
         public static void SendEmailT(string sender, string password, string sendto, string subject, string body, params string[] attachments)
         {
             try
@@ -1150,9 +1168,9 @@ namespace V6Controls.Forms
                 Thread t = new Thread(SendEmailThread);
                 t.Start();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                WriteExLog("V6ControlFormHelper.SendEmailT", ex);
             }
         }
 
@@ -2314,7 +2332,8 @@ namespace V6Controls.Forms
             try
             {
                 var log = address
-                    + "\r\nException: " + ex.Message
+                    + "\r\nExceptionType: " + ex.GetType()
+                    + "\r\nExceptionMessage: " + ex.Message
                     + "\r\nStackTrace: " + ex.StackTrace;
                 AddLastError(log);
                 Logger.WriteToLog(V6Login.ClientName + " " + log);
@@ -4428,7 +4447,7 @@ namespace V6Controls.Forms
 
         #region ==== APPLY LOOKUP ====
 
-        private static TextBox txt;
+        private static TextBox txtApplyLookup;
         private static AldmConfig Aldm_config = null;
         private static AutoCompleteStringCollection auto1;
         private static string InitFilter = "";
@@ -4440,7 +4459,7 @@ namespace V6Controls.Forms
         public static void ApplyLookup(TextBox textBox, string tablename, string fieldvalue)
         {
             if (textBox == null) return;
-            txt = textBox;
+            txtApplyLookup = textBox;
             Aldm_config = V6ControlsHelper.GetAldmConfigByTableName(tablename);
             string filterType = FindFilterType(textBox);
             InitFilter = V6Login.GetInitFilter(Aldm_config.TABLE_NAME, filterType);
@@ -4449,9 +4468,9 @@ namespace V6Controls.Forms
             else LookupInfo_F_NAME = Aldm_config == null ? null : Aldm_config.F_NAME;
 
             //txt.GotFocus += ApplyLookup_GotFocus;
-            txt.KeyDown += ApplyLookup_KeyDown;
-            txt.LostFocus += ApplyLookup_LostFocus;
-            txt.Disposed += ApplyLookup_Disposed;
+            txtApplyLookup.KeyDown += ApplyLookup_KeyDown;
+            txtApplyLookup.LostFocus += ApplyLookup_LostFocus;
+            txtApplyLookup.Disposed += ApplyLookup_Disposed;
         }
 
         public static void ApplyNumberTextBox(Control control)
@@ -4520,11 +4539,11 @@ namespace V6Controls.Forms
                 //DoCharacterCasing();
                 //if (_checkOnLeave && !ReadOnly && Visible)
                 {
-                    if (txt.Text.Trim() != "")
+                    if (txtApplyLookup.Text.Trim() != "")
                     {
                         if (!string.IsNullOrEmpty(Aldm_config.F_NAME))
                         {
-                            if (ExistRowInTable(txt.Text.Trim()))
+                            if (ExistRowInTable(txtApplyLookup.Text.Trim()))
                             {
                                 if (e.KeyCode == Keys.Enter)
                                 {
@@ -4616,7 +4635,7 @@ namespace V6Controls.Forms
             var filter = InitFilter;
             if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
             var parentData = new SortedDictionary<string, object>();
-            var fStand = new V6LookupTextboxForm(parentData, txt.Text, Aldm_config, " 1=1 " + filter, LookupInfo_F_NAME, multi, FilterStart);
+            var fStand = new V6LookupTextboxForm(parentData, txtApplyLookup.Text, Aldm_config, " 1=1 " + filter, LookupInfo_F_NAME, multi, FilterStart);
             Looking = true;
             fStand.ShowDialog(owner);
         }

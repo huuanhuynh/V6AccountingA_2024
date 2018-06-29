@@ -21,6 +21,9 @@ namespace V6Controls.Forms
         protected Image btnNhanImage = Properties.Resources.Apply;
         protected ImageList waitingImages { get { return _waitingImages; } }
         protected int ii = 0;
+        /// <summary>
+        /// ID quản lý chứng từ đang xử lý.
+        /// </summary>
         public string _sttRec { get; set; }
         protected bool _escape = false;
         /// <summary>

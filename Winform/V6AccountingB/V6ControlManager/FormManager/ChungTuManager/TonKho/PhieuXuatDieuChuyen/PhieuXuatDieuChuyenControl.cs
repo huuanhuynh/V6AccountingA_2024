@@ -1588,7 +1588,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".XuLyChonMaKhoX", ex);
+                this.WriteExLog(GetType() + ".XuLyChonMaKhoX " + _sttRec, ex);
             }
         }
 
@@ -1655,7 +1655,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".XuLyChonMaKhoN", ex);
+                this.WriteExLog(GetType() + ".XuLyChonMaKhoN " + _sttRec, ex);
             }
         }
 
@@ -2940,7 +2940,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyThayDoiMaDVCS", ex);
+                this.ShowErrorException(GetType() + ".XuLyThayDoiMaDVCS " + _sttRec, ex);
             }
         }
 
@@ -3041,7 +3041,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyThayDoiMaNt", ex);
+                this.ShowErrorException(GetType() + ".XuLyThayDoiMaNt " + _sttRec, ex);
             }
         }
 
@@ -3070,7 +3070,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".FormatNumberControl", ex);
+                this.WriteExLog(GetType() + ".FormatNumberControl " + _sttRec, ex);
             }
         }
 
@@ -3087,7 +3087,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".FormatNumberGridView", ex);
+                this.WriteExLog(GetType() + ".FormatNumberGridView " + _sttRec, ex);
             }
         }
 
@@ -3226,7 +3226,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ViewInvoice", ex);
+                this.ShowErrorException(GetType() + ".ViewInvoice " + _sttRec, ex);
             }
         }
 
@@ -3262,7 +3262,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ViewInvoice", ex);
+                this.ShowErrorException(GetType() + ".ViewInvoice " + _sttRec, ex);
             }
         }
         #endregion view invoice
@@ -3371,7 +3371,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             {
                 flagAddSuccess = false;
                 addErrorMessage = ex.Message;
-                Invoice.PostErrorLog(_sttRec, "M", ex);
+                Invoice.PostErrorLog(_sttRec, "M " + _sttRec, ex);
             }
             flagAddFinish = true;
         }
@@ -3489,7 +3489,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             {
                 flagEditSuccess = false;
                 editErrorMessage = ex.Message;
-                Invoice.PostErrorLog(_sttRec, "S", ex);
+                Invoice.PostErrorLog(_sttRec, "S " + _sttRec, ex);
             }
             flagEditFinish = true;
         }
@@ -3532,7 +3532,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             catch (Exception ex)
             {
-                Invoice.PostErrorLog(_sttRec, "X", ex);
+                Invoice.PostErrorLog(_sttRec, "X " + _sttRec, ex);
                 this.ShowErrorException(string.Format("{0} {1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
@@ -3601,7 +3601,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             {
                 flagDeleteSuccess = false;
                 deleteErrorMessage = ex.Message;
-                Invoice.PostErrorLog(_sttRec, "X", ex);
+                Invoice.PostErrorLog(_sttRec, "X " + _sttRec, ex);
             }
             flagDeleteFinish = true;
         }
@@ -3797,7 +3797,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Copy", ex);
+                this.ShowErrorException(GetType() + ".Copy " + _sttRec, ex);
             }
         }
 
@@ -3855,7 +3855,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".Xem", ex);
+                this.WriteExLog(GetType() + ".Xem " + _sttRec, ex);
             }
         }
 
@@ -3881,7 +3881,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".Tim", ex);
+                this.WriteExLog(GetType() + ".Tim " + _sttRec, ex);
             }
         }
 
@@ -4610,7 +4610,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".ValidateData_Master", ex);
+                this.WriteExLog(GetType() + ".ValidateData_Master " + _sttRec, ex);
             }
             return false;
 
@@ -4630,7 +4630,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".ValidateData_Detail", ex);
+                this.WriteExLog(GetType() + ".ValidateData_Detail " + _sttRec, ex);
             }
             return true;
         }
@@ -4894,7 +4894,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".XemPhieuNhap", ex);
+                this.WriteExLog(GetType() + ".XemPhieuNhap " + _sttRec, ex);
             }
         }
 

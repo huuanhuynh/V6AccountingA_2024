@@ -10,7 +10,6 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
-using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC.ChonPhieuNhap;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -322,12 +321,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.WriteExLog(GetType() + ".FixDataGridViewSize", ex);
             }
         }
-
-        //protected void EnableButtonsWhenSave(Button btnLuu, Button btnMoi, Button btnCopy, Button btnIn, Button btnSua, Button btnHuy, Button btnXoa, Button btnXem, Button btnTim, Button btnQuayRa)
-        //{
-        //    EnableFunctionButtons();
-        //}
-
+        
         protected SortedDictionary<string, object> PreparingDataAM(V6InvoiceBase invoice)
         {
             var addDataAM = GetData();
@@ -1957,8 +1951,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
             try
             {
                 var dataGridView1 = allObjects["dataGridView1"] as DataGridView;
+                if (dataGridView1 == null)
+                {
+                    this.ShowErrorMessage(GetType() + ".AfterReplace dataGridView1 null", 500);
+                    return;
+                }
                 var replaceField = allObjects["replaceField"] as string;
-                var detail1 = allObjects["detail1"] as HD_Detail;
+                //var detail1 = allObjects["detail1"] as HD_Detail;
 
                 if (replaceField == "MA_VT" && dataGridView1.Columns.Contains("TEN_VT"))
                 {
