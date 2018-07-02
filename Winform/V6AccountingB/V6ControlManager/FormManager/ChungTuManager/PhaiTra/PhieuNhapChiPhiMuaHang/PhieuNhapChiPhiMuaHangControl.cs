@@ -2781,7 +2781,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             try
             {
                 if(IsViewingAnInvoice)
-                if (V6Login.UserRight.AllowAdd("", Invoice.CodeMact))
+                if (V6Login.UserRight.AllowCopy("", Invoice.CodeMact))
                 {
                     if (Mode == V6Mode.View)
                     {
@@ -3149,7 +3149,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 data["STT_REC0"] = _sttRec0;
 
                 data["STT_REC"] = _sttRec;
-                //Thêm thắt vài thứ
+                //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
                 data["NGAY_CT"] = dateNgayCT.Value.Date;
 
@@ -3208,7 +3208,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 data.Add("STT_REC0", _sttRec02);
 
                 data["STT_REC"] = _sttRec;
-                //Thêm thắt vài thứ
+                //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
                 data["NGAY_CT"] = dateNgayCT.Value.Date;
 
@@ -3264,7 +3264,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
                     if (cIndex >= 0 && cIndex < AD.Rows.Count)
                     {
-                        //Thêm thắt vài thứ
+                        //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
                         data["NGAY_CT"] = dateNgayCT.Value.Date;
 
@@ -3330,7 +3330,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
                     if (cIndex2 >= 0 && cIndex2 < AD2.Rows.Count)
                     {
-                        //Thêm thắt vài thứ
+                        //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
                         data["NGAY_CT"] = dateNgayCT.Value.Date;
 

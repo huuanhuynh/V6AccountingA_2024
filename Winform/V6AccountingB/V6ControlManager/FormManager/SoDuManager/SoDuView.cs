@@ -741,7 +741,7 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowCopy("", CurrentTable.ToString().ToUpper() + "6"))
             {
                 DoAddCopy();
             }

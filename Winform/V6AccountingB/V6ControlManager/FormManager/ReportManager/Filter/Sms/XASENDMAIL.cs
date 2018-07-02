@@ -65,9 +65,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                     txtConnectPort.Text = "Chưa kết nối";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + ".ViewConnecting", ex);
             }
         }
 
@@ -177,7 +177,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         private void btnGuiDanhSach_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Gửi tin nhắn cho danh sách đã chọn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                == System.Windows.Forms.DialogResult.No)
+                != DialogResult.Yes)
                 return;
             
             if (tugo_noidung_tinnhan && txtMessage.Text.Trim() == "")

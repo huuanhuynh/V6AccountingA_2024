@@ -1837,6 +1837,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AGLTMXLS.designer.cs">
       <DependentUpon>AGLTMXLS.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDSMS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDSMS.Designer.cs">
+      <DependentUpon>XASENDSMS.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR5.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6085,6 +6091,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLTMXLS.resx">
       <DependentUpon>AGLTMXLS.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Sms\XASENDSMS.resx">
+      <DependentUpon>XASENDSMS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR5.resx">
       <DependentUpon>AINVTBAR5.cs</DependentUpon>
     </EmbeddedResource>
@@ -7903,6 +7912,8 @@
     <Content Include="Resources\PersonGroup16.png" />
     <None Include="Resources\TeamViewer32.png" />
     <None Include="Resources\pp32.png" />
+    <None Include="Resources\sms.png" />
+    <None Include="Resources\sms48.png" />
     <Content Include="Resources\ToolBox16.png" />
     <Content Include="Resources\TreeBlack16.png" />
     <Content Include="Resources\TreeFolderYellowk16.png" />

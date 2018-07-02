@@ -155,7 +155,7 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
-                if (V6Login.UserRight.AllowAdd("", CurrentTable.ToString().ToUpper() + "6"))
+                if (V6Login.UserRight.AllowCopy("", CurrentTable.ToString().ToUpper() + "6"))
                 {
                     if (CurrentTable != V6TableName.None)
                     {
@@ -689,7 +689,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowCopy("", CurrentTable.ToString().ToUpper() + "6"))
             {
                 DoAddCopy();
             }

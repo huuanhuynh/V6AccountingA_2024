@@ -38,6 +38,7 @@
     <Compile Include="DefaultValueInfo.cs" />
     <Compile Include="DefineInfo.cs" />
     <Compile Include="F.cs" />
+    <Compile Include="ExecuteMode.cs" />
     <Compile Include="V6SelectResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="V6Mode.cs" />

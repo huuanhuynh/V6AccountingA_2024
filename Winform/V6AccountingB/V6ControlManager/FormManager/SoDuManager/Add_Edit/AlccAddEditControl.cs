@@ -843,7 +843,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 _sttRec0_22 = V6BusinessHelper.GetNewSttRec0(AD);
                 data["STT_REC0"] = _sttRec0_22;
                 data["STT_REC"] = txtSttRec.Text;
-                //Thêm thắt vài thứ
+                //Thêm thông tin...
                 //data["MA_CT"] = Invoice.Mact;
                 //data["NGAY_CT"] = dateNgayCT.Value.Date;
 
@@ -1003,7 +1003,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                     if (cIndex >= 0 && cIndex < AD.Rows.Count)
                     {
-                        //Thêm thắt vài thứ
+                        //Thêm thông tin...
                         //data["MA_CT"] = Invoice.Mact;
                         //data["NGAY_CT"] = dateNgayCT.Value.Date;
 

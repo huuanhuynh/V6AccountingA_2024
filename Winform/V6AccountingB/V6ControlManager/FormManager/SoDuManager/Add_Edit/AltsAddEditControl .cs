@@ -839,7 +839,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 _sttRec0_11 = V6BusinessHelper.GetNewSttRec0(AD);
                 data["STT_REC0"] = _sttRec0_11;
                 data["STT_REC"] = txtSttRec.Text;
-                //Thêm thắt vài thứ
+                //Thêm thông tin...
                 //data["MA_CT"] = Invoice.Mact;
                 //data["NGAY_CT"] = dateNgayCT.Value.Date;
 

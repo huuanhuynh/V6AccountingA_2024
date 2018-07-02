@@ -218,6 +218,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                         WindowState = FormWindowState.Maximized,
                         Vrights = txtRights.Text,
                         Vrights_Add = txtRightAdd.Text,
+                        Vrights_Copy = txtRightCopy.Text,
                         Vrights_Edit = txtRightEdit.Text,
                         Vrights_Delete = txtRightDelete.Text,
                         Vrights_View = txtRightView.Text,
@@ -229,6 +230,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                     {
                         txtRights.Text = phanQuyen.Vrights;
                         txtRightAdd.Text = phanQuyen.Vrights_Add;
+                        txtRightCopy.Text = phanQuyen.Vrights_Copy;
                         txtRightEdit.Text = phanQuyen.Vrights_Edit;
                         txtRightDelete.Text = phanQuyen.Vrights_Delete;
                         txtRightView.Text = phanQuyen.Vrights_View;

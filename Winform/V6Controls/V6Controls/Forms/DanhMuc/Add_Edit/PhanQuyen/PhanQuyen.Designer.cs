@@ -41,6 +41,7 @@
             this.columnXoa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnXem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnIn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnCopy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // imageList1
@@ -84,6 +85,7 @@
             this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnName,
             this.columnMoi,
+            this.columnCopy,
             this.columnSua,
             this.columnXoa,
             this.columnXem,
@@ -109,7 +111,7 @@
             // columnName
             // 
             this.columnName.Text = "Tên";
-            this.columnName.Width = 400;
+            this.columnName.Width = 350;
             // 
             // columnMoi
             // 
@@ -136,6 +138,11 @@
             this.columnIn.Text = "In";
             this.columnIn.Width = 50;
             // 
+            // columnCopy
+            // 
+            this.columnCopy.Text = "Copy";
+            this.columnCopy.Width = 50;
+            // 
             // PhanQuyen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -148,6 +155,7 @@
             this.Name = "PhanQuyen";
             this.Text = "PhanQuyen";
             this.Load += new System.EventHandler(this.PhanQuyen_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.treeListView1, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
@@ -167,6 +175,7 @@
         private System.Windows.Forms.ColumnHeader columnIn;
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnNhan;
+        private System.Windows.Forms.ColumnHeader columnCopy;
 
 
     }

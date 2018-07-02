@@ -15,6 +15,9 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class XLSHRGENERAL2_Control : XuLyBase
     {
         private readonly V6Categories _categories = new V6Categories();
@@ -336,6 +339,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
         private void XuLyThemBangBoSung(SortedDictionary<string, object> dataDic, string danhSachCot2)
         {
+            string error = "";
             try
             {
                 var dscot2ds = ObjectAndString.XmlStringToDataSet(danhSachCot2);
@@ -402,7 +406,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                             lastName = "";
                         }
 
-                        string tach3 = row["TACH3"].ToString().Trim();
+                        string tach3 = "";
+                        if (row.Table.Columns.Contains("TACH3"))
+                        {
+                            tach3 = (row["TACH3"] ?? "").ToString().Trim();
+                        }
                         if (tach3 != "" && dataDic.ContainsKey(tach3))
                         {
                             string fullName = dataDic[tach3].ToString().Trim();
@@ -510,13 +518,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     }
                     catch (Exception ex)
                     {
+                        error += "\r\n" + ex.Message;
                         this.WriteExLog(GetType() + ".XuLyThemBangBoSung_For", ex);
                     }
                 }
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".XuLyThemBangBoSung", ex);
+                this.ShowErrorException(GetType() + ".XuLyThemBangBoSung", ex);
+            }
+
+            if (error.Length > 0)
+            {
+                this.ShowErrorMessage(error);
             }
         }
 

@@ -3765,7 +3765,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             try
             {
                 if(IsViewingAnInvoice)
-                if (V6Login.UserRight.AllowAdd("", Invoice.CodeMact))
+                if (V6Login.UserRight.AllowCopy("", Invoice.CodeMact))
                 {
                     if (Mode == V6Mode.View)
                     {
@@ -4090,7 +4090,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 _sttRec0 = V6BusinessHelper.GetNewSttRec0(AD);
                 data["STT_REC0"] = _sttRec0;
                 data["STT_REC"] = _sttRec;
-                //Thêm thắt vài thứ
+                //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
                 data["NGAY_CT"] = dateNgayCT.Value.Date;
 
@@ -4150,7 +4150,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                     if (cIndex >= 0 && cIndex < AD.Rows.Count)
                     {
-                        //Thêm thắt vài thứ
+                        //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
                         data["NGAY_CT"] = dateNgayCT.Value.Date;
 

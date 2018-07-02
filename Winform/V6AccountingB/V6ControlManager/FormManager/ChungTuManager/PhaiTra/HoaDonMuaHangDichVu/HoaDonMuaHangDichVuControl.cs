@@ -708,7 +708,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
 
                     if (cIndex >= 0 && cIndex < AD3.Rows.Count)
                     {
-                        //Thêm thắt vài thứ
+                        //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
                         data["NGAY_CT"] = dateNgayCT.Value.Date;
 
@@ -766,7 +766,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                 _sttRec03 = V6BusinessHelper.GetNewSttRec0(AD3);
                 data["STT_REC0"] = _sttRec03;
                 data["STT_REC"] = _sttRec;
-                //Thêm thắt vài thứ
+                //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
                 data["NGAY_CT"] = dateNgayCT.Value.Date;
 
@@ -2860,7 +2860,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             try
             {
                 if(IsViewingAnInvoice)
-                if (V6Login.UserRight.AllowAdd("", Invoice.CodeMact))
+                if (V6Login.UserRight.AllowCopy("", Invoice.CodeMact))
                 {
                     if (Mode == V6Mode.View)
                     {
@@ -3231,7 +3231,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                 _sttRec0 = V6BusinessHelper.GetNewSttRec0(AD);
                 data["STT_REC0"] = _sttRec0;
                 data["STT_REC"] = _sttRec;
-                //Thêm thắt vài thứ
+                //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
                 data["NGAY_CT"] = dateNgayCT.Value.Date;
 
@@ -3290,7 +3290,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                 data.Add("STT_REC0", _sttRec02);
 
                 data["STT_REC"] = _sttRec;
-                //Thêm thắt vài thứ
+                //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
                 data["NGAY_CT"] = dateNgayCT.Value.Date;
 
@@ -3346,7 +3346,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
 
                     if (cIndex >= 0 && cIndex < AD.Rows.Count)
                     {
-                        //Thêm thắt vài thứ
+                        //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
                         data["NGAY_CT"] = dateNgayCT.Value.Date;
 
@@ -3412,7 +3412,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
 
                     if (cIndex2 >= 0 && cIndex2 < AD2.Rows.Count)
                     {
-                        //Thêm thắt vài thứ
+                        //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
                         data["NGAY_CT"] = dateNgayCT.Value.Date;
 

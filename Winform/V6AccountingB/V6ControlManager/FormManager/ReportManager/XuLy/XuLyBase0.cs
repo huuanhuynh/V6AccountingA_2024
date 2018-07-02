@@ -4,11 +4,13 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
+using V6Structs;
 using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -128,10 +130,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 _executing = true;
-                //V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure, _pList.ToArray());
-                SqlHelper.ExecuteNonQuery(DatabaseConfig.ConnectionString, CommandType.StoredProcedure,
-                    _reportProcedure, 600, _pList.ToArray());
-                
+                if (FilterControl.ExecuteMode == ExecuteMode.ExecuteProcedure)
+                {
+                    _ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, _pList.ToArray());
+                }
+                else
+                {
+                    //V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure, _pList.ToArray());
+                    SqlHelper.ExecuteNonQuery(DatabaseConfig.ConnectionString, CommandType.StoredProcedure,
+                        _reportProcedure, 600, _pList.ToArray());
+                }
                 _success = true;
             }
             catch (Exception ex)
@@ -179,6 +187,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 try
                 {
                     FilterControl.LoadDataFinish(_ds);
+                    //Chỉ kích hoạt hàm FormatGridView
+                    FilterControl.FormatGridView(null);
                     DoAfterExecuteSuccess();
                     _message = V6Text.Finish;
                     V6ControlFormHelper.SetStatusText(_message);

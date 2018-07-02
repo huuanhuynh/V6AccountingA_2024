@@ -107,6 +107,19 @@ namespace V6Init
             }
         }
 
+        public bool AllowCopy(string empty, string codeMact)
+        {
+            try
+            {
+                return IsAdmin || RightCopy.Contains(codeMact);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("V6Rights AllowCopy: " + ex.Message, "V6Init");
+                return false;
+            }
+        }
+
         public bool AllowEdit(string itemid, string code)
         {
             try
@@ -216,6 +229,13 @@ namespace V6Init
                 return _dataUserInfo["r_add"].ToString().Trim();
             }
         }
+        private string RightCopy
+        {
+            get
+            {
+                return _dataUserInfo["r_copy"].ToString().Trim();
+            }
+        }
         private string RightEdit
         {
             get
@@ -289,5 +309,6 @@ namespace V6Init
                 return (byte)ObjectAndString.ObjectToInt(a);
             }
         }
+        
     }
 }

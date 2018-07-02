@@ -1079,7 +1079,7 @@ namespace V6Controls.Controls
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", _tableName.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowCopy("", _tableName.ToUpper() + "6"))
             {
                 DoAddCopy();
             }

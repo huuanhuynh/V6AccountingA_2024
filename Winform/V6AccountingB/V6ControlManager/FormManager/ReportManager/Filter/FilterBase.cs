@@ -211,6 +211,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         public IDictionary<string, object> ParentRowData;
         public virtual string Kieu_post { get; set; }
+        /// <summary>
+        /// <para>Chỉ định kiểu thực thi cho hàm gốc</para>
+        /// <para></para>
+        /// </summary>
+        public ExecuteMode ExecuteMode = ExecuteMode.ExecuteProcedureNoneQuery;
 
         /// <summary>
         /// Lấy danh sách tham số.

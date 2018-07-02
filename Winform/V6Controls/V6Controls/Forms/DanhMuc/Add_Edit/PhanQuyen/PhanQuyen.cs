@@ -22,6 +22,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         private V6Mode Mode { get; set; }
         public string Vrights { get; set; }
         public string Vrights_Add { get; set; }
+        public string Vrights_Copy { get; set; }
         public string Vrights_Edit { get; set; }
         public string Vrights_Delete { get; set; }
         public string Vrights_View { get; set; }
@@ -76,6 +77,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             item.SubItems.Add("");
             item.SubItems.Add("");
             item.SubItems.Add("");
+            item.SubItems.Add("");
             treeListView1.Items.Add(item);
 
             var data2 = GetMenu2(V6Options.MODULE_ID, v2ID);
@@ -93,6 +95,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             var jobID = row["jobID"].ToString().Trim();
             TreeListViewItem item = new TreeListViewItem(text);
             item.Name = jobID;
+            item.SubItems.Add("");
             item.SubItems.Add("");
             item.SubItems.Add("");
             item.SubItems.Add("");
@@ -120,6 +123,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             item.SubItems.Add("");
             item.SubItems.Add("");
             item.SubItems.Add("");
+            item.SubItems.Add("");
             
             parent.Items.Add(item);
 
@@ -138,34 +142,40 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                 item.Parent.SubItems[1].Text = yes;
                 item.Parent.Parent.SubItems[1].Text = yes;
             }
-            if (Vrights_Edit.Contains(itemID) || is_basic_right)
+            if (Vrights_Copy.Contains(itemID) || is_basic_right)
             {
                 item.SubItems[2].Text = yes;
                 item.Parent.SubItems[2].Text = yes;
                 item.Parent.Parent.SubItems[2].Text = yes;
             }
-            if (Vrights_Delete.Contains(itemID) || is_basic_right)
+            if (Vrights_Edit.Contains(itemID) || is_basic_right)
             {
                 item.SubItems[3].Text = yes;
                 item.Parent.SubItems[3].Text = yes;
                 item.Parent.Parent.SubItems[3].Text = yes;
             }
-            if (Vrights_View.Contains(itemID) || is_basic_right)
+            if (Vrights_Delete.Contains(itemID) || is_basic_right)
             {
                 item.SubItems[4].Text = yes;
                 item.Parent.SubItems[4].Text = yes;
                 item.Parent.Parent.SubItems[4].Text = yes;
             }
-            if (Vrights_Print.Contains(itemID) || is_basic_right)
+            if (Vrights_View.Contains(itemID) || is_basic_right)
             {
                 item.SubItems[5].Text = yes;
                 item.Parent.SubItems[5].Text = yes;
                 item.Parent.Parent.SubItems[5].Text = yes;
             }
+            if (Vrights_Print.Contains(itemID) || is_basic_right)
+            {
+                item.SubItems[6].Text = yes;
+                item.Parent.SubItems[6].Text = yes;
+                item.Parent.Parent.SubItems[6].Text = yes;
+            }
 
             if (last)
             {
-                for (int i = 1; i <= 5; i++)
+                for (int i = 1; i <= 6; i++)
                 {
                     SetCheckX(item, i, item.SubItems[i].Text);
                 }
@@ -313,7 +323,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                 }
             }
 
-            if (full) parent.SubItems[column].Text = parent.CheckStatus == CheckState.Indeterminate?yn: yes;
+            if (full) parent.SubItems[column].Text = parent.CheckStatus == CheckState.Indeterminate ? yn : yes;
             else if (empty) parent.SubItems[column].Text = no;
             else parent.SubItems[column].Text = yn;
 
@@ -324,7 +334,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         }
 
         private string yes = "X";
-        string no="", yn = "-";
+        private string no = "";
+        private string yn = "-";
 
         private string SwapText(string s)
         {
@@ -343,6 +354,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         {
             var vrights = "";
             var vrights_add = "";
+            var vrights_copy = "";
             var vrights_edit = "";
             var vrights_delete = "";
             var vrights_view = "";
@@ -360,12 +372,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                             if (item3.SubItems[1].Text == yes)
                                 vrights_add += "/" + item3.Name;
                             if (item3.SubItems[2].Text == yes)
-                                vrights_edit += "/" + item3.Name;
+                                vrights_copy += "/" + item3.Name;
                             if (item3.SubItems[3].Text == yes)
-                                vrights_delete += "/" + item3.Name;
+                                vrights_edit += "/" + item3.Name;
                             if (item3.SubItems[4].Text == yes)
-                                vrights_view += "/" + item3.Name;
+                                vrights_delete += "/" + item3.Name;
                             if (item3.SubItems[5].Text == yes)
+                                vrights_view += "/" + item3.Name;
+                            if (item3.SubItems[6].Text == yes)
                                 vrights_print += "/" + item3.Name;
                         }
                     }
@@ -373,12 +387,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             }
             if (vrights.Length > 1) vrights = vrights.Substring(1);
             if (vrights_add.Length > 1) vrights_add = vrights_add.Substring(1);
+            if (vrights_copy.Length > 1) vrights_copy = vrights_copy.Substring(1);
             if (vrights_edit.Length > 1) vrights_edit = vrights_edit.Substring(1);
             if (vrights_delete.Length > 1) vrights_delete = vrights_delete.Substring(1);
             if (vrights_view.Length > 1) vrights_view = vrights_view.Substring(1);
             if (vrights_print.Length > 1) vrights_print = vrights_print.Substring(1);
             Vrights = vrights;
             Vrights_Add = vrights_add;
+            Vrights_Copy = vrights_copy;
             Vrights_Edit = vrights_edit;
             Vrights_Delete = vrights_delete;
             Vrights_View = vrights_view;

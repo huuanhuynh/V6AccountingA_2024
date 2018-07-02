@@ -810,7 +810,7 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", "B" + _maCt))
+            if (V6Login.UserRight.AllowCopy("", "B" + _maCt))
             {
                 DoAddCopy();
             }

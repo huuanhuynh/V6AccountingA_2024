@@ -81,6 +81,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtRightCopy = new System.Windows.Forms.RichTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -365,6 +366,7 @@
             this.groupBox1.AccessibleName = "groupBox1";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txtRightCopy);
             this.groupBox1.Controls.Add(this.chkPass_Exp);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtPassDate);
@@ -541,7 +543,7 @@
             // txtRightPrint
             // 
             this.txtRightPrint.AccessibleName = "r_print";
-            this.txtRightPrint.Location = new System.Drawing.Point(693, 158);
+            this.txtRightPrint.Location = new System.Drawing.Point(717, 158);
             this.txtRightPrint.Name = "txtRightPrint";
             this.txtRightPrint.Size = new System.Drawing.Size(18, 28);
             this.txtRightPrint.TabIndex = 26;
@@ -562,7 +564,7 @@
             // txtRightEdit
             // 
             this.txtRightEdit.AccessibleName = "r_edit";
-            this.txtRightEdit.Location = new System.Drawing.Point(645, 158);
+            this.txtRightEdit.Location = new System.Drawing.Point(669, 158);
             this.txtRightEdit.Name = "txtRightEdit";
             this.txtRightEdit.Size = new System.Drawing.Size(18, 28);
             this.txtRightEdit.TabIndex = 26;
@@ -603,7 +605,7 @@
             // txtRightDelete
             // 
             this.txtRightDelete.AccessibleName = "r_del";
-            this.txtRightDelete.Location = new System.Drawing.Point(669, 158);
+            this.txtRightDelete.Location = new System.Drawing.Point(693, 158);
             this.txtRightDelete.Name = "txtRightDelete";
             this.txtRightDelete.Size = new System.Drawing.Size(18, 28);
             this.txtRightDelete.TabIndex = 26;
@@ -852,6 +854,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên người sử dụng";
             // 
+            // txtRightCopy
+            // 
+            this.txtRightCopy.AccessibleName = "r_copy";
+            this.txtRightCopy.Location = new System.Drawing.Point(645, 158);
+            this.txtRightCopy.Name = "txtRightCopy";
+            this.txtRightCopy.Size = new System.Drawing.Size(18, 28);
+            this.txtRightCopy.TabIndex = 36;
+            this.txtRightCopy.Text = "";
+            this.txtRightCopy.Visible = false;
+            // 
             // NguoiSuDungAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -929,5 +941,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private V6VvarTextBox txtUser_pre;
+        private System.Windows.Forms.RichTextBox txtRightCopy;
     }
 }

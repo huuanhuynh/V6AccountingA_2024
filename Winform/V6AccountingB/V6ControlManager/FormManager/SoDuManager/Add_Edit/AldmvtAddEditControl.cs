@@ -446,7 +446,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                     if (cIndex >= 0 && cIndex < AD.Rows.Count)
                     {
-                        //Thêm thắt vài thứ
+                        //Thêm thông tin...
                         //data["MA_CT"] = Invoice.Mact;
                         //data["NGAY_CT"] = dateNgayCT.Value.Date;
 

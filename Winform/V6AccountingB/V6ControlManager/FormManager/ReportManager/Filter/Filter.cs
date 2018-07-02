@@ -988,6 +988,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                 case "ASENDMAIL":
                     return new Sms.XASENDMAIL();
+                case "ASENDSMS":
+                    return new Sms.XASENDSMS();
 
             }
             return new FilterBase() { Visible = false };
