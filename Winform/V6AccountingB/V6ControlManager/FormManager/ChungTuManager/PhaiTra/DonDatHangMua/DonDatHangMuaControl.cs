@@ -4007,7 +4007,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 //    return false;
                 //}
 
-                ValidateDetailData(Invoice, data);
+                string errors = ValidateDetailData(Invoice, data);
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    this.ShowWarningMessage(errors);
+                    return false;
+                }
             }
             catch (Exception ex)
             {

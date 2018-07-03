@@ -286,7 +286,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             else
             {
-                MODE = Old_mode;
+                //MODE = Old_mode;
+                _mode = Old_mode;
+                SetFormControlsReadOnly(false);
+                //SetData(null);
+                btnMoi.Image = Properties.Resources.Cancel16;
+                //btnMoi.Text = V6Text.Cancel;
+                toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
+                btnMoi.Enabled = true;
+                btnSua.Enabled = false;
+                btnXoa.Enabled = false;
+                btnNhan.Enabled = true;
+                btnChucNang.Enabled = true;
             }
         }
 

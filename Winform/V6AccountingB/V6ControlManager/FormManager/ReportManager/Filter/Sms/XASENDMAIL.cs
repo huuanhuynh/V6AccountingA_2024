@@ -56,13 +56,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         {
             try
             {
-                if (V6ControlFormHelper.SmsModem != null && V6ControlFormHelper.SmsModem.GSM_PORT.IsOpen)
+                if (V6ControlFormHelper.SmsModem != null && V6ControlFormHelper.SmsModem.GSM_PORT != null && V6ControlFormHelper.SmsModem.GSM_PORT.IsOpen)
                 {
                     txtConnectPort.Text = "Đã kết nối " + V6ControlFormHelper.SmsModem.PortName + ":" + V6ControlFormHelper.SmsModem.Operator;
+                    btnGuiDanhSach.Enabled = true;
                 }
                 else
                 {
                     txtConnectPort.Text = "Chưa kết nối";
+                    btnGuiDanhSach.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -120,9 +122,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
         private void btnGui1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Gửi tin nhắn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                != DialogResult.Yes)
-                return;
+            if (this.ShowConfirmMessage("Gửi tin nhắn?", "Xác nhận") != DialogResult.Yes) return;
+
             if (txtSmsTo.Text.Trim() == "")
             {
                 MessageBox.Show("Chưa nhập số!");
@@ -176,9 +177,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
         private void btnGuiDanhSach_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Gửi tin nhắn cho danh sách đã chọn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                != DialogResult.Yes)
-                return;
+            if (this.ShowConfirmMessage("Gửi tin nhắn cho danh sách đã chọn?", "Xác nhận") != DialogResult.Yes) return;
             
             if (tugo_noidung_tinnhan && txtMessage.Text.Trim() == "")
             {
@@ -247,33 +246,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         private void Connect()
         {
             V6ControlFormHelper.ConnectModemSms();
-            //new SmsModemSettingForm().ShowDialog();
             ViewConnecting();
         }
         private void AutoConnect()
         {
             V6ControlFormHelper.ConnectModemSms(true);
             ViewConnecting();
-            return;
-            //try
-            //{
-            //    V6ControlFormHelper.SmsModem = new GSM_Phone();
-            //    string port=V6ControlFormHelper.SmsModem.AutoConnect(V6ControlFormHelper.SmsModem_SettingPort);
-            //    ObjectAndString.NumberToString(1m, 0, ",", " ");
-            //    if(port!=null)
-            //    {
-            //        V6ControlFormHelper.SmsModem_SettingPort = V6ControlFormHelper.SmsModem.PortName;
-            //        //Program.setting.SaveSetting();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Không kết nối được với modem sms!");
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Có lỗi khi kết nối với modem sms." + ex.Message);
-            //}
         }
 
         bool sending = false;
@@ -403,7 +381,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         private void SendFromTable()
         {
             sending = true;
-            Control.CheckForIllegalCrossThreadCalls = false;
+            CheckForIllegalCrossThreadCalls = false;
             indexDaGui = new List<int>();
             indexGuiLoi = new List<int>();
             messageText = txtMessage.Text;

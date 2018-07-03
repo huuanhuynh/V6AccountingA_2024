@@ -4006,13 +4006,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             
             if (AM_old != null)
             {
-                txtMa_sonb.Text = AM_old["Ma_sonb"].ToString().Trim();
-                if (TxtSo_ct.Text.Trim()=="")
-                        TxtSo_ct.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
+                var txtt = new V6VvarTextBox();
+                txtt.VVar = txtMa_sonb.VVar;
+                var old_masonb = AM_old["Ma_sonb"].ToString().Trim();
+                txtt.Text = old_masonb;
+                if (txtt.Data != null && txtt.Data["Status"].ToString().Trim() == "1")
+                {
+                    txtMa_sonb.Text = old_masonb;
+                    if (TxtSo_ct.Text.Trim() == "")
+                    {
+                        TxtSo_ct.Text = V6BusinessHelper.GetNewSoCt(old_masonb);
+                    }
 
-                if (txtso_seri.Text.Trim() == "")
-                    txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
-
+                    if (txtso_seri.Text.Trim() == "")
+                    {
+                        txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
+                    }
+                }
             }
         }
 
@@ -6256,7 +6266,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     return false;
                 }
 
-                ValidateDetailData(Invoice, data);
+                string errors = ValidateDetailData(Invoice, data);
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    this.ShowWarningMessage(errors);
+                    return false;
+                }
             }
             catch (Exception ex)
             {

@@ -29,22 +29,27 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.timerGuiDanhSach = new System.Windows.Forms.Timer(this.components);
             this.timerSend = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.chkIgnore = new System.Windows.Forms.CheckBox();
             this.grbTest = new System.Windows.Forms.GroupBox();
             this.txtSmsTo = new V6Controls.V6ColorTextBox();
             this.btnGui1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.Check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.chkIgnore = new System.Windows.Forms.CheckBox();
             this.txtChonTen = new V6Controls.V6ColorTextBox();
             this.btnChonTheoTen = new System.Windows.Forms.Button();
             this.btnBoChonHet = new System.Windows.Forms.Button();
             this.btnDaoLuaChon = new System.Windows.Forms.Button();
             this.btnChonHet = new System.Windows.Forms.Button();
             this.grbFilter = new System.Windows.Forms.GroupBox();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
             this.filterLineVvarTextBox8 = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox4 = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox3 = new V6ReportControls.FilterLineVvarTextBox();
@@ -52,8 +57,6 @@
             this.lineMact = new V6ReportControls.FilterLineVvarTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
             this.grbKetNoi = new System.Windows.Forms.GroupBox();
             this.btnTuKetNoi = new System.Windows.Forms.Button();
             this.btnKetNoi = new System.Windows.Forms.Button();
@@ -78,6 +81,18 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Excel|*.xls;*.xlsx|DatabaseFox|*.dbf|Text|*.txt|Tất cả hỗ trợ|*.xls;*.xlsx;*.dbf;" +
     "*.txt";
+            // 
+            // chkIgnore
+            // 
+            this.chkIgnore.AutoSize = true;
+            this.chkIgnore.Location = new System.Drawing.Point(800, 9);
+            this.chkIgnore.Name = "chkIgnore";
+            this.chkIgnore.Size = new System.Drawing.Size(46, 17);
+            this.chkIgnore.TabIndex = 7;
+            this.chkIgnore.Text = "H=h";
+            this.toolTip1.SetToolTip(this.chkIgnore, "Không phân biệt hoa thường");
+            this.chkIgnore.UseVisualStyleBackColor = true;
+            this.chkIgnore.Visible = false;
             // 
             // grbTest
             // 
@@ -119,15 +134,28 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Check});
             this.dataGridView1.Location = new System.Drawing.Point(311, 32);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(538, 505);
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.Size = new System.Drawing.Size(538, 502);
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             // 
@@ -142,18 +170,6 @@
             this.Check.ToolTipText = "Chọn được gửi hay không";
             this.Check.TrueValue = "1";
             this.Check.Width = 40;
-            // 
-            // chkIgnore
-            // 
-            this.chkIgnore.AutoSize = true;
-            this.chkIgnore.Location = new System.Drawing.Point(800, 9);
-            this.chkIgnore.Name = "chkIgnore";
-            this.chkIgnore.Size = new System.Drawing.Size(46, 17);
-            this.chkIgnore.TabIndex = 7;
-            this.chkIgnore.Text = "H=h";
-            this.toolTip1.SetToolTip(this.chkIgnore, "Không phân biệt hoa thường");
-            this.chkIgnore.UseVisualStyleBackColor = true;
-            this.chkIgnore.Visible = false;
             // 
             // txtChonTen
             // 
@@ -229,6 +245,38 @@
             this.grbFilter.TabIndex = 0;
             this.grbFilter.TabStop = false;
             this.grbFilter.Text = "Lọc dữ liệu";
+            // 
+            // dateNgay_ct2
+            // 
+            this.dateNgay_ct2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateNgay_ct2.BackColor = System.Drawing.SystemColors.Window;
+            this.dateNgay_ct2.CustomFormat = "dd/MM/yyyy";
+            this.dateNgay_ct2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dateNgay_ct2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.dateNgay_ct2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateNgay_ct2.HoverColor = System.Drawing.Color.Yellow;
+            this.dateNgay_ct2.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.dateNgay_ct2.LeaveColor = System.Drawing.Color.White;
+            this.dateNgay_ct2.Location = new System.Drawing.Point(189, 39);
+            this.dateNgay_ct2.Name = "dateNgay_ct2";
+            this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
+            this.dateNgay_ct2.TabIndex = 3;
+            // 
+            // dateNgay_ct1
+            // 
+            this.dateNgay_ct1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateNgay_ct1.BackColor = System.Drawing.SystemColors.Window;
+            this.dateNgay_ct1.CustomFormat = "dd/MM/yyyy";
+            this.dateNgay_ct1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dateNgay_ct1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.dateNgay_ct1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateNgay_ct1.HoverColor = System.Drawing.Color.Yellow;
+            this.dateNgay_ct1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.dateNgay_ct1.LeaveColor = System.Drawing.Color.White;
+            this.dateNgay_ct1.Location = new System.Drawing.Point(189, 13);
+            this.dateNgay_ct1.Name = "dateNgay_ct1";
+            this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
+            this.dateNgay_ct1.TabIndex = 1;
             // 
             // filterLineVvarTextBox8
             // 
@@ -319,38 +367,6 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Từ ngày";
             // 
-            // dateNgay_ct2
-            // 
-            this.dateNgay_ct2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateNgay_ct2.BackColor = System.Drawing.SystemColors.Window;
-            this.dateNgay_ct2.CustomFormat = "dd/MM/yyyy";
-            this.dateNgay_ct2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgay_ct2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dateNgay_ct2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateNgay_ct2.HoverColor = System.Drawing.Color.Yellow;
-            this.dateNgay_ct2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dateNgay_ct2.LeaveColor = System.Drawing.Color.White;
-            this.dateNgay_ct2.Location = new System.Drawing.Point(189, 39);
-            this.dateNgay_ct2.Name = "dateNgay_ct2";
-            this.dateNgay_ct2.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct2.TabIndex = 3;
-            // 
-            // dateNgay_ct1
-            // 
-            this.dateNgay_ct1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateNgay_ct1.BackColor = System.Drawing.SystemColors.Window;
-            this.dateNgay_ct1.CustomFormat = "dd/MM/yyyy";
-            this.dateNgay_ct1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgay_ct1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dateNgay_ct1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateNgay_ct1.HoverColor = System.Drawing.Color.Yellow;
-            this.dateNgay_ct1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dateNgay_ct1.LeaveColor = System.Drawing.Color.White;
-            this.dateNgay_ct1.Location = new System.Drawing.Point(189, 13);
-            this.dateNgay_ct1.Name = "dateNgay_ct1";
-            this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct1.TabIndex = 1;
-            // 
             // grbKetNoi
             // 
             this.grbKetNoi.Controls.Add(this.btnTuKetNoi);
@@ -403,9 +419,9 @@
             // 
             this.btnGuiDanhSach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnGuiDanhSach.Image = global::V6ControlManager.Properties.Resources.sms48;
-            this.btnGuiDanhSach.Location = new System.Drawing.Point(12, 485);
+            this.btnGuiDanhSach.Location = new System.Drawing.Point(7, 482);
             this.btnGuiDanhSach.Name = "btnGuiDanhSach";
-            this.btnGuiDanhSach.Size = new System.Drawing.Size(197, 52);
+            this.btnGuiDanhSach.Size = new System.Drawing.Size(165, 52);
             this.btnGuiDanhSach.TabIndex = 10;
             this.btnGuiDanhSach.Text = "Gửi theo danh sách chọn";
             this.btnGuiDanhSach.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;

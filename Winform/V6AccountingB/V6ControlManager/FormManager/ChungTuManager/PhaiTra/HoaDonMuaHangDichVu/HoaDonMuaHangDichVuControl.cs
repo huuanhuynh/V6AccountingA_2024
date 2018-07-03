@@ -4096,7 +4096,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         {
             try
             {
-                ValidateDetailData(Invoice, data);
+                string errors = ValidateDetailData(Invoice, data);
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    this.ShowWarningMessage(errors);
+                    return false;
+                }
                 //if (_tkDt.Int_Data("Loai_tk") == 0)
                 //{
                 //    this.ShowWarningMessage("Tài khoản không phải chi tiết !");

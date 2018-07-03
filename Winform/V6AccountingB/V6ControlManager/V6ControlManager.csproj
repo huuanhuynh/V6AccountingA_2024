@@ -5147,6 +5147,18 @@
     <Compile Include="FormManager\ToolManager\FormExportSqlTableToFile.designer.cs">
       <DependentUpon>FormExportSqlTableToFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ToolManager\HuuanTetris\HuuanTetris1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ToolManager\HuuanTetris\HuuanTetris1.designer.cs">
+      <DependentUpon>HuuanTetris1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ToolManager\HuuanTetris\HuuanTetrisEnterName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ToolManager\HuuanTetris\HuuanTetrisEnterName.designer.cs">
+      <DependentUpon>HuuanTetrisEnterName.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\VitriManager\VitriCafeContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -7729,6 +7741,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ToolManager\FormExportSqlTableToFile.resx">
       <DependentUpon>FormExportSqlTableToFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ToolManager\HuuanTetris\HuuanTetris1.resx">
+      <DependentUpon>HuuanTetris1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ToolManager\HuuanTetris\HuuanTetrisEnterName.resx">
+      <DependentUpon>HuuanTetrisEnterName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\VitriManager\VitriCafeContainer.resx">
       <DependentUpon>VitriCafeContainer.cs</DependentUpon>

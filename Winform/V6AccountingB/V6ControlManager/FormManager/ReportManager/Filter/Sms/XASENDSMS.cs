@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using GSM;
+using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -86,13 +88,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         {
             try
             {
-                if (V6ControlFormHelper.SmsModem != null && V6ControlFormHelper.SmsModem.GSM_PORT.IsOpen)
+                if (V6ControlFormHelper.SmsModem != null && V6ControlFormHelper.SmsModem.GSM_PORT != null && V6ControlFormHelper.SmsModem.GSM_PORT.IsOpen)
                 {
                     txtConnectPort.Text = "Đã kết nối " + V6ControlFormHelper.SmsModem.PortName + ":" + V6ControlFormHelper.SmsModem.Operator;
+                    btnGuiDanhSach.Enabled = true;
                 }
                 else
                 {
                     txtConnectPort.Text = "Chưa kết nối";
+                    btnGuiDanhSach.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -113,9 +117,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
         private void btnGui1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Gửi tin nhắn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                != DialogResult.Yes)
-                return;
+            if (this.ShowConfirmMessage("Gửi tin nhắn?", "Xác nhận") != DialogResult.Yes) return;
+
             if (txtSmsTo.Text.Trim() == "")
             {
                 MessageBox.Show("Chưa nhập số!");
@@ -164,9 +167,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         
         private void btnGuiDanhSach_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Gửi tin nhắn cho danh sách đã chọn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                != DialogResult.Yes)
-                return;
+            if (this.ShowConfirmMessage("Gửi tin nhắn cho danh sách đã chọn?", "Xác nhận") != DialogResult.Yes) return;
             
             if(sending)
             {
@@ -176,6 +177,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
             try
             {
+                btnGuiDanhSach.Enabled = false;
                 if (V6ControlFormHelper.SmsModem.GSM_PORT != null)
                 {
                     if (!V6ControlFormHelper.SmsModem.GSM_PORT.IsOpen)
@@ -201,7 +203,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         private void Connect()
         {
             V6ControlFormHelper.ConnectModemSms();
-            //new SmsModemSettingForm().ShowDialog();
             ViewConnecting();
         }
         private void AutoConnect()
@@ -302,73 +303,76 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             return message;
         }
 
-        private bool Program_autoSend = false;
         private void timerGuiDanhSach_Tick(object sender, EventArgs e)
         {
-            if(!sending && indexDaGui.Count==0 && indexGuiLoi.Count==0) //gui xong
+            if(!sending) //gui xong
             {
                 timerGuiDanhSach.Stop();
-                if (Program_autoSend)
-                {
-                    //Exit();
-                }
-                else
-                {
-                    //this.Text = "V6MultiSms";
-                }
-            }
-            else
-            {
-                if (Program_autoSend)
-                {
-                    int count = indexDaGui.Count;
-                    for (int i = 0; i < count; i++)
-                    {
-                        //int currentIndex = indexDaGui[0];
-                        //DataGridViewRow currentRow = dataGridView1.Rows[currentIndex];
-                        //string currentText = currentRow.Cells[columnTenNguoiNhan].Value.ToString();
-                        //dataGridView1.Rows[currentIndex].Cells[columnTenNguoiNhan].Value = EditNameDaGui(currentText);
-                        indexDaGui.RemoveAt(0);
-                    }
+                btnGuiDanhSach.Enabled = true;
+                ShowMainMessage(V6Text.Finish);
 
-                    count = indexGuiLoi.Count;
-                    for (int i = 0; i < count; i++)
-                    {
-                        //int currentIndex = indexGuiLoi[0];
-                        //DataGridViewRow currentRow = dataGridView1.Rows[currentIndex];
-                        //string currentText = currentRow.Cells[columnTenNguoiNhan].Value.ToString();
-                        //dataGridView1.Rows[currentIndex].Cells[columnTenNguoiNhan].Value = EditNameGuiLoi(currentText);
-
-                        indexGuiLoi.RemoveAt(0);
-                    }
-                }
-                else
+                try
                 {
-                    //this.Text = "" + Text.Substring(1) + Text[0];
+                    // Hiển thị trạng thái gửi bằng màu sắc, gom thông tin.
 
                     int count = indexDaGui.Count;
+                    string Lstt_rec = "";
+                    string Lma_ct = "";
+                    List<DataGridViewRow> listRow = new List<DataGridViewRow>();
                     for (int i = 0; i < count; i++)
                     {
                         int currentIndex = indexDaGui[0];
                         //!!!!! check đã gửi, nên đổi thành màu sắc.
                         DataGridViewRow currentRow = dataGridView1.Rows[currentIndex];
-                        string currentText = currentRow.Cells[columnSoDienThoai].Value.ToString();
-                        dataGridView1.Rows[currentIndex].Cells[columnSoDienThoai].Value = EditNameDaGui(currentText);
+                        listRow.Add(currentRow);
+                        //currentRow.DefaultCellStyle.BackColor = Color.GreenYellow;
+                        //string currentText = currentRow.Cells[columnSoDienThoai].Value.ToString();
+                        //dataGridView1.Rows[currentIndex].Cells[columnSoDienThoai].Value = EditNameDaGui(currentText);
+                        Lstt_rec += ";" + currentRow.Cells["STT_REC"].Value.ToString().Trim();
+                        Lma_ct += ";" + currentRow.Cells["MA_CT"].Value.ToString().Trim();
                         indexDaGui.RemoveAt(0);
                     }
+
+                    // Update
+                    if (Lstt_rec.Length > 0 && Lma_ct.Length > 0)
+                    {
+                        Lstt_rec = Lstt_rec.Substring(1);
+                        Lma_ct = Lma_ct.Substring(1);
+                        SqlParameter[] plist =
+                        {
+                            new SqlParameter("@Lstt_rec", Lstt_rec),
+                            new SqlParameter("@Lma_ct", Lma_ct),
+                            new SqlParameter("@UserID", V6Login.UserId),
+                        };
+                        V6BusinessHelper.ExecuteProcedureNoneQuery("AAPPR_XULY_TA1_BC1_SMS", plist);
+                    }
+
+                    foreach (DataGridViewRow row in listRow)
+                    {
+                        dataGridView1.Rows.Remove(row);
+                    }
+
 
                     count = indexGuiLoi.Count;
                     for (int i = 0; i < count; i++)
                     {
                         int currentIndex = indexGuiLoi[0];
                         DataGridViewRow currentRow = dataGridView1.Rows[currentIndex];
-                        string currentText = currentRow.Cells[columnSoDienThoai].Value.ToString();
-                        dataGridView1.Rows[currentIndex].Cells[columnSoDienThoai].Value
-                            = EditNameGuiLoi(currentText);
+                        currentRow.DefaultCellStyle.BackColor = Color.Red;
+                        //string currentText = currentRow.Cells[columnSoDienThoai].Value.ToString();
+                        //dataGridView1.Rows[currentIndex].Cells[columnSoDienThoai].Value = EditNameGuiLoi(currentText);
 
                         indexGuiLoi.RemoveAt(0);
                     }
                 }
+                catch (Exception ex)
+                {
+                    this.WriteExLog(GetType() + ".timerGuiDanhSach_Tick", ex);
+                }
+            }
+            else
+            {
+                SetStatusText("Đã gửi " + indexDaGui.Count);
             }
         }
 

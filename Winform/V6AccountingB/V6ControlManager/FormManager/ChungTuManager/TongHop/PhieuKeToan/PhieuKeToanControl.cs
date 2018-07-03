@@ -3136,7 +3136,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                     return false;
                 }
 
-                ValidateDetailData(Invoice, data);
+                string errors = ValidateDetailData(Invoice, data);
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    this.ShowWarningMessage(errors);
+                    return false;
+                }
             }
             catch (Exception ex)
             {

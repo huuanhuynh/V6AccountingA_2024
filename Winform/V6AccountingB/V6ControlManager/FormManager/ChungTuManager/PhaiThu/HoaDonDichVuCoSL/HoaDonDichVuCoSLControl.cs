@@ -6187,7 +6187,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     return false;
                 }
 
-                ValidateDetailData(Invoice, data);
+                string errors = ValidateDetailData(Invoice, data);
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    this.ShowWarningMessage(errors);
+                    return false;
+                }
             }
             catch (Exception ex)
             {

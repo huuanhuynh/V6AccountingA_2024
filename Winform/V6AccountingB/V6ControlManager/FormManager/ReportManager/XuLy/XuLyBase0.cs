@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ReportManager.Filter;
+using V6ControlManager.FormManager.ReportManager.Filter.Sms;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -60,9 +61,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             Text = _text;
             
             AddFilterControl(_program);
+            FixFilterControlSize();
         }
 
-        
         private void Form_Load(object sender, EventArgs e)
         {
             LoadDefaultData(4, "", _program, m_itemId, "");
@@ -77,6 +78,26 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             panel1.Controls.Add(FilterControl);
             panel1.SizeChanged += panel1_SizeChanged;
             FilterControl.Focus();
+        }
+
+        private void FixFilterControlSize()
+        {
+            try
+            {
+                if (FilterControl is XASENDSMS)
+                {
+                    panel1.Width = grbDieuKienLoc.Width - 5;
+                    panel1.Height = grbDieuKienLoc.Height - 5;
+                    panel1.Anchor |= AnchorStyles.Right | AnchorStyles.Bottom;
+                    FilterControl.Width = panel1.Width - 5;
+                    FilterControl.Height = panel1.Height - 5;
+                    FilterControl.Anchor |= AnchorStyles.Right | AnchorStyles.Bottom;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         void panel1_SizeChanged(object sender, EventArgs e)
@@ -192,7 +213,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     DoAfterExecuteSuccess();
                     _message = V6Text.Finish;
                     V6ControlFormHelper.SetStatusText(_message);
-                    this.ShowMessage(_message);
+                    if (FilterControl.ExecuteMode != ExecuteMode.ExecuteProcedure)
+                    {
+                        ShowMainMessage(_message);
+                    }
                     _success = false;
                 }
                 catch (Exception ex)
