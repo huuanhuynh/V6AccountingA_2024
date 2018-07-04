@@ -15,7 +15,7 @@ using V6Tools.V6Convert;
 namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
 {
 	/// <summary>
-	/// Summary description for Form1.
+	/// Summary description for Form.
 	/// </summary>
 	partial class PrintBarcodeForm : Form
 	{

@@ -770,7 +770,7 @@ namespace V6ControlManager.FormManager.MenuManager
                     }
                     else if (item_id == "D0000019")
                     {
-                        c = new HuuanTetris.Form1();
+                        c = new HuuanTetris.HuuanTetris1();
                     }
                     else
                     {

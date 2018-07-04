@@ -837,7 +837,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 }
                 else
                 {
-                    ShowMainMessage("AlvitriTon null");
+                    ShowMainMessage("Không có tồn kho theo vị trí.");
                 }
             }
             catch (Exception ex)

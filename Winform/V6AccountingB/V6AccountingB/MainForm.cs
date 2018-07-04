@@ -166,6 +166,7 @@ namespace V6AccountingB
             }
             catch (Exception ex)
             {
+                this.WriteExLog(GetType() + ".LoadMenuThread", ex);
                 Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".LoadMenuThread " + ex.Message, Application.ProductName);
             }
             _complete = 100;
@@ -535,7 +536,7 @@ namespace V6AccountingB
             }
             catch (Exception ex)
             {
-                //Logger.WriteLog("LoadMessageThread: " + ex.Message);
+                this.WriteExLog(GetType() + ".LoadMessageThread", ex);
             }
         }
 

@@ -170,9 +170,9 @@ namespace V6ControlManager.FormManager.MenuManager
                     bool check = true, mouse_left = false, ctrl_is_down = false;
                     if (codeform != null)
                     {
-                        var code = codeform.Substring(0, 1);
-                        var FORM_NAME = codeform.Substring(1).ToUpper();
-                        var TABLE_NAME = codeform.Substring(1).ToUpper();
+                        var code = string.IsNullOrEmpty(codeform) ? "" : codeform.Substring(0, 1);
+                        var FORM_NAME = string.IsNullOrEmpty(codeform) ? "" : codeform.Substring(1).ToUpper();
+                        var TABLE_NAME = string.IsNullOrEmpty(codeform) ? "" : codeform.Substring(1).ToUpper();
                         
                         if (e == null || e.Button == MouseButtons.Left)
                         {

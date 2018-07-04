@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using V6Controls.Forms;
@@ -11,7 +8,7 @@ using V6Controls.Forms;
 
 namespace HuuanTetris
 {
-    public partial class Form1 : V6Control
+    public partial class HuuanTetris1 : V6Control
     {
         struct Vitri
         {
@@ -51,16 +48,15 @@ namespace HuuanTetris
         
         #endregion
         
-        public Form1()
+        public HuuanTetris1()
         {
             InitializeComponent();
             Khởi_tạo_lò_gạch();
             Khởi_tạo_G();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
-            
             Tạo_cục_gạch_tiếp_theo();
             Lấy_cục_gạch_tiếp_theo();
             Ghép_gạch(lò_gạch, cục_gạch_đang_rơi);
@@ -68,7 +64,7 @@ namespace HuuanTetris
             timer1.Start();
             timer2.Start();
 
-            ReadRecodes();
+            ReadRecords();
         }
 
         string Hencode(string s)
@@ -131,10 +127,10 @@ namespace HuuanTetris
             return rString;
         }
 
-        SortedList<int, string> recodes = new SortedList<int,string>();
-        string file = "recodes.rec";
+        SortedList<int, string> records = new SortedList<int,string>();
+        string file = "records.rec";
         string name = "";
-        void ReadRecodes()
+        void ReadRecords()
         {   
             if (File.Exists(file))
             {
@@ -145,23 +141,23 @@ namespace HuuanTetris
                 
                 s = Hdecode(s);
                 string[] sss = s.Split(';');
-                recodes.Clear();
+                records.Clear();
                 foreach (string item in sss)
                 {
                     string[] ss = item.Split(',');
                     int đ = Convert.ToInt32(ss[0]);
-                    recodes.Add(đ,ss[1]);
+                    records.Add(đ,ss[1]);
                 }
-                ViewRecodes();
+                ViewRecords();
             }
         }
-        void WriteRecodes()
+        void WriteRecords()
         {
             FileStream fs = new FileStream(file, FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
             //tạo chuỗi
             string s = "";
-            foreach (var item in recodes)
+            foreach (var item in records)
             {
                 s += ";" + item.Key + "," + item.Value;
             }
@@ -176,27 +172,27 @@ namespace HuuanTetris
         void Thêm_điểm(int điểm, string tên)
         {
 
-            if (recodes.ContainsKey(điểm))
+            if (records.ContainsKey(điểm))
             {
-                recodes[điểm] = tên;//Không hay lắm
+                records[điểm] = tên;//Không hay lắm
             }
             else
             {
-                recodes.Add(điểm, tên);
+                records.Add(điểm, tên);
             }
-            while (recodes.Count > 10)
+            while (records.Count > 10)
             {
-                recodes.RemoveAt(0);
+                records.RemoveAt(0);
             }
-            WriteRecodes();
-            ViewRecodes();
+            WriteRecords();
+            ViewRecords();
             
         }
-        void ViewRecodes()
+        void ViewRecords()
         {
             //Hiển thị lên form
             string viewString = "";
-            foreach (var item in recodes)
+            foreach (var item in records)
             {
                 viewString = item.Key + ":" + item.Value + "\r\n" + viewString;
             }
@@ -653,7 +649,7 @@ namespace HuuanTetris
         }
         
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
+        private void Form_Paint(object sender, PaintEventArgs e)
         {
             if(lò_gạch_ghép != null)
                 Vẽ_lò_gạch(__G, lò_gạch_ghép);
@@ -665,7 +661,7 @@ namespace HuuanTetris
 
         private void Vẽ_cục_gạch(Graphics graphics, byte[,] gạch)
         {
-            graphics.Clear(Form1.DefaultBackColor);
+            graphics.Clear(HuuanTetris1.DefaultBackColor);
             int hàng = gạch.GetLength(0);
             int cột = gạch.GetLength(1);
             for (int i = 0; i < hàng; i++)
@@ -704,7 +700,7 @@ namespace HuuanTetris
             }
         }
 
-        private void Form1_Resize(object sender, EventArgs e)
+        private void Form_Resize(object sender, EventArgs e)
         {
             Khởi_tạo_G();
         }
@@ -809,12 +805,12 @@ namespace HuuanTetris
             return false;
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void Form_KeyDown(object sender, KeyEventArgs e)
         {
             
         }
         bool vô_hiệu_bấm_xuống = false;
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        private void Form_KeyUp(object sender, KeyEventArgs e)
         {
             vô_hiệu_bấm_xuống = false;
         }

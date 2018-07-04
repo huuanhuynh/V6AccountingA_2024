@@ -993,7 +993,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 }
                 else
                 {
-                    this.ShowErrorMessage(GetType() + ".AlvitriTon null");
+                    ShowMainMessage("Không có tồn kho theo vị trí.");
                 }
             }
             catch (Exception ex)

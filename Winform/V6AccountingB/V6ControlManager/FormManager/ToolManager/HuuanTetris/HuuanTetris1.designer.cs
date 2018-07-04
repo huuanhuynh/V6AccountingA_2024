@@ -1,6 +1,6 @@
 ﻿namespace HuuanTetris
 {
-    partial class Form1
+    partial class HuuanTetris1
     {
         /// <summary>
         /// Required designer variable.
@@ -155,7 +155,7 @@
             this.lbtPause.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbtPause.Click += new System.EventHandler(this.lbtPause_Click);
             // 
-            // Form1
+            // HuuanTetris1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -170,13 +170,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "Form1";
+            this.Name = "HuuanTetris1";
             this.Size = new System.Drawing.Size(443, 465);
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
+            this.Load += new System.EventHandler(this.Form_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form_KeyUp);
+            this.Resize += new System.EventHandler(this.Form_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
