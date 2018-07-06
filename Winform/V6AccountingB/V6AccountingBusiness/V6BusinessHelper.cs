@@ -697,7 +697,7 @@ namespace V6AccountingBusiness
             {
                 var data = new DataTable("Name");
                 var saveAs = "path\\" + invoice.AM_TableName + DateTime.Now.ToString("yyyyMMdd") + ".xls";
-                V6Tools.V6Export.Data_Table.ToExcel(data, saveAs, "title", true);
+                V6Tools.V6Export.ExportData.ToExcel(data, saveAs, "title", true);
                 return true;
             }
             catch (Exception ex)

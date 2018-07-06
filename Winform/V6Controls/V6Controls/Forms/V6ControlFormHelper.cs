@@ -24,7 +24,7 @@ using V6ReportControls;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
-using Data_Table = V6Tools.V6Export.Data_Table;
+using V6Tools.V6Export;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6Controls.Forms
@@ -2668,8 +2668,8 @@ namespace V6Controls.Forms
                 }
                 string file = form.GetType().ToString();
                 file = Path.GetFullPath(file);
-                Data_Table.ToTextFile(data, file + ".txt");
-                Data_Table.ToExcel(data, file + ".xls", form.Name);
+                ExportData.ToTextFile(data, file + ".txt");
+                ExportData.ToExcel(data, file + ".xls", form.Name);
                 return file;
             }
             catch (Exception ex)
@@ -2948,7 +2948,7 @@ namespace V6Controls.Forms
                             //Không có thông tin xml
                         }
 
-                        if (Data_Table.ToExcelTemplate(
+                        if (ExportData.ToExcelTemplate(
                             ExcelTemplateFileFull, data, saveFileName, firstCell,
                             excelColumns.Replace("[", "").Replace("]", "").Split(excelColumns.Contains(";") ? ';' : ','),
                             parameters, V6Setting.V6_number_format_info,
@@ -2958,7 +2958,7 @@ namespace V6Controls.Forms
                         }
                         else
                         {
-                            ShowInfoMessage(V6Text.ExportFail + Data_Table.Message);
+                            ShowInfoMessage(V6Text.ExportFail + ExportData.Message);
                         }
                     }
                     else
@@ -3202,7 +3202,7 @@ namespace V6Controls.Forms
                             return;
                         }
 
-                        if (Data_Table.ToExcelTemplateGroup(
+                        if (ExportData.ToExcelTemplateGroup(
                             ExcelTemplateFileFull, data, data2, ObjectAndString.SplitString(ref_key), saveFileName, firstCell,
                             column_config,
                             null,//Headers
@@ -3213,7 +3213,7 @@ namespace V6Controls.Forms
                         }
                         else
                         {
-                            ShowInfoMessage(V6Text.ExportFail + Data_Table.Message);
+                            ShowInfoMessage(V6Text.ExportFail + ExportData.Message);
                         }
                     }
                     else
@@ -3380,7 +3380,7 @@ namespace V6Controls.Forms
                                 //Không có thông tin xml
                             }
 
-                            if (Data_Table.ToExcelTemplate(
+                            if (ExportData.ToExcelTemplate(
                                 ExcelTemplateFileFull, data, save.FileName, firstCell,
                                 excelColumns.Replace("[", "").Replace("]", "").Split(excelColumns.Contains(";") ? ';' : ','),
                                 parameters, V6Setting.V6_number_format_info,
@@ -3390,7 +3390,7 @@ namespace V6Controls.Forms
                             }
                             else
                             {
-                                ShowInfoMessage(V6Text.ExportFail + Data_Table.Message);
+                                ShowInfoMessage(V6Text.ExportFail + ExportData.Message);
                             }
 
                         }
@@ -3566,7 +3566,7 @@ namespace V6Controls.Forms
                             }
 
                             
-                            if (Data_Table.ToExcelTemplateHTKK(
+                            if (ExportData.ToExcelTemplateHTKK(
                                 excelTemplateFile, parameters, datas, excelColumnsHTKK.Split(','),
                                 saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
                             {
@@ -3574,7 +3574,7 @@ namespace V6Controls.Forms
                             }
                             else
                             {
-                                ShowInfoMessage(V6Text.ExportFail + Data_Table.Message);
+                                ShowInfoMessage(V6Text.ExportFail + ExportData.Message);
                             }
 
                         }
@@ -3747,7 +3747,7 @@ namespace V6Controls.Forms
                             }
 
                             
-                            if (Data_Table.ToExcelTemplateHTKK(
+                            if (ExportData.ToExcelTemplateHTKK(
                                 excelTemplateFile, parameters, datas, excelColumnsONLINE.Split(','),
                                 saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
                             {
@@ -3755,7 +3755,7 @@ namespace V6Controls.Forms
                             }
                             else
                             {
-                                ShowInfoMessage(V6Text.ExportFail + Data_Table.Message);
+                                ShowInfoMessage(V6Text.ExportFail + ExportData.Message);
                             }
 
                         }

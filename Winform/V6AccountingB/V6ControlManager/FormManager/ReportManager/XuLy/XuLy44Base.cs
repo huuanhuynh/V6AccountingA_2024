@@ -664,7 +664,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     try
                     {   
-                        V6Tools.V6Export.Data_Table.ToExcel(data, save.FileName, _reportCaption, true);
+                        V6Tools.V6Export.ExportData.ToExcel(data, save.FileName, _reportCaption, true);
                     }
                     catch (Exception ex)
                     {

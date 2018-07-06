@@ -229,7 +229,7 @@ namespace V6ControlManager.FormManager.Map
         
         void SaveData()
         {
-            V6Tools.V6Export.Data_Table.ToTextFile(MH.itemData, "data.txt");
+            V6Tools.V6Export.ExportData.ToTextFile(MH.itemData, "data.txt");
         }
         
         private void MouseMoveOnPictureBox(Point mouse)

@@ -636,6 +636,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             RptExtraParameters = new SortedDictionary<string, object>();
             try
             {
+                string errors = "";
                 //Sample Info:
                 //Name:M_TEN_CTY;NOTEMPTY:1;Ptype:FILTER_BROTHER;Field:MA_DVCS;Fname:TEN_DVCS   // Lấy TEN_DVCS theo MA_DVCS trong FilterControl.
                 //~Name:NGAY;Ptype:TABLE2;Field:R_DMY                                           // Lấy R_DMY trong table2 data.
@@ -715,11 +716,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     }
                     else if (di.Ptype.ToUpper() == "FILTER_BROTHER")
                     {
+                        bool not_found = true;
                         foreach (Control control in groupBox1.Controls)
                         {
                             var line = control as FilterLineDynamic;
                             if (line != null && line.FieldName.ToUpper() == di.Field.ToUpper())
                             {
+                                not_found = false;
                                 var vvar_data = line._vtextBox.Data;
                                 if (line.IsSelected==false)
                                 {
@@ -760,16 +763,22 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                                 break;
                             }
                         }
+                        if (not_found) errors += "\nKhông tìm thấy Field: " + di.Field;
                     }
                     else
                     {
-                        
+                        errors += "Ptype not support: " + di.Ptype;
                     }
                 }
+
+                if (errors.Length > 0)
+                {
+                    this.ShowErrorMessage(GetType() + ".AddExtraReportParameter: " + errors);
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + ".AddExtraReportParameter", ex);
             }
         }
 

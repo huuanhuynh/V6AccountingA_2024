@@ -726,7 +726,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             try
             {
                 string fileName = "V6MultiSms_Data_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + ".txt";
-                if(V6Tools.V6Export.Data_Table.ToTextFile(tableData, fileName))
+                if(V6Tools.V6Export.ExportData.ToTextFile(tableData, fileName))
                     MessageBox.Show("Đã xuất file " + fileName);
 
                 //V6Tools.V6Export.Data_Table.ToDBF(tableData, "test.dbf");

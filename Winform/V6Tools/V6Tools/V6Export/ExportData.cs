@@ -15,7 +15,10 @@ using V6Tools.V6Convert;
 
 namespace V6Tools.V6Export
 {
-    public static class Data_Table
+    /// <summary>
+    /// Các thao tác ghi ra file.
+    /// </summary>
+    public static class ExportData
     {
         /// <summary>
         /// Ghi file DBF hàm tự viết

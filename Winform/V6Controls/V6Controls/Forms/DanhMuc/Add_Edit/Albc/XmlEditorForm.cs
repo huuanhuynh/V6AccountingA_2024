@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 {
@@ -42,10 +43,29 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             try
             {
-                _ds = new DataSet("DataSet");
-                _ds.ReadXml(new StringReader(Text_control.Text));
+                _ds = Data_Table.DataSetFromXml(Text_control.Text);
+
                 if (_ds.Tables.Count > 0)
                 {
+                    var table = _ds.Tables[0];
+                    foreach (string column in _columns)
+                    {
+                        if (!table.Columns.Contains(column))
+                        {
+                            table.Columns.Add(column, typeof (string));
+                        }
+                    }
+
+                    _ds.DataSetName = "Dataset";
+                    _ds.Tables[0].TableName = _tableName;
+                    dataGridView1.DataSource = _ds.Tables[0];
+                }
+                else
+                {
+                    if (_ds.Tables.Count == 0)
+                    {
+                        _ds.Tables.Add(new DataTable(_tableName));
+                    }
                     var table = _ds.Tables[0];
                     foreach (string column in _columns)
                     {
@@ -54,36 +74,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                             table.Columns.Add(column, typeof(string));
                         }
                     }
-                    
-                    _ds.DataSetName = "Dataset";
-                    _ds.Tables[0].TableName = _tableName;
+
+                    if (table.Rows.Count == 0)
+                    {
+                        var newRow = table.NewRow();
+                        newRow[0] = "NewRow";
+                        table.Rows.Add(newRow);
+                    }
                     dataGridView1.DataSource = _ds.Tables[0];
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                if (_ds.Tables.Count == 0)
-                {
-                    _ds.Tables.Add(new DataTable(_tableName));
-                }
-                var table = _ds.Tables[0];
-                foreach (string column in _columns)
-                {
-                    if (!table.Columns.Contains(column))
-                    {
-                        table.Columns.Add(column, typeof(string));
-                    }
-                }
-
-                if (table.Rows.Count == 0)
-                {
-                    var newRow = table.NewRow();
-                    newRow[0] = "NewRow";
-                    //newRow[1] = "firstCell_using";
-                    //newRow[2] = "A4_method";
-                    table.Rows.Add(newRow);
-                }
-                dataGridView1.DataSource = _ds.Tables[0];
+                this.ShowErrorException(GetType() + ".Read", ex);
             }
         }
 
@@ -116,10 +119,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             try
             {
-                StringBuilder sb = new StringBuilder();
-                TextWriter tw = new StringWriter(sb);
-                CloneWithEncrype_yn(_ds).WriteXml(tw);
-                Text_control.Text = sb.ToString();
+                Text_control.Text = Data_Table.DataSetToXml(CloneWithEncrype_yn(_ds));
             }
             catch (Exception ex)
             {

@@ -37,10 +37,16 @@ namespace V6Controls.Controls.Barcode
                 encode.TryEncode(QRvalue, out _qrCode);
                 GraphicsRenderer renderer = new GraphicsRenderer(new FixedModuleSize(_pixel_size, QuietZoneModules.Two),
                     Brushes.Black, Brushes.White);
-
-                Image image = new Bitmap(_qrCode.Matrix.Width * _pixel_size + padding, _qrCode.Matrix.Height * _pixel_size + padding);
+                int image_width = 1;
+                int image_height = 1;
+                if (_qrCode != null && _qrCode.Matrix != null)
+                {
+                    image_width = _qrCode.Matrix.Width * _pixel_size + padding;
+                    image_height = _qrCode.Matrix.Height * _pixel_size + padding;
+                }
+                Image image = new Bitmap(image_width, image_height);
                 Graphics graphics = Graphics.FromImage(image);
-                renderer.Draw(graphics, _qrCode.Matrix);
+                if (_qrCode != null) renderer.Draw(graphics, _qrCode.Matrix);
                 return image;
             }
         }

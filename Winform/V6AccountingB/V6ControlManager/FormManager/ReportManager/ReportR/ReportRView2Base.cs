@@ -1031,7 +1031,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 {
                     try
                     {   
-                        V6Tools.V6Export.Data_Table.ToExcel(_tbl, save.FileName, txtReportTitle.Text, true);
+                        V6Tools.V6Export.ExportData.ToExcel(_tbl, save.FileName, txtReportTitle.Text, true);
                     }
                     catch (Exception ex)
                     {
@@ -1531,7 +1531,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 {
                     try
                     {
-                        V6Tools.V6Export.Data_Table.ToXmlFile(_tbl, save.FileName);
+                        V6Tools.V6Export.ExportData.ToXmlFile(_tbl, save.FileName);
                     }
                     catch (Exception ex)
                     {

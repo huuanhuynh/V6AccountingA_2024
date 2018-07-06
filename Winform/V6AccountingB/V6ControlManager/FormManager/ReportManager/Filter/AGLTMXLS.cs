@@ -394,7 +394,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     }
                 }
 
-                if (V6Tools.V6Export.Data_Table.MappingDataToExcelFile(xlsTemplateFile, saveFile, mappingData, addressData))
+                if (V6Tools.V6Export.ExportData.MappingDataToExcelFile(xlsTemplateFile, saveFile, mappingData, addressData))
                 {
                     this.ShowInfoMessage(V6Text.ExportFinish + "\n" + saveFile);
                 }

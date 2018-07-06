@@ -116,7 +116,7 @@
     <Compile Include="V6Convert\ObjectAndString.cs" />
     <Compile Include="V6Convert\Picture.cs" />
     <Compile Include="V6Export\Crystal_Report.cs" />
-    <Compile Include="V6Export\Data_Table.cs" />
+    <Compile Include="V6Export\ExportData.cs" />
     <Compile Include="V6Export\ExportException.cs" />
     <Compile Include="SqlTableCreate.cs" />
     <Compile Include="DocSo.cs" />

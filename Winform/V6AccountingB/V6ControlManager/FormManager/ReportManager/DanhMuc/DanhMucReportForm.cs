@@ -1060,7 +1060,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 {
                     try
                     {   
-                        V6Tools.V6Export.Data_Table.ToExcel(_tbl, save.FileName, Name, true);
+                        V6Tools.V6Export.ExportData.ToExcel(_tbl, save.FileName, Name, true);
                     }
                     catch (Exception ex)
                     {
@@ -1100,7 +1100,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 {
                     try
                     {
-                        V6Tools.V6Export.Data_Table.ToXmlFile(_tbl, save.FileName);
+                        V6Tools.V6Export.ExportData.ToXmlFile(_tbl, save.FileName);
                     }
                     catch (Exception ex)
                     {

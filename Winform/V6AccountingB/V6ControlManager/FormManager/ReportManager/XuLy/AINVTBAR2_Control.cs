@@ -427,7 +427,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //saveDialog.InitialDirectory = Application.StartupPath;
                 if (saveDialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    V6Tools.V6Export.Data_Table.ToExcel(data, saveDialog.FileName, null, false);
+                    V6Tools.V6Export.ExportData.ToExcel(data, saveDialog.FileName, null, false);
                     V6ControlFormHelper.ShowMainMessage(V6Text.ExportFinish);
                 }
             }

@@ -203,7 +203,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 var tblList = ds.Tables[0];
                 saveFile = Path.Combine(tempDirCurrent, key + ".xls");
-                V6Tools.V6Export.Data_Table.ToExcel(tblList, saveFile, "");
+                V6Tools.V6Export.ExportData.ToExcel(tblList, saveFile, "");
                 files.Add(saveFile);
 
                 foreach (DataRow row in tblList.Rows)
@@ -214,7 +214,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var xls_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["XLS_FILE"]);
                     var data1 = ds.Tables[stt];
                     saveFile = Path.Combine(tempDirCurrent, xls_file + ".xls");
-                    V6Tools.V6Export.Data_Table.ToExcel(data1, saveFile, "");
+                    V6Tools.V6Export.ExportData.ToExcel(data1, saveFile, "");
                     files.Add(saveFile);
                 }
             }

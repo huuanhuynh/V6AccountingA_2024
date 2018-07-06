@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data;
+using System.IO;
+using System.Text;
 
 namespace V6Tools.V6Convert
 {
@@ -29,7 +31,7 @@ namespace V6Tools.V6Convert
                 {
                     for (int i = 0; i < columnsCount; i++)
                     {
-                        if (row[i] is System.String)
+                        if (row[i] is string)
                         {
                             row[i] = V6Tools.ChuyenMaTiengViet.TCVNtoUNICODE((string)row[i]);
                         }
@@ -57,7 +59,7 @@ namespace V6Tools.V6Convert
                 {
                     for (int i = 0; i < columnsCount; i++)
                     {
-                        if(row[i] is System.String)
+                        if(row[i] is string)
                         {
                             row[i] = V6Tools.ChuyenMaTiengViet.VIETNAM_CONVERT((string)row[i], from, to);
                         }
@@ -69,6 +71,54 @@ namespace V6Tools.V6Convert
             {   
                 throw new ConvertException(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Đọc text dạng xml thành DataTable. Nếu lỗi trả về null.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static DataTable FromXml(string text)
+        {
+            var ds = DataSetFromXml(text);
+            if (ds.Tables.Count > 0) return ds.Tables[0];
+            return null;
+        }
+        
+        /// <summary>
+        /// Đọc text dạng xml thành DataSet. Nếu lỗi trả về ds rỗng.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static DataSet DataSetFromXml(string text)
+        {
+            var ds = new DataSet();
+            try
+            {
+                ds.ReadXml(new StringReader(text));
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteExLog("DataSetFromXml", ex, "");
+            }
+            return ds;
+        }
+
+        public static string ToXml(DataTable data)
+        {
+            if (data.DataSet != null) return DataSetToXml(data.DataSet);
+
+            DataSet ds = new DataSet("DataSet");
+            ds.Tables.Add(data.Copy());
+            return DataSetToXml(ds);
+        }
+
+        public static string DataSetToXml(DataSet ds)
+        {
+            StringBuilder sb = new StringBuilder();
+            TextWriter tw = new StringWriter(sb);
+            ds.WriteXml(tw);
+            return sb.ToString();
         }
     }
 }

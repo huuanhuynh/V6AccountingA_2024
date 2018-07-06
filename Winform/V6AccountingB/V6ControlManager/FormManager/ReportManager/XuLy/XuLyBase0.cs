@@ -282,7 +282,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     try
                     {   
-                        V6Tools.V6Export.Data_Table.ToExcel(_tbl, save.FileName, _text, true);
+                        V6Tools.V6Export.ExportData.ToExcel(_tbl, save.FileName, _text, true);
                     }
                     catch (Exception ex)
                     {

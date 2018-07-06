@@ -115,21 +115,21 @@ namespace V6ControlManager.FormManager.ToolManager
                         bool no = false;
                         if (ext.StartsWith(".xls"))
                         {
-                            V6Tools.V6Export.Data_Table.ToExcel(table2, o.FileName, "");
+                            V6Tools.V6Export.ExportData.ToExcel(table2, o.FileName, "");
                         }
                         else if (ext == ".dbf")
                         {
-                            V6Tools.V6Export.Data_Table.ToDbfFile(table2, o.FileName);
+                            V6Tools.V6Export.ExportData.ToDbfFile(table2, o.FileName);
                         }
                         else if (ext == ".txt")
                         {
-                            V6Tools.V6Export.Data_Table.ToTextFile(table2, o.FileName);
+                            V6Tools.V6Export.ExportData.ToTextFile(table2, o.FileName);
                         }
                         else
                         {
                             no = true;
                             V6Message.Show("Chưa hỗ trợ " + ext);
-                            V6Tools.V6Export.Data_Table.ToTextFile(table2, o.FileName);
+                            V6Tools.V6Export.ExportData.ToTextFile(table2, o.FileName);
                         }
                         if (!no) V6Message.Show("Xong.");
                     }
