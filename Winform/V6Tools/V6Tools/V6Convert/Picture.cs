@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 
@@ -8,9 +9,19 @@ namespace V6Tools.V6Convert
     {
         public static byte[] ToJpegByteArray(Image image)
         {
-            if (image == null) return null;// new byte[0];
+            return ToByteArray(image, ImageFormat.Jpeg);
+        }
+        
+        public static byte[] ToBmpByteArray(Image image)
+        {
+            return ToByteArray(image, ImageFormat.Bmp);
+        }
+        
+        public static byte[] ToByteArray(Image image, ImageFormat imageFormat)
+        {
+            if (image == null) return null;
             MemoryStream ms = new MemoryStream();
-            image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            image.Save(ms, imageFormat);
             return ms.ToArray();
         }
 

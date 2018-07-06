@@ -59,6 +59,10 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\QrCode.Net.0.4.0.0\lib\net35\Gma.QrCodeNet.Encoding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PdfiumViewer, Version=2.10.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Lib\Winform\PdfiumViewer\PdfiumViewer.dll</HintPath>
@@ -85,6 +89,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControlHandles.cs" />
+    <Compile Include="Controls\Barcode\FormTestQR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Barcode\FormTestQR.Designer.cs">
+      <DependentUpon>FormTestQR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Barcode\QRview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Barcode\QRview.Designer.cs">
+      <DependentUpon>QRview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CategoryView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1337,6 +1353,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\Barcode\FormTestQR.resx">
+      <DependentUpon>FormTestQR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Barcode\QRview.resx">
+      <DependentUpon>QRview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\CategoryView.resx">
       <DependentUpon>CategoryView.cs</DependentUpon>
     </EmbeddedResource>
@@ -1964,6 +1986,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
     <None Include="Resources\Stop.png" />
   </ItemGroup>
   <ItemGroup>

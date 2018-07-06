@@ -827,23 +827,24 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 ReportDocumentParameters.AddRange(FilterControl.RptExtraParameters, true);
             }
 
+            string errors = "";
             foreach (KeyValuePair<string, object> item in ReportDocumentParameters)
             {
-                _rpDoc.SetParameterValue(item.Key, item.Value);
+                try
+                {
+                    _rpDoc.SetParameterValue(item.Key, item.Value);
+                }
+                catch (Exception ex)
+                {
+                    errors += "\n" + item.Key + ": " + ex.Message;
+                }
             }
-
-            //SetReportParams2();
-        }
-
-        private void SetReportParams2()
-        {
-            if (FilterControl.RptExtraParameters != null)
-            foreach (KeyValuePair<string, object> key_value_pair in FilterControl.RptExtraParameters)
+            if (errors != "")
             {
-                _rpDoc.SetParameterValue(key_value_pair.Key, key_value_pair.Value);
+                this.ShowErrorMessage(GetType() + ".SetAllReportParams: " + ReportFileFull + " " + errors);
             }
         }
-
+        
         #region ==== LoadData MakeReport ====
         
         void LoadData()

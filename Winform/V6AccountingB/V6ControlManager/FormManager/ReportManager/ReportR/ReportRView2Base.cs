@@ -784,29 +784,24 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 ReportDocumentParameters.AddRange(rptExtraParametersD, true);
             }
 
+            string errors = "";
             foreach (KeyValuePair<string, object> item in ReportDocumentParameters)
             {
-                _rpDoc.SetParameterValue(item.Key, item.Value);
+                try
+                {
+                    _rpDoc.SetParameterValue(item.Key, item.Value);
+                }
+                catch (Exception ex)
+                {
+                    errors += "\n" + item.Key + ": " + ex.Message;
+                }
             }
-
-            //SetReportParams2();
+            if (errors != "")
+            {
+                this.ShowErrorMessage(GetType() + ".SetAllReportParams: " + ReportFileFull + " " + errors);
+            }
         }
-
-        ///// <summary>
-        ///// Các tham số thêm từ filter
-        ///// </summary>
-        //private void SetReportParams2()//!!!! them ParamDic
-        //{
-
-        //    if (FilterControl._parameters != null)
-        //    {
-        //        foreach (KeyValuePair<string, object> key_value_pair in FilterControl._parameters)
-        //        {
-        //            _rpDoc.SetParameterValue(key_value_pair.Key, key_value_pair.Value);
-        //        }
-        //    }
-        //}
-
+        
         #region ==== LoadData MakeReport ====
         
         void LoadData()

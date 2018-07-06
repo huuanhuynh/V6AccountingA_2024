@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AAPPR_IND_QR2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AAPPR_IND_QR2.RPT</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -106,6 +112,10 @@
       <DependentUpon>QuickMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Win32.cs" />
+    <EmbeddedResource Include="AAPPR_IND_QR2.RPT">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AAPPR_IND_QR2.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ERLISTNV.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ERLISTNV.cs</LastGenOutput>

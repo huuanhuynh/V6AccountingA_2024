@@ -861,9 +861,21 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 ReportDocumentParameters.AddRange(rptExtraParametersD, true);
             }
 
+            string errors = "";
             foreach (KeyValuePair<string, object> item in ReportDocumentParameters)
             {
-                _rpDoc.SetParameterValue(item.Key, item.Value);
+                try
+                {
+                    _rpDoc.SetParameterValue(item.Key, item.Value);
+                }
+                catch (Exception ex)
+                {
+                    errors += "\n" + item.Key + ": " + ex.Message;
+                }
+            }
+            if (errors != "")
+            {
+                this.ShowErrorMessage(GetType() + ".SetAllReportParams: " + ReportFileFull + " " + errors);
             }
 
             //SetReportParams2();
