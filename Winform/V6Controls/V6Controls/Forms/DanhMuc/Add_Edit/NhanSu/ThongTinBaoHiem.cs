@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using V6AccountingBusiness;
 using System.Windows.Forms;
-using V6Init;
-using V6Structs;
 using V6Tools;
-using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
@@ -31,14 +28,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             buttonHuy.Enabled = false;
         }
        
-        public  void LoadData(string stt_rec)
+        public override void LoadData(string stt_rec)
         {
             try
             {
-                var _keys = new SortedDictionary<string, object> { { "STT_REC",stt_rec } };
-                if (_keys != null && _keys.Count > 0)
+                var keys = new SortedDictionary<string, object> { { "STT_REC",stt_rec } };
+                if (keys.Count > 0)
                 {
-                    var selectResult = V6BusinessHelper.Select("vprdmnsluong",_keys,"*","","");
+                    var selectResult = V6BusinessHelper.Select("vprdmnsluong", keys, "*", "", "");
                     if (selectResult.Data.Rows.Count == 1)
                     {
                         DataOld = selectResult.Data.Rows[0].ToDataDictionary();
@@ -69,8 +66,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         {
             try
             {
-
-               // FixFormData();
+                // FixFormData();
                 DataDic = GetData();
                 //ValidateData();
                 //Lấy thêm UID từ DataEditNếu có.

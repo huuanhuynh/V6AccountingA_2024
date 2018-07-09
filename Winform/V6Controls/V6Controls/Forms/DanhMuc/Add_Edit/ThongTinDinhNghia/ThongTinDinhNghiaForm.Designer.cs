@@ -42,21 +42,21 @@
             this.sltd1u = new V6Controls.V6CheckBox();
             this.ngaytd1u = new V6Controls.V6CheckBox();
             this.matd1u = new V6Controls.V6CheckBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblGC_TD3 = new System.Windows.Forms.Label();
+            this.lblSL_TD3 = new System.Windows.Forms.Label();
+            this.lblNGAY_TD3 = new System.Windows.Forms.Label();
+            this.lblMA_TD = new System.Windows.Forms.Label();
+            this.lblGC_TD2 = new System.Windows.Forms.Label();
+            this.lblSL_TD2 = new System.Windows.Forms.Label();
+            this.lblNGAY_TD2 = new System.Windows.Forms.Label();
+            this.lblMA_TD2 = new System.Windows.Forms.Label();
+            this.lblGC_TD1 = new System.Windows.Forms.Label();
+            this.lblSL_TD1 = new System.Windows.Forms.Label();
+            this.lblNGAY_TD1 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblMA_TD1 = new System.Windows.Forms.Label();
             this.gctd3e = new V6Controls.V6ColorTextBox();
             this.sltd3e = new V6Controls.V6ColorTextBox();
             this.ngaytd3e = new V6Controls.V6ColorTextBox();
@@ -167,21 +167,21 @@
             this.panel1.Controls.Add(this.sltd1u);
             this.panel1.Controls.Add(this.ngaytd1u);
             this.panel1.Controls.Add(this.matd1u);
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.lblGC_TD3);
+            this.panel1.Controls.Add(this.lblSL_TD3);
+            this.panel1.Controls.Add(this.lblNGAY_TD3);
+            this.panel1.Controls.Add(this.lblMA_TD);
+            this.panel1.Controls.Add(this.lblGC_TD2);
+            this.panel1.Controls.Add(this.lblSL_TD2);
+            this.panel1.Controls.Add(this.lblNGAY_TD2);
+            this.panel1.Controls.Add(this.lblMA_TD2);
+            this.panel1.Controls.Add(this.lblGC_TD1);
+            this.panel1.Controls.Add(this.lblSL_TD1);
+            this.panel1.Controls.Add(this.lblNGAY_TD1);
             this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.lblMA_TD1);
             this.panel1.Controls.Add(this.gctd3e);
             this.panel1.Controls.Add(this.sltd3e);
             this.panel1.Controls.Add(this.ngaytd3e);
@@ -221,7 +221,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(661, 333);
+            this.panel1.Size = new System.Drawing.Size(661, 327);
             this.panel1.TabIndex = 0;
             // 
             // gctd3u
@@ -356,126 +356,126 @@
             this.matd1u.Text = "Có sử dụng?";
             this.matd1u.UseVisualStyleBackColor = true;
             // 
-            // label12
+            // lblGC_TD3
             // 
-            this.label12.AccessibleDescription = "gc_td3";
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(12, 282);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(109, 13);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "Ghi chú định nghĩa 3";
+            this.lblGC_TD3.AccessibleDescription = "GC_TD3";
+            this.lblGC_TD3.AutoSize = true;
+            this.lblGC_TD3.Location = new System.Drawing.Point(12, 282);
+            this.lblGC_TD3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGC_TD3.Name = "lblGC_TD3";
+            this.lblGC_TD3.Size = new System.Drawing.Size(109, 13);
+            this.lblGC_TD3.TabIndex = 2;
+            this.lblGC_TD3.Text = "Ghi chú định nghĩa 3";
             // 
-            // label9
+            // lblSL_TD3
             // 
-            this.label9.AccessibleDescription = "ngay_td3";
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 213);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(114, 13);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Số lượng định nghĩa 3";
+            this.lblSL_TD3.AccessibleDescription = "SL_TD3";
+            this.lblSL_TD3.AutoSize = true;
+            this.lblSL_TD3.Location = new System.Drawing.Point(12, 213);
+            this.lblSL_TD3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSL_TD3.Name = "lblSL_TD3";
+            this.lblSL_TD3.Size = new System.Drawing.Size(114, 13);
+            this.lblSL_TD3.TabIndex = 2;
+            this.lblSL_TD3.Text = "Số lượng định nghĩa 3";
             // 
-            // label6
+            // lblNGAY_TD3
             // 
-            this.label6.AccessibleDescription = "sl_td3";
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 144);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(97, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Ngày định nghĩa 3";
+            this.lblNGAY_TD3.AccessibleDescription = "NGAY_TD3";
+            this.lblNGAY_TD3.AutoSize = true;
+            this.lblNGAY_TD3.Location = new System.Drawing.Point(12, 144);
+            this.lblNGAY_TD3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNGAY_TD3.Name = "lblNGAY_TD3";
+            this.lblNGAY_TD3.Size = new System.Drawing.Size(97, 13);
+            this.lblNGAY_TD3.TabIndex = 2;
+            this.lblNGAY_TD3.Text = "Ngày định nghĩa 3";
             // 
-            // label2
+            // lblMA_TD
             // 
-            this.label2.AccessibleDescription = "ma_td3";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 75);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Mã định nghĩa 3";
+            this.lblMA_TD.AccessibleDescription = "MA_TD3";
+            this.lblMA_TD.AutoSize = true;
+            this.lblMA_TD.Location = new System.Drawing.Point(12, 75);
+            this.lblMA_TD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMA_TD.Name = "lblMA_TD";
+            this.lblMA_TD.Size = new System.Drawing.Size(87, 13);
+            this.lblMA_TD.TabIndex = 2;
+            this.lblMA_TD.Text = "Mã định nghĩa 3";
             // 
-            // label11
+            // lblGC_TD2
             // 
-            this.label11.AccessibleDescription = "gc_td2";
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 259);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(109, 13);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "Ghi chú định nghĩa 2";
+            this.lblGC_TD2.AccessibleDescription = "GC_TD2";
+            this.lblGC_TD2.AutoSize = true;
+            this.lblGC_TD2.Location = new System.Drawing.Point(12, 259);
+            this.lblGC_TD2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGC_TD2.Name = "lblGC_TD2";
+            this.lblGC_TD2.Size = new System.Drawing.Size(109, 13);
+            this.lblGC_TD2.TabIndex = 2;
+            this.lblGC_TD2.Text = "Ghi chú định nghĩa 2";
             // 
-            // label8
+            // lblSL_TD2
             // 
-            this.label8.AccessibleDescription = "ngay_td2";
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 190);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(114, 13);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Số lượng định nghĩa 2";
+            this.lblSL_TD2.AccessibleDescription = "SL_TD2";
+            this.lblSL_TD2.AutoSize = true;
+            this.lblSL_TD2.Location = new System.Drawing.Point(12, 190);
+            this.lblSL_TD2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSL_TD2.Name = "lblSL_TD2";
+            this.lblSL_TD2.Size = new System.Drawing.Size(114, 13);
+            this.lblSL_TD2.TabIndex = 2;
+            this.lblSL_TD2.Text = "Số lượng định nghĩa 2";
             // 
-            // label5
+            // lblNGAY_TD2
             // 
-            this.label5.AccessibleDescription = "sl_td2";
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 121);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(97, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Ngày định nghĩa 2";
+            this.lblNGAY_TD2.AccessibleDescription = "NGAY_TD2";
+            this.lblNGAY_TD2.AutoSize = true;
+            this.lblNGAY_TD2.Location = new System.Drawing.Point(12, 121);
+            this.lblNGAY_TD2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNGAY_TD2.Name = "lblNGAY_TD2";
+            this.lblNGAY_TD2.Size = new System.Drawing.Size(97, 13);
+            this.lblNGAY_TD2.TabIndex = 2;
+            this.lblNGAY_TD2.Text = "Ngày định nghĩa 2";
             // 
-            // label1
+            // lblMA_TD2
             // 
-            this.label1.AccessibleDescription = "ma_td2";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 52);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Mã định nghĩa 2";
+            this.lblMA_TD2.AccessibleDescription = "MA_TD2";
+            this.lblMA_TD2.AutoSize = true;
+            this.lblMA_TD2.Location = new System.Drawing.Point(12, 52);
+            this.lblMA_TD2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMA_TD2.Name = "lblMA_TD2";
+            this.lblMA_TD2.Size = new System.Drawing.Size(87, 13);
+            this.lblMA_TD2.TabIndex = 2;
+            this.lblMA_TD2.Text = "Mã định nghĩa 2";
             // 
-            // label10
+            // lblGC_TD1
             // 
-            this.label10.AccessibleDescription = "gc_td1";
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 236);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(109, 13);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Ghi chú định nghĩa 1";
+            this.lblGC_TD1.AccessibleDescription = "GC_TD1";
+            this.lblGC_TD1.AutoSize = true;
+            this.lblGC_TD1.Location = new System.Drawing.Point(12, 236);
+            this.lblGC_TD1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGC_TD1.Name = "lblGC_TD1";
+            this.lblGC_TD1.Size = new System.Drawing.Size(109, 13);
+            this.lblGC_TD1.TabIndex = 2;
+            this.lblGC_TD1.Text = "Ghi chú định nghĩa 1";
             // 
-            // label7
+            // lblSL_TD1
             // 
-            this.label7.AccessibleDescription = "ngay_td1";
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 167);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(114, 13);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Số lượng định nghĩa 1";
+            this.lblSL_TD1.AccessibleDescription = "SL_TD1";
+            this.lblSL_TD1.AutoSize = true;
+            this.lblSL_TD1.Location = new System.Drawing.Point(12, 167);
+            this.lblSL_TD1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSL_TD1.Name = "lblSL_TD1";
+            this.lblSL_TD1.Size = new System.Drawing.Size(114, 13);
+            this.lblSL_TD1.TabIndex = 2;
+            this.lblSL_TD1.Text = "Số lượng định nghĩa 1";
             // 
-            // label3
+            // lblNGAY_TD1
             // 
-            this.label3.AccessibleDescription = "sl_td1";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 98);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Ngày định nghĩa 1";
+            this.lblNGAY_TD1.AccessibleDescription = "NGAY_TD1";
+            this.lblNGAY_TD1.AutoSize = true;
+            this.lblNGAY_TD1.Location = new System.Drawing.Point(12, 98);
+            this.lblNGAY_TD1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNGAY_TD1.Name = "lblNGAY_TD1";
+            this.lblNGAY_TD1.Size = new System.Drawing.Size(97, 13);
+            this.lblNGAY_TD1.TabIndex = 2;
+            this.lblNGAY_TD1.Text = "Ngày định nghĩa 1";
             // 
             // label15
             // 
@@ -507,16 +507,16 @@
             this.label13.TabIndex = 2;
             this.label13.Text = "Tiếng Việt";
             // 
-            // label4
+            // lblMA_TD1
             // 
-            this.label4.AccessibleDescription = "ma_td1";
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 29);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Mã định nghĩa 1";
+            this.lblMA_TD1.AccessibleDescription = "MA_TD1";
+            this.lblMA_TD1.AutoSize = true;
+            this.lblMA_TD1.Location = new System.Drawing.Point(12, 29);
+            this.lblMA_TD1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMA_TD1.Name = "lblMA_TD1";
+            this.lblMA_TD1.Size = new System.Drawing.Size(87, 13);
+            this.lblMA_TD1.TabIndex = 2;
+            this.lblMA_TD1.Text = "Mã định nghĩa 1";
             // 
             // gctd3e
             // 
@@ -1122,6 +1122,8 @@
             // 
             this.v6TabControl1.Controls.Add(this.tabPage1);
             this.v6TabControl1.Controls.Add(this.tabPage2);
+            this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(1, 0);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
@@ -1132,10 +1134,10 @@
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(667, 339);
+            this.tabPage1.Size = new System.Drawing.Size(667, 333);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin định nghĩa";
             // 
@@ -1190,10 +1192,10 @@
             this.tabPage2.Controls.Add(this.ms1f);
             this.tabPage2.Controls.Add(this.ms1e);
             this.tabPage2.Controls.Add(this.ms1v);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(667, 339);
+            this.tabPage2.Size = new System.Drawing.Size(667, 333);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin định nghĩa mở rộng";
             // 
@@ -1298,7 +1300,6 @@
             // 
             // label16
             // 
-            this.label16.AccessibleDescription = "ngay_td3";
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(15, 216);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1309,7 +1310,6 @@
             // 
             // label17
             // 
-            this.label17.AccessibleDescription = "sl_td3";
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(15, 147);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1331,7 +1331,6 @@
             // 
             // label19
             // 
-            this.label19.AccessibleDescription = "ngay_td2";
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(15, 193);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1342,7 +1341,6 @@
             // 
             // label20
             // 
-            this.label20.AccessibleDescription = "sl_td2";
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(15, 124);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1353,7 +1351,7 @@
             // 
             // label21
             // 
-            this.label21.AccessibleDescription = "ma_td2";
+            this.label21.AccessibleDescription = "MA_TD2";
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(15, 55);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1364,7 +1362,6 @@
             // 
             // label22
             // 
-            this.label22.AccessibleDescription = "ngay_td1";
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(15, 170);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1375,7 +1372,6 @@
             // 
             // label23
             // 
-            this.label23.AccessibleDescription = "sl_td1";
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(15, 101);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1416,7 +1412,7 @@
             // 
             // label27
             // 
-            this.label27.AccessibleDescription = "ma_td1";
+            this.label27.AccessibleDescription = "MA_TD1";
             this.label27.AutoSize = true;
             this.label27.Location = new System.Drawing.Point(15, 32);
             this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1894,7 +1890,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnNhan;
         private System.Windows.Forms.Button btnHuy;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblMA_TD1;
         private V6ColorTextBox matd1v;
         private V6Controls.V6CheckBox matd1u;
         private V6ColorTextBox matd1e;
@@ -1909,17 +1905,17 @@
         private V6Controls.V6CheckBox gctd1u;
         private V6Controls.V6CheckBox sltd1u;
         private V6Controls.V6CheckBox ngaytd1u;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblGC_TD3;
+        private System.Windows.Forms.Label lblSL_TD3;
+        private System.Windows.Forms.Label lblNGAY_TD3;
+        private System.Windows.Forms.Label lblMA_TD;
+        private System.Windows.Forms.Label lblGC_TD2;
+        private System.Windows.Forms.Label lblSL_TD2;
+        private System.Windows.Forms.Label lblNGAY_TD2;
+        private System.Windows.Forms.Label lblMA_TD2;
+        private System.Windows.Forms.Label lblGC_TD1;
+        private System.Windows.Forms.Label lblSL_TD1;
+        private System.Windows.Forms.Label lblNGAY_TD1;
         private V6ColorTextBox gctd3e;
         private V6ColorTextBox sltd3e;
         private V6ColorTextBox ngaytd3e;

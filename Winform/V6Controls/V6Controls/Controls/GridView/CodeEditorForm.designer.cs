@@ -34,7 +34,7 @@
             this.sttTrangThai = new System.Windows.Forms.ToolStripStatusLabel();
             this.sttDong = new System.Windows.Forms.ToolStripStatusLabel();
             this.sttChu = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.menuMain = new System.Windows.Forms.MenuStrip();
             this.TopContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.hiệnThanhMenu1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hiệnThanhMenu2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +68,7 @@
             this.dánToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chạyMãToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trợGiúpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thôngTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,9 +91,8 @@
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbHelp = new System.Windows.Forms.ToolStripButton();
             this.txtColorTextBox = new V6Controls.Controls.SyntaxHighlightingTextBox.SyntaxHighlightingTextBox();
-            this.buildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sttMain.SuspendLayout();
-            this.MainMenuStrip.SuspendLayout();
+            this.menuMain.SuspendLayout();
             this.TopContextMenuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -131,20 +131,20 @@
             this.sttChu.Size = new System.Drawing.Size(100, 17);
             this.sttChu.Text = "Chữ: 01";
             // 
-            // MainMenuStrip
+            // menuMain
             // 
-            this.MainMenuStrip.ContextMenuStrip = this.TopContextMenuStrip;
-            this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuMain.ContextMenuStrip = this.TopContextMenuStrip;
+            this.menuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tậpTinToolStripMenuItem,
             this.hiểnThịToolStripMenuItem,
             this.chỉnhSửaToolStripMenuItem,
             this.runToolStripMenuItem,
             this.trợGiúpToolStripMenuItem});
-            this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.MainMenuStrip.Name = "MainMenuStrip";
-            this.MainMenuStrip.Size = new System.Drawing.Size(792, 24);
-            this.MainMenuStrip.TabIndex = 1;
-            this.MainMenuStrip.Text = "menuStrip1";
+            this.menuMain.Location = new System.Drawing.Point(0, 0);
+            this.menuMain.Name = "menuMain";
+            this.menuMain.Size = new System.Drawing.Size(792, 24);
+            this.menuMain.TabIndex = 1;
+            this.menuMain.Text = "menuStrip1";
             // 
             // TopContextMenuStrip
             // 
@@ -406,13 +406,20 @@
             this.runToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.runToolStripMenuItem.Text = "&Chạy";
             // 
+            // buildToolStripMenuItem
+            // 
+            this.buildToolStripMenuItem.Name = "buildToolStripMenuItem";
+            this.buildToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.buildToolStripMenuItem.Text = "Build";
+            this.buildToolStripMenuItem.Click += new System.EventHandler(this.buildToolStripMenuItem_Click);
+            // 
             // chạyMãToolStripMenuItem
             // 
             this.chạyMãToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("chạyMãToolStripMenuItem.Image")));
             this.chạyMãToolStripMenuItem.Name = "chạyMãToolStripMenuItem";
             this.chạyMãToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.chạyMãToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.chạyMãToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chạyMãToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.chạyMãToolStripMenuItem.Text = "&Thực thi";
             this.chạyMãToolStripMenuItem.Click += new System.EventHandler(this.btnRun);
             // 
@@ -605,13 +612,6 @@
             this.txtColorTextBox.Enter += new System.EventHandler(this.txtColorTextBox_Enter);
             this.txtColorTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtColorTextBox_KeyUp);
             // 
-            // buildToolStripMenuItem
-            // 
-            this.buildToolStripMenuItem.Name = "buildToolStripMenuItem";
-            this.buildToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.buildToolStripMenuItem.Text = "Build";
-            this.buildToolStripMenuItem.Click += new System.EventHandler(this.buildToolStripMenuItem_Click);
-            // 
             // CodeEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -620,7 +620,7 @@
             this.Controls.Add(this.txtColorTextBox);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.sttMain);
-            this.Controls.Add(this.MainMenuStrip);
+            this.Controls.Add(this.menuMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CodeEditorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -630,8 +630,8 @@
             this.ResizeEnd += new System.EventHandler(this.CodeEditorForm_ResizeEnd);
             this.sttMain.ResumeLayout(false);
             this.sttMain.PerformLayout();
-            this.MainMenuStrip.ResumeLayout(false);
-            this.MainMenuStrip.PerformLayout();
+            this.menuMain.ResumeLayout(false);
+            this.menuMain.PerformLayout();
             this.TopContextMenuStrip.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -643,7 +643,7 @@
         #endregion
 
         private System.Windows.Forms.StatusStrip sttMain;
-        private System.Windows.Forms.MenuStrip MainMenuStrip;
+        private System.Windows.Forms.MenuStrip menuMain;
         private System.Windows.Forms.ContextMenuStrip TopContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem tậpTinToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem TạoMớiToolStripMenuItem;

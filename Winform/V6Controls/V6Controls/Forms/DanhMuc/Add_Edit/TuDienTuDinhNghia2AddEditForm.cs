@@ -26,8 +26,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     //code_field = row[""].ToString().Trim();
                 }
 
-                var v = Categories.IsExistOneCode_List(F8_table, "MA_TD2", TxtMa_td2.Text);
-                TxtMa_td2.Enabled = !v;
+                var v = Categories.IsExistOneCode_List(F8_table, "MA_TD2", txtMA_TD2.Text);
+                txtMA_TD2.Enabled = !v;
 
                 
 
@@ -40,24 +40,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (TxtMa_td2.Text.Trim() == "" || TxtTen_td2.Text.Trim() == "")
+            if (txtMA_TD2.Text.Trim() == "" || TxtTen_td2.Text.Trim() == "")
                 errors += V6Init.V6Text.CheckInfor + " !\r\n";
 
             if (Mode == V6Structs.V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_TD2",
-                    TxtMa_td2.Text.Trim(), DataOld["MA_TD2"].ToString());
+                    txtMA_TD2.Text.Trim(), DataOld["MA_TD2"].ToString());
                 if (!b)
                     throw new Exception(V6Init.V6Text.ExistData
-                                        + "MA_TD2 = " + TxtMa_td2.Text.Trim());
+                                        + "MA_TD2 = " + txtMA_TD2.Text.Trim());
             }
             else if (Mode == V6Structs.V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_TD2",
-                    TxtMa_td2.Text.Trim(), TxtMa_td2.Text.Trim());
+                    txtMA_TD2.Text.Trim(), txtMA_TD2.Text.Trim());
                 if (!b)
                     throw new Exception(V6Init.V6Text.ExistData
-                                        + "MA_TD2 = " + TxtMa_td2.Text.Trim());
+                                        + "MA_TD2 = " + txtMA_TD2.Text.Trim());
             }
 
             if (errors.Length > 0) throw new Exception(errors);

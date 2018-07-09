@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TxtMa_td2 = new V6Controls.V6VvarTextBox();
+            this.txtMA_TD2 = new V6Controls.V6VvarTextBox();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.v6ColorTextBox5 = new V6Controls.V6ColorTextBox();
@@ -45,7 +45,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.TxtMa_td2);
+            this.groupBox1.Controls.Add(this.txtMA_TD2);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.v6ColorTextBox5);
@@ -63,20 +63,20 @@
             // 
             // TxtMa_td2
             // 
-            this.TxtMa_td2.AccessibleName = "ma_td2";
-            this.TxtMa_td2.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtMa_td2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtMa_td2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtMa_td2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtMa_td2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_td2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_td2.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtMa_td2.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_td2.Location = new System.Drawing.Point(169, 19);
-            this.TxtMa_td2.Name = "TxtMa_td2";
-            this.TxtMa_td2.Size = new System.Drawing.Size(126, 23);
-            this.TxtMa_td2.TabIndex = 1;
-            this.TxtMa_td2.UseLimitCharacters0 = true;
+            this.txtMA_TD2.AccessibleName = "MA_TD2";
+            this.txtMA_TD2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMA_TD2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMA_TD2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMA_TD2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMA_TD2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMA_TD2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMA_TD2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMA_TD2.LeaveColor = System.Drawing.Color.White;
+            this.txtMA_TD2.Location = new System.Drawing.Point(169, 19);
+            this.txtMA_TD2.Name = "txtMA_TD2";
+            this.txtMA_TD2.Size = new System.Drawing.Size(126, 23);
+            this.txtMA_TD2.TabIndex = 1;
+            this.txtMA_TD2.UseLimitCharacters0 = true;
             // 
             // checkBox1
             // 
@@ -195,6 +195,6 @@
         private System.Windows.Forms.Label label1;
         private V6ColorTextBox TxtTen_td2;
         private System.Windows.Forms.Label label2;
-        private V6VvarTextBox TxtMa_td2;
+        private V6VvarTextBox txtMA_TD2;
     }
 }
