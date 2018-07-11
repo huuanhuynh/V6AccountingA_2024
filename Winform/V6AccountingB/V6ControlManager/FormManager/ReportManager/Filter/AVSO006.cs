@@ -40,6 +40,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             Txtnh_kh4.VvarTextBox.SetInitFilter("loai_nh=4");
             Txtnh_kh5.VvarTextBox.SetInitFilter("loai_nh=5");
             Txtnh_kh6.VvarTextBox.SetInitFilter("loai_nh=6");
+            lineNH_KH7.VvarTextBox.SetInitFilter("loai_nh=7");
+            lineNH_KH8.VvarTextBox.SetInitFilter("loai_nh=8");
+            lineNH_KH9.VvarTextBox.SetInitFilter("loai_nh=9");
 
             Txtnh_vt1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_vt2.VvarTextBox.SetInitFilter("loai_nh=2");
