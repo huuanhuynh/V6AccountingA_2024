@@ -56,6 +56,9 @@
             this.v6Label1 = new V6Controls.V6Label();
             this.v6Label9 = new V6Controls.V6Label();
             this.TxtLoai_bc = new V6Controls.V6VvarTextBox();
+            this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineNH_KH8 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineNH_KH7 = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +80,7 @@
             this.filterLineVvarTextBox3.AccessibleName2 = "MA_KH";
             this.filterLineVvarTextBox3.FieldCaption = "Mã khách hàng";
             this.filterLineVvarTextBox3.FieldName = "MA_KH";
-            this.filterLineVvarTextBox3.Location = new System.Drawing.Point(6, 88);
+            this.filterLineVvarTextBox3.Location = new System.Drawing.Point(6, 86);
             this.filterLineVvarTextBox3.Name = "filterLineVvarTextBox3";
             this.filterLineVvarTextBox3.Size = new System.Drawing.Size(292, 22);
             this.filterLineVvarTextBox3.TabIndex = 4;
@@ -89,6 +92,9 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lineNH_KH9);
+            this.groupBox1.Controls.Add(this.lineNH_KH8);
+            this.groupBox1.Controls.Add(this.lineNH_KH7);
             this.groupBox1.Controls.Add(this.Txtnh_kh6);
             this.groupBox1.Controls.Add(this.Txtnh_kh5);
             this.groupBox1.Controls.Add(this.Txtnh_kh4);
@@ -111,7 +117,7 @@
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox3);
             this.groupBox1.Location = new System.Drawing.Point(3, 80);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 476);
+            this.groupBox1.Size = new System.Drawing.Size(301, 513);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -122,7 +128,7 @@
             this.Txtnh_kh6.AccessibleName2 = "NH_KH6";
             this.Txtnh_kh6.FieldCaption = "Nhóm khách hàng 6";
             this.Txtnh_kh6.FieldName = "NH_KH6";
-            this.Txtnh_kh6.Location = new System.Drawing.Point(6, 433);
+            this.Txtnh_kh6.Location = new System.Drawing.Point(6, 416);
             this.Txtnh_kh6.Name = "Txtnh_kh6";
             this.Txtnh_kh6.Size = new System.Drawing.Size(292, 22);
             this.Txtnh_kh6.TabIndex = 19;
@@ -134,7 +140,7 @@
             this.Txtnh_kh5.AccessibleName2 = "NH_KH5";
             this.Txtnh_kh5.FieldCaption = "Nhóm khách hàng 5";
             this.Txtnh_kh5.FieldName = "NH_KH5";
-            this.Txtnh_kh5.Location = new System.Drawing.Point(6, 410);
+            this.Txtnh_kh5.Location = new System.Drawing.Point(6, 394);
             this.Txtnh_kh5.Name = "Txtnh_kh5";
             this.Txtnh_kh5.Size = new System.Drawing.Size(292, 22);
             this.Txtnh_kh5.TabIndex = 18;
@@ -146,7 +152,7 @@
             this.Txtnh_kh4.AccessibleName2 = "NH_KH4";
             this.Txtnh_kh4.FieldCaption = "Nhóm khách hàng 4";
             this.Txtnh_kh4.FieldName = "NH_KH4";
-            this.Txtnh_kh4.Location = new System.Drawing.Point(6, 387);
+            this.Txtnh_kh4.Location = new System.Drawing.Point(6, 372);
             this.Txtnh_kh4.Name = "Txtnh_kh4";
             this.Txtnh_kh4.Size = new System.Drawing.Size(292, 22);
             this.Txtnh_kh4.TabIndex = 17;
@@ -158,7 +164,7 @@
             this.Txtnh_kh1.AccessibleName2 = "NH_KH1";
             this.Txtnh_kh1.FieldCaption = "Nhóm khách hàng 1";
             this.Txtnh_kh1.FieldName = "NH_KH1";
-            this.Txtnh_kh1.Location = new System.Drawing.Point(6, 318);
+            this.Txtnh_kh1.Location = new System.Drawing.Point(6, 306);
             this.Txtnh_kh1.Name = "Txtnh_kh1";
             this.Txtnh_kh1.Size = new System.Drawing.Size(292, 22);
             this.Txtnh_kh1.TabIndex = 14;
@@ -170,7 +176,7 @@
             this.Txtnh_kh2.AccessibleName2 = "NH_KH2";
             this.Txtnh_kh2.FieldCaption = "Nhóm khách hàng 2";
             this.Txtnh_kh2.FieldName = "NH_KH2";
-            this.Txtnh_kh2.Location = new System.Drawing.Point(6, 341);
+            this.Txtnh_kh2.Location = new System.Drawing.Point(6, 328);
             this.Txtnh_kh2.Name = "Txtnh_kh2";
             this.Txtnh_kh2.Size = new System.Drawing.Size(292, 22);
             this.Txtnh_kh2.TabIndex = 15;
@@ -182,7 +188,7 @@
             this.Txtnh_kh3.AccessibleName2 = "NH_KH3";
             this.Txtnh_kh3.FieldCaption = "Nhóm khách hàng 3";
             this.Txtnh_kh3.FieldName = "NH_KH3";
-            this.Txtnh_kh3.Location = new System.Drawing.Point(6, 364);
+            this.Txtnh_kh3.Location = new System.Drawing.Point(6, 350);
             this.Txtnh_kh3.Name = "Txtnh_kh3";
             this.Txtnh_kh3.Size = new System.Drawing.Size(292, 22);
             this.Txtnh_kh3.TabIndex = 16;
@@ -194,7 +200,7 @@
             this.filterLineVvarTextBox12.AccessibleName2 = "MA_SONB";
             this.filterLineVvarTextBox12.FieldCaption = "Mã số nội bộ";
             this.filterLineVvarTextBox12.FieldName = "MA_SONB";
-            this.filterLineVvarTextBox12.Location = new System.Drawing.Point(6, 295);
+            this.filterLineVvarTextBox12.Location = new System.Drawing.Point(6, 284);
             this.filterLineVvarTextBox12.Name = "filterLineVvarTextBox12";
             this.filterLineVvarTextBox12.Size = new System.Drawing.Size(292, 22);
             this.filterLineVvarTextBox12.TabIndex = 13;
@@ -206,7 +212,7 @@
             this.filterLineVvarTextBox11.AccessibleName2 = "MA_CT";
             this.filterLineVvarTextBox11.FieldCaption = "Mã chứng từ";
             this.filterLineVvarTextBox11.FieldName = "MA_CT";
-            this.filterLineVvarTextBox11.Location = new System.Drawing.Point(6, 65);
+            this.filterLineVvarTextBox11.Location = new System.Drawing.Point(6, 64);
             this.filterLineVvarTextBox11.Name = "filterLineVvarTextBox11";
             this.filterLineVvarTextBox11.Size = new System.Drawing.Size(292, 22);
             this.filterLineVvarTextBox11.TabIndex = 3;
@@ -218,7 +224,7 @@
             this.filterLineVvarTextBox10.AccessibleName2 = "MA_KU";
             this.filterLineVvarTextBox10.FieldCaption = "Mã khế ước";
             this.filterLineVvarTextBox10.FieldName = "MA_KU";
-            this.filterLineVvarTextBox10.Location = new System.Drawing.Point(6, 272);
+            this.filterLineVvarTextBox10.Location = new System.Drawing.Point(6, 262);
             this.filterLineVvarTextBox10.Name = "filterLineVvarTextBox10";
             this.filterLineVvarTextBox10.Size = new System.Drawing.Size(292, 22);
             this.filterLineVvarTextBox10.TabIndex = 12;
@@ -230,7 +236,7 @@
             this.filterLineVvarTextBox2.AccessibleName2 = "MA_PHI";
             this.filterLineVvarTextBox2.FieldCaption = "Mã phí";
             this.filterLineVvarTextBox2.FieldName = "MA_PHI";
-            this.filterLineVvarTextBox2.Location = new System.Drawing.Point(6, 249);
+            this.filterLineVvarTextBox2.Location = new System.Drawing.Point(6, 240);
             this.filterLineVvarTextBox2.Name = "filterLineVvarTextBox2";
             this.filterLineVvarTextBox2.Size = new System.Drawing.Size(292, 22);
             this.filterLineVvarTextBox2.TabIndex = 11;
@@ -242,7 +248,7 @@
             this.filterLineVvarTextBox1.AccessibleName2 = "MA_BPHT";
             this.filterLineVvarTextBox1.FieldCaption = "Mã BPHT";
             this.filterLineVvarTextBox1.FieldName = "MA_BPHT";
-            this.filterLineVvarTextBox1.Location = new System.Drawing.Point(6, 226);
+            this.filterLineVvarTextBox1.Location = new System.Drawing.Point(6, 218);
             this.filterLineVvarTextBox1.Name = "filterLineVvarTextBox1";
             this.filterLineVvarTextBox1.Size = new System.Drawing.Size(292, 22);
             this.filterLineVvarTextBox1.TabIndex = 10;
@@ -279,7 +285,7 @@
             this.filterLineVvarTextBox8.AccessibleName2 = "TK_DU";
             this.filterLineVvarTextBox8.FieldCaption = "Tài khoản đối ứng";
             this.filterLineVvarTextBox8.FieldName = "TK_DU";
-            this.filterLineVvarTextBox8.Location = new System.Drawing.Point(6, 157);
+            this.filterLineVvarTextBox8.Location = new System.Drawing.Point(6, 152);
             this.filterLineVvarTextBox8.Name = "filterLineVvarTextBox8";
             this.filterLineVvarTextBox8.Size = new System.Drawing.Size(292, 22);
             this.filterLineVvarTextBox8.TabIndex = 7;
@@ -291,7 +297,7 @@
             this.filterLineVvarTextBox6.AccessibleName2 = "TK";
             this.filterLineVvarTextBox6.FieldCaption = "Tài khoản";
             this.filterLineVvarTextBox6.FieldName = "TK";
-            this.filterLineVvarTextBox6.Location = new System.Drawing.Point(6, 134);
+            this.filterLineVvarTextBox6.Location = new System.Drawing.Point(6, 130);
             this.filterLineVvarTextBox6.Name = "filterLineVvarTextBox6";
             this.filterLineVvarTextBox6.Size = new System.Drawing.Size(292, 22);
             this.filterLineVvarTextBox6.TabIndex = 6;
@@ -303,7 +309,7 @@
             this.filterLineVvarTextBox4.AccessibleName2 = "MA_BP";
             this.filterLineVvarTextBox4.FieldCaption = "Mã bộ phận";
             this.filterLineVvarTextBox4.FieldName = "MA_BP";
-            this.filterLineVvarTextBox4.Location = new System.Drawing.Point(6, 111);
+            this.filterLineVvarTextBox4.Location = new System.Drawing.Point(6, 108);
             this.filterLineVvarTextBox4.Name = "filterLineVvarTextBox4";
             this.filterLineVvarTextBox4.Size = new System.Drawing.Size(292, 22);
             this.filterLineVvarTextBox4.TabIndex = 5;
@@ -315,7 +321,7 @@
             this.filterLineVvarTextBox7.AccessibleName2 = "MA_VV";
             this.filterLineVvarTextBox7.FieldCaption = "Mã vụ việc";
             this.filterLineVvarTextBox7.FieldName = "MA_VV";
-            this.filterLineVvarTextBox7.Location = new System.Drawing.Point(6, 203);
+            this.filterLineVvarTextBox7.Location = new System.Drawing.Point(6, 196);
             this.filterLineVvarTextBox7.Name = "filterLineVvarTextBox7";
             this.filterLineVvarTextBox7.Size = new System.Drawing.Size(292, 22);
             this.filterLineVvarTextBox7.TabIndex = 9;
@@ -327,7 +333,7 @@
             this.filterLineVvarTextBox5.AccessibleName2 = "MA_SP";
             this.filterLineVvarTextBox5.FieldCaption = "Mã sản phẩm";
             this.filterLineVvarTextBox5.FieldName = "MA_SP";
-            this.filterLineVvarTextBox5.Location = new System.Drawing.Point(6, 180);
+            this.filterLineVvarTextBox5.Location = new System.Drawing.Point(6, 174);
             this.filterLineVvarTextBox5.Name = "filterLineVvarTextBox5";
             this.filterLineVvarTextBox5.Size = new System.Drawing.Size(292, 22);
             this.filterLineVvarTextBox5.TabIndex = 8;
@@ -416,6 +422,39 @@
             this.TxtLoai_bc.Size = new System.Drawing.Size(18, 20);
             this.TxtLoai_bc.TabIndex = 2;
             // 
+            // lineNH_KH9
+            // 
+            this.lineNH_KH9.AccessibleName2 = "NH_KH9";
+            this.lineNH_KH9.FieldCaption = "Nhóm khách hàng 9";
+            this.lineNH_KH9.FieldName = "NH_KH9";
+            this.lineNH_KH9.Location = new System.Drawing.Point(6, 482);
+            this.lineNH_KH9.Name = "lineNH_KH9";
+            this.lineNH_KH9.Size = new System.Drawing.Size(292, 22);
+            this.lineNH_KH9.TabIndex = 22;
+            this.lineNH_KH9.Vvar = "NH_KH";
+            // 
+            // lineNH_KH8
+            // 
+            this.lineNH_KH8.AccessibleName2 = "NH_KH8";
+            this.lineNH_KH8.FieldCaption = "Nhóm khách hàng 8";
+            this.lineNH_KH8.FieldName = "NH_KH8";
+            this.lineNH_KH8.Location = new System.Drawing.Point(6, 460);
+            this.lineNH_KH8.Name = "lineNH_KH8";
+            this.lineNH_KH8.Size = new System.Drawing.Size(292, 22);
+            this.lineNH_KH8.TabIndex = 21;
+            this.lineNH_KH8.Vvar = "NH_KH";
+            // 
+            // lineNH_KH7
+            // 
+            this.lineNH_KH7.AccessibleName2 = "NH_KH7";
+            this.lineNH_KH7.FieldCaption = "Nhóm khách hàng 7";
+            this.lineNH_KH7.FieldName = "NH_KH7";
+            this.lineNH_KH7.Location = new System.Drawing.Point(6, 438);
+            this.lineNH_KH7.Name = "lineNH_KH7";
+            this.lineNH_KH7.Size = new System.Drawing.Size(292, 22);
+            this.lineNH_KH7.TabIndex = 20;
+            this.lineNH_KH7.Vvar = "NH_KH";
+            // 
             // AGLBK1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -429,7 +468,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AGLBK1";
-            this.Size = new System.Drawing.Size(307, 556);
+            this.Size = new System.Drawing.Size(307, 593);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -467,5 +506,8 @@
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh1;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh2;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh3;
+        private V6ReportControls.FilterLineVvarTextBox lineNH_KH9;
+        private V6ReportControls.FilterLineVvarTextBox lineNH_KH8;
+        private V6ReportControls.FilterLineVvarTextBox lineNH_KH7;
     }
 }

@@ -45,6 +45,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.v6Label9 = new V6Controls.V6Label();
             this.TxtTk = new V6Controls.V6VvarTextBox();
+            this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineNH_KH8 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineNH_KH7 = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,6 +69,9 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lineNH_KH9);
+            this.groupBox1.Controls.Add(this.lineNH_KH8);
+            this.groupBox1.Controls.Add(this.lineNH_KH7);
             this.groupBox1.Controls.Add(this.Txtnh_kh6);
             this.groupBox1.Controls.Add(this.Txtnh_kh5);
             this.groupBox1.Controls.Add(this.Txtnh_kh4);
@@ -78,7 +84,7 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Location = new System.Drawing.Point(3, 95);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 239);
+            this.groupBox1.Size = new System.Drawing.Size(289, 293);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -264,6 +270,39 @@
             this.TxtTk.TabIndex = 2;
             this.TxtTk.VVar = "TK";
             // 
+            // lineNH_KH9
+            // 
+            this.lineNH_KH9.AccessibleName2 = "NH_KH9";
+            this.lineNH_KH9.FieldCaption = "Nhóm khách hàng 9";
+            this.lineNH_KH9.FieldName = "NH_KH9";
+            this.lineNH_KH9.Location = new System.Drawing.Point(6, 263);
+            this.lineNH_KH9.Name = "lineNH_KH9";
+            this.lineNH_KH9.Size = new System.Drawing.Size(282, 22);
+            this.lineNH_KH9.TabIndex = 21;
+            this.lineNH_KH9.Vvar = "NH_KH";
+            // 
+            // lineNH_KH8
+            // 
+            this.lineNH_KH8.AccessibleName2 = "NH_KH8";
+            this.lineNH_KH8.FieldCaption = "Nhóm khách hàng 8";
+            this.lineNH_KH8.FieldName = "NH_KH8";
+            this.lineNH_KH8.Location = new System.Drawing.Point(6, 241);
+            this.lineNH_KH8.Name = "lineNH_KH8";
+            this.lineNH_KH8.Size = new System.Drawing.Size(282, 22);
+            this.lineNH_KH8.TabIndex = 20;
+            this.lineNH_KH8.Vvar = "NH_KH";
+            // 
+            // lineNH_KH7
+            // 
+            this.lineNH_KH7.AccessibleName2 = "NH_KH7";
+            this.lineNH_KH7.FieldCaption = "Nhóm khách hàng 7";
+            this.lineNH_KH7.FieldName = "NH_KH7";
+            this.lineNH_KH7.Location = new System.Drawing.Point(6, 219);
+            this.lineNH_KH7.Name = "lineNH_KH7";
+            this.lineNH_KH7.Size = new System.Drawing.Size(282, 22);
+            this.lineNH_KH7.TabIndex = 19;
+            this.lineNH_KH7.Vvar = "NH_KH";
+            // 
             // AAPSO1T
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -276,7 +315,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AAPSO1T";
-            this.Size = new System.Drawing.Size(295, 337);
+            this.Size = new System.Drawing.Size(295, 391);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -303,5 +342,8 @@
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh2;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh3;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox3;
+        private V6ReportControls.FilterLineVvarTextBox lineNH_KH9;
+        private V6ReportControls.FilterLineVvarTextBox lineNH_KH8;
+        private V6ReportControls.FilterLineVvarTextBox lineNH_KH7;
     }
 }

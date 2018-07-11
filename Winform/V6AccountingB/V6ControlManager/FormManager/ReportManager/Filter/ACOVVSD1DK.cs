@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Windows.Forms;
-using V6AccountingBusiness;
 using V6Init;
-using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
