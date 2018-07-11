@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Windows.Forms.VisualStyles;
 using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
@@ -49,7 +48,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-
             //@ngay_ct0 char(8), -- ngày đầu kỳ
             //@ngay_ct1	char(8), -- ngày bắt đầu 
             //@ngay_ct2	char(8), -- ngày kết thúc
@@ -64,9 +62,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
             
             var and = radAnd.Checked;
-            
-            var cKey = "";
-            
+            string cKey;
 
             var key0 = GetFilterStringByFields(new List<string>()
             {

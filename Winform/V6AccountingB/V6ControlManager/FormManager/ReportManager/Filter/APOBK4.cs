@@ -16,7 +16,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
             ctDenSo.Enabled = false;
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
-          //  TxtLoai_bc.Text = "1";
+            
             if (V6Login.MadvcsCount <= 1)
             {
                 txtMaDvcs.Enabled = false;
@@ -37,6 +37,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             SetHideFields(RTien);
         }
+
         public void SetHideFields(string Loaitien)
         {
             if (Loaitien == "VN")

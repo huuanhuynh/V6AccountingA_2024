@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using V6Controls;
 using V6Init;
 using V6Tools;
 
@@ -11,39 +12,48 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public ATSOBK1T()
         {
             InitializeComponent();
-            
+            MyInit();
+        }
 
-            F3 = true;
-            F5 = false;
-
-            
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
-            ctDenSo.Enabled = false;
-
-            txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
-            if (V6Login.MadvcsCount <= 1)
+        private void MyInit()
+        {
+            try
             {
-                txtMaDvcs.Enabled = false;
+                F3 = true;
+                F5 = false;
+
+                dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
+                dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+                ctDenSo.Enabled = false;
+
+                txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
+                if (V6Login.MadvcsCount <= 1)
+                {
+                    txtMaDvcs.Enabled = false;
+                }
+
+                Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
+                Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
+                Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
+                Txtnh_kh4.VvarTextBox.SetInitFilter("loai_nh=4");
+                Txtnh_kh5.VvarTextBox.SetInitFilter("loai_nh=5");
+                Txtnh_kh6.VvarTextBox.SetInitFilter("loai_nh=6");
+                lineNH_KH7.VvarTextBox.SetInitFilter("loai_nh=7");
+                lineNH_KH8.VvarTextBox.SetInitFilter("loai_nh=8");
+                lineNH_KH9.VvarTextBox.SetInitFilter("loai_nh=9");
+
+                Txtnh_vt1.VvarTextBox.SetInitFilter("loai_nh=1");
+                Txtnh_vt2.VvarTextBox.SetInitFilter("loai_nh=2");
+                Txtnh_vt3.VvarTextBox.SetInitFilter("loai_nh=3");
+                Txtnh_vt4.VvarTextBox.SetInitFilter("loai_nh=4");
+                Txtnh_vt5.VvarTextBox.SetInitFilter("loai_nh=5");
+                Txtnh_vt6.VvarTextBox.SetInitFilter("loai_nh=6");
+                SetHideFields("V");
             }
-
-            Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
-            Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
-            Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
-            Txtnh_kh4.VvarTextBox.SetInitFilter("loai_nh=4");
-            Txtnh_kh5.VvarTextBox.SetInitFilter("loai_nh=5");
-            Txtnh_kh6.VvarTextBox.SetInitFilter("loai_nh=6");
-            lineNH_KH7.VvarTextBox.SetInitFilter("loai_nh=7");
-            lineNH_KH8.VvarTextBox.SetInitFilter("loai_nh=8");
-            lineNH_KH9.VvarTextBox.SetInitFilter("loai_nh=9");
-
-            Txtnh_vt1.VvarTextBox.SetInitFilter("loai_nh=1");
-            Txtnh_vt2.VvarTextBox.SetInitFilter("loai_nh=2");
-            Txtnh_vt3.VvarTextBox.SetInitFilter("loai_nh=3");
-            Txtnh_vt4.VvarTextBox.SetInitFilter("loai_nh=4");
-            Txtnh_vt5.VvarTextBox.SetInitFilter("loai_nh=5");
-            Txtnh_vt6.VvarTextBox.SetInitFilter("loai_nh=6");
-            SetHideFields("V");
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init", ex);
+            }
         }
 
         public void SetHideFields(string lang)
