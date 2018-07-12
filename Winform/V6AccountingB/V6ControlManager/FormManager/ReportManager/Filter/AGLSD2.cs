@@ -27,7 +27,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         public void SetHideFields(string lang)
         {
-            _hideFields = new SortedDictionary<string, string> { { "TAG", "TAG" } };
+            GridViewHideFields = new SortedDictionary<string, string> { { "TAG", "TAG" } };
             if (lang == "V")
             {
                 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using V6Controls;
@@ -12,46 +13,54 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public ASOTH5()
         {
             InitializeComponent();
-            F3 = false;
-            F5 = false;
-            F7 = true;
+            MyInit();
+        }
 
-            fstart = 11;
-            ffixcolumn = 6;
-
-            cbbLoaiBaoCao.SelectedIndex = 1;
- 
-            dateNgay_ct0.Value = V6Setting.M_ngay_ct1;
-            
-            txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
-
-            if (V6Login.MadvcsCount <= 1)
+        private void MyInit()
+        {
+            try
             {
-                txtMaDvcs.Enabled = false;
-                txtMaDvcs.VvarTextBox.ReadOnly = true;
+                F3 = false;
+                F5 = false;
+                F7 = true;
+
+                fstart = 11;
+                ffixcolumn = 6;
+                cbbLoaiBaoCao.SelectedIndex = 1;
+                dateNgay_ct0.Value = V6Setting.M_ngay_ct1;
+                txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
+
+                if (V6Login.MadvcsCount <= 1)
+                {
+                    txtMaDvcs.Enabled = false;
+                    txtMaDvcs.VvarTextBox.ReadOnly = true;
+                }
+
+                TxtKieu_bc.Text = "3";
+                TxtKy_bc.Value = 3;
+                chkGiamTru.Checked = true;
+
+                Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
+                Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
+                Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
+                Txtnh_kh4.VvarTextBox.SetInitFilter("loai_nh=4");
+                Txtnh_kh5.VvarTextBox.SetInitFilter("loai_nh=5");
+                Txtnh_kh6.VvarTextBox.SetInitFilter("loai_nh=6");
+                lineNH_KH7.VvarTextBox.SetInitFilter("loai_nh=7");
+                lineNH_KH8.VvarTextBox.SetInitFilter("loai_nh=8");
+                lineNH_KH9.VvarTextBox.SetInitFilter("loai_nh=9");
+
+                Txtnh_vt1.VvarTextBox.SetInitFilter("loai_nh=1");
+                Txtnh_vt2.VvarTextBox.SetInitFilter("loai_nh=2");
+                Txtnh_vt3.VvarTextBox.SetInitFilter("loai_nh=3");
+                Txtnh_vt4.VvarTextBox.SetInitFilter("loai_nh=4");
+                Txtnh_vt5.VvarTextBox.SetInitFilter("loai_nh=5");
+                Txtnh_vt6.VvarTextBox.SetInitFilter("loai_nh=6");
             }
-
-            TxtKieu_bc.Text = "3";
-            TxtKy_bc.Value = 3;
-            chkGiamTru.Checked = true;
-
-            Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
-            Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
-            Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
-            Txtnh_kh4.VvarTextBox.SetInitFilter("loai_nh=4");
-            Txtnh_kh5.VvarTextBox.SetInitFilter("loai_nh=5");
-            Txtnh_kh6.VvarTextBox.SetInitFilter("loai_nh=6");
-            lineNH_KH7.VvarTextBox.SetInitFilter("loai_nh=7");
-            lineNH_KH8.VvarTextBox.SetInitFilter("loai_nh=8");
-            lineNH_KH9.VvarTextBox.SetInitFilter("loai_nh=9");
-
-            Txtnh_vt1.VvarTextBox.SetInitFilter("loai_nh=1");
-            Txtnh_vt2.VvarTextBox.SetInitFilter("loai_nh=2");
-            Txtnh_vt3.VvarTextBox.SetInitFilter("loai_nh=3");
-            Txtnh_vt4.VvarTextBox.SetInitFilter("loai_nh=4");
-            Txtnh_vt5.VvarTextBox.SetInitFilter("loai_nh=5");
-            Txtnh_vt6.VvarTextBox.SetInitFilter("loai_nh=6");
-
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init", ex);
+            }
         }
 
         /// <summary>
@@ -98,7 +107,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {
-               "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6"
+               "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6","NH_KH7","NH_KH8","NH_KH9"
             }, and);
             var key2 = GetFilterStringByFields(new List<string>()
             {

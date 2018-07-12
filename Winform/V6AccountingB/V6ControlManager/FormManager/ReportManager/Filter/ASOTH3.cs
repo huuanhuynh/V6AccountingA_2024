@@ -48,18 +48,18 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         public void SetHideFields(string lang)
         {
-            _hideFields = new SortedDictionary<string, string>();
+            GridViewHideFields = new SortedDictionary<string, string>();
             if (lang == "V")
             {
-                _hideFields.Add("TAG", "TAG");
+                GridViewHideFields.Add("TAG", "TAG");
 
             }
             else
             {
 
             }
-            _hideFields.Add("STT_REC", "STT_REC");
-            _hideFields.Add("STT_REC0", "STT_REC0");
+            GridViewHideFields.Add("STT_REC", "STT_REC");
+            GridViewHideFields.Add("STT_REC0", "STT_REC0");
 
         }
         /// <summary>
@@ -98,7 +98,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {
-                 "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6"
+                 "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6","NH_KH7","NH_KH8","NH_KH9"
             }, and);
             var key2 = GetFilterStringByFields(new List<string>()
             {

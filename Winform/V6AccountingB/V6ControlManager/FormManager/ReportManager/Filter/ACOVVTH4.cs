@@ -46,8 +46,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             if (lang == "V")
             {
-                _hideFields = new SortedDictionary<string, string>();
-                _hideFields.Add("TAG", "TAG");
+                GridViewHideFields = new SortedDictionary<string, string>();
+                GridViewHideFields.Add("TAG", "TAG");
             }
             else
             {

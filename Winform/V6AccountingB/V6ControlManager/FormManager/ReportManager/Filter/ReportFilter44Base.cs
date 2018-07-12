@@ -119,14 +119,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             if (Loaitien == "VN")
             {
-                _hideFields = new SortedDictionary<string, string>
+                GridViewHideFields = new SortedDictionary<string, string>
                 {
                     {"TAG", "TAG"},
                 };
             }
             else 
             {
-                _hideFields = new SortedDictionary<string, string>
+                GridViewHideFields = new SortedDictionary<string, string>
                 {
                     {"TAG", "TAG"},
                 };

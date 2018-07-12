@@ -38,7 +38,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             if (Loaitien == "VN")
             {
-                _hideFields = new SortedDictionary<string, string>
+                GridViewHideFields = new SortedDictionary<string, string>
                 {
                     {"TAG", "TAG"},
                     {"STT_REC", "STT_REC"},
@@ -56,12 +56,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
             else 
             {
-                _hideFields.Add("TAG", "TAG");
-                _hideFields.Add("STT_REC", "STT_REC");
-                _hideFields.Add("STT_REC0", "STT_REC0");
-                _hideFields.Add("STT_REC_TT", "STT_REC_TT");
-                _hideFields.Add("MA_TT", "MA_TT");
-                _hideFields.Add("MA_GD", "MA_GD");
+                GridViewHideFields.Add("TAG", "TAG");
+                GridViewHideFields.Add("STT_REC", "STT_REC");
+                GridViewHideFields.Add("STT_REC0", "STT_REC0");
+                GridViewHideFields.Add("STT_REC_TT", "STT_REC_TT");
+                GridViewHideFields.Add("MA_TT", "MA_TT");
+                GridViewHideFields.Add("MA_GD", "MA_GD");
 
             }
             

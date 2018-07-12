@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Reflection;
 using V6Controls;
 using V6Init;
-using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
 {
@@ -13,24 +12,42 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
         public AMAP01Filter()
         {
             InitializeComponent();
-
-            if (V6Login.MadvcsCount <= 1)
-            {
-                //lineMaDvcs.Enabled = false;
-            }
-            TxtStatus.VvarTextBox.Text = "1";
-            chkkh_yn.Checked=true;
-
-
+            MyInit();
             Ready();
+        }
+
+        private void MyInit()
+        {
+            try
+            {
+                if (V6Login.MadvcsCount <= 1)
+                {
+                    //lineMaDvcs.Enabled = false;
+                }
+                TxtStatus.VvarTextBox.Text = "1";
+                chkkh_yn.Checked = true;
+                Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
+                Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
+                Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
+                Txtnh_kh4.VvarTextBox.SetInitFilter("loai_nh=4");
+                Txtnh_kh5.VvarTextBox.SetInitFilter("loai_nh=5");
+                Txtnh_kh6.VvarTextBox.SetInitFilter("loai_nh=6");
+                lineNH_KH7.VvarTextBox.SetInitFilter("loai_nh=7");
+                lineNH_KH8.VvarTextBox.SetInitFilter("loai_nh=8");
+                lineNH_KH9.VvarTextBox.SetInitFilter("loai_nh=9");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init", ex);
+            }
         }
 
         public void SetHideFields(string lang)
         {
-            _hideFields = new SortedDictionary<string, string>();
+            GridViewHideFields = new SortedDictionary<string, string>();
             if (lang == "V")
             {
-                //_hideFields.Add("TAG", "TAG");
+                //GridViewHideFields.Add("TAG", "TAG");
             }
             else
             {
@@ -44,7 +61,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-            var result = new List<SqlParameter>();
             var condition = "";
             //if (flag == "DAY")
             //{
@@ -62,7 +78,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
             var cKey = "";
             var key1 = GetFilterStringByFields(new List<string>()
             {
-               "MA_KH","NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6","STATUS"
+               "MA_KH","NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6","NH_KH7","NH_KH8","NH_KH9","STATUS"
             }, and);
 
             if (chkkh_yn.Checked)
@@ -83,7 +99,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
                 cKey = string.Format(" ma_kh in (select ma_kh from alkh where {0} )", key1);
             }
 
-            result = new List<SqlParameter>
+            var result = new List<SqlParameter>
             {
                 new SqlParameter("@MA_KHO", lineMakho.StringValue),
                 new SqlParameter("@MA_HINH", lineMaVitri.StringValue),

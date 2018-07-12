@@ -203,7 +203,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <summary>
         /// Các trường ẩn trên gridview
         /// </summary>
-        public SortedDictionary<string, string> _hideFields; 
+        public SortedDictionary<string, string> GridViewHideFields; 
         /// <summary>
         /// Tùy trường hợp có dùng hay không khi gọi từ report này qua report khác
         /// </summary>

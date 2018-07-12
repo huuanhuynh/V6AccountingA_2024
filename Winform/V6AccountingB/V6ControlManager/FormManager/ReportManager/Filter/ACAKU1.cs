@@ -36,34 +36,34 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         public void SetHideFields(string lang)
         {
-            _hideFields = new SortedDictionary<string, string>();
+            GridViewHideFields = new SortedDictionary<string, string>();
             if (lang == "V")
             {
-                _hideFields.Add("TAG", "TAG");
-                _hideFields.Add("STT_REC", "STT_REC");
-                _hideFields.Add("STT_REC0", "STT_REC0");
-                _hideFields.Add("STT_REC_TT", "STT_REC_TT");
-                _hideFields.Add("MA_TT", "MA_TT");
-                _hideFields.Add("MA_GD", "MA_GD");
+                GridViewHideFields.Add("TAG", "TAG");
+                GridViewHideFields.Add("STT_REC", "STT_REC");
+                GridViewHideFields.Add("STT_REC0", "STT_REC0");
+                GridViewHideFields.Add("STT_REC_TT", "STT_REC_TT");
+                GridViewHideFields.Add("MA_TT", "MA_TT");
+                GridViewHideFields.Add("MA_GD", "MA_GD");
 
-                _hideFields.Add("T_TT_NT0", "T_TT_NT0");
-                _hideFields.Add("T_TT_NT", "T_TT_NT");
-                _hideFields.Add("DA_TT_NT", "DA_TT_NT");
-                _hideFields.Add("CON_PT_NT", "CON_PT_NT");
-                _hideFields.Add("T_TIEN_NT2", "T_TIEN_NT2");
-                _hideFields.Add("T_THUE_NT", "T_THUE_NT");
+                GridViewHideFields.Add("T_TT_NT0", "T_TT_NT0");
+                GridViewHideFields.Add("T_TT_NT", "T_TT_NT");
+                GridViewHideFields.Add("DA_TT_NT", "DA_TT_NT");
+                GridViewHideFields.Add("CON_PT_NT", "CON_PT_NT");
+                GridViewHideFields.Add("T_TIEN_NT2", "T_TIEN_NT2");
+                GridViewHideFields.Add("T_THUE_NT", "T_THUE_NT");
 
 
 
             }
             else
             {
-                _hideFields.Add("TAG", "TAG");
-                _hideFields.Add("STT_REC", "STT_REC");
-                _hideFields.Add("STT_REC0", "STT_REC0");
-                _hideFields.Add("STT_REC_TT", "STT_REC_TT");
-                _hideFields.Add("MA_TT", "MA_TT");
-                _hideFields.Add("MA_GD", "MA_GD");
+                GridViewHideFields.Add("TAG", "TAG");
+                GridViewHideFields.Add("STT_REC", "STT_REC");
+                GridViewHideFields.Add("STT_REC0", "STT_REC0");
+                GridViewHideFields.Add("STT_REC_TT", "STT_REC_TT");
+                GridViewHideFields.Add("MA_TT", "MA_TT");
+                GridViewHideFields.Add("MA_GD", "MA_GD");
 
             }
         }

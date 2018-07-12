@@ -47,18 +47,18 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             if (lang == "V")
             {
-                _hideFields = new SortedDictionary<string, string>();
-                _hideFields.Add("TAG", "TAG");
+                GridViewHideFields = new SortedDictionary<string, string>();
+                GridViewHideFields.Add("TAG", "TAG");
               
             }
             else
             {
                 
             }
-            _hideFields.Add("TIEN_NT_N", "TIEN_NT_N");
-            _hideFields.Add("TIEN_NT_X", "TIEN_NT_X");
-            _hideFields.Add("DU_DAU_NT", "DU_DAU_NT");
-            _hideFields.Add("DU_CUOI_NT", "DU_CUOI_NT");
+            GridViewHideFields.Add("TIEN_NT_N", "TIEN_NT_N");
+            GridViewHideFields.Add("TIEN_NT_X", "TIEN_NT_X");
+            GridViewHideFields.Add("DU_DAU_NT", "DU_DAU_NT");
+            GridViewHideFields.Add("DU_CUOI_NT", "DU_CUOI_NT");
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var key2 = GetFilterStringByFields(new List<string>()
             {
-               "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6"
+               "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6","NH_KH7","NH_KH8","NH_KH9"
             }, and);
             
           

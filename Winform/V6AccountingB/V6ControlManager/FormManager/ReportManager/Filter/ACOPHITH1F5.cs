@@ -36,16 +36,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         public void SetHideFields(string lang)
         {
-            _hideFields = new SortedDictionary<string, string>();
+            GridViewHideFields = new SortedDictionary<string, string>();
             if (lang == "V")
             {
-                _hideFields.Add("TAG", "TAG");
-                _hideFields.Add("STT_REC", "STT_REC");
+                GridViewHideFields.Add("TAG", "TAG");
+                GridViewHideFields.Add("STT_REC", "STT_REC");
 
-                _hideFields.Add("GIA_NT2", "GIA_NT2");
-                _hideFields.Add("GIA_NT", "GIA_NT");
-                _hideFields.Add("TT_NT", "TT_NT");
-                _hideFields.Add("TIEN_NT2", "TIEN_NT2");
+                GridViewHideFields.Add("GIA_NT2", "GIA_NT2");
+                GridViewHideFields.Add("GIA_NT", "GIA_NT");
+                GridViewHideFields.Add("TT_NT", "TT_NT");
+                GridViewHideFields.Add("TIEN_NT2", "TIEN_NT2");
                 
             }
             else
