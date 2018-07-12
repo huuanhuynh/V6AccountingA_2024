@@ -76,5 +76,18 @@ namespace Tools
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnFilterTextFiles_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new FormFilterTextFiles().Show(this);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteExLog(GetType() + ".Filter text files", ex, "");
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

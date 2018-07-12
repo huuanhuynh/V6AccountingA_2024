@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using V6Tools.V6Export;
 
 namespace Tools
 {
@@ -105,21 +106,21 @@ namespace Tools
                         bool no = false;
                         if (ext.StartsWith(".xls"))
                         {
-                            V6Tools.V6Export.Data_Table.ToExcel(table2, o.FileName, "");
+                            ExportData.ToExcel(table2, o.FileName, "");
                         }
                         else if (ext == ".dbf")
                         {
-                            V6Tools.V6Export.Data_Table.ToDbfFile(table2, o.FileName);
+                            ExportData.ToDbfFile(table2, o.FileName);
                         }
                         else if (ext == ".txt")
                         {
-                            V6Tools.V6Export.Data_Table.ToTextFile(table2, o.FileName);
+                            ExportData.ToTextFile(table2, o.FileName);
                         }
                         else
                         {
                             no = true;
                             MessageBox.Show("Chưa hỗ trợ " + ext);
-                            V6Tools.V6Export.Data_Table.ToTextFile(table2, o.FileName);
+                            ExportData.ToTextFile(table2, o.FileName);
                         }
                         if (!no) MessageBox.Show("Xong.");
                     }

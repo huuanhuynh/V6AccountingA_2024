@@ -34,7 +34,7 @@
             this.btnUploadFTP = new System.Windows.Forms.Button();
             this.btnCopyToV6 = new System.Windows.Forms.Button();
             this.btnParseDecimal = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnFilterTextFiles = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
@@ -112,14 +112,15 @@
             this.btnParseDecimal.UseVisualStyleBackColor = true;
             this.btnParseDecimal.Click += new System.EventHandler(this.btnParseDecimal_Click);
             // 
-            // button7
+            // btnFilterTextFiles
             // 
-            this.button7.Location = new System.Drawing.Point(12, 186);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(100, 23);
-            this.button7.TabIndex = 0;
-            this.button7.Text = "button1";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnFilterTextFiles.Location = new System.Drawing.Point(12, 186);
+            this.btnFilterTextFiles.Name = "btnFilterTextFiles";
+            this.btnFilterTextFiles.Size = new System.Drawing.Size(121, 23);
+            this.btnFilterTextFiles.TabIndex = 0;
+            this.btnFilterTextFiles.Text = "Lọc file theo nội dung";
+            this.btnFilterTextFiles.UseVisualStyleBackColor = true;
+            this.btnFilterTextFiles.Click += new System.EventHandler(this.btnFilterTextFiles_Click);
             // 
             // button8
             // 
@@ -281,7 +282,7 @@
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button13);
-            this.Controls.Add(this.button7);
+            this.Controls.Add(this.btnFilterTextFiles);
             this.Controls.Add(this.button1);
             this.Name = "FormAllMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -300,7 +301,7 @@
         private System.Windows.Forms.Button btnUploadFTP;
         private System.Windows.Forms.Button btnCopyToV6;
         private System.Windows.Forms.Button btnParseDecimal;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnFilterTextFiles;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;

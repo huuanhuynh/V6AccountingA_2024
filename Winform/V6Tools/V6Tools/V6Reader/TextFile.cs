@@ -83,27 +83,11 @@ namespace V6Tools.V6Reader
             }
         }
 
-        public static string ToString(string fileName)
-        {
-            string result = null;
-            FileStream fs = new FileStream(fileName, FileMode.Open);
-            StreamReader sr = new StreamReader(fs);
-
-            try
-            {
-                result = sr.ReadToEnd();
-                sr.Close();
-                fs.Close();
-            }
-            catch (Exception ex)
-            {
-                fs.Close();
-                result = ex.Message;
-            }
-            
-            return result;
-        }
-
+        /// <summary>
+        /// Hàm phục vụ cho hàm ToTable
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         private static string[] ReadOne(string line)
         {
             while (line.Contains("\""))
@@ -123,5 +107,30 @@ namespace V6Tools.V6Reader
             return line.Split('\t', ',');
         }
 
+        /// <summary>
+        /// Đọc một file trả về chuỗi chứa trong đó.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static string ToString(string fileName)
+        {
+            string result = null;
+            FileStream fs = new FileStream(fileName, FileMode.Open);
+            StreamReader sr = new StreamReader(fs);
+
+            try
+            {
+                result = sr.ReadToEnd();
+                sr.Close();
+                fs.Close();
+            }
+            catch (Exception ex)
+            {
+                fs.Close();
+                result = ex.Message;
+            }
+
+            return result;
+        }
     }
 }
