@@ -45,6 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtExt = new System.Windows.Forms.TextBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
+            this.chkCase = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnSaveFile
@@ -52,7 +53,7 @@
             this.btnSaveFile.Location = new System.Drawing.Point(216, 197);
             this.btnSaveFile.Name = "btnSaveFile";
             this.btnSaveFile.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveFile.TabIndex = 2;
+            this.btnSaveFile.TabIndex = 15;
             this.btnSaveFile.Text = "Lọc";
             this.btnSaveFile.UseVisualStyleBackColor = true;
             this.btnSaveFile.Click += new System.EventHandler(this.btnSaveFile_Click);
@@ -73,7 +74,7 @@
             this.label8.Location = new System.Drawing.Point(213, 30);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(47, 13);
-            this.label8.TabIndex = 3;
+            this.label8.TabIndex = 6;
             this.label8.Text = "Có chứa";
             // 
             // txtFolder
@@ -82,10 +83,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFolder.Location = new System.Drawing.Point(67, 4);
             this.txtFolder.Name = "txtFolder";
-            this.txtFolder.ReadOnly = true;
             this.txtFolder.Size = new System.Drawing.Size(355, 20);
             this.txtFolder.TabIndex = 1;
             this.txtFolder.Text = "E:\\Git\\MicrosoftSource\\Framework35\\Winform\\V6AccountingB";
+            this.txtFolder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFolder_KeyDown);
             // 
             // txt11
             // 
@@ -94,7 +95,7 @@
             this.txt11.Location = new System.Drawing.Point(284, 27);
             this.txt11.Name = "txt11";
             this.txt11.Size = new System.Drawing.Size(424, 20);
-            this.txt11.TabIndex = 1;
+            this.txt11.TabIndex = 7;
             // 
             // richView
             // 
@@ -105,7 +106,7 @@
             this.richView.Name = "richView";
             this.richView.ReadOnly = true;
             this.richView.Size = new System.Drawing.Size(280, 440);
-            this.richView.TabIndex = 4;
+            this.richView.TabIndex = 17;
             this.richView.Text = "";
             // 
             // label1
@@ -114,7 +115,7 @@
             this.label1.Location = new System.Drawing.Point(12, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
-            this.label1.TabIndex = 3;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Thư mục";
             // 
             // btnFolder
@@ -145,7 +146,7 @@
             this.txt12.Location = new System.Drawing.Point(284, 53);
             this.txt12.Name = "txt12";
             this.txt12.Size = new System.Drawing.Size(424, 20);
-            this.txt12.TabIndex = 1;
+            this.txt12.TabIndex = 8;
             // 
             // txt13
             // 
@@ -154,7 +155,7 @@
             this.txt13.Location = new System.Drawing.Point(284, 79);
             this.txt13.Name = "txt13";
             this.txt13.Size = new System.Drawing.Size(424, 20);
-            this.txt13.TabIndex = 1;
+            this.txt13.TabIndex = 9;
             // 
             // txt01
             // 
@@ -163,7 +164,7 @@
             this.txt01.Location = new System.Drawing.Point(284, 105);
             this.txt01.Name = "txt01";
             this.txt01.Size = new System.Drawing.Size(424, 20);
-            this.txt01.TabIndex = 1;
+            this.txt01.TabIndex = 11;
             // 
             // txt02
             // 
@@ -172,7 +173,7 @@
             this.txt02.Location = new System.Drawing.Point(284, 131);
             this.txt02.Name = "txt02";
             this.txt02.Size = new System.Drawing.Size(424, 20);
-            this.txt02.TabIndex = 1;
+            this.txt02.TabIndex = 12;
             // 
             // txt03
             // 
@@ -181,7 +182,7 @@
             this.txt03.Location = new System.Drawing.Point(284, 157);
             this.txt03.Name = "txt03";
             this.txt03.Size = new System.Drawing.Size(424, 20);
-            this.txt03.TabIndex = 1;
+            this.txt03.TabIndex = 13;
             // 
             // label2
             // 
@@ -189,7 +190,7 @@
             this.label2.Location = new System.Drawing.Point(213, 108);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 13);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 10;
             this.label2.Text = "Không chứa";
             // 
             // txtExt
@@ -198,7 +199,7 @@
             this.txtExt.Location = new System.Drawing.Point(588, 2);
             this.txtExt.Name = "txtExt";
             this.txtExt.Size = new System.Drawing.Size(120, 20);
-            this.txtExt.TabIndex = 1;
+            this.txtExt.TabIndex = 4;
             this.txtExt.Leave += new System.EventHandler(this.txtExt_Leave);
             // 
             // listBox2
@@ -209,14 +210,25 @@
             this.listBox2.Location = new System.Drawing.Point(216, 226);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(195, 446);
-            this.listBox2.TabIndex = 5;
+            this.listBox2.TabIndex = 16;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+            // 
+            // chkCase
+            // 
+            this.chkCase.AutoSize = true;
+            this.chkCase.Location = new System.Drawing.Point(315, 201);
+            this.chkCase.Name = "chkCase";
+            this.chkCase.Size = new System.Drawing.Size(128, 17);
+            this.chkCase.TabIndex = 14;
+            this.chkCase.Text = "Phân biệt hoa thường";
+            this.chkCase.UseVisualStyleBackColor = true;
             // 
             // FormFilterTextFiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(709, 678);
+            this.Controls.Add(this.chkCase);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.richView);
@@ -262,5 +274,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtExt;
         private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.CheckBox chkCase;
     }
 }

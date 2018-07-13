@@ -9,19 +9,64 @@ namespace Tools
 {
     public partial class FormFilterTextFiles : Form
     {
+        private class MyFileInfo
+        {
+            public MyFileInfo(string path)
+            {
+                FullPath = path;
+            }
+
+            /// <summary>
+            /// Lấy tất cả thông tin MyFileInfos
+            /// </summary>
+            private void GetAllInfos()
+            {
+                try
+                {
+                    Name = Path.GetFileName(_fullPath);
+                    Text = TextFile.ToString(_fullPath);
+                }
+                catch (Exception)
+                {
+                    //
+                }
+            }
+
+            // ReSharper disable once MemberCanBePrivate.Local
+            public string FullPath
+            {
+                // ReSharper disable once UnusedMember.Local
+                get
+                {
+                    return _fullPath;
+                }
+                set
+                {
+                    _fullPath = value;
+                    GetAllInfos();
+                }
+            }
+            private string _fullPath;
+            public string Name;
+            public string Text;
+
+            public override string ToString()
+            {
+                return Name;
+            }
+        }
+
         public FormFilterTextFiles()
         {
             InitializeComponent();
         }
 
+        private readonly FolderBrowserDialog f = new FolderBrowserDialog();
         private void GetFolder()
         {
             try
             {
-                FolderBrowserDialog f = new FolderBrowserDialog
-                    {
-                        SelectedPath = txtFolder.Text,
-                    };
+                if(Directory.Exists(txtFolder.Text)) f.SelectedPath = txtFolder.Text;
 
                 if (f.ShowDialog(this) == DialogResult.OK)
                 {
@@ -81,13 +126,14 @@ namespace Tools
 
         private bool Check(MyFileInfo myFileInfo)
         {
-            if (txt11.Text != "" && !myFileInfo.Text.Contains(txt11.Text)) return false;
-            if (txt12.Text != "" && !myFileInfo.Text.Contains(txt12.Text)) return false;
-            if (txt13.Text != "" && !myFileInfo.Text.Contains(txt13.Text)) return false;
-            
-            if (txt01.Text != "" && myFileInfo.Text.Contains(txt01.Text)) return false;
-            if (txt02.Text != "" && myFileInfo.Text.Contains(txt02.Text)) return false;
-            if (txt03.Text != "" && myFileInfo.Text.Contains(txt03.Text)) return false;
+            var o = chkCase.Checked ? StringComparison.Ordinal : StringComparison.InvariantCultureIgnoreCase;
+            if (txt11.Text != "" && (myFileInfo.Text.IndexOf(txt11.Text, o) < 0)) return false;
+            if (txt12.Text != "" && (myFileInfo.Text.IndexOf(txt12.Text, o) < 0)) return false;
+            if (txt13.Text != "" && (myFileInfo.Text.IndexOf(txt13.Text, o) < 0)) return false;
+
+            if (txt01.Text != "" && (myFileInfo.Text.IndexOf(txt01.Text, o) >= 0)) return false;
+            if (txt02.Text != "" && (myFileInfo.Text.IndexOf(txt02.Text, o) >= 0)) return false;
+            if (txt03.Text != "" && (myFileInfo.Text.IndexOf(txt03.Text, o) >= 0)) return false;
             
             return true;
         }
@@ -121,55 +167,6 @@ namespace Tools
             Filter();
         }
 
-        private class MyFileInfo
-        {
-            public MyFileInfo(string path)
-            {
-                FullPath = path;
-            }
-
-            /// <summary>
-            /// Lấy tất cả thông tin MyFileInfos
-            /// </summary>
-            private void GetAllInfos()
-            {
-                try
-                {
-                    Name = Path.GetFileName(_fullPath);
-                    Text = TextFile.ToString(_fullPath);
-                }
-                catch (Exception)
-                {
-
-                }
-            }
-
-            public string FullPath
-            {
-                get
-                {
-                    return _fullPath;
-                }
-                set
-                {
-                    _fullPath = value;
-                    GetAllInfos();
-                }
-            }
-
-
-
-            private string _fullPath = null;
-
-            public string Name;
-            public string Text;
-
-            public override string ToString()
-            {
-                return Name;
-            }
-        }
-
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -185,5 +182,15 @@ namespace Tools
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void txtFolder_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter && Directory.Exists(txtFolder.Text))
+            {
+                LoadFiles();
+            }
+        }
     }
+
+    
 }
