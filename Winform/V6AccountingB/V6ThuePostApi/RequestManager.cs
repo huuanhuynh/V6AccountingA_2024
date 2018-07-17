@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Net;
+using V6ThuePostManager.Viettel;
 using V6Tools;
 
-namespace V6ThuePostApi
+namespace V6ThuePostManager
 {
     /// <summary>
     /// Lớp quản lý POST GET

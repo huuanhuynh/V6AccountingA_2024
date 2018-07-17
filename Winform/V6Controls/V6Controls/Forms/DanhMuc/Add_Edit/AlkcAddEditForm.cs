@@ -2,6 +2,7 @@
 using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -41,23 +42,29 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (txtTen_bt.Text.Trim() == "")
                 errors += "Chưa nhập tên bút toán !\r\n";
 
-            if (Mode == V6Mode.Edit)
-            {
-                bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 0, "TK_NO",
-                 txtTk_no.Text.Trim(), DataOld["TK_NO"].ToString(),
-                 "TK_CO", txtTk_Co.Text.Trim(), DataOld["TK_CO"].ToString());
-                if (!b)
-                    throw new Exception("Không được sửa tk đã tồn tại: ");
-            }
-            else if (Mode == V6Mode.Add)
-            {
-                bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 1, "TK_NO",
-                 txtTk_no.Text.Trim(), txtTk_no.Text.Trim(),
-                 "TK_CO",txtTk_Co.Text.Trim(), txtTk_Co.Text.Trim());
-                if (!b)
-                    throw new Exception("Không được thêm tk đã tồn tại: ");
-            }
+            //if (Mode == V6Mode.Edit)
+            //{
+            //    bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 0, "TK_NO",
+            //     txtTk_no.Text.Trim(), DataOld["TK_NO"].ToString(),
+            //     "TK_CO", txtTk_Co.Text.Trim(), DataOld["TK_CO"].ToString());
+            //    if (!b)
+            //        throw new Exception("Không được sửa tk đã tồn tại: ");
+            //}
+            //else if (Mode == V6Mode.Add)
+            //{
+            //    bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 1, "TK_NO",
+            //     txtTk_no.Text.Trim(), txtTk_no.Text.Trim(),
+            //     "TK_CO",txtTk_Co.Text.Trim(), txtTk_Co.Text.Trim());
+            //    if (!b)
+            //        throw new Exception("Không được thêm tk đã tồn tại: ");
+            //}
 
+            AldmConfig config = V6ControlsHelper.GetAldmConfig(TableName.ToString());
+            if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
+            {
+                var key_list = ObjectAndString.SplitString(config.KEY);
+                errors += CheckValid(TableName.ToString(), key_list);
+            }
 
             if (errors.Length > 0) throw new Exception(errors);
         }

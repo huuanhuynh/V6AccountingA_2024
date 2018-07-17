@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace V6ThuePostApi
+namespace V6ThuePostManager
 {
     public class MyJson
     {

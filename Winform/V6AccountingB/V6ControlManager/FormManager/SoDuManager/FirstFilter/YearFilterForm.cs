@@ -45,10 +45,9 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
         {
             try
             {
-                if (txtYear.Value > 1900 && txtYear.Value < 9999 && V6Setting.M_Ngay_ks.Year < txtYear.Value)
-
+                if (txtYear.Value > 1900 && txtYear.Value < 9999  && (_ptablename.ToUpper() == "ALKC" || _ptablename.ToUpper() == "S04"))
                 {
-                    V6Setting.YearFilter = (int) txtYear.Value;
+                    V6Setting.YearFilter = (int)txtYear.Value;
                     var where = "";
                     if (txtYear.Text != "")
                     {
@@ -59,14 +58,26 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
 
                     if (_ptablename.ToUpper() == "ALKC")
                     {
-                        CopyAlkc2NextYear((int) txtYear.Value);
+                        CopyAlkc2NextYear((int)txtYear.Value);
                     }
                     if (_ptablename.ToUpper() == "S04")
                     {
                         CopyAlpb2NextYear((int)txtYear.Value);
                     }
                     DialogResult = DialogResult.OK;
+                }
+                else if (txtYear.Value > 1900 && txtYear.Value < 9999 && V6Setting.M_Ngay_ks.Year < txtYear.Value)
+                {
+                    V6Setting.YearFilter = (int) txtYear.Value;
+                    var where = "";
+                    if (txtYear.Text != "")
+                    {
+                        where += "nam = " + V6Setting.YearFilter;
+                    }
 
+                    QueryString = where;
+
+                    DialogResult = DialogResult.OK;
                 }
                 else
                 {

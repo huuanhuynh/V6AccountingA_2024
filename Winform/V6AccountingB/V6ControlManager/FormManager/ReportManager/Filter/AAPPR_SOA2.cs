@@ -52,6 +52,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
+            String1 = (cboSendType.SelectedIndex + 1).ToString();
+
             var result = new List<SqlParameter>();
             result.Add(new SqlParameter("@ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
             result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
@@ -179,11 +181,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         private void btnSuaChiTieu_Click(object sender, System.EventArgs e)
         {
             string tableName = "V6MAPINFO";
-            string keys = "UID";
+            string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
             var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2'").Data;
             IDictionary<string, object> defaultData = new Dictionary<string, object>();
             defaultData.Add("LOAI", "AAPPR_SOA2");
             V6ControlFormHelper.ShowDataEditorForm(data, tableName, null, keys, true, true, true, true, defaultData);
+        }
+
+        private void cboSendType_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            
         }
 
         

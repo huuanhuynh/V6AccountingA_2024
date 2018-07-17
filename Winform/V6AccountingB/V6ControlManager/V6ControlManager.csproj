@@ -5223,9 +5223,9 @@
       <Project>{910141A1-9FC5-4A44-B682-425100FE9023}</Project>
       <Name>V6Structs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\V6ThuePostApi\V6ThuePostApi.csproj">
+    <ProjectReference Include="..\V6ThuePostApi\V6ThuePostManager.csproj">
       <Project>{4AF9BDE9-3E91-4035-BB20-2CFC1E0E54A6}</Project>
-      <Name>V6ThuePostApi</Name>
+      <Name>V6ThuePostManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -625,24 +625,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             if (getFilter != "") filter += " and " + getFilter;
                             _maLo.SetInitFilter(filter);
                         };
-                        //_maLo.V6LostFocus += delegate
-                        //{
-                        //    CheckMaLo();
-                        //};
-                        //_maLo.V6LostFocusNoChange += delegate
-                        //{
-                        //    XuLyLayThongTinKhiChonMaLo();
-                        //    // tuanmh 30/07/2016
-                        //    GetLoDate13();
-                        //    if (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO))
-                        //    {
-                        //        if (_soLuong1.Value > _ton13.Value)
-                        //        {
-                        //            _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
-                        //            TinhTienNt2();
-                        //        }
-                        //    }
-                        //};
                         _maLo.LostFocus += (sender, args) =>
                         {
                             if (!_maLo.ReadOnly)
@@ -1805,7 +1787,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         if (M_CAL_SL_QD_ALL == "1")
                         {
                             if (_hs_qd1.Value != 0)
-                                _sl_qd.Value = _soLuong1.Value/_hs_qd1.Value;
+                                _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
                         }
                     }
                 }

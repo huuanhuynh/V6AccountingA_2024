@@ -1,4 +1,4 @@
-﻿namespace V6ThuePostApi.PostObjects
+﻿namespace V6ThuePostManager.Viettel.PostObjects
 {
     public class SellerInfo
     {

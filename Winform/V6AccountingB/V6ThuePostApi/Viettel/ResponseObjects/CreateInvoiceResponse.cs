@@ -1,4 +1,4 @@
-﻿namespace V6ThuePostApi.ResponseObjects
+﻿namespace V6ThuePostManager.Viettel.ResponseObjects
 {
     public class CreateInvoiceResponse
     {

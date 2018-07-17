@@ -51,7 +51,7 @@
             // 
             this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnHuy.Location = new System.Drawing.Point(102, 421);
+            this.btnHuy.Location = new System.Drawing.Point(102, 521);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(84, 29);
             this.btnHuy.TabIndex = 4;
@@ -62,7 +62,7 @@
             // btnNhan
             // 
             this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNhan.Location = new System.Drawing.Point(12, 421);
+            this.btnNhan.Location = new System.Drawing.Point(12, 521);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(84, 29);
             this.btnNhan.TabIndex = 3;
@@ -87,7 +87,7 @@
             this.treeListView1.HideSelection = false;
             this.treeListView1.Location = new System.Drawing.Point(12, 22);
             this.treeListView1.Name = "treeListView1";
-            this.treeListView1.Size = new System.Drawing.Size(748, 393);
+            this.treeListView1.Size = new System.Drawing.Size(760, 493);
             this.treeListView1.SmallImageList = this.imageList1;
             this.treeListView1.TabIndex = 1;
             this.treeListView1.UseCompatibleStateImageBehavior = false;
@@ -105,7 +105,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnHuy;
-            this.ClientSize = new System.Drawing.Size(772, 462);
+            this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Controls.Add(this.treeListView1);

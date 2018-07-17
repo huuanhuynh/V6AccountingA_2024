@@ -242,6 +242,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                 {
                                     TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
                                     _soLuong.Value = _soLuong1.Value * _heSo1.Value;
+
                                     if (M_CAL_SL_QD_ALL == "1")
                                     {
                                         CheckSoLuong1();
@@ -497,24 +498,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                 if (getFilter != "") filter += " and " + getFilter;
                                 _maLo.SetInitFilter(filter);
                             };
-                            //_maLo.V6LostFocus += sender =>
-                            //{
-                            //    CheckMaLo();
-                            //};
-
-                            //_maLo.V6LostFocusNoChange += delegate
-                            //{
-                            //    XuLyLayThongTinKhiChonMaLo();
-                            //    GetLoDate13();
-                            //    if (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO))
-                            //    {
-                            //        if (_soLuong1.Value > _ton13.Value)
-                            //        {
-                            //            _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
-                            //            TinhTienVon1();
-                            //        }
-                            //    }
-                            //};
                             _maLo.LostFocus += (sender, args) =>
                             {
                                 if (!_maLo.ReadOnly)
@@ -978,7 +961,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             try
             {
                 if (!(IsReady && (Mode == V6Mode.Add || Mode == V6Mode.Edit)
-                          && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))) return;
+                    && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))) return;
 
                 _maVt.RefreshLoDateYnValue();
                 if (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO))
@@ -987,6 +970,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     {
                         ShowParentMessage(V6Text.StockoutWarning);
                         _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
+                        if (M_CAL_SL_QD_ALL == "1")
+                        {
+                            if (_hs_qd1.Value != 0)
+                                _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
+                        }
                     }
                 }
                 TinhTienVon1();
@@ -1262,22 +1250,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             {
                 _heSo1.Value = 1;
             }
-        }
-        
-        void SoLuong1_V6LostFocus(object sender)
-        {
-            if (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO))
-            {
-                if (_soLuong1.Value > _ton13.Value)
-                {
-                    this.ShowWarningMessage(V6Text.StockoutWarning);
-                    _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
-                }
-            }
-            _soLuong.Value = _soLuong1.Value * _heSo1.Value;
-
-            
-            TinhTienVon();
         }
         
         #endregion events

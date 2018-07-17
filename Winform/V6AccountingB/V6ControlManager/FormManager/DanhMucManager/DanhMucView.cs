@@ -59,10 +59,14 @@ namespace V6ControlManager.FormManager.DanhMucManager
             if (aldm)
             {
                 aldm_config = V6ControlsHelper.GetAldmConfigByTableName(_tableName);
+                if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(aldm_config.ORDER))
+                    SelectResult.SortField = aldm_config.ORDER;
             }
             else
             {
                 v6lookup_config = V6ControlsHelper.GetV6lookupConfigByTableName(_tableName);
+                if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(v6lookup_config.vOrder))
+                    SelectResult.SortField = v6lookup_config.vOrder;
             }
 
             GetExtraInitFilter();

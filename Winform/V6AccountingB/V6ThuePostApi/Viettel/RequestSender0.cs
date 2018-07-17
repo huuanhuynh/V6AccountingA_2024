@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace V6ThuePostApi
+namespace V6ThuePostManager.Viettel
 {
     public class RequestSender0
     {
@@ -88,59 +88,66 @@ namespace V6ThuePostApi
 
         internal HttpWebRequest GenerateRequest(string uri, string content, string method, string username, string password, bool allowAutoRedirect)
         {
-            if (uri == null)
+            try
             {
-                throw new ArgumentNullException("uri");
-            }
-            
-            method = method != null ? method.ToUpper() : "";
+                if (uri == null)
+                {
+                    throw new ArgumentNullException("uri");
+                }
 
-            // Create a request using a URL that can receive a post. 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            
-            // Set the Method property of the request to POST.
-            request.Method = method;
-            // Set cookie container to maintain cookies
-            request.CookieContainer = cookies;
-            request.AllowAutoRedirect = allowAutoRedirect;
-            // If username is empty use defaul credentials
-            if (string.IsNullOrEmpty(username))
+                method = method != null ? method.ToUpper() : "";
+
+                // Create a request using a URL that can receive a post. 
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+
+                // Set the Method property of the request to POST.
+                request.Method = method;
+                // Set cookie container to maintain cookies
+                request.CookieContainer = cookies;
+                request.AllowAutoRedirect = allowAutoRedirect;
+                // If username is empty use defaul credentials
+                if (string.IsNullOrEmpty(username))
+                {
+                    request.Credentials = CredentialCache.DefaultNetworkCredentials;
+                }
+                else
+                {
+                    var encoded = Convert.ToBase64String(Encoding.GetEncoding("UTF-8").GetBytes(username + ":" + password));
+                    request.Headers.Add("Authorization", "Basic " + encoded);
+                    //request.Credentials = new NetworkCredential(username, password);
+                }
+
+                if (method == "POST")
+                {
+                    // Convert POST data to a byte array.
+                    //Test
+
+                    byte[] byteArray = Encoding.UTF8.GetBytes(content);
+
+                    // Set the ContentType property of the WebRequest.
+                    //request.ContentType = "application/x-www-form-urlencoded";
+                    //request.ContentType = "application/json";
+                    request.ContentType = "application/json";
+                    request.Accept = "application/json";
+                    // Set the ContentLength property of the WebRequest.
+                    request.ContentLength = byteArray.Length;
+
+                    ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                    //request.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/49.0 Chrome/43.0.2357.126_coc_coc Safari/537.36";
+                    // Get the request stream.
+                    Stream dataStream = request.GetRequestStream();
+
+                    // Write the data to the request stream.
+                    dataStream.Write(byteArray, 0, byteArray.Length);
+                    // Close the Stream object.
+                    dataStream.Close();
+                }
+                return request;
+            }
+            catch (Exception)
             {
-                request.Credentials = CredentialCache.DefaultNetworkCredentials;
+                return null;
             }
-            else
-            {
-                var encoded = Convert.ToBase64String(Encoding.GetEncoding("UTF-8").GetBytes(username + ":" + password));
-                request.Headers.Add("Authorization", "Basic " + encoded);
-                //request.Credentials = new NetworkCredential(username, password);
-            }
-
-            if (method == "POST")
-            {
-                // Convert POST data to a byte array.
-                //Test
-                
-                byte[] byteArray = Encoding.UTF8.GetBytes(content);
-
-                // Set the ContentType property of the WebRequest.
-                //request.ContentType = "application/x-www-form-urlencoded";
-                //request.ContentType = "application/json";
-                request.ContentType = "application/json";
-                request.Accept = "application/json";
-                // Set the ContentLength property of the WebRequest.
-                request.ContentLength = byteArray.Length;
-
-                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-                //request.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/49.0 Chrome/43.0.2357.126_coc_coc Safari/537.36";
-                // Get the request stream.
-                Stream dataStream = request.GetRequestStream();
-                
-                // Write the data to the request stream.
-                dataStream.Write(byteArray, 0, byteArray.Length);
-                // Close the Stream object.
-                dataStream.Close();
-            }
-            return request;
         }
 
         internal HttpWebResponse GetResponse(HttpWebRequest request)

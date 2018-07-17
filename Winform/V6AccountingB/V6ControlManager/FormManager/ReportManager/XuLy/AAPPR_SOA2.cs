@@ -9,9 +9,9 @@ using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
-using V6ThuePostApi;
-using V6ThuePostApi.PostObjects;
-using V6ThuePostApi.ResponseObjects;
+using V6ThuePostManager;
+using V6ThuePostManager.Viettel.PostObjects;
+using V6ThuePostManager.Viettel.ResponseObjects;
 using V6Tools;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
@@ -92,6 +92,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@HoaDonMau","0"),
                             new SqlParameter("@isInvoice","1"),
                             new SqlParameter("@ReportFile",""),
+                            new SqlParameter("@MA_TD1", FilterControl.String1),
                             new SqlParameter("@UserID", V6Login.UserId)
                         };
 
@@ -99,27 +100,41 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //DataTable data0 = ds.Tables[0];
 
                         string jsonBody = "";
-                        jsonBody = ReadData(ds);
-                        string result = POST(jsonBody);
-                        CreateInvoiceResponse responseObject = null;
-                        if (RequestManager.Response != null)
+                        string result = "";
+                        if (FilterControl.String1 == "1")
                         {
-                            responseObject = MyJson.ConvertJson<CreateInvoiceResponse>(result);
-                        }
-                        else
-                        {
-                            responseObject = new CreateInvoiceResponse()
+                            jsonBody = ReadData_Viettel(ds);
+                            result = POST(jsonBody);
+                            CreateInvoiceResponse responseObject = null;
+                            if (RequestManager.Response != null)
                             {
-                                description = "Response is null.",
-                                result = null
-                            };
+                                responseObject = MyJson.ConvertJson<CreateInvoiceResponse>(result);
+                            }
+                            else
+                            {
+                                responseObject = new CreateInvoiceResponse()
+                                {
+                                    description = "Response is null.",
+                                    result = null
+                                };
 
-                            this.WriteToLog(GetType() + ".F9Thread", string.Format("{0}-{1}:{2}\njson:{3}",
-                                soct, responseObject.description, responseObject.result, jsonBody));
+                                this.WriteToLog(GetType() + ".F9Thread", string.Format("{0}-{1}:{2}\njson:{3}",
+                                    soct, responseObject.description, responseObject.result, jsonBody));
+                            }
+                            //
+                            _message = responseObject.description;
+                            f9MessageAll += string.Format("\n{0}: {1} {2}", soct, responseObject.errorCode, responseObject.description, responseObject.result);
                         }
-                        //
-                        _message = responseObject.description;
-                        f9MessageAll += string.Format("\n{0}: {1} {2}", soct, responseObject.errorCode, responseObject.description, responseObject.result);
+                        else if (FilterControl.String1 == "2")
+                        {
+                            
+                        }
+                        else if (FilterControl.String1 == "3")
+                        {
+                            
+                        }
+
+                        
                         
                         remove_list_g.Add(row);
                     }
@@ -134,13 +149,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             f9Running = false;
         }
 
-        public string ReadData(DataSet ds)
+        public string ReadData_Viettel(DataSet ds)
         {
             string result = "";
             try
             {
-                //PostObject obj = new PostObject();
-                postObject = new PostObject();
+                var postObject = new PostObject();
                 DataTable map_table = ds.Tables[0];
                 DataTable ad_table = ds.Tables[1];
                 DataTable am_table = ds.Tables[2];
@@ -298,8 +312,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private string username, password;
         private string baseUrl = "", methodUrl = "", mst = "";
-
-        private PostObject postObject;
 
         private Dictionary<string, ConfigLine> generalInvoiceInfoConfig = null;
         private Dictionary<string, ConfigLine> buyerInfoConfig = null;

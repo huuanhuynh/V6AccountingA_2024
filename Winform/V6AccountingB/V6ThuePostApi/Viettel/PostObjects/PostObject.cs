@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace V6ThuePostApi.PostObjects
+namespace V6ThuePostManager.Viettel.PostObjects
 {
     public class PostObject : JsonObject
     {

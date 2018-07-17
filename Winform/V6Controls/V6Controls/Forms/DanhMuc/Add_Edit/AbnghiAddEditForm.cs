@@ -59,8 +59,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 errors += V6Text.CheckInfor + "\r\n";
             
             AldmConfig config = V6ControlsHelper.GetAldmConfig(TableName.ToString());
-            var key_list = ObjectAndString.SplitString(config.KEY);
-            errors += CheckValid(TableName.ToString(), key_list);
+            if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
+            {
+                var key_list = ObjectAndString.SplitString(config.KEY);
+                errors += CheckValid(TableName.ToString(), key_list);
+            }
 
             if(errors.Length>0) throw new Exception(errors);
         }

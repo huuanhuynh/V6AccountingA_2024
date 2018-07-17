@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace V6ThuePostApi.ResponseObjects
+﻿namespace V6ThuePostManager.Viettel.ResponseObjects
 {
     public class CreateInvoiceResponse_Result
     {

@@ -35,6 +35,9 @@
             this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineNH_KH8 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineNH_KH7 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_kh6 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_kh5 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_kh4 = new V6ReportControls.FilterLineVvarTextBox();
@@ -60,9 +63,7 @@
             this.chkHoaDonDaIn = new V6Controls.V6CheckBox();
             this.v6Label5 = new V6Controls.V6Label();
             this.btnSuaChiTieu = new System.Windows.Forms.Button();
-            this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
-            this.lineNH_KH8 = new V6ReportControls.FilterLineVvarTextBox();
-            this.lineNH_KH7 = new V6ReportControls.FilterLineVvarTextBox();
+            this.cboSendType = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -171,6 +172,39 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // lineNH_KH9
+            // 
+            this.lineNH_KH9.AccessibleName2 = "NH_KH9";
+            this.lineNH_KH9.FieldCaption = "Nhóm khách hàng 9";
+            this.lineNH_KH9.FieldName = "NH_KH9";
+            this.lineNH_KH9.Location = new System.Drawing.Point(4, 325);
+            this.lineNH_KH9.Name = "lineNH_KH9";
+            this.lineNH_KH9.Size = new System.Drawing.Size(294, 22);
+            this.lineNH_KH9.TabIndex = 21;
+            this.lineNH_KH9.Vvar = "NH_KH";
+            // 
+            // lineNH_KH8
+            // 
+            this.lineNH_KH8.AccessibleName2 = "NH_KH8";
+            this.lineNH_KH8.FieldCaption = "Nhóm khách hàng 8";
+            this.lineNH_KH8.FieldName = "NH_KH8";
+            this.lineNH_KH8.Location = new System.Drawing.Point(4, 303);
+            this.lineNH_KH8.Name = "lineNH_KH8";
+            this.lineNH_KH8.Size = new System.Drawing.Size(294, 22);
+            this.lineNH_KH8.TabIndex = 20;
+            this.lineNH_KH8.Vvar = "NH_KH";
+            // 
+            // lineNH_KH7
+            // 
+            this.lineNH_KH7.AccessibleName2 = "NH_KH7";
+            this.lineNH_KH7.FieldCaption = "Nhóm khách hàng 7";
+            this.lineNH_KH7.FieldName = "NH_KH7";
+            this.lineNH_KH7.Location = new System.Drawing.Point(4, 281);
+            this.lineNH_KH7.Name = "lineNH_KH7";
+            this.lineNH_KH7.Size = new System.Drawing.Size(294, 22);
+            this.lineNH_KH7.TabIndex = 19;
+            this.lineNH_KH7.Vvar = "NH_KH";
             // 
             // Txtnh_kh6
             // 
@@ -476,43 +510,25 @@
             this.btnSuaChiTieu.UseVisualStyleBackColor = true;
             this.btnSuaChiTieu.Click += new System.EventHandler(this.btnSuaChiTieu_Click);
             // 
-            // lineNH_KH9
+            // cboSendType
             // 
-            this.lineNH_KH9.AccessibleName2 = "NH_KH9";
-            this.lineNH_KH9.FieldCaption = "Nhóm khách hàng 9";
-            this.lineNH_KH9.FieldName = "NH_KH9";
-            this.lineNH_KH9.Location = new System.Drawing.Point(4, 325);
-            this.lineNH_KH9.Name = "lineNH_KH9";
-            this.lineNH_KH9.Size = new System.Drawing.Size(294, 22);
-            this.lineNH_KH9.TabIndex = 21;
-            this.lineNH_KH9.Vvar = "NH_KH";
-            // 
-            // lineNH_KH8
-            // 
-            this.lineNH_KH8.AccessibleName2 = "NH_KH8";
-            this.lineNH_KH8.FieldCaption = "Nhóm khách hàng 8";
-            this.lineNH_KH8.FieldName = "NH_KH8";
-            this.lineNH_KH8.Location = new System.Drawing.Point(4, 303);
-            this.lineNH_KH8.Name = "lineNH_KH8";
-            this.lineNH_KH8.Size = new System.Drawing.Size(294, 22);
-            this.lineNH_KH8.TabIndex = 20;
-            this.lineNH_KH8.Vvar = "NH_KH";
-            // 
-            // lineNH_KH7
-            // 
-            this.lineNH_KH7.AccessibleName2 = "NH_KH7";
-            this.lineNH_KH7.FieldCaption = "Nhóm khách hàng 7";
-            this.lineNH_KH7.FieldName = "NH_KH7";
-            this.lineNH_KH7.Location = new System.Drawing.Point(4, 281);
-            this.lineNH_KH7.Name = "lineNH_KH7";
-            this.lineNH_KH7.Size = new System.Drawing.Size(294, 22);
-            this.lineNH_KH7.TabIndex = 19;
-            this.lineNH_KH7.Vvar = "NH_KH";
+            this.cboSendType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSendType.FormattingEnabled = true;
+            this.cboSendType.Items.AddRange(new object[] {
+            "VIETTEL",
+            "VNPT",
+            "BKAV"});
+            this.cboSendType.Location = new System.Drawing.Point(160, 137);
+            this.cboSendType.Name = "cboSendType";
+            this.cboSendType.Size = new System.Drawing.Size(121, 21);
+            this.cboSendType.TabIndex = 22;
+            this.cboSendType.SelectedIndexChanged += new System.EventHandler(this.cboSendType_SelectedIndexChanged);
             // 
             // AAPPR_SOA2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cboSendType);
             this.Controls.Add(this.btnSuaChiTieu);
             this.Controls.Add(this.v6Label5);
             this.Controls.Add(this.chkHoaDonDaIn);
@@ -578,5 +594,6 @@
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH9;
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH8;
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH7;
+        private System.Windows.Forms.ComboBox cboSendType;
     }
 }
