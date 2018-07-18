@@ -17,6 +17,7 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6ReportControls;
+using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 
@@ -132,7 +133,7 @@ namespace V6ControlManager.FormManager.ReportManager
                                         //Make dynamic event and call
                                         switch (EVENT_NAME)
                                         {
-                                            case "TEXTCHANGE":
+                                            case ControlDynamicEvent.TEXTCHANGE:
                                                 lineControl.TextChanged += (s, e) =>
                                                 {
                                                     if (Event_program == null) return;
@@ -143,7 +144,7 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 };
                                                 break;
 
-                                            case "VALUECHANGE":
+                                            case ControlDynamicEvent.VALUECHANGE:
                                                 //V6NumberTextBox numInput = lineControl._ as V6NumberTextBox;
                                                 //if (numInput == null) break;
 
@@ -157,7 +158,7 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 };
                                                 break;
 
-                                            case "LOSTFOCUS":
+                                            case ControlDynamicEvent.LOSTFOCUS:
                                                 lineControl.LostFocus += (s, e) =>
                                                 {
                                                     if (Event_program == null) return;
@@ -168,7 +169,7 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 };
                                                 break;
 
-                                            case "GOTFOCUS":
+                                            case ControlDynamicEvent.GOTFOCUS:
                                                 lineControl.GotFocus += (s, e) =>
                                                 {
                                                     if (Event_program == null) return;
@@ -179,7 +180,7 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 };
                                                 break;
 
-                                            case "V6LOSTFOCUS":
+                                            case ControlDynamicEvent.V6LOSTFOCUS:
                                                 lineControl.V6LostFocus += (s) =>
                                                 {
                                                     if (Event_program == null) return;
@@ -190,7 +191,7 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 };
                                                 break;
 
-                                            case "KEYDOWN":
+                                            case ControlDynamicEvent.KEYDOWN:
                                                 lineControl.KeyDown += (s, e) =>
                                                 {
                                                     if (Event_program == null) return;
@@ -201,7 +202,7 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 };
                                                 break;
 
-                                            case "CLICK":
+                                            case ControlDynamicEvent.CLICK:
                                                 lineControl.Click += (s, e) =>
                                                 {
                                                     if (Event_program == null) return;

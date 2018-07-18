@@ -344,7 +344,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                     //Make dynamic event and call
                                     switch (EVENT_NAME)
                                     {
-                                        case "INIT":
+                                        case ControlDynamicEvent.INIT:
                                             input.EnabledChanged += (s, e) =>
                                             {
                                                 if (Event_program2 == null) return;
@@ -355,7 +355,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                             };
                                             break;
 
-                                        case "TEXTCHANGE":
+                                        case ControlDynamicEvent.TEXTCHANGE:
                                             input.TextChanged += (s, e) =>
                                             {
                                                 if (Event_program2 == null) return;
@@ -366,7 +366,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                             };
                                             break;
 
-                                        case "VALUECHANGE":
+                                        case ControlDynamicEvent.VALUECHANGE:
                                             V6NumberTextBox numInput = input as V6NumberTextBox;
                                             if (numInput == null) break;
 
@@ -380,7 +380,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                             };
                                             break;
 
-                                        case "GOTFOCUS":
+                                        case ControlDynamicEvent.GOTFOCUS:
                                             input.GotFocus += (s, e) =>
                                             {
                                                 if (Event_program2 == null) return;
@@ -391,7 +391,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                             };
                                             break;
 
-                                        case "LOSTFOCUS":
+                                        case ControlDynamicEvent.LOSTFOCUS:
                                             input.LostFocus += (s, e) =>
                                             {
                                                 if (Event_program2 == null) return;
@@ -402,7 +402,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                             };
                                             break;
 
-                                        case "V6LOSTFOCUS":
+                                        case ControlDynamicEvent.V6LOSTFOCUS:
                                             var colorInput = input as V6ColorTextBox;
                                             if (colorInput == null) break;
                                             colorInput.V6LostFocus += (s) =>
@@ -415,7 +415,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                             };
                                             break;
 
-                                        case "KEYDOWN":
+                                        case ControlDynamicEvent.KEYDOWN:
                                             input.KeyDown += (s, e) =>
                                             {
                                                 if (Event_program2 == null) return;
@@ -426,7 +426,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                             };
                                             break;
 
-                                        case "CLICK":
+                                        case ControlDynamicEvent.CLICK:
                                             input.Click += (s, e) =>
                                             {
                                                 if (Event_program2 == null) return;

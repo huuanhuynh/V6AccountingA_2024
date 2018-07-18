@@ -1460,7 +1460,6 @@
     <Compile Include="FormManager\DanhMucManager\PhanNhom\PhanNhomForm.Designer.cs">
       <DependentUpon>PhanNhomForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\FormDynamicEvent.cs" />
     <Compile Include="FormManager\FormManagerHelper.cs" />
     <Compile Include="FormManager\HeThong\QuanLyHeThong\OnlineManager.cs">
       <SubType>UserControl</SubType>

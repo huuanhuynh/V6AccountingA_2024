@@ -1858,6 +1858,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                             {
                                 dataRow["STT_REC"] = _sttRec;
                             }
+                            InvokeFormEventFixCopyData();
                             V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + txtSoPhieu.Text);
                             Mode = V6Mode.Add;
                             detail1.MODE = V6Mode.View;

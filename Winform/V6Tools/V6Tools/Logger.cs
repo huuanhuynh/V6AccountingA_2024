@@ -62,9 +62,9 @@ namespace V6Tools
         /// </summary>
         /// <param name="address">ClientName + class.Method.</param>
         /// <param name="ex">Exception</param>
-        /// <param name="lastActions"></param>
+        /// <param name="lastActions">Ghi chú thêm, để rỗng nếu không cần.</param>
         /// <param name="logFile">Tên file log. Thường dùng tên chương trình.</param>
-        public static void WriteExLog(string address, Exception ex, string lastActions, string logFile = "V6Log")
+        public static void WriteExLog(string address, Exception ex, string lastActions = null, string logFile = "V6Log")
         {
             try
             {

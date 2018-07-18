@@ -218,7 +218,6 @@ namespace V6AccountingBusiness.Invoices
             List<SortedDictionary<string, object>> adList3,
             SortedDictionary<string,object> keys, bool post)
         {
-            //return Service83.UpdateInvoice(V6Login.UserId, AMStruct, ADStruct, AD3Struct, am, adList, adList3, keys, WRITE_LOG, out V6Message, post);
             object stt_rec = amData["STT_REC"];
             var insert_success = false;
             int j = 0, j3 = 0;

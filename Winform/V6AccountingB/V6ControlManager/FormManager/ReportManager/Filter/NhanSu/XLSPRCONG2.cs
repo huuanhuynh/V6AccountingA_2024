@@ -33,7 +33,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
         {
             String1 = txtFile.Text;
             Number1 = txtSoMaCong.Value;
-            Tag = txtDanhSachCot.Text;
+            ObjectDictionary["DANHSACHCOT"] = txtDanhSachCot.Text;
             //String2 = comboBox1.SelectedItem.ToString();
             //String3 = comboBox2.SelectedItem.ToString();
 

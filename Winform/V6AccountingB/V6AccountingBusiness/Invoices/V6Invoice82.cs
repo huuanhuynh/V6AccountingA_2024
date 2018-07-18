@@ -335,7 +335,7 @@ namespace V6AccountingBusiness.Invoices
             {
                 where4Dvcs += (string.IsNullOrEmpty(where4Dvcs) ? "" : " and ") + filterKho;
             }
-            //return Service82.SearchAM(AM_TableName, AD_TableName, Mact, where0Ngay, where1AM, where2AD, where3NhVt, where4Dvcs);
+            
             string template =
                 "Select a.*, b.Ma_so_thue, b.Dien_thoai, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien,g.Ten_httt AS Ten_httt"
                 + "\nFROM " + AM_TableName + " a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien"

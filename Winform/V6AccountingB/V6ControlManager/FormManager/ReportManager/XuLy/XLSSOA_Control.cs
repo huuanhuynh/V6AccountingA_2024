@@ -116,7 +116,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
 
                 All_Objects["data"] = data;
-                InvokeFormEvent("DYNAMICFIXEXCEL");
+                InvokeFormEvent(FormDynamicEvent.DYNAMICFIXEXCEL);
 
                 dataGridView1.DataSource = data;
                 string[] data_fields = "MA_KH,MA_VT".Split(',');

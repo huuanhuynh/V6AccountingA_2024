@@ -5135,6 +5135,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                 dataRow["STT_REC0DH"] = DBNull.Value;
                             }
 
+                            InvokeFormEventFixCopyData();
+                            
                             V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + TxtSo_ct.Text);
 
                             Mode = V6Mode.Add;
@@ -5782,12 +5784,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         }
         private void hoaDonDetail1_AddHandle(SortedDictionary<string,object> data)
         {
-            if (ValidateData_Detail(data) && XuLyThemDetail(data))
+            if (ValidateData_Detail(data))
             {
-                return;
+                if (XuLyThemDetail(data)) return;
+                throw new Exception(V6Text.AddFail);
             }
-            throw new Exception(V6Text.AddFail);
+            throw new Exception(V6Text.ValidateFail);
         }
+
         private void hoaDonDetail1_EditHandle(SortedDictionary<string,object> data)
         {
             if (ValidateData_Detail(data) && XuLySuaDetail(data))

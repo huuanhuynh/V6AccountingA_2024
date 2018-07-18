@@ -20,7 +20,6 @@ namespace V6AccountingBusiness
 
         public static void ChangeAll_Id(string madm, string oldCode, string newCode)
         {
-            //Service.ChangeAll_Id(madm, oldCode, newCode);
             SqlParameter[] plist =
             {
                 // Tuanmh 29/05/2016
@@ -143,8 +142,6 @@ namespace V6AccountingBusiness
         public static bool IsValidOneCode_Full(string cInputTable, byte nStatus,
             string cInputField, string cpInput, string cOldItems)
         {
-            //return Service.IsValidOneCode_Full(cInputTable, nStatus,
-            //    cInputField, cpInput, cOldItems);
             SqlParameter[] plist =
             {
                 new SqlParameter("@cInputTable", cInputTable),
@@ -692,7 +689,7 @@ namespace V6AccountingBusiness
         public static bool ExportBackupInvoice(string mact, DateTime dateFrom, DateTime dateTo)
         {
             V6InvoiceBase invoice = new V6InvoiceBase(mact);
-            //return Service.ExportBackupInvoice(invoice.AM_TableName, invoice.AD_TableName, invoice.AD2);
+            
             try
             {
                 var data = new DataTable("Name");
@@ -702,7 +699,7 @@ namespace V6AccountingBusiness
             }
             catch (Exception ex)
             {
-                Logger.WriteToLog("BusinessService ExportBackupInvoice: " + ex.Message, "DataAccessLayer");
+                Logger.WriteExLog("Business ExportBackupInvoice", ex, "");
                 return false;
             }
         }
@@ -1055,16 +1052,9 @@ namespace V6AccountingBusiness
 
         public static bool StartSqlConnect(string key, string iniLocation)
         {
-            //return Service.StartSqlConnect(key, iniLocation);
             return SqlConnect.StartSqlConnect(key, iniLocation);
         }
-        
-        
-        
 
-        
-
-        
 
         public static decimal GetMaxValueTable(string pTablename, string pFieldname, string pKey)
         {
@@ -1090,7 +1080,6 @@ namespace V6AccountingBusiness
         /// <returns></returns>
         public static string GetSoCt(string mode, string voucherNo, string mact, string maDvcs, int userId)
         {
-            //return Service.GetSoCt(mode, voucherNo, mact, maDvcs, userId);
             SqlParameter[] prlist =
             {
                 new SqlParameter("@Mode_VC", mode),
@@ -1132,8 +1121,6 @@ namespace V6AccountingBusiness
         /// <returns></returns>
         public static string GetNewSttRec(string mact)
         {
-            //var sttRec = Service.GetNewSttRec(pMaCt);
-            //return sttRec;
             if (mact.Length > 3) mact = mact.Substring(0, 3);
             var param = new SqlParameter("@pMa_ct", mact);
             string sttRec = SqlConnect.ExecuteScalar(CommandType.StoredProcedure, "VPA_sGet_stt_rec", param).ToString();
@@ -1600,7 +1587,6 @@ namespace V6AccountingBusiness
         
         public static DataTable GetViTriLoDate(string mavt, string makho, string sttRec, DateTime ngayct)
         {
-            //return Service.GetViTriLoDate(mavt, makho, sttRec, ngayct);
             mavt = mavt.Replace("'", "''");
             makho = makho.Replace("'", "''");
 
@@ -1615,7 +1601,6 @@ namespace V6AccountingBusiness
                 {
                     keys = string.Format("Ma_vt = '" + mavt + "'");
                 }
-
             }
             else
             {
@@ -1688,7 +1673,6 @@ namespace V6AccountingBusiness
         
         public static DataTable GetViTriLoDate13(string mavt, string makho, string malo, string mavitri, string sttRec, DateTime ngayct)
         {
-            //return Service.GetViTriLoDate13(mavt, makho, malo, mavitri, sttRec, ngayct);
             mavt = mavt.Replace("'", "''");
             makho = makho.Replace("'", "''");
             malo = malo.Replace("'", "''");
@@ -1707,7 +1691,6 @@ namespace V6AccountingBusiness
                     {
                         keys = string.Format("Ma_vt = '" + mavt + "' and Ma_vitri = '" + mavitri + "'");
                     }
-
                 }
                 else
                 {
@@ -1719,10 +1702,7 @@ namespace V6AccountingBusiness
                     {
                         keys = string.Format("Ma_vt = '" + mavt + "' and Ma_lo = '" + malo + "' and Ma_vitri = '" + mavitri + "'");
                     }
-
-
                 }
-
             }
             else
             {
@@ -1737,7 +1717,6 @@ namespace V6AccountingBusiness
                     {
                         keys = string.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "' and Ma_vitri = '" + mavitri + "'");
                     }
-
                 }
                 else
                 {
@@ -1749,8 +1728,6 @@ namespace V6AccountingBusiness
                     {
                         keys = string.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "' and Ma_lo = '" + malo + "' and Ma_vitri = '" + mavitri + "'");
                     }
-
-
                 }
             }
 
@@ -1768,7 +1745,6 @@ namespace V6AccountingBusiness
         }
         public static DataTable GetViTriLoDateAll(string mavt_in, string makho_in, string malo_in, string mavitri_in, string sttRec, DateTime ngayct)
         {
-            //return Service.GetViTriLoDateAll(mavt_in, makho_in, malo_in, mavitri_in, sttRec, ngayct);
             SqlParameter[] plist = new[]
             {
                 new SqlParameter("@cKey1", string.Format("Ma_vt in ("+mavt_in+") and Ma_kho in ("+makho_in
@@ -1783,7 +1759,6 @@ namespace V6AccountingBusiness
 
         public static DataTable GetStock(string mact, string mavt, string makho, string sttRec, DateTime ngayct)
         {
-            //return Service.GetStock(mact, mavt, makho, sttRec, ngayct);
             //    @Type AS TINYINT, -- 0: Đầu kỳ, 1: Cuối kỳ
             //@Ngay_ct AS SmallDateTime, -- Ngày tính số dư đầu kỳ
             //@ma_ct varchar(50),
@@ -1807,7 +1782,6 @@ namespace V6AccountingBusiness
         
         public static DataTable GetStockAll(string mact, string mavt_in, string makho_in, string sttRec, DateTime ngayct)
         {
-            //return Service.GetStockAll(mact, mavt_in, makho_in, sttRec, ngayct);
             SqlParameter[] plist =
             {
                 new SqlParameter("@Type", 1),

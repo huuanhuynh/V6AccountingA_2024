@@ -196,7 +196,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     goto End;
                 }
                 int soCot = Convert.ToInt32(FilterControl.Number1);
-                var danhSachCot = FilterControl.Tag.ToString();
+                var danhSachCot = FilterControl.ObjectDictionary["DANHSACHCOT"].ToString();
                 var splitColums = danhSachCot.Split(',');
                 int stt = 0;
                 DateTime last_day = V6Setting.M_SV_DATE;
@@ -215,13 +215,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                         //foreach (string field in check_list)
                         //{
                         //Kiem tra xem 1 trong 4 cot cuoi co thoa man dieu kien.
-                        var checkResult1 = CheckValidDSCot(dataDic, danhSachCacCot);
-                        var checkResult2 = false;
-                        if ((ObjectAndString.ObjectToDate(dataDic["NGAY"]) != null)
-                            && (ObjectAndString.ObjectToString(dataDic["MA_NS"])!= ""))
-                        {
-                            checkResult2 = true;
-                        }
+                        bool checkResult1 = CheckValidDSCot(dataDic, danhSachCacCot);
+                        bool checkResult2 = (ObjectAndString.ObjectToDate(dataDic["NGAY"]) != null) && (ObjectAndString.ObjectToString(dataDic["MA_NS"])!= "");
                         //}
                         check_ok = checkResult1 && checkResult2;
                         if (check_ok)

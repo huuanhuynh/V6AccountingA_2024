@@ -817,9 +817,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (Event_Methods.ContainsKey("F3"))
+                if (Event_Methods.ContainsKey(FormDynamicEvent.F3))
                 {
-                    InvokeFormEvent("F3");
+                    InvokeFormEvent(FormDynamicEvent.F3);
                     return;
                 }
 
@@ -881,9 +881,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         protected virtual void XuLyBoSungThongTinChungTuF4()
         {
-            if (Event_Methods.ContainsKey("F4"))
+            if (Event_Methods.ContainsKey(FormDynamicEvent.F4))
             {
-                InvokeFormEvent("F4");
+                InvokeFormEvent(FormDynamicEvent.F4);
             }
             else
             {
@@ -987,9 +987,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (Event_Methods.ContainsKey("F7"))
+                if (Event_Methods.ContainsKey(FormDynamicEvent.F7))
                 {
-                    InvokeFormEvent("F7");
+                    InvokeFormEvent(FormDynamicEvent.F7);
                 }
                 else
                 {
@@ -1006,9 +1006,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (Event_Methods.ContainsKey("F8"))
+                if (Event_Methods.ContainsKey(FormDynamicEvent.F8))
                 {
-                    InvokeFormEvent("F8");
+                    InvokeFormEvent(FormDynamicEvent.F8);
                 }
                 else
                 {
@@ -1076,7 +1076,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             f9Running = true;
             f9ErrorAll = "";
-            InvokeFormEvent("F9");
+            InvokeFormEvent(FormDynamicEvent.F9);
             f9Running = false;
         }
 
@@ -1147,7 +1147,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             f10Running = true;
             f10ErrorAll = "";
-            InvokeFormEvent("F10");
+            InvokeFormEvent(FormDynamicEvent.F10);
             f10Running = false;
         }
 

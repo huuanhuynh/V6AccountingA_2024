@@ -4619,7 +4619,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                             {
                                 dataRow["STT_REC"] = _sttRec;
                             }
-
+                            InvokeFormEventFixCopyData();
                             V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + MA_VITRIPH);
 
                             Mode = V6Mode.Add;

@@ -49,6 +49,7 @@ namespace V6Controls
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.V6ColorDataGridView_CellBeginEdit);
+            this.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(V6ColorDataGridView_CellEndEdit);
             this.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.V6ColorDataGridView_CellPainting);
             this.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.V6ColorDataGridView_CellParsing);
             this.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.V6ColorDataGridView_ColumnAdded);
@@ -60,6 +61,8 @@ namespace V6Controls
             this.ResumeLayout(false);
 
         }
+
+        
 
         //void V6ColorDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
         //{
@@ -90,6 +93,272 @@ namespace V6Controls
             EditingCell = CurrentCell;
             EditingRow = CurrentCell.OwningRow;
             EditingColumn = CurrentCell.OwningColumn;
+        }
+
+        
+        void V6ColorDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                string COLUMN_NAME = Columns[e.ColumnIndex].Name.ToUpper();
+                var cRow = Rows[e.RowIndex];
+                if (CongThuc.ContainsKey(COLUMN_NAME))
+                {
+                    string chuoi_cac_cong_thuc = CongThuc[COLUMN_NAME] ?? "";
+                    string[] list_congThuc = chuoi_cac_cong_thuc.Split(new[] {';'}, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string cong_thuc in list_congThuc)
+                    {
+                        try
+                        {
+                            XuLyCongThucTinhToan(cong_thuc, cRow);
+                        }
+                        catch (Exception ex)
+                        {
+                            this.WriteExLog(GetType() + ".CellEndEdit Lỗi công thức: " + cong_thuc, ex);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CellEndEdit", ex);
+            }
+        }
+
+        private readonly Dictionary<string, string> CongThuc = new Dictionary<string, string>();
+        /// <summary>
+        /// Gán công thức tính toán, ghi đè nếu đã có.
+        /// </summary>
+        /// <param name="FIELD">Trường gây sự kiện khi CellEndEdit.</param>
+        /// <param name="congThuc">Danh sách công thức tính toán, cách nhau bằng dấu ;</param>
+        public void GanCongThuc(string FIELD, string congThuc)
+        {
+            CongThuc[FIELD.ToUpper()] = congThuc;
+        }
+        /// <summary>
+        /// Thêm công thức tính toán, cộng dồn công thức nếu đã có.
+        /// </summary>
+        /// <param name="FIELD">Trường gây sự kiện khi CellEndEdit.</param>
+        /// <param name="congThuc">Danh sách công thức tính toán, cách nhau bằng dấu ;</param>
+        public void ThemCongThuc(string FIELD, string congThuc)
+        {
+            FIELD = FIELD.ToUpper();
+            if (CongThuc.ContainsKey(FIELD) && !string.IsNullOrEmpty(CongThuc[FIELD]))
+            {
+                CongThuc[FIELD] += ";" + congThuc;
+            }
+            else
+            {
+                CongThuc[FIELD] = congThuc;
+            }
+        }
+
+        //private List<string> updateFieldList = new List<string>();
+        private void XuLyCongThucTinhToan(string congThuc, DataGridViewRow cRow)
+        {
+            var ss = congThuc.Split('=');
+            if (ss.Length == 2)
+            {
+                var field = ss[0].Trim();
+                //updateFieldList.Add(field.ToUpper());
+                var bieu_thuc = ss[1].Trim();
+
+                //var cRow = dataGridView1.CurrentRow;
+                cRow.Cells[field].Value = GiaTriBieuThuc(bieu_thuc, cRow);
+            }
+        }
+
+        private decimal GiaTriBieuThuc(string bieu_thuc, DataGridViewRow cRow)
+        {
+            if (string.IsNullOrEmpty(bieu_thuc)) return 0;
+
+            //alert(bieu_thuc);
+            bieu_thuc = bieu_thuc.Replace(" ", ""); //Bỏ hết khoảng trắng
+            bieu_thuc = bieu_thuc.Replace("--", "+"); //loại bỏ lặp dấu -
+            bieu_thuc = bieu_thuc.Replace("+-", "-");
+            bieu_thuc = bieu_thuc.Replace("-+", "-");
+            bieu_thuc = bieu_thuc.Replace("++", "+"); //loại bỏ lặp dấu +
+            bieu_thuc = bieu_thuc.Replace("*+", "*");
+            bieu_thuc = bieu_thuc.Replace("/+", "/");
+
+
+            //xử lý Round();
+            bieu_thuc = bieu_thuc.ToUpper();
+            int roundOpenIndex = bieu_thuc.IndexOf("ROUND(", StringComparison.Ordinal);
+            if (roundOpenIndex >= 0)
+            {
+                var iopen = bieu_thuc.IndexOf('(', 0);
+                var iclose = bieu_thuc.Length;
+                for (var i = iopen; i < bieu_thuc.Length; i++)
+                {
+                    if (bieu_thuc[i] == '(') iopen = i;
+                    else if (bieu_thuc[i] == ')')
+                    {
+                        iclose = i;
+                        break;
+                    }
+                }
+                //
+                string before = "", after = "";
+                if (iopen <= 0) before = "+";
+                else if ("+-*/(".IndexOf(bieu_thuc[iopen - 1], 0) < 0) before = "*"; //Nếu trước dấu ( không phải là
+                //alert("sau ) la: " + bieu_thuc[iclose + 1]);
+                //alert("IndexOf: " + ("+-*/)!".IndexOf(bieu_thuc[iclose + 1], 0)));
+                if (iclose >= bieu_thuc.Length - 1) after = "+";
+                else if ("+-*/)!".IndexOf(bieu_thuc[iclose + 1], 0) < 0) after = "*"; //nếu sau dấu ) không có +-*/)!
+
+                var a = bieu_thuc.Substring(0, roundOpenIndex);
+                if (a.Trim() == "") before = "";
+                var b = bieu_thuc.Substring(iopen + 1, iclose - iopen - 1); //a(b)c
+                var phayindex = b.LastIndexOf(',');
+                var round1 = b.Substring(0, phayindex);
+                var round2 = b.Substring(phayindex + 1);
+
+                var c = bieu_thuc.Substring(iclose + 1);
+                if (c.Trim() == "") after = "";
+                //alert(a + ';' + b + ';' + c);
+                return GiaTriBieuThuc("" + a + before + V6BusinessHelper.Vround(GiaTriBieuThuc(round1, cRow), (int)GiaTriBieuThuc(round2, cRow)) + after + c, cRow);//RoundV(giatribt(a),giatribt(b))
+            }
+            //xử lý phép toán trong ngoặc trước.
+            if (bieu_thuc.IndexOf('(', 0) >= 0 || bieu_thuc.IndexOf(')', 0) >= 0)
+            {
+                var iopen = bieu_thuc.IndexOf('(', 0);
+                var iclose = bieu_thuc.Length;
+                for (var i = iopen; i < bieu_thuc.Length; i++)
+                {
+                    if (bieu_thuc[i] == '(') iopen = i;
+                    else if (bieu_thuc[i] == ')')
+                    {
+                        iclose = i;
+                        break;
+                    }
+                }
+                //
+                string before = "", after = "";
+                if (iopen <= 0) before = "+";
+                else if ("+-*/(".IndexOf(bieu_thuc[iopen - 1], 0) < 0) before = "*"; //Nếu trước dấu ( không phải là
+                //alert("sau ) la: " + bieu_thuc[iclose + 1]);
+                //alert("IndexOf: " + ("+-*/)!".IndexOf(bieu_thuc[iclose + 1], 0)));
+                if (iclose >= bieu_thuc.Length - 1) after = "+";
+                else if ("+-*/)!".IndexOf(bieu_thuc[iclose + 1], 0) < 0) after = "*"; //nếu sau dấu ) không có +-*/)!
+
+                var a = bieu_thuc.Substring(0, iopen);
+                if (a.Trim() == "") before = "";
+                var b = bieu_thuc.Substring(iopen + 1, iclose - iopen - 1); //a(b)c
+                var c = bieu_thuc.Substring(iclose + 1);
+                if (c.Trim() == "") after = "";
+                //alert(a + ';' + b + ';' + c);
+                return GiaTriBieuThuc("" + a + before + GiaTriBieuThuc(b, cRow) + after + c, cRow);//RoundV(giatribt(a),giatribt(b))
+            }
+
+            // có phép cộng trong biểu thức
+            if (bieu_thuc.IndexOf('+') >= 0)
+            {
+
+                var values = bieu_thuc.Split('+');
+                decimal sum = 0;
+                for (var i = 0; i < values.Length; i++)
+                {
+                    sum += GiaTriBieuThuc(values[i], cRow);
+                }
+                return sum;
+
+                //        var sp = bieu_thuc.LastIndexOf('+');//split point
+                //        var values1 = bieu_thuc.Substring(0, sp);
+                //        var values2 = bieu_thuc.Substring(sp + 1);
+                //        return GiaTriBieuThuc(values1) + GiaTriBieuThuc(values2);
+            }
+
+            // làm cho hết phép cộng rồi tới phép trừ    ////////////////////////// xử lý số âm hơi vất vả.
+            if ((bieu_thuc.Split('-').Length - 1) >
+                (bieu_thuc.Split(new[] { "*-" }, StringSplitOptions.None).Length +
+                 bieu_thuc.Split(new[] { "/-" }, StringSplitOptions.None).Length +
+                 bieu_thuc.Split(new[] { "^-" }, StringSplitOptions.None).Length - 3))
+            {
+
+                var sp = bieu_thuc.IndexOf('-');
+                //tim vi tri sp cuoi khong có */^ dung truoc
+                for (var i = sp; i < bieu_thuc.Length; i++)
+                {
+                    if (bieu_thuc[i] == '-' && "*/^".IndexOf(bieu_thuc[i - 1]) < 0)
+                    {
+                        sp = i;
+                    }
+                }
+                var values1 = bieu_thuc.Substring(0, sp);
+                var values2 = bieu_thuc.Substring(sp + 1);
+                return GiaTriBieuThuc(values1, cRow) - GiaTriBieuThuc(values2, cRow);
+            }
+
+            //phép nhân
+            if (bieu_thuc.IndexOf('*', 0) >= 0)
+            {
+
+                var values = bieu_thuc.Split('*');
+                decimal sum = 1;
+                for (var i = 0; i < values.Length; i++)
+                {
+                    sum *= GiaTriBieuThuc(values[i], cRow);
+                }
+                return sum;
+
+                //Phép Round (Round012.345)
+
+                //        var sp = bieu_thuc.LastIndexOf('*') > bieu_thuc.LastIndexOf("*-") ? bieu_thuc.LastIndexOf('*') : bieu_thuc.LastIndexOf("*-");
+                //        var values1 = bieu_thuc.Substring(0, sp);
+                //        var values2 = bieu_thuc.Substring(sp + 1);
+                //        return GiaTriBieuThuc(values1) * GiaTriBieuThuc(values2);
+            }
+            if (bieu_thuc.IndexOf('/', 0) >= 0)
+            {
+
+                var sp = bieu_thuc.LastIndexOf('/') > bieu_thuc.LastIndexOf("/-")
+                    ? bieu_thuc.LastIndexOf('/')
+                    : bieu_thuc.LastIndexOf("/-");
+
+                var values1 = bieu_thuc.Substring(0, sp);
+                var values2 = bieu_thuc.Substring(sp + 1);
+                return GiaTriBieuThuc(values1, cRow) / GiaTriBieuThuc(values2, cRow);
+            }
+            if (bieu_thuc.IndexOf('^', 0) >= 0)
+            {
+                var sp = bieu_thuc.LastIndexOf('^') < bieu_thuc.LastIndexOf("^-")
+                    ? bieu_thuc.LastIndexOf('^')
+                    : bieu_thuc.LastIndexOf("^-");
+
+                var values1 = bieu_thuc.Substring(0, sp);
+                var values2 = bieu_thuc.Substring(sp + 1);
+                return (decimal)Math.Pow((double)GiaTriBieuThuc(values1, cRow), (double)GiaTriBieuThuc(values2, cRow));
+            }
+            // giai thừa
+            if (bieu_thuc.IndexOf('!', 0) > 0)
+            {
+                var sp = bieu_thuc.LastIndexOf('!');
+                var values1 = bieu_thuc.Substring(0, sp);
+                return factorial((int)GiaTriBieuThuc(values1, cRow));
+            }
+            else if (bieu_thuc.Trim() == "")
+            {
+                return 0;
+            }
+            else
+            {
+                // Biểu thức lúc này là 1 trường hoặc một số cụ thể.
+                if (Columns.Contains(bieu_thuc))
+                    return ObjectAndString.ObjectToDecimal(cRow.Cells[bieu_thuc].Value);
+                return ObjectAndString.ObjectToDecimal(bieu_thuc);
+            }
+        }
+
+        private int factorial(int n)
+        {
+            if (n == 0 || n == 1) return 1;
+            var f = 1;
+            for (var i = 2; i <= n; i++)
+            {
+                f *= i;
+            }
+            return f;
         }
 
 

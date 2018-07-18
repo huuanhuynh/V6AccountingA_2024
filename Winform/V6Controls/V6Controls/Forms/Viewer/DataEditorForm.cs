@@ -16,6 +16,7 @@ namespace V6Controls.Forms.Viewer
             InitializeComponent();
         }
 
+        public V6ColorDataGridView DataGridView { get { return dataGridView1; } }
         private object _data;
         private string _tableName, _showFields;
         private string[] _keyFields;

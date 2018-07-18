@@ -2917,7 +2917,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                             {
                                 dataRow["STT_REC"] = _sttRec;
                             }
-                            
+                            InvokeFormEventFixCopyData();
                             V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + txtSoPhieu.Text);
 
                             Mode = V6Mode.Add;

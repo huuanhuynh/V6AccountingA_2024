@@ -15,8 +15,6 @@ namespace V6AccountingBusiness.Invoices
     /// </summary>
     public class V6Invoice81 : V6InvoiceBase
     {
-        //private readonly Invoice81Services Service81 = new Invoice81Services();
-
         public V6Invoice81():base("SOA", "00SOA")
         {
             

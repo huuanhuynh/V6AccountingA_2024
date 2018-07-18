@@ -98,41 +98,50 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         DataSet ds = V6BusinessHelper.ExecuteProcedure(_program + "F9", plist);
                         //DataTable data0 = ds.Tables[0];
+                        string result = "", error = "", sohoadon = "", id = "";
+                        RequestManager.PowerPost(ds, FilterControl.String1, out result, out sohoadon, out id);
+                        if (string.IsNullOrEmpty(error))
+                        {
+                            f9MessageAll += string.Format("\nThành công Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct, sohoadon, id, result);
+                        }
+                        else
+                        {
+                            f9MessageAll += string.Format("\nCó lỗi Soct:{0}, error:{1}\nResult:{2}", soct, error, result);
+                        }
 
-                        string jsonBody = "";
-                        string result = "";
-                        if (FilterControl.String1 == "1")
-                        {
-                            jsonBody = ReadData_Viettel(ds);
-                            result = POST(jsonBody);
-                            CreateInvoiceResponse responseObject = null;
-                            if (RequestManager.Response != null)
-                            {
-                                responseObject = MyJson.ConvertJson<CreateInvoiceResponse>(result);
-                            }
-                            else
-                            {
-                                responseObject = new CreateInvoiceResponse()
-                                {
-                                    description = "Response is null.",
-                                    result = null
-                                };
-
-                                this.WriteToLog(GetType() + ".F9Thread", string.Format("{0}-{1}:{2}\njson:{3}",
-                                    soct, responseObject.description, responseObject.result, jsonBody));
-                            }
-                            //
-                            _message = responseObject.description;
-                            f9MessageAll += string.Format("\n{0}: {1} {2}", soct, responseObject.errorCode, responseObject.description, responseObject.result);
-                        }
-                        else if (FilterControl.String1 == "2")
-                        {
+                        //string jsonBody = "";
+                        
+                        //if (FilterControl.String1 == "1")
+                        //{
+                        //    jsonBody = ReadData_Viettel(ds);
+                        //    result = POST(jsonBody);
+                        //    CreateInvoiceResponse responseObject = null;
+                        //    if (RequestManager.Response != null)
+                        //    {
+                        //        responseObject = MyJson.ConvertJson<CreateInvoiceResponse>(result);
+                        //    }
+                        //    else
+                        //    {
+                        //        responseObject = new CreateInvoiceResponse()
+                        //        {
+                        //            description = "Response is null.",
+                        //            result = null
+                        //        };
+                        //        this.WriteToLog(GetType() + ".F9Thread", string.Format("{0}-{1}:{2}\njson:{3}",
+                        //            soct, responseObject.description, responseObject.result, jsonBody));
+                        //    }
+                        //    //
+                        //    _message = responseObject.description;
+                        //    f9MessageAll += string.Format("\n{0}: {1} {2}", soct, responseObject.errorCode, responseObject.description, responseObject.result);
+                        //}
+                        //else if (FilterControl.String1 == "2")
+                        //{
                             
-                        }
-                        else if (FilterControl.String1 == "3")
-                        {
+                        //}
+                        //else if (FilterControl.String1 == "3")
+                        //{
                             
-                        }
+                        //}
 
                         
                         
@@ -149,151 +158,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             f9Running = false;
         }
 
-        public string ReadData_Viettel(DataSet ds)
-        {
-            string result = "";
-            try
-            {
-                var postObject = new PostObject();
-                DataTable map_table = ds.Tables[0];
-                DataTable ad_table = ds.Tables[1];
-                DataTable am_table = ds.Tables[2];
-                DataRow row0 = am_table.Rows[0];
-                DataTable ad2_table = ds.Tables[3];
+        
 
-                ReadConfigInfo(map_table);
-                //DataTable dataDbf = ParseDBF.ReadDBF(dbfFile);
-                //DataTable data = V6Tools.V6Convert.Data_Table.FromTCVNtoUnicode(dataDbf);
-                //Fill data to postObject
-                
-                //private Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
-                foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
-                {
-                    postObject.generalInvoiceInfo[item.Key] = GetValue(row0, item.Value);
-                }
-                //private Dictionary<string, XmlLine> buyerInfoConfig = null;
-                foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)
-                {
-                    postObject.buyerInfo[item.Key] = GetValue(row0, item.Value);
-                }
-                //private Dictionary<string, XmlLine> sellerInfoConfig = null;
-                foreach (KeyValuePair<string, ConfigLine> item in sellerInfoConfig)
-                {
-                    postObject.sellerInfo[item.Key] = GetValue(row0, item.Value);
-                }
-                //private Dictionary<string, XmlLine> paymentsConfig = null;
-                Dictionary<string, object> payment = new Dictionary<string, object>();
-                foreach (KeyValuePair<string, ConfigLine> item in paymentsConfig)
-                {
-                    payment[item.Key] = GetValue(row0, item.Value);
-                }
-                postObject.payments.Add(payment);//One payment only!
-
-                //itemInfo
-                foreach (DataRow row in ad_table.Rows)
-                {
-                    if (row["LOAI"].ToString() != "0") continue;
-                    Dictionary<string, object> rowData = new Dictionary<string, object>();
-                    foreach (KeyValuePair<string, ConfigLine> item in itemInfoConfig)
-                    {
-                        rowData[item.Key] = GetValue(row, item.Value);
-                    }
-                    postObject.itemInfo.Add(rowData);
-                }
-
-                //private Dictionary<string, XmlLine> summarizeInfoConfig = null;
-                foreach (KeyValuePair<string, ConfigLine> item in summarizeInfoConfig)
-                {
-                    postObject.summarizeInfo[item.Key] = GetValue(row0, item.Value);
-                }
-
-                //taxBreakdowns 
-                foreach (DataRow row in ad2_table.Rows)
-                {
-                    Dictionary<string, object> taxBreakdown = new Dictionary<string, object>();
-                    foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
-                    {
-                        taxBreakdown[item.Key] = GetValue(row, item.Value);
-                    }
-                    postObject.taxBreakdowns.Add(taxBreakdown);
-                }
-
-                result = postObject.ToJson();
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".ReadData", ex);
-            }
-            return result;
-        }
-
-        private object GetValue(DataRow row, ConfigLine config)
-        {
-            object fieldValue = config.Value;
-            //if (string.IsNullOrEmpty(config.Type))
-            //{
-            //    return fieldValue;
-            //}
-
-            string configFIELD = null, configDATATYPE = null;
-            if (!string.IsNullOrEmpty(config.Type))
-            {
-                string[] ss = config.Type.Split(':');
-                configFIELD = ss[0].ToUpper();
-                if (ss.Length > 1) configDATATYPE = ss[1].ToUpper();
-            }
-            if (string.IsNullOrEmpty(configDATATYPE))
-            {
-                configDATATYPE = config.DataType.ToUpper();
-            }
-
-            if (configFIELD == "ENCRYPT")
-            {
-                return UtilityHelper.DeCrypt(fieldValue.ToString());
-            }
-
-            if (configFIELD == "FIELD"
-                && !string.IsNullOrEmpty(config.FieldV6)
-                && row.Table.Columns.Contains(config.FieldV6))
-            {
-                fieldValue = row[config.FieldV6];
-                if (row.Table.Columns[config.FieldV6].DataType == typeof (string))
-                {
-                    //Trim
-                    fieldValue = fieldValue.ToString().Trim();
-                }
-            }
-
-            if (!string.IsNullOrEmpty(configDATATYPE))
-            {
-                if (configDATATYPE == "BOOL")
-                {
-                    if (fieldValue is bool)
-                    {
-                        return fieldValue;
-                    }
-                    else
-                    {
-                        return fieldValue.ToString() == "1" ||
-                               fieldValue.ToString().ToLower() == "true" ||
-                               fieldValue.ToString().ToLower() == "yes";
-                    }
-                }
-                else if (configDATATYPE == "N2C") // Đọc số tiền thành chữ.
-                {
-                    return V6BusinessHelper.MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", "VND");
-                }
-                else
-                {
-                    //Chưa xử lý
-                    return fieldValue;
-                }
-            }
-            else
-            {
-                return fieldValue;
-            }
-        }
+        
 
         public string POST(string jsonBody)
         {

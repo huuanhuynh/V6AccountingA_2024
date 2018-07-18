@@ -2962,7 +2962,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             {
                                 dataRow["STT_REC"] = _sttRec;
                             }
-
+                            InvokeFormEventFixCopyData();
                             V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + TxtSo_ct.Text);
 
                             Mode = V6Mode.Add;

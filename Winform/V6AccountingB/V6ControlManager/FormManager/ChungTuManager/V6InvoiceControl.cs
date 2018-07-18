@@ -12,6 +12,7 @@ using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6Controls;
 using V6Controls.Forms;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6Structs;
 using V6Tools;
@@ -1835,6 +1836,22 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return null;
         }
 
+
+        protected void InvokeFormEventFixCopyData()
+        {
+            try
+            {
+                All_Objects["AD"] = AD;
+                All_Objects["AD2"] = AD2;
+                All_Objects["AD3"] = AD3;
+                InvokeFormEvent(FormDynamicEvent.FIXCOPYDATA);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".InvokeFormEventFixCopyData", ex);
+            }
+        }
+
         /// <summary>
         /// Chức năng sửa hàng loạt một cột dữ liệu.
         /// </summary>
@@ -1914,9 +1931,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             All_Objects["replaceField"] = FIELD;
                             All_Objects["dataGridView1"] = dataGridView1;
                             All_Objects["detail1"] = detail1;
-                            if (Event_Methods.ContainsKey("AFTERREPLACE"))
+                            if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERREPLACE))
                             {
-                                InvokeFormEvent("AFTERREPLACE");
+                                InvokeFormEvent(FormDynamicEvent.AFTERREPLACE);
                             }
                             else
                             {
@@ -1940,9 +1957,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-
                 string adFields = invoice.EXTRA_INFOR.ContainsKey("ADFIELDS") ? invoice.EXTRA_INFOR["ADFIELDS"] : "";
-                V6ControlFormHelper.ShowDataEditorForm(AD, invoice.Mact + "_REPLACE", adFields, null, false, false, true, false);
+                //V6ControlFormHelper.ShowDataEditorForm(AD, invoice.Mact + "_REPLACE", adFields, null, false, false, true, false);
+                string tableName = invoice.Mact + "_REPLACE";
+                var f = new DataEditorForm(AD, tableName, adFields, null, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), false, false, true, false);
+                All_Objects["dataGridView"] = f.DataGridView;
+                InvokeFormEvent(FormDynamicEvent.SUANHIEUDONG);
+                f.ShowDialog(this);
             }
         }
 
@@ -1979,5 +2000,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.WriteExLog(GetType() + ".AfterReplace", ex);
             }
         }
+
+        
     }
 }

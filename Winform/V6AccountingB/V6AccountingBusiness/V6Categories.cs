@@ -235,7 +235,7 @@ namespace V6AccountingBusiness
         {
             var result = new SortedDictionary<string, string>();
             tableName = tableName.Replace("'", "");
-            var data = SqlConnect.Select("V6Lookup", "Top 1 v_hide", "vMa_File='" + tableName + "'", "", "").Data;
+            var data = SqlConnect.Select("V6Lookup", "Top 1 v_hide", "vMa_File='" + tableName + "'").Data;
             if (data != null && data.Rows.Count > 0)
             {
                 var hideFields = data.Rows[0][0].ToString();
@@ -248,7 +248,7 @@ namespace V6AccountingBusiness
                 }
                 return result;
             }
-            //var hideFields = new LookupService().GetValueByTableName(tableName, "v_hide");
+            
             return new SortedDictionary<string, string>();
         }
     }

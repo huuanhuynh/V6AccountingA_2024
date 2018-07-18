@@ -75,9 +75,29 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\Copy\Code\HoaDonDienTu\BKAV\V6ThuePost_BKAV\ApiConnect\V6ThuePostBkavApi.csproj">
+      <Project>{3d8928f4-81c7-443e-98b3-c155eee33927}</Project>
+      <Name>V6ThuePostBkavApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Copy\Code\HoaDonDienTu\VIETTEL_OLD\V6ThuePost\ApiConnect\V6ThuePostViettelApi.csproj">
+      <Project>{938cf42a-d1a7-46d4-866c-1222495a1c4c}</Project>
+      <Name>V6ThuePostViettelApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Copy\Code\HoaDonDienTu\VNPT\V6ThuePost_Xml\ApiConnect\V6ThuePostXmlApi.csproj">
+      <Project>{abc35001-3755-4aff-88d6-b48598bbc651}</Project>
+      <Name>V6ThuePostXmlApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\V6Controls\V6Controls\V6Controls.csproj">
+      <Project>{311b600d-e1ae-4172-9cc6-1a24dbcd67c2}</Project>
+      <Name>V6Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\V6Tools\V6Tools\V6Tools.csproj">
       <Project>{4F797E67-948D-4EEC-ACD7-758028E9166F}</Project>
       <Name>V6Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\V6AccountingBusiness\V6AccountingBusiness.csproj">
+      <Project>{5128ff85-304f-4943-853e-f8e3535dfb55}</Project>
+      <Name>V6AccountingBusiness</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
