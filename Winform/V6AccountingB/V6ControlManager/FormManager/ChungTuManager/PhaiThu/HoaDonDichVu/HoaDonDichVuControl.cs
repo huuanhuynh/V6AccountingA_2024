@@ -495,21 +495,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
 
         private void Detail3_AddHandle(SortedDictionary<string, object> data)
         {
-            if (ValidateData_Detail3(data) && XuLyThemDetail3(data))
+            if (ValidateData_Detail3(data))
             {
-                return;
+                if (XuLyThemDetail3(data)) return;
+                throw new Exception(V6Text.AddFail);
             }
-            throw new Exception(V6Text.AddFail);
+            throw new Exception(V6Text.ValidateFail);
         }
 
         private void Detail3_EditHandle(SortedDictionary<string, object> data)
         {
-            if (ValidateData_Detail3(data) && XuLySuaDetail3(data))
+            if (ValidateData_Detail3(data))
             {
-                return;
+                if (XuLySuaDetail3(data)) return;
+                throw new Exception(V6Text.EditFail);
             }
-            throw new Exception(V6Text.EditFail);
+            throw new Exception(V6Text.ValidateFail);
         }
+
         private bool XuLySuaDetail3(SortedDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
@@ -2960,19 +2963,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         }
         private void HoaDonDichVuDetail1_AddHandle(SortedDictionary<string,object> data)
         {
-            if (ValidateData_Detail(data) && XuLyThemDetail(data))
+            if (ValidateData_Detail(data))
             {
-                return;
+                if (XuLyThemDetail(data)) return;
+                throw new Exception(V6Text.AddFail);
             }
-            throw new Exception(V6Text.AddFail);
+            throw new Exception(V6Text.ValidateFail);
         }
         private void HoaDonDichVuDetail1_EditHandle(SortedDictionary<string,object> data)
         {
-            if (ValidateData_Detail(data) && XuLySuaDetail(data))
+            if (ValidateData_Detail(data))
             {
-                return;
+                if (XuLySuaDetail(data)) return;
+                throw new Exception(V6Text.EditFail);
             }
-            throw new Exception(V6Text.EditFail);
+            throw new Exception(V6Text.ValidateFail);
         }
         private void HoaDonDichVuDetail1_ClickDelete(object sender)
         {

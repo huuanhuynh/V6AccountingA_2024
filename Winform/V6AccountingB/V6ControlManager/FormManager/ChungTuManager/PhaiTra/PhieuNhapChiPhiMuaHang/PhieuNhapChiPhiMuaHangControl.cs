@@ -3546,19 +3546,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
         private void hoaDonDetail1_AddHandle(SortedDictionary<string,object> data)
         {
-            if (ValidateData_Detail(data) && XuLyThemDetail(data))
+            if (ValidateData_Detail(data))
             {
-                return;
+                if (XuLyThemDetail(data)) return;
+                throw new Exception(V6Text.AddFail);
             }
-            throw new Exception(V6Text.AddFail);
+            throw new Exception(V6Text.ValidateFail);
         }
         private void hoaDonDetail2_AddHandle(SortedDictionary<string,object> data)
         {
-            if (ValidateData_Detail2(data) && XuLyThemDetail2(data))
+            if (ValidateData_Detail2(data))
             {
-                return;
+                if (XuLyThemDetail2(data)) return;
+                throw new Exception(V6Text.AddFail);
             }
-            throw new Exception(V6Text.AddFail);
+            throw new Exception(V6Text.ValidateFail);
         }
         
 
@@ -3619,19 +3621,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         }
         private void hoaDonDetail1_EditHandle(SortedDictionary<string, object> data)
         {
-            if (ValidateData_Detail(data) && XuLySuaDetail(data))
+            if (ValidateData_Detail(data))
             {
-                return;
+                if (XuLySuaDetail(data)) return;
+                throw new Exception(V6Text.EditFail);
             }
-            throw new Exception(V6Text.EditFail);
+            throw new Exception(V6Text.ValidateFail);
         }
         private void hoaDonDetail2_EditHandle(SortedDictionary<string,object> data)
         {
-            if (ValidateData_Detail2(data) && XuLySuaDetail2(data))
+            if (ValidateData_Detail2(data))
             {
-                return;
+                if (XuLySuaDetail2(data)) return;
+                throw new Exception(V6Text.EditFail);
             }
-            throw new Exception(V6Text.EditFail);
+            throw new Exception(V6Text.ValidateFail);
         }
         private void hoaDonDetail1_DeleteHandle(object sender)
         {

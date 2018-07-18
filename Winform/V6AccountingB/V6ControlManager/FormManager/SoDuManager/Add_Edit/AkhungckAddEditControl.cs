@@ -575,11 +575,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void detail1_AddHandle(SortedDictionary<string, object> data)
         {
-            if (ValidateData_Detail(data) && XuLyThemDetail(data))
+            if (ValidateData_Detail(data))
             {
-                return;
+                if (XuLyThemDetail(data)) return;
+                throw new Exception(V6Text.AddFail);
             }
-            throw new Exception(V6Text.AddFail);
+            throw new Exception(V6Text.ValidateFail);
         }
 
         private void detail1_ClickEdit(object sender)
@@ -612,11 +613,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void detail1_EditHandle(SortedDictionary<string, object> data)
         {
-            if (ValidateData_Detail(data) && XuLySuaDetail(data))
+            if (ValidateData_Detail(data))
             {
-                return;
+                if (XuLySuaDetail(data)) return;
+                throw new Exception(V6Text.EditFail);
             }
-            throw new Exception(V6Text.EditFail);
+            throw new Exception(V6Text.ValidateFail);
         }
         
         private void SoDu2AddEditControl0_Load(object sender, EventArgs e)
