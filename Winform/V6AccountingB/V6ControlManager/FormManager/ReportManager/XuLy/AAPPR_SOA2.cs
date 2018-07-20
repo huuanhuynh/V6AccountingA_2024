@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -10,8 +11,6 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6ThuePostManager;
-using V6ThuePostManager.Viettel.PostObjects;
-using V6ThuePostManager.Viettel.ResponseObjects;
 using V6Tools;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
@@ -23,6 +22,38 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     /// </summary>
     public class AAPPR_SOA2 : XuLyBase
     {
+        public string MAU
+        {
+            get
+            {
+                return FilterControl != null ? FilterControl.String2 : "";
+            }
+        }
+
+        public string LAN
+        {
+            get { return "V"; }
+        }
+        private string ReportFileFull
+        {
+            get
+            {
+                var result = @"Reports\"
+                       + MAU + @"\"
+                       + LAN + @"\"
+                       + ReportFile + ".rpt";//ReportFile co su thay doi khi chon o combobox
+                if (!File.Exists(result))
+                {
+                    result = @"Reports\"
+                       + MAU + @"\"
+                       + LAN + @"\"
+                       + _reportFile + ".rpt";//_reportFile gốc
+                }
+                return result;
+            }
+        }
+        
+
         public AAPPR_SOA2(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
@@ -83,8 +114,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     if (row.IsSelect())
                     {
-                       
+                        string mode = row.Cells["Kieu_in"].Value.ToString();
                         string soct = row.Cells["So_ct"].Value.ToString().Trim();
+                        string dir = row.Cells["Dir_in"].Value.ToString().Trim();
+                        string file = row.Cells["File_in"].Value.ToString().Trim();
+                        string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+
                         SqlParameter[] plist =
                         {
                             new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
@@ -99,7 +134,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         DataSet ds = V6BusinessHelper.ExecuteProcedure(_program + "F9", plist);
                         //DataTable data0 = ds.Tables[0];
                         string result = "", error = "", sohoadon = "", id = "";
-                        RequestManager.PowerPost(ds, FilterControl.String1, out result, out sohoadon, out id);
+                        var pmparams = new PostManagerParams
+                        {
+                            DataSet = ds,
+                            Mode = mode,
+                            Branch = FilterControl.String1,
+                            Dir = dir,
+                            FileName = file,
+                            RptFileFull = ReportFileFull,
+                            Fkey_hd = fkey_hd,
+                        };
+                        result = PostManager.PowerPost(pmparams, ds, FilterControl.String1, mode, out sohoadon, out id, out error);
+
                         if (string.IsNullOrEmpty(error))
                         {
                             f9MessageAll += string.Format("\nThành công Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct, sohoadon, id, result);
@@ -108,42 +154,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             f9MessageAll += string.Format("\nCó lỗi Soct:{0}, error:{1}\nResult:{2}", soct, error, result);
                         }
-
-                        //string jsonBody = "";
-                        
-                        //if (FilterControl.String1 == "1")
-                        //{
-                        //    jsonBody = ReadData_Viettel(ds);
-                        //    result = POST(jsonBody);
-                        //    CreateInvoiceResponse responseObject = null;
-                        //    if (RequestManager.Response != null)
-                        //    {
-                        //        responseObject = MyJson.ConvertJson<CreateInvoiceResponse>(result);
-                        //    }
-                        //    else
-                        //    {
-                        //        responseObject = new CreateInvoiceResponse()
-                        //        {
-                        //            description = "Response is null.",
-                        //            result = null
-                        //        };
-                        //        this.WriteToLog(GetType() + ".F9Thread", string.Format("{0}-{1}:{2}\njson:{3}",
-                        //            soct, responseObject.description, responseObject.result, jsonBody));
-                        //    }
-                        //    //
-                        //    _message = responseObject.description;
-                        //    f9MessageAll += string.Format("\n{0}: {1} {2}", soct, responseObject.errorCode, responseObject.description, responseObject.result);
-                        //}
-                        //else if (FilterControl.String1 == "2")
-                        //{
-                            
-                        //}
-                        //else if (FilterControl.String1 == "3")
-                        //{
-                            
-                        //}
-
-                        
                         
                         remove_list_g.Add(row);
                     }
@@ -152,158 +162,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     f9Error += ex.Message;
                     f9ErrorAll += ex.Message;
+                    f9MessageAll += ex.Message;
                 }
-
             }
             f9Running = false;
         }
-
         
-
-        
-
-        public string POST(string jsonBody)
-        {
-            try
-            {
-                RequestManager.SetLogin(username, password);
-                string requestUrl = string.Format(baseUrl + methodUrl + mst);
-                string result = RequestManager.POST(requestUrl, jsonBody);// V6Request.Request(requestUrl, jsonBody);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-        }
-
-        private string username, password;
-        private string baseUrl = "", methodUrl = "", mst = "";
-
-        private Dictionary<string, ConfigLine> generalInvoiceInfoConfig = null;
-        private Dictionary<string, ConfigLine> buyerInfoConfig = null;
-        private Dictionary<string, ConfigLine> sellerInfoConfig = null;
-        private Dictionary<string, ConfigLine> paymentsConfig = null;
-        private Dictionary<string, ConfigLine> itemInfoConfig = null;
-        private Dictionary<string, ConfigLine> summarizeInfoConfig = null;
-        private Dictionary<string, ConfigLine> taxBreakdownsConfig = null;
-        public void ReadConfigInfo(DataTable map_table)
-        {
-            generalInvoiceInfoConfig = new Dictionary<string, ConfigLine>();
-            buyerInfoConfig = new Dictionary<string, ConfigLine>();
-            sellerInfoConfig = new Dictionary<string, ConfigLine>();
-            paymentsConfig = new Dictionary<string, ConfigLine>();
-            itemInfoConfig = new Dictionary<string, ConfigLine>();
-            summarizeInfoConfig = new Dictionary<string, ConfigLine>();
-            taxBreakdownsConfig = new Dictionary<string, ConfigLine>();
-            
-            try
-            {
-                foreach (DataRow row in map_table.Rows)
-                {
-                    string GROUP_NAME = row["GroupName"].ToString().Trim().ToUpper();
-                    ConfigLine line = ReadConfigLine(row);
-                    switch (GROUP_NAME)
-                    {
-                        case "V6INFO":
-                            {
-                                if (line.Field.ToUpper() == "USERNAME")
-                                {
-                                    username = line.Value;
-                                }
-                                else if (line.Field.ToUpper() == "PASSWORD")
-                                {
-                                    password = UtilityHelper.DeCrypt(line.Value);
-                                }
-                                else if (line.Field.ToUpper() == "LINK")
-                                {
-                                    baseUrl = line.Value;
-                                    methodUrl = "";
-                                    mst = "";
-                                }
-                                break;
-                            }
-                        case "GENERALINVOICEINFO":
-                            {
-                                if (!string.IsNullOrEmpty(line.Field))
-                                {
-                                    generalInvoiceInfoConfig.Add(line.Field, line);
-                                }
-                                break;
-                            }
-                        case "BUYERINFO":
-                            {
-                                if (!string.IsNullOrEmpty(line.Field))
-                                {
-                                    buyerInfoConfig.Add(line.Field, line);
-                                }
-                                break;
-                            }
-                        case "SELLERINFO":
-                            {
-                                if (!string.IsNullOrEmpty(line.Field))
-                                {
-                                    sellerInfoConfig.Add(line.Field, line);
-                                }
-                                break;
-                            }
-                        case "PAYMENTS":
-                            {
-                                if (!string.IsNullOrEmpty(line.Field))
-                                {
-                                    paymentsConfig.Add(line.Field, line);
-                                }
-                                break;
-                            }
-                        case "ITEMINFO":
-                            {
-                                if (!string.IsNullOrEmpty(line.Field))
-                                {
-                                    itemInfoConfig.Add(line.Field, line);
-                                }
-                                break;
-                            }
-                        case "SUMMARIZEINFO":
-                            {
-                                if (!string.IsNullOrEmpty(line.Field))
-                                {
-                                    summarizeInfoConfig.Add(line.Field, line);
-                                }
-                                break;
-                            }
-                        case "TAXBREAKDOWNS":
-                            {
-                                if (!string.IsNullOrEmpty(line.Field))
-                                {
-                                    taxBreakdownsConfig.Add(line.Field, line);
-                                }
-                                break;
-                            }
-                        default:
-                            {
-                                break;
-                            }
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                f9Error += ex.Message;
-                f9ErrorAll += ex.Message;
-            }
-        }
-
-        private static ConfigLine ReadConfigLine(DataRow reader)
-        {
-            ConfigLine config = new ConfigLine();
-            config.Field = reader["Field"].ToString().Trim();
-            config.Value = reader["Value"].ToString().Trim();
-            config.FieldV6 = reader["FieldV6"].ToString().Trim();
-            config.Type = reader["Type"].ToString().Trim();
-            config.DataType = reader["DataType"].ToString().Trim();
-            return config;
-        }
         
         void tF9_Tick(object sender, EventArgs e)
         {
@@ -320,12 +184,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 ((Timer)sender).Stop();
                 RemoveGridViewRow();
                 btnNhan.PerformClick();
-                V6ControlFormHelper.SetStatusText("F9 finish "
-                    + (f9ErrorAll.Length > 0 ? "Error: " : "")
-                    + f9ErrorAll);
-
-                V6ControlFormHelper.ShowMainMessage("F9 Xử lý xong!");
-                this.ShowMessage("F9 finish " + f9MessageAll);
+                string message = "F9 " + V6Text.Finish + " " + (f9ErrorAll.Length > 0 ? "Error: " : "") + f9ErrorAll;
+                V6ControlFormHelper.SetStatusText(message);
+                V6ControlFormHelper.ShowMainMessage(message);
+                this.ShowMessage("F9 " + V6Text.Finish + " " + f9MessageAll);
             }
         }
         #endregion xulyF9

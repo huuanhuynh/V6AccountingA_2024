@@ -23,5 +23,7 @@
         /// Kiểu dữ liệu: Bool,Int,Long,Decimal,String,...
         /// </summary>
         public string DataType { get; set; }
+
+        public string Format { get; set; }
     }
 }

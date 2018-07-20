@@ -181,6 +181,38 @@ namespace V6Controls
             bieu_thuc = bieu_thuc.Replace("*+", "*");
             bieu_thuc = bieu_thuc.Replace("/+", "/");
 
+            //xử lý Int();
+            bieu_thuc = bieu_thuc.ToUpper();
+            int intOpenIndex = bieu_thuc.IndexOf("INT(", StringComparison.Ordinal);
+            if (intOpenIndex >= 0)
+            {
+                var iopen = bieu_thuc.IndexOf('(', 0);
+                var iclose = bieu_thuc.Length;
+                for (var i = iopen; i < bieu_thuc.Length; i++)
+                {
+                    if (bieu_thuc[i] == '(') iopen = i;
+                    else if (bieu_thuc[i] == ')')
+                    {
+                        iclose = i;
+                        break;
+                    }
+                }
+                //
+                string before = "", after = "";
+                if (iopen <= 0) before = "+";
+                else if ("+-*/(".IndexOf(bieu_thuc[iopen - 1], 0) < 0) before = "*"; //Nếu trước dấu ( không phải là
+                if (iclose >= bieu_thuc.Length - 1) after = "+";
+                else if ("+-*/)!".IndexOf(bieu_thuc[iclose + 1], 0) < 0) after = "*"; //nếu sau dấu ) không có +-*/)!
+
+                var a = bieu_thuc.Substring(0, intOpenIndex);
+                if (a.Trim() == "") before = "";
+                var b = bieu_thuc.Substring(iopen + 1, iclose - iopen - 1); //a(b)c
+                
+                var c = bieu_thuc.Substring(iclose + 1);
+                if (c.Trim() == "") after = "";
+                //alert(a + ';' + b + ';' + c);
+                return GiaTriBieuThuc("" + a + before + (int)GiaTriBieuThuc(b, cRow) + after + c, cRow);
+            }
 
             //xử lý Round();
             bieu_thuc = bieu_thuc.ToUpper();

@@ -34,13 +34,20 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Lib\Winform\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="RemoteCommand">
+      <HintPath>..\..\..\Lib\Winform\BkavCommand35\RemoteCommand.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -53,20 +60,10 @@
       <DependentUpon>App.settings</DependentUpon>
     </Compile>
     <Compile Include="ConfigLine.cs" />
-    <Compile Include="Viettel\PostObjects\ItemInfo.cs" />
-    <Compile Include="Viettel\PostObjects\TaxBreakdown.cs" />
-    <Compile Include="Viettel\PostObjects\SummarizeInfo.cs" />
-    <Compile Include="Viettel\PostObjects\SellerInfo.cs" />
-    <Compile Include="Viettel\PostObjects\BuyerInfo.cs" />
-    <Compile Include="Viettel\PostObjects\GeneralInvoiceInfo.cs" />
-    <Compile Include="Viettel\PostObjects\PostObject.cs" />
-    <Compile Include="Viettel\PostObjects\JsonObject.cs" />
-    <Compile Include="Viettel\ResponseObjects\CreateInvoiceResponse_Result.cs" />
-    <Compile Include="Viettel\ResponseObjects\CreateInvoiceResponse.cs" />
     <Compile Include="MyJson.cs" />
+    <Compile Include="PostManagerParams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Viettel\RequestSender0.cs" />
-    <Compile Include="RequestManager.cs" />
+    <Compile Include="PostManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.settings">
@@ -100,10 +97,7 @@
       <Name>V6AccountingBusiness</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Bkav\" />
-    <Folder Include="Vnpt\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

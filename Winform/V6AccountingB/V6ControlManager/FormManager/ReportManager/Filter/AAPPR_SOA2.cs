@@ -7,8 +7,13 @@ using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AAPPR_SOA2: FilterBase
+    public partial class AAPPR_SOA2 : FilterBase
     {
+        public string MAU
+        {
+            get { return rTienViet.Checked ? "VN" : "FC"; }
+        }
+
         public AAPPR_SOA2()
         {
             InitializeComponent();
@@ -23,6 +28,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             TxtXtag.Text = "2";
             ctDenSo.Enabled = false;
             chkHoaDonDaIn.Checked = true;
+            cboSendType.SelectedIndex = 0;
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
 
@@ -53,11 +59,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public override List<SqlParameter> GetFilterParameters()
         {
             String1 = (cboSendType.SelectedIndex + 1).ToString();
+            String2 = MAU;
 
             var result = new List<SqlParameter>();
             result.Add(new SqlParameter("@ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
             result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
             result.Add(new SqlParameter("@ma_ct", TxtMa_ct.Text.Trim()));
+            result.Add(new SqlParameter("@ma_td1", String1.Trim()));
+
             var and = radAnd.Checked;
             
             var cKey = "";
@@ -182,7 +191,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             string tableName = "V6MAPINFO";
             string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
-            var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2'").Data;
+            var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='"+String1+"' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
             IDictionary<string, object> defaultData = new Dictionary<string, object>();
             defaultData.Add("LOAI", "AAPPR_SOA2");
             V6ControlFormHelper.ShowDataEditorForm(data, tableName, null, keys, true, true, true, true, defaultData);
@@ -190,7 +199,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void cboSendType_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            
+            String1 = (cboSendType.SelectedIndex + 1).ToString();
         }
 
         

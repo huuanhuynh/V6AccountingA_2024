@@ -64,7 +64,11 @@
             this.v6Label5 = new V6Controls.V6Label();
             this.btnSuaChiTieu = new System.Windows.Forms.Button();
             this.cboSendType = new System.Windows.Forms.ComboBox();
+            this.grbTienTe = new System.Windows.Forms.GroupBox();
+            this.rNgoaiTe = new System.Windows.Forms.RadioButton();
+            this.rTienViet = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
+            this.grbTienTe.SuspendLayout();
             this.SuspendLayout();
             // 
             // v6Label9
@@ -502,7 +506,7 @@
             // btnSuaChiTieu
             // 
             this.btnSuaChiTieu.AccessibleDescription = "FILTERB00001";
-            this.btnSuaChiTieu.Location = new System.Drawing.Point(108, 216);
+            this.btnSuaChiTieu.Location = new System.Drawing.Point(145, 140);
             this.btnSuaChiTieu.Name = "btnSuaChiTieu";
             this.btnSuaChiTieu.Size = new System.Drawing.Size(184, 23);
             this.btnSuaChiTieu.TabIndex = 21;
@@ -518,16 +522,57 @@
             "VIETTEL",
             "VNPT",
             "BKAV"});
-            this.cboSendType.Location = new System.Drawing.Point(160, 137);
+            this.cboSendType.Location = new System.Drawing.Point(11, 140);
             this.cboSendType.Name = "cboSendType";
             this.cboSendType.Size = new System.Drawing.Size(121, 21);
             this.cboSendType.TabIndex = 22;
             this.cboSendType.SelectedIndexChanged += new System.EventHandler(this.cboSendType_SelectedIndexChanged);
             // 
+            // grbTienTe
+            // 
+            this.grbTienTe.AccessibleDescription = "REPORTL00007";
+            this.grbTienTe.Controls.Add(this.rNgoaiTe);
+            this.grbTienTe.Controls.Add(this.rTienViet);
+            this.grbTienTe.Location = new System.Drawing.Point(13, 216);
+            this.grbTienTe.Name = "grbTienTe";
+            this.grbTienTe.Size = new System.Drawing.Size(224, 35);
+            this.grbTienTe.TabIndex = 23;
+            this.grbTienTe.TabStop = false;
+            this.grbTienTe.Text = "Tiền tệ";
+            // 
+            // rNgoaiTe
+            // 
+            this.rNgoaiTe.AccessibleDescription = "REPORTR00002";
+            this.rNgoaiTe.AccessibleName = "Tiếng Việt";
+            this.rNgoaiTe.AutoSize = true;
+            this.rNgoaiTe.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rNgoaiTe.Location = new System.Drawing.Point(83, 13);
+            this.rNgoaiTe.Name = "rNgoaiTe";
+            this.rNgoaiTe.Size = new System.Drawing.Size(65, 17);
+            this.rNgoaiTe.TabIndex = 1;
+            this.rNgoaiTe.Text = "Ngoại tệ";
+            this.rNgoaiTe.UseVisualStyleBackColor = true;
+            // 
+            // rTienViet
+            // 
+            this.rTienViet.AccessibleDescription = "REPORTR00001";
+            this.rTienViet.AccessibleName = "English";
+            this.rTienViet.AutoSize = true;
+            this.rTienViet.Checked = true;
+            this.rTienViet.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rTienViet.Location = new System.Drawing.Point(6, 13);
+            this.rTienViet.Name = "rTienViet";
+            this.rTienViet.Size = new System.Drawing.Size(67, 17);
+            this.rTienViet.TabIndex = 0;
+            this.rTienViet.TabStop = true;
+            this.rTienViet.Text = "Tiền Việt";
+            this.rTienViet.UseVisualStyleBackColor = true;
+            // 
             // AAPPR_SOA2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.grbTienTe);
             this.Controls.Add(this.cboSendType);
             this.Controls.Add(this.btnSuaChiTieu);
             this.Controls.Add(this.v6Label5);
@@ -552,6 +597,8 @@
             this.Size = new System.Drawing.Size(307, 615);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.grbTienTe.ResumeLayout(false);
+            this.grbTienTe.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -595,5 +642,8 @@
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH8;
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH7;
         private System.Windows.Forms.ComboBox cboSendType;
+        private System.Windows.Forms.GroupBox grbTienTe;
+        private System.Windows.Forms.RadioButton rNgoaiTe;
+        private System.Windows.Forms.RadioButton rTienViet;
     }
 }

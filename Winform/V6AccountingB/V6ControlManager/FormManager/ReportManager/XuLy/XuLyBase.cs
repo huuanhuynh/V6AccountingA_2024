@@ -259,6 +259,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        protected string ReportFile
+        {
+            get
+            {
+                var result = _reportFile;
+                if (MauInSelectedRow != null)
+                {
+                    result = MauInSelectedRow["report"].ToString().Trim();
+                }
+                return result;
+            }
+        }
+
         
         #endregion 
         public XuLyBase()
@@ -477,6 +490,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".LoadData XuLyBase", ex);
+                _message = "Load data error: " + ex.Message;
                 _tbl = null;
                 _tbl2 = null;
                 _ds = null;
@@ -514,6 +528,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (Load_Data)
                 {
+                    CheckForIllegalCrossThreadCalls = false;
                     var tLoadData = new Thread(LoadData);
                     tLoadData.Start();
                     timerViewReport.Start();
@@ -574,6 +589,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
+                ShowMainMessage(_message);
             }
         }
 
