@@ -144,7 +144,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             RptFileFull = ReportFileFull,
                             Fkey_hd = fkey_hd,
                         };
-                        result = PostManager.PowerPost(pmparams, ds, FilterControl.String1, mode, out sohoadon, out id, out error);
+                        result = PostManager.PowerPost(pmparams, out sohoadon, out id, out error);
 
                         if (string.IsNullOrEmpty(error))
                         {

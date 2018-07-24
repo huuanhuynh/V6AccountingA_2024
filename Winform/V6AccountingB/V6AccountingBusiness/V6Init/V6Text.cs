@@ -224,6 +224,7 @@
         public static string ExportFail { get { return V6Setting.Language == "V" ? "Xuất lỗi." : "Export fail."; } }
         public static string Exist { get { return V6Setting.Language == "V" ? "Đã tồn tại." : "Exist."; } }
         public static string ExistData { get { return V6Setting.Language == "V" ? "Dữ liệu đã tồn tại." : "Data Exist."; } }
+        public static string Fail { get { return V6Setting.Language == "V" ? "Hỏng." : "Fail."; } }
         public static string Finish { get { return V6Setting.Language == "V" ? "Hoàn thành." : "Finish."; } }
         public static string Help { get { return V6Setting.Language == "V" ? "Trợ giúp" : "Help"; } }
         public static string NoConnection { get { return V6Setting.Language == "V" ? "Không thể kết nối server!" : "Can not connect to server!"; } }

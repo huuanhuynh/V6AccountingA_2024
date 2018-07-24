@@ -28,19 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AldmvtFilterForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AldmvtSXLTFilterForm));
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtMaSp = new V6Controls.V6VvarTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtNhomVt1 = new V6Controls.V6VvarTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtNhomVt2 = new V6Controls.V6VvarTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtNhomVt3 = new V6Controls.V6VvarTextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dateTuNgay = new V6Controls.V6DateTimeColor();
+            this.dateDenNgay = new V6Controls.V6DateTimePick();
+            this.btnCopyDinhMuc = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNhomVt3 = new V6Controls.V6VvarTextBox();
+            this.txtNhomVt2 = new V6Controls.V6VvarTextBox();
+            this.txtNhomVt1 = new V6Controls.V6VvarTextBox();
+            this.txtMaSp = new V6Controls.V6VvarTextBox();
+            this.lblFrom = new System.Windows.Forms.Label();
+            this.lblTo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -70,10 +77,11 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -87,126 +95,62 @@
             this.panel1.Size = new System.Drawing.Size(532, 121);
             this.panel1.TabIndex = 0;
             // 
-            // txtMaSp
+            // groupBox1
             // 
-            this.txtMaSp.AccessibleName = "MA_SP";
-            this.txtMaSp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMaSp.BackColor = System.Drawing.Color.White;
-            this.txtMaSp.BrotherFields = null;
-            this.txtMaSp.Carry = false;
-            this.txtMaSp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMaSp.EnableColorEffect = true;
-            this.txtMaSp.EnableColorEffectOnMouseEnter = false;
-            this.txtMaSp.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMaSp.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMaSp.LeaveColor = System.Drawing.Color.White;
-            this.txtMaSp.LimitCharacters = null;
-            this.txtMaSp.Location = new System.Drawing.Point(111, 9);
-            this.txtMaSp.Name = "txtMaSp";
-            this.txtMaSp.Size = new System.Drawing.Size(202, 20);
-            this.txtMaSp.TabIndex = 1;
-            this.txtMaSp.GrayText = "";
-            this.txtMaSp.VVar = "MA_VT";
+            this.groupBox1.Controls.Add(this.dateTuNgay);
+            this.groupBox1.Controls.Add(this.dateDenNgay);
+            this.groupBox1.Controls.Add(this.btnCopyDinhMuc);
+            this.groupBox1.Controls.Add(this.lblTo);
+            this.groupBox1.Controls.Add(this.lblFrom);
+            this.groupBox1.Location = new System.Drawing.Point(319, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(202, 115);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Copy định mức";
             // 
-            // label1
+            // dateTuNgay
             // 
-            this.label1.AccessibleName = "";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 12);
-            this.label1.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã sản phẩm";
+            this.dateTuNgay.BackColor = System.Drawing.Color.White;
+            this.dateTuNgay.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.dateTuNgay.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dateTuNgay.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.dateTuNgay.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.dateTuNgay.GrayText = null;
+            this.dateTuNgay.HoverColor = System.Drawing.Color.Yellow;
+            this.dateTuNgay.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.dateTuNgay.LeaveColor = System.Drawing.Color.White;
+            this.dateTuNgay.Location = new System.Drawing.Point(59, 21);
+            this.dateTuNgay.Margin = new System.Windows.Forms.Padding(5);
+            this.dateTuNgay.Name = "dateTuNgay";
+            this.dateTuNgay.Size = new System.Drawing.Size(135, 20);
+            this.dateTuNgay.StringValue = "__/__/____";
+            this.dateTuNgay.TabIndex = 1;
+            this.dateTuNgay.Text = "__/__/____";
             // 
-            // txtNhomVt1
+            // dateDenNgay
             // 
-            this.txtNhomVt1.AccessibleName = "NH_VT1";
-            this.txtNhomVt1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNhomVt1.BackColor = System.Drawing.Color.White;
-            this.txtNhomVt1.BrotherFields = null;
-            this.txtNhomVt1.Carry = false;
-            this.txtNhomVt1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNhomVt1.EnableColorEffect = true;
-            this.txtNhomVt1.EnableColorEffectOnMouseEnter = false;
-            this.txtNhomVt1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNhomVt1.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNhomVt1.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVt1.LimitCharacters = null;
-            this.txtNhomVt1.Location = new System.Drawing.Point(111, 35);
-            this.txtNhomVt1.Name = "txtNhomVt1";
-            this.txtNhomVt1.Size = new System.Drawing.Size(202, 20);
-            this.txtNhomVt1.TabIndex = 3;
-            this.txtNhomVt1.GrayText = "";
-            this.txtNhomVt1.VVar = "NH_VT";
+            this.dateDenNgay.CustomFormat = "dd/MM/yyyy";
+            this.dateDenNgay.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dateDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateDenNgay.HoverColor = System.Drawing.Color.Yellow;
+            this.dateDenNgay.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.dateDenNgay.LeaveColor = System.Drawing.Color.White;
+            this.dateDenNgay.Location = new System.Drawing.Point(59, 49);
+            this.dateDenNgay.Name = "dateDenNgay";
+            this.dateDenNgay.Size = new System.Drawing.Size(135, 20);
+            this.dateDenNgay.TabIndex = 3;
             // 
-            // label2
+            // btnCopyDinhMuc
             // 
-            this.label2.AccessibleName = "";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 38);
-            this.label2.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Nhóm sản phẩm 1";
-            // 
-            // txtNhomVt2
-            // 
-            this.txtNhomVt2.AccessibleName = "NH_VT2";
-            this.txtNhomVt2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNhomVt2.BackColor = System.Drawing.Color.White;
-            this.txtNhomVt2.BrotherFields = null;
-            this.txtNhomVt2.Carry = false;
-            this.txtNhomVt2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNhomVt2.EnableColorEffect = true;
-            this.txtNhomVt2.EnableColorEffectOnMouseEnter = false;
-            this.txtNhomVt2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNhomVt2.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNhomVt2.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVt2.LimitCharacters = null;
-            this.txtNhomVt2.Location = new System.Drawing.Point(111, 61);
-            this.txtNhomVt2.Name = "txtNhomVt2";
-            this.txtNhomVt2.Size = new System.Drawing.Size(202, 20);
-            this.txtNhomVt2.TabIndex = 5;
-            this.txtNhomVt2.GrayText = "";
-            this.txtNhomVt2.VVar = "NH_VT";
-            // 
-            // label3
-            // 
-            this.label3.AccessibleName = "";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 64);
-            this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Nhóm sản phẩm 2";
-            // 
-            // txtNhomVt3
-            // 
-            this.txtNhomVt3.AccessibleName = "NH_VT3";
-            this.txtNhomVt3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNhomVt3.BackColor = System.Drawing.Color.White;
-            this.txtNhomVt3.BrotherFields = null;
-            this.txtNhomVt3.Carry = false;
-            this.txtNhomVt3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNhomVt3.EnableColorEffect = true;
-            this.txtNhomVt3.EnableColorEffectOnMouseEnter = false;
-            this.txtNhomVt3.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNhomVt3.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNhomVt3.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVt3.LimitCharacters = null;
-            this.txtNhomVt3.Location = new System.Drawing.Point(111, 87);
-            this.txtNhomVt3.Name = "txtNhomVt3";
-            this.txtNhomVt3.Size = new System.Drawing.Size(202, 20);
-            this.txtNhomVt3.TabIndex = 7;
-            this.txtNhomVt3.GrayText = "";
-            this.txtNhomVt3.VVar = "NH_VT";
+            this.btnCopyDinhMuc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCopyDinhMuc.Location = new System.Drawing.Point(69, 75);
+            this.btnCopyDinhMuc.Name = "btnCopyDinhMuc";
+            this.btnCopyDinhMuc.Size = new System.Drawing.Size(114, 32);
+            this.btnCopyDinhMuc.TabIndex = 4;
+            this.btnCopyDinhMuc.Text = "&Copy";
+            this.btnCopyDinhMuc.UseVisualStyleBackColor = true;
+            this.btnCopyDinhMuc.Click += new System.EventHandler(this.btnCopyDinhMuc_Click);
             // 
             // label4
             // 
@@ -219,7 +163,138 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Nhóm sản phẩm 3";
             // 
-            // AldmvtFilterForm
+            // label3
+            // 
+            this.label3.AccessibleName = "";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 64);
+            this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Nhóm sản phẩm 2";
+            // 
+            // label2
+            // 
+            this.label2.AccessibleName = "";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 38);
+            this.label2.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Nhóm sản phẩm 1";
+            // 
+            // label1
+            // 
+            this.label1.AccessibleName = "";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 12);
+            this.label1.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Mã sản phẩm";
+            // 
+            // txtNhomVt3
+            // 
+            this.txtNhomVt3.AccessibleName = "NH_VT3";
+            this.txtNhomVt3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNhomVt3.BackColor = System.Drawing.Color.White;
+            this.txtNhomVt3.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNhomVt3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNhomVt3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNhomVt3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVt3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVt3.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNhomVt3.LeaveColor = System.Drawing.Color.White;
+            this.txtNhomVt3.Location = new System.Drawing.Point(111, 87);
+            this.txtNhomVt3.Name = "txtNhomVt3";
+            this.txtNhomVt3.Size = new System.Drawing.Size(202, 20);
+            this.txtNhomVt3.TabIndex = 7;
+            this.txtNhomVt3.VVar = "NH_VT";
+            // 
+            // txtNhomVt2
+            // 
+            this.txtNhomVt2.AccessibleName = "NH_VT2";
+            this.txtNhomVt2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNhomVt2.BackColor = System.Drawing.Color.White;
+            this.txtNhomVt2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNhomVt2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNhomVt2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNhomVt2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVt2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVt2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNhomVt2.LeaveColor = System.Drawing.Color.White;
+            this.txtNhomVt2.Location = new System.Drawing.Point(111, 61);
+            this.txtNhomVt2.Name = "txtNhomVt2";
+            this.txtNhomVt2.Size = new System.Drawing.Size(202, 20);
+            this.txtNhomVt2.TabIndex = 5;
+            this.txtNhomVt2.VVar = "NH_VT";
+            // 
+            // txtNhomVt1
+            // 
+            this.txtNhomVt1.AccessibleName = "NH_VT1";
+            this.txtNhomVt1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNhomVt1.BackColor = System.Drawing.Color.White;
+            this.txtNhomVt1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNhomVt1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNhomVt1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNhomVt1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVt1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVt1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNhomVt1.LeaveColor = System.Drawing.Color.White;
+            this.txtNhomVt1.Location = new System.Drawing.Point(111, 35);
+            this.txtNhomVt1.Name = "txtNhomVt1";
+            this.txtNhomVt1.Size = new System.Drawing.Size(202, 20);
+            this.txtNhomVt1.TabIndex = 3;
+            this.txtNhomVt1.VVar = "NH_VT";
+            // 
+            // txtMaSp
+            // 
+            this.txtMaSp.AccessibleName = "MA_SP";
+            this.txtMaSp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMaSp.BackColor = System.Drawing.Color.White;
+            this.txtMaSp.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaSp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMaSp.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaSp.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaSp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaSp.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaSp.LeaveColor = System.Drawing.Color.White;
+            this.txtMaSp.Location = new System.Drawing.Point(111, 9);
+            this.txtMaSp.Name = "txtMaSp";
+            this.txtMaSp.Size = new System.Drawing.Size(202, 20);
+            this.txtMaSp.TabIndex = 1;
+            this.txtMaSp.VVar = "MA_VT";
+            // 
+            // lblFrom
+            // 
+            this.lblFrom.AccessibleName = "";
+            this.lblFrom.AutoSize = true;
+            this.lblFrom.Location = new System.Drawing.Point(12, 24);
+            this.lblFrom.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblFrom.Name = "lblFrom";
+            this.lblFrom.Size = new System.Drawing.Size(20, 13);
+            this.lblFrom.TabIndex = 0;
+            this.lblFrom.Text = "Từ";
+            // 
+            // lblTo
+            // 
+            this.lblTo.AccessibleName = "";
+            this.lblTo.AutoSize = true;
+            this.lblTo.Location = new System.Drawing.Point(12, 55);
+            this.lblTo.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblTo.Name = "lblTo";
+            this.lblTo.Size = new System.Drawing.Size(27, 13);
+            this.lblTo.TabIndex = 2;
+            this.lblTo.Text = "Đến";
+            // 
+            // AldmvtSXLTFilterForm
             // 
             this.AccessibleDescription = "filter_form";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -235,12 +310,18 @@
             this.MaximumSize = new System.Drawing.Size(550, 1000);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(500, 200);
-            this.Name = "AldmvtFilterForm";
+            this.Name = "AldmvtSXLTFilterForm";
             this.ShowInTaskbar = false;
             this.Text = "Lọc";
             this.Load += new System.EventHandler(this.FilterForm_Load);
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.btnFilter, 0);
+            this.Controls.SetChildIndex(this.btnCancel, 0);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -258,5 +339,11 @@
         private V6Controls.V6VvarTextBox txtNhomVt3;
         private V6Controls.V6VvarTextBox txtNhomVt2;
         private V6Controls.V6VvarTextBox txtNhomVt1;
+        private System.Windows.Forms.Button btnCopyDinhMuc;
+        private V6Controls.V6DateTimePick dateDenNgay;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private V6Controls.V6DateTimeColor dateTuNgay;
+        private System.Windows.Forms.Label lblTo;
+        private System.Windows.Forms.Label lblFrom;
     }
 }

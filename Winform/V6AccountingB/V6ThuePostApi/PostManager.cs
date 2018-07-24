@@ -90,14 +90,11 @@ namespace V6ThuePostManager
         /// Hàm post chính, sẽ chuyển hướng theo string1.
         /// </summary>
         /// <param name="pmparams"></param>
-        /// <param name="ds">Bộ dữ liệu của V6</param>
-        /// <param name="string1">1:Viettel, 2:Vnpt, 3:Bkav</param>
-        /// <param name="mode">M/S</param>
         /// <param name="sohoadon">Số hóa đơn nhận về.</param>
         /// <param name="id">ID khác nhận về</param>
         /// <param name="error">Lỗi ghi nhận được.</param>
         /// <returns></returns>
-        public static string PowerPost(PostManagerParams pmparams, DataSet ds0, string string10, string mode0, out string sohoadon, out string id, out string error)
+        public static string PowerPost(PostManagerParams pmparams, out string sohoadon, out string id, out string error)
         {
             string result0 = null, sohoadon0 = null, id0 = null, error0 = null;
             try
@@ -1666,6 +1663,7 @@ namespace V6ThuePostManager
                         {
                             switch (line_field)
                             {
+                                    //Viettel
                                 case "username":
                                     _username = line.Value;
                                     break;
@@ -1702,7 +1700,17 @@ namespace V6ThuePostManager
                                         modifyUrl = line.Value;
                                     }
                                     break;
-
+                                    //Vnpt, có dùng cả username, password
+                                case "link":
+                                    //if (line.Type == "ENCRYPT")
+                                    {
+                                        baseUrl = UtilityHelper.DeCrypt(line.Value);
+                                    }
+                                    //else
+                                    //{
+                                    //    baseUrl = line.Value;
+                                    //}
+                                    break;
                                 case "account":
                                     account = line.Value;
                                     break;
@@ -1714,6 +1722,13 @@ namespace V6ThuePostManager
                                     break;
                                 case "seri":
                                     seri_field = line.Value;
+                                    break;
+                                    //Bkav
+                                case "bkavpartnerguid":
+                                    BkavPartnerGUID = UtilityHelper.DeCrypt(line.Value);
+                                    break;
+                                case "bkavpartnertoken":
+                                    BkavPartnerToken = UtilityHelper.DeCrypt(line.Value);
                                     break;
                             }
                             break;
