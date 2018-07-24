@@ -37,7 +37,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyF7: " + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyF7", ex);
             }
         }
 
@@ -124,7 +124,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyBase XuLyF8:\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyF8", ex);
             }
         }
 
@@ -138,7 +138,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyF9: " + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyF9", ex);
             }
         }
         
@@ -151,7 +151,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyF3: " + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyF3", ex);
             }
         }
 
@@ -221,21 +221,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 f.ShowDialog(this);
                                 SetStatus2Text();
                             }
-
                         }
                     }
-
                 }
                 else
                 {
                     this.ShowWarningMessage("Không được phép xử lý!");
                 }
-
             }
-           
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyBase XuLyBoSungThongTinChungTuF4:\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyBoSungThongTinChungTuF4", ex);
             }
         }
 
@@ -269,7 +265,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".GridView1CellEndEdit: " + ex.Message);
+                this.ShowErrorException(GetType() + ".GridView1CellEndEdit", ex);
             }
         }
     }

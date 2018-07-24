@@ -108,7 +108,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyBase XuLyBoSungThongTinChungTuF4:\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyBoSungThongTinChungTuF4", ex);
             }
         }
         
@@ -319,7 +319,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyF9: " + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyF9", ex);
             }
         }
 

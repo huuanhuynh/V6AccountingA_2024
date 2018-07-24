@@ -20,6 +20,9 @@ namespace V6Controls.Forms
     {
         protected Image btnNhanImage = Properties.Resources.Apply;
         protected ImageList waitingImages { get { return _waitingImages; } }
+        /// <summary>
+        /// Waiting image index.
+        /// </summary>
         protected int ii = 0;
         /// <summary>
         /// ID quản lý chứng từ đang xử lý.

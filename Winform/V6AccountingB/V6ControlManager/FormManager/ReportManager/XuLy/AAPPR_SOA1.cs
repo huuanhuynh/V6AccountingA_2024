@@ -7,7 +7,6 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
-using V6Init;
 using V6Structs;
 using Timer = System.Windows.Forms.Timer;
 
@@ -69,7 +68,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyF9: " + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyF9", ex);
             }
         }
         private void F9Thread()
@@ -208,7 +207,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyBase XuLyBoSungThongTinChungTuF4:\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyBoSungThongTinChungTuF4", ex);
             }
         }
 

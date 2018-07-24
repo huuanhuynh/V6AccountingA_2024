@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -595,7 +594,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyF9: " + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyF9", ex);
             }
         }
         private void F9Thread()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
@@ -85,42 +86,77 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            
+            if (_executing)
+            {
+                return;
+            }
+
             try
             {
-               
-                //@Type AS VARCHAR(8),
-                //@Year AS INT,
-                //@Period1 AS INT,
-                //@Period2 AS INT,
-                //@NumList VARCHAR(MAX),
-                //@User_id AS INT,
-                //@Ma_dvcs VARCHAR(50) = ''
-
-
-                SqlParameter[] plist =
-                        {
-                            new SqlParameter("@Type","NEW"),
-                            new SqlParameter("@Year",txtNam.Value),
-                            new SqlParameter("@Period1",txtKy1.Value),
-                            new SqlParameter("@Period2",txtKy2.Value),
-                            new SqlParameter("@NumList",_numlist),
-                            new SqlParameter("@User_id", V6Login.UserId),
-                            new SqlParameter("@Ma_dvcs",txtMaDvcs.StringValue)
-
-                        };
-
-                V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
-
-
-                OnUpdateSuccessEvent();
-                Dispose();
-                V6ControlFormHelper.ShowMainMessage("Thực hiện xong \n");
-
+                _executing = true;
+                _executing_success = false;
+                CheckForIllegalCrossThreadCalls = false;
+                var tLoadData = new Thread(Executing);
+                tLoadData.Start();
+                timerViewReport.Start();
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Update error:\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".btnNhan_Click", ex);
+            }
+            _executing = false;
+        }
+
+        private void Executing()
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Type", "NEW"),
+                    new SqlParameter("@Year", txtNam.Value),
+                    new SqlParameter("@Period1", txtKy1.Value),
+                    new SqlParameter("@Period2", txtKy2.Value),
+                    new SqlParameter("@NumList", _numlist),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                    new SqlParameter("@Ma_dvcs", txtMaDvcs.StringValue)
+
+                };
+
+                int result = V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
+                _executing_success = result > 0;
+            }
+            catch (Exception ex)
+            {
+                _message = ex.Message;
+                _executing_success = false;
+                this.WriteExLog(GetType() + ".Executing!", ex);
+            }
+            _executing = false;
+        }
+
+        private void timerViewReport_Tick(object sender, EventArgs e)
+        {
+            if (_executing)
+            {
+                btnNhan.Image = waitingImages.Images[ii++];
+                if (ii >= waitingImages.Images.Count) ii = 0;
+            }
+            else
+            {
+                timerViewReport.Stop();
+                btnNhan.Image = btnNhanImage;
+                if (_executing_success)
+                {
+                    OnUpdateSuccessEvent();
+                    Dispose();
+                    V6ControlFormHelper.ShowMainMessage("Thực hiện xong.");
+                }
+                else
+                {
+                    timerViewReport.Stop();
+                    ShowMainMessage(_message);
+                }
             }
         }
         
@@ -143,11 +179,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
         protected int _oldIndex = -1;
+        private bool _executing, _executing_success;
 
         protected virtual void OnUpdateSuccessEvent()
         {
             var handler = UpdateSuccessEvent;
             if (handler != null) handler();
         }
+
+        
     }
 }

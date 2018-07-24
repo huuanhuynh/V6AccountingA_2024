@@ -205,7 +205,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".SetColorMavt " + ex.Message);
+                this.ShowErrorException(GetType() + ".SetColorMavt", ex);
             }
         }
 

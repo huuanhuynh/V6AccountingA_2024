@@ -12,7 +12,6 @@ using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6ReportControls;
 using V6Structs;
-using V6Tools;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
@@ -286,7 +285,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".DoEdit: " + ex.Message);
+                this.ShowErrorException(GetType() + ".DoEdit", ex);
             }
         }
 
@@ -323,7 +322,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".DoEdit: " + ex.Message);
+                this.ShowErrorException(GetType() + ".DoEdit", ex);
             }
         }
 
@@ -359,7 +358,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".DoEdit: " + ex.Message);
+                this.ShowErrorException(GetType() + ".DoEdit", ex);
             }
         }
         

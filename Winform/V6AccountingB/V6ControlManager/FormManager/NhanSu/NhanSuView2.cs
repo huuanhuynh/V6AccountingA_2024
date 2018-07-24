@@ -274,7 +274,7 @@ namespace V6ControlManager.FormManager.NhanSu
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".DoEdit: " + ex.Message);
+                this.ShowErrorException(GetType() + ".DoEdit", ex);
             }
         }
 
@@ -299,7 +299,7 @@ namespace V6ControlManager.FormManager.NhanSu
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".f_UpdateSuccess: " + ex.Message);
+                this.ShowErrorException(GetType() + ".f_UpdateSuccess", ex);
             }
         }
 
@@ -434,7 +434,7 @@ namespace V6ControlManager.FormManager.NhanSu
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Xóa lỗi!\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".DoDelete", ex);
             }
         }
 

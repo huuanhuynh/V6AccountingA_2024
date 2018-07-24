@@ -70,6 +70,7 @@
             // timerViewReport
             // 
             this.timerViewReport.Interval = 333;
+            this.timerViewReport.Tick += new System.EventHandler(this.timerViewReport_Tick);
             // 
             // btnHuy
             // 
@@ -234,7 +235,6 @@
             this.Controls.Add(this.btnNhan);
             this.Name = "AGLCTKC_F4";
             this.Size = new System.Drawing.Size(559, 240);
-            
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);

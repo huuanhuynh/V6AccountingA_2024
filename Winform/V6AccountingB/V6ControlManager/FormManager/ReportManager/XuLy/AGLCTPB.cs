@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
@@ -115,7 +113,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyF9: " + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyF9", ex);
             }
         }
         
@@ -174,7 +172,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyF7: " + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyF7", ex);
             }
         }
         protected override void XuLyF8()
@@ -256,7 +254,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyBase XuLyF8:\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyF8", ex);
             }
         }
         protected override void XuLyBoSungThongTinChungTuF4()
@@ -339,7 +337,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyBase XuLyBoSungThongTinChungTuF4:\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyBoSungThongTinChungTuF4", ex);
             }
         }
             

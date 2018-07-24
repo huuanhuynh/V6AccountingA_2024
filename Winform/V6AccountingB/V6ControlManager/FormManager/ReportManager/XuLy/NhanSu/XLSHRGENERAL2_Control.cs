@@ -163,7 +163,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyF9: " + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyF9", ex);
             }
         }
 

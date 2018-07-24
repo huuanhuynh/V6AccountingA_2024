@@ -408,7 +408,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ReportError\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".btnNhan_Click", ex);
             }
         }
 
@@ -511,7 +511,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".TinhToan!\n" + ex.Message);
+                _message = ex.Message;
+                this.WriteExLog(GetType() + ".TinhToan!", ex);
                 _dataLoading = false;
                 _dataLoaded = false;
             }
@@ -655,7 +656,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //}
             //catch (Exception ex)
             //{
-            //    this.ShowErrorMessage(GetType() + ".FormatGridViewExtern: " + ex.Message);
+            //    this.ShowErrorException(GetType() + ".FormatGridViewExtern", ex);
             //}
         }
 

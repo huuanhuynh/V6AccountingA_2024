@@ -52,7 +52,7 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".CallFilterOkClick: " + ex.Message);
+                this.ShowErrorException(GetType() + ".CallFilterOkClick", ex);
             }
         }
         

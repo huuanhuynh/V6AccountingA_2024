@@ -238,7 +238,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".DoEdit: " + ex.Message);
+                this.ShowErrorException(GetType() + ".DoEdit", ex);
             }
         }
 

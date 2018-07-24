@@ -182,7 +182,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".DoEdit: " + ex.Message);
+                this.ShowErrorException(GetType() + ".DoEdit", ex);
             }
         }
 

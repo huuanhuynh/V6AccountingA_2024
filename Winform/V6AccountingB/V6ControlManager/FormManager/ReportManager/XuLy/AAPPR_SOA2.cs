@@ -11,8 +11,6 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6ThuePostManager;
-using V6Tools;
-using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -96,7 +94,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyF9: " + ex.Message);
+                this.ShowErrorException(GetType() + ".XuLyF9", ex);
             }
         }
         private void F9Thread()

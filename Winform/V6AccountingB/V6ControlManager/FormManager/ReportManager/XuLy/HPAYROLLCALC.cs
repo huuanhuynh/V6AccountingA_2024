@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Data;
-using System.Data.SqlClient;
-using System.Threading;
-using V6AccountingBusiness;
-using V6Controls.Forms;
-using System.Windows.Forms;
 using V6Controls;
 using V6Init;
-using V6Tools;
-using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {

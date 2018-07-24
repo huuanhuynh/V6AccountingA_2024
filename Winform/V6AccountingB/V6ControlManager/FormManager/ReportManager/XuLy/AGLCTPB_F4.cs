@@ -115,7 +115,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 OnUpdateSuccessEvent();
                 Dispose();
-                V6ControlFormHelper.ShowMainMessage("Thực hiện xong \n");
+                V6ControlFormHelper.ShowMainMessage("Thực hiện xong.");
 
             }
             catch (Exception ex)
