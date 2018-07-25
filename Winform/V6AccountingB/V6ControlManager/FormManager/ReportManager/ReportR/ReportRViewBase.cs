@@ -1626,6 +1626,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void btnSuaMau_Click(object sender, EventArgs e)
         {
+            if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return;
+
             try
             {
                 var f = new FormRptEditor();

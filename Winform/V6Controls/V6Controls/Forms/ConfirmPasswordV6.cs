@@ -4,8 +4,16 @@ using V6Tools;
 
 namespace V6Controls.Forms
 {
+    /// <summary>
+    /// <para>Hộp thoại xác nhận mật khẩu V6.</para>
+    /// <para>Nếu đúng trả về DialogResult.OK</para>
+    /// </summary>
     public partial class ConfirmPasswordV6 : V6Form
     {
+        /// <summary>
+        /// <para>Hộp thoại xác nhận mật khẩu V6.</para>
+        /// <para>Nếu đúng trả về DialogResult.OK</para>
+        /// </summary>
         public ConfirmPasswordV6()
         {
             InitializeComponent();
