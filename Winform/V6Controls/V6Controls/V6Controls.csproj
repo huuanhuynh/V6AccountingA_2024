@@ -178,6 +178,18 @@
     <Compile Include="Forms\V6TopMessageForm.Designer.cs">
       <DependentUpon>V6TopMessageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Viewer\ExpressionsCalculatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Viewer\ExpressionsCalculatorForm.Designer.cs">
+      <DependentUpon>ExpressionsCalculatorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Viewer\CalculatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Viewer\CalculatorForm.designer.cs">
+      <DependentUpon>CalculatorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Win32.cs" />
     <Compile Include="Controls\ToChucTree\ToChucTreeControl.cs">
       <SubType>Component</SubType>
@@ -1879,11 +1891,17 @@
     <EmbeddedResource Include="Forms\V6UserControlEmpty.resx">
       <DependentUpon>V6UserControlEmpty.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Viewer\ExpressionsCalculatorForm.resx">
+      <DependentUpon>ExpressionsCalculatorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Viewer\DataViewerForm.resx">
       <DependentUpon>DataViewerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Viewer\DataEditorForm.resx">
       <DependentUpon>DataEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Viewer\CalculatorForm.resx">
+      <DependentUpon>CalculatorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Viewer\PdfiumViewerForm.resx">
       <DependentUpon>PdfiumViewerForm.cs</DependentUpon>

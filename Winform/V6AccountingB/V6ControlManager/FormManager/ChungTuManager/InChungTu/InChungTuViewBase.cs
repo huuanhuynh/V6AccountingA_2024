@@ -790,6 +790,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 cboMauIn.DataSource = MauInView;
                 cboMauIn.ValueMember = "report";
                 cboMauIn.DisplayMember = V6Setting.IsVietnamese ? "caption" : "caption2";
+
+                GetSumCondition();
             }
             else
             {

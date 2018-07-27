@@ -13,6 +13,7 @@ using V6ControlManager.FormManager.MenuManager;
 using V6ControlManager.FormManager.ReportManager;
 using V6Controls;
 using V6Controls.Forms;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6SqlConnect;
 using V6Tools;
@@ -608,5 +609,35 @@ namespace V6AccountingB
             //Application.Exit();
         }
 
+        private CalculatorForm cal = null;
+        private void ShowCalculator()
+        {
+            try
+            {
+                if (cal == null || cal.IsDisposed)
+                {
+                    cal = new CalculatorForm();
+                }
+
+                if (cal.Visible)
+                {
+                    cal.Hide();
+                }
+                else
+                {
+                    cal.Show(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".ShowCalculator:" + ex.Message, ex.Source);
+            }
+        }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            ShowCalculator();
+        }
+
+        
     }
 }

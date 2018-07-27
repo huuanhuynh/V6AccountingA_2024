@@ -1121,7 +1121,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 _giaNt21.Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
                 //ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
                 if (_dvt.Text.ToUpper().Trim() == _dvt1.Text.ToUpper().Trim())
+                {
                     _giaNt2.Value = _giaNt21.Value;
+                }
                 else
                 {
                     if (_soLuong.Value != 0)

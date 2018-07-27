@@ -49,6 +49,7 @@ namespace V6AccountingB
             this.lblStatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panelLogin = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.lblComment = new System.Windows.Forms.Label();
@@ -67,6 +68,7 @@ namespace V6AccountingB
             this.statusStrip1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelLogin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenuShow.SuspendLayout();
             this.panelView.SuspendLayout();
             this.SuspendLayout();
@@ -123,6 +125,7 @@ namespace V6AccountingB
             // 
             // panelLogin
             // 
+            this.panelLogin.Controls.Add(this.pictureBox1);
             this.panelLogin.Controls.Add(this.label2);
             this.panelLogin.Controls.Add(this.btnExit);
             this.panelLogin.Controls.Add(this.lblComment);
@@ -133,6 +136,16 @@ namespace V6AccountingB
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(153, 126);
             this.panelLogin.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::V6AccountingB.Properties.Resources.Calculator;
+            this.pictureBox1.Location = new System.Drawing.Point(101, 88);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label2
             // 
@@ -150,7 +163,7 @@ namespace V6AccountingB
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.Image = global::V6AccountingB.Properties.Resources.exit;
-            this.btnExit.Location = new System.Drawing.Point(35, 83);
+            this.btnExit.Location = new System.Drawing.Point(7, 83);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(78, 39);
             this.btnExit.TabIndex = 12;
@@ -488,17 +501,17 @@ namespace V6AccountingB
             this.panelMenuShow.Controls.Add(this.lblMenuShow);
             this.panelMenuShow.Location = new System.Drawing.Point(0, 12);
             this.panelMenuShow.Name = "panelMenuShow";
-            this.panelMenuShow.Size = new System.Drawing.Size(175, 188);
+            this.panelMenuShow.Size = new System.Drawing.Size(175, 189);
             this.panelMenuShow.TabIndex = 2;
             // 
             // lblMenuShow
             // 
             this.lblMenuShow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblMenuShow.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblMenuShow.Location = new System.Drawing.Point(148, 0);
+            this.lblMenuShow.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblMenuShow.Location = new System.Drawing.Point(0, 0);
             this.lblMenuShow.Name = "lblMenuShow";
             this.lblMenuShow.RenderingMode = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.lblMenuShow.Size = new System.Drawing.Size(27, 188);
+            this.lblMenuShow.Size = new System.Drawing.Size(175, 188);
             this.lblMenuShow.TabIndex = 0;
             this.lblMenuShow.Tag = "Ẩn hoặc hiện menu chính";
             this.lblMenuShow.Text = "Hide";
@@ -606,6 +619,7 @@ namespace V6AccountingB
             this.panelMenu.ResumeLayout(false);
             this.panelLogin.ResumeLayout(false);
             this.panelLogin.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelMenuShow.ResumeLayout(false);
             this.panelView.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -636,6 +650,7 @@ namespace V6AccountingB
         private System.Windows.Forms.Label lblCompanyName;
         private System.Windows.Forms.Label label2;
         private QuickMenu quickMenu1;
+        private System.Windows.Forms.PictureBox pictureBox1;
         
     }
 }

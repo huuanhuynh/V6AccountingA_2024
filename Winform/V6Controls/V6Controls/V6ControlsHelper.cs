@@ -11,6 +11,7 @@ using System.Text;
 using Microsoft.CSharp;
 using V6AccountingBusiness;
 using V6Controls.Forms;
+using V6Init;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -38,6 +39,15 @@ namespace V6Controls
                 //
             }
             return V6SoftLocalAppData_Directory;
+        }
+
+        public static void CreateKtmpDirectory()
+        {
+            string path = V6Options.K_TMP;
+            if (!string.IsNullOrEmpty(path) && !Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
         }
 
         public static void DeleteAllFileInV6SoftLocalAppData()

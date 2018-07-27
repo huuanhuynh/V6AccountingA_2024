@@ -15,6 +15,7 @@ using V6ControlManager.FormManager.VitriManager;
 using V6Controls;
 using V6Controls.Controls;
 using V6Controls.Forms;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -364,7 +365,7 @@ namespace V6ControlManager.FormManager.MenuManager
         /// <summary>
         /// Bật tính năng menu
         /// </summary>
-        private bool _alt_m;
+        private bool _alt_m, _ctrl_alt_m;
         /// <summary>
         /// Điểu khiển phím tắt
         /// </summary>
@@ -414,6 +415,19 @@ namespace V6ControlManager.FormManager.MenuManager
                     return;
                 }
 
+                if (_ctrl_alt_m)
+                {
+                    _ctrl_alt_m = false;
+                    if (keyData == Keys.T)
+                    {
+
+                        ExpressionsCalculatorForm calc = new ExpressionsCalculatorForm();
+                        calc.TopMost = true;
+                        calc.Show(this);
+                    }
+                }
+
+
                 if (keyData == (Keys.Alt | Keys.Up))
                 {
                     var button = menuControl1.SelectedButton;
@@ -441,6 +455,16 @@ namespace V6ControlManager.FormManager.MenuManager
                 {
                     Clipboard.SetText(menuControl1.SelectedButton.ItemID + "," + menuControl1.SelectedButton.CodeForm);
                     V6ControlFormHelper.SetStatusText(menuControl1.SelectedButton.ItemID + "," + menuControl1.SelectedButton.CodeForm);
+                }
+                else if (keyData == (Keys.Control | Keys.Alt | Keys.C))
+                {
+                    CalculatorForm calc = new CalculatorForm();
+                    calc.TopMost = true;
+                    calc.Show(this);
+                }
+                else if (keyData == (Keys.Control | Keys.Alt | Keys.M))
+                {
+                    _ctrl_alt_m = true;
                 }
                 else if (keyData == Keys.F1)
                 {

@@ -155,6 +155,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
         private void LoadComboboxSource()
         {
             MauInData = Albc.GetMauInData(KhoParams.Program, "", "", "");
+            //GetSumCondition();
         }
 
         public void GetAndSetData()

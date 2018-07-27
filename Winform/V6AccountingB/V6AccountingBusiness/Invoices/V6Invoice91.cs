@@ -419,7 +419,7 @@ namespace V6AccountingBusiness.Invoices
             catch (Exception ex)
             {
                 //return "{gia_ban_nt:0,gia_nt2:0,error:1,message:\"GetPrice: " + ToJSstring(ex.Message) + "\"}";
-                throw new Exception("V6Invoice81 GetGiaBan " + ex.Message);
+                throw new Exception("V6Invoice91 GetGiaBan " + ex.Message);
             }
             return null;
         }

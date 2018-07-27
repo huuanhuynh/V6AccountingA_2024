@@ -665,6 +665,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 cboMauIn.DataSource = MauInView;
                 cboMauIn.ValueMember = "report";
                 cboMauIn.DisplayMember = V6Setting.IsVietnamese ? "caption" : "caption2";
+
+                GetSumCondition();
             }
             else
             {
@@ -1738,6 +1740,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
         private void btnSuaMau_Click(object sender, EventArgs e)
         {
+            if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return;
+
             try
             {
                 var f = new FormRptEditor();

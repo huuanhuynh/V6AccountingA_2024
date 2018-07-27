@@ -124,6 +124,24 @@ namespace V6Init
         }
 
         private static string m_ma_nt0;
+
+        /// <summary>
+        /// Đường dẫn thư mục tạm.
+        /// </summary>
+        public static string K_TMP
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_k_tmp))
+                {
+                    _k_tmp = V6OptionValues["K_TMP"];
+                }
+                return _k_tmp;
+            }
+        }
+        private static string _k_tmp = null;
+
+
         public static string M_MA_NT0
         {
             get

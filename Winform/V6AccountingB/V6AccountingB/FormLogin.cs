@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 using System.Net;
 using System.Threading;
 using V6AccountingBusiness;
@@ -242,6 +243,8 @@ namespace V6AccountingB
 
                     if (V6Login.Login(txtUserName.Text.Trim(), txtPassword.Text.Trim(), dvcs))
                     {
+                        V6ControlsHelper.CreateKtmpDirectory();
+
                         _allowClient = V6Login.CheckAllowClient(Application.StartupPath);
                         if (!_allowClient)
                         {

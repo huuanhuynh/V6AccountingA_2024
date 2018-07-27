@@ -26,7 +26,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             {
                 if (!V6Setting.IsVietnamese) NAME_FIELD = "TEN2";
 
-                var select_data = V6BusinessHelper.Select("Alreport", "('['+Rtrim(MA_BC)+']  '+" + NAME_FIELD + ") as MA_TEN, *", " MA_BC NOT IN (" + NotInList + ")").Data;
+                var select_data = V6BusinessHelper.Select("Alreport", "('['+Rtrim(MA_BC)+']  '+" + NAME_FIELD + ") as MA_TEN, *", " MA_BC NOT IN (" + NotInList + ")", "", "MA_BC").Data;
                 if (select_data.Rows.Count == 0)
                 {
                     this.ShowWarningMessage("NO DATA");

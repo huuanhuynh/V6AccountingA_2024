@@ -20,7 +20,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F4: Tạo bút toán khấu hao TSCĐ, F7: In, F8: Xóa bút toán khấu hao TSCĐ");
+            V6ControlFormHelper.SetStatusText2("Space: Chọn, F4: Tạo bút toán khấu hao TSCĐ, F7: In, F8: Xóa bút toán khấu hao TSCĐ");
         }
 
         protected override void MakeReport2()

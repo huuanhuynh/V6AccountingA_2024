@@ -83,25 +83,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                 if (selectForm.ShowDialog(this) == DialogResult.OK)
                 {
                     var add_count = 0;
-
-                    //copy all
-                    //var selected_ma_bc = selectForm.SelectedID;
-                    //var keys = new SortedDictionary<string, object>
-                    //{
-                    //    {"MA_BC", selected_ma_bc}
-                    //};
-                    //var alreport1_data = Categories.Select(V6TableName.Alreport1, keys).Data;
-                    //foreach (DataRow row in alreport1_data.Rows)
-                    //{
-                    //    var data = row.ToDataDictionary();
-                    //    data["MA_BC"] = TXTMA_BC.Text.Trim();
-                    //    data["UID_CT"] = DataOld["UID"];
-                    //    if (Categories.Insert(V6TableName.Alreport1, data))
-                    //    {
-                    //        add_count++;
-                    //    };
-                    //}
-
                     //copy selected
                     foreach (DataGridViewRow row in selectForm.dataGridView1.Rows)
                     {

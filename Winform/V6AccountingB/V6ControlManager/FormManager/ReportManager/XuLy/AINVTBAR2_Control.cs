@@ -640,6 +640,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void LoadComboboxSource()
         {
             MauInData = Albc.GetMauInData(_reportFile, "", "", "");
+            //GetSumCondition();
         }
 
 
