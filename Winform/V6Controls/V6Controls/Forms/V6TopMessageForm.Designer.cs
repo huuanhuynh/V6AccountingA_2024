@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(V6TopMessageForm));
             this.lblMessage = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblHole = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblMessage
@@ -46,11 +47,22 @@
             this.lblMessage.TabIndex = 0;
             this.lblMessage.Text = "Thông báo.";
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMessage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.V6TopMessageForm_MouseDown);
+            this.lblMessage.MouseMove += new System.Windows.Forms.MouseEventHandler(this.V6TopMessageForm_MouseMove);
             // 
             // timer1
             // 
             this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // lblHole
+            // 
+            this.lblHole.BackColor = System.Drawing.Color.Black;
+            this.lblHole.Location = new System.Drawing.Point(0, 0);
+            this.lblHole.Name = "lblHole";
+            this.lblHole.Size = new System.Drawing.Size(1, 1);
+            this.lblHole.TabIndex = 1;
+            this.lblHole.Text = "label1";
             // 
             // V6TopMessageForm
             // 
@@ -59,6 +71,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.GreenYellow;
             this.ClientSize = new System.Drawing.Size(300, 92);
+            this.Controls.Add(this.lblHole);
             this.Controls.Add(this.lblMessage);
             this.ForeColor = System.Drawing.Color.Red;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -73,7 +86,8 @@
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Black;
             this.Load += new System.EventHandler(this.V6TopMessageForm_Load);
-            this.Controls.SetChildIndex(this.lblMessage, 0);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.V6TopMessageForm_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.V6TopMessageForm_MouseMove);
             this.ResumeLayout(false);
 
         }
@@ -82,5 +96,6 @@
 
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lblHole;
     }
 }

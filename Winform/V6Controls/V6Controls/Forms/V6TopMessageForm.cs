@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using V6Init;
 
 namespace V6Controls.Forms
 {
@@ -50,7 +49,7 @@ namespace V6Controls.Forms
         }
 
         private int _showTime = 500; // 5 sec
-        private int _showTimeCount = 0;
+        private int _showTimeCount;
         private void timer1_Tick(object sender, System.EventArgs e)
         {
             _showTimeCount ++;
@@ -77,6 +76,22 @@ namespace V6Controls.Forms
         private void V6TopMessageForm_Load(object sender, System.EventArgs e)
         {
             
+        }
+
+        private void V6TopMessageForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            MoveHole();
+        }
+
+        private void V6TopMessageForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            MoveHole();
+        }
+
+        private void MoveHole()
+        {
+            var newLocation = PointToClient(MousePosition);
+            lblHole.Location = newLocation;
         }
     }
 }
