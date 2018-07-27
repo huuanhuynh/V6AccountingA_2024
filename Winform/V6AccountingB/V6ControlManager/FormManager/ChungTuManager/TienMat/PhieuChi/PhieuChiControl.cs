@@ -3240,7 +3240,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     txtLoaiPhieu.ChangeText(_MA_GD);
 
                     GetSttRec(Invoice.Mact);
-                    V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + txtSoPhieu.Text);
+                    V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                     //GetSoPhieu();
 
                     GetM_ma_nt0();
@@ -3269,7 +3269,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             try
             {
-                V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + txtSoPhieu.Text);
+                V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                 if(IsViewingAnInvoice)
                 if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
                 {
@@ -3365,7 +3365,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                                 dataRow["STT_REC"] = _sttRec;
                             }
                             InvokeFormEventFixCopyData();
-                            V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + txtSoPhieu.Text);
+                            V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                             Mode = V6Mode.Add;
                             detail1.MODE = V6Mode.View;
                             if (chkSuaThue.Checked)
@@ -4343,7 +4343,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             SetTabPageText(txtSoPhieu.Text);
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
-                V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + txtSoPhieu.Text);
+                V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
         }
 
         private void txtMaKh_Leave(object sender, EventArgs e)

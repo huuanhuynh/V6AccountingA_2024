@@ -2143,7 +2143,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     Mode = V6Mode.Add;
 
                     GetSttRec(Invoice.Mact);
-                    V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + txtSoPhieu.Text);
+                    V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                     //GetSoPhieu();
                     GetM_ma_nt0();
                     GetTyGiaDefault();
@@ -2170,7 +2170,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         {
             try
             {
-                V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + txtSoPhieu.Text);
+                V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                 if (IsViewingAnInvoice)
                     if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
                     {
@@ -2353,7 +2353,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                                 dataRow["STT_REC"] = _sttRec;
                             }
                             InvokeFormEventFixCopyData();
-                            V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + txtSoPhieu.Text);
+                            V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                             Mode = V6Mode.Add;
                             detail1.MODE = V6Mode.View;
                             if (chkSuaThue.Checked)
@@ -3334,7 +3334,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         {
             SetTabPageText(txtSoPhieu.Text);
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
-            V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + txtSoPhieu.Text);
+            V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
         }
 
         private void txtMaKh_Leave(object sender, EventArgs e)
