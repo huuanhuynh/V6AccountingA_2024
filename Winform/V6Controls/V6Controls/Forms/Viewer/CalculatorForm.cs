@@ -474,7 +474,7 @@ namespace V6Controls.Forms.Viewer
 
         private void btnHide_Click(object sender, EventArgs e)
         {
-            Hide();
+            Opacity = Math.Abs(Opacity - 1) < 0.1 ? 0.75 : 1;
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)

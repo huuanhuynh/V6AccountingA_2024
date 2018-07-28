@@ -47,9 +47,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         }
 
         /// <summary>
-        /// Dùng để khởi tạo sửa
+        /// Khởi tạo form chứng từ.
         /// </summary>
-        public PhieuNhapKhauControl(string itemId, string sttRec)
+        /// <param name="maCt">Mã chứng từ.</param>
+        /// <param name="itemId"></param>
+        /// <param name="sttRec">Có mã hợp lệ sẽ tải dữ liệu lên để sửa.</param>
+        public PhieuNhapKhauControl(string maCt, string itemId, string sttRec)
+            : base(maCt, itemId)
         {
             m_itemId = itemId;
             InitializeComponent();
@@ -61,7 +65,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {   
             LoadLanguage();
             LoadTag(Invoice, detail1.Controls);
-            lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
 
             //_amStruct = Invoice.GetAMStruct();
             //_adStruct = Invoice.ADStruct();
@@ -127,6 +130,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             detail1.AddContexMenu(menuDetail1);
             LoadDetail2Controls();
             LoadDetail3Controls();
+            LoadAdvanceControls(Invoice.Mact);
+            lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             ResetForm();
 
             LoadAll();

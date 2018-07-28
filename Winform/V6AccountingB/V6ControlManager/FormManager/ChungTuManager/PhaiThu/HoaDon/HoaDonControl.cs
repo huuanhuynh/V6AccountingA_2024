@@ -52,9 +52,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         }
 
         /// <summary>
-        /// Dùng để khởi tạo sửa
+        /// Khởi tạo form chứng từ.
         /// </summary>
-        public HoaDonControl(string itemId, string sttRec)
+        /// <param name="maCt">Mã chứng từ.</param>
+        /// <param name="itemId"></param>
+        /// <param name="sttRec">Có mã hợp lệ sẽ tải dữ liệu lên để sửa.</param>
+        public HoaDonControl(string maCt, string itemId, string sttRec)
+            : base(maCt, itemId)
         {
             m_itemId = itemId;
             InitializeComponent();
@@ -66,7 +70,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void MyInit()
         {
             LoadTag(Invoice, detail1.Controls);
-            lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
             txtMaKh.Upper();
@@ -125,6 +128,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             LoadDetailControls();
             detail1.AddContexMenu(menuDetail1);
             LoadDetail3Controls();
+            LoadAdvanceControls(Invoice.Mact);
+            lblNameT.Left  = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             ResetForm();
             
             txtLoaiPhieu.SetInitFilter(string.Format("Ma_ct = '{0}'", Invoice.Mact));   
@@ -7591,6 +7596,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void thayThe2toolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChucNang_SuaNhieuDong(Invoice);
+        }
+
+        private void hoaDonDetail1_AddHandle()
+        {
+
         }
 
     }

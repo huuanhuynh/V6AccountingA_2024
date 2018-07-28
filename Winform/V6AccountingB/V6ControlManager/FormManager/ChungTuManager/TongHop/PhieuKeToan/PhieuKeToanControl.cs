@@ -47,16 +47,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         }
 
         /// <summary>
-        /// Dùng để khởi tạo sửa
+        /// Khởi tạo form chứng từ.
         /// </summary>
-        public PhieuKeToanControl(string mact, string itemId, string sttRec)
+        /// <param name="maCt">Mã chứng từ.</param>
+        /// <param name="itemId"></param>
+        /// <param name="sttRec">Có mã hợp lệ sẽ tải dữ liệu lên để sửa.</param>
+        public PhieuKeToanControl(string maCt, string itemId, string sttRec)
+            : base(maCt, itemId)
         {
             m_itemId = itemId;
             InitializeComponent();
-            if (string.IsNullOrEmpty(mact))
+            if (string.IsNullOrEmpty(maCt))
                 Invoice = new V6Invoice11();
             else
-                Invoice = new V6Invoice11(mact);
+                Invoice = new V6Invoice11(maCt);
 
             MyInit();
             CallViewInvoice(sttRec, V6Mode.View);
@@ -66,7 +70,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         {   
             LoadLanguage();
             LoadTag(Invoice, detail1.Controls);
-            lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
             
@@ -101,6 +104,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             
             LoadDetailControls();
             LoadDetail2Controls();
+            LoadAdvanceControls(Invoice.Mact);
+            lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             ResetForm();
 
             LoadAll();

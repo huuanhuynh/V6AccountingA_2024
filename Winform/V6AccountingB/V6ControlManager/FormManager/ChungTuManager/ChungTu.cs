@@ -218,35 +218,35 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 #region ==== Phải thu ====
                 case "SOA":
-                    return new HoaDonControl(itemId, sttRec) { Name = itemId };
+                    return new HoaDonControl(maCt, itemId, sttRec) { Name = itemId };
                 case "SOB":
-                    return new HoaDonDichVuCoSLControl(itemId, sttRec) { Name = itemId };
+                    return new HoaDonDichVuCoSLControl(maCt, itemId, sttRec) { Name = itemId };
                 case "SOH":
-                    return new DonDatHangBanControl(itemId, sttRec) { Name = itemId };
+                    return new DonDatHangBanControl(maCt, itemId, sttRec) { Name = itemId };
                 case "SOR":
-                    return new BaoGiaControl(itemId, sttRec) { Name = itemId };
+                    return new BaoGiaControl(maCt, itemId, sttRec) { Name = itemId };
                 case "AR1":
-                    return new HoaDonDichVuControl(itemId, sttRec) { Name = itemId };
+                    return new HoaDonDichVuControl(maCt, itemId, sttRec) { Name = itemId };
                 case "SOF":
-                    return new HangTraLaiControl(itemId, sttRec) { Name = itemId };
+                    return new HangTraLaiControl(maCt, itemId, sttRec) { Name = itemId };
                 #endregion phải thu
 
                 #region ==== Tồn kho ====
                 case "IXA":
-                    return new PhieuXuatKhoControl(itemId, sttRec) { Name = itemId };
+                    return new PhieuXuatKhoControl(maCt, itemId, sttRec) { Name = itemId };
                 case "IXB":
-                    return new PhieuXuatDieuChuyenControl(itemId, sttRec) { Name = itemId };
+                    return new PhieuXuatDieuChuyenControl(maCt, itemId, sttRec) { Name = itemId };
                 case "IND":
-                    return new PhieuNhapKhoControl(itemId, sttRec) { Name = itemId };
+                    return new PhieuNhapKhoControl(maCt, itemId, sttRec) { Name = itemId };
                 #endregion tồn kho
 
                 #region ==== Tiền mặt ====
                 case "BC1":
-                    //return new BaoCoControl(itemId, sttRec) { Name = itemId };
+                    //return new BaoCoControl((maCt, itemId, sttRec) { Name = itemId };
                 case "TA1":
                     return new PhieuThuControl(maCt, itemId, sttRec) { Name = itemId };
                 case "BN1":
-                    //return new BaoNoControl(itemId, sttRec) { Name = itemId };
+                    //return new BaoNoControl((maCt, itemId, sttRec) { Name = itemId };
                 case "CA1":
                     return new PhieuChiControl(maCt, itemId, sttRec) { Name = itemId };
                 
@@ -255,19 +255,19 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                 #region ==== Phải trả ====
                 case "POA":
-                    return new PhieuNhapMuaControl(itemId, sttRec) { Name = itemId };
+                    return new PhieuNhapMuaControl(maCt, itemId, sttRec) { Name = itemId };
                 case "POH":
-                    return new DonDatHangMuaControl(itemId, sttRec) { Name = itemId };
+                    return new DonDatHangMuaControl(maCt, itemId, sttRec) { Name = itemId };
                 case "POB":
-                    return new PhieuNhapKhauControl(itemId, sttRec) { Name = itemId };
+                    return new PhieuNhapKhauControl(maCt, itemId, sttRec) { Name = itemId };
                 case "POC":
-                    return new PhieuNhapChiPhiMuaHangControl(itemId, sttRec) { Name = itemId };
+                    return new PhieuNhapChiPhiMuaHangControl(maCt, itemId, sttRec) { Name = itemId };
                 case "IXC":
-                    return new PhieuXuatTraLaiNCCControl(itemId, sttRec) { Name = itemId };
+                    return new PhieuXuatTraLaiNCCControl(maCt, itemId, sttRec) { Name = itemId };
                 case "AP1":
-                    return new HoaDonMuaHangDichVuControl(itemId, sttRec) { Name = itemId };
+                    return new HoaDonMuaHangDichVuControl(maCt, itemId, sttRec) { Name = itemId };
                 case "AP2":// Phiếu thanh toán tạm ứng
-                    return new PhieuThanhToanTamUngControl(itemId, sttRec) { Name = itemId };
+                    return new PhieuThanhToanTamUngControl(maCt, itemId, sttRec) { Name = itemId };
                 #endregion phải trả
 
                 #region ==== Tổng hợp ====
@@ -275,7 +275,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 case "GL1":
                 case "AP9":
                 case "AR9":
-                    return new PhieuKeToanControl(maCt,itemId, sttRec) { Name = itemId };
+                    return new PhieuKeToanControl(maCt, itemId, sttRec) { Name = itemId };
                 #endregion phiếu kế toán
 
                 default:

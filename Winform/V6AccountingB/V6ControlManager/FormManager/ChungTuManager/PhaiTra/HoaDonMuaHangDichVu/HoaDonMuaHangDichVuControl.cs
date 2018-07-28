@@ -40,9 +40,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         }
 
         /// <summary>
-        /// Dùng để khởi tạo sửa
+        /// Khởi tạo form chứng từ.
         /// </summary>
-        public HoaDonMuaHangDichVuControl(string itemId, string sttRec)
+        /// <param name="maCt">Mã chứng từ.</param>
+        /// <param name="itemId"></param>
+        /// <param name="sttRec">Có mã hợp lệ sẽ tải dữ liệu lên để sửa.</param>
+        public HoaDonMuaHangDichVuControl(string maCt, string itemId, string sttRec)
+            : base(maCt, itemId)
         {
             m_itemId = itemId;
             InitializeComponent();
@@ -54,7 +58,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         {   
             LoadLanguage();
             LoadTag(Invoice, detail1.Controls);
-            lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
             txtMaKh.Upper();
@@ -106,6 +109,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             LoadDetailControls();
             LoadDetail2Controls();
             LoadDetail3Controls();
+            LoadAdvanceControls(Invoice.Mact);
+            lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             ResetForm();
 
             LoadAll();

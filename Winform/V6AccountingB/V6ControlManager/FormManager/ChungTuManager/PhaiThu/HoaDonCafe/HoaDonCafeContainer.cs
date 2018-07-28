@@ -70,7 +70,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
 
                 var makho = kho_data.Rows[0]["MA_KHO"].ToString().Trim();
-                var khu = new KhuCafeControl(makho)
+                var khu = new KhuCafeControl(MaCt, makho)
                 {
                     Dock = DockStyle.Fill
                 };
@@ -132,7 +132,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     tabControl1.TabPages.Add(tab);
                     tabControl1.SelectTab(tab);
 
-                    var khu = new KhuCafeControl(makho)
+                    var khu = new KhuCafeControl(MaCt, makho)
                     {
                         Dock = DockStyle.Fill
                     };

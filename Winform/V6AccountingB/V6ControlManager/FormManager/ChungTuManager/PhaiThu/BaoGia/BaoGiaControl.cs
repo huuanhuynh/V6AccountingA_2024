@@ -46,9 +46,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         }
 
         /// <summary>
-        /// Dùng để khởi tạo sửa
+        /// Khởi tạo form chứng từ.
         /// </summary>
-        public BaoGiaControl(string itemId, string sttRec)
+        /// <param name="maCt">Mã chứng từ.</param>
+        /// <param name="itemId"></param>
+        /// <param name="sttRec">Có mã hợp lệ sẽ tải dữ liệu lên để sửa.</param>
+        public BaoGiaControl(string maCt, string itemId, string sttRec)
+            : base(maCt, itemId)
         {
             m_itemId = itemId;
             InitializeComponent();
@@ -61,7 +65,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         {   
             LoadLanguage();
             LoadTag(Invoice, detail1.Controls);
-            lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             LoadColorList();
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -100,6 +103,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             CreateFormProgram(Invoice);
             
             LoadDetailControls();
+            LoadAdvanceControls(Invoice.Mact);
+            lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             ResetForm();
 
             LoadAll();

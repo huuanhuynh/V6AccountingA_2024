@@ -18,19 +18,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         public KhuCafeControl()
         {
             InitializeComponent();
-            MyInit();
+            //MyInit();
         }
 
-        public KhuCafeControl(string ma_kho)
+        public KhuCafeControl(string maCt, string ma_kho)
         {
             InitializeComponent();
             Ma_kho = ma_kho;
-            MyInit();
+            MyInit(maCt);
         }
 
         public string Ma_kho;
 
-        private void MyInit()
+        private void MyInit(string maCt)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
                 txtMaVitri.SetInitFilter(string.Format("Ma_kho='{0}'", Ma_kho));
 
-                InitHoaDonCafeControl();
+                InitHoaDonCafeControl(maCt);
 
                 InitTables(V6BusinessHelper.GetServerDateTime());
             }
@@ -209,9 +209,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         internal HoaDonCafeControl hoadonCafe;
         private TableButton selected_button;
         private bool _listen_change_mode;
-        private void InitHoaDonCafeControl()
+        private void InitHoaDonCafeControl(string maCt)
         {
-            hoadonCafe = new HoaDonCafeControl(ItemID, "Stt_rec???");
+            hoadonCafe = new HoaDonCafeControl(maCt, ItemID, "Stt_rec???");
 
             hoadonCafe.Dock = DockStyle.Fill;
             hoadonCafe.BillChanged += hoadonCafe_BillChanged;

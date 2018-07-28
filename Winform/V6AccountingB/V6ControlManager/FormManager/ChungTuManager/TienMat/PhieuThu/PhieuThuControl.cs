@@ -35,23 +35,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             MyInit();
         }
 
-        public PhieuThuControl(string mact, string itemId)
+        public PhieuThuControl(string maCt, string itemId)
         {
             m_itemId = itemId;
             InitializeComponent();
-            Invoice = string.IsNullOrEmpty(mact) ? new V6Invoice41() : new V6Invoice41(mact);
+            Invoice = string.IsNullOrEmpty(maCt) ? new V6Invoice41() : new V6Invoice41(maCt);
 
             MyInit();
         }
 
         /// <summary>
-        /// Dùng để khởi tạo sửa
+        /// Khởi tạo form chứng từ.
         /// </summary>
-        public PhieuThuControl(string mact, string itemId, string sttRec)
+        /// <param name="maCt">Mã chứng từ.</param>
+        /// <param name="itemId"></param>
+        /// <param name="sttRec">Có mã hợp lệ sẽ tải dữ liệu lên để sửa.</param>
+        public PhieuThuControl(string maCt, string itemId, string sttRec)
+            : base(maCt, itemId)
         {
             m_itemId = itemId;
             InitializeComponent();
-            Invoice = string.IsNullOrEmpty(mact) ? new V6Invoice41() : new V6Invoice41(mact);
+            Invoice = string.IsNullOrEmpty(maCt) ? new V6Invoice41() : new V6Invoice41(maCt);
             MyInit();
             CallViewInvoice(sttRec, V6Mode.View);
         }
@@ -60,7 +64,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         {
             LoadLanguage();
             LoadTag(Invoice, detail1.Controls);
-            lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
             txtMaKh.Upper();

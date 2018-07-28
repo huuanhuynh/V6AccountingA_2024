@@ -25,7 +25,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             MaCt = maCt;
             m_itemId = itemId;
             _showQuickViewControl = showQuickView;
-            Invoice = V6BusinessHelper.CreateInvoice(maCt);
+            Invoice = V6BusinessHelper.CreateInvoice(MaCt);
             
             if (Invoice.Alct == null)
             {

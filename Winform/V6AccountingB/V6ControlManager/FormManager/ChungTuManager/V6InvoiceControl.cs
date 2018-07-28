@@ -29,7 +29,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             InitializeComponent();
         }
-        
+
         /// <summary>
         /// Khởi tạo control rỗng.
         /// </summary>
@@ -38,14 +38,32 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             MaCt = maCt;
             InitializeComponent();
-            EmptyInit();
+            MyInit0();
         }
-
-        private void EmptyInit()
+        
+        public V6InvoiceControl(string maCt, string itemId)
+        {
+            MaCt = maCt;
+            InitializeComponent();
+        }
+        
+        private void MyInit0()
         {
             var lbl = new Label();
             lbl.Text = MaCt;
             Controls.Add(lbl);
+        }
+
+        protected void LoadAdvanceControls(string ma_ct)
+        {
+            try
+            {
+                V6ControlFormHelper.CreateAdvanceFormControls(this, ma_ct, All_Objects);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls", ex);
+            }
         }
 
         //public delegate void ChangeInvoice(string sttRec);
@@ -102,9 +120,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public TabPage ParentTabPage { get; set; }
 
-        /// <summary>
-        /// Không dùng làm gì. Chỉ dùng trong EmptyControl.
-        /// </summary>
         public string MaCt { get; set; }
         protected string _sttRec0 = "";
         protected string _sttRec02 = "";
