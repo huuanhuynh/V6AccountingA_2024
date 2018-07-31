@@ -93,6 +93,7 @@
             this.v6ColorDateTimePick2 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnBoSung = new V6Controls.Controls.V6FormButton();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -109,16 +110,17 @@
             this.v6TabControl1.Controls.Add(this.tabPage4);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
-            this.v6TabControl1.Location = new System.Drawing.Point(5, 5);
+            this.v6TabControl1.Location = new System.Drawing.Point(0, 2);
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(5);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(897, 435);
+            this.v6TabControl1.Size = new System.Drawing.Size(904, 444);
             this.v6TabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage1.Controls.Add(this.btnBoSung);
             this.tabPage1.Controls.Add(this.TxtNgay_hd3);
             this.tabPage1.Controls.Add(this.TxtNgay_hd2);
             this.tabPage1.Controls.Add(this.TxtNgay_hd1);
@@ -153,7 +155,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage1.Size = new System.Drawing.Size(889, 403);
+            this.tabPage1.Size = new System.Drawing.Size(896, 412);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
@@ -174,7 +176,7 @@
             this.TxtNgay_hd3.Location = new System.Drawing.Point(646, 80);
             this.TxtNgay_hd3.Margin = new System.Windows.Forms.Padding(5);
             this.TxtNgay_hd3.Name = "TxtNgay_hd3";
-            this.TxtNgay_hd3.Size = new System.Drawing.Size(161, 23);
+            this.TxtNgay_hd3.Size = new System.Drawing.Size(168, 23);
             this.TxtNgay_hd3.TabIndex = 104;
             // 
             // TxtNgay_hd2
@@ -193,7 +195,7 @@
             this.TxtNgay_hd2.Location = new System.Drawing.Point(643, 43);
             this.TxtNgay_hd2.Margin = new System.Windows.Forms.Padding(5);
             this.TxtNgay_hd2.Name = "TxtNgay_hd2";
-            this.TxtNgay_hd2.Size = new System.Drawing.Size(164, 23);
+            this.TxtNgay_hd2.Size = new System.Drawing.Size(171, 23);
             this.TxtNgay_hd2.TabIndex = 103;
             // 
             // TxtNgay_hd1
@@ -212,7 +214,7 @@
             this.TxtNgay_hd1.Location = new System.Drawing.Point(643, 6);
             this.TxtNgay_hd1.Margin = new System.Windows.Forms.Padding(5);
             this.TxtNgay_hd1.Name = "TxtNgay_hd1";
-            this.TxtNgay_hd1.Size = new System.Drawing.Size(164, 23);
+            this.TxtNgay_hd1.Size = new System.Drawing.Size(171, 23);
             this.TxtNgay_hd1.TabIndex = 102;
             // 
             // Txtma_hd
@@ -554,7 +556,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage2.Size = new System.Drawing.Size(889, 403);
+            this.tabPage2.Size = new System.Drawing.Size(896, 412);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin công nợ";
             // 
@@ -626,7 +628,7 @@
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorTextBox5.Multiline = true;
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
-            this.v6ColorTextBox5.Size = new System.Drawing.Size(731, 156);
+            this.v6ColorTextBox5.Size = new System.Drawing.Size(738, 165);
             this.v6ColorTextBox5.TabIndex = 5;
             // 
             // label4
@@ -670,11 +672,11 @@
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Size = new System.Drawing.Size(889, 403);
+            this.tabPage3.Size = new System.Drawing.Size(896, 412);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Tự định nghĩa";
             // 
-            // v6ColorTextBox16
+            // txtGC_TD3
             // 
             this.txtGC_TD3.AccessibleName = "GC_TD3";
             this.txtGC_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -690,10 +692,10 @@
             this.txtGC_TD3.Location = new System.Drawing.Point(148, 348);
             this.txtGC_TD3.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_TD3.Name = "txtGC_TD3";
-            this.txtGC_TD3.Size = new System.Drawing.Size(563, 23);
+            this.txtGC_TD3.Size = new System.Drawing.Size(570, 23);
             this.txtGC_TD3.TabIndex = 137;
             // 
-            // v6ColorTextBox15
+            // txtGC_TD2
             // 
             this.txtGC_TD2.AccessibleName = "GC_TD2";
             this.txtGC_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -709,10 +711,10 @@
             this.txtGC_TD2.Location = new System.Drawing.Point(148, 317);
             this.txtGC_TD2.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_TD2.Name = "txtGC_TD2";
-            this.txtGC_TD2.Size = new System.Drawing.Size(563, 23);
+            this.txtGC_TD2.Size = new System.Drawing.Size(570, 23);
             this.txtGC_TD2.TabIndex = 136;
             // 
-            // v6ColorTextBox1
+            // txtGC_TD1
             // 
             this.txtGC_TD1.AccessibleName = "GC_TD1";
             this.txtGC_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -728,7 +730,7 @@
             this.txtGC_TD1.Location = new System.Drawing.Point(148, 286);
             this.txtGC_TD1.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_TD1.Name = "txtGC_TD1";
-            this.txtGC_TD1.Size = new System.Drawing.Size(563, 23);
+            this.txtGC_TD1.Size = new System.Drawing.Size(570, 23);
             this.txtGC_TD1.TabIndex = 135;
             // 
             // label29
@@ -773,7 +775,7 @@
             this.label27.TabIndex = 132;
             this.label27.Text = "Ghi chú ĐN 1";
             // 
-            // v6ColorTextBox19
+            // txtMA_TD3
             // 
             this.txtMA_TD3.AccessibleName = "MA_TD3";
             this.txtMA_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -791,7 +793,7 @@
             this.txtMA_TD3.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD3.TabIndex = 119;
             // 
-            // v6ColorTextBox20
+            // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
             this.txtMA_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -809,7 +811,7 @@
             this.txtMA_TD2.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD2.TabIndex = 117;
             // 
-            // v6ColorTextBox22
+            // txtMA_TD1
             // 
             this.txtMA_TD1.AccessibleName = "MA_TD1";
             this.txtMA_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1104,6 +1106,20 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Thông tin khác";
             // 
+            // btnBoSung
+            // 
+            this.btnBoSung.AccessibleName = "";
+            this.btnBoSung.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBoSung.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBoSung.Location = new System.Drawing.Point(535, 185);
+            this.btnBoSung.Name = "btnBoSung";
+            this.btnBoSung.Size = new System.Drawing.Size(202, 29);
+            this.btnBoSung.TabIndex = 105;
+            this.btnBoSung.Text = "Bổ sung chi tiết";
+            this.btnBoSung.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBoSung.UseVisualStyleBackColor = true;
+            this.btnBoSung.Click += new System.EventHandler(this.btnBoSung_Click);
+            // 
             // HopDongAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1191,5 +1207,6 @@
         private V6DateTimePick TxtNgay_hd3;
         private V6DateTimePick TxtNgay_hd2;
         private V6DateTimePick TxtNgay_hd1;
+        protected Controls.V6FormButton btnBoSung;
     }
 }

@@ -337,9 +337,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                     var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
                                     var method_name = event_row["method"].ToString().Trim();
 
-                                    if (data.Columns.Contains("using")) using_text2 += event_row["using"];
-                                    method_text2 += event_row["content"];
-                                    method_text2 += " ";
+                                    using_text2 += data.Columns.Contains("using") ? event_row["using"] : "";
+                                    method_text2 += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
 
                                     //Make dynamic event and call
                                     switch (EVENT_NAME)

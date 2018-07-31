@@ -131,29 +131,12 @@ namespace V6Controls.Forms
         private static Timer _mainMessageTimer;
         private static int _mainTime = -1;
         /// <summary>
-        /// Hiển thị một thông báo trượt xuống từ góc trên bên phải chương trình.
+        /// Hiển thị một thông báo nổi ở trên chính giữa màn hình và mờ dần.
         /// </summary>
         /// <param name="message"></param>
         public static void ShowMainMessage(string message)
         {
             ShowTopMessage(message, null);
-            return;
-            if (MessageLable.Parent != MainForm)
-            {
-                MainForm.Controls.Add(MessageLable);
-            }
-
-            if (_mainMessageTimer != null && _mainMessageTimer.Enabled)
-            {
-                _mainMessageTimer.Stop();
-                //MessageLable.Top 
-            }
-
-            MessageLable.Text = message;
-            _mainMessageTimer = new Timer {Interval = 200};
-            _mainMessageTimer.Tick += _mainMessageTimer_Tick;
-            _mainTime = -1;
-            _mainMessageTimer.Start();
         }
 
         public static V6TopMessageForm TopMessageForm;
@@ -176,12 +159,31 @@ namespace V6Controls.Forms
         public static void ShowTopMessage(string message, IWin32Window owner)
         {
             CreateV6TopMessageForm();
-
             TopMessageForm.Message = message;
-            //TopMessageForm.Visible = true;
+        }
+        /// <summary>
+        /// Hiển thị một thông báo trượt xuống từ góc trên bên phải chương trình.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="owner"></param>
+        public static void ShowTopRightMessage(string message, IWin32Window owner)
+        {
+            if (MessageLable.Parent != MainForm)
+            {
+                MainForm.Controls.Add(MessageLable);
+            }
 
-            //Form f = new V6TopMessageForm(message);
-            //f.Show(owner);
+            if (_mainMessageTimer != null && _mainMessageTimer.Enabled)
+            {
+                _mainMessageTimer.Stop();
+                //MessageLable.Top 
+            }
+
+            MessageLable.Text = message;
+            _mainMessageTimer = new Timer { Interval = 200 };
+            _mainMessageTimer.Tick += _mainMessageTimer_Tick;
+            _mainTime = -1;
+            _mainMessageTimer.Start();
         }
         
 
@@ -5628,9 +5630,8 @@ namespace V6Controls.Forms
                                 var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
                                 var method_name = event_row["method"].ToString().Trim();
 
-                                if (data.Columns.Contains("using")) using_text2 += event_row["using"];
-                                method_text2 += event_row["content"];
-                                method_text2 += " ";
+                                using_text2 += data.Columns.Contains("using") ? event_row["using"] : "";
+                                method_text2 += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
 
                                 //Make dynamic event and call
                                 switch (EVENT_NAME)
@@ -5648,6 +5649,7 @@ namespace V6Controls.Forms
                                         break;
 
                                     case "TEXTCHANGE":
+                                    case "TEXTCHANGED":
                                         input.TextChanged += (s, e) =>
                                         {
                                             if (Event_program2 == null) return;
@@ -5660,6 +5662,7 @@ namespace V6Controls.Forms
                                         break;
 
                                     case "VALUECHANGE":
+                                    case "VALUECHANGED":
                                         V6NumberTextBox numInput = input as V6NumberTextBox;
                                         if (numInput == null) break;
 

@@ -268,9 +268,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                     var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
                                     var method_name = event_row["method"].ToString().Trim();
 
-                                    if(data.Columns.Contains("using")) all_using_text += event_row["using"];
-                                    all_method_text += event_row["content"];
-                                    all_method_text += " ";
+                                    all_using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                                    all_method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
 
                                     //Make dynamic event and call
                                     switch (EVENT_NAME)
@@ -287,6 +286,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                             break;
 
                                         case "TEXTCHANGE":
+                                        case "TEXTCHANGED":
                                             input.TextChanged += (s, e) =>
                                             {
                                                 if (Event_program == null) return;
@@ -298,6 +298,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                             break;
 
                                         case "VALUECHANGE":
+                                        case "VALUECHANGED":
                                             V6NumberTextBox numInput = input as V6NumberTextBox;
                                             if (numInput == null) break;
 
@@ -482,10 +483,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
                     var method_name = event_row["method"].ToString().Trim();
                     Event_Methods[EVENT_NAME] = method_name;
-
                     using_text += data.Columns.Contains("using") ? event_row["using"] : "";
-                    method_text += event_row["content"];
-                    method_text += "\n";
+                    method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
                 }
                 Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + TableName, using_text, method_text);
             }
@@ -590,6 +589,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
+                if (Event_Methods.ContainsKey(FormDynamicEvent.LOADDATA))
+                {
+                    All_Objects["ParentData"] = ParentData;
+                    All_Objects["DataOld"] = DataOld;
+                    var method_name = Event_Methods[FormDynamicEvent.LOADDATA];
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
+                }
                 if (_keys != null && _keys.Count > 0)
                 {
                     var selectResult = Categories.Select(TableName, _keys);
@@ -611,6 +617,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".LoadData", ex);
+            }
+        }
+
+        public override void FixFormData()
+        {
+            try
+            {
+                if (Event_Methods.ContainsKey(FormDynamicEvent.FIXFORMDATA))
+                {
+                    All_Objects["ParentData"] = ParentData;
+                    All_Objects["DataOld"] = DataOld;
+                    var method_name = Event_Methods[FormDynamicEvent.FIXFORMDATA];
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".FixFormData", ex);
             }
         }
 
@@ -645,6 +669,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     if (b > 0)
                     {
                         AfterUpdate();
+                        AfterSave();
                         
                         if (!string.IsNullOrEmpty(KeyField1))
                         {
@@ -685,6 +710,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     if (b)
                     {
                         AfterInsert();
+                        AfterSave();
 
                         if (!string.IsNullOrEmpty(KeyField1))
                         {
@@ -748,13 +774,29 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        public override void AfterSave()
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERSAVE))
+                {
+                    var method_name = Event_Methods[FormDynamicEvent.AFTERSAVE];
+                    V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke AFTERSAVE", ex1);
+            }
+        }
+
         public override void AfterInsert()
         {
             try // Dynamic invoke
             {
-                if (Event_Methods.ContainsKey("AFTERINSERT"))
+                if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERINSERT))
                 {
-                    var method_name = Event_Methods["AFTERINSERT"];
+                    var method_name = Event_Methods[FormDynamicEvent.AFTERINSERT];
                     V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
@@ -788,9 +830,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try // Dynamic invoke
             {
-                if (Event_Methods.ContainsKey("AFTERUPDATE"))
+                if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERUPDATE))
                 {
-                    var method_name = Event_Methods["AFTERUPDATE"];
+                    var method_name = Event_Methods[FormDynamicEvent.AFTERUPDATE];
                     V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
@@ -846,9 +888,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try // Dynamic invoke
             {
-                if (Event_Methods.ContainsKey("DOBEFORECOPY"))
+                if (Event_Methods.ContainsKey(FormDynamicEvent.DOBEFORECOPY))
                 {
-                    var method_name = Event_Methods["DOBEFORECOPY"];
+                    var method_name = Event_Methods[FormDynamicEvent.DOBEFORECOPY];
                     V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
@@ -862,9 +904,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try // Dynamic invoke
             {
-                if (Event_Methods.ContainsKey("DOBEFOREADD"))
+                if (Event_Methods.ContainsKey(FormDynamicEvent.DOBEFOREADD))
                 {
-                    var method_name = Event_Methods["DOBEFOREADD"];
+                    var method_name = Event_Methods[FormDynamicEvent.DOBEFOREADD];
                     V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
@@ -878,9 +920,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try // Dynamic invoke
             {
-                if (Event_Methods.ContainsKey("DOBEFOREEDIT"))
+                if (Event_Methods.ContainsKey(FormDynamicEvent.DOBEFOREEDIT))
                 {
-                    var method_name = Event_Methods["DOBEFOREEDIT"];
+                    var method_name = Event_Methods[FormDynamicEvent.DOBEFOREEDIT];
                     V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
@@ -894,9 +936,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try // Dynamic invoke
             {
-                if (Event_Methods.ContainsKey("DOBEFOREVIEW"))
+                if (Event_Methods.ContainsKey(FormDynamicEvent.DOBEFOREVIEW))
                 {
-                    var method_name = Event_Methods["DOBEFOREVIEW"];
+                    var method_name = Event_Methods[FormDynamicEvent.DOBEFOREVIEW];
                     V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
@@ -931,9 +973,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             try // Dynamic invoke
             {
-                if (Event_Methods.ContainsKey("VALIDATEDATA"))
+                if (Event_Methods.ContainsKey(FormDynamicEvent.VALIDATEDATA))
                 {
-                    var method_name = Event_Methods["VALIDATEDATA"];
+                    var method_name = Event_Methods[FormDynamicEvent.VALIDATEDATA];
+                    All_Objects["ParentData"] = ParentData;
+                    All_Objects["DataOld"] = DataOld;
                     errors += V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }
@@ -1110,9 +1154,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             CheckVvarTextBox();
             try // Dynamic invoke
             {
-                if (Event_Methods.ContainsKey("INIT2"))
+                if (Event_Methods.ContainsKey(FormDynamicEvent.INIT2))
                 {
-                    var method_name = Event_Methods["INIT2"];
+                    var method_name = Event_Methods[FormDynamicEvent.INIT2];
                     V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
                 }
             }

@@ -93,8 +93,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     Event_Methods[EVENT_NAME] = method_name;
 
                     using_text += data.Columns.Contains("using") ? event_row["using"] : "";
-                    method_text += event_row["content"];
-                    method_text += "\n";
+                    method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
                 }
                 Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + _program, using_text, method_text);
             }

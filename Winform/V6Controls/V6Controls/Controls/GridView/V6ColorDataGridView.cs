@@ -98,33 +98,24 @@ namespace V6Controls
         
         void V6ColorDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            try
+            if (CongThuc_CellEndEdit_ApplyAllRow)
             {
-                string COLUMN_NAME = Columns[e.ColumnIndex].Name.ToUpper();
-                var cRow = Rows[e.RowIndex];
-                if (CongThuc.ContainsKey(COLUMN_NAME))
+                for (int i = 0; i < RowCount; i++)
                 {
-                    string chuoi_cac_cong_thuc = CongThuc[COLUMN_NAME] ?? "";
-                    string[] list_congThuc = chuoi_cac_cong_thuc.Split(new[] {';'}, StringSplitOptions.RemoveEmptyEntries);
-                    foreach (string cong_thuc in list_congThuc)
-                    {
-                        try
-                        {
-                            XuLyCongThucTinhToan(cong_thuc, cRow);
-                        }
-                        catch (Exception ex)
-                        {
-                            this.WriteExLog(GetType() + ".CellEndEdit Lỗi công thức: " + cong_thuc, ex);
-                        }
-                    }
+                    ApCongThuc(i, e.ColumnIndex);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                this.WriteExLog(GetType() + ".CellEndEdit", ex);
+                ApCongThuc(e.RowIndex, e.ColumnIndex);
             }
         }
 
+        /// <summary>
+        /// Áp dụng công thức cho tất cả các dòng khi sửa 1 ô trên gridview.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool CongThuc_CellEndEdit_ApplyAllRow { get; set; }
         private readonly Dictionary<string, string> CongThuc = new Dictionary<string, string>();
         /// <summary>
         /// Gán công thức tính toán, ghi đè nếu đã có.
@@ -151,6 +142,51 @@ namespace V6Controls
             {
                 CongThuc[FIELD] = congThuc;
             }
+        }
+
+        public void ApCongThuc(int rowIndex, int columnIndex)
+        {
+            ApCongThuc(Rows[rowIndex], Columns[columnIndex].Name);
+        }
+
+        public void ApCongThuc(int rowIndex, string COLUMN_NAME)
+        {
+            ApCongThuc(Rows[rowIndex], COLUMN_NAME);
+        }
+
+        /// <summary>
+        /// Biến lưu trữ các biến trong nhóm công thức.
+        /// </summary>
+        private SortedDictionary<string, decimal> APCONGTHUC_VARS = new SortedDictionary<string, decimal>(); 
+        private void ApCongThuc(DataGridViewRow row, string COLUMN_NAME)
+        {
+            try
+            {
+                APCONGTHUC_VARS = new SortedDictionary<string, decimal>();
+                COLUMN_NAME = COLUMN_NAME.ToUpper();
+                if (CongThuc.ContainsKey(COLUMN_NAME))
+                {
+                    string chuoi_cac_cong_thuc = CongThuc[COLUMN_NAME] ?? "";
+                    string[] list_congThuc = chuoi_cac_cong_thuc.Split(new[] {';'},
+                        StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string cong_thuc in list_congThuc)
+                    {
+                        try
+                        {
+                            XuLyCongThucTinhToan(cong_thuc, row);
+                        }
+                        catch (Exception ex)
+                        {
+                            this.WriteExLog(GetType() + ".ApCongThuc Lỗi công thức: " + cong_thuc, ex);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ApCongThuc", ex);
+            }
+            APCONGTHUC_VARS.Clear();
         }
 
         //private List<string> updateFieldList = new List<string>();
@@ -377,7 +413,13 @@ namespace V6Controls
             {
                 // Biểu thức lúc này là 1 trường hoặc một số cụ thể.
                 if (Columns.Contains(bieu_thuc))
+                {
                     return ObjectAndString.ObjectToDecimal(cRow.Cells[bieu_thuc].Value);
+                }
+                else if (bieu_thuc.StartsWith("{") && bieu_thuc.EndsWith("}") && APCONGTHUC_VARS.ContainsKey(bieu_thuc))
+                {
+                    return APCONGTHUC_VARS[bieu_thuc];
+                }
                 return ObjectAndString.ObjectToDecimal(bieu_thuc);
             }
         }

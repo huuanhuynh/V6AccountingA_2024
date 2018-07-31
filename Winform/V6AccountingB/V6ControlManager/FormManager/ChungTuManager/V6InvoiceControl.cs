@@ -1785,13 +1785,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         var method_name = event_row["method"].ToString().Trim();
                         Event_Methods[EVENT_NAME] = method_name;
 
-                        string using_text1 = data.Columns.Contains("using") ? event_row["using"].ToString() : "";
-                        if (!using_text.Contains(using_text1))
-                        {
-                            using_text += using_text1;
-                        }
-                        method_text += event_row["content"];
-                        method_text += "\n";
+                        using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                        method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
                     }
                 }
                 //MMETHOD
@@ -1809,13 +1804,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         var method_name = event_row["method"].ToString().Trim();
                         Event_Methods[EVENT_NAME] = method_name;
 
-                        string using_text1 = data.Columns.Contains("using") ? event_row["using"].ToString() : "";
-                        if (!using_text.Contains(using_text1))
-                        {
-                            using_text += using_text1;
-                        }
-                        method_text += event_row["content"];
-                        method_text += "\n";
+                        using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                        method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
                     }
                 }
 

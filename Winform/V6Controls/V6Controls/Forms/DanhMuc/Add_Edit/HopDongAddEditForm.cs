@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using V6AccountingBusiness;
+using V6Controls.Controls;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
@@ -10,7 +12,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             InitializeComponent();
         }
-
 
         public override void DoBeforeEdit()
         {
@@ -26,7 +27,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 V6Tools.Logger.WriteToLog("HopDongAddEditForm DisableWhenEdit " + ex.Message);
             }
         }
-        
 
         public override void ValidateData()
         {
@@ -57,6 +57,28 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnBoSung_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var uid1 = DataOld["UID"].ToString();
+                
+                CategoryView dmView = new CategoryView(ItemID, "title", "Alhdct", "uid_ct='" + uid1 + "'", null, DataOld);
+                if (Mode == V6Mode.View)
+                {
+                    dmView.EnableAdd = false;
+                    dmView.EnableCopy = false;
+                    dmView.EnableDelete = false;
+                    dmView.EnableEdit = false;
+                }
+                dmView.ToFullForm(btnBoSung.Text);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + " BoSung_Click " + ex.Message);
+            }
         }
     }
 }

@@ -151,16 +151,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     ds.ReadXml(new StringReader(xml));
                     if (ds.Tables.Count <= 0) continue;
 
-                    var xml_data = ds.Tables[0];
-                    foreach (DataRow event_row in xml_data.Rows)
+                    var data = ds.Tables[0];
+                    foreach (DataRow event_row in data.Rows)
                     {
                         //var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
                         //var method_name = event_row["method"].ToString().Trim();
                         //Event_Methods[EVENT_NAME] = method_name;
 
-                        using_text += xml_data.Columns.Contains("using") ? event_row["using"] : "";
-                        method_text += event_row["content"];
-                        method_text += "\n";
+                        using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                        method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
                     }
                 }
 

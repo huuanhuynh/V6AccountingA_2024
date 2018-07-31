@@ -126,9 +126,8 @@ namespace V6ControlManager.FormManager.ReportManager
                                         var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
                                         var method_name = event_row["method"].ToString().Trim();
 
-                                        if (data.Columns.Contains("using")) all_using_text += event_row["using"];
-                                        all_method_text += event_row["content"];
-                                        all_method_text += " ";
+                                        all_using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                                        all_method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
 
                                         //Make dynamic event and call
                                         switch (EVENT_NAME)

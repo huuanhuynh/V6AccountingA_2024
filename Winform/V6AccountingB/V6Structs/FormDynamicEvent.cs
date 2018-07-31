@@ -26,7 +26,11 @@
         public const string AFTERSAVESUCCESS = "AFTERSAVESUCCESS";
         public const string AFTERDELETESUCCESS = "AFTERDELETESUCCESS";
         public const string AFTERLOADDATA = "AFTERLOADDATA";
-        
+
+        public static string AFTERINSERT = "AFTERINSERT";
+        public static string AFTERUPDATE = "AFTERUPDATE";
+        public static string AFTERSAVE = "AFTERSAVE";
+
         public const string AFTERREPLACE = "AFTERREPLACE";
 
         public const string BEFOREADD = "BEFOREADD";
@@ -36,6 +40,11 @@
         public const string BEFORELOADDATA = "BEFORELOADDATA";
 
         public const string DYNAMICFIXEXCEL = "DYNAMICFIXEXCEL";
+        
+        public const string DOBEFOREADD = "DOBEFOREADD";
+        public const string DOBEFOREEDIT = "DOBEFOREEDIT";
+        public const string DOBEFORECOPY = "DOBEFORECOPY";
+        public const string DOBEFOREVIEW = "DOBEFOREVIEW";
 
         public const string F3 = "F3";
         public const string F4 = "F4";
@@ -45,6 +54,11 @@
         public const string F10 = "F10";
 
         public static string FIXCOPYDATA = "FIXCOPYDATA";
+        public static string FIXFORMDATA = "FIXFORMDATA";
+
+        public static string LOADDATA = "LOADDATA";
         public static string SUANHIEUDONG = "SUANHIEUDONG";
+        public static string VALIDATEDATA = "VALIDATEDATA";
+        
     }
 }
