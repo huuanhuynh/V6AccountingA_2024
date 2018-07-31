@@ -4896,6 +4896,7 @@ namespace V6Controls.Forms
                 {
                     var dat = control as V6DateTimePick;
                     dat.ReadOnly = readOnly;
+                    dat.Enabled = !readOnly;
                 }
                 else if (control is DateTimePicker
                     || control is CheckBox

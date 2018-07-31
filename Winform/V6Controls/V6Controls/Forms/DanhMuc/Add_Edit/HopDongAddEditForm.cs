@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using V6AccountingBusiness;
 using V6Controls.Controls;
 using V6Structs;
@@ -17,8 +18,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                var v = Categories.IsExistOneCode_List("ARA00,ARI70", "MA_HD", Txtma_hd.Text);
-                Txtma_hd.Enabled = !v;
+                var v = Categories.IsExistOneCode_List("ARA00,ARI70", "MA_HD", txtMaHD.Text);
+                txtMaHD.Enabled = !v;
 
                 
             }
@@ -31,34 +32,51 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (Txtma_hd.Text.Trim() == "" || txtTen_hd.Text.Trim() == "")
+            if (txtMaHD.Text.Trim() == "" || txtTenHD.Text.Trim() == "")
                 errors += V6Init.V6Text.CheckInfor + " !\r\n";
 
             if (Mode == V6Structs.V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_HD",
-                    Txtma_hd.Text.Trim(), DataOld["MA_HD"].ToString());
+                    txtMaHD.Text.Trim(), DataOld["MA_HD"].ToString());
                 if (!b)
                     throw new Exception(V6Init.V6Text.ExistData
-                                        + "MA_HD = " + Txtma_hd.Text.Trim());
+                                        + "MA_HD = " + txtMaHD.Text.Trim());
             }
             else if (Mode == V6Structs.V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_HD",
-                    Txtma_hd.Text.Trim(), Txtma_hd.Text.Trim());
+                    txtMaHD.Text.Trim(), txtMaHD.Text.Trim());
                 if (!b)
                     throw new Exception(V6Init.V6Text.ExistData
-                                        + "MA_HD = " + Txtma_hd.Text.Trim());
+                                        + "MA_HD = " + txtMaHD.Text.Trim());
             }
 
             if (errors.Length > 0) throw new Exception(errors);
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
+        public override void AfterSave()
         {
-
+            UpdateAlhdct();
         }
 
+        private void UpdateAlhdct()
+        {
+            try
+            {
+                var ma_new = DataDic["MA_HD"].ToString().Trim();
+                var ma_old = Mode == V6Mode.Edit ? DataOld["MA_HD"].ToString().Trim() : ma_new;
+
+                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_ALHDCT",
+                    new SqlParameter("@cMa_hd_old", ma_old),
+                    new SqlParameter("@cMa_hd_new", ma_new));
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".UpdateAlqddvt", ex);
+            }
+        }
+        
         private void btnBoSung_Click(object sender, EventArgs e)
         {
             try

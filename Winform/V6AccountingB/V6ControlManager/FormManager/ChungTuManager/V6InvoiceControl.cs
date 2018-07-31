@@ -255,7 +255,38 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try //  Ẩn hiện theo quyền trong Alctct
             {
-                V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, invoice.GRD_READONLY, true);
+                List<string> add_readonly = new List<string>();
+                List<string> edit_readonly = new List<string>();
+                foreach (string s in invoice.GRD_READONLY)
+                {
+                    if (s.Contains(":"))
+                    {
+                        var ss = s.Split(':');
+                        if (ss.Length > 1)
+                        {
+                            if(ss[1].Contains("M")) add_readonly.Add(ss[0]);
+                            if(ss[1].Contains("S")) edit_readonly.Add(ss[0]);
+                        }
+                    }
+                    else
+                    {
+                        add_readonly.Add(s);
+                        edit_readonly.Add(s);
+                    }
+                }
+
+                if (Mode == V6Mode.Add)
+                {
+                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, edit_readonly, false);
+                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, add_readonly, true);
+                }
+                else if (Mode == V6Mode.Edit)
+                {
+                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, add_readonly, false);
+                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, edit_readonly, true);
+                }
+                
+                //V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, invoice.GRD_READONLY, true);
                 V6ControlFormHelper.SetListControlVisibleByAccessibleNames(this, invoice.GRD_HIDE, false);
             }
             catch (Exception ex2)

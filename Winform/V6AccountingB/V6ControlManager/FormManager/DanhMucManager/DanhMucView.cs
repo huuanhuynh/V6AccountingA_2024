@@ -729,7 +729,23 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
                                 if (t > 0)
                                 {
-                                    if (CurrentTable == V6TableName.Altk0)
+                                    if (CurrentTable == V6TableName.Alhd)
+                                    {
+                                        try
+                                        {
+                                            var ma = row.Cells["Ma_hd"].Value.ToString().Trim();
+                                            SqlParameter[] plist =
+                                            {
+                                                new SqlParameter("@cMa_hd", ma),
+                                            };
+                                            V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_DELETE_ALHDCT", plist);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            this.ShowErrorException(GetType() + ".DoDelete Alhd after", ex);
+                                        }
+                                    }
+                                    else if (CurrentTable == V6TableName.Altk0)
                                     {
 
                                         try
@@ -788,9 +804,9 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                         {
                                             var ma_vt = row.Cells["Ma_vt"].Value.ToString().Trim();
                                             SqlParameter[] plist =
-                                        {
-                                            new SqlParameter("@cMa_vt", ma_vt), 
-                                        };
+                                            {
+                                                new SqlParameter("@cMa_vt", ma_vt),
+                                            };
                                             V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_DELETE_ALVTCT", plist);
                                         }
                                         catch (Exception ex)

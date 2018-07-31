@@ -143,10 +143,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                 UseVisualStyleBackColor = true
                             };
                         }
-                        else if (defineInfo.ControlType.ToUpper() == "V6VVARTEXTBOX")
+                        else if (defineInfo.ControlType.ToUpper() == "VVARTEXTBOX" || defineInfo.ControlType.ToUpper() == "V6VVARTEXTBOX")
                         {
                             input = new V6VvarTextBox()
                             {
+                                Name = "txt" + defineInfo.Field,
+                                AccessibleName = defineInfo.AccessibleName,
                                 VVar = defineInfo.Vvar,
                             };
                         }
@@ -383,6 +385,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         {
                             var tT = (V6VvarTextBox)input;
                             tT.BrotherFields = defineInfo.BField;
+                            tT.CheckOnLeave = defineInfo.NotEmpty;
+                            tT.CheckNotEmpty = defineInfo.NotEmpty;
                             var txtB = new V6LabelTextBox();
                             txtB.Name = "txt" + defineInfo.BField;
                             txtB.AccessibleName = defineInfo.BField;
@@ -400,6 +404,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         {
                             var tT = (V6LookupTextBox)input;
                             tT.BrotherFields = defineInfo.BField;
+                            tT.CheckOnLeave = defineInfo.NotEmpty;
+                            tT.CheckNotEmpty = defineInfo.NotEmpty;
                             var txtB = new V6LabelTextBox();
                             txtB.Name = "txt" + defineInfo.BField;
                             txtB.AccessibleName = defineInfo.BField;
@@ -668,8 +674,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     int b = UpdateData();
                     if (b > 0)
                     {
-                        AfterUpdate();
                         AfterSave();
+                        AfterUpdate();
                         
                         if (!string.IsNullOrEmpty(KeyField1))
                         {
@@ -709,8 +715,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     bool b = InsertNew();
                     if (b)
                     {
-                        AfterInsert();
                         AfterSave();
+                        AfterInsert();
 
                         if (!string.IsNullOrEmpty(KeyField1))
                         {

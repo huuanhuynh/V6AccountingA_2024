@@ -138,6 +138,8 @@
             this.v6TabControl1.Controls.Add(this.tabPage1);
             this.v6TabControl1.Controls.Add(this.tabPage2);
             this.v6TabControl1.Controls.Add(this.tabPage3);
+            this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(1, 110);
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.v6TabControl1.Name = "v6TabControl1";
@@ -190,11 +192,11 @@
             this.tabPage1.Controls.Add(this.chkIsAldm);
             this.tabPage1.Controls.Add(this.ChkVisible);
             this.tabPage1.Controls.Add(this.label12);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(796, 348);
+            this.tabPage1.Size = new System.Drawing.Size(796, 345);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
@@ -774,7 +776,7 @@
             // 
             this.ChkVisible.AccessibleName = "STATUS";
             this.ChkVisible.AutoSize = true;
-            this.ChkVisible.Location = new System.Drawing.Point(120, 325);
+            this.ChkVisible.Location = new System.Drawing.Point(120, 321);
             this.ChkVisible.Margin = new System.Windows.Forms.Padding(4);
             this.ChkVisible.Name = "ChkVisible";
             this.ChkVisible.Size = new System.Drawing.Size(107, 21);
@@ -807,11 +809,11 @@
             this.tabPage2.Controls.Add(this.v6ColorTextBox15);
             this.tabPage2.Controls.Add(this.label47);
             this.tabPage2.Controls.Add(this.label46);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(796, 348);
+            this.tabPage2.Size = new System.Drawing.Size(796, 345);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
             // 
@@ -962,11 +964,11 @@
             this.tabPage3.Controls.Add(this.label11);
             this.tabPage3.Controls.Add(this.txtEXPR1);
             this.tabPage3.Controls.Add(this.label10);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(796, 348);
+            this.tabPage3.Size = new System.Drawing.Size(796, 345);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Các tùy chọn";
             // 

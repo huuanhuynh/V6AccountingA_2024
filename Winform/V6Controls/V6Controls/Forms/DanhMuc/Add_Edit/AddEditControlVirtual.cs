@@ -406,6 +406,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     int b = UpdateData();
                     if (b > 0)
                     {
+                        AfterSave();
                         AfterUpdate();
                         InvokeFormEvent("AFTERUPDATE");
                         
@@ -467,6 +468,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     bool b = InsertNew();
                     if (b)
                     {
+                        AfterSave();
                         AfterInsert();
                         InvokeFormEvent("AFTERINSERT");
                         
