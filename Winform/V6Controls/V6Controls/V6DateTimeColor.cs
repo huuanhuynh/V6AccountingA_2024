@@ -132,6 +132,9 @@ namespace V6Controls
                 Write();
             }
         }
+
+        public string YYYYMMDD { get { return Value == null ? "" : Value.Value.ToString("yyyyMMdd"); } }
+
         [Category("V6")]
         public string ValueDescription
         {
@@ -591,6 +594,6 @@ namespace V6Controls
         {
             Value = Value;
         }
-
+        
     }
 }

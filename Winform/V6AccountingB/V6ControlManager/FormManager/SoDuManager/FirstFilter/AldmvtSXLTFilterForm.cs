@@ -109,9 +109,8 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
             {
                 SqlParameter[] plist =
                 {
-                    new SqlParameter("@Ngay_ct1",
-                        dateTuNgay.Value == null ? "" : dateTuNgay.Value.Value.ToString("yyyyMMdd")),
-                    new SqlParameter("@Ngay_ct2", dateDenNgay.Value.ToString("yyyyMMdd")),
+                    new SqlParameter("@Ngay_ct1", dateTuNgay.YYYYMMDD),
+                    new SqlParameter("@Ngay_ct2", dateDenNgay.YYYYMMDD),
                     new SqlParameter("@Ma_ct", "S10"),
                     new SqlParameter("@User_id", V6Login.UserId),
                 };

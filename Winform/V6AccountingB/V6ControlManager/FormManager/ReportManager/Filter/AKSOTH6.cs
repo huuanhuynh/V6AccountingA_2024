@@ -28,7 +28,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             cbbLoaiBaoCao.SelectedIndex = 0;
  
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
             
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
 
@@ -84,8 +84,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var result = new List<SqlParameter>();
 
 
-            result.Add(new SqlParameter("@ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@giam_tru", chkGiamTru.Checked ? 1 : 0));
             result.Add(new SqlParameter("@Maubc", RTien == "VN" ? 0 : 1));
             result.Add(new SqlParameter("@mLan", RLan));

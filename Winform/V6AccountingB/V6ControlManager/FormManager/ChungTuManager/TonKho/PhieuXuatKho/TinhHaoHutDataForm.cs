@@ -27,8 +27,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             TxtVttonkho.Text = "1";
             txtKieuIn.Text = "*";
             chkSoluong.Checked = false;
-            dateNgay_ct1.Value=V6Setting.M_ngay_ct1 ;
-            dateNgay_ct2.Value=V6Setting.M_ngay_ct2  ;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             if (V6Login.MadvcsCount <= 1)
             {
@@ -97,8 +97,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 V6Setting.M_Ma_kho = TxtMakho.StringValue;
             }
 
-            V6Setting.M_ngay_ct1 = dateNgay_ct1.Value;
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
 
             var result = new List<SqlParameter>();
 
@@ -145,8 +145,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             int tinh_dc = 0;
             if (Chk_Tinh_dc.Checked) tinh_dc = 1;
 
-            result.Add(new SqlParameter("@StartDate", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@EndDate", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@StartDate", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@EndDate", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@Tinh_dc", tinh_dc));
             result.Add(new SqlParameter("@Condition", cKey));
             result.Add(new SqlParameter("@Vttonkho", TxtVttonkho.Text.Trim()));

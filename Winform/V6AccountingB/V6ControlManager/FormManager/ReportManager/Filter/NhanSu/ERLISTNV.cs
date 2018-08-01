@@ -15,8 +15,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
             InitializeComponent();
             //F9 = true;
             
-            dateNgay_ct1.Value = V6Setting.M_SV_DATE;
-            dateNgay_ct2.Value = V6Setting.M_SV_DATE;
+            dateNgay_ct1.SetValue(V6Setting.M_SV_DATE);
+            dateNgay_ct2.SetValue(V6Setting.M_SV_DATE);
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
 
@@ -33,8 +33,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
         public override List<SqlParameter> GetFilterParameters()
         {
             var result = new List<SqlParameter>();
-            Date1 = dateNgay_ct1.Value.Date;
-            Date2 = dateNgay_ct2.Value.Date;
+            Date1 = dateNgay_ct1.Date;
+            Date2 = dateNgay_ct2.Date;
             result.Add(new SqlParameter("@Ngay_ct1", Date1));
             result.Add(new SqlParameter("@Ngay_ct2", Date2));
             result.Add(new SqlParameter("@User_ID", V6Login.UserId));

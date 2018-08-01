@@ -167,7 +167,7 @@
             this.btnBoSung.Location = new System.Drawing.Point(496, 288);
             this.btnBoSung.Name = "btnBoSung";
             this.btnBoSung.Size = new System.Drawing.Size(202, 29);
-            this.btnBoSung.TabIndex = 105;
+            this.btnBoSung.TabIndex = 30;
             this.btnBoSung.Text = "Bổ sung chi tiết";
             this.btnBoSung.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBoSung.UseVisualStyleBackColor = true;
@@ -190,7 +190,7 @@
             this.dateNgayHD3.Margin = new System.Windows.Forms.Padding(5);
             this.dateNgayHD3.Name = "dateNgayHD3";
             this.dateNgayHD3.Size = new System.Drawing.Size(161, 23);
-            this.dateNgayHD3.TabIndex = 104;
+            this.dateNgayHD3.TabIndex = 24;
             // 
             // dateNgayHD2
             // 
@@ -209,7 +209,7 @@
             this.dateNgayHD2.Margin = new System.Windows.Forms.Padding(5);
             this.dateNgayHD2.Name = "dateNgayHD2";
             this.dateNgayHD2.Size = new System.Drawing.Size(161, 23);
-            this.dateNgayHD2.TabIndex = 103;
+            this.dateNgayHD2.TabIndex = 22;
             // 
             // dateNgayHD1
             // 
@@ -228,7 +228,7 @@
             this.dateNgayHD1.Margin = new System.Windows.Forms.Padding(5);
             this.dateNgayHD1.Name = "dateNgayHD1";
             this.dateNgayHD1.Size = new System.Drawing.Size(161, 23);
-            this.dateNgayHD1.TabIndex = 102;
+            this.dateNgayHD1.TabIndex = 20;
             // 
             // txtMaHD
             // 
@@ -292,6 +292,7 @@
             this.txtMA_NT.Name = "txtMA_NT";
             this.txtMA_NT.Size = new System.Drawing.Size(161, 23);
             this.txtMA_NT.TabIndex = 26;
+            this.txtMA_NT.VVar = "MA_NT";
             // 
             // label25
             // 
@@ -428,6 +429,7 @@
             this.txtNH_HD1.Name = "txtNH_HD1";
             this.txtNH_HD1.Size = new System.Drawing.Size(183, 23);
             this.txtNH_HD1.TabIndex = 12;
+            this.txtNH_HD1.VVar = "NH_HD";
             // 
             // txtNH_HD2
             // 
@@ -443,6 +445,7 @@
             this.txtNH_HD2.Name = "txtNH_HD2";
             this.txtNH_HD2.Size = new System.Drawing.Size(183, 23);
             this.txtNH_HD2.TabIndex = 14;
+            this.txtNH_HD2.VVar = "NH_HD";
             // 
             // txtNH_HD3
             // 
@@ -458,6 +461,7 @@
             this.txtNH_HD3.Name = "txtNH_HD3";
             this.txtNH_HD3.Size = new System.Drawing.Size(183, 23);
             this.txtNH_HD3.TabIndex = 16;
+            this.txtNH_HD3.VVar = "NH_HD";
             // 
             // label19
             // 
@@ -1128,6 +1132,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "HopDongAddEditForm";
             this.Size = new System.Drawing.Size(907, 449);
+            this.Load += new System.EventHandler(this.HopDongAddEditForm_Load);
             this.v6TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

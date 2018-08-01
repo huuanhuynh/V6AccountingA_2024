@@ -21,8 +21,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
         {
             try
             {
-                dateNgay_ct1.Value = V6Setting.M_SV_DATE.AddMonths(-1);
-                dateNgay_ct2.Value = V6Setting.M_SV_DATE;
+                dateNgay_ct1.SetValue(V6Setting.M_SV_DATE.AddMonths(-1));
+                dateNgay_ct2.SetValue(V6Setting.M_SV_DATE);
                 LoadListBoxData();
                 F9 = true;
                 F7 = true;
@@ -41,8 +41,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
         {
             
             var result = new List<SqlParameter>();
-            result.Add(new SqlParameter("@ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@Ma_bpht", lineMaBpHt.StringValue));
             result.Add(new SqlParameter("@Tinhgia_dc", chkTinhGiaDC.Checked ? 1 : 0));
             result.Add(new SqlParameter("@User_id", V6Login.UserId));

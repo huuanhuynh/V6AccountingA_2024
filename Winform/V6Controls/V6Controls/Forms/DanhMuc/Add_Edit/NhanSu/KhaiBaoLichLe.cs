@@ -38,7 +38,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_OneDate(TableName.ToString(), 0, "MA_CONG","NGAY",
-                 txtMaCong.Text.Trim(),txtNgay.Value.ToString("yyyyMMdd"), DataOld["MA_CONG"].ToString(), DataOld["NGAY"].ToString());
+                 txtMaCong.Text.Trim(), txtNgay.YYYYMMDD, DataOld["MA_CONG"].ToString(), DataOld["NGAY"].ToString());
                 if (!b)
                     throw new Exception("Không được sửa mã đã tồn tại: "
                                                     + "MA_CONG = " + txtMaCong.Text.Trim());
@@ -46,7 +46,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_OneDate(TableName.ToString(), 0, "MA_CONG", "NGAY",
-                  txtMaCong.Text.Trim(), txtNgay.Value.ToString("yyyyMMdd"), DataOld["MA_CONG"].ToString(), DataOld["NGAY"].ToString());
+                  txtMaCong.Text.Trim(), txtNgay.YYYYMMDD, DataOld["MA_CONG"].ToString(), DataOld["NGAY"].ToString());
                 if (!b)
                     throw new Exception("Không được thêm mã đã tồn tại: "
                                                     + "MA_CONG = " + txtMaCong.Text.Trim());

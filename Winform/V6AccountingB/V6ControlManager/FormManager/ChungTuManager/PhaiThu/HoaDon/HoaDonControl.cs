@@ -624,7 +624,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         {
                             _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
 
-                            _dataLoDate = V6BusinessHelper.GetLoDate(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Value);
+                            _dataLoDate = V6BusinessHelper.GetLoDate(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
                             var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
                             var getFilter = GetFilterMaLo(_dataLoDate, _sttRec0, _maVt.Text, _maKhoI.Text);
                             if (getFilter != "") filter += " and " + getFilter;
@@ -738,7 +738,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                                 //if (("," + V6Options.V6OptionValues["M_LST_CT_DV"] + ",").Contains(MaCt))
                                 //{
-                                //    _dataViTri = Invoice.GetViTri(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Value);
+                                //    _dataViTri = Invoice.GetViTri(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
                                 //    var getFilter = GetFilterMaViTri(_dataViTri, _sttRec0, _maVt.Text, _maKhoI.Text);
                                 //    if (getFilter != "") filter += " and " + getFilter;
                                 //}
@@ -1021,7 +1021,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     {
                         //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
-                        data["NGAY_CT"] = dateNgayCT.Value.Date;
+                        data["NGAY_CT"] = dateNgayCT.Date;
 
 
                         //Kiem tra du lieu truoc khi them sua
@@ -1079,7 +1079,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 data["STT_REC"] = _sttRec;
                 //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
-                data["NGAY_CT"] = dateNgayCT.Value.Date;
+                data["NGAY_CT"] = dateNgayCT.Date;
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
@@ -1269,7 +1269,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
             try
             {
-                Invoice.GetAlLoTon(dateNgayCT.Value, _sttRec, _maVt.Text, _maKhoI.Text);
+                Invoice.GetAlLoTon(dateNgayCT.Date, _sttRec, _maVt.Text, _maKhoI.Text);
                 FixAlLoTon(Invoice.AlLoTon, AD);
 
                 var inputUpper = _maLo.Text.Trim().ToUpper();
@@ -1492,7 +1492,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 if (maVt == "" || maKhoI == "" || maViTri == "") return;
 
-                _dataViTri = Invoice.GetViTri13(maVt, maKhoI, maViTri, _sttRec, dateNgayCT.Value);
+                _dataViTri = Invoice.GetViTri13(maVt, maKhoI, maViTri, _sttRec, dateNgayCT.Date);
                 if (_dataViTri.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
@@ -1563,7 +1563,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 if (maVt == "" || maKhoI == "" || maLo == "" || maViTri == "") return;
 
-                _dataViTri = Invoice.GetViTriLoDate13(maVt, maKhoI, maLo, maViTri, _sttRec, dateNgayCT.Value);
+                _dataViTri = Invoice.GetViTriLoDate13(maVt, maKhoI, maLo, maViTri, _sttRec, dateNgayCT.Date);
                 if (_dataViTri.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
@@ -1637,7 +1637,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 if (maVt == "" || maKhoI == "") return;
 
-                _dataViTri = Invoice.GetViTri(maVt, maKhoI, _sttRec, dateNgayCT.Value);
+                _dataViTri = Invoice.GetViTri(maVt, maKhoI, _sttRec, dateNgayCT.Date);
                 if (_dataViTri.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
@@ -1708,7 +1708,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 if (maVt == "" || maKhoI == "") return;
 
-                _dataViTri = Invoice.GetViTriLoDate(maVt, maKhoI, _sttRec, dateNgayCT.Value);
+                _dataViTri = Invoice.GetViTriLoDate(maVt, maKhoI, _sttRec, dateNgayCT.Date);
                 if (_dataViTri.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
@@ -2310,7 +2310,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 if (maVt == "" || maKhoI == "" || maLo == "") return;
 
-                _dataLoDate = V6BusinessHelper.GetLoDate13(maVt, maKhoI, maLo, _sttRec, dateNgayCT.Value);
+                _dataLoDate = V6BusinessHelper.GetLoDate13(maVt, maKhoI, maLo, _sttRec, dateNgayCT.Date);
                 if (_dataLoDate.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
@@ -2462,7 +2462,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 if (maVt == "" || maKhoI == "") return;
 
-                _dataLoDate = V6BusinessHelper.GetLoDate(maVt, maKhoI, _sttRec, dateNgayCT.Value);
+                _dataLoDate = V6BusinessHelper.GetLoDate(maVt, maKhoI, _sttRec, dateNgayCT.Date);
                 if (_dataLoDate.Rows.Count == 0)
                 {
                     ResetTonLoHsd(_ton13, _maLo, _hanSd);
@@ -2539,7 +2539,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 // Get ton kho theo ma_kho,ma_vt 18/01/2016
                 //if (V6Options.M_CHK_XUAT == "0")
                 {
-                    _dataLoDate = Invoice.GetStock(maVt, maKhoI, _sttRec, dateNgayCT.Value);
+                    _dataLoDate = Invoice.GetStock(maVt, maKhoI, _sttRec, dateNgayCT.Date);
                     if (_dataLoDate != null && _dataLoDate.Rows.Count > 0)
                     {
                         string sttRec0 = _sttRec0;
@@ -2749,7 +2749,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
-                var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Value,
+                var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Date,
                         cboMaNt.SelectedValue.ToString().Trim(), _maVt.Text, _dvt1.Text, txtMaKh.Text, txtMaGia.Text);
                 _giaNt21.Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
                 //ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
@@ -3960,14 +3960,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         }
         private void GetTyGia()
         {
-            txtTyGia.Value = Invoice.GetTyGia(_maNt, dateNgayCT.Value);
+            txtTyGia.Value = Invoice.GetTyGia(_maNt, dateNgayCT.Date);
         }
 
         private void GetDefault_Other()
         {
             txtMa_ct.Text = Invoice.Mact;
-            dateNgayCT.Value = V6Setting.M_SV_DATE;
-            dateNgayLCT.Value = V6Setting.M_SV_DATE;
+            dateNgayCT.SetValue(V6Setting.M_SV_DATE);
+            dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
             //Tuanmh 25/01/2016- Ma_dvcs
             if (V6Login.MadvcsCount >= 1)
             {
@@ -5507,7 +5507,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 data["STT_REC"] = _sttRec;
                 //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
-                data["NGAY_CT"] = dateNgayCT.Value.Date;
+                data["NGAY_CT"] = dateNgayCT.Date;
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
@@ -5602,7 +5602,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     {
                         //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
-                        data["NGAY_CT"] = dateNgayCT.Value.Date;
+                        data["NGAY_CT"] = dateNgayCT.Date;
                         
                         //Kiem tra du lieu truoc khi them sua
                         var error = "";
@@ -5826,7 +5826,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void dateNgayCT_ValueChanged(object sender, EventArgs e)
         {
-            if (!Invoice.M_NGAY_CT) dateNgayLCT.Value = dateNgayCT.Value;
+            if (!Invoice.M_NGAY_CT) dateNgayLCT.SetValue(dateNgayCT.Date);
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
@@ -6193,7 +6193,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                     DataTable DataCheck_Save_All = Invoice.GetCheck_Save_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
                         TxtSo_ct.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec,txtMadvcs.Text.Trim(),txtMaKh.Text.Trim(),
-                        txtManx.Text.Trim(), dateNgayCT.Value, txtMa_ct.Text, txtTongThanhToan.Value, mode_vc, V6Login.UserId);
+                        txtManx.Text.Trim(), dateNgayCT.Date, txtMa_ct.Text, txtTongThanhToan.Value, mode_vc, V6Login.UserId);
 
                     
 
@@ -6235,10 +6235,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     }
                 }
 
-                var check_ton = ValidateData_Master_CheckTon(Invoice, dateNgayCT.Value, null);
+                var check_ton = ValidateData_Master_CheckTon(Invoice, dateNgayCT.Date, null);
                 if (!check_ton) return false;
-                
-
                 //OK
                 return true;
             }
@@ -6369,7 +6367,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 var message = "";
                 if (ma_kh != "" && ma_dvcs != "")
                 {
-                    CDH_HoaDonForm chon = new CDH_HoaDonForm(dateNgayCT.Value, txtMadvcs.Text, txtMaKh.Text);
+                    CDH_HoaDonForm chon = new CDH_HoaDonForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -6575,7 +6573,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     new SqlParameter("@MA_KH", txtMaKh.Text),
                     new SqlParameter("@TK", txtManx.Text),
-                    new SqlParameter("@Ngay_ct", dateNgayCT.Value.Date.ToString("yyyyMMdd")),
+                    new SqlParameter("@Ngay_ct", dateNgayCT.Date.Date.ToString("yyyyMMdd")),
                     new SqlParameter("@Advance", string.Format("Ma_dvcs='{0}'", txtMadvcs.Text.Replace("'", "''"))),
                     new SqlParameter("@User_id",V6Login.UserId),
                     new SqlParameter("@Lan", V6Setting.Language),
@@ -6588,7 +6586,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     var text_duno = ObjectAndString.NumberToString((ObjectAndString.ObjectToDecimal(row["NO_CK"]) - ObjectAndString.ObjectToDecimal(row["CO_CK"])), 2, V6Options.M_NUM_POINT, ".");
                     var showtext = V6Setting.Language == "V" ? "Số dư nợ cuối ngày " : "Ending balance ";
 
-                    string message = string.Format(showtext + ": {0}--> {1}", dateNgayCT.Value.ToString("dd/MM/yyyy"), text_duno);
+                    string message = string.Format(showtext + ": {0}--> {1}", dateNgayCT.Date.ToString("dd/MM/yyyy"), text_duno);
                     this.ShowMessage(message);
                 }
                 else
@@ -6607,7 +6605,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void dateNgayCT_Leave(object sender, EventArgs e)
         {
             //string message = "";
-            //bool check = V6BusinessHelper.CheckNgayCt(dateNgayCT.Value, out message);
+            //bool check = V6BusinessHelper.CheckNgayCt(dateNgayCT.Date, out message);
             //if (!check)
             //{
             //    ShowParentMessage(message);
@@ -6672,7 +6670,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     var message = "";
                     if (ma_kh != "" && ma_dvcs != "")
                     {
-                        CPX_HoaDonForm chon = new CPX_HoaDonForm(dateNgayCT.Value, txtMadvcs.Text, txtMaKh.Text);
+                        CPX_HoaDonForm chon = new CPX_HoaDonForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
                         chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                         chon.ShowDialog(this);
                     }
@@ -6736,7 +6734,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     var tienNt2 = ObjectAndString.ObjectToDecimal(row["TIEN_NT2"]);
                     var tien2 = ObjectAndString.ObjectToDecimal(row["TIEN2"]);
 
-                    var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Value,
+                    var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Date,
                         cboMaNt.SelectedValue.ToString().Trim(), maVatTu, dvt1, txtMaKh.Text, txtMaGia.Text);
 
                     var giaNt21 = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
@@ -6936,7 +6934,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     new SqlParameter("@nXT", 1),
                     new SqlParameter("@Type", 0),
-                    new SqlParameter("@Ngay_ct", dateNgayCT.Value.Date),
+                    new SqlParameter("@Ngay_ct", dateNgayCT.Date.Date),
                     new SqlParameter("@Stt_rec", _sttRec),
                     new SqlParameter("@User_id", V6Login.UserId),
                     new SqlParameter("@M_lan", V6Login.SelectedLanguage),
@@ -7007,7 +7005,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 var message = "";
                 if (ma_kh != "" && ma_dvcs != "")
                 {
-                    CPN_HoaDonForm chon = new CPN_HoaDonForm(dateNgayCT.Value.Date, txtMadvcs.Text, txtMaKh.Text);
+                    CPN_HoaDonForm chon = new CPN_HoaDonForm(dateNgayCT.Date.Date, txtMadvcs.Text, txtMaKh.Text);
                     chon.AcceptSelectEvent += chonpn_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -7042,7 +7040,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                            _tienNt2_Value = 0m, _soLuong_Value = 0m, _tien2_Value = 0m;
 
 
-                        var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Value,
+                        var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Date,
                         cboMaNt.SelectedValue.ToString().Trim(), _maVt_Text, _dvt1_Text, txtMaKh.Text, txtMaGia.Text);
 
                         _giaNt21_Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
@@ -7205,7 +7203,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     new SqlParameter("@cStt_rec", _sttRec),
                     new SqlParameter("@cMode", Mode == V6Mode.Add ? "M" : "S"),
                     new SqlParameter("@cMa_ct", Invoice.Mact),
-                    new SqlParameter("@dngay_ct", dateNgayCT.Value.ToString("yyyyMMdd")),
+                    new SqlParameter("@dngay_ct", dateNgayCT.YYYYMMDD),
                     new SqlParameter("@cMa_kh", txtMaKh.Text),
                     new SqlParameter("@cMa_dvcs", txtMadvcs.Text),
                     new SqlParameter("@cMa_nt", _maNt),

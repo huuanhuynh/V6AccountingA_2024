@@ -24,7 +24,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F5 = false;
 
             txtma_maubc.Text = "GLTCB";
-            dateNgay_ct.Value = V6Setting.M_ngay_ct1;
+            dateNgay_ct.SetValue(V6Setting.M_ngay_ct1);
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             if (V6Login.MadvcsCount <= 1)
@@ -99,7 +99,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var result = new List<SqlParameter>
             {
-                new SqlParameter("@Ngay_ct", dateNgay_ct.Value.ToString("yyyyMMdd")),
+                new SqlParameter("@Ngay_ct", dateNgay_ct.YYYYMMDD),
                 new SqlParameter("@Ma_dvcs", ma_dvcs),
                 new SqlParameter("@Bu_tru", chk_Bu_tru.Checked ? 2 : 1),
                 new SqlParameter("@Mau", maubc),

@@ -17,8 +17,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F5 = true;
             fstart = 5;
             ffixcolumn = 6;
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             
@@ -97,12 +97,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             
           
-            V6Setting.M_ngay_ct1 = dateNgay_ct1.Value;
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
 
                         
-            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@M_LAN", V6Setting.Language.Trim()));
             result.Add(new SqlParameter("@Nhom", "4"));
 

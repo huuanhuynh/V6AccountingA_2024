@@ -47,7 +47,7 @@ namespace V6ReportControls
             {
                 if (",=,<>,>,>=,<,<=,".Contains(","+Operator+","))
                 {   
-                    return string.Format("'{0}'",v6DateTimeTextBox1.Value.ToString("yyyyMMdd"));
+                    return string.Format("'{0}'", v6DateTimeTextBox1.YYYYMMDD);
                 }
                 return "";
             }
@@ -62,13 +62,13 @@ namespace V6ReportControls
         {
             get
             {
-                return v6DateTimeTextBox1.Value;
+                return v6DateTimeTextBox1.Date;
             }
         }
 
         public override void SetValue(object value)
         {
-            v6DateTimeTextBox1.Value = ObjectAndString.ObjectToFullDateTime(value);
+            v6DateTimeTextBox1.SetValue(ObjectAndString.ObjectToFullDateTime(value));
         }
 
     }

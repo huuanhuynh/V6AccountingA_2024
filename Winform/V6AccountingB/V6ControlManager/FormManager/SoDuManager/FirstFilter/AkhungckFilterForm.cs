@@ -38,8 +38,8 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
             try
             {
                 var where = string.Format("ngay_hl BETWEEN '{0}' AND '{1}'",
-                    v6ColorDateTimePick1.Value.ToString("yyyyMMdd"),
-                    v6ColorDateTimePick2.Value.ToString("yyyyMMdd"));
+                    v6ColorDateTimePick1.YYYYMMDD,
+                    v6ColorDateTimePick2.YYYYMMDD);
 
                 if (txtMaDvcs.Text != "")
                 {

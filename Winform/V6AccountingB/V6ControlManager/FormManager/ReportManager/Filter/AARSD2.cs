@@ -17,7 +17,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             TxtTk.Text = (V6Setting.M_TK_CN ?? "131").Trim();
             TxtMa_kh.Text = (V6Setting.M_Ma_kh ?? "").Trim();
 
-            dateNgay_ct0.Value = V6Setting.M_ngay_ct1;
+            dateNgay_ct0.SetValue(V6Setting.M_ngay_ct1);
 
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
@@ -75,7 +75,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             result.Add(new SqlParameter("@ma_kh", TxtMa_kh.Text.Trim()));
             result.Add(new SqlParameter("@tk", TxtTk.Text.Trim()));
-            result.Add(new SqlParameter("@ngay_ct", dateNgay_ct0.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@ngay_ct", dateNgay_ct0.YYYYMMDD));
 
 
             var and = radAnd.Checked;

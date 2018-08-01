@@ -14,7 +14,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F5 = true;
             TxtTk.Text = "11";
 
-            dateNgay_ct.Value = V6Setting.M_ngay_ct1;
+            dateNgay_ct.SetValue(V6Setting.M_ngay_ct1);
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             if (V6Login.MadvcsCount <= 1)
@@ -53,7 +53,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var result = new List<SqlParameter>
             {
-                new SqlParameter("@Ngay", dateNgay_ct.Value.ToString("yyyyMMdd")),
+                new SqlParameter("@Ngay", dateNgay_ct.YYYYMMDD),
                 new SqlParameter("@Ma_dvcs",ma_dvcs),
                 new SqlParameter("@Tk", TxtTk.Text.Trim() + "%")
             };

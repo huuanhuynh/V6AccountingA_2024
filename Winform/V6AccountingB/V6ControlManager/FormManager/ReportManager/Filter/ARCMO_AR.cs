@@ -25,8 +25,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 txtMaDvcs.Enabled = false;
             }
 
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
             ctDenSo.Enabled = false;
          
@@ -111,8 +111,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             result.Add(new SqlParameter("@mua_ban", "B"));
             result.Add(new SqlParameter("@ma_ct", txtma_ct.IsSelected ? txtma_ct.StringValue : "" + "%"));
-            result.Add(new SqlParameter("@ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@advance", cKey));
 
 

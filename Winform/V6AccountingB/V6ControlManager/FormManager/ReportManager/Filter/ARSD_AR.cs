@@ -23,8 +23,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 txtMaDvcs.Enabled = false;
             }
 
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
             ctDenSo.Enabled =false;
         }
@@ -109,8 +109,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var result = new List<SqlParameter>();
             result.Add(new SqlParameter("@mua_ban", "B"));
             result.Add(new SqlParameter("@ma_ct", txtma_ct.IsSelected ? txtma_ct.StringValue : "" + "%"));
-            result.Add(new SqlParameter("@ngay_ct_1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@ngay_ct_2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@ngay_ct_1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@ngay_ct_2", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@ma_kh", TxtMa_kh.Text.Trim()+ "%"));
             result.Add(new SqlParameter("@ma_dvcs", txtMaDvcs.IsSelected ? txtMaDvcs.StringValue : "" + "%"));
             result.Add(new SqlParameter("@m_tk_tk_vt", "111,112"));

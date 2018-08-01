@@ -32,9 +32,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //nhom1.Text = "1";
             SetHideFields(V6Setting.Language);
 
-            //date1.Value = V6Setting.M_ngay_ct1;
-            //date2.Value = V6Setting.M_ngay_ct2;
-
             var fields_vvar_filter = V6Lookup.GetValueByTableName(tableName, "vLfScatter"); //GetReportFilterFields(tableName);
             MadeControls(tableName, fields_vvar_filter);
         }

@@ -428,10 +428,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 _sttRec0 = V6BusinessHelper.GetNewSttRec0(AD);
                 data["STT_REC0"] = _sttRec0;
                 data["STT_REC"] = txtSttRec.Text;
-                //Thêm thông tin...
-                //data["MA_CT"] = Invoice.Mact;
-                //data["NGAY_CT"] = dateNgayCT.Value.Date;
-
+                
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
                 if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "") error += "\nMã vật tư rỗng.";

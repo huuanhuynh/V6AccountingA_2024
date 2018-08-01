@@ -33,7 +33,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         {
             try
             {
-                dateNgay_ct1.Value = dateNgay_ct1.Value.AddMonths(-1);
+                dateNgay_ct1.SetValue(dateNgay_ct1.Date.AddMonths(-1));
             }
             catch (Exception ex)
             {
@@ -85,8 +85,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 _message = "";
                 SqlParameter[] plist =
                 {
-                    new SqlParameter("Ngay_ct1", dateNgay_ct1.Value.Date), 
-                    new SqlParameter("Ngay_ct2", dateNgay_ct2.Value.Date), 
+                    new SqlParameter("Ngay_ct1", dateNgay_ct1.Date), 
+                    new SqlParameter("Ngay_ct2", dateNgay_ct2.Date), 
                 };
                 //_ds = V6BusinessHelper.ExecuteProcedure("HPRCONGCT_XL0", plist);
                 _ds = SqlHelper.ExecuteDataset(DatabaseConfig.ConnectionString, CommandType.StoredProcedure,

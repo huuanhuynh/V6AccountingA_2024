@@ -162,7 +162,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                 //MauInData = Albc.GetMauInData(_reportFile);
 
                 FormManagerHelper.HideMainMenu();
-                _cuoiNgay = dateCuoiNgay.Value;
+                _cuoiNgay = dateCuoiNgay.Date;
                 _mavt = txtMavt.Text.Trim();
                 if (txtMaKho.Text == "")
                 {
@@ -426,7 +426,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
         private void dateCuoiNgay_ValueChanged(object sender, EventArgs e)
         {
             //Tuanmh 17/06/2017
-            _cuoiNgay = dateCuoiNgay.Value;
+            _cuoiNgay = dateCuoiNgay.Date;
         }
     }
 }

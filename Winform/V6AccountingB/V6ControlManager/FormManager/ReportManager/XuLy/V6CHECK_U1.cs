@@ -33,7 +33,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                dateNgay_ct1.Value = dateNgay_ct1.Value.AddMonths(-1);
+                dateNgay_ct1.SetValue(dateNgay_ct1.Date.AddMonths(-1));
                 LoadCombobox();
             }
             catch (Exception ex)
@@ -109,8 +109,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 SqlParameter[] plist =
                 {
-                    new SqlParameter("Ngay_ct1", dateNgay_ct1.Value.Date), 
-                    new SqlParameter("Ngay_ct2", dateNgay_ct2.Value.Date), 
+                    new SqlParameter("Ngay_ct1", dateNgay_ct1.Date), 
+                    new SqlParameter("Ngay_ct2", dateNgay_ct2.Date), 
                 };
                 //_ds = V6BusinessHelper.ExecuteProcedure("V6CHECK_U1", plist);
                 _ds = SqlHelper.ExecuteDataset(DatabaseConfig.ConnectionString, CommandType.StoredProcedure,

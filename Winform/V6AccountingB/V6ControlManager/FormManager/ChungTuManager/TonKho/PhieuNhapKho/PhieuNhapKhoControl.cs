@@ -539,7 +539,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
                                 if (("," + V6Options.V6OptionValues["M_LST_CT_DV"] + ",").Contains(Invoice.Mact))
                                 {
-                                    _dataViTri = Invoice.GetViTri("", _maKhoI.Text, _sttRec, dateNgayCT.Value);
+                                    _dataViTri = Invoice.GetViTri("", _maKhoI.Text, _sttRec, dateNgayCT.Date);
                                     var getFilter = GetFilterMaViTriNhap(_dataViTri, _sttRec0, "", _maKhoI.Text);
                                     if (getFilter != "") filter += " and " + getFilter;
                                 }
@@ -1210,7 +1210,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 // Get ton kho theo ma_kho,ma_vt 18/01/2016
                 //if (V6Options.M_CHK_XUAT == "0")
                 {
-                    _dataViTri = Invoice.GetStock(maVt, maKhoI, _sttRec, dateNgayCT.Value);
+                    _dataViTri = Invoice.GetStock(maVt, maKhoI, _sttRec, dateNgayCT.Date);
                     if (_dataViTri != null && _dataViTri.Rows.Count > 0)
                     {
                         DataRow row0 = _dataViTri.Rows[0];
@@ -1833,14 +1833,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         }
         private void GetTyGia()
         {
-            txtTyGia.Value = Invoice.GetTyGia(_maNt, dateNgayCT.Value);
+            txtTyGia.Value = Invoice.GetTyGia(_maNt, dateNgayCT.Date);
         }
 
         private void GetDefault_Other()
         {
             txtMa_ct.Text = Invoice.Mact;
-            dateNgayCT.Value = V6Setting.M_SV_DATE;
-            dateNgayLCT.Value = V6Setting.M_SV_DATE;
+            dateNgayCT.SetValue(V6Setting.M_SV_DATE);
+            dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
             //Tuanmh 25/01/2016- Ma_dvcs
             if (V6Login.MadvcsCount >= 1)
             {
@@ -3057,7 +3057,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 data["STT_REC"] = _sttRec;
                 //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
-                data["NGAY_CT"] = dateNgayCT.Value.Date;
+                data["NGAY_CT"] = dateNgayCT.Date;
 
                 if (data.ContainsKey("GIA_NT01")) data["GIA_NT1"] = data["GIA_NT01"];
                 if (data.ContainsKey("GIA01")) data["GIA1"] = data["GIA01"];
@@ -3119,7 +3119,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     {
                         //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
-                        data["NGAY_CT"] = dateNgayCT.Value.Date;
+                        data["NGAY_CT"] = dateNgayCT.Date;
 
                         if (data.ContainsKey("GIA_NT01")) data["GIA_NT1"] = data["GIA_NT01"];
                         if (data.ContainsKey("GIA01")) data["GIA1"] = data["GIA01"];
@@ -3336,7 +3336,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
         private void dateNgayCT_ValueChanged(object sender, EventArgs e)
         {
-            if (!Invoice.M_NGAY_CT) dateNgayLCT.Value = dateNgayCT.Value;
+            if (!Invoice.M_NGAY_CT) dateNgayLCT.SetValue(dateNgayCT.Date);
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
@@ -3551,7 +3551,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
                     DataTable DataCheck_Save_All = Invoice.GetCheck_Save_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
                         TxtSo_ct.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
-                        "", dateNgayCT.Value, txtMa_ct.Text, txtTongTien.Value, mode_vc, V6Login.UserId);
+                        "", dateNgayCT.Date, txtMa_ct.Text, txtTongTien.Value, mode_vc, V6Login.UserId);
 
 
 
@@ -3819,7 +3819,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
         private void menuXemPhieuNhap_Click(object sender, EventArgs e)
         {
-            XemPhieuNhapView(dateNgayCT.Value, Invoice.Mact, _maKhoI.Text, _maVt.Text);
+            XemPhieuNhapView(dateNgayCT.Date, Invoice.Mact, _maKhoI.Text, _maVt.Text);
         }
 
         private void btnChonPX_Click(object sender, EventArgs e)
@@ -3845,7 +3845,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     var message = "";
                     if (ma_kh != "" && ma_dvcs != "")
                     {
-                        CPX_PhieuNhapKhoForm chon = new CPX_PhieuNhapKhoForm(dateNgayCT.Value, txtMadvcs.Text, txtMaKh.Text);
+                        CPX_PhieuNhapKhoForm chon = new CPX_PhieuNhapKhoForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
                         chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                         chon.ShowDialog(this);
                     }

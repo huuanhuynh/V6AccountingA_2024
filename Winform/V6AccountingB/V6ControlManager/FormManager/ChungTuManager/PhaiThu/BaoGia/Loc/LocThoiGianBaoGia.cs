@@ -20,8 +20,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
         {
             try
             {
-                v6ColorDateTimePick1.Value = V6Setting.M_ngay_ct1;
-                v6ColorDateTimePick2.Value = V6Setting.M_ngay_ct2;
+                v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
+                v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
             }
             catch (Exception ex)
             {
@@ -32,8 +32,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
         public string GetFilterSql(V6TableStruct tableStruct, string tableLable,
             string oper = "=", bool and = true)
         {
-            V6Setting.M_ngay_ct1 = v6ColorDateTimePick1.Value;
-            V6Setting.M_ngay_ct2 = v6ColorDateTimePick2.Value;
+            V6Setting.M_ngay_ct1 = v6ColorDateTimePick1.Date;
+            V6Setting.M_ngay_ct2 = v6ColorDateTimePick2.Date;
 
             var result = "";
             var keys = V6ControlFormHelper.GetFormDataDictionary(groupBox1);
@@ -41,8 +41,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
 
             var dateFilter = string.Format("{0}ngay_ct BETWEEN '{1}' AND '{2}'",
                 tableLable.Length>0?tableLable+".":"",
-                v6ColorDateTimePick1.Value.ToString("yyyyMMdd"),
-                v6ColorDateTimePick2.Value.ToString("yyyyMMdd")
+                v6ColorDateTimePick1.YYYYMMDD,
+                v6ColorDateTimePick2.YYYYMMDD
                 );
             if (result.Length > 0)
             {

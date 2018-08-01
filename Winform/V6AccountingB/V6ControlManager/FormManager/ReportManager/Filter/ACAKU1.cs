@@ -17,8 +17,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F3 = true;
             F5 = false;
          
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             if (V6Login.MadvcsCount <= 1)
@@ -86,16 +86,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             
           
-            V6Setting.M_ngay_ct1 = dateNgay_ct1.Value;
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
 
             if (TxtTk.Text.Trim() == "")
             {
                 throw new Exception("Chưa chọn tài khoản!");
             }
 
-            result.Add(new SqlParameter("@StartDate", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@EndDate", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@StartDate", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@EndDate", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@Tk", TxtTk.Text.Trim()));
             result.Add(new SqlParameter("@User_id", V6Login.UserId));
             var and = radAnd.Checked;

@@ -459,7 +459,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         {
                             _maLo.CheckNotEmpty = _maVt.LO_YN && txtMaKhoX.LO_YN;
 
-                            _dataLoDate = Invoice.GetLoDate(_maVt.Text, txtMaKhoX.Text, _sttRec, dateNgayCT.Value);
+                            _dataLoDate = Invoice.GetLoDate(_maVt.Text, txtMaKhoX.Text, _sttRec, dateNgayCT.Date);
                             var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
                             var getFilter = GetFilterMaLo(_dataLoDate, _sttRec0, _maVt.Text, txtMaKhoX.Text);
                             if (getFilter != "") filter += " and " + getFilter;
@@ -489,7 +489,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                                 //if (("," + V6Options.V6OptionValues["M_LST_CT_DV"] + ",").Contains(MaCt))
                                 //{
-                                //    _dataViTri = Invoice.GetViTri(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Value);
+                                //    _dataViTri = Invoice.GetViTri(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
                                 //    var getFilter = GetFilterMaViTri(_dataViTri, _sttRec0, _maVt.Text, _maKhoI.Text);
                                 //    if (getFilter != "") filter += " and " + getFilter;
                                 //}
@@ -518,7 +518,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                                 if (("," + V6Options.V6OptionValues["M_LST_CT_DV"] + ",").Contains(Invoice.Mact))
                                 {
-                                    _dataViTri = Invoice.GetViTri("", txtMaKhoN.Text, _sttRec, dateNgayCT.Value);
+                                    _dataViTri = Invoice.GetViTri("", txtMaKhoN.Text, _sttRec, dateNgayCT.Date);
                                     var getFilter = GetFilterMaViTriNhap(_dataViTri, _sttRec0,"", txtMaKhoN.Text);
                                     if (getFilter != "")
                                     {
@@ -711,7 +711,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
             try
             {
-                Invoice.GetAlLoTon(dateNgayCT.Value, _sttRec, _maVt.Text, txtMaKhoX.Text);
+                Invoice.GetAlLoTon(dateNgayCT.Date, _sttRec, _maVt.Text, txtMaKhoX.Text);
                 FixAlLoTon(Invoice.AlLoTon, AD);
 
                 var inputUpper = _maLo.Text.Trim().ToUpper();
@@ -915,7 +915,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
             try
             {
-                Invoice.GetAlVitriTon(dateNgayCT.Value, _sttRec, _maVt.Text, txtMaKhoX.Text);
+                Invoice.GetAlVitriTon(dateNgayCT.Date, _sttRec, _maVt.Text, txtMaKhoX.Text);
                 FixAlVitriTon(Invoice.AlVitriTon, AD);
 
                 var inputUpper = _maViTri.Text.Trim().ToUpper();
@@ -1716,7 +1716,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                 if (maVt == "" || maKhoX == "" || maLo == "") return;
 
-                _dataLoDate = Invoice.GetLoDate13(maVt, maKhoX, maLo, _sttRec, dateNgayCT.Value);
+                _dataLoDate = Invoice.GetLoDate13(maVt, maKhoX, maLo, _sttRec, dateNgayCT.Date);
                 if (_dataLoDate.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
@@ -1788,7 +1788,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                 if (maVt == "" || maKhoI == "" || maViTri == "") return;
 
-                _dataViTri = Invoice.GetViTri13(maVt, maKhoI, maViTri, _sttRec, dateNgayCT.Value);
+                _dataViTri = Invoice.GetViTri13(maVt, maKhoI, maViTri, _sttRec, dateNgayCT.Date);
                 if (_dataViTri.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
@@ -1859,7 +1859,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                 if (maVt == "" || maKhoI == "" || maLo == "" || maViTri == "") return;
 
-                _dataViTri = Invoice.GetViTriLoDate13(maVt, maKhoI, maLo, maViTri, _sttRec, dateNgayCT.Value);
+                _dataViTri = Invoice.GetViTriLoDate13(maVt, maKhoI, maLo, maViTri, _sttRec, dateNgayCT.Date);
                 if (_dataViTri.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
@@ -1999,7 +1999,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 
                 if (maVt == "" || maKhoX == "") return;
 
-                _dataLoDate = Invoice.GetLoDate(maVt, maKhoX, _sttRec, dateNgayCT.Value);
+                _dataLoDate = Invoice.GetLoDate(maVt, maKhoX, _sttRec, dateNgayCT.Date);
                 if (_dataLoDate.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
@@ -2077,7 +2077,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                 if (maVt == "" || maKhoI == "") return;
 
-                _dataViTri = Invoice.GetViTri(maVt, maKhoI, _sttRec, dateNgayCT.Value);
+                _dataViTri = Invoice.GetViTri(maVt, maKhoI, _sttRec, dateNgayCT.Date);
                 if (_dataViTri.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
@@ -2148,7 +2148,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                 if (maVt == "" || maKhoI == "") return;
 
-                _dataViTri = Invoice.GetViTriLoDate(maVt, maKhoI, _sttRec, dateNgayCT.Value);
+                _dataViTri = Invoice.GetViTriLoDate(maVt, maKhoI, _sttRec, dateNgayCT.Date);
                 if (_dataViTri.Rows.Count == 0)
                 {
                     _ton13.Value = 0;
@@ -2229,7 +2229,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 // Get ton kho theo ma_kho,ma_vt 18/01/2016
                 //if (V6Options.M_CHK_XUAT == "0")
                 {
-                    _dataLoDate = Invoice.GetStock(maVt, maKhoI, _sttRec, dateNgayCT.Value);
+                    _dataLoDate = Invoice.GetStock(maVt, maKhoI, _sttRec, dateNgayCT.Date);
                     if (_dataLoDate != null && _dataLoDate.Rows.Count > 0)
                     {
                         string sttRec0 = _sttRec0;
@@ -2887,14 +2887,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         }
         private void GetTyGia()
         {
-            txtTyGia.Value = Invoice.GetTyGia(_maNt, dateNgayCT.Value);
+            txtTyGia.Value = Invoice.GetTyGia(_maNt, dateNgayCT.Date);
         }
 
         private void GetDefault_Other()
         {
             txtMa_ct.Text = Invoice.Mact;
-            dateNgayCT.Value = V6Setting.M_SV_DATE;
-            dateNgayLCT.Value = V6Setting.M_SV_DATE;
+            dateNgayCT.SetValue(V6Setting.M_SV_DATE);
+            dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
             //Tuanmh 25/01/2016- Ma_dvcs
             if (V6Login.MadvcsCount >= 1)
             {
@@ -4087,7 +4087,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 data["STT_REC"] = _sttRec;
                 //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
-                data["NGAY_CT"] = dateNgayCT.Value.Date;
+                data["NGAY_CT"] = dateNgayCT.Date;
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
@@ -4147,7 +4147,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     {
                         //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
-                        data["NGAY_CT"] = dateNgayCT.Value.Date;
+                        data["NGAY_CT"] = dateNgayCT.Date;
 
 
                         //Kiem tra du lieu truoc khi them sua
@@ -4345,7 +4345,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         private void dateNgayCT_ValueChanged(object sender, EventArgs e)
         {
-            if (!Invoice.M_NGAY_CT) dateNgayLCT.Value = dateNgayCT.Value;
+            if (!Invoice.M_NGAY_CT) dateNgayLCT.SetValue(dateNgayCT.Date);
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
@@ -4557,7 +4557,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                     DataTable DataCheck_Save_All = Invoice.GetCheck_Save_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
                         TxtSo_ct.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
-                        "", dateNgayCT.Value, txtMa_ct.Text, TongThanhToan, mode_vc, V6Login.UserId);
+                        "", dateNgayCT.Date, txtMa_ct.Text, TongThanhToan, mode_vc, V6Login.UserId);
 
 
 
@@ -4599,7 +4599,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     }
                 }
 
-                var check_ton = ValidateData_Master_CheckTon(Invoice, dateNgayCT.Value, txtMaKhoX.Text.Trim());
+                var check_ton = ValidateData_Master_CheckTon(Invoice, dateNgayCT.Date, txtMaKhoX.Text.Trim());
                 if (!check_ton) return false;
 
                 //OK
@@ -4864,7 +4864,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 {
                     new SqlParameter("@nXT", 1),
                     new SqlParameter("@Type", 0),
-                    new SqlParameter("@Ngay_ct", dateNgayCT.Value.Date),
+                    new SqlParameter("@Ngay_ct", dateNgayCT.Date),
                     new SqlParameter("@Stt_rec", _sttRec),
                     new SqlParameter("@User_id", V6Login.UserId),
                     new SqlParameter("@M_lan", V6Login.SelectedLanguage),

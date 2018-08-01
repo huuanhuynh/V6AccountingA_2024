@@ -17,8 +17,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F8 = true;
 
 
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
 
         }
@@ -41,9 +41,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var result = new List<SqlParameter>();
 
             result.Add(new SqlParameter("@Type","VIEW"));
-            result.Add(new SqlParameter("@Year", dateNgay_ct2.Value.Year));
-            result.Add(new SqlParameter("@Period1", dateNgay_ct1.Value.Month));
-            result.Add(new SqlParameter("@Period2", dateNgay_ct1.Value.Month));
+            result.Add(new SqlParameter("@Year", dateNgay_ct2.Date.Year));
+            result.Add(new SqlParameter("@Period1", dateNgay_ct1.Date.Month));
+            result.Add(new SqlParameter("@Period2", dateNgay_ct1.Date.Month));
             result.Add(new SqlParameter("@NumList", ("")));
             result.Add(new SqlParameter("@User_id", V6Login.UserId));
             result.Add(new SqlParameter("@Ma_dvcs", ""));

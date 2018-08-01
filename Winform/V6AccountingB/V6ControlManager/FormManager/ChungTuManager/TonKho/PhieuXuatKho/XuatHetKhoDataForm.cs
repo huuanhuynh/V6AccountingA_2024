@@ -89,7 +89,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 V6Setting.M_Ma_kho = TxtMakho.StringValue;
             }
 
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
 
             var result = new List<SqlParameter>();
 
@@ -130,7 +130,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 cKey = cKey + string.Format(" and ma_vt in (select ma_vt from alvt where {0} )", key1);
             }
             
-            result.Add(new SqlParameter("@EndDate", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@EndDate", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@Condition", cKey));
             result.Add(new SqlParameter("@Vttonkho", TxtVttonkho.Text.Trim()));
             result.Add(new SqlParameter("@Kieu_in", txtKieuIn.Text.Trim()));

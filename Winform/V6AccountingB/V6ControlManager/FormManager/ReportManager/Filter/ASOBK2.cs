@@ -16,8 +16,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             TxtMakho.VvarTextBox.Text = (V6Setting.M_Ma_kho ?? "").Trim();
 
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
             
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
@@ -68,8 +68,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //@Ma_ct VARCHAR(50) = ''
 
             RptExtraParameters = new SortedDictionary<string, object>();
-            RptExtraParameters.Add("NGAY_CT1", dateNgay_ct1.Value);
-            RptExtraParameters.Add("NGAY_CT2", dateNgay_ct2.Value);
+            RptExtraParameters.Add("NGAY_CT1", dateNgay_ct1.Date);
+            RptExtraParameters.Add("NGAY_CT2", dateNgay_ct2.Date);
 
 
             RptExtraParameters.Add("MA_KHO", TxtMakho.IsSelected ? TxtMakho.VvarTextBox.Text.Trim() : "");
@@ -80,16 +80,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 throw new Exception("Chưa chọn mã vật tư!");
             }
             
-            V6Setting.M_ngay_ct1 = dateNgay_ct1.Value;
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
             
 
 
             var result = new List<SqlParameter>();
 
 
-            result.Add(new SqlParameter("@ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@MaVt", TxtMa_vt.Text.Trim()));
 
 

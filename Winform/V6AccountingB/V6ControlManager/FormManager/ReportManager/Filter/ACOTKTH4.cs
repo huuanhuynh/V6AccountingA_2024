@@ -22,7 +22,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             TxtKieu_bc.Text = "3";
             TxtKy_bc.Value = 3;
             TxtGroupby.Text = "1";
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             
@@ -116,10 +116,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 throw new Exception("Chưa chọn số kỳ!");
             }
 
-            V6Setting.M_ngay_ct1 = dateNgay_ct1.Value;
+            V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
 
 
-            result.Add(new SqlParameter("@ngay_ct00", dateNgay_ct1.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@ngay_ct00", dateNgay_ct1.YYYYMMDD));
             result.Add(new SqlParameter("@Kieu_bc", TxtKieu_bc.Text.Trim()));
             result.Add(new SqlParameter("@so_ky_bc", TxtKy_bc.Value));
             result.Add(new SqlParameter("@Tk", Tk_filterLine.StringValue));

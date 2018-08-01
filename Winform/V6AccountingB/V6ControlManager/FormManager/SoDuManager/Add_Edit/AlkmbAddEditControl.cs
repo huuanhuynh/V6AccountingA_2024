@@ -678,19 +678,19 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             if (errors.Length > 0) throw new Exception(errors);
 
             V6ControlFormHelper.UpdateDKlistAll(DataDic, new[] { "MA_DVCS", "MA_KM", "MA_CT" }, AD);
-            V6ControlFormHelper.UpdateDKlist(AD, "NGAY_HL", dateNgayHL.Value);
+            V6ControlFormHelper.UpdateDKlist(AD, "NGAY_HL", dateNgayHL.Date);
             V6ControlFormHelper.UpdateDKlist(AD, "NGAY_HL2", dateNgayHL2.Value);
 
             V6ControlFormHelper.UpdateDKlistAll(DataDic, new[] { "MA_DVCS", "MA_KM", "MA_CT" }, data3);
-            V6ControlFormHelper.UpdateDKlist(data3, "NGAY_HL", dateNgayHL.Value);
+            V6ControlFormHelper.UpdateDKlist(data3, "NGAY_HL", dateNgayHL.Date);
             V6ControlFormHelper.UpdateDKlist(data3, "NGAY_HL2", dateNgayHL2.Value);
 
             V6ControlFormHelper.UpdateDKlistAll(DataDic, new[] { "MA_DVCS", "MA_KM", "MA_CT" }, data4);
-            V6ControlFormHelper.UpdateDKlist(data4, "NGAY_HL", dateNgayHL.Value);
+            V6ControlFormHelper.UpdateDKlist(data4, "NGAY_HL", dateNgayHL.Date);
             V6ControlFormHelper.UpdateDKlist(data4, "NGAY_HL2", dateNgayHL2.Value);
             
             V6ControlFormHelper.UpdateDKlistAll(DataDic, new[] { "MA_DVCS", "MA_KM", "MA_CT" }, data5);
-            V6ControlFormHelper.UpdateDKlist(data5, "NGAY_HL", dateNgayHL.Value);
+            V6ControlFormHelper.UpdateDKlist(data5, "NGAY_HL", dateNgayHL.Date);
             V6ControlFormHelper.UpdateDKlist(data5, "NGAY_HL2", dateNgayHL2.Value);
         }
 
@@ -970,11 +970,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                     if (cIndex >= 0 && cIndex < AD.Rows.Count)
                     {
-                        //Thêm thông tin...
-                        //data["MA_CT"] = Invoice.Mact;
-                        //data["NGAY_CT"] = dateNgayCT.Value.Date;
-
-
                         //Kiem tra du lieu truoc khi them sua
                         var error = "";
                         if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "")

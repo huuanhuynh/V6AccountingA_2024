@@ -14,8 +14,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F5 = false;
             F7 = true;
 
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
 
@@ -56,13 +56,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //@ngay_ct2	char(8), -- ngày kết thúc
             //@condition	nvarchar(max)
 
-            V6Setting.M_ngay_ct1 = dateNgay_ct1.Value;
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
 
             var result = new List<SqlParameter>();
-            result.Add(new SqlParameter("@ngay_ct0", dateNgay_ct0.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@ngay_ct0", dateNgay_ct0.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             
             var and = radAnd.Checked;
             string cKey;

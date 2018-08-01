@@ -267,8 +267,13 @@ namespace V6Init
         /// Ngày server lúc login.
         /// </summary>
         public static DateTime M_SV_DATE = DateTime.Today;
-        
+        /// <summary>
+        /// Biến giữ giá trị người dùng nhập vào.
+        /// </summary>
         public static DateTime M_ngay_ct1 = M_SV_DATE;
+        /// <summary>
+        /// Biến giữ giá trị người dùng nhập vào.
+        /// </summary>
         public static DateTime M_ngay_ct2 = M_SV_DATE;
         public static int M_NAM = M_SV_DATE.Year;
         public static int M_KY1 = M_SV_DATE.Month;

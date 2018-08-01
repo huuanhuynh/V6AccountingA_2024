@@ -47,8 +47,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@ma_dvcs_from", txtMaDvcs.Text.Trim()));
             result.Add(new SqlParameter("@ma_ct_from", txtMaCt.Text.Trim()));
             result.Add(new SqlParameter("@Ma_sonb_GL1", txtMaSoNB.Text));
-            result.Add(new SqlParameter("@ngay_ct1", v6ColorDateTimePick1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@ngay_ct2", v6ColorDateTimePick2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@ngay_ct1", v6ColorDateTimePick1.YYYYMMDD));
+            result.Add(new SqlParameter("@ngay_ct2", v6ColorDateTimePick2.YYYYMMDD));
             result.Add(new SqlParameter("@Save_voucher", "1"));
             result.Add(new SqlParameter("@Deleto", chkXoaDuLieuCu.Checked ? "1" : "0"));
             

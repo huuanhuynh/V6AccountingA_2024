@@ -12,15 +12,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
         {
             InitializeComponent();
 
-            dateTuNgay.Value = V6Setting.M_ngay_ct1;
-            dateDenNgay.Value = V6Setting.M_ngay_ct2;
+            dateTuNgay.SetValue(V6Setting.M_ngay_ct1);
+            dateDenNgay.SetValue(V6Setting.M_ngay_ct2);
         }
 
         public string GetFilterSql(V6TableStruct tableStruct, string tableLable,
             string oper = "=", bool and = true)
         {
-            V6Setting.M_ngay_ct1 = dateDenNgay.Value;
-            V6Setting.M_ngay_ct2 = dateDenNgay.Value;
+            V6Setting.M_ngay_ct1 = dateDenNgay.Date;
+            V6Setting.M_ngay_ct2 = dateDenNgay.Date;
 
             var result = "";
             var keys = V6ControlFormHelper.GetFormDataDictionary(groupBox1);
@@ -28,8 +28,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
 
             var dateFilter = string.Format("{0}ngay_ct BETWEEN '{1}' AND '{2}'",
                 tableLable.Length>0?tableLable+".":"",
-                dateTuNgay.Value.ToString("yyyyMMdd"),
-                dateDenNgay.Value.ToString("yyyyMMdd")
+                dateTuNgay.YYYYMMDD,
+                dateDenNgay.YYYYMMDD
                 );
             if (result.Length > 0)
             {

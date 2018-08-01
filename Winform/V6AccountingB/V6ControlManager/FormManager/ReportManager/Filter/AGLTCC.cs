@@ -19,26 +19,35 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public AGLTCC()
         {
             InitializeComponent();
-           
-            F3 = false;
-            F5 = false;
-
-            txtma_maubc.Text = "GLTCC";
+            MyInit();
             
-            txtNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            txtNgay_ct2.Value = V6Setting.M_ngay_ct2;
-            txtNgay_ct3.Value = V6Setting.M_ngay_ct1.AddMonths(-1);
-            txtNgay_ct4.Value = V6Setting.M_ngay_ct2.AddMonths(-1);
+        }
 
-
-            txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
-            if (V6Login.MadvcsCount <= 1)
+        private void MyInit()
+        {
+            try
             {
-                txtMaDvcs.Enabled = false;
-            }
+                F3 = false;
+                F5 = false;
+                txtma_maubc.Text = "GLTCC";
+                txtNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+                txtNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
+                txtNgay_ct3.SetValue(V6Setting.M_ngay_ct1.AddMonths(-1));
+                txtNgay_ct4.SetValue(V6Setting.M_ngay_ct2.AddMonths(-1));
 
-            SetHideFields("V");
-            LoadAlmaubc();
+                txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
+                if (V6Login.MadvcsCount <= 1)
+                {
+                    txtMaDvcs.Enabled = false;
+                }
+
+                SetHideFields("V");
+                LoadAlmaubc();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init", ex);
+            }
         }
 
         public void SetHideFields(string lang)
@@ -111,10 +120,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                  
                  
-                new SqlParameter("@Ngay_ct1", txtNgay_ct1.Value.ToString("yyyyMMdd")),
-                new SqlParameter("@Ngay_ct2", txtNgay_ct2.Value.ToString("yyyyMMdd")),
-                new SqlParameter("@Ngay_ct3", txtNgay_ct3.Value.ToString("yyyyMMdd")),
-                new SqlParameter("@Ngay_ct4", txtNgay_ct4.Value.ToString("yyyyMMdd")),
+                new SqlParameter("@Ngay_ct1", txtNgay_ct1.YYYYMMDD),
+                new SqlParameter("@Ngay_ct2", txtNgay_ct2.YYYYMMDD),
+                new SqlParameter("@Ngay_ct3", txtNgay_ct3.YYYYMMDD),
+                new SqlParameter("@Ngay_ct4", txtNgay_ct4.YYYYMMDD),
                 new SqlParameter("@Ma_dvcs", ma_dvcs),
                 new SqlParameter("@Luyke", luyke),
                 new SqlParameter("@Mau", maubc),

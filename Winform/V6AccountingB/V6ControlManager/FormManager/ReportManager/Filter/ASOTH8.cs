@@ -23,7 +23,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             cbbLoaiBaoCao.SelectedIndex = 0;
  
-            dateNgay_ct0.Value = V6Setting.M_ngay_ct1;
+            dateNgay_ct0.SetValue(V6Setting.M_ngay_ct1);
             
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
 
@@ -96,7 +96,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@loai_bc", txtLoaiBaoCao.Text));
             result.Add(new SqlParameter("@ct_theo", txtChiTietTheo.Text));
             result.Add(new SqlParameter("@giam_tru", chkGiamTru.Checked ? 1 : 0));
-            result.Add(new SqlParameter("@Ngay_ct00", dateNgay_ct0.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct00", dateNgay_ct0.YYYYMMDD));
                        
             var and = radAnd.Checked;
             

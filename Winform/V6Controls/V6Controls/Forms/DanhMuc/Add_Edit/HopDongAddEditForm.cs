@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using V6AccountingBusiness;
 using V6Controls.Controls;
@@ -12,6 +11,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public HopDongAddEditForm()
         {
             InitializeComponent();
+        }
+
+        private void HopDongAddEditForm_Load(object sender, EventArgs e)
+        {
+            txtNH_HD1.SetInitFilter("Loai_nh=1");
+            txtNH_HD2.SetInitFilter("Loai_nh=2");
+            txtNH_HD3.SetInitFilter("Loai_nh=3");
+            txtLoaiHD.Focus();
         }
 
         public override void DoBeforeEdit()
@@ -98,5 +105,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 this.ShowErrorMessage(GetType() + " BoSung_Click " + ex.Message);
             }
         }
+        
     }
 }

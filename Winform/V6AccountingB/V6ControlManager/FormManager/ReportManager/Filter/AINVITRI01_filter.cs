@@ -64,7 +64,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             result = new List<SqlParameter>
             {
-                new SqlParameter("@EndDate", dateCuoiNgay.Value.ToString("yyyyMMdd")),
+                new SqlParameter("@EndDate", dateCuoiNgay.YYYYMMDD),
                 new SqlParameter("@Condition", condition),
                 new SqlParameter("@Vttonkho", "1"),
                 new SqlParameter("@Kieu_in", "1"),
@@ -84,7 +84,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 if (data.ContainsKey("MA_DVCS")) lineMaDvcs.VvarTextBox.Text = data["MA_DVCS"].ToString().Trim();
                 if (data.ContainsKey("MA_VITRI")) lineMaVitri.VvarTextBox.Text = data["MA_VITRI"].ToString().Trim();
              
-                if (data.ContainsKey("CUOI_NGAY")) dateCuoiNgay.Value = ObjectAndString.ObjectToFullDateTime(data["CUOI_NGAY"]);
+                if (data.ContainsKey("CUOI_NGAY")) dateCuoiNgay.SetValue(ObjectAndString.ObjectToFullDateTime(data["CUOI_NGAY"]));
                 
                 if (data.ContainsKey("VT_TONKHO")) txtVtTonKho.Text = data["VT_TONKHO"].ToString().Trim();
                 if (data.ContainsKey("KIEU_IN")) txtKieuIn.Text = data["KIEU_IN"].ToString().Trim();

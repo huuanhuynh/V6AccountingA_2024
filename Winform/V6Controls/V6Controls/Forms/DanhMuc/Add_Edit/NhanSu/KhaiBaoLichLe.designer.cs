@@ -105,7 +105,6 @@
             this.txtNgay.Name = "txtNgay";
             this.txtNgay.Size = new System.Drawing.Size(134, 23);
             this.txtNgay.TabIndex = 0;
-            this.txtNgay.Value = new System.DateTime(2017, 3, 20, 0, 0, 0, 0);
             // 
             // txtten_kh
             // 

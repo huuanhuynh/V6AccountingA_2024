@@ -15,7 +15,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             InitializeComponent();
 
             TxtMakho.VvarTextBox.Text = (V6Setting.M_Ma_kho ?? "").Trim();
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
             
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             if (V6Login.MadvcsCount <= 1)
@@ -98,7 +98,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 V6Setting.M_Ma_kho = TxtMakho.VvarTextBox.Text;
             }
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
             
             var result = new List<SqlParameter>();
             var and = radAnd.Checked;
@@ -136,7 +136,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 cKey_Filter = cKey_Filter+ string.Format(" and ma_vt in (select ma_vt from alvt where {0} )", key1);
             }
 
-            result.Add(new SqlParameter("@Date", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Date", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@Filter", cKey_Filter));
             result.Add(new SqlParameter("@Condition", cKey));
             result.Add(new SqlParameter("@Group", lblGroupString.Text));

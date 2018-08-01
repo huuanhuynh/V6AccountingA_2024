@@ -12,8 +12,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             InitializeComponent();
 
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
             F4 = false;
             F7 = false;
@@ -39,8 +39,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var result = new List<SqlParameter>();
 
-            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@ma_bpht",txtMa_bpht.StringValue));
             result.Add(new SqlParameter("@tinhgia_dc", chkdc_ck.Checked?1:0));
             result.Add(new SqlParameter("@User_id", V6Login.UserId));

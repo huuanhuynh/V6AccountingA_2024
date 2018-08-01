@@ -916,7 +916,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     {
                         //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
-                        data["NGAY_CT"] = dateNgayCT.Value.Date;
+                        data["NGAY_CT"] = dateNgayCT.Date;
 
 
                         //Kiem tra du lieu truoc khi them sua
@@ -974,7 +974,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 data["STT_REC"] = _sttRec;
                 //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
-                data["NGAY_CT"] = dateNgayCT.Value.Date;
+                data["NGAY_CT"] = dateNgayCT.Date;
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
@@ -2038,14 +2038,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         }
         private void GetTyGia()
         {
-            txtTyGia.Value = Invoice.GetTyGia(_maNt, dateNgayCT.Value);
+            txtTyGia.Value = Invoice.GetTyGia(_maNt, dateNgayCT.Date);
         }
 
         private void GetDefault_Other()
         {
             txtMa_ct.Text = Invoice.Mact;
-            dateNgayCT.Value = V6Setting.M_SV_DATE;
-            dateNgayLCT.Value = V6Setting.M_SV_DATE;
+            dateNgayCT.SetValue(V6Setting.M_SV_DATE);
+            dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
             //Tuanmh 25/01/2016- Ma_dvcs
             if (V6Login.MadvcsCount >= 1)
             {
@@ -3698,7 +3698,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                 //Thêm thông tin...
                 dic["MA_CT"] = Invoice.Mact;
-                dic["NGAY_CT"] = dateNgayCT.Value.Date;
+                dic["NGAY_CT"] = dateNgayCT.Date;
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
@@ -3774,7 +3774,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     //Thêm thông tin...
                     data["MA_CT"] = Invoice.Mact;
-                    data["NGAY_CT"] = dateNgayCT.Value.Date;
+                    data["NGAY_CT"] = dateNgayCT.Date;
 
                     //Kiem tra du lieu truoc khi them sua
                     var error = "";
@@ -4037,7 +4037,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                     DataTable DataCheck_Save_All = Invoice.GetCheck_Save_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
                         txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
-                        txtTk.Text.Trim(), dateNgayCT.Value, txtMa_ct.Text, txtTongThanhToan.Value, mode_vc, V6Login.UserId);
+                        txtTk.Text.Trim(), dateNgayCT.Date, txtMa_ct.Text, txtTongThanhToan.Value, mode_vc, V6Login.UserId);
 
 
 
@@ -4136,7 +4136,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 int loai_cl = 0;
                 SqlParameter[] plist =
                 {
-                    new SqlParameter("@Ngay_ct", dateNgayCT.Value.Date),
+                    new SqlParameter("@Ngay_ct", dateNgayCT.Date),
                     new SqlParameter("@Tk", txtTk.Text),
                     new SqlParameter("@Ma_kh", txtMaKh.Text),
                     new SqlParameter("@Ma_dvcs", txtMadvcs.Text),
@@ -4235,7 +4235,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void dateNgayCT_ValueChanged(object sender, EventArgs e)
         {
-            if (!Invoice.M_NGAY_CT) dateNgayLCT.Value = dateNgayCT.Value;
+            if (!Invoice.M_NGAY_CT) dateNgayLCT.SetValue(dateNgayCT.Date);
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
@@ -4873,7 +4873,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 data["STT_REC"] = _sttRec;
                 //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
-                data["NGAY_CT"] = dateNgayCT.Value.Date;
+                data["NGAY_CT"] = dateNgayCT.Date;
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
@@ -4928,7 +4928,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     {
                         //Thêm thông tin...
                         data["MA_CT"] = Invoice.Mact;
-                        data["NGAY_CT"] = dateNgayCT.Value.Date;
+                        data["NGAY_CT"] = dateNgayCT.Date;
 
 
                         //Kiem tra du lieu truoc khi them sua

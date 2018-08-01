@@ -458,11 +458,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                     if (cIndex >= 0 && cIndex < AD.Rows.Count)
                     {
-                        //Thêm thông tin...
-                        //data["MA_CT"] = Invoice.Mact;
-                        //data["NGAY_CT"] = dateNgayCT.Value.Date;
-
-
                         //Kiem tra du lieu truoc khi them sua
                         var error = "";
                         if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "")

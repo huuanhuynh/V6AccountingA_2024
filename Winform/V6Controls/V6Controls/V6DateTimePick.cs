@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
 using System.Threading;
+using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
 using V6Tools;
@@ -171,8 +172,18 @@ namespace V6Controls
 
         public virtual string Query
         {
-            get { return SqlGenerator.GetQuery(Value.ToString("yyyyMMdd"), AccessibleName, "="); }
+            get { return SqlGenerator.GetQuery(Date.ToString("yyyyMMdd"), AccessibleName, "="); }
         }
+        
+        /// <summary>
+        /// Giá trị ngày tháng không có ngày giờ. (ngày giờ bằng 0, mặc định).
+        /// </summary>
+        public DateTime Date { get { return Value.Date; } }
+        /// <summary>
+        /// Giá trị chuổi theo format dd/MM/yyyy
+        /// </summary>
+        public string StringValue { get { return Date.ToString("dd/MM/yyyy"); } }
+        public string YYYYMMDD { get { return Date.ToString("yyyyMMdd"); } }
         //============================================================================
         /// <summary>
         /// Hàm khởi tạo
@@ -215,19 +226,34 @@ namespace V6Controls
             }
         }
 
+        /// <summary>
+        /// Gán giá trị kể cả khi readonly.
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetValue(DateTime value)
+        {
+            _oldValue = value;
+            Value = value;
+        }
+
+        private DateTime _oldValue = DateTime.Now;
         void V6DateTimePick_ValueChanged(object sender, EventArgs e)
         {
+            if (ReadOnly && Value != _oldValue)
+            {
+                Value = _oldValue;
+                V6ControlFormHelper.SetStatusText(AccessibleName + " " + V6Text.ReadOnly + "!!!!!!!!!!!!!!!!!!!!!!!");
+                return;
+            }
+            
+            _oldValue = Value;
+
             if (_selectDatePartIndex > -1)
             {
                 BackgroundWorker bk = new BackgroundWorker();
                 bk.DoWork += bk_DoWork;
                 bk.RunWorkerCompleted += bk_RunWorkerCompleted;
             }
-            //if (_iS > -1)
-            //{
-            //    Thread t = new Thread(Do_iS);
-            //    t.Start();
-            //}
         }
 
         void bk_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -413,5 +439,6 @@ namespace V6Controls
             this.BackColor = _previousColor;
         }
 
+        
     }
 }

@@ -27,7 +27,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 fstart = 11;
                 ffixcolumn = 6;
                 cbbLoaiBaoCao.SelectedIndex = 1;
-                dateNgay_ct0.Value = V6Setting.M_ngay_ct1;
+                dateNgay_ct0.SetValue(V6Setting.M_ngay_ct1);
                 txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
 
                 if (V6Login.MadvcsCount <= 1)
@@ -94,7 +94,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             result.Add(new SqlParameter("@Kieu_bc", TxtKieu_bc.Text.Trim()));
             result.Add(new SqlParameter("@Ky_bc", TxtKy_bc.Value));
-            result.Add(new SqlParameter("@Ngay_ct00", dateNgay_ct0.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct00", dateNgay_ct0.YYYYMMDD));
                        
             var and = radAnd.Checked;
             

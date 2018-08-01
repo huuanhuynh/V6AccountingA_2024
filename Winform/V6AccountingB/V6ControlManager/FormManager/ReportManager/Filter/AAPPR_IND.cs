@@ -16,8 +16,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F8 = true;
             F9 = true;
             F10 = true;
-            dateNgay_ct1.Value = V6Setting.M_SV_DATE;
-            dateNgay_ct2.Value = V6Setting.M_SV_DATE;
+            dateNgay_ct1.SetValue(V6Setting.M_SV_DATE);
+            dateNgay_ct2.SetValue(V6Setting.M_SV_DATE);
 
             TxtXtag.Text = "2";
             
@@ -67,8 +67,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public override List<SqlParameter> GetFilterParameters()
         {
             var result = new List<SqlParameter>();
-            result.Add(new SqlParameter("@ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@ma_ct", TxtMa_ct.Text.Trim()));
             var and = radAnd.Checked;
             

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using V6Controls;
 using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
@@ -9,33 +11,38 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public AINCDHSDB()
         {
             InitializeComponent();
+            MyInit();
+        }
 
-            TxtVttonkho.Text = "*";
-            txtKieuIn.Text = "1";
-
-            F3 = false;
-            F5 = false;
-
-            TxtMakho.VvarTextBox.Text = (V6Setting.M_Ma_kho ?? "").Trim();
-            
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
-            dateNgay_ct3.Value = V6Setting.M_ngay_ct2;
-
-            txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
-            if (V6Login.MadvcsCount <= 1)
+        private void MyInit()
+        {
+            try
             {
-                txtMaDvcs.Enabled = false;
+                TxtVttonkho.Text = "*";
+                txtKieuIn.Text = "1";
+                F3 = false;
+                F5 = false;
+                TxtMakho.VvarTextBox.Text = (V6Setting.M_Ma_kho ?? "").Trim();
+                dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
+                dateNgay_ct3.SetValue(V6Setting.M_ngay_ct2);
+                txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
+                if (V6Login.MadvcsCount <= 1)
+                {
+                    txtMaDvcs.Enabled = false;
+                }
+                Txtnh_vt1.VvarTextBox.SetInitFilter("loai_nh=1");
+                Txtnh_vt2.VvarTextBox.SetInitFilter("loai_nh=2");
+                Txtnh_vt3.VvarTextBox.SetInitFilter("loai_nh=3");
+                Txtnh_vt4.VvarTextBox.SetInitFilter("loai_nh=4");
+                Txtnh_vt5.VvarTextBox.SetInitFilter("loai_nh=5");
+                Txtnh_vt6.VvarTextBox.SetInitFilter("loai_nh=6");
+
+                SetHideFields("V");
             }
-
-
-            Txtnh_vt1.VvarTextBox.SetInitFilter("loai_nh=1");
-            Txtnh_vt2.VvarTextBox.SetInitFilter("loai_nh=2");
-            Txtnh_vt3.VvarTextBox.SetInitFilter("loai_nh=3");
-            Txtnh_vt4.VvarTextBox.SetInitFilter("loai_nh=4");
-            Txtnh_vt5.VvarTextBox.SetInitFilter("loai_nh=5");
-            Txtnh_vt6.VvarTextBox.SetInitFilter("loai_nh=6");
-
-            SetHideFields("V");
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init", ex);
+            }
         }
 
         public void SetHideFields(string lang)
@@ -76,10 +83,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 V6Setting.M_Ma_kho = TxtMakho.StringValue;
             }
             
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
 
             RptExtraParameters = new SortedDictionary<string, object>();
-            RptExtraParameters.Add("NGAY_CT2", dateNgay_ct2.Value);
+            RptExtraParameters.Add("NGAY_CT2", dateNgay_ct2.Date);
 
 
             RptExtraParameters.Add("MA_KHO", TxtMakho.IsSelected ? TxtMakho.VvarTextBox.Text.Trim() : "");
@@ -89,7 +96,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                         
             
-            result.Add(new SqlParameter("@EndDate", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@EndDate", dateNgay_ct2.YYYYMMDD));
             
             
             var and = radAnd.Checked;
@@ -132,7 +139,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Condition", cKey));
             result.Add(new SqlParameter("@Vttonkho", TxtVttonkho.Text.Trim()));
             result.Add(new SqlParameter("@Kieu_in", txtKieuIn.Text.Trim()));
-            result.Add(new SqlParameter("@CheckDate", dateNgay_ct3.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@CheckDate", dateNgay_ct3.YYYYMMDD));
 
             return result;
         }

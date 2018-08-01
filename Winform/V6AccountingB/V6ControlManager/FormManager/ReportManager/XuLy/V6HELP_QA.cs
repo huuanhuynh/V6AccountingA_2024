@@ -32,7 +32,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                dateNgay_ct1.Value = dateNgay_ct1.Value.AddMonths(-1);
+                dateNgay_ct1.SetValue(dateNgay_ct1.Date.AddMonths(-1));
             }
             catch (Exception ex)
             {
@@ -96,9 +96,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (advance.Length > 4) advance = advance.Substring(4);
                 SqlParameter[] plist =
                 {
-                    new SqlParameter("Ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")), 
-                    new SqlParameter("Ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")), 
-                    new SqlParameter("@Advance", advance), 
+                    new SqlParameter("Ngay_ct1", dateNgay_ct1.YYYYMMDD),
+                    new SqlParameter("Ngay_ct2", dateNgay_ct2.YYYYMMDD),
+                    new SqlParameter("@Advance", advance),
                 };
                 _ds = V6BusinessHelper.ExecuteProcedure("V6HELP_QA1", plist);
                 //_ds = SqlHelper.ExecuteDataset(DatabaseConfig.ConnectionString, CommandType.StoredProcedure,

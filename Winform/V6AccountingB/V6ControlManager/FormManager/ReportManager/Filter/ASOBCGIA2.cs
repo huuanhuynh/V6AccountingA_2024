@@ -47,9 +47,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //@dPrice SMALLDATETIME, 
             //@cMaGia VARCHAR(32) 
             RptExtraParameters = new SortedDictionary<string, object>();
-            RptExtraParameters.Add("CR_NGAY_CT2", dateNgay_ct2.Value);
+            RptExtraParameters.Add("CR_NGAY_CT2", dateNgay_ct2.Date);
             var result = new List<SqlParameter>();
-            result.Add(new SqlParameter("@dPrice", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@dPrice", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@cMaGia",txtma_gia.StringValue ));
             result.AddRange(InitFilters);
             return result;

@@ -239,7 +239,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     "MA_NS", txtMaNhanSu.Text, (dataOld["MA_NS"]??"").ToString().Trim(),
                     "MA_CONG", txtMaCong.Text, (dataOld["MA_CONG"]??"").ToString().Trim(),
                     "MA_BP", (txtMaBp.Value + "").Trim(), (dataOld["MA_BP"]??"").ToString().Trim(),
-                    "NGAY", dateNgay.Value.ToString("yyyyMMdd"), ObjectAndString.ObjectToFullDateTime(dataOld["NGAY"]).ToString("yyyyMMdd")
+                    "NGAY", dateNgay.YYYYMMDD, ObjectAndString.ObjectToFullDateTime(dataOld["NGAY"]).ToString("yyyyMMdd")
                     );
                 return valid;
             }

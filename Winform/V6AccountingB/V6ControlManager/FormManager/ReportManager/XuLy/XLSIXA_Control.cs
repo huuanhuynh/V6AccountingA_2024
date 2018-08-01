@@ -142,21 +142,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 DateTime? dateMin = null, dateMax = null;
                 foreach (DataRow row in data.Rows)
                 {
-                    var date = ObjectAndString.ObjectToDate(row["NGAY_CT"]);
-                    if (date != null)
+                    var date = ObjectAndString.ObjectToFullDateTime(row["NGAY_CT"]);
+                    if (dateMin == null || date < dateMin)
                     {
-                        if (dateMin == null || date < dateMin)
-                        {
-                            dateMin = date;
-                        }
+                        dateMin = date;
+                    }
 
-                        if (dateMax == null || date > dateMax)
-                        {
-                            dateMax = date;
-                        }
+                    if (dateMax == null || date > dateMax)
+                    {
+                        dateMax = date;
                     }
                     string so_ct = row["SO_CT"].ToString().Trim().ToUpper();
-                    string ngay_ct = date.Value.ToString("yyyyMMdd");
+                    string ngay_ct = date.ToString("yyyyMMdd");
                     if (so_ct != "" && ngay_ct != "")
                     {
                         var key = so_ct + ngay_ct;

@@ -34,8 +34,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             int so_ct2 = 0;
             var result = new List<SqlParameter>();
             //ngay_ct1, ngay_ct2, ma_sonb, so_ct1, so_ct2, dsct, transform, condition
-            result.Add(new SqlParameter("@ngay_ct1", v6ColorDateTimePick1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@ngay_ct2", v6ColorDateTimePick2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@ngay_ct1", v6ColorDateTimePick1.YYYYMMDD));
+            result.Add(new SqlParameter("@ngay_ct2", v6ColorDateTimePick2.YYYYMMDD));
             result.Add(new SqlParameter("@ma_sonb", txtMaSoNB.Text.Trim()));
             result.Add(new SqlParameter("@so_ct1", TxtSo_ct.Value));
             result.Add(new SqlParameter("@so_ct2", so_ct2));

@@ -13,8 +13,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F3 = false;
             F5 = true;
             Advance = chkKieu_f5.Checked ? "Filter='1'" : "1=1";
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
@@ -54,15 +54,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 	       // @Advance AS VARCHAR(8000) = '' -- Điều kiện lọc danh mục khách hàng
            // @Kieu_F5 CHAR(1)
 
-            V6Setting.M_ngay_ct1 = dateNgay_ct1.Value;
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
 
             var result = new List<SqlParameter>();
 
            
 
-            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@Bu_tru", TxtGroupby.Text.Trim()));
           
             

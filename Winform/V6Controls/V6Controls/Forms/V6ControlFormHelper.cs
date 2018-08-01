@@ -4896,7 +4896,7 @@ namespace V6Controls.Forms
                 {
                     var dat = control as V6DateTimePick;
                     dat.ReadOnly = readOnly;
-                    dat.Enabled = !readOnly;
+                    //dat.Enabled = !readOnly;
                 }
                 else if (control is DateTimePicker
                     || control is CheckBox
@@ -5050,7 +5050,7 @@ namespace V6Controls.Forms
             else if (control is V6DateTimePick)
             {
                 var object_to_date = ObjectAndString.ObjectToFullDateTime(value);
-                ((V6DateTimePick)control).Value = object_to_date;
+                ((V6DateTimePick)control).SetValue(object_to_date);
             }
             else if (control is DateTimePicker)
             {
@@ -5158,7 +5158,7 @@ namespace V6Controls.Forms
             }
             else if (control is V6DateTimePick)
             {
-                d[cNAME] = ((V6DateTimePick)control).Value;
+                d[cNAME] = ((V6DateTimePick)control).Date;
                 //return ((V6DateTimePick)control).Value;
                 return;
             }
@@ -5269,7 +5269,7 @@ namespace V6Controls.Forms
             }
             else if (control is V6DateTimePick)
             {
-                return ((V6DateTimePick)control).Value;
+                return ((V6DateTimePick)control).Date;
             }
             else if (control is DateTimePicker)
             {

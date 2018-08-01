@@ -839,10 +839,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 _sttRec0_11 = V6BusinessHelper.GetNewSttRec0(AD);
                 data["STT_REC0"] = _sttRec0_11;
                 data["STT_REC"] = txtSttRec.Text;
-                //Thêm thông tin...
-                //data["MA_CT"] = Invoice.Mact;
-                //data["NGAY_CT"] = dateNgayCT.Value.Date;
-
+                
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
                 if (!data.ContainsKey("MA_NV") || data["MA_NV"].ToString().Trim() == "") error += "\nMã nguồn vốn rỗng.";

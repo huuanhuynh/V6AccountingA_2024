@@ -84,10 +84,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var result = new List<SqlParameter>();
          
-            result.Add(new SqlParameter("@Ngay_ct1", txtNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@Ngay_ct2", txtNgay_ct2.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@Ngay_ct3", txtNgay_ct3.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@Ngay_ct4", txtNgay_ct4.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct1", txtNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2", txtNgay_ct2.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct3", txtNgay_ct3.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct4", txtNgay_ct4.YYYYMMDD));
             result.Add(new SqlParameter("@M_LAN", V6Setting.Language.Trim()));
             result.Add(new SqlParameter("@mau_bc", RTien == "VN" ? 1 : 2));
             result.Add(new SqlParameter("@Tk", Tk_filterLine.StringValue.Trim()));

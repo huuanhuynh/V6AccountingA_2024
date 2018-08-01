@@ -20,9 +20,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             txtTk.VvarTextBox.Text = (V6Setting.M_TK_CN ?? "131").Trim();
 
             ctDenSo.Enabled = false;
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
-            dateNgay_ct2_ptt.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
+            dateNgay_ct2_ptt.SetValue(V6Setting.M_ngay_ct2);
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             if (V6Login.MadvcsCount <= 1)
@@ -104,13 +104,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             V6Setting.M_TK = txtTk.VvarTextBox.Text;
             V6Setting.M_TK_CN = txtTk.VvarTextBox.Text;
-            V6Setting.M_ngay_ct1 = dateNgay_ct1.Value;
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
 
 
-            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@Ngay_ct2_ptt", dateNgay_ct2_ptt.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2_ptt", dateNgay_ct2_ptt.YYYYMMDD));
 
             if (rdo_khongintattoan.Checked) 
 

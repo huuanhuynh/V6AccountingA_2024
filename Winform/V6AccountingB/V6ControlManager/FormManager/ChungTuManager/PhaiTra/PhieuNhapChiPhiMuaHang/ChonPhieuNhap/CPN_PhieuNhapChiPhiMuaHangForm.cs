@@ -64,8 +64,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
             _locKetQua.MultiSelect = _multiSelect;
 
-            v6ColorDateTimePick1.Value = V6Setting.M_ngay_ct1;
-            v6ColorDateTimePick2.Value = V6Setting.M_ngay_ct2;
+            v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
+            v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
         }
 
         void locKetQua_OnSelectAMRow(int index, string mact, string sttrec, decimal ttt_nt, decimal ttt, string mant)
@@ -235,8 +235,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         public string locThoiGian1GetFilterSql(V6TableStruct tableStruct, string tableLable,
             string oper = "=", bool and = true)
         {
-            V6Setting.M_ngay_ct1 = v6ColorDateTimePick1.Value;
-            V6Setting.M_ngay_ct2 = v6ColorDateTimePick2.Value;
+            V6Setting.M_ngay_ct1 = v6ColorDateTimePick1.Date;
+            V6Setting.M_ngay_ct2 = v6ColorDateTimePick2.Date;
 
             var result = "";
             SortedDictionary<string, object> keys = V6ControlFormHelper.GetFormDataDictionary(locThoiGian1);
@@ -244,8 +244,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
             var dateFilter = string.Format("{0}ngay_ct BETWEEN '{1}' AND '{2}'",
                 tableLable.Length > 0 ? tableLable + "." : "",
-                v6ColorDateTimePick1.Value.ToString("yyyyMMdd"),
-                v6ColorDateTimePick2.Value.ToString("yyyyMMdd")
+                v6ColorDateTimePick1.YYYYMMDD,
+                v6ColorDateTimePick2.YYYYMMDD
                 );
             if (result.Length > 0)
             {

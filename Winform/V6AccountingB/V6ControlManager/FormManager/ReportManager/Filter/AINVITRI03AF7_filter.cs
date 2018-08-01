@@ -4,9 +4,7 @@ using System.Data.SqlClient;
 using System.Reflection;
 using System.Windows.Forms;
 using V6Controls;
-using V6Init;
 using V6ReportControls;
-using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
@@ -58,8 +56,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             result = new List<SqlParameter>
             {
-                new SqlParameter("@nam", dateYear.Value.Year),
-                new SqlParameter("@thang", dateMonth.Value.Month),
+                new SqlParameter("@nam", dateYear.Date.Year),
+                new SqlParameter("@thang", dateMonth.Date.Month),
                 new SqlParameter("@Ma_kh", txtMaKh.Text),
                 new SqlParameter("@Advance", advance),//mavitri like???
             };
@@ -79,8 +77,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 if (data.ContainsKey("MA_VT")) lineMaVatTu.VvarTextBox.Text = data["MA_VT"].ToString().Trim();
 
                 var now = DateTime.Now;
-                if (data.ContainsKey("NAM")) dateYear.Value = new DateTime(ObjectAndString.ObjectToInt(data["NAM"]), now.Month, now.Day);
-                if (data.ContainsKey("THANG")) dateMonth.Value = new DateTime(now.Year, ObjectAndString.ObjectToInt(data["THANG"]), now.Day);
+                if (data.ContainsKey("NAM")) dateYear.SetValue(new DateTime(ObjectAndString.ObjectToInt(data["NAM"]), now.Month, now.Day));
+                if (data.ContainsKey("THANG")) dateMonth.SetValue(new DateTime(now.Year, ObjectAndString.ObjectToInt(data["THANG"]), now.Day));
 
                 if (data.ContainsKey("MA_KH")) txtMaKh.Text = data["MA_KH"].ToString().Trim();
             }

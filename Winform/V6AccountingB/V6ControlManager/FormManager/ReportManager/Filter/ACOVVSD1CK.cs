@@ -13,7 +13,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F3 = false;
             F5 = false;
 
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
 
@@ -74,7 +74,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             // result.Add(new SqlParameter("@Tk", TxtTk.Text.Trim()));
 
 
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
             int Detail = 1;
 
             if (rdo_khonggoptk.Checked)
@@ -82,7 +82,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             else
                 Detail = 0;
             result.Add(new SqlParameter("@du_kh_yn", Detail));
-            result.Add(new SqlParameter("@Date", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Date", dateNgay_ct2.YYYYMMDD));
 
             var and = radAnd.Checked;
 

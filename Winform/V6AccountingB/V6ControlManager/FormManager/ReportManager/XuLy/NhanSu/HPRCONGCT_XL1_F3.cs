@@ -198,39 +198,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             //}
         }
 
-        private bool ValidateData()
-        {
-            //try
-            //{
-            //    byte status = 0;
-            //    var dataOld = new SortedDictionary<string, object>();
-            //    if (_mode == V6Mode.Edit)
-            //    {
-            //        status = 0;
-            //        dataOld.AddRange(_data);
-            //    }
-            //    else
-            //    {
-            //        status = 1;
-            //        dataOld = GetData();
-            //    }
-                
-            //    //bool valid = V6BusinessHelper.IsValidThreeCode_OneDate(_tableName, status,
-            //    //    "MA_NS", txtMaNhanSu.Text, (dataOld["MA_NS"]??"").ToString().Trim(),
-            //    //    "MA_CONG", txtMaCong.Text, (dataOld["MA_CONG"]??"").ToString().Trim(),
-            //    //    "MA_BP", (txtMaBp.Value + "").Trim(), (dataOld["MA_BP"]??"").ToString().Trim(),
-            //    //    "NGAY", dateNgay.Value.ToString("yyyyMMdd"), ObjectAndString.ObjectToFullDateTime(dataOld["NGAY"]).ToString("yyyyMMdd")
-            //    //    );
-            //    //return valid;
-            //}
-            //catch (Exception ex)
-            //{
-            //    this.ShowErrorException("ValidateData", ex);
-            //}
-            return false;
-        }
-
-
         private void btnHuy_Click(object sender, EventArgs e)
         {
             Dispose();

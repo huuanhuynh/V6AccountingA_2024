@@ -35,7 +35,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                //dateNgay_ct1.Value = dateNgay_ct1.Value.AddMonths(-1);
+                //dateNgay_ct1.SetValue(dateNgay_ct1.Value.AddMonths(-1));
             }
             catch (Exception ex)
             {
@@ -100,10 +100,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 
                 SqlParameter[] plist =
                 {
-                    new SqlParameter("@Nam", dateYear.Value.Year), 
-                    new SqlParameter("@Thang", dateMonth.Value.Month), 
-                    new SqlParameter("@Ma_kh", txtMaKh.Text), 
-                    new SqlParameter("@Advance", advance), 
+                    new SqlParameter("@Nam", dateYear.Date.Year),
+                    new SqlParameter("@Thang", dateMonth.Date.Month),
+                    new SqlParameter("@Ma_kh", txtMaKh.Text),
+                    new SqlParameter("@Advance", advance),
                 };
                 _ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, plist);
 
@@ -153,8 +153,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (d.ContainsKey("CUOI_NGAY"))
                 {
                     DateTime date = ObjectAndString.ObjectToFullDateTime(d["CUOI_NGAY"]);
-                    dateYear.Value = date;
-                    dateMonth.Value = date;
+                    dateYear.SetValue(date);
+                    dateMonth.SetValue(date);
                 }
                 if (d.ContainsKey("MA_KHO"))
                 {
@@ -375,8 +375,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var currentRowData = new SortedDictionary<string, object>();
 
                 currentRowData["MA_KH"] = txtMaKh.Text;
-                currentRowData["NAM"] = dateYear.Value.Year;
-                currentRowData["THANG"] = dateMonth.Value.Month;
+                currentRowData["NAM"] = dateYear.Date.Year;
+                currentRowData["THANG"] = dateMonth.Date.Month;
                 currentRowData["MA_KHO"] = lineMaKho.StringValue;
                 currentRowData["MA_VITRI"] = lineMaVitri.StringValue;
                 currentRowData["MA_VT"] = lineMaVatTu.StringValue;

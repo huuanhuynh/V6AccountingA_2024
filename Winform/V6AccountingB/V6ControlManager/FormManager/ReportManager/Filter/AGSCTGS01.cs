@@ -22,8 +22,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F8 = true;
             F9 = true;
             
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
             FixButtonText();
             
@@ -31,8 +31,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void FixButtonText()
         {
-            var nMonth = dateNgay_ct1.Value.Month + 1;
-            var nYear = dateNgay_ct2.Value.Year;
+            var nMonth = dateNgay_ct1.Date.Month + 1;
+            var nYear = dateNgay_ct2.Date.Year;
             if (nMonth == 13)
             {
                 nMonth = 1;
@@ -50,8 +50,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             var result = new List<SqlParameter>();
 
-            result.Add(new SqlParameter("@thang", dateNgay_ct1.Value.Month));
-            result.Add(new SqlParameter("@nam", dateNgay_ct2.Value.Year));
+            result.Add(new SqlParameter("@thang", dateNgay_ct1.Date.Month));
+            result.Add(new SqlParameter("@nam", dateNgay_ct2.Date.Year));
             
             return result;
         }
@@ -63,13 +63,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void dateNgay_ct1_ValueChanged(object sender, EventArgs e)
         {
-            Number1 = dateNgay_ct1.Value.Month;
+            Number1 = dateNgay_ct1.Date.Month;
             FixButtonText();
         }
 
         private void dateNgay_ct2_ValueChanged(object sender, EventArgs e)
         {
-            Number2 = dateNgay_ct2.Value.Year;
+            Number2 = dateNgay_ct2.Date.Year;
             FixButtonText();
         }
 
@@ -84,8 +84,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 if (_ds == null) return;
 
-                var nMonth = dateNgay_ct1.Value.Month + 1;
-                var nYear = dateNgay_ct2.Value.Year;
+                var nMonth = dateNgay_ct1.Date.Month + 1;
+                var nYear = dateNgay_ct2.Date.Year;
                 if (nMonth == 13)
                 {
                     nMonth = 1;
@@ -109,8 +109,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                 plist = new []
                 {
-                    new SqlParameter("@thang", dateNgay_ct1.Value.Month), 
-                    new SqlParameter("@nam", dateNgay_ct2.Value.Year)
+                    new SqlParameter("@thang", dateNgay_ct1.Date.Month), 
+                    new SqlParameter("@nam", dateNgay_ct2.Date.Year)
                 };
                 V6BusinessHelper.ExecuteProcedure("AGSCTGS01_COPY", plist);
                 var xulybase = V6ControlFormHelper.FindParent<XuLyBase>(this) as XuLyBase;
@@ -134,8 +134,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 
                 var plist = new[]
                 {
-                    new SqlParameter("@thang", dateNgay_ct1.Value.Month), 
-                    new SqlParameter("@nam", dateNgay_ct2.Value.Year)
+                    new SqlParameter("@thang", dateNgay_ct1.Date.Month), 
+                    new SqlParameter("@nam", dateNgay_ct2.Date.Year)
                 };
                 V6BusinessHelper.ExecuteProcedure("AGSCTGS01_A", plist);
                 var xulybase = V6ControlFormHelper.FindParent<XuLyBase>(this) as XuLyBase;

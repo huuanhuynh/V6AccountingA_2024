@@ -18,7 +18,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             TxtMakho.VvarTextBox.Text = (V6Setting.M_Ma_kho ?? "").Trim();
             
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             if (V6Login.MadvcsCount <= 1)
@@ -73,11 +73,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 V6Setting.M_Ma_kho = TxtMakho.StringValue;
             }
             
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
 
             RptExtraParameters = new SortedDictionary<string, object>();
-            RptExtraParameters.Add("NGAY_CT1", dateNgay_ct2.Value);
-            RptExtraParameters.Add("NGAY_CT2", dateNgay_ct2.Value);
+            RptExtraParameters.Add("NGAY_CT1", dateNgay_ct2.Date);
+            RptExtraParameters.Add("NGAY_CT2", dateNgay_ct2.Date);
 
 
             RptExtraParameters.Add("MA_KHO", TxtMakho.IsSelected ? TxtMakho.VvarTextBox.Text.Trim() : "");
@@ -85,7 +85,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var result = new List<SqlParameter>();
             
-            result.Add(new SqlParameter("@EndDate", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@EndDate", dateNgay_ct2.YYYYMMDD));
                         
             
             var and = radAnd.Checked;

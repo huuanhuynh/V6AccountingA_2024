@@ -13,8 +13,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F3 = true;
             F5 = false;
 
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             if (V6Login.MadvcsCount <= 1)
@@ -84,8 +84,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var result = new List<SqlParameter>();
 
-            V6Setting.M_ngay_ct1 = dateNgay_ct1.Value;
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
 
             var loaibc = 0;
             var bo_nkcd = 0;
@@ -100,8 +100,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
 
 
-            result.Add(new SqlParameter("@StartDate", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@EndDate", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@StartDate", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@EndDate", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@LoaiBC", loaibc));
             result.Add(new SqlParameter("@bo_nkcd", bo_nkcd));
                                   

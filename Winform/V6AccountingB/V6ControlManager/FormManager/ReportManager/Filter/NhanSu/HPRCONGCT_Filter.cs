@@ -18,8 +18,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
             F5 = true;
             F9 = true;
             
-            dateNgay_ct1.Value = V6Setting.M_SV_DATE;
-            dateNgay_ct2.Value = V6Setting.M_SV_DATE;
+            dateNgay_ct1.SetValue(V6Setting.M_SV_DATE);
+            dateNgay_ct2.SetValue(V6Setting.M_SV_DATE);
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
 
@@ -37,7 +37,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
         {
             var result = new List<SqlParameter>();
             Check1 = radTheoNgay.Checked;
-            Date1 = dateNgay_ct1.Value.Date;
+            Date1 = dateNgay_ct1.Date;
             
             result.Add(new SqlParameter("@dWork", Date1));
             result.Add(new SqlParameter("@nUserID", V6Login.UserId));

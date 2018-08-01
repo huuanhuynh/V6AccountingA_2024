@@ -25,8 +25,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 txtMaDvcs.Enabled = false;
             }
 
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
         }
 
         private string _stt_rec;
@@ -39,8 +39,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             var result = new List<SqlParameter>();
 
-            result.Add(new SqlParameter("@ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@Ma_kh", maKhachHang.StringValueCheck));
             result.Add(new SqlParameter("@Tk", taiKhoan.StringValueCheck));
             result.Add(new SqlParameter("@Ma_dvcs", txtMaDvcs.StringValueCheck));
@@ -59,8 +59,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 if (data.ContainsKey("NGAY_CT"))
                 {
                     var date = (DateTime)data["NGAY_CT"];
-                    dateNgay_ct1.Value = date;
-                    dateNgay_ct2.Value = date;
+                    dateNgay_ct1.SetValue(date);
+                    dateNgay_ct2.SetValue(date);
                 }
                 if (data.ContainsKey("MA_DVCS")) txtMaDvcs.VvarTextBox.Text = data["MA_DVCS"].ToString().Trim();
             }

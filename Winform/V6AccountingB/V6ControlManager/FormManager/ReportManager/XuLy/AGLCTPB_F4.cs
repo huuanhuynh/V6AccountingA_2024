@@ -59,9 +59,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                dateNam.Value = new DateTime(_year, 1, 1);
-                dateThang1.Value = V6Setting.M_SV_DATE;
-                dateThang2.Value = V6Setting.M_SV_DATE;
+                dateNam.SetValue(new DateTime(_year, 1, 1));
+                dateThang1.SetValue(V6Setting.M_SV_DATE);
+                dateThang2.SetValue(V6Setting.M_SV_DATE);
                 txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
                 if (V6Login.MadvcsCount <= 1){
                     txtMaDvcs.Enabled = false;
@@ -85,10 +85,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            
             try
             {
-               
                 //@Type AS VARCHAR(8),
                 //@Year AS INT,
                 //@Period1 AS INT = 0,
@@ -97,26 +95,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //@User_id INT = 1, 
                 //@Ma_dvcs VARCHAR(50) = ''
 
-
                 SqlParameter[] plist =
-                        {
-                            new SqlParameter("@Type","NEW"),
-                            new SqlParameter("@Year",dateNam.Value.Year),
-                            new SqlParameter("@Period1",dateThang1.Value.Month),
-                            new SqlParameter("@Period2",dateThang2.Value.Month),
-                            new SqlParameter("@Stt_recs",_sttreclist),
-                            new SqlParameter("@User_id", V6Login.UserId),
-                            new SqlParameter("@Ma_dvcs",txtMaDvcs.StringValue)
-
-                        };
-
+                {
+                    new SqlParameter("@Type", "NEW"),
+                    new SqlParameter("@Year", dateNam.Date.Year),
+                    new SqlParameter("@Period1", dateThang1.Date.Month),
+                    new SqlParameter("@Period2", dateThang2.Date.Month),
+                    new SqlParameter("@Stt_recs", _sttreclist),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                    new SqlParameter("@Ma_dvcs", txtMaDvcs.StringValue)
+                };
                 V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
-
 
                 OnUpdateSuccessEvent();
                 Dispose();
                 V6ControlFormHelper.ShowMainMessage("Thực hiện xong.");
-
             }
             catch (Exception ex)
             {

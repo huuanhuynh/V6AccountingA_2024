@@ -192,12 +192,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             {
                 StringBuilder sb = new StringBuilder();
                 sb.AppendFormat("Ngay_ct BETWEEN '{0}' AND '{1}'",
-                    v6ColorDateTimePick1.Value.ToString("yyyyMMdd"),
-                    v6ColorDateTimePick2.Value.ToString("yyyyMMdd"));
+                    v6ColorDateTimePick1.YYYYMMDD,
+                    v6ColorDateTimePick2.YYYYMMDD);
 
                 result = string.Format("Ngay_ct BETWEEN '{0}' AND '{1}'",
-                    v6ColorDateTimePick1.Value.ToString("yyyyMMdd"),
-                    v6ColorDateTimePick2.Value.ToString("yyyyMMdd"));
+                    v6ColorDateTimePick1.YYYYMMDD,
+                    v6ColorDateTimePick2.YYYYMMDD);
 
                 if (TxtMa_bp.Text.Trim() != "")
                 {

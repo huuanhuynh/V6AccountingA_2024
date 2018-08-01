@@ -122,7 +122,7 @@ namespace V6ReportControls
                 if (_vtextBox != null) return _vtextBox.Text.Trim();
                 if (_lookuptextBox != null) return _lookuptextBox.Value;
                 if (_numberTextBox != null) return _numberTextBox.Value;
-                if (_dateTimePick != null) return _dateTimePick.Value;
+                if (_dateTimePick != null) return _dateTimePick.Date;
                 if (_dateTimeColor != null) return _dateTimeColor.Value;
                 if (_checkBox != null) return _checkBox.Checked;
                 return null;
@@ -137,7 +137,7 @@ namespace V6ReportControls
                 if (_vtextBox != null) return _vtextBox.Text.Trim();
                 if (_lookuptextBox != null) return _lookuptextBox.Value.ToString();
                 if (_numberTextBox != null) return _numberTextBox.Value.ToString(CultureInfo.InvariantCulture);
-                if (_dateTimePick != null) return _dateTimePick.Value.ToString("yyyyMMdd");
+                if (_dateTimePick != null) return _dateTimePick.YYYYMMDD;
                 if (_dateTimeColor != null) return ObjectAndString.ObjectToString(_dateTimeColor.Value, "yyyyMMdd");
                 if (_checkBox != null) return _checkBox.Checked?"1":"0";
                 return null;
@@ -445,10 +445,10 @@ namespace V6ReportControls
             }
             else if (_dateTimePick != null)
             {
-                if ("" + value == "M_NGAY_CT1") _dateTimePick.Value = V6Setting.M_ngay_ct1;
-                else if ("" + value == "M_NGAY_CT2") _dateTimePick.Value = V6Setting.M_ngay_ct2;
+                if ("" + value == "M_NGAY_CT1") _dateTimePick.SetValue(V6Setting.M_ngay_ct1);
+                else if ("" + value == "M_NGAY_CT2") _dateTimePick.SetValue(V6Setting.M_ngay_ct2);
                 else if (!string.IsNullOrEmpty("" + value))
-                    _dateTimePick.Value = ObjectAndString.ObjectToFullDateTime(value);
+                    _dateTimePick.SetValue(ObjectAndString.ObjectToFullDateTime(value));
             }
             else if (_dateTimeColor != null)
             {

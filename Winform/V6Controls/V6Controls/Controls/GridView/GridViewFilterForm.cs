@@ -82,18 +82,18 @@ namespace V6Controls.Controls.GridView
                     dateValue2.Visible = true;
 
                     var currentCellValue = ObjectAndString.ObjectToFullDateTime(_grid.CurrentCell.Value);
-                    dateValue.Value = currentCellValue;
-                    dateValue2.Value = currentCellValue;
+                    dateValue.SetValue(currentCellValue);
+                    dateValue2.SetValue(currentCellValue);
 
-                    Value = dateValue.Value;
-                    Value2 = dateValue2.Value;
+                    Value = dateValue.Date;
+                    Value2 = dateValue2.Date;
                     dateValue.ValueChanged += (sender, e) =>
                     {
-                        Value = dateValue.Value;
+                        Value = dateValue.Date;
                     };
                     dateValue2.ValueChanged += (sender, e) =>
                     {
-                        Value2 = dateValue2.Value;
+                        Value2 = dateValue2.Date;
                     };
                 }
             }

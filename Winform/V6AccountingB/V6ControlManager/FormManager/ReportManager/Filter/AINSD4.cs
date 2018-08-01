@@ -73,7 +73,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //_parameters.Add("MA_VT", TxtMa_vt.IsSelected ? TxtMakho.VvarTextBox.Text.Trim() : "");
 
             var result = new List<SqlParameter>();
-            result.Add(new SqlParameter("@EndDate", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@EndDate", dateNgay_ct2.YYYYMMDD));
 
 
 

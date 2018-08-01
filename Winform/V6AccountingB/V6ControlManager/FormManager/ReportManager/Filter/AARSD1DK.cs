@@ -19,7 +19,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             String2 = "TEN_KH";
             String1 = "MA_KH";
 
-            dateNgay_ct0.Value = V6Setting.M_ngay_ct1;
+            dateNgay_ct0.SetValue(V6Setting.M_ngay_ct1);
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
 
             if (V6Login.MadvcsCount <= 1)
@@ -74,7 +74,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
           
 
-            result.Add(new SqlParameter("@EndDate", dateNgay_ct0.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@EndDate", dateNgay_ct0.YYYYMMDD));
            
                         
             

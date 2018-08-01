@@ -44,8 +44,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         public override List<SqlParameter> GetFilterParameters()
         {
             var result = new List<SqlParameter>();
-            result.Add(new SqlParameter("@ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@LSTMA_CT", lineMact.StringValue));
             var key0 = GetFilterStringByFields(new List<string>()
             {

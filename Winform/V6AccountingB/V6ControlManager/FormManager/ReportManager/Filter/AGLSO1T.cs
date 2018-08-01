@@ -19,8 +19,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             TxtTk_sc.Text = "2";
             txtbac_tk.Value = 0;
           
-            dateNgay_ct1.Value = V6Setting.M_ngay_ct1;
-            dateNgay_ct2.Value = V6Setting.M_ngay_ct2;
+            dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
+            dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             
@@ -84,15 +84,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
          
             
            
-            V6Setting.M_ngay_ct1 = dateNgay_ct1.Value;
-            V6Setting.M_ngay_ct2 = dateNgay_ct2.Value;
+            V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
+            V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
 
             if (txtbac_tk.Value < 0)
                 txtbac_tk.Value = 0;
 
             result.Add(new SqlParameter("@Tk", txtTk.StringValue));
-            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.Value.ToString("yyyyMMdd")));
-            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.Value.ToString("yyyyMMdd")));
+            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@Tk_sc",TxtTk_sc.Text.Trim() ));
             result.Add(new SqlParameter("@Bac_tk",txtbac_tk.Value));
 

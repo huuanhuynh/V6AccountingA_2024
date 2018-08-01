@@ -20,14 +20,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
     public class XLSCA1_Control : XuLyBase
     {
-        private readonly V6Categories _categories = new V6Categories();
         private const string ID_FIELD = "SO_CT", NAME_FIELD = "NGAY_CT";
         private DataTable data;
         private List<DataRow> rows_for_remove;
         /// <summary>
         /// Kiem tra du lieu hop le
         /// </summary>
-        private bool check = false;
+        private bool check;
 
         public XLSCA1_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
@@ -58,7 +57,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 data = Excel_File.Sheet1ToDataTable(FilterControl.String1);
                 
-
                 //Check1: chuyen ma, String12 A to U
                 if (FilterControl.Check1)
                 {
@@ -220,21 +218,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 DateTime? dateMin = null, dateMax = null;
                 foreach (DataRow row in data.Rows)
                 {
-                    var date = ObjectAndString.ObjectToDate(row["NGAY_CT"]);
-                    if (date != null)
+                    var date = ObjectAndString.ObjectToFullDateTime(row["NGAY_CT"]);
+                    if (dateMin == null || date < dateMin)
                     {
-                        if (dateMin == null || date < dateMin)
-                        {
-                            dateMin = date;
-                        }
-
-                        if (dateMax == null || date > dateMax)
-                        {
-                            dateMax = date;
-                        }
+                        dateMin = date;
+                    }
+                    if (dateMax == null || date > dateMax)
+                    {
+                        dateMax = date;
                     }
                     string so_ct = row["SO_CT"].ToString().Trim().ToUpper();
-                    string ngay_ct = date.Value.ToString("yyyyMMdd");
+                    string ngay_ct = date.ToString("yyyyMMdd");
+
                     if (so_ct != "" && ngay_ct != "")
                     {
                         var key = so_ct + ":" + ngay_ct;
@@ -528,39 +523,31 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
 
                 //Lay thong tin vt
-                if (one.ContainsKey("TK_I"))
-                {
-                    var TK_I = one["TK_I"].ToString().Trim();
-                    SqlParameter[] plist =
-                    {
-                        new SqlParameter("@p1", TK_I), 
-                    };
-                    var vt_data = V6BusinessHelper.Select("ALTK", "*", "LOAI_TK=1 AND TK=@p1", "", "", plist).Data;
-                    if (vt_data != null && vt_data.Rows.Count > 0)
-                    {
-                        var vt_row_data = vt_data.Rows[0].ToDataDictionary();
+                //if (one.ContainsKey("TK_I"))
+                //{
+                    //var TK_I = one["TK_I"].ToString().Trim();
+                    //SqlParameter[] plist =
+                    //{
+                    //    new SqlParameter("@p1", TK_I), 
+                    //};
+                    //var vt_data = V6BusinessHelper.Select("ALTK", "*", "LOAI_TK=1 AND TK=@p1", "", "", plist).Data;
+                    //if (vt_data != null && vt_data.Rows.Count > 0)
+                    //{
+                        //var vt_row_data = vt_data.Rows[0].ToDataDictionary();
                         //one["DVT1"] = vt_row_data["DVT"];
                         //one["HE_SO1"] = 1;
                         //one["TK_VT"] = vt_row_data["TK_VT"];
                         //one["DVT"] = vt_row_data["DVT"];
                         //one["TK_DT"] = vt_row_data["TK_DT"];
                         //one["TK_GV"] = vt_row_data["TK_GV"];
-                    }
-                }
+                    //}
+                //}
 
                 result.Add(one);
             }
             return result;
         }
-
-        /// <summary>
-        /// Nhập thuế tự động
-        /// </summary>
-        /// <param name="dataRows"></param>
-        /// <param name="sttRec"></param>
-        /// <returns></returns>
-
-
+        
         void tF9_Tick(object sender, EventArgs e)
         {
             if (f9Running)

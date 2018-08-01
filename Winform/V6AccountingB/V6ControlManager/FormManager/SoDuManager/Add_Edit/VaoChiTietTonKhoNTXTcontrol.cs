@@ -66,7 +66,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             var data = base.GetData();
             data["MA_CT"] = "S08";
             data["PN_CO_GIA"] = 1;
-            data["NGAY"] = dateNgayCt.Value.Day;
+            data["NGAY"] = dateNgayCt.Date.Day;
             var ton_kho = txtton00.Value;
             var so_du = txtdu00.Value;
             var so_du_nt = txtdu_nt00.Value;

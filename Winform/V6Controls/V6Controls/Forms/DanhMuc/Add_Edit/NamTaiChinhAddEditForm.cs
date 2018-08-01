@@ -23,7 +23,7 @@
         
         private void TxtNgay_ky1_Leave(object sender, System.EventArgs e)
         {
-            TxtNam_bd.Value = TxtNgay_ky1.Value.Year;
+            TxtNam_bd.Value = TxtNgay_ky1.Date.Year;
         }
     }
 }
