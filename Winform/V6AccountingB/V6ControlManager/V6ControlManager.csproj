@@ -1461,6 +1461,12 @@
       <DependentUpon>PhanNhomForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\FormManagerHelper.cs" />
+    <Compile Include="FormManager\HeThong\QuanLyHeThong\ChangeDVCSControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\HeThong\QuanLyHeThong\ChangeDVCSControl.Designer.cs">
+      <DependentUpon>ChangeDVCSControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\HeThong\QuanLyHeThong\OnlineManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5921,6 +5927,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\DanhMucManager\PhanNhom\PhanNhomForm.resx">
       <DependentUpon>PhanNhomForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\HeThong\QuanLyHeThong\ChangeDVCSControl.resx">
+      <DependentUpon>ChangeDVCSControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\HeThong\QuanLyHeThong\OnlineManager.resx">
       <DependentUpon>OnlineManager.cs</DependentUpon>

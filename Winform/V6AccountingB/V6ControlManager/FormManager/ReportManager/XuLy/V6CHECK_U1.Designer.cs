@@ -121,7 +121,7 @@
             "2 - Chỉ cập nhập vào kho"});
             this.cboProcList.Location = new System.Drawing.Point(253, 8);
             this.cboProcList.Name = "cboProcList";
-            this.cboProcList.Size = new System.Drawing.Size(320, 24);
+            this.cboProcList.Size = new System.Drawing.Size(304, 24);
             this.cboProcList.TabIndex = 5;
             this.cboProcList.SelectedIndexChanged += new System.EventHandler(this.cboProcList_SelectedIndexChanged);
             // 

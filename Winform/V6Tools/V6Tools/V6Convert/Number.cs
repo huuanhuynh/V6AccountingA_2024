@@ -58,6 +58,38 @@ namespace V6Tools.V6Convert
                 return GiaTriBieuThuc("" + a + before + (int)GiaTriBieuThuc(b, DATA) + after + c, DATA);
             }
 
+            // Xử lý căn bậc 2
+            int sqrtOpenIndex = bieu_thuc.IndexOf("SQRT(", StringComparison.Ordinal);
+            if (sqrtOpenIndex >= 0)
+            {
+                var iopen = bieu_thuc.IndexOf('(', 0);
+                var iclose = bieu_thuc.Length;
+                for (var i = iopen; i < bieu_thuc.Length; i++)
+                {
+                    if (bieu_thuc[i] == '(') iopen = i;
+                    else if (bieu_thuc[i] == ')')
+                    {
+                        iclose = i;
+                        break;
+                    }
+                }
+                //
+                string before = "", after = "";
+                if (iopen <= 0) before = "+";
+                else if ("+-*/(".IndexOf(bieu_thuc[iopen - 1], 0) < 0) before = "*"; //Nếu trước dấu ( không phải là
+                if (iclose >= bieu_thuc.Length - 1) after = "+";
+                else if ("+-*/)!".IndexOf(bieu_thuc[iclose + 1], 0) < 0) after = "*"; //nếu sau dấu ) không có +-*/)!
+
+                var a = bieu_thuc.Substring(0, sqrtOpenIndex);
+                if (a.Trim() == "") before = "";
+                var b = bieu_thuc.Substring(iopen + 1, iclose - iopen - 1); //a(b)c
+
+                var c = bieu_thuc.Substring(iclose + 1);
+                if (c.Trim() == "") after = "";
+                //alert(a + ';' + b + ';' + c);
+                return GiaTriBieuThuc("" + a + before + Sqrt(GiaTriBieuThuc(b, DATA)) + after + c, DATA);
+            }
+
             //xử lý Round();
             bieu_thuc = bieu_thuc.ToUpper();
             int roundOpenIndex = bieu_thuc.IndexOf("ROUND(", StringComparison.Ordinal);
@@ -232,6 +264,11 @@ namespace V6Tools.V6Convert
                 }
                 return ObjectAndString.ObjectToDecimal(BIEU_THUC);
             }
+        }
+
+        private static object Sqrt(decimal value)
+        {
+            return Math.Sqrt((Double)value);
         }
 
         private static int factorial(int n)

@@ -105,11 +105,19 @@ namespace V6Controls.Forms.Viewer
 
         void AppendStringToMonitorData(string text)
         {
+            if (monitorData.Length >= 25)
+            {
+                return;
+            }
             monitorData += text;
         }
 
         void SetStringToMonitorData(string text)
         {
+            if (text.Length > 25)
+            {
+                return;
+            }
             monitorData = text;
         }
 

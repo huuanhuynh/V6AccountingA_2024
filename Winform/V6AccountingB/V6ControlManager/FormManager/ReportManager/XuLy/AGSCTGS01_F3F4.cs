@@ -64,7 +64,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             _stt_rec = stt_rec;
             if (mode == V6Mode.Edit)
             {
-                _uid = ((System.Guid) data["UID"]).ToString();
+                _uid = ((Guid) data["UID"]).ToString();
             }
             _data = data;
             InitializeComponent();
@@ -84,7 +84,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     TXTNO_CO.Value = 1;
                 }
 
-
                 var length = V6BusinessHelper.VFV_iFsize("ARCTGS01", "SO_LO");
                 if (length == 0) length = 12;
                 txtSo_lo.MaxLength = length;
@@ -92,7 +91,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (length == 0) length = 128;
                 txtdien_giai.MaxLength = length;
                 v6IndexComboBox1.SelectedIndex = 0;
-
             }
             catch (Exception ex)
             {

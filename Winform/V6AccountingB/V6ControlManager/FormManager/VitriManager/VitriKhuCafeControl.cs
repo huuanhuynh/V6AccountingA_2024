@@ -261,7 +261,7 @@ namespace V6ControlManager.FormManager.VitriManager
                 {
                     if (BaoGia_nd51 == 1)
                     {
-                        hoadonCafe_Invoice.IncreaseSl_inAM(stt_rec);
+                        hoadonCafe_Invoice.IncreaseSl_inAM(stt_rec, null);
                     }
                     sender.Dispose();
                 };

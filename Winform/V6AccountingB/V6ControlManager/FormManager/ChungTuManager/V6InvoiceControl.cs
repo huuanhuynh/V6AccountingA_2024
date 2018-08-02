@@ -92,6 +92,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public DataTable AM { get { return am; } set { am = value;  OnAmChanged(value);} }
         private DataTable am;
         /// <summary>
+        /// Dữ liệu AM hiện tại.
+        /// </summary>
+        public DataRow AM_current
+        {
+            get
+            {
+                if (am == null || CurrentIndex < 0 || CurrentIndex >= am.Rows.Count) return null;
+                return am.Rows[CurrentIndex];
+            }
+        }
+
+        /// <summary>
         /// Nếu trước đó đã có hiển thị chứng từ mà bấm (mới) biến này sẽ lưu lại.
         /// </summary>
         public DataRow AM_old;
@@ -257,6 +269,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 List<string> add_readonly = new List<string>();
                 List<string> edit_readonly = new List<string>();
+                int sl_in = 0;
+                if(AM.Columns.Contains("SL_IN")) sl_in = ObjectAndString.ObjectToInt(AM_current["SL_IN"]);
+
                 foreach (string s in invoice.GRD_READONLY)
                 {
                     if (s.Contains(":"))
@@ -266,6 +281,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         {
                             if(ss[1].Contains("M")) add_readonly.Add(ss[0]);
                             if(ss[1].Contains("S")) edit_readonly.Add(ss[0]);
+                            if(sl_in > 0 && ss[1].Contains("I")) edit_readonly.Add(ss[0]);
                         }
                     }
                     else
@@ -274,7 +290,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         edit_readonly.Add(s);
                     }
                 }
-
+                
                 if (Mode == V6Mode.Add)
                 {
                     V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, edit_readonly, false);
@@ -284,6 +300,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 {
                     V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, add_readonly, false);
                     V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, edit_readonly, true);
+                    //V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, in_readonly, true);
                 }
                 
                 //V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, invoice.GRD_READONLY, true);
@@ -1653,7 +1670,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         c.Dock = DockStyle.Fill;
                         c.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
                         {
-                            if (hoadon_nd51 > 0) Invoice.IncreaseSl_inAM(stt_rec);
+                            if (hoadon_nd51 > 0) Invoice.IncreaseSl_inAM(stt_rec, AM_current);
                             if (!sender.IsDisposed) sender.Dispose();
                         };
                         c.PrintMode = printMode;

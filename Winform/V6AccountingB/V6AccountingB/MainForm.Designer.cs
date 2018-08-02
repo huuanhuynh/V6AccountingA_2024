@@ -49,6 +49,8 @@ namespace V6AccountingB
             this.lblStatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panelLogin = new System.Windows.Forms.Panel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.changeDVCSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
@@ -68,6 +70,7 @@ namespace V6AccountingB
             this.statusStrip1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelLogin.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenuShow.SuspendLayout();
             this.panelView.SuspendLayout();
@@ -125,6 +128,7 @@ namespace V6AccountingB
             // 
             // panelLogin
             // 
+            this.panelLogin.ContextMenuStrip = this.contextMenuStrip1;
             this.panelLogin.Controls.Add(this.pictureBox1);
             this.panelLogin.Controls.Add(this.label2);
             this.panelLogin.Controls.Add(this.btnExit);
@@ -136,6 +140,20 @@ namespace V6AccountingB
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(153, 126);
             this.panelLogin.TabIndex = 1;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeDVCSToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+            // 
+            // changeDVCSToolStripMenuItem
+            // 
+            this.changeDVCSToolStripMenuItem.Name = "changeDVCSToolStripMenuItem";
+            this.changeDVCSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.changeDVCSToolStripMenuItem.Text = "Change Agent";
+            this.changeDVCSToolStripMenuItem.Click += new System.EventHandler(this.changeDVCSToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -619,6 +637,7 @@ namespace V6AccountingB
             this.panelMenu.ResumeLayout(false);
             this.panelLogin.ResumeLayout(false);
             this.panelLogin.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelMenuShow.ResumeLayout(false);
             this.panelView.ResumeLayout(false);
@@ -651,6 +670,8 @@ namespace V6AccountingB
         private System.Windows.Forms.Label label2;
         private QuickMenu quickMenu1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem changeDVCSToolStripMenuItem;
         
     }
 }

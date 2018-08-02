@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager;
+using V6ControlManager.FormManager.HeThong.QuanLyHeThong;
 using V6ControlManager.FormManager.MenuManager;
 using V6ControlManager.FormManager.ReportManager;
 using V6Controls;
@@ -636,6 +637,11 @@ namespace V6AccountingB
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             ShowCalculator();
+        }
+
+        private void changeDVCSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ChangeDVCSControl().ShowToForm(this, "Change Agent", false, true, false);
         }
 
         

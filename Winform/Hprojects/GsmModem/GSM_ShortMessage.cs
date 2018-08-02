@@ -136,7 +136,7 @@ namespace GSM
         //Thử một tin dài thiệt dài. Thử một tin dài thiệt dài. Thử một tin dài thiệt dài. 
         
         #endregion ctor
-
+        //long sms pdu http://mobiletidings.com/2009/02/18/combining-sms-messages/
         #region ==== First Octet ====
         /// <summary>
         /// Reply path. Parameter indicating that reply path exists.
@@ -770,8 +770,8 @@ namespace GSM
             //Tin nhan da giai ma.
             string thisMessage = Message;
             string referenUHD = GsmEncoding.GetRandomByte().ToString("X2");
-            string currentUHD = "";
-            int currentUDL = 0;
+            string currentUHD_UserHeaderData = "";
+            int currentUDL_MessageLength = 0;
             string currentUD = "";
             string currentMessage = "";
             string currentPDU = "";
@@ -906,7 +906,7 @@ namespace GSM
                     switch (bitType)
                     {
                         case 7:
-                            currentUHD = "050003";
+                            currentUHD_UserHeaderData = "050003";
                             if(thisMessage.Length>part7bitLength)
                             {
                                 currentMessage = thisMessage.Substring(0, part7bitLength);
@@ -919,7 +919,7 @@ namespace GSM
                                 currentUD = GsmEncoding.Encode7bitHex8First(currentMessage);
                                 thisMessage = "";
                             }
-                            currentUDL = currentMessage.Length + 7;//12 * 4 / 7;
+                            currentUDL_MessageLength = currentMessage.Length + 7;//12 * 4 / 7;
 
                             //if ((totalUD.Length * 4) / 7 > part7bitLength)
                             //{
@@ -937,7 +937,8 @@ namespace GSM
                             break;
                         case 8:
                             //currentUHD = "05" + this.TP_DCS.ToString("X2") + "03";
-                            currentUHD = "050003";
+                            //currentUHD = "050003";
+                            currentUHD_UserHeaderData = "050003";
                             if (this_UD.Length > part8bitLength * 2)
                             {
                                 currentUD = this_UD.Substring(0, part8bitLength * 2);
@@ -948,10 +949,11 @@ namespace GSM
                                 currentUD = this_UD;
                                 this_UD = "";
                             }
-                            currentUDL = currentUD.Length/2 + 6;
+                            currentUDL_MessageLength = currentUD.Length/2 + 6;
                             break;
                         case 16:
-                            currentUHD = "050803";
+                            //currentUHD = "050803";
+                            currentUHD_UserHeaderData = "050003";
                             if (this_UD.Length > part16bitLength * 4)
                             {
                                 currentUD = this_UD.Substring(0, part16bitLength * 4);
@@ -962,13 +964,14 @@ namespace GSM
                                 currentUD = this_UD;
                                 this_UD = "";
                             }
-                            currentUDL = ((currentUD.Length / 2) + 6);
+                            currentUDL_MessageLength = ((currentUD.Length / 2) + 6);
                             break;
                         default:
                             break;
                     }
                     //Hoàn thành UHD
-                    currentUHD = currentUHD + referenUHD + totalMessage.ToString("X2") + (i + 1).ToString("X2");
+                    // 050803 cố định là sai? nó gồm UHD = 0x05 IEI = 0×00 và IEDL = 0×03
+                    currentUHD_UserHeaderData = currentUHD_UserHeaderData + referenUHD + totalMessage.ToString("X2") + (i + 1).ToString("X2");
                     currentPDU = ""
                         + this.SC_Number
                         + this.FirstOctet.ToString("X2")
@@ -977,8 +980,8 @@ namespace GSM
                         + this.TP_PID.ToString("X2")
                         + this.TP_DCS.ToString("X2")
                         + this.TP_VP.ToString("X2")
-                        + currentUDL.ToString("X2")
-                        + currentUHD
+                        + currentUDL_MessageLength.ToString("X2")
+                        + currentUHD_UserHeaderData
                         + currentUD;
                     lengths[i] = GetATLength(currentPDU);
                     resultPDU[i] = currentPDU;

@@ -832,10 +832,19 @@ namespace V6AccountingBusiness.Invoices
             throw new NotImplementedException();
         }
 
-        public void IncreaseSl_inAM(string sttRec)
+        /// <summary>
+        /// Cập nhập số lượng in.
+        /// </summary>
+        /// <param name="sttRec"></param>
+        /// <param name="am"></param>
+        public void IncreaseSl_inAM(string sttRec, DataRow am)// = null)
         {
             var sql = string.Format("Update {0} Set Sl_in = Sl_in+1 Where Stt_rec=@p", AM_TableName);
-            SqlConnect.ExecuteNonQuery(CommandType.Text, sql, new SqlParameter("@p", sttRec));
+            var result = SqlConnect.ExecuteNonQuery(CommandType.Text, sql, new SqlParameter("@p", sttRec));
+            if (am != null && result > 0)
+            {
+                am["Sl_in"] = ObjectAndString.ObjectToInt(am["Sl_in"]) + 1;
+            }
         }
 
         public virtual SortedDictionary<string, string> LoadDefaultData(string lang, string itemId)

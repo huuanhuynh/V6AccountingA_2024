@@ -1,0 +1,120 @@
+﻿As discussed in a previous post, many features of SMS messages become available if you can set the User Data Header (UDH) field.
+
+When using a GSM modem in text mode you can’t sent a UDH, so you need to use PDU mode.
+
+How do you add a UDH?
+There are 2 things you need to do:
+
+Set the UDH bit in the first octet of the PDU. For an SMS-SUBMIT PDU (the only one we’ve been using so far) the value is normally 0×01. To indicate that a UDH is present we need to set bit 6 (0×40). So for an SMS-SUBMIT with UDH present we set the PDU type to 0×41.
+With the UDH bit set, this first octet of the payload (or User Data = UD) needs to indicate the length of the UDH in octets. This field is known as UDHL.
+
+The confusing part here is that the UDHL in in octets, but the User Data Length (UDL) is in septets (in the case of an GSM-7 encoded text message). Here is what a payload would look like:
+
+Size	Field	Description
+1 octet	UDL	size in septets (counting UDHL + UDH + text)
+1 octet	UDHL	size in octets (counting only UDH)
+n octets	UDH	 
+6 or fewer bits	filler	to assure the UD septets that follow are on a septet boundary.
+m septets	text	GSM-7 encoded characters
+GSM-7 encoded charcaters always start on a septet boundary, so if you have a UDH you might have to add some padding bits to have you text start at a septet boundary.
+ 
+
+If the text is UCS-2 encoded it would look simpler:
+
+Size	Field	Description
+1 octet	UDL	size in octets (counting UDHL + UDH + text). Each character in the text occupies a short (=2 octets).
+1 octet	UDHL	size in octets (counting only UDH)
+n octets	UDH	 
+m shorts	text	UCS-2 encoded characters.
+ 
+
+What is in a UDH?
+The UDH itself consists of one or more information elements (IE). An item is encoded in 3 fields:
+
+Size	Field	Description
+1 octet	IEI	Information element identifier
+1 octet	IEDL	Information element data length
+n octets	IED	Information element data
+ 
+
+There can be many information elements present in a UDH. The one IE we need to construct a big SMS message from several smaller messages is the IE with identifier (IEI) 0×00.
+
+This IEI has 3 values as part of its data:
+
+A concatenated short message reference number. If you send multiple concatenated SMS messages the receiving end will need to be able to figure out which part belongs to which large message. This reference number solves that problem.
+The total number of SMS messages in the large message.
+The sequence number of the current SMS message
+So in more detail, if an SMS message is number 2 of 3, this information element should be in the UDH field:
+
+Size	Field	Value	Description
+1 octet	IEI	0×00	Information element identifier for a concatenated short message
+1 octet	IEDL	0×03	Information element data length
+1 octet	 	0xa1	A reference number (must be the same for all parts of the same larger messages)
+1 octet	 	0×03	This message has 3 parts
+1 octet	 	0×02	This is part 2.
+ 
+
+Here is a complete set of AT commands to send a message consisting of 3 parts:
+
+First part:
+AT+CMGS=153<crlf>
+00[Red-41]000B915121551532F40000A0050003000301986F79B90D4AC3E7F53688FC66BFE5A0799A0
+E0AB7CB741668FC76CFCB637A995E9783C2E4343C3D4F8FD3EE33A8CC4ED359A079990C22BF41
+E5747DDE7E9341F4721BFE9683D2EE719A9C26D7DD74509D0E6287C56F791954A683C86FF65B5
+E06B5C36777181466A7E3F5B0AB4A0795DDE936284C06B5D3EE741B642FBBD3E1360B14AFA7E7
+<ctrl-Z>
+ 
+Field	Value	Description
+PDU-TYPE	[Red-0×41]	SMS-SUBMIT + UDH bit
+UDL	0xA0	Total payload length in septets (160)
+UDHL	0×05	User data header length
+UDH	0×0003000301	Concatenated message IE:
+IEI = 0×00
+IEDL = 0×03
+Ref nr = 0×00
+Total  = 0×03
+This part = 0×01
+ 
+
+Second part:
+AT+CMGS=153<crlf>
+0041010B915121551532F40000A005000300030240EEF79C2EAF9341657C593E4ED3C3F4F4DB0
+DAAB3D9E1F6F80D6287C56F797A0E72A7E769509D0E0AB3D3F17A1A0E2AE341E53068FC6EB7DF
+E43768FC76CFCBF17A98EE22D6D37350B84E2F83D2F2BABC0C22BFD96F3928ED06C9CB7079195
+D7693CBF2341D947683EC6F761D4E0FD3CB207B999DA683CAF37919344EB3D9F53688FC66BFE5
+<ctrl-Z>
+ 
+
+Field	Value	Description
+PDU-TYPE	0×41	SMS-SUBMIT + UDH bit
+UDL	0xA0	Total payload length in septets (160)
+UDHL	0×05	User data header length
+UDH	0×0003000302	Concatenated message IE:
+IEI = 0×00
+IEDL = 0×03
+Ref nr = 0×00
+Total  = 0×03
+This part = 0×02
+ 
+
+Third part:
+AT+CMGS=139<crlf>
+0041020B915121551532F4000090050003000303CAA0721D64AE9FD3613AC85D67B3C32078589
+E0ED3EB7257113F2EC3E9E5BA1C344FBBE9A0F7781C2E8FC374D0B80E4F93C3F4301DE47EBB41
+70F93B4D2EBBE92CD0BCEEA683D26ED0B8CE868741F17A1AF4369BD3E37418442ECFCBF2BA9B0
+E6ABFD9EC341D1476A7DBA03419549ED341ECB0F82DAFB75D<ctrl-Z>
+ 
+Field	Value	Description
+PDU-TYPE	0×41	SMS-SUBMIT + UDH bit
+UDL	0×90	Total payload length in septets (144)
+UDHL	0×05	User data header length
+UDH	0×0003000303	Concatenated message IE:
+IEI = 0×00
+IEDL = 0×03
+Ref nr = 0×00
+Total  = 0×03
+This part = 0×03
+ 
+Note that the other fields of the PDU remain the same, whith the exception of the ‘message reference’ (which is the octet after the PDU type). The message reference should be different with each SMS-SUBMIT PDU sent.
+
+These three messages together make “Lorem Ipsum”  (see Lorem Ipsum). I am pretty sure this is the first Lorem Ipsum in SMS speak.

@@ -13,7 +13,9 @@ using V6Tools.V6Convert;
 namespace V6Controls
 {
     /// <summary>
-    /// Nếu dùng cả giờ phút giây, bật UserTime = true;
+    /// DateTimePicker có thêm tính năng.
+    /// <para>Thuộc tính ReadOnly.</para>
+    /// <para>Khi ReadOnly chỉ có thể dùng hàm SetData để thay đổi giá trị.</para>
     /// </summary>
     public class V6DateTimePick:DateTimePicker
     {
@@ -191,7 +193,7 @@ namespace V6Controls
         public V6DateTimePick()
         {
             InitializeComponent();
-            myInit();
+            MyInit();
         }
 
         private void InitializeComponent()
@@ -268,22 +270,13 @@ namespace V6Controls
             Thread.Sleep(200);
         }
         
-        private void myInit()
+        private void MyInit()
         {
             
         }
         //==========================================================================
         
         #region ==== Change Disable BackColor and ForeColor ====
-
-        private Color _ForeColorBackup;
-        private Color _BackColorBackup;
-        private bool _ColorsSaved = false;
-
-        private bool _SettingColors = false;
-        private Color _BackColorDisabled = SystemColors.Control;
-
-        private Color _ForeColorDisabled = Color.DarkGray;// SystemColors.WindowText;
 
         /// <summary>
         /// Cờ readonly

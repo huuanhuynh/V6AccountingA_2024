@@ -3012,7 +3012,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         {
                             if (DonDatHangBan_nd51 == 1)
                             {
-                                Invoice.IncreaseSl_inAM(stt_rec);
+                                Invoice.IncreaseSl_inAM(stt_rec, AM_current);
                             }
                             if (!sender.IsDisposed) sender.Dispose();
                         };
