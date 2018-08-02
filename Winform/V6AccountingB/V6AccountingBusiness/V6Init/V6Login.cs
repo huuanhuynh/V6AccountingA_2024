@@ -272,7 +272,8 @@ namespace V6Init
                 case "ALDVCS":
 
                     result = IsAdmin ? "" : V6Lookup.GetValueByTableName(tableName, "InitFilter");
-                    result = result.Replace("{0}", "'" + Madvcs + "'");
+                    //result = result.Replace("{0}", "'" + Madvcs + "'");
+                    result = result.Replace("{0}", "{MA_DVCS}");
 
                     break;
                 case "ABVT":
@@ -351,7 +352,8 @@ namespace V6Init
                     if (MadvcsCount == 1)
                     {
                         result = IsAdmin ? "" : V6Lookup.GetValueByTableName(tableName, "InitFilter");
-                        result = result.Replace("{0}", "'" + Madvcs + "'");
+                        //result = result.Replace("{0}", "'" + Madvcs + "'");
+                        result = result.Replace("{0}", "{MA_DVCS}");
                     }
                    break;
 

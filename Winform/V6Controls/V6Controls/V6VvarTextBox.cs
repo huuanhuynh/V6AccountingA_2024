@@ -202,17 +202,37 @@ namespace V6Controls
                 {
                     _initFilter = V6Login.GetInitFilter(LookupInfo.TableName, GetFilterType());
                 }
-                return _initFilter;
+                return ("" + _initFilter).Replace("{MA_DVCS}", "'" + V6Login.Madvcs + "'");
             }
         }
 
         /// <summary>
-        /// Nếu gán giá trị khác null thì filter mặt định ở V6Login.GetInitFilter sẽ bị bỏ qua
+        /// Gán lại giá trị initFilter
+        /// <para>Nếu gán giá trị khác null thì filter mặt định ở V6Login.GetInitFilter sẽ bị bỏ qua</para>
         /// </summary>
         /// <param name="filter"></param>
         public void SetInitFilter(string filter)
         {
             _initFilter = filter;
+        }
+        /// <summary>
+        /// Thêm initfilter. nếu đã có thì + and
+        /// <para>Nếu gán giá trị khác null thì filter mặt định ở V6Login.GetInitFilter sẽ bị bỏ qua</para>
+        /// </summary>
+        /// <param name="filter"></param>
+        public void AddInitFilter(string filter)
+        {
+            if (string.IsNullOrEmpty(_initFilter))
+            {
+                _initFilter = filter;
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    _initFilter = string.Format("({0})\nand ({1})", _initFilter, filter);
+                }
+            }
         }
 
         #region ==== Event ====

@@ -637,19 +637,22 @@ namespace V6ControlManager.FormManager.ChungTuManager
                                 adv_filter += (string.IsNullOrEmpty(adv_filter) ? "" : " and ") + adv_filter_extra;
                             }
                         }
-                        var new_filter = old_filter;
-                        if (string.IsNullOrEmpty(new_filter))
+                        //var new_filter = old_filter;
+                        //if (string.IsNullOrEmpty(new_filter))
+                        if (string.IsNullOrEmpty(old_filter))
                         {
-                            new_filter = adv_filter;
+                            //new_filter = adv_filter;
+                            txt.SetInitFilter(adv_filter);
                         }
                         else
                         {
                             if (!string.IsNullOrEmpty(adv_filter))
                             {
-                                new_filter = string.Format("({0}) and ({1})", old_filter, adv_filter);
+                                //new_filter = string.Format("({0}) and ({1})", old_filter, adv_filter);
+                                txt.AddInitFilter(adv_filter);
                             }
                         }
-                        txt.SetInitFilter(new_filter);
+                        //txt.SetInitFilter(new_filter);
                     }
                 }
 
