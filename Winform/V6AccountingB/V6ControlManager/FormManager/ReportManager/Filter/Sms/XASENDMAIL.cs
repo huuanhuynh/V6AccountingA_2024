@@ -11,6 +11,7 @@ using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
@@ -122,6 +123,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
         private void btnGui1_Click(object sender, EventArgs e)
         {
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
             if (this.ShowConfirmMessage("Gửi tin nhắn?", "Xác nhận") != DialogResult.Yes) return;
 
             if (txtSmsTo.Text.Trim() == "")
@@ -132,13 +134,22 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
             try
             {
+                lblNoiDung.Text = "Đang gửi...";
                 if (V6ControlFormHelper.SmsModem.GSM_PORT != null)
                 {
                     if (!V6ControlFormHelper.SmsModem.GSM_PORT.IsOpen)
                         V6ControlFormHelper.SmsModem.OpenPort();
-                    
-                    
-                    var a = V6ControlFormHelper.SmsModem.SendMessage_PDU(txtSmsTo.Text.Trim(), txtMessage.Text, true);
+                    GSM_Phone.SendSmsStatus a = GSM_Phone.SendSmsStatus.NONE;
+                    if (shift_is_down)
+                    {
+                        string message = ChuyenMaTiengViet.ToUnSign(txtMessage.Text.Left(160));
+                        a = V6ControlFormHelper.SmsModem.SendMessage_PDU_Flash(txtSmsTo.Text.Trim(), message, true);
+                    }
+                    else
+                    {
+                        a = V6ControlFormHelper.SmsModem.SendMessage_PDU(txtSmsTo.Text.Trim(), txtMessage.Text, true);
+                    }
+
                     switch (a)
                     {
                         case GSM_Phone.SendSmsStatus.ERROR:
@@ -157,7 +168,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                             lblNoiDung.Text = "???";
                             break;
                     }
-                    
                 }
                 else
                 {
@@ -172,7 +182,78 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
         private void txtMessage_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                int part7bitLength = 153, part8bitLength = 134, part16bitLength = 66;
+                int textLength = txtMessage.Text.Length;
+                int messageLength = textLength;
+                int numberOfMessage = 1;
+                string statusType;
 
+                if (GSM.GsmEncoding.IsUnicodeNotGSM7String(txtMessage.Text))
+                {
+                    //1 message – 70 characters
+                    //2 messages – 134 characters
+                    //3 messages – 201 characters
+                    //4 messages – 268 characters
+                    if (messageLength > 70)
+                    {
+                        numberOfMessage = messageLength / part16bitLength;
+                        if (messageLength % part16bitLength > 0) numberOfMessage++;
+                    }
+
+                    if (numberOfMessage == 1)
+                    {
+                        statusType = string.Format
+                            ("độ dài {0}/70 = 1 tin có dấu Unicode!", textLength);
+                    }
+                    else
+                    {
+                        statusType = string.Format
+                            ("độ dài {0}/66 = {1} tin có dấu Unicode!", textLength, numberOfMessage);
+                    }
+                }
+                else if (GSM.GsmEncoding.IsNotGSM7bitString(txtMessage.Text))
+                {
+                    if (messageLength > 140)
+                    {
+                        numberOfMessage = messageLength / (140 - 6);
+                        if (messageLength % (140 - 6) > 0) numberOfMessage++;
+                    }
+
+                    if (numberOfMessage == 1)
+                        statusType = string.Format("độ dài {0}/140 = 1 tin 8 bit!", textLength, numberOfMessage);
+                    else
+                        statusType = string.Format("độ dài {0}/134 = {1} tin 8 bit!", textLength, numberOfMessage);
+                }
+                else//Gsm7bit string
+                {
+                    //7-bit encoded characters (Standard GSM)
+                    //1 message – 160 characters
+                    //2 messages – 306 characters
+                    //3 messages – 459 characters
+                    //4 messages – 612 characters
+                    messageLength = GSM.GsmEncoding.GetGSM7Length(txtMessage.Text);
+                    if (messageLength > 160)
+                    {
+                        numberOfMessage = messageLength / (160 - 7);
+                        if (messageLength % (160 - 7) > 0) numberOfMessage++;
+                    }
+                    if (numberOfMessage == 1)
+                        statusType = string.Format("độ dài {0} = {1}bytes/160 = 1 tin 7 bit!", textLength, messageLength);
+                    else
+                        statusType = string.Format("độ dài {0} = {1}bytes/153 = {2} tin 7 bit!", textLength, messageLength, numberOfMessage);
+                    //if (messageLength > 2 && messageLength % (160) == 0) messageLength--;
+                    //numberOfMessage = messageLength / (160) + 1;
+                    //lblStatus.Text = string.Format("độ dài {0} = {1} tin không dấu!", txtMessage.Text.Length, numberOfMessage);
+                    ////lblStatus.Text = (160 - txtMessage.Text.Length).ToString();
+                }
+                lblStatusType.Text = statusType;
+            }
+            catch (Exception)
+            {
+                
+            }
         }
 
         private void btnGuiDanhSach_Click(object sender, EventArgs e)

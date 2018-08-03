@@ -73,6 +73,7 @@
             this.txtSoDienThoai = new V6Controls.V6ColorTextBox();
             this.txtSmsTo = new V6Controls.V6ColorTextBox();
             this.grbKetNoi = new System.Windows.Forms.GroupBox();
+            this.btnTuKetNoi = new System.Windows.Forms.Button();
             this.btnGui1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.btnGuiEmail = new System.Windows.Forms.Button();
@@ -82,7 +83,7 @@
             this.chkGuiSMS = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cboEmailTo = new System.Windows.Forms.ComboBox();
-            this.btnTuKetNoi = new System.Windows.Forms.Button();
+            this.lblStatusType = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbThemNguoi.SuspendLayout();
@@ -146,6 +147,7 @@
             this.groupBox1.Controls.Add(this.cboTuDuLieu);
             this.groupBox1.Controls.Add(this.radTuGoNoiDung);
             this.groupBox1.Controls.Add(this.radTuDuLieu);
+            this.groupBox1.Controls.Add(this.lblStatusType);
             this.groupBox1.Controls.Add(this.lblNoiDung);
             this.groupBox1.Controls.Add(this.txtMessage);
             this.groupBox1.Location = new System.Drawing.Point(9, 407);
@@ -588,6 +590,16 @@
             this.grbKetNoi.TabStop = false;
             this.grbKetNoi.Text = "Kết nối";
             // 
+            // btnTuKetNoi
+            // 
+            this.btnTuKetNoi.Location = new System.Drawing.Point(87, 19);
+            this.btnTuKetNoi.Name = "btnTuKetNoi";
+            this.btnTuKetNoi.Size = new System.Drawing.Size(105, 23);
+            this.btnTuKetNoi.TabIndex = 2;
+            this.btnTuKetNoi.Text = "Tự kết nối";
+            this.btnTuKetNoi.UseVisualStyleBackColor = true;
+            this.btnTuKetNoi.Click += new System.EventHandler(this.btnTuKetNoi_Click);
+            // 
             // btnGui1
             // 
             this.btnGui1.Location = new System.Drawing.Point(148, 19);
@@ -690,15 +702,14 @@
             this.cboEmailTo.Size = new System.Drawing.Size(93, 21);
             this.cboEmailTo.TabIndex = 45;
             // 
-            // btnTuKetNoi
+            // lblStatusType
             // 
-            this.btnTuKetNoi.Location = new System.Drawing.Point(87, 19);
-            this.btnTuKetNoi.Name = "btnTuKetNoi";
-            this.btnTuKetNoi.Size = new System.Drawing.Size(105, 23);
-            this.btnTuKetNoi.TabIndex = 2;
-            this.btnTuKetNoi.Text = "Tự kết nối";
-            this.btnTuKetNoi.UseVisualStyleBackColor = true;
-            this.btnTuKetNoi.Click += new System.EventHandler(this.btnTuKetNoi_Click);
+            this.lblStatusType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblStatusType.Location = new System.Drawing.Point(145, 39);
+            this.lblStatusType.Name = "lblStatusType";
+            this.lblStatusType.Size = new System.Drawing.Size(388, 13);
+            this.lblStatusType.TabIndex = 22;
+            this.lblStatusType.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // XASENDMAIL
             // 
@@ -800,6 +811,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cboEmailTo;
         private System.Windows.Forms.Button btnTuKetNoi;
+        private System.Windows.Forms.Label lblStatusType;
 
 
     }

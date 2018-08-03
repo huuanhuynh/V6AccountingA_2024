@@ -142,7 +142,7 @@ namespace GSM
         /// Reply path. Parameter indicating that reply path exists.
         /// </summary>
         private byte TP_RP = 0 << 7;
-        private byte TP_UDHI = 0 << 6; //rd0 mti1
+        private byte TP_UDHI_User_data_have_info = 0 << 6; //rd0 mti1
         private byte TP_SRR = 0 << 5;
         private byte TP_VPF = 2 << 3; //4 and 3, value = 10000 = 0x10
         private byte TP_RD = 0 << 2;
@@ -163,13 +163,13 @@ namespace GSM
             //0 and 1 respectively to indicate that this PDU is an SMS-SUBMIT 
             get
             {
-                return (byte)(TP_RP + TP_UDHI + TP_SRR + TP_VPF + TP_RD + TP_MTI);//.ToString("X2");
+                return (byte)(TP_RP + TP_UDHI_User_data_have_info + TP_SRR + TP_VPF + TP_RD + TP_MTI);//.ToString("X2");
             }
             set
             {
                 int bValue = value;// Convert.ToInt32(value, 16);
                 TP_RP = (byte)(bValue & Convert.ToInt32("10000000", 2));
-                TP_UDHI = (byte)(bValue & Convert.ToInt32("01000000", 2));
+                TP_UDHI_User_data_have_info = (byte)(bValue & Convert.ToInt32("01000000", 2));
                 TP_SRR = (byte)(bValue & Convert.ToInt32("00100000", 2));
                 TP_VPF = (byte)(bValue & Convert.ToInt32("00011000", 2));
                 TP_RD = (byte)(bValue & Convert.ToInt32("00000100", 2));
@@ -184,7 +184,7 @@ namespace GSM
         /// <summary>
         /// Kieu encode
         /// </summary>
-        public byte TP_DCS;
+        public byte TP_DCS { get; set; }
         /// <summary>
         /// Thời hạn gửi tin
         /// </summary>
@@ -765,7 +765,7 @@ namespace GSM
 
         public string[] GetPDUsend(out int[] lengths)
         {
-            int part7bitLength = 153, part8bitLength = 134, part16bitLength = 67;
+            int part7bitLength = 153, part8bitLength = 134, part16bitLength = 66;
             string this_UD = this.TP_UD;
             //Tin nhan da giai ma.
             string thisMessage = Message;
@@ -861,6 +861,7 @@ namespace GSM
 
             if (totalMessage == 1)
             {
+                TP_UDHI_User_data_have_info = 0 << 6;
                 if (_SMS_mode == SMS_Source.Text_mode)
                 {
                     if (bitType == 7)
@@ -890,6 +891,7 @@ namespace GSM
             }
             else
             {
+                TP_UDHI_User_data_have_info = 1 << 6;
                 if(_SMS_mode == SMS_Source.Text_mode)
                 {
                     if (bitType == 7)
@@ -952,8 +954,9 @@ namespace GSM
                             currentUDL_MessageLength = currentUD.Length/2 + 6;
                             break;
                         case 16:
-                            //currentUHD = "050803";
+                            //currentUHD = "050804"; // Lúc này referenUHD sẽ có 16 bit (vd: FFFF), Lúc đó độ dài tin nhắn giảm 1.
                             currentUHD_UserHeaderData = "050003";
+                            //TP_RP = 1 << 7;
                             if (this_UD.Length > part16bitLength * 4)
                             {
                                 currentUD = this_UD.Substring(0, part16bitLength * 4);
@@ -979,7 +982,7 @@ namespace GSM
                         + this.TP_DA
                         + this.TP_PID.ToString("X2")
                         + this.TP_DCS.ToString("X2")
-                        + this.TP_VP.ToString("X2")
+                        + this.TP_VP.ToString("X2") //+ "A7"//OneDay
                         + currentUDL_MessageLength.ToString("X2")
                         + currentUHD_UserHeaderData
                         + currentUD;
@@ -993,9 +996,7 @@ namespace GSM
 
         public string[] GetPDUwrite()
         {
-            
-
-            int part7bitLength = 153, part8bitLength = 134, part16bitLength = 67;
+            int part7bitLength = 153, part8bitLength = 134, part16bitLength = 66;
             string this_UD = this.TP_UD;
             //Tin nhan da giai ma.
             string thisMessage = Message;
@@ -1200,7 +1201,7 @@ namespace GSM
                             currentUDL = currentUD.Length / 2 + 6;
                             break;
                         case 16:
-                            currentUHD = "050803";
+                            currentUHD = "050003";
                             if (this_UD.Length > part16bitLength * 4)
                             {
                                 currentUD = this_UD.Substring(0, part16bitLength * 4);

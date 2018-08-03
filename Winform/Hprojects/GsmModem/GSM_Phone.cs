@@ -319,7 +319,7 @@ namespace GSM
         }
 
         public int MessageReference = 1;
-        public ENUM_TP_VALID_PERIOD Validition = ENUM_TP_VALID_PERIOD.Maximum;
+        public ENUM_TP_VALID_PERIOD Validition = ENUM_TP_VALID_PERIOD.OneDay;
 
         #endregion p
 
@@ -1656,7 +1656,7 @@ namespace GSM
                 {
                     commandSend = "AT+CMGS=" + lengthArray[i];
                     recievedData01 = GSM_PORT.ExecATCommand(commandSend, 300, "Lỗi gửi tin PDU .");
-                    
+
                     commandSend = pduStringArray[i] + char.ConvertFromUtf32(26);// "\x001a";
                     recievedData02 = GSM_PORT.ExecATCommand(commandSend, 300, "Không gửi được tin nhắn PDU!");
 
