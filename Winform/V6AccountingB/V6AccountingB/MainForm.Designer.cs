@@ -1,4 +1,5 @@
-﻿using V6Controls;
+﻿using System.Windows.Forms;
+using V6Controls;
 using V6Controls.Forms;
 
 namespace V6AccountingB
@@ -51,6 +52,7 @@ namespace V6AccountingB
             this.panelLogin = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeDVCSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblDVCS = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
@@ -129,6 +131,7 @@ namespace V6AccountingB
             // panelLogin
             // 
             this.panelLogin.ContextMenuStrip = this.contextMenuStrip1;
+            this.panelLogin.Controls.Add(this.lblDVCS);
             this.panelLogin.Controls.Add(this.pictureBox1);
             this.panelLogin.Controls.Add(this.label2);
             this.panelLogin.Controls.Add(this.btnExit);
@@ -136,9 +139,9 @@ namespace V6AccountingB
             this.panelLogin.Controls.Add(this.lblUserName);
             this.panelLogin.Controls.Add(this.label1);
             this.panelLogin.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelLogin.Location = new System.Drawing.Point(0, 423);
+            this.panelLogin.Location = new System.Drawing.Point(0, 404);
             this.panelLogin.Name = "panelLogin";
-            this.panelLogin.Size = new System.Drawing.Size(153, 126);
+            this.panelLogin.Size = new System.Drawing.Size(153, 145);
             this.panelLogin.TabIndex = 1;
             // 
             // contextMenuStrip1
@@ -146,19 +149,31 @@ namespace V6AccountingB
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeDVCSToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(151, 26);
             // 
             // changeDVCSToolStripMenuItem
             // 
             this.changeDVCSToolStripMenuItem.Name = "changeDVCSToolStripMenuItem";
-            this.changeDVCSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.changeDVCSToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.changeDVCSToolStripMenuItem.Text = "Change Agent";
             this.changeDVCSToolStripMenuItem.Click += new System.EventHandler(this.changeDVCSToolStripMenuItem_Click);
             // 
+            // lblDVCS
+            // 
+            this.lblDVCS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblDVCS.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDVCS.Location = new System.Drawing.Point(4, 66);
+            this.lblDVCS.Name = "lblDVCS";
+            this.lblDVCS.Size = new System.Drawing.Size(145, 20);
+            this.lblDVCS.TabIndex = 15;
+            this.lblDVCS.Text = "UserName";
+            this.lblDVCS.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblDVCS_MouseClick);
+            // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox1.Image = global::V6AccountingB.Properties.Resources.Calculator;
-            this.pictureBox1.Location = new System.Drawing.Point(101, 88);
+            this.pictureBox1.Location = new System.Drawing.Point(101, 106);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.TabIndex = 14;
@@ -170,7 +185,7 @@ namespace V6AccountingB
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(2, 69);
+            this.label2.Location = new System.Drawing.Point(2, 87);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(147, 13);
             this.label2.TabIndex = 13;
@@ -181,7 +196,7 @@ namespace V6AccountingB
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.Image = global::V6AccountingB.Properties.Resources.exit;
-            this.btnExit.Location = new System.Drawing.Point(7, 83);
+            this.btnExit.Location = new System.Drawing.Point(7, 102);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(78, 39);
             this.btnExit.TabIndex = 12;
@@ -509,7 +524,7 @@ namespace V6AccountingB
             this.quickMenu1.Location = new System.Drawing.Point(0, 322);
             this.quickMenu1.Margin = new System.Windows.Forms.Padding(4);
             this.quickMenu1.Name = "quickMenu1";
-            this.quickMenu1.Size = new System.Drawing.Size(151, 100);
+            this.quickMenu1.Size = new System.Drawing.Size(151, 81);
             this.quickMenu1.TabIndex = 0;
             // 
             // panelMenuShow
@@ -672,6 +687,7 @@ namespace V6AccountingB
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem changeDVCSToolStripMenuItem;
+        private System.Windows.Forms.Label lblDVCS;
         
     }
 }

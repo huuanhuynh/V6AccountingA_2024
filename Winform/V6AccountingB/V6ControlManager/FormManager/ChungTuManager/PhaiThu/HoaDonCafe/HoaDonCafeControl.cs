@@ -4516,7 +4516,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + MA_VITRIPH);
                 if (IsViewingAnInvoice)
                 {
-                    if (V6BusinessHelper.CheckEditVoucher(_sttRec, "ARS20") == 1)
+                    if (V6BusinessHelper.CheckEditVoucher(_sttRec, "ARS20", "S", Invoice.Mact) == 1)
                     {
                         if (V6Login.IsAdmin)
                         {
@@ -4569,7 +4569,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 if (IsViewingAnInvoice)
                 {
-                    if (V6BusinessHelper.CheckEditVoucher(_sttRec, "ARS20") == 1)
+                    if (V6BusinessHelper.CheckEditVoucher(_sttRec, "ARS20", "X", Invoice.Mact) == 1)
                     {
                         this.ShowWarningMessage(V6Text.DeleteDenied);
                         return;

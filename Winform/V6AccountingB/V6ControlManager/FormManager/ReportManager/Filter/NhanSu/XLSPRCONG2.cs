@@ -16,7 +16,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
             F3 = false;
             F5 = false;
             F9 = true;
-            txtDanhSachCot.Text = "GIO:X,SL_TD2:D,SL_TD3:O,GC_TD1";
+            txtDanhSachCot.Text = "GIO:X,SL_TD2:O,SL_TD3:D,GC_TD1";
             txtSoMaCong.Value = 4;
         }
         
@@ -33,10 +33,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
         {
             String1 = txtFile.Text;
             Number1 = txtSoMaCong.Value;
-            ObjectDictionary["DANHSACHCOT"] = txtDanhSachCot.Text;
-            //String2 = comboBox1.SelectedItem.ToString();
-            //String3 = comboBox2.SelectedItem.ToString();
-
+            ObjectDictionary["DSCOT"] = txtDanhSachCot.Text;
             Check1 = checkBox1.Checked;
             Check2 = checkBox2.Checked;
         }

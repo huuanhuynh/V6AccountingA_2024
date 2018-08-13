@@ -13,7 +13,7 @@ using V6Tools.V6Convert;
 
 namespace V6Controls
 {
-    public static class ExtensionMethods
+    public static class V6ControlExtensionMethods
     {
 
         #region ==== TreeListView ====

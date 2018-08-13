@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
@@ -119,6 +120,28 @@ namespace V6Tools.V6Convert
             TextWriter tw = new StringWriter(sb);
             ds.WriteXml(tw);
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Biến dữ liệu cột thành Dictionary, key trùng sẽ lấy dòng sau cùng.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="keyField"></param>
+        /// <param name="dataField"></param>
+        /// <returns></returns>
+        public static Dictionary<string, object> ToDataDictionary(DataTable data, string keyField, string dataField)
+        {
+            if (!data.Columns.Contains(keyField))
+                throw new Exception(string.Format("No keyField [{0}] column.", keyField));
+            if (!data.Columns.Contains(dataField))
+                throw new Exception(string.Format("No dataField [{0}] column.", dataField));
+            var DataDic = new Dictionary<string, object>();
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                var row = data.Rows[i];
+                DataDic[row[keyField].ToString().Trim().ToUpper()] = row[dataField];
+            }
+            return DataDic;
         }
     }
 }

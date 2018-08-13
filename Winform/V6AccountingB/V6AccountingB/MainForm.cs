@@ -199,9 +199,15 @@ namespace V6AccountingB
         {
             lblUserName.Text = V6Login.UserName;
             lblComment.Text = V6Login.Comment;
+            ShowDVCS();
             WindowState = FormWindowState.Maximized;
 
             GoiBaoCaoNhanh();
+        }
+
+        private void ShowDVCS()
+        {
+            lblDVCS.Text = "Agent: " + V6Login.Madvcs;
         }
 
         
@@ -639,9 +645,27 @@ namespace V6AccountingB
             ShowCalculator();
         }
 
+        private void ChangeDVCS()
+        {
+            try
+            {
+                new ChangeDVCSControl().ShowToForm(this, "Change Agent", false, true, false);
+                ShowDVCS();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".ChangeDVCS:" + ex.Message, ex.Source);
+            }
+        }
+
         private void changeDVCSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ChangeDVCSControl().ShowToForm(this, "Change Agent", false, true, false);
+           ChangeDVCS();
+        }
+
+        private void lblDVCS_MouseClick(object sender, MouseEventArgs e)
+        {
+            ChangeDVCS();
         }
 
         

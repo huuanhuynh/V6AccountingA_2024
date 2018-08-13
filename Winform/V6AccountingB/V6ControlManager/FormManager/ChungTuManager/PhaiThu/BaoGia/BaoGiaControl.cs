@@ -654,7 +654,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             {
                 var row = AM.Rows[CurrentIndex];
 
-                if (V6BusinessHelper.CheckEditVoucher_SOR(row["STT_REC_PT"].ToString().Trim(), "AM81") == 1)
+                if (V6BusinessHelper.CheckEditVoucher_SOR(row["STT_REC_PT"].ToString().Trim(), "AM81", "S", Invoice.Mact) == 1)
                 {
                     this.ShowWarningMessage(V6Text.EditDenied);
                     return false;
@@ -687,7 +687,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             {
                 var row = AM.Rows[CurrentIndex];
 
-                if (V6BusinessHelper.CheckEditVoucher_SOR(row["STT_REC_PT"].ToString().Trim(), "AM81") == 1)
+                if (V6BusinessHelper.CheckEditVoucher_SOR(row["STT_REC_PT"].ToString().Trim(), "AM81", "S", Invoice.Mact) == 1)
                 {
                     this.ShowWarningMessage(V6Text.EditDenied);
                     return false;
@@ -2872,7 +2872,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 {
                     var row = AM.Rows[CurrentIndex];
 
-                    if (V6BusinessHelper.CheckEditVoucher_SOR(row["STT_REC_PT"].ToString().Trim(), "AM81") == 1)
+                    if (V6BusinessHelper.CheckEditVoucher_SOR(row["STT_REC_PT"].ToString().Trim(), "AM81", "S", Invoice.Mact) == 1)
                     {
                         this.ShowWarningMessage(V6Text.EditDenied);
                         return;
@@ -2916,7 +2916,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 {
                     var row = AM.Rows[CurrentIndex];
 
-                    if (V6BusinessHelper.CheckEditVoucher_SOR(row["STT_REC_PT"].ToString().Trim(), "AM81") == 1)
+                    if (V6BusinessHelper.CheckEditVoucher_SOR(row["STT_REC_PT"].ToString().Trim(), "AM81", "X", Invoice.Mact) == 1)
                     {
                         this.ShowWarningMessage(V6Text.EditDenied);
                         return;

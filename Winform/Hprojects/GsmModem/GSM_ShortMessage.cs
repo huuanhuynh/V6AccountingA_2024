@@ -954,7 +954,7 @@ namespace GSM
                             currentUDL_MessageLength = currentUD.Length/2 + 6;
                             break;
                         case 16:
-                            //currentUHD = "050804"; // Lúc này referenUHD sẽ có 16 bit (vd: FFFF), Lúc đó độ dài tin nhắn giảm 1.
+                            //currentUHD = "050804"; // Lúc này referenUHD sẽ có 16 bit (vd: FFFF), Lúc đó độ dài tin nhắn giảm 1?.
                             currentUHD_UserHeaderData = "050003";
                             //TP_RP = 1 << 7;
                             if (this_UD.Length > part16bitLength * 4)

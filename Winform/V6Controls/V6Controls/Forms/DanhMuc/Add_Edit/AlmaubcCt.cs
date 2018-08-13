@@ -1,5 +1,7 @@
 ﻿using System;
-using V6Structs;
+using System.Collections.Generic;
+using V6AccountingBusiness;
+using V6Init;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -22,25 +24,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (txtMaSo.Text.Trim() == "")
                 errors += "Chưa nhập mã số!\r\n";
 
-            if (Mode == V6Mode.Edit)
+            if (txtcach_tinh.Text.Trim() != "" &&
+                !V6BusinessHelper.CheckValidFormula(TableName.ToString(),
+                "MAU_BC", "CACH_TINH", "MA_SO", txtMauBc.Text, txtcach_tinh.Text))
             {
-                //bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "LOAI_YT",
-                // txtMaMauBc.Text.Trim(), DataOld["LOAI_YT"].ToString());
-                //if (!b)
-                //    throw new Exception("Không được sửa mã đã tồn tại: "
-                //                                    + "LOAI_YT = " + txtMaMauBc.Text.Trim());
-            }
-            else if (Mode == V6Mode.Add)
-            {
-                //bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "LOAI_YT",
-                // txtMaMauBc.Text.Trim(), txtMaMauBc.Text.Trim());
-                //if (!b)
-                //    throw new Exception("Không được thêm mã đã tồn tại: "
-                //                                    + "LOAI_YT = " + txtMaMauBc.Text.Trim());
+                errors += V6Text.Wrong + "\r\n";
             }
 
+
+            IList<string> keyFields = new []{"MAU_BC", "MA_SO"};
+            errors += CheckValid(TableName.ToString(), keyFields);
+            
             if (errors.Length > 0) throw new Exception(errors);
         }
+
+        
 
         private void txtkind_V6LostFocusNoChange(object sender)
         {

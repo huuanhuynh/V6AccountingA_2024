@@ -45,8 +45,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             {
                 FilterControl.UpdateValues();
 
-                data = V6Tools.V6Convert.Excel_File
-                    .Sheet1ToDataTable(FilterControl.String1);
+                data = Excel_File.AllSheetToDataTable(FilterControl.String1);
                 if (FilterControl.Check1)
                 {
                     if (!string.IsNullOrEmpty(FilterControl.String2) && !string.IsNullOrEmpty(FilterControl.String3))
@@ -57,7 +56,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                         var to = "U";
                         if (FilterControl.String3.StartsWith("TCVN3")) to = "A";
                         if (FilterControl.String3.StartsWith("VNI")) to = "V";
-                        data = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(data, from, to);
+                        data = Data_Table.ChuyenMaTiengViet(data, from, to);
                     }
                     else
                     {
@@ -66,9 +65,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 }
                 dataGridView1.DataSource = data;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                this.WriteExLog(GetType() + ".MakeReport2", ex);
             }
         }
 
@@ -91,17 +90,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             {
                 if (data != null)
                 {
-                    //"GIO:X,SL_TD2:D,SL_TD3:O,GC_TD1";
+                    //"GIO:X,SL_TD2:O,SL_TD3:D,GC_TD1";
                     int soMaCong = Convert.ToInt32(FilterControl.Number1);
                     //"GIO,SL_TD2,SL_TD3,GC_TD1";
-                    string danhSachField = FilterControl.Tag.ToString();
-                    var danhSachFied1 = danhSachField.Split(',');
+                    var dsCot = FilterControl.ObjectDictionary["DSCOT"].ToString().Trim().Split(',');
                     string temp1 = "";
                     string checkfield = "";
                     string[] field_ma_congs;
                     for (int j = 0; j < soMaCong; j++)
                     {
-                        field_ma_congs = danhSachFied1[j].Split(':');
+                        field_ma_congs = dsCot[j].Split(':');
                         checkfield = field_ma_congs[0];
                         if (checkfield != "")
                         {
@@ -196,8 +194,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     goto End;
                 }
                 int soCot = Convert.ToInt32(FilterControl.Number1);
-                var danhSachCot = FilterControl.ObjectDictionary["DANHSACHCOT"].ToString();
-                var splitColums = danhSachCot.Split(',');
+                var dsCot = FilterControl.ObjectDictionary["DSCOT"].ToString().Trim().Split(',');
                 int stt = 0;
                 DateTime last_day = V6Setting.M_SV_DATE;
                 total = data.Rows.Count;
@@ -235,7 +232,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                             for (int j = 0; j < soCot; j++)
                             {
                                 bool check = false;
-                                var field_ma_cong = splitColums[j].Split(':');
+                                var field_ma_cong = dsCot[j].Split(':');
                                 if (field_ma_cong.Length == 2)
                                 {
                                     if (dataDic.ContainsKey(field_ma_cong[0]))
@@ -243,6 +240,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
                                         dataDic["MA_CONG"] = field_ma_cong[1];
                                         dataDic["GIO"] = dataDic[field_ma_cong[0]];
+                                        
                                         ma_cong = field_ma_cong[1];
                                         if (ma_cong == "" || ObjectAndString.ObjectToDecimal(dataDic["GIO"]) == 0)
                                         {

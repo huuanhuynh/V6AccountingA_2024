@@ -94,8 +94,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     //"GIO:X,SL_TD2:D,SL_TD3:O,GC_TD1";
                     int soCot = Convert.ToInt32(FilterControl.Number1);
                     //"GIO,SL_TD2,SL_TD3,GC_TD1";
-                    string danhSachField = FilterControl.Tag.ToString();
-                    var danhSachFied1 = danhSachField.Split(',');
+                    var danhSachFied1 = FilterControl.ObjectDictionary["DSCOT1"].ToString().Trim().Split(',');
                     string temp1 = "";
                     string checkfield = "";
                     string[] field_genders;
@@ -197,8 +196,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     goto End;
                 }
                 int soCot = Convert.ToInt32(FilterControl.Number1);
-                var danhSachCot = FilterControl.Tag.ToString();
-                string danhSachCot2 = ObjectAndString.ObjectToString(FilterControl.ObjectDictionary["DS_COT2"]).Trim();
+                var dsCot1 = FilterControl.ObjectDictionary["DSCOT1"].ToString().Trim();
+                var dsCot2 = FilterControl.ObjectDictionary["DSCOT2"].ToString().Trim();
                 
                 int stt = 0;
                 //DateTime last_day = V6Setting.M_SV_DATE;
@@ -212,7 +211,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     try
                     {
                         
-                        XuLyThemMotNhanSu(stt, row, soCot, danhSachCot, danhSachCot2);
+                        XuLyThemMotNhanSu(stt, row, soCot, dsCot1, dsCot2);
                         
 
                     }

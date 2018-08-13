@@ -615,7 +615,32 @@ namespace V6AccountingBusiness
             return false;
         }
 
+        /// <summary>
+        /// Kiểm tra công thức hợp lệ.
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="fieldFilter"></param>
+        /// <param name="fieldFormula"></param>
+        /// <param name="fieldCode"></param>
+        /// <param name="filterValue"></param>
+        /// <param name="formulaValue"></param>
+        /// <returns></returns>
+        public static bool CheckValidFormula(string tableName, string fieldFilter, string fieldFormula, string fieldCode, string filterValue, string formulaValue)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@tableName", tableName),
+                new SqlParameter("@fFilter", fieldFilter),
+                new SqlParameter("@fFormula", fieldFormula),
+                new SqlParameter("@fCode", fieldCode),
+                new SqlParameter("@FilterValue", filterValue),
+                new SqlParameter("@FormulaValue", formulaValue)
+            };
 
+            object obj = SqlConnect.ExecuteScalar(CommandType.StoredProcedure, "VPA_CheckValid_Formula", plist);
+            if (obj != null && Convert.ToInt32(obj) == 1) return true;
+            return false;
+        }
 
         public static bool IsValidEightCode_OneDate(string cInputTable, byte nStatus,
           string cInputField1, string cpInput1, string cOldItems1,
@@ -1897,26 +1922,34 @@ namespace V6AccountingBusiness
         /// </summary>
         /// <param name="sttRec"></param>
         /// <param name="tableName"></param>
+        /// <param name="mode"></param>
+        /// <param name="maCt"></param>
         /// <returns>0:được sửa, 1: không được sửa</returns>
-        public static int CheckEditVoucher(string sttRec, string tableName)
+        public static int CheckEditVoucher(string sttRec, string tableName, string mode, string maCt)
         {
             SqlParameter[] plist =
             {
-                new SqlParameter("@stt_rec", sttRec), 
-                new SqlParameter("@tablename", tableName), 
+                new SqlParameter("@stt_rec", sttRec),
+                new SqlParameter("@tablename", tableName),
+                new SqlParameter("@mode", mode),
+                new SqlParameter("@ma_ct", maCt),
+                new SqlParameter("@user_id", V6Login.UserId),
             };
-            var result = SqlConnect.ExecuteScalar(CommandType.Text,  "Select dbo.VFA_IsEditVoucher (@stt_rec, @tablename)", plist);
+            var result = SqlConnect.ExecuteScalar(CommandType.Text,  "Select dbo.VFA_IsEditVoucher (@stt_rec, @tablename, @mode, @ma_ct, @user_id)", plist);
             return ObjectAndString.ObjectToInt(result);
         }
         
-        public static int CheckEditVoucher_SOR(string sttRecPt, string tableName)
+        public static int CheckEditVoucher_SOR(string sttRecPt, string tableName, string mode, string maCt)
         {
             SqlParameter[] plist =
             {
-                new SqlParameter("@stt_rec_pt", sttRecPt), 
-                new SqlParameter("@tablename", tableName), 
+                new SqlParameter("@stt_rec_pt", sttRecPt),
+                new SqlParameter("@tablename", tableName),
+                new SqlParameter("@mode", maCt),
+                new SqlParameter("@ma_ct", maCt),
+                new SqlParameter("@user_id", V6Login.UserId),
             };
-            var result = SqlConnect.ExecuteScalar(CommandType.Text,  "Select dbo.VFA_IsEditVoucher_SOR (@stt_rec_pt, @tablename)", plist);
+            var result = SqlConnect.ExecuteScalar(CommandType.Text, "Select dbo.VFA_IsEditVoucher_SOR (@stt_rec_pt, @tablename, @mode, @ma_ct, @user_id)", plist);
             return ObjectAndString.ObjectToInt(result);
         }
 
@@ -2002,5 +2035,7 @@ namespace V6AccountingBusiness
             }
             return false;
         }
+
+        
     }
 }

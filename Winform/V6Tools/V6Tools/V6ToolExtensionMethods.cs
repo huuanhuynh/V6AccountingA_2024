@@ -7,7 +7,7 @@ using V6Tools.V6Convert;
 
 namespace V6Tools
 {
-    public static class ExtensionMethod
+    public static class V6ToolExtensionMethods
     {
         /// <summary>
         /// Cắt chuỗi lấy phần bên trái.
@@ -183,6 +183,63 @@ namespace V6Tools
             table.Rows.Add(newRow);
             return newRow;
         }
+        /// <summary>
+        /// Thêm một dòng dữ liệu từ 1 dòng dữ liệu của bảng khác.
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="data"></param>
+        /// <param name="autoAddColumns"></param>
+        /// <returns></returns>
+        public static DataRow AddRow(this DataTable table, DataRow data, bool autoAddColumns = false)
+        {
+            DataTable sourceTable = data.Table;
+            if (autoAddColumns)
+            {
+                foreach (DataColumn column in sourceTable.Columns)
+                {
+                    if (!table.Columns.Contains(column.ColumnName))
+                    {
+                        table.Columns.Add(column.ColumnName, column.DataType);
+                    }
+                }
+            }
+
+            var newRow = table.NewRow();
+            foreach (DataColumn column in table.Columns)
+            {
+                var KEY = column.ColumnName.ToUpper();
+                object value = ObjectAndString.ObjectTo(column.DataType,
+                    sourceTable.Columns.Contains(KEY) ? data[KEY] : "") ?? DBNull.Value;
+                newRow[KEY] = value;
+            }
+            table.Rows.Add(newRow);
+            return newRow;
+        }
+        /// <summary>
+        /// Thêm nhiều dòng dữ liệu từ bảng khác.
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="sourceTable"></param>
+        /// <param name="autoAddColumns"></param>
+        /// <returns></returns>
+        public static void AddRowByTable(this DataTable table, DataTable sourceTable, bool autoAddColumns = false)
+        {
+            if (autoAddColumns)
+            {
+                foreach (DataColumn column in sourceTable.Columns)
+                {
+                    if (!table.Columns.Contains(column.ColumnName))
+                    {
+                        table.Columns.Add(column.ColumnName, column.DataType);
+                    }
+                }
+            }
+
+            foreach (DataRow row in sourceTable.Rows)
+            {
+                table.AddRow(row, autoAddColumns);
+            }
+        }
 
         /// <summary>
         /// Biếnt thành Dic, key trùng sẽ lấy dòng sau cùng.
@@ -193,17 +250,7 @@ namespace V6Tools
         /// <returns></returns>
         public static Dictionary<string, object> ToDataDictionary(this DataTable data, string keyField, string dataField)
         {
-            if (!data.Columns.Contains(keyField))
-                throw new Exception(string.Format("No keyField [{0}] column.", keyField));
-            if (!data.Columns.Contains(dataField))
-                throw new Exception(string.Format("No dataField [{0}] column.", dataField));
-            var DataDic = new Dictionary<string, object>();
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                var row = data.Rows[i];
-                DataDic[row[keyField].ToString().Trim().ToUpper()] = row[dataField];
-            }
-            return DataDic;
+            return Data_Table.ToDataDictionary(data, keyField, dataField);
         }
 
         /// <summary>

@@ -124,6 +124,17 @@ namespace V6Tools.V6Convert
             return sheetTable;
         }
 
+        public static DataTable AllSheetToDataTable(string fileName)
+        {
+            DataTable result = new DataTable("AllSheetInOne");
+            DataSet ds = ToDataSet(fileName);
+            foreach (DataTable table in ds.Tables)
+            {
+                result.AddRowByTable(table, true);
+            }
+            return result;
+        }
+
         public static DataTable ToDataTable(string fileName)
         {
             return ToDataSet(fileName).Tables[0];

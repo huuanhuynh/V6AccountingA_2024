@@ -554,7 +554,7 @@
     <Compile Include="Forms\ConfirmPassword.Designer.cs">
       <DependentUpon>ConfirmPassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="V6ControlExtensionMethods.cs" />
     <Compile Include="Forms\DanhMuc\Add_Edit\AddEditControlVirtual.cs">
       <SubType>UserControl</SubType>
     </Compile>

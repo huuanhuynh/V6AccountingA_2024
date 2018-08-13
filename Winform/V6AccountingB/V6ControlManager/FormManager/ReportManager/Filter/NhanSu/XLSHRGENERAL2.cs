@@ -25,7 +25,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
             F3 = false;
             F5 = false;
             F9 = true;
-            txtDanhSachCot.Text = "S11:GENDER=1,S12:GENDER=0";
+            txtDanhSachCot1.Text = "S11:GENDER=1,S12:GENDER=0";
             txtDanhSachCot2.Text = ReadDanhSachCot2();
             txtSoCotMaNhanSu.Value = 2;
             Ready();
@@ -68,10 +68,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.NhanSu
             String1 = txtFile.Text;
             Number2 = txtDongBatDau.Value;
             Number1 = txtSoCotMaNhanSu.Value;
-            Tag = txtDanhSachCot.Text;
-            ObjectDictionary["DS_COT2"] = txtDanhSachCot2.Text;
-            //String2 = comboBox1.SelectedItem.ToString();
-            //String3 = comboBox2.SelectedItem.ToString();
+            ObjectDictionary["DSCOT1"] = txtDanhSachCot1.Text;
+            ObjectDictionary["DSCOT2"] = txtDanhSachCot2.Text;
 
             Check1 = checkBox1.Checked;
             Check2 = checkBox2.Checked;

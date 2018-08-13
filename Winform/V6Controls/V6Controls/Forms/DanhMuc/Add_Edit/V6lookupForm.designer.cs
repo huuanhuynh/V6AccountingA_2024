@@ -464,6 +464,7 @@
             this.v6ColorTextBox19.Name = "v6ColorTextBox19";
             this.v6ColorTextBox19.Size = new System.Drawing.Size(474, 23);
             this.v6ColorTextBox19.TabIndex = 7;
+            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox19, "Các trường search khi lookup, cách nhau bằng dấu phẩy (,)");
             // 
             // label20
             // 

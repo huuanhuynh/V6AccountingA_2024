@@ -123,7 +123,7 @@
             // 
             // txtDanhSachCot
             // 
-            this.txtDanhSachCot.AccessibleName = "DS_COT";
+            this.txtDanhSachCot.AccessibleName = "DSCOT";
             this.txtDanhSachCot.BackColor = System.Drawing.SystemColors.Window;
             this.txtDanhSachCot.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtDanhSachCot.EnterColor = System.Drawing.Color.PaleGreen;

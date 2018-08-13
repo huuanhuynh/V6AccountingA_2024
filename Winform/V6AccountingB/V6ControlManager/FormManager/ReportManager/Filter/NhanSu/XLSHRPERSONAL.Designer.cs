@@ -33,7 +33,7 @@
             this.v6Label3 = new V6Controls.V6Label();
             this.comboBox1 = new V6Controls.V6ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtDanhSachCot = new V6Controls.V6ColorTextBox();
+            this.txtDanhSachCot1 = new V6Controls.V6ColorTextBox();
             this.v6Label4 = new V6Controls.V6Label();
             this.txtDongBatDau = new V6Controls.V6NumberTextBox();
             this.v6Label5 = new V6Controls.V6Label();
@@ -111,7 +111,7 @@
             this.groupBox1.Controls.Add(this.btnEditXml);
             this.groupBox1.Controls.Add(this.txtDanhSachCot2);
             this.groupBox1.Controls.Add(this.v6Label6);
-            this.groupBox1.Controls.Add(this.txtDanhSachCot);
+            this.groupBox1.Controls.Add(this.txtDanhSachCot1);
             this.groupBox1.Controls.Add(this.v6Label4);
             this.groupBox1.Controls.Add(this.txtDongBatDau);
             this.groupBox1.Controls.Add(this.v6Label5);
@@ -127,21 +127,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tùy chọn";
             // 
-            // txtDanhSachCot
+            // txtDanhSachCot1
             // 
-            this.txtDanhSachCot.AccessibleName = "DS_COT";
-            this.txtDanhSachCot.BackColor = System.Drawing.SystemColors.Window;
-            this.txtDanhSachCot.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtDanhSachCot.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtDanhSachCot.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtDanhSachCot.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtDanhSachCot.HoverColor = System.Drawing.Color.Yellow;
-            this.txtDanhSachCot.LeaveColor = System.Drawing.Color.White;
-            this.txtDanhSachCot.Location = new System.Drawing.Point(120, 115);
-            this.txtDanhSachCot.Multiline = true;
-            this.txtDanhSachCot.Name = "txtDanhSachCot";
-            this.txtDanhSachCot.Size = new System.Drawing.Size(154, 50);
-            this.txtDanhSachCot.TabIndex = 12;
+            this.txtDanhSachCot1.AccessibleName = "DSCOT1";
+            this.txtDanhSachCot1.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDanhSachCot1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDanhSachCot1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDanhSachCot1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDanhSachCot1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDanhSachCot1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDanhSachCot1.LeaveColor = System.Drawing.Color.White;
+            this.txtDanhSachCot1.Location = new System.Drawing.Point(120, 115);
+            this.txtDanhSachCot1.Multiline = true;
+            this.txtDanhSachCot1.Name = "txtDanhSachCot1";
+            this.txtDanhSachCot1.Size = new System.Drawing.Size(154, 50);
+            this.txtDanhSachCot1.TabIndex = 12;
             // 
             // v6Label4
             // 
@@ -300,7 +300,7 @@
             // 
             // txtDanhSachCot2
             // 
-            this.txtDanhSachCot2.AccessibleName = "DS_COT2";
+            this.txtDanhSachCot2.AccessibleName = "DSCOT2";
             this.txtDanhSachCot2.BackColor = System.Drawing.SystemColors.Window;
             this.txtDanhSachCot2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtDanhSachCot2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -363,7 +363,7 @@
         private V6Controls.V6CheckBox v6CheckBox1;
         private V6Controls.V6Label v6Label1;
         private V6Controls.V6NumberTextBox txtSoCotMaNhanSu;
-        private V6Controls.V6ColorTextBox txtDanhSachCot;
+        private V6Controls.V6ColorTextBox txtDanhSachCot1;
         private V6Controls.V6Label v6Label4;
         private System.Windows.Forms.Label label1;
         private V6Controls.V6NumberTextBox txtDongBatDau;
