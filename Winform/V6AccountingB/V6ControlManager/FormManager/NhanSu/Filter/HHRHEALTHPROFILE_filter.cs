@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
-using V6Controls.Forms;
 using V6Init;
-using V6SqlConnect;
 using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.NhanSu.Filter

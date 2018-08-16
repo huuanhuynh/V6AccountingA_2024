@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
 using V6Tools;

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu;
 using V6ControlManager.FormManager.MenuManager;
 using V6ControlManager.FormManager.ReportManager.DanhMuc;
 using V6Controls.Forms;
-using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager
 {

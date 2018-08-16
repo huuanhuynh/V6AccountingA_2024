@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
-using V6Init;
-using V6ReportControls;
 using V6Structs;
 
 namespace V6ControlManager.FormManager.SoDuManager.FirstFilter

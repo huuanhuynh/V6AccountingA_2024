@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using V6AccountingBusiness.Invoices;
-using V6Controls.Forms;
-using V6Init;
 
 namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen.Loc
 {

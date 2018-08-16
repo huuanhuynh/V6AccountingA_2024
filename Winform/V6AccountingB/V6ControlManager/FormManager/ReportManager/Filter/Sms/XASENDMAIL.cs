@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.IO.Ports;
 using System.Threading;
 using System.Windows.Forms;
 using GSM;
@@ -12,7 +11,6 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Tools;
-using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 {

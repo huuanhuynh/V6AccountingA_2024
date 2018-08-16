@@ -1,6 +1,5 @@
 ﻿using System;
 using V6ControlManager.FormManager.SoDuManager.Add_Edit;
-using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6Structs;
 

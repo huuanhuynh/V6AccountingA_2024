@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 using V6Controls.Forms;
 
 namespace V6ControlManager.FormManager.ToolManager

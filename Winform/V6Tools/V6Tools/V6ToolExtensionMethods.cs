@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Forms;
 using V6Tools.V6Convert;
 
 namespace V6Tools
@@ -374,9 +375,23 @@ namespace V6Tools
             }
             return DataDic;
         }
+        public static SortedDictionary<string, object> DataGridViewRowToDataDictionary(DataGridViewRow row)
+        {
+            if (row == null) return null;
+            var DataDic = new SortedDictionary<string, object>();
+            for (int i = 0; i < row.DataGridView.Columns.Count; i++)
+            {
+                DataDic.Add(row.DataGridView.Columns[i].DataPropertyName.ToUpper(), row.Cells[i].Value);
+            }
+            return DataDic;
+        }
         public static SortedDictionary<string, object> ToDataDictionary(this DataRow row)
         {
             return DataRowToDataDictionary(row);
+        }
+        public static SortedDictionary<string, object> ToDataDictionary(this DataGridViewRow row)
+        {
+            return DataGridViewRowToDataDictionary(row);
         }
 
         public static SortedDictionary<string, object> DataRowToDataDictionary(DataRow row, string sttRec)

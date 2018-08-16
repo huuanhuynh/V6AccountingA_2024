@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-using System.Xml;
 using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;

@@ -275,6 +275,22 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         }
                     };
                 }
+                else if (CurrentTable == V6TableName.Alvv)
+                {
+                    dataGridView1.CellFormatting += (s, e) =>
+                    {
+                        if (e.ColumnIndex == 1)
+                        {
+                            int b = ObjectAndString.ObjectToInt(dataGridView1.Rows[e.RowIndex].Cells["Bac_vv"].Value);
+                            int l = ObjectAndString.ObjectToInt(dataGridView1.Rows[e.RowIndex].Cells["Loai_vv"].Value);
+                            if (l == 0) dataGridView1.Rows[e.RowIndex].DefaultCellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+
+                            if (b == 1) b = 0;
+                            var p = b * 8;
+                            e.CellStyle.Padding = new Padding(p, 0, 0, 0);
+                        }
+                    };
+                }
                 else if(CurrentTable == V6TableName.Almaubcct)
                 {
                     V6ControlFormHelper.FormatGridView(dataGridView1, "BOLD", "=", 1, true, false, Color.White);
@@ -308,7 +324,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 this.WriteExLog(GetType() + ".SetFormatGridView", ex);
             }
-
         }
 
         private AldmConfig aldm_config;

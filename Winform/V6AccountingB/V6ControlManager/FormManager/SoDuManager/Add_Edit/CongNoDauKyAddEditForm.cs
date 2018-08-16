@@ -5,7 +5,6 @@ using V6AccountingBusiness;
 using V6Controls;
 using V6Init;
 using V6Structs;
-using V6Tools;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.SoDuManager.Add_Edit

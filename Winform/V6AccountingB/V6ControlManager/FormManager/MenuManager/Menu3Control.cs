@@ -17,9 +17,7 @@ using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.Viewer;
 using V6Init;
-using V6Tools;
 using V6Tools.V6Convert;
-using Image = System.Drawing.Image;
 
 namespace V6ControlManager.FormManager.MenuManager
 {

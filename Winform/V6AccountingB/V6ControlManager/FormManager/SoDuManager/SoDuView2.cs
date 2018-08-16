@@ -17,6 +17,7 @@ using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
+using V6Tools;
 using V6Tools.V6Convert;
 using SortOrder = System.Windows.Forms.SortOrder;
 

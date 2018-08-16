@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Globalization;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;

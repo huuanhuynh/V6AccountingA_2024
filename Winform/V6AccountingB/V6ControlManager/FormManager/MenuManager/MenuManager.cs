@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.DanhMucManager;
-using V6ControlManager.FormManager.DanhMucManager.ChangeCode;
 using V6ControlManager.FormManager.HeThong;
 using V6ControlManager.FormManager.HeThong.QuanLyHeThong;
 using V6ControlManager.FormManager.KhoHangManager;

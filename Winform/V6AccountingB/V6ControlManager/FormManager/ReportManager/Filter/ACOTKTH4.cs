@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;

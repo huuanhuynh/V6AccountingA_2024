@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls.Forms;

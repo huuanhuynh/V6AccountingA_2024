@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Reflection;
 using V6Controls;
 using V6Init;
-using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
 {

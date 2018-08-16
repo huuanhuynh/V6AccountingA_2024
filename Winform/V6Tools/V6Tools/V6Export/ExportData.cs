@@ -1388,9 +1388,9 @@ namespace V6Tools.V6Export
         /// <param name="saveAs">Tên file lưu</param>
         /// <param name="title"></param>
         /// <param name="fontName"></param>
-        public static void ToExcel(DataTable data, string saveAs, string title, string fontName = "")
+        public static bool ToExcel(DataTable data, string saveAs, string title, string fontName = "")
         {
-            ToExcel(data, saveAs, title, false, fontName);
+            return ToExcel(data, saveAs, title, false, fontName);
         }
         /// <summary>
         /// 
@@ -1400,7 +1400,7 @@ namespace V6Tools.V6Export
         /// <param name="title"></param>
         /// <param name="line">Kẻ ô</param>
         /// <param name="fontName"></param>
-        public static void ToExcel(DataTable data, string saveAs, string title, bool line, string fontName = "")
+        public static bool ToExcel(DataTable data, string saveAs, string title, bool line, string fontName = "")
         {
             SmartXLS.WorkBook workBook = new SmartXLS.WorkBook();
             workBook.PrintGridLines = false;
@@ -1472,6 +1472,7 @@ namespace V6Tools.V6Export
                 }
             }
             workBook.Dispose();
+            return true;
         }
 
         /// <summary>

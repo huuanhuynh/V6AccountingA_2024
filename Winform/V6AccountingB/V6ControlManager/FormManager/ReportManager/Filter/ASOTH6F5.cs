@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using V6Init;
 using V6Tools.V6Convert;
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {

@@ -5,7 +5,6 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
-using H;
 using HaUtility.Helper;
 using V6AccountingBusiness;
 using V6Controls.Forms;

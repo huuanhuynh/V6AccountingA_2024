@@ -14,7 +14,6 @@ using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonBaoGia;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuXuat;
-using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc;
 using V6Controls;
 using V6Controls.Forms;

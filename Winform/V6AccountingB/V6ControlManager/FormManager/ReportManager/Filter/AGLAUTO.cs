@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using V6Init;
-using V6SqlConnect;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {

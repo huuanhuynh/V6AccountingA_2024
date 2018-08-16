@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using V6Controls;
-using V6Controls.Forms;
 using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter

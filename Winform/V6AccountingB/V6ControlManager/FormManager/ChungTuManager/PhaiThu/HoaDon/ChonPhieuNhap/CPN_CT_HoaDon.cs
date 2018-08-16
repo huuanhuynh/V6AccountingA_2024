@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using V6Controls.Forms;
 using V6SqlConnect;
 using V6Structs;

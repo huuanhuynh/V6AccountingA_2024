@@ -151,17 +151,7 @@ namespace V6Controls
                 column.Visible = column.Frozen;
             }
         }
-
-        /// <summary>
-        /// Chuyển thành SortedDictionary[string, object]
-        /// </summary>
-        /// <param name="row"></param>
-        /// <returns>null if source is null.</returns>
-        public static SortedDictionary<string, object> ToDataDictionary(this DataGridViewRow row)
-        {
-            return V6ControlsHelper.DataGridViewRowToDataDictionary(row);
-        }
-
+        
         /// <summary>
         /// Kiểm tra nếu không có trường dữ liệu hoặc có 1 dữ liệu rỗng, 0, null thì trả về false.
         /// </summary>
