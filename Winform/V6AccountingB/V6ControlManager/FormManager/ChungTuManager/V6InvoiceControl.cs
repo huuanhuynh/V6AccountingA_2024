@@ -267,6 +267,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try //  Ẩn hiện theo quyền trong Alctct
             {
+                if (AM == null || AM_current == null) return;
                 List<string> add_readonly = new List<string>();
                 List<string> edit_readonly = new List<string>();
                 int sl_in = 0;

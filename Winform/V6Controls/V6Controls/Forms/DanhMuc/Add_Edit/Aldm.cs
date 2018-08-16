@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
@@ -17,6 +19,31 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public Aldm()
         {
             InitializeComponent();
+            MyInit1();
+        }
+
+        private void MyInit1()
+        {
+            try
+            {
+                LoadColorNameList();
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("AlbcAddEdit Init" + ex.Message, Application.ProductName);
+            }
+        }
+
+        private void LoadColorNameList()
+        {
+            //List<string> theList = Enum.GetValues(typeof(KnownColor)).Cast<string>().ToList();
+            List<string> colorList = new List<string>();
+            foreach (object value in Enum.GetValues(typeof(KnownColor)))
+            {
+                colorList.Add(value.ToString());
+            }
+            cboColorList.DataSource = colorList;
+            cboColorList.SelectedIndex = -1;
         }
 
         private void From_Load(object sender, EventArgs e)
@@ -155,6 +182,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void btnEditXml_Click(object sender, EventArgs e)
         {
             DoEditXml();
+        }
+
+        private void cboColorList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboColorList.SelectedIndex == -1)
+            {
+                lblTenMau.BackColor = Color.Transparent;
+            }
+            else
+            {
+                lblTenMau.BackColor = Color.FromName(cboColorList.Text);
+            }
         }
 
     }

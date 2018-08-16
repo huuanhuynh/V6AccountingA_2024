@@ -285,14 +285,23 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 {
                     V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, aldm_config.GRDS_V1, aldm_config.GRDF_V1,
                         V6Setting.IsVietnamese ? aldm_config.GRDHV_V1 : aldm_config.GRDHE_V1);
+                    V6ControlFormHelper.FormatGridView(dataGridView1, aldm_config.FIELDV, aldm_config.OPERV, aldm_config.VALUEV, aldm_config.BOLD_YN,
+                        aldm_config.COLOR_YN, Color.FromName(aldm_config.COLORV));
+
+                    int frozen = ObjectAndString.ObjectToInt(aldm_config.FROZENV);
+                    dataGridView1.SetFrozen(frozen);
                 }
                 else
                 {
                     string showFields = v6lookup_config.GRDS_V1;
                     string formatStrings = v6lookup_config.GRDF_V1;
-                    string headerString =
-                        V6Setting.IsVietnamese ? v6lookup_config.GRDHV_V1 : v6lookup_config.GRDHE_V1;
+                    string headerString = V6Setting.IsVietnamese ? v6lookup_config.GRDHV_V1 : v6lookup_config.GRDHE_V1;
                     V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
+                    V6ControlFormHelper.FormatGridView(dataGridView1, v6lookup_config.FIELDV, v6lookup_config.OPERV, v6lookup_config.VALUEV, v6lookup_config.BOLD_YN,
+                        v6lookup_config.COLOR_YN, Color.FromName(v6lookup_config.COLORV));
+
+                    int frozen = ObjectAndString.ObjectToInt(v6lookup_config.FROZENV);
+                    dataGridView1.SetFrozen(frozen);
                 }
             }
             catch (Exception ex)

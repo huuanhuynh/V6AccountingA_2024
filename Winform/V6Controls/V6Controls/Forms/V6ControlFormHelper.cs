@@ -310,6 +310,7 @@ namespace V6Controls.Forms
         private static bool _isMoving;
         private static string _selectedText = "";
         static Timer _hide, _show;
+        private static int _menuLever = 0;
 
         public static void SetHideMenuLabel(V6VeticalLabel label, string selectedText)
         {
@@ -332,7 +333,7 @@ namespace V6Controls.Forms
 
         public static void ShowHideMenu(V6VeticalLabel sender, string selectText,
             Control panelMenuControl, Control panelMenuShowControl, Control panelViewControl,
-            Control container, Point panelMenuLocation, bool isShow)
+            Control container, Point panelMenuLocation, bool isShow, int menuLever)
         {
             if (_isMoving) return;
 
@@ -344,6 +345,7 @@ namespace V6Controls.Forms
             _viewControl = panelViewControl;
             _containerControl = container;
             _menuPanelLocation = panelMenuLocation;
+            _menuLever = menuLever;
             if (isShow)
             {
                 _menuPanel.Visible = true;
@@ -353,7 +355,15 @@ namespace V6Controls.Forms
             }
             else
             {
-                _viewControl.Width = _containerControl.Width - 25;
+                if (_menuLever == 1)
+                {
+                    _viewControl.Width = _containerControl.Width - 33;
+                }
+                else if (_menuLever == 3)
+                {
+                    _viewControl.Width = _containerControl.Width - 23;
+                }
+                
                 _hide = new Timer();
                 _hide.Tick += hide_Tick;
                 _hide.Start();
@@ -410,7 +420,16 @@ namespace V6Controls.Forms
                 _isMoving = false;
                 //_sender.HideText = _sender.Text;
                 _menu_v_label.IsShowing = true;
-                _viewControl.Width = _containerControl.Width - _menuPanel.Width - 25;
+                if (_menuLever == 1)
+                {
+                    _viewControl.Width = _containerControl.Width - _menuPanel.Width - 33;
+                    _viewControl.Height = _menuPanel.Height;
+                }
+                else  if (_menuLever == 3)
+                {
+                    _viewControl.Width = _containerControl.Width - _menuPanel.Width - 23;
+                    _viewControl.Height = _menuPanel.Height - 3;
+                }
             }
             else
             {
@@ -433,6 +452,16 @@ namespace V6Controls.Forms
                 _isMoving = false;
                 _menu_v_label.IsShowing = false;
                 _menu_v_label.HideText = _selectedText;
+                if (_menuLever == 1)
+                {
+                    _viewControl.Width = _containerControl.Width - 33;
+                    _viewControl.Height = _menuPanel.Height;
+                }
+                else if (_menuLever == 3)
+                {
+                    _viewControl.Width = _containerControl.Width - 23;
+                    _viewControl.Height = _menuPanel.Height - 3;
+                }
             }
             else
             {
@@ -2410,6 +2439,70 @@ namespace V6Controls.Forms
             return V6Message.Show(message, V6Setting.Language == "V" ? "Thông báo" : "Information:", showTime, MessageBoxButtons.OK, MessageBoxIcon.Information, owner);
         }
         #endregion showmessage
+
+        /// <summary>
+        /// Hiển thị Ucontrol lên form. Có xác nhận đóng khi nhấn X
+        /// </summary>
+        /// <param name="control">Đối tượng hiển thị trên form.</param>
+        /// <param name="owner">Form chủ, không có để null.</param>
+        /// <param name="title">Tiêu đề trên form.</param>
+        /// <param name="fullScreen">Mở rộng form khi hiển thị</param>
+        /// <param name="dialog">Hiển thị form kiểu dialog.</param>
+        /// <param name="closeConfirm">Xác nhận khi đóng form.</param>
+        public static DialogResult ShowToFormFull(UserControl control, IWin32Window owner, string title = "Form",
+            bool fullScreen = false, bool dialog = true, bool closeConfirm = true)
+        {
+            try
+            {
+                var f = new V6Form
+                {
+                    Text = title,
+                    AutoSize = true,
+                    FormBorderStyle = FormBorderStyle.FixedSingle,
+                    Size = new Size(800, 600)
+                };
+                if (fullScreen) f.WindowState = FormWindowState.Maximized;
+                if (closeConfirm)
+                    f.FormClosing += (sender, e) =>
+                    {
+                        if (!f.IsDisposed && f.ShowConfirmMessage(V6Text.CloseConfirm) != DialogResult.Yes)
+                        {
+                            e.Cancel = true;
+                        }
+                    };
+
+                f.Controls.Add(control);
+                control.Dock = DockStyle.Fill;
+                control.Disposed += delegate
+                {
+                    if (!f.IsDisposed) f.Dispose();
+                };
+                f.KeyPreview = true;
+                f.KeyDown += (s, e) =>
+                {
+                    if (e.KeyCode == Keys.Escape)
+                    {
+                        f.Close();
+                    }
+                };
+
+                if (dialog)
+                {
+                    return f.ShowDialog(owner);
+                }
+                else
+                {
+                    f.Show(owner);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex is ObjectDisposedException) return DialogResult.Abort;
+                control.ShowErrorMessage("UserControl ShowToForm: " + ex.Message);
+            }
+            //Giả không có result (Abort ít dùng).
+            return DialogResult.Abort;
+        }
 
 
         public static void WriteExLog(string address, Exception ex, string logFile = "V6Log")

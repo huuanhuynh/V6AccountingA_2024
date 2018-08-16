@@ -389,7 +389,7 @@ namespace V6AccountingB
 
             V6ControlFormHelper.ShowHideMenu(lable,
                 menuMain.SelectedButton == null ? V6Text.ShowMenu : menuMain.SelectedButton.Text,
-                panelMenu, panelMenuShow, panelView, this, new Point(0, 12), !lable.IsShowing);
+                panelMenu, panelMenuShow, panelView, this, new Point(0, 12), !lable.IsShowing, 1);
         }
         
         private void menuMain_Load(object sender, EventArgs e)

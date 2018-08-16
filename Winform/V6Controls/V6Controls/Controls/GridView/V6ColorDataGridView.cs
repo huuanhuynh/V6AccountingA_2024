@@ -889,9 +889,10 @@ namespace V6Controls
                 form.ShowDialog(this);
                 string text = form.ContentText;
                 CurrentCell.Value = text;
-                CurrentCell.OwningColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-                CurrentCell.OwningColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                CurrentCell.OwningRow.Height = 22*text.Split('\n').Length;
+                //Tự động phóng to ô hiển thị
+                //CurrentCell.OwningColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                //CurrentCell.OwningColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                //CurrentCell.OwningRow.Height = 20*text.Split('\n').Length;
             }
             catch (Exception ex)
             {
@@ -1213,6 +1214,27 @@ namespace V6Controls
         {
             V6ControlFormHelper.FormatGridViewAndHeader(this, GRDSV1, GRDFV1, GRDH);
         }
-        
+
+        /// <summary>
+        /// Tạo cột đông cứng.
+        /// </summary>
+        /// <param name="frozen"></param>
+        public void SetFrozen(int frozen)
+        {
+            int frozen_count = 0;
+            for (int i = 0; i < ColumnCount; i++)
+            {
+                var column = Columns[i];
+                if (column.Visible && frozen_count < frozen)
+                {
+                    column.Frozen = true;
+                    frozen_count++;
+                }
+                else
+                {
+                    column.Frozen = false;
+                }
+            }
+        }
     }
 }

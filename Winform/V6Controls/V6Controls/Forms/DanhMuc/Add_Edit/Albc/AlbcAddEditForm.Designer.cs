@@ -90,6 +90,8 @@
             this.v6ColorTextBox16 = new V6Controls.V6ColorTextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblThongTinThem = new System.Windows.Forms.Label();
+            this.txtExtraInfo = new V6Controls.V6ColorTextBox();
             this.grbSum = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -120,7 +122,6 @@
             this.cboColor = new V6Controls.V6CheckBox();
             this.label31 = new System.Windows.Forms.Label();
             this.chkBold = new V6Controls.V6CheckBox();
-            this.label33 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -133,8 +134,8 @@
             this.btnExcel2View = new System.Windows.Forms.Button();
             this.txtND51 = new V6Controls.V6NumberTextBox();
             this.chkCheckPrint = new V6Controls.V6CheckBox();
-            this.lblThongTinThem = new System.Windows.Forms.Label();
-            this.txtExtraInfo = new V6Controls.V6ColorTextBox();
+            this.TxtSTT13 = new V6Controls.V6NumberTextBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -951,6 +952,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage2.Controls.Add(this.TxtSTT13);
+            this.tabPage2.Controls.Add(this.label33);
             this.tabPage2.Controls.Add(this.lblThongTinThem);
             this.tabPage2.Controls.Add(this.txtExtraInfo);
             this.tabPage2.Controls.Add(this.grbSum);
@@ -971,7 +974,6 @@
             this.tabPage2.Controls.Add(this.cboColor);
             this.tabPage2.Controls.Add(this.label31);
             this.tabPage2.Controls.Add(this.chkBold);
-            this.tabPage2.Controls.Add(this.label33);
             this.tabPage2.Controls.Add(this.label27);
             this.tabPage2.Controls.Add(this.label25);
             this.tabPage2.Controls.Add(this.label21);
@@ -985,6 +987,37 @@
             this.tabPage2.Size = new System.Drawing.Size(747, 384);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Định dạng màu và mở rộng";
+            // 
+            // lblThongTinThem
+            // 
+            this.lblThongTinThem.AutoSize = true;
+            this.lblThongTinThem.Location = new System.Drawing.Point(7, 351);
+            this.lblThongTinThem.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblThongTinThem.Name = "lblThongTinThem";
+            this.lblThongTinThem.Size = new System.Drawing.Size(78, 13);
+            this.lblThongTinThem.TabIndex = 1;
+            this.lblThongTinThem.Text = "Thông tin thêm";
+            this.lblThongTinThem.Visible = false;
+            // 
+            // txtExtraInfo
+            // 
+            this.txtExtraInfo.AccessibleName = "EXTRA_INFOR";
+            this.txtExtraInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtExtraInfo.BackColor = System.Drawing.Color.White;
+            this.txtExtraInfo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtExtraInfo.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtExtraInfo.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtExtraInfo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtExtraInfo.HoverColor = System.Drawing.Color.Yellow;
+            this.txtExtraInfo.LeaveColor = System.Drawing.Color.White;
+            this.txtExtraInfo.Location = new System.Drawing.Point(97, 348);
+            this.txtExtraInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExtraInfo.Name = "txtExtraInfo";
+            this.txtExtraInfo.Size = new System.Drawing.Size(643, 20);
+            this.txtExtraInfo.TabIndex = 2;
+            this.toolTipV6FormControl.SetToolTip(this.txtExtraInfo, "CODE:value;CODE2:value2");
+            this.txtExtraInfo.Visible = false;
             // 
             // grbSum
             // 
@@ -1420,15 +1453,6 @@
             this.chkBold.Text = "Sử dụng định dạng in đậm khi hiển thị";
             this.chkBold.UseVisualStyleBackColor = true;
             // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(368, 149);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(171, 13);
-            this.label33.TabIndex = 2;
-            this.label33.Text = "Điều kiện in đậm [FIELD] = Value?";
-            // 
             // label27
             // 
             this.label27.AutoSize = true;
@@ -1563,36 +1587,38 @@
             this.chkCheckPrint.UseVisualStyleBackColor = true;
             this.chkCheckPrint.CheckedChanged += new System.EventHandler(this.chknd51_CheckedChanged);
             // 
-            // lblThongTinThem
+            // TxtSTT13
             // 
-            this.lblThongTinThem.AutoSize = true;
-            this.lblThongTinThem.Location = new System.Drawing.Point(7, 351);
-            this.lblThongTinThem.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblThongTinThem.Name = "lblThongTinThem";
-            this.lblThongTinThem.Size = new System.Drawing.Size(78, 13);
-            this.lblThongTinThem.TabIndex = 1;
-            this.lblThongTinThem.Text = "Thông tin thêm";
-            this.lblThongTinThem.Visible = false;
+            this.TxtSTT13.AccessibleName = "FROZENV";
+            this.TxtSTT13.BackColor = System.Drawing.Color.White;
+            this.TxtSTT13.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtSTT13.DecimalPlaces = 0;
+            this.TxtSTT13.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtSTT13.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtSTT13.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtSTT13.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtSTT13.LeaveColor = System.Drawing.Color.White;
+            this.TxtSTT13.Location = new System.Drawing.Point(470, 102);
+            this.TxtSTT13.Margin = new System.Windows.Forms.Padding(5);
+            this.TxtSTT13.Name = "TxtSTT13";
+            this.TxtSTT13.Size = new System.Drawing.Size(40, 20);
+            this.TxtSTT13.TabIndex = 150;
+            this.TxtSTT13.Text = "0";
+            this.TxtSTT13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TxtSTT13.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
-            // txtExtraInfo
+            // label33
             // 
-            this.txtExtraInfo.AccessibleName = "EXTRA_INFOR";
-            this.txtExtraInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtExtraInfo.BackColor = System.Drawing.Color.White;
-            this.txtExtraInfo.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtExtraInfo.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtExtraInfo.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtExtraInfo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtExtraInfo.HoverColor = System.Drawing.Color.Yellow;
-            this.txtExtraInfo.LeaveColor = System.Drawing.Color.White;
-            this.txtExtraInfo.Location = new System.Drawing.Point(97, 348);
-            this.txtExtraInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExtraInfo.Name = "txtExtraInfo";
-            this.txtExtraInfo.Size = new System.Drawing.Size(643, 20);
-            this.txtExtraInfo.TabIndex = 2;
-            this.toolTipV6FormControl.SetToolTip(this.txtExtraInfo, "CODE:value;CODE2:value2");
-            this.txtExtraInfo.Visible = false;
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(343, 105);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(93, 13);
+            this.label33.TabIndex = 149;
+            this.label33.Text = "Số cột đông cứng";
             // 
             // AlbcAddEditForm
             // 
@@ -1741,7 +1767,6 @@
         private System.Windows.Forms.Label label31;
         private V6NumberTextBox txtSoLien;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label33;
         protected System.Windows.Forms.Button btnNhapXML;
         protected System.Windows.Forms.Button btnXuatXML;
         private V6NumberTextBox numRowMax;
@@ -1758,5 +1783,7 @@
         private Controls.V6ValueComboBox v6ValueComboBox1;
         private System.Windows.Forms.Label lblThongTinThem;
         private V6ColorTextBox txtExtraInfo;
+        private V6NumberTextBox TxtSTT13;
+        private System.Windows.Forms.Label label33;
     }
 }

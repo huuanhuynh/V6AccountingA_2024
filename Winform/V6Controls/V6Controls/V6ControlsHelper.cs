@@ -190,7 +190,7 @@ namespace V6Controls
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + ".CreateProgram", ex);
+                V6ControlFormHelper.WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + ".CreateProgram\r\n" + output + "\r\n" + method_text, ex);
             }
 
             V6ControlFormHelper.ShowWarningMessage("Lỗi mã mở rộng:\r\n" + output);

@@ -91,6 +91,13 @@ namespace V6Controls
         public string FILTER { get { return GetString("FILTER"); } }
         public string FIELD { get { return GetString("FIELD"); } }
         public string FIELD2 { get { return GetString("FIELD2"); } }
+        /// <summary>
+        /// BOLD=1
+        /// </summary>
+        public string FIELDV { get { return GetString("FIELDV"); } }
+        public string OPERV { get { return GetString("OPERV"); } }
+        public string VALUEV { get { return GetString("VALUEV"); } }
+        public string COLORV { get { return GetString("COLORV"); } }
         public string A_FIELD { get { return GetString("A_FIELD"); } }
         public string A_FIELD2 { get { return GetString("A_FIELD2"); } }
         /// <summary>
@@ -157,7 +164,9 @@ namespace V6Controls
         public string Vorder { get { return GetString("ORDER"); } }
 
         public string ADV_FILTER { get { return GetString("ADV_FILTER"); } }
-
+        public bool BOLD_YN { get { return GetString("BOLD_YN") == "1"; } }
+        public bool COLOR_YN { get { return GetString("COLOR_YN") == "1"; } }
+        public int FROZENV { get { return GetInt("FROZENV"); } }
     }
 
     public class V6lookupConfig : Config
@@ -202,6 +211,16 @@ namespace V6Controls
         public string F4 { get { return GetString("F4"); } }
         public string Filter_All { get { return GetString("Filter_All"); } }
         public string FILTER_FIELD { get { return GetString("FILTER_FIELD"); } }
+        /// <summary>
+        /// BOLD=1
+        /// </summary>
+        public string FIELDV { get { return GetString("FIELDV"); } }
+        public string OPERV { get { return GetString("OPERV"); } }
+        public string VALUEV { get { return GetString("VALUEV"); } }
+        public string COLORV { get { return GetString("COLORV"); } }
+        public bool BOLD_YN { get { return GetString("BOLD_YN") == "1"; } }
+        public bool COLOR_YN { get { return GetString("COLOR_YN") == "1"; } }
+        public int FROZENV { get { return GetInt("FROZENV"); } }
     }
 
     public class StandardConfig

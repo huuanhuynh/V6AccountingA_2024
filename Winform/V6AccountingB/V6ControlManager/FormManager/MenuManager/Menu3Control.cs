@@ -308,8 +308,7 @@ namespace V6ControlManager.FormManager.MenuManager
                 var button = (V6VeticalLabel)sender;
                 var selectedText = menuControl1.SelectedButton == null ? V6Text.ShowMenu : menuControl1.SelectedButton.Text;
                 V6ControlFormHelper.ShowHideMenu((V6VeticalLabel)sender, selectedText,
-                    panelMenu, panelMenuShow, panelView,
-                    this, new Point(0,0), !button.IsShowing);
+                    panelMenu, panelMenuShow, panelView, this, new Point(0,0), !button.IsShowing, 3);
 
             }
             catch (Exception ex)
@@ -326,8 +325,7 @@ namespace V6ControlManager.FormManager.MenuManager
                 {
                     var selectedText = menuControl1.SelectedButton == null ? V6Text.ShowMenu : menuControl1.SelectedButton.Text;
                     V6ControlFormHelper.ShowHideMenu(lblShowHide, selectedText,
-                    panelMenu, panelMenuShow, panelView,
-                    this, new Point(0, 0), false);
+                    panelMenu, panelMenuShow, panelView, this, new Point(0, 0), false, 3);
                 }
             }
             catch (Exception ex)
@@ -343,8 +341,7 @@ namespace V6ControlManager.FormManager.MenuManager
                 {
                     var selectedText = menuControl1.SelectedButton == null ? V6Text.ShowMenu : menuControl1.SelectedButton.Text;
                     V6ControlFormHelper.ShowHideMenu(lblShowHide, selectedText,
-                    panelMenu, panelMenuShow, panelView,
-                    this, new Point(0, 0), true);
+                    panelMenu, panelMenuShow, panelView, this, new Point(0, 0), true, 3);
                 }
             }
             catch (Exception ex)

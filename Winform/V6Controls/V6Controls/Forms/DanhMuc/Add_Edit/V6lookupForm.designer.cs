@@ -39,6 +39,19 @@
             this.label6 = new System.Windows.Forms.Label();
             this.v6CheckBox1 = new V6Controls.V6CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.grbBold = new System.Windows.Forms.GroupBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtValueV = new V6Controls.V6ColorTextBox();
+            this.txtFieldV = new V6Controls.V6ColorTextBox();
+            this.cboOperV = new V6Controls.Controls.V6ValueComboBox();
+            this.cboColorList = new V6Controls.Controls.V6ValueComboBox();
+            this.cboColor = new V6Controls.V6CheckBox();
+            this.chkBold = new V6Controls.V6CheckBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.lblTenMau = new System.Windows.Forms.Label();
             this.txtFilterField = new V6Controls.V6ColorTextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -88,8 +101,11 @@
             this.v6ColorTextBox15 = new V6Controls.V6ColorTextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.TxtSTT13 = new V6Controls.V6NumberTextBox();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.grbBold.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -227,6 +243,15 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage3.Controls.Add(this.TxtSTT13);
+            this.tabPage3.Controls.Add(this.label30);
+            this.tabPage3.Controls.Add(this.grbBold);
+            this.tabPage3.Controls.Add(this.cboColorList);
+            this.tabPage3.Controls.Add(this.cboColor);
+            this.tabPage3.Controls.Add(this.chkBold);
+            this.tabPage3.Controls.Add(this.label28);
+            this.tabPage3.Controls.Add(this.label29);
+            this.tabPage3.Controls.Add(this.lblTenMau);
             this.tabPage3.Controls.Add(this.txtFilterField);
             this.tabPage3.Controls.Add(this.label24);
             this.tabPage3.Controls.Add(this.label4);
@@ -240,6 +265,155 @@
             this.tabPage3.Size = new System.Drawing.Size(791, 323);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Các tùy chọn";
+            // 
+            // grbBold
+            // 
+            this.grbBold.Controls.Add(this.label25);
+            this.grbBold.Controls.Add(this.label26);
+            this.grbBold.Controls.Add(this.label27);
+            this.grbBold.Controls.Add(this.txtValueV);
+            this.grbBold.Controls.Add(this.txtFieldV);
+            this.grbBold.Controls.Add(this.cboOperV);
+            this.grbBold.Location = new System.Drawing.Point(8, 134);
+            this.grbBold.Name = "grbBold";
+            this.grbBold.Size = new System.Drawing.Size(341, 95);
+            this.grbBold.TabIndex = 36;
+            this.grbBold.TabStop = false;
+            this.grbBold.Text = "Điều kiện in đậm [FIELD] = Value?";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(6, 20);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(78, 17);
+            this.label25.TabIndex = 0;
+            this.label25.Text = "Tên trường";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(6, 73);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(100, 17);
+            this.label26.TabIndex = 4;
+            this.label26.Text = "Giá trị so sánh";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(6, 46);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(95, 17);
+            this.label27.TabIndex = 2;
+            this.label27.Text = "Phép so sánh";
+            // 
+            // txtValueV
+            // 
+            this.txtValueV.AccessibleName = "VALUEV";
+            this.txtValueV.BackColor = System.Drawing.SystemColors.Window;
+            this.txtValueV.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtValueV.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtValueV.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtValueV.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtValueV.HoverColor = System.Drawing.Color.Yellow;
+            this.txtValueV.LeaveColor = System.Drawing.Color.White;
+            this.txtValueV.Location = new System.Drawing.Point(128, 70);
+            this.txtValueV.Name = "txtValueV";
+            this.txtValueV.Size = new System.Drawing.Size(206, 23);
+            this.txtValueV.TabIndex = 5;
+            // 
+            // txtFieldV
+            // 
+            this.txtFieldV.AccessibleName = "FIELDV";
+            this.txtFieldV.BackColor = System.Drawing.Color.White;
+            this.txtFieldV.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFieldV.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFieldV.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFieldV.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFieldV.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFieldV.LeaveColor = System.Drawing.Color.White;
+            this.txtFieldV.Location = new System.Drawing.Point(128, 17);
+            this.txtFieldV.Name = "txtFieldV";
+            this.txtFieldV.Size = new System.Drawing.Size(206, 23);
+            this.txtFieldV.TabIndex = 1;
+            // 
+            // cboOperV
+            // 
+            this.cboOperV.AccessibleName = "OPERV";
+            this.cboOperV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboOperV.FormattingEnabled = true;
+            this.cboOperV.Items.AddRange(new object[] {
+            "=",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "<>"});
+            this.cboOperV.Location = new System.Drawing.Point(128, 43);
+            this.cboOperV.Name = "cboOperV";
+            this.cboOperV.Size = new System.Drawing.Size(206, 24);
+            this.cboOperV.TabIndex = 3;
+            // 
+            // cboColorList
+            // 
+            this.cboColorList.AccessibleName = "COLORV";
+            this.cboColorList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboColorList.FormattingEnabled = true;
+            this.cboColorList.Location = new System.Drawing.Point(99, 280);
+            this.cboColorList.Name = "cboColorList";
+            this.cboColorList.Size = new System.Drawing.Size(206, 24);
+            this.cboColorList.TabIndex = 35;
+            this.cboColorList.SelectedIndexChanged += new System.EventHandler(this.cboColorList_SelectedIndexChanged);
+            // 
+            // cboColor
+            // 
+            this.cboColor.AccessibleName = "COLOR_YN";
+            this.cboColor.AutoSize = true;
+            this.cboColor.Location = new System.Drawing.Point(99, 258);
+            this.cboColor.Name = "cboColor";
+            this.cboColor.Size = new System.Drawing.Size(250, 21);
+            this.cboColor.TabIndex = 33;
+            this.cboColor.Text = "Sử dụng định dạng màu khi hiển thị";
+            this.cboColor.UseVisualStyleBackColor = true;
+            // 
+            // chkBold
+            // 
+            this.chkBold.AccessibleName = "BOLD_YN";
+            this.chkBold.AutoSize = true;
+            this.chkBold.Location = new System.Drawing.Point(99, 236);
+            this.chkBold.Name = "chkBold";
+            this.chkBold.Size = new System.Drawing.Size(265, 21);
+            this.chkBold.TabIndex = 31;
+            this.chkBold.Text = "Sử dụng định dạng in đậm khi hiển thị";
+            this.chkBold.UseVisualStyleBackColor = true;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(9, 237);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(37, 17);
+            this.label28.TabIndex = 30;
+            this.label28.Text = "Đậm";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(9, 261);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(35, 17);
+            this.label29.TabIndex = 32;
+            this.label29.Text = "Màu";
+            // 
+            // lblTenMau
+            // 
+            this.lblTenMau.Location = new System.Drawing.Point(9, 282);
+            this.lblTenMau.Name = "lblTenMau";
+            this.lblTenMau.Size = new System.Drawing.Size(86, 18);
+            this.lblTenMau.TabIndex = 34;
+            this.lblTenMau.Text = "Màu nền";
+            this.lblTenMau.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtFilterField
             // 
@@ -959,6 +1133,39 @@
             this.label46.TabIndex = 47;
             this.label46.Text = "Trường hiển thị";
             // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(358, 151);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(119, 17);
+            this.label30.TabIndex = 37;
+            this.label30.Text = "Số cột đông cứng";
+            // 
+            // TxtSTT13
+            // 
+            this.TxtSTT13.AccessibleName = "FROZENV";
+            this.TxtSTT13.BackColor = System.Drawing.Color.White;
+            this.TxtSTT13.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtSTT13.DecimalPlaces = 0;
+            this.TxtSTT13.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtSTT13.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtSTT13.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtSTT13.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtSTT13.LeaveColor = System.Drawing.Color.White;
+            this.TxtSTT13.Location = new System.Drawing.Point(485, 148);
+            this.TxtSTT13.Margin = new System.Windows.Forms.Padding(5);
+            this.TxtSTT13.Name = "TxtSTT13";
+            this.TxtSTT13.Size = new System.Drawing.Size(40, 23);
+            this.TxtSTT13.TabIndex = 148;
+            this.TxtSTT13.Text = "0";
+            this.TxtSTT13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TxtSTT13.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
             // V6lookupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -974,6 +1181,8 @@
             this.groupBox1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.grbBold.ResumeLayout(false);
+            this.grbBold.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.v6TabControl1.ResumeLayout(false);
@@ -1044,5 +1253,20 @@
         private V6ColorTextBox txtFilterField;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox grbBold;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private V6ColorTextBox txtValueV;
+        private V6ColorTextBox txtFieldV;
+        private Controls.V6ValueComboBox cboOperV;
+        private Controls.V6ValueComboBox cboColorList;
+        private V6CheckBox cboColor;
+        private V6CheckBox chkBold;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label lblTenMau;
+        private System.Windows.Forms.Label label30;
+        private V6NumberTextBox TxtSTT13;
     }
 }

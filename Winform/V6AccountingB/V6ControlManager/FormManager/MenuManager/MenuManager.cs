@@ -124,8 +124,6 @@ namespace V6ControlManager.FormManager.MenuManager
                                         check_v6 = aldm.Rows[0]["CHECK_V6"].ToString() == "1";
                                     }
 
-                                    
-
                                     var where = "";
                                     if (TABLE_NAME == "ALKC")
                                     {
@@ -142,7 +140,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                                 ReportTitle = repTitle,
                                                 ReportTitle2 = repTitle2
                                             };
-                                            ((DanhMucView)c).AddInitFilter(where);
+                                            ((DanhMucView) c).AddInitFilter(where);
                                         }
                                     }
                                     else
@@ -171,7 +169,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                         };
                                         if (TABLE_NAME == "V6LOOKUP")
                                         {
-                                            var dv = (DanhMucView)c;
+                                            var dv = (DanhMucView) c;
                                             //dv.EnableAdd = false;
                                             dv.EnableDelete = false;
                                             dv.EnableChangeCode = false;
@@ -186,7 +184,9 @@ namespace V6ControlManager.FormManager.MenuManager
                                 }
                             }
                             else
+                            {
                                 c = new V6UserControlNoRight("Key:" + item_id + "; Codeform:" + codeform);
+                            }
 
 
                             break;
