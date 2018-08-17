@@ -790,6 +790,27 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                         }
 
                                     }
+                                    else if (CurrentTable == V6TableName.Alvv)
+                                    {
+
+                                        try
+                                        {
+                                            var ma_vv = row.Cells["MA_VV"].Value.ToString().Trim();
+                                            var ma_vv_me_new = row.Cells["MA_VV_ME"].Value.ToString().Trim();
+
+                                            V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UpdateLoaiVv",
+                                                new SqlParameter("@ma_vv", ma_vv),
+                                                new SqlParameter("@ma_vv_me_old", ma_vv_me_new),
+                                                new SqlParameter("@ma_vv_me_new", ma_vv_me_new),
+                                                new SqlParameter("@action", "D")
+                                                );
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            this.ShowErrorException(GetType() + ".DoDelete Alvv after", ex);
+                                        }
+
+                                    }
                                     else if (CurrentTable == V6TableName.Alkh)
                                     {
                                         try

@@ -50,7 +50,7 @@
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
-            this.txtMaDvcs.FieldCaption = "Mã đơn vị";
+            this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 48);
             this.txtMaDvcs.Name = "txtMaDvcs";
@@ -212,7 +212,7 @@
             // 
             // filterLineVvarTextBox2
             // 
-            this.filterLineVvarTextBox2.FieldCaption = "Mã đơn vị";
+            this.filterLineVvarTextBox2.Caption = "Mã đơn vị";
             this.filterLineVvarTextBox2.FieldName = null;
             this.filterLineVvarTextBox2.Location = new System.Drawing.Point(6, 60);
             this.filterLineVvarTextBox2.Name = "filterLineVvarTextBox2";
@@ -222,7 +222,7 @@
             // 
             // TxtMa_dvcs
             // 
-            this.TxtMa_dvcs.FieldCaption = "Mã đơn vị";
+            this.TxtMa_dvcs.Caption = "Mã đơn vị";
             this.TxtMa_dvcs.FieldName = null;
             this.TxtMa_dvcs.Location = new System.Drawing.Point(6, 60);
             this.TxtMa_dvcs.Name = "TxtMa_dvcs";

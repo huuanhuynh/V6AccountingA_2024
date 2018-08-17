@@ -137,7 +137,7 @@
             // txtMaDvcs
             // 
             this.txtMaDvcs.AccessibleDescription = "XULYL00040";
-            this.txtMaDvcs.FieldCaption = "Mã đơn vị";
+            this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 96);
             this.txtMaDvcs.Name = "txtMaDvcs";

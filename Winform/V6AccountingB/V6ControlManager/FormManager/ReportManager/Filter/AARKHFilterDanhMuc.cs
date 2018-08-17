@@ -74,7 +74,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var lineControl = new FilterLineDynamic
             {
                 FieldName = fieldName.ToUpper(),
-                FieldCaption = CorpLan2.GetFieldHeader(fieldName)
+                Caption = CorpLan2.GetFieldHeader(fieldName)
             };
             if (_tStruct.ContainsKey(fieldName.Trim().ToUpper()))
             {

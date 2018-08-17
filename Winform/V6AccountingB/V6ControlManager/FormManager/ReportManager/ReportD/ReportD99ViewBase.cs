@@ -1020,11 +1020,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     }
 
                     FormatGridView();
-                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1,
-                        V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
-
-                    FilterControl.FormatGridView(dataGridView1);
-
+                    
                     ViewReportIndex();
 
                     dataGridView1.Focus();
@@ -1076,6 +1072,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIA"];
             }
 
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
+            if (FilterControl != null) FilterControl.FormatGridView(dataGridView1);
+            if (MauInSelectedRow != null)
+            {
+                int frozen = ObjectAndString.ObjectToInt(MauInSelectedRow["FROZENV"]);
+                dataGridView1.SetFrozen(frozen);
+            }
         }
 
         #endregion ==== LoadData MakeReport ====

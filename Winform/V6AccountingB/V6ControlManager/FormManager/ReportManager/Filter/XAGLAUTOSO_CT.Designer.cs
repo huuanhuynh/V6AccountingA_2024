@@ -350,7 +350,7 @@
             // 
             this.filterMaDvcs.AccessibleDescription = "FILTERL00005";
             this.filterMaDvcs.AccessibleName2 = "MA_DVCS";
-            this.filterMaDvcs.FieldCaption = "Mã DVCS";
+            this.filterMaDvcs.Caption = "Mã DVCS";
             this.filterMaDvcs.FieldName = "MA_DVCS";
             this.filterMaDvcs.Location = new System.Drawing.Point(6, 42);
             this.filterMaDvcs.Name = "filterMaDvcs";

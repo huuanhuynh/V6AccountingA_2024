@@ -137,7 +137,7 @@
             // 
             this.filterLineVvarTextBox3.AccessibleDescription = "FILTERL00007";
             this.filterLineVvarTextBox3.AccessibleName2 = "MA_KH";
-            this.filterLineVvarTextBox3.FieldCaption = "Mã khách hàng";
+            this.filterLineVvarTextBox3.Caption = "Mã khách hàng";
             this.filterLineVvarTextBox3.FieldName = "MA_KH";
             this.filterLineVvarTextBox3.Location = new System.Drawing.Point(6, 49);
             this.filterLineVvarTextBox3.Name = "filterLineVvarTextBox3";
@@ -163,7 +163,7 @@
             this.txtma_ct.AccessibleName = "";
             this.txtma_ct.AccessibleName2 = "MA_CT";
             this.txtma_ct.Enabled = false;
-            this.txtma_ct.FieldCaption = "Mã chứng từ";
+            this.txtma_ct.Caption = "Mã chứng từ";
             this.txtma_ct.FieldName = "MA_CT";
             this.txtma_ct.Location = new System.Drawing.Point(6, 76);
             this.txtma_ct.Name = "txtma_ct";
@@ -189,7 +189,7 @@
             this.taiKhoan.AccessibleDescription = "FILTERL00027";
             this.taiKhoan.AccessibleName = "";
             this.taiKhoan.AccessibleName2 = "TK";
-            this.taiKhoan.FieldCaption = "Tài khoản";
+            this.taiKhoan.Caption = "Tài khoản";
             this.taiKhoan.FieldName = "TK";
             this.taiKhoan.Location = new System.Drawing.Point(6, 131);
             this.taiKhoan.Name = "taiKhoan";
@@ -202,7 +202,7 @@
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName = "";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
-            this.txtMaDvcs.FieldCaption = "Mã đơn vị";
+            this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 103);
             this.txtMaDvcs.Name = "txtMaDvcs";

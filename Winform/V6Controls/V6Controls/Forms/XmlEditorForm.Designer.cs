@@ -1,4 +1,4 @@
-﻿namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
+﻿namespace V6Controls.Forms
 {
     partial class XmlEditorForm
     {

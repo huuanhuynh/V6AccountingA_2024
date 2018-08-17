@@ -1710,12 +1710,6 @@
     <Compile Include="FormManager\NhanSu\View\TwoGridControl.Designer.cs">
       <DependentUpon>TwoGridControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Add_Edit\BangCanDoiTaiChinhForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormManager\ReportManager\Add_Edit\BangCanDoiTaiChinhForm.Designer.cs">
-      <DependentUpon>BangCanDoiTaiChinhForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ReportManager\DanhMuc\DanhMucReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6045,9 +6039,6 @@
     <EmbeddedResource Include="FormManager\NhanSu\View\TwoGridControl.resx">
       <DependentUpon>TwoGridControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Add_Edit\BangCanDoiTaiChinhForm.resx">
-      <DependentUpon>BangCanDoiTaiChinhForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\DanhMuc\DanhMucReportForm.resx">
       <DependentUpon>DanhMucReportForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -7874,6 +7865,7 @@
   <ItemGroup>
     <Folder Include="FormManager\KhoHangManager\Draw\NewFolder1\" />
     <Folder Include="FormManager\Other\" />
+    <Folder Include="FormManager\ReportManager\Add_Edit\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\V6Logo_5x4.png" />

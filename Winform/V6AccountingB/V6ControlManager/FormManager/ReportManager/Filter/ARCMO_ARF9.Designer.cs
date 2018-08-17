@@ -60,7 +60,7 @@
             this.taiKhoan.AccessibleDescription = "FILTERL00027";
             this.taiKhoan.AccessibleName = "";
             this.taiKhoan.AccessibleName2 = "TK";
-            this.taiKhoan.FieldCaption = "Tài khoản";
+            this.taiKhoan.Caption = "Tài khoản";
             this.taiKhoan.FieldName = "TK";
             this.taiKhoan.Location = new System.Drawing.Point(6, 86);
             this.taiKhoan.Name = "taiKhoan";
@@ -72,7 +72,7 @@
             // 
             this.maKhachHang.AccessibleDescription = "FILTERL00007";
             this.maKhachHang.AccessibleName2 = "MA_KH";
-            this.maKhachHang.FieldCaption = "Mã khách hàng";
+            this.maKhachHang.Caption = "Mã khách hàng";
             this.maKhachHang.FieldName = "MA_KH";
             this.maKhachHang.Location = new System.Drawing.Point(6, 31);
             this.maKhachHang.Name = "maKhachHang";
@@ -85,7 +85,7 @@
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName = "";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
-            this.txtMaDvcs.FieldCaption = "Mã đơn vị";
+            this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 59);
             this.txtMaDvcs.Name = "txtMaDvcs";

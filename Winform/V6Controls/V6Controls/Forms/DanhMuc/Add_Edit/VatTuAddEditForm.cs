@@ -73,10 +73,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         public override void AfterInsert()
         {
-            UpdateAlqddvt();
+            //UpdateAlqddvt();
         }
 
         public override void AfterUpdate()
+        {
+            //UpdateAlqddvt();
+        }
+
+        public override void AfterSave()
         {
             UpdateAlqddvt();
         }

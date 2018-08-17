@@ -62,7 +62,7 @@
             // 
             this.filter_tk.AccessibleDescription = "FILTERL00027";
             this.filter_tk.AccessibleName2 = "TK";
-            this.filter_tk.FieldCaption = "Tài khoản";
+            this.filter_tk.Caption = "Tài khoản";
             this.filter_tk.FieldName = "TK";
             this.filter_tk.Location = new System.Drawing.Point(3, 75);
             this.filter_tk.Name = "filter_tk";
@@ -74,7 +74,7 @@
             // 
             this.filter_ma_dvcs.AccessibleDescription = "FILTERL00005";
             this.filter_ma_dvcs.AccessibleName2 = "MA_DVCS";
-            this.filter_ma_dvcs.FieldCaption = "Mã đơn vị";
+            this.filter_ma_dvcs.Caption = "Mã đơn vị";
             this.filter_ma_dvcs.FieldName = "MA_DVCS";
             this.filter_ma_dvcs.Location = new System.Drawing.Point(3, 52);
             this.filter_ma_dvcs.Name = "filter_ma_dvcs";
@@ -84,7 +84,7 @@
             // 
             // txtMaDvcs
             // 
-            this.txtMaDvcs.FieldCaption = "Mã đơn vị";
+            this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(3, 53);
             this.txtMaDvcs.Name = "txtMaDvcs";

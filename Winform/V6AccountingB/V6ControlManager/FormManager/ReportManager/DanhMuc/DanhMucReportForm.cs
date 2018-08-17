@@ -626,7 +626,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             var lineControl = new FilterLineDynamic
             {
                 FieldName = fieldName.ToUpper(),
-                FieldCaption = CorpLan2.GetFieldHeader(fieldName)
+                Caption = CorpLan2.GetFieldHeader(fieldName)
             };
             if (_tStruct.ContainsKey(fieldName.Trim().ToUpper()))
             {
@@ -985,8 +985,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = _tbl;
 
-                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
-
+                    FormatGridView();
                     ViewReport();
 
                     dataGridView1.Focus();
@@ -1010,6 +1009,25 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 this.ShowErrorMessage(error_message);
             }
         }
+
+        private void FormatGridView()
+        {
+            try
+            {
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
+                //if (FilterControl != null) FilterControl.FormatGridView(dataGridView1);
+                if (MauInSelectedRow != null)
+                {
+                    int frozen = ObjectAndString.ObjectToInt(MauInSelectedRow["FROZENV"]);
+                    dataGridView1.SetFrozen(frozen);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".FormatGridView", ex);
+            }
+        }
+
         #endregion ==== LoadData MakeReport ====
         
 

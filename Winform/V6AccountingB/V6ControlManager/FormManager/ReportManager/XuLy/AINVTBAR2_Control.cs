@@ -49,6 +49,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        private DataRow MauInSelectedRow
+        {
+            get
+            {
+                return MauInData == null || MauInData.Rows.Count == 0 ? null : MauInData.Rows[0];
+            }
+        }
+
         private string Report_GRDSV1
         {
             get
@@ -360,9 +368,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIA"];
                 }
 
-                FilterControl.FormatGridView(dataGridView1);
-
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
+                if (FilterControl != null) FilterControl.FormatGridView(dataGridView1);
+                if (MauInSelectedRow != null)
+                {
+                    int frozen = ObjectAndString.ObjectToInt(MauInSelectedRow["FROZENV"]);
+                    dataGridView1.SetFrozen(frozen);
+                }
             }
             catch (Exception ex)
             {

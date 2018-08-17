@@ -45,7 +45,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// Code động từ aldmConfig.
         /// </summary>
         protected Type Event_program;
-        protected Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
         /// <summary>
         /// Chứa data mới (trên form) dùng để insert hoặc edit.
@@ -311,6 +311,42 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 this.ShowErrorException(GetType() + ".UpdateLoaiTk", ex);
             }
         }
+        private void UpdateBackVv()
+        {
+            try
+            {
+                var ma_vv = DataDic["MA_VV_ME"].ToString().Trim();
+
+                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UpdateBacVv",
+                    new SqlParameter("@ma_vv", ma_vv));
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".UpdateBackVv", ex);
+            }
+        }
+        private void UpdateLoaiVv(string action)
+        {
+            try
+            {
+                var ma_vv = DataDic["MA_VV"].ToString().Trim();
+                var ma_vv_me_new = DataDic["MA_VV_ME"].ToString().Trim();
+                var ma_vv_me_old = Mode == V6Mode.Edit ? DataOld["MA_VV_ME"].ToString().Trim() : ma_vv_me_new;
+
+
+
+                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UpdateLoaiVv",
+                        new SqlParameter("@ma_vv", ma_vv),
+                        new SqlParameter("@ma_vv_me_old", ma_vv_me_old),
+                        new SqlParameter("@ma_vv_me_new", ma_vv_me_new),
+                        new SqlParameter("@action", action.Trim())
+                        );
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".UpdateLoaiVv", ex);
+            }
+        }
         private void UpdateInheritUser()
         {
             try
@@ -425,6 +461,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             UpdateBackTk();
                             UpdateLoaiTk("E");
                         }
+                        if (TableName == V6TableName.Alvv)
+                        {
+                            UpdateBackVv();
+                            UpdateLoaiVv("E");
+                        }
                         if (TableName == V6TableName.Hrpersonal)
                         {
                             Update_Auto_From_Personal();
@@ -481,6 +522,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         {
                             UpdateBackTk();
                             UpdateLoaiTk("A");
+                        }
+                        if (TableName == V6TableName.Alvv)
+                        {
+                            UpdateBackVv();
+                            UpdateLoaiVv("A");
                         }
                         if (TableName == V6TableName.Hrpersonal)
                         {

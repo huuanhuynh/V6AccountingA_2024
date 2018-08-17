@@ -58,7 +58,7 @@
             this.txtma_phi.AccessibleDescription = "FILTERL00069";
             this.txtma_phi.AccessibleName2 = "MA_PHI";
             this.txtma_phi.Enabled = false;
-            this.txtma_phi.FieldCaption = "Mã phí";
+            this.txtma_phi.Caption = "Mã phí";
             this.txtma_phi.FieldName = "MA_PHI";
             this.txtma_phi.Location = new System.Drawing.Point(5, 64);
             this.txtma_phi.Name = "txtma_phi";
@@ -72,7 +72,7 @@
             this.txtTk_du.AccessibleDescription = "FILTERL00046";
             this.txtTk_du.AccessibleName2 = "TK_DU";
             this.txtTk_du.Enabled = false;
-            this.txtTk_du.FieldCaption = "TK đối ứng";
+            this.txtTk_du.Caption = "TK đối ứng";
             this.txtTk_du.FieldName = "TK_DU";
             this.txtTk_du.Location = new System.Drawing.Point(5, 42);
             this.txtTk_du.Name = "txtTk_du";

@@ -86,7 +86,7 @@
             // 
             this.txtMa_bpht.AccessibleDescription = "FILTERL00078";
             this.txtMa_bpht.AccessibleName2 = "MA_BPHT";
-            this.txtMa_bpht.FieldCaption = "Mã bộ phận HT";
+            this.txtMa_bpht.Caption = "Mã bộ phận HT";
             this.txtMa_bpht.FieldName = "MA_BPHT";
             this.txtMa_bpht.Location = new System.Drawing.Point(21, 89);
             this.txtMa_bpht.Name = "txtMa_bpht";

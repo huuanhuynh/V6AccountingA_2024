@@ -257,20 +257,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void DoInsertOrUpdateSuccess(SortedDictionary<string, object> dataDic)
         {
+            FormControl.All_Objects["dataDic"] = dataDic;
+            FormControl.InvokeFormEvent("AFTERSAVE");
             FormControl.InvokeFormEvent("AFTERINSERTORUPDATE");
             //InvokeFormEvent();
         }
 
         private void DoUpdateSuccess(SortedDictionary<string, object> dataDic)
         {
-            //FormControl.InvokeFormEvent("AFTERUPDATE");
+            FormControl.All_Objects["dataDic"] = dataDic;
+            FormControl.InvokeFormEvent("AFTERUPDATE");
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(dataDic);
         }
 
         private void DoInsertSuccess(SortedDictionary<string, object> dataDic)
         {
-            //FormControl.InvokeFormEvent("AFTERINSERT");
+            FormControl.All_Objects["dataDic"] = dataDic;
+            FormControl.InvokeFormEvent("AFTERINSERT");
             var handler = InsertSuccessEvent;
             if (handler != null) handler(dataDic);
         }

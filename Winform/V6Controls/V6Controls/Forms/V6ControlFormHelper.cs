@@ -962,44 +962,50 @@ namespace V6Controls.Forms
             //string define = row["filter"].ToString().Trim();
             DefineInfo lineInfo = new DefineInfo(define);
             if (string.IsNullOrEmpty(lineInfo.Field)) return null;
-
-            var lineControl = new FilterLineDynamic
-            {
-                Name = "line" + lineInfo.Field.ToUpper(),
-                //AccessibleName = lineInfo.AccessibleName,//Không dùng
-                //AccessibleName2 = lineInfo.AccessibleName2,//Gán sau khi add textbox.
-                FieldName = lineInfo.Field.ToUpper(),
-                FieldCaption = V6Setting.IsVietnamese ? lineInfo.TextV : lineInfo.TextE,
-                DefineInfo = lineInfo,
-                Enabled = lineInfo.Enabled,
-                Visible = lineInfo.Visible,
-            };
-
-            V6VvarTextBox vT;
-            V6LookupTextBox vL;
-            V6FormButton bT;
-            //Tuanmh check null
             string CONTROL_TYPE = "";
             if (string.IsNullOrEmpty(lineInfo.ControlType) == false)
             {
                 CONTROL_TYPE = lineInfo.ControlType.ToUpper();
             }
 
+            //Trường hợp control đặc biệt, không phải FilterLineDynamic
             if (CONTROL_TYPE == "FILTERGROUP")
             {
                 FilterGroup filter = new FilterGroup()
                 {
                     Name = "line" + lineInfo.Field.ToUpper(),
                     //FieldName = lineInfo.Field.ToUpper(),
-                    FieldCaption = V6Setting.IsVietnamese ? lineInfo.TextV : lineInfo.TextE,
+                    Caption = V6Setting.IsVietnamese ? lineInfo.TextV : lineInfo.TextE,
                     DefineInfo = lineInfo,
                     Enabled = lineInfo.Enabled,
                     Visible = lineInfo.Visible,
+                    AccessibleName = lineInfo.AccessibleName,
+                    //AccessibleName2 = lineInfo.AccessibleName2,
                 };
                 filter.GenControls(V6Setting.IsVietnamese ? lineInfo.DescriptionV : lineInfo.DescriptionE);
                 return filter;
             }
-            else if (CONTROL_TYPE == "VVARTEXTBOX")
+
+            FilterLineDynamic lineControl = CONTROL_TYPE == "MAUBC" ? new FilterLineMauBC() : new FilterLineDynamic();
+
+            //Gán các thuộc tính chung.
+            lineControl.DefineInfo = lineInfo;
+            lineControl.FieldName = lineInfo.Field.ToUpper();
+            lineControl.Name = "line" + lineInfo.Field.ToUpper();
+            //accessibleName
+            lineControl.AccessibleName = lineInfo.AccessibleName;
+            lineControl.AccessibleName2 = lineInfo.AccessibleName2;
+            lineControl.Caption = lineInfo.TextLang(V6Setting.IsVietnamese);
+            lineControl.Enabled = lineInfo.Enabled;
+            lineControl.Visible = lineInfo.Visible;
+            
+
+            V6VvarTextBox vT;
+            V6LookupTextBox vL;
+            V6FormButton bT;
+            
+            
+            if (CONTROL_TYPE == "VVARTEXTBOX")
             {
                 vT = lineControl.AddVvarTextBox(lineInfo.Vvar, lineInfo.InitFilter);
                 //
@@ -1059,6 +1065,8 @@ namespace V6Controls.Forms
                     vT.FilterStart = lineInfo.FilterStart;
                 }
             }
+
+            //Set giá trị thuộc tính
             //Dấu so sánh
             if (!string.IsNullOrEmpty(lineInfo.Oper)) lineControl.Operator = lineInfo.Oper;
             //Giá trị mặc định
@@ -1067,8 +1075,6 @@ namespace V6Controls.Forms
             if (!string.IsNullOrEmpty(lineInfo.LimitChars)) lineControl.SetLimitChars(lineInfo.LimitChars);
             //NotEmpty
             if (lineInfo.NotEmpty) lineControl.SetNotEmpty(true);
-            //accibleName2
-            lineControl.AccessibleName2 = lineInfo.AccessibleName2;
 
             return lineControl;
         }

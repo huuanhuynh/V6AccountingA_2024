@@ -42,7 +42,7 @@
             this.ma_vt_filterLine.AccessibleDescription = "FILTERL00020";
             this.ma_vt_filterLine.AccessibleName2 = "MA_VT";
             this.ma_vt_filterLine.Enabled = false;
-            this.ma_vt_filterLine.FieldCaption = "Mã vật tư";
+            this.ma_vt_filterLine.Caption = "Mã vật tư";
             this.ma_vt_filterLine.FieldName = "MA_VT";
             this.ma_vt_filterLine.Location = new System.Drawing.Point(6, 50);
             this.ma_vt_filterLine.Name = "ma_vt_filterLine";
@@ -73,7 +73,7 @@
             this.TxtMavitri.AccessibleDescription = "FILTERL00160";
             this.TxtMavitri.AccessibleName2 = "MA_VITRI";
             this.TxtMavitri.Enabled = false;
-            this.TxtMavitri.FieldCaption = "Mã vị trí";
+            this.TxtMavitri.Caption = "Mã vị trí";
             this.TxtMavitri.FieldName = "MA_VITRI";
             this.TxtMavitri.Location = new System.Drawing.Point(6, 74);
             this.TxtMavitri.Name = "TxtMavitri";
@@ -112,7 +112,7 @@
             // ma_kh_filterLine
             // 
             this.ma_kh_filterLine.Enabled = false;
-            this.ma_kh_filterLine.FieldCaption = "Mã vật tư";
+            this.ma_kh_filterLine.Caption = "Mã vật tư";
             this.ma_kh_filterLine.FieldName = null;
             this.ma_kh_filterLine.Location = new System.Drawing.Point(6, 49);
             this.ma_kh_filterLine.Name = "ma_kh_filterLine";

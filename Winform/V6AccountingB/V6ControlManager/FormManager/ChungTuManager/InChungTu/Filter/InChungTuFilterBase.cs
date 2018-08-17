@@ -362,5 +362,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
             return result;
         }
 
+        public virtual void FormatGridView(V6ColorDataGridView dataGridView1)
+        {
+            
+        }
     }
 }

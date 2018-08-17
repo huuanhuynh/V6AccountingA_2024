@@ -88,6 +88,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\BangCanDoiTaiChinhForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BangCanDoiTaiChinhForm.Designer.cs">
+      <DependentUpon>BangCanDoiTaiChinhForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlHandles.cs" />
     <Compile Include="Controls\Barcode\FormTestQR.cs">
       <SubType>Form</SubType>
@@ -189,6 +195,12 @@
     </Compile>
     <Compile Include="Forms\Viewer\CalculatorForm.designer.cs">
       <DependentUpon>CalculatorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportControls\FilterLineMauBC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportControls\FilterLineMauBC.Designer.cs">
+      <DependentUpon>FilterLineMauBC.cs</DependentUpon>
     </Compile>
     <Compile Include="Win32.cs" />
     <Compile Include="Controls\ToChucTree\ToChucTreeControl.cs">
@@ -562,10 +574,10 @@
       <DependentUpon>AddEditControlVirtual.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\AddEditManager.cs" />
-    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\XmlEditorForm.cs">
+    <Compile Include="Forms\XmlEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\XmlEditorForm.Designer.cs">
+    <Compile Include="Forms\XmlEditorForm.Designer.cs">
       <DependentUpon>XmlEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\AlctAddEditFrom.cs">
@@ -1365,6 +1377,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\BangCanDoiTaiChinhForm.resx">
+      <DependentUpon>BangCanDoiTaiChinhForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Barcode\FormTestQR.resx">
       <DependentUpon>FormTestQR.cs</DependentUpon>
     </EmbeddedResource>
@@ -1585,7 +1600,7 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\AddEditControlVirtual.resx">
       <DependentUpon>AddEditControlVirtual.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Albc\XmlEditorForm.resx">
+    <EmbeddedResource Include="Forms\XmlEditorForm.resx">
       <DependentUpon>XmlEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\AlctAddEditFrom.resx">
@@ -1943,6 +1958,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportControls\FilterLineLookupTextBox.resx">
       <DependentUpon>FilterLineLookupTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportControls\FilterLineMauBC.resx">
+      <DependentUpon>FilterLineMauBC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportControls\FilterLineVvarTextBox.resx">
       <DependentUpon>FilterLineVvarTextBox.cs</DependentUpon>

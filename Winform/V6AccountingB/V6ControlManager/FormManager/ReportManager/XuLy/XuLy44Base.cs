@@ -18,6 +18,7 @@ using V6Init;
 using V6ReportControls;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -141,6 +142,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public bool ViewDetail { get; set; }
 
+        private DataRow MauInSelectedRow
+        {
+            get
+            {
+                return MauInData == null || MauInData.Rows.Count == 0 ? null : MauInData.Rows[0];
+            }
+        }
 
         private string Report_GRDSV1
         {
@@ -603,8 +611,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //Format mới
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
             if (ViewDetail) V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Report_GRDSV2, Report_GRDFV2, V6Setting.IsVietnamese ? Report_GRDHV_V2 : Report_GRDHE_V2);
-
-            FilterControl.FormatGridView(dataGridView1);
+            if (FilterControl != null) FilterControl.FormatGridView(dataGridView1);
+            if (MauInSelectedRow != null)
+            {
+                int frozen = ObjectAndString.ObjectToInt(MauInSelectedRow["FROZENV"]);
+                dataGridView1.SetFrozen(frozen);
+            }
         }
 
         /// <summary>

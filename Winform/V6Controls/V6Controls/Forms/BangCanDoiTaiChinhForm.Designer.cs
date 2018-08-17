@@ -1,4 +1,4 @@
-﻿namespace V6ControlManager.FormManager.ReportManager.Add_Edit
+﻿namespace V6Controls.Forms
 {
     partial class BangCanDoiTaiChinhForm
     {

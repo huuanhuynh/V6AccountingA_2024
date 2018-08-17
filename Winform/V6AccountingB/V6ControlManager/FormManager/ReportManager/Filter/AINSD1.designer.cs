@@ -43,7 +43,7 @@
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
-            this.txtMaDvcs.FieldCaption = "Mã đơn vị";
+            this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 82);
             this.txtMaDvcs.Name = "txtMaDvcs";
@@ -55,7 +55,7 @@
             // 
             this.TxtMavt.AccessibleDescription = "FILTERL00020";
             this.TxtMavt.AccessibleName2 = "MA_VT";
-            this.TxtMavt.FieldCaption = "Mã vật tư";
+            this.TxtMavt.Caption = "Mã vật tư";
             this.TxtMavt.FieldName = "MA_VT";
             this.TxtMavt.Location = new System.Drawing.Point(9, 38);
             this.TxtMavt.Name = "TxtMavt";
@@ -83,7 +83,7 @@
             // 
             this.TxtMakho.AccessibleDescription = "FILTERL00006";
             this.TxtMakho.AccessibleName2 = "MA_KHO";
-            this.TxtMakho.FieldCaption = "Mã kho";
+            this.TxtMakho.Caption = "Mã kho";
             this.TxtMakho.FieldName = "MA_KHO";
             this.TxtMakho.Location = new System.Drawing.Point(6, 57);
             this.TxtMakho.Name = "TxtMakho";

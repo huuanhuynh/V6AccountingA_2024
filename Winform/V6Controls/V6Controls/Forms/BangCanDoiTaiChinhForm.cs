@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using V6ControlManager.FormManager.DanhMucManager;
-using V6Controls;
-using V6Controls.Forms;
+using V6Controls.Controls;
 
-namespace V6ControlManager.FormManager.ReportManager.Add_Edit
+namespace V6Controls.Forms
 {
     public partial class BangCanDoiTaiChinhForm : V6Form
     {
@@ -25,8 +24,8 @@ namespace V6ControlManager.FormManager.ReportManager.Add_Edit
             {
                 if(string.IsNullOrEmpty(initFilter))
                     throw new ArgumentNullException("initFilter");
-                DanhMucView view = new DanhMucView("itemID", "title", "ALmaubcct", initFilter, "STT", false);
-                view.EnableFullScreen = false;
+                CategoryView view = new CategoryView("itemID", "title", "ALmaubcct", initFilter, "STT", new Dictionary<string, object>());
+                //view.EnableFullScreen = false;
                 view.Dock = DockStyle.Fill;
                 Controls.Add(view);
             }

@@ -1119,7 +1119,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             //    f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIA"];
             //}
 
-            //FilterControl.FormatGridView(dataGridView1);
+            //if (FilterControl != null) FilterControl.FormatGridView(dataGridView1);
         }
 
         #endregion ==== LoadData MakeReport ====

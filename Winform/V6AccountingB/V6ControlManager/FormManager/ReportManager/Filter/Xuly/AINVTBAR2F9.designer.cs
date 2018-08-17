@@ -58,7 +58,7 @@
             this.ma_lo_filterLine.AccessibleDescription = "FILTERL00020";
             this.ma_lo_filterLine.AccessibleName2 = "MA_LO";
             this.ma_lo_filterLine.Enabled = false;
-            this.ma_lo_filterLine.FieldCaption = "Mã lô";
+            this.ma_lo_filterLine.Caption = "Mã lô";
             this.ma_lo_filterLine.FieldName = "MA_LO";
             this.ma_lo_filterLine.Location = new System.Drawing.Point(9, 74);
             this.ma_lo_filterLine.Name = "ma_lo_filterLine";
@@ -71,7 +71,7 @@
             this.ma_vt_filterLine.AccessibleDescription = "FILTERL00020";
             this.ma_vt_filterLine.AccessibleName2 = "MA_VT";
             this.ma_vt_filterLine.Enabled = false;
-            this.ma_vt_filterLine.FieldCaption = "Mã vật tư";
+            this.ma_vt_filterLine.Caption = "Mã vật tư";
             this.ma_vt_filterLine.FieldName = "MA_VT";
             this.ma_vt_filterLine.Location = new System.Drawing.Point(9, 46);
             this.ma_vt_filterLine.Name = "ma_vt_filterLine";

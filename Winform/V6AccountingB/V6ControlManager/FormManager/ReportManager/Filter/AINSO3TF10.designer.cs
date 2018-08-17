@@ -40,7 +40,7 @@
             this.Ma_vt_filterLine.AccessibleDescription = "FILTERL00020";
             this.Ma_vt_filterLine.AccessibleName2 = "MA_VT";
             this.Ma_vt_filterLine.Enabled = false;
-            this.Ma_vt_filterLine.FieldCaption = "Mã vật tư";
+            this.Ma_vt_filterLine.Caption = "Mã vật tư";
             this.Ma_vt_filterLine.FieldName = "MA_VT";
             this.Ma_vt_filterLine.Location = new System.Drawing.Point(6, 49);
             this.Ma_vt_filterLine.Name = "Ma_vt_filterLine";

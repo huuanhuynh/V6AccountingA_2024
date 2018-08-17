@@ -41,7 +41,7 @@
             this.lineTaiKhoan.AccessibleDescription = "FILTERL00027";
             this.lineTaiKhoan.AccessibleName2 = "TK";
             this.lineTaiKhoan.Enabled = false;
-            this.lineTaiKhoan.FieldCaption = "Tài khoản";
+            this.lineTaiKhoan.Caption = "Tài khoản";
             this.lineTaiKhoan.FieldName = "TK";
             this.lineTaiKhoan.Location = new System.Drawing.Point(6, 40);
             this.lineTaiKhoan.Name = "lineTaiKhoan";
@@ -98,7 +98,7 @@
             this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00046";
             this.filterLineVvarTextBox1.AccessibleName2 = "TK_DU";
             this.filterLineVvarTextBox1.Enabled = false;
-            this.filterLineVvarTextBox1.FieldCaption = "Tài khoản đối ứng";
+            this.filterLineVvarTextBox1.Caption = "Tài khoản đối ứng";
             this.filterLineVvarTextBox1.FieldName = "TK_DU";
             this.filterLineVvarTextBox1.Location = new System.Drawing.Point(6, 65);
             this.filterLineVvarTextBox1.Name = "filterLineVvarTextBox1";

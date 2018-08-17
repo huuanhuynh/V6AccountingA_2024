@@ -4,11 +4,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using V6AccountingBusiness;
-using V6ControlManager.FormManager.ReportManager.Add_Edit;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
+using V6ReportControls;
 using V6Structs;
 using V6Tools;
 
@@ -20,7 +20,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             InitializeComponent();
             MyInit();
-            
         }
 
         private void MyInit()
@@ -61,7 +60,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 
             }
-            
         }
 
         private DataTable maubcData;

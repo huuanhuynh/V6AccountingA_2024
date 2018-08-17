@@ -58,7 +58,7 @@
             this.TxtMakho.AccessibleDescription = "FILTERL00006";
             this.TxtMakho.AccessibleName2 = "MA_KHO";
             this.TxtMakho.Enabled = false;
-            this.TxtMakho.FieldCaption = "Mã kho";
+            this.TxtMakho.Caption = "Mã kho";
             this.TxtMakho.FieldName = "MA_KHO";
             this.TxtMakho.Location = new System.Drawing.Point(9, 74);
             this.TxtMakho.Name = "TxtMakho";
@@ -72,7 +72,7 @@
             this.ma_vt_filterLine.AccessibleDescription = "FILTERL00020";
             this.ma_vt_filterLine.AccessibleName2 = "MA_VT";
             this.ma_vt_filterLine.Enabled = false;
-            this.ma_vt_filterLine.FieldCaption = "Mã vật tư";
+            this.ma_vt_filterLine.Caption = "Mã vật tư";
             this.ma_vt_filterLine.FieldName = "MA_VT";
             this.ma_vt_filterLine.Location = new System.Drawing.Point(9, 46);
             this.ma_vt_filterLine.Name = "ma_vt_filterLine";

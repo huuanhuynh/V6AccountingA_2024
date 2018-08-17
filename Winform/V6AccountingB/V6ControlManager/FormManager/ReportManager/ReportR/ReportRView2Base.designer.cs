@@ -191,6 +191,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             // txtM_TEN_NLB2
             // 
+            this.txtM_TEN_NLB2.AccessibleName = "M_TEN_NLB2";
             this.txtM_TEN_NLB2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtM_TEN_NLB2.Location = new System.Drawing.Point(847, 38);
             this.txtM_TEN_NLB2.Name = "txtM_TEN_NLB2";
@@ -199,6 +200,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             // txtM_TEN_NLB
             // 
+            this.txtM_TEN_NLB.AccessibleName = "M_TEN_NLB";
             this.txtM_TEN_NLB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtM_TEN_NLB.Location = new System.Drawing.Point(636, 38);
             this.txtM_TEN_NLB.Name = "txtM_TEN_NLB";

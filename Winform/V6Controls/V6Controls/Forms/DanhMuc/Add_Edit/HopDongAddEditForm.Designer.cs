@@ -353,6 +353,7 @@
             this.txtLoaiHD.AccessibleName = "loai_hd";
             this.txtLoaiHD.BackColor = System.Drawing.Color.White;
             this.txtLoaiHD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtLoaiHD.DecimalPlaces = 0;
             this.txtLoaiHD.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtLoaiHD.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtLoaiHD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -362,13 +363,13 @@
             this.txtLoaiHD.Name = "txtLoaiHD";
             this.txtLoaiHD.Size = new System.Drawing.Size(111, 23);
             this.txtLoaiHD.TabIndex = 1;
-            this.txtLoaiHD.Text = "0,000";
+            this.txtLoaiHD.Text = "0";
             this.txtLoaiHD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtLoaiHD.Value = new decimal(new int[] {
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSoHD
             // 

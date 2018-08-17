@@ -103,7 +103,7 @@
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
-            this.txtMaDvcs.FieldCaption = "Mã đơn vị";
+            this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(9, 43);
             this.txtMaDvcs.Name = "txtMaDvcs";
@@ -115,7 +115,7 @@
             // 
             this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00116";
             this.filterLineVvarTextBox1.AccessibleName2 = "LOAI_TS";
-            this.filterLineVvarTextBox1.FieldCaption = "Loại TS";
+            this.filterLineVvarTextBox1.Caption = "Loại TS";
             this.filterLineVvarTextBox1.FieldName = "LOAI_TS";
             this.filterLineVvarTextBox1.Location = new System.Drawing.Point(9, 66);
             this.filterLineVvarTextBox1.Name = "filterLineVvarTextBox1";
@@ -127,7 +127,7 @@
             // 
             this.filterLineVvarTextBox16.AccessibleDescription = "FILTERL00111";
             this.filterLineVvarTextBox16.AccessibleName2 = "NH_TS1";
-            this.filterLineVvarTextBox16.FieldCaption = "Nhóm TS 1";
+            this.filterLineVvarTextBox16.Caption = "Nhóm TS 1";
             this.filterLineVvarTextBox16.FieldName = "NH_TS1";
             this.filterLineVvarTextBox16.Location = new System.Drawing.Point(9, 112);
             this.filterLineVvarTextBox16.Name = "filterLineVvarTextBox16";
@@ -139,7 +139,7 @@
             // 
             this.filterLineVvarTextBox15.AccessibleDescription = "FILTERL00112";
             this.filterLineVvarTextBox15.AccessibleName2 = "NH_TS2";
-            this.filterLineVvarTextBox15.FieldCaption = "Nhóm TS 2";
+            this.filterLineVvarTextBox15.Caption = "Nhóm TS 2";
             this.filterLineVvarTextBox15.FieldName = "NH_TS2";
             this.filterLineVvarTextBox15.Location = new System.Drawing.Point(9, 135);
             this.filterLineVvarTextBox15.Name = "filterLineVvarTextBox15";
@@ -151,7 +151,7 @@
             // 
             this.filterLineVvarTextBox9.AccessibleDescription = "FILTERL00113";
             this.filterLineVvarTextBox9.AccessibleName2 = "NH_TS3";
-            this.filterLineVvarTextBox9.FieldCaption = "Nhóm TS 3";
+            this.filterLineVvarTextBox9.Caption = "Nhóm TS 3";
             this.filterLineVvarTextBox9.FieldName = "NH_TS3";
             this.filterLineVvarTextBox9.Location = new System.Drawing.Point(9, 158);
             this.filterLineVvarTextBox9.Name = "filterLineVvarTextBox9";
@@ -163,7 +163,7 @@
             // 
             this.TxtSO_THE_TS.AccessibleDescription = "FILTERL00117";
             this.TxtSO_THE_TS.AccessibleName2 = "SO_THE_TS";
-            this.TxtSO_THE_TS.FieldCaption = "Mã TS";
+            this.TxtSO_THE_TS.Caption = "Mã TS";
             this.TxtSO_THE_TS.FieldName = "SO_THE_TS";
             this.TxtSO_THE_TS.Location = new System.Drawing.Point(9, 89);
             this.TxtSO_THE_TS.Name = "TxtSO_THE_TS";

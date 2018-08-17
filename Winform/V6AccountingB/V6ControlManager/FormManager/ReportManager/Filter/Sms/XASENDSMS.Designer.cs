@@ -284,7 +284,7 @@
             this.filterLineVvarTextBox8.AccessibleName2 = "TK";
             this.filterLineVvarTextBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterLineVvarTextBox8.FieldCaption = "Tài khoản";
+            this.filterLineVvarTextBox8.Caption = "Tài khoản";
             this.filterLineVvarTextBox8.FieldName = "TK";
             this.filterLineVvarTextBox8.Location = new System.Drawing.Point(6, 182);
             this.filterLineVvarTextBox8.Name = "filterLineVvarTextBox8";
@@ -298,7 +298,7 @@
             this.filterLineVvarTextBox4.AccessibleName2 = "MA_BP";
             this.filterLineVvarTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterLineVvarTextBox4.FieldCaption = "Mã bộ phận";
+            this.filterLineVvarTextBox4.Caption = "Mã bộ phận";
             this.filterLineVvarTextBox4.FieldName = "MA_BP";
             this.filterLineVvarTextBox4.Location = new System.Drawing.Point(6, 157);
             this.filterLineVvarTextBox4.Name = "filterLineVvarTextBox4";
@@ -312,7 +312,7 @@
             this.filterLineVvarTextBox3.AccessibleName2 = "MA_KH";
             this.filterLineVvarTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterLineVvarTextBox3.FieldCaption = "Mã khách hàng";
+            this.filterLineVvarTextBox3.Caption = "Mã khách hàng";
             this.filterLineVvarTextBox3.FieldName = "MA_KH";
             this.filterLineVvarTextBox3.Location = new System.Drawing.Point(6, 132);
             this.filterLineVvarTextBox3.Name = "filterLineVvarTextBox3";
@@ -326,7 +326,7 @@
             this.lineMaDvcs.AccessibleName2 = "MA_DVCS";
             this.lineMaDvcs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lineMaDvcs.FieldCaption = "Mã đơn vị";
+            this.lineMaDvcs.Caption = "Mã đơn vị";
             this.lineMaDvcs.FieldName = "MA_DVCS";
             this.lineMaDvcs.Location = new System.Drawing.Point(6, 107);
             this.lineMaDvcs.Name = "lineMaDvcs";
@@ -339,7 +339,7 @@
             this.lineMact.AccessibleName2 = "";
             this.lineMact.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lineMact.FieldCaption = "Mã chứng từ";
+            this.lineMact.Caption = "Mã chứng từ";
             this.lineMact.FieldName = "";
             this.lineMact.Location = new System.Drawing.Point(6, 82);
             this.lineMact.Name = "lineMact";

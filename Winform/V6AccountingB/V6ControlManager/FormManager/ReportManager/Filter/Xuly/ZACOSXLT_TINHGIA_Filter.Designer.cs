@@ -123,7 +123,7 @@
             // lineMaBpHt
             // 
             this.lineMaBpHt.AccessibleDescription = "XULYL00026";
-            this.lineMaBpHt.FieldCaption = "Mã bộ phận ht";
+            this.lineMaBpHt.Caption = "Mã bộ phận ht";
             this.lineMaBpHt.FieldName = "MA_BPHT";
             this.lineMaBpHt.Location = new System.Drawing.Point(6, 19);
             this.lineMaBpHt.Name = "lineMaBpHt";

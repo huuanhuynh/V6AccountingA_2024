@@ -64,7 +64,7 @@ namespace V6ReportControls
                 FilterLineDynamic lineControl = new FilterLineDynamic();
                 lineControl.Name = "line" + NAME;
                 lineControl.FieldName = NAME;
-                lineControl.FieldCaption = CorpLan2.GetFieldHeader(NAME);
+                lineControl.Caption = CorpLan2.GetFieldHeader(NAME);
                 if (structTable.ContainsKey(NAME))
                 {
                     if (",nchar,nvarchar,ntext,char,varchar,text,xml,"

@@ -137,8 +137,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public Dictionary<string, object> ParameterNameList2 = new Dictionary<string, object>();
         public FilterLineDynamic lineNgay_ct1 = null;
         public FilterLineDynamic lineNgay_ct2 = null;
-        public FilterLineDynamic lineMauBC = null;
-        public FilterLineDynamic lineLAN = null;
+        public FilterLineDynamic lineMauBC { get; set; }
+        public FilterLineDynamic lineLAN { get; set; }
+        public FilterLineDynamic lineUserID { get; set; }
 
         private string MAU = "", LAN = "";
         private string ComboboxData = "";
@@ -150,8 +151,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-            
-
             if (lineNgay_ct1 != null)
             V6Setting.M_ngay_ct1 = ObjectAndString.ObjectToFullDateTime(lineNgay_ct1.ObjectValue);
             if (lineNgay_ct2 != null)
@@ -167,6 +166,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     lineMauBC.SetValue(MAU == "VN" ? "0" : "1");
                 if (lineLAN != null)
                     lineLAN.SetValue(LAN);
+                if (lineUserID != null)
+                    lineUserID.SetValue(V6Login.UserId);
             }
             if (parent00 is ReportR44ViewBase)
             {
@@ -177,6 +178,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     lineMauBC.SetValue(MAU == "VN" ? "0" : "1");
                 if (lineLAN != null)
                     lineLAN.SetValue(LAN);
+                if (lineUserID != null)
+                    lineUserID.SetValue(V6Login.UserId);
             }
             
 
@@ -753,6 +756,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             AddExtraReportParameter();
         }
 
+        /// <summary>
+        /// !!!!!
+        /// </summary>
         private void AddExtraReportParameter()
         {
             RptExtraParameters = new SortedDictionary<string, object>();

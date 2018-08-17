@@ -129,6 +129,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             }
         }
 
+        public override void AfterUpdate()
+        {
+            
+        }
+
         private void BoSungTuDong()
         {
             try

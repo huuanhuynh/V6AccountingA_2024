@@ -83,7 +83,7 @@
             this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00046";
             this.filterLineVvarTextBox1.AccessibleName2 = "TK_DU";
             this.filterLineVvarTextBox1.Enabled = false;
-            this.filterLineVvarTextBox1.FieldCaption = "Tài khoản đối ứng";
+            this.filterLineVvarTextBox1.Caption = "Tài khoản đối ứng";
             this.filterLineVvarTextBox1.FieldName = "TK_DU";
             this.filterLineVvarTextBox1.Location = new System.Drawing.Point(6, 46);
             this.filterLineVvarTextBox1.Name = "filterLineVvarTextBox1";

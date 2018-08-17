@@ -57,7 +57,7 @@
             // 
             this.GIA2NumberTextBox.AccessibleName2 = "GIA2";
             this.GIA2NumberTextBox.Enabled = false;
-            this.GIA2NumberTextBox.FieldCaption = "Giá bán";
+            this.GIA2NumberTextBox.Caption = "Giá bán";
             this.GIA2NumberTextBox.FieldName = "GIA2";
             this.GIA2NumberTextBox.Location = new System.Drawing.Point(1, 71);
             this.GIA2NumberTextBox.Name = "GIA2NumberTextBox";
@@ -70,7 +70,7 @@
             this.ma_vt_filterLine.AccessibleDescription = "FILTERL00020";
             this.ma_vt_filterLine.AccessibleName2 = "MA_VT";
             this.ma_vt_filterLine.Enabled = false;
-            this.ma_vt_filterLine.FieldCaption = "Mã vật tư";
+            this.ma_vt_filterLine.Caption = "Mã vật tư";
             this.ma_vt_filterLine.FieldName = "MA_VT";
             this.ma_vt_filterLine.Location = new System.Drawing.Point(1, 46);
             this.ma_vt_filterLine.Name = "ma_vt_filterLine";

@@ -220,7 +220,7 @@
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00215";
             this.txtMaDvcs.AccessibleName2 = "LOAI";
-            this.txtMaDvcs.FieldCaption = "Phân hệ";
+            this.txtMaDvcs.Caption = "Phân hệ";
             this.txtMaDvcs.FieldName = "LOAI";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 42);
             this.txtMaDvcs.Name = "txtMaDvcs";
@@ -232,7 +232,7 @@
             // 
             this.filterLineVvarTextBox3.AccessibleDescription = "FILTERL00216";
             this.filterLineVvarTextBox3.AccessibleName2 = "YEU_CAU";
-            this.filterLineVvarTextBox3.FieldCaption = "Câu hỏi";
+            this.filterLineVvarTextBox3.Caption = "Câu hỏi";
             this.filterLineVvarTextBox3.FieldName = "YEU_CAU";
             this.filterLineVvarTextBox3.Location = new System.Drawing.Point(6, 65);
             this.filterLineVvarTextBox3.Name = "filterLineVvarTextBox3";

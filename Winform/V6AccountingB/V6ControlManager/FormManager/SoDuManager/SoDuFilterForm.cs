@@ -90,7 +90,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             FilterLineDynamic lineControl = new FilterLineDynamic();
             lineControl.FieldName = fieldName.ToUpper();
-            lineControl.FieldCaption = CorpLan2.GetFieldHeader(fieldName);
+            lineControl.Caption = CorpLan2.GetFieldHeader(fieldName);
             if (_structTable.ContainsKey(fieldName.Trim().ToUpper()))
             {
                 if (",nchar,nvarchar,ntext,char,varchar,text,xml,"

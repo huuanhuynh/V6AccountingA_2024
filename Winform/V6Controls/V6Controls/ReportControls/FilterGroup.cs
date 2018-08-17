@@ -44,9 +44,9 @@ namespace V6ReportControls
 
         [Browsable(true)]
         [Description("Nhãn hiển thị, cẩn thận nhầm data.")]
-        public override string Text
+        public new string Text
         {
-            get { return FieldCaption; }// set { var Fieldc =value; }
+            get { return Caption; }// set { var Fieldc =value; }
         }
 
         ///// <summary>
@@ -96,7 +96,7 @@ namespace V6ReportControls
         /// <summary>
         /// Dòng chữ trên groupBox.
         /// </summary>
-        public string FieldCaption
+        public string Caption
         {
             get { return groupBoxNhom.Text; }
             set { groupBoxNhom.Text = value ?? ""; }

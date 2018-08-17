@@ -43,7 +43,7 @@
             this.ma_vt_filterLine.AccessibleDescription = "FILTERL00020";
             this.ma_vt_filterLine.AccessibleName2 = "MA_VT";
             this.ma_vt_filterLine.Enabled = false;
-            this.ma_vt_filterLine.FieldCaption = "Mã vật tư";
+            this.ma_vt_filterLine.Caption = "Mã vật tư";
             this.ma_vt_filterLine.FieldName = "MA_VT";
             this.ma_vt_filterLine.Location = new System.Drawing.Point(6, 40);
             this.ma_vt_filterLine.Name = "ma_vt_filterLine";
@@ -75,7 +75,7 @@
             this.TxtMakho.AccessibleDescription = "FILTERL00006";
             this.TxtMakho.AccessibleName2 = "MA_KHO";
             this.TxtMakho.Enabled = false;
-            this.TxtMakho.FieldCaption = "Mã kho";
+            this.TxtMakho.Caption = "Mã kho";
             this.TxtMakho.FieldName = "MA_KHO";
             this.TxtMakho.Location = new System.Drawing.Point(6, 92);
             this.TxtMakho.Name = "TxtMakho";
@@ -89,7 +89,7 @@
             this.ma_lo_filterLine.AccessibleDescription = "FILTERL00159";
             this.ma_lo_filterLine.AccessibleName2 = "MA_LO";
             this.ma_lo_filterLine.Enabled = false;
-            this.ma_lo_filterLine.FieldCaption = "Mã lô";
+            this.ma_lo_filterLine.Caption = "Mã lô";
             this.ma_lo_filterLine.FieldName = "MA_LO";
             this.ma_lo_filterLine.Location = new System.Drawing.Point(6, 66);
             this.ma_lo_filterLine.Name = "ma_lo_filterLine";
@@ -128,7 +128,7 @@
             // ma_kh_filterLine
             // 
             this.ma_kh_filterLine.Enabled = false;
-            this.ma_kh_filterLine.FieldCaption = "Mã vật tư";
+            this.ma_kh_filterLine.Caption = "Mã vật tư";
             this.ma_kh_filterLine.FieldName = null;
             this.ma_kh_filterLine.Location = new System.Drawing.Point(6, 49);
             this.ma_kh_filterLine.Name = "ma_kh_filterLine";

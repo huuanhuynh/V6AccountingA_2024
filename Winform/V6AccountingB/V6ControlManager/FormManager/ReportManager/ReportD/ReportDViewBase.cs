@@ -1063,11 +1063,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     }
 
                     FormatGridView();
-                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1,
-                        V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
-
-                    FilterControl.FormatGridView(dataGridView1);
-
+                    
                     ViewReportIndex();
 
                     dataGridView1.Focus();
@@ -1089,42 +1085,53 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
         private void FormatGridView()
         {
-            //Header
-            var fieldList = (from DataColumn column in _tbl.Columns select column.ColumnName).ToList();
-
-            var fieldDic = CorpLan2.GetFieldsHeader(fieldList);
-            for (int i = 0; i < dataGridView1.ColumnCount; i++)
+            try
             {
-                if (fieldDic.ContainsKey(dataGridView1.Columns[i].DataPropertyName.ToUpper()))
+                //Header
+                var fieldList = (from DataColumn column in _tbl.Columns select column.ColumnName).ToList();
+
+                var fieldDic = CorpLan2.GetFieldsHeader(fieldList);
+                for (int i = 0; i < dataGridView1.ColumnCount; i++)
                 {
-                    dataGridView1.Columns[i].HeaderText =
-                        fieldDic[dataGridView1.Columns[i].DataPropertyName.ToUpper()];
+                    if (fieldDic.ContainsKey(dataGridView1.Columns[i].DataPropertyName.ToUpper()))
+                    {
+                        dataGridView1.Columns[i].HeaderText =
+                            fieldDic[dataGridView1.Columns[i].DataPropertyName.ToUpper()];
+                    }
+                }
+                //Format
+                var f = dataGridView1.Columns["so_luong"];
+                if (f != null)
+                {
+                    f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_SL"];
+                }
+                f = dataGridView1.Columns["TIEN2"];
+                if (f != null)
+                {
+                    f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_TIEN"];
+                }
+                f = dataGridView1.Columns["GIA2"];
+                if (f != null)
+                {
+                    f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIA"];
+                }
+
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1,
+                    V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
+                if (FilterControl != null) FilterControl.FormatGridView(dataGridView1);
+                if (MauInSelectedRow != null)
+                {
+                    int frozen = ObjectAndString.ObjectToInt(MauInSelectedRow["FROZENV"]);
+                    dataGridView1.SetFrozen(frozen);
                 }
             }
-            //Format
-            var f = dataGridView1.Columns["so_luong"];
-            if (f != null)
+            catch (Exception ex)
             {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_SL"];
+                this.WriteExLog(GetType() + ".FormatGridView", ex);
             }
-            f = dataGridView1.Columns["TIEN2"];
-            if (f != null)
-            {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_TIEN"];
-            }
-            f = dataGridView1.Columns["GIA2"];
-            if (f != null)
-            {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIA"];
-            }
-
         }
 
         #endregion ==== LoadData MakeReport ====
-
-        
-        
-        
         
 
          #region Linh tinh        

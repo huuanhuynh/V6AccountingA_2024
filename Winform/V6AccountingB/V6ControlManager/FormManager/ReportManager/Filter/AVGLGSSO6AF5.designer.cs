@@ -55,7 +55,7 @@
             // 
             this.lineKhoaCTGS.AccessibleName2 = "KHOA_CTGS0";
             this.lineKhoaCTGS.Enabled = false;
-            this.lineKhoaCTGS.FieldCaption = "Khóa";
+            this.lineKhoaCTGS.Caption = "Khóa";
             this.lineKhoaCTGS.FieldName = "KHOA_CTGS0";
             this.lineKhoaCTGS.Location = new System.Drawing.Point(7, 39);
             this.lineKhoaCTGS.Name = "lineKhoaCTGS";

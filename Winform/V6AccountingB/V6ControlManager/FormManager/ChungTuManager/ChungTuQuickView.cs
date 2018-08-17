@@ -45,10 +45,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     column.SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
 
-                V6ControlFormHelper.FormatGridViewAndHeader(
-                    dataGridView1, Invoice.GRDS_Q1, Invoice.GRDF_Q1,
-                    V6Setting.IsVietnamese? Invoice.GRDHV_Q1:Invoice.GRDHE_Q1
-                    );
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Invoice.GRDS_Q1, Invoice.GRDF_Q1,
+                    V6Setting.IsVietnamese ? Invoice.GRDHV_Q1 : Invoice.GRDHE_Q1);
             }
             catch (Exception ex)
             {

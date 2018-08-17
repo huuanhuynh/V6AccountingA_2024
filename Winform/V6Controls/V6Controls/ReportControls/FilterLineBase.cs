@@ -25,7 +25,10 @@ namespace V6ReportControls
             get { return comboBox1.Items; }
         }
 
-        public string FieldCaption
+        /// <summary>
+        /// Text của label.
+        /// </summary>
+        public virtual string Caption
         {
             get { return label1.Text; }
             set { label1.Text = value ?? ""; }
@@ -47,9 +50,9 @@ namespace V6ReportControls
 
         [Browsable(true)]
         [Description("Nhãn hiển thị, cẩn thận nhầm data.")]
-        public override string Text
+        public new string Text
         {
-            get { return label1.Text; } set { label1.Text = value??""; }
+            get { return Caption; }// set { Caption = value??""; }
         }
 
         /// <summary>

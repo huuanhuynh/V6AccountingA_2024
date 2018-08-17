@@ -202,7 +202,7 @@
             this.txtma_ct.AccessibleDescription = "FILTERL00004";
             this.txtma_ct.AccessibleName = "";
             this.txtma_ct.AccessibleName2 = "MA_CT";
-            this.txtma_ct.FieldCaption = "Mã chứng từ";
+            this.txtma_ct.Caption = "Mã chứng từ";
             this.txtma_ct.FieldName = "MA_CT";
             this.txtma_ct.Location = new System.Drawing.Point(6, 51);
             this.txtma_ct.Name = "txtma_ct";
@@ -228,7 +228,7 @@
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName = "";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
-            this.txtMaDvcs.FieldCaption = "Mã đơn vị";
+            this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 78);
             this.txtMaDvcs.Name = "txtMaDvcs";

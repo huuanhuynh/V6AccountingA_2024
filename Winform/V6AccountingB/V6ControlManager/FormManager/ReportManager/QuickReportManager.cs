@@ -106,6 +106,9 @@ namespace V6ControlManager.FormManager.ReportManager
                                 filterControl.lineMauBC = lineControl;
                             if (lineControl.DefineInfo.DefaultValue == "M_LAN")
                                 filterControl.lineLAN = lineControl;
+                            //Giữ lại user_id
+                            if (lineControl.DefineInfo.DefaultValue == "M_USER_ID")
+                                filterControl.lineUserID = lineControl;
 
                             string xml = row["DMETHOD"].ToString().Trim();
                             if (!string.IsNullOrEmpty(xml))

@@ -40,7 +40,7 @@
             this.Tk_du_filterLine.AccessibleDescription = "FILTERL00046";
             this.Tk_du_filterLine.AccessibleName2 = "TK_DU";
             this.Tk_du_filterLine.Enabled = false;
-            this.Tk_du_filterLine.FieldCaption = "Tài khoản đối ứng";
+            this.Tk_du_filterLine.Caption = "Tài khoản đối ứng";
             this.Tk_du_filterLine.FieldName = "TK_DU";
             this.Tk_du_filterLine.Location = new System.Drawing.Point(6, 49);
             this.Tk_du_filterLine.Name = "Tk_du_filterLine";

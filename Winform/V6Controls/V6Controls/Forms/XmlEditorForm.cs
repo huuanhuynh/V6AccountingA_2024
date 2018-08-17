@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Data;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 using V6Tools;
 using V6Tools.V6Convert;
 
-namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
+namespace V6Controls.Forms
 {
     public partial class XmlEditorForm : V6Form
     {

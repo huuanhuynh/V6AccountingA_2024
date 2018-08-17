@@ -60,7 +60,7 @@
             this.TK_DU_filterLine.AccessibleDescription = "FILTERL00096";
             this.TK_DU_filterLine.AccessibleName2 = "tk_du";
             this.TK_DU_filterLine.Enabled = false;
-            this.TK_DU_filterLine.FieldCaption = "Tài khoản đối ứng";
+            this.TK_DU_filterLine.Caption = "Tài khoản đối ứng";
             this.TK_DU_filterLine.FieldName = "tk_du";
             this.TK_DU_filterLine.Location = new System.Drawing.Point(6, 87);
             this.TK_DU_filterLine.Name = "TK_DU_filterLine";
@@ -73,7 +73,7 @@
             this.TK_filterLine.AccessibleDescription = "FILTERL00027";
             this.TK_filterLine.AccessibleName2 = "tk";
             this.TK_filterLine.Enabled = false;
-            this.TK_filterLine.FieldCaption = "Tài khoản";
+            this.TK_filterLine.Caption = "Tài khoản";
             this.TK_filterLine.FieldName = "tk";
             this.TK_filterLine.Location = new System.Drawing.Point(6, 63);
             this.TK_filterLine.Name = "TK_filterLine";
@@ -86,7 +86,7 @@
             this.ma_vv_filterLine.AccessibleDescription = "FILTERL00065";
             this.ma_vv_filterLine.AccessibleName2 = "MA_VV";
             this.ma_vv_filterLine.Enabled = false;
-            this.ma_vv_filterLine.FieldCaption = "Mã vụ việc";
+            this.ma_vv_filterLine.Caption = "Mã vụ việc";
             this.ma_vv_filterLine.FieldName = "MA_VV";
             this.ma_vv_filterLine.Location = new System.Drawing.Point(6, 39);
             this.ma_vv_filterLine.Name = "ma_vv_filterLine";

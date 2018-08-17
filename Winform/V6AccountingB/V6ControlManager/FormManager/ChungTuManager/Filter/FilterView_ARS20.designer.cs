@@ -93,7 +93,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // nhomKhach4
             // 
-            this.nhomKhach4.FieldCaption = "Nhóm khách hàng 4";
+            this.nhomKhach4.Caption = "Nhóm khách hàng 4";
             this.nhomKhach4.FieldName = "NH_KH4";
             this.nhomKhach4.Location = new System.Drawing.Point(313, 29);
             this.nhomKhach4.Name = "nhomKhach4";
@@ -103,7 +103,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // nhomKhach5
             // 
-            this.nhomKhach5.FieldCaption = "Nhóm khách hàng 5";
+            this.nhomKhach5.Caption = "Nhóm khách hàng 5";
             this.nhomKhach5.FieldName = "NH_KH5";
             this.nhomKhach5.Location = new System.Drawing.Point(313, 52);
             this.nhomKhach5.Name = "nhomKhach5";
@@ -113,7 +113,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // nhomKhach6
             // 
-            this.nhomKhach6.FieldCaption = "Nhóm khách hàng 6";
+            this.nhomKhach6.Caption = "Nhóm khách hàng 6";
             this.nhomKhach6.FieldName = "NH_KH6";
             this.nhomKhach6.Location = new System.Drawing.Point(313, 75);
             this.nhomKhach6.Name = "nhomKhach6";
@@ -123,7 +123,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // nhomKhach1
             // 
-            this.nhomKhach1.FieldCaption = "Nhóm khách hàng 1";
+            this.nhomKhach1.Caption = "Nhóm khách hàng 1";
             this.nhomKhach1.FieldName = "NH_KH1";
             this.nhomKhach1.Location = new System.Drawing.Point(15, 29);
             this.nhomKhach1.Name = "nhomKhach1";
@@ -133,7 +133,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // nhomKhach2
             // 
-            this.nhomKhach2.FieldCaption = "Nhóm khách hàng 2";
+            this.nhomKhach2.Caption = "Nhóm khách hàng 2";
             this.nhomKhach2.FieldName = "NH_KH2";
             this.nhomKhach2.Location = new System.Drawing.Point(15, 52);
             this.nhomKhach2.Name = "nhomKhach2";
@@ -143,7 +143,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // taiKhoan
             // 
-            this.taiKhoan.FieldCaption = "Tài khoản";
+            this.taiKhoan.Caption = "Tài khoản";
             this.taiKhoan.FieldName = "TK";
             this.taiKhoan.Location = new System.Drawing.Point(313, 98);
             this.taiKhoan.Name = "taiKhoan";
@@ -153,7 +153,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // txtMaKh
             // 
-            this.txtMaKh.FieldCaption = "Mã khách hàng";
+            this.txtMaKh.Caption = "Mã khách hàng";
             this.txtMaKh.FieldName = "MA_KH";
             this.txtMaKh.Location = new System.Drawing.Point(15, 98);
             this.txtMaKh.Name = "txtMaKh";
@@ -163,7 +163,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // nhomKhach3
             // 
-            this.nhomKhach3.FieldCaption = "Nhóm khách hàng 3";
+            this.nhomKhach3.Caption = "Nhóm khách hàng 3";
             this.nhomKhach3.FieldName = "NH_KH3";
             this.nhomKhach3.Location = new System.Drawing.Point(15, 75);
             this.nhomKhach3.Name = "nhomKhach3";

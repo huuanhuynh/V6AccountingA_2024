@@ -48,7 +48,7 @@
             // 
             this.lineMaDVCS.AccessibleDescription = "FILTERL00005";
             this.lineMaDVCS.AccessibleName2 = "MA_DVCS";
-            this.lineMaDVCS.FieldCaption = "Mã đơn vị";
+            this.lineMaDVCS.Caption = "Mã đơn vị";
             this.lineMaDVCS.FieldName = "MA_DVCS";
             this.lineMaDVCS.Location = new System.Drawing.Point(6, 43);
             this.lineMaDVCS.Name = "lineMaDVCS";

@@ -156,7 +156,7 @@
             // lineMaKho
             // 
             this.lineMaKho.AccessibleDescription = "XULYL00078";
-            this.lineMaKho.FieldCaption = "Mã kho";
+            this.lineMaKho.Caption = "Mã kho";
             this.lineMaKho.FieldName = "MA_KHO";
             this.lineMaKho.Location = new System.Drawing.Point(6, 42);
             this.lineMaKho.Name = "lineMaKho";
@@ -167,7 +167,7 @@
             // lineMaVatTu
             // 
             this.lineMaVatTu.AccessibleDescription = "XULYL00095";
-            this.lineMaVatTu.FieldCaption = "Mã vật tư";
+            this.lineMaVatTu.Caption = "Mã vật tư";
             this.lineMaVatTu.FieldName = "MA_VT";
             this.lineMaVatTu.Location = new System.Drawing.Point(6, 88);
             this.lineMaVatTu.Name = "lineMaVatTu";
@@ -178,7 +178,7 @@
             // lineMaVitri
             // 
             this.lineMaVitri.AccessibleDescription = "XULYL00094";
-            this.lineMaVitri.FieldCaption = "Mã vị trí";
+            this.lineMaVitri.Caption = "Mã vị trí";
             this.lineMaVitri.FieldName = "MA_VITRI";
             this.lineMaVitri.Location = new System.Drawing.Point(6, 65);
             this.lineMaVitri.Name = "lineMaVitri";
@@ -245,7 +245,7 @@
             // txtma_dvcs
             // 
             this.txtma_dvcs.AccessibleDescription = "XULYL00078";
-            this.txtma_dvcs.FieldCaption = "Mã đvcs";
+            this.txtma_dvcs.Caption = "Mã đvcs";
             this.txtma_dvcs.FieldName = "MA_DVCS";
             this.txtma_dvcs.Location = new System.Drawing.Point(6, 111);
             this.txtma_dvcs.Name = "txtma_dvcs";

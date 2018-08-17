@@ -39,6 +39,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.ExporttoExcelTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
             this.btnLs = new System.Windows.Forms.Button();
             this.btnLt = new System.Windows.Forms.Button();
@@ -78,7 +79,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.crystalReportViewer3 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.panelCRview = new System.Windows.Forms.Panel();
             this.crystalReportViewer4 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -131,7 +131,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.printGrid,
             this.exportToPdfToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 92);
             // 
             // ExporttoExcelTemplate
             // 
@@ -153,6 +153,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.printGrid.Size = new System.Drawing.Size(208, 22);
             this.printGrid.Text = "Print Grid";
             this.printGrid.Click += new System.EventHandler(this.printGrid_Click);
+            // 
+            // exportToPdfToolStripMenuItem
+            // 
+            this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
+            this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
+            this.exportToPdfToolStripMenuItem.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
             // 
             // grbDieuKienLoc
             // 
@@ -515,6 +522,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             // 
             // txtM_TEN_NLB2
             // 
+            this.txtM_TEN_NLB2.AccessibleName = "M_TEN_NLB2";
             this.txtM_TEN_NLB2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtM_TEN_NLB2.Location = new System.Drawing.Point(847, 38);
             this.txtM_TEN_NLB2.Name = "txtM_TEN_NLB2";
@@ -523,6 +531,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             // 
             // txtM_TEN_NLB
             // 
+            this.txtM_TEN_NLB.AccessibleName = "M_TEN_NLB";
             this.txtM_TEN_NLB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtM_TEN_NLB.Location = new System.Drawing.Point(636, 38);
             this.txtM_TEN_NLB.Name = "txtM_TEN_NLB";
@@ -673,13 +682,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.crystalReportViewer4.TabIndex = 39;
             this.crystalReportViewer4.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.crystalReportViewer4.Visible = false;
-            // 
-            // exportToPdfToolStripMenuItem
-            // 
-            this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
-            this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
-            this.exportToPdfToolStripMenuItem.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
             // 
             // InChungTuViewBase
             // 
