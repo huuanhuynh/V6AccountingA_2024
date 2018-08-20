@@ -127,12 +127,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
-
         private V6ColorTextBox _dvt, _dien_giaii;
         private V6VvarTextBox _tk_dt, _Ma_thue_i, _tk_thue_i,_ma_dvdt;
         private V6NumberTextBox _soLuong, _giaNt2,_tien2, _tienNt2,_gia2;
         private V6NumberTextBox _ThueSuatI, _Thue, _Thue_NT;
-
         
         private void LoadDetailControls()
         {

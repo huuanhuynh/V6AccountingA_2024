@@ -120,15 +120,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
-
-
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _tang, _xuat_dd;
         private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _ma_thue_i, _tk_thue_i;
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt2, _giaNt21,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
         private V6NumberTextBox _ton13, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         private V6DateTimeColor _hanSd;
-
         
         private void LoadDetailControls()
         {

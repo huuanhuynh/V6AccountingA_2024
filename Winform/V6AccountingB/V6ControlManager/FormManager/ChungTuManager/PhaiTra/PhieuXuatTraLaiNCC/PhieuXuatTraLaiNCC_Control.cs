@@ -119,15 +119,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
-
-
         private V6ColorTextBox _dvt;
         private V6CheckTextBox  _xuat_dd;
         private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo;
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _ck, _ckNt, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2;
         private V6NumberTextBox _ton13, _gia, _gia_nt, _gia_nt1, _gia1, _tien, _tienNt;
         private V6DateTimeColor _hanSd;
-
         
         private void LoadDetailControls()
         {

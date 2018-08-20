@@ -131,15 +131,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
-
-
         //T_TT_NT0,T_TT_QD, PHAI_TT_NT, MA_NT_I
         private V6ColorTextBox _soCt0, _maNtI, _sttRecTt, _soSeri0,_dien_giaii;
         private V6VvarTextBox _tkI;
         private V6NumberTextBox _t_tt_nt0, _t_tt_qd, _phaiTtNt, _psCo, _pscoNt, _tien, _tienNt,_tientt, _ttqd, _ty_gia_ht2;
         private V6DateTimeColor _ngayCt0;
-
-        
         DataTable alct1_01, alct1_02, alct1_03, alct1_A;
         private void LoadDetailControls(string MAGD)
         {

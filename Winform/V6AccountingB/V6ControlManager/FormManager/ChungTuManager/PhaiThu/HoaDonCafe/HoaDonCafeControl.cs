@@ -221,8 +221,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
-
-
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _tang, _xuat_dd;
         private V6VvarTextBox _maVt, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo; //_maKho
@@ -230,7 +228,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private V6NumberTextBox _ton13,_gia,_gia_nt, _tien, _tienNt, _pt_cki;
         private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4,_ggNt,_gg;
         private V6DateTimeColor _hanSd;
-
         
         private void LoadDetailControls()
         {

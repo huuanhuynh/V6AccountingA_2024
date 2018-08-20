@@ -111,15 +111,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
-
-
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _tang, _xuat_dd;
         private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkTl, _tkGv, _tkCkI, _tkVt, _maLo, _ma_thue_i, _tk_thue_i;
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt2, _giaNt21, _tien2, _tienNt2, _ck, _ckNt, _gia2, _gia21;
         private V6NumberTextBox _ton13, _gia, _gia_nt, _tien, _tienNt, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _hs_qd30, _hs_qd4, _ggNt, _gg, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         private V6DateTimeColor _hanSd;
-
         
         private void LoadDetailControls()
         {
@@ -751,139 +748,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
-        /// <summary>
-        /// Lấy động danh sách control (textbox) từ bảng Alct
-        /// </summary>
-        /// <param name="mact"></param>
-        /// <returns></returns>
-        public SortedDictionary<int, Control> GetDynamicControlsAlct(string mact)
-        {
-            //exec [VPA_GET_AUTO_COLULMN] 'SOA','','','','';//08/12/2015
-            var result = new SortedDictionary<int, Control>();
-            
-            var alct1 = Invoice.Alct1;
-            _orderList = new List<string>();
-            _alct1Dic = new SortedDictionary<string, DataRow>();
-            
-            foreach (DataRow row in alct1.Rows)
-            {
-                var visible = 1 == Convert.ToInt32(row["visible"]);
-                if (!visible) continue;
-
-                var fcolumn = row["fcolumn"].ToString().Trim().ToUpper();
-                _orderList.Add(fcolumn);
-                _alct1Dic.Add(fcolumn, row);
-
-                var fcaption = row[V6Setting.IsVietnamese ? "caption" : "caption2"].ToString().Trim();
-                var fvvar = row["fvvar"].ToString().Trim();
-                var fstatus = Convert.ToBoolean(row["fstatus"]);
-                
-                var width = Convert.ToInt32(row["width"]);
-                var ftype = row["ftype"].ToString().Trim();
-                var fOrder = Convert.ToInt32(row["forder"]);
-
-                int decimals;
-
-                switch (ftype)
-                {
-                    case "A0":
-                        if (fcolumn == "TANG")
-                        {
-                            result.Add(fOrder, V6ControlFormHelper.
-                                CreateCheckTextBox(fcolumn, "a", fcaption, width, fstatus));
-                        }
-                        else if(fcolumn == "PN_GIA_TBI")
-                        {
-                            result.Add(fOrder, V6ControlFormHelper.
-                                CreateCheckTextBox(fcolumn, "a", fcaption, width, fstatus));
-                        }
-                        break;
-                    case "C0":
-                        if (fvvar != "")
-                        {
-                            var checkvvar = Convert.ToBoolean(row["checkvvar"]);
-                            var notempty = Convert.ToBoolean(row["notempty"]);
-                            result.Add(fOrder, V6ControlFormHelper.
-                                CreateVvarTextBox(fcolumn, fvvar, fcaption, width, fstatus, checkvvar, notempty));
-                        }
-                        else
-                        {
-                            result.Add(fOrder, V6ControlFormHelper.
-                                CreateColorTextBox(fcolumn, fcaption, width, fstatus));
-                        }
-                        break;
-                    case "N9"://Kieu so bat ky
-                        decimals = row["fdecimal"] == null ? V6Setting.DecimalsNumber : Convert.ToInt32(row["fdecimal"]);
-                        result.Add(fOrder, V6ControlFormHelper.
-                                CreateNumberTextBox(fcolumn, fcaption, decimals, width, fstatus)
-                                );
-
-                        break;
-
-                    case "N0"://Tien
-                        decimals =V6Options.M_IP_TIEN;// row["fdecimal"] == null ? V6Setting.DecilalsNumber : Convert.ToInt32(row["fdecimal"]);
-                        result.Add(fOrder, V6ControlFormHelper.
-                                CreateNumberTien(fcolumn, fcaption, decimals, width, fstatus)
-                                );
-
-                        break;
-
-                    case "N1"://Ngoai te
-                        decimals =  V6Options.M_IP_TIEN_NT;
-
-                        result.Add(fOrder, V6ControlFormHelper.
-                                CreateNumberTienNt(fcolumn, fcaption, decimals, width, fstatus)
-                                );
-                        break;
-                    case "N2"://so luong
-
-                        decimals = V6Options.M_IP_SL;
-
-                        result.Add(fOrder, V6ControlFormHelper.
-                            CreateNumberSoLuong(fcolumn, fcaption, decimals, width, fstatus)
-                                );
-
-                        break;
-                    case "N3"://GIA
-
-                        decimals = V6Options.M_IP_GIA;
-
-                        result.Add(fOrder, V6ControlFormHelper.
-                            CreateNumberSoLuong(fcolumn, fcaption, decimals, width, fstatus)
-                                );
-
-                        break;
-                    case "N4"://Gia nt
-
-                        decimals = V6Options.M_IP_GIA_NT;
-
-                        result.Add(fOrder, V6ControlFormHelper.
-                            CreateNumberSoLuong(fcolumn, fcaption, decimals, width, fstatus)
-                                );
-
-                        break;
-                    case "N5"://Ty gia
-                        decimals = V6Options.M_IP_TY_GIA;
-
-                        result.Add(fOrder, V6ControlFormHelper.
-                            CreateNumberTyGia(fcolumn, fcaption, decimals, width, fstatus)
-                                );
-
-                        break;
-                    case "D0": // Allow null
-                        result.Add(fOrder, V6ControlFormHelper.
-                               CreateDateTimeColor(fcolumn, fcaption, width, fstatus));
-                        break;
-                    case "D1": // Not null
-                        result.Add(fOrder, V6ControlFormHelper.
-                               CreateDateTimePick(fcolumn, fcaption, width, fstatus));
-                        break;
-                }
-            }
-            
-            return result;
-        }
-        
         #endregion detail form
 
         #region ==== Override Methods ====
