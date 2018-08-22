@@ -49,7 +49,7 @@ namespace V6ReportControls
             OnV6LostFocus(sender);
         }
 
-        void FilterLineDynamic_Click(object sender, EventArgs e)
+        protected void FilterLineDynamic_Click(object sender, EventArgs e)
         {
             OnClick(e);
         }
@@ -209,7 +209,7 @@ namespace V6ReportControls
                 return result;
             }
         }
-        
+
         public V6ColorTextBox AddTextBox()
         {
             _textBox = new V6ColorTextBox();

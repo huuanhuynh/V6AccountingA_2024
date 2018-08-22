@@ -196,6 +196,18 @@
     <Compile Include="Forms\Viewer\CalculatorForm.designer.cs">
       <DependentUpon>CalculatorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportControls\FilterLineDSNS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportControls\FilterLineDSNS.Designer.cs">
+      <DependentUpon>FilterLineDSNS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportControls\FilterLineMauALL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportControls\FilterLineMauALL.Designer.cs">
+      <DependentUpon>FilterLineMauALL.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportControls\FilterLineMauBC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1952,6 +1964,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportControls\FilterLineDynamic.resx">
       <DependentUpon>FilterLineDynamic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportControls\FilterLineDSNS.resx">
+      <DependentUpon>FilterLineDSNS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportControls\FilterLineMauALL.resx">
+      <DependentUpon>FilterLineMauALL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportControls\FilterLineNumberTextBox.resx">
       <DependentUpon>FilterLineNumberTextBox.cs</DependentUpon>

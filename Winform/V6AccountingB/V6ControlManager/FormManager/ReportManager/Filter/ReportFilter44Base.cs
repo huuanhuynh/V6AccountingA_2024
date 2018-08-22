@@ -757,7 +757,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         }
 
         /// <summary>
-        /// !!!!!
+        /// Tạo các tham số mở rộng cho sql.
         /// </summary>
         private void AddExtraReportParameter()
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Reflection;
 using System.Text;
 
 namespace V6Structs
@@ -163,7 +164,15 @@ namespace V6Structs
                     int.TryParse(value, out MaxLength);
                     break;
 
-                default:
+                default: // Mặc định gán cho string Property.
+                    foreach (PropertyInfo propertyInfo in GetType().GetProperties())
+                    {
+                        if (propertyInfo.Name.ToUpper() == key.ToUpper() && propertyInfo.CanWrite && propertyInfo.PropertyType == typeof(string))
+                        {
+                            propertyInfo.SetValue(this, value, null);
+                            return;
+                        }
+                    }
                     break;
             }
         }
@@ -298,6 +307,43 @@ namespace V6Structs
         /// Bật tắt tính năng lọc chỉ bắt đầu. Mặc định false sẽ lọc like '%abc%'.
         /// </summary>
         public bool FilterStart { get; set; }
+
+        /// <summary>
+        /// Tên bảng chính.
+        /// </summary>
+        public string TableName { get; set; }
+        /// <summary>
+        /// Trường mã chính.
+        /// </summary>
+        public string FieldMa { get; set; }
+        /// <summary>
+        /// Trường dữ liệu bảng chính.
+        /// </summary>
+        public string FieldValue { get; set; }
+        /// <summary>
+        /// Trường hiển thị bảng chính.
+        /// </summary>
+        public string FieldDisplay { get; set; }
+        /// <summary>
+        /// Trường sắp xếp bảng chính.
+        /// </summary>
+        public string FieldOrder { get; set; }
+        /// <summary>
+        /// Tên bảng chi tiết.
+        /// </summary>
+        public string TableNameCt { get; set; }
+        /// <summary>
+        /// Trường dữ liệu bảng chi tiết.
+        /// </summary>
+        public string FieldValueCt { get; set; }
+        /// <summary>
+        /// Trường hiển thị bảng chi tiết.
+        /// </summary>
+        public string FieldDisplayCt { get; set; }
+        /// <summary>
+        /// Trường sắp xếp bảng chi tiết.
+        /// </summary>
+        public string FieldOrderCt { get; set; }
 
         /// <summary>
         /// Bật tắt TemplateSetting. false sẽ bỏ qua hết các xử lý của trường hợp đó.

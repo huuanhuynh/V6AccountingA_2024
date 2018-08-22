@@ -986,19 +986,69 @@ namespace V6Controls.Forms
                 return filter;
             }
 
-            FilterLineDynamic lineControl = CONTROL_TYPE == "MAUBC" ? new FilterLineMauBC() : new FilterLineDynamic();
+            FilterLineDynamic lineControl;
+            if (CONTROL_TYPE == "MAUBC")
+            {
+                lineControl = new FilterLineMauBC();
+                //Gán các thuộc tính chung.
+                lineControl.DefineInfo = lineInfo;
+                lineControl.FieldName = lineInfo.Field.ToUpper();
+                lineControl.Name = "line" + lineInfo.Field.ToUpper();
+                //accessibleName
+                lineControl.AccessibleName = lineInfo.AccessibleName;
+                lineControl.AccessibleName2 = lineInfo.AccessibleName2;
+                lineControl.Caption = lineInfo.TextLang(V6Setting.IsVietnamese);
+                lineControl.Enabled = lineInfo.Enabled;
+                lineControl.Visible = lineInfo.Visible;
+            }
+            else if (CONTROL_TYPE == "MAUALL")
+            {
+                var lineMauAll = new FilterLineMauALL();
+                lineControl = lineMauAll;
+                //Gán các thuộc tính chung.
+                lineMauAll.DefineInfo = lineInfo;
+                lineMauAll.FieldName = lineInfo.Field.ToUpper();
+                
+                lineControl.Name = "line" + lineInfo.Field.ToUpper();
+                //accessibleName
+                lineControl.AccessibleName = lineInfo.AccessibleName;
+                lineControl.AccessibleName2 = lineInfo.AccessibleName2;
+                lineControl.Caption = lineInfo.TextLang(V6Setting.IsVietnamese);
+                lineControl.Enabled = lineInfo.Enabled;
+                lineControl.Visible = lineInfo.Visible;
+            }
+            else if (CONTROL_TYPE == "DSNS")
+            {
+                lineControl = new FilterLineDSNS();
 
-            //Gán các thuộc tính chung.
-            lineControl.DefineInfo = lineInfo;
-            lineControl.FieldName = lineInfo.Field.ToUpper();
-            lineControl.Name = "line" + lineInfo.Field.ToUpper();
-            //accessibleName
-            lineControl.AccessibleName = lineInfo.AccessibleName;
-            lineControl.AccessibleName2 = lineInfo.AccessibleName2;
-            lineControl.Caption = lineInfo.TextLang(V6Setting.IsVietnamese);
-            lineControl.Enabled = lineInfo.Enabled;
-            lineControl.Visible = lineInfo.Visible;
-            
+                var lineControl0 = lineControl as FilterLineDSNS;
+
+                //Gán các thuộc tính chung.
+                lineControl0.DefineInfo = lineInfo;
+                lineControl0.FieldName = lineInfo.Field.ToUpper();
+                lineControl0.Name = "line" + lineInfo.Field.ToUpper();
+                //accessibleName
+                lineControl0.AccessibleName = lineInfo.AccessibleName;
+                lineControl0.AccessibleName2 = lineInfo.AccessibleName2;
+                lineControl0.Caption = lineInfo.TextLang(V6Setting.IsVietnamese);
+                lineControl0.EnabledTxt = lineInfo.Enabled;
+                lineControl0.Visible = lineInfo.Visible;
+            }
+            else
+            {
+                lineControl = new FilterLineDynamic();
+
+                //Gán các thuộc tính chung.
+                lineControl.DefineInfo = lineInfo;
+                lineControl.FieldName = lineInfo.Field.ToUpper();
+                lineControl.Name = "line" + lineInfo.Field.ToUpper();
+                //accessibleName
+                lineControl.AccessibleName = lineInfo.AccessibleName;
+                lineControl.AccessibleName2 = lineInfo.AccessibleName2;
+                lineControl.Caption = lineInfo.TextLang(V6Setting.IsVietnamese);
+                lineControl.Enabled = lineInfo.Enabled;
+                lineControl.Visible = lineInfo.Visible;
+            }
 
             V6VvarTextBox vT;
             V6LookupTextBox vL;
@@ -2739,7 +2789,7 @@ namespace V6Controls.Forms
                     SetStatusText("Export form info completed. " + file);
                 }
                 string keyString = keyData.ToString();
-                //SetStatusText(keyString);//Test !!!!!!!!!!!
+                //SetStatusText(keyString);//Test !!!!
                 return ClickByTag(container, keyString);
             }
             catch

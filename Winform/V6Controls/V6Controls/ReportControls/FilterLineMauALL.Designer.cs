@@ -1,6 +1,6 @@
 ﻿namespace V6ReportControls
 {
-    partial class FilterLineMauBC
+    partial class FilterLineMauALL
     {
         /// <summary> 
         /// Required designer variable.
@@ -31,8 +31,8 @@
             this.btnSuaCTMau = new V6Controls.Controls.V6FormButton();
             this.btnSuaTTMau = new V6Controls.Controls.V6FormButton();
             this.btnThemMau = new V6Controls.Controls.V6FormButton();
-            this.txtma_maubc = new V6Controls.V6VvarTextBox();
-            this.cboMaubc = new V6Controls.V6ComboBox();
+            this.txtMa = new V6Controls.V6VvarTextBox();
+            this.cboMau = new V6Controls.V6ComboBox();
             this.lblMau = new V6Controls.V6Label();
             this.SuspendLayout();
             // 
@@ -77,34 +77,34 @@
             this.btnThemMau.UseVisualStyleBackColor = true;
             this.btnThemMau.Click += new System.EventHandler(this.btnThemMau_Click);
             // 
-            // txtma_maubc
+            // txtMa
             // 
-            this.txtma_maubc.BackColor = System.Drawing.SystemColors.Window;
-            this.txtma_maubc.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtma_maubc.CheckNotEmpty = true;
-            this.txtma_maubc.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtma_maubc.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtma_maubc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtma_maubc.HoverColor = System.Drawing.Color.Yellow;
-            this.txtma_maubc.LeaveColor = System.Drawing.Color.White;
-            this.txtma_maubc.Location = new System.Drawing.Point(236, 30);
-            this.txtma_maubc.Name = "txtma_maubc";
-            this.txtma_maubc.Size = new System.Drawing.Size(44, 20);
-            this.txtma_maubc.TabIndex = 33;
-            this.txtma_maubc.Visible = false;
+            this.txtMa.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMa.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMa.CheckNotEmpty = true;
+            this.txtMa.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMa.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMa.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMa.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMa.LeaveColor = System.Drawing.Color.White;
+            this.txtMa.Location = new System.Drawing.Point(236, 30);
+            this.txtMa.Name = "txtMa";
+            this.txtMa.Size = new System.Drawing.Size(44, 20);
+            this.txtMa.TabIndex = 33;
+            this.txtMa.Visible = false;
             // 
-            // cboMaubc
+            // cboMau
             // 
-            this.cboMaubc.AccessibleName = "MAU_BC";
-            this.cboMaubc.BackColor = System.Drawing.SystemColors.Window;
-            this.cboMaubc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMaubc.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboMaubc.FormattingEnabled = true;
-            this.cboMaubc.Location = new System.Drawing.Point(65, 0);
-            this.cboMaubc.Name = "cboMaubc";
-            this.cboMaubc.Size = new System.Drawing.Size(231, 21);
-            this.cboMaubc.TabIndex = 32;
-            this.cboMaubc.TabStop = false;
+            this.cboMau.AccessibleName = "MAU_BC";
+            this.cboMau.BackColor = System.Drawing.SystemColors.Window;
+            this.cboMau.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMau.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboMau.FormattingEnabled = true;
+            this.cboMau.Location = new System.Drawing.Point(65, 0);
+            this.cboMau.Name = "cboMau";
+            this.cboMau.Size = new System.Drawing.Size(231, 21);
+            this.cboMau.TabIndex = 32;
+            this.cboMau.TabStop = false;
             // 
             // lblMau
             // 
@@ -116,24 +116,24 @@
             this.lblMau.TabIndex = 31;
             this.lblMau.Text = "Mẫu";
             // 
-            // FilterLineMauBC
+            // FilterLineMauALL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnSuaCTMau);
             this.Controls.Add(this.btnSuaTTMau);
             this.Controls.Add(this.btnThemMau);
-            this.Controls.Add(this.txtma_maubc);
-            this.Controls.Add(this.cboMaubc);
+            this.Controls.Add(this.txtMa);
+            this.Controls.Add(this.cboMau);
             this.Controls.Add(this.lblMau);
-            this.Name = "FilterLineMauBC";
+            this.Name = "FilterLineMauALL";
             this.Size = new System.Drawing.Size(308, 50);
             this.Controls.SetChildIndex(this.checkBox1, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.comboBox1, 0);
             this.Controls.SetChildIndex(this.lblMau, 0);
-            this.Controls.SetChildIndex(this.cboMaubc, 0);
-            this.Controls.SetChildIndex(this.txtma_maubc, 0);
+            this.Controls.SetChildIndex(this.cboMau, 0);
+            this.Controls.SetChildIndex(this.txtMa, 0);
             this.Controls.SetChildIndex(this.btnThemMau, 0);
             this.Controls.SetChildIndex(this.btnSuaTTMau, 0);
             this.Controls.SetChildIndex(this.btnSuaCTMau, 0);
@@ -147,8 +147,8 @@
         private V6Controls.Controls.V6FormButton btnSuaCTMau;
         private V6Controls.Controls.V6FormButton btnSuaTTMau;
         private V6Controls.Controls.V6FormButton btnThemMau;
-        private V6Controls.V6VvarTextBox txtma_maubc;
-        private V6Controls.V6ComboBox cboMaubc;
+        private V6Controls.V6VvarTextBox txtMa;
+        private V6Controls.V6ComboBox cboMau;
         private V6Controls.V6Label lblMau;
 
     }

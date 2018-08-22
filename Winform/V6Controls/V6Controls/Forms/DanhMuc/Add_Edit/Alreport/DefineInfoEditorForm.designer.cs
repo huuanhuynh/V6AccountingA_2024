@@ -92,7 +92,31 @@
             this.label39 = new System.Windows.Forms.Label();
             this.txtLimitChars0 = new V6Controls.V6ColorTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label63 = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
+            this.txtFieldOrder = new V6Controls.V6ColorTextBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.txtFieldOrderCt = new V6Controls.V6ColorTextBox();
+            this.label66 = new System.Windows.Forms.Label();
+            this.txtFieldDisplayCt = new V6Controls.V6ColorTextBox();
+            this.label64 = new System.Windows.Forms.Label();
+            this.txtFieldValueCt = new V6Controls.V6ColorTextBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.txtTableNameCt = new V6Controls.V6ColorTextBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.txtFieldDisplay = new V6Controls.V6ColorTextBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.txtFieldValue = new V6Controls.V6ColorTextBox();
+            this.label56 = new System.Windows.Forms.Label();
+            this.txtTableName = new V6Controls.V6ColorTextBox();
+            this.label43 = new System.Windows.Forms.Label();
             this.txtMa_dm = new V6Controls.V6ColorTextBox();
             this.label54 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
@@ -123,6 +147,9 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label70 = new System.Windows.Forms.Label();
+            this.txtFieldMa = new V6Controls.V6ColorTextBox();
+            this.label71 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -781,7 +808,9 @@
             "CheckBox",
             "DateTime",
             "DateTimeColor",
-            "MauBC"});
+            "MauBC",
+            "MAUALL",
+            "DSNS"});
             this.cboControlType.Location = new System.Drawing.Point(640, 8);
             this.cboControlType.Name = "cboControlType";
             this.cboControlType.Size = new System.Drawing.Size(121, 24);
@@ -1035,7 +1064,34 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage2.Controls.Add(this.label69);
+            this.tabPage2.Controls.Add(this.label67);
+            this.tabPage2.Controls.Add(this.label65);
+            this.tabPage2.Controls.Add(this.label63);
+            this.tabPage2.Controls.Add(this.label61);
+            this.tabPage2.Controls.Add(this.label59);
+            this.tabPage2.Controls.Add(this.label71);
+            this.tabPage2.Controls.Add(this.label57);
+            this.tabPage2.Controls.Add(this.label55);
             this.tabPage2.Controls.Add(this.label53);
+            this.tabPage2.Controls.Add(this.txtFieldOrder);
+            this.tabPage2.Controls.Add(this.label68);
+            this.tabPage2.Controls.Add(this.txtFieldOrderCt);
+            this.tabPage2.Controls.Add(this.label66);
+            this.tabPage2.Controls.Add(this.txtFieldDisplayCt);
+            this.tabPage2.Controls.Add(this.label64);
+            this.tabPage2.Controls.Add(this.txtFieldValueCt);
+            this.tabPage2.Controls.Add(this.label62);
+            this.tabPage2.Controls.Add(this.txtTableNameCt);
+            this.tabPage2.Controls.Add(this.label60);
+            this.tabPage2.Controls.Add(this.txtFieldDisplay);
+            this.tabPage2.Controls.Add(this.label58);
+            this.tabPage2.Controls.Add(this.txtFieldMa);
+            this.tabPage2.Controls.Add(this.label70);
+            this.tabPage2.Controls.Add(this.txtFieldValue);
+            this.tabPage2.Controls.Add(this.label56);
+            this.tabPage2.Controls.Add(this.txtTableName);
+            this.tabPage2.Controls.Add(this.label43);
             this.tabPage2.Controls.Add(this.txtMa_dm);
             this.tabPage2.Controls.Add(this.label54);
             this.tabPage2.Controls.Add(this.label31);
@@ -1073,6 +1129,94 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin thêm";
             // 
+            // label69
+            // 
+            this.label69.AccessibleDescription = "";
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(281, 342);
+            this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(107, 17);
+            this.label69.TabIndex = 50;
+            this.label69.Text = "Trường sắp xếp";
+            // 
+            // label67
+            // 
+            this.label67.AccessibleDescription = "";
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(281, 439);
+            this.label67.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(122, 17);
+            this.label67.TabIndex = 50;
+            this.label67.Text = "Trường sắp xếp ct";
+            // 
+            // label65
+            // 
+            this.label65.AccessibleDescription = "";
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(281, 416);
+            this.label65.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(119, 17);
+            this.label65.TabIndex = 50;
+            this.label65.Text = "Trường hiển thị ct";
+            // 
+            // label63
+            // 
+            this.label63.AccessibleDescription = "";
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(281, 393);
+            this.label63.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(115, 17);
+            this.label63.TabIndex = 50;
+            this.label63.Text = "Trường dữ liệu ct";
+            // 
+            // label61
+            // 
+            this.label61.AccessibleDescription = "";
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(281, 370);
+            this.label61.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(114, 17);
+            this.label61.TabIndex = 50;
+            this.label61.Text = "Tên bảng chi tiết";
+            // 
+            // label59
+            // 
+            this.label59.AccessibleDescription = "";
+            this.label59.AutoSize = true;
+            this.label59.Location = new System.Drawing.Point(281, 319);
+            this.label59.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(104, 17);
+            this.label59.TabIndex = 50;
+            this.label59.Text = "Trường hiển thị";
+            // 
+            // label57
+            // 
+            this.label57.AccessibleDescription = "";
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(281, 296);
+            this.label57.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(100, 17);
+            this.label57.TabIndex = 50;
+            this.label57.Text = "Trường dữ liệu";
+            // 
+            // label55
+            // 
+            this.label55.AccessibleDescription = "";
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(281, 273);
+            this.label55.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(107, 17);
+            this.label55.TabIndex = 50;
+            this.label55.Text = "Tên bảng chính";
+            // 
             // label53
             // 
             this.label53.AccessibleDescription = "";
@@ -1083,6 +1227,222 @@
             this.label53.Size = new System.Drawing.Size(165, 17);
             this.label53.TabIndex = 50;
             this.label53.Text = "Mã danh mục trong Aldm";
+            // 
+            // txtFieldOrder
+            // 
+            this.txtFieldOrder.AccessibleName = "FieldOrder";
+            this.txtFieldOrder.BackColor = System.Drawing.Color.White;
+            this.txtFieldOrder.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFieldOrder.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFieldOrder.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFieldOrder.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFieldOrder.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFieldOrder.LeaveColor = System.Drawing.Color.White;
+            this.txtFieldOrder.Location = new System.Drawing.Point(120, 340);
+            this.txtFieldOrder.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFieldOrder.Name = "txtFieldOrder";
+            this.txtFieldOrder.Size = new System.Drawing.Size(150, 23);
+            this.txtFieldOrder.TabIndex = 10;
+            // 
+            // label68
+            // 
+            this.label68.AccessibleDescription = "";
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(10, 342);
+            this.label68.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(75, 17);
+            this.label68.TabIndex = 48;
+            this.label68.Text = "FieldOrder";
+            // 
+            // txtFieldOrderCt
+            // 
+            this.txtFieldOrderCt.AccessibleName = "FieldOrderCt";
+            this.txtFieldOrderCt.BackColor = System.Drawing.Color.White;
+            this.txtFieldOrderCt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFieldOrderCt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFieldOrderCt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFieldOrderCt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFieldOrderCt.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFieldOrderCt.LeaveColor = System.Drawing.Color.White;
+            this.txtFieldOrderCt.Location = new System.Drawing.Point(120, 437);
+            this.txtFieldOrderCt.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFieldOrderCt.Name = "txtFieldOrderCt";
+            this.txtFieldOrderCt.Size = new System.Drawing.Size(150, 23);
+            this.txtFieldOrderCt.TabIndex = 10;
+            // 
+            // label66
+            // 
+            this.label66.AccessibleDescription = "";
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(10, 439);
+            this.label66.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(88, 17);
+            this.label66.TabIndex = 48;
+            this.label66.Text = "FieldOrderCt";
+            // 
+            // txtFieldDisplayCt
+            // 
+            this.txtFieldDisplayCt.AccessibleName = "FieldDisplayCt";
+            this.txtFieldDisplayCt.BackColor = System.Drawing.Color.White;
+            this.txtFieldDisplayCt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFieldDisplayCt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFieldDisplayCt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFieldDisplayCt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFieldDisplayCt.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFieldDisplayCt.LeaveColor = System.Drawing.Color.White;
+            this.txtFieldDisplayCt.Location = new System.Drawing.Point(120, 414);
+            this.txtFieldDisplayCt.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFieldDisplayCt.Name = "txtFieldDisplayCt";
+            this.txtFieldDisplayCt.Size = new System.Drawing.Size(150, 23);
+            this.txtFieldDisplayCt.TabIndex = 10;
+            // 
+            // label64
+            // 
+            this.label64.AccessibleDescription = "";
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(10, 416);
+            this.label64.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(97, 17);
+            this.label64.TabIndex = 48;
+            this.label64.Text = "FieldDisplayCt";
+            // 
+            // txtFieldValueCt
+            // 
+            this.txtFieldValueCt.AccessibleName = "FieldValueCt";
+            this.txtFieldValueCt.BackColor = System.Drawing.Color.White;
+            this.txtFieldValueCt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFieldValueCt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFieldValueCt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFieldValueCt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFieldValueCt.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFieldValueCt.LeaveColor = System.Drawing.Color.White;
+            this.txtFieldValueCt.Location = new System.Drawing.Point(120, 391);
+            this.txtFieldValueCt.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFieldValueCt.Name = "txtFieldValueCt";
+            this.txtFieldValueCt.Size = new System.Drawing.Size(150, 23);
+            this.txtFieldValueCt.TabIndex = 10;
+            // 
+            // label62
+            // 
+            this.label62.AccessibleDescription = "";
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(10, 393);
+            this.label62.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(87, 17);
+            this.label62.TabIndex = 48;
+            this.label62.Text = "FieldValueCt";
+            // 
+            // txtTableNameCt
+            // 
+            this.txtTableNameCt.AccessibleName = "TableNameCt";
+            this.txtTableNameCt.BackColor = System.Drawing.Color.White;
+            this.txtTableNameCt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTableNameCt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTableNameCt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTableNameCt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTableNameCt.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTableNameCt.LeaveColor = System.Drawing.Color.White;
+            this.txtTableNameCt.Location = new System.Drawing.Point(120, 368);
+            this.txtTableNameCt.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTableNameCt.Name = "txtTableNameCt";
+            this.txtTableNameCt.Size = new System.Drawing.Size(150, 23);
+            this.txtTableNameCt.TabIndex = 10;
+            // 
+            // label60
+            // 
+            this.label60.AccessibleDescription = "";
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(10, 370);
+            this.label60.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(94, 17);
+            this.label60.TabIndex = 48;
+            this.label60.Text = "TableNameCt";
+            // 
+            // txtFieldDisplay
+            // 
+            this.txtFieldDisplay.AccessibleName = "FieldDisplay";
+            this.txtFieldDisplay.BackColor = System.Drawing.Color.White;
+            this.txtFieldDisplay.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFieldDisplay.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFieldDisplay.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFieldDisplay.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFieldDisplay.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFieldDisplay.LeaveColor = System.Drawing.Color.White;
+            this.txtFieldDisplay.Location = new System.Drawing.Point(120, 317);
+            this.txtFieldDisplay.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFieldDisplay.Name = "txtFieldDisplay";
+            this.txtFieldDisplay.Size = new System.Drawing.Size(150, 23);
+            this.txtFieldDisplay.TabIndex = 10;
+            // 
+            // label58
+            // 
+            this.label58.AccessibleDescription = "";
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(10, 319);
+            this.label58.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(84, 17);
+            this.label58.TabIndex = 48;
+            this.label58.Text = "FieldDisplay";
+            // 
+            // txtFieldValue
+            // 
+            this.txtFieldValue.AccessibleName = "FieldValue";
+            this.txtFieldValue.BackColor = System.Drawing.Color.White;
+            this.txtFieldValue.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFieldValue.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFieldValue.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFieldValue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFieldValue.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFieldValue.LeaveColor = System.Drawing.Color.White;
+            this.txtFieldValue.Location = new System.Drawing.Point(120, 294);
+            this.txtFieldValue.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFieldValue.Name = "txtFieldValue";
+            this.txtFieldValue.Size = new System.Drawing.Size(150, 23);
+            this.txtFieldValue.TabIndex = 10;
+            // 
+            // label56
+            // 
+            this.label56.AccessibleDescription = "";
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(10, 296);
+            this.label56.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(74, 17);
+            this.label56.TabIndex = 48;
+            this.label56.Text = "FieldValue";
+            // 
+            // txtTableName
+            // 
+            this.txtTableName.AccessibleName = "TableName";
+            this.txtTableName.BackColor = System.Drawing.Color.White;
+            this.txtTableName.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTableName.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTableName.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTableName.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTableName.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTableName.LeaveColor = System.Drawing.Color.White;
+            this.txtTableName.Location = new System.Drawing.Point(120, 271);
+            this.txtTableName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTableName.Name = "txtTableName";
+            this.txtTableName.Size = new System.Drawing.Size(150, 23);
+            this.txtTableName.TabIndex = 10;
+            // 
+            // label43
+            // 
+            this.label43.AccessibleDescription = "";
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(10, 273);
+            this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(81, 17);
+            this.label43.TabIndex = 48;
+            this.label43.Text = "TableName";
             // 
             // txtMa_dm
             // 
@@ -1475,6 +1835,44 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
+            // label70
+            // 
+            this.label70.AccessibleDescription = "";
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(425, 273);
+            this.label70.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(57, 17);
+            this.label70.TabIndex = 48;
+            this.label70.Text = "FieldMa";
+            // 
+            // txtFieldMa
+            // 
+            this.txtFieldMa.AccessibleName = "FieldMa";
+            this.txtFieldMa.BackColor = System.Drawing.Color.White;
+            this.txtFieldMa.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFieldMa.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFieldMa.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFieldMa.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFieldMa.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFieldMa.LeaveColor = System.Drawing.Color.White;
+            this.txtFieldMa.Location = new System.Drawing.Point(502, 270);
+            this.txtFieldMa.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFieldMa.Name = "txtFieldMa";
+            this.txtFieldMa.Size = new System.Drawing.Size(150, 23);
+            this.txtFieldMa.TabIndex = 10;
+            // 
+            // label71
+            // 
+            this.label71.AccessibleDescription = "";
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(663, 272);
+            this.label71.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(145, 17);
+            this.label71.TabIndex = 50;
+            this.label71.Text = "Trường mã lọc dữ liệu";
+            // 
             // DefineInfoEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1599,5 +1997,32 @@
         private V6ColorTextBox txtUseLimitChars0;
         private V6ColorTextBox txtLimitChars0;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.Label label55;
+        private V6ColorTextBox txtFieldDisplayCt;
+        private System.Windows.Forms.Label label64;
+        private V6ColorTextBox txtFieldValueCt;
+        private System.Windows.Forms.Label label62;
+        private V6ColorTextBox txtTableNameCt;
+        private System.Windows.Forms.Label label60;
+        private V6ColorTextBox txtFieldDisplay;
+        private System.Windows.Forms.Label label58;
+        private V6ColorTextBox txtFieldValue;
+        private System.Windows.Forms.Label label56;
+        private V6ColorTextBox txtTableName;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label67;
+        private V6ColorTextBox txtFieldOrderCt;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.Label label69;
+        private V6ColorTextBox txtFieldOrder;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.Label label71;
+        private V6ColorTextBox txtFieldMa;
+        private System.Windows.Forms.Label label70;
     }
 }

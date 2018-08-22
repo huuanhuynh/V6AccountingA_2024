@@ -506,13 +506,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         }
                         else
                         {
-
+                            this.WriteToLog(GetType() + ".GetRprParametersD else", "di.Ptype?");
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    this.WriteExLog(GetType() + ".GetRptParametersD try2", ex);
                 }
                 return result;
             }

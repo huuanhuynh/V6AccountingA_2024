@@ -5,6 +5,7 @@ using System.Data;
 using System.Reflection;
 using V6AccountingBusiness;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
@@ -13,9 +14,9 @@ using V6Tools;
 
 namespace V6ReportControls
 {
-    public partial class FilterLineMauBC : FilterLineDynamic
+    public partial class FilterLineMauALL : FilterLineDynamic
     {
-        public FilterLineMauBC()
+        public FilterLineMauALL()
         {
             InitializeComponent();
             MyInit();
@@ -35,24 +36,18 @@ namespace V6ReportControls
             }
         }
 
-        private DataTable maubcData = null;
-        private void LoadAlmaubc()
+        private DataTable cboData = null;
+        private void LoadDanhSach()
         {
             try
             {
-                //AldmConfig aldm_config = V6ControlsHelper.GetAldmConfig(DefineInfo.MA_DM);
-                //DefineInfo.MA_DM = "ALMAUBC";
-                //DefineInfo.Field2 = valueField = "file_maubc";
-                //DefineInfo. = valueField = "file_maubc";
-                maubcData = V6BusinessHelper.Select("ALMAUBC",
-                    "ma_maubc,ten_maubc,ten_maubc2,file_maubc,UID", "ma_maubc='" + txtma_maubc.Text.ToUpper() + "'",
-                    "", "[ORDER]").Data;
+                cboData = V6BusinessHelper.Select(TableName, "*", FieldMa+"='" + txtMa.Text.ToUpper() + "'", "", "["+ FieldOrder +"]").Data;
 
-                cboMaubc.ValueMember = "file_maubc";
-                cboMaubc.DisplayMember = V6Setting.IsVietnamese ? "ten_maubc" : "ten_maubc2";
-                cboMaubc.DataSource = maubcData;
-                cboMaubc.ValueMember = "file_maubc";
-                cboMaubc.DisplayMember = V6Setting.IsVietnamese ? "ten_maubc" : "ten_maubc2";
+                cboMau.ValueMember = FieldValue;
+                cboMau.DisplayMember = FieldDisplay;
+                cboMau.DataSource = cboData;
+                cboMau.ValueMember = FieldValue;
+                cboMau.DisplayMember = FieldDisplay;
             }
             catch (Exception ex)
             {
@@ -77,13 +72,23 @@ namespace V6ReportControls
         {
             get
             {
-                return cboMaubc.AccessibleName;
+                return cboMau.AccessibleName;
             }
             set
             {
-                cboMaubc.AccessibleName = value;
+                cboMau.AccessibleName = value;
             }
         }
+
+        public string TableName { get { return DefineInfo.TableName; } }
+        public string FieldMa { get { return DefineInfo.FieldMa; } }
+        public string FieldValue { get { return DefineInfo.FieldValue; } }
+        public string FieldDisplay { get { return DefineInfo.FieldDisplay; } }
+        public string FieldOrder { get { return DefineInfo.FieldOrder; } }
+        public string TableNameCt { get { return DefineInfo.TableNameCt; } }
+        public string FieldValueCt { get { return DefineInfo.FieldValueCt; } }
+        public string FieldDisplayCt { get { return DefineInfo.FieldDisplayCt; } }
+        public string FieldOrderCt { get { return DefineInfo.FieldOrderCt; } }
 
         /// <summary>
         /// Giá trị của textbox đã trim()
@@ -92,7 +97,7 @@ namespace V6ReportControls
         {
             get
             {
-                return cboMaubc.SelectedValue.ToString();
+                return cboMau.SelectedValue.ToString();
             }
         }
 
@@ -170,51 +175,41 @@ namespace V6ReportControls
 
         public override void SetValue(object value)
         {
-            txtma_maubc.Text = ("" + value).Trim();
-            LoadAlmaubc();
+            txtMa.Text = ("" + value).Trim();
+            LoadDanhSach();
         }
 
-        V6TableName CurrentTable = V6TableName.Almaubc;
         private void DoAdd()
         {
             try
             {
-                if (CurrentTable == V6TableName.None)
+                if (cboData != null)
                 {
-                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                    var row0 = cboData.Rows[cboMau.SelectedIndex];
+
+                    var keys = new SortedDictionary<string, object>();
+                    if (cboData.Columns.Contains("UID"))
+                        keys.Add("UID", row0["UID"]);
+
+                    //if (KeyFields != null)
+                    //    foreach (var keyField in KeyFields)
+                    //    {
+                    //        if (dataGridView1.Columns.Contains(keyField))
+                    //        {
+                    //            keys[keyField] = row.Cells[keyField].Value;
+                    //        }
+                    //    }
+
+                    var _data = row0.ToDataDictionary();
+                    var f = new FormAddEdit(TableName, V6Mode.Add, keys, _data);
+                    f.InsertSuccessEvent += f_InsertSuccess;
+                    f.ShowDialog(this);
                 }
                 else
                 {
-
-
-                    if (maubcData != null)
-                    {
-                        var row0 = maubcData.Rows[cboMaubc.SelectedIndex];
-
-                        var keys = new SortedDictionary<string, object>();
-                        if (maubcData.Columns.Contains("UID"))
-                            keys.Add("UID", row0["UID"]);
-
-                        //if (KeyFields != null)
-                        //    foreach (var keyField in KeyFields)
-                        //    {
-                        //        if (dataGridView1.Columns.Contains(keyField))
-                        //        {
-                        //            keys[keyField] = row.Cells[keyField].Value;
-                        //        }
-                        //    }
-
-                        var _data = row0.ToDataDictionary();
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
-                        f.InsertSuccessEvent += f_InsertSuccess;
-                        f.ShowDialog(this);
-                    }
-                    else
-                    {
-                        var f = new FormAddEdit(CurrentTable);
-                        f.InsertSuccessEvent += f_InsertSuccess;
-                        f.ShowDialog(this);
-                    }
+                    var f = new FormAddEdit(TableName);
+                    f.InsertSuccessEvent += f_InsertSuccess;
+                    f.ShowDialog(this);
                 }
             }
             catch (Exception ex)
@@ -227,14 +222,14 @@ namespace V6ReportControls
         {
             try
             {
-                var newRow = maubcData.NewRow();
+                var newRow = cboData.NewRow();
                 foreach (KeyValuePair<string, object> item in dataDic)
                 {
-                    if (maubcData.Columns.Contains(item.Key))
+                    if (cboData.Columns.Contains(item.Key))
                         newRow[item.Key] = item.Value;
                 }
-                maubcData.Rows.Add(newRow);
-                cboMaubc.SelectedIndex = maubcData.Rows.Count - 1;
+                cboData.Rows.Add(newRow);
+                cboMau.SelectedIndex = cboData.Rows.Count - 1;
             }
             catch (Exception ex)
             {
@@ -246,40 +241,31 @@ namespace V6ReportControls
         {
             try
             {
-                if (CurrentTable == V6TableName.None)
+                if (cboMau.SelectedIndex >= 0)
                 {
-                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                    var row0 = cboData.Rows[cboMau.SelectedIndex];
+                    var keys = new SortedDictionary<string, object>();
+                    if (cboData.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
+                        keys.Add("UID", row0["UID"]);
+
+                    //if (KeyFields != null)
+                    //    foreach (var keyField in KeyFields)
+                    //    {
+                    //        if (dataGridView1.Columns.Contains(keyField))
+                    //        {
+                    //            keys[keyField] = row.Cells[keyField].Value;
+                    //        }
+                    //    }
+
+                    var _data = row0.ToDataDictionary();
+                    var f = new FormAddEdit(TableName, V6Mode.Edit, keys, _data);
+                    f.UpdateSuccessEvent += f_UpdateSuccess;
+                    f.CallReloadEvent += FCallReloadEvent;
+                    f.ShowDialog(this);
                 }
                 else
                 {
-                    //DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
-                    if (cboMaubc.SelectedIndex >= 0)
-                    {
-                        var row0 = maubcData.Rows[cboMaubc.SelectedIndex];
-                        var keys = new SortedDictionary<string, object>();
-                        if (maubcData.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
-                            keys.Add("UID", row0["UID"]);
-
-                        //if (KeyFields != null)
-                        //    foreach (var keyField in KeyFields)
-                        //    {
-                        //        if (dataGridView1.Columns.Contains(keyField))
-                        //        {
-                        //            keys[keyField] = row.Cells[keyField].Value;
-                        //        }
-                        //    }
-
-                        var _data = row0.ToDataDictionary();
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
-                        f.UpdateSuccessEvent += f_UpdateSuccess;
-                        f.CallReloadEvent += FCallReloadEvent;
-                        f.ShowDialog(this);
-                    }
-                    else
-                    {
-                        this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
-                    }
+                    this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
                 }
             }
             catch (Exception ex)
@@ -297,10 +283,10 @@ namespace V6ReportControls
         {
             try
             {
-                var editRow = maubcData.Rows[cboMaubc.SelectedIndex];
+                var editRow = cboData.Rows[cboMau.SelectedIndex];
                 foreach (KeyValuePair<string, object> item in dataDic)
                 {
-                    if (maubcData.Columns.Contains(item.Key))
+                    if (cboData.Columns.Contains(item.Key))
                         editRow[item.Key] = item.Value;
                 }
             }
@@ -314,13 +300,14 @@ namespace V6ReportControls
         {
             try
             {
-                if (cboMaubc.SelectedIndex >= 0)
+                if (cboMau.SelectedIndex >= 0)
                 {
-                    var row0 = maubcData.Rows[cboMaubc.SelectedIndex];
-                    var ma_maubc = row0["file_maubc"].ToString().Trim();
-                    var filter = "mau_bc='" + ma_maubc + "'";
-                    BangCanDoiTaiChinhForm form = new BangCanDoiTaiChinhForm(filter);
-                    form.ShowDialog(this);
+                    var row0 = cboData.Rows[cboMau.SelectedIndex];
+                    var ma = row0[FieldValue].ToString().Trim();
+                    var filter = FieldValueCt + "='" + ma + "'";
+
+                    var ca = new CategoryView("itemId", "title", TableNameCt, filter, FieldOrderCt, null);
+                    ca.ShowToForm(this, "title", true, true, false);
                 }
             }
             catch (Exception ex)
@@ -331,7 +318,7 @@ namespace V6ReportControls
 
         private void btnThemMau_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", "Almaubc".ToUpper() + "6"))
+            if (V6Login.UserRight.AllowAdd("", TableName.ToUpper() + "6"))
             {
                 DoAdd();
             }
@@ -343,7 +330,7 @@ namespace V6ReportControls
 
         private void btnSuaTTMau_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowEdit("", TableName.ToUpper() + "6"))
             {
                 DoEdit();
             }
@@ -355,7 +342,7 @@ namespace V6ReportControls
 
         private void btnSuaCTMau_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowEdit("", TableName.ToUpper() + "6"))
             {
                 DoEditDetails();
             }

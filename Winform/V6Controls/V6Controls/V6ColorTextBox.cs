@@ -12,7 +12,7 @@ using V6Init;
 namespace V6Controls
 {
     [DebuggerDisplay("{this}")]
-    public class V6ColorTextBox:TextBox
+    public class V6ColorTextBox : TextBox
     {
         /// <summary>
         /// Hàm khởi tạo
@@ -234,6 +234,8 @@ namespace V6Controls
 
         void V6LimitTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (ReadOnly || !Enabled) return;
+
             if (!char.IsControl(e.KeyChar))// && !string.IsNullOrEmpty(LimitCharacters))
             {
                 var c = e.KeyChar;
