@@ -23,7 +23,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
 
         private string TableName;//Đè kiểu cũ. Các hàm cũ đã override.
-        private DataRow _dataRow;
+        private AldmConfig _aldmConfig;
         private DataTable AlreportData = null;
         private DataTable Alreport1Data = null;
         private Dictionary<V6NumberTextBox, int> NumberTextBox_Decimals = new Dictionary<V6NumberTextBox, int>();
@@ -41,10 +41,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private Dictionary<string, Label> Label_Controls = new Dictionary<string, Label>();
         private Dictionary<string, Control> Input_Controls = new Dictionary<string, Control>(); 
 
-        public DynamicAddEditForm(string tableName, DataRow dataRow)
+        public DynamicAddEditForm(string tableName, AldmConfig aldmConfig)
         {
             TableName = tableName;
-            _dataRow = dataRow;
+            _aldmConfig = aldmConfig;
             InitializeComponent();
             MyInit();
         }
@@ -852,13 +852,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                var increase = _dataRow["increase_yn"].ToString().Trim();
-                if (increase == "1")
+                if (_aldmConfig.INCREASE_YN)
                 {
                     update_stt13 = true;
-                    var id_field = _dataRow["Value"].ToString().Trim().ToUpper();
-                    var stt13 = ObjectAndString.ObjectToInt(_dataRow["Stt13"]);
-                    var transform = _dataRow["transform"].ToString().Trim();
+                    var id_field = _aldmConfig.VALUE.ToUpper();
+                    var stt13 = ObjectAndString.ObjectToInt(_aldmConfig.STT13);
+                    var transform = _aldmConfig.TRANSFORM;
                     var value = string.Format(transform, stt13 + 1);
                     IDictionary<string, object> value_dic = new SortedDictionary<string, object>();
                     value_dic.Add(id_field, value);
@@ -994,8 +993,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             // check code
             //_dataRow;// aldm
-            var GRD_COL = _dataRow["GRD_COL"].ToString().Trim().ToUpper();
-            var KEY_LIST = ObjectAndString.SplitString(_dataRow["KEY"].ToString().Trim().ToUpper());
+            var GRD_COL = _aldmConfig.GRD_COL.ToUpper();
+            var KEY_LIST = ObjectAndString.SplitString(_aldmConfig.KEY.ToUpper());
             string KEY1 = "", KEY2 = "", KEY3 = "", KEY4 = "";
             
             if (GRD_COL == "AL" && KEY_LIST.Length > 0)

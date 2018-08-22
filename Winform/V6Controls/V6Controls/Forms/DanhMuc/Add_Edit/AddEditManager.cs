@@ -414,18 +414,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     break;
                 case V6TableName.Notable:
                 default:
-                    //Check is_aldm?
-                    bool is_aldm = false;
                     
-                    IDictionary<string, object> keys = new Dictionary<string, object>();
-                    keys.Add("MA_DM",name);
-                    var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
-                    if (aldm.Rows.Count == 1)
+                    AldmConfig aldm_config = V6ControlsHelper.GetAldmConfig(name);
+
+                    if (aldm_config.HaveInfo)
                     {
-                        is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
-                        if (is_aldm)
+                        if (aldm_config.IS_ALDM)
                         {
-                            FormControl = new DynamicAddEditForm(name, aldm.Rows[0]);
+                            FormControl = new DynamicAddEditForm(name, aldm_config);
                             break;
                         }
                     }

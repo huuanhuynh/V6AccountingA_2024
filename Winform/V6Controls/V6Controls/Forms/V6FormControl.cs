@@ -124,8 +124,17 @@ namespace V6Controls.Forms
             {
                 if (keyData == Keys.F3)
                 {
-                    f3count++;
-                    V6F3Execute();
+                    if(++f3count == 3)
+                    if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                    {
+                        V6F3Execute();
+                        f3count = 0;
+                    }
+                    else
+                    {
+                        f3count = 0;
+                        V6F3ExecuteUndo();
+                    }
                 }
                 else
                 {
@@ -159,16 +168,6 @@ namespace V6Controls.Forms
         {
             try
             {
-                //if (keyData == Keys.F3)
-                //{
-                //    f3count++;
-                //    V6F3Execute();
-                //}
-                //else
-                //{
-                //    f3count = 0;
-                //}
-
                 do_hot_key = true;
                 DoHotKey0(keyData);
             }
@@ -180,20 +179,15 @@ namespace V6Controls.Forms
 
         public override bool DoHotKey0(Keys keyData)
         {
-            //if (keyData == Keys.F3)
-            //{
-            //    f3count++;
-            //    V6F3Execute();
-            //}
-            //else
-            //{
-            //    f3count = 0;
-            //}
             return V6ControlFormHelper.DoKeyCommand(this, keyData);
         }
 
         protected int f3count;
         public virtual void V6F3Execute()
+        {
+            
+        }
+        public virtual void V6F3ExecuteUndo()
         {
             
         }

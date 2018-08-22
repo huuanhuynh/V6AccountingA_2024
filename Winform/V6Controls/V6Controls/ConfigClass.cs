@@ -167,6 +167,7 @@ namespace V6Controls
         public bool BOLD_YN { get { return GetString("BOLD_YN") == "1"; } }
         public bool COLOR_YN { get { return GetString("COLOR_YN") == "1"; } }
         public int FROZENV { get { return GetInt("FROZENV"); } }
+        public bool INCREASE_YN { get { return GetString("INCREASE_YN") == "1"; } }
     }
 
     public class V6lookupConfig : Config

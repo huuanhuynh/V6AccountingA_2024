@@ -102,8 +102,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             {
                 V6ControlFormHelper.ShowErrorMessage("Load: " + ex.Message);
             }
+        }
 
-
+        public override void V6F3Execute()
+        {
+            try
+            {
+                TxtPassword1.PasswordChar = '\0';
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".V6F3Execute", ex);
+            }
         }
 
         public override void DoBeforeAdd()
