@@ -27,6 +27,7 @@ namespace V6Controls.Controls.ToChucTree
             // 
             this.SelectedIndexChanged += new System.EventHandler(this.ToChucTreeListView_SelectedIndexChanged);
             this.ResumeLayout(false);
+
         }
 
         private void ToChucTreeListView_SelectedIndexChanged(object sender, EventArgs e)
@@ -742,5 +743,6 @@ namespace V6Controls.Controls.ToChucTree
                 this.ShowErrorMessage(GetType() + ".ViewDataToNewForm: " + ex.Message);
             }
         }
+        
     }
 }

@@ -35,6 +35,8 @@
             this.btnNhan = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.toChucTreeListView1 = new V6Controls.Controls.ToChucTree.ToChucTreeListView();
+            this.btnSelectAll = new System.Windows.Forms.Button();
+            this.btnUnSelect = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnThoat
@@ -114,11 +116,33 @@
             this.toChucTreeListView1.Text_Field = "NAME";
             this.toChucTreeListView1.UseCompatibleStateImageBehavior = false;
             // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Location = new System.Drawing.Point(243, 479);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectAll.TabIndex = 24;
+            this.btnSelectAll.Text = "Chọn hết";
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
+            // 
+            // btnUnSelect
+            // 
+            this.btnUnSelect.Location = new System.Drawing.Point(324, 479);
+            this.btnUnSelect.Name = "btnUnSelect";
+            this.btnUnSelect.Size = new System.Drawing.Size(75, 23);
+            this.btnUnSelect.TabIndex = 24;
+            this.btnUnSelect.Text = "Bỏ chọn";
+            this.btnUnSelect.UseVisualStyleBackColor = true;
+            this.btnUnSelect.Click += new System.EventHandler(this.btnUnSelect_Click);
+            // 
             // ToChucTreeSelectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 522);
+            this.Controls.Add(this.btnUnSelect);
+            this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.toChucTreeListView1);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnNhan);
@@ -128,6 +152,8 @@
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnThoat, 0);
             this.Controls.SetChildIndex(this.toChucTreeListView1, 0);
+            this.Controls.SetChildIndex(this.btnSelectAll, 0);
+            this.Controls.SetChildIndex(this.btnUnSelect, 0);
             this.ResumeLayout(false);
 
         }
@@ -138,5 +164,7 @@
         protected System.Windows.Forms.Button btnNhan;
         private System.Windows.Forms.ImageList imageList1;
         private Controls.ToChucTree.ToChucTreeListView toChucTreeListView1;
+        private System.Windows.Forms.Button btnSelectAll;
+        private System.Windows.Forms.Button btnUnSelect;
     }
 }

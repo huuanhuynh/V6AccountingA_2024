@@ -41,6 +41,7 @@ namespace V6Controls.Forms
                 string headerString = V6Setting.IsVietnamese ? config.GRDHV_V1 : config.GRDHE_V1;
                 string formatStrings = config.GRDF_V1;
                 toChucTreeListView1.SetData(_data, showFields, headerString, formatStrings);
+                //SelectAll();
                 SetSelectedIDs();
             }
             catch (Exception ex)
@@ -143,7 +144,8 @@ namespace V6Controls.Forms
                 if (item.Checked)
                 {
                     var data = toChucTreeListView1.GetItemData(item);
-                    _selectedIDList += "," + data[_selectID_field].ToString().Trim();
+                    var selectedValue = data[_selectID_field].ToString().Trim();
+                    if(selectedValue != "") _selectedIDList += "," + selectedValue;
                     listData.Add(data);
                 }
                 return;
@@ -179,6 +181,16 @@ namespace V6Controls.Forms
         private void btnThoat_Click(object sender, EventArgs e)
         {
             Huy();
+        }
+
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            toChucTreeListView1.SelectAll(true);
+        }
+
+        private void btnUnSelect_Click(object sender, EventArgs e)
+        {
+            toChucTreeListView1.SelectAll(false);
         }
         
     }

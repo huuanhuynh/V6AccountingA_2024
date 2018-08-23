@@ -20,7 +20,8 @@ namespace V6ReportControls
                 IsSelected = true;
                 label1.Visible = false;
                 comboBox1.Visible = false;
-                btnChonDSNS.Click += FilterLineDynamic_Click;
+                //btnChonDSNS.Click += FilterLineDynamic_Click;
+                txtDSNS.TextChanged += FilterLineDynamic_TextChanged;
             }
             catch (Exception ex)
             {
@@ -152,6 +153,7 @@ namespace V6ReportControls
                 f.AcceptDataSelect += delegate(string idList, List<IDictionary<string, object>> dataList)
                 {
                     SetValue(idList);
+                    OnClick(e);
                 };
                 f.ShowDialog(this);
             }

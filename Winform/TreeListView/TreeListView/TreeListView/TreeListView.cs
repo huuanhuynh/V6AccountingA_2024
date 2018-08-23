@@ -319,6 +319,29 @@ namespace System.Windows.Forms
 			}
 			#endregion
 			#region CheckedItems
+
+            public void SelectAll(bool isSelect = true)
+            {
+                foreach (TreeListViewItem item in Items)
+                {
+                    SetCheckedRecusive(item, isSelect);
+                }
+            }
+
+            private void SetCheckedRecusive(TreeListViewItem item, bool isSelect)
+            {
+                if (item.Items.Count == 0)
+                {
+                    item.Checked = isSelect;
+                    return;
+                }
+
+                foreach (TreeListViewItem item0 in item.Items)
+                {
+                    SetCheckedRecusive(item0, isSelect);
+                }
+            }
+
 			/// <summary>
 			/// Get currently checked items
 			/// </summary>

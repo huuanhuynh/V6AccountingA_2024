@@ -6131,5 +6131,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
+        private void btnChonPX_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
