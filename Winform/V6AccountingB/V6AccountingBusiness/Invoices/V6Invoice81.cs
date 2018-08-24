@@ -380,6 +380,51 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
 
+        public DataTable SearchHoaDon_PhieuNhapMua(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD,
+            string where3NhVt, string where4Dvcs)
+        {
+            if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
+            if (where1AM.Length > 0) where1AM = "And " + where1AM;
+
+            var whereAD_Nhvt_Dvcs = "";
+            if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
+            {
+                if (where2AD.Length > 0) where2AD = "And " + where2AD;
+                if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
+                if (where4Dvcs.Length > 0)
+                    where4Dvcs
+                        = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+
+                whereAD_Nhvt_Dvcs =
+                    string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM AD81 WHERE Ma_ct = 'SOA' {0} {2}"
+                                  + (where3NhVt.Length == 0
+                                      ? "{3}"
+                                      : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
+                                  + "\n		{4})"
+                        , where0Ngay, "1", where2AD, where3NhVt, where4Dvcs);
+            }
+            else
+            {
+                whereAD_Nhvt_Dvcs = "";
+            }
+
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@sType", "1"),
+                new SqlParameter("@dFrom", ngayCt.ToString("yyyyMMdd")),
+                new SqlParameter("@cTableAM", "AM81"),
+                new SqlParameter("@cTableAD", "AD81"),
+                new SqlParameter("@cKey1AM", where0Ngay),
+                new SqlParameter("@cKey2AM", where1AM),
+                new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs),
+                new SqlParameter("@cKey2AD", ""),
+                new SqlParameter("@Advance", ""),
+                new SqlParameter("@Advance2", "")
+            };
+            var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_SOA", plist).Tables[0];
+            return tbl;
+        }
+
         /// <summary>
         /// Lấy dữ liệu chi tiết theo sttRec
         /// </summary>

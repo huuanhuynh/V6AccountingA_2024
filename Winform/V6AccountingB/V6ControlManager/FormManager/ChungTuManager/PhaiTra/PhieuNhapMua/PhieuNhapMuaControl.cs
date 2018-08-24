@@ -9,6 +9,7 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonDonHang;
+using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonPhieuXuat;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc;
 using V6Controls;
 using V6Controls.Forms;
@@ -6133,7 +6134,49 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         private void btnChonPX_Click(object sender, EventArgs e)
         {
+            //if (txtLoaiPhieu.Text.Trim() == "B")
+            //{
+                ChonPhieuXuat_A();
+            //}
+            //else
+            //{
+            //    this.ShowWarningMessage("Chưa chọn đúng loại phiếu=[B](Xuất bán không kiêm PX) !", 300);
+            //}
+        }
 
+        private void ChonPhieuXuat_A()
+        {
+            try
+            {
+                try
+                {
+                    var ma_kh = txtMaKh.Text.Trim();
+                    var ma_dvcs = txtMadvcs.Text.Trim();
+                    var message = "";
+                    if (ma_kh != "" && ma_dvcs != "")
+                    {
+                        CPX_PhieuNhapMuaForm chon = new CPX_PhieuNhapMuaForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
+                        chon.AcceptSelectEvent += chon_AcceptSelectEvent;
+                        chon.ShowDialog(this);
+                    }
+                    else
+                    {
+                        if (ma_kh == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID must entry!\n";
+                        if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID must entry!";
+                        this.ShowWarningMessage(message);
+                        if (ma_kh == "") txtMaKh.Focus();
+                        else if (ma_dvcs == "") txtMadvcs.Focus();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    this.ShowErrorMessage(GetType() + ".XuLyChonPhieuXuat: " + ex.Message, "HoaDonControl");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".ChonPhieuXuat_A: " + ex.Message, "Hoa don ban hang Error");
+            }
         }
 
     }

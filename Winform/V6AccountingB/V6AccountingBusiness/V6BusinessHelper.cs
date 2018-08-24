@@ -1935,7 +1935,7 @@ namespace V6AccountingBusiness
                 new SqlParameter("@ma_ct", maCt),
                 new SqlParameter("@user_id", V6Login.UserId),
             };
-            var result = SqlConnect.ExecuteScalar(CommandType.Text,  "Select dbo.VFA_IsEditVoucher (@stt_rec, @tablename, @mode, @ma_ct, @user_id)", plist);
+            var result = SqlConnect.ExecuteScalar(CommandType.Text,  "Select dbo.VFA_IsEditVoucher_UserId (@stt_rec, @tablename, @mode, @ma_ct, @user_id)", plist);
             return ObjectAndString.ObjectToInt(result);
         }
         
@@ -1949,7 +1949,7 @@ namespace V6AccountingBusiness
                 new SqlParameter("@ma_ct", maCt),
                 new SqlParameter("@user_id", V6Login.UserId),
             };
-            var result = SqlConnect.ExecuteScalar(CommandType.Text, "Select dbo.VFA_IsEditVoucher_SOR (@stt_rec_pt, @tablename, @mode, @ma_ct, @user_id)", plist);
+            var result = SqlConnect.ExecuteScalar(CommandType.Text, "Select dbo.VFA_IsEditVoucher_SOR_UserId (@stt_rec_pt, @tablename, @mode, @ma_ct, @user_id)", plist);
             return ObjectAndString.ObjectToInt(result);
         }
 

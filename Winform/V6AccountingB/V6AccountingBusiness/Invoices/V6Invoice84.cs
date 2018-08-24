@@ -364,7 +364,7 @@ namespace V6AccountingBusiness.Invoices
             var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_IXA", plist).Tables[0];
             return tbl;
         }
-
+        
         public DataTable SearchPhieuXuat_PhieuNhapKho(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
