@@ -567,8 +567,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             try
             {
-                LoadComboboxSource();
-                
                 if (V6Setting.IsVietnamese)
                 {
                     rTiengViet.Checked = true;
@@ -577,6 +575,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 {
                     rEnglish.Checked = true;
                 }
+                LoadComboboxSource();
                 txtReportTitle.Text = ReportTitle;
                 LoadDefaultData(4, "", _Ma_File, m_itemId);
                 

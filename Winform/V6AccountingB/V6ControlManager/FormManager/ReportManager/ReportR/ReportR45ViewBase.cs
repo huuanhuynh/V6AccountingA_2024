@@ -642,6 +642,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
+                if (V6Setting.IsVietnamese)
+                {
+                    rTiengViet.Checked = true;
+                }
+                else
+                {
+                    rEnglish.Checked = true;
+                }
                 LoadComboboxSource();
                 LoadDefaultData(4, "", _Ma_File, m_itemId, "");
 
@@ -665,16 +673,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
                 }
 
-                if (V6Setting.IsVietnamese)
-                {
-                    rTiengViet.Checked = true;
-                }
-                else
-                {
-                    rEnglish.Checked = true;
-                }
                 txtReportTitle.Text = ReportTitle;
-
                 Ready();
             }
             catch (Exception ex)

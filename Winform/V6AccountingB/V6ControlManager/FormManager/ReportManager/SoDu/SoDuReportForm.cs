@@ -213,83 +213,54 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
 
         private void MyInit()
         {
-            var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
-            if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
+            try
             {
-                var dataRow = V6Setting.DataDVCS;
-                var GET_FIELD = "TEN_NLB";
-                if (dataRow.Table.Columns.Contains(GET_FIELD))
-                    txtM_TEN_NLB.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
-                GET_FIELD = "TEN_NLB2";
-                if (dataRow.Table.Columns.Contains(GET_FIELD))
-                    txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
-            }
-
-            //string[] fields = V6Lookup.GetDefaultLookupFields(_tableName);
-
-           string[] fields= new [] {"",""};
-
-            switch (_tableName.ToUpper())
-            {
-                case "ABVT":
-
-                    fields = "MA_KHO,MA_VT".Split(',');
-                    break;
-                case "ABLO":
-
-                    fields = "MA_KHO,MA_VT,MA_LO".Split(',');
-                    break;
-                case "ABKH":
-
-                    fields = "MA_KH".Split(',');
-                    break;
-                case "ABTK":
-
-                    fields = "TK".Split(',');
-                    break;
-                default:
-
-                    fields = new [] {"",""};
-                    break;
-            }
-
-            MadeControls(fields);
-            LoadComboboxSource();
-            if (V6Setting.IsVietnamese)
-            {
-                rTiengViet.Checked = true;
-            }
-            else
-            {
-                rEnglish.Checked = true;
-            }
-            txtReportTitle.Text = ReportTitle;
-            if (!V6Login.IsAdmin)
-            {
-                var menuRow = V6Menu.GetRow(ItemID);
-                if (menuRow != null)
+                var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
+                if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
                 {
-                    var key3 = menuRow["Key3"].ToString().Trim().ToUpper();
-                    var user_acc = V6Login.UserInfo["USER_ACC"].ToString().Trim();
-                    if (user_acc != "1")
-                    {
-
-                        if (!key3.Contains("1")) exportToExcelTemplate.Visible = false;
-                        //if (!key3.Contains("2")) exportToExcelView.Visible = false;
-                        if (!key3.Contains("3")) exportToExcel.Visible = false;
-                        if (!key3.Contains("4")) exportToXmlToolStripMenuItem.Visible = false;
-                        if (!key3.Contains("5")) printGrid.Visible = false;
-                        //if (!key3.Contains("6")) viewDataToolStripMenuItem.Visible = false;
-                        if (!key3.Contains("7")) exportToPdfToolStripMenuItem.Visible = false;
-                    }
+                    var dataRow = V6Setting.DataDVCS;
+                    var GET_FIELD = "TEN_NLB";
+                    if (dataRow.Table.Columns.Contains(GET_FIELD))
+                        txtM_TEN_NLB.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
+                    GET_FIELD = "TEN_NLB2";
+                    if (dataRow.Table.Columns.Contains(GET_FIELD))
+                        txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
                 }
-                else//Chưa gửi ItemID
+
+                //string[] fields = V6Lookup.GetDefaultLookupFields(_tableName);
+
+                string[] fields = new[] { "", "" };
+
+                switch (_tableName.ToUpper())
                 {
-                    contextMenuStrip1.Visible = false;
-                }
-            }
+                    case "ABVT":
 
-            Ready();
+                        fields = "MA_KHO,MA_VT".Split(',');
+                        break;
+                    case "ABLO":
+
+                        fields = "MA_KHO,MA_VT,MA_LO".Split(',');
+                        break;
+                    case "ABKH":
+
+                        fields = "MA_KH".Split(',');
+                        break;
+                    case "ABTK":
+
+                        fields = "TK".Split(',');
+                        break;
+                    default:
+
+                        fields = new[] { "", "" };
+                        break;
+                }
+
+                MadeControls(fields);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init", ex);
+            }
         }
 
         private void LoadComboboxSource()
@@ -343,7 +314,54 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
 
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
-            
+            MyInit2();
+        }
+
+        private void MyInit2()
+        {
+            try
+            {
+                if (V6Setting.IsVietnamese)
+                {
+                    rTiengViet.Checked = true;
+                }
+                else
+                {
+                    rEnglish.Checked = true;
+                }
+                LoadComboboxSource();
+                txtReportTitle.Text = ReportTitle;
+                if (!V6Login.IsAdmin)
+                {
+                    var menuRow = V6Menu.GetRow(ItemID);
+                    if (menuRow != null)
+                    {
+                        var key3 = menuRow["Key3"].ToString().Trim().ToUpper();
+                        var user_acc = V6Login.UserInfo["USER_ACC"].ToString().Trim();
+                        if (user_acc != "1")
+                        {
+
+                            if (!key3.Contains("1")) exportToExcelTemplate.Visible = false;
+                            //if (!key3.Contains("2")) exportToExcelView.Visible = false;
+                            if (!key3.Contains("3")) exportToExcel.Visible = false;
+                            if (!key3.Contains("4")) exportToXmlToolStripMenuItem.Visible = false;
+                            if (!key3.Contains("5")) printGrid.Visible = false;
+                            //if (!key3.Contains("6")) viewDataToolStripMenuItem.Visible = false;
+                            if (!key3.Contains("7")) exportToPdfToolStripMenuItem.Visible = false;
+                        }
+                    }
+                    else//Chưa gửi ItemID
+                    {
+                        contextMenuStrip1.Visible = false;
+                    }
+                }
+
+                Ready();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init2", ex);
+            }
         }
 
         private void SettingValues()

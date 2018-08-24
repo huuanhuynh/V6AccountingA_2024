@@ -423,7 +423,6 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             try
             {
-                LoadComboboxSource();
                 if (V6Setting.IsVietnamese)
                 {
                     rTiengViet.Checked = true;
@@ -432,6 +431,8 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 {
                     rEnglish.Checked = true;
                 }
+                LoadComboboxSource();
+                
                 txtReportTitle.Text = ReportTitle;
                 //LoadDefaultData(4, "", _Ma_File, m_itemId, "");
 

@@ -813,7 +813,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             try
             {
-                LoadComboboxSource();
                 if (V6Setting.IsVietnamese)
                 {
                     rTiengViet.Checked = true;
@@ -822,6 +821,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {
                     rEnglish.Checked = true;
                 }
+                LoadComboboxSource();
+                
                 txtReportTitle.Text = ReportTitle;
 
                 numSoLien.Value = SelectedSoLien;
