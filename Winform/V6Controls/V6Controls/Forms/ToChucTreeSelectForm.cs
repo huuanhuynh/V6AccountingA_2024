@@ -50,6 +50,21 @@ namespace V6Controls.Forms
             }
         }
 
+        public override bool DoHotKey0(Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.A))
+            {
+                btnSelectAll.PerformClick();
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.U))
+            {
+                btnUnSelect.PerformClick();
+                return true;
+            }
+            return base.DoHotKey0(keyData);
+        }
+
         private void SetSelectedIDs()
         {
             try

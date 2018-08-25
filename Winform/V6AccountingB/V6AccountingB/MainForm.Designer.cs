@@ -54,7 +54,7 @@ namespace V6AccountingB
             this.changeDVCSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDVCS = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblHotLine = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.lblComment = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
@@ -133,7 +133,7 @@ namespace V6AccountingB
             this.panelLogin.ContextMenuStrip = this.contextMenuStrip1;
             this.panelLogin.Controls.Add(this.lblDVCS);
             this.panelLogin.Controls.Add(this.pictureBox1);
-            this.panelLogin.Controls.Add(this.label2);
+            this.panelLogin.Controls.Add(this.lblHotLine);
             this.panelLogin.Controls.Add(this.btnExit);
             this.panelLogin.Controls.Add(this.lblComment);
             this.panelLogin.Controls.Add(this.lblUserName);
@@ -180,16 +180,17 @@ namespace V6AccountingB
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // label2
+            // lblHotLine
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(2, 87);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(147, 13);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "HOTLINE: 0936 976 976";
+            this.lblHotLine.AutoSize = true;
+            this.lblHotLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHotLine.ForeColor = System.Drawing.Color.Red;
+            this.lblHotLine.Location = new System.Drawing.Point(2, 87);
+            this.lblHotLine.Name = "lblHotLine";
+            this.lblHotLine.Size = new System.Drawing.Size(147, 13);
+            this.lblHotLine.TabIndex = 13;
+            this.lblHotLine.Text = "HOTLINE: 0936 976 976";
+            this.lblHotLine.Click += new System.EventHandler(this.lblHotLine_Click);
             // 
             // btnExit
             // 
@@ -682,7 +683,7 @@ namespace V6AccountingB
         private System.Windows.Forms.Label lblV6Message;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label lblCompanyName;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblHotLine;
         private QuickMenu quickMenu1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;

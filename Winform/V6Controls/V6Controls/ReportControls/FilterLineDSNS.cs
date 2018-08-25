@@ -29,6 +29,19 @@ namespace V6ReportControls
             }
         }
 
+        protected override void FilterLineDynamic_TextChanged(object sender, EventArgs e)
+        {
+            if (txtDSNS.Text.Trim() == string.Empty)
+            {
+                IsSelected = false;
+            }
+            else
+            {
+                IsSelected = true;
+            }
+            OnTextChanged(e);
+        }
+
         /// <summary>
         /// Nhãn hiển thị.
         /// </summary>

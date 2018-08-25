@@ -64,7 +64,7 @@ namespace V6ReportControls
             OnLostFocus(e);
         }
 
-        protected void FilterLineDynamic_TextChanged(object sender, EventArgs e)
+        protected virtual void FilterLineDynamic_TextChanged(object sender, EventArgs e)
         {
             if (_textBox != null && _textBox.Text.Trim() == string.Empty)
             {

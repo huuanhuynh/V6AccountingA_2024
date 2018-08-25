@@ -275,7 +275,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
                 }
                 else if (tu_so != "" && den_so != "")
                 {
-                    result += string.Format("{0} ({1}so_ct >= '{2}' and {1}so_ct <= '{3}')",
+                    result += string.Format("{0} (LTrim(RTrim({1}so_ct)) >= '{2}' and LTrim(RTrim({1}so_ct)) <= '{3}')",
                         result.Length > 0 ? and_or : "",
                         tbL,
                         tu_so, den_so)

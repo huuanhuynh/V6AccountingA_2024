@@ -668,6 +668,12 @@ namespace V6AccountingB
             ChangeDVCS();
         }
 
+        private void lblHotLine_Click(object sender, EventArgs e)
+        {
+            // Navigate to a URL.
+            System.Diagnostics.Process.Start("http://www.v6soft.com.vn");
+        }
+
         
     }
 }

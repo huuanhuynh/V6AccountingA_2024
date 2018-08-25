@@ -406,12 +406,8 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                         txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
                 }
 
-                //string[] fields = V6Lookup.GetDefaultLookupFields(_tableName);
-                //MadeFilterControls(fields);
-
-                var fields_vvar_filter = V6Lookup.GetValueByTableName(_tableName, "vLfScatter");//.GetReportFilterFields(tableName);
+                var fields_vvar_filter = V6Lookup.GetValueByTableName(_tableName, "vLfScatter");
                 MadeControls(_tableName, fields_vvar_filter);
-
             }
             catch (Exception ex)
             {

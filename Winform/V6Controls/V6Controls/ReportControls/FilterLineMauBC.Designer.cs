@@ -98,6 +98,7 @@
             this.cboMaubc.AccessibleName = "MAU_BC";
             this.cboMaubc.BackColor = System.Drawing.SystemColors.Window;
             this.cboMaubc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMaubc.DropDownWidth = 400;
             this.cboMaubc.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboMaubc.FormattingEnabled = true;
             this.cboMaubc.Location = new System.Drawing.Point(65, 0);

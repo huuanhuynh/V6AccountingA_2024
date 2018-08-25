@@ -50,7 +50,7 @@
             this.btnThoat.Location = new System.Drawing.Point(90, 479);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(88, 40);
-            this.btnThoat.TabIndex = 14;
+            this.btnThoat.TabIndex = 2;
             this.btnThoat.Tag = "Escape";
             this.btnThoat.Text = "&Hủy";
             this.btnThoat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -67,7 +67,7 @@
             this.btnNhan.Location = new System.Drawing.Point(2, 479);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
-            this.btnNhan.TabIndex = 13;
+            this.btnNhan.TabIndex = 1;
             this.btnNhan.Tag = "Return, Control";
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -112,7 +112,7 @@
             this.toChucTreeListView1.Size = new System.Drawing.Size(430, 471);
             this.toChucTreeListView1.SmallImageList = this.imageList1;
             this.toChucTreeListView1.Sort_Field = "fsort";
-            this.toChucTreeListView1.TabIndex = 23;
+            this.toChucTreeListView1.TabIndex = 0;
             this.toChucTreeListView1.Text_Field = "NAME";
             this.toChucTreeListView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -121,8 +121,8 @@
             this.btnSelectAll.Location = new System.Drawing.Point(243, 479);
             this.btnSelectAll.Name = "btnSelectAll";
             this.btnSelectAll.Size = new System.Drawing.Size(75, 23);
-            this.btnSelectAll.TabIndex = 24;
-            this.btnSelectAll.Text = "Chọn hết";
+            this.btnSelectAll.TabIndex = 3;
+            this.btnSelectAll.Text = "&Chọn hết";
             this.btnSelectAll.UseVisualStyleBackColor = true;
             this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
@@ -131,8 +131,8 @@
             this.btnUnSelect.Location = new System.Drawing.Point(324, 479);
             this.btnUnSelect.Name = "btnUnSelect";
             this.btnUnSelect.Size = new System.Drawing.Size(75, 23);
-            this.btnUnSelect.TabIndex = 24;
-            this.btnUnSelect.Text = "Bỏ chọn";
+            this.btnUnSelect.TabIndex = 4;
+            this.btnUnSelect.Text = "&Bỏ chọn";
             this.btnUnSelect.UseVisualStyleBackColor = true;
             this.btnUnSelect.Click += new System.EventHandler(this.btnUnSelect_Click);
             // 

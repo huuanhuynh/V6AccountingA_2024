@@ -42,9 +42,9 @@
             // 
             // btnChonDSNS
             // 
-            this.btnChonDSNS.Location = new System.Drawing.Point(0, 0);
+            this.btnChonDSNS.Location = new System.Drawing.Point(28, 0);
             this.btnChonDSNS.Name = "btnChonDSNS";
-            this.btnChonDSNS.Size = new System.Drawing.Size(298, 23);
+            this.btnChonDSNS.Size = new System.Drawing.Size(270, 23);
             this.btnChonDSNS.TabIndex = 36;
             this.btnChonDSNS.Text = "Thêm";
             this.btnChonDSNS.UseVisualStyleBackColor = true;

@@ -844,6 +844,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             //if (!key3.Contains("4")) exportToXmlToolStripMenuItem.Visible = false;
                             if (!key3.Contains("5")) printGrid.Visible = false;
                             //if (!key3.Contains("6")) viewDataToolStripMenuItem.Visible = false;
+                            if (!key3.Contains("7")) exportToPdfToolStripMenuItem.Visible = false;
                         }
                     }
                 }
