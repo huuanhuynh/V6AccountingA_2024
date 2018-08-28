@@ -124,6 +124,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
                 }
 
+                //{ Tuanmh Get name 27/08/2018
+                var TEN_NLB_LOGIN = V6Login.XmlInfo.TEN_NLB_LOGIN.Trim();
+                var TEN_NLB_LOGIN2 = V6Login.XmlInfo.TEN_NLB_LOGIN2.Trim();
+                if (TEN_NLB_LOGIN != "")
+                {
+                    txtM_TEN_NLB.Text = TEN_NLB_LOGIN;
+                }
+                if (TEN_NLB_LOGIN2 != "")
+                {
+                    txtM_TEN_NLB2.Text = TEN_NLB_LOGIN2;
+                }
+                //}
                 AddFilterControl(_program);
                 //gridViewSummary1.Visible = FilterControl.ViewSum;
                 
@@ -1408,11 +1420,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
                 try
                 {
+                    dataGridView1.SetFrozen(0);
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = _tbl;
                     dataGridView1.DataSource = _tbl1;
                     FormatGridView();
-
+                    
                     ViewReport();
                     if (PrintMode == V6PrintMode.AutoPrint)
                     {
@@ -1449,12 +1462,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     //if (_tbl1.Rows.Count > 0) FilterControl.Call1(_tbl1.Rows[0]);
                     All_Objects["_ds"] = _ds;
                     InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
+                    dataGridView1.SetFrozen(0);
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = _tbl;
-                    //FormHelper.SetGridHeaderTextAndFormat(dataGridView1, m_XmlConfig.m_GridFormatDictionary, MainForm.myMessage, MainForm.CurrentLang);
-                    FormatGridView();
-
                     
+                    FormatGridView();
                     ViewReport();
                     if (PrintMode == V6PrintMode.AutoPrint)
                     {
@@ -1533,6 +1545,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1,
                     V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);
                 V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
+
+                
                 if (FilterControl != null) FilterControl.FormatGridView(dataGridView1);
                 if (MauInSelectedRow != null)
                 {

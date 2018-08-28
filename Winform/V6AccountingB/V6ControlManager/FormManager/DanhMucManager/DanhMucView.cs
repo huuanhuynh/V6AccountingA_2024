@@ -1180,7 +1180,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         public void ViewResultToForm()
         {
-            
+            dataGridView1.SetFrozen(0);
             dataGridView1.DataSource = SelectResult.Data;
 
             var column = dataGridView1.Columns[SelectResult.SortField];
@@ -1583,8 +1583,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_tableName);
             //var keys = new SortedDictionary<string, object>();
-            string[] fields = _aldm ? ObjectAndString.SplitString(aldm_config.F_SEARCH):
-                V6Lookup.GetDefaultLookupFields(_tableName);
+            string[] fields = _aldm ? ObjectAndString.SplitString(aldm_config.F_SEARCH) :
+                 ObjectAndString.SplitString(V6Setting.IsVietnamese ? v6lookup_config.vFields : v6lookup_config.eFields);
             _filterForm = new FilterForm(structTable, fields);
             _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
             _filterForm.Opacity = 0.9;

@@ -70,6 +70,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     FilterControl.LoadDataFinish(_ds);
                     if (Load_Data)
                     {
+                        dataGridView1.SetFrozen(0);
                         dataGridView1.DataSource = null;
                         dataGridView1.DataSource = _tbl;
 
@@ -338,7 +339,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 ((Timer)sender).Stop();
                 UnlockButtons();
-
+                dataGridView1.SetFrozen(0);
                 //RemoveGridViewRow();
                 dataGridView1.DataSource = _tbl;
                 FormatGridViewF9();

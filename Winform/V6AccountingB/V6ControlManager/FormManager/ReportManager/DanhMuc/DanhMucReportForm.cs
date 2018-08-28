@@ -979,6 +979,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 btnNhan.Image = btnNhanImage;
                 try
                 {
+                    dataGridView1.SetFrozen(0);
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = _tbl;
 

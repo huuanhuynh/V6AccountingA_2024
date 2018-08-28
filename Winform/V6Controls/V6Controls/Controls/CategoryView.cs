@@ -77,6 +77,12 @@ namespace V6Controls.Controls
             {
                 aldm_config = V6ControlsHelper.GetAldmConfigByTableName(_tableName);
             }
+            else
+            {
+                v6lookup_config = V6ControlsHelper.GetV6lookupConfigByTableName(_tableName);
+                if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(v6lookup_config.vOrder))
+                    SelectResult.SortField = v6lookup_config.vOrder;
+            }
 
             if (CurrentTable == V6TableName.V_alts || CurrentTable == V6TableName.V_alcc
                 || CurrentTable == V6TableName.V_alts01 || CurrentTable == V6TableName.V_alcc01)
@@ -198,22 +204,32 @@ namespace V6Controls.Controls
             // Đè format cũ
             if (_aldm)
             {
+                //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, aldm_config.GRDS_V1, aldm_config.GRDF_V1,
+                //    V6Setting.IsVietnamese ? aldm_config.GRDHV_V1 : aldm_config.GRDHE_V1);
+
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, aldm_config.GRDS_V1, aldm_config.GRDF_V1,
-                    V6Setting.IsVietnamese ? aldm_config.GRDHV_V1 : aldm_config.GRDHE_V1);
+                        V6Setting.IsVietnamese ? aldm_config.GRDHV_V1 : aldm_config.GRDHE_V1);
+                V6ControlFormHelper.FormatGridView(dataGridView1, aldm_config.FIELDV, aldm_config.OPERV, aldm_config.VALUEV, aldm_config.BOLD_YN,
+                    aldm_config.COLOR_YN, Color.FromName(aldm_config.COLORV));
+                int frozen = ObjectAndString.ObjectToInt(aldm_config.FROZENV);
+                dataGridView1.SetFrozen(frozen);
             }
             else
             {
-                string showFields = V6Lookup.ValueByTableName[_tableName, "GRDS_V1"].ToString().Trim();
-                string formatStrings = V6Lookup.ValueByTableName[_tableName, "GRDF_V1"].ToString().Trim();
-                string headerString =
-                    V6Lookup.ValueByTableName[_tableName, V6Setting.IsVietnamese ? "GRDHV_V1" : "GRDHE_V1"]
-                        .ToString().Trim();
+                string showFields = v6lookup_config.GRDS_V1;
+                string formatStrings = v6lookup_config.GRDF_V1;
+                string headerString = V6Setting.IsVietnamese ? v6lookup_config.GRDHV_V1 : v6lookup_config.GRDHE_V1;
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
+                V6ControlFormHelper.FormatGridView(dataGridView1, v6lookup_config.FIELDV, v6lookup_config.OPERV, v6lookup_config.VALUEV, v6lookup_config.BOLD_YN,
+                    v6lookup_config.COLOR_YN, Color.FromName(v6lookup_config.COLORV));
+                int frozen = ObjectAndString.ObjectToInt(v6lookup_config.FROZENV);
+                dataGridView1.SetFrozen(frozen);
             }
 
         }
 
         private AldmConfig aldm_config;
+        private V6lookupConfig v6lookup_config;
 
         #region ==== Do method ====
 
@@ -608,9 +624,8 @@ namespace V6Controls.Controls
                     else
                     {
 
-                        var id = V6Lookup.ValueByTableName[_tableName, "vValue"].ToString().Trim();
-                        var listTable =
-                            V6Lookup.ValueByTableName[_tableName, "ListTable"].ToString().Trim();
+                        var id = v6lookup_config.vValue;
+                        var listTable = v6lookup_config.ListTable;;
                         var value = "";
                         
                         if (String.IsNullOrEmpty(listTable) == false)
@@ -831,7 +846,7 @@ namespace V6Controls.Controls
 
         public void ViewResultToForm()
         {
-            
+            dataGridView1.SetFrozen(0);
             dataGridView1.DataSource = SelectResult.Data;
 
             var column = dataGridView1.Columns[SelectResult.SortField];
@@ -1175,7 +1190,8 @@ namespace V6Controls.Controls
         {
             V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_tableName);
             //var keys = new SortedDictionary<string, object>();
-            string[] fields = V6Lookup.GetDefaultLookupFields(_tableName);
+            string[] fields =_aldm ? ObjectAndString.SplitString(aldm_config.F_SEARCH) :
+                ObjectAndString.SplitString(V6Setting.IsVietnamese ? v6lookup_config.vFields : v6lookup_config.eFields);
             _filterForm = new FilterForm(structTable, fields);
             _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
             _filterForm.Opacity = 0.9;

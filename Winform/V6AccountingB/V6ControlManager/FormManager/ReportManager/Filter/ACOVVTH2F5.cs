@@ -8,8 +8,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public ACOVVTH2F5()
         {
             InitializeComponent();
-            F3 = false;
-            F5 = true;
+            F3 = true;
+            F5 = false;
             SetParentRowEvent += ACOVVTH1F5_SetParentRowEvent;
 
             //txtMaDvcs.VvarTextBox.Text = V6LoginInfo.Madvcs;
@@ -60,9 +60,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 "MA_VV","MA_VT"
 
             }, true);
-
-         //   result.Add(new SqlParameter("@Advance", keyf5));
-            return result;
+            //26/08/2018 Thieu key @Advance2
+          result.Add(new SqlParameter("@Advance2", keyf5));
+          return result;
         }
 
         

@@ -559,6 +559,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
                     if (Load_Data)
                     {
+                        dataGridView1.SetFrozen(0);
                         dataGridView1.DataSource = null;
                         dataGridView1.DataSource = _tbl;
                         

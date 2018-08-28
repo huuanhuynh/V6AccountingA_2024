@@ -118,7 +118,18 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     if (dataRow.Table.Columns.Contains(GET_FIELD))
                         txtM_TEN_NLB2.Text = V6Setting.DataDVCS[GET_FIELD].ToString();
                 }
-
+                //{ Tuanmh Get name 27/08/2018
+                var TEN_NLB_LOGIN = V6Login.XmlInfo.TEN_NLB_LOGIN.Trim();
+                var TEN_NLB_LOGIN2 = V6Login.XmlInfo.TEN_NLB_LOGIN2.Trim();
+                if (TEN_NLB_LOGIN != "")
+                {
+                    txtM_TEN_NLB.Text = TEN_NLB_LOGIN;
+                }
+                if (TEN_NLB_LOGIN2 != "")
+                {
+                    txtM_TEN_NLB2.Text = TEN_NLB_LOGIN2;
+                }
+                //}
                 FilterControl = QuickReportManager.AddFilterControl44Base(_program, panel1);
                 All_Objects["thisForm"] = this;
                 InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
@@ -1297,6 +1308,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
+                dataGridView1.SetFrozen(0);
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = _tbl1;
 

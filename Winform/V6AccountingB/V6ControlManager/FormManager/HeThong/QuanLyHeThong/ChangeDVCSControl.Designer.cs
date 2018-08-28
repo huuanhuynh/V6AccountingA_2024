@@ -45,7 +45,7 @@
             this.cboAgent.Location = new System.Drawing.Point(64, 34);
             this.cboAgent.Name = "cboAgent";
             this.cboAgent.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cboAgent.Size = new System.Drawing.Size(215, 21);
+            this.cboAgent.Size = new System.Drawing.Size(459, 21);
             this.cboAgent.TabIndex = 1;
             // 
             // label5
@@ -64,7 +64,7 @@
             this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel;
-            this.btnHuy.Location = new System.Drawing.Point(191, 97);
+            this.btnHuy.Location = new System.Drawing.Point(291, 97);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
             this.btnHuy.TabIndex = 3;
@@ -79,7 +79,7 @@
             this.btnNhan.AccessibleDescription = "REPORTB00004";
             this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNhan.Image = global::V6ControlManager.Properties.Resources.Apply;
-            this.btnNhan.Location = new System.Drawing.Point(86, 97);
+            this.btnNhan.Location = new System.Drawing.Point(186, 97);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
             this.btnNhan.TabIndex = 2;
@@ -98,7 +98,7 @@
             this.Controls.Add(this.cboAgent);
             this.Controls.Add(this.label5);
             this.Name = "ChangeDVCSControl";
-            this.Size = new System.Drawing.Size(285, 156);
+            this.Size = new System.Drawing.Size(526, 156);
             this.Load += new System.EventHandler(this.ChangeDVCSControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

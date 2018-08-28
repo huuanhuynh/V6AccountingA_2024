@@ -24,5 +24,14 @@ namespace V6AccountingBusiness.V6Init.User
         {
             get { if (_infoData.ContainsKey("EMAILPASSWORD")) return UtilityHelper.DeCrypt(_infoData["EMAILPASSWORD"]); return ""; }
         }
+        public string TEN_NLB_LOGIN
+        {
+            get { if (_infoData.ContainsKey("TEN_NLB_LOGIN")) return _infoData["TEN_NLB_LOGIN"]; return ""; }
+        }
+        public string TEN_NLB_LOGIN2
+        {
+            get { if (_infoData.ContainsKey("TEN_NLB_LOGIN2")) return _infoData["TEN_NLB_LOGIN2"]; return ""; }
+        }
+        
     }
 }

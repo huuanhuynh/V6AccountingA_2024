@@ -373,6 +373,29 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 this.ShowErrorException(GetType() + ".UpdateInheritUser", ex);
             }
         }
+        private void UpdateAdvanceInforUser()
+        {
+            try
+            {
+                // Tuanmh Update user UpdateAdvanceInforUser 27/08/2018
+                var mode = Mode == V6Mode.Edit ? "S" :"M";
+                var user = Mode == V6Mode.Edit
+                        ? Convert.ToInt16(DataOld["USER_ID"])
+                        : Convert.ToInt16(DataDic["USER_ID"]);
+
+                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_AdvanceInfor_USER",
+                    new SqlParameter("@user_id", user),
+                    new SqlParameter("@user_id_login", V6Login.UserId),
+                    new SqlParameter("@mode", mode));
+                        
+                    ReloadFlag = true;
+                
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".UpdateAdvanceInforUser", ex);
+            }
+        }
         private void Update_Auto_From_Personal()
         {
             try
@@ -449,6 +472,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         if (TableName == V6TableName.V6user)
                         {
                             UpdateInheritUser();
+                            UpdateAdvanceInforUser();
                         }
 
                         if (TableName == V6TableName.V6option)
@@ -516,6 +540,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         if (TableName == V6TableName.V6user)
                         {
                             UpdateInheritUser();
+                            UpdateAdvanceInforUser();
                         }
 
                         if (TableName == V6TableName.Altk0)
