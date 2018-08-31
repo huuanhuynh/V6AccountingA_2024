@@ -165,6 +165,12 @@
     <Compile Include="Controls\SyntaxHighlightingTextBox\SyntaxHighlightingTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Algia0AddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Algia0AddEditForm.Designer.cs">
+      <DependentUpon>Algia0AddEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\EmailSettingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1443,6 +1449,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Acosxlt_alloaiytAddEditForm.resx">
       <DependentUpon>Acosxlt_alloaiytAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Algia0AddEditForm.resx">
+      <DependentUpon>Algia0AddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFilterSelectForm.resx">
       <DependentUpon>CopyFilterSelectForm.cs</DependentUpon>

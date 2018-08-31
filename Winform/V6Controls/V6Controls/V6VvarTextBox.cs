@@ -249,7 +249,11 @@ namespace V6Controls
 
         protected override void V6ColorTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (ReadOnly || !Enabled) return;
+            if (ReadOnly || !Enabled)
+            {
+                if (e.KeyData == Keys.Enter) SendKeys.Send("{TAB}");
+                return;
+            }
             _checkOnLeave_OnEnter = false;
             //Save keyDown history();
             if (string.IsNullOrEmpty(_vVar) || LookupInfo.NoInfo)

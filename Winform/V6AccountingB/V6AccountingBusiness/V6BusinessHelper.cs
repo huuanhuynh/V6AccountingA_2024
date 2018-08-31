@@ -1310,6 +1310,7 @@ namespace V6AccountingBusiness
                 case V6TableName.Aldvt: result = "dvt"; break;
                 case V6TableName.Algia: result = "ma_gia"; break;
                 case V6TableName.Algia2: result = "ma_gia"; break;
+                case V6TableName.Algia0: result = "ma_gia"; break;
                 case V6TableName.Algia200: result = "ma_gia"; break;
                 case V6TableName.Algiavon: result = "ma_gia"; break;
                 case V6TableName.Algiavon3: result = "ma_kho"; break;

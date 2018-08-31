@@ -125,15 +125,19 @@ namespace V6Controls.Forms
                 if (keyData == Keys.F3)
                 {
                     if(++f3count == 3)
-                    if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                     {
-                        V6F3Execute();
-                        f3count = 0;
-                    }
-                    else
-                    {
-                        f3count = 0;
-                        V6F3ExecuteUndo();
+                        var method_info = GetType().GetMethod("V6F3Execute");
+                        if (method_info != null && method_info.DeclaringType == GetType() &&
+                            new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                        {
+                            V6F3Execute();
+                            f3count = 0;
+                        }
+                        else
+                        {
+                            f3count = 0;
+                            V6F3ExecuteUndo();
+                        }
                     }
                 }
                 else

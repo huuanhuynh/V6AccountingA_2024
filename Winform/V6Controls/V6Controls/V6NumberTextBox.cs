@@ -624,7 +624,11 @@ namespace V6Controls
         {
             //chặn sự kiện của phím để dùng xử lý riêng
             e.Handled = true;
-            if(ReadOnly) return;
+            if (ReadOnly)
+            {
+                if (e.KeyData == Keys.Enter) SendKeys.Send("{TAB}");
+                return;
+            }
             //int sls = SelectionStart;
             if (e.KeyCode == Keys.Back)
             {

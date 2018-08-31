@@ -234,7 +234,10 @@ namespace V6Controls
 
         void V6LimitTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (ReadOnly || !Enabled) return;
+            if (ReadOnly || !Enabled)
+            {
+                return;
+            }
 
             if (!char.IsControl(e.KeyChar))// && !string.IsNullOrEmpty(LimitCharacters))
             {
@@ -757,6 +760,11 @@ namespace V6Controls
         protected virtual void V6ColorTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (_detroysenkey) return;
+            if (ReadOnly || !Enabled)
+            {
+                if (e.KeyData == Keys.Enter) SendKeys.Send("{TAB}");
+                return;
+            }
 
             //if (e.KeyCode == Keys.Enter)
             //{

@@ -344,13 +344,14 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
-        public DataRow GetGiaNhap(string field, string mact, DateTime ngayct,
+        //Tuanmh 30/08/2018
+        public DataRow GetGiaMua(string field, string mact, DateTime ngayct,
             string mant, string mavt, string dvt1, string makh, string magia)
         {
             try
             {
-                //DateTime d = DateTime.ParseExact(ngayct, "d/M/yyyy", null);
-                SqlParameter[] pList =
+                
+                SqlParameter[] plist =
                 {
                     new SqlParameter("@cField", field),
                     new SqlParameter("@cVCID", mact),
@@ -362,22 +363,22 @@ namespace V6AccountingBusiness.Invoices
                     new SqlParameter("@cMaGia", magia)
                 };
 
-                var resultData = V6BusinessHelper.ExecuteProcedure("VPA_GetSOIDPrice", pList).Tables[0];
-                if (resultData.Rows.Count == 1)
+                var resultData = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GetPOIDPrice", plist).Tables[0];
+                if (resultData != null && resultData.Rows.Count >= 1)
                 {
                     return resultData.Rows[0];
                 }
-
-                //return "{gia_ban_nt:" + data.Rows[0]["gia_ban_nt"] + ",gia_nt2:" + data.Rows[0]["gia_nt2"] + ",error:0,message:''}";
+                else
+                {
+                    throw new Exception("GetGiaMua return null.");
+                }
             }
             catch (Exception ex)
             {
-                //return "{gia_ban_nt:0,gia_nt2:0,error:1,message:\"GetPrice: " + ToJSstring(ex.Message) + "\"}";
-                throw new Exception("V6Invoice GetGiaNhap " + ex.Message);
+                throw new Exception("V6Invoice71 GetGiaMua " + ex.Message);
             }
-            return null;
         }
-
+        
         public DataTable SearchPhieuNhap_TraNCC(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;

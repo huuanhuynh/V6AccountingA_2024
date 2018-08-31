@@ -6739,13 +6739,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     row["GIA_NT21"] = giaNt21;
                     //_soLuong.Value = _soLuong1.Value * _heSo1.Value;
                     tienNt2 = V6BusinessHelper.Vround((soLuong1 * giaNt21), M_ROUND_NT);
-                    tien2 = V6BusinessHelper.Vround((_tienNt2.Value * txtTyGia.Value), M_ROUND);
+                    tien2 = V6BusinessHelper.Vround((tienNt2 * txtTyGia.Value), M_ROUND);
                     
                     row["tien_Nt2"] = tienNt2;
                     row["tien2"] = tien2;
                     
-                    //_tien2.Value = V6BusinessHelper.Vround((_tienNt2.Value * txtTyGia.Value), M_ROUND);
-
                     if (_maNt == _mMaNt0)
                     {
                         row["tien2"] = tienNt2;

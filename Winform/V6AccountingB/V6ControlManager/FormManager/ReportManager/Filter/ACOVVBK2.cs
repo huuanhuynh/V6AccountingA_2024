@@ -65,72 +65,60 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-
-
-                    //@StartDate varchar(8),
-                    //@EndDate varchar(8),
-                    //@condition varchar(4000)
-
+            //@StartDate varchar(8),
+            //@EndDate varchar(8),
+            //@condition varchar(4000)
 
             var result = new List<SqlParameter>();
-
             V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
             V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
-       
             result.Add(new SqlParameter("@StartDate", dateNgay_ct1.YYYYMMDD));
             result.Add(new SqlParameter("@EndDate", dateNgay_ct2.YYYYMMDD));
 
-
-
-
-
             var and = radAnd.Checked;
-
             var cKey = "";
-            //foreach (Control c in groupBox1.Controls)
-            //{
-            //    var line = c as FilterLineBase;
-            //    if (line != null)
-            //    {
-            //        cKey += line.IsSelected ? ((and?"\nand ": "\nor  ") + line.Query) : "";
-            //    }
-            //}
-
-            //if (cKey.Length > 0)
-            //{
-            //    if (and)
-            //    {
-            //        cKey = string.Format("(1=1 {0})", cKey);
-            //    }
-            //    else
-            //    {
-            //        cKey = string.Format("(1=2 {0})", cKey);
-            //    }
-            //}
-            //else
-            //{
-            //    cKey = "1=1";
-            //}
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_DVCS","MA_KH","MA_VV","MA_KHO","MA_VT","MA_CT"
+                "MA_DVCS",
+                "MA_KH",
+                "MA_VV",
+                "MA_KHO",
+                "MA_VT",
+                "MA_CT"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {
-             "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6","NH_KH7","NH_KH8","NH_KH9"
+                "NH_KH1",
+                "NH_KH2",
+                "NH_KH3",
+                "NH_KH4",
+                "NH_KH5",
+                "NH_KH6",
+                "NH_KH7",
+                "NH_KH8",
+                "NH_KH9"
             }, and);
             var key2 = GetFilterStringByFields(new List<string>()
             {
-                 "NH_VT1","NH_VT2","NH_VT3","NH_VT4","NH_VT5","NH_VT6","MA_QG", "MA_NSX", "TK_VT"                
+                "NH_VT1",
+                "NH_VT2",
+                "NH_VT3",
+                "NH_VT4",
+                "NH_VT5",
+                "NH_VT6",
+                "MA_QG",
+                "MA_NSX",
+                "TK_VT"
             }, and);
 
             var key3 = GetFilterStringByFields(new List<string>()
             {
-             "NH_VV1", "NH_VV2", "NH_VV3"
+                "NH_VV1",
+                "NH_VV2",
+                "NH_VV3"
             }, and);
 
-            
 
             if (!string.IsNullOrEmpty(key0))
             {
@@ -147,8 +135,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 cKey = "1=1";
             }
-
-            
 
             if (!string.IsNullOrEmpty(key1))
             {
@@ -169,9 +155,5 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             return result;
         }
 
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }

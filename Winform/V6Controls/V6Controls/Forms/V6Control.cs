@@ -65,7 +65,7 @@ namespace V6Controls.Forms
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public Control GetControl(string name)
+        public Control GetControlByName(string name)
         {
             return V6ControlFormHelper.GetControlByName(this, name);
         }
@@ -96,6 +96,14 @@ namespace V6Controls.Forms
         public virtual void SetData(IDictionary<string, object> d)
         {
             V6ControlFormHelper.SetFormDataDictionary(this, d);
+        }
+        /// <summary>
+        /// Gán vài dữ liệu lên control theo AccessibleName của các control bên trong.
+        /// </summary>
+        /// <param name="d"></param>
+        public virtual void SetSomeData(IDictionary<string, object> d)
+        {
+            V6ControlFormHelper.SetSomeDataDictionary(this, d);
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ namespace V6Structs
         Aldvt,
         Algia,
         Algia2,
+        Algia0,
         Algia200,
         Algiavon,
         Algiavon3,
@@ -270,6 +271,8 @@ namespace V6Structs
                     return V6TableName.Algia;
                 case "algia2":
                     return V6TableName.Algia2;
+                case "algia0":
+                    return V6TableName.Algia0;
                 case "algia200":
                     return V6TableName.Algia200;
                 case "algiavon":
@@ -597,6 +600,7 @@ namespace V6Structs
                 case V6TableName.Aldvcs: result = "ma_dvcs"; break;
                 case V6TableName.Aldvt: result = "dvt"; break;
                 case V6TableName.Algia: result = "ma_gia"; break;
+                case V6TableName.Algia0: result = "ma_gia"; break;
                 case V6TableName.Algia2: result = "ma_gia"; break;
                 case V6TableName.Algia200: result = "ma_gia"; break;
                 case V6TableName.Algiavon: result = "ma_gia"; break;
@@ -871,6 +875,8 @@ namespace V6Structs
 
                 case V6TableName.Algia2:
                     return lang == "V" ? "Danh mục giá bán" : "  Price list";
+                case V6TableName.Algia0:
+                    return lang == "V" ? "Danh mục giá mua" : "  Cost price list";
 
                 case V6TableName.Algia200:
                     return lang == "V" ? "Danh mục " : "  list";

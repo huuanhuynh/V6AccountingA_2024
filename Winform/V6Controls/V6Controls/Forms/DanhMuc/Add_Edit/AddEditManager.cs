@@ -49,6 +49,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Algia2:
                     FormControl = new Algia2AddEditForm();
                     break;
+                case V6TableName.Algia0:
+                    FormControl = new Algia0AddEditForm();
+                    break;
                 case V6TableName.Alhd:
                     FormControl = new HopDongAddEditForm();
                     break;

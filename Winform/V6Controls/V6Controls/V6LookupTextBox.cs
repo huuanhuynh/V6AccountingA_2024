@@ -295,6 +295,12 @@ namespace V6Controls
         }
         protected override void V6ColorTextBox_KeyDown(object sender, KeyEventArgs e)
         {
+            if (ReadOnly || !Enabled)
+            {
+                if (e.KeyData == Keys.Enter) SendKeys.Send("{TAB}");
+                return;
+            }
+
             if (string.IsNullOrEmpty(LookupInfo.TABLE_NAME))
             {
                 base.V6ColorTextBox_KeyDown(sender, e);

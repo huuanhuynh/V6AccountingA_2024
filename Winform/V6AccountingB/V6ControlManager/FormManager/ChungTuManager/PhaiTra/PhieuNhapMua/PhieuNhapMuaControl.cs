@@ -1592,12 +1592,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     txtMaSoThue.Text = "";
                     txtTenKh.Text = "";
                     txtDiaChi.Text = "";
+                    SetControlValue(txtMaGia, null, Invoice.GetTemplateSettingAM("MA_GIA"));
                     return;
                 }
                 var mst = (data["ma_so_thue"] ?? "").ToString().Trim();
                 txtMaSoThue.Text = mst;
                 txtTenKh.Text = (data["ten_kh"] ?? "").ToString().Trim();
                 txtDiaChi.Text = (data["dia_chi"] ?? "").ToString().Trim();
+                SetControlValue(txtMaGia, data["MA_GIA"], Invoice.GetTemplateSettingAM("MA_GIA"));
+
             }
             catch (Exception ex)
             {
@@ -1695,7 +1698,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 XuLyLayThongTinKhiChonMaKhoI();
             //}
 
-            //  GetGia();
+            GetGia();
             GetTon13();
             TinhTienNt0();
         }
@@ -1810,7 +1813,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             var he_so = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_so"]);
             if (he_so == 0) he_so = 1;
             _heSo1.Value = he_so;
-          
+
+            GetGia();
             TinhTienNt0();
         }
 
@@ -6176,6 +6180,171 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".ChonPhieuXuat_A: " + ex.Message, "Hoa don ban hang Error");
+            }
+        }
+
+        private void GetGia()
+        {
+            try
+            {
+                var dataGia = Invoice.GetGiaMua("MA_VT", Invoice.Mact, dateNgayCT.Date,
+                        cboMaNt.SelectedValue.ToString().Trim(), _maVt.Text, _dvt1.Text, txtMaKh.Text, txtMaGia.Text);
+                _giaNt01.Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT0"]);
+                
+                if (_dvt.Text.ToUpper().Trim() == _dvt1.Text.ToUpper().Trim())
+                    _gia_Nt0.Value = _giaNt01.Value;
+                else
+                {
+                    if (_soLuong.Value != 0)
+                    {
+                        _gia_Nt0.Value = _tienNt0.Value / _soLuong.Value;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".GetGia: " + ex.Message);
+            }
+        }
+        private void btnApGia_Click(object sender, EventArgs e)
+        {
+            ApGiaMua();
+        }
+
+        private void ApGiaMua()
+        {
+            try
+            {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    this.ShowWarningMessage(V6Text.DetailNotComplete);
+                    return;
+                }
+                if (txtMaGia.Text.Trim() == "")
+                {
+                    ShowParentMessage("Chọn mã giá trước.");
+                    return;
+                }
+                if (this.ShowConfirmMessage("Có chắc chắn áp giá mua cho tất cả mặt hàng hay không?") != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                foreach (DataRow row in AD.Rows)
+                {
+                    var maVatTu = row["MA_VT"].ToString().Trim();
+                    var dvt = row["DVT"].ToString().Trim();
+                    var dvt1 = row["DVT1"].ToString().Trim();
+                    var pt_cki = ObjectAndString.ObjectToDecimal(row["PT_CKI"]);
+                    var soLuong = ObjectAndString.ObjectToDecimal(row["SO_LUONG"]);
+                    var soLuong1 = ObjectAndString.ObjectToDecimal(row["SO_LUONG1"]);
+                    var tienNt0 = ObjectAndString.ObjectToDecimal(row["TIEN_NT0"]);
+                    var tien0 = ObjectAndString.ObjectToDecimal(row["TIEN0"]);
+
+                    var tienNt = ObjectAndString.ObjectToDecimal(row["TIEN_NT"]);
+                    var tien = ObjectAndString.ObjectToDecimal(row["TIEN"]);
+                    var giaNt = ObjectAndString.ObjectToDecimal(row["GIA_NT"]);
+                    var gia = ObjectAndString.ObjectToDecimal(row["GIA"]);
+
+                    var dataGia = Invoice.GetGiaMua("MA_VT", Invoice.Mact, dateNgayCT.Date,
+                        cboMaNt.SelectedValue.ToString().Trim(), maVatTu, dvt1, txtMaKh.Text, txtMaGia.Text);
+
+                    var giaNt01 = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT0"]);
+                    row["GIA_NT01"] = giaNt01;
+                    //_soLuong.Value = _soLuong1.Value * _heSo1.Value;
+                    tienNt0 = V6BusinessHelper.Vround((soLuong1 * giaNt01), M_ROUND_NT);
+                    tien0 = V6BusinessHelper.Vround((tienNt0 * txtTyGia.Value), M_ROUND);
+
+                    row["tien_Nt0"] = tienNt0;
+                    row["tien0"] = tien0;
+
+                    //_tien2.Value = V6BusinessHelper.Vround((_tienNt2.Value * txtTyGia.Value), M_ROUND);
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        row["tien0"] = tienNt0;
+                    }
+
+                    //TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt2, _pt_cki);
+                    var ck_nt = V6BusinessHelper.Vround(tienNt0 * pt_cki / 100, M_ROUND_NT);
+                    row["ck_nt"] = ck_nt;
+                    row["ck"] = V6BusinessHelper.Vround(ck_nt * txtTyGia.Value, M_ROUND);
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        row["ck"] = row["ck_nt"];
+                    }
+                    //End TinhChietKhauChiTiet
+
+                    //TinhGiaNt0();
+                    row["Gia01"] = V6BusinessHelper.Vround((giaNt01 * txtTyGia.Value), M_ROUND_GIA_NT);
+                    if (_maNt == _mMaNt0)
+                    {
+                        row["Gia01"] = row["Gia_nt01"];
+                    }
+
+                    if (soLuong != 0)
+                    {
+                        row["gia_nt0"] = V6BusinessHelper.Vround((tienNt0 / soLuong), M_ROUND_GIA_NT);
+                        row["gia0"] = V6BusinessHelper.Vround((tien0 / soLuong), M_ROUND_GIA);
+
+                        if (_maNt == _mMaNt0)
+                        {
+                            row["gia0"] = row["gia_nt01"];
+                            row["gia_nt0"] = row["gia_nt01"];
+                        }
+                    }
+                    //End TinhGiaNt2
+                    
+                    //====================
+
+                    if (dvt.ToUpper().Trim() == dvt1.ToUpper().Trim())
+                    {
+                        row["GIA_NT0"] = row["GIA_NT01"];
+                    }
+                    else
+                    {
+                        if (soLuong != 0)
+                        {
+                            row["GIA_NT0"] = tienNt0 / soLuong;
+                        }
+                    }
+
+                    // TinhTien va Gia
+                    tienNt = tienNt0 + ObjectAndString.ObjectToDecimal(row["CP_NT"]) + ObjectAndString.ObjectToDecimal(row["CK_NT"]) +
+                        ObjectAndString.ObjectToDecimal(row["GG_NT"])+ObjectAndString.ObjectToDecimal(row["TIEN_VC_NT"]);
+                    tien = tien0 + ObjectAndString.ObjectToDecimal(row["CP"]) + ObjectAndString.ObjectToDecimal(row["CK"]) +
+                        ObjectAndString.ObjectToDecimal(row["GG"]) + ObjectAndString.ObjectToDecimal(row["TIEN_VC"]);
+
+                    if (soLuong != 0)
+                    {
+                        giaNt = V6BusinessHelper.Vround((tienNt / soLuong), M_ROUND_GIA_NT);
+                        gia = V6BusinessHelper.Vround((tien / soLuong), M_ROUND_GIA);
+                    }
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        tien = tienNt;
+                        gia = giaNt;
+                    }
+                    
+                    row["GIA_NT"] = giaNt;
+                    row["GIA"] = gia;
+                    row["TIEN_NT"] = tienNt;
+                    row["TIEN"] = tien;
+
+                    
+
+
+                }
+
+                dataGridView1.DataSource = AD;
+
+                TinhTongThanhToan("ApGiaMua");
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ApGiaMua " + _sttRec, ex);
             }
         }
 

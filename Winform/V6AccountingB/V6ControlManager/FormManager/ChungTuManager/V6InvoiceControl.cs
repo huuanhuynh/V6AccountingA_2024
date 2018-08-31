@@ -1197,13 +1197,39 @@ namespace V6ControlManager.FormManager.ChungTuManager
             SetSomeData(someData);
         }
 
-        private void FixTyGia(DataRow row, decimal ty_gia, string fieldTien, string fieldTienNt, int round)
+        /// <summary>
+        /// Tính lại fieldTien theo NT có làm tròn.
+        /// </summary>
+        /// <param name="detailData">Bảng dữ liệu chi tiết.</param>
+        /// <param name="row">Dòng dữ liệu cần thay đổi.</param>
+        /// <param name="ty_gia"></param>
+        /// <param name="fieldTien"></param>
+        /// <param name="fieldTienNt"></param>
+        /// <param name="round">Làm tròn</param>
+        private void FixTyGia(DataTable detailData, DataRow row, decimal ty_gia, string fieldTien, string fieldTienNt, int round)
         {
-            if (AD.Columns.Contains(fieldTien) && AD.Columns.Contains(fieldTienNt))
+            if (detailData.Columns.Contains(fieldTien) && detailData.Columns.Contains(fieldTienNt))
             {
                 decimal temp = ObjectAndString.ObjectToDecimal(row[fieldTienNt]);
                 if (temp != 0)
                     row[fieldTien] = V6BusinessHelper.Vround(temp * ty_gia, round);
+            }
+        }
+        private void FixTyGiaDetail(DataTable detailData, HD_Detail detailControl, decimal ty_gia, string fieldTien, string fieldTienNt, int round)
+        {
+            if (detailData.Columns.Contains(fieldTien) && detailData.Columns.Contains(fieldTienNt))
+            {
+                Control control = detailControl.GetControlByAccessibleName(fieldTien);
+                Control controlNT = detailControl.GetControlByAccessibleName(fieldTienNt);
+                
+                if (control != null && controlNT != null)
+                {
+                    decimal valueNT = ObjectAndString.ObjectToDecimal(V6ControlFormHelper.GetControlValue(controlNT));
+                    if (valueNT != 0)
+                    {
+                        V6ControlFormHelper.SetControlValue(control, V6BusinessHelper.Vround(valueNT*ty_gia, round));
+                    }
+                }
             }
         }
         protected void XuLyThayDoiTyGia(V6NumberTextBox txtTyGia, CheckBox chkSuaTien)
@@ -1215,44 +1241,88 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 // Tuanmh 25/05/2017
                 if (ty_gia == 0 || chkSuaTien.Checked) return;
 
-                foreach (DataRow row in AD.Rows)
                 {
-                    FixTyGia(row, ty_gia, "Tien", "Tien_nt", M_ROUND);
-                    FixTyGia(row, ty_gia, "Tien2", "Tien_nt2", M_ROUND);
-                    FixTyGia(row, ty_gia, "Tien1", "Tien1_nt", M_ROUND);
-                    FixTyGia(row, ty_gia, "Tien_vc", "Tien_vc_nt", M_ROUND);
-                    FixTyGia(row, ty_gia, "Tien0", "TIEN_NT0", M_ROUND);
-                    FixTyGia(row, ty_gia, "Thue", "Thue_nt", M_ROUND);
-                    FixTyGia(row, ty_gia, "CP", "CP_NT", M_ROUND);
-                    FixTyGia(row, ty_gia, "GIA01", "GIA_NT01", M_ROUND_GIA);
-                    FixTyGia(row, ty_gia, "GIA1", "GIA_NT1", M_ROUND_GIA);
-                    FixTyGia(row, ty_gia, "GIA2", "GIA_NT2", M_ROUND_GIA);
-                    FixTyGia(row, ty_gia, "GIA21", "GIA_NT21", M_ROUND_GIA);
+                    foreach (DataRow row in AD.Rows)
+                    {
+                        FixTyGia(AD, row, ty_gia, "Tien", "Tien_nt", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "Tien2", "Tien_nt2", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "Tien1", "Tien1_nt", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "Tien_vc", "Tien_vc_nt", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "Tien0", "TIEN_NT0", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "Thue", "Thue_nt", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "CP", "CP_NT", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "GIA", "GIA_NT", M_ROUND_GIA);
+                        FixTyGia(AD, row, ty_gia, "GIA01", "GIA_NT01", M_ROUND_GIA);
+                        FixTyGia(AD, row, ty_gia, "GIA1", "GIA_NT1", M_ROUND_GIA);
+                        FixTyGia(AD, row, ty_gia, "GIA2", "GIA_NT2", M_ROUND_GIA);
+                        FixTyGia(AD, row, ty_gia, "GIA21", "GIA_NT21", M_ROUND_GIA);
 
-                    FixTyGia(row, ty_gia, "GIA0", "GIA_NT0", M_ROUND_GIA);
-                    FixTyGia(row, ty_gia, "NK", "NK_NT", M_ROUND);
-                    FixTyGia(row, ty_gia, "CK", "CK_NT", M_ROUND);
-                    FixTyGia(row, ty_gia, "GG", "GG_NT", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "GIA0", "GIA_NT0", M_ROUND_GIA);
+                        FixTyGia(AD, row, ty_gia, "NK", "NK_NT", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "CK", "CK_NT", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "GG", "GG_NT", M_ROUND);
 
-                    FixTyGia(row, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
-                    FixTyGia(row, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
+                        FixTyGia(AD, row, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
+                    }
+                    HD_Detail detailControl = this.GetControlByName("detail1") as HD_Detail;
+                    if (detailControl != null && (detailControl.MODE == V6Mode.Add || detailControl.MODE == V6Mode.Edit))
+                    {
+                        //...
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "Tien", "Tien_nt", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "Tien2", "Tien_nt2", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "Tien1", "Tien1_nt", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "Tien_vc", "Tien_vc_nt", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "Tien0", "TIEN_NT0", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "Thue", "Thue_nt", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "CP", "CP_NT", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "GIA", "GIA_NT", M_ROUND_GIA);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "GIA01", "GIA_NT01", M_ROUND_GIA);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "GIA1", "GIA_NT1", M_ROUND_GIA);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "GIA2", "GIA_NT2", M_ROUND_GIA);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "GIA21", "GIA_NT21", M_ROUND_GIA);
 
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "GIA0", "GIA_NT0", M_ROUND_GIA);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "NK", "NK_NT", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "CK", "CK_NT", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "GG", "GG_NT", M_ROUND);
+
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
+                        FixTyGiaDetail(AD, detailControl, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
+                    }
                 }
 
-                if(AD2 != null)
-                foreach (DataRow row in AD2.Rows)
+                if (AD2 != null)
                 {
-                    FixTyGia(row, ty_gia, "t_tien", "t_tien_nt", M_ROUND);
-                    FixTyGia(row, ty_gia, "t_thue", "t_thue_nt", M_ROUND);
-                    FixTyGia(row, ty_gia, "t_tt", "t_tt_nt", M_ROUND);
+                    foreach (DataRow row in AD2.Rows)
+                    {
+                        FixTyGia(AD2, row, ty_gia, "t_tien", "t_tien_nt", M_ROUND);
+                        FixTyGia(AD2, row, ty_gia, "t_thue", "t_thue_nt", M_ROUND);
+                        FixTyGia(AD2, row, ty_gia, "t_tt", "t_tt_nt", M_ROUND);
+                    }
+                    HD_Detail detailControl = this.GetControlByName("detail2") as HD_Detail;
+                    if (detailControl != null && (detailControl.MODE == V6Mode.Add || detailControl.MODE == V6Mode.Edit))
+                    {
+                        FixTyGiaDetail(AD2, detailControl, ty_gia, "t_tien", "t_tien_nt", M_ROUND);
+                        FixTyGiaDetail(AD2, detailControl, ty_gia, "t_thue", "t_thue_nt", M_ROUND);
+                        FixTyGiaDetail(AD2, detailControl, ty_gia, "t_tt", "t_tt_nt", M_ROUND);
+                    }
                 }
 
                 if (AD3 != null)
+                {
                     foreach (DataRow row in AD3.Rows)
                     {
-                        FixTyGia(row, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
-                        FixTyGia(row, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
+                        FixTyGia(AD3, row, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
+                        FixTyGia(AD3, row, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
                     }
+                    HD_Detail detailControl = this.GetControlByName("detail3") as HD_Detail;
+                    if (detailControl != null && (detailControl.MODE == V6Mode.Add || detailControl.MODE == V6Mode.Edit))
+                    {
+                        FixTyGiaDetail(AD3, detailControl, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
+                        FixTyGiaDetail(AD3, detailControl, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1920,7 +1990,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 //Hien form chuc nang co options *-1 or input
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
                 {
-                    var detail1 = GetControl("detail1") as HD_Detail;
+                    var detail1 = GetControlByName("detail1") as HD_Detail;
                     if (detail1 == null)
                     {
                         ShowParentMessage("Không xác định được control: [detail1].");
@@ -1933,7 +2003,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     }
                     else
                     {
-                        var dataGridView1 = GetControl("dataGridView1") as DataGridView;
+                        var dataGridView1 = GetControlByName("dataGridView1") as DataGridView;
                         if (dataGridView1 == null)
                         {
                             ShowParentMessage("Không xác định được control: [dataGridView1].");

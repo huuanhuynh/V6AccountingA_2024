@@ -48,6 +48,7 @@
             this.txtXmlInfor = new V6Controls.V6ColorTextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtRightCopy = new System.Windows.Forms.RichTextBox();
             this.chkPass_Exp = new V6Controls.V6CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtPassDate = new V6Controls.V6DateTimeColor();
@@ -81,7 +82,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtRightCopy = new System.Windows.Forms.RichTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -336,7 +336,7 @@
             this.txtXmlInfor.AccessibleName = "XML_INFOR";
             this.txtXmlInfor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtXmlInfor.BackColor = System.Drawing.Color.White;
+            this.txtXmlInfor.BackColor = System.Drawing.Color.AntiqueWhite;
             this.txtXmlInfor.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtXmlInfor.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtXmlInfor.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -347,6 +347,7 @@
             this.txtXmlInfor.Margin = new System.Windows.Forms.Padding(4);
             this.txtXmlInfor.Multiline = true;
             this.txtXmlInfor.Name = "txtXmlInfor";
+            this.txtXmlInfor.ReadOnly = true;
             this.txtXmlInfor.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtXmlInfor.Size = new System.Drawing.Size(581, 102);
             this.txtXmlInfor.TabIndex = 75;
@@ -407,6 +408,16 @@
             this.groupBox1.Size = new System.Drawing.Size(755, 236);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // txtRightCopy
+            // 
+            this.txtRightCopy.AccessibleName = "r_copy";
+            this.txtRightCopy.Location = new System.Drawing.Point(645, 158);
+            this.txtRightCopy.Name = "txtRightCopy";
+            this.txtRightCopy.Size = new System.Drawing.Size(18, 28);
+            this.txtRightCopy.TabIndex = 36;
+            this.txtRightCopy.Text = "";
+            this.txtRightCopy.Visible = false;
             // 
             // chkPass_Exp
             // 
@@ -853,16 +864,6 @@
             this.label1.Size = new System.Drawing.Size(127, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên người sử dụng";
-            // 
-            // txtRightCopy
-            // 
-            this.txtRightCopy.AccessibleName = "r_copy";
-            this.txtRightCopy.Location = new System.Drawing.Point(645, 158);
-            this.txtRightCopy.Name = "txtRightCopy";
-            this.txtRightCopy.Size = new System.Drawing.Size(18, 28);
-            this.txtRightCopy.TabIndex = 36;
-            this.txtRightCopy.Text = "";
-            this.txtRightCopy.Visible = false;
             // 
             // NguoiSuDungAddEditForm
             // 

@@ -109,6 +109,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             try
             {
                 TxtPassword1.PasswordChar = '\0';
+                txtXmlInfor.ReadOnly = false;
             }
             catch (Exception ex)
             {
