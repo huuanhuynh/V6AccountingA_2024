@@ -41,6 +41,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.exportToXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.viewDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.cboMauIn = new V6Controls.V6ComboBox();
@@ -71,7 +72,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
-            this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSuaLine = new V6Controls.Controls.V6FormButton();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -91,7 +92,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.viewDataToolStripMenuItem,
             this.exportToPdfToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 180);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 158);
             // 
             // exportToExcelTemplate
             // 
@@ -134,6 +135,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.viewDataToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.viewDataToolStripMenuItem.Text = "ViewData";
             this.viewDataToolStripMenuItem.Click += new System.EventHandler(this.viewDataToolStripMenuItem_Click);
+            // 
+            // exportToPdfToolStripMenuItem
+            // 
+            this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
+            this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
+            this.exportToPdfToolStripMenuItem.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
             // 
             // timerViewReport
             // 
@@ -462,7 +470,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.btnSuaMau.AccessibleDescription = "REPORTB00003";
             this.btnSuaMau.Enabled = false;
-            this.btnSuaMau.Location = new System.Drawing.Point(397, 36);
+            this.btnSuaMau.Location = new System.Drawing.Point(449, 36);
             this.btnSuaMau.Name = "btnSuaMau";
             this.btnSuaMau.Size = new System.Drawing.Size(39, 23);
             this.btnSuaMau.TabIndex = 7;
@@ -473,7 +481,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // btnSuaTTMauBC
             // 
             this.btnSuaTTMauBC.AccessibleDescription = "REPORTB00001";
-            this.btnSuaTTMauBC.Location = new System.Drawing.Point(307, 36);
+            this.btnSuaTTMauBC.Location = new System.Drawing.Point(359, 36);
             this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
             this.btnSuaTTMauBC.Size = new System.Drawing.Size(43, 23);
             this.btnSuaTTMauBC.TabIndex = 5;
@@ -484,7 +492,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // btnThemMauBC
             // 
             this.btnThemMauBC.AccessibleDescription = "REPORTB00002";
-            this.btnThemMauBC.Location = new System.Drawing.Point(352, 36);
+            this.btnThemMauBC.Location = new System.Drawing.Point(404, 36);
             this.btnThemMauBC.Name = "btnThemMauBC";
             this.btnThemMauBC.Size = new System.Drawing.Size(43, 23);
             this.btnThemMauBC.TabIndex = 6;
@@ -497,7 +505,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.chkHienTatCa.AccessibleDescription = "REPORTC00001";
             this.chkHienTatCa.AutoSize = true;
             this.chkHienTatCa.Enabled = false;
-            this.chkHienTatCa.Location = new System.Drawing.Point(442, 40);
+            this.chkHienTatCa.Location = new System.Drawing.Point(307, 40);
             this.chkHienTatCa.Name = "chkHienTatCa";
             this.chkHienTatCa.Size = new System.Drawing.Size(37, 17);
             this.chkHienTatCa.TabIndex = 8;
@@ -515,17 +523,23 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.gridViewSummary1.SumCondition = null;
             this.gridViewSummary1.TabIndex = 0;
             // 
-            // exportToPdfToolStripMenuItem
+            // btnSuaLine
             // 
-            this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
-            this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
-            this.exportToPdfToolStripMenuItem.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
+            this.btnSuaLine.AccessibleDescription = "REPORTB00003";
+            this.btnSuaLine.Location = new System.Drawing.Point(490, 36);
+            this.btnSuaLine.Name = "btnSuaLine";
+            this.btnSuaLine.Size = new System.Drawing.Size(50, 23);
+            this.btnSuaLine.TabIndex = 15;
+            this.btnSuaLine.Text = "ĐK lọc";
+            this.toolTipV6FormControl.SetToolTip(this.btnSuaLine, "Sửa line");
+            this.btnSuaLine.UseVisualStyleBackColor = true;
+            this.btnSuaLine.Click += new System.EventHandler(this.btnSuaLine_Click);
             // 
             // ReportRViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnSuaLine);
             this.Controls.Add(this.chkHienTatCa);
             this.Controls.Add(this.btnSuaMau);
             this.Controls.Add(this.btnSuaTTMauBC);
@@ -600,6 +614,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.ToolStripMenuItem exportToExcelView;
         public System.Windows.Forms.TextBox txtReportTitle;
         private System.Windows.Forms.ToolStripMenuItem exportToPdfToolStripMenuItem;
+        private V6FormButton btnSuaLine;
 
 
 

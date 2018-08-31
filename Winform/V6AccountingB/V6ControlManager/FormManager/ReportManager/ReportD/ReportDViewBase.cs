@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using CrystalDecisions.CrystalReports.Engine;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
+using V6ControlManager.FormManager.DanhMucManager;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
@@ -1479,7 +1480,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     return;
                 }
 
-                var oldKeys = FilterControl.GetFilterParameters();
+                var oldKeys = FilterControl.GetFilterParametersNew();
                 QuickReportParams quick_params = new QuickReportParams()
                 {
                     AutoRun = true,
@@ -1918,6 +1919,31 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".Export PDF", ex);
+            }
+        }
+
+        private void btnSuaLine_Click(object sender, EventArgs e)
+        {
+            if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK)
+            {
+                return;
+            }
+
+            try
+            {
+                var title = V6Setting.IsVietnamese ? "Sửa báo cáo động" : "Edit dynamic report";
+                var f = new DanhMucView(ItemID, title, "Alreport", "ma_bc='" + _program + "'",
+                    V6TableHelper.GetDefaultSortField(V6TableName.Alreport), false);
+                f.EnableAdd = false;
+                f.EnableCopy = false;
+                f.EnableDelete = false;
+                f.EnableFullScreen = false;
+
+                f.ShowToForm(this, title);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
             }
         }
     }

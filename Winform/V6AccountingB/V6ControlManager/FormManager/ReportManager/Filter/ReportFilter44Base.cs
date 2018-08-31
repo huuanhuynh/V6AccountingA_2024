@@ -23,7 +23,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
     public partial class ReportFilter44Base : FilterBase
     {
         private string _program;
-        private string Alreport_advance = "";
+        
         public ReportFilter44Base()
         {
             InitializeComponent();
@@ -133,15 +133,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
-        public Dictionary<string, object> ParameterNameList = new Dictionary<string, object>(); 
-        public Dictionary<string, object> ParameterNameList2 = new Dictionary<string, object>();
-        public FilterLineDynamic lineNgay_ct1 = null;
-        public FilterLineDynamic lineNgay_ct2 = null;
-        public FilterLineDynamic lineMauBC { get; set; }
-        public FilterLineDynamic lineLAN { get; set; }
-        public FilterLineDynamic lineUserID { get; set; }
+        
 
-        private string MAU = "", LAN = "";
+        //private string MAU = "", LAN = "";
         private string ComboboxData = "";
         private string ExtraParameterInfo = "";
 
@@ -156,30 +150,37 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             if (lineNgay_ct2 != null)
             V6Setting.M_ngay_ct2 = ObjectAndString.ObjectToFullDateTime(lineNgay_ct2.ObjectValue);
 
+            if (lineMauBC != null)
+                lineMauBC.SetValue(MAU == "VN" ? "0" : "1");
+            if (lineLAN != null)
+                lineLAN.SetValue(LAN);
+            if (lineUserID != null)
+                lineUserID.SetValue(V6Login.UserId);
+
             var parent00 = Parent.Parent.Parent;
             if (parent00 is ReportD99ViewBase)
             {
                 var parent99 = (ReportD99ViewBase) parent00;
                 MAU = parent99.MAU;
                 LAN = parent99.LAN;
-                if (lineMauBC != null)
-                    lineMauBC.SetValue(MAU == "VN" ? "0" : "1");
-                if (lineLAN != null)
-                    lineLAN.SetValue(LAN);
-                if (lineUserID != null)
-                    lineUserID.SetValue(V6Login.UserId);
             }
             if (parent00 is ReportR44ViewBase)
             {
                 var parent44 = (ReportR44ViewBase)parent00;
                 MAU = parent44.MAU;
                 LAN = parent44.LAN;
-                if (lineMauBC != null)
-                    lineMauBC.SetValue(MAU == "VN" ? "0" : "1");
-                if (lineLAN != null)
-                    lineLAN.SetValue(LAN);
-                if (lineUserID != null)
-                    lineUserID.SetValue(V6Login.UserId);
+            }
+            if (parent00 is ReportR45ViewBase)
+            {
+                var parent44 = (ReportR45ViewBase)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
+            if (parent00 is ReportRWWView2Base)
+            {
+                var parent44 = (ReportRWWView2Base)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
             }
             
 
@@ -594,135 +595,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             return result;
         }
 
-        /// <summary>
-        /// Tạo key advance
-        /// </summary>
-        /// <param name="and"></param>
-        /// <param name="string_value">Key lẻ của loại key 30</param>
-        /// <param name="in_fieldList_Alkh"></param>
-        /// <param name="in_fieldList_Alvt"></param>
-        /// <param name="in_fieldList_Altk"></param>
-        /// <param name="in_fieldList_Alvv"></param>
-        /// <param name="in_fieldList_Alphi"></param>
-        /// <param name="in_fieldList_Alhd"></param>
-        /// <param name="in_fieldList_Alku"></param>
-        /// <param name="in_fieldList_Alsp"></param>
-        /// <returns></returns>
-        private string GenAdvanceKeyString(bool and, string string_value,
-            List<string> in_fieldList_Alkh, List<string> in_fieldList_Alvt, List<string> in_fieldList_Altk, List<string> in_fieldList_Alvv,
-            List<string> in_fieldList_Alphi, List<string> in_fieldList_Alhd, List<string> in_fieldList_Alku, List<string> in_fieldList_Alsp,
-            List<string> in_fieldList_Allo, List<string> in_fieldList_Albp, List<string> in_fieldList_Alnvien, List<string> in_fieldList_Albpht,
-            List<string> in_fieldList_Althau, List<string> in_fieldList_Alsonb, List<string> in_fieldList_Aldvcs, List<string> in_fieldList_Alkho)
-        {
-            var string_in_Alkh = GenkeyStringInTable(in_fieldList_Alkh, and, "MA_KH", "ma_kh", "alkh");
-            var string_in_Alvt = GenkeyStringInTable(in_fieldList_Alvt, and, "MA_VT", "ma_vt", "alvt");
-            var string_in_Altk = GenkeyStringInTable(in_fieldList_Altk, and, "TK", "tk", "altk");
-            var string_in_Alvv = GenkeyStringInTable(in_fieldList_Alvv, and, "MA_VV", "ma_vv", "alvv");
+        
 
-            var string_in_Alphi = GenkeyStringInTable(in_fieldList_Alphi, and, "MA_PHI", "ma_phi", "alphi");
-            var string_in_Alhd = GenkeyStringInTable(in_fieldList_Alhd, and, "MA_HD", "ma_hd", "alhd");
-            var string_in_Alku = GenkeyStringInTable(in_fieldList_Alku, and, "MA_KU", "ma_ku", "alku");
-            var string_in_Alsp = GenkeyStringInTable(in_fieldList_Alsp, and, "MA_SP", "ma_vt", "alvt");
-
-            var string_in_Allo = GenkeyStringInTable(in_fieldList_Allo, and, "MA_LO", "ma_lo", "allo");
-            var string_in_Albp = GenkeyStringInTable(in_fieldList_Albp, and, "MA_BP", "ma_bp", "albp");
-            var string_in_Alnvien = GenkeyStringInTable(in_fieldList_Alnvien, and, "MA_NVIEN", "ma_nvien", "alnvien");
-            var string_in_Albpht = GenkeyStringInTable(in_fieldList_Albpht, and, "MA_BPHT", "ma_bpht", "albpht");
-            var string_in_Althau = GenkeyStringInTable(in_fieldList_Althau, and, "MA_THAU", "ma_thau", "althau");
-            var string_in_Alsonb = GenkeyStringInTable(in_fieldList_Alsonb, and, "MA_SONB", "ma_sonb", "alsonb");
-            var string_in_Aldvcs = GenkeyStringInTable(in_fieldList_Aldvcs, and, "MA_DVCS", "ma_dvcs", "aldvcs");
-            var string_in_Alkho = GenkeyStringInTable(in_fieldList_Alkho, and, "MA_KHO", "ma_kho", "alkho");
-
-            var last_string_value = string_value + string_in_Alkh + string_in_Alvt + string_in_Altk + string_in_Alvv
-                + string_in_Alphi + string_in_Alhd + string_in_Alku + string_in_Alsp
-                + string_in_Allo + string_in_Albp + string_in_Alnvien + string_in_Albpht
-                + string_in_Althau + string_in_Alsonb + string_in_Aldvcs + string_in_Alkho
-                ;
-            if (last_string_value.Length > 4) last_string_value = last_string_value.Substring(4);
-            return last_string_value;
-        }
-
-        /// <summary>
-        /// Tạo key advance in cho một bảng.
-        /// </summary>
-        /// <param name="in_fieldList_Alsp">Danh sách các field where</param>
-        /// <param name="and"></param>
-        /// <param name="FIELD_in"></param>
-        /// <param name="select_field"></param>
-        /// <param name="from_table"></param>
-        /// <returns></returns>
-        private string GenkeyStringInTable(List<string> in_fieldList_Alsp, bool and, string FIELD_in, string select_field, string from_table)
-        {
-            var result = "";
-            
-            if (in_fieldList_Alsp!=null && in_fieldList_Alsp.Count > 0)
-            {
-                var and_or = and ? " and" : " or ";
-                var key0 = GetFilterStringByFields(in_fieldList_Alsp, and);
-                if (!string.IsNullOrEmpty(key0))
-                {
-                    result = string.Format("{0} {2} in (select {3} from {4} where {1} )",
-                        and_or, key0, FIELD_in, select_field, from_table);
-                }
-            }
-
-            return result;
-        }
-
-
-        public void AddLineControls(FilterLineDynamic lineControl)
-        {
-            lineControl.Width = groupBox1.Width - 10;
-            groupBox1.Controls.Add(lineControl);
-
-            if (lineControl.DefineInfo.Visible && groupBox1.Height - 10 < lineControl.Bottom)
-            {
-                Height = groupBox1.Top + lineControl.Bottom + 20;
-            }
-
-            if (lineControl.DefineInfo.Loai_key == "A1" && lineControl._checkBox != null)
-            {
-                if (lineControl._checkBox.Checked) Advance = Alreport_advance;
-                lineControl._checkBox.CheckedChanged += delegate
-                {
-                    if (lineControl._checkBox.Checked)
-                    {
-                        Advance = Alreport_advance;
-                    }
-                    else
-                    {
-                        Advance = "";
-                    }
-                };
-            }
-        }
-
-        public void AddLineGroupControls(FilterGroup lineControl)
-        {
-            lineControl.Width = groupBox1.Width - 10;
-            groupBox1.Controls.Add(lineControl);
-
-            if (lineControl.DefineInfo.Visible && groupBox1.Height - 10 < lineControl.Bottom)
-            {
-                Height = groupBox1.Top + lineControl.Bottom + 20;
-            }
-
-            //if (lineControl.DefineInfo.Loai_key == "A1" && lineControl._checkBox != null)
-            //{
-            //    if (lineControl._checkBox.Checked) Advance = Alreport_advance;
-            //    lineControl._checkBox.CheckedChanged += delegate
-            //    {
-            //        if (lineControl._checkBox.Checked)
-            //        {
-            //            Advance = Alreport_advance;
-            //        }
-            //        else
-            //        {
-            //            Advance = "";
-            //        }
-            //    };
-            //}
-        }
+        
 
         
         public override DataTable GenTableForReportType()

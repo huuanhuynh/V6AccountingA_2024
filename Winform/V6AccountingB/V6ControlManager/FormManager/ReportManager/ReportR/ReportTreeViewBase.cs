@@ -826,7 +826,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             try
             {
                 _pList = new List<SqlParameter>();
-                var tList = FilterControl.GetFilterParameters();
+                var tList = FilterControl.GetFilterParametersNew();
                 foreach (SqlParameter p in tList)
                 {
                     _pList.Add(new SqlParameter(p.ParameterName, p.Value));
@@ -1363,7 +1363,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 if (treeListViewAuto1.IsDetailSelected)
                 {
-                    var oldKeys = FilterControl.GetFilterParameters();
+                    var oldKeys = FilterControl.GetFilterParametersNew();
 
                     var view = new ReportTreeViewBase(m_itemId, _program + "F5", _program + "F5", _reportFileF5,
                         _reportTitleF5, _reportTitle2F5, "", "", "");

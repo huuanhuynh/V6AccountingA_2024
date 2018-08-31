@@ -12,6 +12,7 @@ using CrystalDecisions.CrystalReports.Engine;
 using V6AccountingBusiness;
 using V6AccountingBusiness.V6Init.User;
 using V6ControlManager.FormManager.ChungTuManager;
+using V6ControlManager.FormManager.DanhMucManager;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
 using V6Controls.Controls;
@@ -849,7 +850,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             try
             {
                 _pList = new List<SqlParameter>();
-                var tList = FilterControl.GetFilterParameters();
+                var tList = FilterControl.GetFilterParametersNew();
                 foreach (SqlParameter p in tList)
                 {
                     _pList.Add(new SqlParameter(p.ParameterName, p.Value));
@@ -1436,7 +1437,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     return;
                 }
 
-                var oldKeys = FilterControl.GetFilterParameters();
+                var oldKeys = FilterControl.GetFilterParametersNew();
 
                 var view = new ReportRViewBase(m_itemId, _program + "F5", _program + "F5",
                     FilterControl.ReportFileF5??_reportFileF5,
@@ -1807,6 +1808,31 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".Export PDF", ex);
+            }
+        }
+
+        private void btnSuaLine_Click(object sender, EventArgs e)
+        {
+            if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK)
+            {
+                return;
+            }
+
+            try
+            {
+                var title = V6Setting.IsVietnamese ? "Sửa báo cáo động" : "Edit dynamic report";
+                var f = new DanhMucView(ItemID, title, "Alreport", "ma_bc='" + _program + "'",
+                    V6TableHelper.GetDefaultSortField(V6TableName.Alreport), false);
+                f.EnableAdd = false;
+                f.EnableCopy = false;
+                f.EnableDelete = false;
+                f.EnableFullScreen = false;
+
+                f.ShowToForm(this, title);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
             }
         }
     }
