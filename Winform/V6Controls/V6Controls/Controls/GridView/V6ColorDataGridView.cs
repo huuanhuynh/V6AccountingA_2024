@@ -805,11 +805,62 @@ namespace V6Controls
         /// <param name="e"></param>
         private void V6ColorDataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            //Vẽ màu viền ô hiện tại.
-            //if (!Focused) return;
-            if (CurrentCell == null) return;
-            if (e.ColumnIndex == CurrentCell.ColumnIndex
-                && e.RowIndex == CurrentCell.RowIndex)
+            try
+            {
+                
+                if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
+                {
+                    var eRow = Rows[e.RowIndex];
+                    var eColumn = Columns[e.ColumnIndex];
+                    var eCell = eRow.Cells[e.ColumnIndex];
+                    if(ObjectAndString.IsNumberType(e.Value.GetType()) && ObjectAndString.ObjectToDecimal(e.Value) == 0)
+                    {
+                        e.Handled = true;
+                        Color eBackColor = e.CellStyle.BackColor;
+                        if (MultiSelect && SelectedRows.Contains(eRow))
+                        {
+                            eBackColor = DefaultCellStyle.SelectionBackColor;
+                        }
+                        else if (CurrentRow == eRow)
+                        {
+                            if (SelectionMode == DataGridViewSelectionMode.CellSelect && eCell == CurrentCell
+                                || SelectionMode == DataGridViewSelectionMode.FullRowSelect)
+                            {
+                                // CurrentCell đang bị vẽ số đè ở phần vẽ viền ô được chọn
+                                eBackColor = DefaultCellStyle.SelectionBackColor;
+                            }
+                        }
+                        else if (SelectedColumns.Contains(eColumn))
+                        {
+                            eBackColor = DefaultCellStyle.SelectionBackColor;
+                        }
+
+                        // Tô màu nền
+                        using (Brush b = new SolidBrush(eBackColor))
+                        {
+                            Rectangle rect = e.CellBounds;
+                            rect.Width -= 1;
+                            rect.Height -= 1;
+                            e.Graphics.FillRectangle(b, rect);
+                        }
+                        // Vẽ viền ô
+                        using (Pen p = new Pen(GridColor, 1))
+                        {
+                            Rectangle rect = e.CellBounds;
+                            rect.X -= 1;
+                            rect.Y -= 1;
+                            e.Graphics.DrawRectangle(p, rect);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ;
+            }
+            
+            //Tô viền đỏ ô đang chọn.
+            if (CurrentCell != null && e.ColumnIndex == CurrentCell.ColumnIndex && e.RowIndex == CurrentCell.RowIndex)
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.Border);
                 Color c = Focused ? Color.LightSalmon : Color.White;
@@ -824,6 +875,7 @@ namespace V6Controls
             }
         }
 
+        
         private void V6ColorDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
             if (DataSource != null)

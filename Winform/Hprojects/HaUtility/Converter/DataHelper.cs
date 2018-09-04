@@ -24,10 +24,9 @@ namespace HaUtility.Converter
 
         public static void AddRange<T>(this ICollection<T> target, IEnumerable<T> source)
         {
-            if (target == null)
-                throw new ArgumentNullException("target");
-            if (source == null)
-                throw new ArgumentNullException("source");
+            if (target == null || source == null)
+                return;
+
             foreach (var element in source)
             {
                 try

@@ -39,10 +39,9 @@ namespace V6Tools
         /// <param name="source"></param>
         public static void AddRange<T>(this ICollection<T> target, IEnumerable<T> source)
         {
-            if (target == null)
-                throw new ArgumentNullException("target");
-            if (source == null)
-                throw new ArgumentNullException("source");
+            if (target == null || source == null)
+                return;
+
             foreach (var element in source)
             {
                 try
@@ -64,10 +63,9 @@ namespace V6Tools
         /// <param name="overwrite">Lấy dữ liệu mới nếu trùng khóa</param>
         public static void AddRange(this IDictionary<string, object> target, IDictionary<string, object> source, bool overwrite = false)
         {
-            if (target == null)
-                throw new ArgumentNullException("target");
-            if (source == null)
-                throw new ArgumentNullException("source");
+            if (target == null || source == null)
+                return;
+
             if (overwrite)
             {
                 foreach (KeyValuePair<string, object> item in source)
@@ -92,10 +90,9 @@ namespace V6Tools
         /// <param name="overwrite"></param>
         public static void AddRange(this IDictionary<string, object> target, IDictionary<string, string> source, bool overwrite = false)
         {
-            if (target == null)
-                throw new ArgumentNullException("target");
-            if (source == null)
-                throw new ArgumentNullException("source");
+            if (target == null || source == null)
+                return;
+
             foreach (var element in source)
             {
                 if (target.ContainsKey(element.Key))
@@ -120,10 +117,9 @@ namespace V6Tools
         /// <param name="overwrite"></param>
         public static void AddRange(this IDictionary<string, string> target, IDictionary<string, object> source, bool overwrite = false)
         {
-            if (target == null)
-                throw new ArgumentNullException("target");
-            if (source == null)
-                throw new ArgumentNullException("source");
+            if (target == null || source == null)
+                return;
+
             foreach (var element in source)
             {
                 if (target.ContainsKey(element.Key))

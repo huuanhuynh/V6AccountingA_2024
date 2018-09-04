@@ -55,6 +55,7 @@ namespace V6Init
         {
             try
             {
+                _xmlInfo = new UserXmlInfo(null);
                 if (_userInfo != null && _userInfo.Table.Columns.Contains("XML_INFOR"))
                 {
                     DataSet ds = new DataSet("DataSet");
@@ -67,11 +68,11 @@ namespace V6Init
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                //
+                if (_xmlInfo != null) _xmlInfo.DataDic.Add("ERROR", ex.Message);
+                else _xmlInfo = new UserXmlInfo(new Dictionary<string, object>() {{"ERROR", ex.Message}});
             }
-            _xmlInfo = null;
         }
 
         
