@@ -29,7 +29,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         
         public void SetAM(DataTable am)
         {
-            dataGridView1.DataSource = am;
+            dataGridView1.DataSource = am.Copy();
         }
 
         public void SetAD(DataTable ad)

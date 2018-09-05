@@ -30,9 +30,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNh
             CurrentIndex = -1;
         }
 
-        public void SetAM(DataTable am81)
+        public void SetAM(DataTable am)
         {
-            dataGridView1.DataSource = am81;
+            dataGridView1.DataSource = am.Copy();
             FormatGridView();
         }
 

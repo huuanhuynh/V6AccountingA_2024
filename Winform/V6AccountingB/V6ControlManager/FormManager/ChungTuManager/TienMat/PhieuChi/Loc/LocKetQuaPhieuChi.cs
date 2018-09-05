@@ -29,9 +29,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             CurrentIndex = -1;
         }
         
-        public void SetAM(DataTable am81)
+        public void SetAM(DataTable am)
         {
-            dataGridView1.DataSource = am81;
+            dataGridView1.DataSource = am.Copy();
         }
         
         public void SetAD(DataTable ad, DataTable ad2, List<string> orderListAD2)

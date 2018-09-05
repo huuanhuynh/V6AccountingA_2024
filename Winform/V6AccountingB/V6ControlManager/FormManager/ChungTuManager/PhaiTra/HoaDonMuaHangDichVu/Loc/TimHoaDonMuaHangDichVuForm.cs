@@ -9,6 +9,7 @@ using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
+using V6Tools;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichVu.Loc
@@ -320,6 +321,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         {
             e.Cancel = true;
             Hide();
+        }
+
+        public void UpdateAM(string sttRec, IDictionary<string, object> data, V6Mode mode)
+        {
+            try
+            {
+                DataTable dt = _locKetQua.dataGridView1.DataSource as DataTable;
+                if (dt == null) return;
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (row["STT_REC"].ToString().Trim() == sttRec)
+                    {
+                        if (mode == V6Mode.Delete) dt.Rows.Remove(row);
+                        else V6ControlFormHelper.UpdateDataRow(row, data);
+                        return;
+                    }
+                }
+
+                dt.AddRow(data);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".UpdateAM", ex);
+            }
+            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _formChungTu.Invoice.Mact, _formChungTu.MA_NT);
         }
     }
 }

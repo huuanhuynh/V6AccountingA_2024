@@ -26,14 +26,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             CurrentIndex = -1;
         }
         
-        public void SetAM(DataTable am81)
+        public void SetAM(DataTable am)
         {
-            dataGridView1.DataSource = am81;
+            dataGridView1.DataSource = am.Copy();
         }
 
-        public void SetAD(DataTable ad81)
+        public void SetAD(DataTable ad)
         {
-            dataGridView2.DataSource = ad81;
+            dataGridView2.DataSource = ad;
         }
         
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)

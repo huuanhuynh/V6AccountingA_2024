@@ -2935,7 +2935,7 @@ namespace V6Controls.Forms
         /// <param name="ExcelTemplateFileFull">File excel mẫu.</param>
         /// <param name="defaultSaveName">Tên file lưu gợi ý.</param>
         public static void ExportExcelTemplate_ChooseFile(IWin32Window owner, DataTable data, DataTable tbl2,
-            SortedDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
+            IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string defaultSaveName)
         {
             
@@ -2967,7 +2967,7 @@ namespace V6Controls.Forms
         
         
         public static void ExportExcelTemplate(IWin32Window owner, DataTable data, DataTable tbl2,
-            SortedDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
+            IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string saveFileName)
         {
             
@@ -3146,7 +3146,7 @@ namespace V6Controls.Forms
         /// <param name="ExcelTemplateFileFull">File excel mẫu.</param>
         /// <param name="defaultSaveName">Tên file lưu gợi ý.</param>
         public static void ExportExcelGroup_ChooseFile(IWin32Window owner, DataTable data, DataTable data2, DataTable tbl3,
-            SortedDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
+            IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string defaultSaveName)
         {
 
@@ -3190,7 +3190,7 @@ namespace V6Controls.Forms
         /// <param name="ExcelTemplateFileFull">File excel mẫu.</param>
         /// <param name="saveFileName">Tên file lưu gợi ý.</param>
         public static void ExportExcelGroup(IWin32Window owner, DataTable data, DataTable data2, DataTable tbl3,
-            SortedDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
+            IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string saveFileName)
         {
             
@@ -3403,7 +3403,7 @@ namespace V6Controls.Forms
         /// <param name="excelColumns">Các cột ,,</param>
         /// <param name="excelHeaders">Điền tên các cột ,,</param>
         public static void ExportExcelTemplateD(IWin32Window owner, DataTable data, DataTable tbl2, string MODE,
-            SortedDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
+            IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string defaultSaveName, string excelColumns, string excelHeaders)
         {
             
@@ -3568,7 +3568,7 @@ namespace V6Controls.Forms
         }
         
         public static void ExportExcelTemplateHTKK(DataTable data, DataTable tbl2,
-            SortedDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
+            IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string excelTemplateFile, string saveFileName)
         {
             
@@ -3749,7 +3749,7 @@ namespace V6Controls.Forms
         
         
         public static void ExportExcelTemplateONLINE(DataTable data, DataTable tbl2,
-            SortedDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
+            IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string excelTemplateFile, string saveFileName)
         {
             
@@ -4261,12 +4261,27 @@ namespace V6Controls.Forms
             }
         }
 
+        public static void UpdateDataRow(DataRow row, IDictionary<string, object> data)
+        {
+            if (data == null) return;
+            if (row == null) return;
+            var dt = row.Table;
+
+            foreach (KeyValuePair<string, object> item in data)
+            {
+                if (dt.Columns.Contains(item.Key))
+                {
+                    row[item.Key] = ObjectAndString.ObjectTo(dt.Columns[item.Key].DataType, item.Value ?? DBNull.Value);
+                }
+            }
+        }
+
         /// <summary>
         /// Cập nhập dữ liệu lên một dòng của GridView. Dữ liệu có cột nào thì cập nhập cột đó.
         /// </summary>
         /// <param name="row"></param>
         /// <param name="data"></param>
-        public static void UpdateGridViewRow(DataGridViewRow row, SortedDictionary<string, object> data)
+        public static void UpdateGridViewRow(DataGridViewRow row, IDictionary<string, object> data)
         {
             if (data == null) return;
             if (row == null) return;
@@ -4306,7 +4321,7 @@ namespace V6Controls.Forms
         /// <param name="dataAM">Thông tin đầu vào</param>
         /// <param name="fields">Các trường cần update thông</param>
         /// <param name="AD">Bảng cần update</param>
-        public static void UpdateDKlistAll(SortedDictionary<string, object> dataAM, string[] fields, DataTable AD)
+        public static void UpdateDKlistAll(IDictionary<string, object> dataAM, string[] fields, DataTable AD)
         {
             if (AD == null) return;
             try

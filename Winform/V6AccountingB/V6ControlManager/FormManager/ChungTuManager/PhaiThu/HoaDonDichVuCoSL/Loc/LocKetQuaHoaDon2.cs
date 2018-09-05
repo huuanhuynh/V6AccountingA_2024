@@ -27,14 +27,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.L
             dataGridView2.TableSource = null;
         }
 
-        public void SetAM(DataTable am81)
+        public void SetAM(DataTable am)
         {
-            dataGridView1.DataSource = am81.Copy();
+            dataGridView1.DataSource = am.Copy();
         }
 
-        public void SetAD(DataTable ad81)
+        public void SetAD(DataTable ad)
         {
-            dataGridView2.TableSource = ad81;
+            dataGridView2.TableSource = ad;
         }
         
         

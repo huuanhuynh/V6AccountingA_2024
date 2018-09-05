@@ -9,6 +9,7 @@ using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
+using V6Tools;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
@@ -73,8 +74,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
 
         private void SetValueAndShowLocKetQua()
         {
-            _locKetQua.SetAM(tAM);
-            ChungTu.ViewSearchSumary(this, tAM, lblDocSoTien, _formChungTu.Invoice.Mact, _formChungTu.MA_NT);
+            _locKetQua.SetAM(tempAM);
+            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _formChungTu.Invoice.Mact, _formChungTu.MA_NT);
             Refresh0();
             _locKetQua.SetAD(_formChungTu.AD, _formChungTu.AD2);
 
@@ -107,7 +108,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
             {
                 if (_locKetQua != null && _locKetQua.Visible)
                 {
-                    _formChungTu.AM = tAM;
+                    _formChungTu.AM = tempAM;
                     _formChungTu.ResetADTables();
                     _formChungTu.ViewInvoice(_locKetQua.CurrentSttRec, V6Mode.View);
                     Hide();
@@ -146,7 +147,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
         private bool flagSearchFinish;
         private bool flagSearchSuccess;
         private string exMessage = "";
-        private DataTable tAM;
+        private DataTable tempAM;
 
         void checkSearch_Tick(object sender, EventArgs e)
         {
@@ -196,8 +197,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
                 var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
                 var w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
 
-                tAM = _formChungTu.Invoice.SearchAM(where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
-                if (tAM != null && tAM.Rows.Count > 0)
+                tempAM = _formChungTu.Invoice.SearchAM(where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
+                if (tempAM != null && tempAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;
                 }
@@ -336,6 +337,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
         {
             e.Cancel = true;
             Hide();
+        }
+
+        public void UpdateAM(string sttRec, IDictionary<string, object> data, V6Mode mode)
+        {
+            try
+            {
+                DataTable dt = _locKetQua.dataGridView1.DataSource as DataTable;
+                if (dt == null) return;
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (row["STT_REC"].ToString().Trim() == sttRec)
+                    {
+                        if (mode == V6Mode.Delete) dt.Rows.Remove(row);
+                        else V6ControlFormHelper.UpdateDataRow(row, data);
+                        return;
+                    }
+                }
+
+                dt.AddRow(data);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".UpdateAM", ex);
+            }
+            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _formChungTu.Invoice.Mact, _formChungTu.MA_NT);
         }
     }
 }

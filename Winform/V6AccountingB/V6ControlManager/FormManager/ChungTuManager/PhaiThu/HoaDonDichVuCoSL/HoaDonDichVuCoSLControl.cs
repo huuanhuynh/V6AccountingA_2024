@@ -4412,6 +4412,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 if (loadAM.Rows.Count == 1)
                 {
                     var loadRow = loadAM.Rows[0];
+                    if (_timForm != null && !_timForm.IsDisposed)
+                        _timForm.UpdateAM(_sttRec, loadRow.ToDataDictionary(), V6Mode.Update);
 
                     if (mode == V6Mode.Edit)
                     {
@@ -4799,6 +4801,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
                 if (flagDeleteSuccess)
                 {
+                    if (_timForm != null && !_timForm.IsDisposed)
+                        _timForm.UpdateAM(_sttRec, null, V6Mode.Delete);
+
                     All_Objects["mode"] = V6Mode.Delete;
                     All_Objects["AM_DATA"] = addDataAM;
                     All_Objects["STT_REC"] = _sttRec;
@@ -5141,7 +5146,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 if (IsHaveInvoice)
                 {
-                    if (_timForm == null) return;
+                    if (_timForm == null) _timForm = new TimHoaDonDichVuCoSLForm(this);
                     _timForm.ViewMode = true;
                     _timForm.Refresh0();
                     _timForm.Visible = false;
