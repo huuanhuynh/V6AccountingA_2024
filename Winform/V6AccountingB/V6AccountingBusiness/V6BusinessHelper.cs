@@ -1234,22 +1234,7 @@ namespace V6AccountingBusiness
             return Math.Round(number, round, MidpointRounding.AwayFromZero);
 
         }
-
-        //{ Tuanmh 21/08/2016
-        public static string V6_DTOC(DateTime? pdatetime)
-        {
-            if (pdatetime == null) return "";
-            var pformat = "dd/MM/yyyy";
-            return ((DateTime)pdatetime).ToString(pformat);
-        }
-        public static string V6_DTOS(DateTime? pdatetime)
-        {
-            if (pdatetime == null) return "";
-            var pformat = "yyyyMMdd";
-            return ((DateTime)pdatetime).ToString(pformat);
-        }
-        //}
-
+        
         /// <summary>
         /// Tạo chuỗi mã stt_rec0
         /// </summary>

@@ -6067,9 +6067,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 if (AD != null && AD.Rows.Count > 0 && dataGridView1.DataSource != null)
                 {
-                    detail1.ChangeToEditMode();
                     _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
-
+                    if (_gv1EditingRow == null)
+                    {
+                        this.ShowWarningMessage(V6Text.NoSelection);
+                        return;
+                    }
+                    detail1.ChangeToEditMode();
                     _maVt.RefreshLoDateYnValue();
                     _maKhoI.RefreshLoDateYnValue();
                     XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);

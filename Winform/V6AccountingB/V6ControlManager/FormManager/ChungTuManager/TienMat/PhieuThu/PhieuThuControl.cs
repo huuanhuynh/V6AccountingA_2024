@@ -1332,11 +1332,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                
                 if (Txtdien_giai.Text != "")
                 {
-                    _dien_giaii.Text = Txtdien_giai.Text.Trim() + " số " + row["SO_CT"].ToString().Trim() + ", ngày " + V6BusinessHelper.V6_DTOC((DateTime)row["NGAY_CT"]);
+                    _dien_giaii.Text = Txtdien_giai.Text.Trim() + " số " + row["SO_CT"].ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)row["NGAY_CT"]);
                 }
                 else
                 {
-                    _dien_giaii.Text = " Thu tiền bán hàng theo CT số" + row["SO_CT"].ToString().Trim() + ", ngày " + V6BusinessHelper.V6_DTOC((DateTime)row["NGAY_CT"]);
+                    _dien_giaii.Text = " Thu tiền bán hàng theo CT số" + row["SO_CT"].ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)row["NGAY_CT"]);
                 }
                 //}
                 
@@ -1664,8 +1664,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 {
                     LoadDetailControls(_MA_GD);
                     
-                    //alct = alct1_01;
-
+                    var dataGridViewColumn = dataGridView1.Columns["TK_I"];
+                    if (dataGridViewColumn != null)
+                    {
+                        dataGridViewColumn.Visible = true;
+                        dataGridViewColumn.DisplayIndex = 0;
+                    }
                     var gridViewColumn = dataGridView1.Columns["TEN_TK_I"];
                     if (gridViewColumn != null)
                     {
@@ -1676,8 +1680,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 {
                     LoadDetailControls("A");
 
-                    //alct = alct1_01;
-
+                    var dataGridViewColumn = dataGridView1.Columns["TK_I"];
+                    if (dataGridViewColumn != null)
+                    {
+                        dataGridViewColumn.Visible = true;
+                        dataGridViewColumn.DisplayIndex = 0;
+                    }
                     var gridViewColumn = dataGridView1.Columns["TEN_TK_I"];
                     if (gridViewColumn != null)
                     {
@@ -2023,7 +2031,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             dataGridView1.DataSource = AD;
             dataGridView3.DataSource = AD3;
             
-            ReorderDataGridViewColumns();
+            //ReorderDataGridViewColumns();
             GridViewFormat();
         }
 
@@ -2168,6 +2176,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Invoice.GRDS_AD, Invoice.GRDF_AD,
                     V6Setting.IsVietnamese ? Invoice.GRDHV_AD : Invoice.GRDHE_AD);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
+            V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView3, _orderList3);
         }
         
         /// <summary>
@@ -2321,7 +2330,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 Mode = V6Mode.View;
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
 
-                XuLyThayDoiLoaiPhieuThu();
                 //Tuanmh 20/02/2016
                 XuLyThayDoiMaNt();
 
@@ -2371,6 +2379,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 txtTk.ExistRowInTable();
 
                 SetGridViewData();
+                XuLyThayDoiLoaiPhieuThu();
                 Mode = V6Mode.View;
                 //btnSua.Focus();
                 FormatNumberControl();
@@ -3101,7 +3110,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
             LoadAD("");
             SetGridViewData();
-                
+            XuLyThayDoiLoaiPhieuThu();
             ResetAllVars();
             EnableVisibleControls();
             SetFormDefaultValues();
@@ -3320,7 +3329,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 if (_gv1EditingRow == null)
                 {
-                    this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                     return false;
                 }
 
@@ -3887,8 +3896,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 if (AD != null && AD.Rows.Count > 0 && dataGridView1.DataSource != null)
                 {
-                    detail1.ChangeToEditMode();
                     _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+                    if (_gv1EditingRow == null)
+                    {
+                        this.ShowWarningMessage(V6Text.NoSelection);
+                        return;
+                    }
+                    
+                    detail1.ChangeToEditMode();
                     if (_MA_GD == "1" || _MA_GD == "A")
                     {
                         _soCt0.Focus();
@@ -3955,11 +3970,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         //{Tuanmh 21/08/2016
                         if (Txtdien_giai.Text != "")
                         {
-                            dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + V6BusinessHelper.V6_DTOC((DateTime)data.Cells["NGAY_CT"].Value);
+                            dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)data.Cells["NGAY_CT"].Value);
                         }
                         else
                         {
-                            dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + V6BusinessHelper.V6_DTOC((DateTime)data.Cells["NGAY_CT"].Value);
+                            dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)data.Cells["NGAY_CT"].Value);
                         }
                         //}
                          
@@ -4027,11 +4042,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         //{Tuanmh 21/08/2016
                         if (Txtdien_giai.Text != "")
                         {
-                            dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + V6BusinessHelper.V6_DTOC((DateTime)data.Cells["NGAY_CT"].Value);
+                            dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)data.Cells["NGAY_CT"].Value);
                         }
                         else
                         {
-                            dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + V6BusinessHelper.V6_DTOC((DateTime)data.Cells["NGAY_CT"].Value);
+                            dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)data.Cells["NGAY_CT"].Value);
                         }
                         //}
 
@@ -4280,11 +4295,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         //{Tuanmh 21/08/2016
                         if (Txtdien_giai.Text != "")
                         {
-                            dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + V6BusinessHelper.V6_DTOC((DateTime)data.Cells["NGAY_CT"].Value);
+                            dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)data.Cells["NGAY_CT"].Value);
                         }
                         else
                         {
-                            dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + V6BusinessHelper.V6_DTOC((DateTime)data.Cells["NGAY_CT"].Value);
+                            dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)data.Cells["NGAY_CT"].Value);
                         }
                         //}
 

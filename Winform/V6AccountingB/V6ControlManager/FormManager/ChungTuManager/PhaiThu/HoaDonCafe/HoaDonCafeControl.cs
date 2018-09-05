@@ -2634,9 +2634,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 else
                 {
-                    detail1.MODE = V6Mode.View;
-                    detail3.MODE = V6Mode.View;
-
                     XuLyKhoaThongTinKhachHang();
                     
                     txtTyGia.Enabled = _maNt != _mMaNt0;

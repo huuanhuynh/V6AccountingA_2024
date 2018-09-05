@@ -265,7 +265,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                     }
                     else
                     {
-                        this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
+                        this.ShowWarningMessage(V6Text.NoSelection);
                     }
                 }
 
@@ -311,7 +311,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                     }
                     else
                     {
-                        this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
+                        this.ShowWarningMessage(V6Text.NoSelection);
                     }
                 }
 
@@ -459,7 +459,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                     }
                     else
                     {
-                        this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
+                        this.ShowWarningMessage(V6Text.NoSelection);
                     }
                 }
             }
@@ -1112,7 +1112,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                     }
                     else
                     {
-                        this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
+                        this.ShowWarningMessage(V6Text.NoSelection);
                     }
                 }
             }

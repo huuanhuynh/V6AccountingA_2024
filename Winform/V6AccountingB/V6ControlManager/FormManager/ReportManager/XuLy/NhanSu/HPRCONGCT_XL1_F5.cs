@@ -167,7 +167,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
                 if (row == null)
                 {
-                    this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                     return;
                 }
 

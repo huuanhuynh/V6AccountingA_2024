@@ -823,7 +823,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 }
                 else
                 {
-                    detail1.MODE = V6Mode.Init;
                     Detail2ModeByChkSuaThue();
                     XuLyKhoaThongTinKhachHang();
                     txtTyGia.Enabled = _maNt != _mMaNt0;

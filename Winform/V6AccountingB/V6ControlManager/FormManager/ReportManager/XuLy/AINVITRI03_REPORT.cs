@@ -280,7 +280,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
 
             }
@@ -317,7 +317,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
 
             }
@@ -354,7 +354,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 else
                 {
-                    this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
