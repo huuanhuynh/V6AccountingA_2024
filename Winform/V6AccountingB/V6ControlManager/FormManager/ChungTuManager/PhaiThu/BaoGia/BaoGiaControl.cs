@@ -2851,6 +2851,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     GetDefault_Other();
                     SetDefaultData(Invoice);
                     detail1.DoAddButtonClick();
+                    SetControlReadOnlyHide(detail1, Invoice, V6Mode.Add);
                     SetDefaultDetail();
                     txtMa_sonb.Focus();
                 }
@@ -3278,6 +3279,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             try
             {
                 SetDefaultDetail();
+                SetControlReadOnlyHide(detail1, Invoice, V6Mode.Add);
                 _mavvi.Text = txtvBienSo.Text;
                 _maVt.Focus();
             }
@@ -3782,9 +3784,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             {
                 if (AD != null && AD.Rows.Count > 0 && dataGridView1.DataSource != null)
                 {
-                    detail1.ChangeToEditMode();
                     _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
-
+                    detail1.ChangeToEditMode();
+                    SetControlReadOnlyHide(detail1, Invoice, V6Mode.Edit);
+                    
                     _maVt.RefreshLoDateYnValue();
                     _maKhoI.RefreshLoDateYnValue();
                     XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);

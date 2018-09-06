@@ -3128,6 +3128,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     XuLyKhoaThongTinTheoMaGD();
                     XuLyThayDoiLoaiPhieuThu();
                     detail1.DoAddButtonClick();
+                    SetControlReadOnlyHide(detail1, Invoice, V6Mode.Add);
                     SetDefaultDetail();
                     
                     txtMa_sonb.Focus();
@@ -3540,6 +3541,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             try
             {
                 SetDefaultDetail();
+                SetControlReadOnlyHide(detail1, Invoice, V6Mode.Add);
                 if (_MA_GD == "1")
                 {
                     _soCt0.Focus();
@@ -4293,6 +4295,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     }
 
                     detail1.ChangeToEditMode();
+                    SetControlReadOnlyHide(detail1, Invoice, V6Mode.Edit);
+
                     if (_MA_GD == "1")
                     {
                         _soCt0.Focus();
