@@ -1602,7 +1602,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 this.ShowErrorMessage(GetType() + ".EnableFormControls: " + ex.Message, "HangTraLaiControl");
             }
 
-            SetControlReadOnlyHide(Invoice);
+            SetControlReadOnlyHide(this, Invoice, Mode);
         }
 
         #region ==== DataGridView ====

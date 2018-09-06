@@ -280,8 +280,7 @@ namespace V6Controls
                     //Send Tab
                     SendKeys.Send("{TAB}");
                 }
-                
-                if (F5 && !ReadOnly && e.KeyCode == Keys.F5 && !string.IsNullOrEmpty(LookupInfo.FieldName))
+                else if (F5 && !ReadOnly && e.KeyCode == Keys.F5 && !string.IsNullOrEmpty(LookupInfo.FieldName))
                 {
                     LoadAutoCompleteSource();
                     DoLookup(LookupMode.Single);

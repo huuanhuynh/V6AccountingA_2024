@@ -1613,7 +1613,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 this.ShowErrorMessage(GetType() + ".EnableFormControls: " + ex.Message);
             }
 
-            SetControlReadOnlyHide(Invoice);
+            SetControlReadOnlyHide(this, Invoice, Mode);
         }
 
         protected override void EnableNavigationButtons()

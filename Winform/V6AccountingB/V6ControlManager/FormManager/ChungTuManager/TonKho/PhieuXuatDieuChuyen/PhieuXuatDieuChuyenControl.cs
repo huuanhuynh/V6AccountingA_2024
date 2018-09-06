@@ -1368,50 +1368,65 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         private void XuLyChonMaKhoX()
         {
+            string method_log = "";
             try
             {
                 var makhoX_data = txtMaKhoX.Data;
-
+                method_log += "1";
                 txtMaKhoX.RefreshLoDateYnValue();
-
+                method_log += "2";
 
                 //GetTon13();
                 //GetLoDate();
                 if (_maVt.VITRI_YN)
                 {
+                    method_log += "3";
                     if (_maVt.LO_YN && _maVt.DATE_YN)
                     {
+                        method_log += "4";
                         GetViTriLoDate();
+                        method_log += "5";
                     }
                     else
                     {
+                        method_log += "6";
                         GetViTri();
+                        method_log += "7";
                     }
                 }
                 else
                 {
+                    method_log += "8";
                     //GetLoDate();
                     if (_maLo.Text == "") GetLoDate();
                     else GetLoDate13();
+
+                    method_log += "9";
                 }
+
+                method_log += " 10 ";
 
                 if (makhoX_data != null)
                 {
+                    method_log += "11";
                     TxtTen_kho.Text = makhoX_data["TEN_KHO"].ToString();
-
+                    method_log += "12";
                     var tk_dl = makhoX_data["TK_DL"].ToString().Trim();
+                    method_log += "13";
                     if (!string.IsNullOrEmpty(tk_dl))
                     {
+                        method_log += "14";
                         _tkVt.Text = tk_dl;
                         foreach (DataRow row in AD.Rows)
                         {
                             row["TK_VT"] = tk_dl;
                         }
+                        method_log += "15";
                     }
                     else
                     {
+                        method_log += "16";
                         //{Tuanmh 14/09/2017 Set lai TK_vt khi doi ma_kho
-
                         var mavt_data = _maVt.Data;
                         var tk_vt_tmp="";
 
@@ -1423,7 +1438,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                                 _tkVt.Text = tk_vt_tmp;
                             }
                         }
-
+                        method_log += "17";
 
                         foreach (DataRow row in AD.Rows)
                         {
@@ -1439,15 +1454,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             }
 
                         }
-                        //}                       
+                        method_log += "18";
                     }
-
                 }
+                method_log += "19";
             }
-
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".XuLyChonMaKhoX " + _sttRec, ex);
+                this.WriteExLog(GetType() + ".XuLyChonMaKhoX " + _sttRec + " " + method_log, ex);
             }
         }
 
@@ -2417,7 +2431,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 this.ShowErrorMessage(GetType() + ".EnableFormControls: " + ex.Message);
             }
 
-            SetControlReadOnlyHide(Invoice);
+            SetControlReadOnlyHide(this, Invoice, Mode);
         }
         
         protected override void EnableNavigationButtons()

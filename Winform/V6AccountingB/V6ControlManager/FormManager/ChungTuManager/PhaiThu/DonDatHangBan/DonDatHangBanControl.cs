@@ -1297,7 +1297,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 this.ShowErrorMessage(GetType() + ".EnableFormControls: " + ex.Message);
             }
 
-            SetControlReadOnlyHide(Invoice);
+            SetControlReadOnlyHide(this, Invoice, Mode);
         }
 
         protected override void EnableNavigationButtons()

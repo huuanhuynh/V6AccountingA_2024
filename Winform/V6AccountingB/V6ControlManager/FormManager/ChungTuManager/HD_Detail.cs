@@ -516,7 +516,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             c.Location = _p0;
             panel0.Controls.Add(c);
 
-            if (c.Tag == null || c.Tag.ToString() != "hide")
+            if (c.Tag == null || c.IsVisibleTag())//.Tag.ToString() != "hide")
             {
                 c.TabStop = true;
                 if (c is V6ColorTextBox)

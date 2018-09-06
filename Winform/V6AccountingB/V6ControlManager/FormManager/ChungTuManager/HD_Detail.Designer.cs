@@ -105,7 +105,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnSua.Location = new System.Drawing.Point(35, 0);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(41, 25);
-            this.btnSua.TabIndex = 4;
+            this.btnSua.TabIndex = 5;
             this.btnSua.TabStop = false;
             this.btnSua.Tag = "cancel";
             this.btnSua.Text = "&2";
@@ -156,7 +156,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnNhan.Location = new System.Drawing.Point(35, 25);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(41, 25);
-            this.btnNhan.TabIndex = 3;
+            this.btnNhan.TabIndex = 4;
             this.btnNhan.Tag = "cancel";
             this.btnNhan.Text = "&4";
             this.btnNhan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

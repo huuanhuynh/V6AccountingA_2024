@@ -1392,7 +1392,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 this.ShowErrorMessage(GetType() + ".EnableFormControls: " + ex.Message);
             }
 
-            SetControlReadOnlyHide(Invoice);
+            SetControlReadOnlyHide(this, Invoice, Mode);
         }
 
 

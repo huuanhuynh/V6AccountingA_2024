@@ -1188,7 +1188,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 this.ShowErrorMessage(GetType() + ".EnableFormControls: " + ex.Message);
             }
 
-            SetControlReadOnlyHide(Invoice);
+            SetControlReadOnlyHide(this, Invoice, Mode);
         }
 
         #region ==== DataGridView ====

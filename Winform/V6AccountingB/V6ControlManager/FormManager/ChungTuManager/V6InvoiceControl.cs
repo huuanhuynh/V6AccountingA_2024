@@ -263,15 +263,16 @@ namespace V6ControlManager.FormManager.ChungTuManager
             throw new System.NotImplementedException("Cần override.");
         }
 
-        protected void SetControlReadOnlyHide(V6InvoiceBase invoice)
+        protected void SetControlReadOnlyHide(Control container, V6InvoiceBase invoice, V6Mode mode)
         {
             try //  Ẩn hiện theo quyền trong Alctct
             {
-                if (AM == null || AM_current == null) return;
+                if (AM == null) return;
                 List<string> add_readonly = new List<string>();
                 List<string> edit_readonly = new List<string>();
                 int sl_in = 0;
-                if(AM.Columns.Contains("SL_IN")) sl_in = ObjectAndString.ObjectToInt(AM_current["SL_IN"]);
+                if(Mode == V6Mode.Edit)
+                    if(AM.Columns.Contains("SL_IN")) sl_in = ObjectAndString.ObjectToInt(AM_current["SL_IN"]);
 
                 foreach (string s in invoice.GRD_READONLY)
                 {
@@ -292,20 +293,20 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     }
                 }
                 
-                if (Mode == V6Mode.Add)
+                if (mode == V6Mode.Add)
                 {
-                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, edit_readonly, false);
-                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, add_readonly, true);
+                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, edit_readonly, false);
+                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, add_readonly, true);
                 }
-                else if (Mode == V6Mode.Edit)
+                else if (mode == V6Mode.Edit)
                 {
-                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, add_readonly, false);
-                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, edit_readonly, true);
-                    //V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, in_readonly, true);
+                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, add_readonly, false);
+                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, edit_readonly, true);
+                    //V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, in_readonly, true);
                 }
-                
-                //V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(this, invoice.GRD_READONLY, true);
-                V6ControlFormHelper.SetListControlVisibleByAccessibleNames(this, invoice.GRD_HIDE, false);
+
+                //V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, invoice.GRD_READONLY, true);
+                V6ControlFormHelper.SetListControlVisibleByAccessibleNames(container, invoice.GRD_HIDE, false);
             }
             catch (Exception ex2)
             {

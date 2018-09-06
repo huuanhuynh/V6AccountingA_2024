@@ -2009,7 +2009,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 this.ShowErrorException(GetType() + ".EnableFormControls " + _sttRec, ex);
             }
 
-            SetControlReadOnlyHide(Invoice);
+            SetControlReadOnlyHide(this, Invoice, Mode);
         }
 
         protected override void EnableNavigationButtons()

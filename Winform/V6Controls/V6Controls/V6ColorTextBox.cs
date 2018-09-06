@@ -223,11 +223,14 @@ namespace V6Controls
                 return base.ProcessCmdKey(ref msg, keyData);
             }
 
-            if (keyData == Keys.Enter && UseSendTabOnEnter)
-            {
-                SendKeys.Send("{TAB}");
-                return false;
-            }
+            //if (keyData == Keys.Enter && UseSendTabOnEnter)
+            //{
+            //    //SendKeys.Send("{TAB}");
+            //    SelectNextControl(this, true, true, true, true);
+            //    //if (!b)
+            //    //    SendKeys.Send("{TAB}");
+            //    return false;
+            //}
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -766,16 +769,11 @@ namespace V6Controls
                 return;
             }
 
-            //if (e.KeyCode == Keys.Enter)
-            //{
-            //    if (UseSendTabOnEnter)
-            //    {
-            //        e.SuppressKeyPress = true;
-            //        SendKeys.Send("{TAB}");
-            //    }
-            //}
-            //else
-            if (ShiftF3 && e.KeyData == (Keys.Shift | Keys.F3))
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+            else if (ShiftF3 && e.KeyData == (Keys.Shift | Keys.F3))
             {
                 Text = TextFunctions.ChangeCase(Text);
             }

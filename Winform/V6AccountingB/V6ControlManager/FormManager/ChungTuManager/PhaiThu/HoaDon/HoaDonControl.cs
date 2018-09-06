@@ -3122,7 +3122,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.WriteExLog(GetType() + ".EnableFormControls " + _sttRec, ex);
             }
 
-            SetControlReadOnlyHide(Invoice);
+            SetControlReadOnlyHide(this, Invoice, Mode);
             
         }
 
@@ -5014,6 +5014,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     SetDefaultData(Invoice);
                     Txtma_td_ph.Text = base.GetCA();
                     detail1.DoAddButtonClick();
+                    SetControlReadOnlyHide(detail1, Invoice, V6Mode.Add);
+
                     SetDefaultDetail();
                     detail3.MODE = V6Mode.Init;
                     txtMa_sonb.Focus();
@@ -5498,6 +5500,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             try
             {
                 SetDefaultDetail();
+                SetControlReadOnlyHide(detail1, Invoice, V6Mode.Add);
                 _maVt.Focus();
             }
             catch (Exception ex)
@@ -6074,6 +6077,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         return;
                     }
                     detail1.ChangeToEditMode();
+                    SetControlReadOnlyHide(detail1, Invoice, V6Mode.Edit);
+
                     _maVt.RefreshLoDateYnValue();
                     _maKhoI.RefreshLoDateYnValue();
                     XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
