@@ -807,7 +807,6 @@ namespace V6Controls
         {
             try
             {
-                
                 if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
                 {
                     var eRow = Rows[e.RowIndex];
@@ -817,7 +816,7 @@ namespace V6Controls
                     {
                         e.Handled = true;
                         Color eBackColor = e.CellStyle.BackColor;
-                        if (MultiSelect && SelectedRows.Contains(eRow))
+                        if (MultiSelect && SelectedRows.Contains(eRow) || SelectedCells.Contains(eCell))
                         {
                             eBackColor = DefaultCellStyle.SelectionBackColor;
                         }
@@ -830,7 +829,7 @@ namespace V6Controls
                                 eBackColor = DefaultCellStyle.SelectionBackColor;
                             }
                         }
-                        else if (SelectedColumns.Contains(eColumn))
+                        else if (SelectedColumns.Contains(eColumn) || SelectedCells.Contains(eCell))
                         {
                             eBackColor = DefaultCellStyle.SelectionBackColor;
                         }

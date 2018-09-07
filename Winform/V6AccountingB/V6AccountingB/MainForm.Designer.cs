@@ -69,6 +69,7 @@ namespace V6AccountingB
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.lblV6Message = new System.Windows.Forms.Label();
+            this.stickNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelLogin.SuspendLayout();
@@ -147,14 +148,15 @@ namespace V6AccountingB
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeDVCSToolStripMenuItem});
+            this.changeDVCSToolStripMenuItem,
+            this.stickNoteToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(151, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
             // 
             // changeDVCSToolStripMenuItem
             // 
             this.changeDVCSToolStripMenuItem.Name = "changeDVCSToolStripMenuItem";
-            this.changeDVCSToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.changeDVCSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.changeDVCSToolStripMenuItem.Text = "Change Agent";
             this.changeDVCSToolStripMenuItem.Click += new System.EventHandler(this.changeDVCSToolStripMenuItem_Click);
             // 
@@ -620,6 +622,13 @@ namespace V6AccountingB
             this.lblV6Message.Text = ".....";
             this.lblV6Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // stickNoteToolStripMenuItem
+            // 
+            this.stickNoteToolStripMenuItem.Name = "stickNoteToolStripMenuItem";
+            this.stickNoteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stickNoteToolStripMenuItem.Text = "Stick note";
+            this.stickNoteToolStripMenuItem.Click += new System.EventHandler(this.stickNoteToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -689,6 +698,7 @@ namespace V6AccountingB
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem changeDVCSToolStripMenuItem;
         private System.Windows.Forms.Label lblDVCS;
+        private ToolStripMenuItem stickNoteToolStripMenuItem;
         
     }
 }

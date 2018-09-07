@@ -4184,6 +4184,12 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOF_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ACPDDCK_F4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ACPDDCK_F4.designer.cs">
+      <DependentUpon>ACPDDCK_F4.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AGLGSSO4T.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -7277,6 +7283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ACPDDCK.resx">
       <DependentUpon>ACPDDCK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ACPDDCK_F4.resx">
+      <DependentUpon>ACPDDCK_F4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINGIA_NTXT.resx">
       <DependentUpon>AINGIA_NTXT.cs</DependentUpon>

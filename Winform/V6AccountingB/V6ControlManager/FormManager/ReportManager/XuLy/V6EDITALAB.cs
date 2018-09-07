@@ -245,7 +245,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 try
                 {
                     DoAfterExecuteSuccess();
-                    V6ControlFormHelper.ShowMainMessage("Thực hiện xong!\r\n" + _message);
+                    V6ControlFormHelper.ShowMainMessage(V6Text.Finish + "\r\n" + _message);
                     _success = false;
                 }
                 catch (Exception ex)

@@ -663,6 +663,11 @@ namespace V6AccountingB
            ChangeDVCS();
         }
 
+        private void stickNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void lblDVCS_MouseClick(object sender, MouseEventArgs e)
         {
             ChangeDVCS();
@@ -673,6 +678,7 @@ namespace V6AccountingB
             // Navigate to a URL.
             System.Diagnostics.Process.Start("http://www.v6soft.com.vn");
         }
+        
 
         
     }

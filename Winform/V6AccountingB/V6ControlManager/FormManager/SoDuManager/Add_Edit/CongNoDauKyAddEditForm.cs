@@ -124,8 +124,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 ((Timer)sender).Stop();
                 ShowMainMessage(thread_finish_success
-                    ? "Thực hiện xong AGLSD0_UpdateTK_Thread."
-                    : "Thực hiện lỗi AGLSD0_UpdateTK_Thread.");
+                    ? V6Text.Finish + " AGLSD0_UpdateTK_Thread."
+                    : V6Text.Fail + " AGLSD0_UpdateTK_Thread.");
                 thread_finish = false;
                 thread_finish_success = false;
             }

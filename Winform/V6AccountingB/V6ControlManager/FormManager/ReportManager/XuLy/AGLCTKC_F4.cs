@@ -104,7 +104,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 this.ShowErrorException(GetType() + ".btnNhan_Click", ex);
             }
-            _executing = false;
         }
 
         private void Executing()
@@ -150,7 +149,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     OnUpdateSuccessEvent();
                     Dispose();
-                    V6ControlFormHelper.ShowMainMessage("Thực hiện xong.");
                 }
                 else
                 {

@@ -191,15 +191,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
 
                                 var fText = "Kết chuyển tự động ";
-                                var f = new V6Form
-                                {
-                                    Text = fText,
-                                    AutoSize = true,
-                                    FormBorderStyle = FormBorderStyle.FixedSingle
-                                };
-
-                                var ketchuyenForm = new AGLCTKC_F4(_numlist, selectedNam, _program);
-
+                                var ketchuyenForm = new ACPDDCK_F4(_numlist, selectedNam, _program);
 
                                 ketchuyenForm.UpdateSuccessEvent += delegate
                                 {
@@ -208,18 +200,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                         if (row.IsSelect())
                                         {
                                             row.UnSelect();
-
                                         }
                                     }
+                                    V6ControlFormHelper.ShowMainMessage(V6Text.Finish);
                                 };
 
-                                f.Controls.Add(ketchuyenForm);
-                                ketchuyenForm.Disposed += delegate
-                                {
-                                    f.Dispose();
-                                };
-
-                                f.ShowDialog(this);
+                                ketchuyenForm.ShowToForm(this, fText);
                                 SetStatus2Text();
                             }
                         }

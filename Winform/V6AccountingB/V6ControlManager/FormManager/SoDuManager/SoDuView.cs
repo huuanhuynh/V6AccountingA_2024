@@ -53,8 +53,8 @@ namespace V6ControlManager.FormManager.SoDuManager
             {
                 ((Timer)sender).Stop();
                 V6ControlFormHelper.ShowMainMessage(thread_finish_success
-                    ? "Thực hiện xong AGLSD0."
-                    : "Thực hiện lỗi AGLSD0.");
+                    ? V6Text.Finish + " AGLSD0."
+                    : V6Text.Fail + " AGLSD0.");
                 thread_finish = false;
                 thread_finish_success = false;
             }

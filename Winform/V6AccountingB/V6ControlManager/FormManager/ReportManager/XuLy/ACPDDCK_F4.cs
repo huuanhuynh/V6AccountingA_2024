@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
@@ -10,12 +11,12 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public partial class AGLCTPB_F4 : V6FormControl
+    public partial class ACPDDCK_F4 : V6FormControl
     {
         #region Biến toàn cục
 
         protected DataRow _am;
-        protected string _sttreclist, _text, _program;
+        protected string _numlist, _text, _program;
         protected int _year;
 
         //protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
@@ -40,14 +41,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
        
         #endregion properties
-        public AGLCTPB_F4()
+        public ACPDDCK_F4()
         {
             InitializeComponent();
         }
 
-        public AGLCTPB_F4(string sttreclist, int year, string program)
+        public ACPDDCK_F4(string numlist,int year,string program)
         {
-            _sttreclist = sttreclist;
+            _numlist = numlist;
             _year = year;
             _program = program;
 
@@ -59,9 +60,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                dateNam.SetValue(new DateTime(_year, 1, 1));
-                dateThang1.SetValue(V6Setting.M_SV_DATE);
-                dateThang2.SetValue(V6Setting.M_SV_DATE);
+                txtNam.Value = _year;
+                txtKy1.Value = V6Setting.M_SV_DATE.Month;
+                txtKy2.Value = V6Setting.M_SV_DATE.Month;
                 txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
                 if (V6Login.MadvcsCount <= 1){
                     txtMaDvcs.Enabled = false;
@@ -85,35 +86,75 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
+            if (_executing)
+            {
+                return;
+            }
+
             try
             {
-                //@Type AS VARCHAR(8),
-                //@Year AS INT,
-                //@Period1 AS INT = 0,
-                //@Period2 AS INT = 0,
-                //@Stt_recs VARCHAR(MAX) = '', 
-                //@User_id INT = 1, 
-                //@Ma_dvcs VARCHAR(50) = ''
-
-                SqlParameter[] plist =
-                {
-                    new SqlParameter("@Type", "NEW"),
-                    new SqlParameter("@Year", dateNam.Date.Year),
-                    new SqlParameter("@Period1", dateThang1.Date.Month),
-                    new SqlParameter("@Period2", dateThang2.Date.Month),
-                    new SqlParameter("@Stt_recs", _sttreclist),
-                    new SqlParameter("@User_id", V6Login.UserId),
-                    new SqlParameter("@Ma_dvcs", txtMaDvcs.StringValue)
-                };
-                V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
-
-                OnUpdateSuccessEvent();
-                Dispose();
-                V6ControlFormHelper.ShowMainMessage(V6Text.Finish);
+                _executing = true;
+                _executing_success = false;
+                CheckForIllegalCrossThreadCalls = false;
+                var tLoadData = new Thread(Executing);
+                tLoadData.Start();
+                timerViewReport.Start();
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Update error:\n" + ex.Message);
+                this.ShowErrorException(GetType() + ".btnNhan_Click", ex);
+            }
+        }
+
+        private void Executing()
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Type", "NEW"),
+                    new SqlParameter("@Year", txtNam.Value),
+                    new SqlParameter("@Period1", txtKy1.Value),
+                    new SqlParameter("@Period2", txtKy2.Value),
+                    new SqlParameter("@NumList", _numlist),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                    new SqlParameter("@Ma_dvcs", txtMaDvcs.StringValue)
+
+                };
+
+                int result = V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
+                _executing_success = result > 0;
+            }
+            catch (Exception ex)
+            {
+                _message = ex.Message;
+                _executing_success = false;
+                this.WriteExLog(GetType() + ".Executing!", ex);
+            }
+            _executing = false;
+        }
+
+        private void timerViewReport_Tick(object sender, EventArgs e)
+        {
+            if (_executing)
+            {
+                btnNhan.Image = waitingImages.Images[ii++];
+                if (ii >= waitingImages.Images.Count) ii = 0;
+            }
+            else
+            {
+                timerViewReport.Stop();
+                btnNhan.Image = btnNhanImage;
+                if (_executing_success)
+                {
+                    OnUpdateSuccessEvent();
+                    Dispose();
+                }
+                else
+                {
+                    timerViewReport.Stop();
+                    ShowMainMessage(_message);
+                }
             }
         }
         
@@ -136,11 +177,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
         protected int _oldIndex = -1;
+        private bool _executing, _executing_success;
 
         protected virtual void OnUpdateSuccessEvent()
         {
             var handler = UpdateSuccessEvent;
             if (handler != null) handler();
         }
+
+        
     }
 }
