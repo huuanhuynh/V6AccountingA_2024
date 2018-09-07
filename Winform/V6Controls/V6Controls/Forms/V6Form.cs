@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 
 namespace V6Controls.Forms
 {
@@ -60,6 +61,23 @@ namespace V6Controls.Forms
         protected virtual void LoadLanguage()
         {
             V6ControlFormHelper.SetFormText(this);
+        }
+
+        /// <summary>
+        /// Gán MaxLength theo cấu trúc bảng.
+        /// </summary>
+        /// <param name="tableName"></param>
+        protected void LoadStruct(string tableName)
+        {
+            try
+            {
+                var _structTable = V6BusinessHelper.GetTableStruct(tableName);
+                V6ControlFormHelper.SetFormStruct(this, _structTable);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".Load struct eror!", ex);
+            }
         }
 
         protected bool do_hot_key;

@@ -12,11 +12,14 @@ using V6ControlManager.FormManager;
 using V6ControlManager.FormManager.HeThong.QuanLyHeThong;
 using V6ControlManager.FormManager.MenuManager;
 using V6ControlManager.FormManager.ReportManager;
+using V6ControlManager.FormManager.ReportManager.Filter;
+using V6ControlManager.FormManager.ReportManager.XuLy.NhanSu;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.Viewer;
 using V6Init;
 using V6SqlConnect;
+using V6Structs;
 using V6Tools;
 
 namespace V6AccountingB
@@ -665,7 +668,15 @@ namespace V6AccountingB
 
         private void stickNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                StickNoteForm f = new StickNoteForm(V6Mode.Add);
+                f.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".stickNote", ex);
+            }
         }
 
         private void lblDVCS_MouseClick(object sender, MouseEventArgs e)

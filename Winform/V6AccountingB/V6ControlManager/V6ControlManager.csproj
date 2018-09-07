@@ -4292,6 +4292,24 @@
     <Compile Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.designer.cs">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\NhanSu\STICK_NOTE_F3F4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\NhanSu\STICK_NOTE_F3F4.designer.cs">
+      <DependentUpon>STICK_NOTE_F3F4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\NhanSu\STICK_NOTE_F5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\NhanSu\STICK_NOTE_F5.designer.cs">
+      <DependentUpon>STICK_NOTE_F5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\NhanSu\StickNoteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\NhanSu\StickNoteForm.designer.cs">
+      <DependentUpon>StickNoteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\NhanSu\HRORGVIEW1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -7349,6 +7367,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.resx">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\STICK_NOTE_F3F4.resx">
+      <DependentUpon>STICK_NOTE_F3F4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\STICK_NOTE_F5.resx">
+      <DependentUpon>STICK_NOTE_F5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\StickNoteForm.resx">
+      <DependentUpon>StickNoteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\HPRCONGCT_XL1_F3.resx">
       <DependentUpon>HPRCONGCT_XL1_F3.cs</DependentUpon>
