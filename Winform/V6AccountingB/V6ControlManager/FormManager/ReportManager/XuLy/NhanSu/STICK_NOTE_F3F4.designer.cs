@@ -248,6 +248,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.v6VvarTextBox1.AccessibleName = "ABC";
             this.v6VvarTextBox1.BackColor = System.Drawing.Color.White;
             this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6VvarTextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.v6VvarTextBox1.CheckNotEmpty = true;
             this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6VvarTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -264,6 +265,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.v6VvarTextBox2.AccessibleName = "TYPE";
             this.v6VvarTextBox2.BackColor = System.Drawing.Color.White;
             this.v6VvarTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6VvarTextBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.v6VvarTextBox2.CheckNotEmpty = true;
             this.v6VvarTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6VvarTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -292,7 +294,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(562, 42);
             this.txtNote.TabIndex = 14;
-            this.txtNote.TabStop = false;
             // 
             // txtNote1
             // 
@@ -311,7 +312,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.txtNote1.Name = "txtNote1";
             this.txtNote1.Size = new System.Drawing.Size(562, 42);
             this.txtNote1.TabIndex = 16;
-            this.txtNote1.TabStop = false;
             // 
             // label1
             // 

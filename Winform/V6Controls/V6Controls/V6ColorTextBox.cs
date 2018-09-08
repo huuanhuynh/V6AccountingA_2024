@@ -31,24 +31,21 @@ namespace V6Controls
 
         private void InitializeComponent()
         {
-            SuspendLayout();
+            this.SuspendLayout();
             // 
             // V6ColorTextBox
-            //
-            MouseLeave += V6ColorTextBox_MouseLeave;
-
-            KeyDown += V6ColorTextBox_KeyDown;
-            KeyPress += V6LimitTextBox_KeyPress;
-            Enter += V6ColorTextBox_Enter;
-            Leave += V6ColorTextBox_LostFocus;
-            MouseEnter += V6ColorTextBox_MouseEnter;
-            ReadOnlyChanged += V6ColorTextBox_ReadOnlyChanged;
-            EnabledChanged += V6ColorTextBox_EnabledChanged;
-            TextChanged += V6ColorTextBox_TextChanged;
-
-            VisibleChanged += DisTextBox_VisibleChanged;
-            
-            ResumeLayout(false);
+            // 
+            this.ReadOnlyChanged += new System.EventHandler(this.V6ColorTextBox_ReadOnlyChanged);
+            this.EnabledChanged += new System.EventHandler(this.V6ColorTextBox_EnabledChanged);
+            this.TextChanged += new System.EventHandler(this.V6ColorTextBox_TextChanged);
+            this.VisibleChanged += new System.EventHandler(this.V6ColorTextBox_VisibleChanged);
+            this.Enter += new System.EventHandler(this.V6ColorTextBox_Enter);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.V6ColorTextBox_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.V6ColorTextBox_KeyPress);
+            this.Leave += new System.EventHandler(this.V6ColorTextBox_LostFocus);
+            this.MouseEnter += new System.EventHandler(this.V6ColorTextBox_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.V6ColorTextBox_MouseLeave);
+            this.ResumeLayout(false);
 
         }
 
@@ -235,10 +232,19 @@ namespace V6Controls
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        void V6LimitTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        void V6ColorTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (ReadOnly || !Enabled)
             {
+                return;
+            }
+
+            //Xử lý phím Enter trường hợp Multiline.
+            if (Multiline && e.KeyChar == '\r')
+            {
+                e.Handled = true;
+                if ((ModifierKeys & Keys.Shift) != 0) AddNewLine();
+
                 return;
             }
 
@@ -520,7 +526,7 @@ namespace V6Controls
 
         private Color _ForeColorDisabled = SystemColors.WindowText;
 
-        private void DisTextBox_VisibleChanged(object sender, System.EventArgs e)
+        private void V6ColorTextBox_VisibleChanged(object sender, System.EventArgs e)
         {
             if (!this._ColorsSaved && this.Visible)
             {
@@ -765,13 +771,22 @@ namespace V6Controls
             if (_detroysenkey) return;
             if (ReadOnly || !Enabled)
             {
-                if (e.KeyData == Keys.Enter) SendKeys.Send("{TAB}");
+                if (e.KeyData == Keys.Enter)
+                {
+                    if (!Multiline || (ModifierKeys & Keys.Shift) == 0)
+                    {
+                        SendKeys.Send("{TAB}");
+                    }
+                }
                 return;
             }
 
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyData == Keys.Enter)
             {
-                SendKeys.Send("{TAB}");
+                if (!Multiline || (ModifierKeys & Keys.Shift) == 0)
+                {
+                    SendKeys.Send("{TAB}");
+                }
             }
             else if (ShiftF3 && e.KeyData == (Keys.Shift | Keys.F3))
             {
@@ -826,6 +841,13 @@ namespace V6Controls
         public override string ToString()
         {
             return string.Format("{0}:{1} type:{2}", string.IsNullOrEmpty(AccessibleName) ? Name : AccessibleName, Text, GetType());
+        }
+        
+        private void AddNewLine()
+        {
+            int st = SelectionStart;
+            Text = Text.Insert(SelectionStart, Environment.NewLine);
+            SelectionStart = st + 2;
         }
     }
 }

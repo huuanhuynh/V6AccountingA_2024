@@ -21,6 +21,7 @@ using V6Init;
 using V6SqlConnect;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6AccountingB
 {
@@ -481,7 +482,7 @@ namespace V6AccountingB
                 }
 
                 messageIndex++;
-                lblV6Message.Text = GetMessage();
+                GetMessage();
             }
             catch (Exception)
             {
@@ -489,23 +490,32 @@ namespace V6AccountingB
             }
         }
 
-        private string GetMessage()
+        private void GetMessage()
         {
             try
             {
                 if (v6Message != null && v6Message.Rows.Count > 0)
                 {
                     if (messageIndex >= v6Message.Rows.Count) messageIndex = 0;
+                    var row = v6Message.Rows[messageIndex];
+                    Color color = Color.Blue;
+                    string colorRGB = row["Color"].ToString();
+                    var sss = ObjectAndString.SplitString(colorRGB);
+                    if (sss.Length >= 3)
+                    {
+                        color = ObjectAndString.RGBStringToColor(colorRGB);
+                    }
+                    lblV6Message.ForeColor = color;
+                    lblV6Message.Text = (row["Mess1"] ?? "").ToString().Trim()
+                        + " <--------##-------> " + (row["Mess2"] ?? "").ToString().Trim();
 
-                    return (v6Message.Rows[messageIndex]["Mess1"] ?? "").ToString().Trim()
-                        + " <--------##-------> " + (v6Message.Rows[messageIndex]["Mess2"] ?? "").ToString().Trim();
+                   
                 }
             }
             catch (Exception ex)
             {
-                Logger.WriteToLog(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, ex.Message), Application.ProductName);
+                this.WriteExLog(GetType() + ".GetMessage", ex);
             }
-            return "";
         }
 
         private DataTable v6Message;
@@ -671,7 +681,7 @@ namespace V6AccountingB
             try
             {
                 StickNoteForm f = new StickNoteForm(V6Mode.Add);
-                f.ShowDialog(this);
+                f.Show(this);
             }
             catch (Exception ex)
             {

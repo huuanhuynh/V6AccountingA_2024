@@ -485,6 +485,11 @@ namespace V6Tools.V6Convert
             return ToObject<float>(s);
         }
 
+        /// <summary>
+        /// Chuyển chuỗi R,G,B hoặc #FFFFFF thành màu.
+        /// </summary>
+        /// <param name="rgb">R,G,B hoặc #XXXXXX</param>
+        /// <returns></returns>
         public static Color RGBStringToColor(string rgb)
         {
             int r = 0, g = 0, b = 0;

@@ -200,7 +200,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                 var currentRowData = new SortedDictionary<string, object>();
                 if (row != null) currentRowData = row.ToDataDictionary();
-                currentRowData["MA_NS"] = Ma_nvien;
+                currentRowData["MA_NVIEN"] = Ma_nvien;
                 currentRowData["NGAY"] = Ngay;
 
                 var form = new STICK_NOTE_F3F4(V6Mode.Add, currentRowData);
@@ -232,7 +232,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                 if (row == null) return;
 
-                if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + row.Cells["MA_CONG"].Value, V6Text.Delete)
+                if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + row.Cells["TYPE"].Value, V6Text.Delete)
                     != DialogResult.Yes)
                 {
                     return;
