@@ -4292,6 +4292,12 @@
     <Compile Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.designer.cs">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\NhanSu\StickNoteCellView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\NhanSu\StickNoteCellView.Designer.cs">
+      <DependentUpon>StickNoteCellView.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\NhanSu\STICK_NOTE_F3F4.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -7367,6 +7373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.resx">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\StickNoteCellView.resx">
+      <DependentUpon>StickNoteCellView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\STICK_NOTE_F3F4.resx">
       <DependentUpon>STICK_NOTE_F3F4.cs</DependentUpon>

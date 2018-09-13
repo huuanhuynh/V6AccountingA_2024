@@ -80,6 +80,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 if (_mode == V6Mode.Add)
                 {
                     Text = "Thêm";
+                    chkStatus.Checked = true;
                 }
                 else if(_mode == V6Mode.Edit)
                 {

@@ -313,53 +313,46 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
         public override void V6F3Execute()
         {
-            if (f3count == 3)
-            {
-                f3count = 0;
-                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
-                {
-                    ShowTopLeftMessage("V6 Confirm ......OK....");
-                    _firstAddF3 = true;
-                    //Visible
-                    txtMAU.Visible = true;
-                    txtLAN.Visible = true;
-                    txtIsUser.Visible = true;
-                    txtExcel2.Visible = true;
-                    txtExcel2View.Visible = true;
-                    lblXml.Visible = true;
-                    txtDmethod.Visible = true;
-                    btnEditXml.Visible = true;
-                    lblThongTinThem.Visible = true;
-                    txtExtraInfo.Visible = true;
+            _firstAddF3 = true;
+            //Visible
+            txtMAU.Visible = true;
+            txtLAN.Visible = true;
+            txtIsUser.Visible = true;
+            txtExcel2.Visible = true;
+            txtExcel2View.Visible = true;
+            lblXml.Visible = true;
+            txtDmethod.Visible = true;
+            btnEditXml.Visible = true;
+            lblThongTinThem.Visible = true;
+            txtExtraInfo.Visible = true;
 
-                    //ReadOnly
-                    txtMAU.ReadOnly = false;
-                    txtLAN.ReadOnly = false;
-                    txtIsUser.ReadOnly = false;
-                    txtExcel2.ReadOnly = false;
-                    txtExcel2View.ReadOnly = false;
-                    txtMa_File.ReadOnly = false;
-                    txtReportFileNew.ReadOnly = false;
-                }
-            }
-            else
-            {
-                //Visible
-                txtMAU.Visible = false;
-                txtLAN.Visible = false;
-                txtIsUser.Visible = false;
-                txtExcel2.Visible = false;
-                txtExcel2View.Visible = false;
+            //ReadOnly
+            txtMAU.ReadOnly = false;
+            txtLAN.ReadOnly = false;
+            txtIsUser.ReadOnly = false;
+            txtExcel2.ReadOnly = false;
+            txtExcel2View.ReadOnly = false;
+            txtMa_File.ReadOnly = false;
+            txtReportFileNew.ReadOnly = false;
+        }
 
-                //ReadOnly
-                txtMAU.ReadOnly = true;
-                txtLAN.ReadOnly = true;
-                txtIsUser.ReadOnly = true;
-                txtExcel2.ReadOnly = true;
-                txtExcel2View.ReadOnly = true;
-                txtMa_File.ReadOnly = true;
-                txtReportFileNew.ReadOnly = true;
-            }
+        public override void V6F3ExecuteUndo()
+        {
+            //Visible
+            txtMAU.Visible = false;
+            txtLAN.Visible = false;
+            txtIsUser.Visible = false;
+            txtExcel2.Visible = false;
+            txtExcel2View.Visible = false;
+
+            //ReadOnly
+            txtMAU.ReadOnly = true;
+            txtLAN.ReadOnly = true;
+            txtIsUser.ReadOnly = true;
+            txtExcel2.ReadOnly = true;
+            txtExcel2View.ReadOnly = true;
+            txtMa_File.ReadOnly = true;
+            txtReportFileNew.ReadOnly = true;
         }
 
         private void btnEditXml_Click(object sender, EventArgs e)

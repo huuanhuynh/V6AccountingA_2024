@@ -73,24 +73,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         public override void V6F3Execute()
         {
-            if (f3count == 3)
-            {
-                f3count = 0;
-                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
-                {
-                    ShowTopLeftMessage("V6 Confirm ......OK....");
-                    
-                    txtDmethod.Visible = true;
-                    lblXML.Visible = true;
-                    btnEditXml.Visible = true;
-                }
-            }
-            else
-            {
-                
-            }
+            txtDmethod.Visible = true;
+            lblXML.Visible = true;
+            btnEditXml.Visible = true;
         }
-        
+
         public override void ValidateData()
         {
             var errors = "";

@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Windows.Forms;
-using HaUtility.Helper;
 using V6Controls.Forms;
 using V6Init;
 using V6Tools;
@@ -29,7 +28,13 @@ namespace V6Controls.Controls.LichView
             //ResetSize();
             Click += LichView_Click;
             MouseMove += LichView_MouseMove;
+            MouseLeave += LichViewControl_MouseLeave;
             Resize += LichViewControl_Resize;
+        }
+
+        void LichViewControl_MouseLeave(object sender, EventArgs e)
+        {
+            HoverCell = null;
         }
 
         /// <summary>
@@ -58,17 +63,18 @@ namespace V6Controls.Controls.LichView
             {
                 MouseLocation = e.Location;
                 var g = this.CreateGraphics();
-                //Invalidate();
                 //Kiểm tra xem nút nào đang được trỏ chuột.
-                bool can_break = false;
+                bool haveHoverCell = false;
                 if(DataSource != null)
                 foreach (KeyValuePair<int, LichViewCellData> item in DataSource)
                 {
                     var cellData = item.Value;
                     if (cellData.Rectangle.Contains(MouseLocation))
                     {
+                        haveHoverCell = true;
                         cellData.IsHover = true;
                         DrawCell(g, cellData);
+                        HoverCell = cellData;
                         //if (can_break) break;
                     }
                     else if (cellData.IsHover)
@@ -79,27 +85,69 @@ namespace V6Controls.Controls.LichView
                         DrawCell(g, oldCell);
                     }
                 }
-
+                if (!haveHoverCell) HoverCell = null;
                 if (FocusDate.Year == Year && FocusDate.Month == Month)
                 {
                     if (DataSource != null)
                     if (DataSource.ContainsKey(FocusDate.Day))
                     {
                         DrawToDay(g, DataSource[FocusDate.Day]);
-
-                        //var cellData = DataSource[CurrentDate.Day];
-                        //var pen = new Pen(Color.Blue, 1);
-                        //pen.DashStyle = DashStyle.Dash;
-                        //g.DrawRectangle(pen, cellData.Rectangle.X + 2, cellData.Rectangle.Y + 2,
-                        //    cellData.Rectangle.Width - 4, cellData.Rectangle.Height - 4);
                     }
                 }
             }
             catch (Exception ex)
             {
-                ;
+                this.WriteExLog(GetType() + ".MouseMove", ex);
             }
         }
+
+        [Description("Thay đổi ô rê chuột.")]
+        public event Action<LichViewEventArgs> HoverCellChanged;
+        protected virtual void OnHoverCellChanged(LichViewEventArgs eventArgs)
+        {
+            try
+            {
+                var handler = HoverCellChanged;
+                if (handler != null) handler(eventArgs);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".OnHoverCellChanged", ex);
+            }
+        }
+        public LichViewCellData HoverCell
+        {
+            get
+            {
+                return _hoverCell;
+            }
+            private set
+            {
+                try
+                {
+                    if (!Equals(value, _hoverCell))
+                    {
+                        _hoverCell = value;
+
+                        var arg = new LichViewEventArgs()
+                        {
+                            CellData = _hoverCell,
+                            MouseLocation = MouseLocation,
+                            IsClickDetail1 = value != null && value.Detail1Rectangle.Contains(MouseLocation),
+                            IsClickDetail2 = value != null && value.Detail2Rectangle.Contains(MouseLocation),
+                            IsClickDetail3 = value != null && value.Detail3Rectangle.Contains(MouseLocation),
+                        };
+                        OnHoverCellChanged(arg);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    this.WriteExLog(GetType() + ".SetHoverCell", ex);
+                }
+            }
+        }
+
+        private LichViewCellData _hoverCell = null;
 
         void LichView_Click(object sender, EventArgs e)
         {
@@ -120,7 +168,7 @@ namespace V6Controls.Controls.LichView
             XuLy:
             if (mouse_on_next_button && ShowNextPrevious)
             {
-                OnClickNextEvent(new LichViewEventArgs{});
+                OnClickNextEvent(new LichViewEventArgs());
             }
             else if (mouse_on_previous_button && ShowNextPrevious)
             {
@@ -153,7 +201,9 @@ namespace V6Controls.Controls.LichView
         }
 
         #region ==== Properties ====
-
+        /// <summary>
+        /// Ngày hiện tại, có kẻ khung viền.
+        /// </summary>
         public DateTime FocusDate;
         
         /// <summary>
@@ -196,7 +246,14 @@ namespace V6Controls.Controls.LichView
         public int Month { get; protected set; }
         [DefaultValue(2017)]
         public int Year { get; protected set; }
-
+        /// <summary>
+        /// Ngày 1 của tháng đang hiển thị.
+        /// </summary>
+        public DateTime ViewDate1 { get { return new DateTime(Year, Month, 1);} }
+        /// <summary>
+        /// Ngày cuối của tháng đang hiển thị (31 tượng trưng nhưng tháng 2 vẫn là 28 hoặc 29).
+        /// </summary>
+        public DateTime ViewDate31 { get { return new DateTime(Year, Month,  DateTime.DaysInMonth(Year, Month));} }
         protected Point MouseLocation { get; set; }
         public int HeaderHeight { get; set; }
         public int FooterHeight { get; set; }
@@ -266,8 +323,15 @@ namespace V6Controls.Controls.LichView
         public event Action<LichViewControl, LichViewEventArgs> ClickCellEvent;
         protected virtual void OnClickCellEvent(LichViewControl sender, LichViewEventArgs eventArgs)
         {
-            var handler = ClickCellEvent;
-            if (handler != null) handler(sender, eventArgs);
+            try
+            {
+                var handler = ClickCellEvent;
+                if (handler != null) handler(sender, eventArgs);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".OnClickCellEvent", ex);
+            }
         }
         #endregion events
 
@@ -277,7 +341,7 @@ namespace V6Controls.Controls.LichView
         /// <param name="year"></param>
         /// <param name="month"></param>
         /// <param name="focusDate"></param>
-        /// <param name="data"></param>
+        /// <param name="data">Dữ liệu thêm trên lịch theo ngày (trong tháng).</param>
         /// <param name="rowData"></param>
         /// <param name="footerText"></param>
         public void SetData(int year, int month, DateTime focusDate,
@@ -386,7 +450,7 @@ namespace V6Controls.Controls.LichView
             //Xác định cột cho ngày 1
             if (Month <= 0) Month = 1;
             if (Month > 12) Month = 12;
-            if (Year <= 0) Year = 2017;
+            if (Year <= 0) Year = 2018;
             day_in_month = DateTime.DaysInMonth(Year, Month);
             ngay_dau_thang = new DateTime(Year, Month, 1);
             
@@ -591,7 +655,7 @@ namespace V6Controls.Controls.LichView
         /// </summary>
         public LichViewCellData CellData { get; set; }
         /// <summary>
-        /// Vị trí chuột trên control.
+        /// Vị trí chuột trên control lichView.
         /// </summary>
         public Point MouseLocation { get; set; }
         /// <summary>

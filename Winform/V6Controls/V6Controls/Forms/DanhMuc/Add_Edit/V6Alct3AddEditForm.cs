@@ -35,24 +35,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
         public override void V6F3Execute()
         {
-            if (f3count == 3)
-            {
-                f3count = 0;
-                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
-                {
-                    ShowTopLeftMessage("V6 Confirm ......OK....");
-                    ChkVisible.Enabled = true;
-                    TxtForder.Enabled = true;
-                    TxtWidth.Enabled = true;
-
-                }
-            }
-            else
-            {
-                ChkVisible.Enabled = false;
-                TxtForder.Enabled = false;
-                TxtWidth.Enabled = false;
-            }
+            ShowTopLeftMessage("V6 Confirm ......OK....");
+            ChkVisible.Enabled = true;
+            TxtForder.Enabled = true;
+            TxtWidth.Enabled = true;
         }
     }
 }

@@ -187,10 +187,16 @@ namespace V6Controls.Forms
         }
 
         protected int f3count;
+        /// <summary>
+        /// Hàm thực hiện sau khi xác nhận mật khẩu V6 thành công.
+        /// </summary>
         public virtual void V6F3Execute()
         {
             
         }
+        /// <summary>
+        /// Hàm thực hiện sau khi xác nhận mật khẩu V6 sai.
+        /// </summary>
         public virtual void V6F3ExecuteUndo()
         {
             

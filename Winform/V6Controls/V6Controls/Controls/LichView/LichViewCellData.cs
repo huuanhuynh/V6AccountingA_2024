@@ -26,6 +26,7 @@ namespace V6Controls.Controls.LichView
         public string Detail1 { get; set; }
         public string Detail2 { get; set; }
         public string Detail3 { get; set; }
+        public string Detail4 { get; set; }
         /// <summary>
         /// Vùng được vẽ của toàn ô trên control.
         /// </summary>

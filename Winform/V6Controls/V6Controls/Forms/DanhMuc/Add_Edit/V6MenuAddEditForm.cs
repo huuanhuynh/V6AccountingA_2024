@@ -25,71 +25,65 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         public override void V6F3Execute()
         {
-            if (f3count == 3)
-            {
-                f3count = 0;
-                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
-                {
-                    ShowTopLeftMessage("V6 Confirm ......OK....");
-                    txtVBAR.Enabled = true;
-                    txtVBAR.ReadOnly = false;
+            ShowTopLeftMessage("V6 Confirm ......OK....");
+            txtVBAR.Enabled = true;
+            txtVBAR.ReadOnly = false;
 
-                    txtVBAR2.Enabled = true;
-                    txtVBAR2.ReadOnly = false;
+            txtVBAR2.Enabled = true;
+            txtVBAR2.ReadOnly = false;
 
-                    txtV2ID.Enabled = true;
-                    txtV2ID.ReadOnly = false;
+            txtV2ID.Enabled = true;
+            txtV2ID.ReadOnly = false;
 
-                    txtJOBID.Enabled = true;
-                    txtJOBID.ReadOnly = false;
+            txtJOBID.Enabled = true;
+            txtJOBID.ReadOnly = false;
 
-                    txtITEMID.Enabled = true;
-                    txtITEMID.ReadOnly = false;
+            txtITEMID.Enabled = true;
+            txtITEMID.ReadOnly = false;
 
-                    chkhide_yn.Enabled = true;
-                    chkQuickRun.Enabled = true;
-                    txtcodeform.Enabled = true;
-                    txtcodeform.ReadOnly = false;
+            chkhide_yn.Enabled = true;
+            chkQuickRun.Enabled = true;
+            txtcodeform.Enabled = true;
+            txtcodeform.ReadOnly = false;
 
-                    txtSttBox.Enabled = true;
-                    txtMaCt.Enabled = true;
-                    txtCode.Enabled = true;
-                    txtNhatKy.Enabled = true;
-                    txtKey1.Enabled = true;
-                    txtPicture.Enabled = true;
-                    txtKey3.Enabled = true;
-                }
-            }
-            else
-            {
-                txtVBAR.Enabled = false;
-                txtVBAR.ReadOnly = true;
+            txtSttBox.Enabled = true;
+            txtMaCt.Enabled = true;
+            txtCode.Enabled = true;
+            txtNhatKy.Enabled = true;
+            txtKey1.Enabled = true;
+            txtPicture.Enabled = true;
+            txtKey3.Enabled = true;
+        }
 
-                txtVBAR2.Enabled = false;
-                txtVBAR2.ReadOnly = true;
+        public override void V6F3ExecuteUndo()
+        {
+            txtVBAR.Enabled = false;
+            txtVBAR.ReadOnly = true;
 
-                txtV2ID.Enabled = false;
-                txtV2ID.ReadOnly = true;
+            txtVBAR2.Enabled = false;
+            txtVBAR2.ReadOnly = true;
 
-                txtJOBID.Enabled = false;
-                txtJOBID.ReadOnly = true;
+            txtV2ID.Enabled = false;
+            txtV2ID.ReadOnly = true;
 
-                txtITEMID.Enabled = false;
-                txtITEMID.ReadOnly = true;
+            txtJOBID.Enabled = false;
+            txtJOBID.ReadOnly = true;
 
-                chkhide_yn.Enabled = false;
-                chkQuickRun.Enabled = false;
-                txtcodeform.Enabled = false;
-                txtcodeform.ReadOnly = true;
+            txtITEMID.Enabled = false;
+            txtITEMID.ReadOnly = true;
 
-                txtSttBox.Enabled = false;
-                txtMaCt.Enabled = false;
-                txtCode.Enabled = false;
-                txtNhatKy.Enabled = false;
-                txtKey1.Enabled = false;
-                txtPicture.Enabled = false;
-                txtKey3.Enabled = false;
-            }
+            chkhide_yn.Enabled = false;
+            chkQuickRun.Enabled = false;
+            txtcodeform.Enabled = false;
+            txtcodeform.ReadOnly = true;
+
+            txtSttBox.Enabled = false;
+            txtMaCt.Enabled = false;
+            txtCode.Enabled = false;
+            txtNhatKy.Enabled = false;
+            txtKey1.Enabled = false;
+            txtPicture.Enabled = false;
+            txtKey3.Enabled = false;
         }
     }
 }

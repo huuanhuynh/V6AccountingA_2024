@@ -619,13 +619,12 @@ namespace V6Controls.Controls
                                 }
                             }
                         }
-
                     }
                     else
                     {
 
-                        var id = v6lookup_config.vValue;
-                        var listTable = v6lookup_config.ListTable;;
+                        var id = _aldm ? aldm_config.TABLE_KEY : v6lookup_config.vValue;
+                        var listTable = _aldm ? aldm_config.F8_TABLE : v6lookup_config.ListTable;
                         var value = "";
                         
                         if (String.IsNullOrEmpty(listTable) == false)
@@ -635,7 +634,7 @@ namespace V6Controls.Controls
                             if (v)
                             {
                                 //khong duoc
-                                this.ShowWarningMessage("Mã đã có phát sinh, không được xóa!");
+                                this.ShowWarningMessage(V6Text.DaPhatSinh_KhongDuocXoa);
                                 return;
                             }
                         }
@@ -647,7 +646,7 @@ namespace V6Controls.Controls
                             if (this.ShowConfirmMessage(V6Text.DeleteConfirm + "\n" + value, "Xóa?")
                                 == DialogResult.Yes)
                             {
-                                var t = _categories.Delete(CurrentTable, keys);
+                                var t = _categories.Delete(_tableName, keys);
 
                                 if (t > 0)
                                 {

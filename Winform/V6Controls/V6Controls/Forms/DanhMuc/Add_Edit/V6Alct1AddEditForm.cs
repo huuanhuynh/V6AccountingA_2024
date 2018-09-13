@@ -37,39 +37,32 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
         public override void V6F3Execute()
         {
-            if (f3count == 3)
-            {
-                f3count = 0;
-                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
-                {
-                    ShowTopLeftMessage("V6 Confirm ......OK....");
-                    ChkVisible.Enabled = true; //ChkVisible.Visible = true;
-                    TxtForder.Enabled = true;
-                    TxtWidth.Enabled = true;
+            ChkVisible.Enabled = true; //ChkVisible.Visible = true;
+            TxtForder.Enabled = true;
+            TxtWidth.Enabled = true;
 
-                    lblFtype.Visible = true;
-                    txtFtype.Visible = true;
-                    txtFtype.Enabled = true;
-                    txtFdecimal.Visible = true;
-                    lblFdecimal.Visible = true;
-                    txtFdecimal.Enabled = true;
+            lblFtype.Visible = true;
+            txtFtype.Visible = true;
+            txtFtype.Enabled = true;
+            txtFdecimal.Visible = true;
+            lblFdecimal.Visible = true;
+            txtFdecimal.Enabled = true;
 
-                    lblCheckVvar.Visible = true;
-                    chkCheckVvar.Visible = true;
-                    lblNotEmpty.Visible = true;
-                    chkNotEmpty.Visible = true;
+            lblCheckVvar.Visible = true;
+            chkCheckVvar.Visible = true;
+            lblNotEmpty.Visible = true;
+            chkNotEmpty.Visible = true;
 
-                    txtDmethod.Visible = true;
-                    lblXML.Visible = true;
-                    btnEditXml.Visible = true;
-                }
-            }
-            else
-            {
-                ChkVisible.Enabled = false;
-                TxtForder.Enabled = false;
-                TxtWidth.Enabled = false;
-            }
+            txtDmethod.Visible = true;
+            lblXML.Visible = true;
+            btnEditXml.Visible = true;
+        }
+
+        public override void V6F3ExecuteUndo()
+        {
+            ChkVisible.Enabled = false;
+            TxtForder.Enabled = false;
+            TxtWidth.Enabled = false;
         }
 
         private void DoEditXml()

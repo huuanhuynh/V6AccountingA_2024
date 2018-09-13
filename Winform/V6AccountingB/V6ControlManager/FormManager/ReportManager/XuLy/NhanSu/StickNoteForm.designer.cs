@@ -31,10 +31,38 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StickNoteForm));
+            this.lichView1 = new V6Controls.Controls.LichView.LichViewControl();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
-            this.lichView1 = new V6Controls.Controls.LichView.LichViewControl();
+            this.stickNoteCellView1 = new V6ControlManager.FormManager.ReportManager.XuLy.NhanSu.StickNoteCellView();
             this.SuspendLayout();
+            // 
+            // lichView1
+            // 
+            this.lichView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lichView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.lichView1.BorderColor = System.Drawing.Color.Black;
+            this.lichView1.CodeForm = null;
+            this.lichView1.DataSource = ((System.Collections.Generic.IDictionary<int, V6Controls.Controls.LichView.LichViewCellData>)(resources.GetObject("lichView1.DataSource")));
+            this.lichView1.DetailColor = System.Drawing.Color.Orange;
+            this.lichView1.FooterHeight = 20;
+            this.lichView1.FooterText = "Footer";
+            this.lichView1.HeaderHeight = 40;
+            this.lichView1.HoverBackColor = System.Drawing.Color.Aqua;
+            this.lichView1.Location = new System.Drawing.Point(12, 12);
+            this.lichView1.Name = "lichView1";
+            this.lichView1.RowData = null;
+            this.lichView1.SatudayColor = System.Drawing.Color.Blue;
+            this.lichView1.ShowNextPrevious = true;
+            this.lichView1.Size = new System.Drawing.Size(759, 433);
+            this.lichView1.SundayColor = System.Drawing.Color.Red;
+            this.lichView1.TabIndex = 11;
+            this.lichView1.HoverCellChanged += new System.Action<V6Controls.Controls.LichView.LichViewEventArgs>(this.lichView1_HoverCellChanged);
+            this.lichView1.ClickNextEvent += new System.Action<V6Controls.Controls.LichView.LichViewEventArgs>(this.lichView1_ClickNextEvent);
+            this.lichView1.ClickPreviousEvent += new System.Action<V6Controls.Controls.LichView.LichViewEventArgs>(this.lichView1_ClickPreviousEvent);
+            this.lichView1.ClickCellEvent += new System.Action<V6Controls.Controls.LichView.LichViewControl, V6Controls.Controls.LichView.LichViewEventArgs>(this.lichView1_ClickCellEvent);
             // 
             // btnHuy
             // 
@@ -70,36 +98,25 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.btnNhan.Visible = false;
             this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
             // 
-            // lichView1
+            // stickNoteCellView1
             // 
-            this.lichView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lichView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.lichView1.BorderColor = System.Drawing.Color.Black;
-            this.lichView1.CodeForm = null;
-            this.lichView1.DataSource = ((System.Collections.Generic.IDictionary<int, V6Controls.Controls.LichView.LichViewCellData>)(resources.GetObject("lichView1.DataSource")));
-            this.lichView1.DetailColor = System.Drawing.Color.Orange;
-            this.lichView1.FooterHeight = 20;
-            this.lichView1.FooterText = "Footer";
-            this.lichView1.HeaderHeight = 40;
-            this.lichView1.HoverBackColor = System.Drawing.Color.Aqua;
-            this.lichView1.Location = new System.Drawing.Point(12, 12);
-            this.lichView1.Name = "lichView1";
-            this.lichView1.RowData = null;
-            this.lichView1.SatudayColor = System.Drawing.Color.Blue;
-            this.lichView1.Size = new System.Drawing.Size(759, 433);
-            this.lichView1.SundayColor = System.Drawing.Color.Red;
-            this.lichView1.TabIndex = 11;
-            this.lichView1.ClickNextEvent += new System.Action<V6Controls.Controls.LichView.LichViewEventArgs>(this.lichView1_ClickNextEvent);
-            this.lichView1.ClickPreviousEvent += new System.Action<V6Controls.Controls.LichView.LichViewEventArgs>(this.lichView1_ClickPreviousEvent);
-            this.lichView1.ClickCellEvent += new System.Action<V6Controls.Controls.LichView.LichViewControl, V6Controls.Controls.LichView.LichViewEventArgs>(this.lichView1_ClickCellEvent);
+            this.stickNoteCellView1.AutoSize = true;
+            this.stickNoteCellView1.BackColor = System.Drawing.Color.Cyan;
+            this.stickNoteCellView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.stickNoteCellView1.CodeForm = null;
+            this.stickNoteCellView1.Location = new System.Drawing.Point(12, 50);
+            this.stickNoteCellView1.Margin = new System.Windows.Forms.Padding(5);
+            this.stickNoteCellView1.Name = "stickNoteCellView1";
+            this.stickNoteCellView1.Size = new System.Drawing.Size(202, 152);
+            this.stickNoteCellView1.TabIndex = 12;
+            this.stickNoteCellView1.Visible = false;
             // 
             // StickNoteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 502);
+            this.Controls.Add(this.stickNoteCellView1);
             this.Controls.Add(this.lichView1);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
@@ -110,7 +127,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.lichView1, 0);
+            this.Controls.SetChildIndex(this.stickNoteCellView1, 0);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -121,6 +140,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         protected System.Windows.Forms.Button btnNhan;
         protected System.Windows.Forms.Button btnHuy;
         private LichViewControl lichView1;
+        private StickNoteCellView stickNoteCellView1;
 
 
 

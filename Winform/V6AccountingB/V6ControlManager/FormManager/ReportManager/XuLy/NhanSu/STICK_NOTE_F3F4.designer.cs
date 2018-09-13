@@ -49,6 +49,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.txtNote1 = new V6Controls.V6ColorTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.chkStatus = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnHuy
@@ -59,7 +61,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel;
             this.btnHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHuy.Location = new System.Drawing.Point(94, 242);
+            this.btnHuy.Location = new System.Drawing.Point(94, 269);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
             this.btnHuy.TabIndex = 18;
@@ -75,7 +77,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNhan.Image = global::V6ControlManager.Properties.Resources.Apply;
             this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNhan.Location = new System.Drawing.Point(6, 242);
+            this.btnNhan.Location = new System.Drawing.Point(6, 269);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
             this.btnNhan.TabIndex = 17;
@@ -331,14 +333,36 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.label4.TabIndex = 15;
             this.label4.Text = "Ghi chú 2";
             // 
+            // chkStatus
+            // 
+            this.chkStatus.AccessibleName = "STATUS";
+            this.chkStatus.AutoSize = true;
+            this.chkStatus.Location = new System.Drawing.Point(135, 244);
+            this.chkStatus.Name = "chkStatus";
+            this.chkStatus.Size = new System.Drawing.Size(66, 17);
+            this.chkStatus.TabIndex = 19;
+            this.chkStatus.Text = "Sử dụng";
+            this.chkStatus.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(17, 245);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Trạng thái";
+            // 
             // STICK_NOTE_F3F4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 294);
+            this.ClientSize = new System.Drawing.Size(784, 321);
+            this.Controls.Add(this.chkStatus);
             this.Controls.Add(this.v6VvarTextBox2);
             this.Controls.Add(this.v6VvarTextBox1);
             this.Controls.Add(this.Txtgio_ra);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
@@ -356,7 +380,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Name = "STICK_NOTE_F3F4";
-            this.Text = "STICK_NOTE_F3F4";
+            this.Text = "Stick note";
             this.Load += new System.EventHandler(this.Form_Load);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
@@ -375,9 +399,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.label5, 0);
             this.Controls.SetChildIndex(this.Txtgio_ra, 0);
             this.Controls.SetChildIndex(this.v6VvarTextBox1, 0);
             this.Controls.SetChildIndex(this.v6VvarTextBox2, 0);
+            this.Controls.SetChildIndex(this.chkStatus, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,6 +430,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         private V6Controls.V6ColorTextBox txtNote1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox chkStatus;
+        private System.Windows.Forms.Label label5;
 
 
 

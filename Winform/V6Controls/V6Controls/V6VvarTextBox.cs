@@ -259,8 +259,6 @@ namespace V6Controls
             if (string.IsNullOrEmpty(_vVar) || LookupInfo.NoInfo)
             {
                 base.V6ColorTextBox_KeyDown(sender, e);
-                //Send Tab
-                if (e.KeyData == Keys.Enter) SendKeys.Send("{TAB}");
             }
             else
             {
