@@ -72,6 +72,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         {
             try
             {
+                LoadAdvanceControls(_tableName);
+                V6ControlFormHelper.LoadAndSetFormInfoDefine(_tableName, tabPage3, this);
                 LoadStruct(_tableName);
                 V6ControlFormHelper.SetFormDataDictionary(this, _dataOld);
                 dateNgay.DisableTag();
@@ -94,6 +96,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             catch (Exception ex)
             {
                 this.ShowErrorMessage(ex.Message);
+            }
+        }
+
+        private void LoadAdvanceControls(string tableName)
+        {
+            try
+            {
+                Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+                All_Objects["thisForm"] = this;
+                V6ControlFormHelper.CreateAdvanceFormControls(this, tableName, All_Objects);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls", ex);
             }
         }
 
@@ -265,6 +281,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         }
 
         protected int _oldIndex = -1;
+
+        private void btnInfos_Click(object sender, EventArgs e)
+        {
+            if (_mode == V6Mode.Add || _mode == V6Mode.Edit)
+            {
+                V6ControlFormHelper.ProcessUserDefineInfo(_tableName, v6TabControl1, this, _tableName);
+            }
+        }
 
     }
 }

@@ -1586,28 +1586,42 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 var c_makho = ss[1];
                 var c_malo = ss[2];
 
-                //if(data.Rows.Count > 0)
-                foreach (DataRow row in data.Rows)
+                if (data == null || data.Rows.Count == 0)
                 {
-                    var data_mavt = row["Ma_vt"].ToString().Trim();
-                    var data_makho = row["Ma_kho"].ToString().Trim();
-                    var data_malo = row["Ma_lo"].ToString().Trim();
-                    var data_soluong = ObjectAndString.ObjectToDecimal(row["Ton_dau"]);
-                    if (c_mavt == data_mavt && c_makho == data_makho && c_malo == data_malo)
+                    message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Tồn:{0}  Xuất:{1}\n",
+                                0, item.Value, c_makho, c_mavt, c_malo);
+                }
+                else
+                {
+                    bool found = false;
+                    foreach (DataRow row in data.Rows)
                     {
-                        if (data_soluong < item.Value)
+                        var data_mavt = row["Ma_vt"].ToString().Trim();
+                        var data_makho = row["Ma_kho"].ToString().Trim();
+                        var data_malo = row["Ma_lo"].ToString().Trim();
+                        var data_soluong = ObjectAndString.ObjectToDecimal(row["Ton_dau"]);
+                        if (c_mavt == data_mavt && c_makho == data_makho && c_malo == data_malo)
                         {
-                            message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Tồn:{0}  Xuất:{1}\n",
-                                data_soluong, item.Value, c_makho, c_mavt, c_malo);
-                        }
+                            found = true;
+                            if (data_soluong < item.Value)
+                            {
+                                message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Tồn:{0}  Xuất:{1}\n",
+                                    data_soluong, item.Value, c_makho, c_mavt, c_malo);
+                            }
 
-                        goto NextItem;
+                            goto NextItem;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Tồn:{0}  Xuất:{1}\n",
+                                0, item.Value, c_makho, c_mavt, c_malo);
                     }
                 }
-
                 //message += string.Format("Kho:{2}  Vật tư:{3}  Lô:{4}  Tồn:{0}  Xuất:{1}\n",
                 //                0, item.Value, c_makho, c_mavt, c_malo);
-                message = "";
+                
 
             NextItem:
                 DoNothing();

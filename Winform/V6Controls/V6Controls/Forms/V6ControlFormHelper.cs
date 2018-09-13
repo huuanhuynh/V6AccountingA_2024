@@ -1744,7 +1744,6 @@ namespace V6Controls.Forms
         {
             try
             {
-
                 if (V6BusinessHelper.CheckAltt(ma_dm))
                 {
                     var f = new ThongTinDinhNghiaForm(ma_dm);

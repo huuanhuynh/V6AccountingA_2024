@@ -173,6 +173,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
                 var currentRowData = row.ToDataDictionary();
                 var form = new STICK_NOTE_F3F4(V6Mode.Edit, currentRowData);
+                
                 form.UpdateSuccessEvent += data =>
                 {
                     V6ControlFormHelper.UpdateGridViewRow(row, data);
