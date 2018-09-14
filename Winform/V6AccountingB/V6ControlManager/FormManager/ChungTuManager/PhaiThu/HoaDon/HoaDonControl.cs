@@ -3267,7 +3267,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_TIEN"];
             }
 
-            
 
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Invoice.GRDS_AD, Invoice.GRDF_AD,
                         V6Setting.IsVietnamese ? Invoice.GRDHV_AD : Invoice.GRDHE_AD);
@@ -6236,7 +6235,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".ValidateData_Master " + _sttRec, ex);
+                this.ShowErrorException(GetType() + ".ValidateData_Master " + _sttRec, ex);
             }
             return false;
         }

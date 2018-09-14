@@ -633,13 +633,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //if (lineNgay_ct2 != null)
             //    V6Setting.M_ngay_ct2 = ObjectAndString.ObjectToFullDateTime(lineNgay_ct2.ObjectValue);
 
-            if (lineMauBC != null)
-                lineMauBC.SetValue(MAU == "VN" ? "0" : "1");
-            if (lineLAN != null)
-                lineLAN.SetValue(LAN);
-            if (lineUserID != null)
-                lineUserID.SetValue(V6Login.UserId);
-
+            
             var parent00 = Parent.Parent.Parent;
             //if (parent00 is ReportD99ViewBase)
             //{
@@ -689,6 +683,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 MAU = parent44.MAU;
                 LAN = parent44.LAN;
             }
+
+            if (lineMauBC != null)
+                lineMauBC.SetValue(MAU == "VN" ? "0" : "1");
+            if (lineLAN != null)
+                lineLAN.SetValue(LAN);
+            if (lineUserID != null)
+                lineUserID.SetValue(V6Login.UserId);
 
             RadioButton radAnd = GetControlByName("radAnd") as RadioButton;
             var and = true;

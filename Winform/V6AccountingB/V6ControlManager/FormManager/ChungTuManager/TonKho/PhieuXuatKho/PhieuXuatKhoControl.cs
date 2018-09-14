@@ -4399,7 +4399,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".ValidateData_Master " + _sttRec, ex);
+                this.ShowErrorException(GetType() + ".ValidateData_Master " + _sttRec, ex);
             }
             return false;
         }

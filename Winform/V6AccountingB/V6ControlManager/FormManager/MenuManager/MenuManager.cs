@@ -255,6 +255,14 @@ namespace V6ControlManager.FormManager.MenuManager
                                 c = new ReportR45ViewBase(item_id, program, program, repFile, repTitle, repTitle2,
                                     repFileF5, repTitleF5, repTitle2F5);
                             }
+                            else if (codeform.StartsWith("47")) // Không hiển thị report.
+                            {
+                                // Hai bộ report trên dưới
+                                // 1 form cha chứa 2 form report viewbase 47 bên trong.
+                                program = codeform.Substring(2);
+                                c = new ReportR45ViewBase(item_id, program, program, repFile, repTitle, repTitle2,
+                                    repFileF5, repTitleF5, repTitle2F5);
+                            }
                             else
                             {
                                 c = new ReportRViewBase(item_id, program, program, repFile, repTitle, repTitle2,

@@ -3984,7 +3984,6 @@ namespace V6Controls.Forms
             return false;
         }
 
-
         /// <summary>
         /// Sắp xếp thứ tự và gán formatString.
         /// </summary>
@@ -4257,6 +4256,29 @@ namespace V6Controls.Forms
             catch (Exception ex)
             {
                 WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + ".RecaptionDataGridViewColumns", ex);
+            }
+        }
+
+        public static void SetGridViewCaption(V6ColorDataGridView grid)
+        {
+            try
+            {
+                var listColumn = (from DataGridViewColumn column in grid.Columns select column.DataPropertyName).ToList();
+
+                var FieldsHeaderDictionary = CorpLan2.GetFieldsHeader(listColumn, V6Setting.Language);
+                for (int i = 0; i < grid.ColumnCount; i++)
+                {
+                    var field = grid.Columns[i].DataPropertyName.ToUpper();
+                    if (FieldsHeaderDictionary.ContainsKey(field))
+                    {
+                        grid.Columns[i].HeaderText =
+                            FieldsHeaderDictionary[field];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteExLog("V6ControlFormHelper.SetGridViewCaption", ex);
             }
         }
 
@@ -5967,5 +5989,6 @@ namespace V6Controls.Forms
                 method_text2);
         }
 
+        
     }
 }

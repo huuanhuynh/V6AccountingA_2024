@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -206,10 +208,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             grid.AllowUserToAddRows = false;
             grid.AllowUserToDeleteRows = false;
             grid.ReadOnly = true;
-
             tab.Controls.Add(grid);
             grid.DataSource = table;
             tabControl1.TabPages.Add(tab);
+            
+            grid.HideColumns("STT_REC");
+            V6ControlFormHelper.SetGridViewCaption(grid);
+            
             grid.KeyDown += grid_KeyDown;
         }
 
@@ -218,7 +223,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             DataGridView grid = sender as DataGridView;
             if (grid != null && grid.CurrentRow != null)
             {
-                if (e.KeyCode == Keys.F3)
+                if (e.KeyCode == Keys.F3 && grid.Columns.Contains("Ma_ct") && grid.Columns.Contains("Stt_rec"))
                 {
                     var selectedMaCt = grid.CurrentRow.Cells["Ma_ct"].Value.ToString();
                     var selectedSttRec = grid.CurrentRow.Cells["Stt_rec"].Value.ToString();
