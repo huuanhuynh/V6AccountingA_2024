@@ -570,7 +570,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             //}
             //catch (Exception ex)
             //{
-            //    this.ShowErrorMessage(GetType() + ".LoadDetails: " + ex.Message, "Aldmvt");
+            //    this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             //}
         }
 

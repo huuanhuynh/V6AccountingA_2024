@@ -829,7 +829,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyDetailClickAdd: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1555,7 +1555,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ClickEdit: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         private void detail3_ClickCancelEdit(object sender)
@@ -1970,7 +1970,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Xóa chi tiết: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -2001,7 +2001,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Xóa chi tiết: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 

@@ -744,7 +744,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".SetTang: " + ex.Message, ex.Source);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -926,7 +926,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyChonMaKhachHang: " + ex.Message, "HangTraLaiControl");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -976,7 +976,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyKhoaThongTinKhachHang: " + ex.Message, "HangTraLaiControl");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1022,7 +1022,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyChonPhieuXuat: " + ex.Message, "HangTraLaiControl");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1059,7 +1059,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".chonpx_AcceptSelectEvent: " + ex.Message, "HangTraLaiControl");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             chonpx_flag = false;
         }
@@ -1127,7 +1127,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyLayThongTinKhiChonMaLo" + ex.Message, "HangTraLaiControl");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1219,7 +1219,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyLayThongTinKhiChonMaVt" + ex.Message, "HangTraLaiControl");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1278,7 +1278,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyDonViTinhKhiChonMaVt " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1302,7 +1302,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".GetGia: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1367,7 +1367,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".TinhGiamGia: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         
@@ -1469,7 +1469,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".TinhGiaNt2: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1507,7 +1507,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".TinhGiaNt2_TienNt2: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1599,7 +1599,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".EnableFormControls: " + ex.Message, "HangTraLaiControl");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
 
             SetControlReadOnlyHide(this, Invoice, Mode);
@@ -1940,7 +1940,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".TinhChietKhau: " + ex.Message, "HangTraLaiControl");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         private void TinhGiamGia()
@@ -2030,7 +2030,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".TinhPhanBoGiamGia: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -2240,7 +2240,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TTTT " + _sttRec, ex, "Lỗi-TTT("+debug+")");
+                this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, "TTTT(" + debug + ")"), ex);
             }
         }
 
@@ -2547,7 +2547,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyThayDoiMaNt: " + ex.Message, "HangTraLaiControl");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -2611,7 +2611,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".FormatNumberControl: " + ex.Message, "HangTraLaiControl");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -2628,7 +2628,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".FormatNumberGridView: " + ex.Message, "HangTraLaiControl");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -2926,6 +2926,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 flagAddSuccess = false;
                 addErrorMessage = ex.Message;
                 Invoice.PostErrorLog(_sttRec, "M " + _sttRec, ex);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             flagAddFinish = true;
         }
@@ -3203,7 +3204,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Luu: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         
@@ -3252,7 +3253,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch(Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Moi: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3289,7 +3290,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Sua: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3320,7 +3321,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Xoa: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         
@@ -3401,7 +3402,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".In: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3481,8 +3482,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 _print_flag = V6PrintMode.AutoClickPrint;
                 _sttRec_In = _sttRec;
                 btnLuu.Focus();
-                Luu();
-                Mode = V6Mode.View;// Status = "3";
+                if (ValidateData_Master())
+                {
+                    Luu();
+                    Mode = V6Mode.View;// Status = "3";
+                }
+                else
+                {
+                    _print_flag = V6PrintMode.DoNoThing;
+                }
             }
             else if (Mode == V6Mode.View)
             {
@@ -3533,7 +3541,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ResetForm: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3606,7 +3614,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Huy: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         
@@ -3654,7 +3662,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyDetailClickAdd: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3710,7 +3718,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Thêm chi tiết: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
                 return false;
             }
             return true;
@@ -3773,7 +3781,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Sửa chi tiết: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             return true;
         }
@@ -3811,7 +3819,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Xóa chi tiết: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4061,7 +4069,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ckhSuaTienThue: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4198,7 +4206,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".HoaDonDetail1_ClickEdit: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         
@@ -4227,6 +4235,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 if (txtManx.Text.Trim() == "")
                 {
                     this.ShowWarningMessage("Chưa nhập tài khoản!");
+                    txtManx.Focus();
+                    return false;
+                }
+                if (txtManx.Int_Data("Loai_tk") == 0)
+                {
+                    this.ShowWarningMessage("Tài khoản không phải chi tiết!");
                     txtManx.Focus();
                     return false;
                 }

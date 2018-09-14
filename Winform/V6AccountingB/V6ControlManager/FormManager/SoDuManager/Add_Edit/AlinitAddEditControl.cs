@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
@@ -324,7 +325,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyDetailClickAdd: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -391,7 +392,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Thêm chi tiết: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             return true;
         }
@@ -460,7 +461,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Sửa chi tiết: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             return true;
         }
@@ -497,7 +498,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Xóa chi tiết: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -551,7 +552,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ClickEdit: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 

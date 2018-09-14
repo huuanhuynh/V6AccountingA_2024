@@ -531,7 +531,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".SetTang: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -721,7 +721,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyChonMaKhachHang: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -771,7 +771,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyKhoaThongTinKhachHang: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         private void XuLyChonMaKhoI()
@@ -791,7 +791,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyChonMaVt: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -827,7 +827,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyLayThongTinKhiChonMaLo" + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1052,7 +1052,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyLayThongTinKhiChonMaVt " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1110,7 +1110,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyDonViTinhKhiChonMaVt " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1136,7 +1136,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".GetGia: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1168,7 +1168,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".TinhTienNt0: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         private void TinhTienVon()
@@ -1226,7 +1226,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".TinhGiaNt2: "+ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         #endregion methods
@@ -1294,7 +1294,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".EnableFormControls: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
 
             SetControlReadOnlyHide(this, Invoice, Mode);
@@ -1619,7 +1619,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".TinhChietKhau: " +ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1686,7 +1686,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".TinhChietKhauChiTiet: " + ex.Message, "DonDatHangBanControl");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1812,7 +1812,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, ex.Message), "Lỗi-TTT("+debug+")");
+                this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, "TTTT(" + debug + ")"), ex);
             }
         }
 
@@ -1853,7 +1853,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, ex.Message), "Load AlMaGia");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1869,7 +1869,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, ex.Message), "Load Alnt");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         private void LoadAlpost()
@@ -1884,7 +1884,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, ex.Message), "Load Alnt");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         
@@ -2543,7 +2543,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 flagAddSuccess = false;
                 addErrorMessage = ex.Message;
                 Invoice.PostErrorLog(_sttRec, "M " + _sttRec, ex);
-                //this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             flagAddFinish = true;
         }
@@ -2828,7 +2828,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Luu: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         
@@ -2877,7 +2877,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch(Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Moi: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -2914,7 +2914,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Sua: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -2945,7 +2945,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Xoa: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         
@@ -3030,7 +3030,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".In: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3110,8 +3110,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 _print_flag = V6PrintMode.AutoClickPrint;
                 _sttRec_In = _sttRec;
                 btnLuu.Focus();
-                Luu();
-                Mode = V6Mode.View;// Status = "3";
+                if (ValidateData_Master())
+                {
+                    Luu();
+                    Mode = V6Mode.View;// Status = "3";
+                }
+                else
+                {
+                    _print_flag = V6PrintMode.DoNoThing;
+                }
             }
             else if (Mode == V6Mode.View)
             {
@@ -3162,7 +3169,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ResetForm: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3235,7 +3242,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Huy: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         
@@ -3283,7 +3290,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyDetailClickAdd: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3339,7 +3346,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Thêm chi tiết: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             return true;
         }
@@ -3401,7 +3408,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Sửa chi tiết: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             return true;
         }
@@ -3439,7 +3446,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Xóa chi tiết: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         
@@ -3679,7 +3686,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ckhSuaTienThue: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3794,7 +3801,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".DonDatHangBanDetail1_ClickEdit: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         
@@ -3825,6 +3832,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 if (txtManx.Text.Trim() == "")
                 {
                     this.ShowWarningMessage("Chưa nhập tài khoản!");
+                    txtManx.Focus();
+                    return false;
+                }
+                if (txtManx.Int_Data("Loai_tk") == 0)
+                {
+                    this.ShowWarningMessage("Tài khoản không phải chi tiết!");
                     txtManx.Focus();
                     return false;
                 }
@@ -3978,7 +3991,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.ThrowException = false;
-            //this.ShowErrorMessage(GetType() + ".Datagridview DataError: " + e.Context + "\n" + e.Exception.Message);
         }
         
         private void btnInfos_Click(object sender, EventArgs e)
@@ -4016,7 +4028,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ChucNang TroGiup: " + ex.Message, "PhieuNhapMua Error");
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4035,7 +4047,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ChonTuExcel: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4906,7 +4918,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".chon_AcceptSelectEvent " + _sttRec, ex);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 

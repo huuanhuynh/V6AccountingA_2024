@@ -62,7 +62,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".LoadAdvanceControls", ex);
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + _sttRec, ex);
             }
         }
 
@@ -84,7 +84,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".OnAmChanged", ex);
+                this.WriteExLog(GetType() + ".OnAmChanged " + _sttRec, ex);
             }
         }
 
@@ -126,7 +126,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".ResetADTables", ex);
+                this.WriteExLog(GetType() + ".ResetADTables " + _sttRec, ex);
             }
         }
 
@@ -338,7 +338,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".CheckPhanBo", ex);
+                this.WriteExLog(GetType() + ".CheckPhanBo " + _sttRec, ex);
             }
             return true;
         }
@@ -384,7 +384,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".FixDataGridViewSize", ex);
+                this.WriteExLog(GetType() + ".FixDataGridViewSize " + _sttRec, ex);
             }
         }
         
@@ -412,7 +412,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".LoadTag", ex);
+                this.WriteExLog(GetType() + ".LoadTag " + _sttRec, ex);
             }
         }
 
@@ -469,7 +469,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".GetSoCt0InitFilter: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             return result;
         }
@@ -487,7 +487,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".GetAlVitriTonInitFilter: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             return result;
         }
@@ -505,7 +505,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".GetAlVitriTonInitFilter: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             return result;
         }
@@ -550,7 +550,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".SetDefaultData", ex);
+                this.WriteExLog(GetType() + ".SetDefaultData " + _sttRec, ex);
             }
         }
 
@@ -573,7 +573,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".FixVvarBrothers", ex);
+                this.WriteExLog(GetType() + ".FixVvarBrothers " + _sttRec, ex);
             }
         }
 
@@ -588,7 +588,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".SetDefaultDataDetail", ex);
+                this.WriteExLog(GetType() + ".SetDefaultDataDetail " + _sttRec, ex);
             }
         }
 
@@ -730,7 +730,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".SetInitFilterAll", ex);
+                this.WriteExLog(GetType() + ".SetInitFilterAll " + _sttRec, ex);
             }
         }
 
@@ -772,7 +772,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".ShowParentMessage", ex);
+                this.WriteExLog(GetType() + ".ShowParentMessage " + _sttRec, ex);
             }
         }
 
@@ -810,7 +810,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         //    }
         //    catch (Exception ex)
         //    {
-        //        this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi", ex);
+        //        this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi " + _sttRec, ex);
         //    }
         //}
 
@@ -832,7 +832,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi_0", ex);
+                this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi_0 " + _sttRec, ex);
             }
         }
         protected void TinhSoluongQuyDoi_1(V6NumberTextBox _soLuong1
@@ -848,7 +848,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi_1", ex);
+                this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi_1 " + _sttRec, ex);
             }
         }
 
@@ -885,7 +885,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TinhChietKhauChiTiet", ex);
+                this.ShowErrorException(GetType() + ".TinhChietKhauChiTiet " + _sttRec, ex);
             }
         }
 
@@ -1020,7 +1020,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ValidateNgayCt", ex);
+                this.ShowErrorException(GetType() + ".ValidateNgayCt " + _sttRec, ex);
             }
             return false;
         }
@@ -1122,7 +1122,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             catch (Exception ex)
             {
                 //error += ex.Message;//Lỗi chương trình không liên quan lỗi nhập liệu
-                this.WriteExLog(GetType() + ".ValidateData_Detail", ex);
+                this.WriteExLog(GetType() + ".ValidateData_Detail " + _sttRec, ex);
             }
             return error;
         }
@@ -1327,7 +1327,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".XuLyThayDoiTyGia: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1380,7 +1380,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + "ValidateData_Master_CheckTon", ex);
+                this.WriteExLog(GetType() + "ValidateData_Master_CheckTon " + _sttRec, ex);
                 ShowParentMessage("Có lỗi khi check tồn: " + ex.Message);
                 return true;
             }
@@ -1774,7 +1774,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".In: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1832,7 +1832,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".CheckPrint", ex);
+                this.WriteExLog(GetType() + ".CheckPrint " + _sttRec, ex);
             }
             return check_print;
         }
@@ -1866,7 +1866,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".XemPhieuNhapView", ex);
+                this.WriteExLog(GetType() + ".XemPhieuNhapView " + _sttRec, ex);
             }
         }
 
@@ -1951,7 +1951,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".CreateProgram0", ex);
+                this.WriteExLog(GetType() + ".CreateProgram0 " + _sttRec, ex);
             }
         }
 
@@ -1990,7 +1990,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".InvokeFormEventFixCopyData", ex);
+                this.WriteExLog(GetType() + ".InvokeFormEventFixCopyData " + _sttRec, ex);
             }
         }
 
@@ -2087,7 +2087,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".ChucNang_ThayThe", ex);
+                this.WriteExLog(GetType() + ".ChucNang_ThayThe " + _sttRec, ex);
             }
         }
 
@@ -2116,7 +2116,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 var dataGridView1 = allObjects["dataGridView1"] as DataGridView;
                 if (dataGridView1 == null)
                 {
-                    this.ShowErrorMessage(GetType() + ".AfterReplace dataGridView1 null", 500);
+                    this.ShowWarningMessage(GetType() + ".AfterReplace dataGridView1 null", 500);
                     return;
                 }
                 var replaceField = allObjects["replaceField"] as string;
@@ -2139,7 +2139,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".AfterReplace", ex);
+                this.WriteExLog(GetType() + ".AfterReplace " + _sttRec, ex);
             }
         }
 

@@ -2862,7 +2862,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".TTTT " + _sttRec, ex, "Lỗi-TTT("+debug+")");
+                this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, "TTTT(" + debug + ")"), ex);
             }
         }
 
@@ -3550,6 +3550,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 flagAddSuccess = false;
                 addErrorMessage = ex.Message;
                 Invoice.PostErrorLog(_sttRec, "M " + _sttRec, ex);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             flagAddFinish = true;
         }
@@ -4215,8 +4216,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 _print_flag = V6PrintMode.AutoClickPrint;
                 _sttRec_In = _sttRec;
                 btnLuu.Focus();
-                Luu();
-                Mode = V6Mode.View;// Status = "3";
+                if (ValidateData_Master())
+                {
+                    Luu();
+                    Mode = V6Mode.View;// Status = "3";
+                }
+                else
+                {
+                    _print_flag = V6PrintMode.DoNoThing;
+                }
             }
             else if (Mode == V6Mode.View)
             {
@@ -4494,7 +4502,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyThemDetail " + _sttRec, ex);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             return true;
         }
@@ -5642,6 +5650,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     txtManx.Focus();
                     return false;
                 }
+                if (txtManx.Int_Data("Loai_tk") == 0)
+                {
+                    this.ShowWarningMessage("Tài khoản không phải chi tiết!");
+                    txtManx.Focus();
+                    return false;
+                }
                 if (cboKieuPost.SelectedIndex == -1)
                 {
                     this.ShowWarningMessage("Chưa chọn kiểu post!");
@@ -6161,34 +6175,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         {
             try
             {
-                try
+                var ma_kh = txtMaKh.Text.Trim();
+                var ma_dvcs = txtMadvcs.Text.Trim();
+                var message = "";
+                if (ma_kh != "" && ma_dvcs != "")
                 {
-                    var ma_kh = txtMaKh.Text.Trim();
-                    var ma_dvcs = txtMadvcs.Text.Trim();
-                    var message = "";
-                    if (ma_kh != "" && ma_dvcs != "")
-                    {
-                        CPX_PhieuNhapMuaForm chon = new CPX_PhieuNhapMuaForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
-                        chon.AcceptSelectEvent += chon_AcceptSelectEvent;
-                        chon.ShowDialog(this);
-                    }
-                    else
-                    {
-                        if (ma_kh == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID must entry!\n";
-                        if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID must entry!";
-                        this.ShowWarningMessage(message);
-                        if (ma_kh == "") txtMaKh.Focus();
-                        else if (ma_dvcs == "") txtMadvcs.Focus();
-                    }
+                    CPX_PhieuNhapMuaForm chon = new CPX_PhieuNhapMuaForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
+                    chon.AcceptSelectEvent += chon_AcceptSelectEvent;
+                    chon.ShowDialog(this);
                 }
-                catch (Exception ex)
+                else
                 {
-                    this.ShowErrorMessage(GetType() + ".XuLyChonPhieuXuat: " + ex.Message, "HoaDonControl");
+                    if (ma_kh == "")
+                        message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID must entry!\n";
+                    if (ma_dvcs == "")
+                        message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID must entry!";
+                    this.ShowWarningMessage(message);
+                    if (ma_kh == "") txtMaKh.Focus();
+                    else if (ma_dvcs == "") txtMadvcs.Focus();
                 }
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ChonPhieuXuat_A: " + ex.Message, "Hoa don ban hang Error");
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -6212,9 +6222,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".GetGia: " + ex.Message);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
         private void btnApGia_Click(object sender, EventArgs e)
         {
             ApGiaMua();
@@ -6342,9 +6353,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     row["TIEN_NT"] = tienNt;
                     row["TIEN"] = tien;
 
-                    
-
-
                 }
 
                 dataGridView1.DataSource = AD;
@@ -6353,7 +6361,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ApGiaMua " + _sttRec, ex);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
