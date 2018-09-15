@@ -4058,6 +4058,18 @@
       <DependentUpon>ChartReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\QuickReportManager.cs" />
+    <Compile Include="FormManager\ReportManager\ReportR\ReportR47Container.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportR47Container.Designer.cs">
+      <DependentUpon>ReportR47Container.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportR47ViewBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportR47ViewBase.designer.cs">
+      <DependentUpon>ReportR47ViewBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\ReportR\ReportR45ViewBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -7253,6 +7265,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ChartReportForm.resx">
       <DependentUpon>ChartReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR47Container.resx">
+      <DependentUpon>ReportR47Container.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR47ViewBase.resx">
+      <DependentUpon>ReportR47ViewBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR45ViewBase.resx">
       <DependentUpon>ReportR45ViewBase.cs</DependentUpon>
