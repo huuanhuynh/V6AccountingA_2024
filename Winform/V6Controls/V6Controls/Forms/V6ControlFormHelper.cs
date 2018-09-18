@@ -3997,21 +3997,18 @@ namespace V6Controls.Forms
             {
                 if (showColumns == null || showColumns.Length == 0) return;
                 //dgv.HideAllColumns();
-                //Hide some columns
+                //Hide all columns
                 foreach (DataGridViewColumn column in dgv.Columns)
                 {
-                    var show = false;
-                    foreach (string show_column in showColumns)
+                    column.Visible = column.Frozen;
+                }
+                //Show
+                foreach (string show_column in showColumns)
+                {
+                    var column = dgv.Columns[show_column];
+                    if (column != null)
                     {
-                        if (column.DataPropertyName.ToUpper() == show_column.ToUpper())
-                        {
-                            show = true;
-                            break;
-                        }
-                    }
-                    if (!show)
-                    {
-                        column.Visible = column.Frozen;
+                        column.Visible = true;
                     }
                 }
 

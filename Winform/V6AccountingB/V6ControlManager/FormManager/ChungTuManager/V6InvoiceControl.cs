@@ -1014,7 +1014,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     return true;
                 }
 
-                ShowParentMessage(message);
+                ShowMainMessage(message);
                 dateNgayCT.Focus();
                 return false;
             }

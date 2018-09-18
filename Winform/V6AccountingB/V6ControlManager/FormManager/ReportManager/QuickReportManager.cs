@@ -26,6 +26,8 @@ namespace V6ControlManager.FormManager.ReportManager
     {
         public static ReportFilter44Base AddFilterControl44Base(string program, Panel panel1)
         {
+            panel1.Controls.Clear();
+
             var FilterControl = Filter.Filter.GetFilterControl44(program);
             panel1.Controls.Add(FilterControl);
             FilterControl.Focus();

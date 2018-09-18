@@ -115,7 +115,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             EnableFormControls_Alctct(TableName.ToString());
 
-            InvokeFormEvent("INIT2");
+            InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
         
@@ -147,7 +147,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             All_Objects["thisForm"] = this;
             CreateFormProgram();
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
-            InvokeFormEvent("INIT");
+            InvokeFormEvent(FormDynamicEvent.INIT);
         }
 
         private void LoadAdvanceControls(V6TableName tableName)
@@ -442,6 +442,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 All_Objects["data"] = DataDic;
                 All_Objects["dataOld"] = DataOld;
                 ValidateData();
+                InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
                 InvokeFormEvent("BEFOREINSERTORUPDATE");
                 string checkV6Valid = CheckV6Valid(DataDic, TableName.ToString());
                 if (!string.IsNullOrEmpty(checkV6Valid))
@@ -467,7 +468,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     {
                         AfterSave();
                         AfterUpdate();
-                        InvokeFormEvent("AFTERUPDATE");
+                        InvokeFormEvent(FormDynamicEvent.AFTERUPDATE);
                         
                         if (TableName == V6TableName.V6user)
                         {
@@ -535,7 +536,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     {
                         AfterSave();
                         AfterInsert();
-                        InvokeFormEvent("AFTERINSERT");
+                        InvokeFormEvent(FormDynamicEvent.AFTERINSERT);
                         
                         if (TableName == V6TableName.V6user)
                         {

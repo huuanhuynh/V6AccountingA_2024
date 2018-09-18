@@ -8013,6 +8013,7 @@
     <None Include="Resources\pp32.png" />
     <None Include="Resources\sms.png" />
     <None Include="Resources\sms48.png" />
+    <None Include="Resources\PrintInvoice16.png" />
     <Content Include="Resources\ToolBox16.png" />
     <Content Include="Resources\TreeBlack16.png" />
     <Content Include="Resources\TreeFolderYellowk16.png" />

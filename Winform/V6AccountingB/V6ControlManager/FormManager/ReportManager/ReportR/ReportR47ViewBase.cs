@@ -34,6 +34,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         //private string _program, _reportFile, _reportTitle, _reportTitle2;
         private string _program, _Ma_File, _reportTitle, _reportTitle2;
         private string _reportFileF5, _reportTitleF5, _reportTitle2F5;
+        private string _vitri;
         /// <summary>
         /// Advance filter get albc
         /// </summary>
@@ -41,6 +42,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private DataTable MauInData;
         private DataView MauInView;
+        
+        private DataTable BaoCaoData;
+        private DataView BaoCaoView;
 
         /// <summary>
         /// Danh sách event_method của Form_program.
@@ -130,10 +134,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     txtM_TEN_NLB2.Text = TEN_NLB_LOGIN2;
                 }
                 //}
-                FilterControl = QuickReportManager.AddFilterControl44Base(_program, panel1);
-                All_Objects["thisForm"] = this;
-                InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
-                QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects);
+                
                 All_Objects["thisForm"] = this;
                 SetStatus2Text();
                 gridViewSummary1.Visible = FilterControl.ViewSum;
@@ -616,9 +617,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         //    InitializeComponent();
         //}
 
-        public ReportR47ViewBase(string itemId, string program, string reportProcedure,
-            string reportFile, string reportTitle, string reportTitle2,
-            string reportFileF5, string reportTitleF5, string reportTitle2F5)
+        public ReportR47ViewBase(string itemId, string program, string reportProcedure, string reportFile, string reportTitle, string reportTitle2, string reportFileF5, string reportTitleF5, string reportTitle2F5, string vitri)
         {
             m_itemId = itemId;
             Name = itemId;
@@ -631,6 +630,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             _reportFileF5 = reportFileF5;
             _reportTitleF5 = reportTitleF5;
             _reportTitle2F5 = reportTitle2F5;
+            _vitri = vitri;
 
             V6ControlFormHelper.AddLastAction(GetType() + " " + program);
             
@@ -662,6 +662,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     rEnglish.Checked = true;
                 }
                 LoadComboboxSource();
+                LoadBaoCaoData();
                 LoadDefaultData(4, "", _Ma_File, m_itemId, "");
 
                 if (!V6Login.IsAdmin)
@@ -715,7 +716,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         public override void SetStatus2Text()
         {
-            FilterControl.SetStatus2Text();
+            //FilterControl.SetStatus2Text();
         }
 
         private void LoadComboboxSource()
@@ -739,6 +740,35 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 cboMauIn.Enabled = false;
                 btnSuaTTMauBC.Enabled = false;
                 //btnThemMauBC.Enabled = false;
+            }
+        }
+        
+        private void LoadBaoCaoData()
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@program", _program),
+                new SqlParameter("@vitri", _vitri),
+                new SqlParameter("@isAdmin", V6Login.IsAdmin),
+                new SqlParameter("@mrights", V6Login.UserRight.Mrights),
+                new SqlParameter("@moduleID", V6Login.SelectedModule),
+            };
+            BaoCaoData = V6BusinessHelper.Select("alreport", "*", "[PROC]=@program And Left(vitri,1)=@vitri " 
+                + "And Rtrim(MO_TA) in (Select Itemid from V6menu Where (((1=@isAdmin or dbo.VFA_Inlist_MEMO([Itemid], @mrights)=1)) AND hide_yn<>1 AND Module_id=@moduleID))",
+                "", "vitri", plist).Data;
+            
+            if (BaoCaoData.Rows.Count > 0)
+            {
+                BaoCaoView = new DataView(BaoCaoData);
+                cboBaoCao.ValueMember = "MA_BC";
+                cboBaoCao.DisplayMember = V6Setting.IsVietnamese ? "TEN" : "TEN2";
+                cboBaoCao.DataSource = BaoCaoView;
+                cboBaoCao.ValueMember = "MA_BC";
+                cboBaoCao.DisplayMember = V6Setting.IsVietnamese ? "TEN" : "TEN2";
+            }
+            else
+            {
+                cboBaoCao.Enabled = false;
             }
         }
 
@@ -1195,17 +1225,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         #endregion ==== LoadData MakeReport ====
         
-
-         #region Linh tinh        
-
         
-        private void btnHuy_Click(object sender, EventArgs e)
-        {
-            Dispose();
-        }
-        
-        #endregion Linh tinh
-
         private void rbtTienTe_CheckedChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
@@ -1309,6 +1329,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             try
             {
                 dataGridView1.SetFrozen(0);
+                dataGridView1.AutoGenerateColumns = true;
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = _tbl1;
 
@@ -1403,7 +1424,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 var oldKeys = FilterControl.GetFilterParameters();
 
-                var view = new ReportR47ViewBase(m_itemId, _program + "F5", _program + "F5",
+                var view = new ReportR45ViewBase(m_itemId, _program + "F5", _program + "F5",
                     FilterControl.ReportFileF5??_reportFileF5,
                     FilterControl.ReportTitleF5??_reportTitleF5,
                     FilterControl.ReportTitle2F5??_reportTitle2F5,
@@ -1449,11 +1470,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         public override bool DoHotKey0(Keys keyData)
         {
-            if (keyData == Keys.Escape)
-            {
-                btnHuy.PerformClick();
-            }
-            else if (keyData == (Keys.Control | Keys.Enter))
+            if (keyData == (Keys.Control | Keys.Enter))
             {
                 btnNhan.PerformClick();
             }
@@ -1470,6 +1487,22 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 return base.DoHotKey0(keyData);
             }
             return true;
+        }
+
+        public override void V6F3Execute()
+        {
+            ViewMauIn();
+        }
+
+        private void ViewMauIn()
+        {
+            lblMauIn.Visible = true;
+            cboMauIn.Visible = true;
+            chkHienTatCa.Visible = true;
+            btnSuaTTMauBC.Visible = true;
+            btnSuaMau.Visible = true;
+            btnSuaLine.Visible = true;
+            btnThemMauBC.Visible = true;
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
@@ -1508,7 +1541,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     return;
                 }
                 Point p = this.PointToScreen(btnIn.Location);
-                p.Y += contextMenuStrip1.Height/2 + btnIn.Height - 5;
+                //p.Y += contextMenuStrip1.Height/2 + btnIn.Height - 5;
+                p.Y += btnIn.Height - 5;
                 
                 contextMenuStrip1.Show(p);
 
@@ -1772,6 +1806,42 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void exportToPdfToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //
+        }
+
+        private void cboBaoCao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //Thay đổi _program, item_id...
+                DataRow row = ((DataRowView) cboBaoCao.SelectedItem).Row;
+                m_itemId = row["mo_ta"].ToString().Trim();
+                _program = cboBaoCao.SelectedValue.ToString().Trim();
+                _Ma_File = row["MA_BC"].ToString().Trim();
+                _reportProcedure = _Ma_File;
+
+                DataRow menuRow = V6Menu.GetRow(m_itemId);
+                //ReportFile = menuRow["rep_file"].ToString().Trim();
+                _reportTitle = menuRow["title"].ToString().Trim();
+                _reportTitle2 = menuRow["title2"].ToString().Trim();
+                _reportFileF5 = menuRow["rep_fileF5"].ToString().Trim();
+                _reportTitleF5 = menuRow["titleF5"].ToString().Trim();
+                _reportTitle2F5 = menuRow["title2F5"].ToString().Trim();
+
+                LoadComboboxSource();
+
+                //Đổi filter mỗi lần chọn lại báo cáo.
+                FilterControl = QuickReportManager.AddFilterControl44Base(_program, panel1);
+                All_Objects["thisForm"] = this;
+                All_Objects["FilterControl"] = FilterControl;
+                InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
+                QuickReportManager.MadeFilterControls(FilterControl, _program, All_Objects);
+
+                btnNhan_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                 this.ShowErrorException(GetType() + ".cboBaoCao_SelectedIndexChanged", ex);
+            }
         }
     }
 }

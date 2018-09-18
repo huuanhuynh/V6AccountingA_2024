@@ -41,6 +41,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.exportToXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.viewDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.cboMauIn = new V6Controls.V6ComboBox();
@@ -54,7 +55,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
             this.btnIn = new System.Windows.Forms.Button();
-            this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.panel0 = new System.Windows.Forms.Panel();
             this.grbNgonNgu = new System.Windows.Forms.GroupBox();
@@ -71,7 +71,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             this.btnSuaLine = new V6Controls.Controls.V6FormButton();
-            this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cboBaoCao = new V6Controls.V6ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -91,7 +92,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.viewDataToolStripMenuItem,
             this.exportToPdfToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 180);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 158);
             // 
             // exportToExcelTemplate
             // 
@@ -135,6 +136,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.viewDataToolStripMenuItem.Text = "ViewData";
             this.viewDataToolStripMenuItem.Click += new System.EventHandler(this.viewDataToolStripMenuItem_Click);
             // 
+            // exportToPdfToolStripMenuItem
+            // 
+            this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
+            this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
+            this.exportToPdfToolStripMenuItem.Visible = false;
+            this.exportToPdfToolStripMenuItem.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
+            // 
             // timerViewReport
             // 
             this.timerViewReport.Tick += new System.EventHandler(this.timerViewReport_Tick);
@@ -146,80 +155,84 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.cboMauIn.DropDownWidth = 400;
             this.cboMauIn.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboMauIn.FormattingEnabled = true;
-            this.cboMauIn.Location = new System.Drawing.Point(101, 38);
+            this.cboMauIn.Location = new System.Drawing.Point(101, 3);
             this.cboMauIn.Name = "cboMauIn";
             this.cboMauIn.Size = new System.Drawing.Size(200, 21);
             this.cboMauIn.TabIndex = 4;
+            this.cboMauIn.Visible = false;
             this.cboMauIn.SelectedIndexChanged += new System.EventHandler(this.cboMauIn_SelectedIndexChanged);
             // 
             // lblNguoiLapBieu2
             // 
             this.lblNguoiLapBieu2.AccessibleDescription = "REPORTL00005";
-            this.lblNguoiLapBieu2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNguoiLapBieu2.AutoSize = true;
-            this.lblNguoiLapBieu2.Location = new System.Drawing.Point(757, 41);
+            this.lblNguoiLapBieu2.Location = new System.Drawing.Point(328, 201);
             this.lblNguoiLapBieu2.Name = "lblNguoiLapBieu2";
             this.lblNguoiLapBieu2.Size = new System.Drawing.Size(84, 13);
             this.lblNguoiLapBieu2.TabIndex = 11;
             this.lblNguoiLapBieu2.Text = "Người lập biểu 2";
+            this.lblNguoiLapBieu2.Visible = false;
             // 
             // lblNguoiLapBieu
             // 
             this.lblNguoiLapBieu.AccessibleDescription = "REPORTL00004";
-            this.lblNguoiLapBieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNguoiLapBieu.AutoSize = true;
-            this.lblNguoiLapBieu.Location = new System.Drawing.Point(555, 41);
+            this.lblNguoiLapBieu.Location = new System.Drawing.Point(328, 175);
             this.lblNguoiLapBieu.Name = "lblNguoiLapBieu";
             this.lblNguoiLapBieu.Size = new System.Drawing.Size(75, 13);
             this.lblNguoiLapBieu.TabIndex = 9;
             this.lblNguoiLapBieu.Text = "Người lập biểu";
+            this.lblNguoiLapBieu.Visible = false;
             // 
             // txtM_TEN_NLB2
             // 
             this.txtM_TEN_NLB2.AccessibleName = "M_TEN_NLB2";
-            this.txtM_TEN_NLB2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtM_TEN_NLB2.Location = new System.Drawing.Point(847, 38);
+            this.txtM_TEN_NLB2.Location = new System.Drawing.Point(420, 198);
             this.txtM_TEN_NLB2.Name = "txtM_TEN_NLB2";
-            this.txtM_TEN_NLB2.Size = new System.Drawing.Size(115, 20);
+            this.txtM_TEN_NLB2.Size = new System.Drawing.Size(194, 20);
             this.txtM_TEN_NLB2.TabIndex = 12;
+            this.txtM_TEN_NLB2.Visible = false;
             // 
             // txtM_TEN_NLB
             // 
             this.txtM_TEN_NLB.AccessibleName = "M_TEN_NLB";
-            this.txtM_TEN_NLB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtM_TEN_NLB.Location = new System.Drawing.Point(636, 38);
+            this.txtM_TEN_NLB.Location = new System.Drawing.Point(420, 172);
             this.txtM_TEN_NLB.Name = "txtM_TEN_NLB";
-            this.txtM_TEN_NLB.Size = new System.Drawing.Size(115, 20);
+            this.txtM_TEN_NLB.Size = new System.Drawing.Size(194, 20);
             this.txtM_TEN_NLB.TabIndex = 10;
+            this.txtM_TEN_NLB.Visible = false;
             // 
             // lblMauIn
             // 
             this.lblMauIn.AccessibleDescription = "REPORTL00003";
             this.lblMauIn.AutoSize = true;
-            this.lblMauIn.Location = new System.Drawing.Point(9, 41);
+            this.lblMauIn.Location = new System.Drawing.Point(9, 6);
             this.lblMauIn.Name = "lblMauIn";
             this.lblMauIn.Size = new System.Drawing.Size(81, 13);
             this.lblMauIn.TabIndex = 3;
             this.lblMauIn.Text = "Mẫu in báo cáo";
+            this.lblMauIn.Visible = false;
             // 
             // lblTieuDe
             // 
             this.lblTieuDe.AccessibleDescription = "REPORTL00002";
             this.lblTieuDe.AutoSize = true;
-            this.lblTieuDe.Location = new System.Drawing.Point(9, 15);
+            this.lblTieuDe.Location = new System.Drawing.Point(328, 149);
             this.lblTieuDe.Name = "lblTieuDe";
             this.lblTieuDe.Size = new System.Drawing.Size(86, 13);
             this.lblTieuDe.TabIndex = 1;
             this.lblTieuDe.Text = "Tiêu đề báo cáo";
+            this.lblTieuDe.Visible = false;
             // 
             // txtReportTitle
             // 
             this.txtReportTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtReportTitle.Location = new System.Drawing.Point(101, 12);
+            this.txtReportTitle.Location = new System.Drawing.Point(420, 146);
             this.txtReportTitle.Name = "txtReportTitle";
-            this.txtReportTitle.Size = new System.Drawing.Size(861, 20);
+            this.txtReportTitle.Size = new System.Drawing.Size(525, 20);
             this.txtReportTitle.TabIndex = 2;
+            this.txtReportTitle.Visible = false;
             // 
             // dataGridView1
             // 
@@ -242,13 +255,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Control_S = true;
-            this.dataGridView1.Location = new System.Drawing.Point(307, 64);
+            this.dataGridView1.Location = new System.Drawing.Point(307, 30);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(662, 564);
+            this.dataGridView1.Size = new System.Drawing.Size(662, 598);
             this.dataGridView1.TabIndex = 13;
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
@@ -260,14 +273,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.grbDieuKienLoc.AccessibleDescription = "REPORTL00006";
             this.grbDieuKienLoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.grbDieuKienLoc.Controls.Add(this.btnIn);
-            this.grbDieuKienLoc.Controls.Add(this.btnHuy);
-            this.grbDieuKienLoc.Controls.Add(this.btnNhan);
             this.grbDieuKienLoc.Controls.Add(this.panel0);
             this.grbDieuKienLoc.Controls.Add(this.panel1);
-            this.grbDieuKienLoc.Location = new System.Drawing.Point(2, 64);
+            this.grbDieuKienLoc.Location = new System.Drawing.Point(2, 103);
             this.grbDieuKienLoc.Name = "grbDieuKienLoc";
-            this.grbDieuKienLoc.Size = new System.Drawing.Size(299, 587);
+            this.grbDieuKienLoc.Size = new System.Drawing.Size(299, 548);
             this.grbDieuKienLoc.TabIndex = 0;
             this.grbDieuKienLoc.TabStop = false;
             this.grbDieuKienLoc.Text = "Conditional option (Điều Kiện Lọc)";
@@ -276,32 +286,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.btnIn.AccessibleDescription = "REPORTB00006";
             this.btnIn.AccessibleName = "";
-            this.btnIn.Image = global::V6ControlManager.Properties.Resources.Print24;
+            this.btnIn.Image = global::V6ControlManager.Properties.Resources.Print;
             this.btnIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnIn.Location = new System.Drawing.Point(94, 100);
+            this.btnIn.Location = new System.Drawing.Point(123, 57);
             this.btnIn.Name = "btnIn";
-            this.btnIn.Size = new System.Drawing.Size(88, 40);
+            this.btnIn.Size = new System.Drawing.Size(110, 40);
             this.btnIn.TabIndex = 2;
             this.btnIn.Text = "&In";
             this.btnIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnIn.UseVisualStyleBackColor = true;
             this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.AccessibleDescription = "REPORTB00005";
-            this.btnHuy.AccessibleName = "";
-            this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel;
-            this.btnHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHuy.Location = new System.Drawing.Point(182, 100);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(88, 40);
-            this.btnHuy.TabIndex = 3;
-            this.btnHuy.Text = "&Hủy";
-            this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // btnNhan
             // 
@@ -309,9 +303,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnNhan.AccessibleName = "";
             this.btnNhan.Image = global::V6ControlManager.Properties.Resources.Apply;
             this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNhan.Location = new System.Drawing.Point(6, 100);
+            this.btnNhan.Location = new System.Drawing.Point(12, 57);
             this.btnNhan.Name = "btnNhan";
-            this.btnNhan.Size = new System.Drawing.Size(88, 40);
+            this.btnNhan.Size = new System.Drawing.Size(110, 40);
             this.btnNhan.TabIndex = 1;
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -430,9 +424,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
-            this.panel1.Location = new System.Drawing.Point(6, 146);
+            this.panel1.Location = new System.Drawing.Point(6, 100);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(287, 435);
+            this.panel1.Size = new System.Drawing.Size(287, 446);
             this.panel1.TabIndex = 0;
             this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
@@ -440,35 +434,38 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.btnSuaMau.AccessibleDescription = "REPORTB00003";
             this.btnSuaMau.Enabled = false;
-            this.btnSuaMau.Location = new System.Drawing.Point(435, 36);
+            this.btnSuaMau.Location = new System.Drawing.Point(450, 1);
             this.btnSuaMau.Name = "btnSuaMau";
             this.btnSuaMau.Size = new System.Drawing.Size(39, 23);
             this.btnSuaMau.TabIndex = 7;
             this.btnSuaMau.Text = "Sửa";
             this.toolTipV6FormControl.SetToolTip(this.btnSuaMau, "Sửa Mẫu");
             this.btnSuaMau.UseVisualStyleBackColor = true;
+            this.btnSuaMau.Visible = false;
             this.btnSuaMau.Click += new System.EventHandler(this.btnSuaMau_Click);
             // 
             // btnSuaTTMauBC
             // 
             this.btnSuaTTMauBC.AccessibleDescription = "REPORTB00001";
-            this.btnSuaTTMauBC.Location = new System.Drawing.Point(345, 36);
+            this.btnSuaTTMauBC.Location = new System.Drawing.Point(360, 1);
             this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
             this.btnSuaTTMauBC.Size = new System.Drawing.Size(43, 23);
             this.btnSuaTTMauBC.TabIndex = 5;
             this.btnSuaTTMauBC.Text = "Sửa tt";
             this.btnSuaTTMauBC.UseVisualStyleBackColor = true;
+            this.btnSuaTTMauBC.Visible = false;
             this.btnSuaTTMauBC.Click += new System.EventHandler(this.btnSuaTTMauBC_Click);
             // 
             // btnThemMauBC
             // 
             this.btnThemMauBC.AccessibleDescription = "REPORTB00002";
-            this.btnThemMauBC.Location = new System.Drawing.Point(390, 36);
+            this.btnThemMauBC.Location = new System.Drawing.Point(405, 1);
             this.btnThemMauBC.Name = "btnThemMauBC";
             this.btnThemMauBC.Size = new System.Drawing.Size(43, 23);
             this.btnThemMauBC.TabIndex = 6;
             this.btnThemMauBC.Text = "Thêm";
             this.btnThemMauBC.UseVisualStyleBackColor = true;
+            this.btnThemMauBC.Visible = false;
             this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
             // 
             // chkHienTatCa
@@ -476,12 +473,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.chkHienTatCa.AccessibleDescription = "REPORTC00001";
             this.chkHienTatCa.AutoSize = true;
             this.chkHienTatCa.Enabled = false;
-            this.chkHienTatCa.Location = new System.Drawing.Point(302, 40);
+            this.chkHienTatCa.Location = new System.Drawing.Point(317, 5);
             this.chkHienTatCa.Name = "chkHienTatCa";
             this.chkHienTatCa.Size = new System.Drawing.Size(37, 17);
             this.chkHienTatCa.TabIndex = 8;
             this.chkHienTatCa.Text = "All";
             this.chkHienTatCa.UseVisualStyleBackColor = true;
+            this.chkHienTatCa.Visible = false;
             this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
             // 
             // gridViewSummary1
@@ -497,30 +495,49 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // btnSuaLine
             // 
             this.btnSuaLine.AccessibleDescription = "REPORTB00003";
-            this.btnSuaLine.Location = new System.Drawing.Point(476, 36);
+            this.btnSuaLine.Location = new System.Drawing.Point(491, 1);
             this.btnSuaLine.Name = "btnSuaLine";
             this.btnSuaLine.Size = new System.Drawing.Size(50, 23);
             this.btnSuaLine.TabIndex = 7;
             this.btnSuaLine.Text = "ĐK lọc";
             this.toolTipV6FormControl.SetToolTip(this.btnSuaLine, "Sửa line");
             this.btnSuaLine.UseVisualStyleBackColor = true;
+            this.btnSuaLine.Visible = false;
             this.btnSuaLine.Click += new System.EventHandler(this.btnSuaLine_Click);
             // 
-            // exportToPdfToolStripMenuItem
+            // cboBaoCao
             // 
-            this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
-            this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
-            this.exportToPdfToolStripMenuItem.Visible = false;
-            this.exportToPdfToolStripMenuItem.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
+            this.cboBaoCao.BackColor = System.Drawing.SystemColors.Window;
+            this.cboBaoCao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBaoCao.DropDownWidth = 400;
+            this.cboBaoCao.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboBaoCao.FormattingEnabled = true;
+            this.cboBaoCao.Location = new System.Drawing.Point(101, 30);
+            this.cboBaoCao.Name = "cboBaoCao";
+            this.cboBaoCao.Size = new System.Drawing.Size(200, 21);
+            this.cboBaoCao.TabIndex = 4;
+            this.cboBaoCao.SelectedIndexChanged += new System.EventHandler(this.cboBaoCao_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Báo cáo";
             // 
             // ReportR47ViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnIn);
+            this.Controls.Add(this.btnNhan);
             this.Controls.Add(this.chkHienTatCa);
             this.Controls.Add(this.btnSuaLine);
             this.Controls.Add(this.btnSuaMau);
+            this.Controls.Add(this.cboBaoCao);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSuaTTMauBC);
             this.Controls.Add(this.btnThemMauBC);
             this.Controls.Add(this.cboMauIn);
@@ -557,7 +574,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private V6Controls.V6ColorDataGridView dataGridView1;
         private System.Windows.Forms.GroupBox grbDieuKienLoc;
         private System.Windows.Forms.Button btnNhan;
-        private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem exportToExcel;
         private System.Windows.Forms.ToolStripMenuItem printGrid;
@@ -592,6 +608,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         public System.Windows.Forms.TextBox txtReportTitle;
         private V6FormButton btnSuaLine;
         private System.Windows.Forms.ToolStripMenuItem exportToPdfToolStripMenuItem;
+        private V6Controls.V6ComboBox cboBaoCao;
+        private System.Windows.Forms.Label label1;
 
 
 

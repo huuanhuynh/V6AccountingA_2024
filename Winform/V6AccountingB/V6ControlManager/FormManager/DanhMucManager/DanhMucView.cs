@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -25,14 +26,100 @@ namespace V6ControlManager.FormManager.DanhMucManager
     /// </summary>
     public partial class DanhMucView : V6FormControl
     {
+        #region ===== VAR =====
         private bool _aldm;
+        private readonly V6Categories _categories = new V6Categories();
+        private SortedDictionary<string, string> _hideColumnDic;
+        /// <summary>
+        /// Tên gốc gửi vào
+        /// </summary>
+        private string _tableName;
+        /// <summary>
+        /// Tên theo enum V6TableName
+        /// </summary>
+        [DefaultValue(V6TableName.None)]
+        [Description("Tên theo enum V6TableName")]
+        public V6TableName CurrentTable { get; set; }
+        /// <summary>
+        /// Nơi chứa dữ liệu
+        /// </summary>
+        public V6SelectResult SelectResult { get; set; }
+
+        public bool EnableAdd
+        {
+            get { return btnThem.Enabled; }
+            set { btnThem.Enabled = value; }
+        }
+
+        public bool EnableCopy
+        {
+            get { return btnCopy.Enabled; }
+            set { btnCopy.Enabled = value; }
+        }
+
+        public bool EnableEdit
+        {
+            get { return btnSua.Enabled; }
+            set { btnSua.Enabled = value; }
+        }
+
+        public bool EnableDelete
+        {
+            get { return btnXoa.Enabled; }
+            set { btnXoa.Enabled = value; }
+        }
+
+        public bool EnableChangeCode
+        {
+            get { return btnDoiMa.Enabled; }
+            set { btnDoiMa.Enabled = value; }
+        }
+
+        public bool EnableChangeGroup
+        {
+            get { return btnNhom.Enabled; }
+            set { btnNhom.Enabled = value; }
+        }
+
+        public bool EnableFullScreen
+        {
+            get { return btnFull.Enabled; }
+            set { btnFull.Enabled = value; }
+        }
+
+        public string Title
+        {
+            get
+            {
+                return Text;
+            }
+            set
+            {
+                Text = value;
+            }
+        }
+
+        public string[] KeyFields { get; set; }
+
+        public string ReportFile { get; set; }
+        public string ReportTitle { get; set; }
+        public string ReportTitle2 { get; set; }
+
+        protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        /// <summary>
+        /// Code động từ aldmConfig.
+        /// </summary>
+        protected Type Event_program;
+        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+        #endregion var
+
         public DanhMucView()
         {
             InitializeComponent();
         }
 
         /// <summary>
-        /// 
+        /// Khởi tạo control hiển thị danh mục.
         /// </summary>
         /// <param name="itemId"></param>
         /// <param name="title"></param>
@@ -56,9 +143,9 @@ namespace V6ControlManager.FormManager.DanhMucManager
             SelectResult = new V6SelectResult();
             SelectResult.SortField = sort;
 
+            aldm_config = V6ControlsHelper.GetAldmConfigByTableName(_tableName);
             if (aldm)
             {
-                aldm_config = V6ControlsHelper.GetAldmConfigByTableName(_tableName);
                 if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(aldm_config.ORDER))
                     SelectResult.SortField = aldm_config.ORDER;
             }
@@ -150,6 +237,12 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     cboFilter.Visible = true;
                     lblFilter.Visible = true;
                 }
+
+                All_Objects["thisForm"] = this;
+                CreateFormProgram();
+                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+                InvokeFormEvent(FormDynamicEvent.INIT);
+
             }
             catch (Exception ex)
             {
@@ -169,85 +262,74 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             MakeStatus2Text();
             SetStatus2Text();
+            InvokeFormEvent(ControlDynamicEvent.INIT2);
         }
 
-        
-        private readonly V6Categories _categories = new V6Categories();
-        private SortedDictionary<string, string> _hideColumnDic; 
-        /// <summary>
-        /// Tên gốc gửi vào
-        /// </summary>
-        private string _tableName;
-        /// <summary>
-        /// Tên theo enum V6TableName
-        /// </summary>
-        [DefaultValue(V6TableName.None)]
-        [Description("Tên theo enum V6TableName")]
-        public V6TableName CurrentTable { get; set; }
-        /// <summary>
-        /// Nơi chứa dữ liệu
-        /// </summary>
-        public V6SelectResult SelectResult { get; set; }
-
-        public bool EnableAdd
+        protected void CreateFormProgram()
         {
-            get { return btnThem.Enabled; }
-            set { btnThem.Enabled = value; }
-        }
-
-        public bool EnableCopy
-        {
-            get { return btnCopy.Enabled; }
-            set { btnCopy.Enabled = value; }
-        }
-
-        public bool EnableEdit
-        {
-            get { return btnSua.Enabled; }
-            set { btnSua.Enabled = value; }
-        }
-
-        public bool EnableDelete
-        {
-            get { return btnXoa.Enabled; }
-            set { btnXoa.Enabled = value; }
-        }
-
-        public bool EnableChangeCode
-        {
-            get { return btnDoiMa.Enabled; }
-            set { btnDoiMa.Enabled = value; }
-        }
-        
-        public bool EnableChangeGroup
-        {
-            get { return btnNhom.Enabled; }
-            set { btnNhom.Enabled = value; }
-        }
-
-        public bool EnableFullScreen
-        {
-            get { return btnFull.Enabled; }
-            set { btnFull.Enabled = value; }
-        }
-
-        public string Title
-        {
-            get
+            try
             {
-                return Text;
+                //DMETHOD
+                if (aldm_config.NoInfo || string.IsNullOrEmpty(aldm_config.DMETHOD))
+                {
+                    //this.ShowWarningMessage("No column name [DMETHOD]");
+                    return;
+                }
+
+                string using_text = "";
+                string method_text = "";
+                //foreach (DataRow dataRow in Invoice.Alct1.Rows)
+                {
+                    var xml = aldm_config.DMETHOD;
+                    if (xml == "") return;
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(new StringReader(xml));
+                    if (ds.Tables.Count <= 0) return;
+                    var data = ds.Tables[0];
+                    foreach (DataRow event_row in data.Rows)
+                    {
+                        var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                        var method_name = event_row["method"].ToString().Trim();
+                        Event_Methods[EVENT_NAME] = method_name;
+
+                        using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                        method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
+                    }
+                }
+
+            Build:
+                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + aldm_config.MA_DM, using_text, method_text);
             }
-            set
+            catch (Exception ex)
             {
-                Text = value;
+                this.WriteExLog(GetType() + ".CreateProgram0", ex);
             }
         }
 
-        public string[] KeyFields { get; set; }
+        /// <summary>
+        /// Gọi hàm động theo tên event đã định nghĩa.
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <returns></returns>
+        public object InvokeFormEvent(string eventName)
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(eventName))
+                {
+                    var method_name = Event_Methods[eventName];
+                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+            }
+            return null;
+        }
 
-        public string ReportFile { get; set; }
-        public string ReportTitle { get; set; }
-        public string ReportTitle2 { get; set; }
+        
+        
 
         private void btnThem_EnabledChanged(object sender, EventArgs e)
         {
@@ -337,6 +419,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 if (keyData == (Keys.Control | Keys.F6))
                 {
                     
+                }
+                if (keyData == Keys.F9)
+                {
+                    All_Objects["dataGridView1"] = dataGridView1;
+                    InvokeFormEvent(FormDynamicEvent.F9);
                 }
             }
             catch (Exception ex)
@@ -859,7 +946,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                             this.ShowErrorException(GetType() + ".DoDelete Alvt after", ex);
                                         }
                                     }
-                                    if (CurrentTable == V6TableName.Alvitri)
+                                    else if (CurrentTable == V6TableName.Alvitri)
                                     {
                                         try
                                         {
@@ -874,6 +961,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                         {
                                             this.ShowErrorException(GetType() + ".DoDelete Alvitri after", ex);
                                         }
+                                    }
+                                    
+                                    //AfterDelete
+                                    {
+                                        InvokeFormEvent(FormDynamicEvent.AFTERDELETESUCCESS);
                                     }
                                 }
                             }

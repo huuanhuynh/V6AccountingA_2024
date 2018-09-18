@@ -169,6 +169,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 MAU = parent44.MAU;
                 LAN = parent44.LAN;
             }
+            if (parent00 is ReportR47ViewBase)
+            {
+                var parent44 = (ReportR47ViewBase)parent00;
+                MAU = parent44.MAU;
+                LAN = parent44.LAN;
+            }
             if (parent00 is ReportRWWView2Base)
             {
                 var parent44 = (ReportRWWView2Base)parent00;
