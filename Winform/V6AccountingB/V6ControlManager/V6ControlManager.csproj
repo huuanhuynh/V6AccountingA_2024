@@ -4304,6 +4304,12 @@
     <Compile Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.designer.cs">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS.Designer.cs">
+      <DependentUpon>V6IMPORT2XLS.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\NhanSu\StickNoteCellView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4374,6 +4380,9 @@
       <DependentUpon>V6EDITALAB.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\V6LEVELSET.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS_Container.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\XAGLAUTO_GL1_Base.cs">
@@ -4784,37 +4793,37 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F4.designer.cs">
       <DependentUpon>AAPPR_SOA1_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\V6IMPORTXLS.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORTXLS.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\V6IMPORTXLS.Designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORTXLS.Designer.cs">
       <DependentUpon>V6IMPORTXLS.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\XLSIND_Control.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSIND_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\XLSIXA_Control.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSIXA_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\XLSCA1_Control.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSCA1_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ZACOSXLT_TINHGIA.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\XLSTA1_Control.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSTA1_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\XLSSOA_Control.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOA_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\XLSPOA_Control.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSPOA_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\XLSALVT_Control.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSALVT_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\XLSALKH_Control.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSALKH_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA.cs">
@@ -7392,6 +7401,12 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ATODCCTBP_F4.resx">
       <DependentUpon>ATODCCTBP_F4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS.resx">
+      <DependentUpon>V6IMPORT2XLS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS_Container.resx">
+      <DependentUpon>V6IMPORT2XLS_Container.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\StickNoteCellView.resx">
       <DependentUpon>StickNoteCellView.cs</DependentUpon>
     </EmbeddedResource>
@@ -7599,34 +7614,34 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\V6COPY_RA.resx">
       <DependentUpon>V6COPY_RA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\V6IMPORTXLS.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORTXLS.resx">
       <DependentUpon>V6IMPORTXLS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\XLSIND_Control.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSIND_Control.resx">
       <DependentUpon>XLSIND_Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\XLSIXA_Control.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSIXA_Control.resx">
       <DependentUpon>XLSIXA_Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\XLSCA1_Control.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSCA1_Control.resx">
       <DependentUpon>XLSCA1_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ZACOSXLT_TINHGIA.resx">
       <DependentUpon>ZACOSXLT_TINHGIA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\XLSTA1_Control.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSTA1_Control.resx">
       <DependentUpon>XLSTA1_Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\XLSSOA_Control.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOA_Control.resx">
       <DependentUpon>XLSSOA_Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\XLSPOA_Control.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSPOA_Control.resx">
       <DependentUpon>XLSPOA_Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\XLSALKH_Control.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSALKH_Control.resx">
       <DependentUpon>XLSALKH_Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\XLSALVT_Control.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSALVT_Control.resx">
       <DependentUpon>XLSALVT_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA_F4.resx">

@@ -100,6 +100,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new V6LEVELSET(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "V6IMXLS":
                     return new V6IMPORTXLS(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "V6IM2XLS":
+                    return new V6IMPORT2XLS(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                    //return new V6IMPORT2XLS_Container(itemId, program, procedure, reportFile, reportCaption);
 
                 case "AGLSO1T":
                     return new AGLSO1T(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
@@ -263,6 +266,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new HRORGVIEW1(itemId, program, procedure, reportFile, text);
                 case "V6EDITALAB":
                     return new V6EDITALAB(itemId, program, procedure, reportFile, text);
+
+                case "V6IM2XLS":
+                    //return new V6IMPORT2XLS(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                    return new V6IMPORT2XLS_Container(itemId, program, procedure, reportFile, text);
             }
             return new XuLyBase0(itemId, program, procedure, reportFile, text);
         }

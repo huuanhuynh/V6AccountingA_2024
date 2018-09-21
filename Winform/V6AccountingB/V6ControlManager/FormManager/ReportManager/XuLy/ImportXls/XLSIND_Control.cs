@@ -22,7 +22,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private readonly V6Categories _categories = new V6Categories();
         private const string ID_FIELD = "SO_CT", NAME_FIELD = "NGAY_CT";
         private DataTable data;
-        private List<DataRow> rows_for_remove;
         /// <summary>
         /// Kiem tra du lieu hop le
         /// </summary>
@@ -101,7 +100,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         Timer timerF9 = new Timer {Interval = 1000};
                         timerF9.Tick += tF9_Tick;
-                        rows_for_remove = new List<DataRow>();
+                        remove_list_d = new List<DataRow>();
                         Thread t = new Thread(F9Thread);
                         t.SetApartmentState(ApartmentState.STA);
                         CheckForIllegalCrossThreadCalls = false;
@@ -204,7 +203,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             //Danh dau xóa data.
                             foreach (DataRow remove_row in item.Value)
                             {
-                                rows_for_remove.Add(remove_row);
+                                remove_list_d.Add(remove_row);
                             }
                         }
                         else
@@ -348,10 +347,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (f9Running)
             {
                 //Remove
-                while (rows_for_remove.Count>0)
+                while (remove_list_d.Count>0)
                 {
-                    data.Rows.Remove(rows_for_remove[0]);
-                    rows_for_remove.RemoveAt(0);
+                    data.Rows.Remove(remove_list_d[0]);
+                    remove_list_d.RemoveAt(0);
                 }
 
                 var cError = f9Error;
@@ -367,10 +366,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 ((Timer)sender).Stop();
 
                 //Remove
-                while (rows_for_remove.Count > 0)
+                while (remove_list_d.Count > 0)
                 {
-                    data.Rows.Remove(rows_for_remove[0]);
-                    rows_for_remove.RemoveAt(0);
+                    data.Rows.Remove(remove_list_d[0]);
+                    remove_list_d.RemoveAt(0);
                 }
 
                 foreach (DataGridViewRow row in dataGridView1.Rows)

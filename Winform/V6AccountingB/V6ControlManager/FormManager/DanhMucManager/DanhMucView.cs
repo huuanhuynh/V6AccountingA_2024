@@ -272,7 +272,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 //DMETHOD
                 if (aldm_config.NoInfo || string.IsNullOrEmpty(aldm_config.DMETHOD))
                 {
-                    //this.ShowWarningMessage("No column name [DMETHOD]");
                     return;
                 }
 
@@ -1726,19 +1725,29 @@ namespace V6ControlManager.FormManager.DanhMucManager
             var text = "";
             if (V6Setting.IsVietnamese)
             {
+                text += ", F1-Trợ giúp";
+                text += ", F2-Xem";
                 if (EnableEdit) text += ", F3-Sửa";
                 if (EnableAdd) text += ", F4-Thêm";
                 text += ", F5-Tìm";
                 if (EnableChangeCode) text += ", F6-Đổi mã";
+                text += ", F7-In";
                 if (EnableDelete) text += ", F8-Xóa";
+                text += ", F9-Xử lý";
+                text += ", F10-Tất cả";
             }
             else
             {
+                text += ", F1-Help";
+                text += ", F2-View";
                 if (EnableEdit) text += ", F3-Edit";
                 if (EnableAdd) text += ", F4-New";
                 text += ", F5-Search";
                 if (EnableChangeCode) text += ", F6-Change code";
+                text += ", F7-Print";
                 if (EnableDelete) text += ", F8-Delete";
+                text += ", F9-Function";
+                text += ", F10-All";
             }
             status2text = text.Substring(2);
         }

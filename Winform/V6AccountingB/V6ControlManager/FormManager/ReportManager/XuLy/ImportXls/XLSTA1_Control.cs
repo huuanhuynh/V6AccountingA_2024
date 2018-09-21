@@ -18,20 +18,20 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public class XLSCA1_Control : XuLyBase
+    public class XLSTA1_Control : XuLyBase
     {
+        private readonly V6Categories _categories = new V6Categories();
         private const string ID_FIELD = "SO_CT", NAME_FIELD = "NGAY_CT";
         private DataTable data;
-        private List<DataRow> rows_for_remove;
         /// <summary>
         /// Kiem tra du lieu hop le
         /// </summary>
-        private bool check;
+        private bool check = false;
 
-        public XLSCA1_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+        public XLSTA1_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
-
+            
         }
 
         public override void SetStatus2Text()
@@ -78,12 +78,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //FIX DATA
                 if (!data.Columns.Contains("PS_CO"))
                 {
-                    data.Columns.Add("PS_CO", typeof(decimal));
+                    data.Columns.Add("PS_CO", typeof (decimal));
                     foreach (DataRow row in data.Rows)
                     {
                         row["PS_CO"] =
                             V6BusinessHelper.Vround(
-                                ObjectAndString.ObjectToDecimal(row["PS_CO_NT"]) *
+                                ObjectAndString.ObjectToDecimal(row["PS_CO_NT"])*
                                 ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
 
                     }
@@ -114,14 +114,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //}
                 All_Objects["data"] = data;
                 InvokeFormEvent(FormDynamicEvent.DYNAMICFIXEXCEL);
-
                 dataGridView1.DataSource = data;
-                string[] data_fields = "MA_KH,TK_I".Split(',');
+                string[] data_fields = "MA_KH_I,TK_I".Split(',');
                 string[] check_fields = "MA_KH,TK".Split(',');
                 string[] check_tables = "ALKH,ALTK".Split(',');
                 check = V6ControlFormHelper.CheckDataInGridView(dataGridView1, data_fields, check_fields, check_tables);
 
-                var alim2xls = V6BusinessHelper.Select("ALIM2XLS", "top 1 *", "MA_CT='CA1'").Data;
+                var alim2xls = V6BusinessHelper.Select("ALIM2XLS", "top 1 *", "MA_CT='TA1'").Data;
                 if (alim2xls != null && alim2xls.Rows.Count > 0)
                 {
                     var khoa = alim2xls.Rows[0]["KHOA"].ToString().Trim().Split(',');
@@ -173,10 +172,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     if (data.Columns.Contains(ID_FIELD) && data.Columns.Contains(NAME_FIELD))
                     {
                         LockButtons();
-
-                        Timer timerF9 = new Timer { Interval = 1000 };
+                        
+                        Timer timerF9 = new Timer {Interval = 1000};
                         timerF9.Tick += tF9_Tick;
-                        rows_for_remove = new List<DataRow>();
+                        remove_list_d = new List<DataRow>();
                         Thread t = new Thread(F9Thread);
                         t.SetApartmentState(ApartmentState.STA);
                         CheckForIllegalCrossThreadCalls = false;
@@ -204,8 +203,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private bool f9Running;
         private string f9Message = "";
         private string f9MessageAll = "";
-        V6Invoice51 Invoice = new V6Invoice51();
-        private SortedDictionary<string, object> AM_DATA;
+        V6Invoice41 Invoice = new V6Invoice41();
+        private SortedDictionary<string, object> AM_DATA; 
         private void F9Thread()
         {
             try
@@ -218,18 +217,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 DateTime? dateMin = null, dateMax = null;
                 foreach (DataRow row in data.Rows)
                 {
-                    var date = ObjectAndString.ObjectToFullDateTime(row["NGAY_CT"]);
-                    if (dateMin == null || date < dateMin)
+                    var date = ObjectAndString.ObjectToDate(row["NGAY_CT"]);
+                    if (date != null)
                     {
-                        dateMin = date;
-                    }
-                    if (dateMax == null || date > dateMax)
-                    {
-                        dateMax = date;
+                        if (dateMin == null || date < dateMin)
+                        {
+                            dateMin = date;
+                        }
+
+                        if (dateMax == null || date > dateMax)
+                        {
+                            dateMax = date;
+                        }
                     }
                     string so_ct = row["SO_CT"].ToString().Trim().ToUpper();
-                    string ngay_ct = date.ToString("yyyyMMdd");
-
+                    string ngay_ct = date.Value.ToString("yyyyMMdd");
                     if (so_ct != "" && ngay_ct != "")
                     {
                         var key = so_ct + ":" + ngay_ct;
@@ -239,7 +241,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else
                         {
-                            data_dictionary.Add(key, new List<DataRow> { row });
+                            data_dictionary.Add(key, new List<DataRow> {row});
                         }
                     }
                     else
@@ -261,7 +263,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         new SqlParameter("@UserID", V6Login.UserId),
                         new SqlParameter("@KeyAM", "IMTYPE='X'")
                     };
-                    V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_CA1_DELETE_ALL", plist);
+                    V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_TA1_DELETE_ALL", plist);
                 }
 
                 //Xử lý từng nhóm dữ liệu
@@ -275,14 +277,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var sttRec = V6BusinessHelper.GetNewSttRec(Invoice.Mact);
                         AM_DATA["STT_REC"] = sttRec;
                         var AD1_List = GET_AD1_List(data_rows, sttRec);
-
-                        if (Invoice.InsertInvoice(AM_DATA, AD1_List, new List<SortedDictionary<string, object>>(), new List<SortedDictionary<string, object>>()))//!!!!!!!!
+                        
+                        if (Invoice.InsertInvoice(AM_DATA, AD1_List,new List<SortedDictionary<string, object>>()))//!!!!!!!!
                         {
                             f9Message += "Đã thêm: " + item.Key;
                             //Danh dau xóa data.
                             foreach (DataRow remove_row in item.Value)
                             {
-                                rows_for_remove.Add(remove_row);
+                                remove_list_d.Add(remove_row);
                             }
                         }
                         else
@@ -303,7 +305,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 f9Message = "F9Thread: " + ex.Message;
             }
             //
-
+            
             f9Running = false;
         }
 
@@ -391,8 +393,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     ty_gia = ObjectAndString.ObjectToDecimal(AM["TY_GIA"]);
                 }
                 //SO_LUONG,SO_LUONG1,TIEN_NT0,TIEN_NT,TIEN0,TIEN,THUE_NT,THUE,CK_NT,CK,GG_NT,GG
-                if (AM.ContainsKey("SO_LUONG")) AM["T_SO_LUONG"] = AM["SO_LUONG"];
-                if (AM.ContainsKey("SO_LUONG1")) AM["TSO_LUONG1"] = AM["SO_LUONG1"];
+                
                 if (AM.ContainsKey("PS_CO_NT"))
                 {
                     AM["T_PS_CO_NT"] = AM["PS_CO_NT"];
@@ -401,61 +402,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (AM.ContainsKey("TIEN_NT")) AM["T_TIEN_NT"] = AM["TIEN_NT"];
                 if (AM.ContainsKey("PS_CO")) AM["T_PS_CO"] = AM["PS_CO"];
                 if (AM.ContainsKey("TIEN")) AM["T_TIEN"] = AM["TIEN"];
-                if (AM.ContainsKey("THUE_NT"))
-                {
-                    AM["T_THUE_NT"] = AM["THUE_NT"];
-                    t_thue_nt = ObjectAndString.ObjectToDecimal(AM["T_THUE_NT"]);
-                }
-                if (AM.ContainsKey("THUE")) AM["T_THUE"] = AM["THUE"];
-                if (AM.ContainsKey("CK_NT"))
-                {
-                    AM["T_CK_NT"] = AM["CK_NT"];
-                    t_ck_nt = ObjectAndString.ObjectToDecimal(AM["T_CK_NT"]);
-                }
-                if (AM.ContainsKey("CK")) AM["T_CK"] = AM["CK"];
-                if (AM.ContainsKey("GG_NT"))
-                {
-                    AM["T_GG_NT"] = AM["GG_NT"];
-                    t_gg_nt = ObjectAndString.ObjectToDecimal(AM["T_GG_NT"]);
-                }
-                if (AM.ContainsKey("GG")) AM["T_GG"] = AM["GG"];
+                
 
-                var t_tt_nt = t_ps_co_nt - t_gg_nt - t_ck_nt + t_thue_nt + t_vc_nt;
+                var t_tt_nt = t_ps_co_nt ;
                 AM["T_TT_NT"] = t_tt_nt;
                 AM["T_TT"] = t_tt_nt * ty_gia;
 
-                if (AM.ContainsKey("MA_THUE"))
-                {
-                    SqlParameter[] plist =
-                    {
-                        new SqlParameter("@ma_thue",AM["MA_THUE"].ToString()), 
-                    };
-                    var althue = V6BusinessHelper.Select("ALTHUE", "*", "MA_THUE=@ma_thue", "", "", plist).Data;
-                    if (althue.Rows.Count > 0)
-                    {
-                        var row_thue = althue.Rows[0];
-                        AM["THUE_SUAT"] = row_thue["THUE_SUAT"];
-                        AM["TK_THUE_CO"] = row_thue["TK_THUE_CO"];
-                    }
-                    else
-                    {
-                        AM["THUE_SUAT"] = 0m;
-                        AM["TK_THUE_CO"] = "";
-                    }
-                }
-                else
-                {
-                    AM["THUE_SUAT"] = 0m;
-                    AM["TK_THUE_CO"] = "";
-                }
+             
+             
 
                 //fIX
-                if (!AM.ContainsKey("TK_THUE_NO")) AM["TK_THUE_NO"] = AM["MA_NX"];
                 if (!AM.ContainsKey("DIEN_GIAI")) AM["DIEN_GIAI"] = "";
                 if (!AM.ContainsKey("NGAY_LCT")) AM["NGAY_LCT"] = AM["NGAY_CT"];
                 if (!AM.ContainsKey("T_PS_CO")) AM["T_PS_CO"] = 0;
-                if (!AM.ContainsKey("T_THUE")) AM["T_THUE"] = 0;
-                if (!AM.ContainsKey("T_THUE_NT")) AM["T_THUE_NT"] = 0;
+             
 
                 return AM;
             }
@@ -472,27 +432,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 var one = dataRows[i].ToDataDictionary(sttRec);
                 one["MA_CT"] = Invoice.Mact;
-                one["STT_REC0"] = ("00000" + (i + 1)).Right(5);
-                if (one.ContainsKey("SO_LUONG1")) one["SO_LUONG"] = one["SO_LUONG1"];
-
+                one["STT_REC0"] = ("00000" + (i+1)).Right(5);
+                                
                 if (one.ContainsKey("MA_NT"))
                 {
                     var one_maNt = one["MA_NT"].ToString().Trim();
-
-                    if (one.ContainsKey("GIA_NT1")) one["GIA_NT"] = one["GIA_NT1"];
-                    if (one.ContainsKey("GIA_NT21")) one["GIA_NT2"] = one["GIA_NT21"];
-
+                    
+                    
+                    
 
                     if (one_maNt == V6Options.M_MA_NT0)
                     {
-                        if (one.ContainsKey("GIA_NT1")) one["GIA"] = one["GIA_NT1"];
-                        if (one.ContainsKey("GIA_NT1")) one["GIA1"] = one["GIA_NT1"];
-                        if (one.ContainsKey("GIA_NT21")) one["GIA21"] = one["GIA_NT21"];
-                        if (one.ContainsKey("GIA_NT21")) one["GIA2"] = one["GIA_NT21"];
-
+                    
                         if (one.ContainsKey("TIEN_NT")) one["TIEN"] = one["TIEN_NT"];
                         if (one.ContainsKey("PS_CO_NT")) one["PS_CO"] = one["PS_CO_NT"];
-                        if (one.ContainsKey("THUE_NT")) one["THUE"] = one["THUE_NT"];
+                    
                     }
                     else
                     {
@@ -500,63 +454,61 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             var one_tygia = ObjectAndString.ObjectToDecimal(one["TY_GIA"]);
                             if (one_tygia == 0) one_tygia = 1;
-                            if (one.ContainsKey("GIA_NT1")) one["GIA"] =
-                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["GIA_NT1"]) * one_tygia, V6Setting.RoundGia);
-                            if (one.ContainsKey("GIA_NT1")) one["GIA1"] =
-                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["GIA_NT1"]) * one_tygia, V6Setting.RoundGia);
-                            if (one.ContainsKey("GIA_NT21")) one["GIA21"] =
-                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["GIA_NT21"]) * one_tygia, V6Setting.RoundGia);
-                            if (one.ContainsKey("GIA_NT21")) one["GIA2"] =
-                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["GIA_NT21"]) * one_tygia, V6Setting.RoundGia);
-
-
+                            
                             if (one.ContainsKey("TIEN_NT")) one["TIEN"] =
-                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["TIEN_NT"]) * one_tygia, V6Setting.RoundTien);
+                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["TIEN_NT"])*one_tygia, V6Setting.RoundTien);
                             if (one.ContainsKey("PS_CO_NT")) one["PS_CO"] =
                                 V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["PS_CO_NT"]) * one_tygia, V6Setting.RoundTien);
-                            if (one.ContainsKey("THUE_NT")) one["THUE"] =
-                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(one["THUE_NT"]) * one_tygia, V6Setting.RoundTien);
+                            
                         }
                     }
                 }
 
-
-
+                
+                
                 //Lay thong tin vt
-                //if (one.ContainsKey("TK_I"))
-                //{
-                    //var TK_I = one["TK_I"].ToString().Trim();
-                    //SqlParameter[] plist =
-                    //{
-                    //    new SqlParameter("@p1", TK_I), 
-                    //};
-                    //var vt_data = V6BusinessHelper.Select("ALTK", "*", "LOAI_TK=1 AND TK=@p1", "", "", plist).Data;
-                    //if (vt_data != null && vt_data.Rows.Count > 0)
-                    //{
-                        //var vt_row_data = vt_data.Rows[0].ToDataDictionary();
+                if (one.ContainsKey("TK_I"))
+                {
+                    var TK_I = one["TK_I"].ToString().Trim();
+                    SqlParameter[] plist =
+                    {
+                        new SqlParameter("@p1", TK_I), 
+                    };
+                    var vt_data = V6BusinessHelper.Select("ALTK", "*", "LOAI_TK=1 AND TK=@p1", "", "", plist).Data;
+                    if (vt_data != null && vt_data.Rows.Count > 0)
+                    {
+                        var vt_row_data = vt_data.Rows[0].ToDataDictionary();
                         //one["DVT1"] = vt_row_data["DVT"];
                         //one["HE_SO1"] = 1;
                         //one["TK_VT"] = vt_row_data["TK_VT"];
                         //one["DVT"] = vt_row_data["DVT"];
                         //one["TK_DT"] = vt_row_data["TK_DT"];
                         //one["TK_GV"] = vt_row_data["TK_GV"];
-                    //}
-                //}
+                    }
+                }
 
                 result.Add(one);
             }
             return result;
         }
+
+        /// <summary>
+        /// Nhập thuế tự động
+        /// </summary>
+        /// <param name="dataRows"></param>
+        /// <param name="sttRec"></param>
+        /// <returns></returns>
         
+
         void tF9_Tick(object sender, EventArgs e)
         {
             if (f9Running)
             {
                 //Remove
-                while (rows_for_remove.Count > 0)
+                while (remove_list_d.Count > 0)
                 {
-                    data.Rows.Remove(rows_for_remove[0]);
-                    rows_for_remove.RemoveAt(0);
+                    data.Rows.Remove(remove_list_d[0]);
+                    remove_list_d.RemoveAt(0);
                 }
 
                 var cError = f9Message;
@@ -573,10 +525,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 UnlockButtons();
 
                 //Remove
-                while (rows_for_remove.Count > 0)
+                while (remove_list_d.Count > 0)
                 {
-                    data.Rows.Remove(rows_for_remove[0]);
-                    rows_for_remove.RemoveAt(0);
+                    data.Rows.Remove(remove_list_d[0]);
+                    remove_list_d.RemoveAt(0);
                 }
 
                 foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -590,7 +542,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 V6ControlFormHelper.ShowInfoMessage("F9 finish: " + f9MessageAll, 500, this);
                 if (f9MessageAll.Length > 0)
                 {
-                    Logger.WriteToLog(V6Login.ClientName + " " + GetType() + "XLS_CA1 F9 " + f9MessageAll);
+                    this.WriteToLog(GetType() + "XLS_TA1 F9", f9MessageAll);
                 }
                 f9Message = "";
                 f9MessageAll = "";

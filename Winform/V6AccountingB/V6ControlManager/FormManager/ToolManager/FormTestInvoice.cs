@@ -91,6 +91,8 @@ namespace V6ControlManager.FormManager.ToolManager
 
                     int length = log81.Length;
                     txtList.AppendText(log81.Substring(0, length));
+                    txtList.SelectionStart = txtList.TextLength;
+                    txtList.ScrollToCaret();
                     log81 = log81.Substring(length);
                 };
                 timer.Start();
@@ -169,6 +171,8 @@ namespace V6ControlManager.FormManager.ToolManager
 
                     int length = log81u.Length;
                     txtList.AppendText(log81u.Substring(0, length));
+                    txtList.SelectionStart = txtList.TextLength;
+                    txtList.ScrollToCaret();
                     log81u = log81u.Substring(length);
                 };
                 timer.Start();
