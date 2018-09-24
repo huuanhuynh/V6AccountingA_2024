@@ -260,7 +260,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var saveDialog = new SaveFileDialog();
                 saveDialog.Filter = "Excel file|*.xls";
                 saveDialog.Title = "Save as";
-                //saveDialog.InitialDirectory = Application.StartupPath;
+                
                 if (saveDialog.ShowDialog(this) == DialogResult.OK)
                 {
                     V6Tools.V6Export.ExportData.ToExcel(data, saveDialog.FileName, null, false);

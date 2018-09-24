@@ -6299,6 +6299,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private void btnApGia_Click(object sender, EventArgs e)
         {
             ApGiaBan();
+            _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
         }
 
         private void ApGiaBan()

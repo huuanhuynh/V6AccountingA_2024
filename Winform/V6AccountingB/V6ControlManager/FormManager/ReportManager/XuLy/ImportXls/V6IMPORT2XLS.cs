@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading;
@@ -1254,6 +1255,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 this.ShowErrorMessage(ex.Message);
             }
+        }
+
+        private void btnXemMauExcel_Click(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.OpenExcelTemplate(_selected_ma_ct + "_ALL.XLS", "IMPORT_EXCEL");
         }
 
 

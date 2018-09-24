@@ -94,5 +94,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var data = V6BusinessHelper.Select(tableName, "*", "MA_CT = 'TA1'").Data;
             V6ControlFormHelper.ShowDataEditorForm(data, tableName, null, keys, true, false);
         }
+
+        private void btnXemMauExcel_Click(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.OpenExcelTemplate("TA1_ALL.XLS", "IMPORT_EXCEL");
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace V6Controls
         /// Tạo thư mục tạm cho chương trình.
         /// </summary>
         /// <returns>Đường dẫn thư mục.</returns>
-        internal static string CreateV6SoftLocalAppDataDirectory()
+        public static string CreateV6SoftLocalAppDataDirectory()
         {
             try
             {

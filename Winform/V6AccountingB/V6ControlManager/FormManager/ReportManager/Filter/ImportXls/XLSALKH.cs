@@ -8,9 +8,9 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class XLSALVT: FilterBase
+    public partial class XLSALKH: FilterBase
     {
-        public XLSALVT()
+        public XLSALKH()
         {
             InitializeComponent();
             F3 = false;
@@ -85,6 +85,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             Check2 = checkBox2.Checked;
+        }
+
+        private void btnXemMauExcel_Click(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.OpenExcelTemplate("ALKH_ALL.XLS", "IMPORT_EXCEL");
         }
     }
 }

@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnTim = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkChuyenMa = new V6Controls.V6CheckBox();
             this.comboBox1 = new V6Controls.V6ComboBox();
@@ -41,10 +40,11 @@
             this.v6Label2 = new V6Controls.V6Label();
             this.txtFile = new System.Windows.Forms.RichTextBox();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
-            this.btnThoat = new System.Windows.Forms.Button();
-            this.btnNhan = new System.Windows.Forms.Button();
             this.btnReload = new System.Windows.Forms.Button();
             this.btnXemMauExcel = new System.Windows.Forms.Button();
+            this.btnThoat = new System.Windows.Forms.Button();
+            this.btnNhan = new System.Windows.Forms.Button();
+            this.btnTim = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -57,16 +57,6 @@
             this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 8;
             this.label1.Text = "File excel";
-            // 
-            // btnTim
-            // 
-            this.btnTim.Location = new System.Drawing.Point(69, 6);
-            this.btnTim.Name = "btnTim";
-            this.btnTim.Size = new System.Drawing.Size(49, 29);
-            this.btnTim.TabIndex = 10;
-            this.btnTim.Text = "Tìm";
-            this.btnTim.UseVisualStyleBackColor = true;
-            this.btnTim.Click += new System.EventHandler(this.btnTim_Click);
             // 
             // groupBox1
             // 
@@ -161,29 +151,50 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(216, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(547, 515);
             this.dataGridView1.TabIndex = 12;
+            // 
+            // btnReload
+            // 
+            this.btnReload.Location = new System.Drawing.Point(161, 6);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(49, 29);
+            this.btnReload.TabIndex = 10;
+            this.btnReload.Text = "Tải lại";
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
+            // btnXemMauExcel
+            // 
+            this.btnXemMauExcel.Location = new System.Drawing.Point(2, 217);
+            this.btnXemMauExcel.Name = "btnXemMauExcel";
+            this.btnXemMauExcel.Size = new System.Drawing.Size(88, 29);
+            this.btnXemMauExcel.TabIndex = 10;
+            this.btnXemMauExcel.Text = "Xem mẫu excel";
+            this.btnXemMauExcel.UseVisualStyleBackColor = true;
+            this.btnXemMauExcel.Visible = false;
+            this.btnXemMauExcel.Click += new System.EventHandler(this.btnXemMauExcel_Click);
             // 
             // btnThoat
             // 
@@ -220,26 +231,17 @@
             this.btnNhan.UseVisualStyleBackColor = true;
             this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
             // 
-            // btnReload
+            // btnTim
             // 
-            this.btnReload.Location = new System.Drawing.Point(124, 6);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(49, 29);
-            this.btnReload.TabIndex = 10;
-            this.btnReload.Text = "Tải lại";
-            this.btnReload.UseVisualStyleBackColor = true;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
-            // 
-            // btnXemMauExcel
-            // 
-            this.btnXemMauExcel.Location = new System.Drawing.Point(2, 217);
-            this.btnXemMauExcel.Name = "btnXemMauExcel";
-            this.btnXemMauExcel.Size = new System.Drawing.Size(88, 29);
-            this.btnXemMauExcel.TabIndex = 10;
-            this.btnXemMauExcel.Text = "Xem mẫu excel";
-            this.btnXemMauExcel.UseVisualStyleBackColor = true;
-            this.btnXemMauExcel.Visible = false;
-            this.btnXemMauExcel.Click += new System.EventHandler(this.btnXemMauExcel_Click);
+            this.btnTim.Image = global::V6Controls.Properties.Resources.Excel16;
+            this.btnTim.Location = new System.Drawing.Point(69, 6);
+            this.btnTim.Name = "btnTim";
+            this.btnTim.Size = new System.Drawing.Size(86, 29);
+            this.btnTim.TabIndex = 10;
+            this.btnTim.Text = "Tìm";
+            this.btnTim.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTim.UseVisualStyleBackColor = true;
+            this.btnTim.Click += new System.EventHandler(this.btnTim_Click);
             // 
             // LoadExcelDataForm
             // 

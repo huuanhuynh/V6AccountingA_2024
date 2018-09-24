@@ -86,5 +86,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             Check2 = checkBox2.Checked;
         }
+
+        private void btnXemMauExcel_Click(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.OpenExcelTemplate("IND_ALL.XLS", "IMPORT_EXCEL");
+        }
     }
 }

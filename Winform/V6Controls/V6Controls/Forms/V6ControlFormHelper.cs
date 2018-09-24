@@ -3927,6 +3927,40 @@ namespace V6Controls.Forms
             }
         }
 
+        /// <summary>
+        /// Mở ra 1 bản copy của file mấu
+        /// </summary>
+        /// <param name="file">Tên file không có đường dẫn. Ví dụ A.xls</param>
+        /// <param name="folder">Thư mục con của chương trình. Ví dụ Template</param>
+        public static void OpenExcelTemplate(string file, string folder)
+        {
+            try
+            {
+                string path1 = V6Login.StartupPath;
+                path1 = Path.Combine(path1, folder);
+                path1 = Path.Combine(path1, file);
+                if (File.Exists(path1))
+                {
+                    //Copy to tempfolder
+                    string path2 = V6ControlsHelper.CreateV6SoftLocalAppDataDirectory();
+                    path2 = Path.Combine(path2, file);
+                    if (File.Exists(path2)) File.Delete(path2);
+                    File.Copy(path1, path2);
+
+                    ProcessStartInfo info1 = new ProcessStartInfo(path2);
+                    Process.Start(info1);
+                }
+                else
+                {
+                    ShowMainMessage(string.Format("{0} [{1}]", V6Text.NotExist, file));
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorException("OpenExcelTemplate", ex);
+            }
+        }
+
 
         public static bool ExportRptToPdf_As(IWin32Window owner, ReportDocument rpt, string defaultSaveName = "")
         {
@@ -3996,19 +4030,28 @@ namespace V6Controls.Forms
             try
             {
                 if (showColumns == null || showColumns.Length == 0) return;
-                //dgv.HideAllColumns();
-                //Hide all columns
-                foreach (DataGridViewColumn column in dgv.Columns)
+                for (int i = 0; i < dgv.ColumnCount; i++)
                 {
-                    column.Visible = column.Frozen;
-                }
-                //Show
-                foreach (string show_column in showColumns)
-                {
-                    var column = dgv.Columns[show_column];
-                    if (column != null)
+                    DataGridViewColumn column = dgv.Columns[i];
+                    string COL = column.DataPropertyName.ToUpper();
+                    bool contains = false;
+                    foreach (string show_COL in showColumns)
+                    {
+                        string SHOW_COL = show_COL.ToUpper();
+                        if (COL == SHOW_COL)
+                        {
+                            contains = true;
+                            break;
+                        }
+                    }
+
+                    if (contains)
                     {
                         column.Visible = true;
+                    }
+                    else
+                    {
+                        column.Visible = false;
                     }
                 }
 

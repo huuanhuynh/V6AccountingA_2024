@@ -9,9 +9,9 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class XLSCA1_Filter: FilterBase
+    public partial class XLSSOA_Filter: FilterBase
     {
-        public XLSCA1_Filter()
+        public XLSSOA_Filter()
         {
             InitializeComponent();
             F3 = false;
@@ -91,8 +91,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             string tableName = "ALIM2XLS";
             string keys = "MA_CT";
-            var data = V6BusinessHelper.Select(tableName, "*", "MA_CT = 'CA1'").Data;
-            V6ControlFormHelper.ShowDataEditorForm(data, tableName, null, keys, true, false);
+            var data = V6BusinessHelper.Select(tableName, "*", "MA_CT = 'SOA'").Data;
+            V6ControlFormHelper.ShowDataEditorForm(data, tableName, null, keys, true, true);
+        }
+
+        private void btnXemMauExcel_Click(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.OpenExcelTemplate("SOA_ALL.XLS", "IMPORT_EXCEL");
         }
     }
 }

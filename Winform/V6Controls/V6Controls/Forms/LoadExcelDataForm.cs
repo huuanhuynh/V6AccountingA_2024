@@ -169,33 +169,34 @@ namespace V6Controls.Forms
 
         private void btnXemMauExcel_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //IMPORT_EXCEL MA_CT + _AD
-                string path1 = Application.StartupPath;
-                string file1 = MA_CT + "_AD.XLS";
-                path1 = Path.Combine(path1, "IMPORT_EXCEL");
-                path1 = Path.Combine(path1, file1);
-                if (File.Exists(path1))
-                {
-                    //Copy to tempfolder
-                    string path2 = V6ControlsHelper.CreateV6SoftLocalAppDataDirectory();
-                    path2 = Path.Combine(path2, file1);
-                    if(File.Exists(path2)) File.Delete(path2);
-                    File.Copy(path1, path2);
+            V6ControlFormHelper.OpenExcelTemplate(MA_CT + "_AD.XLS", "IMPORT_EXCEL");
+            //try
+            //{
+            //    //IMPORT_EXCEL MA_CT + _AD
+            //    string path1 = Application.StartupPath;
+            //    string file1 = MA_CT + "_AD.XLS";
+            //    path1 = Path.Combine(path1, "IMPORT_EXCEL");
+            //    path1 = Path.Combine(path1, file1);
+            //    if (File.Exists(path1))
+            //    {
+            //        //Copy to tempfolder
+            //        string path2 = V6ControlsHelper.CreateV6SoftLocalAppDataDirectory();
+            //        path2 = Path.Combine(path2, file1);
+            //        if(File.Exists(path2)) File.Delete(path2);
+            //        File.Copy(path1, path2);
 
-                    ProcessStartInfo info1 = new ProcessStartInfo(path2);
-                    Process.Start(info1);
-                }
-                else
-                {
-                    ShowTopLeftMessage(string.Format("{0} [{1}]", V6Text.NotExist, file1));
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".XemMauExcel", ex);
-            }
+            //        ProcessStartInfo info1 = new ProcessStartInfo(path2);
+            //        Process.Start(info1);
+            //    }
+            //    else
+            //    {
+            //        ShowTopLeftMessage(string.Format("{0} [{1}]", V6Text.NotExist, file1));
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    this.ShowErrorException(GetType() + ".XemMauExcel", ex);
+            //}
         }
 
         private object InvokeDynamicFix()

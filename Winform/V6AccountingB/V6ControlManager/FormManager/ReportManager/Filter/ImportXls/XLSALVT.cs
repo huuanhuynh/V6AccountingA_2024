@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
-using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class XLSSOA_Filter: FilterBase
+    public partial class XLSALVT: FilterBase
     {
-        public XLSSOA_Filter()
+        public XLSALVT()
         {
             InitializeComponent();
             F3 = false;
@@ -32,13 +31,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public override void UpdateValues()
         {
             String1 = txtFile.Text;
-            String2 = (comboBox1.SelectedItem??"").ToString();
-            String3 = (comboBox2.SelectedItem??"").ToString();
+            //String2 = comboBox1.SelectedItem.ToString();
+            //String3 = comboBox2.SelectedItem.ToString();
+
             Check1 = checkBox1.Checked;
             Check2 = checkBox2.Checked;
         }
 
-        private void btnBrowse_Click(object sender, EventArgs e)
+        private void btnTim_Click(object sender, EventArgs e)
         {
             try
             {
@@ -87,12 +87,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             Check2 = checkBox2.Checked;
         }
 
-        private void btnSuaChiTieu_Click(object sender, EventArgs e)
+        private void btnXemMauExcel_Click(object sender, EventArgs e)
         {
-            string tableName = "ALIM2XLS";
-            string keys = "MA_CT";
-            var data = V6BusinessHelper.Select(tableName, "*", "MA_CT = 'SOA'").Data;
-            V6ControlFormHelper.ShowDataEditorForm(data, tableName, null, keys, true, true);
+            V6ControlFormHelper.OpenExcelTemplate("ALVT_ALL.XLS", "IMPORT_EXCEL");
         }
     }
 }

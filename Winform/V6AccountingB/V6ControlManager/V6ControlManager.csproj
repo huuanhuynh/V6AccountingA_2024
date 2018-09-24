@@ -3678,46 +3678,46 @@
     <Compile Include="FormManager\ReportManager\Filter\AVIN005.designer.cs">
       <DependentUpon>AVIN005.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSIXA_Filter.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSIXA_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSIXA_Filter.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSIXA_Filter.Designer.cs">
       <DependentUpon>XLSIXA_Filter.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSIND_Filter.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSIND_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSIND_Filter.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSIND_Filter.Designer.cs">
       <DependentUpon>XLSIND_Filter.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSCA1_Filter.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSCA1_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSCA1_Filter.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSCA1_Filter.Designer.cs">
       <DependentUpon>XLSCA1_Filter.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSSOA_Filter.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOA_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSSOA_Filter.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOA_Filter.Designer.cs">
       <DependentUpon>XLSSOA_Filter.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSPOA_Filter.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSPOA_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSPOA_Filter.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSPOA_Filter.Designer.cs">
       <DependentUpon>XLSPOA_Filter.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSALVT.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSALVT.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSALVT.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSALVT.Designer.cs">
       <DependentUpon>XLSALVT.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSALKH.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSALKH.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSALKH.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSALKH.Designer.cs">
       <DependentUpon>XLSALKH.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOA.cs">
@@ -3726,10 +3726,10 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOA.Designer.cs">
       <DependentUpon>AAPPR_SOA.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSTA1_Filter.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSTA1_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\XLSTA1_Filter.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSTA1_Filter.Designer.cs">
       <DependentUpon>XLSTA1_Filter.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01KFilter.cs">
@@ -7089,31 +7089,31 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AVIN005.resx">
       <DependentUpon>AVIN005.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\XLSIXA_Filter.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSIXA_Filter.resx">
       <DependentUpon>XLSIXA_Filter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\XLSIND_Filter.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSIND_Filter.resx">
       <DependentUpon>XLSIND_Filter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\XLSCA1_Filter.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSCA1_Filter.resx">
       <DependentUpon>XLSCA1_Filter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\XLSSOA_Filter.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSSOA_Filter.resx">
       <DependentUpon>XLSSOA_Filter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\XLSPOA_Filter.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSPOA_Filter.resx">
       <DependentUpon>XLSPOA_Filter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\XLSALVT.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSALVT.resx">
       <DependentUpon>XLSALVT.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\XLSALKH.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSALKH.resx">
       <DependentUpon>XLSALKH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_SOA.resx">
       <DependentUpon>AAPPR_SOA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\XLSTA1_Filter.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSTA1_Filter.resx">
       <DependentUpon>XLSTA1_Filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01KFilter.resx">
@@ -8020,6 +8020,8 @@
   <ItemGroup>
     <Content Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\GhiChu.txt" />
     <Content Include="Resources\Box16.png" />
+    <None Include="Resources\Excel32.ico" />
+    <None Include="Resources\Excel16.png" />
     <Content Include="Resources\HammerBlack16.png" />
     <Content Include="Resources\House16.png" />
     <Content Include="Resources\Person16.png" />

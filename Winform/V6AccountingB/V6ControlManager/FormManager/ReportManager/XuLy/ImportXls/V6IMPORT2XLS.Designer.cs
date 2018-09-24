@@ -40,12 +40,14 @@
             this.txtFile = new System.Windows.Forms.RichTextBox();
             this.cboDanhMuc = new V6Controls.V6ComboBox();
             this.v6Label1 = new V6Controls.V6Label();
+            this.btnXemMauExcel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnXemMauExcel);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnBrowse);
             this.panel1.Controls.Add(this.cboDanhMuc);
@@ -77,7 +79,7 @@
             // 
             this.btnBrowse.AccessibleDescription = "XULYB00007";
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowse.Image = global::V6ControlManager.Properties.Resources.Search24;
+            this.btnBrowse.Image = global::V6ControlManager.Properties.Resources.Excel32;
             this.btnBrowse.Location = new System.Drawing.Point(70, 45);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(107, 40);
@@ -204,6 +206,16 @@
             this.v6Label1.TabIndex = 2;
             this.v6Label1.Text = "Danh mục";
             // 
+            // btnXemMauExcel
+            // 
+            this.btnXemMauExcel.Location = new System.Drawing.Point(10, 293);
+            this.btnXemMauExcel.Name = "btnXemMauExcel";
+            this.btnXemMauExcel.Size = new System.Drawing.Size(88, 29);
+            this.btnXemMauExcel.TabIndex = 12;
+            this.btnXemMauExcel.Text = "Xem mẫu excel";
+            this.btnXemMauExcel.UseVisualStyleBackColor = true;
+            this.btnXemMauExcel.Click += new System.EventHandler(this.btnXemMauExcel_Click);
+            // 
             // V6IMPORT2XLS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,5 +243,6 @@
         private System.Windows.Forms.RichTextBox txtFile;
         private V6Controls.V6ComboBox cboDanhMuc;
         private V6Controls.V6Label v6Label1;
+        private System.Windows.Forms.Button btnXemMauExcel;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    partial class XLSIND_Filter
+    partial class XLSALVT
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.v6Label2 = new V6Controls.V6Label();
-            this.btnChon = new System.Windows.Forms.Button();
+            this.btnTim = new System.Windows.Forms.Button();
             this.v6Label3 = new V6Controls.V6Label();
             this.comboBox1 = new V6Controls.V6ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -38,6 +38,7 @@
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.comboBox2 = new V6Controls.V6ComboBox();
             this.txtFile = new System.Windows.Forms.RichTextBox();
+            this.btnXemMauExcel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,17 +62,19 @@
             this.v6Label2.TabIndex = 4;
             this.v6Label2.Text = "Mã đích";
             // 
-            // btnChon
+            // btnTim
             // 
-            this.btnChon.AccessibleDescription = "FILTERB00005";
-            this.btnChon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChon.Location = new System.Drawing.Point(229, 5);
-            this.btnChon.Name = "btnChon";
-            this.btnChon.Size = new System.Drawing.Size(43, 24);
-            this.btnChon.TabIndex = 2;
-            this.btnChon.Text = "Chọn";
-            this.btnChon.UseVisualStyleBackColor = true;
-            this.btnChon.Click += new System.EventHandler(this.btnTim_Click);
+            this.btnTim.AccessibleDescription = "FILTERB00005";
+            this.btnTim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTim.Image = global::V6ControlManager.Properties.Resources.Excel16;
+            this.btnTim.Location = new System.Drawing.Point(37, 86);
+            this.btnTim.Name = "btnTim";
+            this.btnTim.Size = new System.Drawing.Size(129, 29);
+            this.btnTim.TabIndex = 2;
+            this.btnTim.Text = "Tìm file Excel";
+            this.btnTim.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTim.UseVisualStyleBackColor = true;
+            this.btnTim.Click += new System.EventHandler(this.btnTim_Click);
             // 
             // v6Label3
             // 
@@ -112,9 +115,9 @@
             this.groupBox1.Controls.Add(this.v6Label3);
             this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.v6Label2);
-            this.groupBox1.Location = new System.Drawing.Point(3, 86);
+            this.groupBox1.Location = new System.Drawing.Point(3, 115);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(269, 108);
+            this.groupBox1.Size = new System.Drawing.Size(269, 104);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tùy chọn";
@@ -127,9 +130,9 @@
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.Location = new System.Drawing.Point(94, 19);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(146, 17);
+            this.checkBox2.Size = new System.Drawing.Size(125, 17);
             this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Xóa dữ liệu nhận từ excel";
+            this.checkBox2.Text = "Chỉ cập nhập mã mới";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
@@ -166,20 +169,31 @@
             this.txtFile.Location = new System.Drawing.Point(37, 5);
             this.txtFile.Name = "txtFile";
             this.txtFile.ReadOnly = true;
-            this.txtFile.Size = new System.Drawing.Size(186, 75);
-            this.txtFile.TabIndex = 0;
+            this.txtFile.Size = new System.Drawing.Size(235, 75);
+            this.txtFile.TabIndex = 1;
             this.txtFile.Text = "";
             // 
-            // XLSIND_Filter
+            // btnXemMauExcel
+            // 
+            this.btnXemMauExcel.Location = new System.Drawing.Point(0, 225);
+            this.btnXemMauExcel.Name = "btnXemMauExcel";
+            this.btnXemMauExcel.Size = new System.Drawing.Size(88, 29);
+            this.btnXemMauExcel.TabIndex = 12;
+            this.btnXemMauExcel.Text = "Xem mẫu excel";
+            this.btnXemMauExcel.UseVisualStyleBackColor = true;
+            this.btnXemMauExcel.Click += new System.EventHandler(this.btnXemMauExcel_Click);
+            // 
+            // XLSALVT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnXemMauExcel);
             this.Controls.Add(this.txtFile);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnChon);
+            this.Controls.Add(this.btnTim);
             this.Controls.Add(this.label1);
-            this.Name = "XLSIND_Filter";
-            this.Size = new System.Drawing.Size(275, 197);
+            this.Name = "XLSALVT";
+            this.Size = new System.Drawing.Size(275, 268);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -191,7 +205,7 @@
 
         private System.Windows.Forms.Label label1;
         private V6Controls.V6Label v6Label2;
-        private System.Windows.Forms.Button btnChon;
+        private System.Windows.Forms.Button btnTim;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6ComboBox comboBox1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -199,5 +213,6 @@
         private V6Controls.V6CheckBox checkBox1;
         private V6Controls.V6CheckBox checkBox2;
         private System.Windows.Forms.RichTextBox txtFile;
+        private System.Windows.Forms.Button btnXemMauExcel;
     }
 }

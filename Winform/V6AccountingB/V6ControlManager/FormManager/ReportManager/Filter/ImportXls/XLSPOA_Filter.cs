@@ -95,5 +95,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var data = V6BusinessHelper.Select(tableName, "*", "MA_CT = 'POA'").Data;
             V6ControlFormHelper.ShowDataEditorForm(data, tableName, null, keys, true, true);
         }
+
+        private void btnXemMauExcel_Click(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.OpenExcelTemplate("POA_ALL.XLS", "IMPORT_EXCEL");
+        }
     }
 }

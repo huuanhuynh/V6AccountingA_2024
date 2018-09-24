@@ -6230,6 +6230,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private void btnApGia_Click(object sender, EventArgs e)
         {
             ApGiaMua();
+            _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
         }
 
         private void ApGiaMua()

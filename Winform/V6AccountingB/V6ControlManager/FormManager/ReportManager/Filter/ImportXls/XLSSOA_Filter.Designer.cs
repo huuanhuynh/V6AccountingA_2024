@@ -1,6 +1,6 @@
 ﻿namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    partial class XLSTA1_Filter
+    partial class XLSSOA_Filter
     {
         /// <summary> 
         /// Required designer variable.
@@ -39,6 +39,7 @@
             this.comboBox2 = new V6Controls.V6ComboBox();
             this.txtFile = new System.Windows.Forms.RichTextBox();
             this.btnSuaChiTieu = new System.Windows.Forms.Button();
+            this.btnXemMauExcel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             // 
             // v6Label2
             // 
-            this.v6Label2.AccessibleDescription = "FILTERL00205";
+            this.v6Label2.AccessibleDescription = "FILTERL00204";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(5, 77);
             this.v6Label2.Name = "v6Label2";
@@ -66,11 +67,13 @@
             // 
             this.btnBrowse.AccessibleDescription = "FILTERB00005";
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowse.Image = global::V6ControlManager.Properties.Resources.Excel16;
             this.btnBrowse.Location = new System.Drawing.Point(37, 89);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(92, 24);
+            this.btnBrowse.Size = new System.Drawing.Size(137, 24);
             this.btnBrowse.TabIndex = 2;
             this.btnBrowse.Text = "Chọn file Excel";
+            this.btnBrowse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
@@ -182,17 +185,28 @@
             this.btnSuaChiTieu.UseVisualStyleBackColor = true;
             this.btnSuaChiTieu.Click += new System.EventHandler(this.btnSuaChiTieu_Click);
             // 
-            // XLSTA1_Filter
+            // btnXemMauExcel
+            // 
+            this.btnXemMauExcel.Location = new System.Drawing.Point(4, 230);
+            this.btnXemMauExcel.Name = "btnXemMauExcel";
+            this.btnXemMauExcel.Size = new System.Drawing.Size(88, 29);
+            this.btnXemMauExcel.TabIndex = 12;
+            this.btnXemMauExcel.Text = "Xem mẫu excel";
+            this.btnXemMauExcel.UseVisualStyleBackColor = true;
+            this.btnXemMauExcel.Click += new System.EventHandler(this.btnXemMauExcel_Click);
+            // 
+            // XLSSOA_Filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnXemMauExcel);
             this.Controls.Add(this.btnSuaChiTieu);
             this.Controls.Add(this.txtFile);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.label1);
-            this.Name = "XLSTA1_Filter";
-            this.Size = new System.Drawing.Size(275, 227);
+            this.Name = "XLSSOA_Filter";
+            this.Size = new System.Drawing.Size(275, 270);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -213,5 +227,6 @@
         private V6Controls.V6CheckBox checkBox2;
         private System.Windows.Forms.RichTextBox txtFile;
         private System.Windows.Forms.Button btnSuaChiTieu;
+        private System.Windows.Forms.Button btnXemMauExcel;
     }
 }

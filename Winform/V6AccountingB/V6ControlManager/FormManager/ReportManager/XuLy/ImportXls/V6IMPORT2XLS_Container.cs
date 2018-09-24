@@ -51,14 +51,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(6, 3);
             this.v6Label1.Name = "v6Label1";
-            this.v6Label1.Size = new System.Drawing.Size(56, 13);
+            this.v6Label1.Size = new System.Drawing.Size(50, 13);
             this.v6Label1.TabIndex = 4;
-            this.v6Label1.Text = "Danh mục";
+            this.v6Label1.Text = "Chứng từ";
             // 
-            // panelControl
+            // panelView
             // 
-            this.panelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.panelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelView.Location = new System.Drawing.Point(3, 30);
             this.panelView.Name = "panelView";
@@ -144,9 +144,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 new SqlParameter("@isAdmin", V6Login.IsAdmin),
                 new SqlParameter("@mrights", V6Login.UserRight.Mrights),
+                new SqlParameter("@r_add", V6Login.UserInfo["r_add"].ToString().Trim()),
                 new SqlParameter("@moduleID", V6Login.SelectedModule),
             };
-            ALIM2XLS_DATA = V6BusinessHelper.Select("ALIM2XLS", "*", "Rtrim(MO_TA) in (Select Itemid from V6menu Where (((1=@isAdmin or dbo.VFA_Inlist_MEMO([Itemid], @mrights)=1)) AND hide_yn<>1 AND Module_id=@moduleID))",
+            ALIM2XLS_DATA = V6BusinessHelper.Select("ALIM2XLS", "*", "Rtrim(MO_TA) in (Select Itemid from V6menu Where (((1=@isAdmin or (dbo.VFA_Inlist_MEMO([Itemid], @mrights)=1 and dbo.VFA_Inlist_MEMO([Itemid], @r_add)=1))) AND hide_yn<>1 AND Module_id=@moduleID))",
                 "", "STT", plist).Data;
 
             cboDanhMuc.ValueMember = "MA_CT";

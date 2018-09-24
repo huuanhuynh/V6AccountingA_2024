@@ -98,6 +98,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <returns>Stt_Rec0</returns>
         public static string ViewSelectedDetailToDetailForm(DataGridView dataGridView1, HD_Detail detail1, out DataGridViewRow outGridViewRow)
         {
+            outGridViewRow = null;
             try
             {
                 if (dataGridView1.CurrentRow != null)
@@ -113,7 +114,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 detail1.ShowErrorMessage(ex.Message, "ViewSelectedDetailToDetailForm");
             }
-            outGridViewRow = null;
             return "";
         }
 

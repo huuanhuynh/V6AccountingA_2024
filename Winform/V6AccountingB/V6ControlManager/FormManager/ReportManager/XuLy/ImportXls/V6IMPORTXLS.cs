@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading;
@@ -174,7 +175,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void LoadListALIMXLS()
         {
-            ALIMXLS_DATA = V6BusinessHelper.Select("ALIMXLS", "*", "IMPORT_YN='1'", "", "stt").Data;
+            //ALIMXLS_DATA = V6BusinessHelper.Select("ALIMXLS", "*", "IMPORT_YN='1'", "", "stt").Data;
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@isAdmin", V6Login.IsAdmin),
+                new SqlParameter("@mrights", V6Login.UserRight.Mrights),
+                new SqlParameter("@r_add", V6Login.UserInfo["r_add"].ToString().Trim()),
+                new SqlParameter("@moduleID", V6Login.SelectedModule),
+            };
+            ALIMXLS_DATA = V6BusinessHelper.Select("ALIMXLS", "*", "Rtrim(MO_TA) in (Select Itemid from V6menu Where (((1=@isAdmin or (dbo.VFA_Inlist_MEMO([Itemid], @mrights)=1 and dbo.VFA_Inlist_MEMO([Itemid], @r_add)=1))) AND hide_yn<>1 AND Module_id=@moduleID))",
+                "", "STT", plist).Data;
 
             cboDanhMuc.ValueMember = "dbf_im";
             cboDanhMuc.DisplayMember = V6Setting.IsVietnamese ? "Ten" : "Ten2";
@@ -895,6 +905,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 this.ShowErrorMessage(ex.Message);
             }
+        }
+
+        private void btnXemMauExcel_Click(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.OpenExcelTemplate(_table_name + "_ALL.XLS", "IMPORT_EXCEL");
         }
 
 
