@@ -1,6 +1,0 @@
-
-
-exec VPA_SOA_POST_MAIN	'W000216698SOA','SOA','VND','131','1',1,1,1165555
-
-
- 
