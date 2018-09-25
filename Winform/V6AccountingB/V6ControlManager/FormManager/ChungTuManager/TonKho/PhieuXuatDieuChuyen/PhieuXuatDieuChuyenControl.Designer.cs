@@ -845,6 +845,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.btnInfos.Name = "btnInfos";
             this.btnInfos.Size = new System.Drawing.Size(197, 29);
             this.btnInfos.TabIndex = 31;
+            this.btnInfos.TabStop = false;
             this.btnInfos.Text = "&Thông tin về các trường định nghĩa";
             this.btnInfos.UseVisualStyleBackColor = true;
             this.btnInfos.Click += new System.EventHandler(this.btnInfos_Click);

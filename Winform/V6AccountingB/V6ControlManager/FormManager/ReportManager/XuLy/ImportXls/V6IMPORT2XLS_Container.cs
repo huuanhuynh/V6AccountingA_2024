@@ -197,11 +197,27 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     XuLyBase c = null;
                     switch (ma_ct)
                     {
+                        case "POA":
+                            c = new XLSPOA_Control(item_id, program, program, program, reportCaption, reportCaption2);
+                            break;
+                        case "IND":
+                            c = new XLSIND_Control(item_id, program, program, program, reportCaption, reportCaption2);
+                            break;
+                        case "IXA":
+                            c = new XLSIXA_Control(item_id, program, program, program, reportCaption, reportCaption2);
+                            break;
                         case "SOA":
                             c = new XLSSOA_Control(item_id, program, program, program, reportCaption, reportCaption2);
                             break;
-                        default:
+                        case "TA1":
+                            c = new XLSTA1_Control(item_id, program, program, program, reportCaption, reportCaption2);
                             break;
+                        case "CA1":
+                            c = new XLSCA1_Control(item_id, program, program, program, reportCaption, reportCaption2);
+                            break;
+                        //default:
+                            //c = MenuManager.MenuManager.GenControl()
+                            //break;
                     }
 
                     if (c != null)

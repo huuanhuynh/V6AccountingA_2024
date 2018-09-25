@@ -49,6 +49,13 @@ namespace V6ControlManager.FormManager.MenuManager
             {"V6OPTION", "V6OPTION"},
         };
 
+        /// <summary>
+        /// Tạo control menu 3.
+        /// </summary>
+        /// <param name="owner">Form chứa, dùng làm nền dialog.</param>
+        /// <param name="mButton">Nút menu được click, có chứa thông tin cần thiết, có thể tạo nút giả.</param>
+        /// <param name="e">Thông tin sự kiện chuột.</param>
+        /// <returns></returns>
         public static V6Control GenControl(Control owner, MenuButton mButton, MouseEventArgs e)
         {
             try
