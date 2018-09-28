@@ -511,8 +511,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         public override void SetStatus2Text()
         {
             V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ?
-                "F4-Nhận/thêm chi tiết,F7-Lưu và in. F9-Xử lý trạng thái" :
-                "F4-Add details,F7-Save and print. F9-Status handling");
+                "F4-Nhận/thêm chi tiết, F7-Lưu và in, F8-Xóa chi tiết, F9-Xử lý trạng thái" :
+                "F4-Add detail, F7-Save and print, F8 Delete detail, F9-Status handling");
         }
 
 
