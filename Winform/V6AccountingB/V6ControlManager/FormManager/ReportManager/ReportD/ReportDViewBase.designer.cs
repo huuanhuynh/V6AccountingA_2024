@@ -611,7 +611,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             // btnSuaLine
             // 
-            this.btnSuaLine.AccessibleDescription = "REPORTB00003";
+            this.btnSuaLine.AccessibleDescription = "REPORTB00009";
             this.btnSuaLine.Location = new System.Drawing.Point(492, 35);
             this.btnSuaLine.Name = "btnSuaLine";
             this.btnSuaLine.Size = new System.Drawing.Size(50, 23);

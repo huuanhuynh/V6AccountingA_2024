@@ -44,6 +44,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "SEARCHG00004";
             this.groupBox1.Controls.Add(this.v6ColorTextBox2);
             this.groupBox1.Controls.Add(this.v6ColorTextBox1);
             this.groupBox1.Controls.Add(this.v6Label4);
@@ -92,6 +93,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label4
             // 
+            this.v6Label4.AccessibleDescription = "SEARCHL00017";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(587, 22);
             this.v6Label4.Name = "v6Label4";
@@ -101,6 +103,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label3
             // 
+            this.v6Label3.AccessibleDescription = "SEARCHL00048";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(388, 22);
             this.v6Label3.Name = "v6Label3";
@@ -110,6 +113,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label2
             // 
+            this.v6Label2.AccessibleDescription = "SEARCHL00038";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(183, 22);
             this.v6Label2.Name = "v6Label2";
@@ -131,10 +135,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             this.dateDenNgay.Name = "dateDenNgay";
             this.dateDenNgay.Size = new System.Drawing.Size(102, 20);
             this.dateDenNgay.TabIndex = 3;
-            this.dateDenNgay.TextTitle = null;
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "SEARCHL00037";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(6, 22);
             this.v6Label1.Name = "v6Label1";
@@ -156,7 +160,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             this.dateTuNgay.Name = "dateTuNgay";
             this.dateTuNgay.Size = new System.Drawing.Size(102, 20);
             this.dateTuNgay.TabIndex = 1;
-            this.dateTuNgay.TextTitle = null;
             // 
             // LocThoiGianHoaDonDichVu
             // 

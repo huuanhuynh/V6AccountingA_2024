@@ -93,6 +93,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // nhomKhach4
             // 
+            this.nhomKhach4.AccessibleDescription = "SEARCHF00004";
             this.nhomKhach4.Caption = "Nhóm khách hàng 4";
             this.nhomKhach4.FieldName = "NH_KH4";
             this.nhomKhach4.Location = new System.Drawing.Point(313, 29);
@@ -103,6 +104,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // nhomKhach5
             // 
+            this.nhomKhach5.AccessibleDescription = "SEARCHF00005";
             this.nhomKhach5.Caption = "Nhóm khách hàng 5";
             this.nhomKhach5.FieldName = "NH_KH5";
             this.nhomKhach5.Location = new System.Drawing.Point(313, 52);
@@ -113,6 +115,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // nhomKhach6
             // 
+            this.nhomKhach6.AccessibleDescription = "SEARCHF00006";
             this.nhomKhach6.Caption = "Nhóm khách hàng 6";
             this.nhomKhach6.FieldName = "NH_KH6";
             this.nhomKhach6.Location = new System.Drawing.Point(313, 75);
@@ -123,6 +126,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // nhomKhach1
             // 
+            this.nhomKhach1.AccessibleDescription = "SEARCHF00001";
             this.nhomKhach1.Caption = "Nhóm khách hàng 1";
             this.nhomKhach1.FieldName = "NH_KH1";
             this.nhomKhach1.Location = new System.Drawing.Point(15, 29);
@@ -133,6 +137,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // nhomKhach2
             // 
+            this.nhomKhach2.AccessibleDescription = "SEARCHF00002";
             this.nhomKhach2.Caption = "Nhóm khách hàng 2";
             this.nhomKhach2.FieldName = "NH_KH2";
             this.nhomKhach2.Location = new System.Drawing.Point(15, 52);
@@ -143,6 +148,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // taiKhoan
             // 
+            this.taiKhoan.AccessibleDescription = "SEARCHF00011";
             this.taiKhoan.Caption = "Tài khoản";
             this.taiKhoan.FieldName = "TK";
             this.taiKhoan.Location = new System.Drawing.Point(313, 98);
@@ -153,6 +159,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // txtMaKh
             // 
+            this.txtMaKh.AccessibleDescription = "SEARCHF00010";
             this.txtMaKh.Caption = "Mã khách hàng";
             this.txtMaKh.FieldName = "MA_KH";
             this.txtMaKh.Location = new System.Drawing.Point(15, 98);
@@ -163,6 +170,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // nhomKhach3
             // 
+            this.nhomKhach3.AccessibleDescription = "SEARCHF00003";
             this.nhomKhach3.Caption = "Nhóm khách hàng 3";
             this.nhomKhach3.FieldName = "NH_KH3";
             this.nhomKhach3.Location = new System.Drawing.Point(15, 75);
@@ -211,6 +219,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // v6Label8
             // 
+            this.v6Label8.AccessibleDescription = "SEARCHL00052";
             this.v6Label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label8.AutoSize = true;
             this.v6Label8.Location = new System.Drawing.Point(456, 8);
@@ -242,6 +251,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // v6Label2
             // 
+            this.v6Label2.AccessibleDescription = "SEARCHL00038";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(172, 6);
             this.v6Label2.Name = "v6Label2";
@@ -264,6 +274,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // v6Label3
             // 
+            this.v6Label3.AccessibleDescription = "SEARCHL00051";
             this.v6Label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(650, 8);
@@ -274,6 +285,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "SEARCHL00037";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(12, 6);
             this.v6Label1.Name = "v6Label1";
@@ -309,6 +321,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // btnVSearch
             // 
+            this.btnVSearch.AccessibleDescription = "SEARCHB00001";
             this.btnVSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnVSearch.Image = global::V6ControlManager.Properties.Resources.Search;
             this.btnVSearch.Location = new System.Drawing.Point(711, 40);
@@ -332,6 +345,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // toolStripStatusLabel1
             // 
+            this.toolStripStatusLabel1.AccessibleDescription = "SEARCHS00001";
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(140, 17);
             this.toolStripStatusLabel1.Text = "Enter-Chọn, ESC-Quay ra";
@@ -344,6 +358,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

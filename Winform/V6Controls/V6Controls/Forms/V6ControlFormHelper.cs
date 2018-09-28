@@ -1272,37 +1272,79 @@ namespace V6Controls.Forms
 
 
         #region ==== SET... ====
+
         /// <summary>
         /// Gán value cho vài control anh em trên form có AccessibleName nằm trong list
         /// </summary>
         /// <param name="control"></param>
         /// <param name="row"></param>
-        /// <param name="fields"></param>
-        public static void SetBrotherData(Control control, DataRow row, string fields)
+        /// <param name="fields">Các field ngôn ngữ V.</param>
+        /// <param name="fields2">Các field ngôn ngữ khác.</param>
+        public static void SetBrotherData(Control control, DataRow row, string fields, string fields2)
         {
+            Control parent = control.Parent;
+            if (parent == null) return;
             if (string.IsNullOrEmpty(fields)) return;
-            fields = "," + fields.ToLower() + ",";
+            
             try
             {
-                //if (row == null) return;
-                Control parent = control.Parent;
-                if (parent != null)
+                if (V6Setting.IsVietnamese || string.IsNullOrEmpty(fields2))
                 {
+                    fields = "," + fields.ToLower() + ",";
                     foreach (Control c in parent.Controls)
                     {
                         if (string.IsNullOrEmpty(c.AccessibleName)) continue;
-                        var NAME = c is RadioButton ? c.Name : (c.AccessibleName ?? "").ToUpper();
+                        string baseFIELD = c is RadioButton ? c.Name : (c.AccessibleName ?? "").ToUpper();
                         //Chỉ xử lý các control có AccessibleName trong fields
-                        if (fields.Contains("," + NAME.ToLower() + ","))
+                        if (fields.Contains("," + baseFIELD.ToLower() + ","))
                         {
-                            if (row == null || !row.Table.Columns.Contains(NAME))
+                            if (row == null || !row.Table.Columns.Contains(baseFIELD))
                             {
                                 //Gán rỗng hoặc mặc định
                                 SetControlValue(c, null);
                                 continue;
                             }
-
-                            SetControlValue(c, row[NAME]);
+                            SetControlValue(c, row[baseFIELD]);
+                        }
+                    }
+                }
+                else
+                {
+                    var field1list = ObjectAndString.SplitString(fields);
+                    var field2list = ObjectAndString.SplitString(fields2);
+                    for (int i = 0; i < field2list.Length; i++)
+                    {
+                        string f1 = field1list[i];
+                        string f2 = field2list[i];
+                        Control c = GetControlByAccessibleName(parent, f1);
+                        if (c != null)
+                        {
+                            if (row == null || !row.Table.Columns.Contains(f2))
+                            {
+                                SetControlValue(c, null);
+                            }
+                            else
+                            {
+                                SetControlValue(c, row[f2]);
+                            }
+                        }
+                    }
+                    return;
+                    fields2 = "," + fields2.ToLower() + ",";
+                    foreach (Control c in parent.Controls)
+                    {
+                        if (string.IsNullOrEmpty(c.AccessibleName)) continue;
+                        string baseFIELD = c is RadioButton ? c.Name : (c.AccessibleName ?? "").ToUpper();
+                        //Chỉ xử lý các control có AccessibleName trong fields2
+                        if (fields2.Contains("," + baseFIELD.ToLower() + ","))
+                        {
+                            if (row == null || !row.Table.Columns.Contains(baseFIELD))
+                            {
+                                //Gán rỗng hoặc mặc định
+                                SetControlValue(c, null);
+                                continue;
+                            }
+                            SetControlValue(c, row[baseFIELD]);
                         }
                     }
                 }

@@ -80,11 +80,13 @@ namespace Tools
             }
         }
 
-        private void LoadFiles()
+        private void LoadFiles(bool subFolder)
         {
             try
             {
-                var files = Directory.GetFiles(txtFolder.Text, txtExt.Text == "" ? "*.*" : "*." + txtExt.Text);
+                var files = Directory.GetFiles(txtFolder.Text, txtExt.Text == "" ? "*.*" : "*." + txtExt.Text,
+                    subFolder ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
+
                 List<MyFileInfo> listFileInfo = new List<MyFileInfo>();
                 foreach (string path in files)
                 {
@@ -127,13 +129,14 @@ namespace Tools
         private bool Check(MyFileInfo myFileInfo)
         {
             var o = chkCase.Checked ? StringComparison.Ordinal : StringComparison.InvariantCultureIgnoreCase;
-            if (txt11.Text != "" && (myFileInfo.Text.IndexOf(txt11.Text, o) < 0)) return false;
-            if (txt12.Text != "" && (myFileInfo.Text.IndexOf(txt12.Text, o) < 0)) return false;
-            if (txt13.Text != "" && (myFileInfo.Text.IndexOf(txt13.Text, o) < 0)) return false;
+            var fileText = myFileInfo.Text;
+            if (txt11.Text != "" && (fileText.IndexOf(txt11.Text, o) < 0 || (chkx211.Checked && fileText.IndexOf(txt11.Text, o) == fileText.LastIndexOf(txt11.Text, o)))) return false;
+            if (txt12.Text != "" && (fileText.IndexOf(txt12.Text, o) < 0 || (chkx212.Checked && fileText.IndexOf(txt12.Text, o) == fileText.LastIndexOf(txt12.Text, o)))) return false;
+            if (txt13.Text != "" && (fileText.IndexOf(txt13.Text, o) < 0 || (chkx213.Checked && fileText.IndexOf(txt13.Text, o) == fileText.LastIndexOf(txt13.Text, o)))) return false;
 
-            if (txt01.Text != "" && (myFileInfo.Text.IndexOf(txt01.Text, o) >= 0)) return false;
-            if (txt02.Text != "" && (myFileInfo.Text.IndexOf(txt02.Text, o) >= 0)) return false;
-            if (txt03.Text != "" && (myFileInfo.Text.IndexOf(txt03.Text, o) >= 0)) return false;
+            if (txt01.Text != "" && (fileText.IndexOf(txt01.Text, o) >= 0)) return false;
+            if (txt02.Text != "" && (fileText.IndexOf(txt02.Text, o) >= 0)) return false;
+            if (txt03.Text != "" && (fileText.IndexOf(txt03.Text, o) >= 0)) return false;
             
             return true;
         }
@@ -154,12 +157,12 @@ namespace Tools
         private void btnFolder_Click(object sender, EventArgs e)
         {
             GetFolder();
-            LoadFiles();
+            LoadFiles(chkSubFolder.Checked);
         }
 
         private void txtExt_Leave(object sender, EventArgs e)
         {
-            LoadFiles();
+            LoadFiles(chkSubFolder.Checked);
         }
 
         private void btnSaveFile_Click(object sender, EventArgs e)
@@ -187,7 +190,7 @@ namespace Tools
         {
             if (e.KeyData == Keys.Enter && Directory.Exists(txtFolder.Text))
             {
-                LoadFiles();
+                LoadFiles(chkSubFolder.Checked);
             }
         }
     }

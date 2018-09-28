@@ -857,6 +857,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 {
                     var initFilter = GetSoCt0InitFilter();
                     var f = new FilterView(Invoice.Alct0, "So_ct", "ARS20", _soCt0, initFilter);
+                    f.dataGridView1.Space_Bar = false;
+                    f.dataGridView1.Control_A = false;
+                    
                     if (f.ViewData.Count > 0)
                     {
                         var d = f.ShowDialog(this);
@@ -1015,6 +1018,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             else if (keyData == Keys.F7)
             {
                 LuuVaIn();
+            }
+            else if (keyData == Keys.F8)
+            {
+                if (detail1.MODE == V6Mode.View && detail1.btnXoa.Enabled && detail1.btnXoa.Visible)
+                    detail1.btnXoa.PerformClick();
             }
             else if (keyData == Keys.Escape)
             {

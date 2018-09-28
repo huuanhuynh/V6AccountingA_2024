@@ -1023,6 +1023,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             {
                 LuuVaIn();
             }
+            else if (keyData == Keys.F8)
+            {
+                if (detail1.MODE == V6Mode.View && detail1.btnXoa.Enabled && detail1.btnXoa.Visible)
+                    detail1.btnXoa.PerformClick();
+            }
             else
             {
                 return base.DoHotKey0(keyData);

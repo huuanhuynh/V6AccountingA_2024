@@ -44,6 +44,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "SEARCHG00004";
             this.groupBox1.Controls.Add(this.v6ColorTextBox2);
             this.groupBox1.Controls.Add(this.v6ColorTextBox1);
             this.groupBox1.Controls.Add(this.v6Label4);
@@ -63,35 +64,36 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
             // v6ColorTextBox2
             // 
             this.v6ColorTextBox2.AccessibleName = "loai_ct";
-            this.v6ColorTextBox2.EnableColorEffect = true;
-            this.v6ColorTextBox2.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox2.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox2.LimitCharacters = null;
             this.v6ColorTextBox2.Location = new System.Drawing.Point(647, 19);
             this.v6ColorTextBox2.Name = "v6ColorTextBox2";
             this.v6ColorTextBox2.Size = new System.Drawing.Size(100, 20);
             this.v6ColorTextBox2.TabIndex = 7;
-            this.v6ColorTextBox2.GrayText = "";
             // 
             // v6ColorTextBox1
             // 
             this.v6ColorTextBox1.AccessibleName = "loai_dc";
-            this.v6ColorTextBox1.EnableColorEffect = true;
-            this.v6ColorTextBox1.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox1.LimitCharacters = null;
             this.v6ColorTextBox1.Location = new System.Drawing.Point(439, 19);
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
             this.v6ColorTextBox1.Size = new System.Drawing.Size(100, 20);
             this.v6ColorTextBox1.TabIndex = 5;
-            this.v6ColorTextBox1.GrayText = "";
             // 
             // v6Label4
             // 
+            this.v6Label4.AccessibleDescription = "SEARCHL00017";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(587, 22);
             this.v6Label4.Name = "v6Label4";
@@ -101,6 +103,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
             // 
             // v6Label3
             // 
+            this.v6Label3.AccessibleDescription = "SEARCHL00048";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(388, 22);
             this.v6Label3.Name = "v6Label3";
@@ -110,6 +113,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
             // 
             // v6Label2
             // 
+            this.v6Label2.AccessibleDescription = "SEARCHL00038";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(195, 22);
             this.v6Label2.Name = "v6Label2";
@@ -132,6 +136,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "SEARCHL00037";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(6, 22);
             this.v6Label1.Name = "v6Label1";

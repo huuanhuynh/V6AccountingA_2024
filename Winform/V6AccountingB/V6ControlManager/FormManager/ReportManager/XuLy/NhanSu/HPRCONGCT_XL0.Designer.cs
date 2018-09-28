@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblDenNgay = new System.Windows.Forms.Label();
             this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblTuNgay = new System.Windows.Forms.Label();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.panel1.SuspendLayout();
@@ -39,19 +39,20 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.tabControl1);
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.lblDenNgay);
             this.panel1.Controls.Add(this.dateNgay_ct2);
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.lblTuNgay);
             this.panel1.Controls.Add(this.dateNgay_ct1);
             // 
-            // label3
+            // lblDenNgay
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Đến ngày";
+            this.lblDenNgay.AccessibleDescription = "REPORTL00015";
+            this.lblDenNgay.AutoSize = true;
+            this.lblDenNgay.Location = new System.Drawing.Point(3, 41);
+            this.lblDenNgay.Name = "lblDenNgay";
+            this.lblDenNgay.Size = new System.Drawing.Size(53, 13);
+            this.lblDenNgay.TabIndex = 27;
+            this.lblDenNgay.Text = "Đến ngày";
             // 
             // dateNgay_ct2
             // 
@@ -65,16 +66,16 @@
             this.dateNgay_ct2.Name = "dateNgay_ct2";
             this.dateNgay_ct2.Size = new System.Drawing.Size(101, 20);
             this.dateNgay_ct2.TabIndex = 28;
-            this.dateNgay_ct2.TextTitle = null;
             // 
-            // label2
+            // lblTuNgay
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Từ ngày";
+            this.lblTuNgay.AccessibleDescription = "REPORTL00014";
+            this.lblTuNgay.AutoSize = true;
+            this.lblTuNgay.Location = new System.Drawing.Point(3, 15);
+            this.lblTuNgay.Name = "lblTuNgay";
+            this.lblTuNgay.Size = new System.Drawing.Size(46, 13);
+            this.lblTuNgay.TabIndex = 25;
+            this.lblTuNgay.Text = "Từ ngày";
             // 
             // dateNgay_ct1
             // 
@@ -88,7 +89,6 @@
             this.dateNgay_ct1.Name = "dateNgay_ct1";
             this.dateNgay_ct1.Size = new System.Drawing.Size(101, 20);
             this.dateNgay_ct1.TabIndex = 26;
-            this.dateNgay_ct1.TextTitle = null;
             // 
             // tabControl1
             // 
@@ -98,7 +98,7 @@
             this.tabControl1.Location = new System.Drawing.Point(6, 65);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(450, 202);
+            this.tabControl1.Size = new System.Drawing.Size(551, 281);
             this.tabControl1.TabIndex = 29;
             // 
             // HPRCONGCT_XL0
@@ -114,9 +114,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblDenNgay;
         private V6Controls.V6DateTimePick dateNgay_ct2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTuNgay;
         private V6Controls.V6DateTimePick dateNgay_ct1;
         private System.Windows.Forms.TabControl tabControl1;
     }

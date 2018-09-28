@@ -647,6 +647,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             {
                 LuuVaIn();
             }
+            else if (keyData == Keys.F8)
+            {
+                if (detail1.MODE == V6Mode.View && detail1.btnXoa.Enabled && detail1.btnXoa.Visible)
+                    detail1.btnXoa.PerformClick();
+            }
             else if (keyData == Keys. F9)
             {
                 var row = AM.Rows[CurrentIndex];

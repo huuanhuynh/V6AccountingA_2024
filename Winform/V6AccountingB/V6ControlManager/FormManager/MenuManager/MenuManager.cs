@@ -421,16 +421,19 @@ namespace V6ControlManager.FormManager.MenuManager
                             #region ==== V6CLIENTS V6ONLINES ====
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
-                                check = CheckPassword(owner);
+                                if (mouse_left && ctrl_is_down)
+                                {
+                                    check = CheckPasswordV6(owner);
+                                }
+                                else
+                                {
+                                    check = CheckPassword(owner);
+                                }
 
                                 if (check)
                                 {
                                     if (FORM_NAME == "V6CLIENTS") c = new ClientManager(item_id);
-                                    if (FORM_NAME == "V6ONLINES")
-                                    {
-                                        if(V6Login.IsLocal) c = new OnlineManager(item_id);
-                                        else c = new V6UserControlEmpty(V6Text.NotAllowed);
-                                    }
+                                    if (FORM_NAME == "V6ONLINES") c = new OnlineManager(item_id);
                                 }
                             }
                             break;

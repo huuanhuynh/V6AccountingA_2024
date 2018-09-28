@@ -1318,7 +1318,7 @@
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(81, 17);
             this.linkLabel1.TabIndex = 32;
-            this.linkLabel1.TabStop = true;
+            this.linkLabel1.TabStop = false;
             this.linkLabel1.Text = "Home page";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 

@@ -184,6 +184,7 @@
             this.TxtTk.BackColor = System.Drawing.SystemColors.Window;
             this.TxtTk.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtTk.BrotherFields = "TEN_TK";
+            this.TxtTk.BrotherFields2 = "TEN_TK2";
             this.TxtTk.EnterColor = System.Drawing.Color.PaleGreen;
             this.TxtTk.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtTk.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

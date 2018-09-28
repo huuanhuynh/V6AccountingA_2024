@@ -1395,7 +1395,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             // chkAuto_Ck
             // 
-            this.chkAuto_Ck.AccessibleDescription = "ASOCTSOAL00049";
+            this.chkAuto_Ck.AccessibleDescription = "ASOCTSOAL00113";
             this.chkAuto_Ck.AccessibleName = "Auto_Ck";
             this.chkAuto_Ck.AutoSize = true;
             this.chkAuto_Ck.Location = new System.Drawing.Point(135, 56);
@@ -2919,7 +2919,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             // v6Label14
             // 
-            this.v6Label14.AccessibleDescription = "ASOCTSOAL00110";
+            this.v6Label14.AccessibleDescription = "ASOCTSOAL00112";
             this.v6Label14.AutoSize = true;
             this.v6Label14.Location = new System.Drawing.Point(588, 19);
             this.v6Label14.Name = "v6Label14";

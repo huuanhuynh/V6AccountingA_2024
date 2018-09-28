@@ -67,7 +67,7 @@ namespace V6Controls
             private set
             {
                 _data = value;
-                V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields);
+                V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
                 SetNeighborValues();
             }
         }
@@ -98,12 +98,21 @@ namespace V6Controls
         /// <summary>
         /// Tên các trường dữ liệu liên quan
         /// </summary>
+        [Category("V6")]
         [DefaultValue(null)]
         [Description("Các trường dữ liệu liên quan được gán tự động khi lookup hoặc check ExistRow")]
         public string BrotherFields { get; set; }
         /// <summary>
+        /// Tên các trường dữ liệu liên quan khi dùng ngôn ngữ khác V
+        /// </summary>
+        [Category("V6")]
+        [DefaultValue(null)]
+        [Description("Các trường dữ liệu liên quan trường hợp ngôn ngữ khác V")]
+        public string BrotherFields2 { get; set; }
+        /// <summary>
         /// Ánh xạ với BrotherFields với tên trường khác.
         /// </summary>
+        [Category("V6")]
         [DefaultValue(null)]
         [Description("Ánh xạ với BrotherFields để gán dữ liệu cho các control khác")]
         public string NeighborFields { get; set; }
@@ -117,7 +126,7 @@ namespace V6Controls
             {
                 if (_data != null)
                 {
-                    V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields);
+                    V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
                     SetNeighborValues();
                 }
                 else
@@ -600,14 +609,14 @@ namespace V6Controls
                     {
                         var oneRow = tbl.Rows[0];
                         _data = oneRow;
-                        V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields);
+                        V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
                         SetNeighborValues();
                         return true;
                     }
                     else
                     {
                         _data = null;
-                        V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields);
+                        V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
                         SetNeighborValues();
                     }
                 }

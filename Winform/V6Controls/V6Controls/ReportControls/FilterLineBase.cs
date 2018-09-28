@@ -50,9 +50,9 @@ namespace V6ReportControls
 
         [Browsable(true)]
         [Description("Nhãn hiển thị, cẩn thận nhầm data.")]
-        public new string Text
+        public override string Text
         {
-            get { return Caption; }// set { Caption = value??""; }
+            get { return Caption; } set { Caption = value??""; }
         }
 
         /// <summary>

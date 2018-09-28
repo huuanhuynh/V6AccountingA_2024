@@ -52,10 +52,10 @@ namespace V6Init
 
                 if (dataDictionary.ContainsKey(COLUMN_NAME))
                 {
-                    //if (result.ContainsKey(COLUMN_NAME))
-                    //{
-                    //    Logger.WriteToLog(string.Format("CorpLan.GetTexDic form: {0}, samekey: {1}", formName, COLUMN_NAME));
-                    //}
+                    if (result.ContainsKey(COLUMN_NAME))
+                    {
+                        Logger.WriteToLog(string.Format("CorpLan.GetTexDic form: {0}, samekey: {1}", formName, COLUMN_NAME), "V6LangLog");
+                    }
                     result[COLUMN_NAME] = dataDictionary[COLUMN_NAME];
                 }
                 else

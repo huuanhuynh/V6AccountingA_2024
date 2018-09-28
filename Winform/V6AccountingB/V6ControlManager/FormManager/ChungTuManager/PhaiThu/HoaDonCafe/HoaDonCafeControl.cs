@@ -1597,6 +1597,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 LuuVaIn();
             }
+            else if (keyData == Keys.F8)//Bị đè bởi DonBan();
+            {
+                if (detail1.MODE == V6Mode.View && detail1.btnXoa.Enabled && detail1.btnXoa.Visible)
+                    detail1.btnXoa.PerformClick();
+            }
             else if (keyData == (Keys.F10))
             {
                 ChonHoaDonMau();
