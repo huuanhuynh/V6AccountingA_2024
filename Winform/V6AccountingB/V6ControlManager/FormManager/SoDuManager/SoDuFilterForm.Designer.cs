@@ -36,7 +36,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.AccessibleDescription = "huy";
+            this.btnCancel.AccessibleDescription = "FILTERB00008";
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::V6ControlManager.Properties.Resources.Cancel;
@@ -51,7 +51,7 @@
             // 
             // btnFilter
             // 
-            this.btnFilter.AccessibleDescription = "loc";
+            this.btnFilter.AccessibleDescription = "FILTERB00007";
             this.btnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFilter.Image = global::V6ControlManager.Properties.Resources.Apply;
             this.btnFilter.Location = new System.Drawing.Point(12, 247);
@@ -76,7 +76,7 @@
             // 
             // SoDuFilterForm
             // 
-            this.AccessibleDescription = "filter_form";
+            this.AccessibleDescription = "FILTERF00001";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;

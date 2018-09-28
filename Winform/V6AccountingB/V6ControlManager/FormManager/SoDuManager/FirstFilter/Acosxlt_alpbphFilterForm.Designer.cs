@@ -41,7 +41,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.AccessibleDescription = "huy";
+            this.btnCancel.AccessibleDescription = "FILTERB00008";
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(93, 128);
@@ -54,7 +54,7 @@
             // 
             // btnFilter
             // 
-            this.btnFilter.AccessibleDescription = "loc";
+            this.btnFilter.AccessibleDescription = "FILTERB00007";
             this.btnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFilter.Location = new System.Drawing.Point(12, 128);
             this.btnFilter.Name = "btnFilter";
@@ -81,6 +81,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "FILTERL00256";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 38);
@@ -111,6 +112,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "FILTERL00078";
             this.label1.AccessibleName = "";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 12);
@@ -141,7 +143,7 @@
             // 
             // Acosxlt_alpbphFilterForm
             // 
-            this.AccessibleDescription = "filter_form";
+            this.AccessibleDescription = "FILTERF00001";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
@@ -159,6 +161,7 @@
             this.ShowInTaskbar = false;
             this.Text = "Lọc";
             this.Load += new System.EventHandler(this.FilterForm_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.btnFilter, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);

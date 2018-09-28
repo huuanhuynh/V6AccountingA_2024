@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnLoc = new System.Windows.Forms.Button();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.v6Label3 = new V6Controls.V6Label();
@@ -69,6 +69,7 @@
             // 
             // btnLoc
             // 
+            this.btnLoc.AccessibleDescription = "FILTERB00010";
             this.btnLoc.Image = global::V6ControlManager.Properties.Resources.Search;
             this.btnLoc.Location = new System.Drawing.Point(12, 4);
             this.btnLoc.Name = "btnLoc";
@@ -83,32 +84,33 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(316, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(447, 515);
             this.dataGridView1.TabIndex = 13;
             // 
             // v6Label3
             // 
+            this.v6Label3.AccessibleDescription = "FILTERL00158";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(99, 116);
             this.v6Label3.Name = "v6Label3";
@@ -118,6 +120,7 @@
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "FILTERL00157";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(99, 93);
             this.v6Label1.Name = "v6Label1";
@@ -127,6 +130,7 @@
             // 
             // v6Label2
             // 
+            this.v6Label2.AccessibleDescription = "FILTERO00005";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(2, 114);
             this.v6Label2.Name = "v6Label2";
@@ -136,6 +140,7 @@
             // 
             // v6Label9
             // 
+            this.v6Label9.AccessibleDescription = "FILTERO00004";
             this.v6Label9.AutoSize = true;
             this.v6Label9.Location = new System.Drawing.Point(2, 91);
             this.v6Label9.Name = "v6Label9";
@@ -179,6 +184,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "FILTERL00003";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(3, 71);
             this.label2.Name = "label2";
@@ -201,6 +207,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "FILTERG00001";
             this.groupBox1.Controls.Add(this.txtma_lo);
             this.groupBox1.Controls.Add(this.Txtnh_vt6);
             this.groupBox1.Controls.Add(this.Txtnh_vt4);
@@ -223,6 +230,7 @@
             // 
             // txtma_lo
             // 
+            this.txtma_lo.AccessibleDescription = "FILTERL00159";
             this.txtma_lo.Caption = "Mã lô";
             this.txtma_lo.FieldName = "MA_LO";
             this.txtma_lo.Location = new System.Drawing.Point(6, 83);
@@ -233,6 +241,7 @@
             // 
             // Txtnh_vt6
             // 
+            this.Txtnh_vt6.AccessibleDescription = "FILTERL00036";
             this.Txtnh_vt6.Caption = "Nhóm vật tư 6";
             this.Txtnh_vt6.FieldName = "NH_VT6";
             this.Txtnh_vt6.Location = new System.Drawing.Point(6, 264);
@@ -243,6 +252,7 @@
             // 
             // Txtnh_vt4
             // 
+            this.Txtnh_vt4.AccessibleDescription = "FILTERL00034";
             this.Txtnh_vt4.Caption = "Nhóm vật tư 4";
             this.Txtnh_vt4.FieldName = "NH_VT4";
             this.Txtnh_vt4.Location = new System.Drawing.Point(6, 217);
@@ -253,6 +263,7 @@
             // 
             // Txtnh_vt5
             // 
+            this.Txtnh_vt5.AccessibleDescription = "FILTERL00035";
             this.Txtnh_vt5.Caption = "Nhóm vật tư 5";
             this.Txtnh_vt5.FieldName = "NH_VT5";
             this.Txtnh_vt5.Location = new System.Drawing.Point(6, 241);
@@ -263,6 +274,7 @@
             // 
             // Txtnh_vt3
             // 
+            this.Txtnh_vt3.AccessibleDescription = "FILTERL00033";
             this.Txtnh_vt3.Caption = "Nhóm vật tư 3";
             this.Txtnh_vt3.FieldName = "NH_VT3";
             this.Txtnh_vt3.Location = new System.Drawing.Point(6, 195);
@@ -273,6 +285,7 @@
             // 
             // Txtnh_vt1
             // 
+            this.Txtnh_vt1.AccessibleDescription = "FILTERL00031";
             this.Txtnh_vt1.Caption = "Nhóm vật tư 1";
             this.Txtnh_vt1.FieldName = "NH_VT1";
             this.Txtnh_vt1.Location = new System.Drawing.Point(6, 151);
@@ -283,6 +296,7 @@
             // 
             // Txtnh_vt2
             // 
+            this.Txtnh_vt2.AccessibleDescription = "FILTERL00032";
             this.Txtnh_vt2.Caption = "Nhóm vật tư 2";
             this.Txtnh_vt2.FieldName = "NH_VT2";
             this.Txtnh_vt2.Location = new System.Drawing.Point(6, 173);
@@ -293,6 +307,7 @@
             // 
             // filterLineVvarTextBox1
             // 
+            this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00160";
             this.filterLineVvarTextBox1.Caption = "Mã vị trí";
             this.filterLineVvarTextBox1.FieldName = "MA_VITRI";
             this.filterLineVvarTextBox1.Location = new System.Drawing.Point(6, 128);
@@ -303,6 +318,7 @@
             // 
             // TxtMakho
             // 
+            this.TxtMakho.AccessibleDescription = "FILTERL00006";
             this.TxtMakho.Caption = "Mã kho";
             this.TxtMakho.FieldName = "MA_KHO";
             this.TxtMakho.Location = new System.Drawing.Point(6, 39);
@@ -313,6 +329,7 @@
             // 
             // radOr
             // 
+            this.radOr.AccessibleDescription = "FILTERR00002";
             this.radOr.AutoSize = true;
             this.radOr.Location = new System.Drawing.Point(142, 16);
             this.radOr.Name = "radOr";
@@ -324,6 +341,7 @@
             // 
             // radAnd
             // 
+            this.radAnd.AccessibleDescription = "FILTERR00001";
             this.radAnd.AutoSize = true;
             this.radAnd.Checked = true;
             this.radAnd.Location = new System.Drawing.Point(6, 16);
@@ -336,6 +354,7 @@
             // 
             // txtMaDvcs
             // 
+            this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 61);
@@ -346,6 +365,7 @@
             // 
             // TxtMa_vt
             // 
+            this.TxtMa_vt.AccessibleDescription = "FILTERL00020";
             this.TxtMa_vt.Caption = "Mã vật tư";
             this.TxtMa_vt.FieldName = "MA_VT";
             this.TxtMa_vt.Location = new System.Drawing.Point(6, 105);
@@ -356,6 +376,7 @@
             // 
             // Chk_Tinh_dc
             // 
+            this.Chk_Tinh_dc.AccessibleDescription = "FILTERC00023";
             this.Chk_Tinh_dc.AccessibleName = "CHK_TINH_DC";
             this.Chk_Tinh_dc.AutoSize = true;
             this.Chk_Tinh_dc.Checked = true;
@@ -403,6 +424,7 @@
             // 
             // chkSoluong
             // 
+            this.chkSoluong.AccessibleDescription = "FILTERC00024";
             this.chkSoluong.AccessibleName = "CHK_SL";
             this.chkSoluong.AutoSize = true;
             this.chkSoluong.Location = new System.Drawing.Point(77, 154);
@@ -418,6 +440,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "FILTERL00002";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 48);
             this.label1.Name = "label1";

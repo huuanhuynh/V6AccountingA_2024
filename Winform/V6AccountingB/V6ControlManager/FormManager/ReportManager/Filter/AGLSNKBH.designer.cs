@@ -343,7 +343,7 @@
             // 
             // lineNH_KH9
             // 
-            this.lineNH_KH9.AccessibleName2 = "NH_KH9";
+            this.lineNH_KH9.AccessibleDescription = "FILTERL00019"; this.lineNH_KH8.AccessibleName2 = "NH_KH9";
             this.lineNH_KH9.Caption = "Nhóm khách hàng 9";
             this.lineNH_KH9.FieldName = "NH_KH9";
             this.lineNH_KH9.Location = new System.Drawing.Point(5, 303);
@@ -354,7 +354,7 @@
             // 
             // lineNH_KH8
             // 
-            this.lineNH_KH8.AccessibleName2 = "NH_KH8";
+            this.lineNH_KH8.AccessibleDescription = "FILTERL00018"; this.lineNH_KH8.AccessibleName2 = "NH_KH8";
             this.lineNH_KH8.Caption = "Nhóm khách hàng 8";
             this.lineNH_KH8.FieldName = "NH_KH8";
             this.lineNH_KH8.Location = new System.Drawing.Point(5, 281);
@@ -365,6 +365,7 @@
             // 
             // lineNH_KH7
             // 
+            this.lineNH_KH7.AccessibleDescription = "FILTERL00017";
             this.lineNH_KH7.AccessibleName2 = "NH_KH7";
             this.lineNH_KH7.Caption = "Nhóm khách hàng 7";
             this.lineNH_KH7.FieldName = "NH_KH7";

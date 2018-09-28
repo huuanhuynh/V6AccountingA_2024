@@ -130,11 +130,58 @@ namespace Tools
         {
             var o = chkCase.Checked ? StringComparison.Ordinal : StringComparison.InvariantCultureIgnoreCase;
             var fileText = myFileInfo.Text;
-            if (txt11.Text != "" && (fileText.IndexOf(txt11.Text, o) < 0 || (chkx211.Checked && fileText.IndexOf(txt11.Text, o) == fileText.LastIndexOf(txt11.Text, o)))) return false;
+
+            bool useHead=false, useTail = false;
+            string headText = "", tailText = "";
+            var searchText = txt11.Text;
+            if (searchText.StartsWith("[A]"))
+            {
+                useHead = true;
+                searchText = searchText.Substring(3);
+            }
+            if (searchText.EndsWith("[B]"))
+            {
+                useTail = true;
+                searchText = searchText.Substring(0, searchText.Length - 3);
+            }
+
+            if (searchText != "" &&
+                (fileText.IndexOf(searchText, o) < 0 ||
+                 (chkx211.Checked && fileText.IndexOf(searchText, o) == fileText.LastIndexOf(searchText, o))))
+            {
+                return false;
+            }
+            else
+            {
+                int searchTextIndex0 = fileText.IndexOf(searchText, o);
+                // Lấy head
+                if (useHead)
+                {
+                    int searchTextIndexA = searchTextIndex0-1;
+                    while (searchTextIndexA > 0 && fileText[searchTextIndexA] != '\n')
+                    {
+                        headText = fileText[searchTextIndexA] + headText;
+                        searchTextIndexA--;
+                    }
+                }
+
+                if (useTail)
+                {
+                    int searchTextIndexB = searchTextIndex0 + searchText.Length;
+                    while (fileText[searchTextIndexB] != '\n')
+                    {
+                        tailText = tailText + fileText[searchTextIndexB];
+                        searchTextIndexB++;
+                    }
+                }
+            }
             if (txt12.Text != "" && (fileText.IndexOf(txt12.Text, o) < 0 || (chkx212.Checked && fileText.IndexOf(txt12.Text, o) == fileText.LastIndexOf(txt12.Text, o)))) return false;
             if (txt13.Text != "" && (fileText.IndexOf(txt13.Text, o) < 0 || (chkx213.Checked && fileText.IndexOf(txt13.Text, o) == fileText.LastIndexOf(txt13.Text, o)))) return false;
 
-            if (txt01.Text != "" && (fileText.IndexOf(txt01.Text, o) >= 0)) return false;
+            searchText = txt01.Text;
+            if (useHead) searchText = searchText.Replace("[A]", headText);
+            if (useTail) searchText = searchText.Replace("[B]", tailText);
+            if (txt01.Text != "" && (fileText.IndexOf(searchText, o) >= 0)) return false;
             if (txt02.Text != "" && (fileText.IndexOf(txt02.Text, o) >= 0)) return false;
             if (txt03.Text != "" && (fileText.IndexOf(txt03.Text, o) >= 0)) return false;
             

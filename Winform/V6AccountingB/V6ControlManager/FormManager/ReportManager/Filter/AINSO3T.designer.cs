@@ -79,6 +79,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "FILTERL00002";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(5, 9);
             this.label1.Name = "label1";
@@ -88,6 +89,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "FILTERL00003";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(5, 35);
             this.label2.Name = "label2";

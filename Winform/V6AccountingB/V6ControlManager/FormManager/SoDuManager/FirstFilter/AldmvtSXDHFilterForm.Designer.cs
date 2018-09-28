@@ -52,7 +52,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.AccessibleDescription = "huy";
+            this.btnCancel.AccessibleDescription = "FILTERB00008";
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(93, 128);
@@ -65,7 +65,7 @@
             // 
             // btnFilter
             // 
-            this.btnFilter.AccessibleDescription = "loc";
+            this.btnFilter.AccessibleDescription = "FILTERB00007";
             this.btnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFilter.Location = new System.Drawing.Point(12, 128);
             this.btnFilter.Name = "btnFilter";
@@ -97,6 +97,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "FILTERG00006";
             this.groupBox1.Controls.Add(this.lblTo);
             this.groupBox1.Controls.Add(this.lblFrom);
             this.groupBox1.Controls.Add(this.dateTuNgay);
@@ -111,6 +112,7 @@
             // 
             // lblTo
             // 
+            this.lblTo.AccessibleDescription = "FILTERL00255";
             this.lblTo.AccessibleName = "";
             this.lblTo.AutoSize = true;
             this.lblTo.Location = new System.Drawing.Point(12, 55);
@@ -122,6 +124,7 @@
             // 
             // lblFrom
             // 
+            this.lblFrom.AccessibleDescription = "FILTERL00254";
             this.lblFrom.AccessibleName = "";
             this.lblFrom.AutoSize = true;
             this.lblFrom.Location = new System.Drawing.Point(12, 24);
@@ -165,6 +168,7 @@
             // 
             // btnCopyDinhMuc
             // 
+            this.btnCopyDinhMuc.AccessibleDescription = "FILTERB00009";
             this.btnCopyDinhMuc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCopyDinhMuc.Location = new System.Drawing.Point(77, 75);
             this.btnCopyDinhMuc.Name = "btnCopyDinhMuc";
@@ -176,6 +180,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "FILTERL00250";
             this.label4.AccessibleName = "";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(9, 90);
@@ -187,6 +192,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "FILTERL00249";
             this.label3.AccessibleName = "";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 64);
@@ -198,6 +204,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "FILTERL00248";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 38);
@@ -209,6 +216,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "FILTERL00077";
             this.label1.AccessibleName = "";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 12);
@@ -296,7 +304,7 @@
             // 
             // AldmvtSXDHFilterForm
             // 
-            this.AccessibleDescription = "filter_form";
+            this.AccessibleDescription = "FILTERF00001";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;

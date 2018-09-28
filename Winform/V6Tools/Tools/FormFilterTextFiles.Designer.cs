@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnSaveFile = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.txtFolder = new System.Windows.Forms.TextBox();
@@ -49,6 +50,7 @@
             this.chkx212 = new System.Windows.Forms.CheckBox();
             this.chkx213 = new System.Windows.Forms.CheckBox();
             this.chkSubFolder = new System.Windows.Forms.CheckBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btnSaveFile
@@ -89,6 +91,7 @@
             this.txt11.Name = "txt11";
             this.txt11.Size = new System.Drawing.Size(539, 20);
             this.txt11.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.txt11, "[A]Contents[B]");
             // 
             // richView
             // 
@@ -158,6 +161,7 @@
             this.txt01.Name = "txt01";
             this.txt01.Size = new System.Drawing.Size(585, 20);
             this.txt01.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.txt01, "[A]Contents[B]");
             // 
             // txt02
             // 
@@ -321,5 +325,6 @@
         private System.Windows.Forms.CheckBox chkx212;
         private System.Windows.Forms.CheckBox chkx213;
         private System.Windows.Forms.CheckBox chkSubFolder;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

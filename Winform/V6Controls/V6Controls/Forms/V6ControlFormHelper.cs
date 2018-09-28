@@ -5328,6 +5328,7 @@ namespace V6Controls.Forms
             {
                 var vvarTextBox = control as V6VvarTextBox;
                 vvarTextBox.SetDataRow(null);
+                
                 var text = ObjectAndString.ObjectToString(value).Trim();
                 if (vvarTextBox.UseChangeTextOnSetFormData)
                     vvarTextBox.ChangeText(text);

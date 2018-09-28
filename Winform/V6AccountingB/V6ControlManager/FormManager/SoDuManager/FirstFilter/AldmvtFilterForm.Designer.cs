@@ -33,6 +33,8 @@
             this.btnFilter = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblTo = new System.Windows.Forms.Label();
+            this.lblFrom = new System.Windows.Forms.Label();
             this.dateTuNgay = new V6Controls.V6DateTimeColor();
             this.dateDenNgay = new V6Controls.V6DateTimePick();
             this.btnCopyDinhMuc = new System.Windows.Forms.Button();
@@ -44,15 +46,13 @@
             this.txtNhomVt2 = new V6Controls.V6VvarTextBox();
             this.txtNhomVt1 = new V6Controls.V6VvarTextBox();
             this.txtMaSp = new V6Controls.V6VvarTextBox();
-            this.lblTo = new System.Windows.Forms.Label();
-            this.lblFrom = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
-            this.btnCancel.AccessibleDescription = "huy";
+            this.btnCancel.AccessibleDescription = "FILTERB00008";
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(93, 128);
@@ -65,7 +65,7 @@
             // 
             // btnFilter
             // 
-            this.btnFilter.AccessibleDescription = "loc";
+            this.btnFilter.AccessibleDescription = "FILTERB00007";
             this.btnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFilter.Location = new System.Drawing.Point(12, 128);
             this.btnFilter.Name = "btnFilter";
@@ -97,6 +97,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "FILTERG00006";
             this.groupBox1.Controls.Add(this.lblTo);
             this.groupBox1.Controls.Add(this.lblFrom);
             this.groupBox1.Controls.Add(this.dateTuNgay);
@@ -108,6 +109,30 @@
             this.groupBox1.TabIndex = 112;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Copy định mức";
+            // 
+            // lblTo
+            // 
+            this.lblTo.AccessibleDescription = "FILTERL00255";
+            this.lblTo.AccessibleName = "";
+            this.lblTo.AutoSize = true;
+            this.lblTo.Location = new System.Drawing.Point(12, 55);
+            this.lblTo.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblTo.Name = "lblTo";
+            this.lblTo.Size = new System.Drawing.Size(27, 13);
+            this.lblTo.TabIndex = 112;
+            this.lblTo.Text = "Đến";
+            // 
+            // lblFrom
+            // 
+            this.lblFrom.AccessibleDescription = "FILTERL00254";
+            this.lblFrom.AccessibleName = "";
+            this.lblFrom.AutoSize = true;
+            this.lblFrom.Location = new System.Drawing.Point(12, 24);
+            this.lblFrom.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblFrom.Name = "lblFrom";
+            this.lblFrom.Size = new System.Drawing.Size(20, 13);
+            this.lblFrom.TabIndex = 111;
+            this.lblFrom.Text = "Từ";
             // 
             // dateTuNgay
             // 
@@ -143,6 +168,7 @@
             // 
             // btnCopyDinhMuc
             // 
+            this.btnCopyDinhMuc.AccessibleDescription = "FILTERB00009";
             this.btnCopyDinhMuc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCopyDinhMuc.Location = new System.Drawing.Point(77, 75);
             this.btnCopyDinhMuc.Name = "btnCopyDinhMuc";
@@ -154,6 +180,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "FILTERL00250";
             this.label4.AccessibleName = "";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(9, 90);
@@ -165,6 +192,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "FILTERL00249";
             this.label3.AccessibleName = "";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 64);
@@ -176,6 +204,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "FILTERL00248";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 38);
@@ -187,6 +216,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "FILTERL00077";
             this.label1.AccessibleName = "";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 12);
@@ -272,31 +302,9 @@
             this.txtMaSp.TabIndex = 1;
             this.txtMaSp.VVar = "MA_VT";
             // 
-            // lblTo
-            // 
-            this.lblTo.AccessibleName = "";
-            this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(12, 55);
-            this.lblTo.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(27, 13);
-            this.lblTo.TabIndex = 112;
-            this.lblTo.Text = "Đến";
-            // 
-            // lblFrom
-            // 
-            this.lblFrom.AccessibleName = "";
-            this.lblFrom.AutoSize = true;
-            this.lblFrom.Location = new System.Drawing.Point(12, 24);
-            this.lblFrom.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.lblFrom.Name = "lblFrom";
-            this.lblFrom.Size = new System.Drawing.Size(20, 13);
-            this.lblFrom.TabIndex = 111;
-            this.lblFrom.Text = "Từ";
-            // 
             // AldmvtFilterForm
             // 
-            this.AccessibleDescription = "filter_form";
+            this.AccessibleDescription = "FILTERF00001";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;

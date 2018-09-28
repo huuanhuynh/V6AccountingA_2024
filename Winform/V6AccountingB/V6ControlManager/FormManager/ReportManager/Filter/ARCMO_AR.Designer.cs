@@ -65,6 +65,7 @@
             // 
             // v6Label7
             // 
+            this.v6Label7.AccessibleDescription = "FILTERL00022";
             this.v6Label7.AutoSize = true;
             this.v6Label7.Location = new System.Drawing.Point(3, 86);
             this.v6Label7.Name = "v6Label7";
@@ -104,6 +105,7 @@
             // 
             // v6Label8
             // 
+            this.v6Label8.AccessibleDescription = "FILTERL00021";
             this.v6Label8.AutoSize = true;
             this.v6Label8.Location = new System.Drawing.Point(3, 62);
             this.v6Label8.Name = "v6Label8";
@@ -159,8 +161,8 @@
             this.txtma_ct.AccessibleDescription = "FILTERL00004";
             this.txtma_ct.AccessibleName = "";
             this.txtma_ct.AccessibleName2 = "MA_CT";
-            this.txtma_ct.Enabled = false;
             this.txtma_ct.Caption = "Mã chứng từ";
+            this.txtma_ct.Enabled = false;
             this.txtma_ct.FieldName = "MA_CT";
             this.txtma_ct.Location = new System.Drawing.Point(6, 76);
             this.txtma_ct.Name = "txtma_ct";
@@ -209,6 +211,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "FILTERL00003";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(3, 35);
             this.label2.Name = "label2";
@@ -218,6 +221,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "FILTERL00002";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 9);
             this.label1.Name = "label1";
