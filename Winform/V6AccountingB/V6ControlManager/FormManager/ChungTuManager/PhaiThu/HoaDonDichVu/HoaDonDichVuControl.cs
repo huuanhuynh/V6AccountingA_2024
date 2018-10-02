@@ -1294,42 +1294,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
 
         #region ==== Tính toán hóa đơn ====
         
-        private decimal TinhTong(string colName)
-        {
-            var total = 0m;
-            try
-            {
-                if (AD != null && AD.Columns.Contains(colName))
-                {
-                    for (var j = 0; j < AD.Rows.Count; j++)
-                    {
-                        total += ObjectAndString.ObjectToDecimal(AD.Rows[j][colName]);
-                    }
-                    return total;
-                }
-                return total;
-            }
-            catch
-            {
-                return total;
-            }
-        }
-        
         private void TinhTongValues()
         {
-            var tSoLuong = TinhTong("SO_LUONG");
-            txtTongSoLuong.Value = V6BusinessHelper.Vround(tSoLuong, M_ROUND_NUM);
+            txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
+            txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
 
-            var tTienNt2 = TinhTong("TIEN_NT2");
+            var tTienNt2 = TinhTong(AD, "TIEN_NT2");
             txtTongTienNt2.Value = V6BusinessHelper.Vround(tTienNt2, M_ROUND_NT);
 
-            var tTien2 = TinhTong("TIEN2");
+            var tTien2 = TinhTong(AD, "TIEN2");
             txtTongTien2.Value = V6BusinessHelper.Vround(tTien2, M_ROUND);
 
-            var tThue_nt = TinhTong("THUE_NT");
+            var tThue_nt = TinhTong(AD, "THUE_NT");
             txtTongThueNt.Value = V6BusinessHelper.Vround(tThue_nt, M_ROUND_NT);
 
-            var tThue = TinhTong("THUE");
+            var tThue = TinhTong(AD, "THUE");
             txtTongThue.Value = V6BusinessHelper.Vround(tThue, M_ROUND);
 
             var tPsNoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_NO_NT", "OPER_TT");

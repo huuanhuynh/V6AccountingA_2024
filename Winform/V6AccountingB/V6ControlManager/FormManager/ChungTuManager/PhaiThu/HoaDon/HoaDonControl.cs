@@ -69,6 +69,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void MyInit()
         {
+            LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             LoadTag(Invoice, detail1.Controls);
             
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -3391,8 +3392,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         
         private void TinhTongValues()
         {
-            var tSoLuong = TinhTong(AD, "SO_LUONG1");
-            txtTongSoLuong.Value = V6BusinessHelper.Vround(tSoLuong, M_ROUND_NUM);
+            txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
+            txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
 
             var tPsNoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_NO_NT", "OPER_TT");
             var tPsCoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_CO_NT", "OPER_TT");

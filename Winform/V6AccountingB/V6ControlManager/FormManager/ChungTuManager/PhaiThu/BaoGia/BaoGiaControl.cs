@@ -1566,36 +1566,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         
         #region ==== Tính toán hóa đơn ====
         
-        private decimal TinhTong(string colName)
-        {
-            var total = 0m;
-            try
-            {
-                if (AD != null && AD.Columns.Contains(colName))
-                {
-                    for (var j = 0; j < AD.Rows.Count; j++)
-                    {
-                        total += ObjectAndString.ObjectToDecimal(AD.Rows[j][colName]);
-                    }
-                    return total;
-                }
-                return total;
-            }
-            catch
-            {
-                return total;
-            }
-        }
-        
         private void TinhTongValues()
         {
-            var tSoLuong = TinhTong("SO_LUONG1");
-            txtTongSoLuong.Value = V6BusinessHelper.Vround(tSoLuong, M_ROUND_NUM);
+            txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
+            txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
 
-            var tTienNt2 = TinhTong("TIEN_NT2");
+            var tTienNt2 = TinhTong(AD, "TIEN_NT2");
             txtTongTienNt2.Value = V6BusinessHelper.Vround(tTienNt2, M_ROUND_NT);
 
-            var tTien2 = TinhTong("TIEN2");
+            var tTien2 = TinhTong(AD, "TIEN2");
             txtTongTien2.Value = V6BusinessHelper.Vround(tTien2, M_ROUND);
         }
 
@@ -1603,7 +1582,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         {
             try
             {
-                var tTienNt2 = TinhTong("TIEN_NT2");
+                var tTienNt2 = TinhTong(AD, "TIEN_NT2");
                 var tyGia = txtTyGia.Value;
                 var t_tien_nt2 = txtTongTienNt2.Value;
                 txtTongTienNt2.Value = V6BusinessHelper.Vround(tTienNt2, M_ROUND_NT);
@@ -1690,8 +1669,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 else
                 {
                     //Chiết khấu RIÊNG, CỘNG DỒN
-                    t_ck_nt = TinhTong("CK_NT");
-                    t_ck = TinhTong("CK");
+                    t_ck_nt = TinhTong(AD, "CK_NT");
+                    t_ck = TinhTong(AD, "CK");
 
                     txtTongCkNt.Value = V6BusinessHelper.Vround(t_ck_nt, M_ROUND_NT);
                     txtTongCk.Value = V6BusinessHelper.Vround(t_ck, M_ROUND);

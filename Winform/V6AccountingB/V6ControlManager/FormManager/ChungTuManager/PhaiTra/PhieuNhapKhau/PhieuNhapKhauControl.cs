@@ -2245,63 +2245,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
 
         #region ==== Tính toán hóa đơn ====
-        //private string TinhRec0 New(DataTable tableAD)
-        //{
-        //    var max = 0;
-        //    try
-        //    {
-        //        if (tableAD != null && tableAD.Columns.Contains("STT_REC0"))
-        //        {
-        //            for (var j = 0; j < tableAD.Rows.Count; j++)
-        //            {
-        //                var m = Convert.ToInt32(tableAD.Rows[j]["STT_REC0"]);
-        //                    if (m > max) max = m;
-                        
-        //            }
-        //        }
-        //        max++;
-        //        return ("00000"+max).Right(5);
-        //    }
-        //    catch
-        //    {
-        //        return "00000";
-        //    }
-        //}
-
-        private decimal TinhTong(string colName)
-        {
-            var total = 0m;
-            try
-            {
-                if (AD != null && AD.Columns.Contains(colName))
-                {
-                    for (var j = 0; j < AD.Rows.Count; j++)
-                    {
-                        total += ObjectAndString.ObjectToDecimal(AD.Rows[j][colName]);
-                    }
-                    return total;
-                }
-                return total;
-            }
-            catch
-            {
-                return total;
-            }
-        }
         
         private void TinhTongValues()
         {
-            var tSoLuong1 = TinhTong("SO_LUONG1");
-            txtTongSoLuong1.Value = V6BusinessHelper.Vround(tSoLuong1, M_ROUND_NUM);
+            txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
+            txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
 
-            var tTienNt0 = TinhTong("TIEN_NT0");
+            var tTienNt0 = TinhTong(AD, "TIEN_NT0");
             txtTongTienNt0.Value = V6BusinessHelper.Vround(tTienNt0, M_ROUND_NT);
 
-            var tTien0 = TinhTong("TIEN0");
+            var tTien0 = TinhTong(AD, "TIEN0");
             txtTongTien0.Value = V6BusinessHelper.Vround(tTien0, M_ROUND);
 
-            TxtT_nk_nt.Value = TinhTong("NK_NT");
-            TxtT_nk.Value = TinhTong("NK");
+            TxtT_nk_nt.Value = TinhTong(AD, "NK_NT");
+            TxtT_nk.Value = TinhTong(AD, "NK");
 
             var tPsNoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_NO_NT", "OPER_TT");
             var tPsCoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_CO_NT", "OPER_TT");
@@ -2317,7 +2274,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                var tTienNt0 = TinhTong("TIEN_NT0");
+                var tTienNt0 = TinhTong(AD, "TIEN_NT0");
                 var tyGia = txtTyGia.Value;
                 var t_tien_nt0 = txtTongTienNt0.Value;
                 txtTongTienNt0.Value = V6BusinessHelper.Vround(tTienNt0, M_ROUND_NT);
@@ -2428,8 +2385,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 else
                 {
                     //Chiết khấu RIÊNG, CỘNG DỒN
-                    t_ck_nt = TinhTong("CK_NT");
-                    t_ck = TinhTong("CK");
+                    t_ck_nt = TinhTong(AD, "CK_NT");
+                    t_ck = TinhTong(AD, "CK");
 
                     txtTongCkNt.Value = V6BusinessHelper.Vround(t_ck_nt, M_ROUND_NT);
                     txtTongCk.Value = V6BusinessHelper.Vround(t_ck, M_ROUND);
@@ -2455,7 +2412,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                var tTienNt0 = TinhTong("TIEN_NT0");
+                var tTienNt0 = TinhTong(AD, "TIEN_NT0");
                 var tyGia = txtTyGia.Value;
                 var t_tien_nt0 = txtTongTienNt0.Value;
                 txtTongTienNt0.Value = V6BusinessHelper.Vround(tTienNt0, M_ROUND_NT);

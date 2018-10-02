@@ -1431,33 +1431,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
         #region ==== Tính toán hóa đơn ====
         
-        private decimal TinhTong(string colName)
-        {
-            var total = 0m;
-            try
-            {
-                if (AD != null && AD.Columns.Contains(colName))
-                {
-                    for (var j = 0; j < AD.Rows.Count; j++)
-                    {
-                        total += ObjectAndString.ObjectToDecimal(AD.Rows[j][colName]);
-                    }
-                    return total;
-                }
-                return total;
-            }
-            catch
-            {
-                return total;
-            }
-        }
-        
         private void TinhTongValues()
         {
-            var tSoLuong1 = TinhTong("SO_LUONG1");
-            txtTongSoLuong1.Value = V6BusinessHelper.Vround(tSoLuong1, M_ROUND_NUM);
-
-            
+            txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
+            txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
         }
       
 
@@ -3858,7 +3835,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             try
             {
-                var t_tien_nt0 = TinhTong("TIEN_NT0");
+                var t_tien_nt0 = TinhTong(AD, "TIEN_NT0");
                 
                 var t_he_so = loai_pb == "1" ? t_tien_nt0 : txtTongSoLuong1.Value;
                 var t_cp_nt_check = 0m;

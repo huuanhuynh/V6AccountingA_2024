@@ -1079,37 +1079,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
         #region ==== Tính toán hóa đơn ====
         
-        private decimal TinhTong(string colName)
-        {
-            var total = 0m;
-            try
-            {
-                if (AD != null && AD.Columns.Contains(colName))
-                {
-                    for (var j = 0; j < AD.Rows.Count; j++)
-                    {
-                        total += ObjectAndString.ObjectToDecimal(AD.Rows[j][colName]);
-                    }
-                    return total;
-                }
-                return total;
-            }
-            catch
-            {
-                return total;
-            }
-        }
-        
         private void TinhTongValues()
         {
-            
-            var t_tien_nt = TinhTong("TIEN_NT");
+
+            var t_tien_nt = TinhTong(AD, "TIEN_NT");
             txtTongTienNt.Value = V6BusinessHelper.Vround(t_tien_nt, M_ROUND_NT);
 
             var tong_thue_nt = V6BusinessHelper.TinhTong(AD2, "T_THUE_NT");
             txtTongThueNt.Value = V6BusinessHelper.Vround(tong_thue_nt, M_ROUND_NT);
 
-            var t_tien = TinhTong("TIEN");
+            var t_tien = TinhTong(AD, "TIEN");
             txtTongTien.Value = V6BusinessHelper.Vround(t_tien, M_ROUND);
         }
         

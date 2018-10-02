@@ -869,40 +869,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
 
         #region ==== Tính toán hóa đơn ====
         
-        private decimal TinhTong(string colName)
-        {
-            var total = 0m;
-            try
-            {
-                if (AD != null && AD.Columns.Contains(colName))
-                {
-                    for (var j = 0; j < AD.Rows.Count; j++)
-                    {
-                        total += ObjectAndString.ObjectToDecimal(AD.Rows[j][colName]);
-                    }
-                    return total;
-                }
-                return total;
-            }
-            catch
-            {
-                return total;
-            }
-        }
-        
         private void TinhTongValues()
         {
-            
-            var T_PSNONT = TinhTong("PS_NO_NT");
+
+            var T_PSNONT = TinhTong(AD, "PS_NO_NT");
             txtTongPsNoNt.Value = V6BusinessHelper.Vround(T_PSNONT, M_ROUND_NT);
 
-            var T_PSCONT = TinhTong("PS_CO_NT");
+            var T_PSCONT = TinhTong(AD, "PS_CO_NT");
             txtTongPsCoNt.Value = V6BusinessHelper.Vround(T_PSCONT, M_ROUND_NT);
 
-            var T_PSNO = TinhTong("PS_NO");
+            var T_PSNO = TinhTong(AD, "PS_NO");
             txtTongPsNo.Value = V6BusinessHelper.Vround(T_PSNO, M_ROUND);
 
-            var T_PSCO = TinhTong("PS_CO");
+            var T_PSCO = TinhTong(AD, "PS_CO");
             txtTongPsCo.Value = V6BusinessHelper.Vround(T_PSCO, M_ROUND);
 
             txtTongTien.Value = T_PSNO;

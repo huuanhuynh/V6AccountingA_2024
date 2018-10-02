@@ -182,6 +182,13 @@ namespace V6Controls
         public bool UseLimitCharacters0 { get; set; }
 
         /// <summary>
+        /// Bật TabStop khi readonly.
+        /// </summary>
+        [DefaultValue(false)]
+        [Description("Bật TabStop khi readonly.")]
+        public bool ReadOnlyTabStop { get; set; }
+
+        /// <summary>
         /// Gán chuỗi ký tự được phép sử dụng khi gõ.
         /// </summary>
         /// <param name="s"></param>
@@ -504,6 +511,7 @@ namespace V6Controls
             BackColor = Enabled
                 ? (ReadOnly ? _leaveColorReadOnly : _leaveColor)
                 : _disableColor;
+            TabStop = ReadOnlyTabStop || !ReadOnly;
         }
 
         void V6ColorTextBox_EnabledChanged(object sender, EventArgs e)
