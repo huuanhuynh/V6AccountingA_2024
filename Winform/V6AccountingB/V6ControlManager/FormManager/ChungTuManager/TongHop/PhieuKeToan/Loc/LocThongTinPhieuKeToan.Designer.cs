@@ -380,6 +380,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             this.Controls.Add(this.groupBox1);
             this.Name = "LocThongTinPhieuKeToan";
             this.Size = new System.Drawing.Size(759, 216);
+            this.VisibleChanged += new System.EventHandler(this.LocThongTinPhieuKeToan_VisibleChanged);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

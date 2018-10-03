@@ -422,6 +422,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tìm chứng từ";
             this.Load += new System.EventHandler(this.CPN_XuatTraLaiNCC_Form_Load);
+            this.VisibleChanged += new System.EventHandler(this.CPN_HoaDonDichVuCoSLForm_VisibleChanged);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);

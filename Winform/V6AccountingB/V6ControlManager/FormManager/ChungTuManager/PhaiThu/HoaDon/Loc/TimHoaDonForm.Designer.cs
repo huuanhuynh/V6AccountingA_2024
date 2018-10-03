@@ -49,12 +49,12 @@
             this.v6Label1 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
-            this.btnHuy = new System.Windows.Forms.Button();
-            this.btnNhan = new System.Windows.Forms.Button();
-            this.lblDocSoTien = new V6Controls.V6Label();
             this.locThongTinChiTiet1 = new V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc.LocThongTinChiTietHoadon();
             this.locThongTin1 = new V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc.LocThongTinHoaDon();
             this.locThoiGian1 = new V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc.LocThoiGianHoaDon();
+            this.btnHuy = new System.Windows.Forms.Button();
+            this.btnNhan = new System.Windows.Forms.Button();
+            this.lblDocSoTien = new V6Controls.V6Label();
             this.panel1.SuspendLayout();
             this.grbTuyChon.SuspendLayout();
             this.SuspendLayout();
@@ -345,6 +345,33 @@
             this.v6Label8.TabIndex = 7;
             this.v6Label8.Text = "Nhóm vật tư 1";
             // 
+            // locThongTinChiTiet1
+            // 
+            this.locThongTinChiTiet1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.locThongTinChiTiet1.Location = new System.Drawing.Point(3, 270);
+            this.locThongTinChiTiet1.Name = "locThongTinChiTiet1";
+            this.locThongTinChiTiet1.Size = new System.Drawing.Size(759, 234);
+            this.locThongTinChiTiet1.TabIndex = 2;
+            // 
+            // locThongTin1
+            // 
+            this.locThongTin1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.locThongTin1.Location = new System.Drawing.Point(3, 52);
+            this.locThongTin1.Name = "locThongTin1";
+            this.locThongTin1.Size = new System.Drawing.Size(759, 216);
+            this.locThongTin1.TabIndex = 1;
+            // 
+            // locThoiGian1
+            // 
+            this.locThoiGian1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.locThoiGian1.Location = new System.Drawing.Point(3, 2);
+            this.locThoiGian1.Name = "locThoiGian1";
+            this.locThoiGian1.Size = new System.Drawing.Size(759, 48);
+            this.locThoiGian1.TabIndex = 0;
+            // 
             // btnHuy
             // 
             this.btnHuy.AccessibleDescription = "ASOCTSOAB00042";
@@ -387,33 +414,6 @@
             this.lblDocSoTien.Text = "0";
             this.lblDocSoTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // locThongTinChiTiet1
-            // 
-            this.locThongTinChiTiet1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.locThongTinChiTiet1.Location = new System.Drawing.Point(3, 270);
-            this.locThongTinChiTiet1.Name = "locThongTinChiTiet1";
-            this.locThongTinChiTiet1.Size = new System.Drawing.Size(759, 234);
-            this.locThongTinChiTiet1.TabIndex = 2;
-            // 
-            // locThongTin1
-            // 
-            this.locThongTin1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.locThongTin1.Location = new System.Drawing.Point(3, 52);
-            this.locThongTin1.Name = "locThongTin1";
-            this.locThongTin1.Size = new System.Drawing.Size(759, 216);
-            this.locThongTin1.TabIndex = 1;
-            // 
-            // locThoiGian1
-            // 
-            this.locThoiGian1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.locThoiGian1.Location = new System.Drawing.Point(3, 2);
-            this.locThoiGian1.Name = "locThoiGian1";
-            this.locThoiGian1.Size = new System.Drawing.Size(759, 48);
-            this.locThoiGian1.TabIndex = 0;
-            // 
             // TimHoaDonForm
             // 
             this.AccessibleDescription = "AAPCTAP1L00055";
@@ -431,6 +431,7 @@
             this.Activated += new System.EventHandler(this.TimHoaDonForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TimHoaDonForm_FormClosing);
             this.Load += new System.EventHandler(this.TimHoaDonForm_Load);
+            this.VisibleChanged += new System.EventHandler(this.TimHoaDonForm_VisibleChanged);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);

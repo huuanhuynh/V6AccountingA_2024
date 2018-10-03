@@ -396,5 +396,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.L
             }
             ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _formChungTu.Invoice.Mact, _formChungTu.MA_NT);
         }
+
+        private void TimHoaDonDichVuCoSLForm_VisibleChanged(object sender, EventArgs e)
+        {
+            txtMaDVCS.Text = V6Login.Madvcs;
+        }
     }
 }

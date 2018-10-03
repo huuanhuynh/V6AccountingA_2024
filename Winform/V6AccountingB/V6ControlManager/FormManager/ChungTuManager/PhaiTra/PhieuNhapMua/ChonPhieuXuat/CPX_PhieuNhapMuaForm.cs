@@ -483,6 +483,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonP
 
         private void CDH_PNMForm_VisibleChanged(object sender, EventArgs e)
         {
+            txtMaDVCS.Text = V6Login.Madvcs;
             if (Visible) v6ColorDateTimePick1.Focus();
         }
 

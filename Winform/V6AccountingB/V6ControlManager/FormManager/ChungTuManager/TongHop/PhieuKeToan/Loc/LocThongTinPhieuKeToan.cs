@@ -156,5 +156,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
         {
             ctDenSo.Enabled = !chkLike.Checked;
         }
+
+        private void LocThongTinPhieuKeToan_VisibleChanged(object sender, EventArgs e)
+        {
+            txtMaDVCS.Text = V6Login.Madvcs;
+        }
     }
 }

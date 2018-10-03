@@ -72,7 +72,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             // 
             // btnChucNang
             // 
-            this.btnChucNang.AccessibleDescription = "AINCTIXAB00033";
+            this.btnChucNang.AccessibleDescription = "ASOCTSOAB00033";
             this.btnChucNang.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnChucNang.Location = new System.Drawing.Point(35, 24);
             this.btnChucNang.Name = "btnChucNang";

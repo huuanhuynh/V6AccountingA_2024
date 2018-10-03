@@ -13,11 +13,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F3 = true;
             F5 = false;
 
-
-
-
-
-
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             if (V6Login.MadvcsCount <= 1)
             {

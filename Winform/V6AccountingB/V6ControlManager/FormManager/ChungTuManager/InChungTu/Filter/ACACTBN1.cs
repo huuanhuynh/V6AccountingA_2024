@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using V6AccountingBusiness;
 using V6Controls;
+using V6Controls.Forms;
 using V6Tools;
 
 namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
@@ -97,6 +98,46 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
                 this.ShowErrorMessage(GetType() + ".LoadFilterControlData: " + ex.Message);
             }
         }
-        
+
+        private void maKH_TextChanged(object sender, EventArgs e)
+        {
+            chonNganHang.SetInitFilter(maKH.Text.Trim() == "" ? "" : string.Format("MA_KH='{0}'", maKH.Text));
+        }
+
+        private void chonNganHang_V6LostFocus(object sender)
+        {
+            try
+            {
+                var data = chonNganHang.Data;
+                if (data != null)
+                {
+                    soTKtaiNH2.Text = data["TK_NH"].ToString().Trim();
+                    tenNH2.Text = data["NGAN_HANG"].ToString().Trim();
+                    tinhTP2.Text = data["TINH_THANH"].ToString().Trim();
+
+                    ClickNhan();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".chonNganHang_V6LostFocus", ex);
+            }
+        }
+
+        private void ClickNhan()
+        {
+            try
+            {
+                var p = V6ControlFormHelper.FindParent<InChungTuViewBase>(this) as InChungTuViewBase;
+                if (p != null)
+                {
+                    p.btnNhan.PerformClick();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ClickNhan", ex);
+            }
+        }
     }
 }

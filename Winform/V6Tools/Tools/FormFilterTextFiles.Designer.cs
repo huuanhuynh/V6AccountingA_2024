@@ -80,7 +80,7 @@
             this.txtFolder.Name = "txtFolder";
             this.txtFolder.Size = new System.Drawing.Size(516, 20);
             this.txtFolder.TabIndex = 1;
-            this.txtFolder.Text = "E:\\Git\\MicrosoftSource\\Framework35\\Winform\\V6AccountingB";
+            this.txtFolder.Text = "E:\\Git\\MicrosoftSource\\Framework35\\Winform";
             this.txtFolder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFolder_KeyDown);
             // 
             // txt11

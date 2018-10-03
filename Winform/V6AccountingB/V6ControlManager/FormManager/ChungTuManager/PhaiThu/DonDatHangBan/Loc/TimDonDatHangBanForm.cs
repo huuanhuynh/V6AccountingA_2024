@@ -367,5 +367,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             }
             ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _formChungTu.Invoice.Mact, _formChungTu.MA_NT);
         }
+
+        private void TimDonDatHangBanForm_VisibleChanged(object sender, EventArgs e)
+        {
+            txtMaDVCS.Text = V6Login.Madvcs;
+        }
     }
 }

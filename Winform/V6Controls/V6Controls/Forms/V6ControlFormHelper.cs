@@ -124,6 +124,71 @@ namespace V6Controls.Forms
         }
         #endregion running list
 
+        #region ==== TAG ====
+        public static void AddTagString(Control control, string tagString)
+        {
+            var newTagString = control.Tag + "";
+            if (!(";" + newTagString + ";").Contains("" + tagString + ";"))
+            {
+                newTagString += ";" + tagString;
+                newTagString = newTagString.Replace(";;", ";");
+                control.Tag = newTagString;
+            }
+            
+            var checkTagString = ";" + newTagString + ";";
+            control.Enabled = !checkTagString.Contains(";disable;");
+            var visible = !checkTagString.Contains(";hide;");
+            if (checkTagString.Contains(";invisible;")) visible = false;
+            control.Visible = visible;
+            var textbox = control as TextBox;
+            if (textbox != null)
+            {
+                textbox.ReadOnly = checkTagString.Contains(";readonly;");
+            }
+        }
+
+        public static void RemoveTagString(Control control, string tagString)
+        {
+            var checkTagString = ";" + tagString + ";";
+            //control.Enabled = checkTagString.Contains(";disable;");
+            if (checkTagString.Contains(";visible;")) control.Visible = false;
+            if (checkTagString.Contains(";hide;")) control.Visible = true;
+
+            if (control is TextBox)
+            {
+                var c = (TextBox)control;
+                if (checkTagString.Contains(";readonly;"))
+                {
+                    c.ReadOnly = false;
+                }
+                if (checkTagString.Contains(";hide;") || checkTagString.Contains(";invisible;"))
+                {
+                    c.Visible = true;
+                }
+            }
+            else if (control is DataGridView)
+            {
+                var c = (DataGridView)control;
+                if (checkTagString.Contains(";readonly;"))
+                {
+                    c.ReadOnly = false;
+                }
+                if (checkTagString.Contains(";hide;") || checkTagString.Contains(";invisible;"))
+                {
+                    c.Visible = true;
+                }
+            }
+
+            var newTagString = ";" + control.Tag + ";";//Lấy tagString cũ
+            if (newTagString.Contains(checkTagString)) //Remove checkTag khỏi tagString cũ.
+                newTagString = newTagString.Replace(checkTagString, ";");
+            newTagString = newTagString.Trim(';');
+            control.Tag = newTagString;
+            //control.Tag = null;
+            //control.AddTagString(newTagString);
+        }
+        #endregion tag
+
         #region ==== SHOW HIDE MESSAGE ====
 
         public static Form MainForm;

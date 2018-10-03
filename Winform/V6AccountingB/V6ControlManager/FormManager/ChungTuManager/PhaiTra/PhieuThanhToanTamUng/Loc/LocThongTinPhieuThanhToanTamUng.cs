@@ -198,5 +198,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         {
             ctDenSo.Enabled = !chkLike.Checked;
         }
+
+        private void LocThongTinPhieuThanhToanTamUng_VisibleChanged(object sender, EventArgs e)
+        {
+            txtMaDVCS.Text = V6Login.Madvcs;
+        }
     }
 }

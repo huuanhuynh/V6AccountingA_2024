@@ -427,7 +427,7 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Tự định nghĩa";
             // 
-            // v6ColorTextBox16
+            // txtGC_TD3
             // 
             this.txtGC_TD3.AccessibleName = "GC_TD3";
             this.txtGC_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -446,7 +446,7 @@
             this.txtGC_TD3.Size = new System.Drawing.Size(563, 23);
             this.txtGC_TD3.TabIndex = 113;
             // 
-            // v6ColorTextBox15
+            // txtGC_TD2
             // 
             this.txtGC_TD2.AccessibleName = "GC_TD2";
             this.txtGC_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -465,7 +465,7 @@
             this.txtGC_TD2.Size = new System.Drawing.Size(563, 23);
             this.txtGC_TD2.TabIndex = 112;
             // 
-            // v6ColorTextBox1
+            // txtGC_TD1
             // 
             this.txtGC_TD1.AccessibleName = "GC_TD1";
             this.txtGC_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -484,7 +484,7 @@
             this.txtGC_TD1.Size = new System.Drawing.Size(563, 23);
             this.txtGC_TD1.TabIndex = 111;
             // 
-            // v6ColorTextBox19
+            // txtMA_TD3
             // 
             this.txtMA_TD3.AccessibleName = "MA_TD3";
             this.txtMA_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -502,7 +502,7 @@
             this.txtMA_TD3.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD3.TabIndex = 95;
             // 
-            // v6ColorTextBox20
+            // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
             this.txtMA_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -520,7 +520,7 @@
             this.txtMA_TD2.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD2.TabIndex = 93;
             // 
-            // v6ColorTextBox22
+            // txtMA_TD1
             // 
             this.txtMA_TD1.AccessibleName = "MA_TD1";
             this.txtMA_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1072,7 +1072,7 @@
             // 
             this.label47.AccessibleDescription = "ADDEDITL00025";
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(23, 60);
+            this.label47.Location = new System.Drawing.Point(23, 61);
             this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(113, 17);
@@ -1149,7 +1149,7 @@
             // 
             this.label38.AccessibleDescription = "ADDEDITL00036";
             this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(23, 262);
+            this.label38.Location = new System.Drawing.Point(23, 261);
             this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(57, 17);
@@ -1160,7 +1160,7 @@
             // 
             this.label18.AccessibleDescription = "ADDEDITL00035";
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(22, 238);
+            this.label18.Location = new System.Drawing.Point(23, 236);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(95, 17);
@@ -1171,7 +1171,7 @@
             // 
             this.label19.AccessibleDescription = "ADDEDITL00032";
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(23, 159);
+            this.label19.Location = new System.Drawing.Point(23, 161);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(93, 17);
@@ -1193,7 +1193,7 @@
             // 
             this.label21.AccessibleDescription = "ADDEDITL00024";
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(23, 34);
+            this.label21.Location = new System.Drawing.Point(23, 36);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(119, 17);
@@ -1204,7 +1204,7 @@
             // 
             this.label40.AccessibleDescription = "ADDEDITL00034";
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(23, 213);
+            this.label40.Location = new System.Drawing.Point(23, 211);
             this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(106, 17);
@@ -1226,7 +1226,7 @@
             // 
             this.label24.AccessibleDescription = "ADDEDITL00028";
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(23, 135);
+            this.label24.Location = new System.Drawing.Point(23, 136);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(90, 17);
@@ -1237,7 +1237,7 @@
             // 
             this.label25.AccessibleDescription = "ADDEDITL00026";
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(23, 87);
+            this.label25.Location = new System.Drawing.Point(23, 86);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(102, 17);
@@ -1318,7 +1318,7 @@
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(81, 17);
             this.linkLabel1.TabIndex = 32;
-            this.linkLabel1.TabStop = false;
+            this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Home page";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
@@ -1412,11 +1412,11 @@
             this.btnBoSung.AccessibleName = "";
             this.btnBoSung.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnBoSung.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBoSung.Location = new System.Drawing.Point(517, 316);
+            this.btnBoSung.Location = new System.Drawing.Point(448, 336);
             this.btnBoSung.Name = "btnBoSung";
-            this.btnBoSung.Size = new System.Drawing.Size(202, 29);
+            this.btnBoSung.Size = new System.Drawing.Size(280, 29);
             this.btnBoSung.TabIndex = 42;
-            this.btnBoSung.Text = "Bổ sung địa chỉ giao hàng";
+            this.btnBoSung.Text = "Bổ sung thông tin (địa chỉ giao hàng)";
             this.btnBoSung.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBoSung.UseVisualStyleBackColor = true;
             this.btnBoSung.Click += new System.EventHandler(this.btnBoSung_Click);

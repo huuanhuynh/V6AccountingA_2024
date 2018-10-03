@@ -728,8 +728,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private V6Controls.V6ColorDataGridView dataGridView1;
         private System.Windows.Forms.GroupBox grbDieuKienLoc;
-        private System.Windows.Forms.Button btnNhan;
-        private System.Windows.Forms.Button btnHuy;
+        public System.Windows.Forms.Button btnNhan;
+        public System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem exportToExcel;
         private System.Windows.Forms.ToolStripMenuItem printGrid;

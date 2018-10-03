@@ -327,5 +327,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             var handler = AcceptSelectEvent;
             if (handler != null) handler(selecteddatalist);
         }
+
+        private void CPN_PhieuXuatTraLaiNCC_Form_VisibleChanged(object sender, EventArgs e)
+        {
+            txtMaDVCS.Text = V6Login.Madvcs;
+        }
     }
 }

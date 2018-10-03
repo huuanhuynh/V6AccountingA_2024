@@ -181,7 +181,7 @@
             // 
             // label3
             // 
-            this.label3.AccessibleDescription = "FILTERL00003";
+            this.label3.AccessibleDescription = "FILTERL00258";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(5, 78);
             this.label3.Name = "label3";

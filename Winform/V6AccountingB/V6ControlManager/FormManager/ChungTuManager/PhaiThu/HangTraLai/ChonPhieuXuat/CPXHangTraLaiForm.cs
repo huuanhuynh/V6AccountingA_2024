@@ -340,5 +340,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
         {
             locThoiGian1.Focus();
         }
+
+        private void CPXHangTraLaiForm_VisibleChanged(object sender, EventArgs e)
+        {
+            txtMaDVCS.Text = V6Login.Madvcs;
+        }
     }
 }

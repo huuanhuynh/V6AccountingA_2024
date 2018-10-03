@@ -23,10 +23,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
         {
             try
             {
-                maDonVi.Text = V6Login.Madvcs;
+                txtMaDVCS.Text = V6Login.Madvcs;
                 if (V6Login.MadvcsCount <= 1)
                 {
-                    maDonVi.Enabled = false;
+                    txtMaDVCS.Enabled = false;
                 }
                 soTienTu.DecimalPlaces = V6Options.M_ROUND_NT;
                 soTienDen.DecimalPlaces = V6Options.M_ROUND_NT;
@@ -195,6 +195,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
         private void chkLike_CheckedChanged(object sender, System.EventArgs e)
         {
             ctDenSo.Enabled = !chkLike.Checked;
+        }
+
+        private void groupBox1_VisibleChanged(object sender, EventArgs e)
+        {
+            txtMaDVCS.Text = V6Login.Madvcs;
         }
     }
 }

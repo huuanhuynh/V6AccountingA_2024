@@ -31,6 +31,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.loaiPhieu = new V6Controls.V6VvarTextBox();
+            this.v6Label29 = new V6Controls.V6Label();
             this.txtNhomKH9 = new V6Controls.V6VvarTextBox();
             this.txtNhomKH8 = new V6Controls.V6VvarTextBox();
             this.txtNhomKH6 = new V6Controls.V6VvarTextBox();
@@ -63,8 +65,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc
             this.v6Label26 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
-            this.loaiPhieu = new V6Controls.V6VvarTextBox();
-            this.v6Label29 = new V6Controls.V6Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,6 +112,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc thông tin";
+            // 
+            // loaiPhieu
+            // 
+            this.loaiPhieu.AccessibleName = "ma_gd";
+            this.loaiPhieu.BackColor = System.Drawing.SystemColors.Window;
+            this.loaiPhieu.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.loaiPhieu.CheckOnLeave = false;
+            this.loaiPhieu.EnterColor = System.Drawing.Color.PaleGreen;
+            this.loaiPhieu.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.loaiPhieu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.loaiPhieu.HoverColor = System.Drawing.Color.Yellow;
+            this.loaiPhieu.LeaveColor = System.Drawing.Color.White;
+            this.loaiPhieu.Location = new System.Drawing.Point(365, 61);
+            this.loaiPhieu.MaxLength = 1;
+            this.loaiPhieu.Name = "loaiPhieu";
+            this.loaiPhieu.Size = new System.Drawing.Size(132, 20);
+            this.loaiPhieu.TabIndex = 12;
+            // 
+            // v6Label29
+            // 
+            this.v6Label29.AccessibleDescription = "SEARCHL00036";
+            this.v6Label29.AutoSize = true;
+            this.v6Label29.Location = new System.Drawing.Point(282, 64);
+            this.v6Label29.Name = "v6Label29";
+            this.v6Label29.Size = new System.Drawing.Size(56, 13);
+            this.v6Label29.TabIndex = 11;
+            this.v6Label29.Text = "Loại phiếu";
             // 
             // txtNhomKH9
             // 
@@ -558,33 +585,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc
             this.v6Label8.TabIndex = 0;
             this.v6Label8.Text = "CT từ số";
             // 
-            // loaiPhieu
-            // 
-            this.loaiPhieu.AccessibleName = "ma_gd";
-            this.loaiPhieu.BackColor = System.Drawing.SystemColors.Window;
-            this.loaiPhieu.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.loaiPhieu.CheckOnLeave = false;
-            this.loaiPhieu.EnterColor = System.Drawing.Color.PaleGreen;
-            this.loaiPhieu.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.loaiPhieu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.loaiPhieu.HoverColor = System.Drawing.Color.Yellow;
-            this.loaiPhieu.LeaveColor = System.Drawing.Color.White;
-            this.loaiPhieu.Location = new System.Drawing.Point(365, 61);
-            this.loaiPhieu.MaxLength = 1;
-            this.loaiPhieu.Name = "loaiPhieu";
-            this.loaiPhieu.Size = new System.Drawing.Size(132, 20);
-            this.loaiPhieu.TabIndex = 12;
-            // 
-            // v6Label29
-            // 
-            this.v6Label29.AccessibleDescription = "SEARCHL00036";
-            this.v6Label29.AutoSize = true;
-            this.v6Label29.Location = new System.Drawing.Point(282, 64);
-            this.v6Label29.Name = "v6Label29";
-            this.v6Label29.Size = new System.Drawing.Size(56, 13);
-            this.v6Label29.TabIndex = 11;
-            this.v6Label29.Text = "Loại phiếu";
-            // 
             // LocThongTinPhieuNhapKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -592,6 +592,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc
             this.Controls.Add(this.groupBox1);
             this.Name = "LocThongTinPhieuNhapKho";
             this.Size = new System.Drawing.Size(759, 216);
+            this.VisibleChanged += new System.EventHandler(this.LocThongTinPhieuNhapKho_VisibleChanged);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

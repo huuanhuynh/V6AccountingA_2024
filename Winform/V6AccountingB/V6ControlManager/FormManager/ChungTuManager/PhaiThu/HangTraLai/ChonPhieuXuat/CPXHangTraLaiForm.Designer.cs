@@ -423,6 +423,7 @@
             this.Text = "Tìm chứng từ";
             this.Activated += new System.EventHandler(this.CPXHangTraLaiForm_Activated);
             this.Load += new System.EventHandler(this.CPXHangTraLaiForm_Load);
+            this.VisibleChanged += new System.EventHandler(this.CPXHangTraLaiForm_VisibleChanged);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
