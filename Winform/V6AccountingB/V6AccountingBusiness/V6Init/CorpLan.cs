@@ -15,10 +15,10 @@ namespace V6Init
 
         public static string GetText(string id)
         {
-            var fieldUpper = id.ToUpper();
-            if (dataDictionary.ContainsKey(fieldUpper))
+            var ID = id.ToUpper();
+            if (dataDictionary.ContainsKey(ID))
             {
-                return dataDictionary[fieldUpper];
+                return dataDictionary[ID];
             }
             else
             {
@@ -33,12 +33,29 @@ namespace V6Init
                             : row[0].ToString().Trim());
 
                 dataDictionary.AddRange(d);
-                if (dataDictionary.ContainsKey(fieldUpper))
+                if (dataDictionary.ContainsKey(ID))
                 {
-                    return dataDictionary[fieldUpper];
+                    return dataDictionary[ID];
                 }
             }
-            return fieldUpper;
+            return ID;
+        }
+        
+        public static string GetDefaultText(string id)
+        {
+            var row = GetRow(id);
+            return row != null ? row["D"].ToString() : id;
+        }
+
+        public static DataRow GetRow(string id)
+        {
+            DataTable t = SqlConnect.Select(tableName, " distinct ID,D," + V6Setting.Language,
+                "ID=@p", "", V6Setting.Language, new SqlParameter("@p", id)).Data;
+            if (t != null && t.Rows.Count > 0)
+            {
+                return t.Rows[0];
+            }
+            return null;
         }
 
         public static SortedDictionary<string, string> GetTextDic(List<string> ids, string lang, string formName)

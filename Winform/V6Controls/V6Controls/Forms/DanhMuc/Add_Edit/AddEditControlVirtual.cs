@@ -180,7 +180,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 if (DataOld != null)
                 {
-                    SetData(dataOld2);
+                    //SetData(dataOld2);
+                    SetSomeData(dataOld2);
                 }
                 else if (_keys != null)
                 {
@@ -188,7 +189,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
                 else
                 {
-                    SetData(dataOld2);
+                    //SetData(dataOld2);
+                    SetSomeData(dataOld2);
                 }
                 
                 LoadDefaultData(2, "", TableName.ToString(), m_itemId);

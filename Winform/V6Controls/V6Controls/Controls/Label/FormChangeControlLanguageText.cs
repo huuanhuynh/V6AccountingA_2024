@@ -48,10 +48,22 @@ namespace V6Controls.Controls.Label
         {
             try
             {
-                ListViewItem nameItem = new ListViewItem(new[] {V6Setting.IsVietnamese ? "Tên đối tượng" : "Object Name", _label.Name});
-                listView1.Items.Add(nameItem);
-                ListViewItem nameAccDes = new ListViewItem(new[] {"AccessibleDescription", _label.AccessibleDescription});
-                listView1.Items.Add(nameAccDes);
+                listView1.Items.Add(new ListViewItem(new[] {V6Setting.IsVietnamese ? "Tên đối tượng" : "Object Name", _label.Name}));
+                listView1.Items.Add(new ListViewItem(new[] { "AccessibleDescription", _label.AccessibleDescription }));
+
+                var row = CorpLan.GetRow(_label.AccessibleDescription);
+                if (row != null)
+                {
+                    listView1.Items.Add(new ListViewItem(new[] {"DefaultText", row["D"].ToString()}));
+                    listView1.Items.Add(new ListViewItem(new[] {"VietText", row["V"].ToString()}));
+                    listView1.Items.Add(new ListViewItem(new[] {"EngText", row["E"].ToString()}));
+                    if(row.Table.Columns.Contains(V6Setting.Language))
+                    listView1.Items.Add(new ListViewItem(new[] {"SelectedLang", row[V6Setting.Language].ToString()}));
+                }
+                else
+                {
+                    listView1.Items.Add(new ListViewItem(new[] { "Error", "No CorpLan info." }));
+                }
             }
             catch (Exception ex)
             {

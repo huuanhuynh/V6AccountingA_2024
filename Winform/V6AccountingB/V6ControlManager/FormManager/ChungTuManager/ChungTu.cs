@@ -136,7 +136,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     case "IXB":
                     case "GL1":
                     case "AP9":
-                    case "AR9":
+                    case "AR19":
                         ttt_nt_field = "T_TIEN_NT";
                         ttt_field = "T_TIEN";
                         break;
@@ -167,7 +167,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     var text = ObjectAndString.NumberToString(ttt, 2, V6Options.M_NUM_POINT, ".");
                     var numWords = V6BusinessHelper.MoneyToWords(ttt, V6Setting.Language, mant);
                     var sumText = V6Setting.IsVietnamese ? "Tổng cộng" : "Total";
-                    lbl.Text = String.Format("{0} ({1}) / ({2}) {3}",
+                    lbl.Text = string.Format("{0} ({1}) / ({2}) {3}",
                         sumText, text_nt, text, numWords);
                     lbl.Visible = true;
                 }
@@ -178,7 +178,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                searchForm.ShowErrorMessage(MethodBase.GetCurrentMethod().DeclaringType + " ViewSum: " + ex.Message);
+                searchForm.ShowErrorException(MethodBase.GetCurrentMethod().DeclaringType + ".ViewSum", ex);
             }
         }
 

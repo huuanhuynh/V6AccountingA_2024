@@ -52,7 +52,7 @@ namespace V6Controls.Controls
             
             CurrentTable = V6TableHelper.ToV6TableName(tableName);
             _hideColumnDic = _categories.GetHideColumns(tableName);
-            InitFilter = initFilter;
+            _initFilter = initFilter;
             SelectResult = new V6SelectResult();
             SelectResult.SortField = sort;
 
@@ -1149,7 +1149,18 @@ namespace V6Controls.Controls
 
 
         private FilterForm _filterForm;
-        private string InitFilter;
+        private string _initFilter;
+        public string InitFilter
+        {
+            get
+            {
+                if (_initFilter == null)
+                {
+                    _initFilter = V6Login.GetInitFilter(_tableName, V6ControlFormHelper.FindFilterType(this));
+                }
+                return ("" + _initFilter).Replace("{MA_DVCS}", "'" + V6Login.Madvcs + "'");
+            }
+        }
         private string _search;
 
         private string GetWhere()
@@ -1297,7 +1308,7 @@ namespace V6Controls.Controls
         public string AddInitFilter(string where, bool and = true)
         {
             if (string.IsNullOrEmpty(where)) return InitFilter;
-            InitFilter += (string.IsNullOrEmpty(InitFilter) ? "" : (and ? " and " : " or ")) + where;
+            _initFilter += (string.IsNullOrEmpty(InitFilter) ? "" : (and ? " and " : " or ")) + where;
             return InitFilter;
         }
 

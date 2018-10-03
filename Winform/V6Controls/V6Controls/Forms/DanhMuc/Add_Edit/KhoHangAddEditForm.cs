@@ -30,6 +30,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        public override void DoBeforeAdd()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoBeforeAdd", ex);
+            }
+        }
+
         public override void DoBeforeEdit()
         {
             try
