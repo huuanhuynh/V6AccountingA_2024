@@ -122,7 +122,6 @@ namespace V6AccountingBusiness.Invoices
                     new SqlParameter("@Ap_gia", apgia),
                     new SqlParameter("@UserID", V6Login.UserId),
                     new SqlParameter("@Save_voucher", "1")
-
                 };
 
                 try
@@ -131,9 +130,14 @@ namespace V6AccountingBusiness.Invoices
                     V6Message = string.Format("Success, ({0} affected).", result);
                     return true;
                 }
-                catch (Exception ex)
+                catch (Exception ex1)
                 {
-                    V6Message = ex.Message;
+                    //if (V6Setting.WriteExtraLog)
+                    {
+                        Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST1 " + stt_rec, ex1, "");
+                    }
+
+                    V6Message = ex1.Message;
                     if (V6Message.Contains("Rerun the transaction."))
                     {
                         Thread.Sleep(3000);
@@ -151,15 +155,18 @@ namespace V6AccountingBusiness.Invoices
                                 new SqlParameter("@Ap_gia", apgia),
                                 new SqlParameter("@UserID", V6Login.UserId),
                                 new SqlParameter("@Save_voucher", "1")
-
                             };
-                            var result = SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOA_POST_MAIN",
-                                pList);
+
+                            var result = SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOA_POST_MAIN", pList);
                             V6Message = string.Format("Success, ({0} affected).", result);
                             return true;
                         }
                         catch (Exception ex2)
                         {
+                            //if (V6Setting.WriteExtraLog)
+                            {
+                                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST2 " + stt_rec, ex2, "");
+                            }
                             V6Message = ex2.Message;
                             V6Message = "POST2 lỗi: " + V6Message;
                             return false;
@@ -293,7 +300,11 @@ namespace V6AccountingBusiness.Invoices
                     }
                     catch (Exception exPost1)
                     {
-                        Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST1", exPost1, "");
+                        //if (V6Setting.WriteExtraLog)
+                        {
+                            Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST1 " + stt_rec, exPost1, "");
+                        }
+
                         V6Message = exPost1.Message;
                         if (V6Message.Contains("Rerun the transaction."))
                         {
@@ -323,7 +334,11 @@ namespace V6AccountingBusiness.Invoices
                             }
                             catch (Exception exPost2)
                             {
-                                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST2", exPost1, "");
+                                //if (V6Setting.WriteExtraLog)
+                                {
+                                    Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST2 " + stt_rec, exPost1, "");
+                                }
+
                                 V6Message = exPost2.Message;
                                 V6Message = "POST2 lỗi: " + V6Message;
                             } //end catch2

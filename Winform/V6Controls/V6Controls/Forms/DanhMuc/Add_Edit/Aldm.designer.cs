@@ -111,9 +111,9 @@
             this.txtcach_tinh1 = new V6Controls.V6ColorTextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.v6CheckBox3 = new V6Controls.V6CheckBox();
-            this.TxtMau = new V6Controls.V6ColorTextBox();
+            this.txtMau = new V6Controls.V6ColorTextBox();
             this.label35 = new System.Windows.Forms.Label();
-            this.TxtSTT13 = new V6Controls.V6NumberTextBox();
+            this.txtSTT13 = new V6Controls.V6NumberTextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.TxtTransform = new V6Controls.V6ColorTextBox();
@@ -973,9 +973,9 @@
             this.tabPage3.Controls.Add(this.txtcach_tinh1);
             this.tabPage3.Controls.Add(this.label28);
             this.tabPage3.Controls.Add(this.v6CheckBox3);
-            this.tabPage3.Controls.Add(this.TxtMau);
+            this.tabPage3.Controls.Add(this.txtMau);
             this.tabPage3.Controls.Add(this.label35);
-            this.tabPage3.Controls.Add(this.TxtSTT13);
+            this.tabPage3.Controls.Add(this.txtSTT13);
             this.tabPage3.Controls.Add(this.label27);
             this.tabPage3.Controls.Add(this.label26);
             this.tabPage3.Controls.Add(this.TxtTransform);
@@ -1396,23 +1396,23 @@
             // 
             // TxtMau
             // 
-            this.TxtMau.AccessibleName = "";
-            this.TxtMau.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.TxtMau.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtMau.Enabled = false;
-            this.TxtMau.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtMau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMau.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtMau.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtMau.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtMau.LeaveColor = System.Drawing.Color.White;
-            this.TxtMau.Location = new System.Drawing.Point(653, 33);
-            this.TxtMau.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtMau.Name = "TxtMau";
-            this.TxtMau.ReadOnly = true;
-            this.TxtMau.Size = new System.Drawing.Size(135, 23);
-            this.TxtMau.TabIndex = 149;
-            this.TxtMau.Tag = "readonly";
+            this.txtMau.AccessibleName = "";
+            this.txtMau.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtMau.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMau.Enabled = false;
+            this.txtMau.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMau.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMau.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMau.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMau.LeaveColor = System.Drawing.Color.White;
+            this.txtMau.Location = new System.Drawing.Point(653, 33);
+            this.txtMau.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMau.Name = "txtMau";
+            this.txtMau.ReadOnly = true;
+            this.txtMau.Size = new System.Drawing.Size(135, 23);
+            this.txtMau.TabIndex = 149;
+            this.txtMau.Tag = "readonly";
             // 
             // label35
             // 
@@ -1425,30 +1425,30 @@
             this.label35.TabIndex = 150;
             this.label35.Text = "Mẫu";
             // 
-            // TxtSTT13
+            // txtSTT13
             // 
-            this.TxtSTT13.AccessibleName = "STT13";
-            this.TxtSTT13.BackColor = System.Drawing.Color.White;
-            this.TxtSTT13.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtSTT13.DecimalPlaces = 0;
-            this.TxtSTT13.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtSTT13.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtSTT13.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtSTT13.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtSTT13.LeaveColor = System.Drawing.Color.White;
-            this.TxtSTT13.Location = new System.Drawing.Point(114, 60);
-            this.TxtSTT13.Margin = new System.Windows.Forms.Padding(5);
-            this.TxtSTT13.Name = "TxtSTT13";
-            this.TxtSTT13.Size = new System.Drawing.Size(150, 23);
-            this.TxtSTT13.TabIndex = 147;
-            this.TxtSTT13.Text = "0";
-            this.TxtSTT13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TxtSTT13.Value = new decimal(new int[] {
+            this.txtSTT13.AccessibleName = "STT13";
+            this.txtSTT13.BackColor = System.Drawing.Color.White;
+            this.txtSTT13.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSTT13.DecimalPlaces = 0;
+            this.txtSTT13.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSTT13.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSTT13.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSTT13.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSTT13.LeaveColor = System.Drawing.Color.White;
+            this.txtSTT13.Location = new System.Drawing.Point(114, 60);
+            this.txtSTT13.Margin = new System.Windows.Forms.Padding(5);
+            this.txtSTT13.Name = "txtSTT13";
+            this.txtSTT13.Size = new System.Drawing.Size(150, 23);
+            this.txtSTT13.TabIndex = 147;
+            this.txtSTT13.Text = "0";
+            this.txtSTT13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSTT13.Value = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.TxtSTT13.TextChanged += new System.EventHandler(this.TxtSTT13_TextChanged);
+            this.txtSTT13.TextChanged += new System.EventHandler(this.TxtSTT13_FORM_EXPR1_TextChanged);
             // 
             // label27
             // 
@@ -1533,7 +1533,7 @@
             this.txtFORM.Name = "txtFORM";
             this.txtFORM.Size = new System.Drawing.Size(150, 23);
             this.txtFORM.TabIndex = 5;
-            this.txtFORM.TextChanged += new System.EventHandler(this.TxtSTT13_TextChanged);
+            this.txtFORM.TextChanged += new System.EventHandler(this.TxtSTT13_FORM_EXPR1_TextChanged);
             // 
             // label11
             // 
@@ -1564,7 +1564,7 @@
             this.txtEXPR1.Name = "txtEXPR1";
             this.txtEXPR1.Size = new System.Drawing.Size(150, 23);
             this.txtEXPR1.TabIndex = 3;
-            this.txtEXPR1.TextChanged += new System.EventHandler(this.TxtSTT13_TextChanged);
+            this.txtEXPR1.TextChanged += new System.EventHandler(this.TxtSTT13_FORM_EXPR1_TextChanged);
             // 
             // label10
             // 
@@ -1875,9 +1875,9 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label26;
         private V6ColorTextBox TxtTransform;
-        private V6NumberTextBox TxtSTT13;
+        private V6NumberTextBox txtSTT13;
         private System.Windows.Forms.Label label27;
-        private V6ColorTextBox TxtMau;
+        private V6ColorTextBox txtMau;
         private System.Windows.Forms.Label label35;
         private V6CheckBox v6CheckBox3;
         private V6ColorTextBox txtcach_tinh3;

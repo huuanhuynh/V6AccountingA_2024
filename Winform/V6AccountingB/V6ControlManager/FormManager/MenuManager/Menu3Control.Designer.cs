@@ -1,4 +1,4 @@
-﻿using V6Controls;
+using V6Controls;
 using V6Controls.Forms;
 
 namespace V6ControlManager.FormManager.MenuManager

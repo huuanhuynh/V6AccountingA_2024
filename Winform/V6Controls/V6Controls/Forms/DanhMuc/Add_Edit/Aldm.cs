@@ -110,7 +110,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var result = "";
             var result_mau = "";
-            var _so_ct = Convert.ToString((int) TxtSTT13.Value);
+            var _so_ct = Convert.ToString((int) txtSTT13.Value);
 
             if (txtEXPR1.Text.Trim() != "")
             {
@@ -125,7 +125,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             else
             {
                 result += "{0}";
-                if (TxtSTT13.Value > 0)
+                if (txtSTT13.Value > 0)
                 {
                     result_mau += _so_ct;
                 }
@@ -136,21 +136,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
 
             TxtTransform.Text = result;
-            TxtMau.Text = result_mau;
-          
-            if (TxtMau.Text.Trim().Length > maxlen_ma)
+            txtMau.Text = result_mau;
+
+            int mau_length = txtMau.Text.Trim().Length;
+            if (mau_length > maxlen_ma)
             {
                 txtEXPR1.Text = "";
                 txtFORM.Text = "000";
-                this.ShowWarningMessage(V6Text.Toolong);
+                this.ShowWarningMessage(string.Format("{0} txtMau({1}) > max({2})", V6Text.Toolong, mau_length, maxlen_ma));
+                txtMau.Focus();
             }
-
         }
 
-        private void TxtSTT13_TextChanged(object sender, EventArgs e)
+        private void TxtSTT13_FORM_EXPR1_TextChanged(object sender, EventArgs e)
         {
             if(IsReady) Make_Mau();
-            
         }
 
         private void DoEditXml()

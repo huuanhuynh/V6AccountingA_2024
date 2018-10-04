@@ -4684,6 +4684,36 @@ namespace V6Controls.Forms
             }
         }
 
+        public static void SetGridviewCurrentCellToLastRow(V6ColorDataGridView gview, string field)
+        {
+            try
+            {
+                if (gview.RowCount > 0)
+                {
+                    DataGridViewCell temp_cell = null;
+                    DataGridViewRow lastRow = gview.Rows[gview.RowCount - 1];
+                    if (gview.Columns.Contains(field)) temp_cell = lastRow.Cells[field];
+                    if (temp_cell == null || !temp_cell.Visible)
+                    {
+                        foreach (DataGridViewCell cell in lastRow.Cells)
+                        {
+                            if (cell.Visible)
+                            {
+                                temp_cell = cell;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (temp_cell != null && temp_cell.Visible) gview.CurrentCell = temp_cell;
+                }
+            }
+            catch (Exception ex)
+            {
+                gview.WriteExLog(gview.FindForm() + ".SetCurrentCellToLastRow", ex);
+            }
+        }
+
         /// <summary>
         /// Áp dụng bấm chuột giữa để hiển thị thông tin, chuột phải cho chức năng ngôn ngữ.
         /// </summary>
@@ -6136,7 +6166,7 @@ namespace V6Controls.Forms
             Event_program2 = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", "D" + ma_bc, using_text2,
                 method_text2);
         }
-
+        
         
     }
 }

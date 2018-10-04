@@ -138,7 +138,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             _tableName = tableName;
             CurrentTable = V6TableHelper.ToV6TableName(tableName);
             _hideColumnDic = _categories.GetHideColumns(tableName);
-            _initFilter = initFilter;
+            InitFilter = initFilter;
             
             SelectResult = new V6SelectResult();
             SelectResult.SortField = sort;
@@ -1630,6 +1630,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 }
                 return ("" + _initFilter).Replace("{MA_DVCS}", "'" + V6Login.Madvcs + "'");
             }
+            set { _initFilter = value; }
         }
         private string FILTER_FIELD
         {
@@ -1841,11 +1842,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
             if (string.IsNullOrEmpty(where)) return InitFilter;
             if (string.IsNullOrEmpty(InitFilter))
             {
-                _initFilter = where;
+                InitFilter = where;
                 return InitFilter;
             }
 
-            _initFilter = string.Format("({0}) {1} ({2})", InitFilter, and ? "and" : "or", where);
+            InitFilter = string.Format("({0}) {1} ({2})", InitFilter, and ? "and" : "or", where);
             return InitFilter;
         }
 

@@ -2766,8 +2766,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     if (AD.Rows.Count > 0)
                     {
                         dataGridView1.Rows[AD.Rows.Count - 1].Selected = true;
-                        dataGridView1.CurrentCell
-                            = dataGridView1.Rows[AD.Rows.Count - 1].Cells["TK_DT"];
+                        V6ControlFormHelper.SetGridviewCurrentCellToLastRow(dataGridView1, "TK_DT");
                     }
                 }
                 else

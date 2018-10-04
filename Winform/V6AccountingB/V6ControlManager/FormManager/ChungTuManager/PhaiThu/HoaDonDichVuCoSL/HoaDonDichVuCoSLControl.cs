@@ -5474,8 +5474,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     if (dataGridView1.Rows.Count > 0)
                     {
                         dataGridView1.Rows[dataGridView1.RowCount - 1].Selected = true;
-                        dataGridView1.CurrentCell
-                            = dataGridView1.Rows[dataGridView1.RowCount - 1].Cells["Ma_vt"];
+                        V6ControlFormHelper.SetGridviewCurrentCellToLastRow(dataGridView1, "Ma_vt");
                     }
                 }
                 else

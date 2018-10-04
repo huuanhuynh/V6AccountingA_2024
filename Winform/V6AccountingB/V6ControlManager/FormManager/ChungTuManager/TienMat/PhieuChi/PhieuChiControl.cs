@@ -3588,8 +3588,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     {
                         var cIndex = AD.Rows.Count - 1;
                         dataGridView1.Rows[cIndex].Selected = true;
-                        dataGridView1.CurrentCell
-                            = dataGridView1.Rows[cIndex].Cells[_MA_GD == "1" ? "SO_CT0" : "TK_I"];
+                        V6ControlFormHelper.SetGridviewCurrentCellToLastRow(dataGridView1, _MA_GD == "1" ? "SO_CT0" : "TK_I");
                     }
                 }
                 else

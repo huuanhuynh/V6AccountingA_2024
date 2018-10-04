@@ -52,7 +52,7 @@ namespace V6Controls.Controls
             
             CurrentTable = V6TableHelper.ToV6TableName(tableName);
             _hideColumnDic = _categories.GetHideColumns(tableName);
-            _initFilter = initFilter;
+            InitFilter = initFilter;
             SelectResult = new V6SelectResult();
             SelectResult.SortField = sort;
 
@@ -1160,6 +1160,7 @@ namespace V6Controls.Controls
                 }
                 return ("" + _initFilter).Replace("{MA_DVCS}", "'" + V6Login.Madvcs + "'");
             }
+            set { _initFilter = value; }
         }
         private string _search;
 

@@ -1070,8 +1070,6 @@ namespace V6Controls
                     }
                 }
             }
-            
-
         }
 
         private void SelectCell(DataGridViewCell cell)

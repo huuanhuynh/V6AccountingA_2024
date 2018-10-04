@@ -2851,8 +2851,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     {
                         var cIndex = AD.Rows.Count - 1;
                         dataGridView1.Rows[cIndex].Selected = true;
-                        dataGridView1.CurrentCell
-                            = dataGridView1.Rows[cIndex].Cells["MA_VT"];
+                        V6ControlFormHelper.SetGridviewCurrentCellToLastRow(dataGridView1, "Ma_vt");
                     }
                 }
                 else

@@ -3891,8 +3891,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     if (AD.Rows.Count > 0)
                     {
                         dataGridView1.Rows[AD.Rows.Count - 1].Selected = true;
-                        dataGridView1.CurrentCell
-                            = dataGridView1.Rows[AD.Rows.Count - 1].Cells["Ma_vt"];
+                        V6ControlFormHelper.SetGridviewCurrentCellToLastRow(dataGridView1, "Ma_vt");
                     }
                 }
                 else

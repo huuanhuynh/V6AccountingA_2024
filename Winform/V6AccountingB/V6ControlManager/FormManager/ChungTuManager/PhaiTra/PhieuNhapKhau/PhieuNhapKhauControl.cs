@@ -4294,6 +4294,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     {
                         var cIndex = AD.Rows.Count - 1;
                         dataGridView1.Rows[cIndex].Selected = true;
+                        V6ControlFormHelper.SetGridviewCurrentCellToLastRow(dataGridView1, "Ma_vt");
                     }
                 }
                 else

@@ -2143,6 +2143,5 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        
     }
 }

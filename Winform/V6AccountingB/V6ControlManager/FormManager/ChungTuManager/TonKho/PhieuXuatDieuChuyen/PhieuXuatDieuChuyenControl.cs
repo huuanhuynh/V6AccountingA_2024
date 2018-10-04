@@ -108,7 +108,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         #region ==== Khởi tạo Detail Form ====
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _xuat_dd;
-        private V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _tkVt, _maLo, _maViTri, _maViTriN,_maVt_Tmp;
+        private V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _tkVt, _maLo, _maViTri, _maViTriN;
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_td1;
         private V6NumberTextBox _ton13, _gia, _gia_nt, _tien, _tienNt, _gia1, _gia_nt1;
         private V6DateTimeColor _hanSd;
@@ -1445,10 +1445,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         }
                         method_log += "17";
 
+                        V6VvarTextBox txtMaVt_temp = new V6VvarTextBox() { VVar = "MA_VT" };
                         foreach (DataRow row in AD.Rows)
                         {
-                            _maVt_Tmp.Text = row["MA_VT"].ToString().Trim();
-                            mavt_data = _maVt_Tmp.Data;
+                            txtMaVt_temp.Text = row["MA_VT"].ToString().Trim();
+                            mavt_data = txtMaVt_temp.Data;
                             if (mavt_data != null)
                             {
                                 tk_vt_tmp = mavt_data["TK_VT"].ToString().Trim();
@@ -1457,7 +1458,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                                     row["TK_VT"] = tk_vt_tmp;
                                 }
                             }
-
                         }
                         method_log += "18";
                     }
@@ -1483,7 +1483,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     txtMaKhoN.LO_YN = (data["LO_YN"] ?? "").ToString().Trim() == "1";
                     txtMaKhoN.DATE_YN = (data["DATE_YN"] ?? "").ToString().Trim() == "1";
 
-                    TxtTen_khoN.Text = txtMaKhoN.Data["TEN_KHO"].ToString();
+                    TxtTen_khoN.Text = data["TEN_KHO"].ToString();
                     
                     var tk_dl = data["TK_DL"].ToString().Trim();
                     if (!string.IsNullOrEmpty(tk_dl))
@@ -1510,11 +1510,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             }
                         }
 
-
+                        V6VvarTextBox txtMaVt_temp = new V6VvarTextBox() { VVar = "MA_VT" };
                         foreach (DataRow row in AD.Rows)
                         {
-                            _maVt_Tmp.Text = row["MA_VT"].ToString().Trim();
-                            mavt_data = _maVt_Tmp.Data;
+                            txtMaVt_temp.Text = row["MA_VT"].ToString().Trim();
+                            mavt_data = txtMaVt_temp.Data;
                             if (mavt_data != null)
                             {
                                 tk_vt_tmp = mavt_data["TK_VT"].ToString().Trim();
@@ -1523,11 +1523,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                                     row["MA_NX_I"] = tk_vt_tmp;
                                 }
                             }
-
                         }
-                        //}         
-
-
                     }
                 }
             }
@@ -3990,8 +3986,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     if (AD.Rows.Count > 0)
                     {
                         dataGridView1.Rows[AD.Rows.Count - 1].Selected = true;
-                        dataGridView1.CurrentCell
-                            = dataGridView1.Rows[AD.Rows.Count - 1].Cells["Ma_vt"];
+                        V6ControlFormHelper.SetGridviewCurrentCellToLastRow(dataGridView1, "Ma_vt");
                     }
                 }
                 else

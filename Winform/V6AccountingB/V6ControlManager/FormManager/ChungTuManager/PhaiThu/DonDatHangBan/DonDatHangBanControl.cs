@@ -3316,9 +3316,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     if (AD.Rows.Count > 0)
                     {
                         dataGridView1.Rows[AD.Rows.Count - 1].Selected = true;
-                        if(dataGridView1.CurrentRow != null)
-                        dataGridView1.CurrentCell
-                            = dataGridView1.CurrentRow.Cells["MA_VT"];
+                        V6ControlFormHelper.SetGridviewCurrentCellToLastRow(dataGridView1, "Ma_vt");
                     }
                 }
                 else
