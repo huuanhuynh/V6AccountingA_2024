@@ -349,6 +349,8 @@ namespace V6AccountingB
 
                 if (keyData == (Keys.Control | Keys.Up))
                 {
+                    V6ControlFormHelper.ShowMainMenu();
+
                     var button = menuMain.SelectedButton;
                     var index = menuMain.Buttons.IndexOf(button);
                     index--;
@@ -357,9 +359,12 @@ namespace V6AccountingB
 
                     menuMain.SelectedButton = button;
                     menuMain_Click(menuMain, new MenuControl.ButtonClickEventArgs(button, new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1)));
+
                 }
                 else if (keyData == (Keys.Control | Keys.Down))
                 {
+                    V6ControlFormHelper.ShowMainMenu();
+
                     var button = menuMain.SelectedButton;
                     var index = menuMain.Buttons.IndexOf(button);
                     index++;
@@ -371,6 +376,7 @@ namespace V6AccountingB
                 }
                 else if (keyData == (Keys.Control | Keys.M))
                 {
+                    V6ControlFormHelper.ShowMainMenu();
                     _control_m = true;
                 }
                 else// if ((keyData & Keys.Control) != 0 || (keyData & Keys.Alt) != 0)

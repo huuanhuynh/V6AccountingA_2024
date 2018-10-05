@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label3 = new System.Windows.Forms.Label();
             this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
             this.label2 = new System.Windows.Forms.Label();
@@ -36,7 +37,10 @@
             this.cboProcList = new V6Controls.V6ComboBox();
             this.v6Label20 = new V6Controls.V6Label();
             this.lblTen = new V6Controls.V6Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.viewDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -101,6 +105,7 @@
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.ContextMenuStrip = this.contextMenuStrip1;
             this.tabControl1.Location = new System.Drawing.Point(6, 58);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -146,13 +151,30 @@
             this.lblTen.Text = "Trạng thái";
             this.lblTen.Visible = false;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewDataToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(124, 26);
+            // 
+            // viewDataToolStripMenuItem
+            // 
+            this.viewDataToolStripMenuItem.Name = "viewDataToolStripMenuItem";
+            this.viewDataToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.viewDataToolStripMenuItem.Text = "ViewData";
+            this.viewDataToolStripMenuItem.Click += new System.EventHandler(this.viewDataToolStripMenuItem_Click);
+            // 
             // V6CHECK_U1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "V6CHECK_U1";
+            this.Controls.SetChildIndex(this.btnNhan, 0);
+            this.Controls.SetChildIndex(this.btnHuy, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -167,5 +189,7 @@
         private V6Controls.V6ComboBox cboProcList;
         private V6Controls.V6Label v6Label20;
         private V6Controls.V6Label lblTen;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem viewDataToolStripMenuItem;
     }
 }

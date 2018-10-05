@@ -204,6 +204,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             TabPage tab = new TabPage(table.TableName);
             var grid = new V6ColorDataGridView();
+            grid.Name = "dataGridView1";
             grid.Dock = DockStyle.Fill;
             grid.AllowUserToAddRows = false;
             grid.AllowUserToDeleteRows = false;
@@ -267,6 +268,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 _selectedProc = null;
                 this.WriteExLog(GetType() + ".cboProcList_Select", ex);
+            }
+        }
+
+        private void viewDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                {
+                    var selectedGrid = V6ControlFormHelper.GetControlByName(tabControl1.SelectedTab, "dataGridView1")
+                        as V6ColorDataGridView;
+                    if (selectedGrid != null) selectedGrid.ViewDataToNewForm();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".viewDataToolStripMenuItem_Click", ex);
             }
         }
     }

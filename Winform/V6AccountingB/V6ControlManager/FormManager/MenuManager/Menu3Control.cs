@@ -133,8 +133,11 @@ namespace V6ControlManager.FormManager.MenuManager
 
         protected SortedDictionary<string, V6Control> ControlsDictionary = new SortedDictionary<string, V6Control>();
 
+        private MenuButton _currentMenuButton = null;
         private void menuControl_Click(object sender, MenuControl.ButtonClickEventArgs e)
         {
+            _have_alt_change_menu = false;
+            _currentMenuButton = e.SelectedButton;
             string item_id = e.SelectedButton.ItemID;
             string codeform = e.SelectedButton.CodeForm;
             try
@@ -360,7 +363,7 @@ namespace V6ControlManager.FormManager.MenuManager
         /// <summary>
         /// Bật tính năng menu
         /// </summary>
-        private bool _alt_m, _ctrl_alt_m;
+        private bool _alt_m, _ctrl_alt_m, _have_alt_change_menu;
         /// <summary>
         /// Điểu khiển phím tắt
         /// </summary>
@@ -432,7 +435,8 @@ namespace V6ControlManager.FormManager.MenuManager
                     button = menuControl1.Buttons[index];
 
                     menuControl1.SelectedButton = button;
-                    menuControl_Click(menuControl1, new MenuControl.ButtonClickEventArgs(button, new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1)));
+                    _have_alt_change_menu = true;
+                    //menuControl_Click(menuControl1, new MenuControl.ButtonClickEventArgs(button, new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1)));
                 }
                 else if (keyData == (Keys.Alt | Keys.Down))
                 {
@@ -443,35 +447,47 @@ namespace V6ControlManager.FormManager.MenuManager
                     button = menuControl1.Buttons[index];
 
                     menuControl1.SelectedButton = button;
-                    menuControl_Click(menuControl1, new MenuControl.ButtonClickEventArgs(button, new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1)));
-
+                    _have_alt_change_menu = true;
+                    //menuControl_Click(menuControl1, new MenuControl.ButtonClickEventArgs(button, new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1)));
                 }
                 else if (keyData == (Keys.Control | Keys.Alt | Keys.I))
                 {
+                    ResetAltUpDownMenu();
                     Clipboard.SetText(menuControl1.SelectedButton.ItemID + "," + menuControl1.SelectedButton.CodeForm);
                     V6ControlFormHelper.SetStatusText(menuControl1.SelectedButton.ItemID + "," + menuControl1.SelectedButton.CodeForm);
                 }
                 else if (keyData == (Keys.Control | Keys.Alt | Keys.C))
                 {
+                    ResetAltUpDownMenu();
                     CalculatorForm calc = new CalculatorForm();
                     calc.TopMost = true;
                     calc.Show(this);
                 }
                 else if (keyData == (Keys.Control | Keys.Alt | Keys.M))
                 {
+                    ResetAltUpDownMenu();
                     _ctrl_alt_m = true;
+                }
+                else if (keyData == (Keys.Alt | Keys.Enter) && _have_alt_change_menu)
+                {
+                    _have_alt_change_menu = false;
+                    menuControl_Click(menuControl1, new MenuControl.ButtonClickEventArgs(menuControl1.SelectedButton, new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1)));
                 }
                 else if (keyData == Keys.F1)
                 {
+                    ResetAltUpDownMenu();
                     if(menuControl1.SelectedButton != null)
                     V6ControlFormHelper.ShowHelp(menuControl1.SelectedButton.Key1, menuControl1.SelectedButton.Text, this);
                 }
                 else if (keyData == (Keys.Alt | Keys.M))
                 {
+                    ResetAltUpDownMenu();
                     _alt_m = true;
                 }
                 else
                 {
+                    ResetAltUpDownMenu();
+                    
                     if (menuControl1.SelectedButton != null &&
                         ControlsDictionary.ContainsKey(menuControl1.SelectedButton.ItemID))
                     {
@@ -490,6 +506,12 @@ namespace V6ControlManager.FormManager.MenuManager
             {
                 this.WriteExLog(GetType() + ".DoHotKey", ex);
             }
+        }
+
+        private void ResetAltUpDownMenu()
+        {
+            _have_alt_change_menu = false;
+            menuControl1.SelectedButton = _currentMenuButton;
         }
 
         private void lblShowHide_TextChanged(object sender, EventArgs e)
