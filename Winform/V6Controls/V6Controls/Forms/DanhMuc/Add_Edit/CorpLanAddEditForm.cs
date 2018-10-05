@@ -88,14 +88,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "ID",
-                 txtID.Text.Trim(), txtID.Text.Trim());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "ID", txtID.Text.Trim(), txtID.Text.Trim());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "ID = " + txtID.Text.Trim());
+                {
+                    throw new Exception("Không được thêm mã đã tồn tại: ID = " + txtID.Text.Trim());
+                }
             }
 
             if (errors.Length > 0) throw new Exception(errors);
+        }
+
+        public override void V6F3Execute()
+        {
+            txtSfile.ReadOnly = false;
         }
 
         private int num;

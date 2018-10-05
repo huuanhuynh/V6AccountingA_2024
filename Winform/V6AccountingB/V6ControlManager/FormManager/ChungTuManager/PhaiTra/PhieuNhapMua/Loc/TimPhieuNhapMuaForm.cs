@@ -46,6 +46,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
 
         private void MyInit()
         {
+            v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
+            v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
             InitTuyChon();
             InitLocKetQua();
 
@@ -88,7 +90,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
         }
         private void ShowLocKetQua()
         {
-            locThoiGian1.Visible = false;
+            grbThoiGian.Visible = false;
             locThongTin1.Visible = false;
             locThongTinChiTiet1.Visible = false;
             grbTuyChon.Visible = false;
@@ -100,8 +102,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
         public void HideLocKetQua()
         {
             _locKetQua.Visible = false;
-            
-            locThoiGian1.Visible = true;
+
+            grbThoiGian.Visible = true;
             locThongTin1.Visible = true;
             locThongTinChiTiet1.Visible = true;
             grbTuyChon.Visible = true;
@@ -184,13 +186,44 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
             }
         }
 
+        #region ==== GEN SQL ====
+        public string GetFilterSql_ThoiGian(V6TableStruct tableStruct, string tableLable,
+            string oper = "=", bool and = true)
+        {
+            V6Setting.M_ngay_ct1 = v6ColorDateTimePick1.Date;
+            V6Setting.M_ngay_ct2 = v6ColorDateTimePick2.Date;
+
+            var result = "";
+            var keys = V6ControlFormHelper.GetFormDataDictionary(grbThoiGian);
+            result = SqlGenerator.GenWhere2(tableStruct, keys, oper, and, tableLable);
+
+            var dateFilter = string.Format("{0}ngay_ct BETWEEN '{1}' AND '{2}'",
+                tableLable.Length > 0 ? tableLable + "." : "",
+                v6ColorDateTimePick1.YYYYMMDD,
+                v6ColorDateTimePick2.YYYYMMDD
+                );
+            if (result.Length > 0)
+            {
+                result = dateFilter + " and (" + result + ")";
+            }
+            else
+            {
+                result = dateFilter;
+            }
+
+            return result;
+        }
+
+
+        #endregion gen sql
+
         private void DoSearch()
         {
             try
             {
                 var stru = _formChungTu.Invoice.AMStruct;
-                var where0Time = locThoiGian1.GetFilterSql(stru, "", "like");
-                var where1AM = locThongTin1.GetFilterSql(stru, "", "like");
+                var where0Time = GetFilterSql_ThoiGian(stru, "", "like");
+                var where1AM = locThongTin1.GetFilterSql_ThongTin(stru, "", "like");
                 var w1 = GetAMFilterSql_TuyChon();
                 if (w1.Length > 0)
                     where1AM += (where1AM.Length > 0 ? " and " : "") + w1;
@@ -337,7 +370,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
 
         private void TimPhieuNhapMuaForm_Activated(object sender, EventArgs e)
         {
-            locThoiGian1.Focus();
+            grbThoiGian.Focus();
         }
 
         private void TimPhieuNhapMuaForm_FormClosing(object sender, FormClosingEventArgs e)

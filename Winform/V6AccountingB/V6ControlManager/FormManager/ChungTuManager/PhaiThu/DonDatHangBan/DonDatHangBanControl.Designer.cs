@@ -102,6 +102,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
             this.v6Label4 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.txtTongSoLuong = new V6Controls.NumberSoluong();
             this.chkAuto_Ck = new V6Controls.V6CheckBox();
             this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
             this.v6Label28 = new V6Controls.V6Label();
@@ -209,7 +210,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.txtTongSoLuong = new V6Controls.NumberSoluong();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1422,6 +1422,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
             // 
+            // txtTongSoLuong
+            // 
+            this.txtTongSoLuong.AccessibleDescription = "";
+            this.txtTongSoLuong.AccessibleName = "T_SO_LUONG";
+            this.txtTongSoLuong.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtTongSoLuong.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTongSoLuong.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTongSoLuong.DecimalPlaces = 2;
+            this.txtTongSoLuong.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTongSoLuong.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTongSoLuong.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTongSoLuong.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTongSoLuong.LeaveColor = System.Drawing.Color.White;
+            this.txtTongSoLuong.Location = new System.Drawing.Point(357, 29);
+            this.txtTongSoLuong.Name = "txtTongSoLuong";
+            this.txtTongSoLuong.ReadOnly = true;
+            this.txtTongSoLuong.Size = new System.Drawing.Size(109, 20);
+            this.txtTongSoLuong.TabIndex = 40;
+            this.txtTongSoLuong.TabStop = false;
+            this.txtTongSoLuong.Tag = "readonly";
+            this.txtTongSoLuong.Text = "0,00";
+            this.txtTongSoLuong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTongSoLuong.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            // 
             // chkAuto_Ck
             // 
             this.chkAuto_Ck.AccessibleDescription = "ASOCTSOAL00113";
@@ -2415,6 +2443,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             // v6Label8
             // 
+            this.v6Label8.AccessibleDescription = "ASOCTSOAL00079";
             this.v6Label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label8.AutoSize = true;
             this.v6Label8.Location = new System.Drawing.Point(281, 13);
@@ -2930,34 +2959,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.lblNameT.Size = new System.Drawing.Size(778, 18);
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtTongSoLuong
-            // 
-            this.txtTongSoLuong.AccessibleDescription = "";
-            this.txtTongSoLuong.AccessibleName = "T_SO_LUONG";
-            this.txtTongSoLuong.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.txtTongSoLuong.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTongSoLuong.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTongSoLuong.DecimalPlaces = 2;
-            this.txtTongSoLuong.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtTongSoLuong.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtTongSoLuong.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtTongSoLuong.HoverColor = System.Drawing.Color.Yellow;
-            this.txtTongSoLuong.LeaveColor = System.Drawing.Color.White;
-            this.txtTongSoLuong.Location = new System.Drawing.Point(357, 29);
-            this.txtTongSoLuong.Name = "txtTongSoLuong";
-            this.txtTongSoLuong.ReadOnly = true;
-            this.txtTongSoLuong.Size = new System.Drawing.Size(109, 20);
-            this.txtTongSoLuong.TabIndex = 40;
-            this.txtTongSoLuong.TabStop = false;
-            this.txtTongSoLuong.Tag = "readonly";
-            this.txtTongSoLuong.Text = "0,00";
-            this.txtTongSoLuong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtTongSoLuong.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            131072});
             // 
             // DonDatHangBanControl
             // 

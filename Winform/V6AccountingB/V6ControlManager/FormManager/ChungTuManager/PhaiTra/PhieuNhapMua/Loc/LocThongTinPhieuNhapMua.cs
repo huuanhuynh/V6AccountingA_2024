@@ -42,7 +42,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
             }
         }
 
-        public string GetFilterSql(V6TableStruct tableStruct, string tableLable,
+        public string GetFilterSql_ThongTin(V6TableStruct tableStruct, string tableLable,
             string oper = "=", bool and = true)
         {
             var tbL = string.IsNullOrEmpty(tableLable) ? "" : tableLable + ".";

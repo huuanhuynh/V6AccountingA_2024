@@ -129,6 +129,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00130";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -155,6 +156,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00131";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 51);
             this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -165,6 +167,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00004";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 80);
             this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -192,6 +195,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.v6ColorTextBox1);
             this.tabPage1.Controls.Add(this.v6ColorTextBox6);
@@ -270,6 +274,7 @@
             // 
             // label9
             // 
+            this.label9.AccessibleDescription = "ADDEDITL00132";
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(12, 14);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -280,6 +285,7 @@
             // 
             // label8
             // 
+            this.label8.AccessibleDescription = "ADDEDITL00133";
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(12, 46);
             this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -290,6 +296,7 @@
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "ADDEDITL00134";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(12, 80);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -300,6 +307,7 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -335,6 +343,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00022";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 194);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -345,6 +354,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00036";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 114);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -355,6 +365,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.AccessibleDescription = "ADDEDITT00003";
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.v6ColorDateTimePick3);
             this.tabPage2.Controls.Add(this.v6ColorDateTimePick2);
@@ -448,7 +459,7 @@
             this.v6ColorDateTimePick1.TabIndex = 150;
             this.v6ColorDateTimePick1.Text = "__/__/____";
             // 
-            // v6ColorTextBox16
+            // txtGC_TD3
             // 
             this.txtGC_TD3.AccessibleName = "GC_TD3";
             this.txtGC_TD3.BackColor = System.Drawing.Color.White;
@@ -464,7 +475,7 @@
             this.txtGC_TD3.Size = new System.Drawing.Size(650, 23);
             this.txtGC_TD3.TabIndex = 113;
             // 
-            // v6ColorTextBox15
+            // txtGC_TD2
             // 
             this.txtGC_TD2.AccessibleName = "GC_TD2";
             this.txtGC_TD2.BackColor = System.Drawing.Color.White;
@@ -480,7 +491,7 @@
             this.txtGC_TD2.Size = new System.Drawing.Size(650, 23);
             this.txtGC_TD2.TabIndex = 112;
             // 
-            // v6ColorTextBox14
+            // txtGC_TD1
             // 
             this.txtGC_TD1.AccessibleName = "GC_TD1";
             this.txtGC_TD1.BackColor = System.Drawing.Color.White;
@@ -535,7 +546,7 @@
             this.label27.TabIndex = 108;
             this.label27.Text = "Ghi chú ĐN 1";
             // 
-            // v6ColorTextBox9
+            // txtMA_TD3
             // 
             this.txtMA_TD3.AccessibleName = "MA_TD3";
             this.txtMA_TD3.BackColor = System.Drawing.SystemColors.Window;
@@ -551,7 +562,7 @@
             this.txtMA_TD3.Size = new System.Drawing.Size(200, 23);
             this.txtMA_TD3.TabIndex = 95;
             // 
-            // v6ColorTextBox10
+            // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
             this.txtMA_TD2.BackColor = System.Drawing.SystemColors.Window;
@@ -567,7 +578,7 @@
             this.txtMA_TD2.Size = new System.Drawing.Size(200, 23);
             this.txtMA_TD2.TabIndex = 93;
             // 
-            // v6ColorTextBox11
+            // txtMA_TD1
             // 
             this.txtMA_TD1.AccessibleName = "MA_TD1";
             this.txtMA_TD1.BackColor = System.Drawing.SystemColors.Window;
@@ -599,6 +610,7 @@
             this.v6NumberTextBox3.ReadOnly = true;
             this.v6NumberTextBox3.Size = new System.Drawing.Size(200, 23);
             this.v6NumberTextBox3.TabIndex = 107;
+            this.v6NumberTextBox3.TabStop = false;
             this.v6NumberTextBox3.Text = "0,000";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox3.Value = new decimal(new int[] {
@@ -623,6 +635,7 @@
             this.v6NumberTextBox2.ReadOnly = true;
             this.v6NumberTextBox2.Size = new System.Drawing.Size(200, 23);
             this.v6NumberTextBox2.TabIndex = 105;
+            this.v6NumberTextBox2.TabStop = false;
             this.v6NumberTextBox2.Text = "0,000";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox2.Value = new decimal(new int[] {
@@ -647,6 +660,7 @@
             this.v6NumberTextBox1.ReadOnly = true;
             this.v6NumberTextBox1.Size = new System.Drawing.Size(200, 23);
             this.v6NumberTextBox1.TabIndex = 103;
+            this.v6NumberTextBox1.TabStop = false;
             this.v6NumberTextBox1.Text = "0,000";
             this.v6NumberTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox1.Value = new decimal(new int[] {
@@ -774,6 +788,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.AccessibleDescription = "ADDEDITT00004";
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);

@@ -120,6 +120,7 @@
             // 
             // locThoiGian1
             // 
+            this.locThoiGian1.AccessibleDescription = "SEARCHG00004";
             this.locThoiGian1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.locThoiGian1.Controls.Add(this.v6Label2);
@@ -135,6 +136,7 @@
             // 
             // v6Label2
             // 
+            this.v6Label2.AccessibleDescription = "SEARCHL00038";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(183, 22);
             this.v6Label2.Name = "v6Label2";
@@ -159,6 +161,7 @@
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "SEARCHL00037";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(6, 22);
             this.v6Label1.Name = "v6Label1";
@@ -183,6 +186,7 @@
             // 
             // locThongTin1
             // 
+            this.locThongTin1.AccessibleDescription = "SEARCHG00001";
             this.locThongTin1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.locThongTin1.Controls.Add(this.chkLike);
@@ -283,6 +287,13 @@
             this.soTienDen.Name = "soTienDen";
             this.soTienDen.Size = new System.Drawing.Size(132, 20);
             this.soTienDen.TabIndex = 11;
+            this.soTienDen.Text = "0,000";
+            this.soTienDen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.soTienDen.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            196608});
             // 
             // maDonVi
             // 
@@ -439,6 +450,13 @@
             this.soTienTu.Name = "soTienTu";
             this.soTienTu.Size = new System.Drawing.Size(132, 20);
             this.soTienTu.TabIndex = 4;
+            this.soTienTu.Text = "0,000";
+            this.soTienTu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.soTienTu.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            196608});
             // 
             // soHd
             // 
@@ -487,6 +505,7 @@
             // 
             // v6Label25
             // 
+            this.v6Label25.AccessibleDescription = "SEARCHL00012";
             this.v6Label25.AutoSize = true;
             this.v6Label25.Location = new System.Drawing.Point(6, 178);
             this.v6Label25.Name = "v6Label25";
@@ -496,6 +515,7 @@
             // 
             // v6Label24
             // 
+            this.v6Label24.AccessibleDescription = "SEARCHL00007";
             this.v6Label24.AutoSize = true;
             this.v6Label24.Location = new System.Drawing.Point(6, 152);
             this.v6Label24.Name = "v6Label24";
@@ -505,6 +525,7 @@
             // 
             // v6Label21
             // 
+            this.v6Label21.AccessibleDescription = "SEARCHL00004";
             this.v6Label21.AutoSize = true;
             this.v6Label21.Location = new System.Drawing.Point(6, 74);
             this.v6Label21.Name = "v6Label21";
@@ -514,6 +535,7 @@
             // 
             // v6Label29
             // 
+            this.v6Label29.AccessibleDescription = "SEARCHL00016";
             this.v6Label29.AutoSize = true;
             this.v6Label29.Location = new System.Drawing.Point(282, 152);
             this.v6Label29.Name = "v6Label29";
@@ -523,6 +545,7 @@
             // 
             // v6Label23
             // 
+            this.v6Label23.AccessibleDescription = "SEARCHL00010";
             this.v6Label23.AutoSize = true;
             this.v6Label23.Location = new System.Drawing.Point(6, 126);
             this.v6Label23.Name = "v6Label23";
@@ -532,6 +555,7 @@
             // 
             // v6Label27
             // 
+            this.v6Label27.AccessibleDescription = "SEARCHL00009";
             this.v6Label27.AutoSize = true;
             this.v6Label27.Location = new System.Drawing.Point(282, 100);
             this.v6Label27.Name = "v6Label27";
@@ -541,6 +565,7 @@
             // 
             // v6Label20
             // 
+            this.v6Label20.AccessibleDescription = "SEARCHL00013";
             this.v6Label20.AutoSize = true;
             this.v6Label20.Location = new System.Drawing.Point(6, 48);
             this.v6Label20.Name = "v6Label20";
@@ -550,6 +575,7 @@
             // 
             // v6Label28
             // 
+            this.v6Label28.AccessibleDescription = "SEARCHL00011";
             this.v6Label28.AutoSize = true;
             this.v6Label28.Location = new System.Drawing.Point(282, 126);
             this.v6Label28.Name = "v6Label28";
@@ -559,6 +585,7 @@
             // 
             // v6Label3
             // 
+            this.v6Label3.AccessibleDescription = "SEARCHL00005";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(532, 152);
             this.v6Label3.Name = "v6Label3";
@@ -568,6 +595,7 @@
             // 
             // v6Label6
             // 
+            this.v6Label6.AccessibleDescription = "SEARCHL00019";
             this.v6Label6.AutoSize = true;
             this.v6Label6.Location = new System.Drawing.Point(282, 48);
             this.v6Label6.Name = "v6Label6";
@@ -577,6 +605,7 @@
             // 
             // v6Label4
             // 
+            this.v6Label4.AccessibleDescription = "SEARCHL00018";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(532, 48);
             this.v6Label4.Name = "v6Label4";
@@ -586,6 +615,7 @@
             // 
             // v6Label26
             // 
+            this.v6Label26.AccessibleDescription = "SEARCHL00043";
             this.v6Label26.AutoSize = true;
             this.v6Label26.Location = new System.Drawing.Point(282, 74);
             this.v6Label26.Name = "v6Label26";
@@ -595,6 +625,7 @@
             // 
             // v6Label5
             // 
+            this.v6Label5.AccessibleDescription = "SEARCHL00017";
             this.v6Label5.AutoSize = true;
             this.v6Label5.Location = new System.Drawing.Point(532, 22);
             this.v6Label5.Name = "v6Label5";
@@ -604,6 +635,7 @@
             // 
             // v6Label22
             // 
+            this.v6Label22.AccessibleDescription = "SEARCHL00015";
             this.v6Label22.AutoSize = true;
             this.v6Label22.Location = new System.Drawing.Point(6, 100);
             this.v6Label22.Name = "v6Label22";
@@ -613,6 +645,7 @@
             // 
             // v6Label7
             // 
+            this.v6Label7.AccessibleDescription = "SEARCHL00003";
             this.v6Label7.AutoSize = true;
             this.v6Label7.Location = new System.Drawing.Point(282, 22);
             this.v6Label7.Name = "v6Label7";
@@ -622,6 +655,7 @@
             // 
             // v6Label8
             // 
+            this.v6Label8.AccessibleDescription = "SEARCHL00002";
             this.v6Label8.AutoSize = true;
             this.v6Label8.Location = new System.Drawing.Point(6, 22);
             this.v6Label8.Name = "v6Label8";
@@ -656,6 +690,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tìm chứng từ";
             this.Load += new System.EventHandler(this.TimHoaDonForm_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.lblDocSoTien, 0);

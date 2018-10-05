@@ -44,7 +44,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
             this.groupBox1.Controls.Add(this.v6ColorDateTimePick2);
             this.groupBox1.Controls.Add(this.lblTuNgay);
             this.groupBox1.Controls.Add(this.v6ColorDateTimePick1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(759, 48);

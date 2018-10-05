@@ -1232,12 +1232,6 @@
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\Loc\LocKetQuaPhieuNhapMua.Designer.cs">
       <DependentUpon>LocKetQuaPhieuNhapMua.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\Loc\LocThoiGianPhieuNhapMua.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\Loc\LocThoiGianPhieuNhapMua.Designer.cs">
-      <DependentUpon>LocThoiGianPhieuNhapMua.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\Loc\LocThongTinPhieuNhapMua.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5895,9 +5889,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\Loc\LocKetQuaPhieuNhapMua.resx">
       <DependentUpon>LocKetQuaPhieuNhapMua.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\Loc\LocThoiGianPhieuNhapMua.resx">
-      <DependentUpon>LocThoiGianPhieuNhapMua.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\Loc\LocTTChiTietPhieuNhapMua.resx">
       <DependentUpon>LocTTChiTietPhieuNhapMua.cs</DependentUpon>

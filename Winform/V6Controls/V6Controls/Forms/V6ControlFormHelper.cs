@@ -2178,6 +2178,32 @@ namespace V6Controls.Forms
                 }
             }
 
+            if (control.ContextMenuStrip != null)
+            {
+                foreach (ToolStripMenuItem menu_item in control.ContextMenuStrip.Items)
+                {
+                    var KEY = (menu_item.AccessibleDescription ?? "").ToUpper();
+                    if (textDic.ContainsKey(KEY) && !string.IsNullOrEmpty(textDic[KEY]))
+                    {
+                        menu_item.Text = textDic[KEY];
+                    }
+                }
+            }
+            if (control is DropDownButton)
+            {
+                var button = control as DropDownButton;
+                if (button.Menu != null)
+                {
+                    foreach (ToolStripMenuItem menu_item in button.Menu.Items)
+                    {
+                        var KEY = (menu_item.AccessibleDescription ?? "").ToUpper();
+                        if (textDic.ContainsKey(KEY) && !string.IsNullOrEmpty(textDic[KEY]))
+                        {
+                            menu_item.Text = textDic[KEY];
+                        }
+                    }
+                }
+            }
             if (control.Controls.Count > 0)
             {
                 foreach (Control c in control.Controls)
@@ -2434,6 +2460,31 @@ namespace V6Controls.Forms
                     if (!string.IsNullOrEmpty(b.AccessibleDescription))
                     {
                         result.Add(b.AccessibleDescription);
+                    }
+                }
+            }
+
+            if (control.ContextMenuStrip != null)
+            {
+                foreach (ToolStripMenuItem menu_item in control.ContextMenuStrip.Items)
+                {
+                    if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
+                    {
+                        result.Add(menu_item.AccessibleDescription);
+                    }
+                }
+            }
+            if (control is DropDownButton)
+            {
+                var button = control as DropDownButton;
+                if (button.Menu != null)
+                {
+                    foreach (ToolStripMenuItem menu_item in button.Menu.Items)
+                    {
+                        if (!string.IsNullOrEmpty(menu_item.AccessibleDescription))
+                        {
+                            result.Add(menu_item.AccessibleDescription);
+                        }
                     }
                 }
             }

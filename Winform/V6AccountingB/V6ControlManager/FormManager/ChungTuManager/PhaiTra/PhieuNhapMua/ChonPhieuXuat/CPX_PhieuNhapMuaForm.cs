@@ -211,6 +211,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonP
             }
         }
 
+        #region ==== GEN SQL ====
         public string GetFilterSql_ThoiGian(V6TableStruct tableStruct, string tableLable,
             string oper = "=", bool and = true)
         {
@@ -337,8 +338,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonP
 
             return result;
         }
-
-
+        
         public string GetFilterSql_TTChiTiet(V6TableStruct tableStruct, string tableLable,
             string oper = "=", bool and = true)
         {
@@ -378,6 +378,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonP
 
             return result;
         }
+        #endregion gen sql
+
         public string GetNhVtFilterSql_TuyChon(string tableLable, string oper = "=", bool and = true)
         {
             var result = "";
