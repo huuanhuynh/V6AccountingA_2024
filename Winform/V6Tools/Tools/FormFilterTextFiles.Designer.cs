@@ -51,6 +51,7 @@
             this.chkx213 = new System.Windows.Forms.CheckBox();
             this.chkSubFolder = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.lblFilePath = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSaveFile
@@ -91,6 +92,7 @@
             this.txt11.Name = "txt11";
             this.txt11.Size = new System.Drawing.Size(539, 20);
             this.txt11.TabIndex = 7;
+            this.txt11.Text = "[A].Text = \"B";
             this.toolTip1.SetToolTip(this.txt11, "[A]Contents[B]");
             // 
             // richView
@@ -101,7 +103,7 @@
             this.richView.Location = new System.Drawing.Point(417, 226);
             this.richView.Name = "richView";
             this.richView.ReadOnly = true;
-            this.richView.Size = new System.Drawing.Size(441, 440);
+            this.richView.Size = new System.Drawing.Size(441, 430);
             this.richView.TabIndex = 17;
             this.richView.Text = "";
             // 
@@ -161,6 +163,7 @@
             this.txt01.Name = "txt01";
             this.txt01.Size = new System.Drawing.Size(585, 20);
             this.txt01.TabIndex = 11;
+            this.txt01.Text = "[A].AccessibleD";
             this.toolTip1.SetToolTip(this.txt01, "[A]Contents[B]");
             // 
             // txt02
@@ -171,6 +174,7 @@
             this.txt02.Name = "txt02";
             this.txt02.Size = new System.Drawing.Size(585, 20);
             this.txt02.TabIndex = 12;
+            this.txt02.Text = "namespace V6Tools";
             // 
             // txt03
             // 
@@ -180,6 +184,7 @@
             this.txt03.Name = "txt03";
             this.txt03.Size = new System.Drawing.Size(585, 20);
             this.txt03.TabIndex = 13;
+            this.txt03.Text = "H_Controls";
             // 
             // label2
             // 
@@ -207,7 +212,7 @@
             this.listBox2.FormattingEnabled = true;
             this.listBox2.Location = new System.Drawing.Point(216, 226);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(195, 446);
+            this.listBox2.Size = new System.Drawing.Size(195, 433);
             this.listBox2.TabIndex = 16;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
@@ -267,6 +272,16 @@
             this.chkSubFolder.Text = "sub folder";
             this.chkSubFolder.UseVisualStyleBackColor = true;
             // 
+            // lblFilePath
+            // 
+            this.lblFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblFilePath.AutoSize = true;
+            this.lblFilePath.Location = new System.Drawing.Point(213, 662);
+            this.lblFilePath.Name = "lblFilePath";
+            this.lblFilePath.Size = new System.Drawing.Size(23, 13);
+            this.lblFilePath.TabIndex = 10;
+            this.lblFilePath.Text = "File";
+            // 
             // FormFilterTextFiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,6 +295,7 @@
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.richView);
+            this.Controls.Add(this.lblFilePath);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label1);
@@ -326,5 +342,6 @@
         private System.Windows.Forms.CheckBox chkx213;
         private System.Windows.Forms.CheckBox chkSubFolder;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label lblFilePath;
     }
 }

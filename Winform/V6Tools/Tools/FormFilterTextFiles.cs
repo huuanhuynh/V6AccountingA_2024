@@ -223,7 +223,9 @@ namespace Tools
             {
                 if (listBox2.SelectedItem != null)
                 {
-                    richView.Text = ((MyFileInfo)listBox2.SelectedItem).Text;
+                    MyFileInfo fi = (MyFileInfo) listBox2.SelectedItem;
+                    richView.Text = fi.Text;
+                    lblFilePath.Text = fi.FullPath;
                 }
             }
             catch (Exception ex)

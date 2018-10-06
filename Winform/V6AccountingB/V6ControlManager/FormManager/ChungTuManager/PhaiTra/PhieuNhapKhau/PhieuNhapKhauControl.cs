@@ -370,6 +370,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         _gia01 = control as V6NumberTextBox;
                         if (_gia01 != null)
                         {
+                            _gia01.Enabled = chkSuaTien.Checked;
+                            if (chkSuaTien.Checked)
+                            {
+                                _gia01.EnableTag();
+                            }
+                            else
+                            {
+                                _gia01.DisableTag();
+                            }
+
                             if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
                             {
                                 _gia01.InvisibleTag();
@@ -445,11 +455,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                             _tienNt0.Enabled = chkSuaTien.Checked;
                             if (chkSuaTien.Checked)
                             {
-                                _tienNt0.Tag = null;
+                                _tienNt0.EnableTag();
                             }
                             else
                             {
-                                _tienNt0.Tag = "disable";
+                                _tienNt0.DisableTag();
                             }
 
                             _tienNt0.V6LostFocus += TienNt0_V6LostFocus;
@@ -466,7 +476,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     case "TIEN0":
                         _tien0 = control as V6NumberTextBox;
                         if (_tien0 != null)
-                        {   
+                        {
+                            _tien0.Enabled = chkSuaTien.Checked;
+                            if (chkSuaTien.Checked)
+                            {
+                                _tien0.EnableTag();
+                            }
+                            else
+                            {
+                                _tien0.DisableTag();
+                            }
+                            
                             // Tuanmh 25/05/2017
                             _tien0.V6LostFocus += Tien0_V6LostFocus;
 
@@ -3140,7 +3160,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                detail1.MODE = V6Mode.View;
+                Mode = V6Mode.View;
 
                 //Co 2 truong hop them moi roi view va sua roi view
                 _sttRec = sttrec;
@@ -4288,8 +4308,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     AD.Rows.Add(newRow);
                     TinhTongThanhToan(GetType() + "." + MethodBase.GetCurrentMethod().Name);
                     
-                    //hoaDonDetail1.SetFormControlsReadOnly(true, false);
-                    //hoaDonDetail1.MODE = V6Mode.View;
                     if (AD.Rows.Count > 0)
                     {
                         var cIndex = AD.Rows.Count - 1;
@@ -4405,9 +4423,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                             dataGridView1.DataSource = null;
                             dataGridView1.DataSource = AD;
                             TinhTongThanhToan("xy ly sua detail");
-
-                            //hoaDonDetail1.SetFormControlsReadOnly(true, false);
-                            //hoaDonDetail1.MODE = V6Mode.View;
                         }
                         else
                         {
@@ -4993,11 +5008,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 _tienNt0.Enabled = chkSuaTien.Checked;
             if (chkSuaTien.Checked)
             {
-                _tienNt0.Tag = null;
+                _tienNt0.EnableTag();
+                _tien0.EnableTag();
+                _gia01.EnableTag();
             }
             else
             {
-                _tienNt0.Tag = "disable";
+                _tienNt0.DisableTag();
+                _tien0.DisableTag();
+                _gia01.DisableTag();
             }
         }
 

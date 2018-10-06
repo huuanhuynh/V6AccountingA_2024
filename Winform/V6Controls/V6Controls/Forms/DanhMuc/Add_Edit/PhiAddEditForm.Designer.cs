@@ -170,6 +170,7 @@
             // 
             // label9
             // 
+            this.label9.AccessibleDescription = "ADDEDITL00174";
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(14, 9);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -180,6 +181,7 @@
             // 
             // label8
             // 
+            this.label8.AccessibleDescription = "ADDEDITL00176";
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(14, 77);
             this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -190,6 +192,7 @@
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "ADDEDITL00175";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(14, 42);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -200,6 +203,7 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -234,6 +238,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00022";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(14, 238);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -244,6 +249,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00036";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(14, 111);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -287,7 +293,7 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
             // 
-            // v6ColorTextBox16
+            // txtGC_TD3
             // 
             this.txtGC_TD3.AccessibleName = "GC_TD3";
             this.txtGC_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -306,7 +312,7 @@
             this.txtGC_TD3.Size = new System.Drawing.Size(556, 23);
             this.txtGC_TD3.TabIndex = 161;
             // 
-            // v6ColorTextBox15
+            // txtGC_TD2
             // 
             this.txtGC_TD2.AccessibleName = "GC_TD2";
             this.txtGC_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -325,7 +331,7 @@
             this.txtGC_TD2.Size = new System.Drawing.Size(556, 23);
             this.txtGC_TD2.TabIndex = 160;
             // 
-            // v6ColorTextBox1
+            // txtGC_TD1
             // 
             this.txtGC_TD1.AccessibleName = "GC_TD1";
             this.txtGC_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -386,7 +392,7 @@
             this.label27.TabIndex = 156;
             this.label27.Text = "Ghi chú ĐN 1";
             // 
-            // v6ColorTextBox19
+            // txtMA_TD3
             // 
             this.txtMA_TD3.AccessibleName = "MA_TD3";
             this.txtMA_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -404,7 +410,7 @@
             this.txtMA_TD3.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD3.TabIndex = 143;
             // 
-            // v6ColorTextBox20
+            // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
             this.txtMA_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -422,7 +428,7 @@
             this.txtMA_TD2.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD2.TabIndex = 141;
             // 
-            // v6ColorTextBox22
+            // txtMA_TD1
             // 
             this.txtMA_TD1.AccessibleName = "MA_TD1";
             this.txtMA_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 

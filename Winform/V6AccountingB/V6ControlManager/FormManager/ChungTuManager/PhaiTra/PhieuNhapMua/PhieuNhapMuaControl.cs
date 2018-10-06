@@ -3328,7 +3328,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         {
             try
             {
-                detail1.MODE = V6Mode.View;
+                Mode = V6Mode.View;
 
                 //Co 2 truong hop them moi roi view va sua roi view
                 _sttRec = sttrec;

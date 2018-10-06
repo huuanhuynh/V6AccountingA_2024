@@ -1992,6 +1992,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.txtThueSuat.LeaveColor = System.Drawing.Color.White;
             this.txtThueSuat.Location = new System.Drawing.Point(133, 92);
             this.txtThueSuat.Name = "txtThueSuat";
+            this.txtThueSuat.NumberFormatName = "M_IP_R_LE2";
             this.txtThueSuat.Size = new System.Drawing.Size(51, 20);
             this.txtThueSuat.TabIndex = 8;
             this.txtThueSuat.Text = "0,00";
