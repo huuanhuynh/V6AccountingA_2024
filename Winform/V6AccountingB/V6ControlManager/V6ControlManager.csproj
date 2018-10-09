@@ -1794,6 +1794,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOA2.Designer.cs">
       <DependentUpon>AAPPR_SOA2.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AAPPR_XULY_ALL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AAPPR_XULY_ALL.Designer.cs">
+      <DependentUpon>AAPPR_XULY_ALL.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_XULY_SOA.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4166,6 +4172,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F9.designer.cs">
       <DependentUpon>AAPPR_SOA1_F9.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_XULY_ALL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_XULY_SOA.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6156,6 +6165,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_SOA2.resx">
       <DependentUpon>AAPPR_SOA2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_XULY_ALL.resx">
+      <DependentUpon>AAPPR_XULY_ALL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_XULY_SOA.resx">
       <DependentUpon>AAPPR_XULY_SOA.cs</DependentUpon>
     </EmbeddedResource>
@@ -7340,6 +7352,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA_F10.resx">
       <DependentUpon>AAPPR_SOA_F10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_XULY_ALL.resx">
+      <DependentUpon>AAPPR_XULY_ALL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ACPDDCK.resx">
       <DependentUpon>ACPDDCK.cs</DependentUpon>

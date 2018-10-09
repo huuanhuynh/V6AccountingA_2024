@@ -1506,13 +1506,20 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             foreach (Control control1 in control.Controls)
             {
                 var line = control1 as FilterLineBase;
-                if (line != null)
+                try
                 {
-                    result.Add("line" + line.FieldName.ToUpper(), line);
+                    if (line != null)
+                    {
+                        result.Add("line" + line.FieldName.ToUpper(), line);
+                    }
+                    else
+                    {
+                        result.AddRange(GetFilterLineListRecursive(control1));
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    result.AddRange(GetFilterLineListRecursive(control1));
+                    DoNothing();
                 }
             }
             return result;

@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.grbThoiGian = new System.Windows.Forms.GroupBox();
+            this.lblDenNgay = new V6Controls.V6Label();
+            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePick();
+            this.lblTuNgay = new V6Controls.V6Label();
+            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePick();
             this.grbTuyChon = new System.Windows.Forms.GroupBox();
             this.txtNhomVT6 = new V6Controls.V6VvarTextBox();
             this.txtNhomVT5 = new V6Controls.V6VvarTextBox();
@@ -54,14 +59,9 @@
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.lblDocSoTien = new V6Controls.V6Label();
-            this.grbThoiGian = new System.Windows.Forms.GroupBox();
-            this.lblDenNgay = new V6Controls.V6Label();
-            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePick();
-            this.lblTuNgay = new V6Controls.V6Label();
-            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePick();
             this.panel1.SuspendLayout();
-            this.grbTuyChon.SuspendLayout();
             this.grbThoiGian.SuspendLayout();
+            this.grbTuyChon.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -77,6 +77,66 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(772, 616);
             this.panel1.TabIndex = 0;
+            // 
+            // grbThoiGian
+            // 
+            this.grbThoiGian.AccessibleDescription = "SEARCHG00004";
+            this.grbThoiGian.Controls.Add(this.lblDenNgay);
+            this.grbThoiGian.Controls.Add(this.v6ColorDateTimePick2);
+            this.grbThoiGian.Controls.Add(this.lblTuNgay);
+            this.grbThoiGian.Controls.Add(this.v6ColorDateTimePick1);
+            this.grbThoiGian.Location = new System.Drawing.Point(3, 3);
+            this.grbThoiGian.Name = "grbThoiGian";
+            this.grbThoiGian.Size = new System.Drawing.Size(759, 48);
+            this.grbThoiGian.TabIndex = 0;
+            this.grbThoiGian.TabStop = false;
+            this.grbThoiGian.Text = "Lọc thời gian";
+            // 
+            // lblDenNgay
+            // 
+            this.lblDenNgay.AccessibleDescription = "SEARCHL00038";
+            this.lblDenNgay.AutoSize = true;
+            this.lblDenNgay.Location = new System.Drawing.Point(183, 22);
+            this.lblDenNgay.Name = "lblDenNgay";
+            this.lblDenNgay.Size = new System.Drawing.Size(53, 13);
+            this.lblDenNgay.TabIndex = 2;
+            this.lblDenNgay.Text = "Đến ngày";
+            // 
+            // v6ColorDateTimePick2
+            // 
+            this.v6ColorDateTimePick2.CustomFormat = "dd/MM/yyyy";
+            this.v6ColorDateTimePick2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorDateTimePick2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.v6ColorDateTimePick2.HoverColor = System.Drawing.Color.Yellow;
+            this.v6ColorDateTimePick2.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.v6ColorDateTimePick2.LeaveColor = System.Drawing.Color.White;
+            this.v6ColorDateTimePick2.Location = new System.Drawing.Point(247, 19);
+            this.v6ColorDateTimePick2.Name = "v6ColorDateTimePick2";
+            this.v6ColorDateTimePick2.Size = new System.Drawing.Size(102, 20);
+            this.v6ColorDateTimePick2.TabIndex = 3;
+            // 
+            // lblTuNgay
+            // 
+            this.lblTuNgay.AccessibleDescription = "SEARCHL00037";
+            this.lblTuNgay.AutoSize = true;
+            this.lblTuNgay.Location = new System.Drawing.Point(6, 22);
+            this.lblTuNgay.Name = "lblTuNgay";
+            this.lblTuNgay.Size = new System.Drawing.Size(46, 13);
+            this.lblTuNgay.TabIndex = 0;
+            this.lblTuNgay.Text = "Từ ngày";
+            // 
+            // v6ColorDateTimePick1
+            // 
+            this.v6ColorDateTimePick1.CustomFormat = "dd/MM/yyyy";
+            this.v6ColorDateTimePick1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorDateTimePick1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.v6ColorDateTimePick1.HoverColor = System.Drawing.Color.Yellow;
+            this.v6ColorDateTimePick1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.v6ColorDateTimePick1.LeaveColor = System.Drawing.Color.White;
+            this.v6ColorDateTimePick1.Location = new System.Drawing.Point(76, 19);
+            this.v6ColorDateTimePick1.Name = "v6ColorDateTimePick1";
+            this.v6ColorDateTimePick1.Size = new System.Drawing.Size(102, 20);
+            this.v6ColorDateTimePick1.TabIndex = 1;
             // 
             // grbTuyChon
             // 
@@ -403,66 +463,6 @@
             this.lblDocSoTien.Text = "0";
             this.lblDocSoTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // grbThoiGian
-            // 
-            this.grbThoiGian.AccessibleDescription = "SEARCHG00004";
-            this.grbThoiGian.Controls.Add(this.lblDenNgay);
-            this.grbThoiGian.Controls.Add(this.v6ColorDateTimePick2);
-            this.grbThoiGian.Controls.Add(this.lblTuNgay);
-            this.grbThoiGian.Controls.Add(this.v6ColorDateTimePick1);
-            this.grbThoiGian.Location = new System.Drawing.Point(3, 3);
-            this.grbThoiGian.Name = "grbThoiGian";
-            this.grbThoiGian.Size = new System.Drawing.Size(759, 48);
-            this.grbThoiGian.TabIndex = 4;
-            this.grbThoiGian.TabStop = false;
-            this.grbThoiGian.Text = "Lọc thời gian";
-            // 
-            // lblDenNgay
-            // 
-            this.lblDenNgay.AccessibleDescription = "SEARCHL00038";
-            this.lblDenNgay.AutoSize = true;
-            this.lblDenNgay.Location = new System.Drawing.Point(183, 22);
-            this.lblDenNgay.Name = "lblDenNgay";
-            this.lblDenNgay.Size = new System.Drawing.Size(53, 13);
-            this.lblDenNgay.TabIndex = 2;
-            this.lblDenNgay.Text = "Đến ngày";
-            // 
-            // v6ColorDateTimePick2
-            // 
-            this.v6ColorDateTimePick2.CustomFormat = "dd/MM/yyyy";
-            this.v6ColorDateTimePick2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorDateTimePick2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.v6ColorDateTimePick2.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorDateTimePick2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.v6ColorDateTimePick2.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorDateTimePick2.Location = new System.Drawing.Point(247, 19);
-            this.v6ColorDateTimePick2.Name = "v6ColorDateTimePick2";
-            this.v6ColorDateTimePick2.Size = new System.Drawing.Size(102, 20);
-            this.v6ColorDateTimePick2.TabIndex = 3;
-            // 
-            // lblTuNgay
-            // 
-            this.lblTuNgay.AccessibleDescription = "SEARCHL00037";
-            this.lblTuNgay.AutoSize = true;
-            this.lblTuNgay.Location = new System.Drawing.Point(6, 22);
-            this.lblTuNgay.Name = "lblTuNgay";
-            this.lblTuNgay.Size = new System.Drawing.Size(46, 13);
-            this.lblTuNgay.TabIndex = 0;
-            this.lblTuNgay.Text = "Từ ngày";
-            // 
-            // v6ColorDateTimePick1
-            // 
-            this.v6ColorDateTimePick1.CustomFormat = "dd/MM/yyyy";
-            this.v6ColorDateTimePick1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorDateTimePick1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.v6ColorDateTimePick1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorDateTimePick1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.v6ColorDateTimePick1.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorDateTimePick1.Location = new System.Drawing.Point(76, 19);
-            this.v6ColorDateTimePick1.Name = "v6ColorDateTimePick1";
-            this.v6ColorDateTimePick1.Size = new System.Drawing.Size(102, 20);
-            this.v6ColorDateTimePick1.TabIndex = 1;
-            // 
             // TimPhieuNhapMuaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -487,10 +487,10 @@
             this.Controls.SetChildIndex(this.lblDocSoTien, 0);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.panel1.ResumeLayout(false);
-            this.grbTuyChon.ResumeLayout(false);
-            this.grbTuyChon.PerformLayout();
             this.grbThoiGian.ResumeLayout(false);
             this.grbThoiGian.PerformLayout();
+            this.grbTuyChon.ResumeLayout(false);
+            this.grbTuyChon.PerformLayout();
             this.ResumeLayout(false);
 
         }

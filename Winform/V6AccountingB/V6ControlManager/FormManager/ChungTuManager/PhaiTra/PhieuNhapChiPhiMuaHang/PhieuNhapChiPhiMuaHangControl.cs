@@ -4172,8 +4172,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             try
             {
-
                 CPN_PhieuNhapChiPhiMuaHangForm chon = new CPN_PhieuNhapChiPhiMuaHangForm(this, multiselect);
+                _chon_px = "PN";
                 chon.AcceptSelectEvent += chonpx_AcceptSelectEvent;
                 chon.ShowDialog(this);
             }
@@ -4184,6 +4184,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         }
 
         private bool co_chon_phieu_nhap;//!!!!! chwa su dung???
+        private string _chon_px = "";
         void chonpx_AcceptSelectEvent(List<SortedDictionary<string, object>> selectedDataList,
             bool multiSelect, SortedDictionary<string, object> amData)
         {
@@ -4205,7 +4206,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     if (XuLyThemDetail(data)) addCount++;
                     else failCount++;
                 }
-
+                All_Objects["selectedDataList"] = selectedDataList;
+                InvokeFormEvent("AFTERCHON_" + _chon_px);
 
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
                 if (addCount > 0)

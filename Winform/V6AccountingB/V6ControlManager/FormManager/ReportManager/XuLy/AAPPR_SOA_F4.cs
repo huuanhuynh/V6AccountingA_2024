@@ -15,6 +15,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     {
         #region Biến toàn cục
 
+        private string _tableName_AM;
         protected DataRow _am;
         protected string _text;
         //protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
@@ -46,10 +47,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             InitializeComponent();
         }
 
-        public AAPPR_SOA_F4(string stt_rec, DataRow am)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stt_rec"></param>
+        /// <param name="am"></param>
+        /// <param name="tableName_AM">Tên bảng dữ liệu sẽ được cập nhập (update).</param>
+        public AAPPR_SOA_F4(string stt_rec, DataRow am, string tableName_AM)
         {
             _sttRec = stt_rec;
             _am = am;
+            _tableName_AM = tableName_AM;
             InitializeComponent();
             MyInit();
         }
@@ -87,7 +95,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 SortedDictionary<string, object> keys
                     = new SortedDictionary<string, object> {{"Stt_rec", _sttRec}};
 
-                var result = V6BusinessHelper.UpdateSimple(V6TableName.Am81, am, keys);
+                var result = V6BusinessHelper.UpdateSimple(_tableName_AM, am, keys);
                 if (result == 1)
                 {
                     Dispose();

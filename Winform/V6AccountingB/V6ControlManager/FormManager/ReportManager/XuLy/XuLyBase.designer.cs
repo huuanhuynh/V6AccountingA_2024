@@ -257,10 +257,10 @@
         private System.Drawing.Printing.PrintDocument MyPrintDocument;
         protected System.Windows.Forms.Timer timerViewReport;
         public System.Windows.Forms.Panel panel1;
-        protected V6Controls.V6ColorDataGridView dataGridView1;
+        public V6Controls.V6ColorDataGridView dataGridView1;
         public System.Windows.Forms.Button btnNhan;
         public System.Windows.Forms.Button btnHuy;
-        protected V6Controls.V6ColorDataGridView dataGridView2;
+        public V6Controls.V6ColorDataGridView dataGridView2;
         private V6Controls.Controls.V6FormButton btnSuaTTMauBC;
         private V6Controls.Controls.V6FormButton btnThemMauBC;
 

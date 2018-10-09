@@ -968,7 +968,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void UpdateGridView2(DataGridViewRow row)
+        public void UpdateGridView2(DataGridViewRow row)
         {
             ViewDetails(row);
             FormatGridView2();

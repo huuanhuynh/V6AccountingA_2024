@@ -6032,6 +6032,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (ma_kh != "" && ma_dvcs != "")
                 {
                     CDH_HoaDonForm chon = new CDH_HoaDonForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
+                    _chon_px = "DH";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -6060,6 +6061,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (ma_kh != "" && ma_dvcs != "")
                 {
                     CBG_HoaDonForm chon = new CBG_HoaDonForm(txtMadvcs.Text, txtMaKh.Text);
+                    _chon_px = "BG";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -6078,6 +6080,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
+        private string _chon_px = "";
         void chon_AcceptSelectEvent(List<SortedDictionary<string, object>> selectedDataList)
         {
             try
@@ -6090,6 +6093,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     if (XuLyThemDetail(data)) addCount++;
                     else failCount++;
                 }
+                All_Objects["selectedDataList"] = selectedDataList;
+                InvokeFormEvent("AFTERCHON_" + _chon_px);
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
                 //if (addCount > 0)
                 //{
@@ -6273,6 +6278,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (ma_kh != "" && ma_dvcs != "")
                 {
                     CPX_HoaDonForm chon = new CPX_HoaDonForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
+                    _chon_px = "PX";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }

@@ -2458,7 +2458,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // 
             // v6Label30
             // 
-            this.v6Label30.AccessibleDescription = "APOCTPOBH00065";
+            this.v6Label30.AccessibleDescription = "APOCTPOBL00040";
             this.v6Label30.AutoSize = true;
             this.v6Label30.Location = new System.Drawing.Point(115, 32);
             this.v6Label30.Name = "v6Label30";

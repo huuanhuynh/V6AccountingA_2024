@@ -1015,6 +1015,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 if (ma_kh != "" && ma_dvcs != "")
                 {
                     CPXHangTraLaiForm chonpx = new CPXHangTraLaiForm(this, txtMadvcs.Text, txtMaKh.Text);
+                    _chon_px = "PX";
                     chonpx.AcceptSelectEvent += chonpx_AcceptSelectEvent;
                     chonpx.ShowDialog(this);
                 }
@@ -1033,6 +1034,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         private bool co_chon_phieu_xuat { get; set; }
         private bool chonpx_flag = false;
+        private string _chon_px = "";
         void chonpx_AcceptSelectEvent(List<SortedDictionary<string, object>> selectedDataList)
         {
             chonpx_flag = true;
@@ -1052,6 +1054,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     if (XuLyThemDetail(data)) addCount++;
                     else failCount ++;
                 }
+                All_Objects["selectedDataList"] = selectedDataList;
+                InvokeFormEvent("AFTERCHON_" + _chon_px);
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
                 if (addCount > 0)
                 {
@@ -4393,8 +4397,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 theo_hoa_don = true;
                 XuLyChonPhieuXuat();
             }
-
-            
         }
 
         private void btnInfos_Click(object sender, EventArgs e)

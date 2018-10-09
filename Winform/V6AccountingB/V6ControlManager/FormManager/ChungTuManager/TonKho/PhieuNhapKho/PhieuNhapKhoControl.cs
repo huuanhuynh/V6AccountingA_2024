@@ -3709,6 +3709,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 if (ma_kh != "" && ma_dvcs != "")
                 {
                     CPX_PhieuNhapKhoForm chon = new CPX_PhieuNhapKhoForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
+                    _chon_px = "PX";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -3732,6 +3733,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
         }
 
+        private string _chon_px = "";
         void chon_AcceptSelectEvent(List<SortedDictionary<string, object>> selectedDataList)
         {
             try
@@ -3744,6 +3746,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     if (XuLyThemDetail(data)) addCount++;
                     else failCount++;
                 }
+                All_Objects["selectedDataList"] = selectedDataList;
+                InvokeFormEvent("AFTERCHON_" + _chon_px);
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
                 //if (addCount > 0)
                 //{

@@ -370,7 +370,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
 
         private void TimPhieuNhapMuaForm_Activated(object sender, EventArgs e)
         {
-            grbThoiGian.Focus();
+            v6ColorDateTimePick1.Focus();
         }
 
         private void TimPhieuNhapMuaForm_FormClosing(object sender, FormClosingEventArgs e)

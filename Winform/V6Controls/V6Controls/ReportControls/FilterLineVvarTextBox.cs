@@ -22,6 +22,7 @@ namespace V6ReportControls
             };
         }
 
+        [Description("Textbox AccessibleName")]
         [DefaultValue(null)]
         public string AccessibleName2
         {

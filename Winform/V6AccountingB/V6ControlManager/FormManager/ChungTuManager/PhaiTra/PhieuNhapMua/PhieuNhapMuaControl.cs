@@ -5037,6 +5037,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     if (ma_kh != "" && ma_dvcs != "")
                     {
                         CDH_PNMForm chon = new CDH_PNMForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
+                        _chon_px = "DH";
                         chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                         chon.ShowDialog(this);
                     }
@@ -5072,6 +5073,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     if (XuLyThemDetail(data)) addCount++;
                     else failCount++;
                 }
+
+                All_Objects["selectedDataList"] = selectedDataList;
+                InvokeFormEvent("AFTERCHON_" + _chon_px);
+                
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
                 if (addCount > 0)
                 {
@@ -6157,6 +6162,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             //}
         }
 
+        private string _chon_px = "";
         private void ChonPhieuXuat_A()
         {
             try
@@ -6167,6 +6173,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 if (ma_kh != "" && ma_dvcs != "")
                 {
                     CPX_PhieuNhapMuaForm chon = new CPX_PhieuNhapMuaForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
+                    _chon_px = "PX";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }

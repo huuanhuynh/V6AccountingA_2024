@@ -449,6 +449,9 @@ namespace V6Controls
             }
         }
 
+        /// <summary>
+        /// Dùng Control + S để lọc số liệu hiển thị, Thêm Shift để reset.
+        /// </summary>
         [DefaultValue(false)]
         [Description("Dùng Control + S để lọc số liệu hiển thị, Thêm Shift để reset.")]
         public bool Control_S { get { return control_s; } set { control_s = value; } }
@@ -1090,7 +1093,16 @@ namespace V6Controls
 
         private DataView _view;
         private DataGridViewColumn _filter_column;
-        private void Filter(string field, string operat0r, object value, object value2, bool next, bool or)
+        /// <summary>
+        /// Lọc dữ liệu hiển thị trên gridView
+        /// </summary>
+        /// <param name="field">Trường lọc dữ liệu.</param>
+        /// <param name="operat0r">Kiểu so sánh lọc, =, start, like, >...</param>
+        /// <param name="value">Giá trị so sánh.</param>
+        /// <param name="value2">Giá trị thứ 2 phải lớn hơn giá trị 1 cho trường hợp khoảng số.</param>
+        /// <param name="_and_">Lọc chồng nếu đã lọc trước đó.</param>
+        /// <param name="_or_">Lọc thêm nếu đã lọc trước đó.</param>
+        public void Filter(string field, string operat0r, object value, object value2, bool _and_, bool _or_)
         {
             if (_filter_column != null)
             {
@@ -1141,14 +1153,14 @@ namespace V6Controls
                 }
 
                 _view = view ?? new DataView(table);
-                if (next)
+                if (_and_)
                 {
                     var old_filter = string.IsNullOrEmpty(_view.RowFilter) ? "" : string.Format("({0})", _view.RowFilter);
                     if (old_filter.Length > 0) old_filter += " and ";
                     var new_filter = old_filter + row_filter;
                     _view.RowFilter = new_filter;
                 }
-                else if (or)
+                else if (_or_)
                 {
                     var old_filter = string.IsNullOrEmpty(_view.RowFilter) ? "" : string.Format("({0})", _view.RowFilter);
                     if (old_filter.Length > 0) old_filter += " or ";
@@ -1181,7 +1193,10 @@ namespace V6Controls
             return "";
         }
 
-        private void RemoveFilter()
+        /// <summary>
+        /// Loại bỏ filter từ hàm Filer hoặc chức năng Control|S.
+        /// </summary>
+        public void RemoveFilter()
         {
             if (_view != null)
             {

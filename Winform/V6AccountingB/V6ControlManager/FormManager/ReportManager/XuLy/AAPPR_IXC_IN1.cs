@@ -431,7 +431,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     ShowInTaskbar = false, MinimizeBox = false, MaximizeBox = false
                                 };
 
-                                var hoaDonForm = new AAPPR_SOA_F4(selectedSttRec, am.Rows[0]);
+                                var hoaDonForm = new AAPPR_SOA_F4(selectedSttRec, am.Rows[0], amName);
                                 hoaDonForm.txtGhiChu02.Enabled = false;
 
                                 var so_ctx = hoaDonForm.So_ctx.Trim();

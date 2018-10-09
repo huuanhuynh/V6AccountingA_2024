@@ -24,15 +24,21 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             if (String1 == "1")
                 ma_vt_filterLine.VvarTextBox.Text = row["MA0"].ToString().Trim();
-            if(String1=="2")
+            if (String1 == "2")
                 ma_kh_filterLine.VvarTextBox.Text = row["MA0"].ToString().Trim();
-            else if(String1 == "3")
+            else if (String1 == "3")
                 ma_vv_filterLine.VvarTextBox.Text = row["MA0"].ToString().Trim();
             else if (String1 == "4")
                 ma_nx_filterLine.VvarTextBox.Text = row["MA0"].ToString().Trim();
             else if (String1 == "5")
                 ma_bp_filterLine.VvarTextBox.Text = row["MA0"].ToString().Trim();
-            
+            else if (String1 == "6")
+                ma_nvien_filterline.VvarTextBox.Text = row["MA0"].ToString().Trim();
+            else if (String1 == "7")
+                ma_bpht_filterline.VvarTextBox.Text = row["MA0"].ToString().Trim();
+            else if (String1 == "8")
+                ma_dvcs_filterline.VvarTextBox.Text = row["MA0"].ToString().Trim();
+
             if (String2 == "1")
                 ma_vt_filterLine.VvarTextBox.Text = row["MA"].ToString().Trim();
             if (String2 == "2")
@@ -43,7 +49,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 ma_nx_filterLine.VvarTextBox.Text = row["MA"].ToString().Trim();
             else if (String2 == "5")
                 ma_bp_filterLine.VvarTextBox.Text = row["MA"].ToString().Trim();
-            
+            else if (String2 == "6")
+                ma_nvien_filterline.VvarTextBox.Text = row["MA"].ToString().Trim();
+            else if (String2 == "7")
+                ma_bpht_filterline.VvarTextBox.Text = row["MA"].ToString().Trim();
+            else if (String2 == "8")
+                ma_dvcs_filterline.VvarTextBox.Text = row["MA"].ToString().Trim();
         }
 
         public void SetHideFields(string lang)
