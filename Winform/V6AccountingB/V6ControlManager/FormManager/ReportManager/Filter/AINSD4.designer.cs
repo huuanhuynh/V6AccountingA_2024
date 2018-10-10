@@ -71,6 +71,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "FILTERG00001";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -203,6 +204,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "FILTERL00003";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 9);
             this.label2.Name = "label2";

@@ -16,7 +16,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F3 = false;
             F5 = false;
             F9 = true;
-            
         }
         
         /// <summary>

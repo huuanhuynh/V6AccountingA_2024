@@ -332,6 +332,7 @@
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "FILTERL00266";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(3, 220);
             this.v6Label1.Name = "v6Label1";
@@ -341,6 +342,7 @@
             // 
             // v6Label2
             // 
+            this.v6Label2.AccessibleDescription = "FILTERL00267";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(3, 247);
             this.v6Label2.Name = "v6Label2";
@@ -402,6 +404,7 @@
             // 
             // v6Label3
             // 
+            this.v6Label3.AccessibleDescription = "FILTERL00268";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(3, 274);
             this.v6Label3.Name = "v6Label3";
@@ -411,6 +414,7 @@
             // 
             // btnExport
             // 
+            this.btnExport.AccessibleDescription = "FILTERB00012";
             this.btnExport.Location = new System.Drawing.Point(177, 296);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(111, 23);

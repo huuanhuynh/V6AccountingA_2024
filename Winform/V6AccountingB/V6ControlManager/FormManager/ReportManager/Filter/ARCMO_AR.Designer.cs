@@ -75,6 +75,7 @@
             // 
             // chkLike
             // 
+            this.chkLike.AccessibleDescription = "FILTERC00002";
             this.chkLike.AccessibleName = "";
             this.chkLike.AutoSize = true;
             this.chkLike.Checked = true;

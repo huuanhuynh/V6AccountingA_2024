@@ -177,6 +177,7 @@
             // 
             // btnXemMauExcel
             // 
+            this.btnXemMauExcel.AccessibleDescription = "FILTERB00013";
             this.btnXemMauExcel.Location = new System.Drawing.Point(3, 226);
             this.btnXemMauExcel.Name = "btnXemMauExcel";
             this.btnXemMauExcel.Size = new System.Drawing.Size(88, 29);

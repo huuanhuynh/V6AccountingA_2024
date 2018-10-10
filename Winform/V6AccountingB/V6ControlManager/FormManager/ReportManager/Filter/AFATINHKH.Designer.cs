@@ -30,12 +30,8 @@
         {
             this.v6Label9 = new V6Controls.V6Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radOr = new System.Windows.Forms.RadioButton();
-            this.radAnd = new System.Windows.Forms.RadioButton();
             this.txtKy = new V6Controls.V6NumberTextBox();
             this.txtNam = new V6Controls.V6NumberTextBox();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // v6Label9
@@ -57,43 +53,6 @@
             this.label1.Size = new System.Drawing.Size(19, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Kỳ";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.radOr);
-            this.groupBox1.Controls.Add(this.radAnd);
-            this.groupBox1.Location = new System.Drawing.Point(3, 75);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(229, 0);
-            this.groupBox1.TabIndex = 12;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Lọc";
-            // 
-            // radOr
-            // 
-            this.radOr.AutoSize = true;
-            this.radOr.Location = new System.Drawing.Point(142, 17);
-            this.radOr.Name = "radOr";
-            this.radOr.Size = new System.Drawing.Size(156, 17);
-            this.radOr.TabIndex = 1;
-            this.radOr.TabStop = true;
-            this.radOr.Text = "Một trong các điều kiện (or)";
-            this.radOr.UseVisualStyleBackColor = true;
-            // 
-            // radAnd
-            // 
-            this.radAnd.AutoSize = true;
-            this.radAnd.Checked = true;
-            this.radAnd.Location = new System.Drawing.Point(6, 17);
-            this.radAnd.Name = "radAnd";
-            this.radAnd.Size = new System.Drawing.Size(130, 17);
-            this.radAnd.TabIndex = 0;
-            this.radAnd.TabStop = true;
-            this.radAnd.Text = "Tất cả điều kiện (and)";
-            this.radAnd.UseVisualStyleBackColor = true;
             // 
             // txtKy
             // 
@@ -152,11 +111,8 @@
             this.Controls.Add(this.txtKy);
             this.Controls.Add(this.v6Label9);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.groupBox1);
             this.Name = "AFATINHKH";
             this.Size = new System.Drawing.Size(235, 79);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,9 +120,6 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radOr;
-        private System.Windows.Forms.RadioButton radAnd;
         private System.Windows.Forms.Label label1;
         private V6Controls.V6Label v6Label9;
         private V6Controls.V6NumberTextBox txtKy;

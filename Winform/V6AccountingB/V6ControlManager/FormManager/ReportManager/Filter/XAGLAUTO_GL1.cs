@@ -14,7 +14,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             txtMaCt.SetInitFilter("MA_CT in ('CA1','BN1')");
             txtMaSoNB.SetInitFilter("dbo.VFV_InList0('GL1', MA_CTNB, ',') = 1");
             txtTK.Text = "336";
-
         }
 
         

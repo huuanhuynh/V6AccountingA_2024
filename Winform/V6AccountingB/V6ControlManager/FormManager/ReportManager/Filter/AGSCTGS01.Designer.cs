@@ -97,6 +97,7 @@
             // 
             // btnSuaSoCTGS
             // 
+            this.btnSuaSoCTGS.AccessibleDescription = "FILTERB00011";
             this.btnSuaSoCTGS.Location = new System.Drawing.Point(3, 90);
             this.btnSuaSoCTGS.Name = "btnSuaSoCTGS";
             this.btnSuaSoCTGS.Size = new System.Drawing.Size(223, 23);

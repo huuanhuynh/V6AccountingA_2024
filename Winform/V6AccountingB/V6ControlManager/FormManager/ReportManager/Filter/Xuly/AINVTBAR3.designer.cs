@@ -77,6 +77,7 @@
             // 
             // chkAutoF9
             // 
+            this.chkAutoF9.AccessibleDescription = "FILTERC00026";
             this.chkAutoF9.AccessibleName = "AUTOF9";
             this.chkAutoF9.AutoSize = true;
             this.chkAutoF9.Location = new System.Drawing.Point(6, 405);
@@ -117,6 +118,7 @@
             this.txtSL_TD2.ReadOnly = true;
             this.txtSL_TD2.Size = new System.Drawing.Size(276, 26);
             this.txtSL_TD2.TabIndex = 12;
+            this.txtSL_TD2.TabStop = false;
             this.txtSL_TD2.Text = "0";
             this.txtSL_TD2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSL_TD2.Value = new decimal(new int[] {
@@ -145,6 +147,7 @@
             this.txtMaSoThue.ReadOnly = true;
             this.txtMaSoThue.Size = new System.Drawing.Size(276, 20);
             this.txtMaSoThue.TabIndex = 11;
+            this.txtMaSoThue.TabStop = false;
             this.txtMaSoThue.Tag = "readonly";
             // 
             // txtDiaChi
@@ -166,6 +169,7 @@
             this.txtDiaChi.ReadOnly = true;
             this.txtDiaChi.Size = new System.Drawing.Size(276, 41);
             this.txtDiaChi.TabIndex = 10;
+            this.txtDiaChi.TabStop = false;
             this.txtDiaChi.Tag = "readonly";
             // 
             // txtSL_TD1
@@ -188,6 +192,7 @@
             this.txtSL_TD1.ReadOnly = true;
             this.txtSL_TD1.Size = new System.Drawing.Size(276, 26);
             this.txtSL_TD1.TabIndex = 4;
+            this.txtSL_TD1.TabStop = false;
             this.txtSL_TD1.Text = "0";
             this.txtSL_TD1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSL_TD1.Value = new decimal(new int[] {
@@ -215,6 +220,7 @@
             this.txtDVT.ReadOnly = true;
             this.txtDVT.Size = new System.Drawing.Size(276, 20);
             this.txtDVT.TabIndex = 5;
+            this.txtDVT.TabStop = false;
             this.txtDVT.Tag = "readonly";
             // 
             // txtTenVT
@@ -237,6 +243,7 @@
             this.txtTenVT.ReadOnly = true;
             this.txtTenVT.Size = new System.Drawing.Size(276, 38);
             this.txtTenVT.TabIndex = 3;
+            this.txtTenVT.TabStop = false;
             this.txtTenVT.Tag = "readonly";
             // 
             // txtTenKH
@@ -259,6 +266,7 @@
             this.txtTenKH.ReadOnly = true;
             this.txtTenKH.Size = new System.Drawing.Size(276, 41);
             this.txtTenKH.TabIndex = 7;
+            this.txtTenKH.TabStop = false;
             this.txtTenKH.Tag = "readonly";
             // 
             // txtNgayHHSD
@@ -280,6 +288,7 @@
             this.txtNgayHHSD.ReadOnly = true;
             this.txtNgayHHSD.Size = new System.Drawing.Size(276, 26);
             this.txtNgayHHSD.TabIndex = 6;
+            this.txtNgayHHSD.TabStop = false;
             this.txtNgayHHSD.Tag = "readonly";
             // 
             // txtMaVT
@@ -300,6 +309,7 @@
             this.txtMaVT.ReadOnly = true;
             this.txtMaVT.Size = new System.Drawing.Size(276, 20);
             this.txtMaVT.TabIndex = 9;
+            this.txtMaVT.TabStop = false;
             this.txtMaVT.VVar = "MA_VT";
             this.txtMaVT.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMalo_V6LostFocus);
             // 
@@ -321,6 +331,7 @@
             this.txtMaKH.ReadOnly = true;
             this.txtMaKH.Size = new System.Drawing.Size(276, 20);
             this.txtMaKH.TabIndex = 8;
+            this.txtMaKH.TabStop = false;
             this.txtMaKH.VVar = "MA_KH";
             this.txtMaKH.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMalo_V6LostFocus);
             // 

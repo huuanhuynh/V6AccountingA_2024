@@ -40,6 +40,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "FILTERG00001";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -60,8 +61,8 @@
             // 
             this.ma_nx_filterLine.AccessibleDescription = "FILTERL00097";
             this.ma_nx_filterLine.AccessibleName2 = "MA_NX";
-            this.ma_nx_filterLine.Enabled = false;
             this.ma_nx_filterLine.Caption = "Mã NX";
+            this.ma_nx_filterLine.Enabled = false;
             this.ma_nx_filterLine.FieldName = "MA_NX";
             this.ma_nx_filterLine.Location = new System.Drawing.Point(6, 113);
             this.ma_nx_filterLine.Name = "ma_nx_filterLine";
@@ -73,8 +74,8 @@
             // 
             this.ma_bp_filterLine.AccessibleDescription = "FILTERL00008";
             this.ma_bp_filterLine.AccessibleName2 = "MA_BP";
-            this.ma_bp_filterLine.Enabled = false;
             this.ma_bp_filterLine.Caption = "Mã bộ phận";
+            this.ma_bp_filterLine.Enabled = false;
             this.ma_bp_filterLine.FieldName = "MA_BP";
             this.ma_bp_filterLine.Location = new System.Drawing.Point(6, 89);
             this.ma_bp_filterLine.Name = "ma_bp_filterLine";
@@ -86,8 +87,8 @@
             // 
             this.ma_vv_filterLine.AccessibleDescription = "FILTERL00065";
             this.ma_vv_filterLine.AccessibleName2 = "MA_VV";
-            this.ma_vv_filterLine.Enabled = false;
             this.ma_vv_filterLine.Caption = "Mã vụ việc";
+            this.ma_vv_filterLine.Enabled = false;
             this.ma_vv_filterLine.FieldName = "MA_VV";
             this.ma_vv_filterLine.Location = new System.Drawing.Point(6, 65);
             this.ma_vv_filterLine.Name = "ma_vv_filterLine";
@@ -124,8 +125,8 @@
             // 
             this.ma_kh_filterLine.AccessibleDescription = "FILTERL00007";
             this.ma_kh_filterLine.AccessibleName2 = "MA_KH";
-            this.ma_kh_filterLine.Enabled = false;
             this.ma_kh_filterLine.Caption = "Mã khách";
+            this.ma_kh_filterLine.Enabled = false;
             this.ma_kh_filterLine.FieldName = "MA_KH";
             this.ma_kh_filterLine.Location = new System.Drawing.Point(6, 40);
             this.ma_kh_filterLine.Name = "ma_kh_filterLine";

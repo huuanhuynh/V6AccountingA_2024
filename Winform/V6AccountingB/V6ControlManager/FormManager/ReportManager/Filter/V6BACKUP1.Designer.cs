@@ -68,6 +68,7 @@
             // 
             // radOr
             // 
+            this.radOr.AccessibleDescription = "FILTERR00002";
             this.radOr.AutoSize = true;
             this.radOr.Location = new System.Drawing.Point(142, 17);
             this.radOr.Name = "radOr";
@@ -79,6 +80,7 @@
             // 
             // radAnd
             // 
+            this.radAnd.AccessibleDescription = "FILTERR00001";
             this.radAnd.AutoSize = true;
             this.radAnd.Checked = true;
             this.radAnd.Location = new System.Drawing.Point(6, 17);
@@ -109,6 +111,7 @@
             this.txtngay_bk.Size = new System.Drawing.Size(102, 20);
             this.txtngay_bk.StringValue = "__/__/____";
             this.txtngay_bk.TabIndex = 115;
+            this.txtngay_bk.TabStop = false;
             this.txtngay_bk.Text = "__/__/____";
             // 
             // v6CheckBox1
@@ -154,6 +157,7 @@
             this.txtFileName.ReadOnly = true;
             this.txtFileName.Size = new System.Drawing.Size(461, 20);
             this.txtFileName.TabIndex = 117;
+            this.txtFileName.TabStop = false;
             // 
             // label2
             // 

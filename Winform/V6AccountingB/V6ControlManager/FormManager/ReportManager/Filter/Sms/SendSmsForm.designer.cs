@@ -50,6 +50,9 @@
             this.xasendmail1.F9 = false;
             this.xasendmail1.FilterData = null;
             this.xasendmail1.Kieu_post = null;
+            this.xasendmail1.lineLAN = null;
+            this.xasendmail1.lineMauBC = null;
+            this.xasendmail1.lineUserID = null;
             this.xasendmail1.Location = new System.Drawing.Point(0, 0);
             this.xasendmail1.Name = "xasendmail1";
             this.xasendmail1.ParentFilterData = null;
@@ -60,6 +63,7 @@
             // 
             // SendSmsForm
             // 
+            this.AccessibleDescription = "MAILSMSF00001";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(771, 542);
