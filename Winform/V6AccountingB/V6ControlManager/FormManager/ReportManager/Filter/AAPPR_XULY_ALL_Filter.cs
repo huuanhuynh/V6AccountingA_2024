@@ -15,9 +15,9 @@ using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AAPPR_XULY_ALL : FilterBase
+    public partial class AAPPR_XULY_ALL_Filter : FilterBase
     {
-        public AAPPR_XULY_ALL()
+        public AAPPR_XULY_ALL_Filter()
         {
             InitializeComponent();
             F3 = true;

@@ -694,7 +694,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 break; case "AAPPR_XULY_SOA":
                     result = new AAPPR_XULY_SOA();
                 break; case "AAPPR_XULY_ALL":
-                    result = new AAPPR_XULY_ALL();
+                    result = new AAPPR_XULY_ALL_Filter();
                 #endregion he thong
 
                 #region ==== Tổng hợp ====

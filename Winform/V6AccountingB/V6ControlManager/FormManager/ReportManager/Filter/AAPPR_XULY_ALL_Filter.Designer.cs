@@ -1,6 +1,6 @@
 ﻿namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    partial class AAPPR_XULY_ALL
+    partial class AAPPR_XULY_ALL_Filter
     {
         /// <summary> 
         /// Required designer variable.
@@ -610,7 +610,7 @@
             this.Controls.Add(this.dateNgay_ct2);
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
-            this.Name = "AAPPR_XULY_ALL";
+            this.Name = "AAPPR_XULY_ALL_Filter";
             this.Size = new System.Drawing.Size(307, 825);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
