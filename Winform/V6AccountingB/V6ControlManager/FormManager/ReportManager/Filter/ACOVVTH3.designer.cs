@@ -109,6 +109,7 @@
             // 
             // chk_Luy_ke
             // 
+            this.chk_Luy_ke.AccessibleDescription = "FILTERC00010";
             this.chk_Luy_ke.AccessibleName = "CHK_LUY_KE";
             this.chk_Luy_ke.AutoSize = true;
             this.chk_Luy_ke.Location = new System.Drawing.Point(120, 65);

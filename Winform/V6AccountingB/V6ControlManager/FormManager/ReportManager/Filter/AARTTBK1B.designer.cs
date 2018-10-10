@@ -470,7 +470,7 @@
             // 
             // label4
             // 
-            this.label4.AccessibleDescription = "FILTERL00002";
+            this.label4.AccessibleDescription = "FILTERL00259";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(5, 11);
             this.label4.Name = "label4";
@@ -586,7 +586,7 @@
             // 
             // lineNH_KH9
             // 
-            this.lineNH_KH9.AccessibleDescription = "FILTERL00019"; this.lineNH_KH8.AccessibleName2 = "NH_KH9";
+            this.lineNH_KH9.AccessibleDescription = "FILTERL00019"; this.lineNH_KH9.AccessibleName2 = "NH_KH9";
             this.lineNH_KH9.Caption = "Nhóm khách hàng 9";
             this.lineNH_KH9.FieldName = "NH_KH9";
             this.lineNH_KH9.Location = new System.Drawing.Point(5, 347);

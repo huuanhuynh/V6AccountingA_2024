@@ -5103,20 +5103,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         else
                         {
                             GetSttRec(Invoice.Mact);
-                            TxtSo_ct.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
-
-                            //Thay the stt_rec new
-                            foreach (DataRow dataRow in AD.Rows)
-                            {
-                                dataRow["STT_REC"] = _sttRec;
-                                dataRow["STT_RECDH"] = DBNull.Value;
-                                dataRow["STT_REC0DH"] = DBNull.Value;
-                            }
-
-                            InvokeFormEventFixCopyData();
-                            
+                            SetNewValues();
                             V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + TxtSo_ct.Text);
-
                             Mode = V6Mode.Add;
                             detail1.MODE = V6Mode.View;
                             detail3.MODE = V6Mode.View;
@@ -5132,6 +5120,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".Copy " + _sttRec, ex);
+            }
+        }
+
+        private void SetNewValues()
+        {
+            try
+            {
+                TxtSo_ct.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
+                dateNgayCT.SetValue(V6Setting.M_SV_DATE);
+                dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
+                foreach (DataRow dataRow in AD.Rows)
+                {
+                    dataRow["STT_REC"] = _sttRec;
+                    dataRow["STT_RECDH"] = DBNull.Value;
+                    dataRow["STT_REC0DH"] = DBNull.Value;
+                }
+                InvokeFormEventFixCopyData();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".SetNewValues " + _sttRec, ex);
             }
         }
 

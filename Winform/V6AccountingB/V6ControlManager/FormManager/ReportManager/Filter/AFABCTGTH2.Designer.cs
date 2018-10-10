@@ -51,6 +51,7 @@
             // 
             // v6Label9
             // 
+            this.v6Label9.AccessibleDescription = "FILTERL00109";
             this.v6Label9.AutoSize = true;
             this.v6Label9.Location = new System.Drawing.Point(8, 19);
             this.v6Label9.Name = "v6Label9";
@@ -60,6 +61,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "FILTERL00114";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(8, 60);
             this.label2.Name = "label2";
@@ -69,6 +71,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "FILTERL00110";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(8, 40);
             this.label1.Name = "label1";
@@ -78,6 +81,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "FILTERG00001";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -99,6 +103,7 @@
             // 
             // txtMaDvcs
             // 
+            this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
@@ -110,6 +115,7 @@
             // 
             // txtMa_tg_ts
             // 
+            this.txtMa_tg_ts.AccessibleDescription = "FILTERL00196";
             this.txtMa_tg_ts.AccessibleName2 = "MA_TG_TS";
             this.txtMa_tg_ts.Caption = "Mã tăng";
             this.txtMa_tg_ts.FieldName = "MA_TG_TS";
@@ -121,6 +127,7 @@
             // 
             // filterLineVvarTextBox1
             // 
+            this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00116";
             this.filterLineVvarTextBox1.AccessibleName2 = "LOAI_TS";
             this.filterLineVvarTextBox1.Caption = "Loại TS";
             this.filterLineVvarTextBox1.FieldName = "LOAI_TS";
@@ -132,6 +139,7 @@
             // 
             // filterLineVvarTextBox16
             // 
+            this.filterLineVvarTextBox16.AccessibleDescription = "FILTERL00111";
             this.filterLineVvarTextBox16.AccessibleName2 = "NH_TS1";
             this.filterLineVvarTextBox16.Caption = "Nhóm TS 1";
             this.filterLineVvarTextBox16.FieldName = "NH_TS1";
@@ -143,6 +151,7 @@
             // 
             // filterLineVvarTextBox15
             // 
+            this.filterLineVvarTextBox15.AccessibleDescription = "FILTERL00112";
             this.filterLineVvarTextBox15.AccessibleName2 = "NH_TS2";
             this.filterLineVvarTextBox15.Caption = "Nhóm TS 2";
             this.filterLineVvarTextBox15.FieldName = "NH_TS2";
@@ -154,6 +163,7 @@
             // 
             // filterLineVvarTextBox9
             // 
+            this.filterLineVvarTextBox9.AccessibleDescription = "FILTERL00113";
             this.filterLineVvarTextBox9.AccessibleName2 = "NH_TS3";
             this.filterLineVvarTextBox9.Caption = "Nhóm TS 3";
             this.filterLineVvarTextBox9.FieldName = "NH_TS3";
@@ -165,6 +175,7 @@
             // 
             // TxtSO_THE_TS
             // 
+            this.TxtSO_THE_TS.AccessibleDescription = "FILTERL00117";
             this.TxtSO_THE_TS.AccessibleName2 = "SO_THE_TS";
             this.TxtSO_THE_TS.Caption = "Mã TS";
             this.TxtSO_THE_TS.FieldName = "SO_THE_TS";
@@ -176,6 +187,7 @@
             // 
             // radOr
             // 
+            this.radOr.AccessibleDescription = "FILTERR00002";
             this.radOr.AutoSize = true;
             this.radOr.Location = new System.Drawing.Point(142, 17);
             this.radOr.Name = "radOr";
@@ -187,6 +199,7 @@
             // 
             // radAnd
             // 
+            this.radAnd.AccessibleDescription = "FILTERR00001";
             this.radAnd.AutoSize = true;
             this.radAnd.Checked = true;
             this.radAnd.Location = new System.Drawing.Point(6, 17);
@@ -273,6 +286,7 @@
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "FILTERL00108";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(7, 108);
             this.v6Label1.Name = "v6Label1";

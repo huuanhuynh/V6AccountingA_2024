@@ -65,9 +65,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 GridViewHideFields.Add("CON_PT_NT", "CON_PT_NT");
                 GridViewHideFields.Add("T_TIEN_NT2", "T_TIEN_NT2");
                 GridViewHideFields.Add("T_THUE_NT", "T_THUE_NT");
-
-                               
-
             }
             else
             {
@@ -217,13 +214,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             return result;
         }
 
-
         private void chkLike_CheckedChanged(object sender, System.EventArgs e)
         {
             ctDenSo.Enabled = !chkLike.Checked;
         }
-
-
         
     }
 }

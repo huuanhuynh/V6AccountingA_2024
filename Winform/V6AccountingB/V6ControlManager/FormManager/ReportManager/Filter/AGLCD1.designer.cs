@@ -214,13 +214,14 @@
             // 
             // chkKieu_f5
             // 
+            this.chkKieu_f5.AccessibleDescription = "FILTERC00025";
             this.chkKieu_f5.AccessibleName = "Kieu_f5";
             this.chkKieu_f5.AutoSize = true;
             this.chkKieu_f5.Location = new System.Drawing.Point(193, 15);
             this.chkKieu_f5.Name = "chkKieu_f5";
-            this.chkKieu_f5.Size = new System.Drawing.Size(89, 17);
+            this.chkKieu_f5.Size = new System.Drawing.Size(92, 17);
             this.chkKieu_f5.TabIndex = 28;
-            this.chkKieu_f5.Text = "F5- Ngày  CT";
+            this.chkKieu_f5.Text = "F5 - Ngày  CT";
             this.chkKieu_f5.UseVisualStyleBackColor = true;
             this.chkKieu_f5.CheckedChanged += new System.EventHandler(this.chkKieu_f5_CheckedChanged);
             // 

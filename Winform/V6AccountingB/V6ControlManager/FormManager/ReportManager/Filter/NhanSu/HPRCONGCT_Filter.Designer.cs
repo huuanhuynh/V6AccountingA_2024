@@ -156,6 +156,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.AccessibleDescription = "FILTERG00007";
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -171,6 +172,7 @@
             // 
             // radTheoGio
             // 
+            this.radTheoGio.AccessibleDescription = "FILTERR00018";
             this.radTheoGio.AutoSize = true;
             this.radTheoGio.Location = new System.Drawing.Point(160, 19);
             this.radTheoGio.Name = "radTheoGio";
@@ -182,6 +184,7 @@
             // 
             // radTheoNgay
             // 
+            this.radTheoNgay.AccessibleDescription = "FILTERR00017";
             this.radTheoNgay.AutoSize = true;
             this.radTheoNgay.Checked = true;
             this.radTheoNgay.Location = new System.Drawing.Point(6, 19);

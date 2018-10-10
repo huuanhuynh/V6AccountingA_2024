@@ -87,11 +87,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <summary>
         /// FIELD:labelText
         /// </summary>
-        Dictionary<string, string> _fieldDic = new Dictionary<string, string>();
+        public Dictionary<string, string> _fieldDic = new Dictionary<string, string>();
         /// <summary>
         /// Danh sách field luôn update dù dữ liệu rỗng.
         /// </summary>
-        Dictionary<string, string> _allwayUpdate = new Dictionary<string, string>();
+        public Dictionary<string, string> _allwayUpdate = new Dictionary<string, string>();
         private void CreateFormControls()
         {
             try

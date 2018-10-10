@@ -22,8 +22,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 txtMaDvcs.Enabled = false;
             }
-
-            
         }
 
         
@@ -49,18 +47,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 V6Setting.M_KY2 = (int)txtThang1.Value;
             }
             var result = new List<SqlParameter>();
-
             result.Add(new SqlParameter("@nNam", (int)txtNam.Value));
             result.Add(new SqlParameter("@nKy", (int)txtThang1.Value));
             result.Add(new SqlParameter("@cDau_cuoi", (int)txtdau_cuoi.Value));
-
-
             result.Add(new SqlParameter("@ma_bpts", TxtMa_bp.Text.Trim()));
             
-            
-
             var and = radAnd.Checked;
-
             var cKey = "1=1";
             var key0 = GetFilterStringByFields(new List<string>()
             {
@@ -85,12 +77,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 if (txt.Value < 1) txt.Value = 0;
                 if (txt.Value > 12) txt.Value = 12;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + ".txtThang12_TextChanged", ex);
             }
         }
-
-        
     }
 }

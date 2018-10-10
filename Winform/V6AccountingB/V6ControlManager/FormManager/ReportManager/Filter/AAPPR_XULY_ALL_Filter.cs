@@ -58,13 +58,23 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void LoadComboboxSource(string maCt)
         {
-            cboMa_xuly.ValueMember = "MA_XULY1";
-            cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
-            cboMa_xuly.DataSource = V6BusinessHelper.Select("Alxuly", "ma_xuly as MA_XULY1,Ten_xuly,Ten_xuly2",
-                                "Ma_ct=@mact and Status = '1'", "", "Ma_xuly",
-                                new SqlParameter("@mact", maCt)).Data;
-            cboMa_xuly.ValueMember = "MA_XULY1";
-            cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
+            try
+            {
+                cboMa_xuly.ValueMember = "MA_XULY1";
+                cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
+                cboMa_xuly.DataSource = V6BusinessHelper.Select("Alxuly", "ma_xuly as MA_XULY1,Ten_xuly,Ten_xuly2",
+                                    "Ma_ct=@mact and Status = '1'", "", "Ma_xuly",
+                                    new SqlParameter("@mact", maCt)).Data;
+                cboMa_xuly.ValueMember = "MA_XULY1";
+                cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
+
+                string selectValue = (V6BusinessHelper.ExecuteScalar("Select MA_XULY from ALXULY where Ma_ct=@mact and Status = '1' And SL_TD2=1", new SqlParameter("@mact", maCt)) + "").Trim();
+                if (selectValue != "") cboMa_xuly.SelectedValue = selectValue;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadComboboxSource", ex);
+            }
         }
 
         public override string Kieu_post

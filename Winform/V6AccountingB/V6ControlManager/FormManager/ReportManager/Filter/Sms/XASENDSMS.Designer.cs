@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.timerGuiDanhSach = new System.Windows.Forms.Timer(this.components);
             this.timerSend = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -84,6 +84,7 @@
             // 
             // chkIgnore
             // 
+            this.chkIgnore.AccessibleDescription = "MAILSMSC00001";
             this.chkIgnore.AutoSize = true;
             this.chkIgnore.Location = new System.Drawing.Point(800, 9);
             this.chkIgnore.Name = "chkIgnore";
@@ -122,6 +123,7 @@
             // 
             // btnGui1
             // 
+            this.btnGui1.AccessibleDescription = "MAILSMSB00011";
             this.btnGui1.Location = new System.Drawing.Point(148, 19);
             this.btnGui1.Name = "btnGui1";
             this.btnGui1.Size = new System.Drawing.Size(46, 23);
@@ -134,27 +136,27 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Check});
             this.dataGridView1.Location = new System.Drawing.Point(311, 32);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.Size = new System.Drawing.Size(538, 502);
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
@@ -189,6 +191,7 @@
             // 
             // btnChonTheoTen
             // 
+            this.btnChonTheoTen.AccessibleDescription = "MAILSMSB00006";
             this.btnChonTheoTen.Location = new System.Drawing.Point(561, 3);
             this.btnChonTheoTen.Name = "btnChonTheoTen";
             this.btnChonTheoTen.Size = new System.Drawing.Size(83, 23);
@@ -200,6 +203,7 @@
             // 
             // btnBoChonHet
             // 
+            this.btnBoChonHet.AccessibleDescription = "MAILSMSB00005";
             this.btnBoChonHet.Location = new System.Drawing.Point(481, 3);
             this.btnBoChonHet.Name = "btnBoChonHet";
             this.btnBoChonHet.Size = new System.Drawing.Size(74, 23);
@@ -210,6 +214,7 @@
             // 
             // btnDaoLuaChon
             // 
+            this.btnDaoLuaChon.AccessibleDescription = "MAILSMSB00004";
             this.btnDaoLuaChon.Location = new System.Drawing.Point(390, 3);
             this.btnDaoLuaChon.Name = "btnDaoLuaChon";
             this.btnDaoLuaChon.Size = new System.Drawing.Size(85, 23);
@@ -220,6 +225,7 @@
             // 
             // btnChonHet
             // 
+            this.btnChonHet.AccessibleDescription = "MAILSMSB00003";
             this.btnChonHet.Location = new System.Drawing.Point(311, 3);
             this.btnChonHet.Name = "btnChonHet";
             this.btnChonHet.Size = new System.Drawing.Size(73, 23);
@@ -230,6 +236,7 @@
             // 
             // grbFilter
             // 
+            this.grbFilter.AccessibleDescription = "MAILSMSG00006";
             this.grbFilter.Controls.Add(this.dateNgay_ct2);
             this.grbFilter.Controls.Add(this.dateNgay_ct1);
             this.grbFilter.Controls.Add(this.filterLineVvarTextBox8);
@@ -336,6 +343,7 @@
             // 
             // lineMact
             // 
+            this.lineMact.AccessibleDescription = "FILTERL00004";
             this.lineMact.AccessibleName2 = "";
             this.lineMact.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -369,6 +377,7 @@
             // 
             // grbKetNoi
             // 
+            this.grbKetNoi.AccessibleDescription = "MAILSMSG00002";
             this.grbKetNoi.Controls.Add(this.btnTuKetNoi);
             this.grbKetNoi.Controls.Add(this.btnKetNoi);
             this.grbKetNoi.Controls.Add(this.txtConnectPort);
@@ -381,6 +390,7 @@
             // 
             // btnTuKetNoi
             // 
+            this.btnTuKetNoi.AccessibleDescription = "MAILSMSB00008";
             this.btnTuKetNoi.Location = new System.Drawing.Point(87, 19);
             this.btnTuKetNoi.Name = "btnTuKetNoi";
             this.btnTuKetNoi.Size = new System.Drawing.Size(105, 23);
@@ -391,6 +401,7 @@
             // 
             // btnKetNoi
             // 
+            this.btnKetNoi.AccessibleDescription = "MAILSMSB00007";
             this.btnKetNoi.Location = new System.Drawing.Point(6, 19);
             this.btnKetNoi.Name = "btnKetNoi";
             this.btnKetNoi.Size = new System.Drawing.Size(75, 23);
@@ -413,10 +424,12 @@
             this.txtConnectPort.ReadOnly = true;
             this.txtConnectPort.Size = new System.Drawing.Size(188, 20);
             this.txtConnectPort.TabIndex = 2;
+            this.txtConnectPort.TabStop = false;
             this.txtConnectPort.Text = "Chưa kết nối";
             // 
             // btnGuiDanhSach
             // 
+            this.btnGuiDanhSach.AccessibleDescription = "MAILSMSB00010";
             this.btnGuiDanhSach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnGuiDanhSach.Image = global::V6ControlManager.Properties.Resources.sms48;
             this.btnGuiDanhSach.Location = new System.Drawing.Point(7, 482);

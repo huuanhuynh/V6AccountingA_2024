@@ -31,6 +31,9 @@
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox3 = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineNH_KH8 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineNH_KH7 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_vt6 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_vt4 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_vt5 = new V6ReportControls.FilterLineVvarTextBox();
@@ -56,9 +59,6 @@
             this.dateNgay_ct2_ptt = new V6Controls.V6DateTimePick();
             this.txtSo_ngay = new V6Controls.V6NumberTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
-            this.lineNH_KH8 = new V6ReportControls.FilterLineVvarTextBox();
-            this.lineNH_KH7 = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,6 +88,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "FILTERG00001";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -121,6 +122,41 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // lineNH_KH9
+            // 
+            this.lineNH_KH9.AccessibleDescription = "FILTERL00019";
+            this.lineNH_KH9.Caption = "Nhóm khách hàng 9";
+            this.lineNH_KH9.FieldName = "NH_KH9";
+            this.lineNH_KH9.Location = new System.Drawing.Point(6, 347);
+            this.lineNH_KH9.Name = "lineNH_KH9";
+            this.lineNH_KH9.Size = new System.Drawing.Size(282, 22);
+            this.lineNH_KH9.TabIndex = 21;
+            this.lineNH_KH9.Vvar = "NH_KH";
+            // 
+            // lineNH_KH8
+            // 
+            this.lineNH_KH8.AccessibleDescription = "FILTERL00018";
+            this.lineNH_KH8.AccessibleName2 = "NH_KH8";
+            this.lineNH_KH8.Caption = "Nhóm khách hàng 8";
+            this.lineNH_KH8.FieldName = "NH_KH8";
+            this.lineNH_KH8.Location = new System.Drawing.Point(6, 325);
+            this.lineNH_KH8.Name = "lineNH_KH8";
+            this.lineNH_KH8.Size = new System.Drawing.Size(282, 22);
+            this.lineNH_KH8.TabIndex = 20;
+            this.lineNH_KH8.Vvar = "NH_KH";
+            // 
+            // lineNH_KH7
+            // 
+            this.lineNH_KH7.AccessibleDescription = "FILTERL00017";
+            this.lineNH_KH7.AccessibleName2 = "NH_KH7";
+            this.lineNH_KH7.Caption = "Nhóm khách hàng 7";
+            this.lineNH_KH7.FieldName = "NH_KH7";
+            this.lineNH_KH7.Location = new System.Drawing.Point(6, 303);
+            this.lineNH_KH7.Name = "lineNH_KH7";
+            this.lineNH_KH7.Size = new System.Drawing.Size(282, 22);
+            this.lineNH_KH7.TabIndex = 19;
+            this.lineNH_KH7.Vvar = "NH_KH";
             // 
             // Txtnh_vt6
             // 
@@ -280,6 +316,7 @@
             // 
             // radOr
             // 
+            this.radOr.AccessibleDescription = "FILTERR00002";
             this.radOr.AutoSize = true;
             this.radOr.Location = new System.Drawing.Point(142, 16);
             this.radOr.Name = "radOr";
@@ -303,6 +340,7 @@
             // 
             // radAnd
             // 
+            this.radAnd.AccessibleDescription = "FILTERR00001";
             this.radAnd.AutoSize = true;
             this.radAnd.Checked = true;
             this.radAnd.Location = new System.Drawing.Point(6, 16);
@@ -364,6 +402,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "FILTERL00041";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(5, 8);
             this.label2.Name = "label2";
@@ -373,6 +412,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "FILTERL00048";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(5, 34);
             this.label3.Name = "label3";
@@ -420,46 +460,13 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "FILTERL00042";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(5, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Số ngày";
-            // 
-            // lineNH_KH9
-            // 
-            this.lineNH_KH9.AccessibleDescription = "FILTERL00019"; this.lineNH_KH8.AccessibleName2 = "NH_KH9";
-            this.lineNH_KH9.Caption = "Nhóm khách hàng 9";
-            this.lineNH_KH9.FieldName = "NH_KH9";
-            this.lineNH_KH9.Location = new System.Drawing.Point(6, 347);
-            this.lineNH_KH9.Name = "lineNH_KH9";
-            this.lineNH_KH9.Size = new System.Drawing.Size(282, 22);
-            this.lineNH_KH9.TabIndex = 21;
-            this.lineNH_KH9.Vvar = "NH_KH";
-            // 
-            // lineNH_KH8
-            // 
-            this.lineNH_KH8.AccessibleDescription = "FILTERL00018"; this.lineNH_KH8.AccessibleName2 = "NH_KH8";
-            this.lineNH_KH8.Caption = "Nhóm khách hàng 8";
-            this.lineNH_KH8.FieldName = "NH_KH8";
-            this.lineNH_KH8.Location = new System.Drawing.Point(6, 325);
-            this.lineNH_KH8.Name = "lineNH_KH8";
-            this.lineNH_KH8.Size = new System.Drawing.Size(282, 22);
-            this.lineNH_KH8.TabIndex = 20;
-            this.lineNH_KH8.Vvar = "NH_KH";
-            // 
-            // lineNH_KH7
-            // 
-            this.lineNH_KH7.AccessibleDescription = "FILTERL00017";
-            this.lineNH_KH7.AccessibleName2 = "NH_KH7";
-            this.lineNH_KH7.Caption = "Nhóm khách hàng 7";
-            this.lineNH_KH7.FieldName = "NH_KH7";
-            this.lineNH_KH7.Location = new System.Drawing.Point(6, 303);
-            this.lineNH_KH7.Name = "lineNH_KH7";
-            this.lineNH_KH7.Size = new System.Drawing.Size(282, 22);
-            this.lineNH_KH7.TabIndex = 19;
-            this.lineNH_KH7.Vvar = "NH_KH";
             // 
             // AARTTBK3
             // 

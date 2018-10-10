@@ -22,10 +22,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 txtMaDvcs.Enabled = false;
             }
-
-            
         }
-
         
         /// <summary>
         /// Lay cac tham so cho procedure

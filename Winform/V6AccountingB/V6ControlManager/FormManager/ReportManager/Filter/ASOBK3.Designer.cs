@@ -32,6 +32,9 @@
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox3 = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineNH_KH8 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineNH_KH7 = new V6ReportControls.FilterLineVvarTextBox();
             this.TXTMA_BPHT = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_vt6 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_vt4 = new V6ReportControls.FilterLineVvarTextBox();
@@ -65,9 +68,6 @@
             this.chkGiamTru = new V6Controls.V6CheckBox();
             this.chk_tang = new V6Controls.V6CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
-            this.lineNH_KH8 = new V6ReportControls.FilterLineVvarTextBox();
-            this.lineNH_KH7 = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -148,6 +148,41 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // lineNH_KH9
+            // 
+            this.lineNH_KH9.AccessibleDescription = "FILTERL00019";
+            this.lineNH_KH9.Caption = "Nhóm khách hàng 9";
+            this.lineNH_KH9.FieldName = "NH_KH9";
+            this.lineNH_KH9.Location = new System.Drawing.Point(6, 391);
+            this.lineNH_KH9.Name = "lineNH_KH9";
+            this.lineNH_KH9.Size = new System.Drawing.Size(292, 22);
+            this.lineNH_KH9.TabIndex = 16;
+            this.lineNH_KH9.Vvar = "NH_KH";
+            // 
+            // lineNH_KH8
+            // 
+            this.lineNH_KH8.AccessibleDescription = "FILTERL00018";
+            this.lineNH_KH8.AccessibleName2 = "NH_KH8";
+            this.lineNH_KH8.Caption = "Nhóm khách hàng 8";
+            this.lineNH_KH8.FieldName = "NH_KH8";
+            this.lineNH_KH8.Location = new System.Drawing.Point(6, 369);
+            this.lineNH_KH8.Name = "lineNH_KH8";
+            this.lineNH_KH8.Size = new System.Drawing.Size(292, 22);
+            this.lineNH_KH8.TabIndex = 15;
+            this.lineNH_KH8.Vvar = "NH_KH";
+            // 
+            // lineNH_KH7
+            // 
+            this.lineNH_KH7.AccessibleDescription = "FILTERL00017";
+            this.lineNH_KH7.AccessibleName2 = "NH_KH7";
+            this.lineNH_KH7.Caption = "Nhóm khách hàng 7";
+            this.lineNH_KH7.FieldName = "NH_KH7";
+            this.lineNH_KH7.Location = new System.Drawing.Point(6, 347);
+            this.lineNH_KH7.Name = "lineNH_KH7";
+            this.lineNH_KH7.Size = new System.Drawing.Size(292, 22);
+            this.lineNH_KH7.TabIndex = 14;
+            this.lineNH_KH7.Vvar = "NH_KH";
             // 
             // TXTMA_BPHT
             // 
@@ -475,6 +510,7 @@
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "FILTERL00179";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(39, 85);
             this.v6Label1.Name = "v6Label1";
@@ -484,6 +520,7 @@
             // 
             // v6Label9
             // 
+            this.v6Label9.AccessibleDescription = "FILTERL00122";
             this.v6Label9.AutoSize = true;
             this.v6Label9.Location = new System.Drawing.Point(3, 57);
             this.v6Label9.Name = "v6Label9";
@@ -522,6 +559,7 @@
             // 
             // chk_tang
             // 
+            this.chk_tang.AccessibleDescription = "FILTERC00015";
             this.chk_tang.AutoSize = true;
             this.chk_tang.Location = new System.Drawing.Point(220, 34);
             this.chk_tang.Name = "chk_tang";
@@ -532,46 +570,13 @@
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "FILTERL00261";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(39, 102);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(190, 13);
             this.label7.TabIndex = 13;
             this.label7.Text = "5-Mã N viên, 6-Mã BPHT, 7-Mã đơn vị";
-            // 
-            // lineNH_KH9
-            // 
-            this.lineNH_KH9.AccessibleDescription = "FILTERL00019"; this.lineNH_KH8.AccessibleName2 = "NH_KH9";
-            this.lineNH_KH9.Caption = "Nhóm khách hàng 9";
-            this.lineNH_KH9.FieldName = "NH_KH9";
-            this.lineNH_KH9.Location = new System.Drawing.Point(6, 391);
-            this.lineNH_KH9.Name = "lineNH_KH9";
-            this.lineNH_KH9.Size = new System.Drawing.Size(292, 22);
-            this.lineNH_KH9.TabIndex = 16;
-            this.lineNH_KH9.Vvar = "NH_KH";
-            // 
-            // lineNH_KH8
-            // 
-            this.lineNH_KH8.AccessibleDescription = "FILTERL00018"; this.lineNH_KH8.AccessibleName2 = "NH_KH8";
-            this.lineNH_KH8.Caption = "Nhóm khách hàng 8";
-            this.lineNH_KH8.FieldName = "NH_KH8";
-            this.lineNH_KH8.Location = new System.Drawing.Point(6, 369);
-            this.lineNH_KH8.Name = "lineNH_KH8";
-            this.lineNH_KH8.Size = new System.Drawing.Size(292, 22);
-            this.lineNH_KH8.TabIndex = 15;
-            this.lineNH_KH8.Vvar = "NH_KH";
-            // 
-            // lineNH_KH7
-            // 
-            this.lineNH_KH7.AccessibleDescription = "FILTERL00017";
-            this.lineNH_KH7.AccessibleName2 = "NH_KH7";
-            this.lineNH_KH7.Caption = "Nhóm khách hàng 7";
-            this.lineNH_KH7.FieldName = "NH_KH7";
-            this.lineNH_KH7.Location = new System.Drawing.Point(6, 347);
-            this.lineNH_KH7.Name = "lineNH_KH7";
-            this.lineNH_KH7.Size = new System.Drawing.Size(292, 22);
-            this.lineNH_KH7.TabIndex = 14;
-            this.lineNH_KH7.Vvar = "NH_KH";
             // 
             // ASOBK3
             // 

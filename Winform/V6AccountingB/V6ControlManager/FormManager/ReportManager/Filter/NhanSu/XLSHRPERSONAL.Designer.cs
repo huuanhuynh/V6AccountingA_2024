@@ -33,6 +33,9 @@
             this.v6Label3 = new V6Controls.V6Label();
             this.comboBox1 = new V6Controls.V6ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnEditXml = new System.Windows.Forms.Button();
+            this.txtDanhSachCot2 = new V6Controls.V6ColorTextBox();
+            this.v6Label6 = new V6Controls.V6Label();
             this.txtDanhSachCot1 = new V6Controls.V6ColorTextBox();
             this.v6Label4 = new V6Controls.V6Label();
             this.txtDongBatDau = new V6Controls.V6NumberTextBox();
@@ -45,9 +48,6 @@
             this.comboBox2 = new V6Controls.V6ComboBox();
             this.txtFile = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.v6Label6 = new V6Controls.V6Label();
-            this.txtDanhSachCot2 = new V6Controls.V6ColorTextBox();
-            this.btnEditXml = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,6 +127,47 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tùy chọn";
             // 
+            // btnEditXml
+            // 
+            this.btnEditXml.AccessibleName = "";
+            this.btnEditXml.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditXml.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnEditXml.Location = new System.Drawing.Point(51, 196);
+            this.btnEditXml.Name = "btnEditXml";
+            this.btnEditXml.Size = new System.Drawing.Size(40, 25);
+            this.btnEditXml.TabIndex = 75;
+            this.btnEditXml.Text = "...";
+            this.btnEditXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditXml.UseVisualStyleBackColor = true;
+            this.btnEditXml.Click += new System.EventHandler(this.btnEditXml_Click);
+            // 
+            // txtDanhSachCot2
+            // 
+            this.txtDanhSachCot2.AccessibleName = "DSCOT2";
+            this.txtDanhSachCot2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDanhSachCot2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDanhSachCot2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDanhSachCot2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDanhSachCot2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDanhSachCot2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDanhSachCot2.LeaveColor = System.Drawing.Color.White;
+            this.txtDanhSachCot2.Location = new System.Drawing.Point(119, 171);
+            this.txtDanhSachCot2.Multiline = true;
+            this.txtDanhSachCot2.Name = "txtDanhSachCot2";
+            this.txtDanhSachCot2.Size = new System.Drawing.Size(154, 50);
+            this.txtDanhSachCot2.TabIndex = 12;
+            this.txtDanhSachCot2.TextChanged += new System.EventHandler(this.txtDanhSachCot2_TextChanged);
+            // 
+            // v6Label6
+            // 
+            this.v6Label6.AccessibleDescription = "FILTERL00265";
+            this.v6Label6.AutoSize = true;
+            this.v6Label6.Location = new System.Drawing.Point(5, 174);
+            this.v6Label6.Name = "v6Label6";
+            this.v6Label6.Size = new System.Drawing.Size(86, 13);
+            this.v6Label6.TabIndex = 11;
+            this.v6Label6.Text = "Danh sách cột 2";
+            // 
             // txtDanhSachCot1
             // 
             this.txtDanhSachCot1.AccessibleName = "DSCOT1";
@@ -145,6 +186,7 @@
             // 
             // v6Label4
             // 
+            this.v6Label4.AccessibleDescription = "FILTERL00264";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(6, 118);
             this.v6Label4.Name = "v6Label4";
@@ -177,6 +219,7 @@
             // 
             // v6Label5
             // 
+            this.v6Label5.AccessibleDescription = "FILTERL00262";
             this.v6Label5.AutoSize = true;
             this.v6Label5.Location = new System.Drawing.Point(6, 66);
             this.v6Label5.Name = "v6Label5";
@@ -209,6 +252,7 @@
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "FILTERL00263";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(6, 92);
             this.v6Label1.Name = "v6Label1";
@@ -288,46 +332,6 @@
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "File Excel";
-            // 
-            // v6Label6
-            // 
-            this.v6Label6.AutoSize = true;
-            this.v6Label6.Location = new System.Drawing.Point(5, 174);
-            this.v6Label6.Name = "v6Label6";
-            this.v6Label6.Size = new System.Drawing.Size(86, 13);
-            this.v6Label6.TabIndex = 11;
-            this.v6Label6.Text = "Danh sách cột 2";
-            // 
-            // txtDanhSachCot2
-            // 
-            this.txtDanhSachCot2.AccessibleName = "DSCOT2";
-            this.txtDanhSachCot2.BackColor = System.Drawing.SystemColors.Window;
-            this.txtDanhSachCot2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtDanhSachCot2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtDanhSachCot2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtDanhSachCot2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtDanhSachCot2.HoverColor = System.Drawing.Color.Yellow;
-            this.txtDanhSachCot2.LeaveColor = System.Drawing.Color.White;
-            this.txtDanhSachCot2.Location = new System.Drawing.Point(119, 171);
-            this.txtDanhSachCot2.Multiline = true;
-            this.txtDanhSachCot2.Name = "txtDanhSachCot2";
-            this.txtDanhSachCot2.Size = new System.Drawing.Size(154, 50);
-            this.txtDanhSachCot2.TabIndex = 12;
-            this.txtDanhSachCot2.TextChanged += new System.EventHandler(this.txtDanhSachCot2_TextChanged);
-            // 
-            // btnEditXml
-            // 
-            this.btnEditXml.AccessibleName = "";
-            this.btnEditXml.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditXml.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEditXml.Location = new System.Drawing.Point(51, 196);
-            this.btnEditXml.Name = "btnEditXml";
-            this.btnEditXml.Size = new System.Drawing.Size(40, 25);
-            this.btnEditXml.TabIndex = 75;
-            this.btnEditXml.Text = "...";
-            this.btnEditXml.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEditXml.UseVisualStyleBackColor = true;
-            this.btnEditXml.Click += new System.EventHandler(this.btnEditXml_Click);
             // 
             // XLSHRPERSONAL
             // 

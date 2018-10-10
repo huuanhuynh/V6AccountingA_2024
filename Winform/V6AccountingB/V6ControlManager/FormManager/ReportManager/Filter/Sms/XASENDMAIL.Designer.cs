@@ -41,6 +41,7 @@
             this.cboTuDuLieu = new System.Windows.Forms.ComboBox();
             this.radTuGoNoiDung = new System.Windows.Forms.RadioButton();
             this.radTuDuLieu = new System.Windows.Forms.RadioButton();
+            this.lblStatusType = new System.Windows.Forms.Label();
             this.lblNoiDung = new System.Windows.Forms.Label();
             this.txtMessage = new V6Controls.V6ColorTextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -83,7 +84,6 @@
             this.chkGuiSMS = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cboEmailTo = new System.Windows.Forms.ComboBox();
-            this.lblStatusType = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbThemNguoi.SuspendLayout();
@@ -94,6 +94,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "MAILSMSL00003";
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(383, 383);
@@ -140,6 +141,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "MAILSMSG00001";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.cboChenTT);
@@ -169,6 +171,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "MAILSMSL00004";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(324, 21);
             this.label5.Name = "label5";
@@ -187,6 +190,7 @@
             // 
             // radTuGoNoiDung
             // 
+            this.radTuGoNoiDung.AccessibleDescription = "MAILSMSR00001";
             this.radTuGoNoiDung.AutoSize = true;
             this.radTuGoNoiDung.Location = new System.Drawing.Point(6, 19);
             this.radTuGoNoiDung.Name = "radTuGoNoiDung";
@@ -198,6 +202,7 @@
             // 
             // radTuDuLieu
             // 
+            this.radTuDuLieu.AccessibleDescription = "MAILSMSR00002";
             this.radTuDuLieu.AutoSize = true;
             this.radTuDuLieu.Checked = true;
             this.radTuDuLieu.Location = new System.Drawing.Point(78, 19);
@@ -208,8 +213,18 @@
             this.radTuDuLieu.Text = "Từ dữ liệu";
             this.radTuDuLieu.UseVisualStyleBackColor = true;
             // 
+            // lblStatusType
+            // 
+            this.lblStatusType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblStatusType.Location = new System.Drawing.Point(145, 39);
+            this.lblStatusType.Name = "lblStatusType";
+            this.lblStatusType.Size = new System.Drawing.Size(388, 13);
+            this.lblStatusType.TabIndex = 22;
+            this.lblStatusType.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
             // lblNoiDung
             // 
+            this.lblNoiDung.AccessibleDescription = "MAILSMSL00005";
             this.lblNoiDung.AutoSize = true;
             this.lblNoiDung.Location = new System.Drawing.Point(6, 39);
             this.lblNoiDung.Name = "lblNoiDung";
@@ -240,6 +255,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "MAILSMSL00002";
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(15, 383);
@@ -275,6 +291,7 @@
             // 
             // chkThemVao
             // 
+            this.chkThemVao.AccessibleDescription = "MAILSMSC00004";
             this.chkThemVao.AutoSize = true;
             this.chkThemVao.Location = new System.Drawing.Point(203, 11);
             this.chkThemVao.Name = "chkThemVao";
@@ -285,6 +302,7 @@
             // 
             // btnXuatFileText
             // 
+            this.btnXuatFileText.AccessibleDescription = "MAILSMSB00002";
             this.btnXuatFileText.Location = new System.Drawing.Point(451, 7);
             this.btnXuatFileText.Name = "btnXuatFileText";
             this.btnXuatFileText.Size = new System.Drawing.Size(91, 23);
@@ -295,6 +313,7 @@
             // 
             // btnChonTuFile
             // 
+            this.btnChonTuFile.AccessibleDescription = "MAILSMSB00001";
             this.btnChonTuFile.Location = new System.Drawing.Point(106, 7);
             this.btnChonTuFile.Name = "btnChonTuFile";
             this.btnChonTuFile.Size = new System.Drawing.Size(91, 23);
@@ -305,6 +324,7 @@
             // 
             // chkIgnore
             // 
+            this.chkIgnore.AccessibleDescription = "MAILSMSC00001";
             this.chkIgnore.AutoSize = true;
             this.chkIgnore.Location = new System.Drawing.Point(498, 40);
             this.chkIgnore.Name = "chkIgnore";
@@ -331,6 +351,7 @@
             // 
             // btnChonTen
             // 
+            this.btnChonTen.AccessibleDescription = "MAILSMSB00006";
             this.btnChonTen.Location = new System.Drawing.Point(259, 34);
             this.btnChonTen.Name = "btnChonTen";
             this.btnChonTen.Size = new System.Drawing.Size(83, 23);
@@ -341,6 +362,7 @@
             // 
             // btnGuiDanhSach
             // 
+            this.btnGuiDanhSach.AccessibleDescription = "MAILSMSB00010";
             this.btnGuiDanhSach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGuiDanhSach.Location = new System.Drawing.Point(648, 473);
             this.btnGuiDanhSach.Name = "btnGuiDanhSach";
@@ -352,6 +374,7 @@
             // 
             // btnKetNoi
             // 
+            this.btnKetNoi.AccessibleDescription = "MAILSMSB00007";
             this.btnKetNoi.Location = new System.Drawing.Point(6, 19);
             this.btnKetNoi.Name = "btnKetNoi";
             this.btnKetNoi.Size = new System.Drawing.Size(75, 23);
@@ -374,10 +397,12 @@
             this.txtConnectPort.ReadOnly = true;
             this.txtConnectPort.Size = new System.Drawing.Size(188, 20);
             this.txtConnectPort.TabIndex = 3;
+            this.txtConnectPort.TabStop = false;
             this.txtConnectPort.Text = "Chưa kết nối";
             // 
             // btnBoChonHet
             // 
+            this.btnBoChonHet.AccessibleDescription = "MAILSMSB00005";
             this.btnBoChonHet.Location = new System.Drawing.Point(179, 34);
             this.btnBoChonHet.Name = "btnBoChonHet";
             this.btnBoChonHet.Size = new System.Drawing.Size(74, 23);
@@ -388,6 +413,7 @@
             // 
             // btnDaoLuaChon
             // 
+            this.btnDaoLuaChon.AccessibleDescription = "MAILSMSB00004";
             this.btnDaoLuaChon.Location = new System.Drawing.Point(88, 34);
             this.btnDaoLuaChon.Name = "btnDaoLuaChon";
             this.btnDaoLuaChon.Size = new System.Drawing.Size(85, 23);
@@ -398,6 +424,7 @@
             // 
             // btnChonHet
             // 
+            this.btnChonHet.AccessibleDescription = "MAILSMSB00003";
             this.btnChonHet.Location = new System.Drawing.Point(9, 34);
             this.btnChonHet.Name = "btnChonHet";
             this.btnChonHet.Size = new System.Drawing.Size(73, 23);
@@ -408,6 +435,7 @@
             // 
             // grbThemNguoi
             // 
+            this.grbThemNguoi.AccessibleDescription = "MAILSMSG00003";
             this.grbThemNguoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.grbThemNguoi.Controls.Add(this.btnThemNguoiNhan);
             this.grbThemNguoi.Controls.Add(this.lblThongTinKhac);
@@ -429,6 +457,7 @@
             // 
             // btnThemNguoiNhan
             // 
+            this.btnThemNguoiNhan.AccessibleDescription = "MAILSMSB00009";
             this.btnThemNguoiNhan.Location = new System.Drawing.Point(9, 240);
             this.btnThemNguoiNhan.Name = "btnThemNguoiNhan";
             this.btnThemNguoiNhan.Size = new System.Drawing.Size(91, 23);
@@ -439,6 +468,7 @@
             // 
             // lblThongTinKhac
             // 
+            this.lblThongTinKhac.AccessibleDescription = "MAILSMSL00008";
             this.lblThongTinKhac.AutoSize = true;
             this.lblThongTinKhac.Location = new System.Drawing.Point(6, 94);
             this.lblThongTinKhac.Name = "lblThongTinKhac";
@@ -448,6 +478,7 @@
             // 
             // lblTenNguoiNhan
             // 
+            this.lblTenNguoiNhan.AccessibleDescription = "MAILSMSL00007";
             this.lblTenNguoiNhan.AutoSize = true;
             this.lblTenNguoiNhan.Location = new System.Drawing.Point(6, 55);
             this.lblTenNguoiNhan.Name = "lblTenNguoiNhan";
@@ -457,6 +488,7 @@
             // 
             // lblSoDienThoai
             // 
+            this.lblSoDienThoai.AccessibleDescription = "MAILSMSL00006";
             this.lblSoDienThoai.AutoSize = true;
             this.lblSoDienThoai.Location = new System.Drawing.Point(6, 16);
             this.lblSoDienThoai.Name = "lblSoDienThoai";
@@ -579,6 +611,7 @@
             // 
             // grbKetNoi
             // 
+            this.grbKetNoi.AccessibleDescription = "MAILSMSG00002";
             this.grbKetNoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.grbKetNoi.Controls.Add(this.btnTuKetNoi);
             this.grbKetNoi.Controls.Add(this.btnKetNoi);
@@ -592,6 +625,7 @@
             // 
             // btnTuKetNoi
             // 
+            this.btnTuKetNoi.AccessibleDescription = "MAILSMSB00008";
             this.btnTuKetNoi.Location = new System.Drawing.Point(87, 19);
             this.btnTuKetNoi.Name = "btnTuKetNoi";
             this.btnTuKetNoi.Size = new System.Drawing.Size(105, 23);
@@ -602,6 +636,7 @@
             // 
             // btnGui1
             // 
+            this.btnGui1.AccessibleDescription = "MAILSMSB00011";
             this.btnGui1.Location = new System.Drawing.Point(148, 19);
             this.btnGui1.Name = "btnGui1";
             this.btnGui1.Size = new System.Drawing.Size(46, 23);
@@ -612,6 +647,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "MAILSMSL00001";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(9, 12);
             this.label4.Name = "label4";
@@ -621,6 +657,7 @@
             // 
             // btnGuiEmail
             // 
+            this.btnGuiEmail.AccessibleDescription = "MAILSMSB00012";
             this.btnGuiEmail.Location = new System.Drawing.Point(148, 48);
             this.btnGuiEmail.Name = "btnGuiEmail";
             this.btnGuiEmail.Size = new System.Drawing.Size(46, 23);
@@ -646,6 +683,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.AccessibleDescription = "MAILSMSG00005";
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.chkGuiEmail);
             this.groupBox2.Controls.Add(this.chkGuiSMS);
@@ -658,6 +696,7 @@
             // 
             // chkGuiEmail
             // 
+            this.chkGuiEmail.AccessibleDescription = "MAILSMSC00003";
             this.chkGuiEmail.AutoSize = true;
             this.chkGuiEmail.Location = new System.Drawing.Point(11, 40);
             this.chkGuiEmail.Name = "chkGuiEmail";
@@ -669,6 +708,7 @@
             // 
             // chkGuiSMS
             // 
+            this.chkGuiSMS.AccessibleDescription = "MAILSMSC00002";
             this.chkGuiSMS.AutoSize = true;
             this.chkGuiSMS.Location = new System.Drawing.Point(11, 16);
             this.chkGuiSMS.Name = "chkGuiSMS";
@@ -680,6 +720,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.AccessibleDescription = "MAILSMSG00004";
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.txtSmsTo);
             this.groupBox3.Controls.Add(this.txtEmailTo);
@@ -701,15 +742,6 @@
             this.cboEmailTo.Name = "cboEmailTo";
             this.cboEmailTo.Size = new System.Drawing.Size(93, 21);
             this.cboEmailTo.TabIndex = 45;
-            // 
-            // lblStatusType
-            // 
-            this.lblStatusType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblStatusType.Location = new System.Drawing.Point(145, 39);
-            this.lblStatusType.Name = "lblStatusType";
-            this.lblStatusType.Size = new System.Drawing.Size(388, 13);
-            this.lblStatusType.TabIndex = 22;
-            this.lblStatusType.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // XASENDMAIL
             // 

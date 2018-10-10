@@ -27,8 +27,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 txtMaDvcs.Enabled = false;
             }
-
-            
         }
 
         
@@ -94,19 +92,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 if (txt.Value < 1) txt.Value = 0;
                 if (txt.Value > 12) txt.Value = 12;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + ".txtThang12_TextChanged", ex);
             }
         }
-
-        //public override DataTable GenTableForReportType()
-
-        public override void LoadDataFinish(DataSet ds)
-        {
-            _ds = ds;
-        }
-
+        
         public override void FormatGridView(V6ColorDataGridView dataGridView1)
         {
             string showFields = "";
@@ -122,6 +113,5 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
         }
-        
     }
 }

@@ -273,6 +273,7 @@
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "FILTERL00108";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(7, 108);
             this.v6Label1.Name = "v6Label1";

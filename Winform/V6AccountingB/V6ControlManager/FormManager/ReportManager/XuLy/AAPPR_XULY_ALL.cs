@@ -40,6 +40,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void AAPPR_XULY_ALL_Load(object sender, EventArgs e)
         {
             btnNhan.PerformClick();
+            dataGridView1.Focus();
         }
 
         public override void SetStatus2Text()
@@ -125,8 +126,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     currentRow.Cells["GHI_CHU02"].Value = data["GHI_CHU02"];
 
                                     currentRow.Cells["SO_CTX"].Value = data["SO_CTX"];
-                                    //so_ctx_temp = data["SO_CTX"].ToString().Trim();
-                                    //FilterControl.String1 = so_ctx_temp;
+
+                                    foreach (KeyValuePair<string, string> item in hoaDonForm._fieldDic)
+                                    {
+                                        string FIELD = item.Key.ToUpper();
+                                        if (hoaDonForm._allwayUpdate.ContainsKey(FIELD) || (data[FIELD] != null && data[FIELD].ToString().Trim() != ""))
+                                        {
+                                            currentRow.Cells[FIELD].Value = data[FIELD];
+                                        }
+                                    }
                                 };
                                 f.Controls.Add(hoaDonForm);
                                 hoaDonForm.Disposed += delegate
