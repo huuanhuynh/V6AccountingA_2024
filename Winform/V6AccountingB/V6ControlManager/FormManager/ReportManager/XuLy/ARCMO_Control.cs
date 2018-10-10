@@ -33,7 +33,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             base.MakeReport2();
         }
 
-        protected override void FormatGridViewExtern()
+        public override void FormatGridViewExtern()
         {
             try
             {

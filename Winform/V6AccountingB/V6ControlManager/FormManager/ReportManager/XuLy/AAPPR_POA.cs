@@ -203,16 +203,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 var sttRec = row.Cells["Stt_rec"].Value.ToString().Trim();
                 
-                var data = invoice71.LoadAd("");
+                var data = invoice71.LoadAD("");
 
 
                 if (row.Cells["MA_CT"].Value.ToString() == "POA")
                 {
-                    data = invoice71.LoadAd(sttRec);
+                    data = invoice71.LoadAD(sttRec);
                 }
                 if (row.Cells["MA_CT"].Value.ToString() == "POB")
                 {
-                    data = invoice72.LoadAd(sttRec);
+                    data = invoice72.LoadAD(sttRec);
                 }
                 
                 dataGridView2.DataSource = data;

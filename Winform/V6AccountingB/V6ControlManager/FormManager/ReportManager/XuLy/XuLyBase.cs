@@ -646,7 +646,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <summary>
         /// Hàm luôn gọi sau hàm FormatGridViewBase.
         /// </summary>
-        protected virtual void FormatGridViewExtern()
+        public virtual void FormatGridViewExtern()
         {
             //try
             //{

@@ -444,7 +444,7 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
 
-        public DataTable LoadAd(string sttRec)
+        public DataTable LoadAD(string sttRec)
         {
             string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13 FROM [" + AD_TableName
                 + "] c LEFT JOIN Alvt d ON c.Ma_vt= d.Ma_vt  Where c.stt_rec = @rec Order by c.stt_rec0";

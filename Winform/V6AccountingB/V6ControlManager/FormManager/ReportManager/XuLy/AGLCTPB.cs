@@ -31,7 +31,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
            
         }
 
-        protected override void FormatGridViewExtern()
+        public override void FormatGridViewExtern()
         {
             dataGridView1.HideColumns("STT_REC", "UID", "STT_REC01", "STT_REC02", "STT_REC03", "STT_REC04", "STT_REC05", "STT_REC06",
                 "STT_REC07", "STT_REC08", "STT_REC09", "STT_REC10", "STT_REC11", "STT_REC12");
@@ -145,7 +145,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 var sttRec = row.Cells["Stt_rec"].Value.ToString().Trim();
-                var data = LoadAd("ALPB1",sttRec);
+                var data = LoadAD("ALPB1",sttRec);
 
                 dataGridView2.DataSource = data;
             }
@@ -155,7 +155,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        public DataTable LoadAd(string ad, string sttRec)
+        public DataTable LoadAD(string ad, string sttRec)
         {
             string sql = "SELECT c.* FROM [" + ad
                 + "] c  Where c.stt_rec = @rec";

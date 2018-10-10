@@ -363,7 +363,7 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
 
-        public DataTable LoadAd(string sttRec)
+        public DataTable LoadAD(string sttRec)
         {
             string sql = "SELECT d.Ten_tk AS Ten_tk_i,  c.* FROM [" + AD_TableName
                 + "] c LEFT JOIN Altk d ON c.tk_i= d.tk "

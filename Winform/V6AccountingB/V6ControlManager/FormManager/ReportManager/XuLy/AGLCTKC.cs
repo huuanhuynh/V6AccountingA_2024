@@ -208,7 +208,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        protected override void FormatGridViewExtern()
+        public override void FormatGridViewExtern()
         {
             dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dataGridView1.EnableEdit(("SO_CT01,SO_CT02,SO_CT03,SO_CT04,SO_CT05,SO_CT06," +

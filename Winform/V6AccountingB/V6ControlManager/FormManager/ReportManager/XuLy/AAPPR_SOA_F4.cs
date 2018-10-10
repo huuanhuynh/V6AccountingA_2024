@@ -7,7 +7,9 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
+using V6Init;
 using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
@@ -18,6 +20,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string _tableName_AM;
         protected DataRow _am;
         protected string _text;
+        /// <summary>
+        /// FIELD1:Label1,FIELD2....
+        /// </summary>
+        protected string _fields;
         //protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         public event HandleResultData UpdateSuccessEvent;
 
@@ -53,11 +59,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <param name="stt_rec"></param>
         /// <param name="am"></param>
         /// <param name="tableName_AM">Tên bảng dữ liệu sẽ được cập nhập (update).</param>
-        public AAPPR_SOA_F4(string stt_rec, DataRow am, string tableName_AM)
+        /// <param name="fields">FIELD1:Label1:vvar:checkonleave:allwayupdate,FIELD2</param>
+        public AAPPR_SOA_F4(string stt_rec, DataRow am, string tableName_AM, string fields = null)
         {
             _sttRec = stt_rec;
             _am = am;
             _tableName_AM = tableName_AM;
+            _fields = fields;
             InitializeComponent();
             MyInit();
         }
@@ -66,6 +74,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                CreateFormControls();
                 V6ControlFormHelper.SetFormDataRow(this, _am);
             }
             catch (Exception ex)
@@ -74,7 +83,96 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        
+
+        /// <summary>
+        /// FIELD:labelText
+        /// </summary>
+        Dictionary<string, string> _fieldDic = new Dictionary<string, string>();
+        /// <summary>
+        /// Danh sách field luôn update dù dữ liệu rỗng.
+        /// </summary>
+        Dictionary<string, string> _allwayUpdate = new Dictionary<string, string>();
+        private void CreateFormControls()
+        {
+            try
+            {
+                // Phân tích danh sách Field
+                string[] sss = ObjectAndString.SplitString(_fields);
+
+                int top = txtGhiChu02.Top;
+                foreach (string s in sss)
+                {
+                    string[] ss = s.Split(':');
+                    if (ss[0].Trim().Length > 0)
+                    {
+                        string field = ss[0];
+                        string label = ss[0];
+                        string vVar = "";
+                        bool checkOnLeave = false;
+                        if (ss.Length > 1)
+                        {
+                            label = ss[1];
+                        }
+                        if (ss.Length > 2)
+                        {
+                            vVar = ss[2];
+                        }
+                        if (ss.Length > 3)
+                        {
+                            checkOnLeave = "1" == ss[3];
+                        }
+                        if (ss.Length > 4)
+                        {
+                            if ("1" == ss[4]) _allwayUpdate.Add(field, label);
+                        }
+                        _fieldDic.Add(field, label);
+
+                        // Tạo input cùng label
+                        //Kiem tra
+                        Control c = this.GetControlByAccessibleName(field);
+                        if (c != null)
+                        {
+                            V6ControlFormHelper.SetControlReadOnly(c, false);
+                            continue;
+                        }
+
+                        top += 25;
+                        V6VvarTextBox txt = new V6VvarTextBox()
+                        {
+                            AccessibleName = field,
+                            BorderStyle = BorderStyle.FixedSingle,
+                            Name = "txt" + field,
+                            Top = top,
+                            Left = txtGhiChu02.Left,
+                            Width = txtGhiChu02.Width,
+                            VVar = vVar,
+                            F2 = !string.IsNullOrEmpty(vVar),
+                            CheckOnLeave = checkOnLeave,
+                        };
+                        V6Label lbl = new V6Label()
+                        {
+                            Name = "lbl" + field,
+                            Text = label,
+                            Top = top,
+                            Left = lblGhiChu2.Left,
+                        };
+                        this.Controls.Add(txt);
+                        this.Controls.Add(lbl);
+                        this.Height += 25;
+                    }
+                }
+
+                foreach (KeyValuePair<string, string> item in _fieldDic)
+                {
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateFormControls", ex);
+            }
+        }
         
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
@@ -84,26 +182,37 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            
             try
             {
                 var am = new SortedDictionary<string, object>();
                 am["GHI_CHU01"] = txtGhiChu01.Text;
                 am["GHI_CHU02"] = txtGhiChu02.Text;
                 am["SO_CTX"] = txtSoCtXuat.Text;
-
+                var form_data = GetData();
+                foreach (KeyValuePair<string, string> item in _fieldDic)
+                {
+                    string FIELD = item.Key.ToUpper();
+                    if (form_data.ContainsKey(FIELD) && (form_data[FIELD].ToString().Length > 0 || _allwayUpdate.ContainsKey(FIELD)))
+                    {
+                        am[FIELD] = form_data[FIELD];
+                    }
+                }
                 SortedDictionary<string, object> keys
                     = new SortedDictionary<string, object> {{"Stt_rec", _sttRec}};
 
                 var result = V6BusinessHelper.UpdateSimple(_tableName_AM, am, keys);
                 if (result == 1)
                 {
-                    Dispose();
                     OnUpdateSuccessEvent(am);
+                    Dispose();
+                }
+                else if (result == -2)
+                {
+                    this.ShowWarningMessage(string.Format("{0} {1}.", V6Text.UpdateFail, V6Text.CheckInfor));
                 }
                 else
                 {
-                    this.ShowWarningMessage("Update: " + result);
+                    this.ShowWarningMessage(string.Format("{0} result({1}).", V6Text.UpdateFail, result));
                 }
             }
             catch (Exception ex)

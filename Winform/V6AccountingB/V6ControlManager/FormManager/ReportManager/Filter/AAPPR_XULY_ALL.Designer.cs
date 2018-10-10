@@ -48,6 +48,7 @@
             this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkView_all = new V6Controls.V6CheckBox();
             this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
             this.lineNH_KH8 = new V6ReportControls.FilterLineVvarTextBox();
             this.lineNH_KH7 = new V6ReportControls.FilterLineVvarTextBox();
@@ -74,7 +75,7 @@
             // 
             this.v6Label5.AccessibleDescription = "FILTERL00025";
             this.v6Label5.AutoSize = true;
-            this.v6Label5.Location = new System.Drawing.Point(208, 86);
+            this.v6Label5.Location = new System.Drawing.Point(208, 83);
             this.v6Label5.Name = "v6Label5";
             this.v6Label5.Size = new System.Drawing.Size(78, 13);
             this.v6Label5.TabIndex = 20;
@@ -85,7 +86,7 @@
             this.chkHoaDonDaIn.AccessibleDescription = "FILTERC00001";
             this.chkHoaDonDaIn.AccessibleName = "CHK_DA_IN";
             this.chkHoaDonDaIn.AutoSize = true;
-            this.chkHoaDonDaIn.Location = new System.Drawing.Point(116, 101);
+            this.chkHoaDonDaIn.Location = new System.Drawing.Point(135, 97);
             this.chkHoaDonDaIn.Name = "chkHoaDonDaIn";
             this.chkHoaDonDaIn.Size = new System.Drawing.Size(96, 17);
             this.chkHoaDonDaIn.TabIndex = 4;
@@ -103,7 +104,7 @@
             this.ctDenSo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.ctDenSo.HoverColor = System.Drawing.Color.Yellow;
             this.ctDenSo.LeaveColor = System.Drawing.Color.White;
-            this.ctDenSo.Location = new System.Drawing.Point(115, 140);
+            this.ctDenSo.Location = new System.Drawing.Point(115, 138);
             this.ctDenSo.Name = "ctDenSo";
             this.ctDenSo.Size = new System.Drawing.Size(100, 20);
             this.ctDenSo.TabIndex = 6;
@@ -144,7 +145,7 @@
             this.ctTuSo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.ctTuSo.HoverColor = System.Drawing.Color.Yellow;
             this.ctTuSo.LeaveColor = System.Drawing.Color.White;
-            this.ctTuSo.Location = new System.Drawing.Point(115, 118);
+            this.ctTuSo.Location = new System.Drawing.Point(115, 116);
             this.ctTuSo.Name = "ctTuSo";
             this.ctTuSo.Size = new System.Drawing.Size(100, 20);
             this.ctTuSo.TabIndex = 5;
@@ -163,7 +164,7 @@
             // 
             this.v6Label3.AccessibleDescription = "FILTERL00024";
             this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(132, 86);
+            this.v6Label3.Location = new System.Drawing.Point(132, 83);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(75, 13);
             this.v6Label3.TabIndex = 9;
@@ -218,7 +219,7 @@
             "0 - Chưa cập nhập",
             "1 - Cập nhập tất cả",
             "2 - Chỉ cập nhập vào kho"});
-            this.cboMa_xuly.Location = new System.Drawing.Point(112, 163);
+            this.cboMa_xuly.Location = new System.Drawing.Point(112, 161);
             this.cboMa_xuly.Name = "cboMa_xuly";
             this.cboMa_xuly.Size = new System.Drawing.Size(170, 21);
             this.cboMa_xuly.TabIndex = 7;
@@ -228,7 +229,7 @@
             this.v6Label1.AccessibleDescription = "FILTERL00010";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.v6Label1.Location = new System.Drawing.Point(9, 165);
+            this.v6Label1.Location = new System.Drawing.Point(9, 163);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(89, 13);
             this.v6Label1.TabIndex = 10;
@@ -317,6 +318,7 @@
             this.groupBox1.AccessibleDescription = "FILTERG00001";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.chkView_all);
             this.groupBox1.Controls.Add(this.lineNH_KH9);
             this.groupBox1.Controls.Add(this.lineNH_KH8);
             this.groupBox1.Controls.Add(this.lineNH_KH7);
@@ -336,12 +338,25 @@
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox3);
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
-            this.groupBox1.Location = new System.Drawing.Point(3, 191);
+            this.groupBox1.Location = new System.Drawing.Point(3, 182);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 414);
+            this.groupBox1.Size = new System.Drawing.Size(301, 428);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // chkView_all
+            // 
+            this.chkView_all.AccessibleDescription = "";
+            this.chkView_all.AccessibleName = "";
+            this.chkView_all.AutoSize = true;
+            this.chkView_all.Location = new System.Drawing.Point(175, 409);
+            this.chkView_all.Name = "chkView_all";
+            this.chkView_all.Size = new System.Drawing.Size(57, 17);
+            this.chkView_all.TabIndex = 21;
+            this.chkView_all.Text = "Tất cả";
+            this.chkView_all.UseVisualStyleBackColor = true;
+            this.chkView_all.CheckedChanged += new System.EventHandler(this.chkView_all_CheckedChanged);
             // 
             // lineNH_KH9
             // 
@@ -645,5 +660,6 @@
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH9;
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH8;
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH7;
+        private V6Controls.V6CheckBox chkView_all;
     }
 }

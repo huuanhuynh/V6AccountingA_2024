@@ -2235,7 +2235,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             if (ADTables.ContainsKey(sttRec)) AD = ADTables[sttRec].Copy();
             else
             {
-                ADTables.Add(sttRec, Invoice.LoadAd(sttRec));
+                ADTables.Add(sttRec, Invoice.LoadAD(sttRec));
                 AD = ADTables[sttRec].Copy();
             }
         }

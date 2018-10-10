@@ -953,12 +953,21 @@ namespace V6AccountingBusiness
         /// <param name="tableName">Tên bảng dữ liệu cần cập nhập.</param>
         /// <param name="dataDictionary">Lưu ý key UPPER</param>
         /// <param name="keys">Lưu ý key UPPER</param>
-        /// <returns></returns>
+        /// <returns>-2:No columns</returns>
         public static int UpdateSimple(string tableName, SortedDictionary<string, object> dataDictionary,
             SortedDictionary<string, object> keys)
         {
             V6TableStruct tableStruct = GetTableStruct(tableName);
-            var sql = SqlGenerator.GenUpdateSqlSimple(tableName, dataDictionary, keys, tableStruct);
+            string sql = "";
+            try
+            {
+                sql = SqlGenerator.GenUpdateSqlSimple(tableName, dataDictionary, keys, tableStruct);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == "No columns!") return -2;
+                throw;
+            }
             var result = SqlConnect.ExecuteNonQuery(CommandType.Text, sql);
             return result;
         }

@@ -46,7 +46,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// </summary>
         /// <param name="stt_rec"></param>
         /// <param name="am"></param>
-        /// <param name="fields">FIELD1:Label1,FIELD2....</param>
+        /// <param name="fields">FIELD1:Label1:vvar:checkonleave:allwayupdate,FIELD2....</param>
         public AAPPR_SOA1_F4(string stt_rec, DataRow am, string fields)
         {
             _sttRec = stt_rec;
@@ -73,6 +73,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// FIELD:labelText
         /// </summary>
         Dictionary<string, string> _fieldDic = new Dictionary<string, string>();
+        /// <summary>
+        /// Danh sách field luôn update dù dữ liệu rỗng.
+        /// </summary>
+        Dictionary<string, string> _allwayUpdate = new Dictionary<string, string>();
         private void CreateFormControls()
         {
             try
@@ -101,6 +105,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         if (ss.Length > 3)
                         {
                             checkOnLeave = "1" == ss[3];
+                        }
+                        if (ss.Length > 4)
+                        {
+                            if ("1" == ss[4]) _allwayUpdate.Add(field, label);
                         }
                         _fieldDic.Add(field, label);
 
@@ -169,7 +177,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 foreach (KeyValuePair<string, string> item in _fieldDic)
                 {
                     string FIELD = item.Key.ToUpper();
-                    if (form_data.ContainsKey(FIELD) && form_data[FIELD].ToString().Length > 0)
+                    if (form_data.ContainsKey(FIELD) && (form_data[FIELD].ToString().Length > 0 || _allwayUpdate.ContainsKey(FIELD)))
                     {
                         am[FIELD] = form_data[FIELD];
                     }

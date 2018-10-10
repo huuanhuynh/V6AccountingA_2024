@@ -171,6 +171,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00195";
             this.label1.AccessibleName = "";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(510, 79);
@@ -182,6 +183,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00194";
             this.label4.AccessibleName = "";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(274, 79);
@@ -193,6 +195,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00166";
             this.label3.AccessibleName = "";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 79);
@@ -222,6 +225,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label41
             // 
+            this.label41.AccessibleDescription = "ADDEDITL00005";
             this.label41.AccessibleName = "";
             this.label41.AutoSize = true;
             this.label41.Location = new System.Drawing.Point(12, 50);
@@ -253,7 +257,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // txtTenDvcs
             // 
             this.txtTenDvcs.AccessibleName = "TEN_DVCS";
-            this.txtTenDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtTenDvcs.BackColor = System.Drawing.SystemColors.Control;
             this.txtTenDvcs.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTenDvcs.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTenDvcs.Location = new System.Drawing.Point(269, 50);
@@ -268,7 +272,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // txtTenKh
             // 
             this.txtTenKh.AccessibleName = "TEN_KH";
-            this.txtTenKh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtTenKh.BackColor = System.Drawing.SystemColors.Control;
             this.txtTenKh.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTenKh.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTenKh.Location = new System.Drawing.Point(269, 21);
@@ -282,7 +286,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label2
             // 
-            this.label2.AccessibleDescription = "ma_kh";
+            this.label2.AccessibleDescription = "ADDEDITL00002";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 18);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -293,6 +297,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // v6TabControl1
             // 
+            this.v6TabControl1.AccessibleDescription = "ADDEDITT00003";
             this.v6TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -310,7 +315,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // tabPage1
             // 
-            this.tabPage1.AccessibleDescription = "XULYT00001";
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.v6Label3);
             this.tabPage1.Controls.Add(this.v6Label2);
@@ -336,7 +341,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // v6Label3
             // 
-            this.v6Label3.AccessibleDescription = "XULYL00041";
+            this.v6Label3.AccessibleDescription = "ADDEDITL00193";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(14, 185);
             this.v6Label3.Name = "v6Label3";
@@ -346,7 +351,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // v6Label2
             // 
-            this.v6Label2.AccessibleDescription = "XULYL00041";
+            this.v6Label2.AccessibleDescription = "ADDEDITL00192";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(14, 158);
             this.v6Label2.Name = "v6Label2";
@@ -469,6 +474,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // v6Label7
             // 
+            this.v6Label7.AccessibleDescription = "ADDEDITL00191";
             this.v6Label7.AutoSize = true;
             this.v6Label7.Location = new System.Drawing.Point(14, 127);
             this.v6Label7.Name = "v6Label7";
@@ -478,6 +484,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // v6Label4
             // 
+            this.v6Label4.AccessibleDescription = "ADDEDITL00190";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(14, 98);
             this.v6Label4.Name = "v6Label4";
@@ -487,6 +494,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "ADDEDITL00094";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(14, 69);
             this.v6Label1.Name = "v6Label1";
@@ -546,6 +554,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00189";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(14, 40);
             this.label5.Name = "label5";
@@ -555,6 +564,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // v6Label9
             // 
+            this.v6Label9.AccessibleDescription = "ADDEDITL00188";
             this.v6Label9.AutoSize = true;
             this.v6Label9.Location = new System.Drawing.Point(14, 11);
             this.v6Label9.Name = "v6Label9";
@@ -1021,6 +1031,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // tabPage3
             // 
             this.tabPage3.AccessibleDescription = "XULYT00003";
+            this.tabPage3.AccessibleName = "ADDEDITT00004";
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);

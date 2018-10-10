@@ -1421,7 +1421,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             if (ADTables.ContainsKey(sttRec)) AD = ADTables[sttRec].Copy();
             else
             {
-                ADTables.Add(sttRec, Invoice.LoadAd(sttRec));
+                ADTables.Add(sttRec, Invoice.LoadAD(sttRec));
                 AD = ADTables[sttRec].Copy();
             }
 

@@ -15,7 +15,7 @@ using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AAPPR_XULY_ALL: FilterBase
+    public partial class AAPPR_XULY_ALL : FilterBase
     {
         public AAPPR_XULY_ALL()
         {
@@ -28,7 +28,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             dateNgay_ct1.SetValue(V6Setting.M_SV_DATE);
             dateNgay_ct2.SetValue(V6Setting.M_SV_DATE);
 
-            TxtXtag.Text = "2";
+            //TxtXtag.Text = "2";
             ctDenSo.Enabled = false;
             //chkHoaDonDaIn.Checked = true;
 
@@ -141,15 +141,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 cKey = cKey + " and [Sl_in] > 0";
             }
-            else
-            {
-                cKey = cKey + " and [Sl_in] = 0";
-            }
+            //else
+            //{
+            //    cKey = cKey + " and [Sl_in] = 0";
+            //}
 
-            if (lineMa_xuly.IsSelected==false)
-            {
-                cKey = cKey + " and ISNULL(ma_xuly,'')=''";
-            }
+            //if (lineMa_xuly.IsSelected==false)
+            //{
+            //    cKey = cKey + " and ISNULL(ma_xuly,'')=''";
+            //}
 
 
             // Tu so den so
@@ -216,6 +216,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             base.LoadDataFinish(ds);
             GenButtons(ds.Tables[1]);
+            chkView_all.Checked = true;
         }
 
         private XuLyBase _xulyBase;
@@ -263,11 +264,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     //b.TextAlign = ContentAlignment.MiddleLeft;    
                     
                     int y = y_start;
-                    y_start += 25;
+                    y_start += 38;
                     b.Location = new Point(x_start, y);
                     b.Width = groupBox1.Width;
-                    //b.Height = 30;
+                    b.Height = 38;
                     Controls.Add(b);
+                    Height = b.Bottom + 5;
                     b.Tag = row;
                     b.Click += b_Click;
                 }
@@ -291,11 +293,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             try
             {
+                chkView_all.Checked = false;
                 Button b = (Button) sender;
                 DataRow row = (DataRow) b.Tag;
 
                 _gridView1.Filter("ma_xuly", "=", row["ma_xuly"], "value2", false, false);
-
+                _xulyBase.FormatGridViewExtern();
                 _xulyBase.UpdateGridView2(_gridView1.CurrentRow);
             }
             catch (Exception ex)
@@ -307,6 +310,24 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         private void txtMa_ct_V6LostFocus(object sender)
         {
             if(IsReady) LoadComboboxSource(txtMa_ct.Text);
+        }
+
+        private void chkView_all_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (chkView_all.Checked)
+                {
+                    _gridView1.Filter("ma_ct", "=",txtMa_ct.Text.Trim(), "value2", false, false);
+                    _xulyBase.FormatGridViewExtern();
+                    _xulyBase.UpdateGridView2(_gridView1.CurrentRow);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".chkView_all", ex);
+            }
         }
     }
 }

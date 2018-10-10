@@ -446,16 +446,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 var sttRec = row.Cells["Stt_rec"].Value.ToString().Trim();
                 
-                var data = invoice74.LoadAd("");
+                var data = invoice74.LoadAD("");
 
 
                 if (row.Cells["MA_CT"].Value.ToString() == "IND")
                 {
-                    data = invoice74.LoadAd(sttRec);
+                    data = invoice74.LoadAD(sttRec);
                 }
                 if (row.Cells["MA_CT"].Value.ToString() == "IXB")
                 {
-                    data = invoice85.LoadAd(sttRec);
+                    data = invoice85.LoadAD(sttRec);
                 }
                 
                 dataGridView2.DataSource = data;

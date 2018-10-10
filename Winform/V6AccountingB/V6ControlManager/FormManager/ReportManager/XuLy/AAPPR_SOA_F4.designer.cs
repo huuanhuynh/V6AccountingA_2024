@@ -58,7 +58,7 @@
             this.v6Label10 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
             this.txtGhiChu01 = new V6Controls.V6ColorTextBox();
-            this.v6Label6 = new V6Controls.V6Label();
+            this.lblGhiChu2 = new V6Controls.V6Label();
             this.txtGhiChu02 = new V6Controls.V6ColorTextBox();
             this.txtSoCtXuat = new V6Controls.V6ColorTextBox();
             this.v6Label7 = new V6Controls.V6Label();
@@ -140,6 +140,7 @@
             this.txtMa_sonb.ReadOnly = true;
             this.txtMa_sonb.Size = new System.Drawing.Size(100, 20);
             this.txtMa_sonb.TabIndex = 9;
+            this.txtMa_sonb.TabStop = false;
             this.txtMa_sonb.VVar = "ma_sonb";
             // 
             // v6Label2
@@ -168,6 +169,7 @@
             this.TxtSo_ct.ReadOnly = true;
             this.TxtSo_ct.Size = new System.Drawing.Size(100, 20);
             this.TxtSo_ct.TabIndex = 10;
+            this.TxtSo_ct.TabStop = false;
             // 
             // dateNgayLCT
             // 
@@ -247,6 +249,7 @@
             this.txtMadvcs.ReadOnly = true;
             this.txtMadvcs.Size = new System.Drawing.Size(100, 20);
             this.txtMadvcs.TabIndex = 25;
+            this.txtMadvcs.TabStop = false;
             this.txtMadvcs.VVar = "ma_dvcs";
             // 
             // v6ColorTextBox3
@@ -267,6 +270,7 @@
             this.v6ColorTextBox3.ReadOnly = true;
             this.v6ColorTextBox3.Size = new System.Drawing.Size(361, 20);
             this.v6ColorTextBox3.TabIndex = 32;
+            this.v6ColorTextBox3.TabStop = false;
             this.v6ColorTextBox3.Tag = "disable";
             // 
             // v6Label18
@@ -296,6 +300,7 @@
             this.txtMaKh.ReadOnly = true;
             this.txtMaKh.Size = new System.Drawing.Size(100, 20);
             this.txtMaKh.TabIndex = 26;
+            this.txtMaKh.TabStop = false;
             this.txtMaKh.VVar = "ma_kh";
             // 
             // v6ColorTextBox9
@@ -316,6 +321,7 @@
             this.v6ColorTextBox9.ReadOnly = true;
             this.v6ColorTextBox9.Size = new System.Drawing.Size(467, 20);
             this.v6ColorTextBox9.TabIndex = 30;
+            this.v6ColorTextBox9.TabStop = false;
             // 
             // v6Label12
             // 
@@ -344,6 +350,7 @@
             this.txtMaSoThue.ReadOnly = true;
             this.txtMaSoThue.Size = new System.Drawing.Size(100, 20);
             this.txtMaSoThue.TabIndex = 29;
+            this.txtMaSoThue.TabStop = false;
             this.txtMaSoThue.Tag = "";
             // 
             // txtTenKh
@@ -364,6 +371,7 @@
             this.txtTenKh.ReadOnly = true;
             this.txtTenKh.Size = new System.Drawing.Size(361, 20);
             this.txtTenKh.TabIndex = 27;
+            this.txtTenKh.TabStop = false;
             this.txtTenKh.Tag = "";
             // 
             // txtDiaChi
@@ -384,6 +392,7 @@
             this.txtDiaChi.ReadOnly = true;
             this.txtDiaChi.Size = new System.Drawing.Size(361, 20);
             this.txtDiaChi.TabIndex = 28;
+            this.txtDiaChi.TabStop = false;
             // 
             // v6Label11
             // 
@@ -433,15 +442,15 @@
             this.txtGhiChu01.Size = new System.Drawing.Size(467, 20);
             this.txtGhiChu01.TabIndex = 1;
             // 
-            // v6Label6
+            // lblGhiChu2
             // 
-            this.v6Label6.AccessibleDescription = "XULYL00045";
-            this.v6Label6.AutoSize = true;
-            this.v6Label6.Location = new System.Drawing.Point(3, 164);
-            this.v6Label6.Name = "v6Label6";
-            this.v6Label6.Size = new System.Drawing.Size(53, 13);
-            this.v6Label6.TabIndex = 24;
-            this.v6Label6.Text = "Ghi chú 2";
+            this.lblGhiChu2.AccessibleDescription = "XULYL00045";
+            this.lblGhiChu2.AutoSize = true;
+            this.lblGhiChu2.Location = new System.Drawing.Point(3, 164);
+            this.lblGhiChu2.Name = "lblGhiChu2";
+            this.lblGhiChu2.Size = new System.Drawing.Size(53, 13);
+            this.lblGhiChu2.TabIndex = 24;
+            this.lblGhiChu2.Text = "Ghi chú 2";
             // 
             // txtGhiChu02
             // 
@@ -496,7 +505,7 @@
             this.Controls.Add(this.v6Label18);
             this.Controls.Add(this.txtMaKh);
             this.Controls.Add(this.txtGhiChu02);
-            this.Controls.Add(this.v6Label6);
+            this.Controls.Add(this.lblGhiChu2);
             this.Controls.Add(this.txtGhiChu01);
             this.Controls.Add(this.v6Label4);
             this.Controls.Add(this.v6ColorTextBox9);
@@ -520,7 +529,6 @@
             this.Controls.Add(this.btnNhan);
             this.Name = "AAPPR_SOA_F4";
             this.Size = new System.Drawing.Size(559, 240);
-            
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -558,7 +566,7 @@
         private V6Controls.V6Label v6Label11;
         private V6Controls.V6Label v6Label10;
         private V6Controls.V6Label v6Label4;
-        private V6Controls.V6Label v6Label6;
+        private V6Controls.V6Label lblGhiChu2;
         private V6Controls.V6Label v6Label7;
         public V6Controls.V6ColorTextBox txtSoCtXuat;
         public V6Controls.V6ColorTextBox txtGhiChu01;

@@ -471,6 +471,7 @@ namespace V6SqlConnect
         {
             var sql = "Update [" + tableName + "] Set"; // field = value[, field2 = value2[...]]
             string where;
+            int temp_count = 0;
             if (structTable != null)
             {
                 foreach (V6ColumnStruct column in structTable.Values)
@@ -482,6 +483,7 @@ namespace V6SqlConnect
                         {
                             value = GenSqlStringValue(value, column.sql_data_type_string, column.ColumnDefault, column.AllowNull, column.MaxLength);
                             sql += "\n[" + FIELD + "] = " + value + ",";
+                            temp_count++;
                         }
                     }
                 }
@@ -495,12 +497,13 @@ namespace V6SqlConnect
                     if (FIELD != "UID")
                     {
                         string value = GenSqlStringValue(item.Value, false);
-                        
                         sql += "\n[" + item.Key + "] = " + value + ",";
+                        temp_count++;
                     }
                 }
                 where = GenWhere2(keys);
             }
+            if(temp_count == 0) throw new Exception("No columns!");
             //if (structTable.ContainsKey("USER_ID2")) sql += "\n[USER_ID2] = " + V6Login.UserId + ",";
 
             sql = sql.TrimEnd(',');

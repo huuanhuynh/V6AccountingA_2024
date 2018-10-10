@@ -142,7 +142,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label10
             // 
-            this.label10.AccessibleDescription = "XULYL00134";
+            this.label10.AccessibleDescription = "ADDEDITL00198";
             this.label10.AccessibleName = "";
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(16, 74);
@@ -177,7 +177,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label9
             // 
-            this.label9.AccessibleDescription = "XULYL00133";
+            this.label9.AccessibleDescription = "ADDEDITL00201";
             this.label9.AccessibleName = "";
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(17, 153);
@@ -211,6 +211,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "ADDEDITL00200";
             this.label7.AccessibleName = "";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(17, 128);
@@ -246,7 +247,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label6
             // 
-            this.label6.AccessibleDescription = "XULYL00132";
+            this.label6.AccessibleDescription = "ADDEDITL00199";
             this.label6.AccessibleName = "";
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(17, 101);
@@ -283,6 +284,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00189";
             this.label5.AccessibleName = "";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(754, 44);
@@ -308,6 +310,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.Txtthang.ReadOnly = true;
             this.Txtthang.Size = new System.Drawing.Size(72, 23);
             this.Txtthang.TabIndex = 23;
+            this.Txtthang.TabStop = false;
             this.Txtthang.Text = "0";
             this.Txtthang.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Txtthang.Value = new decimal(new int[] {
@@ -318,6 +321,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label8
             // 
+            this.label8.AccessibleDescription = "ADDEDITL00188";
             this.label8.AccessibleName = "";
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(754, 18);
@@ -343,6 +347,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txttien_dd_nt.ReadOnly = true;
             this.txttien_dd_nt.Size = new System.Drawing.Size(155, 23);
             this.txttien_dd_nt.TabIndex = 6;
+            this.txttien_dd_nt.TabStop = false;
             this.txttien_dd_nt.Text = "0";
             this.txttien_dd_nt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txttien_dd_nt.Value = new decimal(new int[] {
@@ -368,6 +373,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtNam.ReadOnly = true;
             this.TxtNam.Size = new System.Drawing.Size(72, 23);
             this.TxtNam.TabIndex = 21;
+            this.TxtNam.TabStop = false;
             this.TxtNam.Text = "0";
             this.TxtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TxtNam.Value = new decimal(new int[] {
@@ -378,7 +384,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label4
             // 
-            this.label4.AccessibleDescription = "XULYL00136";
+            this.label4.AccessibleDescription = "ADDEDITL00203";
             this.label4.AccessibleName = "";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(578, 131);
@@ -404,6 +410,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txttien_dd.ReadOnly = true;
             this.txttien_dd.Size = new System.Drawing.Size(155, 23);
             this.txttien_dd.TabIndex = 5;
+            this.txttien_dd.TabStop = false;
             this.txttien_dd.Text = "0";
             this.txttien_dd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txttien_dd.Value = new decimal(new int[] {
@@ -414,7 +421,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label2
             // 
-            this.label2.AccessibleDescription = "XULYL00135";
+            this.label2.AccessibleDescription = "ADDEDITL00202";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(578, 105);
@@ -442,7 +449,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = "FILTERL00077";
+            this.label1.AccessibleDescription = "ADDEDITL00197";
             this.label1.AccessibleName = "";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(16, 47);
@@ -471,7 +478,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // label3
             // 
-            this.label3.AccessibleDescription = "FILTERL00078";
+            this.label3.AccessibleDescription = "ADDEDITL00196";
             this.label3.AccessibleName = "";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(16, 18);
@@ -500,7 +507,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // tabPage1
             // 
-            this.tabPage1.AccessibleDescription = "XULYT00001";
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
@@ -512,7 +519,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // tabPage2
             // 
-            this.tabPage2.AccessibleDescription = "XULYT00002";
+            this.tabPage2.AccessibleDescription = "ADDEDITT00003";
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.v6ColorTextBox16);
             this.tabPage2.Controls.Add(this.v6ColorTextBox15);
@@ -647,6 +654,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6NumberTextBox3.ReadOnly = true;
             this.v6NumberTextBox3.Size = new System.Drawing.Size(118, 23);
             this.v6NumberTextBox3.TabIndex = 107;
+            this.v6NumberTextBox3.TabStop = false;
             this.v6NumberTextBox3.Text = "0,000";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox3.Value = new decimal(new int[] {
@@ -674,6 +682,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6NumberTextBox2.ReadOnly = true;
             this.v6NumberTextBox2.Size = new System.Drawing.Size(118, 23);
             this.v6NumberTextBox2.TabIndex = 105;
+            this.v6NumberTextBox2.TabStop = false;
             this.v6NumberTextBox2.Text = "0,000";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox2.Value = new decimal(new int[] {
@@ -710,7 +719,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // tabPage3
             // 
-            this.tabPage3.AccessibleDescription = "XULYT00003";
+            this.tabPage3.AccessibleDescription = "ADDEDITT00004";
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);

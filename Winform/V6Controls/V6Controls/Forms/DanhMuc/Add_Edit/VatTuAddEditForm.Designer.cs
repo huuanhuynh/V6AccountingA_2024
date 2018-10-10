@@ -284,6 +284,8 @@
             this.v6TabControl1.Controls.Add(this.tabPage5);
             this.v6TabControl1.Controls.Add(this.tabPage6);
             this.v6TabControl1.Controls.Add(this.tabPage7);
+            this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(1, 155);
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.v6TabControl1.Name = "v6TabControl1";
@@ -333,11 +335,11 @@
             this.tabPage1.Controls.Add(this.v6ColorTextBox5);
             this.tabPage1.Controls.Add(this.v6ColorTextBox13);
             this.tabPage1.Controls.Add(this.v6ColorTextBox10);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(735, 355);
+            this.tabPage1.Size = new System.Drawing.Size(735, 352);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
@@ -828,6 +830,7 @@
             this.v6ColorTextBox13.ReadOnly = true;
             this.v6ColorTextBox13.Size = new System.Drawing.Size(157, 23);
             this.v6ColorTextBox13.TabIndex = 16;
+            this.v6ColorTextBox13.TabStop = false;
             this.v6ColorTextBox13.Tag = "readonly";
             // 
             // v6ColorTextBox10
@@ -878,11 +881,11 @@
             this.tabPage2.Controls.Add(this.label20);
             this.tabPage2.Controls.Add(this.label19);
             this.tabPage2.Controls.Add(this.label27);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(735, 355);
+            this.tabPage2.Size = new System.Drawing.Size(735, 352);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tài khoản";
             // 
@@ -1291,11 +1294,11 @@
             this.tabPage3.Controls.Add(this.label56);
             this.tabPage3.Controls.Add(this.label55);
             this.tabPage3.Controls.Add(this.label54);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(735, 355);
+            this.tabPage3.Size = new System.Drawing.Size(735, 352);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Tồn kho";
             // 
@@ -1855,11 +1858,11 @@
             this.tabPage4.Controls.Add(this.label88);
             this.tabPage4.Controls.Add(this.label87);
             this.tabPage4.Controls.Add(this.label86);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Location = new System.Drawing.Point(4, 28);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Size = new System.Drawing.Size(735, 355);
+            this.tabPage4.Size = new System.Drawing.Size(735, 352);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "TT đặt hàng";
             // 
@@ -2159,11 +2162,11 @@
             this.tabPage5.Controls.Add(this.label81);
             this.tabPage5.Controls.Add(this.label76);
             this.tabPage5.Controls.Add(this.label80);
-            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Location = new System.Drawing.Point(4, 28);
             this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage5.Size = new System.Drawing.Size(735, 355);
+            this.tabPage5.Size = new System.Drawing.Size(735, 352);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Mua hàng";
             // 
@@ -2544,11 +2547,11 @@
             this.tabPage6.Controls.Add(this.v6NumberTextBox3);
             this.tabPage6.Controls.Add(this.v6NumberTextBox2);
             this.tabPage6.Controls.Add(this.v6NumberTextBox1);
-            this.tabPage6.Location = new System.Drawing.Point(4, 25);
+            this.tabPage6.Location = new System.Drawing.Point(4, 28);
             this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage6.Size = new System.Drawing.Size(735, 355);
+            this.tabPage6.Size = new System.Drawing.Size(735, 352);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Tự định nghĩa";
             // 
@@ -2780,7 +2783,7 @@
             this.v6ColorDateTimePick1.TabIndex = 114;
             this.v6ColorDateTimePick1.Text = "__/__/____";
             // 
-            // v6ColorTextBox31
+            // txtGC_TD3
             // 
             this.txtGC_TD3.AccessibleName = "GC_TD3";
             this.txtGC_TD3.BackColor = System.Drawing.Color.White;
@@ -2796,7 +2799,7 @@
             this.txtGC_TD3.Size = new System.Drawing.Size(556, 23);
             this.txtGC_TD3.TabIndex = 113;
             // 
-            // v6ColorTextBox32
+            // txtGC_TD2
             // 
             this.txtGC_TD2.AccessibleName = "GC_TD2";
             this.txtGC_TD2.BackColor = System.Drawing.Color.White;
@@ -2812,7 +2815,7 @@
             this.txtGC_TD2.Size = new System.Drawing.Size(556, 23);
             this.txtGC_TD2.TabIndex = 112;
             // 
-            // v6ColorTextBox35
+            // txtGC_TD1
             // 
             this.txtGC_TD1.AccessibleName = "GC_TD1";
             this.txtGC_TD1.BackColor = System.Drawing.Color.White;
@@ -2828,7 +2831,7 @@
             this.txtGC_TD1.Size = new System.Drawing.Size(556, 23);
             this.txtGC_TD1.TabIndex = 111;
             // 
-            // v6ColorTextBox36
+            // txtMA_TD3
             // 
             this.txtMA_TD3.AccessibleName = "MA_TD3";
             this.txtMA_TD3.BackColor = System.Drawing.SystemColors.Window;
@@ -2844,7 +2847,7 @@
             this.txtMA_TD3.Size = new System.Drawing.Size(184, 23);
             this.txtMA_TD3.TabIndex = 95;
             // 
-            // v6ColorTextBox39
+            // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
             this.txtMA_TD2.BackColor = System.Drawing.SystemColors.Window;
@@ -2860,7 +2863,7 @@
             this.txtMA_TD2.Size = new System.Drawing.Size(184, 23);
             this.txtMA_TD2.TabIndex = 93;
             // 
-            // v6ColorTextBox43
+            // txtMA_TD1
             // 
             this.txtMA_TD1.AccessibleName = "MA_TD1";
             this.txtMA_TD1.BackColor = System.Drawing.Color.White;
@@ -2991,11 +2994,11 @@
             this.tabPage7.Controls.Add(this.label95);
             this.tabPage7.Controls.Add(this.label107);
             this.tabPage7.Controls.Add(this.label108);
-            this.tabPage7.Location = new System.Drawing.Point(4, 25);
+            this.tabPage7.Location = new System.Drawing.Point(4, 28);
             this.tabPage7.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage7.Size = new System.Drawing.Size(735, 355);
+            this.tabPage7.Size = new System.Drawing.Size(735, 352);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Thông tin khác";
             // 
@@ -3862,7 +3865,7 @@
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = "FILTERL00020";
+            this.label1.AccessibleDescription = "ADDEDITL00195";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

@@ -64,7 +64,7 @@
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = "V6YEARR00003";
+            this.label1.AccessibleDescription = "V6YEARL00003";
             this.label1.AccessibleName = "";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(10, 15);
@@ -101,12 +101,11 @@
             0,
             0,
             0});
-           
             this.txtYear.Leave += new System.EventHandler(this.txtYear_Leave);
             // 
             // label2
             // 
-            this.label2.AccessibleDescription = "V6YEARR00004";
+            this.label2.AccessibleDescription = "V6YEARL00004";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(10, 40);

@@ -298,66 +298,66 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         data = new V6Invoice81().LoadAd81(sttRec);
                         break;
                     case "SOC":
-                        data = new V6Invoice83().LoadAd(sttRec);
+                        data = new V6Invoice83().LoadAD(sttRec);
                         break;
                     case "POA":
                         data = new V6Invoice81().LoadAd81(sttRec);
                         break;
                     case "SOH":
-                        data = new V6Invoice91().LoadAd(sttRec);
+                        data = new V6Invoice91().LoadAD(sttRec);
                         break;
                     case "SOF":
                         data = new V6Invoice76().LoadAD(sttRec);
                         break;
                     case "SOR":
-                        data = new V6Invoice93().LoadAd(sttRec);
+                        data = new V6Invoice93().LoadAD(sttRec);
                         break;
                     case "AR1":
-                        data = new V6Invoice21().LoadAd(sttRec);
+                        data = new V6Invoice21().LoadAD(sttRec);
                         break;
 
                     case "POH":
-                        data = new V6Invoice92().LoadAd(sttRec);
+                        data = new V6Invoice92().LoadAD(sttRec);
                         break;
                     case "AP1":
-                        data = new V6Invoice31().LoadAd(sttRec);
+                        data = new V6Invoice31().LoadAD(sttRec);
                         break;
                     case "POC":
-                        data = new V6Invoice73().LoadAd(sttRec);
+                        data = new V6Invoice73().LoadAD(sttRec);
                         break;
 	                case "POB":
-                        data = new V6Invoice72().LoadAd(sttRec);
+                        data = new V6Invoice72().LoadAD(sttRec);
                         break;
 	                case "AP2":
-                        data = new V6Invoice32().LoadAd(sttRec);
+                        data = new V6Invoice32().LoadAD(sttRec);
                         break;
 	                case "IXC":
-                        data = new V6Invoice86().LoadAd(sttRec);
+                        data = new V6Invoice86().LoadAD(sttRec);
                         break;
 
 	                case "BC1":
 	                case "TA1":
-                        data = new V6Invoice41(maCt).LoadAd(sttRec);
+                        data = new V6Invoice41(maCt).LoadAD(sttRec);
                         break;
                     case "BN1":
 	                case "CA1":
-                        data = new V6Invoice51(maCt).LoadAd(sttRec);
+                        data = new V6Invoice51(maCt).LoadAD(sttRec);
                         break;
 
 	                case "GL1":
 	                case "AR9":
 	                case "AP9":
-                        data = new V6Invoice11(maCt).LoadAd(sttRec);
+                        data = new V6Invoice11(maCt).LoadAD(sttRec);
                         break;
 
                     case "IND":
-                        data = new V6Invoice74().LoadAd(sttRec);
+                        data = new V6Invoice74().LoadAD(sttRec);
                         break;
                     case "IXA":
-                        data = new V6Invoice84().LoadAd(sttRec);
+                        data = new V6Invoice84().LoadAD(sttRec);
                         break;
                     case "IXB":
-                        data = new V6Invoice85().LoadAd(sttRec);
+                        data = new V6Invoice85().LoadAD(sttRec);
                         break;
 
                     default:

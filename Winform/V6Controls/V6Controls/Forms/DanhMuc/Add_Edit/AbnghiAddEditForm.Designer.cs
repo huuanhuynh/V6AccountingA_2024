@@ -108,6 +108,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.v6Label3);
@@ -134,9 +135,9 @@
             // 
             // v6Label3
             // 
-            this.v6Label3.AccessibleDescription = "XULYL00041";
+            this.v6Label3.AccessibleDescription = "ADDEDITL00193";
             this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(10, 189);
+            this.v6Label3.Location = new System.Drawing.Point(8, 189);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(58, 17);
             this.v6Label3.TabIndex = 105;
@@ -144,9 +145,9 @@
             // 
             // v6Label2
             // 
-            this.v6Label2.AccessibleDescription = "XULYL00041";
+            this.v6Label2.AccessibleDescription = "ADDEDITL00192";
             this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(10, 162);
+            this.v6Label2.Location = new System.Drawing.Point(8, 162);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(68, 17);
             this.v6Label2.TabIndex = 104;
@@ -267,8 +268,9 @@
             // 
             // v6Label7
             // 
+            this.v6Label7.AccessibleDescription = "ADDEDITL00191";
             this.v6Label7.AutoSize = true;
-            this.v6Label7.Location = new System.Drawing.Point(10, 131);
+            this.v6Label7.Location = new System.Drawing.Point(8, 131);
             this.v6Label7.Name = "v6Label7";
             this.v6Label7.Size = new System.Drawing.Size(36, 17);
             this.v6Label7.TabIndex = 8;
@@ -276,8 +278,9 @@
             // 
             // v6Label4
             // 
+            this.v6Label4.AccessibleDescription = "ADDEDITL00190";
             this.v6Label4.AutoSize = true;
-            this.v6Label4.Location = new System.Drawing.Point(7, 102);
+            this.v6Label4.Location = new System.Drawing.Point(8, 102);
             this.v6Label4.Name = "v6Label4";
             this.v6Label4.Size = new System.Drawing.Size(30, 17);
             this.v6Label4.TabIndex = 6;
@@ -285,8 +288,9 @@
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "ADDEDITL00094";
             this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(7, 73);
+            this.v6Label1.Location = new System.Drawing.Point(8, 73);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(64, 17);
             this.v6Label1.TabIndex = 4;
@@ -345,8 +349,9 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00189";
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 44);
+            this.label2.Location = new System.Drawing.Point(8, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 17);
             this.label2.TabIndex = 2;
@@ -354,8 +359,9 @@
             // 
             // v6Label9
             // 
+            this.v6Label9.AccessibleDescription = "ADDEDITL00188";
             this.v6Label9.AutoSize = true;
-            this.v6Label9.Location = new System.Drawing.Point(7, 15);
+            this.v6Label9.Location = new System.Drawing.Point(8, 15);
             this.v6Label9.Name = "v6Label9";
             this.v6Label9.Size = new System.Drawing.Size(37, 17);
             this.v6Label9.TabIndex = 0;
@@ -363,6 +369,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.AccessibleDescription = "ADDEDITT00003";
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Controls.Add(this.txtGC_TD3);
@@ -397,7 +404,7 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Tự định nghĩa";
             // 
-            // v6ColorTextBox16
+            // txtGC_TD3
             // 
             this.txtGC_TD3.AccessibleName = "GC_TD3";
             this.txtGC_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -416,7 +423,7 @@
             this.txtGC_TD3.Size = new System.Drawing.Size(563, 23);
             this.txtGC_TD3.TabIndex = 113;
             // 
-            // v6ColorTextBox15
+            // txtGC_TD2
             // 
             this.txtGC_TD2.AccessibleName = "GC_TD2";
             this.txtGC_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -435,7 +442,7 @@
             this.txtGC_TD2.Size = new System.Drawing.Size(563, 23);
             this.txtGC_TD2.TabIndex = 112;
             // 
-            // v6ColorTextBox1
+            // txtGC_TD1
             // 
             this.txtGC_TD1.AccessibleName = "GC_TD1";
             this.txtGC_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -496,7 +503,7 @@
             this.label27.TabIndex = 108;
             this.label27.Text = "Ghi chú ĐN 1";
             // 
-            // v6ColorTextBox19
+            // txtMA_TD3
             // 
             this.txtMA_TD3.AccessibleName = "MA_TD3";
             this.txtMA_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -514,7 +521,7 @@
             this.txtMA_TD3.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD3.TabIndex = 95;
             // 
-            // v6ColorTextBox20
+            // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
             this.txtMA_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -532,7 +539,7 @@
             this.txtMA_TD2.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD2.TabIndex = 93;
             // 
-            // v6ColorTextBox22
+            // txtMA_TD1
             // 
             this.txtMA_TD1.AccessibleName = "MA_TD1";
             this.txtMA_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -819,6 +826,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.AccessibleDescription = "ADDEDITT00004";
             this.tabPage4.AutoScroll = true;
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage4.Location = new System.Drawing.Point(4, 28);
@@ -910,6 +918,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00195";
             this.label5.AccessibleName = "";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(506, 81);
@@ -921,6 +930,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00194";
             this.label4.AccessibleName = "";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(270, 81);
@@ -932,6 +942,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00166";
             this.label3.AccessibleName = "";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(8, 81);
@@ -960,6 +971,7 @@
             // 
             // label41
             // 
+            this.label41.AccessibleDescription = "ADDEDITL00005";
             this.label41.AccessibleName = "";
             this.label41.AutoSize = true;
             this.label41.Location = new System.Drawing.Point(8, 52);
@@ -992,7 +1004,7 @@
             this.txtTenDvcs.AccessibleName = "TEN_DVCS";
             this.txtTenDvcs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTenDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtTenDvcs.BackColor = System.Drawing.SystemColors.Control;
             this.txtTenDvcs.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTenDvcs.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTenDvcs.Location = new System.Drawing.Point(265, 52);
@@ -1009,7 +1021,7 @@
             this.txtTenKh.AccessibleName = "TEN_KH";
             this.txtTenKh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTenKh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtTenKh.BackColor = System.Drawing.SystemColors.Control;
             this.txtTenKh.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTenKh.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTenKh.Location = new System.Drawing.Point(265, 23);
@@ -1023,7 +1035,7 @@
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = "ma_kh";
+            this.label1.AccessibleDescription = "ADDEDITL00002";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(8, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

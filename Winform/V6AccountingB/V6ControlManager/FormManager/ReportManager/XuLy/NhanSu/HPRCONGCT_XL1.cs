@@ -235,7 +235,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             hotSpot = Point.Empty;
         }
 
-        protected override void FormatGridViewExtern()
+        public override void FormatGridViewExtern()
         {
             try
             {

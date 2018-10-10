@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -9,6 +10,7 @@ using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -89,7 +91,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     FormBorderStyle = FormBorderStyle.FixedSingle
                                 };
 
-                                var hoaDonForm = new AAPPR_SOA_F4(selectedSttRec, am.Rows[0], amName);
+                                string extra_infor = "";
+                                if (EXTRA_INFOR.ContainsKey("FIELDS_F4")) extra_infor = EXTRA_INFOR["FIELDS_F4"];
+                                var hoaDonForm = new AAPPR_SOA_F4(selectedSttRec, am.Rows[0], amName, extra_infor);
                                 hoaDonForm.txtSoCtXuat.Enabled = false;
                                 hoaDonForm.txtGhiChu01.Enabled = false;
                                 
@@ -251,11 +255,74 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         case "SOA":
                             data = invoice.LoadAd81(sttRec);
                             break;
+                        case "SOB":
+                            data = new V6Invoice82().LoadAD(sttRec);
+                            break;
+                        case "SOC":
+                            data = new V6Invoice83().LoadAD(sttRec);
+                            break;
+                        case "SOR":
+                            data = new V6Invoice93().LoadAD(sttRec);
+                            break;
+                        case "SOF":
+                            data = new V6Invoice76().LoadAD(sttRec);
+                            break;
                         case "CA1":
-                            data = new V6Invoice51().LoadAd(sttRec);
+                            data = new V6Invoice51("CA1").LoadAD(sttRec);
                             break;
                         case "POA":
-                            data = new V6Invoice71().LoadAd(sttRec);
+                            data = new V6Invoice71().LoadAD(sttRec);
+                            break;
+                        case "POB":
+                            data = new V6Invoice72().LoadAD(sttRec);
+                            break;
+                        case "POC":
+                            data = new V6Invoice73().LoadAD(sttRec);
+                            break;
+                        case "IND":
+                            data = new V6Invoice74().LoadAD(sttRec);
+                            break;
+                        case "IXA":
+                            data = new V6Invoice84().LoadAD(sttRec);
+                            break;
+                        case "IXB":
+                            data = new V6Invoice85().LoadAD(sttRec);
+                            break;
+                        case "IXC":
+                            data = new V6Invoice86().LoadAD(sttRec);
+                            break;
+                        case "AR1":
+                            data = new V6Invoice21().LoadAD(sttRec);
+                            break;
+                        case "GL1":
+                            data = new V6Invoice11("GL1").LoadAD(sttRec);
+                            break;
+                        case "AR9":
+                            data = new V6Invoice11("AR9").LoadAD(sttRec);
+                            break;
+                        case "AP9":
+                            data = new V6Invoice11("AP9").LoadAD(sttRec);
+                            break;
+                        case "AP1":
+                            data = new V6Invoice31().LoadAD(sttRec);
+                            break;
+                        case "AP2":
+                            data = new V6Invoice32().LoadAD(sttRec);
+                            break;
+                        case "BN1":
+                            data = new V6Invoice51("BN1").LoadAD(sttRec);
+                            break;
+                        case "TA1":
+                            data = new V6Invoice41("TA1").LoadAD(sttRec);
+                            break;
+                        case "BC1":
+                            data = new V6Invoice41("BC1").LoadAD(sttRec);
+                            break;
+                        case "SOH":
+                            data = new V6Invoice91().LoadAD(sttRec);
+                            break;
+                        case "POH":
+                            data = new V6Invoice92().LoadAD(sttRec);
                             break;
                     }
                     dataGridView2.AutoGenerateColumns = true;
@@ -269,6 +336,45 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".AAPPR_SOA ViewDetails: " + ex.Message);
+            }
+        }
+
+        public override void FormatGridViewExtern()
+        {
+            try
+            {
+                //VPA_GetFormatGridView]@Codeform VARCHAR(50),@Type VARCHAR(20)
+                string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
+                object VALUEV;
+                V6BusinessHelper.GetFormatGridView(_program, "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN,
+                    out COLOR_YN, out COLORV);
+                //Color.MediumAquamarine
+                V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1",
+                    Color.FromName(COLORV));
+
+                //RGB
+                if (FIELDV.ToUpper() == "RGB")
+                {
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        string colorRGB = row.Cells["RGB"].Value.ToString();
+                        if (colorRGB != "")
+                        {
+                            try
+                            {
+                                row.DefaultCellStyle.BackColor = ObjectAndString.RGBStringToColor(colorRGB);
+                            }
+                            catch (Exception ex2)
+                            {
+                                this.WriteExLog(GetType() + ".FormatGridViewExtern colorRGB: " + colorRGB, ex2);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".FormatGridViewExtern", ex);
             }
         }
 
