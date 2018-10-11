@@ -49,18 +49,10 @@ namespace V6ControlManager.FormManager.ToolManager
 
         public override void V6F3Execute()
         {
-            if (f3count == 3)
+            if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
             {
-                f3count = 0;
-                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
-                {
-                    V6ControlFormHelper.ShowMainMessage("V6 Confirm ......OK....");
-                    grbTools.Visible = true;
-                }
-            }
-            else
-            {
-                
+                V6ControlFormHelper.ShowMainMessage("V6 Confirm ......OK....");
+                grbTools.Visible = true;
             }
         }
 

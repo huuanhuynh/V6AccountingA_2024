@@ -39,8 +39,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void AAPPR_XULY_ALL_Load(object sender, EventArgs e)
         {
-            btnNhan.PerformClick();
-            dataGridView1.Focus();
+            try
+            {
+                btnNhan.PerformClick();
+                dataGridView1.Focus();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Load", ex);
+            }
         }
 
         public override void SetStatus2Text()
@@ -360,22 +367,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1",
                     Color.FromName(COLORV));
 
-                //RGB
-                if (FIELDV.ToUpper() == "RGB")
+                DataGridViewCell cell = null;
+                if (dataGridView1.RowCount > 0)
                 {
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    for (int i = 0; i < dataGridView1.ColumnCount; i++)
                     {
-                        string colorRGB = row.Cells["RGB"].Value.ToString();
-                        if (colorRGB != "")
+                        var column = dataGridView1.Columns[i];
+                        if (column.Visible)
                         {
-                            try
-                            {
-                                row.DefaultCellStyle.BackColor = ObjectAndString.RGBStringToColor(colorRGB);
-                            }
-                            catch (Exception ex2)
-                            {
-                                this.WriteExLog(GetType() + ".FormatGridViewExtern colorRGB: " + colorRGB, ex2);
-                            }
+                            cell = dataGridView1.Rows[0].Cells[i];
+                            dataGridView1.CurrentCell = cell;
+                            break;
                         }
                     }
                 }

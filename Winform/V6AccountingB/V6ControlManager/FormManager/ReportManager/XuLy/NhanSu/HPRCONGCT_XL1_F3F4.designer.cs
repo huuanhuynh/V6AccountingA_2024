@@ -89,6 +89,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "ADDEDITL00219";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(17, 87);
             this.v6Label1.Name = "v6Label1";
@@ -98,6 +99,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             // 
             // v6Label17
             // 
+            this.v6Label17.AccessibleDescription = "ADDEDITL00218";
             this.v6Label17.AutoSize = true;
             this.v6Label17.Location = new System.Drawing.Point(17, 37);
             this.v6Label17.Name = "v6Label17";
@@ -130,6 +132,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             // 
             // v6Label9
             // 
+            this.v6Label9.AccessibleDescription = "ADDEDITL00217";
             this.v6Label9.AutoSize = true;
             this.v6Label9.Location = new System.Drawing.Point(17, 12);
             this.v6Label9.Name = "v6Label9";
@@ -139,6 +142,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00223";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(17, 194);
             this.label1.Name = "label1";
@@ -163,10 +167,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.txtMaNhanSu.ReadOnly = true;
             this.txtMaNhanSu.Size = new System.Drawing.Size(120, 20);
             this.txtMaNhanSu.TabIndex = 1;
+            this.txtMaNhanSu.TabStop = false;
             this.txtMaNhanSu.Tag = "readonly";
             // 
             // v6Label4
             // 
+            this.v6Label4.AccessibleDescription = "ADDEDITL00208";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(17, 62);
             this.v6Label4.Name = "v6Label4";
@@ -176,6 +182,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             // 
             // v6Label7
             // 
+            this.v6Label7.AccessibleDescription = "ADDEDITL00191";
             this.v6Label7.AutoSize = true;
             this.v6Label7.Location = new System.Drawing.Point(17, 218);
             this.v6Label7.Name = "v6Label7";
@@ -333,6 +340,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00220";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(17, 113);
             this.label2.Name = "label2";
@@ -366,6 +374,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00221";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(17, 138);
             this.label3.Name = "label3";
@@ -398,6 +407,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00222";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(17, 168);
             this.label4.Name = "label4";

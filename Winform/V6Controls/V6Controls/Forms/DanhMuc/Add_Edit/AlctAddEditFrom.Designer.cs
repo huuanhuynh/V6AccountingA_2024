@@ -168,6 +168,8 @@
             this.v6ColorTextBox13 = new V6Controls.V6ColorTextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.v6ColorTextBox12 = new V6Controls.V6ColorTextBox();
+            this.lblResetCopy = new System.Windows.Forms.Label();
+            this.txtResetCopy = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -836,6 +838,8 @@
             this.tabPage2.AccessibleDescription = "thong_tin_cong_no";
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage2.Controls.Add(this.lblResetCopy);
+            this.tabPage2.Controls.Add(this.txtResetCopy);
             this.tabPage2.Controls.Add(this.cboKieuPost);
             this.tabPage2.Controls.Add(this.lblThongTinThem);
             this.tabPage2.Controls.Add(this.v6VvarTextBox7);
@@ -2312,6 +2316,36 @@
             this.v6ColorTextBox12.TabIndex = 1;
             this.v6ColorTextBox12.Visible = false;
             // 
+            // lblResetCopy
+            // 
+            this.lblResetCopy.AutoSize = true;
+            this.lblResetCopy.Location = new System.Drawing.Point(23, 285);
+            this.lblResetCopy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblResetCopy.Name = "lblResetCopy";
+            this.lblResetCopy.Size = new System.Drawing.Size(101, 17);
+            this.lblResetCopy.TabIndex = 18;
+            this.lblResetCopy.Text = "Reset khi copy";
+            this.lblResetCopy.Visible = false;
+            // 
+            // txtResetCopy
+            // 
+            this.txtResetCopy.AccessibleName = "M_MA_HD";
+            this.txtResetCopy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtResetCopy.BackColor = System.Drawing.Color.White;
+            this.txtResetCopy.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtResetCopy.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtResetCopy.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtResetCopy.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtResetCopy.HoverColor = System.Drawing.Color.Yellow;
+            this.txtResetCopy.LeaveColor = System.Drawing.Color.White;
+            this.txtResetCopy.Location = new System.Drawing.Point(196, 279);
+            this.txtResetCopy.Margin = new System.Windows.Forms.Padding(4);
+            this.txtResetCopy.Name = "txtResetCopy";
+            this.txtResetCopy.Size = new System.Drawing.Size(538, 23);
+            this.txtResetCopy.TabIndex = 19;
+            this.txtResetCopy.Visible = false;
+            // 
             // AlctAddEditFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2480,5 +2514,7 @@
         private V6CheckBox chkWriteLog;
         private System.Windows.Forms.Label lblThongTinThem;
         private V6ColorTextBox txtExtraInfo;
+        private System.Windows.Forms.Label lblResetCopy;
+        private V6ColorTextBox txtResetCopy;
     }
 }

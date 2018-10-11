@@ -3932,6 +3932,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
                 dateNgayCT.SetValue(V6Setting.M_SV_DATE);
                 dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
+                ResetAMADbyConfig(Invoice);
                 foreach (DataRow dataRow in AD.Rows)
                 {
                     dataRow["STT_REC"] = _sttRec;

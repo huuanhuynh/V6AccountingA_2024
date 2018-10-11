@@ -141,7 +141,7 @@
             // 
             // label7
             // 
-            this.label7.AccessibleDescription = "";
+            this.label7.AccessibleDescription = "ADDEDITL00231";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(558, 20);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -204,7 +204,7 @@
             // 
             // label3
             // 
-            this.label3.AccessibleDescription = "descript2";
+            this.label3.AccessibleDescription = "ADDEDITL00004";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(8, 72);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -215,7 +215,7 @@
             // 
             // label2
             // 
-            this.label2.AccessibleDescription = "";
+            this.label2.AccessibleDescription = "ADDEDITL00229";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(8, 46);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -226,7 +226,7 @@
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = "";
+            this.label1.AccessibleDescription = "ADDEDITL00228";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(8, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -237,7 +237,7 @@
             // 
             // label6
             // 
-            this.label6.AccessibleDescription = "";
+            this.label6.AccessibleDescription = "ADDEDITL00230";
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(283, 21);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -248,6 +248,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.AccessibleDescription = "ADDEDITT00010";
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Controls.Add(this.txtEBROWSE1);
@@ -257,11 +258,11 @@
             this.tabPage3.Controls.Add(this.label11);
             this.tabPage3.Controls.Add(this.btnNhapXML);
             this.tabPage3.Controls.Add(this.btnXuatXML);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(796, 331);
+            this.tabPage3.Size = new System.Drawing.Size(796, 328);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Các tùy chọn";
             // 
@@ -361,6 +362,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.btnEditXml);
@@ -390,16 +392,17 @@
             this.tabPage1.Controls.Add(this.v6ColorTextBox15);
             this.tabPage1.Controls.Add(this.label47);
             this.tabPage1.Controls.Add(this.label46);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(796, 331);
+            this.tabPage1.Size = new System.Drawing.Size(796, 328);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
             // btnEditXml
             // 
+            this.btnEditXml.AccessibleDescription = "ADDEDITB00013";
             this.btnEditXml.AccessibleName = "";
             this.btnEditXml.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditXml.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -434,6 +437,7 @@
             // 
             // label10
             // 
+            this.label10.AccessibleDescription = "ADDEDITL00239";
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(11, 169);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -444,6 +448,7 @@
             // 
             // btnCopyFilter
             // 
+            this.btnCopyFilter.AccessibleDescription = "ADDEDITB00012";
             this.btnCopyFilter.AccessibleName = "";
             this.btnCopyFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCopyFilter.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -458,6 +463,7 @@
             // 
             // btnBoSung
             // 
+            this.btnBoSung.AccessibleDescription = "ADDEDITB00011";
             this.btnBoSung.AccessibleName = "";
             this.btnBoSung.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnBoSung.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -496,6 +502,7 @@
             // 
             // label15
             // 
+            this.label15.AccessibleDescription = "ADDEDITL00240";
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(11, 251);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -506,6 +513,7 @@
             // 
             // chkViewSum
             // 
+            this.chkViewSum.AccessibleDescription = "ADDEDITC00008";
             this.chkViewSum.AccessibleName = "ViewSum";
             this.chkViewSum.AutoSize = true;
             this.chkViewSum.Location = new System.Drawing.Point(492, 250);
@@ -518,6 +526,7 @@
             // 
             // ChkF7
             // 
+            this.ChkF7.AccessibleDescription = "ADDEDITC00007";
             this.ChkF7.AccessibleName = "F7";
             this.ChkF7.AutoSize = true;
             this.ChkF7.Location = new System.Drawing.Point(422, 250);
@@ -530,6 +539,7 @@
             // 
             // ChkF5
             // 
+            this.ChkF5.AccessibleDescription = "ADDEDITC00006";
             this.ChkF5.AccessibleName = "F5";
             this.ChkF5.AutoSize = true;
             this.ChkF5.Location = new System.Drawing.Point(352, 250);
@@ -542,6 +552,7 @@
             // 
             // ChkF3
             // 
+            this.ChkF3.AccessibleDescription = "ADDEDITC00005";
             this.ChkF3.AccessibleName = "F3";
             this.ChkF3.AutoSize = true;
             this.ChkF3.Location = new System.Drawing.Point(282, 250);
@@ -572,6 +583,7 @@
             // 
             // label8
             // 
+            this.label8.AccessibleDescription = "ADDEDITL00238";
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(11, 146);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -600,6 +612,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00237";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(11, 123);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -628,6 +641,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00236";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(11, 100);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -674,6 +688,7 @@
             // 
             // label53
             // 
+            this.label53.AccessibleDescription = "ADDEDITL00235";
             this.label53.AutoSize = true;
             this.label53.Location = new System.Drawing.Point(11, 77);
             this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -684,6 +699,7 @@
             // 
             // label52
             // 
+            this.label52.AccessibleDescription = "ADDEDITL00234";
             this.label52.AutoSize = true;
             this.label52.Location = new System.Drawing.Point(11, 54);
             this.label52.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -732,6 +748,7 @@
             // 
             // label9
             // 
+            this.label9.AccessibleDescription = "ADDEDITL00241";
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(11, 278);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -760,6 +777,7 @@
             // 
             // label47
             // 
+            this.label47.AccessibleDescription = "ADDEDITL00233";
             this.label47.AutoSize = true;
             this.label47.Location = new System.Drawing.Point(11, 31);
             this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -770,6 +788,7 @@
             // 
             // label46
             // 
+            this.label46.AccessibleDescription = "ADDEDITL00232";
             this.label46.AutoSize = true;
             this.label46.Location = new System.Drawing.Point(11, 8);
             this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -786,6 +805,8 @@
             this.v6TabControl1.Controls.Add(this.tabPage1);
             this.v6TabControl1.Controls.Add(this.tabPage2);
             this.v6TabControl1.Controls.Add(this.tabPage3);
+            this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(0, 110);
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.v6TabControl1.Name = "v6TabControl1";
@@ -795,14 +816,14 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.AccessibleDescription = "thong_tin_cong_no";
+            this.tabPage2.AccessibleDescription = "ADDEDITT00009";
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(796, 331);
+            this.tabPage2.Size = new System.Drawing.Size(796, 328);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
             // 

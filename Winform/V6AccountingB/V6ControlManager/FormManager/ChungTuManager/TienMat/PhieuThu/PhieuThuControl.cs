@@ -115,6 +115,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             
             LoadDetailControls("2");
             LoadDetail3Controls();
+            LoadAdvanceControls(Invoice.Mact);
+            lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             ResetForm();
 
             _MA_GD = (Invoice.Alct["M_MA_GD"] ?? "2").ToString().Trim().ToUpper();
@@ -2957,6 +2959,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
                 dateNgayCT.SetValue(V6Setting.M_SV_DATE);
                 dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
+                ResetAMADbyConfig(Invoice);
                 foreach (DataRow dataRow in AD.Rows)
                 {
                     dataRow["STT_REC"] = _sttRec;

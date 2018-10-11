@@ -82,6 +82,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             chkWriteLog.Visible = true;
             txtExtraInfo.Visible = true;
             lblThongTinThem.Visible = true;
+            txtResetCopy.Visible = true;
+            lblResetCopy.Visible = true;
         }
 
         private void DoEditXml()

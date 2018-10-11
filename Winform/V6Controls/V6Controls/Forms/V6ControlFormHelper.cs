@@ -4402,7 +4402,23 @@ namespace V6Controls.Forms
                             row.DefaultCellStyle.BackColor = color;
                         }
                     }
-                }
+
+                    if (grid.Columns.Contains("RGB") && field.ToUpper() == "RGB" && !bold && !back_color)
+                    {
+                        string colorRGB = row.Cells["RGB"].Value.ToString();
+                        if (colorRGB != "")
+                        {
+                            try
+                            {
+                                row.DefaultCellStyle.BackColor = ObjectAndString.RGBStringToColor(colorRGB);
+                            }
+                            catch (Exception ex2)
+                            {
+                                grid.WriteExLog(grid.Parent.GetType() + ".FormatGridView in V6ControlFormHelper colorRGB: " + colorRGB, ex2);
+                            }
+                        }
+                    }
+                }//end for
             }
         }
 
@@ -6173,7 +6189,8 @@ namespace V6Controls.Forms
                         txtB.AccessibleName = defineInfo.BField;
                         txtB.Top = top;
                         txtB.Left = left;
-                        txtB.Width = panel1.Width - txtB.Left - 10;
+                        //txtB.Width = 300;
+                        txtB.AutoSize = true;
                         txtB.ReadOnly = true;
                         txtB.TabStop = false;
 

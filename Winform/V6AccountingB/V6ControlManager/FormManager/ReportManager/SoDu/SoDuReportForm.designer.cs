@@ -40,6 +40,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.exportToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
@@ -68,7 +69,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.cboMauIn = new V6Controls.V6ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.chkHienTatCa = new V6Controls.V6CheckBox();
-            this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -114,7 +114,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.printGrid,
             this.exportToPdfToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(201, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(201, 114);
             // 
             // exportToExcelTemplate
             // 
@@ -143,6 +143,13 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.printGrid.Size = new System.Drawing.Size(200, 22);
             this.printGrid.Text = "Print Grid";
             this.printGrid.Click += new System.EventHandler(this.printGrid_Click);
+            // 
+            // exportToPdfToolStripMenuItem
+            // 
+            this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
+            this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
+            this.exportToPdfToolStripMenuItem.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
             // 
             // grbDieuKienLoc
             // 
@@ -456,15 +463,9 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.chkHienTatCa.UseVisualStyleBackColor = true;
             this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
             // 
-            // exportToPdfToolStripMenuItem
-            // 
-            this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
-            this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
-            this.exportToPdfToolStripMenuItem.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
-            // 
             // SoDuReportForm
             // 
+            this.AccessibleDescription = "REPORTL00016";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnHuy;
@@ -486,7 +487,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.Controls.Add(this.grbDieuKienLoc);
             this.FilterType = "4";
             this.Name = "SoDuReportForm";
-            this.Text = "Báo cáo";
+            this.Text = "SoDuReport";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormBaoCaoHangTonKho_V2_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.F_FormClosed);
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);

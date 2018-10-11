@@ -2143,5 +2143,83 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        /// <summary>
+        /// Gán lại giá trị mặc định cho một số trường định nghĩa trong ALCT.M_MA_HD
+        /// </summary>
+        /// <param name="invoice"></param>
+        protected void ResetAMADbyConfig(V6InvoiceBase invoice)
+        {
+            var m_ma_hd = ("" + invoice.Alct["M_MA_HD"]).Trim();
+            if (m_ma_hd == "") return;
+
+            var sss = ObjectAndString.SplitString(m_ma_hd);
+            foreach (string s in sss)
+            {
+                var ss = s.Split(':');
+                if (ss.Length > 1)
+                {
+                    var fields = ObjectAndString.SplitString(ss[1]);
+                    if (ss[0].ToUpper() == "AM")
+                    {
+                        foreach (string field in fields)
+                        {
+                            string FIELD = field.Trim().ToUpper();
+                            if (invoice.AMStruct.ContainsKey(FIELD))
+                            {
+                                Control c = GetControlByAccessibleName(FIELD);
+                                if (c != null) V6ControlFormHelper.SetControlValue(c, null);
+                            }
+                        }
+                    }
+                    else if (ss[0].ToUpper() == "AD")
+                    {
+                        foreach (string field in fields)
+                        {
+                            string FIELD = field.Trim().ToUpper();
+
+                            if (invoice.ADStruct.ContainsKey(FIELD) && AD.Columns.Contains(FIELD))
+                            {
+                                object resetValue = null;
+                                V6ColumnStruct struct0 = invoice.ADStruct[FIELD];
+                                if (struct0.AllowNull) resetValue = DBNull.Value;
+                                else
+                                {
+                                    switch (struct0.sql_data_type_string)
+                                    {
+                                        case "date":
+                                        case "smalldatetime":
+                                        case "datetime":
+                                            resetValue = V6Setting.M_SV_DATE;
+                                            break;
+                                        case "bit":
+                                            resetValue = false;
+                                            break;
+                                        case "bigint":
+                                        case "numeric":
+                                        case "smallint":
+                                        case "decimal":
+                                        case "smallmoney":
+                                        case "int":
+                                        case "tinyint":
+                                        case "money":
+                                            resetValue = 0;
+                                            break;
+
+                                        default:
+                                            resetValue = "";
+                                            break;
+                                    }
+                                }
+                                foreach (DataRow dataRow in AD.Rows)
+                                {
+                                    dataRow[field] = resetValue;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
     }
 }

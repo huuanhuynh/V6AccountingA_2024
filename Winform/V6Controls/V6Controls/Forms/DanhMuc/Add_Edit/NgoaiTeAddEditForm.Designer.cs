@@ -291,6 +291,7 @@
             this.TxtMa_nt.AccessibleName = "ma_nt";
             this.TxtMa_nt.BackColor = System.Drawing.SystemColors.Window;
             this.TxtMa_nt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtMa_nt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtMa_nt.EnterColor = System.Drawing.Color.PaleGreen;
             this.TxtMa_nt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtMa_nt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

@@ -131,6 +131,7 @@
             // 
             // v6Label17
             // 
+            this.v6Label17.AccessibleDescription = "ADDEDITL00216";
             this.v6Label17.AutoSize = true;
             this.v6Label17.Location = new System.Drawing.Point(431, 8);
             this.v6Label17.Name = "v6Label17";
@@ -333,6 +334,7 @@
             // 
             // v6Label8
             // 
+            this.v6Label8.AccessibleDescription = "ADDEDITL00213";
             this.v6Label8.AutoSize = true;
             this.v6Label8.Location = new System.Drawing.Point(13, 353);
             this.v6Label8.Name = "v6Label8";
@@ -367,6 +369,7 @@
             // 
             // v6Label6
             // 
+            this.v6Label6.AccessibleDescription = "ADDEDITL00212";
             this.v6Label6.AutoSize = true;
             this.v6Label6.Location = new System.Drawing.Point(13, 328);
             this.v6Label6.Name = "v6Label6";
@@ -376,6 +379,7 @@
             // 
             // v6Label5
             // 
+            this.v6Label5.AccessibleDescription = "ADDEDITL00209";
             this.v6Label5.AutoSize = true;
             this.v6Label5.Location = new System.Drawing.Point(13, 253);
             this.v6Label5.Name = "v6Label5";
@@ -385,6 +389,7 @@
             // 
             // v6Label4
             // 
+            this.v6Label4.AccessibleDescription = "ADDEDITL00204";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(13, 128);
             this.v6Label4.Name = "v6Label4";
@@ -416,6 +421,7 @@
             // 
             // v6Label2
             // 
+            this.v6Label2.AccessibleDescription = "ADDEDITL00002";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(13, 103);
             this.v6Label2.Name = "v6Label2";
@@ -443,6 +449,7 @@
             // 
             // v6Label9
             // 
+            this.v6Label9.AccessibleDescription = "ADDEDITL00206";
             this.v6Label9.AutoSize = true;
             this.v6Label9.Location = new System.Drawing.Point(13, 53);
             this.v6Label9.Name = "v6Label9";
@@ -452,6 +459,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00207";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 78);
             this.label1.Name = "label1";
@@ -461,6 +469,7 @@
             // 
             // v6Label3
             // 
+            this.v6Label3.AccessibleDescription = "ADDEDITL00210";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(13, 278);
             this.v6Label3.Name = "v6Label3";
@@ -470,6 +479,7 @@
             // 
             // v6Label7
             // 
+            this.v6Label7.AccessibleDescription = "ADDEDITL00211";
             this.v6Label7.AutoSize = true;
             this.v6Label7.Location = new System.Drawing.Point(13, 303);
             this.v6Label7.Name = "v6Label7";
@@ -479,6 +489,7 @@
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "ADDEDITL00165";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(13, 28);
             this.v6Label1.Name = "v6Label1";
@@ -504,6 +515,7 @@
             this.txtso_ct_tt.ReadOnly = true;
             this.txtso_ct_tt.Size = new System.Drawing.Size(238, 20);
             this.txtso_ct_tt.TabIndex = 16;
+            this.txtso_ct_tt.TabStop = false;
             // 
             // v6LabelTextBox1
             // 
@@ -520,6 +532,7 @@
             // 
             // v6Label10
             // 
+            this.v6Label10.AccessibleDescription = "ADDEDITL00208";
             this.v6Label10.AutoSize = true;
             this.v6Label10.Location = new System.Drawing.Point(13, 178);
             this.v6Label10.Name = "v6Label10";
@@ -559,6 +572,7 @@
             // 
             // v6Label11
             // 
+            this.v6Label11.AccessibleDescription = "ADDEDITL00032";
             this.v6Label11.AutoSize = true;
             this.v6Label11.Location = new System.Drawing.Point(13, 203);
             this.v6Label11.Name = "v6Label11";
@@ -598,6 +612,7 @@
             // 
             // v6Label12
             // 
+            this.v6Label12.AccessibleDescription = "ADDEDITL00147";
             this.v6Label12.AutoSize = true;
             this.v6Label12.Location = new System.Drawing.Point(13, 228);
             this.v6Label12.Name = "v6Label12";
@@ -624,6 +639,7 @@
             // 
             // v6Label13
             // 
+            this.v6Label13.AccessibleDescription = "ADDEDITL00214";
             this.v6Label13.AutoSize = true;
             this.v6Label13.Location = new System.Drawing.Point(13, 378);
             this.v6Label13.Name = "v6Label13";
@@ -670,6 +686,7 @@
             // 
             // v6Label15
             // 
+            this.v6Label15.AccessibleDescription = "ADDEDITL00215";
             this.v6Label15.AutoSize = true;
             this.v6Label15.Location = new System.Drawing.Point(13, 403);
             this.v6Label15.Name = "v6Label15";
@@ -701,6 +718,7 @@
             // 
             // v6Label16
             // 
+            this.v6Label16.AccessibleDescription = "ADDEDITL00205";
             this.v6Label16.AutoSize = true;
             this.v6Label16.Location = new System.Drawing.Point(13, 153);
             this.v6Label16.Name = "v6Label16";
@@ -723,7 +741,7 @@
             // 
             // btnChonPX
             // 
-            this.btnChonPX.AccessibleDescription = "XULYB00003";
+            this.btnChonPX.AccessibleDescription = "ADDEDITB00009";
             this.btnChonPX.Enabled = false;
             this.btnChonPX.Location = new System.Drawing.Point(403, 397);
             this.btnChonPX.Name = "btnChonPX";
@@ -751,11 +769,12 @@
             this.txtSttRecGt.ReadOnly = true;
             this.txtSttRecGt.Size = new System.Drawing.Size(238, 20);
             this.txtSttRecGt.TabIndex = 16;
+            this.txtSttRecGt.TabStop = false;
             this.txtSttRecGt.Visible = false;
             // 
             // btnXoaChon
             // 
-            this.btnXoaChon.AccessibleDescription = "XULYB00004";
+            this.btnXoaChon.AccessibleDescription = "ADDEDITB00010";
             this.btnXoaChon.Enabled = false;
             this.btnXoaChon.Location = new System.Drawing.Point(504, 397);
             this.btnXoaChon.Name = "btnXoaChon";
