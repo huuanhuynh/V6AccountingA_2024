@@ -303,6 +303,8 @@ namespace V6Controls
                     lstConfig.TableName = row["vMa_file"].ToString().Trim();
                     lstConfig.Vorder = row["vOrder"].ToString().Trim();
                     lstConfig.FieldName = row["vValue"].ToString().Trim();
+                    lstConfig.VName = row["VName"].ToString().Trim();
+                    lstConfig.VName2 = row["VName2"].ToString().Trim();
                     lstConfig.VLfScatter = row["vLfScatter"].ToString().Trim();
                     lstConfig.VWidths = (row["vWidths"].ToString().Trim());
                     lstConfig.VFields = (row["vFields"].ToString().Trim());
@@ -628,8 +630,43 @@ namespace V6Controls
             }
             return DataDic;
         }
-    }
 
-    
-    
+        public static V6VvarNameForm VvarNameForm;
+        /// <summary>
+        /// Tạo sẵn form nổi vvar name.
+        /// </summary>
+        public static void CreateVvarNameForm()
+        {
+            if (VvarNameForm == null)
+            {
+                VvarNameForm = new V6VvarNameForm();
+                VvarNameForm.Top = -VvarNameForm.Height;
+                VvarNameForm.Show();
+            }
+        }
+        /// <summary>
+        /// Hiển thị một form TopMost chứa thông báo, (Không ảnh hưởng đến focus đang làm việc).
+        /// </summary>
+        /// <param name="owner">Form chủ.</param>
+        public static void ShowVvarName(V6VvarTextBox owner)
+        {
+            //if (owner.Data == null) return;
+            //CreateVvarNameForm();
+            VvarNameForm.VvarTextBox = owner;
+            string nfield = V6Setting.IsVietnamese ? owner.LookupInfo.VName : owner.LookupInfo.VName2;
+            if (!string.IsNullOrEmpty(nfield))
+            {
+                var sss = ObjectAndString.SplitString(nfield);
+                if (owner.Data == null)
+                {
+                    VvarNameForm.StopShow();
+                }
+                else if (owner.Data.Table.Columns.Contains(sss[0]))
+                {
+                    VvarNameForm.Message = owner.Data[sss[0]].ToString().Trim();
+                }
+            }
+        }
+
+    }//end class
 }

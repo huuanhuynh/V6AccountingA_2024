@@ -210,6 +210,14 @@ namespace V6ReportControls
             }
         }
 
+        [DefaultValue(true)]
+        public bool ShowName { get { return _vtextBox != null && _vtextBox.ShowName; }
+            set
+            {
+                if (_vtextBox != null) _vtextBox.ShowName = value;
+            }
+        }
+
         public V6ColorTextBox AddTextBox()
         {
             _textBox = new V6ColorTextBox();
@@ -243,6 +251,7 @@ namespace V6ReportControls
                 Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
                 CheckNotEmpty = false,
                 CheckOnLeave = false,
+                ShowName = true,
             };
 
             _vtextBox.SetInitFilter(filter);

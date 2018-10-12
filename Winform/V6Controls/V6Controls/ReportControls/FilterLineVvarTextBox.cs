@@ -82,6 +82,9 @@ namespace V6ReportControls
             }
         }
 
+        [DefaultValue(true)]
+        public bool ShowName { get { return VvarTextBox.ShowName; } set { VvarTextBox.ShowName = value; } }
+
         /// <summary>
         /// Lấy câu query theo dữ liệu nhập vào.
         /// </summary>

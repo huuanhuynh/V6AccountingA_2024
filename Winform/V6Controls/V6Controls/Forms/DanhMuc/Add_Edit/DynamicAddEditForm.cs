@@ -385,6 +385,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         {
                             var tT = (V6VvarTextBox)input;
                             tT.BrotherFields = defineInfo.BField;
+                            tT.BrotherFields2 = defineInfo.BField2;
+                            if(!string.IsNullOrEmpty(defineInfo.ShowName)) tT.ShowName = defineInfo.ShowName  == "1";
                             tT.CheckOnLeave = defineInfo.NotEmpty;
                             tT.CheckNotEmpty = defineInfo.NotEmpty;
                             var txtB = new V6LabelTextBox();

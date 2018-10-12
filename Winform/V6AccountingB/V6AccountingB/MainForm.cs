@@ -169,6 +169,7 @@ namespace V6AccountingB
 
                 //Load quick menu
                 quickMenu1.LoadMenuData();
+                
             }
             catch (Exception ex)
             {
@@ -184,11 +185,14 @@ namespace V6AccountingB
             if (_complete == 100)
             {
                 timer1.Stop();
+                V6ControlFormHelper.CreateV6TopMessageForm();
+                V6ControlsHelper.CreateVvarNameForm();
+                Focus();
                 timer2.Start();
                 
                 progressBar1.Visible = false;
                 progressBar1.Dispose();
-                V6ControlFormHelper.CreateV6TopMessageForm();
+                
                 _ready = true;
                 V6ControlFormHelper.SetStatusText(V6Text.Ready);
                 if (menuMain.SelectedButton != null)

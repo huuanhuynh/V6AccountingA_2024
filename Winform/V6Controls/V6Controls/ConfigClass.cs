@@ -286,6 +286,9 @@ namespace V6Controls
         /// </summary>
         public bool F4 { get; set; }
 
+        public string VName { get; set; }
+        public string VName2 { get; set; }
+
         public string VTitlenew;
         public string ETitlenew;
 

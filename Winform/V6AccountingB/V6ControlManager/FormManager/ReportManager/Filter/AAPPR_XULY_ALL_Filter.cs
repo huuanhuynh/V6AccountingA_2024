@@ -319,7 +319,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void txtMa_ct_V6LostFocus(object sender)
         {
-            if(IsReady) LoadComboboxSource(txtMa_ct.Text);
+            if (IsReady)
+            {
+                LoadComboboxSource(txtMa_ct.Text);
+                lineMa_xuly.VvarTextBox.SetInitFilter(string.Format("Ma_ct='{0}'", txtMa_ct.Text.Trim()));
+            }
         }
 
         private void chkView_all_CheckedChanged(object sender, EventArgs e)

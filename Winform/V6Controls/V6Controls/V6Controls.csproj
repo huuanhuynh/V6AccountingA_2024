@@ -184,6 +184,12 @@
       <DependentUpon>SmsModemSettingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigClass.cs" />
+    <Compile Include="Forms\V6VvarNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\V6VvarNameForm.Designer.cs">
+      <DependentUpon>V6VvarNameForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\V6TopMessageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1620,6 +1626,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\AddEditControlVirtual.resx">
       <DependentUpon>AddEditControlVirtual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\V6VvarNameForm.resx">
+      <DependentUpon>V6VvarNameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\XmlEditorForm.resx">
       <DependentUpon>XmlEditorForm.cs</DependentUpon>

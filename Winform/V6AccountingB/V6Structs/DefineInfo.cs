@@ -47,6 +47,9 @@ namespace V6Structs
                 case "BFIELD":
                     BField = value;
                     break;
+                case "BFIELD2":
+                    BField2 = value;
+                    break;
                 case "CONTROLTYPE":
                     ControlType = value;
                     break;
@@ -130,6 +133,9 @@ namespace V6Structs
                 case "PTYPE":
                     Ptype = value;
                     break;
+                case "SHOWNAME":
+                    ShowName = value;
+                    break;
                 case "SQLTYPE":
                     sqltype = value.ToLower();
                     break;
@@ -150,6 +156,12 @@ namespace V6Structs
                     break;
                 case "VALUE":
                     Value = value;
+                    break;
+                case "VNAME":
+                    VName = value;
+                    break;
+                case "VNAME2":
+                    VName2 = value;
                     break;
                 case "VISIBLE":
                     Visible = value == "1";
@@ -194,6 +206,8 @@ namespace V6Structs
         /// Giá trị, tùy ý sử dụng.
         /// </summary>
         public string Value { get; set; }
+        public string VName { get; set; }
+        public string VName2 { get; set; }
 
         public string MA_DM { get; set; }
         public string Name { get; set; }
@@ -228,7 +242,7 @@ namespace V6Structs
         /// </summary>
         public string Loai_key = "10";
         public string Type = "T";
-        public string Vvar = "";
+        public string Vvar { get; set; }
 
         public string TextLang(bool isVN)
         {
@@ -244,6 +258,7 @@ namespace V6Structs
         public string Key3;
         public string Key4;
         public bool Visible = true;
+        public string ShowName = "";
         public bool Enabled = true;
 
         /// <summary>
@@ -292,6 +307,7 @@ namespace V6Structs
         /// Brother Field
         /// </summary>
         public string BField { get; set; }
+        public string BField2 { get; set; }
         /// <summary>
         /// Neightbor Field
         /// </summary>

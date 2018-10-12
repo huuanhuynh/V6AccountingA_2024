@@ -46,6 +46,7 @@
             this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
             this.v6VvarTextBox1.Location = new System.Drawing.Point(170, 0);
             this.v6VvarTextBox1.Name = "v6VvarTextBox1";
+            this.v6VvarTextBox1.ShowName = true;
             this.v6VvarTextBox1.Size = new System.Drawing.Size(136, 20);
             this.v6VvarTextBox1.TabIndex = 3;
             // 

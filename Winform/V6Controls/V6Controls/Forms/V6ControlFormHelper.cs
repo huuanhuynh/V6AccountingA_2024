@@ -205,7 +205,9 @@ namespace V6Controls.Forms
         }
 
         public static V6TopMessageForm TopMessageForm;
-
+        /// <summary>
+        /// Tạo sẵn form thông báo nổi.
+        /// </summary>
         public static void CreateV6TopMessageForm()
         {
             if (TopMessageForm == null)
@@ -223,7 +225,7 @@ namespace V6Controls.Forms
         /// <param name="owner">Form chủ.</param>
         public static void ShowTopMessage(string message, IWin32Window owner)
         {
-            CreateV6TopMessageForm();
+            //CreateV6TopMessageForm();
             TopMessageForm.Message = message;
         }
         /// <summary>
@@ -1124,6 +1126,9 @@ namespace V6Controls.Forms
             {
                 vT = lineControl.AddVvarTextBox(lineInfo.Vvar, lineInfo.InitFilter);
                 //
+                vT.BrotherFields = lineInfo.BField;
+                vT.BrotherFields2 = lineInfo.BField2;
+                if (!string.IsNullOrEmpty(lineInfo.ShowName)) vT.ShowName = lineInfo.ShowName == "1";
                 vT.F2 = lineInfo.F2;
                 vT.FilterStart = lineInfo.FilterStart;
             }
@@ -1176,6 +1181,9 @@ namespace V6Controls.Forms
                 {
                     vT = lineControl.AddVvarTextBox(lineInfo.Vvar, lineInfo.InitFilter);
                     //
+                    vT.BrotherFields = lineInfo.BField;
+                    vT.BrotherFields2 = lineInfo.BField2;
+                    if (!string.IsNullOrEmpty(lineInfo.ShowName)) vT.ShowName = lineInfo.ShowName == "1";
                     vT.F2 = lineInfo.F2;
                     vT.FilterStart = lineInfo.FilterStart;
                 }
@@ -6184,6 +6192,8 @@ namespace V6Controls.Forms
                     {
                         var tT = (V6VvarTextBox) input;
                         tT.BrotherFields = defineInfo.BField;
+                        tT.BrotherFields2 = defineInfo.BField2;
+                        if (!string.IsNullOrEmpty(defineInfo.ShowName)) tT.ShowName = defineInfo.ShowName == "1";
                         var txtB = new V6LabelTextBox();
                         txtB.Name = "txt" + defineInfo.BField;
                         txtB.AccessibleName = defineInfo.BField;

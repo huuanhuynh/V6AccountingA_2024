@@ -4,17 +4,6 @@ namespace V6Controls.Forms
 {
     public partial class V6TopMessageForm : Form
     {
-        //const int WS_EX_NOACTIVATE = 0x8000000;
-        //protected override CreateParams CreateParams
-        //{
-        //    get
-        //    {
-        //        CreateParams ret = base.CreateParams;
-        //        ret.ExStyle |= WS_EX_NOACTIVATE;
-        //        return ret;
-        //    }
-        //}
-
         public string Message {
             get { return lblMessage.Text; }
             set
@@ -57,8 +46,6 @@ namespace V6Controls.Forms
             if (_showTimeCount >= _showTime)
             {
                 timer1.Stop();
-                //Dispose();
-                //Visible = false;
                 HideToScreen();
             }
         }

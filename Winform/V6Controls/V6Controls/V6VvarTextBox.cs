@@ -20,8 +20,22 @@ namespace V6Controls
         //constructor
         public V6VvarTextBox()
         {
-            GotFocus += V6VvarTextBox_GotFocus;
+            InitializeComponent();
+            //GotFocus += V6VvarTextBox_GotFocus;
             //_upper = true;
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // V6VvarTextBox
+            // 
+            this.TextChanged += new System.EventHandler(this.V6VvarTextBox_TextChanged);
+            this.Enter += new System.EventHandler(this.V6VvarTextBox_Enter);
+            this.GotFocus += new System.EventHandler(this.V6VvarTextBox_GotFocus);
+            this.ResumeLayout(false);
+
         }
 
         void V6VvarTextBox_GotFocus(object sender, EventArgs e)
@@ -36,6 +50,22 @@ namespace V6Controls
             catch (Exception ex)
             {
                 V6ControlFormHelper.ShowErrorMessage("V6VvarTextBox_GotFocus: " + ex.Message);
+            }
+        }
+
+        private bool _showName = false;
+        /// <summary>
+        /// Hiển thị tên khi nhảy vào.
+        /// </summary>
+        [Category("V6")]
+        [DefaultValue(false)]
+        [Description("Bật hiển thị tên khi vào.")]
+        public bool ShowName { get { return _showName; } set { _showName = value; } }
+        private void V6VvarTextBox_Enter(object sender, EventArgs e)
+        {
+            if (_showName || _checkOnLeave)
+            {
+                V6ControlsHelper.ShowVvarName(this);
             }
         }
 
@@ -73,7 +103,7 @@ namespace V6Controls
         }
 
         private StandardConfig _lki;
-        private StandardConfig LookupInfo
+        public StandardConfig LookupInfo
         {
             get
             {
@@ -755,6 +785,16 @@ namespace V6Controls
         {
             DoLookup(lookupMode);
         }
+        
+        private void V6VvarTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Focused && (_showName||_checkOnLeave))
+            {
+                V6ControlsHelper.ShowVvarName(this);
+            }
+        }
+
+        
 
         
     }
