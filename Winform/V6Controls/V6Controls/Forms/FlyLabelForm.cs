@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace V6Controls.Forms
 {
-    public partial class V6VvarNameForm : Form
+    public partial class FlyLabelForm : Form
     {
         public string Message {
             get { return lblMessage.Text; }
@@ -14,7 +14,7 @@ namespace V6Controls.Forms
                 _showTimeCount = 0;
                 timer1.Start();
                 ShowToScreen();
-                MoveToVvarTextBox();
+                MoveToTargetControl();
             }
         }
 
@@ -23,29 +23,29 @@ namespace V6Controls.Forms
             
         }
 
-        public V6VvarTextBox VvarTextBox { get; set; }
+        public Control TargetControl { get; set; }
 
-        public V6VvarNameForm()
+        public FlyLabelForm()
         {
             InitializeComponent();
-            MoveToVvarTextBox();
+            MoveToTargetControl();
         }
 
         /// <summary>
         /// Khởi tạo hộp thông báo.
         /// </summary>
         /// <param name="text"></param>
-        public V6VvarNameForm(string text)
+        public FlyLabelForm(string text)
         {
             InitializeComponent();
             lblMessage.Text = text;
-            MoveToVvarTextBox();
+            MoveToTargetControl();
         }
 
-        private void MoveToVvarTextBox()
+        private void MoveToTargetControl()
         {
-            if (VvarTextBox == null) return;
-            var screenLocation = VvarTextBox.PointToClient(new Point(0, 0));
+            if (TargetControl == null) return;
+            var screenLocation = TargetControl.PointToClient(new Point(0, 0));
             screenLocation = new Point(0-screenLocation.X, 0-screenLocation.Y);
             int left = screenLocation.X + 20;
             if (left + Width > Screen.PrimaryScreen.WorkingArea.Width)
@@ -107,7 +107,7 @@ namespace V6Controls.Forms
 
         private void lblMessage_ClientSizeChanged(object sender, System.EventArgs e)
         {
-            Width = lblMessage.Width + 5;
+            Width = lblMessage.Width + 6;
         }
     }
 }

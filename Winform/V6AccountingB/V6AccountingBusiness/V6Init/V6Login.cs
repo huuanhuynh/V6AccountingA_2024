@@ -346,7 +346,7 @@ namespace V6Init
                     break;
 
                 case "V6MENU":
-                    result = "MODULE_ID='" + V6Options.V6OptionValues["MODULE_ID"].Trim() + "'";//+ "' AND ITEMID<>'A0000000' AND ITEMID<>'B0000000' ";
+                    result = "MODULE_ID='" + V6Options.GetValue("MODULE_ID").Trim() + "'";//+ "' AND ITEMID<>'A0000000' AND ITEMID<>'B0000000' ";
                     break;
 
                 case "ALKHO":
@@ -715,7 +715,7 @@ namespace V6Init
         /// <param name="reportDocumentParameters"></param>
         public static void SetCompanyInfo(SortedDictionary<string, object> reportDocumentParameters)
         {
-            var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
+            var M_COMPANY_BY_MA_DVCS = V6Options.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.GetValue("M_COMPANY_BY_MA_DVCS").Trim() : "";
             if (M_COMPANY_BY_MA_DVCS == "1" && MadvcsCount == 1)
             {
                 reportDocumentParameters["M_TEN_CTY"] = UtilityHelper.DeCrypt(V6Setting.Ten_dvcsx);

@@ -197,7 +197,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 //gView2.DataSource
                 var sokypb = txtSoKyPhanBo.Value;
-                var pppb = ObjectAndString.ObjectToInt(V6Options.V6OptionValues["M_PP_PB"]);
+                var pppb = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_PB"));
                 foreach (DataRow row in AD.Rows)
                 {
                     decimal nguyen_gia_decimal = ObjectAndString.ObjectToDecimal(row["Nguyen_gia"]);
@@ -234,7 +234,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             try
             {
-                var pppb = ObjectAndString.ObjectToInt(V6Options.V6OptionValues["M_PP_PB"]);
+                var pppb = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_PB"));
                 gt_cl.Value = nguyen_gia.Value - gt_da_pb.Value;
                 if (txtSoKyPhanBo.Value > 0)
                 {

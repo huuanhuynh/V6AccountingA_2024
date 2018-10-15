@@ -215,7 +215,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         {
             try
             {
-                var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
+                var M_COMPANY_BY_MA_DVCS = V6Options.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.GetValue("M_COMPANY_BY_MA_DVCS").Trim() : "";
                 if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
                 {
                     var dataRow = V6Setting.DataDVCS;
@@ -505,23 +505,23 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 {"M_TEN_TCTY2", V6Soft.V6SoftValue["M_TEN_TCTY2"].ToUpper()},
                 {"M_DIA_CHI2", V6Soft.V6SoftValue["M_DIA_CHI2"]},
                 // V6option
-                {"M_MA_THUE", V6Options.V6OptionValues["M_MA_THUE"]},
-                {"M_RTEN_VSOFT", V6Options.V6OptionValues["M_RTEN_VSOFT"]},
+                {"M_MA_THUE", V6Options.GetValue("M_MA_THUE")},
+                {"M_RTEN_VSOFT", V6Options.GetValue("M_RTEN_VSOFT")},
 
                 {"M_TEN_NLB", txtM_TEN_NLB.Text.Trim()},
                 {"M_TEN_NLB2", txtM_TEN_NLB2.Text.Trim()},
-                {"M_TEN_KHO_BD", V6Options.V6OptionValues["M_TEN_KHO_BD"]},
-                {"M_TEN_KHO2_BD", V6Options.V6OptionValues["M_TEN_KHO2_BD"]},
-                {"M_DIA_CHI_BD", V6Options.V6OptionValues["M_DIA_CHI_BD"]},
-                {"M_DIA_CHI2_BD", V6Options.V6OptionValues["M_DIA_CHI2_BD"]},
+                {"M_TEN_KHO_BD", V6Options.GetValue("M_TEN_KHO_BD")},
+                {"M_TEN_KHO2_BD", V6Options.GetValue("M_TEN_KHO2_BD")},
+                {"M_DIA_CHI_BD", V6Options.GetValue("M_DIA_CHI_BD")},
+                {"M_DIA_CHI2_BD", V6Options.GetValue("M_DIA_CHI2_BD")},
 
-                {"M_TEN_GD", V6Options.V6OptionValues["M_TEN_GD"]},
-                {"M_TEN_GD2", V6Options.V6OptionValues["M_TEN_GD2"]},
-                {"M_TEN_KTT", V6Options.V6OptionValues["M_TEN_KTT"]},
-                {"M_TEN_KTT2", V6Options.V6OptionValues["M_TEN_KTT2"]},
+                {"M_TEN_GD", V6Options.GetValue("M_TEN_GD")},
+                {"M_TEN_GD2", V6Options.GetValue("M_TEN_GD2")},
+                {"M_TEN_KTT", V6Options.GetValue("M_TEN_KTT")},
+                {"M_TEN_KTT2", V6Options.GetValue("M_TEN_KTT2")},
 
-                {"M_RFONTNAME", V6Options.V6OptionValues["M_RFONTNAME"]},
-                {"M_R_FONTSIZE", V6Options.V6OptionValues["M_R_FONTSIZE"]},
+                {"M_RFONTNAME", V6Options.GetValue("M_RFONTNAME")},
+                {"M_R_FONTSIZE", V6Options.GetValue("M_R_FONTSIZE")},
             };
 
             V6Login.SetCompanyInfo(ReportDocumentParameters);

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using V6Controls.Forms;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -546,6 +547,9 @@ namespace V6Controls.Controls.TreeView
         {
             try
             {
+                DataViewerForm dataViewer = new DataViewerForm(_data);
+                dataViewer.ShowDialog(this);
+                return;
                 var data = _data.Copy();
 
                 {

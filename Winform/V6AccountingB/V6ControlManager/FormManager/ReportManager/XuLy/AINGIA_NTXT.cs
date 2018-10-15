@@ -46,7 +46,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             if (GenerateProcedureParameters())
             {
-                var m_BigData = ObjectAndString.ObjectToString(V6Options.V6OptionValues["M_BIG_DATA"]);
+                var m_BigData = ObjectAndString.ObjectToString(V6Options.GetValue("M_BIG_DATA"));
                 if (m_BigData == "1")
                 {
                     var tTinhToan = new Thread(TinhGia_NTXT);

@@ -421,7 +421,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 var KEY = DataDic["NAME"].ToString().Trim().ToUpper();
                 var VALUE = DataDic["VAL"].ToString().Trim();
-                V6Options.V6OptionValues[KEY] = VALUE;
+                V6Options.SetValue(KEY, VALUE);
             }
             catch (Exception ex)
             {

@@ -186,7 +186,7 @@ namespace V6AccountingB
             {
                 timer1.Stop();
                 V6ControlFormHelper.CreateV6TopMessageForm();
-                V6ControlsHelper.CreateVvarNameForm();
+                V6ControlsHelper.CreateFlyLabelForm();
                 Focus();
                 timer2.Start();
                 

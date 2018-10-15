@@ -54,7 +54,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (GenerateProcedureParameters())
             {
 
-                var m_BigData = ObjectAndString.ObjectToString(V6Options.V6OptionValues["M_BIG_DATA"]);
+                var m_BigData = ObjectAndString.ObjectToString(V6Options.GetValue("M_BIG_DATA"));
 
                 if  (m_BigData == "1")
                 {
@@ -83,7 +83,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var count = ObjectAndString.ObjectToInt(MaxCal.Rows[0][0] ?? 0) + 2;
 
 
-                var m_giavt = ObjectAndString.ObjectToString(V6Options.V6OptionValues["M_GIA_VT"]);
+                var m_giavt = ObjectAndString.ObjectToString(V6Options.GetValue("M_GIA_VT"));
                 if (m_giavt == "1" || m_giavt == "0")
                 {
                     count = 1;
@@ -156,7 +156,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var count = ObjectAndString.ObjectToInt(MaxCal.Rows[0][0] ?? 0) + 2;
 
 
-                var m_giavt = ObjectAndString.ObjectToString(V6Options.V6OptionValues["M_GIA_VT"]);
+                var m_giavt = ObjectAndString.ObjectToString(V6Options.GetValue("M_GIA_VT"));
                 if (m_giavt == "1" || m_giavt == "0")
                 {
                     count = 1;

@@ -79,9 +79,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             //Lọc dữ liệu chưa hoàn tất trong ngày.
             var whereAM = string.Format("Ngay_Ct='{0}' and MA_KHOPH = '{1}' and status in ('1','2') ",
                 day.ToString("yyyyMMdd"), Ma_kho);
-            if (V6Options.V6OptionValues.ContainsKey("M_SOC_GET_ALL_DATE"))
+            if (V6Options.ContainsKey("M_SOC_GET_ALL_DATE"))
             {
-                switch (V6Options.V6OptionValues["M_SOC_GET_ALL_DATE"].Trim())
+                switch (V6Options.GetValue("M_SOC_GET_ALL_DATE").Trim())
                 {
                     case "0":
                         // Lọc tất cả trong ngày

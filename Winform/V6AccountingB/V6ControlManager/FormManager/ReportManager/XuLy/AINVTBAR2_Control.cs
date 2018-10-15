@@ -355,17 +355,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var f = dataGridView1.Columns["so_luong"];
                 if (f != null)
                 {
-                    f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_SL"];
+                    f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_SL");
                 }
                 f = dataGridView1.Columns["TIEN2"];
                 if (f != null)
                 {
-                    f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_TIEN"];
+                    f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_TIEN");
                 }
                 f = dataGridView1.Columns["GIA2"];
                 if (f != null)
                 {
-                    f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIA"];
+                    f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_GIA");
                 }
 
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Report_GRDSV1, Report_GRDFV1, V6Setting.IsVietnamese ? Report_GRDHV_V1 : Report_GRDHE_V1);

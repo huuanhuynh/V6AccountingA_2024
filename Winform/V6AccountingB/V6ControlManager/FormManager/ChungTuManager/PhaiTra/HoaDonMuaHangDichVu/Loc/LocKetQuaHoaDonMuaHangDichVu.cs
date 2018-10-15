@@ -81,23 +81,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     case "SO_LUONG1":
                     case "SO_LUONG":
                     case "T_SO_LUONG":
-                        column.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_SL"];
+                        column.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_SL");
                         break;
                     case "GIA":
                     case "GIA2":
                     case "GIA21":
                     case "GIA0":
-                        column.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIA"];
+                        column.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_GIA");
                         break;
                     case "GIA_NT":
-                        column.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIANT"];
+                        column.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_GIANT");
                         break;
                     //case "TIEN":
                     //case "TIEN2":
                     //    e.Column.DefaultCellStyle.Format = V6Options.V6OptionValue["M_IP_R_TIEN"];
                     //    break;
                     case "TIEN_NT2":
-                        column.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_TIENNT"];
+                        column.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_TIENNT");
                         break;
                 }
             }

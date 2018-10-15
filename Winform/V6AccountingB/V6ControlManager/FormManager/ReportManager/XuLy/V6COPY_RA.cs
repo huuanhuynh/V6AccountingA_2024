@@ -271,11 +271,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             SqlParameter[] plist = new[]
             {
-                new SqlParameter("@Type", type), 
-                new SqlParameter("@Ngay_ct1", dateNgay_ct1.Date), 
-                new SqlParameter("@Ngay_ct2", dateNgay_ct2.Date), 
-                new SqlParameter("@Ma_dvcs", txtDanhSachDonVi.Text), 
-                new SqlParameter("@Ws_id", V6Options.V6OptionValues["M_WS_ID"]), 
+                new SqlParameter("@Type", type),
+                new SqlParameter("@Ngay_ct1", dateNgay_ct1.Date),
+                new SqlParameter("@Ngay_ct2", dateNgay_ct2.Date),
+                new SqlParameter("@Ma_dvcs", txtDanhSachDonVi.Text),
+                new SqlParameter("@Ws_id", V6Options.GetValue("M_WS_ID")),
             };
             var ds = V6BusinessHelper.ExecuteProcedure("V6CopyRa", plist);
             return ds;

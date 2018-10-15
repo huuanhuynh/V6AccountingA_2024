@@ -2,8 +2,6 @@
 using System.Data;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.IO;
-using System.Net;
 using System.Threading;
 using V6AccountingBusiness;
 using V6Controls;
@@ -11,7 +9,6 @@ using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
 using V6Tools;
-using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6AccountingB
@@ -69,12 +66,6 @@ namespace V6AccountingB
             {
                 this.ShowErrorMessage(GetType() + ".ResetInfos: " + ex.Message, "Login");
             }
-        }
-
-
-        private void ReadyLoginForm()
-        {
-            
         }
 
         private void FormLogin_Load(object sender, EventArgs e)
@@ -258,7 +249,7 @@ namespace V6AccountingB
                         }
 
                         //Check pass_date
-                        int M_DAY_CHANGEPASS = int.Parse(V6Options.V6OptionValues["M_DAY_CHANGEPASS"]);
+                        int M_DAY_CHANGEPASS = int.Parse(V6Options.GetValue("M_DAY_CHANGEPASS"));
 
                         if (M_DAY_CHANGEPASS > 0)
                         {

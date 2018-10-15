@@ -485,7 +485,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                                 _maViTri.CheckNotEmpty = _maVt.VITRI_YN;
                                 var filter = "Ma_kho='" + txtMaKhoX.Text.Trim() + "'";
 
-                                //if (("," + V6Options.V6OptionValues["M_LST_CT_DV"] + ",").Contains(MaCt))
+                                //if (("," + V6Options.GetValue("M_LST_CT_DV") + ",").Contains(MaCt))
                                 //{
                                 //    _dataViTri = Invoice.GetViTri(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
                                 //    var getFilter = GetFilterMaViTri(_dataViTri, _sttRec0, _maVt.Text, _maKhoI.Text);
@@ -514,7 +514,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                                 _maViTriN.CheckNotEmpty = _maVt.VITRI_YN;
                                 var filter = "Ma_kho='" + txtMaKhoN.Text.Trim() + "'";
 
-                                if (("," + V6Options.V6OptionValues["M_LST_CT_DV"] + ",").Contains(Invoice.Mact))
+                                if (("," + V6Options.GetValue("M_LST_CT_DV") + ",").Contains(Invoice.Mact))
                                 {
                                     _dataViTri = Invoice.GetViTri("", txtMaKhoN.Text, _sttRec, dateNgayCT.Date);
                                     var getFilter = GetFilterMaViTriNhap(_dataViTri, _sttRec0,"", txtMaKhoN.Text);
@@ -2560,12 +2560,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             var f = dataGridView1.Columns["so_luong"];
             if (f != null)
             {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_SL"];
+                f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_SL");
             }
             f = dataGridView1.Columns["SO_LUONG1"];
             if (f != null)
             {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_SL"];
+                f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_SL");
             }
             f = dataGridView1.Columns["HE_SO1"];
             if (f != null)
@@ -2576,57 +2576,57 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             f = dataGridView1.Columns["GIA2"];
             if (f != null)
             {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIA"];
+                f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_GIA");
             }
             f = dataGridView1.Columns["GIA21"];
             if (f != null)
             {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIA"];
+                f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_GIA");
             }
             f = dataGridView1.Columns["GIA"];
             if (f != null)
             {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIA"];
+                f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_GIA");
             }
             f = dataGridView1.Columns["GIA_NT2"];
             if (f != null)
             {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIANT"];
+                f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_GIANT");
             }
             f = dataGridView1.Columns["GIA_NT21"];
             if (f != null)
             {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIANT"];
+                f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_GIANT");
             }
             f = dataGridView1.Columns["GIA_NT"];
             if (f != null)
             {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIANT"];
+                f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_GIANT");
             }
             f = dataGridView1.Columns["TIEN2"];
             if (f != null)
             {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_TIEN"];
+                f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_TIEN");
             }
             f = dataGridView1.Columns["TIEN"];
             if (f != null)
             {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_TIEN"];
+                f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_TIEN");
             }
             f = dataGridView1.Columns["TIEN_NT2"];
             if (f != null)
             {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_TIENNT"];
+                f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_TIENNT");
             }
             f = dataGridView1.Columns["CK_NT"];
             if (f != null)
             {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_TIENNT"];
+                f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_TIENNT");
             }
             f = dataGridView1.Columns["CK"];
             if (f != null)
             {
-                f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_TIEN"];
+                f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_TIEN");
             }
 
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Invoice.GRDS_AD, Invoice.GRDF_AD,
@@ -2728,7 +2728,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         private void GetM_ma_nt0()
         {
-            _mMaNt0 = V6Options.V6OptionValues["M_MA_NT0"];
+            _mMaNt0 = V6Options.M_MA_NT0;
             //cboMaNt.SelectedValue = _mMaNt0;
             panelVND.Visible = false;
         }

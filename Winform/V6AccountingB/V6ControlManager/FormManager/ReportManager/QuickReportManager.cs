@@ -619,28 +619,28 @@ namespace V6ControlManager.FormManager.ReportManager
             ReportDocumentParameters.Add("M_TEN_TCTY2", V6Soft.V6SoftValue["M_TEN_TCTY2"].ToUpper());
             ReportDocumentParameters.Add("M_DIA_CHI2", V6Soft.V6SoftValue["M_DIA_CHI2"]);
             // V6option
-            ReportDocumentParameters.Add("M_MA_THUE", V6Options.V6OptionValues["M_MA_THUE"]);
-            ReportDocumentParameters.Add("M_RTEN_VSOFT", V6Options.V6OptionValues["M_RTEN_VSOFT"]);
+            ReportDocumentParameters.Add("M_MA_THUE", V6Options.GetValue("M_MA_THUE"));
+            ReportDocumentParameters.Add("M_RTEN_VSOFT", V6Options.GetValue("M_RTEN_VSOFT"));
 
             ReportDocumentParameters.Add("M_TEN_NLB", "");// txtM_TEN_NLB.Text.Trim());
             ReportDocumentParameters.Add("M_TEN_NLB2", "");// txtM_TEN_NLB2.Text.Trim());
-            ReportDocumentParameters.Add("M_TEN_KHO_BD", V6Options.V6OptionValues["M_TEN_KHO_BD"]);
-            ReportDocumentParameters.Add("M_TEN_KHO2_BD", V6Options.V6OptionValues["M_TEN_KHO2_BD"]);
-            ReportDocumentParameters.Add("M_DIA_CHI_BD", V6Options.V6OptionValues["M_DIA_CHI_BD"]);
-            ReportDocumentParameters.Add("M_DIA_CHI2_BD", V6Options.V6OptionValues["M_DIA_CHI2_BD"]);
+            ReportDocumentParameters.Add("M_TEN_KHO_BD", V6Options.GetValue("M_TEN_KHO_BD"));
+            ReportDocumentParameters.Add("M_TEN_KHO2_BD", V6Options.GetValue("M_TEN_KHO2_BD"));
+            ReportDocumentParameters.Add("M_DIA_CHI_BD", V6Options.GetValue("M_DIA_CHI_BD"));
+            ReportDocumentParameters.Add("M_DIA_CHI2_BD", V6Options.GetValue("M_DIA_CHI2_BD"));
 
-            ReportDocumentParameters.Add("M_TEN_GD", V6Options.V6OptionValues["M_TEN_GD"]);
-            ReportDocumentParameters.Add("M_TEN_GD2", V6Options.V6OptionValues["M_TEN_GD2"]);
-            ReportDocumentParameters.Add("M_TEN_KTT", V6Options.V6OptionValues["M_TEN_KTT"]);
-            ReportDocumentParameters.Add("M_TEN_KTT2", V6Options.V6OptionValues["M_TEN_KTT2"]);
+            ReportDocumentParameters.Add("M_TEN_GD", V6Options.GetValue("M_TEN_GD"));
+            ReportDocumentParameters.Add("M_TEN_GD2", V6Options.GetValue("M_TEN_GD2"));
+            ReportDocumentParameters.Add("M_TEN_KTT", V6Options.GetValue("M_TEN_KTT"));
+            ReportDocumentParameters.Add("M_TEN_KTT2", V6Options.GetValue("M_TEN_KTT2"));
 
-            ReportDocumentParameters.Add("M_SO_QD_CDKT", V6Options.V6OptionValues["M_SO_QD_CDKT"]);
-            ReportDocumentParameters.Add("M_SO_QD_CDKT2", V6Options.V6OptionValues["M_SO_QD_CDKT2"]);
-            ReportDocumentParameters.Add("M_NGAY_QD_CDKT", V6Options.V6OptionValues["M_NGAY_QD_CDKT"]);
-            ReportDocumentParameters.Add("M_NGAY_QD_CDKT2", V6Options.V6OptionValues["M_NGAY_QD_CDKT2"]);
+            ReportDocumentParameters.Add("M_SO_QD_CDKT", V6Options.GetValue("M_SO_QD_CDKT"));
+            ReportDocumentParameters.Add("M_SO_QD_CDKT2", V6Options.GetValue("M_SO_QD_CDKT2"));
+            ReportDocumentParameters.Add("M_NGAY_QD_CDKT", V6Options.GetValue("M_NGAY_QD_CDKT"));
+            ReportDocumentParameters.Add("M_NGAY_QD_CDKT2", V6Options.GetValue("M_NGAY_QD_CDKT2"));
 
-            ReportDocumentParameters.Add("M_RFONTNAME", V6Options.V6OptionValues["M_RFONTNAME"]);
-            ReportDocumentParameters.Add("M_R_FONTSIZE", V6Options.V6OptionValues["M_R_FONTSIZE"]);
+            ReportDocumentParameters.Add("M_RFONTNAME", V6Options.GetValue("M_RFONTNAME"));
+            ReportDocumentParameters.Add("M_R_FONTSIZE", V6Options.GetValue("M_R_FONTSIZE"));
 
 
             V6Login.SetCompanyInfo(ReportDocumentParameters);

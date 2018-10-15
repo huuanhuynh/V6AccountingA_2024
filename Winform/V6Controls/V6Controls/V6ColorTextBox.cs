@@ -211,7 +211,7 @@ namespace V6Controls
             {
                 try
                 {
-                    LimitCharacters0 = V6Options.V6OptionValues["M_V6_LIMITCHARS0"];
+                    LimitCharacters0 = V6Options.GetValue("M_V6_LIMITCHARS0");
                 }
                 catch (Exception)
                 {

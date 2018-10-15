@@ -148,7 +148,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                var ppkh = ObjectAndString.ObjectToInt(V6Options.V6OptionValues["M_PP_PB"]);
+                var ppkh = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_PB"));
                 txtgt_cl.Value = txtnguyen_gia.Value - Txtgt_da_pb.Value;
                 if (TxtSo_ky.Value > 0)
                 {

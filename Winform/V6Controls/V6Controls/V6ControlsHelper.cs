@@ -631,17 +631,17 @@ namespace V6Controls
             return DataDic;
         }
 
-        public static V6VvarNameForm VvarNameForm;
+        public static FlyLabelForm FlyLabel_Form;
         /// <summary>
         /// Tạo sẵn form nổi vvar name.
         /// </summary>
-        public static void CreateVvarNameForm()
+        public static void CreateFlyLabelForm()
         {
-            if (VvarNameForm == null)
+            if (FlyLabel_Form == null)
             {
-                VvarNameForm = new V6VvarNameForm();
-                VvarNameForm.Top = -VvarNameForm.Height;
-                VvarNameForm.Show();
+                FlyLabel_Form = new FlyLabelForm();
+                FlyLabel_Form.Top = -FlyLabel_Form.Height;
+                FlyLabel_Form.Show();
             }
         }
         /// <summary>
@@ -652,18 +652,37 @@ namespace V6Controls
         {
             //if (owner.Data == null) return;
             //CreateVvarNameForm();
-            VvarNameForm.VvarTextBox = owner;
+            FlyLabel_Form.TargetControl = owner;
             string nfield = V6Setting.IsVietnamese ? owner.LookupInfo.VName : owner.LookupInfo.VName2;
             if (!string.IsNullOrEmpty(nfield))
             {
                 var sss = ObjectAndString.SplitString(nfield);
                 if (owner.Data == null)
                 {
-                    VvarNameForm.StopShow();
+                    FlyLabel_Form.StopShow();
                 }
                 else if (owner.Data.Table.Columns.Contains(sss[0]))
                 {
-                    VvarNameForm.Message = owner.Data[sss[0]].ToString().Trim();
+                    FlyLabel_Form.Message = owner.Data[sss[0]].ToString().Trim();
+                }
+            }
+        }
+        public static void ShowLookupTextBoxName(V6LookupTextBox owner)
+        {
+            //if (owner.Data == null) return;
+            //CreateVvarNameForm();
+            FlyLabel_Form.TargetControl = owner;
+            string nfield = V6Setting.IsVietnamese ? owner.LookupInfo.VName : owner.LookupInfo.VName2;
+            if (!string.IsNullOrEmpty(nfield))
+            {
+                var sss = ObjectAndString.SplitString(nfield);
+                if (owner.Data == null)
+                {
+                    FlyLabel_Form.StopShow();
+                }
+                else if (owner.Data.Table.Columns.Contains(sss[0]))
+                {
+                    FlyLabel_Form.Message = owner.Data[sss[0]].ToString().Trim();
                 }
             }
         }

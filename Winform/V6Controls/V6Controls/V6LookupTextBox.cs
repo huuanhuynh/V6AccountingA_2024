@@ -20,8 +20,17 @@ namespace V6Controls
         //constructor
         public V6LookupTextBox()
         {
+            TextChanged += V6LookupTextBox_TextChanged;
             GotFocus += V6LookupTextBox_GotFocus;
             //_upper = true;
+        }
+
+        void V6LookupTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Focused && (_showName || _checkOnLeave))
+            {
+                V6ControlsHelper.ShowLookupTextBoxName(this);
+            }
         }
 
         /// <summary>
@@ -35,6 +44,10 @@ namespace V6Controls
         {
             try
             {
+                if (_showName || _checkOnLeave)
+                {
+                    V6ControlsHelper.ShowLookupTextBoxName(this);
+                }
                 LoadAutoCompleteSource();
             }
             catch (Exception ex)
@@ -43,6 +56,15 @@ namespace V6Controls
             }
         }
 
+        private bool _showName = false;
+        /// <summary>
+        /// Hiển thị tên khi nhảy vào.
+        /// </summary>
+        [Category("V6")]
+        [DefaultValue(false)]
+        [Description("Bật hiển thị tên khi vào.")]
+        public bool ShowName { get { return _showName; } set { _showName = value; } }
+        
         private bool _f5 = true, _f2;
         private string _ma_dm = "";
         private string _text_data = "";

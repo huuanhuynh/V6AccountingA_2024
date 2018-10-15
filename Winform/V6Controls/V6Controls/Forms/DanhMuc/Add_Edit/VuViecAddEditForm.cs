@@ -56,7 +56,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void Tinh_tien()
         {
-            if (TxtMa_nt.Text == V6Options.V6OptionValues["M_MA_NT0"])
+            if (TxtMa_nt.Text == V6Options.M_MA_NT0)
             {
                 TxtTien.Value = TxtTien_nt.Value;
             }

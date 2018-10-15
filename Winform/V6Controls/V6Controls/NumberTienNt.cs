@@ -6,10 +6,7 @@ namespace V6Controls
     {
         public NumberTienNt()
         {
-            if(V6Options.V6OptionValues != null)
-                DecimalPlaces = V6Options.M_IP_TIEN_NT;
-            else
-                DecimalPlaces = 0;
+            DecimalPlaces = V6Options.M_IP_TIEN_NT;
         }
     }
 
@@ -17,10 +14,7 @@ namespace V6Controls
     {
         public NumberTien()
         {
-            if (V6Options.V6OptionValues != null)
-                DecimalPlaces = V6Options.M_IP_TIEN;
-            else
-                DecimalPlaces = 0;
+            DecimalPlaces = V6Options.M_IP_TIEN;
         }
     }
 
@@ -28,11 +22,7 @@ namespace V6Controls
     {
         public NumberSoluong()
         {
-            if (V6Options.V6OptionValues != null)
-                DecimalPlaces = V6Options.M_IP_SL;
-            else
-                DecimalPlaces = 0;
-
+            DecimalPlaces = V6Options.M_IP_SL;
         }
     }
 
@@ -40,11 +30,7 @@ namespace V6Controls
     {
         public NumberTygia()
         {
-            if (V6Options.V6OptionValues != null)
-                DecimalPlaces = V6Options.M_IP_TY_GIA;
-            else
-                DecimalPlaces = 0;
-
+            DecimalPlaces = V6Options.M_IP_TY_GIA;
         }
     }
 
@@ -52,10 +38,7 @@ namespace V6Controls
     {
         public NumberGia()
         {
-            if (V6Options.V6OptionValues != null)
-                DecimalPlaces = V6Options.M_IP_GIA;
-            else
-                DecimalPlaces = 0;
+            DecimalPlaces = V6Options.M_IP_GIA;
         }
     }
 
@@ -63,10 +46,7 @@ namespace V6Controls
     {
         public NumberGiaNt()
         {
-            if (V6Options.V6OptionValues != null)
-                DecimalPlaces = V6Options.M_IP_GIA_NT;
-            else
-                DecimalPlaces = 0;
+            DecimalPlaces = V6Options.M_IP_GIA_NT;
         }
     }
 }

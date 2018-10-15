@@ -146,9 +146,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
         protected int M_ROUND_NT = V6Setting.RoundTienNt;
         protected int M_ROUND_GIA = V6Setting.RoundGia;
         protected int M_ROUND_GIA_NT = V6Setting.RoundGiaNt;
-        public string M_SOA_HT_KM_CK = V6Options.V6OptionValues != null ? V6Options.V6OptionValues["M_SOA_HT_KM_CK"] : "null";
-        public string M_SOA_MULTI_VAT = V6Options.V6OptionValues != null ? V6Options.V6OptionValues["M_SOA_MULTI_VAT"] : "null";
-        public string M_CAL_SL_QD_ALL =  V6Options.V6OptionValues != null ?V6Options.V6OptionValues["M_CAL_SL_QD_ALL"] : "null";
+        public string M_SOA_HT_KM_CK = V6Options.GetValue("M_SOA_HT_KM_CK");
+        public string M_SOA_MULTI_VAT = V6Options.GetValue("M_SOA_MULTI_VAT");
+        public string M_CAL_SL_QD_ALL = V6Options.GetValue("M_CAL_SL_QD_ALL");
 
         /// <summary>
         /// List thứ tự field chi tiết.
@@ -605,7 +605,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             if (V6Setting.IsDesignTime) return;
             try
             {
-                string M_V6_ADV_FILTER = V6Options.V6OptionValues["M_V6_ADV_FILTER"];
+                string M_V6_ADV_FILTER = V6Options.GetValue("M_V6_ADV_FILTER");
                 string[] infos = ObjectAndString.SplitString(M_V6_ADV_FILTER);//"MA_SONB:ALSONB:1;");
 
                 foreach (string info in infos)
@@ -1346,7 +1346,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 if (V6Options.M_CHK_XUAT != "0") return true;
 
-                var M_CHECK_SAVE_STOCK = V6Options.V6OptionValues["M_CHECK_SAVE_STOCK"];
+                var M_CHECK_SAVE_STOCK = V6Options.GetValue("M_CHECK_SAVE_STOCK");
                 string message = "";
                 foreach (char c in M_CHECK_SAVE_STOCK)
                 {

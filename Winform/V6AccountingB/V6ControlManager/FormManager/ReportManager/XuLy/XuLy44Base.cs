@@ -109,7 +109,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                //var M_COMPANY_BY_MA_DVCS = V6Options.V6OptionValues.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.V6OptionValues["M_COMPANY_BY_MA_DVCS"].Trim() : "";
+                //var M_COMPANY_BY_MA_DVCS = V6Options.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.GetValue("M_COMPANY_BY_MA_DVCS").Trim() : "";
                 //if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
                 //{
                 //    var dataRow = V6Setting.DataDVCS;
@@ -595,17 +595,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var f = dataGridView1.Columns["so_luong"];
                 if (f != null)
                 {
-                    f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_SL"];
+                    f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_SL");
                 }
                 f = dataGridView1.Columns["TIEN2"];
                 if (f != null)
                 {
-                    f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_TIEN"];
+                    f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_TIEN");
                 }
                 f = dataGridView1.Columns["GIA2"];
                 if (f != null)
                 {
-                    f.DefaultCellStyle.Format = V6Options.V6OptionValues["M_IP_R_GIA"];
+                    f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_GIA");
                 }
             }
 

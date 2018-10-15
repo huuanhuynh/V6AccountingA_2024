@@ -2033,7 +2033,7 @@ namespace V6Controls.Forms
                                 else if (!string.IsNullOrEmpty(num.NumberFormatName))
                                 {
                                     num.DecimalPlaces
-                                        = Convert.ToInt32(V6Options.V6OptionValues[num.NumberFormatName]);
+                                        = Convert.ToInt32(V6Options.GetValue(num.NumberFormatName));
                                 }
                                 else
                                 {
@@ -2087,7 +2087,7 @@ namespace V6Controls.Forms
                             {
                                 if (!string.IsNullOrEmpty(num.NumberFormatName))
                                 {
-                                    num.DecimalPlaces = Convert.ToInt32(V6Options.V6OptionValues[num.NumberFormatName]);
+                                    num.DecimalPlaces = Convert.ToInt32(V6Options.GetValue(num.NumberFormatName));
                                 }
                                 else
                                 {
@@ -2143,8 +2143,8 @@ namespace V6Controls.Forms
                 //var cancellang = form is DataGridView || tagString.Contains(";cancellang;");
                 //if (cancellang) return;
 
-                if (V6Options.V6OptionValues == null || V6Options.V6OptionValues.Count == 0) return;
-                if (!V6Options.V6OptionValues.ContainsKey("M_TRAN_LANG") || V6Options.V6OptionValues["M_TRAN_LANG"] != "1") return;
+                //if (V6Options.V6OptionValues == null || V6Options.V6OptionValues.Count == 0) return;
+                if (!V6Options.ContainsKey("M_TRAN_LANG") || V6Options.GetValue("M_TRAN_LANG") != "1") return;
                 
                 var idList = GetFormAccessibleDescriptions(form);
                 var dic = CorpLan.GetTextDic(idList, V6Setting.Language, form.Name + "-" + form.GetType());

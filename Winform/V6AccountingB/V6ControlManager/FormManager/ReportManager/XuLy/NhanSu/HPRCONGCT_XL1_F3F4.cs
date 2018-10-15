@@ -122,7 +122,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     {
                         sl_td3 = gio_ra - gio_vao - 1;
                     }
-                    if (sl_td3 >= ObjectAndString.ObjectToDecimal(V6Options.V6OptionValues["M_PR_SO_GIO"]))
+                    if (sl_td3 >= ObjectAndString.ObjectToDecimal(V6Options.GetValue("M_PR_SO_GIO")))
                     {
                         gio = 8;
                     }

@@ -61,7 +61,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var result = Categories.Update(TableName, DataDic, _keys);
                 var name = DataDic["NAME"].ToString();
                 var value = DataDic["VAL"].ToString();
-                V6Options.V6OptionValues[name] = value;
+                V6Options.SetValue(name, value);
 
                 return result;
             }

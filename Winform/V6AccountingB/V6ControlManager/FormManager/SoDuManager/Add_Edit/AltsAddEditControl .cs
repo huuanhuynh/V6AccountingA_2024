@@ -193,7 +193,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 //gView2.DataSource
                 var sokykh = txtSoKyKhauHao.Value;
-                var ppkh = ObjectAndString.ObjectToInt(V6Options.V6OptionValues["M_PP_KH"]);
+                var ppkh = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_KH"));
                 foreach (DataRow row in AD.Rows)
                 {
                     //gt_cl.Value = nguyen_gia.Value - gt_da_kh.Value;
@@ -231,7 +231,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             try
             {
-                var ppkh = ObjectAndString.ObjectToInt(V6Options.V6OptionValues["M_PP_KH"]);
+                var ppkh = ObjectAndString.ObjectToInt(V6Options.GetValue("M_PP_KH"));
                 gt_cl.Value = nguyen_gia.Value - gt_da_kh.Value;
                 if (txtSoKyKhauHao.Value > 0)
                 {

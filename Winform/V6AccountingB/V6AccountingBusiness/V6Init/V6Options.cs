@@ -36,8 +36,8 @@ namespace V6Init
 
         }
 
-        private static SortedDictionary<string, string> value = null;
-        private static SortedDictionary<string, string> type = null;
+        private static SortedDictionary<string, string> value;
+        private static SortedDictionary<string, string> type;
         public static bool Test = true;
 
         
@@ -45,13 +45,42 @@ namespace V6Init
         /// <summary>
         /// [UPPER_FIELD] = Trimmed value
         /// </summary>
-        public static SortedDictionary<string, string> V6OptionValues
+        private static SortedDictionary<string, string> V6OptionValues
         {
             get
             {
                 if (value == null || value.Count == 0)
                     LoadValue();
                 return value;
+            }
+        }
+
+        public static bool ContainsKey(string key)
+        {
+            return V6OptionValues.ContainsKey(key.ToUpper());
+        }
+
+        public static string GetValue(string name)
+        {
+            try
+            {
+                return V6OptionValues[name.ToUpper()];
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(name + " " + ex.Message);
+            }
+        }
+        
+        public static void SetValue(string name, string value)
+        {
+            try
+            {
+                V6OptionTypes[name.ToUpper()] = value;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(name + " " + ex.Message);
             }
         }
 
@@ -67,7 +96,7 @@ namespace V6Init
 
         public static string MODULE_ID
         {
-            get { return V6OptionValues["MODULE_ID"]; }
+            get { return GetValue("MODULE_ID"); }
             set { V6OptionValues["MODULE_ID"] = value; }
         }
        
@@ -87,9 +116,9 @@ namespace V6Init
                     }
                     else
                     {
-                        m_num_separator = V6OptionValues["M_NUM_SEPARATOR"] == ""
+                        m_num_separator = GetValue("M_NUM_SEPARATOR") == ""
                             ? " "
-                            : V6OptionValues["M_NUM_SEPARATOR"];
+                            : GetValue("M_NUM_SEPARATOR");
                     }
 
                 }
@@ -113,9 +142,9 @@ namespace V6Init
                     }
                     else
                     {
-                        m_num_point = V6OptionValues["M_NUM_POINT"] == ""
+                        m_num_point = GetValue("M_NUM_POINT") == ""
                             ? ","
-                            : V6OptionValues["M_NUM_POINT"];
+                            : GetValue("M_NUM_POINT");
                     }
 
                 }
@@ -134,12 +163,12 @@ namespace V6Init
             {
                 if (string.IsNullOrEmpty(_k_tmp))
                 {
-                    _k_tmp = V6OptionValues["K_TMP"];
+                    _k_tmp = GetValue("K_TMP");
                 }
                 return _k_tmp;
             }
         }
-        private static string _k_tmp = null;
+        private static string _k_tmp;
 
 
         public static string M_MA_NT0
@@ -154,9 +183,9 @@ namespace V6Init
                     }
                     else
                     {
-                        m_ma_nt0 = V6OptionValues["M_MA_NT0"] == ""
+                        m_ma_nt0 = GetValue("M_MA_NT0") == ""
                             ? "VND"
-                            : V6OptionValues["M_MA_NT0"];
+                            : GetValue("M_MA_NT0");
                     }
 
                 }
@@ -166,27 +195,27 @@ namespace V6Init
 
         public static int M_IP_R_TIEN
         {
-            get { return Convert.ToInt32(V6OptionValues["M_IP_R_TIEN"].Substring(1)); }
+            get { return Convert.ToInt32(GetValue("M_IP_R_TIEN").Substring(1)); }
         }
 
         public static int M_IP_R_TIENNT
         {
-            get { return Convert.ToInt32(V6OptionValues["M_IP_R_TIENNT"].Substring(1)); }
+            get { return Convert.ToInt32(GetValue("M_IP_R_TIENNT").Substring(1)); }
         }
 
         public static int M_IP_R_SL
         {
-            get { return Convert.ToInt32(V6OptionValues["M_IP_R_SL"].Substring(1)); }
+            get { return Convert.ToInt32(GetValue("M_IP_R_SL").Substring(1)); }
         }
 
         public static int M_IP_R_GIA
         {
-            get { return Convert.ToInt32(V6OptionValues["M_IP_R_GIA"].Substring(1)); }
+            get { return Convert.ToInt32(GetValue("M_IP_R_GIA").Substring(1)); }
         }
 
         public static int M_IP_R_GIANT
         {
-            get { return Convert.ToInt32(V6OptionValues["M_IP_R_GIANT"].Substring(1)); }
+            get { return Convert.ToInt32(GetValue("M_IP_R_GIANT").Substring(1)); }
         }
 
         /// <summary>
@@ -197,7 +226,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 0;
-                return Convert.ToInt32(V6OptionValues["M_ROUND"]);
+                return Convert.ToInt32(GetValue("M_ROUND"));
             }
         }
 
@@ -206,7 +235,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 2;
-                return Convert.ToInt32(V6OptionValues["M_ROUND_NT"]);
+                return Convert.ToInt32(GetValue("M_ROUND_NT"));
             }
         }
 
@@ -215,7 +244,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 2;
-                return Convert.ToInt32(V6OptionValues["M_ROUND_NT0"]);
+                return Convert.ToInt32(GetValue("M_ROUND_NT0"));
             }
         }
 
@@ -224,7 +253,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 4;
-                return Convert.ToInt32(V6OptionValues["M_ROUND_GIA"]);
+                return Convert.ToInt32(GetValue("M_ROUND_GIA"));
             }
         }
 
@@ -233,7 +262,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 4;
-                return Convert.ToInt32(V6OptionValues["M_ROUND_GIA_NT"]);
+                return Convert.ToInt32(GetValue("M_ROUND_GIA_NT"));
             }
         }
 
@@ -242,7 +271,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 4;
-                return Convert.ToInt32(V6OptionValues["M_ROUND_GIA_NT0"]);
+                return Convert.ToInt32(GetValue("M_ROUND_GIA_NT0"));
             }
         }
 
@@ -254,7 +283,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return "1";
-                return V6OptionValues["M_CHK_XUAT"];
+                return GetValue("M_CHK_XUAT");
             }
         }
         
@@ -263,7 +292,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 0;
-                else return Convert.ToInt32(V6OptionValues["M_IP_TIEN"].Substring(1));
+                else return Convert.ToInt32(GetValue("M_IP_TIEN").Substring(1));
             }
         }
 
@@ -272,7 +301,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 2;
-                else return Convert.ToInt32(V6OptionValues["M_IP_TIEN_NT"].Substring(1));
+                else return Convert.ToInt32(GetValue("M_IP_TIEN_NT").Substring(1));
             }
         }
 
@@ -281,7 +310,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 2;
-                else return Convert.ToInt32(V6OptionValues["M_IP_SL"].Substring(1));
+                else return Convert.ToInt32(GetValue("M_IP_SL").Substring(1));
             }
         }
 
@@ -290,7 +319,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 2;
-                else return Convert.ToInt32(V6OptionValues["M_IP_GIA"].Substring(1));
+                else return Convert.ToInt32(GetValue("M_IP_GIA").Substring(1));
             }
         }
 
@@ -299,7 +328,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 2;
-                else return Convert.ToInt32(V6OptionValues["M_IP_GIA_NT"].Substring(1));
+                else return Convert.ToInt32(GetValue("M_IP_GIA_NT").Substring(1));
             }
         }
 
@@ -308,7 +337,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 2;
-                else return Convert.ToInt32(V6OptionValues["M_IP_TY_GIA"].Substring(1));
+                else return Convert.ToInt32(GetValue("M_IP_TY_GIA").Substring(1));
             }
         }
         
@@ -320,7 +349,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 0;
-                else return Convert.ToInt32(V6OptionValues["M_BARCODE_ELENGTH"]);
+                else return Convert.ToInt32(GetValue("M_BARCODE_ELENGTH"));
             }
         }
         /// <summary>
@@ -331,7 +360,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return false;
-                return "1" == V6OptionValues["M_AUTO_SAVEDETAIL"];
+                return "1" == GetValue("M_AUTO_SAVEDETAIL");
             }
         }
         
@@ -340,7 +369,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return false;
-                return "1" == V6OptionValues["M_AUTO_MODEM_SMS"];
+                return "1" == GetValue("M_AUTO_MODEM_SMS");
             }
         }
         /// <summary>
@@ -351,7 +380,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return false;
-                return "1" == V6OptionValues["M_ADD_DETAILQUANTITY"];
+                return "1" == GetValue("M_ADD_DETAILQUANTITY");
             }
         }
         /// <summary>
@@ -362,7 +391,7 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return 0;
-                return Convert.ToInt32(V6OptionValues["M_LOCK_TIME"]);
+                return Convert.ToInt32(GetValue("M_LOCK_TIME"));
             }
         }
         /// <summary>
@@ -377,10 +406,10 @@ namespace V6Init
             get
             {
                 if (V6OptionValues == null) return "";
-                return V6OptionValues["M_SOA_TINH_CK_KM"];
+                return GetValue("M_SOA_TINH_CK_KM");
             }
         }
-
+        
     }
 
     public enum GetDataMode

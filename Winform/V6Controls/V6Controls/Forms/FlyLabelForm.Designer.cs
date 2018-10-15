@@ -1,6 +1,6 @@
 ﻿namespace V6Controls.Forms
 {
-    partial class V6VvarNameForm
+    partial class FlyLabelForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(V6VvarNameForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FlyLabelForm));
             this.lblMessage = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblHole = new System.Windows.Forms.Label();
@@ -38,10 +38,11 @@
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
+            this.lblMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.Location = new System.Drawing.Point(5, 4);
+            this.lblMessage.Location = new System.Drawing.Point(3, 3);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(72, 13);
+            this.lblMessage.Size = new System.Drawing.Size(74, 15);
             this.lblMessage.TabIndex = 0;
             this.lblMessage.Text = "Thông báo.";
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -63,13 +64,13 @@
             this.lblHole.TabIndex = 1;
             this.lblHole.Text = "label1";
             // 
-            // V6VvarNameForm
+            // FlyLabelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(200, 20);
+            this.BackColor = System.Drawing.Color.LemonChiffon;
+            this.ClientSize = new System.Drawing.Size(83, 20);
             this.Controls.Add(this.lblHole);
             this.Controls.Add(this.lblMessage);
             this.ForeColor = System.Drawing.Color.Black;
@@ -79,7 +80,7 @@
             this.MaximumSize = new System.Drawing.Size(500, 20);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(0, 20);
-            this.Name = "V6VvarNameForm";
+            this.Name = "FlyLabelForm";
             this.Opacity = 0D;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
