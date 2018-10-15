@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnLoc = new V6Controls.Controls.V6FormButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dateNgay_td1 = new V6Controls.V6DateTimePick();
             this.chkAutoF9 = new System.Windows.Forms.CheckBox();
             this.lblStatus1 = new System.Windows.Forms.Label();
             this.txtSL_TD2 = new V6Controls.V6NumberTextBox();
@@ -53,6 +56,9 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnLoc);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.dateNgay_td1);
             this.groupBox1.Controls.Add(this.chkAutoF9);
             this.groupBox1.Controls.Add(this.lblStatus1);
             this.groupBox1.Controls.Add(this.txtSL_TD2);
@@ -74,6 +80,38 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // btnLoc
+            // 
+            this.btnLoc.Location = new System.Drawing.Point(226, 425);
+            this.btnLoc.Name = "btnLoc";
+            this.btnLoc.Size = new System.Drawing.Size(50, 23);
+            this.btnLoc.TabIndex = 17;
+            this.btnLoc.Text = "Lọc";
+            this.btnLoc.UseVisualStyleBackColor = true;
+            this.btnLoc.Click += new System.EventHandler(this.btnLoc_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 430);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Ngày scan";
+            // 
+            // dateNgay_td1
+            // 
+            this.dateNgay_td1.CustomFormat = "dd/MM/yyyy";
+            this.dateNgay_td1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dateNgay_td1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateNgay_td1.HoverColor = System.Drawing.Color.Yellow;
+            this.dateNgay_td1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.dateNgay_td1.LeaveColor = System.Drawing.Color.White;
+            this.dateNgay_td1.Location = new System.Drawing.Point(89, 428);
+            this.dateNgay_td1.Name = "dateNgay_td1";
+            this.dateNgay_td1.Size = new System.Drawing.Size(100, 20);
+            this.dateNgay_td1.TabIndex = 16;
             // 
             // chkAutoF9
             // 
@@ -401,7 +439,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radOr;
         private System.Windows.Forms.RadioButton radAnd;
-        private V6Controls.V6VvarTextBox txtMalo;
         private V6Controls.V6ColorTextBox txtDVT;
         private V6Controls.V6ColorTextBox txtTenVT;
         private V6Controls.V6ColorTextBox txtTenKH;
@@ -414,5 +451,9 @@
         private V6Controls.V6NumberTextBox txtSL_TD2;
         private System.Windows.Forms.Label lblStatus1;
         private System.Windows.Forms.CheckBox chkAutoF9;
+        private System.Windows.Forms.Label label1;
+        private V6Controls.V6DateTimePick dateNgay_td1;
+        private V6Controls.Controls.V6FormButton btnLoc;
+        public V6Controls.V6VvarTextBox txtMalo;
     }
 }

@@ -174,6 +174,24 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
         {
             if (!IsDisposed && txtMalo.Text != "") txtMalo_V6LostFocus(sender);
         }
+
+        private void btnLoc_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var parent = FindParent<AINVTBAR5_Control>() as AINVTBAR5_Control;
+                if (parent == null)
+                {
+                    return;
+                }
+
+                parent.LocPhieuCu(dateNgay_td1.Value);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnLoc_Click", ex);
+            }
+        }
         
     }
 }

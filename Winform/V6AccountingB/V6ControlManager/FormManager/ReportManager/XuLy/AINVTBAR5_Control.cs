@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.ReportManager.Filter.Xuly;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
@@ -335,7 +336,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (_tblGridView2 == null)
             {
                 _tblGridView2 = data.Clone();
-                _gc_td3 = V6BusinessHelper.GetServerDateTime().ToString("yyyMMddHHmmssFFF");
             }
             
             foreach (DataRow row in data.Rows)
@@ -510,7 +510,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 p.PrintToFile = false;
                 p.UseEXDialog = true; //Fix win7
 
+                if (ctype == "1" && dataGridView2.DataSource != null && dataGridView2.RowCount > 0)
+                {
+                    this.ShowWarningMessage(V6Text.UnFinished);
+                    return;
+                }
 
+                ctype = "0";
+                if (_tblGridView2 == null)
+                {
+                    _gc_td3 = V6BusinessHelper.GetServerDateTime().ToString("yyyyMMddHHmmssFFF");
+                }
                 Timer tF9 = new Timer();
                 tF9.Interval = 500;
                 tF9.Tick += tF9_Tick;
@@ -548,6 +558,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var plist = FilterControl.GetFilterParameters();
                     plist.Add(new SqlParameter("@cMa_lo", ma_lo));
                     plist.Add(new SqlParameter("@cMa_dvcs", V6Login.Madvcs));
+                    plist.Add(new SqlParameter("@cgc_td3", _gc_td3));
                     plist.Add(new SqlParameter("@user_id", V6Login.UserId));
                     V6BusinessHelper.ExecuteProcedure(_program + "F9", plist.ToArray());
                     FilterControl.Call1();//ClearAll();
@@ -653,6 +664,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        private string ctype = "";
         private void F10Thread()
         {
             f10Running = true;
@@ -662,13 +674,28 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 //if (dataGridView1.RowCount > 0)
                 {
+                    string l_gc_td3 = "";
+                    Dictionary<string, string> temp = new Dictionary<string, string>();
                     foreach (DataGridViewRow row in dataGridView2.Rows)
                     {
+                        string gc_td3 = row.Cells["GC_TD3"].Value.ToString().Trim();
+                        if (temp.ContainsKey(gc_td3))
+                        {
+                            DoNothing();
+                        }
+                        else
+                        {
+                            temp.Add(gc_td3, gc_td3);
+                            l_gc_td3 += "," + gc_td3;
+                        }
                         remove_list_g_f10.Add(row);
                     }
+                    if (l_gc_td3.Length > 0) l_gc_td3 = l_gc_td3.Substring(1);
 
                     var plist = new List<SqlParameter>();
                     plist.Add(new SqlParameter("@cgc_td3", _gc_td3));
+                    plist.Add(new SqlParameter("@lgc_td3", l_gc_td3));//list
+                    plist.Add(new SqlParameter("@ctype", ctype));
                     plist.Add(new SqlParameter("@user_id", V6Login.UserId));
                     V6BusinessHelper.ExecuteProcedure(_program + "F10", plist.ToArray());
                     //FilterControl.Call1();
@@ -702,6 +729,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _tblGridView2 = null;
                 //dataGridView2.DataSource = null;
                 _gc_td3 = null;
+                ((AINVTBAR5)FilterControl).txtMalo.Enabled = true;
+                ((AINVTBAR5)FilterControl).txtMalo.Focus();
                 //FilterControl.Call3();
                 //  btnNhan.PerformClick();
                 try
@@ -839,5 +868,40 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
         #endregion
+
+        public void LocPhieuCu(DateTime ngay)
+        {
+            try
+            {
+                if (dataGridView2.DataSource == null || dataGridView2.Rows.Count == 0)
+                {
+                    ctype = "1";
+                    ((AINVTBAR5) FilterControl).txtMalo.Enabled = false;
+                    _gc_td3 = V6BusinessHelper.GetServerDateTime().ToString("yyyyMMddHHmmssFFF");
+
+                    List<SqlParameter> plist = new List<SqlParameter>();
+                    plist.Add(new SqlParameter("@cTable", "V_ALLO1"));
+                    plist.Add(new SqlParameter("@cOrder", "MA_VT"));
+                    plist.Add(new SqlParameter("@cKey", "ngay_td1='" + ngay.ToString("yyyyMMdd") + "'"));
+                    plist.Add(new SqlParameter("@cGC_TD3", _gc_td3));
+                    _tblGridView2 = V6BusinessHelper.ExecuteProcedure("AINVTBAR5F10A", plist.ToArray()).Tables[0];
+
+                    //foreach (DataRow row in data2.Rows)
+                    //{
+                    //    row["GC_TD3"] = _gc_td3;
+                    //}
+                    dataGridView2.DataSource = _tblGridView2;
+                    FormatGridView(dataGridView2);
+                }
+                else
+                {
+                    this.ShowWarningMessage(V6Text.UnFinished);
+                }
+            }
+            catch (Exception ex)
+            {
+                 this.ShowErrorException(GetType() + ".LocPhieuCu", ex);
+            }
+        }
     }
 }

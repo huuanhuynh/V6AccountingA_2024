@@ -45,7 +45,7 @@ namespace V6Init
         /// <summary>
         /// [UPPER_FIELD] = Trimmed value
         /// </summary>
-        private static SortedDictionary<string, string> V6OptionValues
+        public static SortedDictionary<string, string> V6OptionValues
         {
             get
             {

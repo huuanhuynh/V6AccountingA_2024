@@ -165,6 +165,6 @@
         private V6Controls.Controls.V6FormButton btnThemMauBC;
         private V6Controls.Controls.V6FormButton btnSuaTTMauBC;
         private System.Windows.Forms.Label lblStatus;
-        protected V6Controls.V6ColorDataGridView dataGridView2;
+        public V6Controls.V6ColorDataGridView dataGridView2;
     }
 }
