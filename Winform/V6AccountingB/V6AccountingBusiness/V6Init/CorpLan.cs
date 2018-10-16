@@ -49,7 +49,7 @@ namespace V6Init
 
         public static DataRow GetRow(string id)
         {
-            DataTable t = SqlConnect.Select(tableName, " distinct ID,D," + V6Setting.Language,
+            DataTable t = SqlConnect.Select(tableName, " distinct *, " + V6Setting.Language + " as [SelectedLanguage]",
                 "ID=@p", "", V6Setting.Language, new SqlParameter("@p", id)).Data;
             if (t != null && t.Rows.Count > 0)
             {

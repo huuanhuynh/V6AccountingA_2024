@@ -4848,7 +4848,7 @@ namespace V6Controls.Forms
                 if (string.IsNullOrEmpty(control.AccessibleDescription))
                 {
                     var vf = (V6FormControl) FindParent<V6FormControl>(control);
-                    if (vf != null) vf.ShowTopLeftMessage("No AccessibleDescription.");
+                    if (vf != null) vf.ShowMainMessage("No AccessibleDescription.");
                 }
                 else
                 {

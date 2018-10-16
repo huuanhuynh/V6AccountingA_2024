@@ -49,7 +49,8 @@ namespace V6Controls.Controls.Label
             try
             {
                 listView1.Items.Add(new ListViewItem(new[] {V6Setting.IsVietnamese ? "Tên đối tượng" : "Object Name", _label.Name}));
-                listView1.Items.Add(new ListViewItem(new[] { "AccessibleDescription", _label.AccessibleDescription }));
+                listView1.Items.Add(new ListViewItem(new[] {V6Setting.IsVietnamese ? "Thiết kế" : "Design text", _label.Text}));
+                listView1.Items.Add(new ListViewItem(new[] {"AccessibleDescription", _label.AccessibleDescription}));
 
                 var row = CorpLan.GetRow(_label.AccessibleDescription);
                 if (row != null)
