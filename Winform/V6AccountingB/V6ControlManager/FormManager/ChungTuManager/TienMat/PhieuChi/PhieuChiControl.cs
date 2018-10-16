@@ -3271,7 +3271,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         if (hoadon_nd51 == 1) Invoice.IncreaseSl_inAM(stt_rec, AM_current);
                         if (!sender.IsDisposed) sender.Dispose();
                     };
-                    c.ShowToForm(this, V6Text.PrintSOA, true);
+                    c.ShowToForm(this, Invoice.Mact == "CA1" ? V6Text.PrintCA1 : V6Text.PrintBN1, true);
                 }
                 else
                 {

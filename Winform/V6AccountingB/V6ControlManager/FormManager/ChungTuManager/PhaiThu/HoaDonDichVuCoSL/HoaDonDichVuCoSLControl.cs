@@ -5103,7 +5103,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                         };
                         c.PrintMode = printMode;
                         c.Close_after_print = closeAfterPrint;
-                        c.ShowToForm(this, V6Text.PrintSOA, true);
+                        c.ShowToForm(this, V6Text.PrintSOB, true);
                     }
                     else
                     {

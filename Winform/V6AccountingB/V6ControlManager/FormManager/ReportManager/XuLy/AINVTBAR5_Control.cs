@@ -651,11 +651,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 tF10.Tick += tF10_Tick;
                 CheckForIllegalCrossThreadCalls = false;
                 remove_list_g_f10 = new List<DataGridViewRow>();
-                F10Thread();
-                //Thread t = new Thread(F10Thread);
-                //t.SetApartmentState(ApartmentState.STA);
-                //t.IsBackground = true;
-                //t.Start();
+                //F10Thread();
+                Thread t = new Thread(F10Thread);
+                t.SetApartmentState(ApartmentState.STA);
+                t.IsBackground = true;
+                t.Start();
                 tF10.Start();
             }
             catch (Exception ex)
@@ -696,6 +696,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     plist.Add(new SqlParameter("@cgc_td3", _gc_td3));
                     plist.Add(new SqlParameter("@lgc_td3", l_gc_td3));//list
                     plist.Add(new SqlParameter("@ctype", ctype));
+                    plist.Add(new SqlParameter("@dngay_ct", ((AINVTBAR5)FilterControl).dateNgay_ct.Date.ToString("yyyyMMdd")));
                     plist.Add(new SqlParameter("@user_id", V6Login.UserId));
                     V6BusinessHelper.ExecuteProcedure(_program + "F10", plist.ToArray());
                     //FilterControl.Call1();

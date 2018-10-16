@@ -25,6 +25,7 @@ namespace V6AccountingBusiness.Invoices
         }
         public string Mact { get; set; }
         public string CodeMact { get; set; }
+        public string PrintTitle { get { return V6Setting.IsVietnamese ? "In " + Alct["TEN_CT"].ToString().Trim() : "Print " + Alct["TEN_CT2"].ToString().Trim(); } }
         public virtual string PrintReportProcedure
         {
             get { throw new NotImplementedException(); }
@@ -1021,6 +1022,8 @@ namespace V6AccountingBusiness.Invoices
                 return _templateSettingAD;
             }
         }
+
+        
 
         private void GetAllTemplateSettingAD()
         {

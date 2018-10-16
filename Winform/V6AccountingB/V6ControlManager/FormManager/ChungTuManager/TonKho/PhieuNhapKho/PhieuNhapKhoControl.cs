@@ -2658,7 +2658,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                             if (hoadon_nd51 == 1) Invoice.IncreaseSl_inAM(stt_rec, AM_current);
                             if (!sender.IsDisposed) sender.Dispose();
                         };
-                        c.ShowToForm(this, V6Text.PrintSOA, true);
+                        c.ShowToForm(this, V6Text.PrintIND, true);
                     }
                     else
                     {

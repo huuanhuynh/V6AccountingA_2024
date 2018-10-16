@@ -3016,7 +3016,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             if (!sender.IsDisposed) sender.Dispose();
                         };
 
-                        c.ShowToForm(this, V6Text.PrintSOA, true);
+                        c.ShowToForm(this, V6Text.PrintSOH, true);
                     }
                     else
                     {

@@ -266,7 +266,7 @@ namespace V6ControlManager.FormManager.VitriManager
                     sender.Dispose();
                 };
 
-                c.ShowToForm(this, V6Text.PrintSOA, true);
+                c.ShowToForm(this, V6Text.PrintSOC, true);
             }
             catch (Exception ex)
             {

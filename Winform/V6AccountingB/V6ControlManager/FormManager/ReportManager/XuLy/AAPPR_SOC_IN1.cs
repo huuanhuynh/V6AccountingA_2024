@@ -148,7 +148,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var f = new V6Form();
                         f.StartPosition = FormStartPosition.CenterScreen;
                         f.WindowState = FormWindowState.Maximized;
-                        f.Text = V6Text.PrintSOA;
+                        f.Text = V6Text.PrintSOC;
                         f.Controls.Add(c);
                         //c.MakeReport(auto, _printerName, (int)numSoLien.Value);
 

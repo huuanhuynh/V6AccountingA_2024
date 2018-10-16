@@ -71,6 +71,34 @@
                 return V6Setting.Language == "V" ? "Phân bổ trực tiếp" : "Direct Allocation";
             }
         }
+
+        public static string PrintAP1
+        {
+            get
+            {
+                var a = Text("PRINTAP1");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "In hóa đơn mua hàng dịch vụ" : "Print purchase services invoice";
+            }
+        }
+        public static string PrintAR1
+        {
+            get
+            {
+                var a = Text("PRINTAR1");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "In hóa đơn dịch vụ" : "Print services invoice";
+            }
+        }
+        public static string PrintGL1
+        {
+            get
+            {
+                var a = Text("PRINTGL1");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "In phiếu kế toán" : "Print general voucher";
+            }
+        }
         /// <summary>
         /// In hóa đơn / Print invoice
         /// </summary>
@@ -81,6 +109,51 @@
                 var a = Text("PRINTSOA");
                 if (a != "") return a;
                 return V6Setting.Language == "V" ? "In hóa đơn" : "Print invoice";
+            }
+        }
+        public static string PrintSOB
+        {
+            get
+            {
+                var a = Text("PRINTSOB");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "In hóa đơn dịch vụ" : "Print services invoice";
+            }
+        }
+        public static string PrintSOC
+        {
+            get
+            {
+                var a = Text("PRINTSOC");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "In hóa đơn bán lẻ" : "Print retail invoice";
+            }
+        }
+        public static string PrintSOF
+        {
+            get
+            {
+                var a = Text("PRINTSOF");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "In hàng trả lại" : "Print sales returns";
+            }
+        }
+        public static string PrintSOH
+        {
+            get
+            {
+                var a = Text("PRINTSOH");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "In đơn đặt hàng bán" : "Print sales order";
+            }
+        }
+        public static string PrintSOR
+        {
+            get
+            {
+                var a = Text("PRINTSOR");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "In báo giá" : "Print price quotation";
             }
         }
 
@@ -129,6 +202,33 @@
                 return V6Setting.Language == "V" ? "In phiếu nhập mua" : "Print purchase";
             }
         }
+        public static string PrintPOB
+        {
+            get
+            {
+                var a = Text("PRINTPOB");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "In phiếu nhập khẩu" : "Print import purchase";
+            }
+        }
+        public static string PrintPOC
+        {
+            get
+            {
+                var a = Text("PRINTPOC");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "In phiếu nhập chi phí mua hàng" : "Print purchase fee invoice";
+            }
+        }
+        public static string PrintPOH
+        {
+            get
+            {
+                var a = Text("PRINTPOH");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "In đơn đặt hàng mua" : "Print purchase order";
+            }
+        }
         public static string PrintIXA
         {
             get
@@ -136,6 +236,24 @@
                 var a = Text("PRINTIXA");
                 if (a != "") return a;
                 return V6Setting.Language == "V" ? "In phiếu xuất kho" : "Print stock out";
+            }
+        }
+        public static string PrintIXB
+        {
+            get
+            {
+                var a = Text("PRINTIXB");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "In phiếu xuất điều chuyển" : "Print stock transfer";
+            }
+        }
+        public static string PrintIXC
+        {
+            get
+            {
+                var a = Text("PRINTIXC");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "In phiếu xuất trả lại nhà cung cấp" : "Print return to supplier";
             }
         }
         public static string PrintIND

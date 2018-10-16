@@ -47,6 +47,8 @@
             this.txtMalo = new V6Controls.V6VvarTextBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
+            this.dateNgay_ct = new V6Controls.V6DateTimePick();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +59,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.btnLoc);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.dateNgay_ct);
             this.groupBox1.Controls.Add(this.dateNgay_td1);
             this.groupBox1.Controls.Add(this.chkAutoF9);
             this.groupBox1.Controls.Add(this.lblStatus1);
@@ -76,7 +80,7 @@
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(282, 506);
+            this.groupBox1.Size = new System.Drawing.Size(282, 545);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -130,7 +134,7 @@
             this.lblStatus1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatus1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus1.ForeColor = System.Drawing.Color.Red;
-            this.lblStatus1.Location = new System.Drawing.Point(6, 462);
+            this.lblStatus1.Location = new System.Drawing.Point(6, 501);
             this.lblStatus1.Name = "lblStatus1";
             this.lblStatus1.Size = new System.Drawing.Size(270, 38);
             this.lblStatus1.TabIndex = 13;
@@ -422,13 +426,35 @@
             this.radAnd.Text = "Điều kiện (AND)";
             this.radAnd.UseVisualStyleBackColor = true;
             // 
+            // dateNgay_ct
+            // 
+            this.dateNgay_ct.CustomFormat = "dd/MM/yyyy";
+            this.dateNgay_ct.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dateNgay_ct.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateNgay_ct.HoverColor = System.Drawing.Color.Yellow;
+            this.dateNgay_ct.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.dateNgay_ct.LeaveColor = System.Drawing.Color.White;
+            this.dateNgay_ct.Location = new System.Drawing.Point(89, 454);
+            this.dateNgay_ct.Name = "dateNgay_ct";
+            this.dateNgay_ct.Size = new System.Drawing.Size(100, 20);
+            this.dateNgay_ct.TabIndex = 16;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 456);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Ngày chứng từ";
+            // 
             // AINVTBAR5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "AINVTBAR5";
-            this.Size = new System.Drawing.Size(285, 514);
+            this.Size = new System.Drawing.Size(285, 553);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -455,5 +481,7 @@
         private V6Controls.V6DateTimePick dateNgay_td1;
         private V6Controls.Controls.V6FormButton btnLoc;
         public V6Controls.V6VvarTextBox txtMalo;
+        private System.Windows.Forms.Label label2;
+        public V6Controls.V6DateTimePick dateNgay_ct;
     }
 }
