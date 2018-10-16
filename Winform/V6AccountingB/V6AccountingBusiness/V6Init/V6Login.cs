@@ -226,6 +226,7 @@ namespace V6Init
             get { return V6Setting.Language; }
             set { V6Setting.Language = value; }
         }
+        public static string SelectedLanguageName { get; set; }
         public static string SelectedModule { get; set; }
         public static string StartupPath { get; set; }
         /// <summary>

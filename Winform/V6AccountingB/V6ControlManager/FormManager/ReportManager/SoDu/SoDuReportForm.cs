@@ -41,7 +41,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
 
         private string LAN
         {
-            get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : "B"; }
+            get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : rBothLang.Checked ? "B" : V6Login.SelectedLanguage; }
         }
 
         private DataRow MauInSelectedRow
@@ -215,6 +215,10 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         {
             try
             {
+                if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
+                rCurrent.Text = V6Login.SelectedLanguageName;
+                if (V6Login.SelectedLanguage == "V" || V6Login.SelectedLanguage == "E") rCurrent.Visible = false;
+
                 var M_COMPANY_BY_MA_DVCS = V6Options.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.GetValue("M_COMPANY_BY_MA_DVCS").Trim() : "";
                 if (M_COMPANY_BY_MA_DVCS == "1" && V6Login.MadvcsCount == 1)
                 {
@@ -703,14 +707,36 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         }
 
         private bool _radioChange = false;
-
+        private string ReloadData
+        {
+            get
+            {
+                var result = "";
+                if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                {
+                    result = MauInSelectedRow["Reload_data"].ToString().Trim();
+                }
+                return result;
+            }
+        }
         private void rbtLanguage_CheckedChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
-            _radioChange = true;
-            txtReportTitle.Text = (rTiengViet.Checked ? _reportTitle : rEnglish.Checked ? _reportTitle2 : (_reportTitle + "/" + _reportTitle2));
-            SetFormReportFilter();
-            if (((RadioButton)sender).Checked) ViewReport();
+            if (((RadioButton) sender).Checked)
+            {
+                _radioChange = true;
+                txtReportTitle.Text = rTiengViet.Checked ? _reportTitle : rEnglish.Checked ? _reportTitle2 : _reportTitle + "/" + _reportTitle2;
+                SetFormReportFilter();
+                if (MauInView.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                {
+                    txtReportTitle.Text = ReportTitle;
+                }
+
+                if (ReloadData == "1")
+                    MakeReport2();
+                else
+                    ViewReport();
+            }
         }
 
         private void crystalReportViewer1_DoubleClick(object sender, EventArgs e)

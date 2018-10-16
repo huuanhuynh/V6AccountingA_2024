@@ -189,7 +189,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         internal string LAN
         {
-            get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : "B"; }
+            get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : rBothLang.Checked ? "B" : V6Login.SelectedLanguage; }
         }
 
         private DataRow MauInSelectedRow
@@ -769,6 +769,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private void MyInit()
         {
             if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
+            rCurrent.Text = V6Login.SelectedLanguageName;
+            if (V6Login.SelectedLanguage == "V" || V6Login.SelectedLanguage == "E") rCurrent.Visible = false;
             CreateFormProgram();
             CreateFormControls();
             InvokeFormEvent(FormDynamicEvent.INIT);
@@ -1655,11 +1657,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private void rbtLanguage_CheckedChanged(object sender, EventArgs e)
         {
             if (!IsReady || string.IsNullOrEmpty(MA_NT)) return;
-            _radioChange = true;
-            txtReportTitle.Text = ReportTitle;// (rTiengViet.Checked ? ReportTitle : rEnglish.Checked ? ReportTitle : (ReportTitle+2 ));
-            SetFormReportFilter();
-            if (((RadioButton) sender).Checked)
+            if (((RadioButton)sender).Checked)
             {
+                _radioChange = true;
+                txtReportTitle.Text = ReportTitle;// (rTiengViet.Checked ? ReportTitle : rEnglish.Checked ? ReportTitle : (ReportTitle+2 ));
+                SetFormReportFilter();
+                if (MauInView.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                {
+                    txtReportTitle.Text = ReportTitle;
+                }
+            
                 if (ReloadData == "1")
                     MakeReport(V6PrintMode.DoNoThing, null, (int)numSoLien.Value);
                 else

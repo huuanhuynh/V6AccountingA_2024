@@ -229,6 +229,7 @@ namespace V6AccountingB
                 if (V6Login.IsNetwork || License.CheckLicenseV6Online(License.Seri, License.Key))
                 {
                     V6Login.SelectedLanguage = cboLang.SelectedValue.ToString().Trim().ToUpper();
+                    V6Login.SelectedLanguageName = cboLang.Text;
                     V6Login.SelectedModule = cboModule.SelectedValue.ToString();
                     var dvcs = (cboAgent.SelectedValue ?? "").ToString().Trim();
 

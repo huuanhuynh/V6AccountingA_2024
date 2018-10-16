@@ -60,6 +60,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnNhan = new System.Windows.Forms.Button();
             this.panel0 = new System.Windows.Forms.Panel();
             this.grbNgonNgu = new System.Windows.Forms.GroupBox();
+            this.rCurrent = new System.Windows.Forms.RadioButton();
             this.rBothLang = new System.Windows.Forms.RadioButton();
             this.rEnglish = new System.Windows.Forms.RadioButton();
             this.rTiengViet = new System.Windows.Forms.RadioButton();
@@ -352,28 +353,41 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.panel0.Controls.Add(this.grbNgonNgu);
             this.panel0.Controls.Add(this.grbTienTe);
-            this.panel0.Location = new System.Drawing.Point(6, 14);
+            this.panel0.Location = new System.Drawing.Point(1, 14);
             this.panel0.Name = "panel0";
-            this.panel0.Size = new System.Drawing.Size(234, 80);
+            this.panel0.Size = new System.Drawing.Size(298, 80);
             this.panel0.TabIndex = 32;
             // 
             // grbNgonNgu
             // 
             this.grbNgonNgu.AccessibleDescription = "REPORTL00010";
+            this.grbNgonNgu.Controls.Add(this.rCurrent);
             this.grbNgonNgu.Controls.Add(this.rBothLang);
             this.grbNgonNgu.Controls.Add(this.rEnglish);
             this.grbNgonNgu.Controls.Add(this.rTiengViet);
             this.grbNgonNgu.Location = new System.Drawing.Point(4, 41);
             this.grbNgonNgu.Name = "grbNgonNgu";
-            this.grbNgonNgu.Size = new System.Drawing.Size(224, 35);
+            this.grbNgonNgu.Size = new System.Drawing.Size(291, 35);
             this.grbNgonNgu.TabIndex = 1;
             this.grbNgonNgu.TabStop = false;
             this.grbNgonNgu.Text = "Ngôn ngữ bc (Rpt Language)";
             // 
+            // rCurrent
+            // 
+            this.rCurrent.AccessibleDescription = "REPORTR00007";
+            this.rCurrent.AutoSize = true;
+            this.rCurrent.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rCurrent.Location = new System.Drawing.Point(215, 13);
+            this.rCurrent.Name = "rCurrent";
+            this.rCurrent.Size = new System.Drawing.Size(59, 17);
+            this.rCurrent.TabIndex = 0;
+            this.rCurrent.Text = "Current";
+            this.rCurrent.UseVisualStyleBackColor = true;
+            this.rCurrent.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
+            // 
             // rBothLang
             // 
             this.rBothLang.AccessibleDescription = "REPORTR00006";
-            this.rBothLang.AccessibleName = "English";
             this.rBothLang.AutoSize = true;
             this.rBothLang.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.rBothLang.Location = new System.Drawing.Point(142, 13);
@@ -420,7 +434,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.grbTienTe.Controls.Add(this.rTienViet);
             this.grbTienTe.Location = new System.Drawing.Point(4, 5);
             this.grbTienTe.Name = "grbTienTe";
-            this.grbTienTe.Size = new System.Drawing.Size(224, 35);
+            this.grbTienTe.Size = new System.Drawing.Size(291, 35);
             this.grbTienTe.TabIndex = 0;
             this.grbTienTe.TabStop = false;
             this.grbTienTe.Text = "Tiền tệ";
@@ -615,6 +629,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         public System.Windows.Forms.TextBox txtReportTitle;
         private System.Windows.Forms.ToolStripMenuItem exportToPdfToolStripMenuItem;
         private V6FormButton btnSuaLine;
+        private System.Windows.Forms.RadioButton rCurrent;
 
 
 

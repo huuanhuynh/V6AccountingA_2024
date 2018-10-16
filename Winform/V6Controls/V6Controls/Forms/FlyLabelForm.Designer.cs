@@ -68,9 +68,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ClientSize = new System.Drawing.Size(83, 20);
+            this.ClientSize = new System.Drawing.Size(80, 20);
             this.Controls.Add(this.lblHole);
             this.Controls.Add(this.lblMessage);
             this.ForeColor = System.Drawing.Color.Black;

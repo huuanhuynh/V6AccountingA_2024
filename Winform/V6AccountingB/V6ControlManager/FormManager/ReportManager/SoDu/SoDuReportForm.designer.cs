@@ -69,6 +69,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.cboMauIn = new V6Controls.V6ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.chkHienTatCa = new V6Controls.V6CheckBox();
+            this.rCurrent = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -160,9 +161,9 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.grbDieuKienLoc.Controls.Add(this.btnNhan);
             this.grbDieuKienLoc.Controls.Add(this.panel0);
             this.grbDieuKienLoc.Controls.Add(this.panel1);
-            this.grbDieuKienLoc.Location = new System.Drawing.Point(3, 76);
+            this.grbDieuKienLoc.Location = new System.Drawing.Point(2, 76);
             this.grbDieuKienLoc.Name = "grbDieuKienLoc";
-            this.grbDieuKienLoc.Size = new System.Drawing.Size(759, 153);
+            this.grbDieuKienLoc.Size = new System.Drawing.Size(762, 153);
             this.grbDieuKienLoc.TabIndex = 0;
             this.grbDieuKienLoc.TabStop = false;
             this.grbDieuKienLoc.Text = "Conditional option (Điều Kiện Lọc)";
@@ -202,20 +203,21 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             // 
             this.panel0.Controls.Add(this.grbNgonNgu);
             this.panel0.Controls.Add(this.grbTienTe);
-            this.panel0.Location = new System.Drawing.Point(6, 14);
+            this.panel0.Location = new System.Drawing.Point(0, 14);
             this.panel0.Name = "panel0";
-            this.panel0.Size = new System.Drawing.Size(234, 80);
+            this.panel0.Size = new System.Drawing.Size(287, 80);
             this.panel0.TabIndex = 32;
             // 
             // grbNgonNgu
             // 
             this.grbNgonNgu.AccessibleDescription = "REPORTL00010";
+            this.grbNgonNgu.Controls.Add(this.rCurrent);
             this.grbNgonNgu.Controls.Add(this.rTiengViet);
             this.grbNgonNgu.Controls.Add(this.rBothLang);
             this.grbNgonNgu.Controls.Add(this.rEnglish);
             this.grbNgonNgu.Location = new System.Drawing.Point(4, 41);
             this.grbNgonNgu.Name = "grbNgonNgu";
-            this.grbNgonNgu.Size = new System.Drawing.Size(224, 35);
+            this.grbNgonNgu.Size = new System.Drawing.Size(279, 35);
             this.grbNgonNgu.TabIndex = 1;
             this.grbNgonNgu.TabStop = false;
             this.grbNgonNgu.Text = "Ngôn ngữ bc (Rpt Language)";
@@ -271,7 +273,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.grbTienTe.Controls.Add(this.rTienViet);
             this.grbTienTe.Location = new System.Drawing.Point(4, 5);
             this.grbTienTe.Name = "grbTienTe";
-            this.grbTienTe.Size = new System.Drawing.Size(224, 35);
+            this.grbTienTe.Size = new System.Drawing.Size(279, 35);
             this.grbTienTe.TabIndex = 1;
             this.grbTienTe.TabStop = false;
             this.grbTienTe.Text = "Tiền tệ";
@@ -311,9 +313,9 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
-            this.panel1.Location = new System.Drawing.Point(246, 14);
+            this.panel1.Location = new System.Drawing.Point(288, 14);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(508, 135);
+            this.panel1.Size = new System.Drawing.Size(474, 135);
             this.panel1.TabIndex = 0;
             this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
@@ -463,6 +465,18 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.chkHienTatCa.UseVisualStyleBackColor = true;
             this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
             // 
+            // rCurrent
+            // 
+            this.rCurrent.AccessibleDescription = "REPORTR00007";
+            this.rCurrent.AutoSize = true;
+            this.rCurrent.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rCurrent.Location = new System.Drawing.Point(219, 13);
+            this.rCurrent.Name = "rCurrent";
+            this.rCurrent.Size = new System.Drawing.Size(59, 17);
+            this.rCurrent.TabIndex = 2;
+            this.rCurrent.Text = "Current";
+            this.rCurrent.UseVisualStyleBackColor = true;
+            // 
             // SoDuReportForm
             // 
             this.AccessibleDescription = "REPORTL00016";
@@ -558,6 +572,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         private V6Controls.V6CheckBox chkHienTatCa;
         private System.Windows.Forms.ToolStripMenuItem exportToXmlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToPdfToolStripMenuItem;
+        private System.Windows.Forms.RadioButton rCurrent;
 
 
 
