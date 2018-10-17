@@ -88,6 +88,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\LookupButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\BangCanDoiTaiChinhForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1401,6 +1404,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\LookupButton.resx">
+      <DependentUpon>LookupButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\BangCanDoiTaiChinhForm.resx">
       <DependentUpon>BangCanDoiTaiChinhForm.cs</DependentUpon>
     </EmbeddedResource>

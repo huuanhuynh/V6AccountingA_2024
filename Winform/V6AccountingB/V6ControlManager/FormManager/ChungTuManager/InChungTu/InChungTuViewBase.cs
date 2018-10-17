@@ -1616,7 +1616,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         this.ShowErrorMessage(GetType() + ".ExportFail: " + ex.Message, "InChungTuViewBase");
                         return;
                     }
-                    this.ShowInfoMessage(V6Text.ExportFinish);
+                    if (V6Options.AutoOpenExcel)
+                    {
+                        V6ControlFormHelper.OpenFileProcess(save.FileName);
+                    }
+                    else
+                    {
+                        this.ShowInfoMessage(V6Text.ExportFinish);
+                    }
                 }
             }
             catch (Exception ex)

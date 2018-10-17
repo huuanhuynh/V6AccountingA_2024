@@ -463,7 +463,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (saveDialog.ShowDialog(this) == DialogResult.OK)
                 {
                     V6Tools.V6Export.ExportData.ToExcel(data, saveDialog.FileName, null, false);
-                    V6ControlFormHelper.ShowMainMessage(V6Text.ExportFinish);
+                    if (V6Options.AutoOpenExcel)
+                    {
+                        V6ControlFormHelper.OpenFileProcess(saveDialog.FileName);
+                    }
+                    else
+                    {
+                        V6ControlFormHelper.ShowMainMessage(V6Text.ExportFinish);
+                    }
                 }
             }
             catch (Exception ex)

@@ -446,7 +446,14 @@ namespace V6ControlManager.FormManager.ReportManager
                     return;
                 }
 
-                V6ControlFormHelper.ShowMessage(V6Text.ExportFinish + "\n" + exportFile, owner);
+                if (V6Options.AutoOpenExcel)
+                {
+                    V6ControlFormHelper.OpenFileProcess(exportFile);
+                }
+                else
+                {
+                    V6ControlFormHelper.ShowMessage(V6Text.ExportFinish + "\n" + exportFile, owner);
+                }
             }
             catch (Exception ex)
             {

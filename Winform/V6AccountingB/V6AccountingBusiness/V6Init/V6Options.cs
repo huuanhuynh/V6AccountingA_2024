@@ -394,6 +394,17 @@ namespace V6Init
                 return Convert.ToInt32(GetValue("M_LOCK_TIME"));
             }
         }
+
+        public static string M_OPEN_EXCEL
+        {
+            get
+            {
+                if (V6OptionValues == null) return "";
+                return GetValue("M_OPEN_EXCEL");
+            }
+        }
+        public static bool AutoOpenExcel { get { return M_OPEN_EXCEL == "1"; } }
+
         /// <summary>
         /// Kiểu tính ck_km
         /// <para>01: Không tự động, tự chọn hết khi tính.</para>

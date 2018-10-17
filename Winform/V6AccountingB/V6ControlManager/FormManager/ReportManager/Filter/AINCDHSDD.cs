@@ -12,22 +12,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             TxtVttonkho.Text = "*";
             txtKieuIn.Text = "1";
-
-            F3 = false;
-            F5 = true;
-
             TxtMakho.VvarTextBox.Text = (V6Setting.M_Ma_kho ?? "").Trim();
-            
             dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
             dateNgay_ct3.SetValue(V6Setting.M_ngay_ct2);
-
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             if (V6Login.MadvcsCount <= 1)
             {
                 txtMaDvcs.Enabled = false;
             }
-
-
+            
             Txtnh_vt1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_vt2.VvarTextBox.SetInitFilter("loai_nh=2");
             Txtnh_vt3.VvarTextBox.SetInitFilter("loai_nh=3");

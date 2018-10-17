@@ -1804,7 +1804,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                         this.ShowErrorMessage(GetType() + ".ExportFail: " + ex.Message);
                         return;
                     }
-                    this.ShowInfoMessage(V6Text.ExportFinish);
+                    if (V6Options.AutoOpenExcel)
+                    {
+                        V6ControlFormHelper.OpenFileProcess(save.FileName);
+                    }
+                    else
+                    {
+                        this.ShowInfoMessage(V6Text.ExportFinish);
+                    }
                 }
             }
             catch (Exception ex)

@@ -3270,7 +3270,14 @@ namespace V6Controls.Forms
                             parameters, V6Setting.V6_number_format_info,
                             insertRow, drawLine))
                         {
-                            ShowInfoMessage(V6Text.ExportFinish, 500);
+                            if (V6Options.AutoOpenExcel)
+                            {
+                                OpenFileProcess(saveFileName);
+                            }
+                            else
+                            {
+                                ShowInfoMessage(V6Text.ExportFinish, 500);
+                            }
                         }
                         else
                         {
@@ -3525,7 +3532,14 @@ namespace V6Controls.Forms
                             parameters, V6Setting.V6_number_format_info,
                             insertRow, drawLine))
                         {
-                            ShowInfoMessage(V6Text.ExportFinish, 500);
+                            if (V6Options.AutoOpenExcel)
+                            {
+                                OpenFileProcess(saveFileName);
+                            }
+                            else
+                            {
+                                ShowInfoMessage(V6Text.ExportFinish, 500);
+                            }
                         }
                         else
                         {
@@ -3702,7 +3716,14 @@ namespace V6Controls.Forms
                                 parameters, V6Setting.V6_number_format_info,
                                 insertRow, drawLine))
                             {
-                                ShowInfoMessage(V6Text.ExportFinish, 500);
+                                if (V6Options.AutoOpenExcel)
+                                {
+                                    OpenFileProcess(save.FileName);
+                                }
+                                else
+                                {
+                                    ShowInfoMessage(V6Text.ExportFinish, 500);
+                                }
                             }
                             else
                             {
@@ -3886,7 +3907,14 @@ namespace V6Controls.Forms
                                 excelTemplateFile, parameters, datas, excelColumnsHTKK.Split(','),
                                 saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
                             {
-                                ShowInfoMessage(V6Text.ExportFinish, 500);
+                                if (V6Options.AutoOpenExcel)
+                                {
+                                    OpenFileProcess(saveFileName);
+                                }
+                                else
+                                {
+                                    ShowInfoMessage(V6Text.ExportFinish, 500);
+                                }
                             }
                             else
                             {
@@ -4067,7 +4095,14 @@ namespace V6Controls.Forms
                                 excelTemplateFile, parameters, datas, excelColumnsONLINE.Split(','),
                                 saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
                             {
-                                ShowInfoMessage(V6Text.ExportFinish, 500);
+                                if (V6Options.AutoOpenExcel)
+                                {
+                                    OpenFileProcess(saveFileName);
+                                }
+                                else
+                                {
+                                    ShowInfoMessage(V6Text.ExportFinish, 500);
+                                }
                             }
                             else
                             {
@@ -6244,7 +6279,19 @@ namespace V6Controls.Forms
             Event_program2 = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", "D" + ma_bc, using_text2,
                 method_text2);
         }
-        
-        
+
+
+        public static void OpenFileProcess(string file)
+        {
+            file = Path.GetFullPath(file);
+            if (File.Exists(file))
+            {
+                Process.Start(file);
+            }
+            else
+            {
+                ShowMainMessage(V6Text.NotExist + " " + file);
+            }
+        }
     }
 }

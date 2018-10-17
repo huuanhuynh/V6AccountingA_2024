@@ -191,15 +191,7 @@ namespace V6ControlManager.FormManager.ToolManager
             try
             {
                 string file = "V6HELP\\HDSD_SHOW.ppsx";
-                file = Path.GetFullPath(file);
-                if (File.Exists(file))
-                {
-                    Process.Start(file);
-                }
-                else
-                {
-                    ShowMainMessage(V6Text.NotExist + " " + file);
-                }
+                V6ControlFormHelper.OpenFileProcess(file);
             }
             catch (Exception ex)
             {
@@ -211,16 +203,8 @@ namespace V6ControlManager.FormManager.ToolManager
         {
             try
             {
-                string file = "V6HELP\\HDSD_SHOW_AUTONEXT.ppsx"; 
-                file = Path.GetFullPath(file);
-                if (File.Exists(file))
-                {
-                    Process.Start(file);
-                }
-                else
-                {
-                    ShowMainMessage(V6Text.NotExist + " " + file);
-                }
+                string file = "V6HELP\\HDSD_SHOW_AUTONEXT.ppsx";
+                V6ControlFormHelper.OpenFileProcess(file);
             }
             catch (Exception ex)
             {

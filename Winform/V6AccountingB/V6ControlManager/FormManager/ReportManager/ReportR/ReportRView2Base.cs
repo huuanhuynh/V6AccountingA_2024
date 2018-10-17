@@ -1064,7 +1064,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         this.ShowErrorException(GetType() + ".ExportFail: ", ex);
                         return;
                     }
-                    this.ShowInfoMessage(V6Text.ExportFinish);
+                    if (V6Options.AutoOpenExcel)
+                    {
+                        V6ControlFormHelper.OpenFileProcess(save.FileName);
+                    }
+                    else
+                    {
+                        this.ShowInfoMessage(V6Text.ExportFinish);
+                    }
                 }
             }
             catch (Exception ex)
