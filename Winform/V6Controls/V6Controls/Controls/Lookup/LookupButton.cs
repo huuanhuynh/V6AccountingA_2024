@@ -1,10 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Controls.Forms;
+using V6Init;
 using V6Tools.V6Convert;
 
-namespace V6Controls.Controls
+namespace V6Controls.Controls.Lookup
 {
     /// <summary>
     /// Một cái nút bám theo một Control khác.
@@ -87,11 +90,25 @@ namespace V6Controls.Controls
         }
 
         [Category("V6")]
+        [DefaultValue("1")]
         public string R_DataType { get; set; }
         [Category("V6")]
-        public string R_Value { get; set; }
+        public string R_Value {
+            get
+            {
+                object value = V6ControlFormHelper.GetControlValue(_refControl);
+                return ObjectAndString.ObjectToString(value);
+            }
+        }
         [Category("V6")]
-        public string R_Vvar { get; set; }
+        public string R_Vvar {
+            get
+            {
+                var txt = _refControl as V6VvarTextBox;
+                if (txt != null) return txt.VVar;
+                return null;
+            }
+        }
         [Category("V6")]
         public string R_Stt_rec { get; set; }
         [Category("V6")]
@@ -140,13 +157,44 @@ namespace V6Controls.Controls
 
         private void LookupButton_Click(object sender, EventArgs e)
         {
-            object value = V6ControlFormHelper.GetControlValue(_refControl);
-            if (_refControl is V6VvarTextBox)
+            try
             {
-                var vVarTextBox = _refControl as V6VvarTextBox;
-                var vVar = vVarTextBox.VVar;
+                //object value = V6ControlFormHelper.GetControlValue(_refControl);
+                //if (_refControl is V6VvarTextBox)
+                //{
+                //    var vVarTextBox = _refControl as V6VvarTextBox;
+                //    var vVar = vVarTextBox.VVar;
+                //}
+                //this.ShowMessage(string.Format("Value: " + ObjectAndString.ObjectToString(value)));
+
+                //
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@R_DataType", R_DataType),
+                    new SqlParameter("@R_Value", R_Value),
+                    new SqlParameter("@R_Vvar", R_Vvar),
+                    new SqlParameter("@R_Stt_rec", R_Stt_rec),
+                    new SqlParameter("@R_Ma_ct", R_Ma_ct),
+
+                    new SqlParameter("@M_DataType", M_DataType),
+                    new SqlParameter("@M_Value", M_Value),
+                    new SqlParameter("@M_Vvar", M_Vvar),
+                    new SqlParameter("@M_Stt_Rec", M_Stt_Rec),
+                    new SqlParameter("@M_Ma_ct", M_Ma_ct),
+
+                    new SqlParameter("@M_Type", M_Type),
+                    new SqlParameter("@M_User_id", M_User_id),
+                    new SqlParameter("@M_Lan", V6Login.SelectedLanguage),
+                };
+                var ds = V6BusinessHelper.ExecuteProcedure("V6LOOKUPCONTROL", plist);
+
+                LookupButtonDataViewForm f = new LookupButtonDataViewForm(ds);
+                f.ShowDialog(this);
             }
-            this.ShowMessage(string.Format("Value: " + ObjectAndString.ObjectToString(value)));
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".LookupButton_Click", ex);
+            }
         }
     }
 }

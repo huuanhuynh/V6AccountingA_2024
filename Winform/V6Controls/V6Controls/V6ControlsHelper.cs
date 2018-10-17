@@ -663,7 +663,7 @@ namespace V6Controls
                 }
                 else if (owner.Data.Table.Columns.Contains(sss[0]))
                 {
-                    FlyLabel_Form.Message = owner.Data[sss[0]].ToString().Trim();
+                    FlyLabel_Form.Message = ObjectAndString.ObjectToString(owner.Data[sss[0]]);
                 }
             }
         }
@@ -682,7 +682,7 @@ namespace V6Controls
                 }
                 else if (owner.Data.Table.Columns.Contains(sss[0]))
                 {
-                    FlyLabel_Form.Message = owner.Data[sss[0]].ToString().Trim();
+                    FlyLabel_Form.Message = ObjectAndString.ObjectToString(owner.Data[sss[0]]);
                 }
             }
         }
