@@ -317,6 +317,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 dataGridView1.SetFrozen(0);
                 dataGridView1.DataSource = _tbl;
                 FormatGridView(dataGridView1);
+                FormatGridView(dataGridView2);
                 dataGridView1.Focus();
                 if (_tbl == null || _tbl.Rows.Count == 0)
                 {
@@ -500,6 +501,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected List<DataGridViewRow> remove_list_g = new List<DataGridViewRow>();
         protected override void XuLyF9()
         {
+            if (f9Running) return;
+            btnNhanImage = btnNhan.Image;
+
             try
             {
                 PrintDialog p = new PrintDialog();
@@ -578,6 +582,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             if (f9Running)
             {
+                btnNhan.Image = waitingImages.Images[ii];
+                ii++;
+                if (ii >= waitingImages.Images.Count) ii = 0;
+
                 var cError = f9Error;
                 f9Error = f9Error.Substring(cError.Length);
                 V6ControlFormHelper.SetStatusText("F9 running "
@@ -587,6 +595,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             else
             {
                 ((Timer)sender).Stop();
+                btnNhan.Image = btnNhanImage;
+                ii = 0;
+
                 AddDataToGridView2(_tbl);
                 RemoveGridViewRow();
                 FilterControl.Call3();
@@ -635,6 +646,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected List<DataGridViewRow> remove_list_g_f10 = new List<DataGridViewRow>();
         protected override void XuLyF10()
         {
+            if (f10Running) return;
+            btnNhanImage = btnNhan.Image;
+
             try
             {
                 PrintDialog p = new PrintDialog();
@@ -716,6 +730,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             if (f10Running)
             {
+                btnNhan.Image = waitingImages.Images[ii];
+                ii++;
+                if (ii >= waitingImages.Images.Count) ii = 0;
+
                 var cError = f10Error;
                 f10Error = f10Error.Substring(cError.Length);
                 V6ControlFormHelper.SetStatusText("F10 running "
@@ -725,7 +743,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             else
             {
                 ((Timer)sender).Stop();
-                
+                btnNhan.Image = btnNhanImage;
+                ii = 0;
+
                 RemoveGridViewRow_f10();
                 _tblGridView2 = null;
                 //dataGridView2.DataSource = null;
@@ -877,7 +897,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (dataGridView2.DataSource == null || dataGridView2.Rows.Count == 0)
                 {
                     ctype = "1";
-                    ((AINVTBAR5) FilterControl).txtMalo.Enabled = false;
+                    var txtMaLo = ((AINVTBAR5) FilterControl).txtMalo;
                     _gc_td3 = V6BusinessHelper.GetServerDateTime().ToString("yyyyMMddHHmmssFFF");
 
                     List<SqlParameter> plist = new List<SqlParameter>();
@@ -886,7 +906,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     plist.Add(new SqlParameter("@cKey", "ngay_td1='" + ngay.ToString("yyyyMMdd") + "'"));
                     plist.Add(new SqlParameter("@cGC_TD3", _gc_td3));
                     _tblGridView2 = V6BusinessHelper.ExecuteProcedure("AINVTBAR5F10A", plist.ToArray()).Tables[0];
-
+                    if (_tblGridView2 != null && _tblGridView2.Rows.Count > 0)
+                    {
+                        txtMaLo.Enabled = false;
+                    }
+                    else
+                    {
+                        txtMaLo.Enabled = true;
+                    }
                     //foreach (DataRow row in data2.Rows)
                     //{
                     //    row["GC_TD3"] = _gc_td3;

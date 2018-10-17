@@ -30,7 +30,9 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnLoc = new V6Controls.Controls.V6FormButton();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.dateNgay_ct = new V6Controls.V6DateTimePick();
             this.dateNgay_td1 = new V6Controls.V6DateTimePick();
             this.chkAutoF9 = new System.Windows.Forms.CheckBox();
             this.lblStatus1 = new System.Windows.Forms.Label();
@@ -47,8 +49,6 @@
             this.txtMalo = new V6Controls.V6VvarTextBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
-            this.dateNgay_ct = new V6Controls.V6DateTimePick();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,10 +90,19 @@
             this.btnLoc.Location = new System.Drawing.Point(226, 425);
             this.btnLoc.Name = "btnLoc";
             this.btnLoc.Size = new System.Drawing.Size(50, 23);
-            this.btnLoc.TabIndex = 17;
+            this.btnLoc.TabIndex = 16;
             this.btnLoc.Text = "Lọc";
             this.btnLoc.UseVisualStyleBackColor = true;
             this.btnLoc.Click += new System.EventHandler(this.btnLoc_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 456);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 13);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Ngày chứng từ";
             // 
             // label1
             // 
@@ -101,8 +110,21 @@
             this.label1.Location = new System.Drawing.Point(10, 430);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
-            this.label1.TabIndex = 15;
+            this.label1.TabIndex = 14;
             this.label1.Text = "Ngày scan";
+            // 
+            // dateNgay_ct
+            // 
+            this.dateNgay_ct.CustomFormat = "dd/MM/yyyy";
+            this.dateNgay_ct.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dateNgay_ct.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateNgay_ct.HoverColor = System.Drawing.Color.Yellow;
+            this.dateNgay_ct.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.dateNgay_ct.LeaveColor = System.Drawing.Color.White;
+            this.dateNgay_ct.Location = new System.Drawing.Point(120, 454);
+            this.dateNgay_ct.Name = "dateNgay_ct";
+            this.dateNgay_ct.Size = new System.Drawing.Size(100, 20);
+            this.dateNgay_ct.TabIndex = 18;
             // 
             // dateNgay_td1
             // 
@@ -112,10 +134,10 @@
             this.dateNgay_td1.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_td1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgay_td1.LeaveColor = System.Drawing.Color.White;
-            this.dateNgay_td1.Location = new System.Drawing.Point(89, 428);
+            this.dateNgay_td1.Location = new System.Drawing.Point(120, 428);
             this.dateNgay_td1.Name = "dateNgay_td1";
             this.dateNgay_td1.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_td1.TabIndex = 16;
+            this.dateNgay_td1.TabIndex = 15;
             // 
             // chkAutoF9
             // 
@@ -125,7 +147,7 @@
             this.chkAutoF9.Location = new System.Drawing.Point(6, 405);
             this.chkAutoF9.Name = "chkAutoF9";
             this.chkAutoF9.Size = new System.Drawing.Size(157, 17);
-            this.chkAutoF9.TabIndex = 14;
+            this.chkAutoF9.TabIndex = 13;
             this.chkAutoF9.Text = "Tự động xử lý sau khi scan.";
             this.chkAutoF9.UseVisualStyleBackColor = true;
             // 
@@ -137,7 +159,7 @@
             this.lblStatus1.Location = new System.Drawing.Point(6, 501);
             this.lblStatus1.Name = "lblStatus1";
             this.lblStatus1.Size = new System.Drawing.Size(270, 38);
-            this.lblStatus1.TabIndex = 13;
+            this.lblStatus1.TabIndex = 19;
             this.lblStatus1.Text = "...";
             // 
             // txtSL_TD2
@@ -188,7 +210,7 @@
             this.txtMaSoThue.Name = "txtMaSoThue";
             this.txtMaSoThue.ReadOnly = true;
             this.txtMaSoThue.Size = new System.Drawing.Size(276, 20);
-            this.txtMaSoThue.TabIndex = 11;
+            this.txtMaSoThue.TabIndex = 9;
             this.txtMaSoThue.TabStop = false;
             this.txtMaSoThue.Tag = "readonly";
             // 
@@ -210,7 +232,7 @@
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.ReadOnly = true;
             this.txtDiaChi.Size = new System.Drawing.Size(276, 41);
-            this.txtDiaChi.TabIndex = 10;
+            this.txtDiaChi.TabIndex = 8;
             this.txtDiaChi.TabStop = false;
             this.txtDiaChi.Tag = "readonly";
             // 
@@ -350,7 +372,7 @@
             this.txtMaVT.Name = "txtMaVT";
             this.txtMaVT.ReadOnly = true;
             this.txtMaVT.Size = new System.Drawing.Size(276, 20);
-            this.txtMaVT.TabIndex = 9;
+            this.txtMaVT.TabIndex = 11;
             this.txtMaVT.TabStop = false;
             this.txtMaVT.VVar = "MA_VT";
             this.txtMaVT.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMalo_V6LostFocus);
@@ -372,7 +394,7 @@
             this.txtMaKH.Name = "txtMaKH";
             this.txtMaKH.ReadOnly = true;
             this.txtMaKH.Size = new System.Drawing.Size(276, 20);
-            this.txtMaKH.TabIndex = 8;
+            this.txtMaKH.TabIndex = 10;
             this.txtMaKH.TabStop = false;
             this.txtMaKH.VVar = "MA_KH";
             this.txtMaKH.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMalo_V6LostFocus);
@@ -426,28 +448,6 @@
             this.radAnd.Text = "Điều kiện (AND)";
             this.radAnd.UseVisualStyleBackColor = true;
             // 
-            // dateNgay_ct
-            // 
-            this.dateNgay_ct.CustomFormat = "dd/MM/yyyy";
-            this.dateNgay_ct.EnterColor = System.Drawing.Color.PaleGreen;
-            this.dateNgay_ct.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateNgay_ct.HoverColor = System.Drawing.Color.Yellow;
-            this.dateNgay_ct.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dateNgay_ct.LeaveColor = System.Drawing.Color.White;
-            this.dateNgay_ct.Location = new System.Drawing.Point(89, 454);
-            this.dateNgay_ct.Name = "dateNgay_ct";
-            this.dateNgay_ct.Size = new System.Drawing.Size(100, 20);
-            this.dateNgay_ct.TabIndex = 16;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 456);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 13);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "Ngày chứng từ";
-            // 
             // AINVTBAR5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -478,10 +478,10 @@
         private System.Windows.Forms.Label lblStatus1;
         private System.Windows.Forms.CheckBox chkAutoF9;
         private System.Windows.Forms.Label label1;
-        private V6Controls.V6DateTimePick dateNgay_td1;
         private V6Controls.Controls.V6FormButton btnLoc;
         public V6Controls.V6VvarTextBox txtMalo;
         private System.Windows.Forms.Label label2;
         public V6Controls.V6DateTimePick dateNgay_ct;
+        public V6Controls.V6DateTimePick dateNgay_td1;
     }
 }
