@@ -192,9 +192,9 @@
             this.groupBox1.Controls.Add(this.TxtSO_THE_TS);
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
-            this.groupBox1.Location = new System.Drawing.Point(3, 98);
+            this.groupBox1.Location = new System.Drawing.Point(0, 98);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 218);
+            this.groupBox1.Size = new System.Drawing.Size(299, 218);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";

@@ -1,4 +1,4 @@
-﻿namespace V6Controls.Controls.Lookup
+﻿namespace V6Controls.Controls
 {
     partial class LookupButtonDataViewForm
     {
@@ -31,7 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,6 +78,6 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private V6Controls.V6ColorDataGridView dataGridView1;
     }
 }

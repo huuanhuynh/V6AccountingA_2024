@@ -137,9 +137,9 @@
             this.groupBox1.Controls.Add(this.Txtnh_kh3);
             this.groupBox1.Controls.Add(this.Txtma_vt);
             this.groupBox1.Controls.Add(this.Txtma_kh);
-            this.groupBox1.Location = new System.Drawing.Point(3, 49);
+            this.groupBox1.Location = new System.Drawing.Point(0, 49);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 642);
+            this.groupBox1.Size = new System.Drawing.Size(299, 642);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -524,7 +524,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "ASOBK14";
-            this.Size = new System.Drawing.Size(307, 693);
+            this.Size = new System.Drawing.Size(299, 693);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

@@ -76,9 +76,9 @@
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox1);
             this.groupBox1.Controls.Add(this.txtMaDvcs);
-            this.groupBox1.Location = new System.Drawing.Point(3, 78);
+            this.groupBox1.Location = new System.Drawing.Point(0, 78);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 109);
+            this.groupBox1.Size = new System.Drawing.Size(299, 109);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -193,7 +193,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AINBK2X";
-            this.Size = new System.Drawing.Size(307, 190);
+            this.Size = new System.Drawing.Size(299, 190);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

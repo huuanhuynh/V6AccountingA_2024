@@ -179,10 +179,47 @@ namespace V6Structs
                 default: // Mặc định gán cho string Property.
                     foreach (PropertyInfo propertyInfo in GetType().GetProperties())
                     {
-                        if (propertyInfo.Name.ToUpper() == key.ToUpper() && propertyInfo.CanWrite && propertyInfo.PropertyType == typeof(string))
+                        if (propertyInfo.Name.ToUpper() == key.ToUpper() && propertyInfo.CanWrite)
                         {
-                            propertyInfo.SetValue(this, value, null);
-                            return;
+                            if (propertyInfo.PropertyType == typeof(string))
+                            {
+                                propertyInfo.SetValue(this, value, null);
+                            }
+                            else if (propertyInfo.PropertyType == typeof(int))
+                            {
+                                propertyInfo.SetValue(this, int.Parse(value), null);
+                            }
+                            else if (propertyInfo.PropertyType == typeof(decimal))
+                            {
+                                propertyInfo.SetValue(this, decimal.Parse(value), null);
+                            }
+                            else if (propertyInfo.PropertyType == typeof(DateTime))
+                            {
+                                propertyInfo.SetValue(this, DateTime.ParseExact(value, "dd/MM/yyyy", null), null);
+                            }
+                        }
+                    }
+
+                    foreach (FieldInfo propertyInfo in GetType().GetFields())
+                    {
+                        if (propertyInfo.Name.ToUpper() == key.ToUpper() && propertyInfo.IsPublic)
+                        {
+                            if (propertyInfo.FieldType == typeof(string))
+                            {
+                                propertyInfo.SetValue(this, value);
+                            }
+                            else if (propertyInfo.FieldType == typeof(int))
+                            {
+                                propertyInfo.SetValue(this, int.Parse(value));
+                            }
+                            else if (propertyInfo.FieldType == typeof(decimal))
+                            {
+                                propertyInfo.SetValue(this, decimal.Parse(value));
+                            }
+                            else if (propertyInfo.FieldType == typeof(DateTime))
+                            {
+                                propertyInfo.SetValue(this, DateTime.ParseExact(value, "dd/MM/yyyy", null));
+                            }
                         }
                     }
                     break;
@@ -257,7 +294,7 @@ namespace V6Structs
         public string Key2;
         public string Key3;
         public string Key4;
-        public bool Visible = true;
+        public bool Visible;
         public string ShowName = "";
         public bool Enabled = true;
 
@@ -380,5 +417,15 @@ namespace V6Structs
         }
 
         public bool ToUpper;
+        // LookupButton info
+        public string R_DataType;
+        public string R_Ma_ct;
+
+        public string M_DataType;
+        public string M_Value;
+        public string M_Vvar;
+        public string M_Stt_Rec;
+        public string M_Ma_ct;
+        public string M_Type;
     }
 }

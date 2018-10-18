@@ -5,14 +5,15 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Init;
+using V6ReportControls;
 using V6Tools.V6Convert;
 
-namespace V6Controls.Controls.Lookup
+namespace V6Controls.Controls
 {
     /// <summary>
     /// Một cái nút bám theo một Control khác.
     /// </summary>
-    class LookupButton : System.Windows.Forms.Label
+    public class LookupButton : System.Windows.Forms.Label
     {
         public LookupButton()
         {
@@ -103,14 +104,18 @@ namespace V6Controls.Controls.Lookup
         [Category("V6")]
         public string R_Vvar {
             get
-            {
+            {   
                 var txt = _refControl as V6VvarTextBox;
                 if (txt != null) return txt.VVar;
+                var line = _refControl as FilterLineDynamic;
+                if (line != null && line._vtextBox != null) return line._vtextBox.VVar;
+                var lineVvar = _refControl as FilterLineVvarTextBox;
+                if (lineVvar != null) return lineVvar.Vvar;
                 return null;
             }
         }
         [Category("V6")]
-        public string R_Stt_rec { get; set; }
+        public string R_Stt_rec { get; private set; }
         [Category("V6")]
         public string R_Ma_ct { get; set; }
 
@@ -130,9 +135,9 @@ namespace V6Controls.Controls.Lookup
         [Category("V6")]
         public string M_Type { get; set; }
         [Category("V6")]
-        public string M_User_id { get; set; }
+        public int M_User_id { get { return V6Login.UserId; } }
         [Category("V6")]
-        public string M_Lan { get; set; }
+        public string M_Lan { get { return V6Setting.Language; } }
 
 
         internal class CConverter : ReferenceConverter
@@ -147,9 +152,10 @@ namespace V6Controls.Controls.Lookup
         {
             this.SuspendLayout();
             // 
-            // MagnetButton
+            // LookupButton
             // 
             this.Image = global::V6Controls.Properties.Resources.Search24;
+            this.Size = new System.Drawing.Size(25, 25);
             this.Click += new System.EventHandler(this.LookupButton_Click);
             this.ResumeLayout(false);
 

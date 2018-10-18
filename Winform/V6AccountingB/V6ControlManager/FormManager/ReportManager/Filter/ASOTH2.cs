@@ -4,7 +4,7 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class ASOTH2: FilterBase
+    public partial class ASOTH2 : FilterBase
     {
         public ASOTH2()
         {

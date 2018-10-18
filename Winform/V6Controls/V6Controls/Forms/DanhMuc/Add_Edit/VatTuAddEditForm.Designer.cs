@@ -1,4 +1,6 @@
-﻿namespace V6Controls.Forms.DanhMuc.Add_Edit
+﻿using V6Controls.Controls;
+
+namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
     partial class VatTuAddEditForm
     {
@@ -260,7 +262,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.lblMagnet = new V6Controls.Controls.Lookup.LookupButton();
+            this.lblMagnet = new LookupButton();
             this.label1 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -3871,18 +3873,15 @@
             this.lblMagnet.Image = ((System.Drawing.Image)(resources.GetObject("lblMagnet.Image")));
             this.lblMagnet.Location = new System.Drawing.Point(339, 17);
             this.lblMagnet.M_DataType = "c";
-            this.lblMagnet.M_Lan = null;
             this.lblMagnet.M_Ma_ct = null;
             this.lblMagnet.M_Stt_Rec = null;
             this.lblMagnet.M_Type = "2";
-            this.lblMagnet.M_User_id = null;
             this.lblMagnet.M_Value = null;
             this.lblMagnet.M_Vvar = null;
             this.lblMagnet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMagnet.Name = "lblMagnet";
             this.lblMagnet.R_DataType = "c";
             this.lblMagnet.R_Ma_ct = null;
-            this.lblMagnet.R_Stt_rec = null;
             this.lblMagnet.ReferenceControl = this.txtMaVT;
             this.lblMagnet.Size = new System.Drawing.Size(25, 25);
             this.lblMagnet.TabIndex = 0;
@@ -4165,6 +4164,6 @@
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label41;
-        private V6Controls.Controls.Lookup.LookupButton lblMagnet;
+        private LookupButton lblMagnet;
     }
 }

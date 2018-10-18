@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
@@ -61,6 +60,22 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                 this.WriteExLog(GetType() + ".DoEditFilter", ex);
             }
         }
+        
+        private void DoEditFilter_M()
+        {
+            try
+            {
+                DefineInfoEditorForm f = new DefineInfoEditorForm(txtFilter_M.Text);
+                if (f.ShowDialog(this) == DialogResult.OK)
+                {
+                    txtFilter_M.Text = f.FILTER_DEFINE;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoEditFilter_M", ex);
+            }
+        }
 
         private void DoEditXml()
         {
@@ -74,6 +89,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                 this.WriteExLog(GetType() + ".DoEditXml", ex);
             }
         }
+        
+        private void DoEditXml_M()
+        {
+            try
+            {
+                var file_xml = TXTMA_BC.Text.Trim().ToUpper() + "_M.xml";
+                new XmlEditorForm(txtDmethod_M, file_xml, "Table0", "event,using,method,content".Split(',')).ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoEditXml_M", ex);
+            }
+        }
 
         private void btnEditFilter_Click(object sender, EventArgs e)
         {
@@ -85,14 +113,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             DoEditXml();
         }
 
-        private void txtDmethod_TextChanged(object sender, EventArgs e)
+        private void btnEditFilterM_Click(object sender, EventArgs e)
         {
-
+            DoEditFilter_M();
         }
 
-        private void label8_Click(object sender, EventArgs e)
+        private void btnEditXmlM_Click(object sender, EventArgs e)
         {
-
+            DoEditXml_M();
         }
 
         

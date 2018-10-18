@@ -115,7 +115,7 @@
             this.groupBox1.Controls.Add(this.v6Label3);
             this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.v6Label2);
-            this.groupBox1.Location = new System.Drawing.Point(3, 121);
+            this.groupBox1.Location = new System.Drawing.Point(0, 121);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(269, 101);
             this.groupBox1.TabIndex = 3;

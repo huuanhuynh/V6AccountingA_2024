@@ -148,9 +148,9 @@
             this.groupBox1.Controls.Add(this.mavv);
             this.groupBox1.Controls.Add(this.mavt);
             this.groupBox1.Controls.Add(this.makh);
-            this.groupBox1.Location = new System.Drawing.Point(3, 95);
+            this.groupBox1.Location = new System.Drawing.Point(0, 95);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 695);
+            this.groupBox1.Size = new System.Drawing.Size(299, 695);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -645,7 +645,7 @@
             this.Controls.Add(this.chkGiamTru);
             this.Controls.Add(this.groupBox1);
             this.Name = "AINTH1_LO";
-            this.Size = new System.Drawing.Size(307, 793);
+            this.Size = new System.Drawing.Size(299, 793);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

@@ -120,7 +120,7 @@
             this.groupBox1.Controls.Add(this.v6CheckBox1);
             this.groupBox1.Controls.Add(this.checkBox2);
             this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Location = new System.Drawing.Point(3, 191);
+            this.groupBox1.Location = new System.Drawing.Point(0, 191);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(279, 240);
             this.groupBox1.TabIndex = 3;

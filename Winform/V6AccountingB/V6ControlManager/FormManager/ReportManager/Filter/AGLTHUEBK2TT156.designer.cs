@@ -78,7 +78,7 @@
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Controls.Add(this.Txtma_kh);
             this.groupBox1.Controls.Add(this.txtMaDvcs);
-            this.groupBox1.Location = new System.Drawing.Point(3, 189);
+            this.groupBox1.Location = new System.Drawing.Point(0, 189);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(289, 170);
             this.groupBox1.TabIndex = 0;

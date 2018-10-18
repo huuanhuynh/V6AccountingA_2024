@@ -77,9 +77,9 @@
             this.groupBox1.Controls.Add(this.lineMaNS);
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
-            this.groupBox1.Location = new System.Drawing.Point(3, 29);
+            this.groupBox1.Location = new System.Drawing.Point(0, 29);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 139);
+            this.groupBox1.Size = new System.Drawing.Size(298, 139);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -96,7 +96,7 @@
             this.Txtten_ns.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.Txtten_ns.HoverColor = System.Drawing.Color.Yellow;
             this.Txtten_ns.LeaveColor = System.Drawing.Color.White;
-            this.Txtten_ns.Location = new System.Drawing.Point(44, 74);
+            this.Txtten_ns.Location = new System.Drawing.Point(41, 74);
             this.Txtten_ns.Margin = new System.Windows.Forms.Padding(4);
             this.Txtten_ns.Multiline = true;
             this.Txtten_ns.Name = "Txtten_ns";
@@ -122,7 +122,7 @@
             // 
             this.radOr.AccessibleDescription = "FILTERR00002";
             this.radOr.AutoSize = true;
-            this.radOr.Location = new System.Drawing.Point(142, 18);
+            this.radOr.Location = new System.Drawing.Point(139, 18);
             this.radOr.Name = "radOr";
             this.radOr.Size = new System.Drawing.Size(156, 17);
             this.radOr.TabIndex = 1;
@@ -135,7 +135,7 @@
             this.radAnd.AccessibleDescription = "FILTERR00001";
             this.radAnd.AutoSize = true;
             this.radAnd.Checked = true;
-            this.radAnd.Location = new System.Drawing.Point(6, 18);
+            this.radAnd.Location = new System.Drawing.Point(3, 18);
             this.radAnd.Name = "radAnd";
             this.radAnd.Size = new System.Drawing.Size(130, 17);
             this.radAnd.TabIndex = 0;
@@ -151,7 +151,7 @@
             this.Controls.Add(this.txtSttRec);
             this.Controls.Add(this.groupBox1);
             this.Name = "HHRJOBEXPERIENCE_filter";
-            this.Size = new System.Drawing.Size(307, 174);
+            this.Size = new System.Drawing.Size(299, 174);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

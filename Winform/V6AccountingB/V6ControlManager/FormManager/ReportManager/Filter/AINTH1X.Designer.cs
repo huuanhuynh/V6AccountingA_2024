@@ -238,9 +238,9 @@
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox7);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox5);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox3);
-            this.groupBox1.Location = new System.Drawing.Point(3, 90);
+            this.groupBox1.Location = new System.Drawing.Point(0, 90);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 670);
+            this.groupBox1.Size = new System.Drawing.Size(299, 670);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -631,7 +631,7 @@
             this.Controls.Add(this.chkGiamTru);
             this.Controls.Add(this.groupBox1);
             this.Name = "AINTH1X";
-            this.Size = new System.Drawing.Size(307, 760);
+            this.Size = new System.Drawing.Size(299, 760);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

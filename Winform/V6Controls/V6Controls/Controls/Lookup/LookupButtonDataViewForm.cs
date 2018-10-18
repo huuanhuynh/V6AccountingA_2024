@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using V6Controls.Forms;
 using V6Init;
 
-namespace V6Controls.Controls.Lookup
+namespace V6Controls.Controls
 {
     public partial class LookupButtonDataViewForm : V6Form
     {
@@ -49,7 +44,7 @@ namespace V6Controls.Controls.Lookup
                 }
                 else if (keyData == Keys.F3)
                 {
-                    
+                    //var hoaDonForm = ChungTuF3.GetChungTuControl(maCt, Name, sttRec);
                 }
                 else if (keyData == Keys.F4)
                 {

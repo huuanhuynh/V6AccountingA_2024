@@ -90,7 +90,7 @@
             this.groupBox1.Controls.Add(this.TxtSO_THE_TS);
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
-            this.groupBox1.Location = new System.Drawing.Point(3, 96);
+            this.groupBox1.Location = new System.Drawing.Point(0, 96);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(302, 211);
             this.groupBox1.TabIndex = 3;

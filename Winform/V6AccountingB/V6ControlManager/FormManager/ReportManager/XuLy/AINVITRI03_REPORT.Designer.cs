@@ -121,7 +121,7 @@
             this.groupBox1.Controls.Add(this.lineMaKho);
             this.groupBox1.Controls.Add(this.lineMaVatTu);
             this.groupBox1.Controls.Add(this.lineMaVitri);
-            this.groupBox1.Location = new System.Drawing.Point(3, 91);
+            this.groupBox1.Location = new System.Drawing.Point(0, 91);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(280, 255);
             this.groupBox1.TabIndex = 4;

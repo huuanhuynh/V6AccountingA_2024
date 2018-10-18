@@ -122,7 +122,7 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Controls.Add(this.Txtnh_kh3);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox3);
-            this.groupBox1.Location = new System.Drawing.Point(3, 121);
+            this.groupBox1.Location = new System.Drawing.Point(0, 121);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(289, 533);
             this.groupBox1.TabIndex = 8;

@@ -77,7 +77,7 @@
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox1);
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
-            this.groupBox1.Location = new System.Drawing.Point(3, 104);
+            this.groupBox1.Location = new System.Drawing.Point(0, 104);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(289, 333);
             this.groupBox1.TabIndex = 4;

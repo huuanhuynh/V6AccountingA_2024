@@ -113,7 +113,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.lineMaBpHt);
-            this.groupBox1.Location = new System.Drawing.Point(3, 265);
+            this.groupBox1.Location = new System.Drawing.Point(0, 265);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(292, 112);
             this.groupBox1.TabIndex = 6;

@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ma_dvcs_filterline = new V6ReportControls.FilterLineVvarTextBox();
+            this.ma_bpht_filterline = new V6ReportControls.FilterLineVvarTextBox();
+            this.ma_nvien_filterline = new V6ReportControls.FilterLineVvarTextBox();
             this.ma_vt_filterLine = new V6ReportControls.FilterLineVvarTextBox();
             this.ma_nx_filterLine = new V6ReportControls.FilterLineVvarTextBox();
             this.ma_bp_filterLine = new V6ReportControls.FilterLineVvarTextBox();
@@ -36,9 +39,6 @@
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
             this.ma_kh_filterLine = new V6ReportControls.FilterLineVvarTextBox();
-            this.ma_dvcs_filterline = new V6ReportControls.FilterLineVvarTextBox();
-            this.ma_bpht_filterline = new V6ReportControls.FilterLineVvarTextBox();
-            this.ma_nvien_filterline = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,12 +58,54 @@
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Controls.Add(this.ma_kh_filterLine);
-            this.groupBox1.Location = new System.Drawing.Point(3, 55);
+            this.groupBox1.Location = new System.Drawing.Point(0, 55);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 229);
+            this.groupBox1.Size = new System.Drawing.Size(298, 229);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // ma_dvcs_filterline
+            // 
+            this.ma_dvcs_filterline.AccessibleDescription = "FILTERL00005";
+            this.ma_dvcs_filterline.AccessibleName2 = "MA_DVCS";
+            this.ma_dvcs_filterline.Caption = "Mã đơn vị";
+            this.ma_dvcs_filterline.Enabled = false;
+            this.ma_dvcs_filterline.FieldName = "MA_DVCS";
+            this.ma_dvcs_filterline.Location = new System.Drawing.Point(6, 201);
+            this.ma_dvcs_filterline.Name = "ma_dvcs_filterline";
+            this.ma_dvcs_filterline.Operator = "=";
+            this.ma_dvcs_filterline.Size = new System.Drawing.Size(289, 22);
+            this.ma_dvcs_filterline.TabIndex = 9;
+            this.ma_dvcs_filterline.Vvar = "MA_DVCS";
+            // 
+            // ma_bpht_filterline
+            // 
+            this.ma_bpht_filterline.AccessibleDescription = "FILTERL00078";
+            this.ma_bpht_filterline.AccessibleName2 = "MA_BPHT";
+            this.ma_bpht_filterline.Caption = "Mã bộ phận HT";
+            this.ma_bpht_filterline.Enabled = false;
+            this.ma_bpht_filterline.FieldName = "MA_BPHT";
+            this.ma_bpht_filterline.Location = new System.Drawing.Point(6, 178);
+            this.ma_bpht_filterline.Name = "ma_bpht_filterline";
+            this.ma_bpht_filterline.Operator = "=";
+            this.ma_bpht_filterline.Size = new System.Drawing.Size(289, 22);
+            this.ma_bpht_filterline.TabIndex = 8;
+            this.ma_bpht_filterline.Vvar = "MA_BPHT";
+            // 
+            // ma_nvien_filterline
+            // 
+            this.ma_nvien_filterline.AccessibleDescription = "FILTERL00029";
+            this.ma_nvien_filterline.AccessibleName2 = "MA_NVIEN";
+            this.ma_nvien_filterline.Caption = "Mã nhân viên";
+            this.ma_nvien_filterline.Enabled = false;
+            this.ma_nvien_filterline.FieldName = "MA_NVIEN";
+            this.ma_nvien_filterline.Location = new System.Drawing.Point(6, 155);
+            this.ma_nvien_filterline.Name = "ma_nvien_filterline";
+            this.ma_nvien_filterline.Operator = "=";
+            this.ma_nvien_filterline.Size = new System.Drawing.Size(289, 22);
+            this.ma_nvien_filterline.TabIndex = 7;
+            this.ma_nvien_filterline.Vvar = "MA_NVIEN";
             // 
             // ma_vt_filterLine
             // 
@@ -124,7 +166,7 @@
             // 
             this.radOr.AccessibleDescription = "FILTERR00002";
             this.radOr.AutoSize = true;
-            this.radOr.Location = new System.Drawing.Point(142, 17);
+            this.radOr.Location = new System.Drawing.Point(139, 17);
             this.radOr.Name = "radOr";
             this.radOr.Size = new System.Drawing.Size(156, 17);
             this.radOr.TabIndex = 1;
@@ -137,7 +179,7 @@
             this.radAnd.AccessibleDescription = "FILTERR00001";
             this.radAnd.AutoSize = true;
             this.radAnd.Checked = true;
-            this.radAnd.Location = new System.Drawing.Point(6, 17);
+            this.radAnd.Location = new System.Drawing.Point(3, 17);
             this.radAnd.Name = "radAnd";
             this.radAnd.Size = new System.Drawing.Size(130, 17);
             this.radAnd.TabIndex = 0;
@@ -159,55 +201,13 @@
             this.ma_kh_filterLine.TabIndex = 2;
             this.ma_kh_filterLine.Vvar = "MA_KH";
             // 
-            // ma_dvcs_filterline
-            // 
-            this.ma_dvcs_filterline.AccessibleDescription = "FILTERL00005";
-            this.ma_dvcs_filterline.AccessibleName2 = "MA_DVCS";
-            this.ma_dvcs_filterline.Caption = "Mã đơn vị";
-            this.ma_dvcs_filterline.Enabled = false;
-            this.ma_dvcs_filterline.FieldName = "MA_DVCS";
-            this.ma_dvcs_filterline.Location = new System.Drawing.Point(6, 201);
-            this.ma_dvcs_filterline.Name = "ma_dvcs_filterline";
-            this.ma_dvcs_filterline.Operator = "=";
-            this.ma_dvcs_filterline.Size = new System.Drawing.Size(289, 22);
-            this.ma_dvcs_filterline.TabIndex = 9;
-            this.ma_dvcs_filterline.Vvar = "MA_DVCS";
-            // 
-            // ma_bpht_filterline
-            // 
-            this.ma_bpht_filterline.AccessibleDescription = "FILTERL00078";
-            this.ma_bpht_filterline.AccessibleName2 = "MA_BPHT";
-            this.ma_bpht_filterline.Caption = "Mã bộ phận HT";
-            this.ma_bpht_filterline.Enabled = false;
-            this.ma_bpht_filterline.FieldName = "MA_BPHT";
-            this.ma_bpht_filterline.Location = new System.Drawing.Point(6, 178);
-            this.ma_bpht_filterline.Name = "ma_bpht_filterline";
-            this.ma_bpht_filterline.Operator = "=";
-            this.ma_bpht_filterline.Size = new System.Drawing.Size(289, 22);
-            this.ma_bpht_filterline.TabIndex = 8;
-            this.ma_bpht_filterline.Vvar = "MA_BPHT";
-            // 
-            // ma_nvien_filterline
-            // 
-            this.ma_nvien_filterline.AccessibleDescription = "FILTERL00029";
-            this.ma_nvien_filterline.AccessibleName2 = "MA_NVIEN";
-            this.ma_nvien_filterline.Caption = "Mã nhân viên";
-            this.ma_nvien_filterline.Enabled = false;
-            this.ma_nvien_filterline.FieldName = "MA_NVIEN";
-            this.ma_nvien_filterline.Location = new System.Drawing.Point(6, 155);
-            this.ma_nvien_filterline.Name = "ma_nvien_filterline";
-            this.ma_nvien_filterline.Operator = "=";
-            this.ma_nvien_filterline.Size = new System.Drawing.Size(289, 22);
-            this.ma_nvien_filterline.TabIndex = 7;
-            this.ma_nvien_filterline.Vvar = "MA_NVIEN";
-            // 
             // AHINTH3F5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "AHINTH3F5";
-            this.Size = new System.Drawing.Size(307, 287);
+            this.Size = new System.Drawing.Size(299, 287);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

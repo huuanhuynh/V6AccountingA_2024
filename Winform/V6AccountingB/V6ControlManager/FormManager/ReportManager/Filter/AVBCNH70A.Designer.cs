@@ -463,9 +463,9 @@
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox7);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox5);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox3);
-            this.groupBox1.Location = new System.Drawing.Point(3, 174);
+            this.groupBox1.Location = new System.Drawing.Point(0, 174);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 614);
+            this.groupBox1.Size = new System.Drawing.Size(299, 614);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -868,7 +868,7 @@
             this.Controls.Add(this.chkGiamTru);
             this.Controls.Add(this.groupBox1);
             this.Name = "AVBCNH70A";
-            this.Size = new System.Drawing.Size(307, 791);
+            this.Size = new System.Drawing.Size(299, 791);
             this.groupBoxNhom.ResumeLayout(false);
             this.groupBoxNhom.PerformLayout();
             this.groupBox1.ResumeLayout(false);

@@ -242,10 +242,10 @@
     <Compile Include="Controls\ToChucTree\ToChucTreeListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\V6LookupCombobox.cs">
+    <Compile Include="Controls\Lookup\V6LookupCombobox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\V6LookupCombobox.Designer.cs">
+    <Compile Include="Controls\Lookup\V6LookupCombobox.Designer.cs">
       <DependentUpon>V6LookupCombobox.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ChangePassword.cs">

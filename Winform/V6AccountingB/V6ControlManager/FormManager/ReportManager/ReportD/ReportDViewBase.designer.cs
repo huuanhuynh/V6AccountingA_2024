@@ -56,6 +56,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnNhan = new System.Windows.Forms.Button();
             this.panel0 = new System.Windows.Forms.Panel();
             this.grbNgonNgu = new System.Windows.Forms.GroupBox();
+            this.rCurrent = new System.Windows.Forms.RadioButton();
             this.rTiengViet = new System.Windows.Forms.RadioButton();
             this.rBothLang = new System.Windows.Forms.RadioButton();
             this.rEnglish = new System.Windows.Forms.RadioButton();
@@ -80,7 +81,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             this.btnSuaLine = new V6Controls.Controls.V6FormButton();
-            this.rCurrent = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -195,9 +195,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.grbDieuKienLoc.Controls.Add(this.btnNhan);
             this.grbDieuKienLoc.Controls.Add(this.panel0);
             this.grbDieuKienLoc.Controls.Add(this.panel1);
-            this.grbDieuKienLoc.Location = new System.Drawing.Point(2, 64);
+            this.grbDieuKienLoc.Location = new System.Drawing.Point(0, 64);
             this.grbDieuKienLoc.Name = "grbDieuKienLoc";
-            this.grbDieuKienLoc.Size = new System.Drawing.Size(299, 587);
+            this.grbDieuKienLoc.Size = new System.Drawing.Size(302, 587);
             this.grbDieuKienLoc.TabIndex = 0;
             this.grbDieuKienLoc.TabStop = false;
             this.grbDieuKienLoc.Text = "Conditional option (Điều Kiện Lọc)";
@@ -353,6 +353,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.grbNgonNgu.TabStop = false;
             this.grbNgonNgu.Text = "Ngôn ngữ bc (Rpt Language)";
             // 
+            // rCurrent
+            // 
+            this.rCurrent.AccessibleDescription = "REPORTR00007";
+            this.rCurrent.AutoSize = true;
+            this.rCurrent.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rCurrent.Location = new System.Drawing.Point(219, 13);
+            this.rCurrent.Name = "rCurrent";
+            this.rCurrent.Size = new System.Drawing.Size(59, 17);
+            this.rCurrent.TabIndex = 2;
+            this.rCurrent.Text = "Current";
+            this.rCurrent.UseVisualStyleBackColor = true;
+            this.rCurrent.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
+            // 
             // rTiengViet
             // 
             this.rTiengViet.AccessibleDescription = "REPORTR00004";
@@ -441,9 +454,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.AutoScroll = true;
-            this.panel1.Location = new System.Drawing.Point(6, 177);
+            this.panel1.Location = new System.Drawing.Point(0, 177);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(287, 404);
+            this.panel1.Size = new System.Drawing.Size(299, 404);
             this.panel1.TabIndex = 0;
             this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
@@ -622,19 +635,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.toolTipV6FormControl.SetToolTip(this.btnSuaLine, "Sửa line");
             this.btnSuaLine.UseVisualStyleBackColor = true;
             this.btnSuaLine.Click += new System.EventHandler(this.btnSuaLine_Click);
-            // 
-            // rCurrent
-            // 
-            this.rCurrent.AccessibleDescription = "REPORTR00007";
-            this.rCurrent.AutoSize = true;
-            this.rCurrent.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.rCurrent.Location = new System.Drawing.Point(219, 13);
-            this.rCurrent.Name = "rCurrent";
-            this.rCurrent.Size = new System.Drawing.Size(59, 17);
-            this.rCurrent.TabIndex = 2;
-            this.rCurrent.Text = "Current";
-            this.rCurrent.UseVisualStyleBackColor = true;
-            this.rCurrent.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
             // 
             // ReportDViewBase
             // 

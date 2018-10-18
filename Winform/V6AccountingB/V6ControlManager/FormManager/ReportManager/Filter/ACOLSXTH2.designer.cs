@@ -450,7 +450,7 @@
             this.Controls.Add(this.dateNgay_ct2);
             this.Controls.Add(this.dateNgay_ct1);
             this.Name = "ACOLSXTH2";
-            this.Size = new System.Drawing.Size(307, 554);
+            this.Size = new System.Drawing.Size(299, 554);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

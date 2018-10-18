@@ -130,9 +130,9 @@
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox7);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox5);
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox3);
-            this.groupBox1.Location = new System.Drawing.Point(3, 94);
+            this.groupBox1.Location = new System.Drawing.Point(0, 94);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 622);
+            this.groupBox1.Size = new System.Drawing.Size(299, 622);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -616,7 +616,7 @@
             this.Controls.Add(this.TxtKieu_bc);
             this.Controls.Add(this.groupBox1);
             this.Name = "AKSOTH1";
-            this.Size = new System.Drawing.Size(307, 719);
+            this.Size = new System.Drawing.Size(299, 719);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

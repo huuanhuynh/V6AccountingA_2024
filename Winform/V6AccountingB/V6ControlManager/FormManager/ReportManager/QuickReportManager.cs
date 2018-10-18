@@ -13,6 +13,7 @@ using V6ControlManager.FormManager.ReportManager.Filter;
 using V6ControlManager.FormManager.ReportManager.ReportD;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6ReportControls;
@@ -69,11 +70,14 @@ namespace V6ControlManager.FormManager.ReportManager
                     try
                     {
                         string define = row["filter"].ToString().Trim();
-                        
+                        string define_M = row["filter_M"].ToString().Trim();
+                        var defineInfo = new DefineInfo(define);
+                        var defineInfo_M = new DefineInfo(define_M);
 
                         var lineControl0 = V6ControlFormHelper.MadeLineDynamicControl(define);
                         all_Objects[lineControl0.Name] = lineControl0;
 
+                        
                         if (lineControl0 is FilterLineDynamic)
                         {
                             FilterLineDynamic lineControl = lineControl0 as FilterLineDynamic;
@@ -97,6 +101,31 @@ namespace V6ControlManager.FormManager.ReportManager
                             }
                             filterControl.AddLineControls(lineControl);
                             //panel1.Controls.Add(lineControl);
+                            //Lookup Button
+                            if (defineInfo_M.Visible)
+                            {
+                                LookupButton lButton = new LookupButton();
+                                filterControl.groupBox1.Controls.Add(lButton);
+                                lButton.ReferenceControl = lineControl0;
+
+                                lButton.Name = "lbt" + defineInfo.Field;
+
+                                lButton.R_DataType = defineInfo_M.R_DataType;
+                                //lButton.R_Value = defineInfo_M.R_Value;
+                                //lButton.R_Vvar = defineInfo_M.R_Vvar;
+                                //lButton.R_Stt_rec = defineInfo_M.R_Stt_rec;
+                                lButton.R_Ma_ct = defineInfo_M.R_Ma_ct;
+
+                                lButton.M_DataType = defineInfo_M.M_DataType;
+                                lButton.M_Value = defineInfo_M.M_Value;
+                                lButton.M_Vvar = defineInfo_M.M_Vvar;
+                                lButton.M_Stt_Rec = defineInfo_M.M_Stt_Rec;
+                                lButton.M_Ma_ct = defineInfo_M.M_Ma_ct;
+
+                                lButton.M_Type = defineInfo_M.M_Type;
+                                //lButton.M_User_id = defineInfo_M.M_User_id;
+                                //lButton.M_Lan = defineInfo_M.V6Login.SelectedLanguage;
+                            }
 
                             //Giữ lại control ngày.
                             if (lineControl.DefineInfo.DefaultValue == "M_NGAY_CT1")

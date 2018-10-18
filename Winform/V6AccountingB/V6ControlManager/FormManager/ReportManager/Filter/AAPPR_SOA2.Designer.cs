@@ -170,9 +170,9 @@
             this.groupBox1.Controls.Add(this.filterLineVvarTextBox3);
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
-            this.groupBox1.Location = new System.Drawing.Point(3, 251);
+            this.groupBox1.Location = new System.Drawing.Point(0, 251);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 359);
+            this.groupBox1.Size = new System.Drawing.Size(299, 359);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -595,7 +595,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AAPPR_SOA2";
-            this.Size = new System.Drawing.Size(307, 615);
+            this.Size = new System.Drawing.Size(299, 615);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grbTienTe.ResumeLayout(false);

@@ -5727,7 +5727,12 @@ namespace V6Controls.Forms
         {
             //string cNAME = control.AccessibleName.Trim().ToUpper();
 
-            if (control is V6VvarTextBox)
+            if (control is FilterLineBase)
+            {
+                var fl = control as FilterLineBase;
+                return fl.ObjectValue;
+            }
+            else if (control is V6VvarTextBox)
             {
                 return control.Text;
             }
@@ -5937,7 +5942,9 @@ namespace V6Controls.Forms
             foreach (DataRow row in Alreport1Data.Rows)
             {
                 var define = row["Filter"].ToString().Trim();
+                var define_M = row["Filter_M"].ToString().Trim();
                 var defineInfo = new DefineInfo(define);
+                var defineInfo_M = new DefineInfo(define_M);
                 var AccessibleName_KEY = string.IsNullOrEmpty(defineInfo.AccessibleName)
                     ? defineInfo.Field.ToUpper()
                     : defineInfo.AccessibleName.ToUpper();
@@ -6084,6 +6091,32 @@ namespace V6Controls.Forms
                     panel1.Controls.Add(input);
                     Input_Controls[defineInfo.Field.ToUpper()] = input;
                     All_Objects[input.Name] = input;
+                    //Lookup button
+                    if (defineInfo_M.Visible)
+                    {
+                        LookupButton lButton = new LookupButton();
+                        panel1.Controls.Add(lButton);
+                        lButton.ReferenceControl = input;
+
+                        lButton.Name = "lbt" + defineInfo.Field;
+
+                        lButton.R_DataType = defineInfo_M.R_DataType;
+                        //lButton.R_Value = defineInfo_M.R_Value;
+                        //lButton.R_Vvar = defineInfo_M.R_Vvar;
+                        //lButton.R_Stt_rec = defineInfo_M.R_Stt_rec;
+                        lButton.R_Ma_ct = defineInfo_M.R_Ma_ct;
+
+                        lButton.M_DataType = defineInfo_M.M_DataType;
+                        lButton.M_Value = defineInfo_M.M_Value;
+                        lButton.M_Vvar = defineInfo_M.M_Vvar;
+                        lButton.M_Stt_Rec = defineInfo_M.M_Stt_Rec;
+                        lButton.M_Ma_ct = defineInfo_M.M_Ma_ct;
+
+                        lButton.M_Type = defineInfo_M.M_Type;
+                        //lButton.M_User_id = defineInfo_M.M_User_id;
+                        //lButton.M_Lan = defineInfo_M.V6Login.SelectedLanguage;
+                    }
+
                     //Sự kiện của input
                     string DMETHOD = "" + row["DMETHOD"];
                     if (!string.IsNullOrEmpty(DMETHOD))
@@ -6222,7 +6255,7 @@ namespace V6Controls.Forms
                     } //end if DMETHOD
 
                     //Add brother
-                    int left = input.Right + 10;
+                    int left = input.Right + 30;
                     if (input is V6VvarTextBox && !string.IsNullOrEmpty(defineInfo.BField))
                     {
                         var tT = (V6VvarTextBox) input;

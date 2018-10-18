@@ -161,7 +161,7 @@
             this.Controls.Add(this.v6Label1);
             this.Controls.Add(this.TxtSo_the_ts);
             this.Name = "AFADCBP";
-            this.Size = new System.Drawing.Size(307, 116);
+            this.Size = new System.Drawing.Size(299, 116);
             this.ResumeLayout(false);
             this.PerformLayout();
 

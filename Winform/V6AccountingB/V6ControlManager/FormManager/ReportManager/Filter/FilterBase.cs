@@ -471,7 +471,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 return;
             }
 
-            lineControl.Width = groupBox1.Width - 10;
+            lineControl.Width = groupBox1.Width - 30;
             groupBox1.Controls.Add(lineControl);
 
             if (lineControl.DefineInfo.Visible && groupBox1.Height - 10 < lineControl.Bottom)
@@ -536,10 +536,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 GroupBox groupBox1 = V6ControlFormHelper.GetControlByName(this, "groupBox1") as GroupBox;
                 if (groupBox1 == null) return;
-                int filterLineFixWidth = groupBox1.Width - 8;
+                int filterLineFixWidth = groupBox1.Width - 30;
                 foreach (Control control in groupBox1.Controls)
                 {
-                    if (control is FilterLineBase)
+                    if (control is FilterLineDynamic)
                     {
                         control.Width = filterLineFixWidth;
                     }
