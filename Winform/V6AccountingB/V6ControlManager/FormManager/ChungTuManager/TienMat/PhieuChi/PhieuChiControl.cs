@@ -1795,9 +1795,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             txtTongTien.Value = V6BusinessHelper.Vround(tTien, M_ROUND);
 
             //TongThue
-            var tThueNt = V6BusinessHelper.TinhTong(AD, "THUE_NT");
+            var tThueNt = chkSuaThue.Checked ? V6BusinessHelper.TinhTong(AD2, "T_THUE_NT") : V6BusinessHelper.TinhTong(AD, "THUE_NT");
             txtTongThueNt.Value = V6BusinessHelper.Vround(tThueNt, M_ROUND_NT);
-            var tThue = V6BusinessHelper.TinhTong(AD, "THUE");
+            var tThue = chkSuaThue.Checked ? V6BusinessHelper.TinhTong(AD2, "T_THUE") : V6BusinessHelper.TinhTong(AD, "THUE");
             txtTongThue.Value = V6BusinessHelper.Vround(tThue, M_ROUND);
 
             //TongThanhToan

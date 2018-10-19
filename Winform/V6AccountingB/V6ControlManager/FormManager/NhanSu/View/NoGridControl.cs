@@ -112,6 +112,8 @@ namespace V6ControlManager.FormManager.NhanSu.View
                         SortedDictionary<string, object> _data = new SortedDictionary<string, object>();
                         _data["STT_REC"] = _stt_rec;
                         var f = new FormAddEdit(CurrentTable, V6Mode.Add, null, _data);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
                     }
@@ -120,6 +122,23 @@ namespace V6ControlManager.FormManager.NhanSu.View
             catch (Exception ex)
             {
                 V6Message.Show(ex.Message);
+            }
+        }
+
+        public void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, _formname.Substring(1));
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + _formname, ex);
             }
         }
 

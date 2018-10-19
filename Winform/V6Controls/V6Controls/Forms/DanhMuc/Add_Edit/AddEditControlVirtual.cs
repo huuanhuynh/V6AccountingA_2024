@@ -154,7 +154,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                V6ControlFormHelper.CreateAdvanceFormControls(this, tableName.ToString(), All_Objects);
+                //FormManagerHelper.CreateAdvanceFormControls(this, tableName.ToString(), All_Objects);
             }
             catch (Exception ex)
             {

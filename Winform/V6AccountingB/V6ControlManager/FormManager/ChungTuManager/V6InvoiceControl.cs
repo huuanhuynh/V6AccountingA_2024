@@ -11,6 +11,7 @@ using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.Viewer;
 using V6Init;
@@ -73,7 +74,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
-                V6ControlFormHelper.CreateAdvanceFormControls(this, ma_ct, All_Objects);
+                FormManagerHelper.CreateAdvanceFormControls(this, ma_ct, All_Objects);
             }
             catch (Exception ex)
             {

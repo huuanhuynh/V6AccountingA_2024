@@ -927,6 +927,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 key["STT_REC"] = stt_rec;
                 FormAddEdit f = new FormAddEdit("ARS82", V6Mode.Edit, key, data);
+                f.AfterInitControl += f_AfterInitControlARS82;
+                f.InitFormControl();
                 f.UpdateSuccessEvent += (dataDic) =>
                 {
                     try
@@ -956,6 +958,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 SortedDictionary<string, object> data = new SortedDictionary<string, object>();
                 data["STT_REC"] = stt_rec;
                 FormAddEdit f = new FormAddEdit("ARS82", V6Mode.Add, null, data);
+                f.AfterInitControl += f_AfterInitControlARS82;
+                f.InitFormControl();
                 f.InsertSuccessEvent += (dataDic) =>
                 {
                     try
@@ -1378,8 +1382,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         data0["FirstAdd"] = "1";
                     }
 
-                    var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, keys, data0);
-                    f2.InsertSuccessEvent += (data) =>
+                    var f = new FormAddEdit(V6TableName.Albc, V6Mode.Add, keys, data0);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
+                    f.InsertSuccessEvent += (data) =>
                     {
                         //cap nhap thong tin
                         LoadComboboxSource();
@@ -1395,7 +1401,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //    }
                         //}
                     };
-                    f2.ShowDialog(this);
+                    f.ShowDialog(this);
                     SetStatus2Text();
                 }
             }
@@ -1404,6 +1410,27 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorException(GetType() + ".ThemMauBC_Click: ", ex);
             }
             SetStatus2Text();
+        }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, "Albc");
+        }
+        void f_AfterInitControlARS82(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, "ARS82");
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, All_Objects);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + _sttRec, ex);
+            }
         }
 
         private void btnSuaTTMauBC_Click(object sender, EventArgs e)
@@ -1419,8 +1446,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {"LAN", row0["LAN"].ToString().Trim()},
                         {"REPORT", row0["REPORT"].ToString().Trim()}
                     };
-                var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
-                f2.UpdateSuccessEvent += (data) =>
+                var f = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
+                f.AfterInitControl += f_AfterInitControl;
+                f.InitFormControl();
+                f.UpdateSuccessEvent += (data) =>
                 {
                     //cap nhap thong tin
                     LoadComboboxSource();
@@ -1436,7 +1465,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     //    }
                     //}
                 };
-                f2.ShowDialog(this);
+                f.ShowDialog(this);
                 SetStatus2Text();
             }
             catch (Exception ex)

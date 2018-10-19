@@ -111,7 +111,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             try
             {
-                V6ControlFormHelper.CreateAdvanceFormControls(this, tableName.ToString(), All_Objects);// CreateFormControls();
+                FormManagerHelper.CreateAdvanceFormControls(this, tableName.ToString(), All_Objects);// CreateFormControls();
             }
             catch (Exception ex)
             {

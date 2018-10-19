@@ -273,8 +273,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     var currentRowData = row.ToDataDictionary();
                     
-                    var form = new FormAddEdit(V6TableName.Abnghi, V6Mode.View, null, currentRowData);
-                    form.ShowDialog(this);
+                    var f = new FormAddEdit(V6TableName.Abnghi, V6Mode.View, null, currentRowData);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
+                    f.ShowDialog(this);
 
                     SetStatus2Text();
                 }
@@ -306,12 +308,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     var currentRowData = row.ToDataDictionary();
                     
-                    var form = new FormAddEdit(V6TableName.Abnghi, V6Mode.Edit, null, currentRowData);
-                    form.UpdateSuccessEvent += data =>
+                    var f = new FormAddEdit(V6TableName.Abnghi, V6Mode.Edit, null, currentRowData);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
+                    f.UpdateSuccessEvent += data =>
                     {
                         V6ControlFormHelper.UpdateGridViewRow(row, data);
                     };
-                    form.ShowDialog(this);
+                    f.ShowDialog(this);
 
                     SetStatus2Text();
                 }
@@ -383,12 +387,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 currentRowData["MA_VT"] = lineMaVatTu.StringValue;
                 currentRowData["MA_DVCS"] = txtma_dvcs.StringValue;
                 
-                var form = new FormAddEdit(V6TableName.Abnghi, V6Mode.Add, null, currentRowData);
-                form.InsertSuccessEvent += data =>
+                var f = new FormAddEdit(V6TableName.Abnghi, V6Mode.Add, null, currentRowData);
+                f.AfterInitControl += f_AfterInitControl;
+                f.InitFormControl();
+                f.InsertSuccessEvent += data =>
                 {
                     ;
                 };
-                form.ShowDialog(this);
+                f.ShowDialog(this);
 
                 btnNhan.PerformClick();
 
@@ -396,6 +402,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".DoAdd:\n" + ex.Message);
+            }
+        }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, "Abnghi");
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + _sttRec, ex);
             }
         }
 

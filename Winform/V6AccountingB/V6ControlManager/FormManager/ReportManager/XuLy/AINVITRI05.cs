@@ -382,6 +382,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
                         }
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.ParentData = ((DataRowView)listBoxAlvitri.SelectedItem).Row.ToDataDictionary();
                         f.UpdateSuccessEvent += f_UpdateSuccess;
                         f.CallReloadEvent += FCallReloadEvent;
@@ -439,6 +441,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorException(GetType() + ".f_UpdateSuccess", ex);
             }
         }
+
         private void DoAdd()
         {
             var dataGridView1 = dataGridViewDetail1;
@@ -491,6 +494,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             f = new FormAddEdit(CurrentTable);
                         }
                     }
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
                     f.ParentData = ((DataRowView)listBoxAlvitri.SelectedItem).Row.ToDataDictionary();
                     f.InsertSuccessEvent += f_InsertSuccess;
                     f.ShowDialog(this);
@@ -501,6 +506,24 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorException(GetType() + ".DoAdd " + _tableName, ex);
             }
         }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, CurrentTable == V6TableName.Notable?_tableName:CurrentTable.ToString());
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + _sttRec, ex);
+            }
+        }
+
         private void f_InsertSuccess(SortedDictionary<string, object> data)
         {
             try

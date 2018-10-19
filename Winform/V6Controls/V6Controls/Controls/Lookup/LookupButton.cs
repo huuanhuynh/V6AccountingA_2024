@@ -195,12 +195,25 @@ namespace V6Controls.Controls
                 var ds = V6BusinessHelper.ExecuteProcedure("V6LOOKUPCONTROL", plist);
 
                 LookupButtonDataViewForm f = new LookupButtonDataViewForm(ds);
+                f.LookupButtonF3Event += f_LookupButtonF3Event;
                 f.ShowDialog(this);
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".LookupButton_Click", ex);
             }
+        }
+
+        public event LookupButtonEventHandler LookupButtonF3Event;
+        protected virtual void OnLookupButtonEvent(object sender, LookupEventArgs e)
+        {
+            var handler = LookupButtonF3Event;
+            if (handler != null) handler(sender, e);
+        }
+
+        void f_LookupButtonF3Event(object sender, LookupEventArgs e)
+        {
+            OnLookupButtonEvent(this, e);
         }
     }
 }

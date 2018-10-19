@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace V6Controls
@@ -23,4 +24,12 @@ namespace V6Controls
 
     public delegate void StringValueChanged(string oldvalue, string newvalue);
     public delegate void CheckValueChanged(bool oldvalue, bool newvalue);
+
+    public delegate void LookupButtonEventHandler(Object sender, LookupEventArgs e);
+    public class LookupEventArgs : EventArgs
+    {
+        public string MaCt { get; set; }
+        public string Stt_rec { get; set; }
+    }
+
 }

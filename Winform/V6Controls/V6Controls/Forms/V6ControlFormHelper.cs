@@ -5890,7 +5890,6 @@ namespace V6Controls.Forms
             }
         }
 
-
         /// <summary>
         /// Tạo các control và sự kiện [động] của nó theo các thông tin định nghĩa [Alreport1].
         /// <para>Trong form chính cần có panel PanelAdvance hoặc v6TabControl1.</para>
@@ -5910,12 +5909,12 @@ namespace V6Controls.Forms
             string using_text2 = "", method_text2 = "";
 
             Panel panel1 = null; //Phải get trên form theo tên nào đó. AdvanceControlsPanel
-            panel1 = GetControlByName(thisForm, "PanelAdvance") as Panel;
+            panel1 = V6ControlFormHelper.GetControlByName(thisForm, "PanelAdvance") as Panel;
             if (panel1 == null)
             {
                 //Tạo tab Advance nếu có tabControl1
-                TabControl tabControl1 = GetControlByName(thisForm, "v6TabControl1") as TabControl;
-                if (tabControl1 == null) tabControl1 = GetControlByName(thisForm, "tabControl1") as TabControl;
+                TabControl tabControl1 = V6ControlFormHelper.GetControlByName(thisForm, "v6TabControl1") as TabControl;
+                if (tabControl1 == null) tabControl1 = V6ControlFormHelper.GetControlByName(thisForm, "tabControl1") as TabControl;
                 if (tabControl1 != null)
                 {
                     TabPage advanceTabPage = new TabPage("Advance");
@@ -5949,11 +5948,11 @@ namespace V6Controls.Forms
                     ? defineInfo.Field.ToUpper()
                     : defineInfo.AccessibleName.ToUpper();
                 //Bỏ qua nếu đã tồn tại control trên form.
-                if (GetControlByAccessibleName(thisForm, AccessibleName_KEY) != null) continue;
+                if (V6ControlFormHelper.GetControlByAccessibleName(thisForm, AccessibleName_KEY) != null) continue;
 
                 DefineInfo_Data[AccessibleName_KEY.ToUpper()] = defineInfo;
                 //Label
-                var top = baseTop + i*rowHeight;
+                var top = baseTop + i * rowHeight;
 
                 var label = new V6Label();
                 label.Name = "lbl" + defineInfo.Field;
@@ -6029,7 +6028,7 @@ namespace V6Controls.Forms
                 else if (ObjectAndString.IsNumberType(defineInfo.DataType))
                 {
                     input = new V6NumberTextBox();
-                    var nT = (V6NumberTextBox) input;
+                    var nT = (V6NumberTextBox)input;
                     //nT.DecimalPlaces = defineInfo.Decimals;
                     NumberTextBox_Decimals[nT] = defineInfo.Decimals;
                 }
@@ -6039,7 +6038,7 @@ namespace V6Controls.Forms
                     {
                         VVar = defineInfo.Vvar,
                     };
-                    var vV = (V6VvarTextBox) input;
+                    var vV = (V6VvarTextBox)input;
                     if (defineInfo.ToUpper) vV.CharacterCasing = CharacterCasing.Upper;
 
                     var maxlength = 1;
@@ -6049,7 +6048,7 @@ namespace V6Controls.Forms
                         vV.MaxLength = maxlength;
                     }
 
-                    var tT = (V6VvarTextBox) input;
+                    var tT = (V6VvarTextBox)input;
                     tT.SetInitFilter(defineInfo.InitFilter);
                     tT.F2 = defineInfo.F2;
                 }
@@ -6060,7 +6059,7 @@ namespace V6Controls.Forms
                     if (!(input is V6NumberTextBox) && !(input is V6DateTimeColor) && !(input is Button))
                     {
                         if (input is V6ColorTextBox)
-                            V6ColorTextBox_MaxLength.Add((V6ColorTextBox) input, defineInfo.MaxLength);
+                            V6ColorTextBox_MaxLength.Add((V6ColorTextBox)input, defineInfo.MaxLength);
                     }
                     if (input is V6ColorTextBox)
                     {
@@ -6077,7 +6076,7 @@ namespace V6Controls.Forms
                     if (string.IsNullOrEmpty(input.Name)) input.Name = "txt" + defineInfo.Field;
                     if (!string.IsNullOrEmpty(defineInfo.DefaultValue))
                     {
-                        SetControlValue(input, defineInfo.DefaultValue);
+                        V6ControlFormHelper.SetControlValue(input, defineInfo.DefaultValue);
                         //input.Text = defineInfo.DefaultValue;
                     }
                     input.Enabled = defineInfo.Enabled;
@@ -6115,6 +6114,12 @@ namespace V6Controls.Forms
                         lButton.M_Type = defineInfo_M.M_Type;
                         //lButton.M_User_id = defineInfo_M.M_User_id;
                         //lButton.M_Lan = defineInfo_M.V6Login.SelectedLanguage;
+
+                        //lButton.LookupButtonF3Event += (sender, e) =>
+                        //{
+                        //    var hoaDonForm = ChungTuF3.GetChungTuControl(e.MaCt, "Name", e.Stt_rec);
+                        //    hoaDonForm.ShowToForm(lButton, "Title", true, true, true);
+                        //};
                     }
 
                     //Sự kiện của input
@@ -6258,7 +6263,7 @@ namespace V6Controls.Forms
                     int left = input.Right + 30;
                     if (input is V6VvarTextBox && !string.IsNullOrEmpty(defineInfo.BField))
                     {
-                        var tT = (V6VvarTextBox) input;
+                        var tT = (V6VvarTextBox)input;
                         tT.BrotherFields = defineInfo.BField;
                         tT.BrotherFields2 = defineInfo.BField2;
                         if (!string.IsNullOrEmpty(defineInfo.ShowName)) tT.ShowName = defineInfo.ShowName == "1";
@@ -6278,7 +6283,7 @@ namespace V6Controls.Forms
                     }
                     if (input is V6LookupTextBox && !string.IsNullOrEmpty(defineInfo.BField))
                     {
-                        var tT = (V6LookupTextBox) input;
+                        var tT = (V6LookupTextBox)input;
                         tT.BrotherFields = defineInfo.BField;
                         var txtB = new V6LabelTextBox();
                         txtB.Name = "txt" + defineInfo.BField;

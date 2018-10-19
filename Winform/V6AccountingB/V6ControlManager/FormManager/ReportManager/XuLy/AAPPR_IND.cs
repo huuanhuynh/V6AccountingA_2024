@@ -301,6 +301,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 InvokeFormEvent(FormDynamicEvent.F9);
                 
                 var f = new FormAddEdit("Alxuly", V6Mode.Add, null, data);
+                f.AfterInitControl += f_AfterInitControl;
+                f.InitFormControl();
                 f.InsertSuccessEvent += f_InsertSuccessEvent;
                 f.ShowDialog(this);
 

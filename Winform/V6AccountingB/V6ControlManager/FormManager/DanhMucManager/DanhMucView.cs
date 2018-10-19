@@ -469,13 +469,17 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         if (CurrentTable == V6TableName.Notable)
                         {
                             var f = new FormAddEdit(_tableName, V6Mode.Add, keys, _data);
+                            f.AfterInitControl += f_AfterInitControl;
                             f.InsertSuccessEvent += f_InsertSuccess;
+                            f.InitFormControl();
                             f.ShowDialog(this);
                         }
                         else
                         {
                             var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
+                            f.AfterInitControl += f_AfterInitControl;
                             f.InsertSuccessEvent += f_InsertSuccess;
+                            f.InitFormControl();
                             f.ShowDialog(this);
                         }
                     }
@@ -484,14 +488,18 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         if (CurrentTable == V6TableName.Notable)
                         {
                             var f = new FormAddEdit(_tableName);
+                            f.AfterInitControl += f_AfterInitControl;
                             f.InsertSuccessEvent += f_InsertSuccess;
+                            f.InitFormControl();
                             f.ShowDialog(this);
                         }
                         else
                         {
                             //this.ShowWarningMessage(V6Text.NoSelection);
                             var f = new FormAddEdit(CurrentTable);
+                            f.AfterInitControl += f_AfterInitControl;
                             f.InsertSuccessEvent += f_InsertSuccess;
+                            f.InitFormControl();
                             f.ShowDialog(this);
                         }
                     }
@@ -500,6 +508,23 @@ namespace V6ControlManager.FormManager.DanhMucManager
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".DoAdd " + _tableName, ex);
+            }
+        }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, _tableName);
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, All_Objects);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + _sttRec, ex);
             }
         }
 
@@ -535,13 +560,17 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         if (CurrentTable == V6TableName.Notable)
                         {
                             var f = new FormAddEdit(_tableName, V6Mode.Add, keys, _data);
+                            f.AfterInitControl += f_AfterInitControl;
                             f.InsertSuccessEvent += f_InsertSuccess;
+                            f.InitFormControl();
                             f.ShowDialog(this);
                         }
                         else
                         {
                             var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
+                            f.AfterInitControl += f_AfterInitControl;
                             f.InsertSuccessEvent += f_InsertSuccess;
+                            f.InitFormControl();
                             f.ShowDialog(this);
                         }
                     }
@@ -589,15 +618,19 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         if (CurrentTable == V6TableName.Notable)
                         {
                             var f = new FormAddEdit(_tableName, V6Mode.Edit, keys, _data);
+                            f.AfterInitControl += f_AfterInitControl;
                             f.UpdateSuccessEvent += f_UpdateSuccess;
                             f.CallReloadEvent += FCallReloadEvent;
+                            f.InitFormControl();
                             f.ShowDialog(this);
                         }
                         else
                         {
                             var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
+                            f.AfterInitControl += f_AfterInitControl;
                             f.UpdateSuccessEvent += f_UpdateSuccess;
                             f.CallReloadEvent += FCallReloadEvent;
+                            f.InitFormControl();
                             f.ShowDialog(this);
                         }
                     }
@@ -1048,11 +1081,15 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         if (CurrentTable == V6TableName.Notable)
                         {
                             var f = new FormAddEdit(_tableName, V6Mode.View, keys, _data);
+                            f.AfterInitControl += f_AfterInitControl;
+                            f.InitFormControl();
                             f.ShowDialog(this);
                         }
                         else
                         {
                             var f = new FormAddEdit(CurrentTable, V6Mode.View, keys, _data);
+                            f.AfterInitControl += f_AfterInitControl;
+                            f.InitFormControl();
                             f.ShowDialog(this);
                         }
                     }

@@ -262,6 +262,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
                 data.Add("SFILE", SFile);
                 data.Add("ID", id);
                 FormAddEdit f = new FormAddEdit(V6TableName.CorpLan2, V6Mode.Add, null, data);
+                f.InitFormControl();
                 f.InsertSuccessEvent += dic =>
                 {
                     _index++;

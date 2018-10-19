@@ -277,7 +277,7 @@ namespace V6Controls
             }
         }
 
-        void a_UpdateSuccessEvent(SortedDictionary<string, object> data)
+        void f_UpdateSuccessEvent(SortedDictionary<string, object> data)
         {
             try
             {
@@ -381,8 +381,10 @@ namespace V6Controls
                             var f = LstConfig.V6TableName == V6TableName.Notable
                                 ? new FormAddEdit(LstConfig.TableName, V6Mode.Edit, keys, null)
                                 : new FormAddEdit(LstConfig.V6TableName, V6Mode.Edit, keys, null);
+                            f.AfterInitControl += f_AfterInitControl;
+                            f.InitFormControl();
                             f.ParentData = _senderTextBox.ParentData;
-                            f.UpdateSuccessEvent += a_UpdateSuccessEvent;
+                            f.UpdateSuccessEvent += f_UpdateSuccessEvent;
                             f.ShowDialog(this);
                         }
                     }
@@ -406,13 +408,15 @@ namespace V6Controls
                     {
                         DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                         var data = row != null ? row.ToDataDictionary() : null;
-                        var a = LstConfig.V6TableName == V6TableName.Notable
+                        var f = LstConfig.V6TableName == V6TableName.Notable
                             ? new FormAddEdit(LstConfig.TableName, V6Mode.Add, null, data)
                             : new FormAddEdit(LstConfig.V6TableName, V6Mode.Add, null, data);
-                        a.ParentData = _senderTextBox.ParentData;
-                        if(data == null) a.SetParentData();
-                        a.InsertSuccessEvent += a_InsertSuccessEvent;
-                        a.ShowDialog(this);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
+                        f.ParentData = _senderTextBox.ParentData;
+                        if(data == null) f.SetParentData();
+                        f.InsertSuccessEvent += f_InsertSuccessEvent;
+                        f.ShowDialog(this);
                     }
                     else
                     {
@@ -430,7 +434,24 @@ namespace V6Controls
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        void a_InsertSuccessEvent(SortedDictionary<string, object> dataDic)
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, LstConfig.V6TableName == V6TableName.Notable?LstConfig.TableName:LstConfig.V6TableName.ToString());
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                V6ControlFormHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls ", ex);
+            }
+        }
+
+        void f_InsertSuccessEvent(SortedDictionary<string, object> dataDic)
         {
             try
             {

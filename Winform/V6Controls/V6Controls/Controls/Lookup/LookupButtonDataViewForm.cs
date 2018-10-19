@@ -34,6 +34,16 @@ namespace V6Controls.Controls
             }
         }
 
+
+        public event LookupButtonEventHandler LookupButtonF3Event;
+        protected virtual void OnLookupButtonEvent(object sender, LookupEventArgs e)
+        {
+            var handler = LookupButtonF3Event;
+            if (handler != null) handler(sender, e);
+        }
+
+        
+
         public override bool DoHotKey0(Keys keyData)
         {
             try
@@ -45,6 +55,15 @@ namespace V6Controls.Controls
                 else if (keyData == Keys.F3)
                 {
                     //var hoaDonForm = ChungTuF3.GetChungTuControl(maCt, Name, sttRec);
+                    var row = dataGridView1.CurrentRow;
+                    if (row != null)
+                    {
+                        OnLookupButtonEvent(this, new LookupEventArgs
+                        {
+                            MaCt = row.Cells["ma_ct"].Value.ToString().Trim(),
+                            Stt_rec = row.Cells["Stt_rec"].Value.ToString().Trim(),
+                        });
+                    }
                 }
                 else if (keyData == Keys.F4)
                 {
@@ -78,5 +97,9 @@ namespace V6Controls.Controls
             }
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
         }
+
+        
     }
+
+    
 }

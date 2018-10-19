@@ -105,7 +105,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             {
                 Dictionary<string, object> All_Objects = new Dictionary<string, object>();
                 All_Objects["thisForm"] = this;
-                V6ControlFormHelper.CreateAdvanceFormControls(this, tableName, All_Objects);
+                FormManagerHelper.CreateAdvanceFormControls(this, tableName, All_Objects);
             }
             catch (Exception ex)
             {

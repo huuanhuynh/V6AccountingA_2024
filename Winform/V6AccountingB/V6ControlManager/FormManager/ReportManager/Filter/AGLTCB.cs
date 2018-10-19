@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
@@ -141,12 +142,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                         var _data = row0.ToDataDictionary();
                         var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
                     }
                     else
                     {
                         var f = new FormAddEdit(CurrentTable);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
                     }
@@ -155,6 +160,23 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             catch (Exception ex)
             {
                 V6Message.Show(ex.Message);
+            }
+        }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, CurrentTable.ToString());
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + ma_ct, ex);
             }
         }
 
@@ -207,6 +229,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                         var _data = row0.ToDataDictionary();
                         var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.UpdateSuccessEvent += f_UpdateSuccess;
                         f.CallReloadEvent += FCallReloadEvent;
                         f.ShowDialog(this);

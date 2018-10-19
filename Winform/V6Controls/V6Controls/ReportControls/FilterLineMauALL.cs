@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Reflection;
+using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Controls;
@@ -202,12 +203,16 @@ namespace V6ReportControls
 
                     var _data = row0.ToDataDictionary();
                     var f = new FormAddEdit(TableName, V6Mode.Add, keys, _data);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
                     f.InsertSuccessEvent += f_InsertSuccess;
                     f.ShowDialog(this);
                 }
                 else
                 {
                     var f = new FormAddEdit(TableName);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
                     f.InsertSuccessEvent += f_InsertSuccess;
                     f.ShowDialog(this);
                 }
@@ -215,6 +220,23 @@ namespace V6ReportControls
             catch (Exception ex)
             {
                 V6Message.Show(ex.Message);
+            }
+        }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, TableName);
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                V6ControlFormHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + TableName, ex);
             }
         }
 
@@ -259,6 +281,8 @@ namespace V6ReportControls
 
                     var _data = row0.ToDataDictionary();
                     var f = new FormAddEdit(TableName, V6Mode.Edit, keys, _data);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
                     f.UpdateSuccessEvent += f_UpdateSuccess;
                     f.CallReloadEvent += FCallReloadEvent;
                     f.ShowDialog(this);

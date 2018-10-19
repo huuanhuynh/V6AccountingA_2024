@@ -174,11 +174,902 @@
     <Compile Include="Controls\SyntaxHighlightingTextBox\SyntaxHighlightingTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AbnghiAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AbnghiAddEditForm.Designer.cs">
+      <DependentUpon>AbnghiAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Acosxlsx_alloaiytAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Acosxlsx_alloaiytAddEditForm.Designer.cs">
+      <DependentUpon>Acosxlsx_alloaiytAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Acosxlt_alloaiytAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Acosxlt_alloaiytAddEditForm.Designer.cs">
+      <DependentUpon>Acosxlt_alloaiytAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AddEditControlVirtual.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AddEditControlVirtual.Designer.cs">
+      <DependentUpon>AddEditControlVirtual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AddEditManager.cs" />
+    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\AlbcAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\AlbcAddEditForm.Designer.cs">
+      <DependentUpon>AlbcAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AlctAddEditFrom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AlctAddEditFrom.Designer.cs">
+      <DependentUpon>AlctAddEditFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Aldm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Aldm.designer.cs">
+      <DependentUpon>Aldm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\Algia0AddEditForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\Algia0AddEditForm.Designer.cs">
       <DependentUpon>Algia0AddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Algia2AddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Algia2AddEditForm.Designer.cs">
+      <DependentUpon>Algia2AddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AlkcAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AlkcAddEditForm.Designer.cs">
+      <DependentUpon>AlkcAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AlloaiytAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AlloaiytAddEditForm.Designer.cs">
+      <DependentUpon>AlloaiytAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Almaubc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Almaubc.Designer.cs">
+      <DependentUpon>Almaubc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AlmaubcCt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AlmaubcCt.Designer.cs">
+      <DependentUpon>AlmaubcCt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_AddEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_AddEdit.designer.cs">
+      <DependentUpon>ALREPORT1_AddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT_AddEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT_AddEdit.designer.cs">
+      <DependentUpon>ALREPORT_AddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFilterSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFilterSelectForm.Designer.cs">
+      <DependentUpon>CopyFilterSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\DefineInfoEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\DefineInfoEditorForm.designer.cs">
+      <DependentUpon>DefineInfoEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AlsonbAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\AlsonbAddEditForm.Designer.cs">
+      <DependentUpon>AlsonbAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanAddEditForm.Designer.cs">
+      <DependentUpon>BoPhanAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanHachToanAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanHachToanAddEditForm.Designer.cs">
+      <DependentUpon>BoPhanHachToanAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanSuDungCongCuAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanSuDungCongCuAddEditForm.Designer.cs">
+      <DependentUpon>BoPhanSuDungCongCuAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanSuDungTangSuatAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanSuDungTangSuatAddEditForm.Designer.cs">
+      <DependentUpon>BoPhanSuDungTangSuatAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ChietKhauAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ChietKhauAddEditForm.Designer.cs">
+      <DependentUpon>ChietKhauAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\CorpLanAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\CorpLanAddEditForm.Designer.cs">
+      <DependentUpon>CorpLanAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\DonViCoSoAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\DonViCoSoAddEditForm.Designer.cs">
+      <DependentUpon>DonViCoSoAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\DonViTinhAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\DonViTinhAddEditForm.Designer.cs">
+      <DependentUpon>DonViTinhAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\DynamicAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\DynamicAddEditForm.Designer.cs">
+      <DependentUpon>DynamicAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\FormAdd_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\FormAdd_Edit.Designer.cs">
+      <DependentUpon>FormAdd_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\HinhThucThanhToanAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\HinhThucThanhToanAddEditForm.Designer.cs">
+      <DependentUpon>HinhThucThanhToanAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\HinhThucVanChuyenAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\HinhThucVanChuyenAddEditForm.Designer.cs">
+      <DependentUpon>HinhThucVanChuyenAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\HopDongAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\HopDongAddEditForm.Designer.cs">
+      <DependentUpon>HopDongAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\KhachHangAddEditFrom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\KhachHangAddEditFrom.Designer.cs">
+      <DependentUpon>KhachHangAddEditFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\KhachHangChiTietFrom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\KhachHangChiTietFrom.Designer.cs">
+      <DependentUpon>KhachHangChiTietFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\KheUocAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\KheUocAddEditForm.Designer.cs">
+      <DependentUpon>KheUocAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\KheUocChiTietForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\KheUocChiTietForm.Designer.cs">
+      <DependentUpon>KheUocChiTietForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\KhoHangAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\KhoHangAddEditForm.Designer.cs">
+      <DependentUpon>KhoHangAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\LoaiDichVuAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\LoaiDichVuAddEditForm.Designer.cs">
+      <DependentUpon>LoaiDichVuAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\LoaiNhapXuatAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\LoaiNhapXuatAddEditForm.Designer.cs">
+      <DependentUpon>LoaiNhapXuatAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\LoHangAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\LoHangAddEditForm.Designer.cs">
+      <DependentUpon>LoHangAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\LyDoTangGiamCCDCAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\LyDoTangGiamCCDCAddEditForm.Designer.cs">
+      <DependentUpon>LyDoTangGiamCCDCAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\LyDoTangGiamTSCDAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\LyDoTangGiamTSCDAddEditForm.Designer.cs">
+      <DependentUpon>LyDoTangGiamTSCDAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\MaGiaAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\MaGiaAddEditForm.Designer.cs">
+      <DependentUpon>MaGiaAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\MauHoaDonAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\MauHoaDonAddEditForm.Designer.cs">
+      <DependentUpon>MauHoaDonAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NamTaiChinhAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NamTaiChinhAddEditForm.designer.cs">
+      <DependentUpon>NamTaiChinhAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NgoaiTeAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NgoaiTeAddEditForm.Designer.cs">
+      <DependentUpon>NgoaiTeAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NguonVonAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NguonVonAddEditForm.Designer.cs">
+      <DependentUpon>NguonVonAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhaCungCapAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhaCungCapAddEditForm.Designer.cs">
+      <DependentUpon>NhaCungCapAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCacKhoanPhuCap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCacKhoanPhuCap.designer.cs">
+      <DependentUpon>DanhMucCacKhoanPhuCap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCacKhoanTraThayBHXH.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCacKhoanTraThayBHXH.designer.cs">
+      <DependentUpon>DanhMucCacKhoanTraThayBHXH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCaLamViecForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCaLamViecForm.designer.cs">
+      <DependentUpon>DanhMucCaLamViecForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucChiTietCaLamViecForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucChiTietCaLamViecForm.designer.cs">
+      <DependentUpon>DanhMucChiTietCaLamViecForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucKyHieuCongForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucKyHieuCongForm.designer.cs">
+      <DependentUpon>DanhMucKyHieuCongForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucLoaiThuNhapTinhThue.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucLoaiThuNhapTinhThue.designer.cs">
+      <DependentUpon>DanhMucLoaiThuNhapTinhThue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucNhomCongForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucNhomCongForm.designer.cs">
+      <DependentUpon>DanhMucNhomCongForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThoiGian.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThoiGian.designer.cs">
+      <DependentUpon>DanhMucThoiGian.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThueTNCN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThueTNCN.designer.cs">
+      <DependentUpon>DanhMucThueTNCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThuongPhat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThuongPhat.designer.cs">
+      <DependentUpon>DanhMucThuongPhat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucTruongHocForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucTruongHocForm.designer.cs">
+      <DependentUpon>DanhMucTruongHocForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\HINFOR_NS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\HINFOR_NS.designer.cs">
+      <DependentUpon>HINFOR_NS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoKyTinhLuong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoKyTinhLuong.designer.cs">
+      <DependentUpon>KhaiBaoKyTinhLuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLichLe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLichLe.designer.cs">
+      <DependentUpon>KhaiBaoLichLe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLoaiLuong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLoaiLuong.designer.cs">
+      <DependentUpon>KhaiBaoLoaiLuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoNgayNghiLe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoNgayNghiLe1.designer.cs">
+      <DependentUpon>KhaiBaoNgayNghiLe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec.designer.cs">
+      <DependentUpon>KinhNghiemLamViec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec2.designer.cs">
+      <DependentUpon>KinhNghiemLamViec2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\NhanSuAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\NhanSuAddEditForm.Designer.cs">
+      <DependentUpon>NhanSuAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBangCapForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBangCapForm.designer.cs">
+      <DependentUpon>ThongTinBangCapForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBaoHiem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBaoHiem.designer.cs">
+      <DependentUpon>ThongTinBaoHiem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinCapDoNgoaiNguForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinCapDoNgoaiNguForm.designer.cs">
+      <DependentUpon>ThongTinCapDoNgoaiNguForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinChuyenNghanhForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinChuyenNghanhForm.designer.cs">
+      <DependentUpon>ThongTinChuyenNghanhForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinDanTocForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinDanTocForm.designer.cs">
+      <DependentUpon>ThongTinDanTocForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinDieuKienSongForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinDieuKienSongForm.designer.cs">
+      <DependentUpon>ThongTinDieuKienSongForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHinhAnhChuKy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHinhAnhChuKy.designer.cs">
+      <DependentUpon>ThongTinHinhAnhChuKy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHopDong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHopDong.designer.cs">
+      <DependentUpon>ThongTinHopDong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinLuongCoBan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinLuongCoBan.designer.cs">
+      <DependentUpon>ThongTinLuongCoBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinLyLichForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinLyLichForm.designer.cs">
+      <DependentUpon>ThongTinLyLichForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinNgoaiNguForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinNgoaiNguForm.designer.cs">
+      <DependentUpon>ThongTinNgoaiNguForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuanHeForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuanHeForm.designer.cs">
+      <DependentUpon>ThongTinQuanHeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuocGiaForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuocGiaForm.designer.cs">
+      <DependentUpon>ThongTinQuocGiaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuocTichForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuocTichForm.designer.cs">
+      <DependentUpon>ThongTinQuocTichForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinSucKhoe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinSucKhoe.designer.cs">
+      <DependentUpon>ThongTinSucKhoe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinTinhThanhForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinTinhThanhForm.designer.cs">
+      <DependentUpon>ThongTinTinhThanhForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinTonGiaoForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinTonGiaoForm.designer.cs">
+      <DependentUpon>ThongTinTonGiaoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanVienAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhanVienAddEditForm.Designer.cs">
+      <DependentUpon>NhanVienAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomGiaKhachHangAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomGiaKhachHangAddEditForm.Designer.cs">
+      <DependentUpon>NhomGiaKhachHangAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomGiaVatTuAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomGiaVatTuAddEditForm.Designer.cs">
+      <DependentUpon>NhomGiaVatTuAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomHopDongAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomHopDongAddEditForm.Designer.cs">
+      <DependentUpon>NhomHopDongAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomKhachHangAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomKhachHangAddEditForm.Designer.cs">
+      <DependentUpon>NhomKhachHangAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomKheUocAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomKheUocAddEditForm.Designer.cs">
+      <DependentUpon>NhomKheUocAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomKhoanMucPhiAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomKhoanMucPhiAddEditForm.Designer.cs">
+      <DependentUpon>NhomKhoanMucPhiAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomNhaCungCap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomNhaCungCap.Designer.cs">
+      <DependentUpon>NhomNhaCungCap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomTaiKhoanAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomTaiKhoanAddEditForm.Designer.cs">
+      <DependentUpon>NhomTaiKhoanAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomVatTuAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomVatTuAddEditForm.Designer.cs">
+      <DependentUpon>NhomVatTuAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomViTriAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomViTriAddEditForm.Designer.cs">
+      <DependentUpon>NhomViTriAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomVuViecAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomVuViecAddEditForm.Designer.cs">
+      <DependentUpon>NhomVuViecAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiAddEditForm.Designer.cs">
+      <DependentUpon>NhomYeuToChiPhiAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiSXDHAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiSXDHAddEditForm.Designer.cs">
+      <DependentUpon>NhomYeuToChiPhiSXDHAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiSXLTAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiSXLTAddEditForm.Designer.cs">
+      <DependentUpon>NhomYeuToChiPhiSXLTAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NoRightAddEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\NoRightAddEdit.Designer.cs">
+      <DependentUpon>NoRightAddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanLoaiCacTaiKhoanAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanLoaiCacTaiKhoanAddEditForm.Designer.cs">
+      <DependentUpon>PhanLoaiCacTaiKhoanAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanLoaiCongCuAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanLoaiCongCuAddEditForm.Designer.cs">
+      <DependentUpon>PhanLoaiCongCuAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanLoaiTaiSanAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanLoaiTaiSanAddEditForm.Designer.cs">
+      <DependentUpon>PhanLoaiTaiSanAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanNhomCongCuAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanNhomCongCuAddEditForm.Designer.cs">
+      <DependentUpon>PhanNhomCongCuAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanNhomTaiSanAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanNhomTaiSanAddEditForm.Designer.cs">
+      <DependentUpon>PhanNhomTaiSanAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\Class1.cs" />
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\DanhSachChungTu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\DanhSachChungTu.Designer.cs">
+      <DependentUpon>DanhSachChungTu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\NguoiSuDungAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\NguoiSuDungAddEditForm.designer.cs">
+      <DependentUpon>NguoiSuDungAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyen.Designer.cs">
+      <DependentUpon>PhanQuyen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenDvcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenDvcs.Designer.cs">
+      <DependentUpon>PhanQuyenDvcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenKho.Designer.cs">
+      <DependentUpon>PhanQuyenKho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenNSD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenNSD.Designer.cs">
+      <DependentUpon>PhanQuyenNSD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenSoNoiBo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenSoNoiBo.Designer.cs">
+      <DependentUpon>PhanQuyenSoNoiBo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhiAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhiAddEditForm.Designer.cs">
+      <DependentUpon>PhiAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhuongXaAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhuongXaAddEditForm.Designer.cs">
+      <DependentUpon>PhuongXaAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\QuanHuyenAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\QuanHuyenAddEditForm.Designer.cs">
+      <DependentUpon>QuanHuyenAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\QuocGiaAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\QuocGiaAddEditForm.Designer.cs">
+      <DependentUpon>QuocGiaAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\QuyDoiDonViTinhAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\QuyDoiDonViTinhAddEditForm.Designer.cs">
+      <DependentUpon>QuyDoiDonViTinhAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\SanPhamTrungGianAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\SanPhamTrungGianAddEditForm.Designer.cs">
+      <DependentUpon>SanPhamTrungGianAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TaiKhoanAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TaiKhoanAddEditForm.Designer.cs">
+      <DependentUpon>TaiKhoanAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TaiKhoanNganHangAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TaiKhoanNganHangAddEditForm.Designer.cs">
+      <DependentUpon>TaiKhoanNganHangAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ThongTinDinhNghia\ThongTinDinhNghiaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ThongTinDinhNghia\ThongTinDinhNghiaForm.Designer.cs">
+      <DependentUpon>ThongTinDinhNghiaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ThueSuat30AddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ThueSuat30AddEditForm.Designer.cs">
+      <DependentUpon>ThueSuat30AddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ThueSuatAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ThueSuatAddEditForm.Designer.cs">
+      <DependentUpon>ThueSuatAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TieuKhoanAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TieuKhoanAddEditForm.Designer.cs">
+      <DependentUpon>TieuKhoanAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TinhThanhAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TinhThanhAddEditForm.Designer.cs">
+      <DependentUpon>TinhThanhAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TinhTrangDichVuAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TinhTrangDichVuAddEditForm.Designer.cs">
+      <DependentUpon>TinhTrangDichVuAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TuDienNguoiDungDinhNghiaAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TuDienNguoiDungDinhNghiaAddEditForm.Designer.cs">
+      <DependentUpon>TuDienNguoiDungDinhNghiaAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TuDienTuDinhNghia2AddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TuDienTuDinhNghia2AddEditForm.Designer.cs">
+      <DependentUpon>TuDienTuDinhNghia2AddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TuDienTuDinhNghia3AddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TuDienTuDinhNghia3AddEditForm.Designer.cs">
+      <DependentUpon>TuDienTuDinhNghia3AddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TyGiaNgoaiTeAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\TyGiaNgoaiTeAddEditForm.Designer.cs">
+      <DependentUpon>TyGiaNgoaiTeAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6AddEditInterface.cs" />
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6Alct1AddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6Alct1AddEditForm.designer.cs">
+      <DependentUpon>V6Alct1AddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6Alct2AddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6Alct2AddEditForm.designer.cs">
+      <DependentUpon>V6Alct2AddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6Alct3AddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6Alct3AddEditForm.designer.cs">
+      <DependentUpon>V6Alct3AddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6lookupForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6lookupForm.designer.cs">
+      <DependentUpon>V6lookupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6MenuAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6MenuAddEditForm.designer.cs">
+      <DependentUpon>V6MenuAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6OptionAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6OptionAddEditForm.designer.cs">
+      <DependentUpon>V6OptionAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6SoftAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6SoftAddEditForm.designer.cs">
+      <DependentUpon>V6SoftAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6valid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\V6valid.Designer.cs">
+      <DependentUpon>V6valid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Valcc01AddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Valcc01AddEditForm.Designer.cs">
+      <DependentUpon>Valcc01AddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ValccAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ValccAddEditForm.Designer.cs">
+      <DependentUpon>ValccAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Valts01AddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Valts01AddEditForm.Designer.cs">
+      <DependentUpon>Valts01AddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ValtsAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ValtsAddEditForm.Designer.cs">
+      <DependentUpon>ValtsAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\VanChuyenAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\VanChuyenAddEditForm.Designer.cs">
+      <DependentUpon>VanChuyenAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm.Designer.cs">
+      <DependentUpon>VatTuAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ViTriAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ViTriAddEditForm.Designer.cs">
+      <DependentUpon>ViTriAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ViTriChiTietAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\ViTriChiTietAddEditForm.Designer.cs">
+      <DependentUpon>ViTriChiTietAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\VuViecAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\VuViecAddEditForm.Designer.cs">
+      <DependentUpon>VuViecAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiAddEditForm.Designer.cs">
+      <DependentUpon>YeuToChiPhiAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSPDHAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSPDHAddEditForm.Designer.cs">
+      <DependentUpon>YeuToChiPhiSPDHAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSXLTAddEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSXLTAddEditForm.Designer.cs">
+      <DependentUpon>YeuToChiPhiSXLTAddEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EmailSettingForm.cs">
       <SubType>Form</SubType>
@@ -254,330 +1145,6 @@
     <Compile Include="Forms\ChangePassword.Designer.cs">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\AbnghiAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\AbnghiAddEditForm.Designer.cs">
-      <DependentUpon>AbnghiAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Acosxlsx_alloaiytAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Acosxlsx_alloaiytAddEditForm.Designer.cs">
-      <DependentUpon>Acosxlsx_alloaiytAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Acosxlt_alloaiytAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Acosxlt_alloaiytAddEditForm.Designer.cs">
-      <DependentUpon>Acosxlt_alloaiytAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFilterSelectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFilterSelectForm.Designer.cs">
-      <DependentUpon>CopyFilterSelectForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\DynamicAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\DynamicAddEditForm.Designer.cs">
-      <DependentUpon>DynamicAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT_AddEdit.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT_AddEdit.designer.cs">
-      <DependentUpon>ALREPORT_AddEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\DefineInfoEditorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\DefineInfoEditorForm.designer.cs">
-      <DependentUpon>DefineInfoEditorForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_AddEdit.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_AddEdit.designer.cs">
-      <DependentUpon>ALREPORT1_AddEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\KheUocChiTietForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\KheUocChiTietForm.Designer.cs">
-      <DependentUpon>KheUocChiTietForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\KhachHangChiTietFrom.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\KhachHangChiTietFrom.Designer.cs">
-      <DependentUpon>KhachHangChiTietFrom.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCacKhoanPhuCap.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCacKhoanPhuCap.designer.cs">
-      <DependentUpon>DanhMucCacKhoanPhuCap.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucLoaiThuNhapTinhThue.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucLoaiThuNhapTinhThue.designer.cs">
-      <DependentUpon>DanhMucLoaiThuNhapTinhThue.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThoiGian.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThoiGian.designer.cs">
-      <DependentUpon>DanhMucThoiGian.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLoaiLuong.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLoaiLuong.designer.cs">
-      <DependentUpon>KhaiBaoLoaiLuong.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThuongPhat.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThuongPhat.designer.cs">
-      <DependentUpon>DanhMucThuongPhat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCacKhoanTraThayBHXH.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCacKhoanTraThayBHXH.designer.cs">
-      <DependentUpon>DanhMucCacKhoanTraThayBHXH.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoKyTinhLuong.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoKyTinhLuong.designer.cs">
-      <DependentUpon>KhaiBaoKyTinhLuong.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThueTNCN.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThueTNCN.designer.cs">
-      <DependentUpon>DanhMucThueTNCN.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoNgayNghiLe.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoNgayNghiLe1.designer.cs">
-      <DependentUpon>KhaiBaoNgayNghiLe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLichLe.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLichLe.designer.cs">
-      <DependentUpon>KhaiBaoLichLe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucChiTietCaLamViecForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucChiTietCaLamViecForm.designer.cs">
-      <DependentUpon>DanhMucChiTietCaLamViecForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCaLamViecForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCaLamViecForm.designer.cs">
-      <DependentUpon>DanhMucCaLamViecForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucNhomCongForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucNhomCongForm.designer.cs">
-      <DependentUpon>DanhMucNhomCongForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucKyHieuCongForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucKyHieuCongForm.designer.cs">
-      <DependentUpon>DanhMucKyHieuCongForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\HINFOR_NS.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\HINFOR_NS.designer.cs">
-      <DependentUpon>HINFOR_NS.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec2.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec2.designer.cs">
-      <DependentUpon>KinhNghiemLamViec2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec.designer.cs">
-      <DependentUpon>KinhNghiemLamViec.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinSucKhoe.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinSucKhoe.designer.cs">
-      <DependentUpon>ThongTinSucKhoe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinCapDoNgoaiNguForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinCapDoNgoaiNguForm.designer.cs">
-      <DependentUpon>ThongTinCapDoNgoaiNguForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBaoHiem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBaoHiem.designer.cs">
-      <DependentUpon>ThongTinBaoHiem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinLuongCoBan.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinLuongCoBan.designer.cs">
-      <DependentUpon>ThongTinLuongCoBan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinNgoaiNguForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinNgoaiNguForm.designer.cs">
-      <DependentUpon>ThongTinNgoaiNguForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinChuyenNghanhForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinChuyenNghanhForm.designer.cs">
-      <DependentUpon>ThongTinChuyenNghanhForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHinhAnhChuKy.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHinhAnhChuKy.designer.cs">
-      <DependentUpon>ThongTinHinhAnhChuKy.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucTruongHocForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucTruongHocForm.designer.cs">
-      <DependentUpon>DanhMucTruongHocForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinDanTocForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinDanTocForm.designer.cs">
-      <DependentUpon>ThongTinDanTocForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinTinhThanhForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinTinhThanhForm.designer.cs">
-      <DependentUpon>ThongTinTinhThanhForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuocTichForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuocTichForm.designer.cs">
-      <DependentUpon>ThongTinQuocTichForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuocGiaForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuocGiaForm.designer.cs">
-      <DependentUpon>ThongTinQuocGiaForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBangCapForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBangCapForm.designer.cs">
-      <DependentUpon>ThongTinBangCapForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinDieuKienSongForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinDieuKienSongForm.designer.cs">
-      <DependentUpon>ThongTinDieuKienSongForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHopDong.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHopDong.designer.cs">
-      <DependentUpon>ThongTinHopDong.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinTonGiaoForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinTonGiaoForm.designer.cs">
-      <DependentUpon>ThongTinTonGiaoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuanHeForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuanHeForm.designer.cs">
-      <DependentUpon>ThongTinQuanHeForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinLyLichForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinLyLichForm.designer.cs">
-      <DependentUpon>ThongTinLyLichForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomViTriAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomViTriAddEditForm.Designer.cs">
-      <DependentUpon>NhomViTriAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiSXDHAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiSXDHAddEditForm.Designer.cs">
-      <DependentUpon>NhomYeuToChiPhiSXDHAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiSXLTAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiSXLTAddEditForm.Designer.cs">
-      <DependentUpon>NhomYeuToChiPhiSXLTAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\NguoiSuDungAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\NguoiSuDungAddEditForm.designer.cs">
-      <DependentUpon>NguoiSuDungAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6lookupForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6lookupForm.designer.cs">
-      <DependentUpon>V6lookupForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6valid.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6valid.Designer.cs">
-      <DependentUpon>V6valid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ViTriChiTietAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ViTriChiTietAddEditForm.Designer.cs">
-      <DependentUpon>ViTriChiTietAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSPDHAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSPDHAddEditForm.Designer.cs">
-      <DependentUpon>YeuToChiPhiSPDHAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSXLTAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSXLTAddEditForm.Designer.cs">
-      <DependentUpon>YeuToChiPhiSXLTAddEditForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FindForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -600,578 +1167,11 @@
       <DependentUpon>ConfirmPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="V6ControlExtensionMethods.cs" />
-    <Compile Include="Forms\DanhMuc\Add_Edit\AddEditControlVirtual.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\AddEditControlVirtual.Designer.cs">
-      <DependentUpon>AddEditControlVirtual.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\AddEditManager.cs" />
     <Compile Include="Forms\XmlEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\XmlEditorForm.Designer.cs">
       <DependentUpon>XmlEditorForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\AlctAddEditFrom.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\AlctAddEditFrom.Designer.cs">
-      <DependentUpon>AlctAddEditFrom.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\AlkcAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\AlkcAddEditForm.Designer.cs">
-      <DependentUpon>AlkcAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\AlmaubcCt.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\AlmaubcCt.Designer.cs">
-      <DependentUpon>AlmaubcCt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Almaubc.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Almaubc.Designer.cs">
-      <DependentUpon>Almaubc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\AlloaiytAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\AlloaiytAddEditForm.Designer.cs">
-      <DependentUpon>AlloaiytAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiAddEditForm.Designer.cs">
-      <DependentUpon>NhomYeuToChiPhiAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenNSD.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenNSD.Designer.cs">
-      <DependentUpon>PhanQuyenNSD.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Aldm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Aldm.designer.cs">
-      <DependentUpon>Aldm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6Alct3AddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6Alct3AddEditForm.designer.cs">
-      <DependentUpon>V6Alct3AddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6Alct2AddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6Alct2AddEditForm.designer.cs">
-      <DependentUpon>V6Alct2AddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NoRightAddEdit.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NoRightAddEdit.Designer.cs">
-      <DependentUpon>NoRightAddEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiAddEditForm.Designer.cs">
-      <DependentUpon>YeuToChiPhiAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\CorpLanAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\CorpLanAddEditForm.Designer.cs">
-      <DependentUpon>CorpLanAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanHachToanAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanHachToanAddEditForm.Designer.cs">
-      <DependentUpon>BoPhanHachToanAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NgoaiTeAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NgoaiTeAddEditForm.Designer.cs">
-      <DependentUpon>NgoaiTeAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomTaiKhoanAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomTaiKhoanAddEditForm.Designer.cs">
-      <DependentUpon>NhomTaiKhoanAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Valcc01AddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Valcc01AddEditForm.Designer.cs">
-      <DependentUpon>Valcc01AddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ValccAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ValccAddEditForm.Designer.cs">
-      <DependentUpon>ValccAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Valts01AddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Valts01AddEditForm.Designer.cs">
-      <DependentUpon>Valts01AddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ValtsAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ValtsAddEditForm.Designer.cs">
-      <DependentUpon>ValtsAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\AlsonbAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\AlsonbAddEditForm.Designer.cs">
-      <DependentUpon>AlsonbAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanAddEditForm.Designer.cs">
-      <DependentUpon>BoPhanAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Algia2AddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Algia2AddEditForm.Designer.cs">
-      <DependentUpon>Algia2AddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanSuDungCongCuAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanSuDungCongCuAddEditForm.Designer.cs">
-      <DependentUpon>BoPhanSuDungCongCuAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanSuDungTangSuatAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\BoPhanSuDungTangSuatAddEditForm.Designer.cs">
-      <DependentUpon>BoPhanSuDungTangSuatAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ChietKhauAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ChietKhauAddEditForm.Designer.cs">
-      <DependentUpon>ChietKhauAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\DonViCoSoAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\DonViCoSoAddEditForm.Designer.cs">
-      <DependentUpon>DonViCoSoAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\DonViTinhAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\DonViTinhAddEditForm.Designer.cs">
-      <DependentUpon>DonViTinhAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\FormAdd_Edit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\FormAdd_Edit.Designer.cs">
-      <DependentUpon>FormAdd_Edit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\HinhThucThanhToanAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\HinhThucThanhToanAddEditForm.Designer.cs">
-      <DependentUpon>HinhThucThanhToanAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\HinhThucVanChuyenAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\HinhThucVanChuyenAddEditForm.Designer.cs">
-      <DependentUpon>HinhThucVanChuyenAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\HopDongAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\HopDongAddEditForm.Designer.cs">
-      <DependentUpon>HopDongAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\KhachHangAddEditFrom.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\KhachHangAddEditFrom.Designer.cs">
-      <DependentUpon>KhachHangAddEditFrom.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\KheUocAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\KheUocAddEditForm.Designer.cs">
-      <DependentUpon>KheUocAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\KhoHangAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\KhoHangAddEditForm.Designer.cs">
-      <DependentUpon>KhoHangAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\LoaiDichVuAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\LoaiDichVuAddEditForm.Designer.cs">
-      <DependentUpon>LoaiDichVuAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\LoaiNhapXuatAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\LoaiNhapXuatAddEditForm.Designer.cs">
-      <DependentUpon>LoaiNhapXuatAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\LyDoTangGiamCCDCAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\LyDoTangGiamCCDCAddEditForm.Designer.cs">
-      <DependentUpon>LyDoTangGiamCCDCAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanLoaiCongCuAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanLoaiCongCuAddEditForm.Designer.cs">
-      <DependentUpon>PhanLoaiCongCuAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanNhomCongCuAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanNhomCongCuAddEditForm.Designer.cs">
-      <DependentUpon>PhanNhomCongCuAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanNhomTaiSanAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanNhomTaiSanAddEditForm.Designer.cs">
-      <DependentUpon>PhanNhomTaiSanAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\Class1.cs" />
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\DanhSachChungTu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\DanhSachChungTu.Designer.cs">
-      <DependentUpon>DanhSachChungTu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenSoNoiBo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenSoNoiBo.Designer.cs">
-      <DependentUpon>PhanQuyenSoNoiBo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenKho.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenKho.Designer.cs">
-      <DependentUpon>PhanQuyenKho.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenDvcs.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenDvcs.Designer.cs">
-      <DependentUpon>PhanQuyenDvcs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyen.Designer.cs">
-      <DependentUpon>PhanQuyen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\AlbcAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\AlbcAddEditForm.Designer.cs">
-      <DependentUpon>AlbcAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ThongTinDinhNghia\ThongTinDinhNghiaForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ThongTinDinhNghia\ThongTinDinhNghiaForm.Designer.cs">
-      <DependentUpon>ThongTinDinhNghiaForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TyGiaNgoaiTeAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TyGiaNgoaiTeAddEditForm.Designer.cs">
-      <DependentUpon>TyGiaNgoaiTeAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\QuyDoiDonViTinhAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\QuyDoiDonViTinhAddEditForm.Designer.cs">
-      <DependentUpon>QuyDoiDonViTinhAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\LoHangAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\LoHangAddEditForm.Designer.cs">
-      <DependentUpon>LoHangAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\LyDoTangGiamTSCDAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\LyDoTangGiamTSCDAddEditForm.Designer.cs">
-      <DependentUpon>LyDoTangGiamTSCDAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\MaGiaAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\MaGiaAddEditForm.Designer.cs">
-      <DependentUpon>MaGiaAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\MauHoaDonAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\MauHoaDonAddEditForm.Designer.cs">
-      <DependentUpon>MauHoaDonAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\NhanSuAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanSu\NhanSuAddEditForm.Designer.cs">
-      <DependentUpon>NhanSuAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NguonVonAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NguonVonAddEditForm.Designer.cs">
-      <DependentUpon>NguonVonAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhaCungCapAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhaCungCapAddEditForm.Designer.cs">
-      <DependentUpon>NhaCungCapAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanVienAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhanVienAddEditForm.Designer.cs">
-      <DependentUpon>NhanVienAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomGiaKhachHangAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomGiaKhachHangAddEditForm.Designer.cs">
-      <DependentUpon>NhomGiaKhachHangAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomGiaVatTuAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomGiaVatTuAddEditForm.Designer.cs">
-      <DependentUpon>NhomGiaVatTuAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomHopDongAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomHopDongAddEditForm.Designer.cs">
-      <DependentUpon>NhomHopDongAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomKhachHangAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomKhachHangAddEditForm.Designer.cs">
-      <DependentUpon>NhomKhachHangAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomKheUocAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomKheUocAddEditForm.Designer.cs">
-      <DependentUpon>NhomKheUocAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomKhoanMucPhiAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomKhoanMucPhiAddEditForm.Designer.cs">
-      <DependentUpon>NhomKhoanMucPhiAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomNhaCungCap.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomNhaCungCap.Designer.cs">
-      <DependentUpon>NhomNhaCungCap.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanLoaiCacTaiKhoanAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanLoaiCacTaiKhoanAddEditForm.Designer.cs">
-      <DependentUpon>PhanLoaiCacTaiKhoanAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomVatTuAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomVatTuAddEditForm.Designer.cs">
-      <DependentUpon>NhomVatTuAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomVuViecAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NhomVuViecAddEditForm.Designer.cs">
-      <DependentUpon>NhomVuViecAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanLoaiTaiSanAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhanLoaiTaiSanAddEditForm.Designer.cs">
-      <DependentUpon>PhanLoaiTaiSanAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhiAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhiAddEditForm.Designer.cs">
-      <DependentUpon>PhiAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhuongXaAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\PhuongXaAddEditForm.Designer.cs">
-      <DependentUpon>PhuongXaAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\QuanHuyenAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\QuanHuyenAddEditForm.Designer.cs">
-      <DependentUpon>QuanHuyenAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\QuocGiaAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\QuocGiaAddEditForm.Designer.cs">
-      <DependentUpon>QuocGiaAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\SanPhamTrungGianAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\SanPhamTrungGianAddEditForm.Designer.cs">
-      <DependentUpon>SanPhamTrungGianAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TaiKhoanAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TaiKhoanAddEditForm.Designer.cs">
-      <DependentUpon>TaiKhoanAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TaiKhoanNganHangAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TaiKhoanNganHangAddEditForm.Designer.cs">
-      <DependentUpon>TaiKhoanNganHangAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ThueSuat30AddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ThueSuat30AddEditForm.Designer.cs">
-      <DependentUpon>ThueSuat30AddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ThueSuatAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ThueSuatAddEditForm.Designer.cs">
-      <DependentUpon>ThueSuatAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TieuKhoanAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TieuKhoanAddEditForm.Designer.cs">
-      <DependentUpon>TieuKhoanAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TinhThanhAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TinhThanhAddEditForm.Designer.cs">
-      <DependentUpon>TinhThanhAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TinhTrangDichVuAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TinhTrangDichVuAddEditForm.Designer.cs">
-      <DependentUpon>TinhTrangDichVuAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TuDienNguoiDungDinhNghiaAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TuDienNguoiDungDinhNghiaAddEditForm.Designer.cs">
-      <DependentUpon>TuDienNguoiDungDinhNghiaAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TuDienTuDinhNghia2AddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TuDienTuDinhNghia2AddEditForm.Designer.cs">
-      <DependentUpon>TuDienTuDinhNghia2AddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TuDienTuDinhNghia3AddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\TuDienTuDinhNghia3AddEditForm.Designer.cs">
-      <DependentUpon>TuDienTuDinhNghia3AddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6AddEditInterface.cs" />
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6MenuAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6MenuAddEditForm.designer.cs">
-      <DependentUpon>V6MenuAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6OptionAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6OptionAddEditForm.designer.cs">
-      <DependentUpon>V6OptionAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NamTaiChinhAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\NamTaiChinhAddEditForm.designer.cs">
-      <DependentUpon>NamTaiChinhAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6Alct1AddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6Alct1AddEditForm.designer.cs">
-      <DependentUpon>V6Alct1AddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6SoftAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\V6SoftAddEditForm.designer.cs">
-      <DependentUpon>V6SoftAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\VanChuyenAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\VanChuyenAddEditForm.Designer.cs">
-      <DependentUpon>VanChuyenAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm.Designer.cs">
-      <DependentUpon>VatTuAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ViTriAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\ViTriAddEditForm.Designer.cs">
-      <DependentUpon>ViTriAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\VuViecAddEditForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\VuViecAddEditForm.Designer.cs">
-      <DependentUpon>VuViecAddEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\DropDownButton.cs">
       <SubType>Component</SubType>
@@ -1471,239 +1471,47 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Acosxlt_alloaiytAddEditForm.resx">
       <DependentUpon>Acosxlt_alloaiytAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Algia0AddEditForm.resx">
-      <DependentUpon>Algia0AddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFilterSelectForm.resx">
-      <DependentUpon>CopyFilterSelectForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\DynamicAddEditForm.resx">
-      <DependentUpon>DynamicAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT_AddEdit.resx">
-      <DependentUpon>ALREPORT_AddEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\DefineInfoEditorForm.resx">
-      <DependentUpon>DefineInfoEditorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_AddEdit.resx">
-      <DependentUpon>ALREPORT1_AddEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\KheUocChiTietForm.resx">
-      <DependentUpon>KheUocChiTietForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\KhachHangChiTietFrom.resx">
-      <DependentUpon>KhachHangChiTietFrom.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCacKhoanPhuCap.resx">
-      <DependentUpon>DanhMucCacKhoanPhuCap.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucLoaiThuNhapTinhThue.resx">
-      <DependentUpon>DanhMucLoaiThuNhapTinhThue.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThoiGian.resx">
-      <DependentUpon>DanhMucThoiGian.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLoaiLuong.resx">
-      <DependentUpon>KhaiBaoLoaiLuong.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThuongPhat.resx">
-      <DependentUpon>DanhMucThuongPhat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCacKhoanTraThayBHXH.resx">
-      <DependentUpon>DanhMucCacKhoanTraThayBHXH.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoKyTinhLuong.resx">
-      <DependentUpon>KhaiBaoKyTinhLuong.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThueTNCN.resx">
-      <DependentUpon>DanhMucThueTNCN.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLichLe.resx">
-      <DependentUpon>KhaiBaoLichLe.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucChiTietCaLamViecForm.resx">
-      <DependentUpon>DanhMucChiTietCaLamViecForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCaLamViecForm.resx">
-      <DependentUpon>DanhMucCaLamViecForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucNhomCongForm.resx">
-      <DependentUpon>DanhMucNhomCongForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucKyHieuCongForm.resx">
-      <DependentUpon>DanhMucKyHieuCongForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\HINFOR_NS.resx">
-      <DependentUpon>HINFOR_NS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec2.resx">
-      <DependentUpon>KinhNghiemLamViec2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec.resx">
-      <DependentUpon>KinhNghiemLamViec.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinSucKhoe.resx">
-      <DependentUpon>ThongTinSucKhoe.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinCapDoNgoaiNguForm.resx">
-      <DependentUpon>ThongTinCapDoNgoaiNguForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBaoHiem.resx">
-      <DependentUpon>ThongTinBaoHiem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinLuongCoBan.resx">
-      <DependentUpon>ThongTinLuongCoBan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinNgoaiNguForm.resx">
-      <DependentUpon>ThongTinNgoaiNguForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinChuyenNghanhForm.resx">
-      <DependentUpon>ThongTinChuyenNghanhForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHinhAnhChuKy.resx">
-      <DependentUpon>ThongTinHinhAnhChuKy.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucTruongHocForm.resx">
-      <DependentUpon>DanhMucTruongHocForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinDanTocForm.resx">
-      <DependentUpon>ThongTinDanTocForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinTinhThanhForm.resx">
-      <DependentUpon>ThongTinTinhThanhForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuocTichForm.resx">
-      <DependentUpon>ThongTinQuocTichForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuocGiaForm.resx">
-      <DependentUpon>ThongTinQuocGiaForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBangCapForm.resx">
-      <DependentUpon>ThongTinBangCapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinDieuKienSongForm.resx">
-      <DependentUpon>ThongTinDieuKienSongForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHopDong.resx">
-      <DependentUpon>ThongTinHopDong.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinTonGiaoForm.resx">
-      <DependentUpon>ThongTinTonGiaoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuanHeForm.resx">
-      <DependentUpon>ThongTinQuanHeForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinLyLichForm.resx">
-      <DependentUpon>ThongTinLyLichForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomViTriAddEditForm.resx">
-      <DependentUpon>NhomViTriAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiSXDHAddEditForm.resx">
-      <DependentUpon>NhomYeuToChiPhiSXDHAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiSXLTAddEditForm.resx">
-      <DependentUpon>NhomYeuToChiPhiSXLTAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\NguoiSuDungAddEditForm.resx">
-      <DependentUpon>NguoiSuDungAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6lookupForm.resx">
-      <DependentUpon>V6lookupForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6valid.resx">
-      <DependentUpon>V6valid.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ViTriChiTietAddEditForm.resx">
-      <DependentUpon>ViTriChiTietAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSPDHAddEditForm.resx">
-      <DependentUpon>YeuToChiPhiSPDHAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSXLTAddEditForm.resx">
-      <DependentUpon>YeuToChiPhiSXLTAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EmailSettingForm.resx">
-      <DependentUpon>EmailSettingForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SmsModemSettingForm.resx">
-      <DependentUpon>SmsModemSettingForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FindForm.resx">
-      <DependentUpon>FindForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ConfirmPasswordV6.resx">
-      <DependentUpon>ConfirmPasswordV6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ConfirmPassword.resx">
-      <DependentUpon>ConfirmPassword.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\AddEditControlVirtual.resx">
       <DependentUpon>AddEditControlVirtual.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FlyLabelForm.resx">
-      <DependentUpon>FlyLabelForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\XmlEditorForm.resx">
-      <DependentUpon>XmlEditorForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Albc\AlbcAddEditForm.resx">
+      <DependentUpon>AlbcAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\AlctAddEditFrom.resx">
       <DependentUpon>AlctAddEditFrom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\AlmaubcCt.resx">
-      <DependentUpon>AlmaubcCt.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Aldm.resx">
+      <DependentUpon>Aldm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Almaubc.resx">
-      <DependentUpon>Almaubc.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Algia0AddEditForm.resx">
+      <DependentUpon>Algia0AddEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\BoPhanHachToanAddEditForm.resx">
-      <DependentUpon>BoPhanHachToanAddEditForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Algia2AddEditForm.resx">
+      <DependentUpon>Algia2AddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\AlkcAddEditForm.resx">
       <DependentUpon>AlkcAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\CorpLanAddEditForm.resx">
-      <DependentUpon>CorpLanAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NgoaiTeAddEditForm.resx">
-      <DependentUpon>NgoaiTeAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomTaiKhoanAddEditForm.resx">
-      <DependentUpon>NhomTaiKhoanAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\AlloaiytAddEditForm.resx">
       <DependentUpon>AlloaiytAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiAddEditForm.resx">
-      <DependentUpon>NhomYeuToChiPhiAddEditForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Almaubc.resx">
+      <DependentUpon>Almaubc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenNSD.resx">
-      <DependentUpon>PhanQuyenNSD.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\AlmaubcCt.resx">
+      <DependentUpon>AlmaubcCt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Aldm.resx">
-      <DependentUpon>Aldm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT1_AddEdit.resx">
+      <DependentUpon>ALREPORT1_AddEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6Alct3AddEditForm.resx">
-      <DependentUpon>V6Alct3AddEditForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\ALREPORT_AddEdit.resx">
+      <DependentUpon>ALREPORT_AddEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6Alct2AddEditForm.resx">
-      <DependentUpon>V6Alct2AddEditForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\CopyFilterSelectForm.resx">
+      <DependentUpon>CopyFilterSelectForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NoRightAddEdit.resx">
-      <DependentUpon>NoRightAddEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Valcc01AddEditForm.resx">
-      <DependentUpon>Valcc01AddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ValccAddEditForm.resx">
-      <DependentUpon>ValccAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Valts01AddEditForm.resx">
-      <DependentUpon>Valts01AddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ValtsAddEditForm.resx">
-      <DependentUpon>ValtsAddEditForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Alreport\DefineInfoEditorForm.resx">
+      <DependentUpon>DefineInfoEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\AlsonbAddEditForm.resx">
       <DependentUpon>AlsonbAddEditForm.cs</DependentUpon>
@@ -1711,8 +1519,8 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\BoPhanAddEditForm.resx">
       <DependentUpon>BoPhanAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Algia2AddEditForm.resx">
-      <DependentUpon>Algia2AddEditForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\BoPhanHachToanAddEditForm.resx">
+      <DependentUpon>BoPhanHachToanAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\BoPhanSuDungCongCuAddEditForm.resx">
       <DependentUpon>BoPhanSuDungCongCuAddEditForm.cs</DependentUpon>
@@ -1723,11 +1531,17 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ChietKhauAddEditForm.resx">
       <DependentUpon>ChietKhauAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\CorpLanAddEditForm.resx">
+      <DependentUpon>CorpLanAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\DonViCoSoAddEditForm.resx">
       <DependentUpon>DonViCoSoAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\DonViTinhAddEditForm.resx">
       <DependentUpon>DonViTinhAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\DynamicAddEditForm.resx">
+      <DependentUpon>DynamicAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\FormAdd_Edit.resx">
       <DependentUpon>FormAdd_Edit.cs</DependentUpon>
@@ -1744,8 +1558,14 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\KhachHangAddEditFrom.resx">
       <DependentUpon>KhachHangAddEditFrom.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\KhachHangChiTietFrom.resx">
+      <DependentUpon>KhachHangChiTietFrom.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\KheUocAddEditForm.resx">
       <DependentUpon>KheUocAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\KheUocChiTietForm.resx">
+      <DependentUpon>KheUocChiTietForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\KhoHangAddEditForm.resx">
       <DependentUpon>KhoHangAddEditForm.cs</DependentUpon>
@@ -1756,47 +1576,11 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\LoaiNhapXuatAddEditForm.resx">
       <DependentUpon>LoaiNhapXuatAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\LyDoTangGiamCCDCAddEditForm.resx">
-      <DependentUpon>LyDoTangGiamCCDCAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanLoaiCongCuAddEditForm.resx">
-      <DependentUpon>PhanLoaiCongCuAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanNhomCongCuAddEditForm.resx">
-      <DependentUpon>PhanNhomCongCuAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanNhomTaiSanAddEditForm.resx">
-      <DependentUpon>PhanNhomTaiSanAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\DanhSachChungTu.resx">
-      <DependentUpon>DanhSachChungTu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenSoNoiBo.resx">
-      <DependentUpon>PhanQuyenSoNoiBo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenKho.resx">
-      <DependentUpon>PhanQuyenKho.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenDvcs.resx">
-      <DependentUpon>PhanQuyenDvcs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyen.resx">
-      <DependentUpon>PhanQuyen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Albc\AlbcAddEditForm.resx">
-      <DependentUpon>AlbcAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ThongTinDinhNghia\ThongTinDinhNghiaForm.resx">
-      <DependentUpon>ThongTinDinhNghiaForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\TyGiaNgoaiTeAddEditForm.resx">
-      <DependentUpon>TyGiaNgoaiTeAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\QuyDoiDonViTinhAddEditForm.resx">
-      <DependentUpon>QuyDoiDonViTinhAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\LoHangAddEditForm.resx">
       <DependentUpon>LoHangAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\LyDoTangGiamCCDCAddEditForm.resx">
+      <DependentUpon>LyDoTangGiamCCDCAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\LyDoTangGiamTSCDAddEditForm.resx">
       <DependentUpon>LyDoTangGiamTSCDAddEditForm.cs</DependentUpon>
@@ -1807,14 +1591,122 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\MauHoaDonAddEditForm.resx">
       <DependentUpon>MauHoaDonAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\NhanSuAddEditForm.resx">
-      <DependentUpon>NhanSuAddEditForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NamTaiChinhAddEditForm.resx">
+      <DependentUpon>NamTaiChinhAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NgoaiTeAddEditForm.resx">
+      <DependentUpon>NgoaiTeAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NguonVonAddEditForm.resx">
       <DependentUpon>NguonVonAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhaCungCapAddEditForm.resx">
       <DependentUpon>NhaCungCapAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCacKhoanPhuCap.resx">
+      <DependentUpon>DanhMucCacKhoanPhuCap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCacKhoanTraThayBHXH.resx">
+      <DependentUpon>DanhMucCacKhoanTraThayBHXH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucCaLamViecForm.resx">
+      <DependentUpon>DanhMucCaLamViecForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucChiTietCaLamViecForm.resx">
+      <DependentUpon>DanhMucChiTietCaLamViecForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucKyHieuCongForm.resx">
+      <DependentUpon>DanhMucKyHieuCongForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucLoaiThuNhapTinhThue.resx">
+      <DependentUpon>DanhMucLoaiThuNhapTinhThue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucNhomCongForm.resx">
+      <DependentUpon>DanhMucNhomCongForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThoiGian.resx">
+      <DependentUpon>DanhMucThoiGian.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThueTNCN.resx">
+      <DependentUpon>DanhMucThueTNCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucThuongPhat.resx">
+      <DependentUpon>DanhMucThuongPhat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\DanhMucTruongHocForm.resx">
+      <DependentUpon>DanhMucTruongHocForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\HINFOR_NS.resx">
+      <DependentUpon>HINFOR_NS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoKyTinhLuong.resx">
+      <DependentUpon>KhaiBaoKyTinhLuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLichLe.resx">
+      <DependentUpon>KhaiBaoLichLe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLoaiLuong.resx">
+      <DependentUpon>KhaiBaoLoaiLuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec.resx">
+      <DependentUpon>KinhNghiemLamViec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec2.resx">
+      <DependentUpon>KinhNghiemLamViec2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\NhanSuAddEditForm.resx">
+      <DependentUpon>NhanSuAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBangCapForm.resx">
+      <DependentUpon>ThongTinBangCapForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinBaoHiem.resx">
+      <DependentUpon>ThongTinBaoHiem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinCapDoNgoaiNguForm.resx">
+      <DependentUpon>ThongTinCapDoNgoaiNguForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinChuyenNghanhForm.resx">
+      <DependentUpon>ThongTinChuyenNghanhForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinDanTocForm.resx">
+      <DependentUpon>ThongTinDanTocForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinDieuKienSongForm.resx">
+      <DependentUpon>ThongTinDieuKienSongForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHinhAnhChuKy.resx">
+      <DependentUpon>ThongTinHinhAnhChuKy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinHopDong.resx">
+      <DependentUpon>ThongTinHopDong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinLuongCoBan.resx">
+      <DependentUpon>ThongTinLuongCoBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinLyLichForm.resx">
+      <DependentUpon>ThongTinLyLichForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinNgoaiNguForm.resx">
+      <DependentUpon>ThongTinNgoaiNguForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuanHeForm.resx">
+      <DependentUpon>ThongTinQuanHeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuocGiaForm.resx">
+      <DependentUpon>ThongTinQuocGiaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinQuocTichForm.resx">
+      <DependentUpon>ThongTinQuocTichForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinSucKhoe.resx">
+      <DependentUpon>ThongTinSucKhoe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinTinhThanhForm.resx">
+      <DependentUpon>ThongTinTinhThanhForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\ThongTinTonGiaoForm.resx">
+      <DependentUpon>ThongTinTonGiaoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanVienAddEditForm.resx">
       <DependentUpon>NhanVienAddEditForm.cs</DependentUpon>
@@ -1840,17 +1732,65 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomNhaCungCap.resx">
       <DependentUpon>NhomNhaCungCap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanLoaiCacTaiKhoanAddEditForm.resx">
-      <DependentUpon>PhanLoaiCacTaiKhoanAddEditForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomTaiKhoanAddEditForm.resx">
+      <DependentUpon>NhomTaiKhoanAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomVatTuAddEditForm.resx">
       <DependentUpon>NhomVatTuAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomViTriAddEditForm.resx">
+      <DependentUpon>NhomViTriAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomVuViecAddEditForm.resx">
       <DependentUpon>NhomVuViecAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiAddEditForm.resx">
+      <DependentUpon>NhomYeuToChiPhiAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiSXDHAddEditForm.resx">
+      <DependentUpon>NhomYeuToChiPhiSXDHAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhomYeuToChiPhiSXLTAddEditForm.resx">
+      <DependentUpon>NhomYeuToChiPhiSXLTAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NoRightAddEdit.resx">
+      <DependentUpon>NoRightAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanLoaiCacTaiKhoanAddEditForm.resx">
+      <DependentUpon>PhanLoaiCacTaiKhoanAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanLoaiCongCuAddEditForm.resx">
+      <DependentUpon>PhanLoaiCongCuAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanLoaiTaiSanAddEditForm.resx">
       <DependentUpon>PhanLoaiTaiSanAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanNhomCongCuAddEditForm.resx">
+      <DependentUpon>PhanNhomCongCuAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanNhomTaiSanAddEditForm.resx">
+      <DependentUpon>PhanNhomTaiSanAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\DanhSachChungTu.resx">
+      <DependentUpon>DanhSachChungTu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\NguoiSuDungAddEditForm.resx">
+      <DependentUpon>NguoiSuDungAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyen.resx">
+      <DependentUpon>PhanQuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenDvcs.resx">
+      <DependentUpon>PhanQuyenDvcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenKho.resx">
+      <DependentUpon>PhanQuyenKho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenNSD.resx">
+      <DependentUpon>PhanQuyenNSD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyenSoNoiBo.resx">
+      <DependentUpon>PhanQuyenSoNoiBo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhiAddEditForm.resx">
       <DependentUpon>PhiAddEditForm.cs</DependentUpon>
@@ -1864,6 +1804,9 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\QuocGiaAddEditForm.resx">
       <DependentUpon>QuocGiaAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\QuyDoiDonViTinhAddEditForm.resx">
+      <DependentUpon>QuyDoiDonViTinhAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\SanPhamTrungGianAddEditForm.resx">
       <DependentUpon>SanPhamTrungGianAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1872,6 +1815,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\TaiKhoanNganHangAddEditForm.resx">
       <DependentUpon>TaiKhoanNganHangAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ThongTinDinhNghia\ThongTinDinhNghiaForm.resx">
+      <DependentUpon>ThongTinDinhNghiaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ThueSuat30AddEditForm.resx">
       <DependentUpon>ThueSuat30AddEditForm.cs</DependentUpon>
@@ -1897,20 +1843,44 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\TuDienTuDinhNghia3AddEditForm.resx">
       <DependentUpon>TuDienTuDinhNghia3AddEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\TyGiaNgoaiTeAddEditForm.resx">
+      <DependentUpon>TyGiaNgoaiTeAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6Alct1AddEditForm.resx">
+      <DependentUpon>V6Alct1AddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6Alct2AddEditForm.resx">
+      <DependentUpon>V6Alct2AddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6Alct3AddEditForm.resx">
+      <DependentUpon>V6Alct3AddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6lookupForm.resx">
+      <DependentUpon>V6lookupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6MenuAddEditForm.resx">
       <DependentUpon>V6MenuAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6OptionAddEditForm.resx">
       <DependentUpon>V6OptionAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NamTaiChinhAddEditForm.resx">
-      <DependentUpon>NamTaiChinhAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6Alct1AddEditForm.resx">
-      <DependentUpon>V6Alct1AddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6SoftAddEditForm.resx">
       <DependentUpon>V6SoftAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\V6valid.resx">
+      <DependentUpon>V6valid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Valcc01AddEditForm.resx">
+      <DependentUpon>Valcc01AddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ValccAddEditForm.resx">
+      <DependentUpon>ValccAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Valts01AddEditForm.resx">
+      <DependentUpon>Valts01AddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ValtsAddEditForm.resx">
+      <DependentUpon>ValtsAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\VanChuyenAddEditForm.resx">
       <DependentUpon>VanChuyenAddEditForm.cs</DependentUpon>
@@ -1921,11 +1891,41 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ViTriAddEditForm.resx">
       <DependentUpon>ViTriAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ViTriChiTietAddEditForm.resx">
+      <DependentUpon>ViTriChiTietAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\VuViecAddEditForm.resx">
       <DependentUpon>VuViecAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiAddEditForm.resx">
       <DependentUpon>YeuToChiPhiAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSPDHAddEditForm.resx">
+      <DependentUpon>YeuToChiPhiSPDHAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSXLTAddEditForm.resx">
+      <DependentUpon>YeuToChiPhiSXLTAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmailSettingForm.resx">
+      <DependentUpon>EmailSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SmsModemSettingForm.resx">
+      <DependentUpon>SmsModemSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FindForm.resx">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConfirmPasswordV6.resx">
+      <DependentUpon>ConfirmPasswordV6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConfirmPassword.resx">
+      <DependentUpon>ConfirmPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FlyLabelForm.resx">
+      <DependentUpon>FlyLabelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\XmlEditorForm.resx">
+      <DependentUpon>XmlEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ToChucTreeSelectForm.resx">
       <DependentUpon>ToChucTreeSelectForm.cs</DependentUpon>

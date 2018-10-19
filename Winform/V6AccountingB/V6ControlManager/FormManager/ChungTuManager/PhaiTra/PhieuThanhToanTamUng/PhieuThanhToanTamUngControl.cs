@@ -135,6 +135,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
                 switch (NAME)
                 {
+                    case "SO_SERI0":
+                        var _so_seri0 = control as V6ColorTextBox;
+                        if (_so_seri0 != null)
+                        {
+                            _so_seri0.Upper();
+                        }
+                        break;
                     case "TK_VT":
                         _tk_vt = (V6VvarTextBox) control;
                         _tk_vt.Upper();
@@ -154,7 +161,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                             _thue_nt.V6LostFocus += delegate
                             {
                                 //10/08/2017 Tinh thue 1 chi tiet dang dung
-                                _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value * txtTyGia.Value, M_ROUND);
+                                _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value*txtTyGia.Value, M_ROUND);
                                 if (_maNt == _mMaNt0)
                                 {
                                     _thue.Value = _thue_nt.Value;
@@ -172,10 +179,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                         _ma_thue_i = control as V6VvarTextBox;
                         if (_ma_thue_i != null)
                         {
-                            _ma_thue_i.V6LostFocus += delegate
-                            {
-                                XuLyThayDoiMaThue();
-                            };
+                            _ma_thue_i.V6LostFocus += delegate { XuLyThayDoiMaThue(); };
                         }
                         break;
                     case "THUE_SUAT":
@@ -1106,12 +1110,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
             var t_tien_nt = TinhTong(AD, "TIEN_NT");
             txtTongTienNt.Value = V6BusinessHelper.Vround(t_tien_nt, M_ROUND_NT);
-
-            var tong_thue_nt = V6BusinessHelper.TinhTong(AD2, "T_THUE_NT");
-            txtTongThueNt.Value = V6BusinessHelper.Vround(tong_thue_nt, M_ROUND_NT);
-
             var t_tien = TinhTong(AD, "TIEN");
             txtTongTien.Value = V6BusinessHelper.Vround(t_tien, M_ROUND);
+
+            var tong_thue_nt = chkSuaThue.Checked ? V6BusinessHelper.TinhTong(AD2, "T_THUE_NT") : V6BusinessHelper.TinhTong(AD, "THUE_NT");
+            txtTongThueNt.Value = V6BusinessHelper.Vround(tong_thue_nt, M_ROUND_NT);
+            var tThue = chkSuaThue.Checked ? V6BusinessHelper.TinhTong(AD2, "T_THUE") : V6BusinessHelper.TinhTong(AD, "THUE");
+            txtTongThue.Value = V6BusinessHelper.Vround(tThue, M_ROUND);
+            
         }
         
 
@@ -1270,7 +1276,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     _thue_suat.Value = ObjectAndString.ObjectToDecimal(alThue.Data.Rows[0]["THUE_SUAT"]);
                 }
                 //Tinh thue 1 chi tiet dang dung
-                _thue_nt.Value = V6BusinessHelper.Vround(_thue_suat.Value * _tienNt.Value / 100, M_ROUND);
+                _thue_nt.Value = V6BusinessHelper.Vround(_thue_suat.Value * _tienNt.Value / 100, M_ROUND_NT);
                 _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value * txtTyGia.Value, M_ROUND);
                 if (_maNt == _mMaNt0)
                 {

@@ -286,6 +286,9 @@ namespace V6Controls.Controls
                         {
                             f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);                           
                         }
+
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.ParentData = _parentData;
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
@@ -300,6 +303,9 @@ namespace V6Controls.Controls
                         {
                             f = new FormAddEdit(CurrentTable);
                         }
+
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.ParentData = _parentData;
                         f.SetParentData();
                         f.InsertSuccessEvent += f_InsertSuccess;
@@ -310,6 +316,24 @@ namespace V6Controls.Controls
             catch (Exception ex)
             {
                 V6Message.Show(ex.Message);
+            }
+        }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, _tableName);
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                //V6ControlFormHelper.CreateAdvanceFormControls(form, ma_ct, All_Objects);
+                V6ControlFormHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + _sttRec, ex);
             }
         }
 
@@ -352,6 +376,9 @@ namespace V6Controls.Controls
                              f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
                            
                         }
+
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.ParentData = _parentData;
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
@@ -405,6 +432,8 @@ namespace V6Controls.Controls
                             f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
                         }
 
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.ParentData = _parentData;
                         f.UpdateSuccessEvent += f_UpdateSuccess;
                         f.CallReloadEvent += FCallReloadEvent;
@@ -751,13 +780,17 @@ namespace V6Controls.Controls
                         if (CurrentTable == V6TableName.Notable)
                         {
                             f = new FormAddEdit(_tableName, V6Mode.View, keys, _data);
+                            f.AfterInitControl += f_AfterInitControl;
+                            f.InitFormControl();
                             f.ShowDialog(this);
 
                         }
                         else
                         {
                              f = new FormAddEdit(CurrentTable, V6Mode.View, keys, _data);
-                            f.ShowDialog(this);
+                             f.AfterInitControl += f_AfterInitControl;
+                             f.InitFormControl();
+                             f.ShowDialog(this);
                         }
                        
                     }

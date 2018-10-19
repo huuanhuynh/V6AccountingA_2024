@@ -86,44 +86,36 @@ namespace V6ControlManager.FormManager.NhanSu.View
                 }
                 else
                 {
-                    //DataGridViewRow row = gridView1.GetFirstSelectedRow();
-
-                    //if (row != null)
-                    //{
-                    //    var keys = new SortedDictionary<string, object>();
-                    //    if (gridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
-                    //        keys.Add("UID", row.Cells["UID"].Value);
-                    //    keys["STT_REC"] = _stt_rec;
-                    //    //keys["STT_REC0"] = row.Cells["STT_REC0"].Value;
-
-                    //    //if (KeyFields != null)
-                    //    //    foreach (var keyField in KeyFields)
-                    //    //    {
-                    //    //        if (gridView1.Columns.Contains(keyField))
-                    //    //        {
-                    //    //            keys[keyField] = row.Cells[keyField].Value;
-                    //    //        }
-                    //    //    }
-
-                    //    //var _data = row.ToDataDictionary();
-                    //    var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, null);
-                    //    f.InsertSuccessEvent += f_InsertSuccess;
-                    //    f.ShowDialog(this);
-                    //}
-                    //else
-                    {
-                        SortedDictionary<string, object> _data = new SortedDictionary<string, object>();
-                        _data["STT_REC"] = _stt_rec;
-                        _data["STT_REC0"] = V6BusinessHelper.GetNewSttRec0(_gridViewData);
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, null, _data);
-                        f.InsertSuccessEvent += f_InsertSuccess;
-                        f.ShowDialog(this);
-                    }
+                    SortedDictionary<string, object> _data = new SortedDictionary<string, object>();
+                    _data["STT_REC"] = _stt_rec;
+                    _data["STT_REC0"] = V6BusinessHelper.GetNewSttRec0(_gridViewData);
+                    var f = new FormAddEdit(CurrentTable, V6Mode.Add, null, _data);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
+                    f.InsertSuccessEvent += f_InsertSuccess;
+                    f.ShowDialog(this);
                 }
             }
             catch (Exception ex)
             {
                 V6Message.Show(ex.Message);
+            }
+        }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, _formname.Substring(1));
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + ma_ct, ex);
             }
         }
 
@@ -159,6 +151,8 @@ namespace V6ControlManager.FormManager.NhanSu.View
 
                         //var _data = row.ToDataDictionary();
                         var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, null);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.UpdateSuccessEvent += f_UpdateSuccess;
                         f.CallReloadEvent += FCallReloadEvent;
                         f.ShowDialog(this);

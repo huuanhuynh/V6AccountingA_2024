@@ -131,6 +131,8 @@ namespace V6ControlManager.FormManager.NhanSu
                         //    }
 
                         var f = new FormAddEdit(CurrentTable, V6Mode.Add, null, data);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
 
@@ -148,6 +150,23 @@ namespace V6ControlManager.FormManager.NhanSu
             catch (Exception ex)
             {
                 V6Message.Show(ex.Message);
+            }
+        }
+
+        public void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, CurrentTable.ToString());
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + _tableName, ex);
             }
         }
 
@@ -180,6 +199,8 @@ namespace V6ControlManager.FormManager.NhanSu
                             }
 
                         var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, data);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
 
@@ -243,6 +264,8 @@ namespace V6ControlManager.FormManager.NhanSu
                                 var __data = new SortedDictionary<string, object>();
                                 __data.AddRange(selected_item_data);
                                 var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, __data);
+                                f.AfterInitControl += f_AfterInitControl;
+                                f.InitFormControl();
                                 f.UpdateSuccessEvent += f_UpdateSuccess;
                                 f.CallReloadEvent += FCallReloadEvent;
                                 f.ShowDialog(this);
@@ -470,6 +493,8 @@ namespace V6ControlManager.FormManager.NhanSu
                                 }
 
                             var f = new FormAddEdit(CurrentTable, V6Mode.View, keys, data);
+                            f.AfterInitControl += f_AfterInitControl;
+                            f.InitFormControl();
                             f.ShowDialog(this);
                         }
                         else

@@ -850,6 +850,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
 
                     var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, keys, data0);
+                    f2.AfterInitControl += f_AfterInitControl;
+                    f2.InitFormControl();
                     f2.InsertSuccessEvent += (data) =>
                     {
                         //cap nhap thong tin
@@ -866,6 +868,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             SetStatus2Text();
         }
 
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, "Albc");
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + _sttRec, ex);
+            }
+        }
+
         private void btnSuaTTMauBC_Click(object sender, EventArgs e)
         {
             try
@@ -880,6 +899,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {"REPORT", row0["REPORT"].ToString().Trim()}
                     };
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
+                f2.AfterInitControl += f_AfterInitControl;
+                f2.InitFormControl();
                 f2.UpdateSuccessEvent += (data) =>
                 {
                     //cap nhap thong tin

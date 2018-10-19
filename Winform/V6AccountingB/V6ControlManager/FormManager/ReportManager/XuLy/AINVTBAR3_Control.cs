@@ -660,13 +660,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         data0["FirstAdd"] = "1";
                     }
 
-                    var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, keys, data0);
-                    f2.InsertSuccessEvent += (data) =>
+                    var f = new FormAddEdit(V6TableName.Albc, V6Mode.Add, keys, data0);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
+                    f.InsertSuccessEvent += (data) =>
                     {
                         //cap nhap thong tin
                         LoadComboboxSource();
                     };
-                    f2.ShowDialog(this);
+                    f.ShowDialog(this);
                     SetStatus2Text();
                 }
             }
@@ -675,6 +677,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorException(GetType() + ".ThemMauBC_Click: ", ex);
             }
             SetStatus2Text();
+        }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, "Albc");
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + _sttRec, ex);
+            }
         }
 
         private void btnSuaTTMauBC_Click(object sender, EventArgs e)
@@ -690,13 +709,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {"LAN", row0["LAN"].ToString().Trim()},
                         {"REPORT", row0["REPORT"].ToString().Trim()}
                     };
-                var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
-                f2.UpdateSuccessEvent += (data) =>
+                var f = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
+                f.AfterInitControl += f_AfterInitControl;
+                f.InitFormControl();
+                f.UpdateSuccessEvent += (data) =>
                 {
                     //cap nhap thong tin
                     LoadComboboxSource();
                 };
-                f2.ShowDialog(this);
+                f.ShowDialog(this);
                 SetStatus2Text();
             }
             catch (Exception ex)

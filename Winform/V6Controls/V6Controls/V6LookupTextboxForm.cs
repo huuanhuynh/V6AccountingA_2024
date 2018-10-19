@@ -612,7 +612,8 @@ namespace V6Controls
                                 {"UID", uid}
                             };
                             var f = new FormAddEdit(LookupInfo.TABLE_NAME, V6Mode.Edit, keys, null);
-
+                            f.AfterInitControl += f_AfterInitControl;
+                            f.InitFormControl();
                             f.ParentData = _senderParentData;
                             f.UpdateSuccessEvent += a_UpdateSuccessEvent;
                             f.ShowDialog(this);
@@ -636,7 +637,8 @@ namespace V6Controls
                         DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                         var data = row != null ? row.ToDataDictionary() : null;
                         var f = new FormAddEdit(LookupInfo.TABLE_NAME, V6Mode.Add, null, data);
-                        
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.ParentData = _senderParentData;
                         if(data == null) f.SetParentData();
                         f.InsertSuccessEvent += a_InsertSuccessEvent;
@@ -656,6 +658,23 @@ namespace V6Controls
             }
             dataGridView1_KeyDown(dataGridView1, new KeyEventArgs(keyData));
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, LookupInfo.TABLE_NAME);
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                V6ControlFormHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + LookupInfo.TABLE_NAME, ex);
+            }
         }
 
         void a_InsertSuccessEvent(SortedDictionary<string, object> dataDic)

@@ -12,12 +12,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
     {
         public AddEditControlVirtual FormControl;
         private readonly V6TableName _tableName = V6TableName.Notable;
+        private V6Mode _mode;
+        private SortedDictionary<string, object> _keys;
+        private SortedDictionary<string, object> _data;
         private readonly string _tableNameString;
         //private string _tableView;//use _aldmConfig;
         
         public event HandleResultData InsertSuccessEvent;
         public event HandleResultData UpdateSuccessEvent;
         public event EventHandler CallReloadEvent;
+        public event EventHandler AfterInitControl;
+        protected virtual void OnAfterInitControl()
+        {
+            var handler = AfterInitControl;
+            if (handler != null) handler(FormControl, EventArgs.Empty);
+        }
 
         /// <summary>
         /// No_use
@@ -48,34 +57,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             _tableName = tableName;
             _tableNameString = tableName.ToString();
+            _mode = mode;
+            _keys = keys;
+            _data = data;
+
             InitializeComponent();
             
-            FormControl = AddEditManager.Init_Control(tableName, tableName.ToString());
-            if (FormControl is NoRightAddEdit)
-            {
-                string keys_string = "";
-                if (keys != null)
-                {
-                    foreach (KeyValuePair<string, object> item in keys)
-                    {
-                        keys_string += " " + item.Value;
-                    }
-                }
-                ((NoRightAddEdit) FormControl).NoRightInfo = keys_string;
-            }
-            _tableName = tableName;
-            FormControl.MyInit(tableName, mode, keys, data);
-
-            panel1.Controls.Add(FormControl);
-            //panel1.SendToBack();
-
-            if (FormControl == null || FormControl is NoRightAddEdit)
-            {
-                btnNhan.Enabled = false;
-                btnInfos.Visible = false;
-            }
-
-            MyInit();
+            //InitFormControl();
         }
 
         /// <summary>
@@ -91,23 +79,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             _tableNameString = tableName;
             _tableName = V6TableHelper.ToV6TableName(_tableNameString);
+            _mode = mode;
+            _keys = keys;
+            _data = data;
+
             InitializeComponent();
 
-            FormControl = AddEditManager.Init_Control(_tableName, _tableNameString);
-            //_tableName = tableName;
-
-            FormControl.MyInit(_tableName, mode, keys, data);
-            
-            panel1.Controls.Add(FormControl);
-            //panel1.SendToBack();
-
-            if (FormControl == null || FormControl is NoRightAddEdit)
-            {
-                btnNhan.Enabled = false;
-                btnInfos.Visible = false;
-            }
-
-            MyInit();
+            //InitFormControl();
         }
 
         public IDictionary<string, object> ParentData
@@ -131,6 +109,46 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void FormAdd_Edit_Load(object sender, EventArgs e)
         {
             MyInit2();
+        }
+
+        /// <summary>
+        /// Hàm này cần được gọi sau khi khởi tạo new()
+        /// </summary>
+        public void InitFormControl()
+        {
+            try
+            {
+                FormControl = AddEditManager.Init_Control(_tableName, _tableNameString);
+                if (FormControl is NoRightAddEdit)
+                {
+                    string keys_string = "";
+                    if (_keys != null)
+                    {
+                        foreach (KeyValuePair<string, object> item in _keys)
+                        {
+                            keys_string += " " + item.Value;
+                        }
+                    }
+                    ((NoRightAddEdit)FormControl).NoRightInfo = keys_string;
+                }
+
+                OnAfterInitControl();
+                FormControl.MyInit(_tableName, _mode, _keys, _data);
+
+                panel1.Controls.Add(FormControl);
+
+                if (FormControl == null || FormControl is NoRightAddEdit)
+                {
+                    btnNhan.Enabled = false;
+                    btnInfos.Visible = false;
+                }
+
+                MyInit();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".InitFormControl", ex);
+            }
         }
 
         private void MyInit()
@@ -300,6 +318,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FormControl, this, _tableName.ToString());
             }
         }
-
+        
     }
 }

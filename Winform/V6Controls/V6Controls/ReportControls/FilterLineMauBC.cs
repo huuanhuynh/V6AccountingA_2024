@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Reflection;
+using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
@@ -206,6 +207,7 @@ namespace V6ReportControls
 
                         var _data = row0.ToDataDictionary();
                         var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
+                        f.AfterInitControl += f_AfterInitControl;
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
                     }
@@ -220,6 +222,23 @@ namespace V6ReportControls
             catch (Exception ex)
             {
                 V6Message.Show(ex.Message);
+            }
+        }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, CurrentTable.ToString());
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                V6ControlFormHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + ma_ct, ex);
             }
         }
 
