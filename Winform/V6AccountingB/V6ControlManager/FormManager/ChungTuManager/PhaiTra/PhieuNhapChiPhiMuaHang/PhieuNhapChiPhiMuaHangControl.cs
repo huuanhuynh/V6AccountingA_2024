@@ -620,6 +620,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                             {
                                 _t_thue_nt22.ReadOnlyTag();
                             }
+
+                            _t_thue_nt22.V6LostFocus += delegate
+                            {
+                                Tinh_TienThue_TheoTienThueNt(_t_thue_nt22.Value, txtTyGia.Value, _t_thue22, M_ROUND);
+                            }; 
                         }
                         break;
                 }

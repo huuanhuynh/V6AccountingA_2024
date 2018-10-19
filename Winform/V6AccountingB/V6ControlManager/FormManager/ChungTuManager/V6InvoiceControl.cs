@@ -46,12 +46,27 @@ namespace V6ControlManager.FormManager.ChungTuManager
             MaCt = maCt;
             InitializeComponent();
         }
-        
+
         private void MyInit0()
         {
-            var lbl = new Label();
-            lbl.Text = MaCt;
-            Controls.Add(lbl);
+            try
+            {
+                M_ROUND_NUM = V6Setting.RoundNum;
+                M_ROUND = V6Setting.RoundTien;
+                M_ROUND_NT = V6Setting.RoundTienNt;
+                M_ROUND_GIA = V6Setting.RoundGia;
+                M_ROUND_GIA_NT = V6Setting.RoundGiaNt;
+                M_SOA_HT_KM_CK = V6Options.GetValue("M_SOA_HT_KM_CK");
+                M_SOA_MULTI_VAT = V6Options.GetValue("M_SOA_MULTI_VAT");
+                M_CAL_SL_QD_ALL = V6Options.GetValue("M_CAL_SL_QD_ALL");
+                var lbl = new Label();
+                lbl.Text = MaCt;
+                Controls.Add(lbl);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit0 " + _sttRec, ex);
+            }
         }
 
         protected void LoadAdvanceControls(string ma_ct)
@@ -141,14 +156,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
         protected bool co_chon_don_hang;
         public string MA_NT { get { return _maNt; } }
         
-        protected int M_ROUND_NUM = V6Setting.RoundNum;
-        protected int M_ROUND = V6Setting.RoundTien;
-        protected int M_ROUND_NT = V6Setting.RoundTienNt;
-        protected int M_ROUND_GIA = V6Setting.RoundGia;
-        protected int M_ROUND_GIA_NT = V6Setting.RoundGiaNt;
-        public string M_SOA_HT_KM_CK = V6Options.GetValue("M_SOA_HT_KM_CK");
-        public string M_SOA_MULTI_VAT = V6Options.GetValue("M_SOA_MULTI_VAT");
-        public string M_CAL_SL_QD_ALL = V6Options.GetValue("M_CAL_SL_QD_ALL");
+        protected int M_ROUND_NUM;
+        protected int M_ROUND;
+        protected int M_ROUND_NT;
+        protected int M_ROUND_GIA;
+        protected int M_ROUND_GIA_NT;
+        public string M_SOA_HT_KM_CK;
+        public string M_SOA_MULTI_VAT;
+        public string M_CAL_SL_QD_ALL;
 
         /// <summary>
         /// List thứ tự field chi tiết.

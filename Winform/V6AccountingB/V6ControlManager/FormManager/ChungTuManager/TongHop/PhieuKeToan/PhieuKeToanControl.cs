@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -364,14 +365,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                         _t_thue22 = control as V6NumberTextBox;
                         if (_t_thue22 != null)
                         {
-
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
+                            {
+                                _t_thue22.InvisibleTag();
+                            }
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            {
+                                _t_thue22.ReadOnlyTag();
+                            }
                         }
                         break;
                     case "T_THUE_NT":
                         _t_thue_nt22 = control as V6NumberTextBox;
                         if (_t_thue_nt22 != null)
                         {
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
+                            {
+                                _t_thue_nt22.InvisibleTag();
+                            }
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            {
+                                _t_thue_nt22.ReadOnlyTag();
+                            }
 
+                            _t_thue_nt22.V6LostFocus += delegate
+                            {
+                                Tinh_TienThue_TheoTienThueNt(_t_thue_nt22.Value, txtTyGia.Value, _t_thue22, M_ROUND);
+                            };  
                         }
                         break;
                 }
@@ -408,7 +428,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         {
             try
             {
-                _t_tien22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value*txtTyGia.Value, M_ROUND);
+                _t_tien22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value * txtTyGia.Value, M_ROUND);
                 _t_thue_nt22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value * _thue_suat22.Value / 100, M_ROUND_NT);
                 _t_thue22.Value = V6BusinessHelper.Vround(_t_thue_nt22.Value * txtTyGia.Value, M_ROUND);
                 if (_maNt == _mMaNt0)

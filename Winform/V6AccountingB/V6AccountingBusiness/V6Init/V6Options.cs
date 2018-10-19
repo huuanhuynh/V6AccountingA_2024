@@ -20,24 +20,24 @@ namespace V6Init
 
                 if (selectResult.Data != null)
                 {
-                    value = new SortedDictionary<string, string>();
-                    type = new SortedDictionary<string, string>();
+                    _values = new SortedDictionary<string, string>();
+                    _types = new SortedDictionary<string, string>();
                     foreach (DataRow row in selectResult.Data.Rows)
                     {
-                        value[row["name"].ToString().Trim().ToUpper()] = row["val"].ToString().Trim();
-                        type[row["name"].ToString().Trim().ToUpper()] = row["type"].ToString().Trim();
+                        _values[row["name"].ToString().Trim().ToUpper()] = row["val"].ToString().Trim();
+                        _types[row["name"].ToString().Trim().ToUpper()] = row["type"].ToString().Trim();
                     }
                 }
             }
             catch
             {
-                value = null;
+                _values = null;
             }
 
         }
 
-        private static SortedDictionary<string, string> value;
-        private static SortedDictionary<string, string> type;
+        private static SortedDictionary<string, string> _values;
+        private static SortedDictionary<string, string> _types;
         public static bool Test = true;
 
         
@@ -49,9 +49,9 @@ namespace V6Init
         {
             get
             {
-                if (value == null || value.Count == 0)
+                if (_values == null || _values.Count == 0)
                     LoadValue();
-                return value;
+                return _values;
             }
         }
 
@@ -88,9 +88,9 @@ namespace V6Init
         {
             get
             {
-                if (type == null || type.Count == 0)
+                if (_types == null || _types.Count == 0)
                     LoadValue();
-                return type;
+                return _types;
             }
         }
 

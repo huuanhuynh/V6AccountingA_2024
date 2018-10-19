@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -468,7 +469,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     _t_thue22 = control as V6NumberTextBox;
                     if (_t_thue22 != null)
                     {
-
+                        if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
+                        {
+                            _t_thue22.InvisibleTag();
+                        }
+                        if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                        {
+                            _t_thue22.ReadOnlyTag();
+                        }
                     }
                 }
                 else if (NAME == "T_THUE_NT")
@@ -476,10 +484,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     _t_thue_nt22 = control as V6NumberTextBox;
                     if (_t_thue_nt22 != null)
                     {
+                        if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
+                        {
+                            _t_thue_nt22.InvisibleTag();
+                        }
+                        if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                        {
+                            _t_thue_nt22.ReadOnlyTag();
+                        }
+
                         _t_thue_nt22.V6LostFocus += delegate
                         {
-                            TinhTienThue22();
-                        };
+                            Tinh_TienThue_TheoTienThueNt(_t_thue_nt22.Value, txtTyGia.Value, _t_thue22, M_ROUND);
+                        };  
+
+                        //_t_thue_nt22.V6LostFocus += delegate
+                        //{
+                        //    TinhTienThue22();
+                        //};
                     }
                 }
             }
@@ -535,30 +557,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             }
         }
 
-        /// <summary>
-        /// Tính toán tiền thuế chi tiết bảng AD2
-        /// </summary>
-        private void TinhTienThue22()
-        {
-            try
-            {
-                _t_thue22.Value = V6BusinessHelper.Vround(_t_thue_nt22.Value * txtTyGia.Value, M_ROUND);
-                if (_maNt == _mMaNt0)
-                {
-                    _t_thue22.Enabled = false;
+        ///// <summary>
+        ///// Tính toán tiền thuế chi tiết bảng AD2
+        ///// </summary>
+        //private void TinhTienThue22()
+        //{
+        //    try
+        //    {
+        //        _t_thue22.Value = V6BusinessHelper.Vround(_t_thue_nt22.Value * txtTyGia.Value, M_ROUND);
+        //        if (_maNt == _mMaNt0)
+        //        {
+        //            _t_thue22.Enabled = false;
 
-                    _t_thue22.Value = _t_thue_nt22.Value;
-                }
-                else
-                {
-                    _t_thue22.Enabled = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
+        //            _t_thue22.Value = _t_thue_nt22.Value;
+        //        }
+        //        else
+        //        {
+        //            _t_thue22.Enabled = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+        //    }
+        //}
 
         /// <summary>
         /// Tính toán tiền và tiền thuế chi tiết bảng AD2
