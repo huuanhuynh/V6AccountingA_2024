@@ -91,7 +91,7 @@ namespace V6Controls
                 _helpProvider1.SetHelpString(dataGridView1, ChuyenMaTiengViet.ToUnSign("Chọn một dòng và nhấn enter để nhận giá trị!"));
                 _helpProvider1.SetHelpString(btnTatCa, ChuyenMaTiengViet.ToUnSign("Hiện tất cả."));
                 //helpProvider1.SetHelpString(, "Hien tat ca danh muc.");
-                toolStripStatusLabel1.Text = "F1-Hướng dẫn, F3-Sửa, F4-Thêm, Enter-Chọn, ESC-Quay ra";
+                toolStripStatusLabel1.Text = V6Setting.IsVietnamese ? "F1-Hướng dẫn, F2-Xem, F3-Sửa, F4-Thêm, Enter-Chọn, ESC-Quay ra" : "F1-Help, F2-View, F3-Edit, F4-Add, Enter-Choose, ESC-Back";
                 toolStripStatusLabel2.Text = _lookupMode == LookupMode.Multi || _lookupMode == LookupMode.Data ? ", Space-Chọn/Bỏ chọn, (Ctrl+A)-Chọn tất cả, (Ctrl+U)-Bỏ chọn tất cả" : "";
             }
             catch (Exception ex)
@@ -354,7 +354,47 @@ namespace V6Controls
                     }
                 }
 
-                if (keyData == Keys.F3) //Sua
+                if (keyData == Keys.F2)
+                {
+                    //if (!LstConfig.F2)
+                    //{
+                    //    return false;
+                    //}
+
+                    if (LstConfig.TableName.ToUpper() == "ALTK" || LstConfig.TableName.ToUpper() == "ALTK0")
+                        return true;
+
+                    if (V6Login.UserRight.AllowView("", LstConfig.TableName.ToUpper() + "6"))
+                    {
+                        if (dataGridView1.SelectedCells.Count > 0)
+                        {
+                            var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
+                            string selectedValue = currentRow
+                                .Cells[LstConfig.FieldName].Value.ToString().Trim();
+                            var g = currentRow.Cells["UID"].Value.ToString();
+                            Guid uid = new Guid(g);
+                            var keys = new SortedDictionary<string, object>
+                            {
+                                {LstConfig.FieldName, selectedValue},
+                                {"UID", uid}
+                            };
+                            var f = LstConfig.V6TableName == V6TableName.Notable
+                                ? new FormAddEdit(LstConfig.TableName, V6Mode.View, keys, null)
+                                : new FormAddEdit(LstConfig.V6TableName, V6Mode.View, keys, null);
+                            f.AfterInitControl += f_AfterInitControl;
+                            f.InitFormControl();
+                            f.ParentData = _senderTextBox.ParentData;
+                            //f.UpdateSuccessEvent += f_UpdateSuccessEvent;
+                            f.ShowDialog(this);
+                        }
+                    }
+                    else
+                    {
+                        V6ControlFormHelper.NoRightWarning();
+                    }
+                    return true;
+                }
+                else if (keyData == Keys.F3) //Sua
                 {
                     if (!LstConfig.F3)
                     {

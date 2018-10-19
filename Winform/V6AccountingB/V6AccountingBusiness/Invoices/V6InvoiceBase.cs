@@ -176,7 +176,7 @@ namespace V6AccountingBusiness.Invoices
 
         private DataRow GetAlct()
         {
-            var data = SqlConnect.Select("Alct", "*", "ma_ct='" + Mact + "'").Data;
+            var data = SqlConnect.Select("Alct", "*", "ma_ct=@mact", "", "", new SqlParameter("@mact", Mact)).Data;
             if (data != null && data.Rows.Count == 1) return data.Rows[0];
             return null;
         }

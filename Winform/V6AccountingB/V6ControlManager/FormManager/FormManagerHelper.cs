@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -291,8 +292,15 @@ namespace V6ControlManager.FormManager
 
                         lButton.LookupButtonF3Event += (sender, e) =>
                         {
+                            string title = "Chứng từ " + e.MaCt;
+                            var alct = V6BusinessHelper.Select("Alct", "*", "ma_ct=@mact", "", "", new SqlParameter("@mact", e.MaCt)).Data;
+                            if (alct != null && alct.Rows.Count == 1)
+                            {
+                                title = alct.Rows[0][V6Setting.IsVietnamese?"Ten_ct":"Ten_ct2"].ToString();
+                            }
                             var hoaDonForm = ChungTuF3.GetChungTuControl(e.MaCt, "Name", e.Stt_rec);
-                            hoaDonForm.ShowToForm(lButton, "Title", true, true, true);
+                            
+                            hoaDonForm.ShowToForm(lButton, title, true, true, true);
                         };
                     }
 
