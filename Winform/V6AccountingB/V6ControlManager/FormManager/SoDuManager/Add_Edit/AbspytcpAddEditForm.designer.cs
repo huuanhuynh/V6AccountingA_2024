@@ -78,11 +78,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.TxtMa_bpht);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(5, 7);
+            this.groupBox1.Location = new System.Drawing.Point(3, 7);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
-            this.groupBox1.Size = new System.Drawing.Size(878, 167);
+            this.groupBox1.Size = new System.Drawing.Size(881, 167);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -96,7 +96,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6LabelTextBox2.Location = new System.Drawing.Point(321, 79);
             this.v6LabelTextBox2.Name = "v6LabelTextBox2";
             this.v6LabelTextBox2.ReadOnly = true;
-            this.v6LabelTextBox2.Size = new System.Drawing.Size(397, 16);
+            this.v6LabelTextBox2.Size = new System.Drawing.Size(400, 16);
             this.v6LabelTextBox2.TabIndex = 117;
             this.v6LabelTextBox2.TabStop = false;
             this.v6LabelTextBox2.Tag = "readonly";
@@ -141,7 +141,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6LabelTextBox1.Location = new System.Drawing.Point(321, 50);
             this.v6LabelTextBox1.Name = "v6LabelTextBox1";
             this.v6LabelTextBox1.ReadOnly = true;
-            this.v6LabelTextBox1.Size = new System.Drawing.Size(397, 16);
+            this.v6LabelTextBox1.Size = new System.Drawing.Size(400, 16);
             this.v6LabelTextBox1.TabIndex = 114;
             this.v6LabelTextBox1.TabStop = false;
             this.v6LabelTextBox1.Tag = "readonly";
@@ -156,7 +156,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtten_bpht.Location = new System.Drawing.Point(321, 21);
             this.txtten_bpht.Name = "txtten_bpht";
             this.txtten_bpht.ReadOnly = true;
-            this.txtten_bpht.Size = new System.Drawing.Size(397, 16);
+            this.txtten_bpht.Size = new System.Drawing.Size(400, 16);
             this.txtten_bpht.TabIndex = 113;
             this.txtten_bpht.TabStop = false;
             this.txtten_bpht.Tag = "readonly";
@@ -167,7 +167,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label5.AccessibleName = "";
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(743, 44);
+            this.label5.Location = new System.Drawing.Point(746, 44);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 17);
             this.label5.TabIndex = 24;
@@ -186,11 +186,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.Txtthang.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.Txtthang.HoverColor = System.Drawing.Color.Yellow;
             this.Txtthang.LeaveColor = System.Drawing.Color.White;
-            this.Txtthang.Location = new System.Drawing.Point(793, 41);
+            this.Txtthang.Location = new System.Drawing.Point(796, 41);
             this.Txtthang.Name = "Txtthang";
             this.Txtthang.ReadOnly = true;
             this.Txtthang.Size = new System.Drawing.Size(72, 23);
             this.Txtthang.TabIndex = 23;
+            this.Txtthang.TabStop = false;
             this.Txtthang.Text = "0";
             this.Txtthang.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Txtthang.Value = new decimal(new int[] {
@@ -205,7 +206,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label8.AccessibleName = "";
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(743, 18);
+            this.label8.Location = new System.Drawing.Point(746, 18);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 17);
             this.label8.TabIndex = 22;
@@ -247,11 +248,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtNam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtNam.HoverColor = System.Drawing.Color.Yellow;
             this.TxtNam.LeaveColor = System.Drawing.Color.White;
-            this.TxtNam.Location = new System.Drawing.Point(793, 15);
+            this.TxtNam.Location = new System.Drawing.Point(796, 15);
             this.TxtNam.Name = "TxtNam";
             this.TxtNam.ReadOnly = true;
             this.TxtNam.Size = new System.Drawing.Size(72, 23);
             this.TxtNam.TabIndex = 21;
+            this.TxtNam.TabStop = false;
             this.TxtNam.Text = "0";
             this.TxtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TxtNam.Value = new decimal(new int[] {
@@ -374,11 +376,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6TabControl1.Controls.Add(this.tabPage3);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
-            this.v6TabControl1.Location = new System.Drawing.Point(5, 186);
+            this.v6TabControl1.Location = new System.Drawing.Point(2, 186);
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(5);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(878, 349);
+            this.v6TabControl1.Size = new System.Drawing.Size(882, 351);
             this.v6TabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -389,7 +391,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage1.Size = new System.Drawing.Size(870, 317);
+            this.tabPage1.Size = new System.Drawing.Size(874, 319);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 

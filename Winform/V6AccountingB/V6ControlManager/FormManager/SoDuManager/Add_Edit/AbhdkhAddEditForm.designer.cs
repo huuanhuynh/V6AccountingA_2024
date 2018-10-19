@@ -114,7 +114,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtDu_co_nt00.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtDu_co_nt00.HoverColor = System.Drawing.Color.Yellow;
             this.TxtDu_co_nt00.LeaveColor = System.Drawing.Color.White;
-            this.TxtDu_co_nt00.Location = new System.Drawing.Point(483, 163);
+            this.TxtDu_co_nt00.Location = new System.Drawing.Point(483, 161);
             this.TxtDu_co_nt00.Name = "TxtDu_co_nt00";
             this.TxtDu_co_nt00.Size = new System.Drawing.Size(150, 23);
             this.TxtDu_co_nt00.TabIndex = 7;
@@ -137,7 +137,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtDu_co00.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtDu_co00.HoverColor = System.Drawing.Color.Yellow;
             this.TxtDu_co00.LeaveColor = System.Drawing.Color.White;
-            this.TxtDu_co00.Location = new System.Drawing.Point(483, 134);
+            this.TxtDu_co00.Location = new System.Drawing.Point(483, 132);
             this.TxtDu_co00.Name = "TxtDu_co00";
             this.TxtDu_co00.Size = new System.Drawing.Size(150, 23);
             this.TxtDu_co00.TabIndex = 5;
@@ -160,7 +160,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtDu_no_nt00.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtDu_no_nt00.HoverColor = System.Drawing.Color.Yellow;
             this.TxtDu_no_nt00.LeaveColor = System.Drawing.Color.White;
-            this.TxtDu_no_nt00.Location = new System.Drawing.Point(120, 163);
+            this.TxtDu_no_nt00.Location = new System.Drawing.Point(120, 161);
             this.TxtDu_no_nt00.Name = "TxtDu_no_nt00";
             this.TxtDu_no_nt00.Size = new System.Drawing.Size(150, 23);
             this.TxtDu_no_nt00.TabIndex = 6;
@@ -183,7 +183,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtDu_no00.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtDu_no00.HoverColor = System.Drawing.Color.Yellow;
             this.TxtDu_no00.LeaveColor = System.Drawing.Color.White;
-            this.TxtDu_no00.Location = new System.Drawing.Point(120, 134);
+            this.TxtDu_no00.Location = new System.Drawing.Point(120, 132);
             this.TxtDu_no00.Name = "TxtDu_no00";
             this.TxtDu_no00.Size = new System.Drawing.Size(150, 23);
             this.TxtDu_no00.TabIndex = 4;
@@ -221,7 +221,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtma_hd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtma_hd.HoverColor = System.Drawing.Color.Yellow;
             this.txtma_hd.LeaveColor = System.Drawing.Color.White;
-            this.txtma_hd.Location = new System.Drawing.Point(120, 47);
+            this.txtma_hd.Location = new System.Drawing.Point(120, 45);
             this.txtma_hd.Name = "txtma_hd";
             this.txtma_hd.Size = new System.Drawing.Size(150, 23);
             this.txtma_hd.TabIndex = 1;
@@ -244,7 +244,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtten_kh.AccessibleName = "ten_kh";
             this.txtten_kh.BackColor = System.Drawing.SystemColors.Control;
             this.txtten_kh.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtten_kh.Location = new System.Drawing.Point(278, 80);
+            this.txtten_kh.Location = new System.Drawing.Point(278, 78);
             this.txtten_kh.Name = "txtten_kh";
             this.txtten_kh.ReadOnly = true;
             this.txtten_kh.Size = new System.Drawing.Size(354, 16);
@@ -280,6 +280,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtNam.ReadOnly = true;
             this.TxtNam.Size = new System.Drawing.Size(150, 23);
             this.TxtNam.TabIndex = 15;
+            this.TxtNam.TabStop = false;
             this.TxtNam.Text = "0";
             this.TxtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TxtNam.Value = new decimal(new int[] {
@@ -299,7 +300,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtTk.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtTk.HoverColor = System.Drawing.Color.Yellow;
             this.TxtTk.LeaveColor = System.Drawing.Color.White;
-            this.TxtTk.Location = new System.Drawing.Point(120, 105);
+            this.TxtTk.Location = new System.Drawing.Point(120, 103);
             this.TxtTk.Name = "TxtTk";
             this.TxtTk.Size = new System.Drawing.Size(150, 23);
             this.TxtTk.TabIndex = 3;
@@ -373,7 +374,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtMa_KH.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtMa_KH.HoverColor = System.Drawing.Color.Yellow;
             this.TxtMa_KH.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_KH.Location = new System.Drawing.Point(120, 76);
+            this.TxtMa_KH.Location = new System.Drawing.Point(120, 74);
             this.TxtMa_KH.Name = "TxtMa_KH";
             this.TxtMa_KH.Size = new System.Drawing.Size(150, 23);
             this.TxtMa_KH.TabIndex = 2;
@@ -402,7 +403,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtMa_dvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtMa_dvcs.HoverColor = System.Drawing.Color.Yellow;
             this.TxtMa_dvcs.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_dvcs.Location = new System.Drawing.Point(120, 18);
+            this.TxtMa_dvcs.Location = new System.Drawing.Point(120, 16);
             this.TxtMa_dvcs.Name = "TxtMa_dvcs";
             this.TxtMa_dvcs.Size = new System.Drawing.Size(150, 23);
             this.TxtMa_dvcs.TabIndex = 0;
@@ -466,7 +467,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage2.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage2.Size = new System.Drawing.Size(881, 0);
+            this.tabPage2.Size = new System.Drawing.Size(647, 0);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
             // 
@@ -582,6 +583,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6NumberTextBox3.ReadOnly = true;
             this.v6NumberTextBox3.Size = new System.Drawing.Size(118, 23);
             this.v6NumberTextBox3.TabIndex = 107;
+            this.v6NumberTextBox3.TabStop = false;
             this.v6NumberTextBox3.Text = "0,000";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox3.Value = new decimal(new int[] {
@@ -609,6 +611,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6NumberTextBox2.ReadOnly = true;
             this.v6NumberTextBox2.Size = new System.Drawing.Size(118, 23);
             this.v6NumberTextBox2.TabIndex = 105;
+            this.v6NumberTextBox2.TabStop = false;
             this.v6NumberTextBox2.Text = "0,000";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox2.Value = new decimal(new int[] {
@@ -650,7 +653,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Size = new System.Drawing.Size(881, 0);
+            this.tabPage3.Size = new System.Drawing.Size(647, 0);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 

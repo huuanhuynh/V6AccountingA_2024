@@ -85,11 +85,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6TabControl1.Controls.Add(this.tabPage3);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
-            this.v6TabControl1.Location = new System.Drawing.Point(5, 206);
+            this.v6TabControl1.Location = new System.Drawing.Point(3, 206);
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(5);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(878, 329);
+            this.v6TabControl1.Size = new System.Drawing.Size(882, 331);
             this.v6TabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -106,7 +106,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage1.Size = new System.Drawing.Size(870, 297);
+            this.tabPage1.Size = new System.Drawing.Size(874, 299);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
@@ -122,7 +122,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtTyGia.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTyGia.HoverColor = System.Drawing.Color.Yellow;
             this.txtTyGia.LeaveColor = System.Drawing.Color.White;
-            this.txtTyGia.Location = new System.Drawing.Point(120, 78);
+            this.txtTyGia.Location = new System.Drawing.Point(124, 78);
             this.txtTyGia.Name = "txtTyGia";
             this.txtTyGia.Size = new System.Drawing.Size(150, 23);
             this.txtTyGia.TabIndex = 5;
@@ -149,7 +149,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtGhiChu.Location = new System.Drawing.Point(120, 239);
             this.txtGhiChu.Margin = new System.Windows.Forms.Padding(4);
             this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(677, 23);
+            this.txtGhiChu.Size = new System.Drawing.Size(681, 23);
             this.txtGhiChu.TabIndex = 7;
             // 
             // label9
@@ -341,6 +341,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6NumberTextBox3.ReadOnly = true;
             this.v6NumberTextBox3.Size = new System.Drawing.Size(102, 23);
             this.v6NumberTextBox3.TabIndex = 107;
+            this.v6NumberTextBox3.TabStop = false;
             this.v6NumberTextBox3.Text = "0,000";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox3.Value = new decimal(new int[] {
@@ -368,6 +369,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6NumberTextBox2.ReadOnly = true;
             this.v6NumberTextBox2.Size = new System.Drawing.Size(102, 23);
             this.v6NumberTextBox2.TabIndex = 105;
+            this.v6NumberTextBox2.TabStop = false;
             this.v6NumberTextBox2.Text = "0,000";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox2.Value = new decimal(new int[] {
@@ -446,9 +448,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.TxtDu_co_nt00);
             this.groupBox1.Controls.Add(this.TxtDu_co00);
             this.groupBox1.Controls.Add(this.TxtDu_no_nt00);
@@ -467,11 +466,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.TxtMa_dvcs);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(5, 3);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
-            this.groupBox1.Size = new System.Drawing.Size(874, 191);
+            this.groupBox1.Size = new System.Drawing.Size(881, 191);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -574,7 +573,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.Txtten_tk.BackColor = System.Drawing.SystemColors.Control;
             this.Txtten_tk.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Txtten_tk.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.Txtten_tk.Location = new System.Drawing.Point(277, 78);
+            this.Txtten_tk.Location = new System.Drawing.Point(284, 78);
             this.Txtten_tk.Margin = new System.Windows.Forms.Padding(4);
             this.Txtten_tk.Name = "Txtten_tk";
             this.Txtten_tk.ReadOnly = true;
@@ -590,7 +589,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtTen_td.BackColor = System.Drawing.SystemColors.Control;
             this.txtTen_td.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTen_td.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtTen_td.Location = new System.Drawing.Point(277, 50);
+            this.txtTen_td.Location = new System.Drawing.Point(284, 50);
             this.txtTen_td.Margin = new System.Windows.Forms.Padding(4);
             this.txtTen_td.Name = "txtTen_td";
             this.txtTen_td.ReadOnly = true;
@@ -627,6 +626,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtNam.ReadOnly = true;
             this.TxtNam.Size = new System.Drawing.Size(150, 23);
             this.TxtNam.TabIndex = 11;
+            this.TxtNam.TabStop = false;
             this.TxtNam.Text = "0";
             this.TxtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TxtNam.Value = new decimal(new int[] {

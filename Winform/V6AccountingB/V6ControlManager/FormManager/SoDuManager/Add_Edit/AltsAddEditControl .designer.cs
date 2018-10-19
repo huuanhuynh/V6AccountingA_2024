@@ -31,15 +31,15 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPageThongTinChinh = new System.Windows.Forms.TabPage();
             this.txtTien_cl = new V6Controls.NumberTien();
@@ -2251,6 +2251,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // tabChiTiet
             // 
             this.tabChiTiet.AccessibleDescription = "XULYT00007";
+            this.tabChiTiet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabChiTiet.Controls.Add(this.txtTong_kh_ky);
             this.tabChiTiet.Controls.Add(this.txtTong_cl);
             this.tabChiTiet.Controls.Add(this.txttong_da_kh);
@@ -2264,7 +2265,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabChiTiet.Size = new System.Drawing.Size(891, 214);
             this.tabChiTiet.TabIndex = 0;
             this.tabChiTiet.Text = "Chi tiết nguồn vốn";
-            this.tabChiTiet.UseVisualStyleBackColor = true;
             // 
             // txtTong_kh_ky
             // 
@@ -2411,32 +2411,34 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             this.gView1.AllowUserToAddRows = false;
             this.gView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.LightCyan;
-            this.gView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
-            this.gView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.gView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cMA_NV,
             this.UID,
             this.STT_REC,
             this.STT_REC0});
-            this.gView1.Location = new System.Drawing.Point(2, -42);
+            this.gView1.Location = new System.Drawing.Point(2, 53);
             this.gView1.MultiSelect = false;
             this.gView1.Name = "gView1";
             this.gView1.ReadOnly = true;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.LightYellow;
-            this.gView1.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
+            this.gView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gView1.Size = new System.Drawing.Size(887, 224);
+            this.gView1.Size = new System.Drawing.Size(887, 131);
             this.gView1.TabIndex = 1;
             this.gView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             this.gView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.gView2_ColumnAdded);
@@ -2477,6 +2479,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // tabDetailPhuTung
             // 
             this.tabDetailPhuTung.AccessibleDescription = "XULYT00008";
+            this.tabDetailPhuTung.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabDetailPhuTung.Controls.Add(this.gView3);
             this.tabDetailPhuTung.Controls.Add(this.detail3);
             this.tabDetailPhuTung.Location = new System.Drawing.Point(4, 25);
@@ -2485,26 +2488,25 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabDetailPhuTung.Size = new System.Drawing.Size(891, 214);
             this.tabDetailPhuTung.TabIndex = 1;
             this.tabDetailPhuTung.Text = "Phụ tùng kèm theo";
-            this.tabDetailPhuTung.UseVisualStyleBackColor = true;
             // 
             // gView3
             // 
             this.gView3.AllowUserToAddRows = false;
             this.gView3.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.LightCyan;
-            this.gView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.gView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gView3.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.gView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
@@ -2515,10 +2517,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.gView3.MultiSelect = false;
             this.gView3.Name = "gView3";
             this.gView3.ReadOnly = true;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.LightYellow;
-            this.gView3.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.gView3.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.gView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gView3.Size = new System.Drawing.Size(875, 231);
+            this.gView3.Size = new System.Drawing.Size(886, 161);
             this.gView3.TabIndex = 3;
             this.gView3.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.gView3_ColumnAdded);
             // 
@@ -2566,7 +2568,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.detail3.MODE = V6Structs.V6Mode.Init;
             this.detail3.Name = "detail3";
             this.detail3.ShowLblName = false;
-            this.detail3.Size = new System.Drawing.Size(875, 48);
+            this.detail3.Size = new System.Drawing.Size(886, 48);
             this.detail3.Sua_tien = false;
             this.detail3.TabIndex = 2;
             this.detail3.Tag = "cancelall";
@@ -2581,6 +2583,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // tabDetailChiTietChiPhi
             // 
             this.tabDetailChiTietChiPhi.AccessibleDescription = "XULYT00009";
+            this.tabDetailChiTietChiPhi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabDetailChiTietChiPhi.Controls.Add(this.detail4);
             this.tabDetailChiTietChiPhi.Controls.Add(this.gView4);
             this.tabDetailChiTietChiPhi.Location = new System.Drawing.Point(4, 25);
@@ -2589,7 +2592,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabDetailChiTietChiPhi.Size = new System.Drawing.Size(891, 214);
             this.tabDetailChiTietChiPhi.TabIndex = 2;
             this.tabDetailChiTietChiPhi.Text = "Chi tiết chi phí theo bộ phận";
-            this.tabDetailChiTietChiPhi.UseVisualStyleBackColor = true;
             // 
             // detail4
             // 
@@ -2602,7 +2604,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.detail4.MODE = V6Structs.V6Mode.Init;
             this.detail4.Name = "detail4";
             this.detail4.ShowLblName = false;
-            this.detail4.Size = new System.Drawing.Size(875, 48);
+            this.detail4.Size = new System.Drawing.Size(886, 48);
             this.detail4.Sua_tien = false;
             this.detail4.TabIndex = 2;
             this.detail4.Tag = "cancelall";
@@ -2618,20 +2620,20 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             this.gView4.AllowUserToAddRows = false;
             this.gView4.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.LightCyan;
-            this.gView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightCyan;
+            this.gView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.gView4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gView4.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gView4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gView4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.gView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn6,
@@ -2643,10 +2645,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.gView4.MultiSelect = false;
             this.gView4.Name = "gView4";
             this.gView4.ReadOnly = true;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.LightYellow;
-            this.gView4.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightYellow;
+            this.gView4.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.gView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gView4.Size = new System.Drawing.Size(875, 231);
+            this.gView4.Size = new System.Drawing.Size(887, 162);
             this.gView4.TabIndex = 3;
             this.gView4.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.gView4_ColumnAdded);
             // 
@@ -2694,13 +2696,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // tabDetailKhac
             // 
             this.tabDetailKhac.AccessibleDescription = "XULYT00005";
+            this.tabDetailKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabDetailKhac.Location = new System.Drawing.Point(4, 25);
             this.tabDetailKhac.Name = "tabDetailKhac";
             this.tabDetailKhac.Padding = new System.Windows.Forms.Padding(3);
             this.tabDetailKhac.Size = new System.Drawing.Size(891, 214);
             this.tabDetailKhac.TabIndex = 3;
             this.tabDetailKhac.Text = "Khác";
-            this.tabDetailKhac.UseVisualStyleBackColor = true;
             // 
             // AltsAddEditControl
             // 

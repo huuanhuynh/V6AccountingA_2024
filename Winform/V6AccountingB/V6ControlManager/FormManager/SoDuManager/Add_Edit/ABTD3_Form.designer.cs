@@ -85,11 +85,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6TabControl1.Controls.Add(this.tabPage3);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
-            this.v6TabControl1.Location = new System.Drawing.Point(5, 219);
+            this.v6TabControl1.Location = new System.Drawing.Point(3, 219);
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(5);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(894, 316);
+            this.v6TabControl1.Size = new System.Drawing.Size(898, 318);
             this.v6TabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -106,7 +106,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage1.Size = new System.Drawing.Size(886, 284);
+            this.tabPage1.Size = new System.Drawing.Size(890, 286);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
@@ -122,7 +122,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtTyGia.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTyGia.HoverColor = System.Drawing.Color.Yellow;
             this.txtTyGia.LeaveColor = System.Drawing.Color.White;
-            this.txtTyGia.Location = new System.Drawing.Point(166, 78);
+            this.txtTyGia.Location = new System.Drawing.Point(170, 78);
             this.txtTyGia.Name = "txtTyGia";
             this.txtTyGia.Size = new System.Drawing.Size(202, 23);
             this.txtTyGia.TabIndex = 5;
@@ -149,7 +149,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtGhiChu.Location = new System.Drawing.Point(166, 239);
             this.txtGhiChu.Margin = new System.Windows.Forms.Padding(4);
             this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(693, 23);
+            this.txtGhiChu.Size = new System.Drawing.Size(697, 23);
             this.txtGhiChu.TabIndex = 7;
             // 
             // label9
@@ -222,7 +222,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage2.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage2.Size = new System.Drawing.Size(886, 284);
+            this.tabPage2.Size = new System.Drawing.Size(890, 286);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
             // 
@@ -242,7 +242,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6ColorTextBox16.Location = new System.Drawing.Point(252, 448);
             this.v6ColorTextBox16.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox16.Name = "v6ColorTextBox16";
-            this.v6ColorTextBox16.Size = new System.Drawing.Size(424, 23);
+            this.v6ColorTextBox16.Size = new System.Drawing.Size(428, 23);
             this.v6ColorTextBox16.TabIndex = 113;
             // 
             // v6ColorTextBox15
@@ -261,7 +261,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6ColorTextBox15.Location = new System.Drawing.Point(252, 410);
             this.v6ColorTextBox15.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox15.Name = "v6ColorTextBox15";
-            this.v6ColorTextBox15.Size = new System.Drawing.Size(424, 23);
+            this.v6ColorTextBox15.Size = new System.Drawing.Size(428, 23);
             this.v6ColorTextBox15.TabIndex = 112;
             // 
             // v6ColorTextBox14
@@ -280,7 +280,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6ColorTextBox14.Location = new System.Drawing.Point(252, 372);
             this.v6ColorTextBox14.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox14.Name = "v6ColorTextBox14";
-            this.v6ColorTextBox14.Size = new System.Drawing.Size(424, 23);
+            this.v6ColorTextBox14.Size = new System.Drawing.Size(428, 23);
             this.v6ColorTextBox14.TabIndex = 111;
             // 
             // label29
@@ -339,8 +339,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6NumberTextBox3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6NumberTextBox3.Name = "v6NumberTextBox3";
             this.v6NumberTextBox3.ReadOnly = true;
-            this.v6NumberTextBox3.Size = new System.Drawing.Size(118, 23);
+            this.v6NumberTextBox3.Size = new System.Drawing.Size(122, 23);
             this.v6NumberTextBox3.TabIndex = 107;
+            this.v6NumberTextBox3.TabStop = false;
             this.v6NumberTextBox3.Text = "0,000";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox3.Value = new decimal(new int[] {
@@ -366,8 +367,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6NumberTextBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6NumberTextBox2.Name = "v6NumberTextBox2";
             this.v6NumberTextBox2.ReadOnly = true;
-            this.v6NumberTextBox2.Size = new System.Drawing.Size(118, 23);
+            this.v6NumberTextBox2.Size = new System.Drawing.Size(122, 23);
             this.v6NumberTextBox2.TabIndex = 105;
+            this.v6NumberTextBox2.TabStop = false;
             this.v6NumberTextBox2.Text = "0,000";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox2.Value = new decimal(new int[] {
@@ -410,7 +412,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Size = new System.Drawing.Size(886, 284);
+            this.tabPage3.Size = new System.Drawing.Size(890, 286);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
@@ -467,7 +469,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.TxtMa_dvcs);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(5, 3);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -627,6 +629,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtNam.ReadOnly = true;
             this.TxtNam.Size = new System.Drawing.Size(202, 23);
             this.TxtNam.TabIndex = 11;
+            this.TxtNam.TabStop = false;
             this.TxtNam.Text = "0";
             this.TxtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TxtNam.Value = new decimal(new int[] {

@@ -99,11 +99,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtten_vt);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(5, 7);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
-            this.groupBox1.Size = new System.Drawing.Size(677, 143);
+            this.groupBox1.Size = new System.Drawing.Size(682, 151);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -146,6 +146,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.Txtthang.ReadOnly = true;
             this.Txtthang.Size = new System.Drawing.Size(72, 23);
             this.Txtthang.TabIndex = 147;
+            this.Txtthang.TabStop = false;
             this.Txtthang.Text = "0";
             this.Txtthang.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Txtthang.Value = new decimal(new int[] {
@@ -182,6 +183,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtNam.ReadOnly = true;
             this.TxtNam.Size = new System.Drawing.Size(72, 23);
             this.TxtNam.TabIndex = 145;
+            this.TxtNam.TabStop = false;
             this.TxtNam.Text = "0";
             this.TxtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TxtNam.Value = new decimal(new int[] {
@@ -351,11 +353,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6TabControl1.Controls.Add(this.tabPage3);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
-            this.v6TabControl1.Location = new System.Drawing.Point(9, 175);
+            this.v6TabControl1.Location = new System.Drawing.Point(3, 160);
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(5);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(677, 438);
+            this.v6TabControl1.Size = new System.Drawing.Size(686, 454);
             this.v6TabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -366,7 +368,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage1.Size = new System.Drawing.Size(669, 406);
+            this.tabPage1.Size = new System.Drawing.Size(678, 422);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
@@ -402,7 +404,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage2.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage2.Size = new System.Drawing.Size(669, 419);
+            this.tabPage2.Size = new System.Drawing.Size(669, 406);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
             // 
@@ -834,7 +836,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Size = new System.Drawing.Size(669, 419);
+            this.tabPage3.Size = new System.Drawing.Size(669, 406);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 

@@ -64,17 +64,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label1 = new System.Windows.Forms.Label();
             this.txtstt = new V6Controls.V6NumberTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabChiTiet = new System.Windows.Forms.TabPage();
-            this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
-            this.dataGridView1 = new V6Controls.V6ColorDataGridView();
-            this.TK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TEN_TK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.STT_REC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.STT_REC0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabKhac = new System.Windows.Forms.TabPage();
             this.txtGC_TD3 = new V6Controls.V6VvarTextBox();
             this.txtGC_TD2 = new V6Controls.V6VvarTextBox();
             this.txtGC_TD1 = new V6Controls.V6VvarTextBox();
@@ -117,6 +106,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.lblMaDN3 = new System.Windows.Forms.Label();
             this.lblMaDN2 = new System.Windows.Forms.Label();
             this.lblMaDN1 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabChiTiet = new System.Windows.Forms.TabPage();
+            this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
+            this.dataGridView1 = new V6Controls.V6ColorDataGridView();
+            this.TK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TEN_TK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STT_REC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STT_REC0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabKhac = new System.Windows.Forms.TabPage();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -175,7 +175,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage1.Size = new System.Drawing.Size(891, 190);
+            this.tabPage1.Size = new System.Drawing.Size(891, 298);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
@@ -615,157 +615,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage2.Size = new System.Drawing.Size(891, 298);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.AccessibleDescription = "XULYT00003";
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Size = new System.Drawing.Size(891, 190);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Thông tin khác";
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabChiTiet);
-            this.tabControl1.Controls.Add(this.tabKhac);
-            this.tabControl1.Location = new System.Drawing.Point(3, 341);
-            this.tabControl1.MinimumSize = new System.Drawing.Size(0, 150);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(898, 285);
-            this.tabControl1.TabIndex = 1;
-            this.tabControl1.Enter += new System.EventHandler(this.tabControl1_Enter);
-            // 
-            // tabChiTiet
-            // 
-            this.tabChiTiet.AccessibleDescription = "XULYT00004";
-            this.tabChiTiet.Controls.Add(this.detail1);
-            this.tabChiTiet.Controls.Add(this.dataGridView1);
-            this.tabChiTiet.Location = new System.Drawing.Point(4, 25);
-            this.tabChiTiet.Name = "tabChiTiet";
-            this.tabChiTiet.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChiTiet.Size = new System.Drawing.Size(890, 256);
-            this.tabChiTiet.TabIndex = 0;
-            this.tabChiTiet.Text = "Chi tiết";
-            this.tabChiTiet.UseVisualStyleBackColor = true;
-            // 
-            // detail1
-            // 
-            this.detail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.detail1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.detail1.CodeForm = null;
-            this.detail1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.detail1.Location = new System.Drawing.Point(2, 2);
-            this.detail1.MODE = V6Structs.V6Mode.Init;
-            this.detail1.Name = "detail1";
-            this.detail1.ShowLblName = false;
-            this.detail1.Size = new System.Drawing.Size(886, 49);
-            this.detail1.Sua_tien = false;
-            this.detail1.TabIndex = 0;
-            this.detail1.Tag = "cancelall";
-            this.detail1.Vtype = null;
-            this.detail1.ClickAdd += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail1_ClickAdd);
-            this.detail1.ClickEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail1_ClickEdit);
-            this.detail1.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail1_ClickCancelEdit);
-            this.detail1.AddHandle += new V6Controls.HandleData(this.detail1_AddHandle);
-            this.detail1.EditHandle += new V6Controls.HandleData(this.detail1_EditHandle);
-            this.detail1.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail1_DeleteHandle);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TK,
-            this.TEN_TK,
-            this.UID,
-            this.STT_REC,
-            this.STT_REC0});
-            this.dataGridView1.Location = new System.Drawing.Point(2, 52);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(886, 199);
-            this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            // 
-            // TK
-            // 
-            this.TK.DataPropertyName = "TK";
-            this.TK.Frozen = true;
-            this.TK.HeaderText = "Tài khoản";
-            this.TK.Name = "TK";
-            this.TK.ReadOnly = true;
-            // 
-            // TEN_TK
-            // 
-            this.TEN_TK.DataPropertyName = "TEN_TK";
-            this.TEN_TK.Frozen = true;
-            this.TEN_TK.HeaderText = "Tên tài khoản";
-            this.TEN_TK.Name = "TEN_TK";
-            this.TEN_TK.ReadOnly = true;
-            // 
-            // UID
-            // 
-            this.UID.DataPropertyName = "UID";
-            this.UID.HeaderText = "UID";
-            this.UID.Name = "UID";
-            this.UID.ReadOnly = true;
-            this.UID.Visible = false;
-            // 
-            // STT_REC
-            // 
-            this.STT_REC.DataPropertyName = "STT_REC";
-            this.STT_REC.HeaderText = "Rec";
-            this.STT_REC.Name = "STT_REC";
-            this.STT_REC.ReadOnly = true;
-            this.STT_REC.Visible = false;
-            // 
-            // STT_REC0
-            // 
-            this.STT_REC0.DataPropertyName = "STT_REC0";
-            this.STT_REC0.HeaderText = "Rec0";
-            this.STT_REC0.Name = "STT_REC0";
-            this.STT_REC0.ReadOnly = true;
-            this.STT_REC0.Visible = false;
-            // 
-            // tabKhac
-            // 
-            this.tabKhac.AccessibleDescription = "XULYT00005";
-            this.tabKhac.Location = new System.Drawing.Point(4, 25);
-            this.tabKhac.Name = "tabKhac";
-            this.tabKhac.Padding = new System.Windows.Forms.Padding(3);
-            this.tabKhac.Size = new System.Drawing.Size(890, 367);
-            this.tabKhac.TabIndex = 1;
-            this.tabKhac.Text = "Khác";
-            this.tabKhac.UseVisualStyleBackColor = true;
             // 
             // txtGC_TD3
             // 
@@ -1507,6 +1356,157 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.lblMaDN1.Size = new System.Drawing.Size(63, 17);
             this.lblMaDN1.TabIndex = 84;
             this.lblMaDN1.Text = "Mã ĐN 1";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.AccessibleDescription = "XULYT00003";
+            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
+            this.tabPage3.Size = new System.Drawing.Size(891, 298);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Thông tin khác";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabChiTiet);
+            this.tabControl1.Controls.Add(this.tabKhac);
+            this.tabControl1.Location = new System.Drawing.Point(3, 341);
+            this.tabControl1.MinimumSize = new System.Drawing.Size(0, 150);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(898, 285);
+            this.tabControl1.TabIndex = 1;
+            this.tabControl1.Enter += new System.EventHandler(this.tabControl1_Enter);
+            // 
+            // tabChiTiet
+            // 
+            this.tabChiTiet.AccessibleDescription = "XULYT00004";
+            this.tabChiTiet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabChiTiet.Controls.Add(this.detail1);
+            this.tabChiTiet.Controls.Add(this.dataGridView1);
+            this.tabChiTiet.Location = new System.Drawing.Point(4, 25);
+            this.tabChiTiet.Name = "tabChiTiet";
+            this.tabChiTiet.Padding = new System.Windows.Forms.Padding(3);
+            this.tabChiTiet.Size = new System.Drawing.Size(890, 256);
+            this.tabChiTiet.TabIndex = 0;
+            this.tabChiTiet.Text = "Chi tiết";
+            // 
+            // detail1
+            // 
+            this.detail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.detail1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail1.CodeForm = null;
+            this.detail1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.detail1.Location = new System.Drawing.Point(2, 2);
+            this.detail1.MODE = V6Structs.V6Mode.Init;
+            this.detail1.Name = "detail1";
+            this.detail1.ShowLblName = false;
+            this.detail1.Size = new System.Drawing.Size(886, 49);
+            this.detail1.Sua_tien = false;
+            this.detail1.TabIndex = 0;
+            this.detail1.Tag = "cancelall";
+            this.detail1.Vtype = null;
+            this.detail1.ClickAdd += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail1_ClickAdd);
+            this.detail1.ClickEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail1_ClickEdit);
+            this.detail1.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail1_ClickCancelEdit);
+            this.detail1.AddHandle += new V6Controls.HandleData(this.detail1_AddHandle);
+            this.detail1.EditHandle += new V6Controls.HandleData(this.detail1_EditHandle);
+            this.detail1.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail1_DeleteHandle);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TK,
+            this.TEN_TK,
+            this.UID,
+            this.STT_REC,
+            this.STT_REC0});
+            this.dataGridView1.Location = new System.Drawing.Point(2, 52);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(886, 199);
+            this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // TK
+            // 
+            this.TK.DataPropertyName = "TK";
+            this.TK.Frozen = true;
+            this.TK.HeaderText = "Tài khoản";
+            this.TK.Name = "TK";
+            this.TK.ReadOnly = true;
+            // 
+            // TEN_TK
+            // 
+            this.TEN_TK.DataPropertyName = "TEN_TK";
+            this.TEN_TK.Frozen = true;
+            this.TEN_TK.HeaderText = "Tên tài khoản";
+            this.TEN_TK.Name = "TEN_TK";
+            this.TEN_TK.ReadOnly = true;
+            // 
+            // UID
+            // 
+            this.UID.DataPropertyName = "UID";
+            this.UID.HeaderText = "UID";
+            this.UID.Name = "UID";
+            this.UID.ReadOnly = true;
+            this.UID.Visible = false;
+            // 
+            // STT_REC
+            // 
+            this.STT_REC.DataPropertyName = "STT_REC";
+            this.STT_REC.HeaderText = "Rec";
+            this.STT_REC.Name = "STT_REC";
+            this.STT_REC.ReadOnly = true;
+            this.STT_REC.Visible = false;
+            // 
+            // STT_REC0
+            // 
+            this.STT_REC0.DataPropertyName = "STT_REC0";
+            this.STT_REC0.HeaderText = "Rec0";
+            this.STT_REC0.Name = "STT_REC0";
+            this.STT_REC0.ReadOnly = true;
+            this.STT_REC0.Visible = false;
+            // 
+            // tabKhac
+            // 
+            this.tabKhac.AccessibleDescription = "XULYT00005";
+            this.tabKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabKhac.Location = new System.Drawing.Point(4, 25);
+            this.tabKhac.Name = "tabKhac";
+            this.tabKhac.Padding = new System.Windows.Forms.Padding(3);
+            this.tabKhac.Size = new System.Drawing.Size(890, 256);
+            this.tabKhac.TabIndex = 1;
+            this.tabKhac.Text = "Khác";
             // 
             // AlpbAddEditControl
             // 

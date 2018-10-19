@@ -83,11 +83,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6TabControl1.Controls.Add(this.tabPage3);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
-            this.v6TabControl1.Location = new System.Drawing.Point(7, 5);
+            this.v6TabControl1.Location = new System.Drawing.Point(3, 3);
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(5);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(889, 202);
+            this.v6TabControl1.Size = new System.Drawing.Size(897, 202);
             this.v6TabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -106,7 +106,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage1.Size = new System.Drawing.Size(881, 170);
+            this.tabPage1.Size = new System.Drawing.Size(889, 170);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
@@ -122,7 +122,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMaCt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaCt.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaCt.LeaveColor = System.Drawing.Color.White;
-            this.txtMaCt.Location = new System.Drawing.Point(656, 9);
+            this.txtMaCt.Location = new System.Drawing.Point(664, 9);
             this.txtMaCt.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaCt.Name = "txtMaCt";
             this.txtMaCt.Size = new System.Drawing.Size(12, 23);
@@ -141,7 +141,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSttRec.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSttRec.HoverColor = System.Drawing.Color.Yellow;
             this.txtSttRec.LeaveColor = System.Drawing.Color.White;
-            this.txtSttRec.Location = new System.Drawing.Point(636, 9);
+            this.txtSttRec.Location = new System.Drawing.Point(644, 9);
             this.txtSttRec.Margin = new System.Windows.Forms.Padding(4);
             this.txtSttRec.Name = "txtSttRec";
             this.txtSttRec.Size = new System.Drawing.Size(12, 23);
@@ -161,7 +161,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dateNgayHL.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayHL.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgayHL.LeaveColor = System.Drawing.Color.White;
-            this.dateNgayHL.Location = new System.Drawing.Point(179, 63);
+            this.dateNgayHL.Location = new System.Drawing.Point(187, 63);
             this.dateNgayHL.Margin = new System.Windows.Forms.Padding(5);
             this.dateNgayHL.Name = "dateNgayHL";
             this.dateNgayHL.Size = new System.Drawing.Size(135, 23);
@@ -196,7 +196,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMaBpht.LeaveColor = System.Drawing.Color.White;
             this.txtMaBpht.Location = new System.Drawing.Point(179, 5);
             this.txtMaBpht.Name = "txtMaBpht";
-            this.txtMaBpht.Size = new System.Drawing.Size(202, 23);
+            this.txtMaBpht.Size = new System.Drawing.Size(210, 23);
             this.txtMaBpht.TabIndex = 1;
             this.txtMaBpht.VVar = "MA_BPHT";
             // 
@@ -240,7 +240,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMaSp.LeaveColor = System.Drawing.Color.White;
             this.txtMaSp.Location = new System.Drawing.Point(179, 34);
             this.txtMaSp.Name = "txtMaSp";
-            this.txtMaSp.Size = new System.Drawing.Size(202, 23);
+            this.txtMaSp.Size = new System.Drawing.Size(210, 23);
             this.txtMaSp.TabIndex = 3;
             this.txtMaSp.VVar = "MA_VT";
             // 
@@ -262,7 +262,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage2.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage2.Size = new System.Drawing.Size(881, 170);
+            this.tabPage2.Size = new System.Drawing.Size(889, 170);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
             // 
@@ -282,7 +282,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6ColorTextBox16.Location = new System.Drawing.Point(252, 448);
             this.v6ColorTextBox16.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox16.Name = "v6ColorTextBox16";
-            this.v6ColorTextBox16.Size = new System.Drawing.Size(424, 23);
+            this.v6ColorTextBox16.Size = new System.Drawing.Size(432, 23);
             this.v6ColorTextBox16.TabIndex = 113;
             // 
             // v6ColorTextBox15
@@ -301,7 +301,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6ColorTextBox15.Location = new System.Drawing.Point(252, 410);
             this.v6ColorTextBox15.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox15.Name = "v6ColorTextBox15";
-            this.v6ColorTextBox15.Size = new System.Drawing.Size(424, 23);
+            this.v6ColorTextBox15.Size = new System.Drawing.Size(432, 23);
             this.v6ColorTextBox15.TabIndex = 112;
             // 
             // v6ColorTextBox14
@@ -320,7 +320,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6ColorTextBox14.Location = new System.Drawing.Point(252, 372);
             this.v6ColorTextBox14.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox14.Name = "v6ColorTextBox14";
-            this.v6ColorTextBox14.Size = new System.Drawing.Size(424, 23);
+            this.v6ColorTextBox14.Size = new System.Drawing.Size(432, 23);
             this.v6ColorTextBox14.TabIndex = 111;
             // 
             // label29
@@ -379,8 +379,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6NumberTextBox3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6NumberTextBox3.Name = "v6NumberTextBox3";
             this.v6NumberTextBox3.ReadOnly = true;
-            this.v6NumberTextBox3.Size = new System.Drawing.Size(118, 23);
+            this.v6NumberTextBox3.Size = new System.Drawing.Size(126, 23);
             this.v6NumberTextBox3.TabIndex = 107;
+            this.v6NumberTextBox3.TabStop = false;
             this.v6NumberTextBox3.Text = "0,000";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox3.Value = new decimal(new int[] {
@@ -406,8 +407,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6NumberTextBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6NumberTextBox2.Name = "v6NumberTextBox2";
             this.v6NumberTextBox2.ReadOnly = true;
-            this.v6NumberTextBox2.Size = new System.Drawing.Size(118, 23);
+            this.v6NumberTextBox2.Size = new System.Drawing.Size(126, 23);
             this.v6NumberTextBox2.TabIndex = 105;
+            this.v6NumberTextBox2.TabStop = false;
             this.v6NumberTextBox2.Text = "0,000";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox2.Value = new decimal(new int[] {
@@ -449,7 +451,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Size = new System.Drawing.Size(881, 170);
+            this.tabPage3.Size = new System.Drawing.Size(889, 170);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
@@ -460,17 +462,18 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabChiTiet);
             this.tabControl1.Controls.Add(this.tabKhac);
-            this.tabControl1.Location = new System.Drawing.Point(7, 215);
+            this.tabControl1.Location = new System.Drawing.Point(3, 208);
             this.tabControl1.MinimumSize = new System.Drawing.Size(0, 150);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(887, 347);
+            this.tabControl1.Size = new System.Drawing.Size(898, 358);
             this.tabControl1.TabIndex = 4;
             this.tabControl1.Enter += new System.EventHandler(this.tabControl1_Enter);
             // 
             // tabChiTiet
             // 
             this.tabChiTiet.AccessibleDescription = "XULYT00004";
+            this.tabChiTiet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabChiTiet.Controls.Add(this.detail1);
             this.tabChiTiet.Controls.Add(this.dataGridView1);
             this.tabChiTiet.Location = new System.Drawing.Point(4, 25);
@@ -480,12 +483,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabChiTiet.TabIndex = 0;
             this.tabChiTiet.Tag = "canceldata";
             this.tabChiTiet.Text = "Chi tiết";
-            this.tabChiTiet.UseVisualStyleBackColor = true;
             // 
             // detail1
             // 
             this.detail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.detail1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail1.CodeForm = null;
             this.detail1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.detail1.Location = new System.Drawing.Point(2, 2);
             this.detail1.MODE = V6Structs.V6Mode.Init;
@@ -512,6 +516,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -582,13 +587,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // tabKhac
             // 
             this.tabKhac.AccessibleDescription = "XULYT00005";
+            this.tabKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabKhac.Location = new System.Drawing.Point(4, 25);
             this.tabKhac.Name = "tabKhac";
             this.tabKhac.Padding = new System.Windows.Forms.Padding(3);
-            this.tabKhac.Size = new System.Drawing.Size(879, 318);
+            this.tabKhac.Size = new System.Drawing.Size(890, 329);
             this.tabKhac.TabIndex = 1;
             this.tabKhac.Text = "Khác";
-            this.tabKhac.UseVisualStyleBackColor = true;
             // 
             // Acosxlsx_aldmvtSXDHAddEditForm
             // 

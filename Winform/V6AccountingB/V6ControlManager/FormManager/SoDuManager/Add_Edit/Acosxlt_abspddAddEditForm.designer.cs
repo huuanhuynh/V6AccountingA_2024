@@ -94,7 +94,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
-            this.groupBox1.Size = new System.Drawing.Size(889, 294);
+            this.groupBox1.Size = new System.Drawing.Size(889, 209);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 

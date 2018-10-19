@@ -650,7 +650,7 @@ namespace V6Controls
         /// <param name="owner">Form chủ.</param>
         public static void ShowVvarName(V6VvarTextBox owner)
         {
-            //if (owner.Data == null) return;
+            if (FlyLabel_Form == null) return;
             //CreateVvarNameForm();
             FlyLabel_Form.TargetControl = owner;
             string nfield = V6Setting.IsVietnamese ? owner.LookupInfo.VName : owner.LookupInfo.VName2;
@@ -669,7 +669,7 @@ namespace V6Controls
         }
         public static void ShowLookupTextBoxName(V6LookupTextBox owner)
         {
-            //if (owner.Data == null) return;
+            if (FlyLabel_Form == null) return;
             //CreateVvarNameForm();
             FlyLabel_Form.TargetControl = owner;
             string nfield = V6Setting.IsVietnamese ? owner.LookupInfo.VName : owner.LookupInfo.VName2;
