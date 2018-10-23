@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormModelHelp));
             this.btnUpdate = new System.Windows.Forms.Button();
             this.txtFile = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -306,6 +307,7 @@
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtFile);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormModelHelp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form Model Heo";

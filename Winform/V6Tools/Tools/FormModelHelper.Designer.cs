@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormModelHelper));
             this.txtFields = new System.Windows.Forms.RichTextBox();
             this.txtResult = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -127,6 +128,7 @@
             this.Controls.Add(this.txtReplace1);
             this.Controls.Add(this.txtFields);
             this.Controls.Add(this.txtResult);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormModelHelper";
             this.Text = "FormModelHelper";
             this.ResumeLayout(false);

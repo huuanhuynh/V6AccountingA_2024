@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHuuanEditText));
             this.txtEditText = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.txtFile = new System.Windows.Forms.TextBox();
@@ -313,6 +314,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtFile);
             this.Controls.Add(this.txtEditText);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormHuuanEditText";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormHuuanEditText";

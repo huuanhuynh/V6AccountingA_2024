@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormZip));
             this.btnZipfile = new System.Windows.Forms.Button();
             this.txtFile1 = new System.Windows.Forms.TextBox();
             this.txtFolder1 = new System.Windows.Forms.TextBox();
@@ -122,7 +123,7 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // Form1
+            // FormZip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -137,7 +138,8 @@
             this.Controls.Add(this.txtFile2);
             this.Controls.Add(this.txtFile1);
             this.Controls.Add(this.btnZipfile);
-            this.Name = "Form1";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "FormZip";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

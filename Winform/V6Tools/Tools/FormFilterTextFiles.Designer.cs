@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFilterTextFiles));
             this.btnSaveFile = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.txtFolder = new System.Windows.Forms.TextBox();
@@ -202,7 +203,7 @@
             this.txtExt.Name = "txtExt";
             this.txtExt.Size = new System.Drawing.Size(120, 20);
             this.txtExt.TabIndex = 4;
-            this.txtExt.Text = "designer.cs";
+            this.txtExt.Text = "cs";
             this.txtExt.Leave += new System.EventHandler(this.txtExt_Leave);
             // 
             // listBox2
@@ -309,6 +310,7 @@
             this.Controls.Add(this.txt11);
             this.Controls.Add(this.txtFolder);
             this.Controls.Add(this.txtExt);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormFilterTextFiles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormFilterTextFiles";

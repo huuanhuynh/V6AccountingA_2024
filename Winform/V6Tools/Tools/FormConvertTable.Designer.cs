@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConvertTable));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radFromAuto = new System.Windows.Forms.RadioButton();
-            this.radFromABC = new System.Windows.Forms.RadioButton();
-            this.radFromUNI = new System.Windows.Forms.RadioButton();
             this.radFromVNI = new System.Windows.Forms.RadioButton();
+            this.radFromUNI = new System.Windows.Forms.RadioButton();
+            this.radFromABC = new System.Windows.Forms.RadioButton();
+            this.radFromAuto = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radToVNI = new System.Windows.Forms.RadioButton();
             this.radToUNI = new System.Windows.Forms.RadioButton();
@@ -112,27 +113,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "From";
             // 
-            // radFromAuto
+            // radFromVNI
             // 
-            this.radFromAuto.AutoSize = true;
-            this.radFromAuto.Checked = true;
-            this.radFromAuto.Location = new System.Drawing.Point(9, 19);
-            this.radFromAuto.Name = "radFromAuto";
-            this.radFromAuto.Size = new System.Drawing.Size(47, 17);
-            this.radFromAuto.TabIndex = 0;
-            this.radFromAuto.TabStop = true;
-            this.radFromAuto.Text = "Auto";
-            this.radFromAuto.UseVisualStyleBackColor = true;
-            // 
-            // radFromABC
-            // 
-            this.radFromABC.AutoSize = true;
-            this.radFromABC.Location = new System.Drawing.Point(62, 19);
-            this.radFromABC.Name = "radFromABC";
-            this.radFromABC.Size = new System.Drawing.Size(46, 17);
-            this.radFromABC.TabIndex = 0;
-            this.radFromABC.Text = "ABC";
-            this.radFromABC.UseVisualStyleBackColor = true;
+            this.radFromVNI.AutoSize = true;
+            this.radFromVNI.Location = new System.Drawing.Point(164, 19);
+            this.radFromVNI.Name = "radFromVNI";
+            this.radFromVNI.Size = new System.Drawing.Size(43, 17);
+            this.radFromVNI.TabIndex = 0;
+            this.radFromVNI.Text = "VNI";
+            this.radFromVNI.UseVisualStyleBackColor = true;
             // 
             // radFromUNI
             // 
@@ -144,15 +133,27 @@
             this.radFromUNI.Text = "UNI";
             this.radFromUNI.UseVisualStyleBackColor = true;
             // 
-            // radFromVNI
+            // radFromABC
             // 
-            this.radFromVNI.AutoSize = true;
-            this.radFromVNI.Location = new System.Drawing.Point(164, 19);
-            this.radFromVNI.Name = "radFromVNI";
-            this.radFromVNI.Size = new System.Drawing.Size(43, 17);
-            this.radFromVNI.TabIndex = 0;
-            this.radFromVNI.Text = "VNI";
-            this.radFromVNI.UseVisualStyleBackColor = true;
+            this.radFromABC.AutoSize = true;
+            this.radFromABC.Location = new System.Drawing.Point(62, 19);
+            this.radFromABC.Name = "radFromABC";
+            this.radFromABC.Size = new System.Drawing.Size(46, 17);
+            this.radFromABC.TabIndex = 0;
+            this.radFromABC.Text = "ABC";
+            this.radFromABC.UseVisualStyleBackColor = true;
+            // 
+            // radFromAuto
+            // 
+            this.radFromAuto.AutoSize = true;
+            this.radFromAuto.Checked = true;
+            this.radFromAuto.Location = new System.Drawing.Point(9, 19);
+            this.radFromAuto.Name = "radFromAuto";
+            this.radFromAuto.Size = new System.Drawing.Size(47, 17);
+            this.radFromAuto.TabIndex = 0;
+            this.radFromAuto.TabStop = true;
+            this.radFromAuto.Text = "Auto";
+            this.radFromAuto.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -211,6 +212,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "FormConvertTable";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
