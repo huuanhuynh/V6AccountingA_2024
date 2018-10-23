@@ -140,8 +140,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             {
                 //Lay du lieu nhan vien //orgunit_id, position_id hrposition
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
-                string old_rec = "" + DataOld["STT_REC"];
-                if (old_rec != "")
+
+                if (DataOld.ContainsKey("STT_REC") && DataOld["STT_REC"].ToString().Trim() != "")
                 {
                     key.Add("STT_REC", DataOld["STT_REC"]);
 
@@ -157,6 +157,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                         insert_data["STT_REC"] = txtSttRec.Text;
                         insert_data.Add("STT_REC0", "00001");
                         insert_data.Add("ORGUNIT_ID", orgunit_id);
+                        //if(DataOld.ContainsKey("MA_BP")) insert_data.Add("MA_BP", DataOld["MA_BP"]);
                         //insert_data.Add("POSITION_ID", position_id);
                         V6BusinessHelper.Insert("hrposition", insert_data);
                     }
@@ -170,6 +171,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                     insert_data["STT_REC"] = txtSttRec.Text;
                     insert_data.Add("STT_REC0", "00001");
                     insert_data.Add("ORGUNIT_ID", orgunit_id);
+                    //if (DataOld.ContainsKey("MA_BP")) insert_data.Add("MA_BP", DataOld["MA_BP"]);
                     //insert_data.Add("POSITION_ID", position_id);
                     V6BusinessHelper.Insert("hrposition", insert_data);
                 }

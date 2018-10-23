@@ -879,15 +879,17 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             try
             {
                 var keys = new SortedDictionary<string, object>
-                    {
-                        {"MA_FILE", _ma_File},
-                        {"MAU", MAU},
-                        {"LAN", LAN},
-                        {"REPORT", ReportFile}
-                    };
+                {
+                    {"MA_FILE", _ma_File},
+                    {"MAU", MAU},
+                    {"LAN", LAN},
+                    {"REPORT", ReportFile}
+                };
                 
-                var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
-                f2.UpdateSuccessEvent += data =>
+                var f = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
+                f.AfterInitControl += f_AfterInitControl;
+                f.InitFormControl();
+                f.UpdateSuccessEvent += data =>
                 {
                     //cap nhap thong tin
                     LoadComboboxSource();
@@ -903,11 +905,28 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                         }
                     }
                 };
-                f2.ShowDialog(this);
+                f.ShowDialog(this);
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".SuaTTMauBC_Click " + ReportFileFull, ex);
+            }
+        }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, "Albc");
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                V6ControlFormHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + ma_ct, ex);
             }
         }
 
@@ -916,14 +935,16 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             try
             {
                 var keys = new SortedDictionary<string, object>
-                    {
-                        {"MA_FILE", _ma_File},
-                        {"MAU", MAU},
-                        {"LAN", LAN},
-                        {"REPORT", ReportFile}
-                    };
-                var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, keys, null);
-                f2.InsertSuccessEvent += data =>
+                {
+                    {"MA_FILE", _ma_File},
+                    {"MAU", MAU},
+                    {"LAN", LAN},
+                    {"REPORT", ReportFile}
+                };
+                var f = new FormAddEdit(V6TableName.Albc, V6Mode.Add, keys, null);
+                f.AfterInitControl += f_AfterInitControl;
+                f.InitFormControl();
+                f.InsertSuccessEvent += data =>
                 {
                     //cap nhap thong tin
                     LoadComboboxSource();
@@ -939,7 +960,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                         }
                     }
                 };
-                f2.ShowDialog(this);
+                f.ShowDialog(this);
             }
             catch (Exception ex)
             {

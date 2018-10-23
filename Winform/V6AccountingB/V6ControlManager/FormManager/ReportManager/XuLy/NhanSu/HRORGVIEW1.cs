@@ -16,6 +16,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             Control tochucViewContainer = new ToChucView(itemId, text, tableName, initFilter, sort);
             tochucViewContainer.Dock = DockStyle.Fill;
             panel1.Controls.Add(tochucViewContainer);
+            tochucViewContainer.Disposed += tochucViewContainer_Disposed;
+        }
+
+        void tochucViewContainer_Disposed(object sender, System.EventArgs e)
+        {
+            btnHuy.PerformClick();
         }
 
         public override void SetStatus2Text()

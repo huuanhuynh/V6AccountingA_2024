@@ -34,7 +34,7 @@
             this.btnHdocument = new System.Windows.Forms.Button();
             this.btnSearchInRpt = new System.Windows.Forms.Button();
             this.btnSQL = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnSendToV6 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
@@ -46,6 +46,7 @@
             this.btnModelHelp = new System.Windows.Forms.Button();
             this.btnTestInvoice = new System.Windows.Forms.Button();
             this.grbOptions = new System.Windows.Forms.GroupBox();
+            this.chkWriteExtraLog = new System.Windows.Forms.CheckBox();
             this.chkAutoFixInvoiceVvar = new System.Windows.Forms.CheckBox();
             this.chkMouseRightTriple = new System.Windows.Forms.CheckBox();
             this.grbTools = new System.Windows.Forms.GroupBox();
@@ -54,7 +55,6 @@
             this.btnHDSD2 = new System.Windows.Forms.Button();
             this.btnHDSDDT = new System.Windows.Forms.Button();
             this.btnChuyenMa = new System.Windows.Forms.Button();
-            this.chkWriteExtraLog = new System.Windows.Forms.CheckBox();
             this.grbOptions.SuspendLayout();
             this.grbTools.SuspendLayout();
             this.grbFunctions.SuspendLayout();
@@ -120,14 +120,15 @@
             this.btnSQL.UseVisualStyleBackColor = true;
             this.btnSQL.Click += new System.EventHandler(this.btnSQL_Click);
             // 
-            // button9
+            // btnSendToV6
             // 
-            this.button9.Location = new System.Drawing.Point(130, 19);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(118, 23);
-            this.button9.TabIndex = 9;
-            this.button9.Text = "button1";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnSendToV6.Location = new System.Drawing.Point(130, 19);
+            this.btnSendToV6.Name = "btnSendToV6";
+            this.btnSendToV6.Size = new System.Drawing.Size(118, 23);
+            this.btnSendToV6.TabIndex = 9;
+            this.btnSendToV6.Text = "Send to V6 (FTP)";
+            this.btnSendToV6.UseVisualStyleBackColor = true;
+            this.btnSendToV6.Click += new System.EventHandler(this.btnSendToV6_Click);
             // 
             // button10
             // 
@@ -237,6 +238,17 @@
             this.grbOptions.TabStop = false;
             this.grbOptions.Text = "Tùy chọn";
             // 
+            // chkWriteExtraLog
+            // 
+            this.chkWriteExtraLog.AutoSize = true;
+            this.chkWriteExtraLog.Location = new System.Drawing.Point(6, 65);
+            this.chkWriteExtraLog.Name = "chkWriteExtraLog";
+            this.chkWriteExtraLog.Size = new System.Drawing.Size(93, 17);
+            this.chkWriteExtraLog.TabIndex = 1;
+            this.chkWriteExtraLog.Text = "WriteExtraLog";
+            this.chkWriteExtraLog.UseVisualStyleBackColor = true;
+            this.chkWriteExtraLog.CheckedChanged += new System.EventHandler(this.chkWriteExtraLog_CheckedChanged);
+            // 
             // chkAutoFixInvoiceVvar
             // 
             this.chkAutoFixInvoiceVvar.AutoSize = true;
@@ -253,9 +265,9 @@
             this.chkMouseRightTriple.AutoSize = true;
             this.chkMouseRightTriple.Location = new System.Drawing.Point(6, 19);
             this.chkMouseRightTriple.Name = "chkMouseRightTriple";
-            this.chkMouseRightTriple.Size = new System.Drawing.Size(165, 17);
+            this.chkMouseRightTriple.Size = new System.Drawing.Size(199, 17);
             this.chkMouseRightTriple.TabIndex = 0;
-            this.chkMouseRightTriple.Text = "Nhấn phải chuột để sửa chữ ";
+            this.chkMouseRightTriple.Text = "Nhấn phải chuột để sửa chữ hiển thị";
             this.chkMouseRightTriple.UseVisualStyleBackColor = true;
             this.chkMouseRightTriple.CheckedChanged += new System.EventHandler(this.chkMouseRightTriple_CheckedChanged);
             // 
@@ -275,7 +287,7 @@
             this.grbTools.Controls.Add(this.btnLogView);
             this.grbTools.Controls.Add(this.btnSQL);
             this.grbTools.Controls.Add(this.button11);
-            this.grbTools.Controls.Add(this.button9);
+            this.grbTools.Controls.Add(this.btnSendToV6);
             this.grbTools.Controls.Add(this.button13);
             this.grbTools.Controls.Add(this.button10);
             this.grbTools.Controls.Add(this.button14);
@@ -350,17 +362,6 @@
             this.btnChuyenMa.UseVisualStyleBackColor = true;
             this.btnChuyenMa.Click += new System.EventHandler(this.btnChuyenMa_Click);
             // 
-            // chkWriteExtraLog
-            // 
-            this.chkWriteExtraLog.AutoSize = true;
-            this.chkWriteExtraLog.Location = new System.Drawing.Point(6, 65);
-            this.chkWriteExtraLog.Name = "chkWriteExtraLog";
-            this.chkWriteExtraLog.Size = new System.Drawing.Size(93, 17);
-            this.chkWriteExtraLog.TabIndex = 1;
-            this.chkWriteExtraLog.Text = "WriteExtraLog";
-            this.chkWriteExtraLog.UseVisualStyleBackColor = true;
-            this.chkWriteExtraLog.CheckedChanged += new System.EventHandler(this.chkWriteExtraLog_CheckedChanged);
-            // 
             // AllTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -387,7 +388,7 @@
         private System.Windows.Forms.Button btnSearchInRpt;
         private System.Windows.Forms.Button btnSQL;
         private System.Windows.Forms.Button btnTeamViewer;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnSendToV6;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;

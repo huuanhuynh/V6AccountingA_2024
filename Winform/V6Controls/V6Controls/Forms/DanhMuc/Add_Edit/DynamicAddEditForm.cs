@@ -164,6 +164,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                 ShowTextField = defineInfo.Field2, //Trường text hiển thị
                                 CheckOnLeave = true,
                                 CheckNotEmpty = defineInfo.NotEmpty,
+                                UseChangeTextOnSetFormData = defineInfo.UseChangeText,
+                                UseLimitCharacters0 = defineInfo.UseLimitChars0,
                             };
                         }
                         else if (defineInfo.ControlType.ToUpper() == "LABEL")
@@ -226,6 +228,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             if (defineInfo.UseLimitChars0)
                             {
                                 var tb = input as V6ColorTextBox;
+                                tb.UseChangeTextOnSetFormData = defineInfo.UseChangeText;
                                 tb.UseLimitCharacters0 = defineInfo.UseLimitChars0;
                                 tb.LimitCharacters0 = defineInfo.LimitChars0;
                             }
@@ -389,6 +392,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             if(!string.IsNullOrEmpty(defineInfo.ShowName)) tT.ShowName = defineInfo.ShowName  == "1";
                             tT.CheckOnLeave = defineInfo.NotEmpty;
                             tT.CheckNotEmpty = defineInfo.NotEmpty;
+                            
                             var txtB = new V6LabelTextBox();
                             txtB.Name = "txt" + defineInfo.BField;
                             txtB.AccessibleName = defineInfo.BField;
@@ -397,6 +401,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             txtB.Width = panel1.Width - txtB.Left - 10;
                             txtB.ReadOnly = true;
                             txtB.TabStop = false;
+                            txtB.AddTagString("cancelset");
 
                             All_Objects[txtB.Name] = txtB;
                             panel1.Controls.Add(txtB);
@@ -416,6 +421,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             txtB.Width = panel1.Width - txtB.Left - 10;
                             txtB.ReadOnly = true;
                             txtB.TabStop = false;
+                            txtB.AddTagString("cancelset");
 
                             All_Objects[txtB.Name] = txtB;
                             panel1.Controls.Add(txtB);

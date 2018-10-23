@@ -208,12 +208,15 @@ namespace V6ReportControls
                         var _data = row0.ToDataDictionary();
                         var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
                         f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
                     }
                     else
                     {
                         var f = new FormAddEdit(CurrentTable);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.InsertSuccessEvent += f_InsertSuccess;
                         f.ShowDialog(this);
                     }
@@ -291,6 +294,8 @@ namespace V6ReportControls
 
                         var _data = row0.ToDataDictionary();
                         var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
                         f.UpdateSuccessEvent += f_UpdateSuccess;
                         f.CallReloadEvent += FCallReloadEvent;
                         f.ShowDialog(this);

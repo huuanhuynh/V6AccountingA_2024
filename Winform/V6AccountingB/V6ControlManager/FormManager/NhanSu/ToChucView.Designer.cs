@@ -70,6 +70,7 @@
             this.toChucTreeListView1.HideSelection = false;
             this.toChucTreeListView1.ID_Field = "NODE";
             this.toChucTreeListView1.ImageIndex_Field = "picture";
+            this.toChucTreeListView1.IsBold_Field = "isBold";
             this.toChucTreeListView1.Location = new System.Drawing.Point(6, 64);
             this.toChucTreeListView1.MultiSelect = false;
             this.toChucTreeListView1.Name = "toChucTreeListView1";

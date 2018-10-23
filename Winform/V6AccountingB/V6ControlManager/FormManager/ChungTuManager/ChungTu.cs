@@ -178,7 +178,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                searchForm.ShowErrorException(MethodBase.GetCurrentMethod().DeclaringType + ".ViewSum", ex);
+                V6ControlFormHelper.WriteExLog(MethodBase.GetCurrentMethod().DeclaringType + ".ViewSum", ex);
             }
         }
 

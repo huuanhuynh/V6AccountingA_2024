@@ -1695,8 +1695,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             try
             {
-                var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, AlbcKeys, null);
-                f2.UpdateSuccessEvent += data =>
+                var f = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, AlbcKeys, null);
+                f.AfterInitControl += f_AfterInitControl;
+                f.InitFormControl();
+                f.UpdateSuccessEvent += data =>
                 {
                     //cap nhap thong tin
                     LoadComboboxSource();
@@ -1712,11 +1714,28 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                         }
                     }
                 };
-                f2.ShowDialog(this);
+                f.ShowDialog(this);
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".btnSuaTTMauBC_Click: " + ex.Message);
+            }
+        }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, "Albc");
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + ma_ct, ex);
             }
         }
 
@@ -1736,8 +1755,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     data0["TITLE"] = txtReportTitle.Text;
                     data0["FirstAdd"] = "1";
                 }
-                var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, AlbcKeys, data0);
-                f2.InsertSuccessEvent += data =>
+                var f = new FormAddEdit(V6TableName.Albc, V6Mode.Add, AlbcKeys, data0);
+                f.AfterInitControl += f_AfterInitControl;
+                f.InitFormControl();
+                f.InsertSuccessEvent += data =>
                 {
                     //cap nhap thong tin
                     LoadComboboxSource();
@@ -1753,7 +1774,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                         }
                     }
                 };
-                f2.ShowDialog(this);
+                f.ShowDialog(this);
                 SetStatus2Text();
             }
             catch (Exception ex)

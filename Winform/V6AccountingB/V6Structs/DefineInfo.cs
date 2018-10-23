@@ -44,133 +44,14 @@ namespace V6Structs
         {
             switch (key.ToUpper())
             {
-                case "BFIELD":
-                    BField = value;
-                    break;
-                case "BFIELD2":
-                    BField2 = value;
-                    break;
-                case "CONTROLTYPE":
-                    ControlType = value;
-                    break;
                 case "DECIMALS":
                     int.TryParse(value, out Decimals);
-                    break;
-                case "DESCRIPTIONE":
-                    DescriptionE = value;
-                    break;
-                case "DESCRIPTIONV":
-                    DescriptionV = value;
-                    break;
-                case "ENABLED":
-                    Enabled = value == "1";
-                    break;
-                case "EVENT":
-                    Event = value;
-                    break;
-                case "F2":
-                    F2 = value == "1";
-                    break;
-                case "FIELD":
-                    Field = value;
-                    break;
-                case "FIELD2":
-                    Field2 = value;
-                    break;
-                case "FILTERSTART":
-                    FilterStart = value == "1";
-                    break;
-                case "FNAME":
-                    Fname = value;
-                    break;
-                case "FPARENT":
-                    Fparent = value;
-                    break;
-                case "ACCESSIBLENAME":
-                    AccessibleName = value;
-                    break;
-                case "ACCESSIBLENAME2":
-                    AccessibleName2 = value;
-                    break;
-                case "DEFAULTVALUE":
-                    DefaultValue = value;
-                    break;
-                case "INITFILTER":
-                    InitFilter = value;
-                    break;
-                case "LIMITCHAR":
-                case "LIMITCHARS":
-                    LimitChars = value;
-                    break;
-                case "LIMITCHAR0":
-                case "LIMITCHARS0":
-                    LimitChars0 = value;
-                    break;
-                case "USELIMITCHARS0":
-                    UseLimitChars0 = value == "1";
-                    break;
-                case "LOAI_KEY":
-                    Loai_key = value;
-                    break;
-                case "NAME":
-                    Name = value;
-                    break;
-                case "MA_DM":
-                    MA_DM = value;
-                    break;
-                case "NOTEMPTY":
-                    NotEmpty = value == "1";
-                    break;
-                case "OVERRIDE":
-                    Override = value == "1";
-                    break;
-                case "NOOVERRIDE":
-                    NoOverride = value == "1";
-                    break;
-                case "OPER":
-                    Oper = value;
-                    break;
-                case "PTYPE":
-                    Ptype = value;
-                    break;
-                case "SHOWNAME":
-                    ShowName = value;
                     break;
                 case "SQLTYPE":
                     sqltype = value.ToLower();
                     break;
-                case "STATUS":
-                    Status = value == "1";
-                    break;
-                case "TEXTV":
-                    TextV = value;
-                    break;
-                case "TEXTE":
-                    TextE = value;
-                    break;
-                case "TOUPPER":
-                    ToUpper = value == "1";
-                    break;
                 case "TYPE":
                     if (!string.IsNullOrEmpty(value)) Type = value;
-                    break;
-                case "VALUE":
-                    Value = value;
-                    break;
-                case "VNAME":
-                    VName = value;
-                    break;
-                case "VNAME2":
-                    VName2 = value;
-                    break;
-                case "VISIBLE":
-                    Visible = value == "1";
-                    break;
-                case "VVAR":
-                    Vvar = value;
-                    break;
-                case "WIDTH":
-                    Width = value;
                     break;
                 case "MAXLENGTH":
                     int.TryParse(value, out MaxLength);
@@ -197,6 +78,10 @@ namespace V6Structs
                             {
                                 propertyInfo.SetValue(this, DateTime.ParseExact(value, "dd/MM/yyyy", null), null);
                             }
+                            else if (propertyInfo.PropertyType == typeof(bool))
+                            {
+                                propertyInfo.SetValue(this, value == "1", null);
+                            }
                         }
                     }
 
@@ -220,11 +105,17 @@ namespace V6Structs
                             {
                                 propertyInfo.SetValue(this, DateTime.ParseExact(value, "dd/MM/yyyy", null));
                             }
+                            else if (propertyInfo.FieldType == typeof(bool))
+                            {
+                                propertyInfo.SetValue(this, value == "1");
+                            }
                         }
                     }
                     break;
             }
         }
+
+        
 
         /// <summary>
         /// BUTTON LOOKUPTEXTBOX LABEL CHECKBOX
@@ -333,6 +224,7 @@ namespace V6Structs
         /// </summary>
         public string LimitChars { get; set; }
         public string LimitChars0 { get; set; }
+        public bool UseChangeText { get; set; }
         public bool UseLimitChars0 { get; set; }
         /// <summary>
         /// Trường lọc số liệu khi F5 (trường trong parent data).

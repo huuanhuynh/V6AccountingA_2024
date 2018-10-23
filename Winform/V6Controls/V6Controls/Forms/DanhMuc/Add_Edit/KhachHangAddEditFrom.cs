@@ -181,7 +181,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var uid_kh = DataOld["UID"].ToString();
                 var ma_kh_old = DataOld["MA_KH"].ToString().Trim();
                 var data = new Dictionary<string, object>();
-                //FormAddEdit editForm = new FormAddEdit(V6TableName.Alkhct,);
                 
                 CategoryView dmView = new CategoryView(ItemID, "title", "Alkhct", "uid_kh='"+uid_kh+"'", null, DataOld);
                 if (Mode == V6Mode.View)

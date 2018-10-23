@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools;
 
 namespace V6ControlManager.FormManager.ToolManager
 {
@@ -209,6 +210,25 @@ namespace V6ControlManager.FormManager.ToolManager
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        private void btnSendToV6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var file = V6ControlFormHelper.ChooseOpenFile(this, "All file|*.*");
+                if (string.IsNullOrEmpty(file)) return;
+                var _setting = new H.Setting(Path.Combine(V6Login.StartupPath, "Setting.ini"));
+                var VPN_IP = _setting.GetSetting("VPN_IP");
+                var VPN_USER = _setting.GetSetting("VPN_USER");
+                var VPN_EPASS = _setting.GetSetting("VPN_EPASS");
+                var VPN_SUBFOLDER = _setting.GetSetting("VPN_SUBFOLDER");
+                V6FileIO.CopyToVPN(file, VPN_IP, VPN_USER, VPN_EPASS, VPN_SUBFOLDER);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException("AllTool.SendToV6", ex);
             }
         }
 

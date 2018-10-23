@@ -631,7 +631,7 @@ namespace V6Controls
 
                     SqlParameter[] plist =
                     {
-                        new SqlParameter("@text", text)
+                        new SqlParameter("@text", text.Trim())
                     };
                     var tbl = V6BusinessHelper.Select(tableName, "*", LookupInfo.FieldName + "=@text " + filter, "", "", plist).Data;
 

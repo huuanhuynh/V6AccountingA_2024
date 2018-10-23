@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.DateNgay_khc = new V6Controls.V6DateTimePick();
+            this.label4 = new System.Windows.Forms.Label();
             this.TxtTang_giam = new V6Controls.V6NumberTextBox();
             this.dateNgayGiam = new V6Controls.V6DateTimePick();
             this.txtLyDo = new V6Controls.V6ColorTextBox();
@@ -40,8 +42,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.DateNgay_khc = new V6Controls.V6DateTimePick();
+            this.txtTenTS = new V6Controls.V6LabelTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +51,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txtTenTS);
             this.groupBox1.Controls.Add(this.DateNgay_khc);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.TxtTang_giam);
@@ -71,26 +73,51 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // DateNgay_khc
+            // 
+            this.DateNgay_khc.AccessibleName = "ngay_khc";
+            this.DateNgay_khc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DateNgay_khc.BackColor = System.Drawing.Color.White;
+            this.DateNgay_khc.CustomFormat = "dd/MM/yyyy";
+            this.DateNgay_khc.EnterColor = System.Drawing.Color.PaleGreen;
+            this.DateNgay_khc.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateNgay_khc.HoverColor = System.Drawing.Color.Yellow;
+            this.DateNgay_khc.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.DateNgay_khc.LeaveColor = System.Drawing.Color.White;
+            this.DateNgay_khc.Location = new System.Drawing.Point(171, 108);
+            this.DateNgay_khc.Margin = new System.Windows.Forms.Padding(5);
+            this.DateNgay_khc.Name = "DateNgay_khc";
+            this.DateNgay_khc.Size = new System.Drawing.Size(135, 23);
+            this.DateNgay_khc.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 108);
+            this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(131, 17);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Ngày thôi khấu hao";
+            // 
             // TxtTang_giam
             // 
             this.TxtTang_giam.AccessibleName = "TANG_GIAM";
             this.TxtTang_giam.BackColor = System.Drawing.Color.White;
-            this.TxtTang_giam.Carry = false;
-            this.TxtTang_giam.EnableColorEffect = true;
-            this.TxtTang_giam.EnableColorEffectOnMouseEnter = false;
+            this.TxtTang_giam.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtTang_giam.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtTang_giam.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtTang_giam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtTang_giam.HoverColor = System.Drawing.Color.Yellow;
             this.TxtTang_giam.LeaveColor = System.Drawing.Color.White;
-            this.TxtTang_giam.LimitCharacters = null;
-            this.TxtTang_giam.Location = new System.Drawing.Point(400, 28);
-            this.TxtTang_giam.MaxNumDecimal = 0;
-            this.TxtTang_giam.MaxNumLength = 0;
+            this.TxtTang_giam.Location = new System.Drawing.Point(592, 130);
             this.TxtTang_giam.Name = "TxtTang_giam";
             this.TxtTang_giam.Size = new System.Drawing.Size(96, 23);
             this.TxtTang_giam.TabIndex = 10;
             this.TxtTang_giam.Text = "0,000";
             this.TxtTang_giam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TxtTang_giam.GrayText = "";
             this.TxtTang_giam.Value = new decimal(new int[] {
             0,
             0,
@@ -116,80 +143,75 @@
             this.dateNgayGiam.Name = "dateNgayGiam";
             this.dateNgayGiam.Size = new System.Drawing.Size(135, 23);
             this.dateNgayGiam.TabIndex = 2;
-            this.dateNgayGiam.TextTitle = null;
             // 
             // txtLyDo
             // 
             this.txtLyDo.AccessibleName = "LY_DO_GIAM";
-            this.txtLyDo.Carry = false;
-            this.txtLyDo.EnableColorEffect = true;
-            this.txtLyDo.EnableColorEffectOnMouseEnter = false;
+            this.txtLyDo.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLyDo.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtLyDo.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLyDo.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLyDo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLyDo.HoverColor = System.Drawing.Color.Yellow;
             this.txtLyDo.LeaveColor = System.Drawing.Color.White;
-            this.txtLyDo.LimitCharacters = null;
             this.txtLyDo.Location = new System.Drawing.Point(171, 161);
             this.txtLyDo.Name = "txtLyDo";
             this.txtLyDo.Size = new System.Drawing.Size(517, 23);
             this.txtLyDo.TabIndex = 5;
-            this.txtLyDo.GrayText = "";
             // 
             // txtSoCt
             // 
             this.txtSoCt.AccessibleName = "SO_CT";
-            this.txtSoCt.BrotherFields = null;
-            this.txtSoCt.Carry = false;
+            this.txtSoCt.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSoCt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtSoCt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtSoCt.EnableColorEffect = true;
-            this.txtSoCt.EnableColorEffectOnMouseEnter = false;
             this.txtSoCt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSoCt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSoCt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSoCt.HoverColor = System.Drawing.Color.Yellow;
             this.txtSoCt.LeaveColor = System.Drawing.Color.White;
-            this.txtSoCt.LimitCharacters = null;
             this.txtSoCt.Location = new System.Drawing.Point(171, 134);
             this.txtSoCt.Name = "txtSoCt";
             this.txtSoCt.Size = new System.Drawing.Size(135, 23);
             this.txtSoCt.TabIndex = 4;
-            this.txtSoCt.GrayText = "";
             // 
             // txtMaGiamTS
             // 
             this.txtMaGiamTS.AccessibleName = "MA_GIAM_TS";
-            this.txtMaGiamTS.BrotherFields = null;
-            this.txtMaGiamTS.Carry = false;
+            this.txtMaGiamTS.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaGiamTS.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaGiamTS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaGiamTS.CheckNotEmpty = true;
-            this.txtMaGiamTS.EnableColorEffect = true;
-            this.txtMaGiamTS.EnableColorEffectOnMouseEnter = false;
             this.txtMaGiamTS.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaGiamTS.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaGiamTS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaGiamTS.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaGiamTS.LeaveColor = System.Drawing.Color.White;
-            this.txtMaGiamTS.LimitCharacters = null;
             this.txtMaGiamTS.Location = new System.Drawing.Point(171, 54);
             this.txtMaGiamTS.Name = "txtMaGiamTS";
             this.txtMaGiamTS.Size = new System.Drawing.Size(135, 23);
             this.txtMaGiamTS.TabIndex = 1;
-            this.txtMaGiamTS.GrayText = "";
             this.txtMaGiamTS.VVar = "MA_TG_TS";
             // 
             // txtMaTS
             // 
             this.txtMaTS.AccessibleName = "SO_THE_TS";
-            this.txtMaTS.BrotherFields = null;
-            this.txtMaTS.Carry = false;
+            this.txtMaTS.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaTS.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaTS.BrotherFields = "TEN_TS";
+            this.txtMaTS.BrotherFields2 = "TEN_TS2";
             this.txtMaTS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaTS.CheckNotEmpty = true;
-            this.txtMaTS.EnableColorEffect = true;
-            this.txtMaTS.EnableColorEffectOnMouseEnter = false;
             this.txtMaTS.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaTS.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaTS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaTS.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaTS.LeaveColor = System.Drawing.Color.White;
-            this.txtMaTS.LimitCharacters = null;
             this.txtMaTS.Location = new System.Drawing.Point(171, 25);
             this.txtMaTS.Name = "txtMaTS";
             this.txtMaTS.Size = new System.Drawing.Size(135, 23);
             this.txtMaTS.TabIndex = 0;
-            this.txtMaTS.GrayText = "";
+            this.txtMaTS.UseChangeTextOnSetFormData = true;
             this.txtMaTS.VVar = "so_the_ts";
             // 
             // label3
@@ -244,35 +266,17 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã tài sản";
             // 
-            // label4
+            // txtTenTS
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 108);
-            this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 17);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Ngày thôi khấu hao";
-            // 
-            // DateNgay_khc
-            // 
-            this.DateNgay_khc.AccessibleName = "ngay_khc";
-            this.DateNgay_khc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DateNgay_khc.BackColor = System.Drawing.Color.White;
-            this.DateNgay_khc.CustomFormat = "dd/MM/yyyy";
-            this.DateNgay_khc.EnterColor = System.Drawing.Color.PaleGreen;
-            this.DateNgay_khc.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateNgay_khc.HoverColor = System.Drawing.Color.Yellow;
-            this.DateNgay_khc.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.DateNgay_khc.LeaveColor = System.Drawing.Color.White;
-            this.DateNgay_khc.Location = new System.Drawing.Point(171, 108);
-            this.DateNgay_khc.Margin = new System.Windows.Forms.Padding(5);
-            this.DateNgay_khc.Name = "DateNgay_khc";
-            this.DateNgay_khc.Size = new System.Drawing.Size(135, 23);
-            this.DateNgay_khc.TabIndex = 3;
-            this.DateNgay_khc.TextTitle = null;
+            this.txtTenTS.AccessibleName = "TEN_TS";
+            this.txtTenTS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtTenTS.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTenTS.Location = new System.Drawing.Point(312, 28);
+            this.txtTenTS.Name = "txtTenTS";
+            this.txtTenTS.ReadOnly = true;
+            this.txtTenTS.Size = new System.Drawing.Size(376, 16);
+            this.txtTenTS.TabIndex = 12;
+            this.txtTenTS.Tag = "readonly";
             // 
             // ValtsAddEditForm
             // 
@@ -306,5 +310,6 @@
         private V6NumberTextBox TxtTang_giam;
         private V6DateTimePick DateNgay_khc;
         private System.Windows.Forms.Label label4;
+        private V6LabelTextBox txtTenTS;
     }
 }

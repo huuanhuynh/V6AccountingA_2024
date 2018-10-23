@@ -333,7 +333,6 @@ namespace V6Controls
             if (string.IsNullOrEmpty(LookupInfo.TABLE_NAME))
             {
                 base.V6ColorTextBox_KeyDown(sender, e);
-                if (e.KeyData == Keys.Enter) SendKeys.Send("{TAB}");
             }
             else
             {
@@ -398,8 +397,7 @@ namespace V6Controls
                 //        }
                 //    }
                 //}
-                //else
-                    if (F5 && !ReadOnly && e.KeyCode == Keys.F5 && !string.IsNullOrEmpty(LookupInfo_F_NAME))
+                else if (F5 && !ReadOnly && e.KeyCode == Keys.F5 && !string.IsNullOrEmpty(LookupInfo_F_NAME))
                 {
                     LoadAutoCompleteSource();
                     DoLookup();
