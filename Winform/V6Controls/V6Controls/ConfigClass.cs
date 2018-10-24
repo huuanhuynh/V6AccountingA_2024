@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using V6Structs;
 using V6Tools.V6Convert;
 
@@ -15,8 +16,9 @@ namespace V6Controls
         public Config(IDictionary<string, object> data)
         {
             DATA = data;
+            NoInfo = false;
         }
-
+        [DefaultValue(true)]
         public bool NoInfo { get; internal set; }
         public bool HaveInfo { get { return !NoInfo; } }
         public bool Error { get; set; }
@@ -56,6 +58,7 @@ namespace V6Controls
 
         public AldmConfig()
         {
+            NoInfo = true;
         }
 
         public int STT { get { return GetInt("STT"); } }
@@ -183,6 +186,7 @@ namespace V6Controls
         {
         }
 
+        public string DOI_MA { get { return GetString("DOI_MA"); } }
         public string vVar { get { return GetString("vVar"); } }
         public string vMa_file { get { return GetString("vMa_file"); } }
         public string vOrder { get { return GetString("vOrder"); } }

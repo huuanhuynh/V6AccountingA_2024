@@ -158,7 +158,15 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             _do_change_code_finish = true;
         }
 
-        
+        public override bool DoHotKey0(Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                btnHuy.PerformClick();
+                return true;
+            }
+            return base.DoHotKey0(keyData);
+        }
 
         private void KhachHangChangeCodeForm_Load(object sender, EventArgs e)
         {

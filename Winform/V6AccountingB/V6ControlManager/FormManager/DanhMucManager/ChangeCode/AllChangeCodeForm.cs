@@ -29,8 +29,8 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             
             AccessibleNameOldCode = tblaldm["VALUE"].ToString().Trim();
             AccessibleNameOldCodeName = tblaldm["F_NAME"].ToString().Trim();
-            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            ClientSize = new System.Drawing.Size(716, 123);
+            //AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            //ClientSize = new System.Drawing.Size(716, 123);
             Name = "AllChangeCodeForm";
             //Text = (V6Setting.IsVietnamese ? "Đổi mã " : "Change code: ");
             //Gọi lại hàm gán data.

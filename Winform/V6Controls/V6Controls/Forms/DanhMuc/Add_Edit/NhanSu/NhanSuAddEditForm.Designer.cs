@@ -44,7 +44,7 @@
             this.TxTmid_name = new V6Controls.V6ColorTextBox();
             this.TxTlast_name = new V6Controls.V6ColorTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.TxTemp_id = new V6Controls.V6ColorTextBox();
+            this.txtEmp_ID = new V6Controls.V6ColorTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -161,7 +161,7 @@
             this.groupBox2.Controls.Add(this.TxTmid_name);
             this.groupBox2.Controls.Add(this.TxTlast_name);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.TxTemp_id);
+            this.groupBox2.Controls.Add(this.txtEmp_ID);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Location = new System.Drawing.Point(9, -2);
             this.groupBox2.Name = "groupBox2";
@@ -410,25 +410,25 @@
             this.label3.TabIndex = 47;
             this.label3.Text = "Họ/Tên đệm/Tên";
             // 
-            // TxTemp_id
+            // txtEmp_ID
             // 
-            this.TxTemp_id.AccessibleName = "emp_id";
-            this.TxTemp_id.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtEmp_ID.AccessibleName = "emp_id";
+            this.txtEmp_ID.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxTemp_id.BackColor = System.Drawing.Color.White;
-            this.TxTemp_id.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxTemp_id.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxTemp_id.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxTemp_id.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxTemp_id.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxTemp_id.HoverColor = System.Drawing.Color.Yellow;
-            this.TxTemp_id.LeaveColor = System.Drawing.Color.White;
-            this.TxTemp_id.Location = new System.Drawing.Point(149, 14);
-            this.TxTemp_id.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.TxTemp_id.Name = "TxTemp_id";
-            this.TxTemp_id.Size = new System.Drawing.Size(154, 23);
-            this.TxTemp_id.TabIndex = 0;
+            this.txtEmp_ID.BackColor = System.Drawing.Color.White;
+            this.txtEmp_ID.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtEmp_ID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtEmp_ID.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtEmp_ID.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtEmp_ID.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtEmp_ID.HoverColor = System.Drawing.Color.Yellow;
+            this.txtEmp_ID.LeaveColor = System.Drawing.Color.White;
+            this.txtEmp_ID.Location = new System.Drawing.Point(149, 14);
+            this.txtEmp_ID.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.txtEmp_ID.Name = "txtEmp_ID";
+            this.txtEmp_ID.Size = new System.Drawing.Size(154, 23);
+            this.txtEmp_ID.TabIndex = 0;
             // 
             // label5
             // 
@@ -1586,7 +1586,7 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Tự định nghĩa";
             // 
-            // v6ColorTextBox16
+            // txtGC_TD3
             // 
             this.txtGC_TD3.AccessibleName = "GC_TD3";
             this.txtGC_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1605,7 +1605,7 @@
             this.txtGC_TD3.Size = new System.Drawing.Size(563, 23);
             this.txtGC_TD3.TabIndex = 137;
             // 
-            // v6ColorTextBox15
+            // txtGC_TD2
             // 
             this.txtGC_TD2.AccessibleName = "GC_TD2";
             this.txtGC_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1624,7 +1624,7 @@
             this.txtGC_TD2.Size = new System.Drawing.Size(563, 23);
             this.txtGC_TD2.TabIndex = 136;
             // 
-            // v6ColorTextBox1
+            // txtGC_TD1
             // 
             this.txtGC_TD1.AccessibleName = "GC_TD1";
             this.txtGC_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1643,7 +1643,7 @@
             this.txtGC_TD1.Size = new System.Drawing.Size(563, 23);
             this.txtGC_TD1.TabIndex = 135;
             // 
-            // v6ColorTextBox19
+            // txtMA_TD3
             // 
             this.txtMA_TD3.AccessibleName = "MA_TD3";
             this.txtMA_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1661,7 +1661,7 @@
             this.txtMA_TD3.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD3.TabIndex = 119;
             // 
-            // v6ColorTextBox20
+            // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
             this.txtMA_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1679,7 +1679,7 @@
             this.txtMA_TD2.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD2.TabIndex = 117;
             // 
-            // v6ColorTextBox22
+            // txtMA_TD1
             // 
             this.txtMA_TD1.AccessibleName = "MA_TD1";
             this.txtMA_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -2057,7 +2057,7 @@
         private V6ColorTextBox TxTmid_name;
         private V6ColorTextBox TxTlast_name;
         private System.Windows.Forms.Label label3;
-        private V6ColorTextBox TxTemp_id;
+        private V6ColorTextBox txtEmp_ID;
         private System.Windows.Forms.Label label5;
         private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;

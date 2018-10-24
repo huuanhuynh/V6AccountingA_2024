@@ -842,13 +842,6 @@ namespace V6ControlManager.FormManager.NhanSu
                 result = InitFilter;
             }
 
-            ////Thêm lọc Filter_Field
-            //if (cboFilter.Visible && cboFilter.SelectedIndex > 0)
-            //{
-            //    string filter = string.Format("{0}='{1}'", FILTER_FIELD, cboFilter.SelectedValue);
-            //    result += string.Format("{0}{1}", result.Length > 0 ? " and " : "", filter);
-            //}
-
             //Thêm lọc where
             if (!string.IsNullOrEmpty(_search))
             {

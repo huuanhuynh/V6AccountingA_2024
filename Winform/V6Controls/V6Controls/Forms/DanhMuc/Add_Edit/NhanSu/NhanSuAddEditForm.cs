@@ -19,10 +19,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             try
             {
                 btnBoSung.Enabled = true;
-                //if (TXTbirth_date.Text.Length == 10)
-                //{
-                //    TxTbirth_date.Value = ObjectAndString.ObjectToDate(TXTbirth_date.Text);
-                //}
+                
+                V6lookupConfig v6lookup_config = V6ControlsHelper.GetV6lookupConfigByTableName(TableName.ToString());
+                var id = v6lookup_config.vValue;
+                var id_check = v6lookup_config.DOI_MA;
+                var listTable = v6lookup_config.ListTable;
+
+                if (!string.IsNullOrEmpty(listTable) && !string.IsNullOrEmpty(id))
+                {
+                    var v = Categories.IsExistOneCode_List(listTable, id_check, txtEmp_ID.Text.Trim());
+                    if (v) // Đã có phát sinh
+                    {
+                        txtEmp_ID.ReadOnly = true;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -84,25 +94,25 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         {
 
             var errors = "";
-            if (TxTemp_id.Text.Trim() == "")
+            if (txtEmp_ID.Text.Trim() == "")
                 errors += "Chưa nhập mã nhân viên!\r\n";
 
 
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "EMP_ID",
-                 TxTemp_id.Text.Trim(), DataOld["EMP_ID"].ToString());
+                 txtEmp_ID.Text.Trim(), DataOld["EMP_ID"].ToString());
                 if (!b)
                     throw new Exception("Không được sửa mã đã tồn tại: "
-                                                    + "EMP_ID = " + TxTemp_id.Text.Trim());
+                                                    + "EMP_ID = " + txtEmp_ID.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "EMP_ID",
-                 TxTemp_id.Text.Trim(), TxTemp_id.Text.Trim());
+                 txtEmp_ID.Text.Trim(), txtEmp_ID.Text.Trim());
                 if (!b)
                     throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "EMP_ID = " + TxTemp_id.Text.Trim());
+                                                    + "EMP_ID = " + txtEmp_ID.Text.Trim());
             }
 
             if (errors.Length > 0) throw new Exception(errors);
