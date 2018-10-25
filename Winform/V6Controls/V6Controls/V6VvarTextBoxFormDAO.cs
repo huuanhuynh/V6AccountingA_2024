@@ -5,17 +5,16 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Init;
-using V6Tools;
 
 namespace V6Controls
 {
-    class StandardDAO
+    class V6VvarTextBoxFormDAO
     {
-        Standard standard = null;
+        V6VvarTextBoxForm _lookupForm = null;
         public DataTable tableRoot = null;
         BindingSource source = null;
         Boolean flagAllClick = false; //Dùng để nhận biết nút "All" có được nhấn
-        StandardConfig lstConfig = null;
+        V6lookupConfig _config = null;
         
         string cKey = " and 1=1 ";
 
@@ -23,32 +22,32 @@ namespace V6Controls
         TextBox textSender = null;
         
         
-        public StandardDAO(Standard form, TextBox sender, string vSearchFilter)
+        public V6VvarTextBoxFormDAO(V6VvarTextBoxForm form, TextBox sender, string vSearchFilter)
         {
-            standard = form;
+            _lookupForm = form;
             textSender = sender;
             
-            lstConfig = form.LstConfig;
+            _config = form._config;
             _initStrFilter = form.InitStrFilter;
             _vSearchFilter = vSearchFilter;
 
             try
             {                   
                 tableRoot = ThemDuLieuVaoBangChinh(
-                    lstConfig.TableName, _initStrFilter, _vSearchFilter);
+                    _config.TableName, _initStrFilter, _vSearchFilter);
 
                 
             }
             catch (Exception e)
             {
-                V6ControlFormHelper.ShowErrorMessage(e.Message, "StandardDAO init");
+                V6ControlFormHelper.ShowErrorMessage(e.Message, "V6VvarTextBoxFormDAO init");
             }
         }
         
-        public StandardDAO(Standard form)
+        public V6VvarTextBoxFormDAO(V6VvarTextBoxForm form)
         {
-            standard = form;
-            lstConfig = form.LstConfig;
+            _lookupForm = form;
+            _config = form._config;
         }
 
 
@@ -65,16 +64,16 @@ namespace V6Controls
             {
                 try
                 {
-                    if (lstConfig.Vvar.ToUpper() == "MA_LO")
+                    if (_config.vVar.ToUpper() == "MA_LO")
                     {
                         //return new DataTable();
                         //Cần sửa lại config vField/eField...
                     }
 
-                    if ((standard._lookupMode == LookupMode.Multi || standard._lookupMode == LookupMode.Data)
+                    if ((_lookupForm._lookupMode == LookupMode.Multi || _lookupForm._lookupMode == LookupMode.Data)
                         && vSearchFilter.Contains(","))
                     {
-                        var tbl = V6BusinessHelper.Select(tableName, "*", initFilter, "", lstConfig.Vorder).Data;
+                        var tbl = V6BusinessHelper.Select(tableName, "*", initFilter, "", _config.vOrder).Data;
                         return tbl;
                     }
                     else
@@ -91,7 +90,7 @@ namespace V6Controls
                                 where += " AND (" + vSearchFilter + ")";
                             }                            
                         }
-                        var tbl = V6BusinessHelper.Select(tableName, "*", where, "", lstConfig.Vorder).Data;
+                        var tbl = V6BusinessHelper.Select(tableName, "*", where, "", _config.vOrder).Data;
                         return tbl;
                     }
                 }
@@ -112,11 +111,11 @@ namespace V6Controls
             //Khi bấm nút "ALL" thì sẽ không có điều kiện lọc
             try
             {
-                tableRoot = ThemDuLieuVaoBangChinh(lstConfig.TableName, _initStrFilter, vSearchFilter);
+                tableRoot = ThemDuLieuVaoBangChinh(_config.TableName, _initStrFilter, vSearchFilter);
             }
             catch (Exception e)
             {
-                throw new Exception("StandardDAO.LayTatCaDanhMuc : " + e.Message);
+                throw new Exception("V6VvarTextBoxFormDAO.LayTatCaDanhMuc : " + e.Message);
             }
             myView = new DataView(tableRoot);
             //Huuan add: cập nhập lại tempTable
@@ -126,42 +125,42 @@ namespace V6Controls
 
         public void NapCacFieldDKLoc()
         {
-            if (!String.IsNullOrEmpty(lstConfig.TableName))
+            if (!String.IsNullOrEmpty(_config.TableName))
             {
                 try
                 {
-                    SqlParameter[] plist = {new SqlParameter("@p", lstConfig.TableName)};
+                    SqlParameter[] plist = {new SqlParameter("@p", _config.TableName)};
                     var ds = V6BusinessHelper.Select("INFORMATION_SCHEMA.COLUMNS", "COLUMN_NAME,DATA_TYPE",
                         "TABLE_NAME = @p","","", plist).Data;
 
-                    standard.cbbDieuKien.DisplayMember = "COLUMN_NAME";
-                    standard.cbbDieuKien.ValueMember = "DATA_TYPE";
-                    standard.cbbDieuKien.DataSource = ds;
-                    standard.cbbDieuKien.DisplayMember = "COLUMN_NAME";
-                    standard.cbbDieuKien.ValueMember = "DATA_TYPE";
+                    _lookupForm.cbbDieuKien.DisplayMember = "COLUMN_NAME";
+                    _lookupForm.cbbDieuKien.ValueMember = "DATA_TYPE";
+                    _lookupForm.cbbDieuKien.DataSource = ds;
+                    _lookupForm.cbbDieuKien.DisplayMember = "COLUMN_NAME";
+                    _lookupForm.cbbDieuKien.ValueMember = "DATA_TYPE";
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("StandardDAO.NapCacFieldDKLoc : " + e.Message);
+                    throw new Exception("V6VvarTextBoxFormDAO.NapCacFieldDKLoc : " + e.Message);
                 }
             }
             else
             {
-                //LibraryHelper.Log("StandardDAO.NapCacFieldDKLoc : \"categoryName\" không được trống");
+                //LibraryHelper.Log("V6VvarTextBoxFormDAO.NapCacFieldDKLoc : \"categoryName\" không được trống");
             }
         }
 
         public void LayThongTinTieuDe()
         {
-            string formName = V6Setting.Language=="V"?lstConfig.V1Title:lstConfig.E1Title;
-            standard.Text = formName;
+            string formName = V6Setting.Language=="V"?_config.v1Title:_config.e1Title;
+            _lookupForm.Text = formName;
         }
 
         public void ChonGiaTriKhoiTaoCho_cbbKyHieu()
         {
-            if (standard.cbbKyHieu.Items.Count != 0)
+            if (_lookupForm.cbbKyHieu.Items.Count != 0)
             {
-                standard.cbbKyHieu.SelectedIndex = 0;
+                _lookupForm.cbbKyHieu.SelectedIndex = 0;
             }
         }
 
@@ -169,19 +168,19 @@ namespace V6Controls
         {
             try
             {
-                string comboboxValue = standard.cbbDieuKien.SelectedValue.ToString().Trim();
+                string comboboxValue = _lookupForm.cbbDieuKien.SelectedValue.ToString().Trim();
                 if (comboboxValue == "char")
                 {
-                    standard.cbbKyHieu.Items.AddRange(new object[] { "$", "<>" });
+                    _lookupForm.cbbKyHieu.Items.AddRange(new object[] { "$", "<>" });
                 }
                 else if (comboboxValue == "money" || comboboxValue == "tinyint" || comboboxValue == "smalldatetime" || comboboxValue.Contains("numeric"))
                 {
-                    standard.cbbKyHieu.Items.AddRange(new object[] { "=", ">", ">=", "<", "<=", "<>" });
+                    _lookupForm.cbbKyHieu.Items.AddRange(new object[] { "=", ">", ">=", "<", "<=", "<>" });
                 }
             }
             catch (Exception e)
             {
-                throw new Exception("StandardDAO.AnDauTrongComBoBox : " + e.Message);
+                throw new Exception("V6VvarTextBoxFormDAO.AnDauTrongComBoBox : " + e.Message);
             }
         }
 
@@ -191,19 +190,19 @@ namespace V6Controls
             {
                 try
                 {
-                    standard.dataGridView1.DataSource = tableRoot;
-                    V6ControlFormHelper.FormatGridViewAndHeader(standard.dataGridView1,
-                        V6Setting.Language == "V" ? lstConfig.VFields : lstConfig.EFields,
-                        lstConfig.VWidths,
-                        V6Setting.Language=="V"?lstConfig.VHeaders:lstConfig.EHeaders);
+                    _lookupForm.dataGridView1.DataSource = tableRoot;
+                    V6ControlFormHelper.FormatGridViewAndHeader(_lookupForm.dataGridView1,
+                        V6Setting.Language == "V" ? _config.vFields : _config.eFields,
+                        _config.vWidths,
+                        V6Setting.Language=="V"?_config.vHeaders:_config.eHeaders);
 
-                    if (standard.dataGridView1.Rows.Count > 0)
+                    if (_lookupForm.dataGridView1.Rows.Count > 0)
                     {
-                        standard.dataGridView1.Select();
+                        _lookupForm.dataGridView1.Select();
                     }
                     else
                     {
-                        standard.txtV_Search.Select();
+                        _lookupForm.txtV_Search.Select();
                     }
                 }
                 catch (Exception ex)
@@ -213,7 +212,7 @@ namespace V6Controls
             }
             else
             {
-                //LibraryHelper.Log("StandardDAO.KhoiTaoDataGridView : \"tableRoot\" không được null");
+                //LibraryHelper.Log("V6VvarTextBoxFormDAO.KhoiTaoDataGridView : \"tableRoot\" không được null");
             }
         }
         
@@ -222,27 +221,27 @@ namespace V6Controls
         public DataTable tempTable = null;
         public void TimKiemDMKH(bool isRapidSearch)
         {
-            if (standard.rbtLocTuDau.Checked && standard.cbbGoiY.Text != "") // IF 1
+            if (_lookupForm.rbtLocTuDau.Checked && _lookupForm.cbbGoiY.Text != "") // IF 1
             {
                 try
                 {
                     myView = new DataView(tableRoot);
                     //Thiết lập điều kiện lọc cho đối tượng "source"
                     if (isRapidSearch) //Mặc định là chọn theo điều kiện thuộc("$") khi tìm kiếm nhanh
-                        source = LocTheoDieuKien(standard.cbbDieuKien.Text, "$", standard.cbbGoiY.Text);
+                        source = LocTheoDieuKien(_lookupForm.cbbDieuKien.Text, "$", _lookupForm.cbbGoiY.Text);
                     else // trường hợp tìm kiếm bình thường
-                        source = LocTheoDieuKien(standard.cbbDieuKien.Text, standard.cbbKyHieu.Text, standard.cbbGoiY.Text);
+                        source = LocTheoDieuKien(_lookupForm.cbbDieuKien.Text, _lookupForm.cbbKyHieu.Text, _lookupForm.cbbGoiY.Text);
                     //Lọc đối tượng DataView theo điều kiện lọc "source" vừa được thiết lập
                     source.DataSource = myView;
-                    standard.dataGridView1.DataSource = source;
+                    _lookupForm.dataGridView1.DataSource = source;
                     tempTable = myView.ToTable(); //Lưu lại view đã lọc dùng để lọc tiếp tục
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("StandardDAO.TimKiemDMKH if 1 : " + e.Message);
+                    throw new Exception("V6VvarTextBoxFormDAO.TimKiemDMKH if 1 : " + e.Message);
                 }
             }
-            if (standard.rbtLocTiep.Checked && standard.cbbGoiY.Text != "") //IF 2
+            if (_lookupForm.rbtLocTiep.Checked && _lookupForm.cbbGoiY.Text != "") //IF 2
             {
                 try
                 {
@@ -256,15 +255,15 @@ namespace V6Controls
                         tempView = new DataView(tempTable); //Gán view vừa được lọc vào 1 view khác để tiếp tục lọc theo dk khác
                         //Mặc định là chọn theo điều kiện thuộc("$") khi tìm kiếm nhanh (isRapidSearch)
                         // trường hợp khác tìm kiếm bình thường
-                        source = LocTheoDieuKien(standard.cbbDieuKien.Text, isRapidSearch ? "$" : standard.cbbKyHieu.Text, standard.cbbGoiY.Text);
+                        source = LocTheoDieuKien(_lookupForm.cbbDieuKien.Text, isRapidSearch ? "$" : _lookupForm.cbbKyHieu.Text, _lookupForm.cbbGoiY.Text);
                         source.DataSource = tempView;
-                        standard.dataGridView1.DataSource = source;
+                        _lookupForm.dataGridView1.DataSource = source;
                         tempTable = tempView.ToTable(); //Lưu lại các giá trị vừa lọc đưa vào bảng tạm để dùng trong trường hợp user muốn lọc tiếp
                     }
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("StandardDAO.TimKiemDMKH if 2 : " + e.Message);
+                    throw new Exception("V6VvarTextBoxFormDAO.TimKiemDMKH if 2 : " + e.Message);
                 }
             }
         }
@@ -317,21 +316,21 @@ namespace V6Controls
 
         public void ThietLapGridViewKhiNhanLeft_Right()
         {
-            standard.dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            //standard.dataGridView1.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
-            //standard.dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+            _lookupForm.dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            //_lookupForm.dataGridView1.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
+            //_lookupForm.dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
         }
 
         public void ThietLapGridViewKhiNhanUp_Down()
         {
-            standard.dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            //standard.dataGridView1.DefaultCellStyle.SelectionBackColor = Color.PaleGreen;
-            //standard.dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            _lookupForm.dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //_lookupForm.dataGridView1.DefaultCellStyle.SelectionBackColor = Color.PaleGreen;
+            //_lookupForm.dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
         }
 
         public void XuLyEnterChonGiaTri(string selectedValue, V6VvarTextBox textbox)
         {
-            if (standard._lookupMode == LookupMode.Multi)
+            if (_lookupForm._lookupMode == LookupMode.Multi)
             {
                 try
                 {
@@ -342,7 +341,7 @@ namespace V6Controls
                     
                 }
             }
-            else if (standard._lookupMode == LookupMode.Single)
+            else if (_lookupForm._lookupMode == LookupMode.Single)
             {
                 ControlFunction.LISTVALUE.Add(selectedValue);
                 if (textbox.ReadOnly) return;
@@ -353,11 +352,11 @@ namespace V6Controls
                     {
                         if (ControlFunction.LISTVALUE.Count > 0)
                         {
-                            cKey = " and a." + lstConfig.FieldName.Trim() + " = '" + selectedValue + "' ";
+                            cKey = " and a." + _config.vValue.Trim() + " = '" + selectedValue + "' ";
                         }
                         //Tạo bảng tạm
                         string tempTableName = "";
-                        tempTableName = "@" + lstConfig.TableName;
+                        tempTableName = "@" + _config.TableName;
 
                         var tblData = new DataTable();
                         tblData.Columns.Add("Id", typeof (string));
@@ -379,8 +378,8 @@ namespace V6Controls
                                 // thêm đối tượng mới vào danh sách
                         }
                         textbox.ChangeText(selectedValue); // Gán giá trị vừa chọn vào trong textbox
-                        var selectData = V6BusinessHelper.Select(lstConfig.TableName, "*",
-                            "[" + lstConfig.FieldName + "]='" + selectedValue + "'");
+                        var selectData = V6BusinessHelper.Select(_config.TableName, "*",
+                            "[" + _config.vValue + "]='" + selectedValue + "'");
                         if (selectData.Data != null && selectData.Data.Rows.Count == 1)
                         {
                             var oneRow = selectData.Data.Rows[0];
@@ -391,7 +390,7 @@ namespace V6Controls
                     }
                     catch (Exception e)
                     {
-                        throw new Exception("StandardDAO.XuLyEnterChonGiaTri : " + e.Message);
+                        throw new Exception("V6VvarTextBoxFormDAO.XuLyEnterChonGiaTri : " + e.Message);
                     }
                 }
             }

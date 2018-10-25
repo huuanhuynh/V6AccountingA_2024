@@ -6,7 +6,7 @@ using V6Controls.Forms;
 
 namespace V6Controls
 {
-    partial class Standard
+    partial class V6VvarTextBoxForm
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@ namespace V6Controls
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Standard));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(V6VvarTextBoxForm));
             this.pBar = new System.Windows.Forms.Panel();
             this.rbtTimKiem = new System.Windows.Forms.RadioButton();
             this.rbtLocTuDau = new System.Windows.Forms.RadioButton();
@@ -289,7 +289,7 @@ namespace V6Controls
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             // 
-            // Standard
+            // this
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.CancelButton = this.btnESC;
@@ -304,12 +304,12 @@ namespace V6Controls
             this.MaximumSize = new System.Drawing.Size(1024, 768);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 400);
-            this.Name = "Standard";
+            this.Name = "V6VvarTextBoxForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Standard_FormClosing);
-            this.Load += new System.EventHandler(this.Standard_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Standard_KeyDown);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_FormClosing);
+            this.Load += new System.EventHandler(this.Form_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.pBar, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);

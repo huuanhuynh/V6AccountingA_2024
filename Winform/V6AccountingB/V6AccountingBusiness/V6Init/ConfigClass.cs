@@ -186,6 +186,7 @@ namespace V6Init
         public V6lookupConfig(IDictionary<string, object> data)
             : base(data)
         {
+            V6TableName = V6TableHelper.ToV6TableName(vMa_file);
         }
 
         public V6lookupConfig()
@@ -205,11 +206,23 @@ namespace V6Init
                 return result.Split(',');
             }
         }
-
+        public V6TableName V6TableName { get; private set; }
         public string DOI_MA { get { return GetString("DOI_MA"); } }
         public string vVar { get { return GetString("vVar"); } }
+        /// <summary>
+        /// TableName
+        /// </summary>
         public string vMa_file { get { return GetString("vMa_file"); } }
+        /// <summary>
+        /// như vMa_file
+        /// </summary>
+        public string TableName { get { return GetString("vMa_file"); } }
+        public string VName { get { return GetString("VName"); } }
+        public string VName2 { get { return GetString("VName2"); } }
         public string vOrder { get { return GetString("vOrder"); } }
+        /// <summary>
+        /// MainField
+        /// </summary>
         public string vValue { get { return GetString("vValue"); } }
         public string vLfScatter { get { return GetString("vLfScatter"); } }
         public string vWidths { get { return GetString("vWidths"); } }
@@ -222,20 +235,20 @@ namespace V6Init
         public string eTitle { get { return GetString("eTitle"); } }
         public string VTitlenew { get { return GetString("VTitlenew"); } }
         public string ETitlenew { get { return GetString("ETitlenew"); } }
-        public string Large_yn { get { return GetString("Large_yn"); } }
+        public bool Large_yn { get { return GetString("Large_yn") == "1"; } }
         public string v1Title { get { return GetString("v1Title"); } }
         public string e1Title { get { return GetString("e1Title"); } }
         public string V_Search { get { return GetString("V_Search"); } }
         public string ListTable { get { return GetString("ListTable"); } }
         public string INITFILTER { get { return GetString("INITFILTER"); } }
         public string V_HIDE { get { return GetString("V_HIDE"); } }
-        public string LOAD_AUTO { get { return GetString("LOAD_AUTO"); } }
+        public bool LOAD_AUTO { get { return GetString("LOAD_AUTO") == "1"; } }
         public string GRDS_V1 { get { return GetString("GRDS_V1"); } }
         public string GRDF_V1 { get { return GetString("GRDF_V1"); } }
         public string GRDHV_V1 { get { return GetString("GRDHV_V1"); } }
         public string GRDHE_V1 { get { return GetString("GRDHE_V1"); } }
-        public string F3 { get { return GetString("F3"); } }
-        public string F4 { get { return GetString("F4"); } }
+        public bool F3 { get { return GetString("F3") == "1"; } }
+        public bool F4 { get { return GetString("F4") == "1"; } }
         public string Filter_All { get { return GetString("Filter_All"); } }
         public string FILTER_FIELD { get { return GetString("FILTER_FIELD"); } }
         /// <summary>
@@ -248,76 +261,6 @@ namespace V6Init
         public bool BOLD_YN { get { return GetString("BOLD_YN") == "1"; } }
         public bool COLOR_YN { get { return GetString("COLOR_YN") == "1"; } }
         public int FROZENV { get { return GetInt("FROZENV"); } }
-    }
-
-    public class StandardConfig
-    {
-        public string VLfScatter { get; set; }
-        public string VWidths = "";
-        public string VFields;
-        public string EFields;
-        public string VHeaders;
-        public string EHeaders;
-        public string VUpdate;
-        public string VTitle;
-        public string ETitle;
-        public bool LargeYn;
-        public string V1Title;
-        public string E1Title;
-        /// <summary>
-        /// Thông số các trường vSearch ("ma_vt,ten_vt..")
-        /// </summary>
-        public string VSearch;
-        public string Vvar;
-        private string _tableName;
-        /// <summary>
-        /// Tên bảng dạng chuỗi.
-        /// </summary>
-        public string TableName
-        {
-            get
-            {
-                return _tableName;
-            }
-            set
-            {
-                _tableName = value;
-                _v6TableName = V6TableHelper.ToV6TableName(_tableName);
-            }
-        }
-
-        private V6TableName _v6TableName = V6TableName.Notable;
-        /// <summary>
-        /// Tên bảng đã khai báo. Sẽ là NoTable nếu chưa khai báo.
-        /// </summary>
-        public V6TableName V6TableName { get { return _v6TableName; } }
-        public string Vorder;
-        /// <summary>
-        /// Field Name
-        /// </summary>
-        public string FieldName;
-        public bool LoadAutoComplete { get; set; }
-        /// <summary>
-        /// Cờ đánh dấu không có thông tin trong V6Lookup
-        /// </summary>
-        public bool NoInfo { get; set; }
-
-        public bool Error { get; set; }
-        /// <summary>
-        /// Cấu hình có sử dụng F3 để sửa khi đang chọn lookup.
-        /// </summary>
-        public bool F3 { get; set; }
-        /// <summary>
-        /// Cấu hình có sử dụng F4 để thêm khi đang chọn lookup.
-        /// </summary>
-        public bool F4 { get; set; }
-
-        public string VName { get; set; }
-        public string VName2 { get; set; }
-
-        public string VTitlenew;
-        public string ETitlenew;
-
     }
 
     public class V6ValidConfig : Config

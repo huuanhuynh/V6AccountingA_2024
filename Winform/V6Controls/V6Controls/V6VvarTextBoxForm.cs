@@ -29,12 +29,12 @@ namespace V6Controls
     /// Nếu còn 1 dòng thì bấm enter ở vsearch là chọn luôn.
     /// Có thể cần nâng cấp phần phân trang giống danh mục view
     /// </summary>
-    public partial class Standard : V6Form
+    public partial class V6VvarTextBoxForm : V6Form
     {
-        public StandardConfig LstConfig;
+        public V6lookupConfig _config;
         
         //public string VVar;
-        StandardDAO _standDao;
+        V6VvarTextBoxFormDAO _standDao;
         internal string InitStrFilter;
         private readonly V6VvarTextBox _senderTextBox;
 
@@ -53,10 +53,10 @@ namespace V6Controls
         }
 
 
-        public Standard(V6VvarTextBox sender, StandardConfig lookupInfo, string initStrFilter,
+        public V6VvarTextBoxForm(V6VvarTextBox sender, V6lookupConfig lookupInfo, string initStrFilter,
             LookupMode lookupMode = LookupMode.Single, bool filterStart = false)
         {            
-            LstConfig = lookupInfo;
+            _config = lookupInfo;
             InitStrFilter = initStrFilter;
             _senderTextBox = sender;
             _lookupMode = lookupMode;
@@ -72,9 +72,9 @@ namespace V6Controls
             {
                 txtV_Search.Text = _senderTextBox.Text;
                 
-                _vSearchFilter = GenVSearchFilter(LstConfig.VSearch);
+                _vSearchFilter = GenVSearchFilter(_config.V_Search);
                 //vMaFile = LstConfig[1];
-                _standDao = new StandardDAO(this, _senderTextBox, _vSearchFilter);
+                _standDao = new V6VvarTextBoxFormDAO(this, _senderTextBox, _vSearchFilter);
                 _standDao.NapCacFieldDKLoc();
                 cbbDieuKien.SelectedIndex = 0;
                 _standDao.LayThongTinTieuDe();
@@ -82,7 +82,7 @@ namespace V6Controls
                 _standDao.ChonGiaTriKhoiTaoCho_cbbKyHieu();
                 _standDao.KhoiTaoDataGridView();
 
-                //this.HelpButtonClicked +=new CancelEventHandler(Standard_HelpButtonClicked);
+                //this.HelpButtonClicked +=new CancelEventHandler(Form_HelpButtonClicked);
                 _helpProvider1 = new HelpProvider();
                 _helpProvider1.SetHelpString(txtV_Search, ChuyenMaTiengViet.ToUnSign("Gõ bất kỳ thông tin bạn nhớ để tìm kiếm!"));
                 _helpProvider1.SetHelpString(btnVSearch, ChuyenMaTiengViet.ToUnSign("Tìm..."));
@@ -96,7 +96,7 @@ namespace V6Controls
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.ShowErrorMessage("Init : " + ex.Message, "Standard");
+                V6ControlFormHelper.ShowErrorException(GetType() + ".Init", ex);
             }
         }        
         private void btnTimKiem_Click(object sender, EventArgs e)
@@ -107,7 +107,7 @@ namespace V6Controls
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.ShowErrorMessage("Standard.btnTimKiem_Click ; " + ex.Message);
+                V6ControlFormHelper.ShowErrorException(GetType() + ".btnTimKiem_Click", ex);
             }
         }
 
@@ -127,7 +127,7 @@ namespace V6Controls
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.ShowErrorMessage("Standard.btnTatCa_Click : " + ex.Message);
+                V6ControlFormHelper.ShowErrorException(GetType() + ".btnTatCa_Click", ex);
             }
         }
 
@@ -136,13 +136,13 @@ namespace V6Controls
             try
             {
                 cbbKyHieu.Items.Clear();
-                StandardDAO standDao = new StandardDAO(this);
+                V6VvarTextBoxFormDAO standDao = new V6VvarTextBoxFormDAO(this);
                 standDao.AnDauTrongComBoBoxDau();
                 standDao.ChonGiaTriKhoiTaoCho_cbbKyHieu();
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.ShowErrorMessage("Standard.cbbDieuKien_TextChanged : " + ex.Message);   
+                V6ControlFormHelper.ShowErrorException(GetType() + ".cbbDieuKien_TextChanged", ex);
             }
         }
 
@@ -161,7 +161,7 @@ namespace V6Controls
                         {
                             var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
                             string selectedValue = currentRow
-                                .Cells[LstConfig.FieldName].Value.ToString().Trim();
+                                .Cells[_config.vValue].Value.ToString().Trim();
                             _standDao.XuLyEnterChonGiaTri(selectedValue, _senderTextBox);
                             Close();
 
@@ -175,7 +175,7 @@ namespace V6Controls
                         {
                             if (row.IsSelect())
                             {
-                                selectedValues += "," + row.Cells[LstConfig.FieldName].Value.ToString().Trim();
+                                selectedValues += "," + row.Cells[_config.vValue].Value.ToString().Trim();
                             }
                         }
 
@@ -361,26 +361,26 @@ namespace V6Controls
                     //    return false;
                     //}
 
-                    if (LstConfig.TableName.ToUpper() == "ALTK" || LstConfig.TableName.ToUpper() == "ALTK0")
+                    if (_config.vMa_file.ToUpper() == "ALTK" || _config.vMa_file.ToUpper() == "ALTK0")
                         return true;
 
-                    if (V6Login.UserRight.AllowView("", LstConfig.TableName.ToUpper() + "6"))
+                    if (V6Login.UserRight.AllowView("", _config.vMa_file.ToUpper() + "6"))
                     {
                         if (dataGridView1.SelectedCells.Count > 0)
                         {
                             var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
                             string selectedValue = currentRow
-                                .Cells[LstConfig.FieldName].Value.ToString().Trim();
+                                .Cells[_config.vValue].Value.ToString().Trim();
                             var g = currentRow.Cells["UID"].Value.ToString();
                             Guid uid = new Guid(g);
                             var keys = new SortedDictionary<string, object>
                             {
-                                {LstConfig.FieldName, selectedValue},
+                                {_config.vValue, selectedValue},
                                 {"UID", uid}
                             };
-                            var f = LstConfig.V6TableName == V6TableName.Notable
-                                ? new FormAddEdit(LstConfig.TableName, V6Mode.View, keys, null)
-                                : new FormAddEdit(LstConfig.V6TableName, V6Mode.View, keys, null);
+                            var f = _config.V6TableName == V6TableName.Notable
+                                ? new FormAddEdit(_config.vMa_file, V6Mode.View, keys, null)
+                                : new FormAddEdit(_config.V6TableName, V6Mode.View, keys, null);
                             f.AfterInitControl += f_AfterInitControl;
                             f.InitFormControl();
                             f.ParentData = _senderTextBox.ParentData;
@@ -396,31 +396,31 @@ namespace V6Controls
                 }
                 else if (keyData == Keys.F3) //Sua
                 {
-                    if (!LstConfig.F3)
+                    if (!_config.F3)
                     {
                         return false;
                     }
 
-                    if (LstConfig.TableName.ToUpper() == "ALTK" || LstConfig.TableName.ToUpper() == "ALTK0")
+                    if (_config.vMa_file.ToUpper() == "ALTK" || _config.vMa_file.ToUpper() == "ALTK0")
                         return true;
 
-                    if (V6Login.UserRight.AllowEdit("", LstConfig.TableName.ToUpper() + "6"))
+                    if (V6Login.UserRight.AllowEdit("", _config.vMa_file.ToUpper() + "6"))
                     {
                         if (dataGridView1.SelectedCells.Count > 0)
                         {
                             var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
                             string selectedValue = currentRow
-                                .Cells[LstConfig.FieldName].Value.ToString().Trim();
+                                .Cells[_config.vValue].Value.ToString().Trim();
                             var g = currentRow.Cells["UID"].Value.ToString();
                             Guid uid = new Guid(g);
                             var keys = new SortedDictionary<string, object>
                             {
-                                {LstConfig.FieldName, selectedValue},
+                                {_config.vValue, selectedValue},
                                 {"UID", uid}
                             };
-                            var f = LstConfig.V6TableName == V6TableName.Notable
-                                ? new FormAddEdit(LstConfig.TableName, V6Mode.Edit, keys, null)
-                                : new FormAddEdit(LstConfig.V6TableName, V6Mode.Edit, keys, null);
+                            var f = _config.V6TableName == V6TableName.Notable
+                                ? new FormAddEdit(_config.vMa_file, V6Mode.Edit, keys, null)
+                                : new FormAddEdit(_config.V6TableName, V6Mode.Edit, keys, null);
                             f.AfterInitControl += f_AfterInitControl;
                             f.InitFormControl();
                             f.ParentData = _senderTextBox.ParentData;
@@ -436,21 +436,21 @@ namespace V6Controls
                 }
                 else if (keyData == Keys.F4)
                 {
-                    if (!LstConfig.F4)
+                    if (!_config.F4)
                     {
                         return false;
                     }
 
-                    if (LstConfig.TableName.ToUpper() == "ALTK" || LstConfig.TableName.ToUpper() == "ALTK0")
+                    if (_config.vMa_file.ToUpper() == "ALTK" || _config.vMa_file.ToUpper() == "ALTK0")
                         return true;
 
-                    if (V6Login.UserRight.AllowAdd("", LstConfig.TableName.ToUpper() + "6"))
+                    if (V6Login.UserRight.AllowAdd("", _config.vMa_file.ToUpper() + "6"))
                     {
                         DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                         var data = row != null ? row.ToDataDictionary() : null;
-                        var f = LstConfig.V6TableName == V6TableName.Notable
-                            ? new FormAddEdit(LstConfig.TableName, V6Mode.Add, null, data)
-                            : new FormAddEdit(LstConfig.V6TableName, V6Mode.Add, null, data);
+                        var f = _config.V6TableName == V6TableName.Notable
+                            ? new FormAddEdit(_config.vMa_file, V6Mode.Add, null, data)
+                            : new FormAddEdit(_config.V6TableName, V6Mode.Add, null, data);
                         f.AfterInitControl += f_AfterInitControl;
                         f.InitFormControl();
                         f.ParentData = _senderTextBox.ParentData;
@@ -467,7 +467,7 @@ namespace V6Controls
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.ShowErrorMessage("Standard CmdKey: " + ex.Message);
+                V6ControlFormHelper.ShowErrorException(GetType() + ".ProcessCmdKey", ex);
                 return false;
             }
             dataGridView1_KeyDown(dataGridView1, new KeyEventArgs(keyData));
@@ -476,7 +476,7 @@ namespace V6Controls
 
         void f_AfterInitControl(object sender, EventArgs e)
         {
-            LoadAdvanceControls((Control)sender, LstConfig.V6TableName == V6TableName.Notable?LstConfig.TableName:LstConfig.V6TableName.ToString());
+            LoadAdvanceControls((Control)sender, _config.V6TableName == V6TableName.Notable?_config.vMa_file:_config.V6TableName.ToString());
         }
 
         protected void LoadAdvanceControls(Control form, string ma_ct)
@@ -495,7 +495,7 @@ namespace V6Controls
         {
             try
             {
-                txtV_Search.Text = dataDic[LstConfig.FieldName.ToUpper()].ToString().Trim();
+                txtV_Search.Text = dataDic[_config.vValue.ToUpper()].ToString().Trim();
                 btnVSearch.PerformClick();
             }
             catch (Exception ex)
@@ -510,9 +510,9 @@ namespace V6Controls
             {
                 var currentRow = dataGridView1.Rows[e.RowIndex];
                 string selectedValue = currentRow
-                    .Cells[LstConfig.FieldName].Value.ToString().Trim();
+                    .Cells[_config.vValue].Value.ToString().Trim();
                 _standDao.XuLyEnterChonGiaTri(selectedValue, _senderTextBox);
-                Close();                                
+                Close();
             }
         }
 
@@ -522,7 +522,7 @@ namespace V6Controls
         }        
 
         #region //====================huuan add===================================
-        string _vSearchFilter = "";  //"field1,field2,..."
+        string _vSearchFilter = "";
         /// <summary>
         /// Tạo chuỗi where or nhiều trường.
         /// Trường hợp multi để nguyên để xử lý.
@@ -564,7 +564,7 @@ namespace V6Controls
         {
             try
             {
-                string vSearchFields = LstConfig.VSearch;
+                string vSearchFields = _config.V_Search;
                 _vSearchFilter = GenVSearchFilter(vSearchFields);
                 dataGridView1.DataSource = _standDao.LayTatCaDanhMuc(_vSearchFilter);
 
@@ -573,11 +573,11 @@ namespace V6Controls
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.ShowErrorMessage("Standard.btnVSearch_Click : " + ex.Message);
+                V6ControlFormHelper.ShowErrorException(GetType() + ".btnVSearch_Click", ex);
             }
         }
 
-        private void Standard_KeyDown(object sender, KeyEventArgs e)
+        private void Form_KeyDown(object sender, KeyEventArgs e)
         {
             //if (e.KeyCode == Keys.Escape)
             //{
@@ -586,7 +586,7 @@ namespace V6Controls
         }
         #endregion        
 
-        private void Standard_FormClosing(object sender, FormClosingEventArgs e)
+        private void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Kiem tra neu gia tri khong hop le thi xoa            
             if (_lookupMode == LookupMode.Single && !_senderTextBox.ExistRowInTable())
@@ -617,17 +617,17 @@ namespace V6Controls
         {
             try
             {
-                string vSearchFields = LstConfig.VSearch;
+                string vSearchFields = _config.V_Search;
                 _vSearchFilter = GenVSearchFilter(vSearchFields);
                 dataGridView1.DataSource = _standDao.LayTatCaDanhMuc(_vSearchFilter);
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.ShowErrorMessage("Standard.btnTatCa_Click : " + ex.Message);
+                V6ControlFormHelper.ShowErrorException(GetType() + ".btnTatCa_Click", ex);
             }
         }
 
-        private void Standard_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             //Chọn dòng cho trường hợp multi
             if ((_lookupMode == LookupMode.Multi || _lookupMode == LookupMode.Data)
@@ -639,7 +639,7 @@ namespace V6Controls
                 {
                     foreach (string s in sss)
                     {
-                        if (row.Cells[LstConfig.FieldName].Value.ToString().Trim().ToUpper() == s.ToUpper())
+                        if (row.Cells[_config.vValue].Value.ToString().Trim().ToUpper() == s.ToUpper())
                         {
                             row.Select();
                         }

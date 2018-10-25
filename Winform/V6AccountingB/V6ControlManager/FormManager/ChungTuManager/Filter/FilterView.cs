@@ -323,7 +323,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
 
         #endregion        
 
-        private void Standard_FormClosing(object sender, FormClosingEventArgs e)
+        private void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_senderTextBox != null) _senderTextBox.SetLooking(false);
         }

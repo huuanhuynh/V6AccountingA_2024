@@ -1878,14 +1878,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             else
             {
-                StandardConfig lookupInfo = V6ControlsHelper.LayThongTinCauHinh("MA_KH");
-                Standard standard = new Standard(txtMaKH, lookupInfo, txtMaKH.InitFilter, LookupMode.Data, false);
-                standard.AcceptSelectedtData += standard_AcceptSelectedtData;
-                standard.ShowDialog(this);
+                V6lookupConfig lookupInfo = V6Lookup.GetV6lookupConfig("MA_KH");// V6ControlsHelper.LayThongTinCauHinh("MA_KH");
+                V6VvarTextBoxForm lookupForm = new V6VvarTextBoxForm(txtMaKH, lookupInfo, txtMaKH.InitFilter, LookupMode.Data, false);
+                lookupForm.AcceptSelectedtData += lookupForm_AcceptSelectedtData;
+                lookupForm.ShowDialog(this);
             }
         }
 
-        void standard_AcceptSelectedtData(string idList, List<IDictionary<string, object>> dataList)
+        void lookupForm_AcceptSelectedtData(string idList, List<IDictionary<string, object>> dataList)
         {
             try
             {
@@ -1919,14 +1919,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             else
             {
-                StandardConfig lookupInfo = V6ControlsHelper.LayThongTinCauHinh("MA_KH");
-                Standard standard = new Standard(txtMaKH, lookupInfo, txtMaKH.InitFilter, LookupMode.Data, false);
-                standard.AcceptSelectedtData += standard_AcceptSelectedtData5;
-                standard.ShowDialog(this);
+                V6lookupConfig lookupInfo = V6Lookup.GetV6lookupConfig("MA_KH");
+                V6VvarTextBoxForm lookupForm = new V6VvarTextBoxForm(txtMaKH, lookupInfo, txtMaKH.InitFilter, LookupMode.Data, false);
+                lookupForm.AcceptSelectedtData += lookupForm_AcceptSelectedtData5;
+                lookupForm.ShowDialog(this);
             }
         }
 
-        void standard_AcceptSelectedtData5(string idList, List<IDictionary<string, object>> dataList)
+        void lookupForm_AcceptSelectedtData5(string idList, List<IDictionary<string, object>> dataList)
         {
             try
             {

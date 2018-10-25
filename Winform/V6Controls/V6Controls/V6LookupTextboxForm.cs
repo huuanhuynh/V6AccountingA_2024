@@ -161,7 +161,7 @@ namespace V6Controls
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("StandardDAO.KhoiTaoDataGridView : " + e.Message);
+                    throw new Exception(GetType() + ".KhoiTaoDataGridView : " + e.Message);
                 }
             }
             else
@@ -208,7 +208,7 @@ namespace V6Controls
             }
             catch (Exception e)
             {
-                throw new Exception("StandardDAO.AnDauTrongComBoBox : " + e.Message);
+                throw new Exception(GetType() + ".AnDauTrongComBoBox : " + e.Message);
             }
         }
 
@@ -235,7 +235,7 @@ namespace V6Controls
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("StandardDAO.NapCacFieldDKLoc : " + e.Message);
+                    throw new Exception(GetType() + ".NapCacFieldDKLoc : " + e.Message);
                 }
             }
         }
@@ -273,7 +273,7 @@ namespace V6Controls
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("StandardDAO.TimKiemDMKH if 1 : " + e.Message);
+                    throw new Exception(GetType() + ".TimKiemDMKH if 1 : " + e.Message);
                 }
             }
             if (rbtLocTiep.Checked && cbbGoiY.Text != "") //IF 2
@@ -298,7 +298,7 @@ namespace V6Controls
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("StandardDAO.TimKiemDMKH if 2 : " + e.Message);
+                    throw new Exception(GetType() + ".TimKiemDMKH if 2 : " + e.Message);
                 }
             }
         }
@@ -380,7 +380,7 @@ namespace V6Controls
             }
             catch (Exception e)
             {
-                throw new Exception("StandardDAO.LayTatCaDanhMuc : " + e.Message);
+                throw new Exception(GetType() + ".LayTatCaDanhMuc : " + e.Message);
             }
             myView = new DataView(tableRoot);
             //Huuan add: cập nhập lại tempTable

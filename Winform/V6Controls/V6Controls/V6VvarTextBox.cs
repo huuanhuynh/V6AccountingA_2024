@@ -42,7 +42,7 @@ namespace V6Controls
         {
             try
             {
-                if (LookupInfo.LoadAutoComplete)
+                if (LookupInfo.LOAD_AUTO)
                 {
                     LoadAutoCompleteSource();
                 }
@@ -102,12 +102,12 @@ namespace V6Controls
             }
         }
 
-        private StandardConfig _lki;
-        public StandardConfig LookupInfo
+        private V6lookupConfig _lki;
+        public V6lookupConfig LookupInfo
         {
             get
             {
-                if (_lki == null) _lki = V6ControlsHelper.LayThongTinCauHinh(VVar);
+                if (_lki == null) _lki = V6Lookup.GetV6lookupConfig(VVar);
                 return _lki;
             }
         }
@@ -239,7 +239,7 @@ namespace V6Controls
             {
                 if (_initFilter == null)
                 {
-                    _initFilter = V6Login.GetInitFilter(LookupInfo.TableName, GetFilterType());
+                    _initFilter = V6Login.GetInitFilter(LookupInfo.vMa_file, GetFilterType());
                 }
                 return ("" + _initFilter).Replace("{MA_DVCS}", "'" + V6Login.Madvcs + "'");
             }
@@ -317,7 +317,7 @@ namespace V6Controls
                     //Send Tab
                     SendKeys.Send("{TAB}");
                 }
-                else if (F5 && !ReadOnly && e.KeyCode == Keys.F5 && !string.IsNullOrEmpty(LookupInfo.FieldName))
+                else if (F5 && !ReadOnly && e.KeyCode == Keys.F5 && !string.IsNullOrEmpty(LookupInfo.vValue))
                 {
                     LoadAutoCompleteSource();
                     DoLookup(LookupMode.Single);
@@ -396,7 +396,7 @@ namespace V6Controls
                 CheckForBarcode();
                 if (Text.Trim() != "")
                 {
-                    if (!string.IsNullOrEmpty(LookupInfo.FieldName))
+                    if (!string.IsNullOrEmpty(LookupInfo.vValue))
                     {
                         if (ExistRowInTable(Text.Trim()))
                         {
@@ -415,7 +415,7 @@ namespace V6Controls
                         }
                     }
                 }
-                else if (_checkNotEmpty && !string.IsNullOrEmpty(LookupInfo.FieldName))
+                else if (_checkNotEmpty && !string.IsNullOrEmpty(LookupInfo.vValue))
                 {
                     DoLookup(LookupMode.Single);
                 }
@@ -532,23 +532,23 @@ namespace V6Controls
         {
             if (auto1 != null) return;
 
-            if (!string.IsNullOrEmpty(_vVar) && !string.IsNullOrEmpty(LookupInfo.FieldName) && auto1 == null)
+            if (!string.IsNullOrEmpty(_vVar) && !string.IsNullOrEmpty(LookupInfo.vValue) && auto1 == null)
             {
                 try
                 {
                     auto1 = new AutoCompleteStringCollection();
 
-                    var selectTop = LookupInfo.LargeYn ? "top 10000" : "";
+                    var selectTop = LookupInfo.Large_yn ? "top 10000" : "";
                     
-                    if (!string.IsNullOrEmpty(LookupInfo.FieldName))
+                    if (!string.IsNullOrEmpty(LookupInfo.vValue))
                     {
-                        var tableName = LookupInfo.TableName;
+                        var tableName = LookupInfo.vMa_file;
                         var filter = InitFilter;
                         if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
                         var where = " 1=1 " + filter;
                             
                         var tbl1 = V6BusinessHelper.Select(tableName,
-                            selectTop + " [" + LookupInfo.FieldName + "]",
+                            selectTop + " [" + LookupInfo.vValue + "]",
                             where, "", "", null).Data;
 
                         for (int i = 0; i < tbl1.Rows.Count; i++)
@@ -622,9 +622,9 @@ namespace V6Controls
                 if (!use_InitFilter && _data != null && _text_data == Text) return true;
 
                 _text_data = text;
-                if (!string.IsNullOrEmpty(LookupInfo.FieldName))
+                if (!string.IsNullOrEmpty(LookupInfo.vValue))
                 {
-                    string tableName = LookupInfo.TableName;
+                    string tableName = LookupInfo.vMa_file;
                     string filter = HaveValueChanged ? InitFilter : null;
                     if (use_InitFilter) filter = InitFilter;
                     if (!string.IsNullOrEmpty(filter)) filter = " and (" + filter + ")";
@@ -633,7 +633,7 @@ namespace V6Controls
                     {
                         new SqlParameter("@text", text.Trim())
                     };
-                    var tbl = V6BusinessHelper.Select(tableName, "*", LookupInfo.FieldName + "=@text " + filter, "", "", plist).Data;
+                    var tbl = V6BusinessHelper.Select(tableName, "*", LookupInfo.vValue + "=@text " + filter, "", "", plist).Data;
 
                     if (tbl != null && tbl.Rows.Count >= 1)
                     {
@@ -776,7 +776,7 @@ namespace V6Controls
         {
             var filter = InitFilter;
             if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
-            var fStand = new Standard(this, LookupInfo, " 1=1 " + filter, lookupMode, FilterStart);
+            var fStand = new V6VvarTextBoxForm(this, LookupInfo, " 1=1 " + filter, lookupMode, FilterStart);
             Looking = true;
             fStand.ShowDialog(this);
         }
