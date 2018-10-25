@@ -1165,6 +1165,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void DynamicAddEditForm_Load(object sender, EventArgs e)
         {
             CheckVvarTextBox();
+            CheckPhatSinh();
             try // Dynamic invoke
             {
                 if (Event_Methods.ContainsKey(FormDynamicEvent.INIT2))
@@ -1176,6 +1177,32 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             catch (Exception ex1)
             {
                 this.WriteExLog(GetType() + ".Dynamic invoke INIT2", ex1);
+            }
+        }
+
+        private void CheckPhatSinh()
+        {
+            try
+            {
+                AldmConfig v6lookup_config = V6ControlsHelper.GetAldmConfigByTableName(TableName);
+                var id = v6lookup_config.TABLE_KEY;
+                Control c = GetControlByAccessibleName(id);
+                string value = (V6ControlFormHelper.GetControlValue(c)??"").ToString().Trim();
+                var id_check = v6lookup_config.DOI_MA;
+                var listTable = v6lookup_config.F8_TABLE;
+
+                if (!string.IsNullOrEmpty(listTable) && !string.IsNullOrEmpty(id) && c!= null && value != "")
+                {
+                    var v = Categories.IsExistOneCode_List(listTable, id_check, value);
+                    if (v) // Đã có phát sinh
+                    {
+                        V6ControlFormHelper.SetControlReadOnly(c, true);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CheckPhatSinh", ex);
             }
         }
     }
