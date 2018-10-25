@@ -650,7 +650,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 dataGridViewDetail1.DataSource = _data;
                 dataGridViewDetail1.Refresh();
 
-                _alvitrict_config = V6ControlsHelper.GetAldmConfig("ALVITRICT");
+                _alvitrict_config = ConfigManager.GetAldmConfig("ALVITRICT");
 
                 string showFields = _alvitrict_config.GRDS_V1;
                 string formatStrings = _alvitrict_config.GRDF_V1;
@@ -676,7 +676,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 dataGridViewDetail2.DataSource = _data;
                 dataGridViewDetail2.Refresh();
 
-                _alvitrict_config = V6ControlsHelper.GetAldmConfig("ALVITRICT");
+                _alvitrict_config = ConfigManager.GetAldmConfig("ALVITRICT");
 
                 string showFields = _alvitrict_config.GRDS_V1;
                 string formatStrings = _alvitrict_config.GRDF_V1;

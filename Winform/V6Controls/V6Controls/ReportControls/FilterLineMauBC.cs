@@ -41,7 +41,7 @@ namespace V6ReportControls
         {
             try
             {
-                //AldmConfig aldm_config = V6ControlsHelper.GetAldmConfig(DefineInfo.MA_DM);
+                //AldmConfig aldm_config = V6BusinessHelper.GetAldmConfig(DefineInfo.MA_DM);
                 //DefineInfo.MA_DM = "ALMAUBC";
                 //DefineInfo.Field2 = valueField = "file_maubc";
                 //DefineInfo. = valueField = "file_maubc";

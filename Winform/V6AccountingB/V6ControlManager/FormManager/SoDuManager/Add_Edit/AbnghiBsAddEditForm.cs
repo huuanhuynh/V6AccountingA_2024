@@ -1,4 +1,5 @@
 ﻿using System;
+using V6AccountingBusiness;
 using V6Controls;
 using V6Init;
 using V6Tools.V6Convert;
@@ -39,7 +40,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             if (V6Login.MadvcsTotal > 0 && TxtMa_dvcs.Text.Trim() == "")
                 errors += V6Text.CheckInfor + "\r\n";
 
-            AldmConfig config = V6ControlsHelper.GetAldmConfig(TableName.ToString());
+            AldmConfig config = ConfigManager.GetAldmConfig(TableName.ToString());
             if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
             {
                 var key_list = ObjectAndString.SplitString(config.KEY);

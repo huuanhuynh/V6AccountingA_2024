@@ -288,7 +288,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 dataGridView1.DataSource = _viewData;
                 dataGridView1.Refresh();
 
-                V6lookupConfig config = V6ControlsHelper.GetV6lookupConfigByTableName(_dataTableName);
+                V6lookupConfig config = V6Lookup.GetV6lookupConfigByTableName(_dataTableName);
                 string showFields = config.GRDS_V1;
                 string formatStrings =config.GRDF_V1;
                 string headerString = V6Setting.IsVietnamese ? config.GRDHV_V1 : config.GRDHE_V1;

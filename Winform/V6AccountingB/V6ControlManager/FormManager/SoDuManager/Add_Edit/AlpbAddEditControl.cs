@@ -328,7 +328,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 errors += "Chưa hoàn tất chi tiết!\r\n";
             }
 
-            AldmConfig config = V6ControlsHelper.GetAldmConfig(TableName.ToString());
+            AldmConfig config = ConfigManager.GetAldmConfig(TableName.ToString());
             if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
             {
                 var key_list = ObjectAndString.SplitString(config.KEY);

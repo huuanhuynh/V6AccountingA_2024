@@ -39,7 +39,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 dataGridView1.ReadOnly = false;
                 dataGridView1.EditMode = DataGridViewEditMode.EditOnF2;
 
-                Aldm_Info = V6ControlsHelper.GetAldmConfig("Prhlcong");
+                Aldm_Info = ConfigManager.GetAldmConfig("Prhlcong");
                 InitFilter = V6Login.GetInitFilter(Aldm_Info.TABLE_NAME, V6ControlFormHelper.FindFilterType(this));
                 //var tblCong = V6BusinessHelper.Select("Prhlcong", "MA_CONG,TEN_CONG,TEN_CONG2", "Status='1'").Data;
                 //string displayMember = V6Setting.LanguageIsVietnamese ? "TEN_CONG" : "TEN_CONG2";

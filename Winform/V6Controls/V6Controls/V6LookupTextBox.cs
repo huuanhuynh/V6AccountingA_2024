@@ -100,14 +100,11 @@ namespace V6Controls
             {
                 try
                 {
-                    return _lki ?? (_lki = V6ControlsHelper.GetAldmConfig(_ma_dm));
+                    return _lki ?? (_lki = ConfigManager.GetAldmConfig(_ma_dm));
                 }
                 catch (Exception)
                 {
-                    return new AldmConfig()
-                    {
-                        NoInfo = true,Error = true
-                    };
+                    return new AldmConfig();
                 }
             }
         }

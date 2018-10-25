@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
 
@@ -157,7 +158,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 Text = FormControl.Mode + " - " + V6TableHelper.V6TableCaption(_tableName, V6Setting.Language);
 
-                _aldmConfig = V6ControlsHelper.GetAldmConfig(_tableNameString);
+                _aldmConfig = ConfigManager.GetAldmConfig(_tableNameString);
                 if (_aldmConfig.HaveInfo)
                 {
                     if (_aldmConfig.IS_ALDM)

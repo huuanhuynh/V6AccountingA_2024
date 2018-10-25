@@ -412,8 +412,8 @@ namespace V6ControlManager.FormManager.NhanSu
                 if (fSort == 9)
                 {
                     tableName = "Hrpersonal";
-                    //aldm_config = V6ControlsHelper.GetAldmConfigByTableName(tableName);
-                    //v6lookup_config = V6ControlsHelper.GetV6lookupConfigByTableName(tableName);
+                    //aldm_config = V6BusinessHelper.GetAldmConfigByTableName(tableName);
+                    //v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(tableName);
                     IDictionary<string, object> keys = new Dictionary<string, object>();
                     if (fSort == 9)
                     {
@@ -433,8 +433,8 @@ namespace V6ControlManager.FormManager.NhanSu
                 else
                 {
                     tableName = "HRLSTORGUNIT";
-                    //aldm_config = V6ControlsHelper.GetAldmConfigByTableName(tableName);
-                    //v6lookup_config = V6ControlsHelper.GetV6lookupConfigByTableName(tableName);
+                    //aldm_config = V6BusinessHelper.GetAldmConfigByTableName(tableName);
+                    //v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(tableName);
                     IDictionary<string, object> keys = new Dictionary<string, object>();
                     keys.Add("ID", selectedItemData["NODE"]);
                     var selectResult = V6BusinessHelper.Select("HRLSTORGUNIT", keys, "*");
@@ -495,8 +495,8 @@ namespace V6ControlManager.FormManager.NhanSu
                 if (fSort == 9)
                 {
                     tableName = "Hrpersonal";
-                    //aldm_config = V6ControlsHelper.GetAldmConfigByTableName(tableName);
-                    v6lookup_config = V6ControlsHelper.GetV6lookupConfigByTableName(tableName);
+                    //aldm_config = V6BusinessHelper.GetAldmConfigByTableName(tableName);
+                    v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(tableName);
 
                     IDictionary<string, object> select_keys = new Dictionary<string, object>();
 
@@ -516,8 +516,8 @@ namespace V6ControlManager.FormManager.NhanSu
                 else
                 {
                     tableName = "HRLSTORGUNIT";
-                    aldm_config = V6ControlsHelper.GetAldmConfigByTableName(tableName);
-                    //v6lookup_config = V6ControlsHelper.GetV6lookupConfigByTableName(tableName);
+                    aldm_config = ConfigManager.GetAldmConfigByTableName(tableName);
+                    //v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(tableName);
                     IDictionary<string, object> keys = new Dictionary<string, object>();
                     keys.Add("ID", selectedItemData["NODE"]);
                     var selectResult = V6BusinessHelper.Select("HRLSTORGUNIT", keys, "*");
@@ -759,8 +759,8 @@ namespace V6ControlManager.FormManager.NhanSu
                 if (fSort == 9)
                 {
                     tableName = "Hrpersonal";
-                    //aldm_config = V6ControlsHelper.GetAldmConfigByTableName(tableName);
-                    v6lookup_config = V6ControlsHelper.GetV6lookupConfigByTableName(tableName);
+                    //aldm_config = V6BusinessHelper.GetAldmConfigByTableName(tableName);
+                    v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(tableName);
                     reportTitle = v6lookup_config.vTitle;
                     reportTitle2 = v6lookup_config.eTitle;
                     //IDictionary<string, object> keys = new Dictionary<string, object>();
@@ -778,8 +778,8 @@ namespace V6ControlManager.FormManager.NhanSu
                 else
                 {
                     tableName = "HRLSTORGUNIT";
-                    aldm_config = V6ControlsHelper.GetAldmConfigByTableName(tableName);
-                    //v6lookup_config = V6ControlsHelper.GetV6lookupConfigByTableName(tableName);
+                    aldm_config = ConfigManager.GetAldmConfigByTableName(tableName);
+                    //v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(tableName);
                     reportTitle = aldm_config.TITLE;
                     reportTitle2 = aldm_config.TITLE2;
                     //IDictionary<string, object> keys = new Dictionary<string, object>();
@@ -882,7 +882,7 @@ namespace V6ControlManager.FormManager.NhanSu
             //nhanSuTreeView1.HideColumnDic = _hideColumnDic;
             //nhanSuTreeView1.DataSource = SelectResult.Data;
 
-            AldmConfig config = V6ControlsHelper.GetAldmConfigByTableName(_procedure);
+            AldmConfig config = ConfigManager.GetAldmConfigByTableName(_procedure);
 
             string showFields = config.GRDS_V1;
             string headerString = V6Setting.IsVietnamese ? config.GRDHV_V1 : config.GRDHE_V1;

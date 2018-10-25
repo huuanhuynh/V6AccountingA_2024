@@ -1043,7 +1043,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         protected bool ValidateMasterData(V6InvoiceBase Invoice)
         {
-            var v6validConfig = V6ControlsHelper.GetV6ValidConfig(Invoice.Mact, 1);
+            var v6validConfig = ConfigManager.GetV6ValidConfig(Invoice.Mact, 1);
             
             if (v6validConfig != null && v6validConfig.HaveInfo)
             {
@@ -1099,7 +1099,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             string error = "";
             try
             {
-                var config = V6ControlsHelper.GetV6ValidConfig(Invoice.Mact, 2);
+                var config = ConfigManager.GetV6ValidConfig(Invoice.Mact, 2);
                 
                 if (config != null && config.HaveInfo)
                 {

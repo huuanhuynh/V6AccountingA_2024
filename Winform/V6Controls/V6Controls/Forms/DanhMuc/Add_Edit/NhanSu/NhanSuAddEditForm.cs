@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using V6AccountingBusiness;
 using V6Structs;
 using V6Controls.Controls;
+using V6Init;
 using V6Tools;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
@@ -20,7 +21,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             {
                 btnBoSung.Enabled = true;
                 
-                V6lookupConfig v6lookup_config = V6ControlsHelper.GetV6lookupConfigByTableName(TableName.ToString());
+                V6lookupConfig v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(TableName.ToString());
                 var id = v6lookup_config.vValue;
                 var id_check = v6lookup_config.DOI_MA;
                 var listTable = v6lookup_config.ListTable;

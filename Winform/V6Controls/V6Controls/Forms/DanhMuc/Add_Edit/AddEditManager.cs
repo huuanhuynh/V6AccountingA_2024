@@ -418,7 +418,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Notable:
                 default:
                     
-                    AldmConfig aldm_config = V6ControlsHelper.GetAldmConfig(name);
+                    AldmConfig aldm_config = ConfigManager.GetAldmConfig(name);
 
                     if (aldm_config.HaveInfo)
                     {

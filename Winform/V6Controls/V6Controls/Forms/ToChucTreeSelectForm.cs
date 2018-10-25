@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Init;
 using V6Tools.V6Convert;
 
@@ -35,7 +36,7 @@ namespace V6Controls.Forms
                 toChucTreeListView1.Sort_Field = "FSORT";
 
                 LoadData();
-                AldmConfig config = V6ControlsHelper.GetAldmConfigByTableName(_tableName);
+                AldmConfig config = ConfigManager.GetAldmConfigByTableName(_tableName);
 
                 string showFields = config.GRDS_V1;
                 string headerString = V6Setting.IsVietnamese ? config.GRDHV_V1 : config.GRDHE_V1;

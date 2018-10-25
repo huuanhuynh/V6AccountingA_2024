@@ -75,11 +75,11 @@ namespace V6Controls.Controls
             _aldm = is_aldm;
             if (_aldm)
             {
-                aldm_config = V6ControlsHelper.GetAldmConfigByTableName(_tableName);
+                aldm_config = ConfigManager.GetAldmConfigByTableName(_tableName);
             }
             else
             {
-                v6lookup_config = V6ControlsHelper.GetV6lookupConfigByTableName(_tableName);
+                v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(_tableName);
                 if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(v6lookup_config.vOrder))
                     SelectResult.SortField = v6lookup_config.vOrder;
             }

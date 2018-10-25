@@ -143,7 +143,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             SelectResult = new V6SelectResult();
             SelectResult.SortField = sort;
 
-            aldm_config = V6ControlsHelper.GetAldmConfigByTableName(_tableName);
+            aldm_config = ConfigManager.GetAldmConfigByTableName(_tableName);
             if (aldm)
             {
                 if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(aldm_config.ORDER))
@@ -151,7 +151,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             else
             {
-                v6lookup_config = V6ControlsHelper.GetV6lookupConfigByTableName(_tableName);
+                v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(_tableName);
                 if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(v6lookup_config.vOrder))
                     SelectResult.SortField = v6lookup_config.vOrder;
             }

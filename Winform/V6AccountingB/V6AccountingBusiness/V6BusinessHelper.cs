@@ -10,6 +10,7 @@ using V6SqlConnect;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
+using V6Tools.V6Export;
 
 namespace V6AccountingBusiness
 {
@@ -1030,11 +1031,15 @@ namespace V6AccountingBusiness
             return _alct;
         }
 
+        
+
         public static string GetAMname(DataRow alct)
         {
             return alct["m_phdbf"].ToString().Trim();
         }
+
         
+
 
         public static V6TableStruct V6Struct1
         {
@@ -1083,12 +1088,6 @@ namespace V6AccountingBusiness
         {
             return V6SqlconnectHelper.GetTableStruct(tableName);
         }
-
-        public static bool StartSqlConnect(string key, string iniLocation)
-        {
-            return SqlConnect.StartSqlConnect(key, iniLocation);
-        }
-
 
         public static decimal GetMaxValueTable(string pTablename, string pFieldname, string pKey)
         {
@@ -1143,7 +1142,7 @@ namespace V6AccountingBusiness
             var formatText = data.Rows[0]["TRANSFORM"].ToString().Trim();
             if (formatText == "") return "";
             var value = ObjectAndString.ObjectToDecimal(data.Rows[0]["SO_CT"]);
-            var sResult = string.Format(formatText, value);
+            var sResult = String.Format(formatText, value);
             return sResult;
         }
         
@@ -1158,7 +1157,7 @@ namespace V6AccountingBusiness
             if (mact.Length > 3) mact = mact.Substring(0, 3);
             var param = new SqlParameter("@pMa_ct", mact);
             string sttRec = SqlConnect.ExecuteScalar(CommandType.StoredProcedure, "VPA_sGet_stt_rec", param).ToString();
-            if (string.IsNullOrEmpty(sttRec))
+            if (String.IsNullOrEmpty(sttRec))
             {
                 throw new Exception("Không tạo mới được.");
             }
@@ -1179,7 +1178,7 @@ namespace V6AccountingBusiness
         {
             return SqlConnect.GetServerDateTime();
         }
-
+        
         /// <summary>
         /// Select
         /// </summary>
@@ -1196,7 +1195,7 @@ namespace V6AccountingBusiness
             if (!V6Login.UserRight.AllowSelect(name)) return new V6SelectResult();
 
             string where = SqlGenerator.GenSqlWhere(keys);
-            return Select(name.ToString(), fields, where, groupby, orderby, prList);
+            return Select(name.ToString(), fields, @where, groupby, @orderby, prList);
         }
 
         public static V6SelectResult Select(string tableName, IDictionary<string, object> keys, string fields,
@@ -1206,20 +1205,20 @@ namespace V6AccountingBusiness
 
             var tableStruct = GetTableStruct(tableName);
             string where = SqlGenerator.GenWhere2(tableStruct, keys);//.GenSqlWhere(keys);
-            return Select(tableName, fields, where, groupby, orderby, prList);
+            return Select(tableName, fields, @where, groupby, @orderby, prList);
         }
 
         public static V6SelectResult Select(string tableName, string fields = "*",
             string where = "", string groupby = "", string orderby = "", params SqlParameter[] prList)
         {
             if (!V6Login.UserRight.AllowSelect(V6TableHelper.ToV6TableName(tableName))) return new V6SelectResult();
-            return SqlConnect.Select(tableName, fields, where, groupby, orderby, prList);
+            return SqlConnect.Select(tableName, fields, @where, groupby, @orderby, prList);
         }
 
         public static int SelectCount(string tableName, string field = "*",
             string where = "", params SqlParameter[] prList)
         {
-            var whereClause = string.IsNullOrEmpty(where) ? "" : "where " + where;
+            var whereClause = String.IsNullOrEmpty(@where) ? "" : "where " + @where;
             var sql = "Select Count("+field+") as Count from ["+tableName+"] " + whereClause;
             var count = ObjectAndString.ObjectToInt(SqlConnect.ExecuteScalar(CommandType.Text, sql, prList));
             return count;
@@ -1420,7 +1419,7 @@ namespace V6AccountingBusiness
             {
                 if (data == null) throw new ArgumentException("DataTable is null.", "data");
                 if (!data.Columns.Contains(colName))
-                    throw new IndexOutOfRangeException(string.Format("No column name: \"{0}\".", colName));
+                    throw new IndexOutOfRangeException(String.Format("No column name: \"{0}\".", colName));
             }
             var total = 0m;
             try
@@ -1444,7 +1443,7 @@ namespace V6AccountingBusiness
         public static decimal TinhTongOper(DataTable data, string colName, string oper_column)
         {
             var total = 0m;
-            if (string.IsNullOrEmpty(oper_column) || data == null || !data.Columns.Contains(oper_column))
+            if (String.IsNullOrEmpty(oper_column) || data == null || !data.Columns.Contains(oper_column))
             {
                 return total;
             }
@@ -1555,7 +1554,7 @@ namespace V6AccountingBusiness
             makho = makho.Replace("'", "''");
             SqlParameter[] plist = new[]
             {
-                new SqlParameter("@cKey1", string.Format("Ma_vt = '"+mavt+"' and Ma_kho = '"+makho+"'")),
+                new SqlParameter("@cKey1", String.Format("Ma_vt = '"+mavt+"' and Ma_kho = '"+makho+"'")),
                 new SqlParameter("@cKey2", ""),
                 new SqlParameter("@cKey3", ""),
                 new SqlParameter("@cStt_rec", sttRec),
@@ -1578,7 +1577,7 @@ namespace V6AccountingBusiness
                 }
                 else
                 {
-                    keys = string.Format("Ma_vt = '" + mavt + "'");
+                    keys = String.Format("Ma_vt = '" + mavt + "'");
                 }
 
             }
@@ -1586,11 +1585,11 @@ namespace V6AccountingBusiness
             {
                 if (mavt == "")
                 {
-                    keys = string.Format(" Ma_kho = '" + makho + "'");
+                    keys = String.Format(" Ma_kho = '" + makho + "'");
                 }
                 else
                 {
-                    keys = string.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "'");
+                    keys = String.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "'");
                 }
             }
 
@@ -1619,18 +1618,18 @@ namespace V6AccountingBusiness
                 }
                 else
                 {
-                    keys = string.Format("Ma_vt = '" + mavt + "'");
+                    keys = String.Format("Ma_vt = '" + mavt + "'");
                 }
             }
             else
             {
                 if (mavt == "")
                 {
-                    keys = string.Format(" Ma_kho = '" + makho + "'");
+                    keys = String.Format(" Ma_kho = '" + makho + "'");
                 }
                 else
                 {
-                    keys = string.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "'");
+                    keys = String.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "'");
                 }
             }
 
@@ -1653,7 +1652,7 @@ namespace V6AccountingBusiness
 
             SqlParameter[] plist = new[]
             {
-                new SqlParameter("@cKey1", string.Format("Ma_vt = '"+mavt+"' and Ma_kho = '"+makho+"' and Ma_lo = '"+malo+"'")),
+                new SqlParameter("@cKey1", String.Format("Ma_vt = '"+mavt+"' and Ma_kho = '"+makho+"' and Ma_lo = '"+malo+"'")),
                 new SqlParameter("@cKey2", ""),
                 new SqlParameter("@cKey3", ""),
                 new SqlParameter("@cStt_rec", sttRec),
@@ -1665,7 +1664,7 @@ namespace V6AccountingBusiness
         {
             SqlParameter[] plist = new[]
             {
-                new SqlParameter("@cKey1", string.Format("Ma_vt in ("+mavt_in+") and Ma_kho in ("+makho_in+") and Ma_lo in ("+malo_in+")")),
+                new SqlParameter("@cKey1", String.Format("Ma_vt in ("+mavt_in+") and Ma_kho in ("+makho_in+") and Ma_lo in ("+malo_in+")")),
                 new SqlParameter("@cKey2", ""),
                 new SqlParameter("@cKey3", ""),
                 new SqlParameter("@cStt_rec", sttRec),
@@ -1682,7 +1681,7 @@ namespace V6AccountingBusiness
 
             SqlParameter[] plist = new[]
             {
-                new SqlParameter("@cKey1", string.Format("Ma_vt = '"+mavt+"' and Ma_kho = '"+makho+"' and Ma_vitri = '"+mavitri+"'")),
+                new SqlParameter("@cKey1", String.Format("Ma_vt = '"+mavt+"' and Ma_kho = '"+makho+"' and Ma_vitri = '"+mavitri+"'")),
                 new SqlParameter("@cKey2", ""),
                 new SqlParameter("@cKey3", ""),
                 new SqlParameter("@cStt_rec", sttRec),
@@ -1705,22 +1704,22 @@ namespace V6AccountingBusiness
                 {
                     if (mavitri == "")
                     {
-                        keys = string.Format("Ma_vt = '" + mavt + "'");
+                        keys = String.Format("Ma_vt = '" + mavt + "'");
                     }
                     else
                     {
-                        keys = string.Format("Ma_vt = '" + mavt + "' and Ma_vitri = '" + mavitri + "'");
+                        keys = String.Format("Ma_vt = '" + mavt + "' and Ma_vitri = '" + mavitri + "'");
                     }
                 }
                 else
                 {
                     if (mavitri == "")
                     {
-                        keys = string.Format("Ma_vt = '" + mavt + "' and Ma_lo = '" + malo + "'");
+                        keys = String.Format("Ma_vt = '" + mavt + "' and Ma_lo = '" + malo + "'");
                     }
                     else
                     {
-                        keys = string.Format("Ma_vt = '" + mavt + "' and Ma_lo = '" + malo + "' and Ma_vitri = '" + mavitri + "'");
+                        keys = String.Format("Ma_vt = '" + mavt + "' and Ma_lo = '" + malo + "' and Ma_vitri = '" + mavitri + "'");
                     }
                 }
             }
@@ -1730,23 +1729,23 @@ namespace V6AccountingBusiness
                 {
                     if (mavitri == "")
                     {
-                        keys = string.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "'");
+                        keys = String.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "'");
 
                     }
                     else
                     {
-                        keys = string.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "' and Ma_vitri = '" + mavitri + "'");
+                        keys = String.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "' and Ma_vitri = '" + mavitri + "'");
                     }
                 }
                 else
                 {
                     if (mavitri == "")
                     {
-                        keys = string.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "' and Ma_lo = '" + malo + "'");
+                        keys = String.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "' and Ma_lo = '" + malo + "'");
                     }
                     else
                     {
-                        keys = string.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "' and Ma_lo = '" + malo + "' and Ma_vitri = '" + mavitri + "'");
+                        keys = String.Format("Ma_vt = '" + mavt + "' and Ma_kho = '" + makho + "' and Ma_lo = '" + malo + "' and Ma_vitri = '" + mavitri + "'");
                     }
                 }
             }
@@ -1767,7 +1766,7 @@ namespace V6AccountingBusiness
         {
             SqlParameter[] plist = new[]
             {
-                new SqlParameter("@cKey1", string.Format("Ma_vt in ("+mavt_in+") and Ma_kho in ("+makho_in
+                new SqlParameter("@cKey1", String.Format("Ma_vt in ("+mavt_in+") and Ma_kho in ("+makho_in
                     +") and Ma_lo in ("+malo_in+") and Ma_vitri in ("+mavitri_in+")")),
                 new SqlParameter("@cKey2", ""),
                 new SqlParameter("@cKey3", ""),
@@ -1794,7 +1793,7 @@ namespace V6AccountingBusiness
                 new SqlParameter("@Ngay_ct", ngayct),
                 new SqlParameter("@ma_ct", mact),
                 new SqlParameter("@Stt_rec", sttRec),
-                new SqlParameter("@Advance", string.Format("a.MA_VT='"+mavt+"' AND a.MA_KHO='"+makho+"'")),
+                new SqlParameter("@Advance", String.Format("a.MA_VT='"+mavt+"' AND a.MA_KHO='"+makho+"'")),
                 new SqlParameter("@OutputInsert", "")
             };
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_CheckTonXuatAm", plist).Tables[0];
@@ -1808,7 +1807,7 @@ namespace V6AccountingBusiness
                 new SqlParameter("@Ngay_ct", ngayct),
                 new SqlParameter("@ma_ct", mact),
                 new SqlParameter("@Stt_rec", sttRec),
-                new SqlParameter("@Advance", string.Format("a.MA_VT in ("+mavt_in+") AND a.MA_KHO in ("+makho_in+")")),
+                new SqlParameter("@Advance", String.Format("a.MA_VT in ("+mavt_in+") AND a.MA_KHO in ("+makho_in+")")),
                 new SqlParameter("@OutputInsert", "")
             };
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_CheckTonXuatAm", plist).Tables[0];
@@ -1955,6 +1954,11 @@ namespace V6AccountingBusiness
                 throw new ArgumentException("Identifier expected.", "name");
         }
 
+        public static bool StartSqlConnect(string key, string iniLocation)
+        {
+            return SqlConnect.StartSqlConnect(key, iniLocation);
+        }
+
         /// <summary>
         /// Sửa 1 dòng dữ liệu trong DataTable nếu tìm thấy keyValue trong cột keyField.
         /// Nếu không tìm thấy sẽ thêm vào dòng mới.
@@ -2030,7 +2034,5 @@ namespace V6AccountingBusiness
             }
             return false;
         }
-
-        
     }
 }

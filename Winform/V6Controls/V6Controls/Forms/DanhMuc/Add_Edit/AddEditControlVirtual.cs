@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using V6AccountingBusiness;
-using V6Controls.Controls;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
@@ -131,7 +129,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             SortedDictionary<string, object> keys, SortedDictionary<string, object> data)
         {
             TableName = tableName;
-            _aldmConfig = V6ControlsHelper.GetAldmConfig(TableName.ToString());
+            _aldmConfig = ConfigManager.GetAldmConfig(TableName.ToString());
             Mode = mode;
             _keys = keys;
             DataOld = data;
@@ -880,7 +878,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             string error = null;
             try
             {
-                var config = V6ControlsHelper.GetV6ValidConfigDanhMuc(tableName);
+                var config = ConfigManager.GetV6ValidConfigDanhMuc(tableName);
 
                 if (config != null && config.HaveInfo)
                 {
@@ -921,7 +919,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             string where_new = SqlGenerator.GenWhere(V6BusinessHelper.GetTableStruct(tableName), keys_new);
 
-            AldmConfig config = V6ControlsHelper.GetAldmConfig(tableName);
+            AldmConfig config = ConfigManager.GetAldmConfig(tableName);
             bool exist_new = V6BusinessHelper.CheckDataExistStruct(tableName, keys_new, config.CHECK_LONG);
 
             if (Mode == V6Mode.Edit)

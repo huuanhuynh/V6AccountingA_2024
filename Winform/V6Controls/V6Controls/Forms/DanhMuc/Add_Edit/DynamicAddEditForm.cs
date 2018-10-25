@@ -1184,7 +1184,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                AldmConfig v6lookup_config = V6ControlsHelper.GetAldmConfigByTableName(TableName);
+                AldmConfig v6lookup_config = ConfigManager.GetAldmConfigByTableName(TableName);
                 var id = v6lookup_config.TABLE_KEY;
                 Control c = GetControlByAccessibleName(id);
                 string value = (V6ControlFormHelper.GetControlValue(c)??"").ToString().Trim();

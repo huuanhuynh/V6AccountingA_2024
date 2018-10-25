@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.SqlClient;
+using System.Reflection;
+using V6AccountingBusiness;
 using V6Structs;
+using V6Tools;
 using V6Tools.V6Convert;
 
-namespace V6Controls
+namespace V6Init
 {
     public class Config
     {
@@ -59,6 +64,7 @@ namespace V6Controls
         public AldmConfig()
         {
             NoInfo = true;
+            Error = true;
         }
 
         public int STT { get { return GetInt("STT"); } }
@@ -184,6 +190,20 @@ namespace V6Controls
 
         public V6lookupConfig()
         {
+        }
+
+        /// <summary>
+        /// Lấy các trường lọc danh mục view
+        /// </summary>
+        /// <returns>Mảng các trường vFields hoặc eFields</returns>
+        public string[] GetDefaultLookupFields
+        {
+            get
+            {
+                string lang = V6Setting.Language;
+                string result = GetString(lang + "Fields");
+                return result.Split(',');
+            }
         }
 
         public string DOI_MA { get { return GetString("DOI_MA"); } }
@@ -325,6 +345,134 @@ namespace V6Controls
 
     }
 
-    
-    
+
+    public class ConfigManager
+    {
+        public static AldmConfig GetAldmConfig(string ma_dm)
+        {
+            AldmConfig lstConfig = new AldmConfig();
+            try
+            {
+                SqlParameter[] plist = { new SqlParameter("@p", ma_dm) };
+                var executeResult = V6BusinessHelper.Select("Aldm", "*", "Ma_dm=@p", "", "", plist);
+
+                if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
+                {
+                    var tbl = executeResult.Data;
+                    var row = tbl.Rows[0];
+                    lstConfig = new AldmConfig(row.ToDataDictionary());
+                }
+                else
+                {
+                    lstConfig.NoInfo = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lstConfig.Error = true;
+                Logger.WriteToLog(String.Format("{0}.{1} {2}",
+                    MethodBase.GetCurrentMethod().DeclaringType,
+                    MethodBase.GetCurrentMethod().Name, ex.Message));
+            }
+            return lstConfig;
+        }
+
+        public static AldmConfig GetAldmConfigByTableName(string table_name)
+        {
+            AldmConfig lstConfig = new AldmConfig();
+            try
+            {
+                SqlParameter[] plist = { new SqlParameter("@p", table_name) };
+                var executeResult = V6BusinessHelper.Select("Aldm", "*", "Table_name=@p", "", "", plist);
+
+                if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
+                {
+                    var tbl = executeResult.Data;
+                    var row = tbl.Rows[0];
+                    lstConfig = new AldmConfig(row.ToDataDictionary());
+                }
+                else
+                {
+                    lstConfig.NoInfo = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lstConfig.Error = true;
+                Logger.WriteToLog(String.Format("{0}.{1} {2}",
+                    MethodBase.GetCurrentMethod().DeclaringType,
+                    MethodBase.GetCurrentMethod().Name, ex.Message));
+            }
+            return lstConfig;
+        }
+
+        /// <summary>
+        /// Lấy thông tin V6Valid cho chứng từ theo ma_ct.
+        /// </summary>
+        /// <param name="ma_ct"></param>
+        /// <param name="attribute"></param>
+        /// <returns></returns>
+        public static V6ValidConfig GetV6ValidConfig(string ma_ct, int attribute)
+        {
+            V6ValidConfig lstConfig = new V6ValidConfig();
+            try
+            {
+                SqlParameter[] plist = { new SqlParameter("@p1", ma_ct), new SqlParameter("@p2", attribute) };
+                var executeResult = V6BusinessHelper.Select("V6Valid", "*", "[ma_ct]=@p1 and [attribute]=@p2", "", "", plist);
+
+                if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
+                {
+                    var tbl = executeResult.Data;
+                    var row = tbl.Rows[0];
+                    lstConfig = new V6ValidConfig(row.ToDataDictionary());
+                }
+                else
+                {
+                    lstConfig.NoInfo = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lstConfig.Error = true;
+                Logger.WriteToLog(String.Format("{0}.{1} {2}",
+                    MethodBase.GetCurrentMethod().DeclaringType,
+                    MethodBase.GetCurrentMethod().Name, ex.Message));
+            }
+            return lstConfig;
+        }
+
+        /// <summary>
+        /// Lấy thông tin V6Valid cho danh mục theo tableName.
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public static V6ValidConfig GetV6ValidConfigDanhMuc(string tableName)
+        {
+            V6ValidConfig lstConfig = new V6ValidConfig();
+            try
+            {
+                SqlParameter[] plist = { new SqlParameter("@p", tableName) };
+                var executeResult = V6BusinessHelper.Select("V6Valid", "*", "attribute=3 and [TABLE_NAME]=@p", "", "", plist);
+
+                if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
+                {
+                    var tbl = executeResult.Data;
+                    var row = tbl.Rows[0];
+                    lstConfig = new V6ValidConfig(row.ToDataDictionary());
+                }
+                else
+                {
+                    lstConfig.NoInfo = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lstConfig.Error = true;
+                Logger.WriteToLog(String.Format("{0}.{1} {2}",
+                    MethodBase.GetCurrentMethod().DeclaringType,
+                    MethodBase.GetCurrentMethod().Name, ex.Message));
+            }
+            return lstConfig;
+        }
+    }
 }

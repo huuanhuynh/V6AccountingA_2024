@@ -4934,7 +4934,7 @@ namespace V6Controls.Forms
         {
             if (textBox == null) return;
             txtApplyLookup = textBox;
-            Aldm_config = V6ControlsHelper.GetAldmConfigByTableName(tablename);
+            Aldm_config = ConfigManager.GetAldmConfigByTableName(tablename);
             string filterType = FindFilterType(textBox);
             InitFilter = V6Login.GetInitFilter(Aldm_config.TABLE_NAME, filterType);
             

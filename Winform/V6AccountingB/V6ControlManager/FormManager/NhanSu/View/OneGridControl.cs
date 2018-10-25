@@ -379,7 +379,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
         {
             try
             {
-                var config = V6ControlsHelper.GetAldmConfigByTableName(_table_name);
+                var config = ConfigManager.GetAldmConfigByTableName(_table_name);
                 V6ControlFormHelper.FormatGridViewAndHeader(gridView1, config.GRDS_V1, config.GRDF_V1,
                     V6Setting.IsVietnamese ? config.GRDHV_V1 : config.GRDHE_V1);
             }

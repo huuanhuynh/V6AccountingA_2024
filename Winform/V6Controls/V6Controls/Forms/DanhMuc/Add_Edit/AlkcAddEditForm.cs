@@ -59,7 +59,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             //        throw new Exception("Không được thêm tk đã tồn tại: ");
             //}
 
-            AldmConfig config = V6ControlsHelper.GetAldmConfig(TableName.ToString());
+            AldmConfig config = ConfigManager.GetAldmConfig(TableName.ToString());
             if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
             {
                 var key_list = ObjectAndString.SplitString(config.KEY);

@@ -598,7 +598,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else
                 {
-                    AldmConfig aldm = V6ControlsHelper.GetAldmConfig(tableName);
+                    AldmConfig aldm = ConfigManager.GetAldmConfig(tableName);
                     V6ControlFormHelper.FormatGridViewAndHeader(dgv, aldm.GRDS_V1, aldm.GRDF_V1,
                         V6Setting.IsVietnamese ? aldm.GRDHV_V1 : aldm.GRDHE_V1);
                 }
@@ -835,7 +835,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             string where_new = SqlGenerator.GenWhere(V6BusinessHelper.GetTableStruct(tableName), keys_new);
 
-            AldmConfig config = V6ControlsHelper.GetAldmConfig(tableName);
+            AldmConfig config = ConfigManager.GetAldmConfig(tableName);
             bool exist_new = V6BusinessHelper.CheckDataExistStruct(tableName, keys_new, config.CHECK_LONG);
 
             if (Mode == V6Mode.Edit)

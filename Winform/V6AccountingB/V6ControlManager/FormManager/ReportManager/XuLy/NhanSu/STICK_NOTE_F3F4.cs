@@ -213,7 +213,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     dataOld = GetData();
                 }
                 
-                var _aldmConfig = V6ControlsHelper.GetAldmConfig(_tableName);
+                var _aldmConfig = ConfigManager.GetAldmConfig(_tableName);
                 var KEY_LIST = ObjectAndString.SplitString(_aldmConfig.KEY.ToUpper());
                 string error = CheckValid(dataOld, dataDic, _tableName, KEY_LIST);
                 return string.IsNullOrEmpty(error);
@@ -236,7 +236,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
             string where_new = SqlGenerator.GenWhere(V6BusinessHelper.GetTableStruct(tableName), keys_new);
 
-            AldmConfig config = V6ControlsHelper.GetAldmConfig(tableName);
+            AldmConfig config = ConfigManager.GetAldmConfig(tableName);
             bool exist_new = V6BusinessHelper.CheckDataExistStruct(tableName, keys_new, config.CHECK_LONG);
 
             if (_mode == V6Mode.Edit)

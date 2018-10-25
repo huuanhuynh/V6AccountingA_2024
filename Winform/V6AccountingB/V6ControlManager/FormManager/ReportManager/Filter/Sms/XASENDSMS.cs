@@ -74,7 +74,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             dataGridView1 = this.dataGridView1;
             try
             {
-                AldmConfig aldm = V6ControlsHelper.GetAldmConfig("ASENDSMS");
+                AldmConfig aldm = ConfigManager.GetAldmConfig("ASENDSMS");
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, aldm.GRDS_V1, aldm.GRDF_V1,
                     V6Setting.IsVietnamese ? aldm.GRDHV_V1 : aldm.GRDHE_V1);
             }

@@ -1083,7 +1083,6 @@
     <Compile Include="Forms\SmsModemSettingForm.Designer.cs">
       <DependentUpon>SmsModemSettingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConfigClass.cs" />
     <Compile Include="Forms\FlyLabelForm.cs">
       <SubType>Form</SubType>
     </Compile>

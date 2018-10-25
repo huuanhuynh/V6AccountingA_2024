@@ -471,7 +471,7 @@ namespace V6ControlManager.FormManager.MenuManager
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
                                 var programX = codeform.Substring(1);
-                                AldmConfig config = V6ControlsHelper.GetAldmConfig(programX);
+                                AldmConfig config = ConfigManager.GetAldmConfig(programX);
 
                                 if (config.HaveInfo && config.CHECK_ADMIN && V6Login.IsAdmin)
                                 {
