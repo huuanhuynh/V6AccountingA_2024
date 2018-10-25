@@ -281,72 +281,7 @@ namespace V6Controls
                 throw new ArgumentException("KiemTraBangTonTai : tham số không hợp lệ");
             }
         }
-
-        public static String[] SliptString(string inputString, char typeChar)
-        {
-            if (inputString != "" && typeChar != ' ')
-            {
-                return inputString.Split(typeChar);
-            }
-
-            throw new ArgumentException("SliptString : tham số không hợp lệ");
-        }
-
-        public static void ThietLapTruongHienThiTrongDataGridView(
-                DataGridView dgv,
-                string lstStringFieldName,
-                string lstStringFieldHeaders,
-                string lstStringFieldWidth          )
-        {
-            if (String.IsNullOrEmpty(lstStringFieldWidth)) lstStringFieldWidth = "100";
-
-            if (lstStringFieldHeaders != "" && lstStringFieldName != "" && lstStringFieldWidth != "")
-            {
-                for (int i = 0; i < dgv.Columns.Count; i++)
-                {
-                    dgv.Columns[i].Visible = false;
-                }
-
-                // Lấy các cột được phép hiển thị trong DataGridView
-                try
-                {
-                    String[] lstFieldName = SliptString(lstStringFieldName, ',');
-                    List<string> lstFieldHeader = SliptString(lstStringFieldHeaders, ',').ToList();
-                    List<string> lstFieldWidth = SliptString(lstStringFieldWidth, ',').ToList();
-                    while (lstFieldWidth.Count < lstFieldName.Length)
-                    {
-                        lstFieldWidth.Add(lstFieldWidth[0]);
-                    }
-                    while (lstFieldHeader.Count < lstFieldName.Length)
-                    {
-                        lstFieldHeader.Add(lstFieldName[lstFieldHeader.Count]);
-                    }
-                    //int numColumns = dgv.Columns.Count - 1;
-                    //int displayNum = lstDisplayHeader.Length - 1;
-                    for (int i = 0; i < lstFieldName.Length; i++)
-                    {
-                        var field = lstFieldName[i].Trim();
-                        var dataGridViewColumn = dgv.Columns[field];
-                        if (dataGridViewColumn != null)
-                        {
-                            dataGridViewColumn.Visible = true;
-                            dataGridViewColumn.DisplayIndex = i;
-                            dataGridViewColumn.HeaderText = lstFieldHeader[i];
-                            dataGridViewColumn.Width = Int32.Parse(lstFieldWidth[i]);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("ThietLapTruongHienThiTrongDataGridView:\n" + ex.Message);
-                }
-            }
-            else
-            {
-                throw new ArgumentException("V6ControlsHelper.ThietLapTruongHienThiTrongDataGridView : tham số không hợp lệ");
-            }
-        }
-
+        
         public static SortedDictionary<string, object> DataGridViewRowToDataDictionary(DataGridViewRow row)
         {
             if (row == null) return null;

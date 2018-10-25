@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -3490,6 +3491,75 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         private void thayThe2toolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChucNang_SuaNhieuDong(Invoice);
+        }
+
+        private void xemCongNoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Mode == V6Mode.Init) return;
+                if (txtMaKh.Text == "" || txtManx.Text == "") return;
+                var datatk = txtManx.Data;
+                if (datatk == null || ObjectAndString.ObjectToDecimal(datatk["TK_CN"]) == 0) return;
+
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@MA_KH", txtMaKh.Text),
+                    new SqlParameter("@TK", txtManx.Text),
+                    new SqlParameter("@Ngay_ct", dateNgayCT.Date.Date.ToString("yyyyMMdd")),
+                    new SqlParameter("@Advance", string.Format("Ma_dvcs='{0}'", txtMadvcs.Text.Replace("'", "''"))),
+                    new SqlParameter("@User_id",V6Login.UserId),
+                    new SqlParameter("@Lan", V6Setting.Language),
+
+                };
+                var data = V6BusinessHelper.ExecuteProcedure("VPA_GetCongNo", plist).Tables[0];
+
+                //25/10/2018 Cong no old
+                SqlParameter[] plist0 =
+                {
+                    new SqlParameter("@MA_KH", txtMaKh.Text),
+                    new SqlParameter("@TK", txtManx.Text),
+                    new SqlParameter("@Ngay_ct", dateNgayCT.Date.Date.ToString("yyyyMMdd")),
+                    new SqlParameter("@Advance", string.Format("Ma_dvcs='{0}'", txtMadvcs.Text.Replace("'", "''"))),
+                    new SqlParameter("@Stt_rec", _sttRec),
+                    new SqlParameter("@User_id",V6Login.UserId),
+                    new SqlParameter("@Lan", V6Setting.Language),
+
+                };
+                var data0 = V6BusinessHelper.ExecuteProcedure("VPA_GetCongNo_Stt_rec", plist0).Tables[0];
+
+
+                if (data.Rows.Count > 0)
+                {
+                    string text_duno0 = "0";
+                    if (data0.Rows.Count > 0)
+                    {
+                        var row0 = data0.Rows[0];
+                        text_duno0 =
+                           ObjectAndString.NumberToString(
+                               (ObjectAndString.ObjectToDecimal(row0["NO_CK"]) -
+                                ObjectAndString.ObjectToDecimal(row0["CO_CK"])), 2, V6Options.M_NUM_POINT, ".");
+                    }
+
+                    var row = data.Rows[0];
+                    var text_duno = ObjectAndString.NumberToString((ObjectAndString.ObjectToDecimal(row["NO_CK"]) - ObjectAndString.ObjectToDecimal(row["CO_CK"])), 2, V6Options.M_NUM_POINT, ".");
+                    var showtext = V6Setting.Language == "V" ? "Số dư nợ cuối ngày " : "Ending balance ";
+
+                    var showtext0 = V6Setting.Language == "V" ? "Công nợ cũ " : "Current balance ";
+
+                    string message = string.Format(showtext0 + ": {0}", text_duno0) + "\n";
+                    message += string.Format(showtext + ": {0}--> {1}", dateNgayCT.Date.ToString("dd/MM/yyyy"), text_duno);
+                    this.ShowMessage(message);
+                }
+                else
+                {
+                    this.ShowMessage(V6Text.NoData);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".xemCongNoToolStripMenuItem_Click " + _sttRec, ex);
+            }
         }
     }
 }
