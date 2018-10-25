@@ -29,13 +29,7 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
-                //vTitle, eTitle
-                //var groupFields = ObjectAndString.SplitString(V6Lookup.GetValueByTableName(_procedure, "vTitle"));
-                //var groupNameFields = ObjectAndString.SplitString(V6Lookup.GetValueByTableName(_procedure, "eTitle"));
-                //string idField = "";
-                //string textField = "";
-                //toChucTreeListView1.SetGroupAndNameFieldList(idField, textField);
-                //toChucTreeListView1.ImageIndex_Field = "picture";
+               
             }
             catch (Exception ex)
             {
@@ -51,7 +45,7 @@ namespace V6ControlManager.FormManager.NhanSu
             //CurrentTable = V6TableHelper.ToV6TableName(tableName);
             //CurrentTable = V6TableName.HRPERSONAL
             _tableName = "HRPERSONAL";
-
+            _config = V6Lookup.GetV6lookupConfigByTableName(_tableName);
             InitializeComponent();
             MyInit();
             
@@ -73,6 +67,7 @@ namespace V6ControlManager.FormManager.NhanSu
         private string _procedure;
         private string _tableName;
         private string _viewName = "VPRDMNS";
+        private V6lookupConfig _config;
         [DefaultValue(V6TableName.None)]
         //public V6TableName CurrentTable { get; set; }
         public V6SelectResult SelectResult { get; set; }
@@ -595,9 +590,9 @@ namespace V6ControlManager.FormManager.NhanSu
                 //        var selected_item = toChucTreeListView1.SelectedItems[0];
                 //        var data = toChucTreeListView1.SelectedItemData;
                 //        object UID = data["UID"];
-                //        var id = V6Lookup.ValueByTableName[CurrentTable.ToString(), "vValue"].ToString().Trim();
+                //        var id = V6Lookup.GetValueByTableName(CurrentTable.ToString(), "vValue"].ToString().Trim();
                 //        var listTable =
-                //            V6Lookup.ValueByTableName[CurrentTable.ToString(), "ListTable"].ToString().Trim();
+                //            V6Lookup.GetValueByTableName(CurrentTable.ToString(), "ListTable"].ToString().Trim();
                 //        var value = selected_item.Name;
 
                 //        if (!string.IsNullOrEmpty(listTable) && !string.IsNullOrEmpty(id))
@@ -1050,7 +1045,7 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_tableName);
             //var keys = new SortedDictionary<string, object>();
-            string[] fields = V6Lookup.GetDefaultLookupFields(_tableName);
+            string[] fields = _config.GetDefaultLookupFields;
             _filterForm = new FilterForm(structTable, fields);
             _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
             _filterForm.Opacity = 0.9;

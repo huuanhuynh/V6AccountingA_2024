@@ -61,6 +61,7 @@ namespace V6ControlManager.FormManager.SoDuManager
             _maCt = maCt;
             DataTable alct = V6BusinessHelper.GetAlct(maCt);
             _tableName = V6BusinessHelper.GetAMname(alct.Rows[0]);
+            _config = V6Lookup.GetV6lookupConfigByTableName(_tableName);
             CurrentTable = V6TableHelper.ToV6TableName(_tableName);
             _tableName2 = GetADname(alct.Rows[0]);
             GetADnameList(alct.Rows[0]);
@@ -81,6 +82,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         private SortedDictionary<string, string> _hideColumnDic;
         private string _maCt;
         private string _tableName, _tableName2;
+        private V6lookupConfig _config;
         /// <summary>
         /// _tableName3,_tableName4...
         /// </summary>
@@ -934,7 +936,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             V6TableStruct structTable = V6BusinessHelper.GetTableStruct(CurrentTable.ToString());
             //var keys = new SortedDictionary<string, object>();
-            string[] fields = V6Lookup.GetDefaultLookupFields(CurrentTable.ToString());
+            string[] fields = _config.GetDefaultLookupFields;
             _filterForm = new SoDuFilterForm(structTable, fields);
             _filterForm.FilterOkClick += filter_FilterOkClick;
             _filterForm.Opacity = 0.9;

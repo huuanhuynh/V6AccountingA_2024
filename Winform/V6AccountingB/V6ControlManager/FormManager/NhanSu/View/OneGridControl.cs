@@ -183,9 +183,9 @@ namespace V6ControlManager.FormManager.NhanSu.View
                     var _data = row.ToDataDictionary();
                     {
 
-                        //var id = V6Lookup.ValueByTableName[CurrentTable.ToString(), "vValue"].ToString().Trim();
+                        //var id = V6Lookup.GetValueByTableName(CurrentTable.ToString(), "vValue"].ToString().Trim();
                         //var listTable =
-                        //    V6Lookup.ValueByTableName[CurrentTable.ToString(), "ListTable"].ToString().Trim();
+                        //    V6Lookup.GetValueByTableName(CurrentTable.ToString(), "ListTable"].ToString().Trim();
                         var value = "";
 
                         if (gridView1.Columns.Contains("UID"))

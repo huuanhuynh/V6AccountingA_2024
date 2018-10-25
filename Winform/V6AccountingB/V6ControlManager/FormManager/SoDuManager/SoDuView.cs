@@ -86,6 +86,7 @@ namespace V6ControlManager.FormManager.SoDuManager
 
             Title = title;
             _tableName = tableName;
+            _config = V6Lookup.GetV6lookupConfigByTableName(_tableName);
             CurrentTable = V6TableHelper.ToV6TableName(tableName);
             if (CurrentTable == V6TableName.Abtk)
             {
@@ -123,6 +124,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         private readonly V6Categories _categories = new V6Categories();
         private SortedDictionary<string, string> _hideColumnDic; 
         private string _tableName;
+        private V6lookupConfig _config;
         [DefaultValue(V6TableName.None)]
         public V6TableName CurrentTable { get; set; }
         public V6SelectResult SelectResult { get; set; }
@@ -554,9 +556,9 @@ namespace V6ControlManager.FormManager.SoDuManager
             }
 
             // Đè format cũ
-            string showFields = V6Lookup.ValueByTableName[_tableName, "GRDS_V1"].ToString().Trim();
-            string formatStrings = V6Lookup.ValueByTableName[_tableName, "GRDF_V1"].ToString().Trim();
-            string headerString = V6Lookup.ValueByTableName[_tableName, V6Setting.IsVietnamese ? "GRDHV_V1" : "GRDHE_V1"].ToString().Trim();
+            string showFields = _config.GRDS_V1;
+            string formatStrings = _config.GRDF_V1;
+            string headerString = V6Setting.IsVietnamese ? _config.GRDHV_V1 : _config.GRDHE_V1;
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
 
         }
@@ -849,7 +851,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             V6TableStruct structTable = V6BusinessHelper.GetTableStruct(CurrentTable.ToString());
             //var keys = new SortedDictionary<string, object>();
-            string[] fields = V6Lookup.GetDefaultLookupFields(CurrentTable.ToString());
+            string[] fields = _config.GetDefaultLookupFields;
             _filterForm = new SoDuFilterForm(structTable, fields);
             _filterForm.FilterOkClick += filter_FilterOkClick;
             _filterForm.Opacity = 0.9;

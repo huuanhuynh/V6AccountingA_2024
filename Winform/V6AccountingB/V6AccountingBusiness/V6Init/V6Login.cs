@@ -461,7 +461,7 @@ namespace V6Init
                     break;
                 default:
 
-                    bool filter_all = ObjectAndString.ObjectToBool(V6Lookup.ValueByTableName[tableName, "FILTER_ALL"]);
+                    bool filter_all = ObjectAndString.ObjectToBool(V6Lookup.GetValueByTableName(tableName, "FILTER_ALL"));
                     if (filter_all)
                     {
                         result = V6Lookup.GetValueByTableName(tableName, "InitFilter");
