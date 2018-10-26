@@ -52,17 +52,17 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="V6ThuePostBkavApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="V6ThuePostBkavApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Copy\Code\HoaDonDienTu\BKAV\V6ThuePost_BKAV\V6ThuePost\bin\Debug\V6ThuePostBkavApi.dll</HintPath>
+      <HintPath>..\..\..\Lib\Winform\V6ThuePost\V6ThuePostBkavApi.dll</HintPath>
     </Reference>
-    <Reference Include="V6ThuePostViettelApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="V6ThuePostViettelApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Copy\Code\HoaDonDienTu\VIETTEL_OLD\V6ThuePost\V6ThuePost\bin\Debug\V6ThuePostViettelApi.dll</HintPath>
+      <HintPath>..\..\..\Lib\Winform\V6ThuePost\V6ThuePostViettelApi.dll</HintPath>
     </Reference>
-    <Reference Include="V6ThuePostXmlApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="V6ThuePostXmlApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Copy\Code\HoaDonDienTu\VNPT\V6ThuePost_Xml\ApiConnect\bin\Debug\V6ThuePostXmlApi.dll</HintPath>
+      <HintPath>..\..\..\Lib\Winform\V6ThuePost\V6ThuePostXmlApi.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

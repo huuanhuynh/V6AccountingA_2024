@@ -117,6 +117,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             DialogResult = DialogResult.Cancel;
         }
 
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            treeListView1.SelectAll();
+        }
+
+        private void btnUnSelect_Click(object sender, EventArgs e)
+        {
+            treeListView1.SelectAll(false);
+        }
+
         
         
     }

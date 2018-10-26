@@ -32,16 +32,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhanQuyen));
             System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btnHuy = new System.Windows.Forms.Button();
-            this.btnNhan = new System.Windows.Forms.Button();
             this.treeListView1 = new System.Windows.Forms.TreeListView();
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnMoi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnCopy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnSua = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnXoa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnXem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnIn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnCopy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnHuy = new System.Windows.Forms.Button();
+            this.btnNhan = new System.Windows.Forms.Button();
+            this.btnUnSelect = new System.Windows.Forms.Button();
+            this.btnSelectAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // imageList1
@@ -52,29 +54,6 @@
             this.imageList1.Images.SetKeyName(1, "");
             this.imageList1.Images.SetKeyName(2, "");
             this.imageList1.Images.SetKeyName(3, "");
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnHuy.Location = new System.Drawing.Point(102, 421);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(84, 29);
-            this.btnHuy.TabIndex = 4;
-            this.btnHuy.Text = "&Hủy";
-            this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
-            // 
-            // btnNhan
-            // 
-            this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNhan.Location = new System.Drawing.Point(12, 421);
-            this.btnNhan.Name = "btnNhan";
-            this.btnNhan.Size = new System.Drawing.Size(84, 29);
-            this.btnNhan.TabIndex = 3;
-            this.btnNhan.Text = "&Nhận";
-            this.btnNhan.UseVisualStyleBackColor = true;
-            this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
             // 
             // treeListView1
             // 
@@ -96,9 +75,9 @@
             this.treeListView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeListView1.GridLines = true;
             this.treeListView1.HideSelection = false;
-            this.treeListView1.Location = new System.Drawing.Point(12, 22);
+            this.treeListView1.Location = new System.Drawing.Point(12, 12);
             this.treeListView1.Name = "treeListView1";
-            this.treeListView1.Size = new System.Drawing.Size(666, 393);
+            this.treeListView1.Size = new System.Drawing.Size(666, 392);
             this.treeListView1.SmallImageList = this.imageList1;
             this.treeListView1.TabIndex = 1;
             this.treeListView1.UseCompatibleStateImageBehavior = false;
@@ -117,6 +96,11 @@
             // 
             this.columnMoi.Text = "Mới";
             this.columnMoi.Width = 50;
+            // 
+            // columnCopy
+            // 
+            this.columnCopy.Text = "Copy";
+            this.columnCopy.Width = 50;
             // 
             // columnSua
             // 
@@ -138,10 +122,54 @@
             this.columnIn.Text = "In";
             this.columnIn.Width = 50;
             // 
-            // columnCopy
+            // btnHuy
             // 
-            this.columnCopy.Text = "Copy";
-            this.columnCopy.Width = 50;
+            this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnHuy.Image = global::V6Controls.Properties.Resources.Cancel;
+            this.btnHuy.Location = new System.Drawing.Point(102, 410);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(88, 40);
+            this.btnHuy.TabIndex = 12;
+            this.btnHuy.Text = "&Hủy";
+            this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            // 
+            // btnNhan
+            // 
+            this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNhan.Image = global::V6Controls.Properties.Resources.Apply;
+            this.btnNhan.Location = new System.Drawing.Point(12, 410);
+            this.btnNhan.Name = "btnNhan";
+            this.btnNhan.Size = new System.Drawing.Size(88, 40);
+            this.btnNhan.TabIndex = 11;
+            this.btnNhan.Text = "&Nhận";
+            this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNhan.UseVisualStyleBackColor = true;
+            this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
+            // 
+            // btnUnSelect
+            // 
+            this.btnUnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUnSelect.Location = new System.Drawing.Point(603, 410);
+            this.btnUnSelect.Name = "btnUnSelect";
+            this.btnUnSelect.Size = new System.Drawing.Size(75, 23);
+            this.btnUnSelect.TabIndex = 14;
+            this.btnUnSelect.Text = "&Bỏ chọn";
+            this.btnUnSelect.UseVisualStyleBackColor = true;
+            this.btnUnSelect.Click += new System.EventHandler(this.btnUnSelect_Click);
+            // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelectAll.Location = new System.Drawing.Point(523, 410);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectAll.TabIndex = 13;
+            this.btnSelectAll.Text = "&Chọn hết";
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
             // PhanQuyen
             // 
@@ -149,6 +177,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnHuy;
             this.ClientSize = new System.Drawing.Size(690, 462);
+            this.Controls.Add(this.btnUnSelect);
+            this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Controls.Add(this.treeListView1);
@@ -159,6 +189,8 @@
             this.Controls.SetChildIndex(this.treeListView1, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
+            this.Controls.SetChildIndex(this.btnSelectAll, 0);
+            this.Controls.SetChildIndex(this.btnUnSelect, 0);
             this.ResumeLayout(false);
 
         }
@@ -173,9 +205,11 @@
         private System.Windows.Forms.ColumnHeader columnXoa;
         private System.Windows.Forms.ColumnHeader columnXem;
         private System.Windows.Forms.ColumnHeader columnIn;
+        private System.Windows.Forms.ColumnHeader columnCopy;
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnNhan;
-        private System.Windows.Forms.ColumnHeader columnCopy;
+        private System.Windows.Forms.Button btnUnSelect;
+        private System.Windows.Forms.Button btnSelectAll;
 
 
     }

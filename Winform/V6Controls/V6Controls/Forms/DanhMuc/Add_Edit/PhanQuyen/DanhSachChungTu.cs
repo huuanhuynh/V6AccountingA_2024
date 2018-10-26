@@ -39,13 +39,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         private void MakeList1(DataRow row)
         {
             var text = "";
-            if (V6Setting.Language=="V")
-                text = row["Ten_ct"].ToString().Trim();
-            else
-                text = row["Ten_ct2"].ToString().Trim();
-
-
-
+            text = V6Setting.Language=="V" ? row["Ten_ct"].ToString().Trim() : row["Ten_ct2"].ToString().Trim();
+            
             var Ma_ct = row["Ma_ct"].ToString().Trim();
             TreeListViewItem item = new TreeListViewItem(text);
             item.Name = Ma_ct;
@@ -55,9 +50,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             {
                 item.Checked = true;
             }
-          
         }
-
 
         private DataTable GetAlct1()
         {
@@ -80,9 +73,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         {
 
         }
-        
-      private void btnNhan_Click(object sender, EventArgs e)
-        {   
+
+        private void btnNhan_Click(object sender, EventArgs e)
+        {
             GetRights();
             DialogResult = DialogResult.OK;
         }
@@ -92,24 +85,29 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             var Lists_ct = "";
             foreach (TreeListViewItem item in treeListView1.Items)
             {
-                
-                        if (item.Checked)
-                        {
-                            Lists_ct += "," + item.Name;
-
-                          }
-                    
-                
+                if (item.Checked)
+                {
+                    Lists_ct += "," + item.Name;
+                }
             }
             if (Lists_ct.Length > 1) Lists_ct = Lists_ct.Substring(1);
-
-            VLists_ct = Lists_ct;
             
+            VLists_ct = Lists_ct;
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+        }
+
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            treeListView1.SelectAll();
+        }
+
+        private void btnUnSelect_Click(object sender, EventArgs e)
+        {
+            treeListView1.SelectAll(false);
         }
 
         
