@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6Controls.Controls;
 using V6Init;
 using V6Structs;
 using V6Tools.V6Convert;
@@ -26,6 +28,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             KeyField1 = "MA_VITRI";
         }
+
+        private void ViTriAddEditForm_Load(object sender, EventArgs e)
+        {
+            InitCTView();
+        }
+
         public override void DoBeforeEdit()
         {
             TxtMa_kho.ExistRowInTable();
@@ -59,9 +67,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             throw new Exception(V6Text.EditDenied+ key + "=" + DataDic[key]);
                     }
                 }
-
-
-
             }
             else if (Mode == V6Mode.Add)
             {
@@ -110,26 +115,44 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void btnBoSung_Click(object sender, EventArgs e)
         {
+            tabChiTiet.Focus();
+            v6TabControl1.SelectedTab = tabChiTiet;
+        }
+
+        private void InitCTView()
+        {
             try
             {
-                var uid_ct = DataOld["UID"].ToString();
-                
-                Controls.CategoryView dmView = new Controls.CategoryView(ItemID, "title", "alvitrict", "uid_ct='" + uid_ct + "'", null, DataOld);
-                if (Mode == V6Mode.View)
+                CategoryView dmView = new CategoryView();
+                if (Mode == V6Mode.Add)
                 {
-                    dmView.EnableAdd = false;
-                    dmView.EnableCopy = false;
-                    dmView.EnableDelete = false;
-                    dmView.EnableEdit = false;
+                    tabChiTiet.Enabled = false;
                 }
-                dmView.ToFullForm(btnBoSung.Text);
+                if (Mode == V6Mode.Edit || Mode == V6Mode.View)
+                {
+                    var uid_ct = DataOld["UID"].ToString();
 
+                    dmView = new CategoryView(ItemID, "title", "alvitrict", "uid_ct='" + uid_ct + "'", null, DataOld);
+                    if (Mode == V6Mode.View)
+                    {
+                        dmView.EnableAdd = false;
+                        dmView.EnableCopy = false;
+                        dmView.EnableDelete = false;
+                        dmView.EnableEdit = false;
+                    }
+                }
+
+                dmView.btnBack.Enabled = false;
+                dmView.btnBack.Visible = false;
+                dmView.Dock = DockStyle.Fill;
+                tabChiTiet.Controls.Add(dmView);
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + " BoSung_Click " + ex.Message);
             }
         }
+
         public override void AfterUpdate()
         {
             UpdateVitrict();
@@ -157,5 +180,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 this.ShowErrorException(GetType() + ".UpdateAlvitriCT", ex);
             }
         }
+
+        
     }
 }

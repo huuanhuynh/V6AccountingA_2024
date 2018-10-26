@@ -108,6 +108,7 @@
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
+            this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -231,6 +232,7 @@
             this.v6TabControl1.Controls.Add(this.tabPage2);
             this.v6TabControl1.Controls.Add(this.tabPage3);
             this.v6TabControl1.Controls.Add(this.tabPage4);
+            this.v6TabControl1.Controls.Add(this.tabChiTiet);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(1, 128);
@@ -1379,6 +1381,17 @@
             this.label26.TabIndex = 0;
             this.label26.Text = "Số khung";
             // 
+            // tabChiTiet
+            // 
+            this.tabChiTiet.AccessibleDescription = "ADDEDITT00011";
+            this.tabChiTiet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabChiTiet.Location = new System.Drawing.Point(4, 28);
+            this.tabChiTiet.Name = "tabChiTiet";
+            this.tabChiTiet.Padding = new System.Windows.Forms.Padding(3);
+            this.tabChiTiet.Size = new System.Drawing.Size(744, 391);
+            this.tabChiTiet.TabIndex = 5;
+            this.tabChiTiet.Text = "Chi tiết";
+            // 
             // VuViecAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1487,5 +1500,6 @@
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
         private V6VvarTextBox TxtTrang_thai;
+        private System.Windows.Forms.TabPage tabChiTiet;
     }
 }

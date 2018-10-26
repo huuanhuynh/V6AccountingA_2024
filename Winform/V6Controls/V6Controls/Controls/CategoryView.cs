@@ -24,10 +24,11 @@ namespace V6Controls.Controls
     public partial class CategoryView : V6FormControl
     {
         private bool _aldm;
-
+        private bool _cancel;
         public CategoryView()
         {
             InitializeComponent();
+            _cancel = true;
         }
 
         /// <summary>
@@ -101,8 +102,9 @@ namespace V6Controls.Controls
 
         private void DanhMucView_Load(object sender, EventArgs e)
         {
+            if (_cancel) return;
+
             LoadTable(CurrentTable, SelectResult.SortField);
-            
             dataGridView1.Focus();
             if (CurrentTable == V6TableName.Alkh)
             {

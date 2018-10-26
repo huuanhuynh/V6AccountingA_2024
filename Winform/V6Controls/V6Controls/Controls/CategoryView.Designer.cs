@@ -336,9 +336,6 @@
         #endregion
 
         private V6Controls.V6ColorDataGridView dataGridView1;
-        private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.Button btnSua;
-        private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnFirst;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnNext;
@@ -346,12 +343,15 @@
         private System.Windows.Forms.TextBox txtCurrentPage;
         private System.Windows.Forms.Label lblTotalPage;
         private System.Windows.Forms.DataGridViewTextBoxColumn UID;
-        private System.Windows.Forms.Button btnCopy;
-        private System.Windows.Forms.Button btnFind;
-        private System.Windows.Forms.Button btnAll;
         private V6Controls.V6ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnXem;
-        private System.Windows.Forms.Button btnBack;
+        public System.Windows.Forms.Button btnThem;
+        public System.Windows.Forms.Button btnSua;
+        public System.Windows.Forms.Button btnXoa;
+        public System.Windows.Forms.Button btnCopy;
+        public System.Windows.Forms.Button btnFind;
+        public System.Windows.Forms.Button btnAll;
+        public System.Windows.Forms.Button btnXem;
+        public System.Windows.Forms.Button btnBack;
     }
 }

@@ -269,7 +269,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         }
                         //Hiển thị lại thông tin của bill (form)
                         selected_button.ChangeStatus(hoadonCafe.Mode, hoadonCafe.Status, hoadonCafe._sttRec,
-                            hoadonCafe.CurrentIndex, hoadonCafe.TongThanhToan, hoadonCafe.GC_UD1, hoadonCafe.Time0, hoadonCafe.Time2);
+                            hoadonCafe.CurrentIndex, hoadonCafe.TongThanhToanNT, hoadonCafe.GC_UD1, hoadonCafe.Time0, hoadonCafe.Time2);
                     }
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Controls;
 using V6Structs;
@@ -15,6 +16,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void HopDongAddEditForm_Load(object sender, EventArgs e)
         {
+            InitCTView();
             txtNH_HD1.SetInitFilter("Loai_nh=1");
             txtNH_HD2.SetInitFilter("Loai_nh=2");
             txtNH_HD3.SetInitFilter("Loai_nh=3");
@@ -27,8 +29,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 var v = Categories.IsExistOneCode_List("ARA00,ARI70", "MA_HD", txtMaHD.Text);
                 txtMaHD.Enabled = !v;
-
-                
             }
             catch (Exception ex)
             {
@@ -42,7 +42,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (txtMaHD.Text.Trim() == "" || txtTenHD.Text.Trim() == "")
                 errors += V6Init.V6Text.CheckInfor + " !\r\n";
 
-            if (Mode == V6Structs.V6Mode.Edit)
+            if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_HD",
                     txtMaHD.Text.Trim(), DataOld["MA_HD"].ToString());
@@ -50,7 +50,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     throw new Exception(V6Init.V6Text.ExistData
                                         + "MA_HD = " + txtMaHD.Text.Trim());
             }
-            else if (Mode == V6Structs.V6Mode.Add)
+            else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_HD",
                     txtMaHD.Text.Trim(), txtMaHD.Text.Trim());
@@ -84,25 +84,35 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
         
-        private void btnBoSung_Click(object sender, EventArgs e)
+        private void InitCTView()
         {
             try
             {
-                var uid1 = DataOld["UID"].ToString();
-                
-                CategoryView dmView = new CategoryView(ItemID, "title", "Alhdct", "uid_ct='" + uid1 + "'", null, DataOld);
-                if (Mode == V6Mode.View)
+                CategoryView dmView = new CategoryView();
+                if (Mode == V6Mode.Add)
                 {
-                    dmView.EnableAdd = false;
-                    dmView.EnableCopy = false;
-                    dmView.EnableDelete = false;
-                    dmView.EnableEdit = false;
+                    tabChiTiet.Enabled = false;
                 }
-                dmView.ToFullForm(btnBoSung.Text);
+                if (Mode == V6Mode.Edit || Mode == V6Mode.View)
+                {
+                    var uid1 = DataOld["UID"].ToString();
+                    dmView = new CategoryView(ItemID, "title", "Alhdct", "uid_ct='" + uid1 + "'", null, DataOld);
+                    if (Mode == V6Mode.View)
+                    {
+                        dmView.EnableAdd = false;
+                        dmView.EnableCopy = false;
+                        dmView.EnableDelete = false;
+                        dmView.EnableEdit = false;
+                    }
+                }
+                dmView.btnBack.Enabled = false;
+                dmView.btnBack.Visible = false;
+                dmView.Dock = DockStyle.Fill;
+                tabChiTiet.Controls.Add(dmView);
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + " BoSung_Click " + ex.Message);
+                this.ShowErrorMessage(GetType() + " InitCTView " + ex.Message);
             }
         }
         

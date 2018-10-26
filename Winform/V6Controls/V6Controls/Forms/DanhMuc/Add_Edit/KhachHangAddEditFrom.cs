@@ -31,6 +31,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void KhachHangFrom_Load(object sender, System.EventArgs e)
         {
+            InitCTView();
             txtNhomKH1.SetInitFilter("Loai_nh=1");
             txtNhomKH2.SetInitFilter("Loai_nh=2");
             txtNhomKH3.SetInitFilter("Loai_nh=3");
@@ -170,32 +171,42 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".UpdateHtt " + ex.Message);
+                this.ShowErrorException(GetType() + ".UpdateHtt", ex);
             }
         }
 
-        private void btnBoSung_Click(object sender, EventArgs e)
+        private void InitCTView()
         {
             try
             {
-                var uid_kh = DataOld["UID"].ToString();
-                var ma_kh_old = DataOld["MA_KH"].ToString().Trim();
-                var data = new Dictionary<string, object>();
-                
-                CategoryView dmView = new CategoryView(ItemID, "title", "Alkhct", "uid_kh='"+uid_kh+"'", null, DataOld);
-                if (Mode == V6Mode.View)
+                CategoryView dmView = new CategoryView();
+                if (Mode == V6Mode.Add)
                 {
-                    dmView.EnableAdd = false;
-                    dmView.EnableCopy = false;
-                    dmView.EnableDelete = false;
-                    dmView.EnableEdit = false;
+                    tabChiTiet.Enabled = false;
                 }
-                dmView.ToFullForm(btnBoSung.Text);
+                if (Mode == V6Mode.Edit || Mode == V6Mode.View)
+                {
+                    var uid_kh = DataOld["UID"].ToString();
+                    var ma_kh_old = DataOld["MA_KH"].ToString().Trim();
+                    var data = new Dictionary<string, object>();
+                    dmView = new CategoryView(ItemID, "title", "Alkhct", "uid_kh='" + uid_kh + "'", null, DataOld);
+                    if (Mode == V6Mode.View)
+                    {
+                        dmView.EnableAdd = false;
+                        dmView.EnableCopy = false;
+                        dmView.EnableDelete = false;
+                        dmView.EnableEdit = false;
+                    }
+                }
 
+                dmView.btnBack.Enabled = false;
+                dmView.btnBack.Visible = false;
+                dmView.Dock = DockStyle.Fill;
+                tabChiTiet.Controls.Add(dmView);
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + " BoSung_Click " + ex.Message);
+                this.ShowErrorException(GetType() + ".InitCTView", ex);
             }
         }
 
@@ -342,6 +353,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 //
             }
+        }
+
+        private void btnBoSung_Click(object sender, EventArgs e)
+        {
+            tabChiTiet.Focus();
+            v6TabControl1.SelectedTab = tabChiTiet;
         }
 
     }

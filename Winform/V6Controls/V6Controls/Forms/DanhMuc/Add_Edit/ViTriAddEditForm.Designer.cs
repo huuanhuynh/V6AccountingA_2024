@@ -90,6 +90,7 @@
             this.v6NumberTextBox2 = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox1 = new V6Controls.V6NumberTextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -255,6 +256,7 @@
             this.v6TabControl1.Controls.Add(this.tabPage1);
             this.v6TabControl1.Controls.Add(this.tabPage2);
             this.v6TabControl1.Controls.Add(this.tabPage3);
+            this.v6TabControl1.Controls.Add(this.tabChiTiet);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(4, 150);
@@ -899,7 +901,7 @@
             this.v6DateTimeColor3.TabIndex = 7;
             this.v6DateTimeColor3.Text = "__/__/____";
             // 
-            // v6ColorTextBox16
+            // txtGC_TD3
             // 
             this.txtGC_TD3.AccessibleName = "GC_TD3";
             this.txtGC_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -918,7 +920,7 @@
             this.txtGC_TD3.Size = new System.Drawing.Size(545, 23);
             this.txtGC_TD3.TabIndex = 23;
             // 
-            // v6ColorTextBox15
+            // txtGC_TD2
             // 
             this.txtGC_TD2.AccessibleName = "GC_TD2";
             this.txtGC_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -937,7 +939,7 @@
             this.txtGC_TD2.Size = new System.Drawing.Size(545, 23);
             this.txtGC_TD2.TabIndex = 21;
             // 
-            // v6ColorTextBox14
+            // txtGC_TD1
             // 
             this.txtGC_TD1.AccessibleName = "GC_TD1";
             this.txtGC_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -956,7 +958,7 @@
             this.txtGC_TD1.Size = new System.Drawing.Size(545, 23);
             this.txtGC_TD1.TabIndex = 19;
             // 
-            // v6ColorTextBox9
+            // txtMA_TD3
             // 
             this.txtMA_TD3.AccessibleName = "MA_TD3";
             this.txtMA_TD3.BackColor = System.Drawing.SystemColors.Window;
@@ -972,7 +974,7 @@
             this.txtMA_TD3.Size = new System.Drawing.Size(163, 23);
             this.txtMA_TD3.TabIndex = 5;
             // 
-            // v6ColorTextBox10
+            // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
             this.txtMA_TD2.BackColor = System.Drawing.SystemColors.Window;
@@ -988,7 +990,7 @@
             this.txtMA_TD2.Size = new System.Drawing.Size(163, 23);
             this.txtMA_TD2.TabIndex = 3;
             // 
-            // v6ColorTextBox11
+            // txtMA_TD1
             // 
             this.txtMA_TD1.AccessibleName = "MA_TD1";
             this.txtMA_TD1.BackColor = System.Drawing.SystemColors.Window;
@@ -1020,6 +1022,7 @@
             this.v6NumberTextBox3.ReadOnly = true;
             this.v6NumberTextBox3.Size = new System.Drawing.Size(163, 23);
             this.v6NumberTextBox3.TabIndex = 17;
+            this.v6NumberTextBox3.TabStop = false;
             this.v6NumberTextBox3.Text = "0,000";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox3.Value = new decimal(new int[] {
@@ -1044,6 +1047,7 @@
             this.v6NumberTextBox2.ReadOnly = true;
             this.v6NumberTextBox2.Size = new System.Drawing.Size(163, 23);
             this.v6NumberTextBox2.TabIndex = 15;
+            this.v6NumberTextBox2.TabStop = false;
             this.v6NumberTextBox2.Text = "0,000";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox2.Value = new decimal(new int[] {
@@ -1068,6 +1072,7 @@
             this.v6NumberTextBox1.ReadOnly = true;
             this.v6NumberTextBox1.Size = new System.Drawing.Size(163, 23);
             this.v6NumberTextBox1.TabIndex = 13;
+            this.v6NumberTextBox1.TabStop = false;
             this.v6NumberTextBox1.Text = "0,000";
             this.v6NumberTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox1.Value = new decimal(new int[] {
@@ -1087,6 +1092,17 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
+            // tabChiTiet
+            // 
+            this.tabChiTiet.AccessibleDescription = "ADDEDITT00011";
+            this.tabChiTiet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabChiTiet.Location = new System.Drawing.Point(4, 28);
+            this.tabChiTiet.Name = "tabChiTiet";
+            this.tabChiTiet.Padding = new System.Windows.Forms.Padding(3);
+            this.tabChiTiet.Size = new System.Drawing.Size(708, 372);
+            this.tabChiTiet.TabIndex = 3;
+            this.tabChiTiet.Text = "Chi tiết";
+            // 
             // ViTriAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1097,6 +1113,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ViTriAddEditForm";
             this.Size = new System.Drawing.Size(725, 558);
+            this.Load += new System.EventHandler(this.ViTriAddEditForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.v6TabControl1.ResumeLayout(false);
@@ -1172,5 +1189,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TabPage tabChiTiet;
     }
 }

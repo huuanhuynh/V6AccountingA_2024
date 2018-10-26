@@ -2862,7 +2862,7 @@ namespace V6Controls.Forms
         /// <returns></returns>
         public static bool ClickByTag(Control control, string keyString)
         {
-            if (control.Tag != null)
+            if (control.Enabled && control.Visible && control.Tag != null)
             {
                 var tagString = control.Tag.ToString();
                 if ((";" + tagString + ";").Contains(";" + keyString + ";")
