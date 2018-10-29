@@ -3788,5 +3788,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             ChucNang_SuaNhieuDong(Invoice);
         }
 
+        private void cboKieuPost_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
+        }
+
     }
 }

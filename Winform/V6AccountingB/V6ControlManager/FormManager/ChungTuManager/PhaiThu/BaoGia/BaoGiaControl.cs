@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -65,7 +64,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         {   
             LoadLanguage();
             LoadTag(Invoice, detail1.Controls);
-            LoadColorList();
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
             txtMaKh.Upper();
@@ -4185,46 +4183,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             }
             
         }
-
-        private SortedDictionary<string, Color> colorList;
-        private void LoadColorList()
-        {
-            colorList = new SortedDictionary<string, Color>();
-            var alKieuPost = Invoice.AlPost;
-            foreach (DataRow row in alKieuPost.Rows)
-            {
-                try
-                {
-                    var kieu_post = row["Kieu_post"].ToString().Trim();
-                    var color_name = row["ColorV"].ToString().Trim();
-                    if (color_name != "")
-                    {
-                        var color = Color.FromName(color_name);
-                        colorList[kieu_post] = color;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    this.WriteExLog(GetType() + ".LoadColorList " + _sttRec, ex);
-                }
-            }
-        }
-
-        private void cboKieuPost_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            lblKieuPostColor.Text = cboKieuPost.Text;
-            if (cboKieuPost.SelectedValue == null) return;
-            var kieu_post = cboKieuPost.SelectedValue.ToString().Trim();
-            if (colorList.ContainsKey(kieu_post))
-            {
-                lblKieuPostColor.ForeColor = colorList[kieu_post];
-            }
-            else
-            {
-                lblKieuPostColor.ForeColor = Color.Black;
-            }
-        }
-
+        
         private void FixBPNV_Name()
         {
             //txtma_bp.ExistRowInTable();
@@ -4339,5 +4298,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         {
             ChucNang_SuaNhieuDong(Invoice);
         }
+
+        private void cboKieuPost_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
+        }
+
     }
 }

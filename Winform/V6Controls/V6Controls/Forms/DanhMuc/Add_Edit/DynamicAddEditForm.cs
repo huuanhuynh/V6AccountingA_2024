@@ -933,6 +933,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try // Dynamic invoke
             {
+                CheckPhatSinh();
+
                 if (Event_Methods.ContainsKey(FormDynamicEvent.DOBEFOREEDIT))
                 {
                     var method_name = Event_Methods[FormDynamicEvent.DOBEFOREEDIT];
@@ -1165,7 +1167,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void DynamicAddEditForm_Load(object sender, EventArgs e)
         {
             CheckVvarTextBox();
-            CheckPhatSinh();
+            
             try // Dynamic invoke
             {
                 if (Event_Methods.ContainsKey(FormDynamicEvent.INIT2))

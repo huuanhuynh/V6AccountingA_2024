@@ -6372,5 +6372,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
+        private void cboKieuPost_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
+        }
+
     }
 }

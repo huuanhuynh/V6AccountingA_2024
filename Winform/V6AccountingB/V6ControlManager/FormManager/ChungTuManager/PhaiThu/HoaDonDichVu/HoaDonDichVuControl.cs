@@ -3561,5 +3561,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 this.WriteExLog(GetType() + ".xemCongNoToolStripMenuItem_Click " + _sttRec, ex);
             }
         }
+
+        private void cboKieuPost_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
+        }
     }
 }

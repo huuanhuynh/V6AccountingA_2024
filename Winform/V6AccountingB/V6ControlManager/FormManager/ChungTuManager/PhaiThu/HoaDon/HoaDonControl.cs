@@ -7630,10 +7630,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             ChucNang_SuaNhieuDong(Invoice);
         }
-
-        private void hoaDonDetail1_AddHandle()
+        
+        private void cboKieuPost_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
         }
 
     }

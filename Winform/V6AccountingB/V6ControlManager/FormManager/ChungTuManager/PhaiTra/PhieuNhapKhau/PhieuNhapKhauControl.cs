@@ -5963,5 +5963,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
+        private void cboKieuPost_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
+        }
     }
 }

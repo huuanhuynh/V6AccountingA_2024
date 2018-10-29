@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -61,9 +62,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 M_SOA_HT_KM_CK = V6Options.GetValue("M_SOA_HT_KM_CK");
                 M_SOA_MULTI_VAT = V6Options.GetValue("M_SOA_MULTI_VAT");
                 M_CAL_SL_QD_ALL = V6Options.GetValue("M_CAL_SL_QD_ALL");
-                var lbl = new Label();
-                lbl.Text = MaCt;
-                Controls.Add(lbl);
+                //var lbl = new Label();
+                //lbl.Text = MaCt;
+                //Controls.Add(lbl);
             }
             catch (Exception ex)
             {
@@ -2236,6 +2237,37 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         }
                     }
                 }
+            }
+        }
+
+        public void ViewLblKieuPost(Label lblKieuPostColor, ComboBox cboKieuPost)
+        {
+            try
+            {
+                lblKieuPostColor.Text = cboKieuPost.Text;
+                V6VvarTextBox txtMaXuLy = GetControlByAccessibleName("MA_XULY") as V6VvarTextBox;
+                if (txtMaXuLy != null && txtMaXuLy.Data != null)
+                {
+                    var ten_xuly = " (" + (V6Setting.IsVietnamese ? txtMaXuLy.Data["TEN_XULY"] : txtMaXuLy.Data["TEN_XULY2"]) + ")";
+                    lblKieuPostColor.Text += ten_xuly;
+                }
+
+                if (cboKieuPost.SelectedValue == null) return;
+                var selectedRow = ((DataRowView) cboKieuPost.SelectedItem).Row;
+                var color_name = selectedRow["ColorV"].ToString().Trim();
+                if (color_name != "")
+                {
+                    var color = Color.FromName(color_name);
+                    lblKieuPostColor.ForeColor = color;
+                }
+                else
+                {
+                    lblKieuPostColor.ForeColor = Color.Black;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ViewLblKieuPost", ex);
             }
         }
     }

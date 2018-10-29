@@ -5090,6 +5090,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             ChucNang_SuaNhieuDong(Invoice);
         }
 
+        private void cboKieuPost_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
+        }
+
         
 
     }
