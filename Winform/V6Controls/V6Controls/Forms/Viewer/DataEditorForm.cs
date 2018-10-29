@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6Structs;
 using V6Tools;
@@ -407,11 +408,40 @@ namespace V6Controls.Forms.Viewer
                 }
                 return true;
             }
+            if (keyData == Keys.F3 && !dataGridView1.ReadOnly)
+            {
+                var data = dataGridView1.CurrentRow.ToDataDictionary();
+                SortedDictionary<string, object> keys = new SortedDictionary<string, object>();
+                keys.Add("UID", data["UID"]);
+                FormAddEdit f = new FormAddEdit(_tableName, V6Mode.Edit, keys, data);
+                //f.AfterInitControl += f_AfterInitControl;
+                f.UpdateSuccessEvent += f_UpdateSuccess;
+                f.InitFormControl();
+                f.ShowDialog(this);
+            }
 
             OnHotKeyAction(keyData);
             return base.DoHotKey0(keyData);
         }
 
+        /// <summary>
+        /// Khi sửa thành công, cập nhập lại dòng được sửa, chưa kiểm ok cancel.
+        /// </summary>
+        /// <param name="data">Dữ liệu đã sửa</param>
+        private void f_UpdateSuccess(SortedDictionary<string, object> data)
+        {
+            try
+            {
+                if (data == null) return;
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+                V6ControlFormHelper.UpdateGridViewRow(row, data);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".f_UpdateSuccess", ex);
+            }
+        }
+        
         string delete_info = "";
         
         /// <summary>
