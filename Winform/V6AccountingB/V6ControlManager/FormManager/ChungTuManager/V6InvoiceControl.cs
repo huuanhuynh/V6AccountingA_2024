@@ -46,6 +46,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             MaCt = maCt;
             InitializeComponent();
+            MyInit0();
         }
 
         private void MyInit0()

@@ -158,6 +158,7 @@
             this.btnUnSelect.TabIndex = 14;
             this.btnUnSelect.Text = "&Bỏ chọn";
             this.btnUnSelect.UseVisualStyleBackColor = true;
+            this.btnUnSelect.Visible = false;
             this.btnUnSelect.Click += new System.EventHandler(this.btnUnSelect_Click);
             // 
             // btnSelectAll
@@ -169,6 +170,7 @@
             this.btnSelectAll.TabIndex = 13;
             this.btnSelectAll.Text = "&Chọn hết";
             this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Visible = false;
             this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
             // PhanQuyen
