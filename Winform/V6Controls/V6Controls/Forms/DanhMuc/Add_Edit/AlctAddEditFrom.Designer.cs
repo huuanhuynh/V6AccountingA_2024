@@ -70,6 +70,8 @@
             this.v6ColorTextBox7 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox4 = new V6Controls.V6ColorTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblResetCopy = new System.Windows.Forms.Label();
+            this.txtResetCopy = new V6Controls.V6ColorTextBox();
             this.cboKieuPost = new V6Controls.V6ComboBox();
             this.lblThongTinThem = new System.Windows.Forms.Label();
             this.v6VvarTextBox7 = new V6Controls.V6VvarTextBox();
@@ -168,8 +170,6 @@
             this.v6ColorTextBox13 = new V6Controls.V6ColorTextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.v6ColorTextBox12 = new V6Controls.V6ColorTextBox();
-            this.lblResetCopy = new System.Windows.Forms.Label();
-            this.txtResetCopy = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -866,6 +866,36 @@
             this.tabPage2.Size = new System.Drawing.Size(742, 416);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
+            // 
+            // lblResetCopy
+            // 
+            this.lblResetCopy.AutoSize = true;
+            this.lblResetCopy.Location = new System.Drawing.Point(23, 285);
+            this.lblResetCopy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblResetCopy.Name = "lblResetCopy";
+            this.lblResetCopy.Size = new System.Drawing.Size(101, 17);
+            this.lblResetCopy.TabIndex = 18;
+            this.lblResetCopy.Text = "Reset khi copy";
+            this.lblResetCopy.Visible = false;
+            // 
+            // txtResetCopy
+            // 
+            this.txtResetCopy.AccessibleName = "M_MA_HD";
+            this.txtResetCopy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtResetCopy.BackColor = System.Drawing.Color.White;
+            this.txtResetCopy.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtResetCopy.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtResetCopy.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtResetCopy.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtResetCopy.HoverColor = System.Drawing.Color.Yellow;
+            this.txtResetCopy.LeaveColor = System.Drawing.Color.White;
+            this.txtResetCopy.Location = new System.Drawing.Point(196, 279);
+            this.txtResetCopy.Margin = new System.Windows.Forms.Padding(4);
+            this.txtResetCopy.Name = "txtResetCopy";
+            this.txtResetCopy.Size = new System.Drawing.Size(538, 23);
+            this.txtResetCopy.TabIndex = 19;
+            this.txtResetCopy.Visible = false;
             // 
             // cboKieuPost
             // 
@@ -1725,9 +1755,9 @@
             this.label23.Location = new System.Drawing.Point(8, 123);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(127, 17);
+            this.label23.Size = new System.Drawing.Size(79, 17);
             this.label23.TabIndex = 10;
-            this.label23.Text = "Sử dụng nhân viên";
+            this.label23.Text = "Tùy chọn 3";
             // 
             // label27
             // 
@@ -1735,9 +1765,9 @@
             this.label27.Location = new System.Drawing.Point(9, 77);
             this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(142, 17);
+            this.label27.Size = new System.Drawing.Size(79, 17);
             this.label27.TabIndex = 6;
-            this.label27.Text = "Sử dụng trường tự do";
+            this.label27.Text = "Tùy chọn 1";
             // 
             // label28
             // 
@@ -1798,9 +1828,9 @@
             this.label31.Location = new System.Drawing.Point(8, 101);
             this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(117, 17);
+            this.label31.Size = new System.Drawing.Size(79, 17);
             this.label31.TabIndex = 8;
-            this.label31.Text = "Sử dụng bộ phận";
+            this.label31.Text = "Tùy chọn 2";
             // 
             // label32
             // 
@@ -2315,36 +2345,6 @@
             this.v6ColorTextBox12.Size = new System.Drawing.Size(135, 23);
             this.v6ColorTextBox12.TabIndex = 1;
             this.v6ColorTextBox12.Visible = false;
-            // 
-            // lblResetCopy
-            // 
-            this.lblResetCopy.AutoSize = true;
-            this.lblResetCopy.Location = new System.Drawing.Point(23, 285);
-            this.lblResetCopy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblResetCopy.Name = "lblResetCopy";
-            this.lblResetCopy.Size = new System.Drawing.Size(101, 17);
-            this.lblResetCopy.TabIndex = 18;
-            this.lblResetCopy.Text = "Reset khi copy";
-            this.lblResetCopy.Visible = false;
-            // 
-            // txtResetCopy
-            // 
-            this.txtResetCopy.AccessibleName = "M_MA_HD";
-            this.txtResetCopy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtResetCopy.BackColor = System.Drawing.Color.White;
-            this.txtResetCopy.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtResetCopy.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtResetCopy.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtResetCopy.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtResetCopy.HoverColor = System.Drawing.Color.Yellow;
-            this.txtResetCopy.LeaveColor = System.Drawing.Color.White;
-            this.txtResetCopy.Location = new System.Drawing.Point(196, 279);
-            this.txtResetCopy.Margin = new System.Windows.Forms.Padding(4);
-            this.txtResetCopy.Name = "txtResetCopy";
-            this.txtResetCopy.Size = new System.Drawing.Size(538, 23);
-            this.txtResetCopy.TabIndex = 19;
-            this.txtResetCopy.Visible = false;
             // 
             // AlctAddEditFrom
             // 

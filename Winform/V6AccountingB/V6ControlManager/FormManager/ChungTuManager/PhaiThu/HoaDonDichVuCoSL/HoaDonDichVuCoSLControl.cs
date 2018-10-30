@@ -7512,7 +7512,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
         private void cboKieuPost_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
+            if (Invoice.Alct["M_MA_VV"].ToString().Trim() == "1")
+            {
+                lblKieuPostColor.Visible = true;
+                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
+            }
+            else
+            {
+                lblKieuPostColor.Visible = false;
+            }
         }
 
     }

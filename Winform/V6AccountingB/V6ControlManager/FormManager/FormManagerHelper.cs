@@ -195,8 +195,15 @@ namespace V6ControlManager.FormManager
                             Name = "chk" + defineInfo.Field
                         };
                     }
+                    else
+                    {
+                        goto Next_1;
+                    }
+
+                    goto EndIf_1;
                 }
-                else if (ObjectAndString.IsDateTimeType(defineInfo.DataType))
+            Next_1:
+                if (ObjectAndString.IsDateTimeType(defineInfo.DataType))
                 {
                     input = new V6DateTimeColor();
                 }
@@ -227,6 +234,7 @@ namespace V6ControlManager.FormManager
                     tT.SetInitFilter(defineInfo.InitFilter);
                     tT.F2 = defineInfo.F2;
                 }
+            EndIf_1:
 
                 if (input != null)
                 {
