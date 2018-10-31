@@ -15,7 +15,8 @@ namespace V6ReportControls
     {
         public V6ColorTextBox _textBox;
         public V6VvarTextBox _vtextBox;
-        public V6LookupTextBox _lookuptextBox;
+        public V6LookupTextBox _lookupTextBox;
+        public V6LookupProc _lookupProc;
         public V6NumberTextBox _numberTextBox;
         public V6DateTimeColor _dateTimeColor;
         public V6DateTimePick _dateTimePick;
@@ -74,7 +75,11 @@ namespace V6ReportControls
             {
                 IsSelected = false;
             }
-            else if (_lookuptextBox != null && _lookuptextBox.Text.Trim() == string.Empty)
+            else if (_lookupTextBox != null && _lookupTextBox.Text.Trim() == string.Empty)
+            {
+                IsSelected = false;
+            }
+            else if (_lookupProc != null && _lookupProc.Text.Trim() == string.Empty)
             {
                 IsSelected = false;
             }
@@ -95,7 +100,8 @@ namespace V6ReportControls
             {
                 if (_textBox != null) return _textBox.AccessibleName;
                 if (_vtextBox != null) return _vtextBox.AccessibleName;
-                if (_lookuptextBox != null) return _lookuptextBox.AccessibleName;
+                if (_lookupTextBox != null) return _lookupTextBox.AccessibleName;
+                if (_lookupProc != null) return _lookupProc.AccessibleName;
                 if (_numberTextBox != null) return _numberTextBox.AccessibleName;
                 if (_dateTimePick != null) return _dateTimePick.AccessibleName;
                 if (_dateTimeColor != null) return _dateTimeColor.AccessibleName;
@@ -106,7 +112,8 @@ namespace V6ReportControls
             {
                 if (_textBox != null) _textBox.AccessibleName = value;
                 if (_vtextBox != null) _vtextBox.AccessibleName = value;
-                if (_lookuptextBox != null) _lookuptextBox.AccessibleName = value;
+                if (_lookupTextBox != null) _lookupTextBox.AccessibleName = value;
+                if (_lookupProc != null) _lookupProc.AccessibleName = value;
                 if (_numberTextBox != null) _numberTextBox.AccessibleName = value;
                 if (_dateTimePick != null) _dateTimePick.AccessibleName = value;
                 if (_dateTimeColor != null) _dateTimeColor.AccessibleName = value;
@@ -120,7 +127,8 @@ namespace V6ReportControls
             {
                 if (_textBox != null) return _textBox.Text.Trim();
                 if (_vtextBox != null) return _vtextBox.Text.Trim();
-                if (_lookuptextBox != null) return _lookuptextBox.Value;
+                if (_lookupTextBox != null) return _lookupTextBox.Value;
+                if (_lookupProc != null) return _lookupProc.Value;
                 if (_numberTextBox != null) return _numberTextBox.Value;
                 if (_dateTimePick != null) return _dateTimePick.Date;
                 if (_dateTimeColor != null) return _dateTimeColor.Value;
@@ -135,7 +143,8 @@ namespace V6ReportControls
             {
                 if (_textBox != null) return _textBox.Text.Trim();
                 if (_vtextBox != null) return _vtextBox.Text.Trim();
-                if (_lookuptextBox != null) return _lookuptextBox.Value.ToString();
+                if (_lookupTextBox != null) return _lookupTextBox.Value.ToString();
+                if (_lookupProc != null) return _lookupProc.Value.ToString();
                 if (_numberTextBox != null) return _numberTextBox.Value.ToString(CultureInfo.InvariantCulture);
                 if (_dateTimePick != null) return _dateTimePick.YYYYMMDD;
                 if (_dateTimeColor != null) return ObjectAndString.ObjectToString(_dateTimeColor.Value, "yyyyMMdd");
@@ -274,7 +283,7 @@ namespace V6ReportControls
         public V6LookupTextBox AddLookupTextBox(string ma_dm, string filter,
             string value_field, string text_field, string brother, string neighbor)
         {
-            _lookuptextBox = new V6LookupTextBox
+            _lookupTextBox = new V6LookupTextBox
             {
                 //VVar = vVar,
                 Ma_dm = ma_dm,
@@ -290,9 +299,9 @@ namespace V6ReportControls
                 CheckOnLeave = false,
             };
 
-            _lookuptextBox.SetInitFilter(filter);
+            _lookupTextBox.SetInitFilter(filter);
 
-            Controls.Add(_lookuptextBox);
+            Controls.Add(_lookupTextBox);
             Operators.Clear();
             Operators.Add("start");
             Operators.Add("like");
@@ -301,13 +310,52 @@ namespace V6ReportControls
             Operators.Add("is null");
             Operators.Add("is not null");
             Operator = "start";
-            _lookuptextBox.Click += FilterLineDynamic_Click;
-            _lookuptextBox.TextChanged += FilterLineDynamic_TextChanged;
-            _lookuptextBox.GotFocus += FilterLineDynamic_GotFocus;
-            _lookuptextBox.LostFocus += FilterLineDynamic_LostFocus;
-            _lookuptextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
-            _lookuptextBox.KeyDown += FilterLineDynamic_KeyDown;
-            return _lookuptextBox;
+            _lookupTextBox.Click += FilterLineDynamic_Click;
+            _lookupTextBox.TextChanged += FilterLineDynamic_TextChanged;
+            _lookupTextBox.GotFocus += FilterLineDynamic_GotFocus;
+            _lookupTextBox.LostFocus += FilterLineDynamic_LostFocus;
+            _lookupTextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
+            _lookupTextBox.KeyDown += FilterLineDynamic_KeyDown;
+            return _lookupTextBox;
+        }
+        
+        public V6LookupProc AddLookupProc(string ma_dm, string filter,
+            string value_field, string text_field, string brother, string neighbor)
+        {
+            _lookupProc = new V6LookupProc
+            {
+                //VVar = vVar,
+                Ma_dm = ma_dm,
+                ValueField = value_field,
+                ShowTextField = text_field,
+                BrotherFields = brother,
+                NeighborFields = neighbor,
+
+                Location = new Point(comboBox1.Right + 5, 1),
+                Size = new Size(Width - comboBox1.Right - 5, 20),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
+                CheckNotEmpty = false,
+                CheckOnLeave = false,
+            };
+
+            _lookupProc.SetInitFilter(filter);
+
+            Controls.Add(_lookupProc);
+            Operators.Clear();
+            Operators.Add("start");
+            Operators.Add("like");
+            Operators.Add("=");
+            Operators.Add("<>");
+            Operators.Add("is null");
+            Operators.Add("is not null");
+            Operator = "start";
+            _lookupProc.Click += FilterLineDynamic_Click;
+            _lookupProc.TextChanged += FilterLineDynamic_TextChanged;
+            _lookupProc.GotFocus += FilterLineDynamic_GotFocus;
+            _lookupProc.LostFocus += FilterLineDynamic_LostFocus;
+            _lookupProc.V6LostFocus += FilterLineDynamic_V6LostFocus;
+            _lookupProc.KeyDown += FilterLineDynamic_KeyDown;
+            return _lookupProc;
         }
 
         public void AddNumberTextBox()
@@ -336,7 +384,7 @@ namespace V6ReportControls
             _numberTextBox.KeyDown += FilterLineDynamic_KeyDown;
         }
 
-        public void AddDateTimePick()//Todo: them su dung cho AddDateTimeColor()
+        public void AddDateTimePick()
         {
             _dateTimePick = new V6DateTimePick();
             _dateTimePick.Format = DateTimePickerFormat.Custom;
@@ -444,9 +492,13 @@ namespace V6ReportControls
             {
                 _vtextBox.Text = ObjectAndString.ObjectToString(value);
             }
-            else if (_lookuptextBox != null)
+            else if (_lookupTextBox != null)
             {
-                _lookuptextBox.SetValue(value);
+                _lookupTextBox.SetValue(value);
+            }
+            else if (_lookupProc != null)
+            {
+                _lookupProc.SetValue(value);
             }
             else if (_numberTextBox != null)
             {
@@ -481,9 +533,13 @@ namespace V6ReportControls
             {
                 _vtextBox.LimitCharacters = limitChars;
             }
-            else if (_lookuptextBox != null)
+            else if (_lookupTextBox != null)
             {
-                _lookuptextBox.LimitCharacters = limitChars;
+                _lookupTextBox.LimitCharacters = limitChars;
+            }
+            else if (_lookupProc != null)
+            {
+                _lookupProc.LimitCharacters = limitChars;
             }
             else if (_numberTextBox != null)
             {
@@ -507,10 +563,15 @@ namespace V6ReportControls
                     _vtextBox.CheckOnLeave = true;
                     _vtextBox.CheckNotEmpty = true;
                 }
-                if (_lookuptextBox != null)
+                if (_lookupTextBox != null)
                 {
-                    _lookuptextBox.CheckOnLeave = true;
-                    _lookuptextBox.CheckNotEmpty = true;
+                    _lookupTextBox.CheckOnLeave = true;
+                    _lookupTextBox.CheckNotEmpty = true;
+                }
+                if (_lookupProc != null)
+                {
+                    _lookupProc.CheckOnLeave = true;
+                    _lookupProc.CheckNotEmpty = true;
                 }
             }
             else
@@ -521,10 +582,15 @@ namespace V6ReportControls
                     _vtextBox.CheckOnLeave = false;
                     _vtextBox.CheckNotEmpty = false;
                 }
-                if (_lookuptextBox != null)
+                if (_lookupTextBox != null)
                 {
-                    _lookuptextBox.CheckOnLeave = false;
-                    _lookuptextBox.CheckNotEmpty = false;
+                    _lookupTextBox.CheckOnLeave = false;
+                    _lookupTextBox.CheckNotEmpty = false;
+                }
+                if (_lookupProc != null)
+                {
+                    _lookupProc.CheckOnLeave = false;
+                    _lookupProc.CheckNotEmpty = false;
                 }
             }
         }

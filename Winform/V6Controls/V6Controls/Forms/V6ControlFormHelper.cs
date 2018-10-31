@@ -1119,6 +1119,7 @@ namespace V6Controls.Forms
 
             V6VvarTextBox vT;
             V6LookupTextBox vL;
+            V6LookupProc vP;
             V6FormButton bT;
             
             
@@ -1139,6 +1140,14 @@ namespace V6Controls.Forms
                 //
                 vL.F2 = lineInfo.F2;
                 vL.FilterStart = lineInfo.FilterStart;
+            }
+            else if (CONTROL_TYPE == "LOOKUPPROC") 
+            {
+                vP = lineControl.AddLookupProc(lineInfo.MA_DM, lineInfo.InitFilter,
+                    lineInfo.Field, lineInfo.Field2, lineInfo.BField, lineInfo.NField);
+                //
+                vP.F2 = lineInfo.F2;
+                vP.FilterStart = lineInfo.FilterStart;
             }
             else if (CONTROL_TYPE == "BUTTON")
             {
@@ -5616,6 +5625,10 @@ namespace V6Controls.Forms
             {
                 ((V6LookupTextBox) control).SetValue(value);
             }
+            else if (control is V6LookupProc)
+            {
+                ((V6LookupProc)control).SetValue(value);
+            }
             else if (control is V6DateTimePick)
             {
                 var object_to_date = ObjectAndString.ObjectToFullDateTime(value);
@@ -5804,6 +5817,7 @@ namespace V6Controls.Forms
             }
             else if (control is GioiTinhControl)
             {
+
                 d[cNAME] = ((GioiTinhControl)control).Value;
                 //return ((GioiTinhControl)control).Value;
                 return;
@@ -5878,6 +5892,11 @@ namespace V6Controls.Forms
                 //    d[ltb.AccessibleName2.ToUpper()] = ltb.Text;
                 //}
                 return ltb.Value;
+            }
+            else if (control is V6LookupProc)
+            {
+                V6LookupProc lp = (V6LookupProc)control;
+                return lp.Value;
             }
             else if (control is V6CheckTextBox)
             {

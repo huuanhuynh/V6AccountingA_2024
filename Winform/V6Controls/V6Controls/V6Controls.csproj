@@ -1113,6 +1113,12 @@
     <Compile Include="ReportControls\FilterLineDSNS.Designer.cs">
       <DependentUpon>FilterLineDSNS.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportControls\FilterLineLookupProc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportControls\FilterLineLookupProc.Designer.cs">
+      <DependentUpon>FilterLineLookupProc.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportControls\FilterLineMauALL.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2008,6 +2014,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportControls\FilterLineDSNS.resx">
       <DependentUpon>FilterLineDSNS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportControls\FilterLineLookupProc.resx">
+      <DependentUpon>FilterLineLookupProc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportControls\FilterLineMauALL.resx">
       <DependentUpon>FilterLineMauALL.cs</DependentUpon>

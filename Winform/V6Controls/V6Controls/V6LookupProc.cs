@@ -250,7 +250,7 @@ namespace V6Controls
         [DefaultValue(null)]
         public string ValueField
         {
-            get { return _valueField; }
+            get { return (_valueField??"").ToUpper(); }
             set { _valueField = value; }
         }
         private string _valueField;
@@ -526,7 +526,7 @@ namespace V6Controls
 
                         for (int i = 0; i < tbl1.Rows.Count; i++)
                         {
-                            auto1.Add(tbl1.Rows[i][0].ToString().Trim());
+                            auto1.Add(tbl1.Rows[i][LookupInfo_F_NAME].ToString().Trim());
                         }
                         V6ControlsHelper.DisableLookup = true;
                         AutoCompleteMode = AutoCompleteMode.SuggestAppend;

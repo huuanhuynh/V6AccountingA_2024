@@ -101,16 +101,33 @@ namespace V6Controls.Controls
                 return ObjectAndString.ObjectToString(value);
             }
         }
+
+        /// <summary>
+        /// Vvar của control tham chiếu.
+        /// </summary>
         [Category("V6")]
         public string R_Vvar {
             get
             {   
                 var txt = _refControl as V6VvarTextBox;
                 if (txt != null) return txt.VVar;
+                var txl = _refControl as V6LookupTextBox;
+                if (txl != null) return txl.Ma_dm;
+                var txp = _refControl as V6LookupProc;
+                if (txp != null) return txp.Ma_dm;
                 var line = _refControl as FilterLineDynamic;
-                if (line != null && line._vtextBox != null) return line._vtextBox.VVar;
+                if (line != null)
+                {
+                    if (line._vtextBox != null) return line._vtextBox.VVar;
+                    if (line._lookupTextBox != null) return line._lookupTextBox.Ma_dm;
+                    if (line._lookupProc != null) return line._lookupProc.Ma_dm;
+                }
                 var lineVvar = _refControl as FilterLineVvarTextBox;
                 if (lineVvar != null) return lineVvar.Vvar;
+                var lineLookup = _refControl as FilterLineLookupTextBox;
+                if (lineLookup != null) return lineLookup.MA_DM;
+                var lineProc = _refControl as FilterLineLookupProc;
+                if (lineProc != null) return lineProc.MA_DM;
                 return null;
             }
         }
@@ -177,7 +194,7 @@ namespace V6Controls.Controls
                 SqlParameter[] plist =
                 {
                     new SqlParameter("@R_DataType", R_DataType),
-                    new SqlParameter("@R_Value", R_Value),
+                    new SqlParameter("@R_Value", R_Value.Trim()),
                     new SqlParameter("@R_Vvar", R_Vvar),
                     new SqlParameter("@R_Stt_rec", R_Stt_rec),
                     new SqlParameter("@R_Ma_ct", R_Ma_ct),
