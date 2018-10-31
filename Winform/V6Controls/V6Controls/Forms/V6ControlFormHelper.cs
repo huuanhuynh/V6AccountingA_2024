@@ -1426,6 +1426,65 @@ namespace V6Controls.Forms
             {
                 throw new Exception("SetBrotherData error!\n" + (control.AccessibleName ?? "") + ": " + ex.Message);
             }
+        } 
+        
+        public static void SetBrotherDataProc(Control control, IDictionary<string, object> row, string fields, string fields2)
+        {
+            Control parent = control.Parent;
+            if (parent == null) return;
+            if (string.IsNullOrEmpty(fields)) return;
+            
+            try
+            {
+                if (V6Setting.IsVietnamese || string.IsNullOrEmpty(fields2))
+                {
+                    fields = "," + fields.ToLower() + ",";
+                    foreach (Control c in parent.Controls)
+                    {
+                        if (string.IsNullOrEmpty(c.AccessibleName)) continue;
+                        string baseFIELD = c is RadioButton ? c.Name : (c.AccessibleName ?? "").ToUpper();
+                        //Chỉ xử lý các control có AccessibleName trong fields
+                        if (fields.Contains("," + baseFIELD.ToLower() + ","))
+                        {
+                            //if (row == null || !row.Table.Columns.Contains(baseFIELD))
+                            if (row == null || !row.ContainsKey(baseFIELD))
+                            {
+                                //Gán rỗng hoặc mặc định
+                                SetControlValue(c, null);
+                                continue;
+                            }
+                            SetControlValue(c, row[baseFIELD]);
+                        }
+                    }
+                }
+                else
+                {
+                    var field1list = ObjectAndString.SplitString(fields);
+                    var field2list = ObjectAndString.SplitString(fields2);
+                    for (int i = 0; i < field2list.Length; i++)
+                    {
+                        string f1 = field1list[i];
+                        string f2 = field2list[i];
+                        Control c = GetControlByAccessibleName(parent, f1);
+                        if (c != null)
+                        {
+                            //if (row == null || !row.Table.Columns.Contains(f2))
+                            if (row == null || !row.ContainsKey(f2.ToUpper()))
+                            {
+                                SetControlValue(c, null);
+                            }
+                            else
+                            {
+                                SetControlValue(c, row[f2.ToUpper()]);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("SetBrotherData error!\n" + (control.AccessibleName ?? "") + ": " + ex.Message);
+            }
         }
         
         /// <summary>
@@ -1457,6 +1516,44 @@ namespace V6Controls.Forms
                         if (row.Table.Columns.Contains(fieldName))
                         {
                             SetControlValue(c, row[fieldName]);
+                        }
+                        else // Có trong neighbor nhưng không có trong data
+                        {
+                            //Gán rỗng hoặc mặc định
+                            SetControlValue(c, null);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("SetBrotherData error!\n" + (control.AccessibleName ?? "") + ": " + ex.Message);
+            }
+        }
+
+        public static void SetNeighborDataProc(Control control, IDictionary<string, object> row, IDictionary<string, string> neighbor_field)
+        {
+            //if (string.IsNullOrEmpty(fields)) return;
+            //if (string.IsNullOrEmpty(fields2)) return;
+
+            //fields = "," + fields.ToLower() + ",";
+            try
+            {
+                if (row == null) return;
+                Control parent = control.Parent;
+                if (parent != null)
+                {
+                    foreach (Control c in parent.Controls)
+                    {
+                        var aNAME = c is RadioButton ? c.Name : c.AccessibleName;
+                        if (string.IsNullOrEmpty(aNAME)) continue;
+                        aNAME = aNAME.ToUpper();
+                        if (!neighbor_field.ContainsKey(aNAME)) continue;
+                        var FIELD_NAME = neighbor_field[aNAME].ToUpper();
+
+                        if (row.ContainsKey(FIELD_NAME))
+                        {
+                            SetControlValue(c, row[FIELD_NAME]);
                         }
                         else // Có trong neighbor nhưng không có trong data
                         {
@@ -5936,7 +6033,7 @@ namespace V6Controls.Forms
             keys.Add("MA_BC", ma_bc);
             Alreport1Data = V6BusinessHelper.Select(V6TableName.Alreport1, keys, "*", "", "Stt_Filter").Data;
             int i = 0;
-            int baseTop = panel1.AutoScrollPosition.Y;
+            int baseTop = 10;
             int rowHeight = 25;
             foreach (DataRow row in Alreport1Data.Rows)
             {

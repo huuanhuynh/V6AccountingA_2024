@@ -3103,8 +3103,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 txtMaKH2.ExistRowInTable();
                 txtMaKhoX.ExistRowInTable();
                 txtMaKhoN.ExistRowInTable();
-                XuLyChonMaKhoX();
-                XuLyChonMaKhoN();
+                
+                //XuLyChonMaKhoX();
+                //XuLyChonMaKhoN();
                 
                 //{Tuanmh 20/02/2016
                 XuLyThayDoiMaNt();
@@ -4568,9 +4569,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         
         private void txtMaKhoN_V6LostFocus(object sender)
         {
-            
             XuLyChonMaKhoN();
-            
         }
 
         private void txtMaKhoN_V6LostFocusNoChange(object sender)

@@ -68,6 +68,7 @@
             this.btnNhan = new System.Windows.Forms.Button();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.v6ColorTextBox5 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox2 = new V6Controls.V6ColorTextBox();
             this.cboControlType = new System.Windows.Forms.ComboBox();
             this.txtField2 = new V6Controls.V6VvarTextBox();
@@ -169,7 +170,6 @@
             this.label77 = new System.Windows.Forms.Label();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.label73 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox5 = new V6Controls.V6ColorTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -766,6 +766,26 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
+            // v6ColorTextBox5
+            // 
+            this.v6ColorTextBox5.AccessibleName = "UseChangeText";
+            this.v6ColorTextBox5.BackColor = System.Drawing.Color.White;
+            this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox5.GrayText = "UseChangeText";
+            this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
+            this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
+            this.v6ColorTextBox5.LimitCharacters = "01";
+            this.v6ColorTextBox5.Location = new System.Drawing.Point(348, 332);
+            this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(4);
+            this.v6ColorTextBox5.MaxLength = 1;
+            this.v6ColorTextBox5.Name = "v6ColorTextBox5";
+            this.v6ColorTextBox5.Size = new System.Drawing.Size(131, 23);
+            this.v6ColorTextBox5.TabIndex = 49;
+            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox5, "UseChangeText: Tự gán lookup khi gán dữ liệu");
+            // 
             // v6ColorTextBox2
             // 
             this.v6ColorTextBox2.AccessibleName = "ShowName";
@@ -794,6 +814,7 @@
             "Button",
             "TextBox",
             "LookupTextBox",
+            "V6LookupProc",
             "VvarTextBox",
             "CheckBox",
             "DateTime",
@@ -2176,26 +2197,6 @@
             this.label73.Size = new System.Drawing.Size(88, 17);
             this.label73.TabIndex = 0;
             this.label73.Text = "R_DataType";
-            // 
-            // v6ColorTextBox5
-            // 
-            this.v6ColorTextBox5.AccessibleName = "UseChangeText";
-            this.v6ColorTextBox5.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox5.GrayText = "UseChangeText";
-            this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.LimitCharacters = "01";
-            this.v6ColorTextBox5.Location = new System.Drawing.Point(348, 332);
-            this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox5.MaxLength = 1;
-            this.v6ColorTextBox5.Name = "v6ColorTextBox5";
-            this.v6ColorTextBox5.Size = new System.Drawing.Size(131, 23);
-            this.v6ColorTextBox5.TabIndex = 49;
-            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox5, "UseChangeText: Tự gán lookup khi gán dữ liệu");
             // 
             // DefineInfoEditorForm
             // 

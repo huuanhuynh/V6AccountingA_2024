@@ -1125,6 +1125,15 @@
     <Compile Include="ReportControls\FilterLineMauBC.Designer.cs">
       <DependentUpon>FilterLineMauBC.cs</DependentUpon>
     </Compile>
+    <Compile Include="V6LookupProcForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="V6LookupProcForm.designer.cs">
+      <DependentUpon>V6LookupProcForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V6LookupProc.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Win32.cs" />
     <Compile Include="Controls\ToChucTree\ToChucTreeControl.cs">
       <SubType>Component</SubType>
@@ -2023,6 +2032,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="V6ColorMaskedTextBox.resx">
       <DependentUpon>V6ColorMaskedTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="V6LookupProcForm.resx">
+      <DependentUpon>V6LookupProcForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="V6LookupProc.resx">
+      <DependentUpon>V6LookupProc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="V6LookupTextboxForm.resx">
       <DependentUpon>V6LookupTextboxForm.cs</DependentUpon>

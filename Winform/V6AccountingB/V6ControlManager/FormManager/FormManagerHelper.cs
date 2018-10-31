@@ -111,7 +111,7 @@ namespace V6ControlManager.FormManager
             keys.Add("MA_BC", ma_bc);
             Alreport1Data = V6BusinessHelper.Select(V6TableName.Alreport1, keys, "*", "", "Stt_Filter").Data;
             int i = 0;
-            int baseTop = panel1.AutoScrollPosition.Y;
+            int baseTop = 10;
             int rowHeight = 25;
             foreach (DataRow row in Alreport1Data.Rows)
             {
@@ -171,6 +171,21 @@ namespace V6ControlManager.FormManager
                     {
                         input = new V6LookupTextBox()
                         {
+                            Name = "txt" + defineInfo.Field,
+                            Ma_dm = defineInfo.MA_DM, //Mã danh mục trong Aldm
+                            AccessibleName = defineInfo.AccessibleName, //Trường get dữ liệu
+                            AccessibleName2 = defineInfo.AccessibleName2, //Trường get text hiển thị
+                            ValueField = defineInfo.Field, //Trường dữ liệu
+                            ShowTextField = defineInfo.Field2, //Trường text hiển thị
+                            CheckOnLeave = true,
+                            CheckNotEmpty = defineInfo.NotEmpty,
+                        };
+                    }
+                    else if (defineInfo.ControlType.ToUpper() == "V6LOOKUPPROC")
+                    {
+                        input = new V6LookupProc()
+                        {
+                            MA_CT = ma_bc,
                             Name = "txt" + defineInfo.Field,
                             Ma_dm = defineInfo.MA_DM, //Mã danh mục trong Aldm
                             AccessibleName = defineInfo.AccessibleName, //Trường get dữ liệu

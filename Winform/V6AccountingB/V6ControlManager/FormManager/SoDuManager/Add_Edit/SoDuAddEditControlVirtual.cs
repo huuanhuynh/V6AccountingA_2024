@@ -165,7 +165,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 keys.Add("MA_BC", TableName);
                 Alreport1Data = V6BusinessHelper.Select(V6TableName.Alreport1, keys, "*", "", "Stt_Filter").Data;
                 int i = 0;
-                int baseTop = panel1.AutoScrollPosition.Y;
+                int baseTop = 10;
                 int rowHeight = 25;
                 foreach (DataRow row in Alreport1Data.Rows)
                 {

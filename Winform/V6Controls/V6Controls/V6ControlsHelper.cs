@@ -348,5 +348,24 @@ namespace V6Controls
                 }
             }
         }
+        public static void ShowLookupProcName(V6LookupProc owner)
+        {
+            if (FlyLabel_Form == null) return;
+            //CreateVvarNameForm();
+            FlyLabel_Form.TargetControl = owner;
+            string nfield = V6Setting.IsVietnamese ? owner.LookupInfo.VName : owner.LookupInfo.VName2;
+            if (!string.IsNullOrEmpty(nfield))
+            {
+                var sss = ObjectAndString.SplitString(nfield);
+                if (owner.Data == null)
+                {
+                    FlyLabel_Form.StopShow();
+                }
+                else if (owner.Data.ContainsKey(sss[0].ToUpper()))
+                {
+                    FlyLabel_Form.Message = ObjectAndString.ObjectToString(owner.Data[sss[0].ToUpper()]);
+                }
+            }
+        }
     }//end class
 }
