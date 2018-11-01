@@ -45,7 +45,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.cboMauIn = new V6Controls.V6ComboBox();
-            this.lblNguoiLapBieu2 = new System.Windows.Forms.Label();
             this.lblNguoiLapBieu = new System.Windows.Forms.Label();
             this.txtM_TEN_NLB2 = new System.Windows.Forms.TextBox();
             this.txtM_TEN_NLB = new System.Windows.Forms.TextBox();
@@ -74,6 +73,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             this.btnSuaLine = new V6Controls.Controls.V6FormButton();
+            this.btnExport2 = new V6Controls.Controls.DropDownButton();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -161,33 +161,22 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.cboMauIn.TabIndex = 4;
             this.cboMauIn.SelectedIndexChanged += new System.EventHandler(this.cboMauIn_SelectedIndexChanged);
             // 
-            // lblNguoiLapBieu2
-            // 
-            this.lblNguoiLapBieu2.AccessibleDescription = "REPORTL00005";
-            this.lblNguoiLapBieu2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNguoiLapBieu2.AutoSize = true;
-            this.lblNguoiLapBieu2.Location = new System.Drawing.Point(757, 41);
-            this.lblNguoiLapBieu2.Name = "lblNguoiLapBieu2";
-            this.lblNguoiLapBieu2.Size = new System.Drawing.Size(84, 13);
-            this.lblNguoiLapBieu2.TabIndex = 11;
-            this.lblNguoiLapBieu2.Text = "Người lập biểu 2";
-            // 
             // lblNguoiLapBieu
             // 
             this.lblNguoiLapBieu.AccessibleDescription = "REPORTL00004";
             this.lblNguoiLapBieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNguoiLapBieu.AutoSize = true;
-            this.lblNguoiLapBieu.Location = new System.Drawing.Point(555, 41);
+            this.lblNguoiLapBieu.Location = new System.Drawing.Point(637, 41);
             this.lblNguoiLapBieu.Name = "lblNguoiLapBieu";
-            this.lblNguoiLapBieu.Size = new System.Drawing.Size(75, 13);
+            this.lblNguoiLapBieu.Size = new System.Drawing.Size(95, 13);
             this.lblNguoiLapBieu.TabIndex = 9;
-            this.lblNguoiLapBieu.Text = "Người lập biểu";
+            this.lblNguoiLapBieu.Text = "Người lập biểu 1/2";
             // 
             // txtM_TEN_NLB2
             // 
             this.txtM_TEN_NLB2.AccessibleName = "M_TEN_NLB2";
             this.txtM_TEN_NLB2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtM_TEN_NLB2.Location = new System.Drawing.Point(847, 38);
+            this.txtM_TEN_NLB2.Location = new System.Drawing.Point(856, 38);
             this.txtM_TEN_NLB2.Name = "txtM_TEN_NLB2";
             this.txtM_TEN_NLB2.Size = new System.Drawing.Size(115, 20);
             this.txtM_TEN_NLB2.TabIndex = 12;
@@ -196,7 +185,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.txtM_TEN_NLB.AccessibleName = "M_TEN_NLB";
             this.txtM_TEN_NLB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtM_TEN_NLB.Location = new System.Drawing.Point(636, 38);
+            this.txtM_TEN_NLB.Location = new System.Drawing.Point(737, 38);
             this.txtM_TEN_NLB.Name = "txtM_TEN_NLB";
             this.txtM_TEN_NLB.Size = new System.Drawing.Size(115, 20);
             this.txtM_TEN_NLB.TabIndex = 10;
@@ -227,7 +216,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtReportTitle.Location = new System.Drawing.Point(101, 12);
             this.txtReportTitle.Name = "txtReportTitle";
-            this.txtReportTitle.Size = new System.Drawing.Size(861, 20);
+            this.txtReportTitle.Size = new System.Drawing.Size(868, 20);
             this.txtReportTitle.TabIndex = 2;
             // 
             // crystalReportViewer1
@@ -476,7 +465,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.panel1.AutoScroll = true;
             this.panel1.Location = new System.Drawing.Point(0, 146);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(300, 435);
+            this.panel1.Size = new System.Drawing.Size(300, 440);
             this.panel1.TabIndex = 0;
             this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
@@ -484,7 +473,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.btnSuaMau.AccessibleDescription = "REPORTB00003";
             this.btnSuaMau.Enabled = false;
-            this.btnSuaMau.Location = new System.Drawing.Point(449, 36);
+            this.btnSuaMau.Location = new System.Drawing.Point(434, 36);
             this.btnSuaMau.Name = "btnSuaMau";
             this.btnSuaMau.Size = new System.Drawing.Size(39, 23);
             this.btnSuaMau.TabIndex = 7;
@@ -495,7 +484,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // btnSuaTTMauBC
             // 
             this.btnSuaTTMauBC.AccessibleDescription = "REPORTB00001";
-            this.btnSuaTTMauBC.Location = new System.Drawing.Point(359, 36);
+            this.btnSuaTTMauBC.Location = new System.Drawing.Point(346, 36);
             this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
             this.btnSuaTTMauBC.Size = new System.Drawing.Size(43, 23);
             this.btnSuaTTMauBC.TabIndex = 5;
@@ -506,7 +495,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // btnThemMauBC
             // 
             this.btnThemMauBC.AccessibleDescription = "REPORTB00002";
-            this.btnThemMauBC.Location = new System.Drawing.Point(404, 36);
+            this.btnThemMauBC.Location = new System.Drawing.Point(390, 36);
             this.btnThemMauBC.Name = "btnThemMauBC";
             this.btnThemMauBC.Size = new System.Drawing.Size(43, 23);
             this.btnThemMauBC.TabIndex = 6;
@@ -540,7 +529,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // btnSuaLine
             // 
             this.btnSuaLine.AccessibleDescription = "REPORTB00009";
-            this.btnSuaLine.Location = new System.Drawing.Point(490, 36);
+            this.btnSuaLine.Location = new System.Drawing.Point(474, 36);
             this.btnSuaLine.Name = "btnSuaLine";
             this.btnSuaLine.Size = new System.Drawing.Size(50, 23);
             this.btnSuaLine.TabIndex = 15;
@@ -549,17 +538,30 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnSuaLine.UseVisualStyleBackColor = true;
             this.btnSuaLine.Click += new System.EventHandler(this.btnSuaLine_Click);
             // 
+            // btnExport2
+            // 
+            this.btnExport2.Location = new System.Drawing.Point(525, 36);
+            this.btnExport2.Menu = this.contextMenuStrip1;
+            this.btnExport2.Name = "btnExport2";
+            this.btnExport2.Size = new System.Drawing.Size(60, 23);
+            this.btnExport2.TabIndex = 16;
+            this.btnExport2.TabStop = false;
+            this.btnExport2.Tag = "cancel";
+            this.btnExport2.Text = "&Export";
+            this.btnExport2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport2.UseVisualStyleBackColor = true;
+            // 
             // ReportRViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnExport2);
             this.Controls.Add(this.btnSuaLine);
             this.Controls.Add(this.chkHienTatCa);
             this.Controls.Add(this.btnSuaMau);
             this.Controls.Add(this.btnSuaTTMauBC);
             this.Controls.Add(this.btnThemMauBC);
             this.Controls.Add(this.cboMauIn);
-            this.Controls.Add(this.lblNguoiLapBieu2);
             this.Controls.Add(this.lblNguoiLapBieu);
             this.Controls.Add(this.txtM_TEN_NLB2);
             this.Controls.Add(this.txtM_TEN_NLB);
@@ -609,7 +611,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.RadioButton rBothLang;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
         private System.Windows.Forms.Label lblTieuDe;
-        private System.Windows.Forms.Label lblNguoiLapBieu2;
         private System.Windows.Forms.Label lblNguoiLapBieu;
         private System.Windows.Forms.TextBox txtM_TEN_NLB2;
         private System.Windows.Forms.TextBox txtM_TEN_NLB;
@@ -630,6 +631,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.ToolStripMenuItem exportToPdfToolStripMenuItem;
         private V6FormButton btnSuaLine;
         private System.Windows.Forms.RadioButton rCurrent;
+        private DropDownButton btnExport2;
 
 
 

@@ -69,7 +69,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.txtReportTitle = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtM_TEN_NLB2 = new System.Windows.Forms.TextBox();
             this.txtM_TEN_NLB = new System.Windows.Forms.TextBox();
@@ -81,6 +80,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             this.btnSuaLine = new V6Controls.Controls.V6FormButton();
+            this.btnExport2 = new V6Controls.Controls.DropDownButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -197,7 +197,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.grbDieuKienLoc.Controls.Add(this.panel1);
             this.grbDieuKienLoc.Location = new System.Drawing.Point(0, 64);
             this.grbDieuKienLoc.Name = "grbDieuKienLoc";
-            this.grbDieuKienLoc.Size = new System.Drawing.Size(302, 587);
+            this.grbDieuKienLoc.Size = new System.Drawing.Size(302, 589);
             this.grbDieuKienLoc.TabIndex = 0;
             this.grbDieuKienLoc.TabStop = false;
             this.grbDieuKienLoc.Text = "Conditional option (Điều Kiện Lọc)";
@@ -456,7 +456,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.panel1.AutoScroll = true;
             this.panel1.Location = new System.Drawing.Point(0, 177);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(299, 404);
+            this.panel1.Size = new System.Drawing.Size(299, 407);
             this.panel1.TabIndex = 0;
             this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
@@ -492,7 +492,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtReportTitle.Location = new System.Drawing.Point(101, 12);
             this.txtReportTitle.Name = "txtReportTitle";
-            this.txtReportTitle.Size = new System.Drawing.Size(861, 20);
+            this.txtReportTitle.Size = new System.Drawing.Size(870, 20);
             this.txtReportTitle.TabIndex = 5;
             // 
             // label1
@@ -505,32 +505,22 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.label1.TabIndex = 6;
             this.label1.Text = "Tiêu đề báo cáo";
             // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(757, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Người lập biểu 2";
-            // 
             // label2
             // 
             this.label2.AccessibleDescription = "REPORTL00004";
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(555, 41);
+            this.label2.Location = new System.Drawing.Point(635, 41);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.Size = new System.Drawing.Size(95, 13);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Người lập biểu";
+            this.label2.Text = "Người lập biểu 1/2";
             // 
             // txtM_TEN_NLB2
             // 
             this.txtM_TEN_NLB2.AccessibleName = "M_TEN_NLB2";
             this.txtM_TEN_NLB2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtM_TEN_NLB2.Location = new System.Drawing.Point(847, 38);
+            this.txtM_TEN_NLB2.Location = new System.Drawing.Point(854, 38);
             this.txtM_TEN_NLB2.Name = "txtM_TEN_NLB2";
             this.txtM_TEN_NLB2.Size = new System.Drawing.Size(115, 20);
             this.txtM_TEN_NLB2.TabIndex = 7;
@@ -539,7 +529,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             this.txtM_TEN_NLB.AccessibleName = "M_TEN_NLB";
             this.txtM_TEN_NLB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtM_TEN_NLB.Location = new System.Drawing.Point(636, 38);
+            this.txtM_TEN_NLB.Location = new System.Drawing.Point(735, 38);
             this.txtM_TEN_NLB.Name = "txtM_TEN_NLB";
             this.txtM_TEN_NLB.Size = new System.Drawing.Size(115, 20);
             this.txtM_TEN_NLB.TabIndex = 8;
@@ -627,7 +617,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // btnSuaLine
             // 
             this.btnSuaLine.AccessibleDescription = "REPORTB00009";
-            this.btnSuaLine.Location = new System.Drawing.Point(492, 35);
+            this.btnSuaLine.Location = new System.Drawing.Point(492, 36);
             this.btnSuaLine.Name = "btnSuaLine";
             this.btnSuaLine.Size = new System.Drawing.Size(50, 23);
             this.btnSuaLine.TabIndex = 36;
@@ -636,10 +626,24 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnSuaLine.UseVisualStyleBackColor = true;
             this.btnSuaLine.Click += new System.EventHandler(this.btnSuaLine_Click);
             // 
+            // btnExport2
+            // 
+            this.btnExport2.Location = new System.Drawing.Point(544, 36);
+            this.btnExport2.Menu = this.contextMenuStrip1;
+            this.btnExport2.Name = "btnExport2";
+            this.btnExport2.Size = new System.Drawing.Size(60, 23);
+            this.btnExport2.TabIndex = 37;
+            this.btnExport2.TabStop = false;
+            this.btnExport2.Tag = "cancel";
+            this.btnExport2.Text = "&Export";
+            this.btnExport2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport2.UseVisualStyleBackColor = true;
+            // 
             // ReportDViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnExport2);
             this.Controls.Add(this.btnSuaLine);
             this.Controls.Add(this.gridViewSummary1);
             this.Controls.Add(this.chkHienTatCa);
@@ -648,7 +652,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.Controls.Add(this.btnThemMauBC);
             this.Controls.Add(this.cboMauIn);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtM_TEN_NLB2);
             this.Controls.Add(this.txtM_TEN_NLB);
@@ -699,7 +702,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
         private System.Windows.Forms.TextBox txtReportTitle;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtM_TEN_NLB2;
         private System.Windows.Forms.TextBox txtM_TEN_NLB;
@@ -725,6 +727,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private System.Windows.Forms.ToolStripMenuItem exportToPdfToolStripMenuItem;
         private V6FormButton btnSuaLine;
         private System.Windows.Forms.RadioButton rCurrent;
+        private DropDownButton btnExport2;
 
 
 

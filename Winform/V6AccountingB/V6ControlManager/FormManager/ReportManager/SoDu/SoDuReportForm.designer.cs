@@ -46,6 +46,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.btnNhan = new System.Windows.Forms.Button();
             this.panel0 = new System.Windows.Forms.Panel();
             this.grbNgonNgu = new System.Windows.Forms.GroupBox();
+            this.rCurrent = new System.Windows.Forms.RadioButton();
             this.rTiengViet = new System.Windows.Forms.RadioButton();
             this.rBothLang = new System.Windows.Forms.RadioButton();
             this.rEnglish = new System.Windows.Forms.RadioButton();
@@ -69,7 +70,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.cboMauIn = new V6Controls.V6ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.chkHienTatCa = new V6Controls.V6CheckBox();
-            this.rCurrent = new System.Windows.Forms.RadioButton();
+            this.btnExport2 = new V6Controls.Controls.DropDownButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -104,7 +105,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Size = new System.Drawing.Size(762, 59);
-            this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.TabIndex = 14;
             // 
             // contextMenuStrip1
             // 
@@ -164,7 +165,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.grbDieuKienLoc.Location = new System.Drawing.Point(2, 76);
             this.grbDieuKienLoc.Name = "grbDieuKienLoc";
             this.grbDieuKienLoc.Size = new System.Drawing.Size(762, 153);
-            this.grbDieuKienLoc.TabIndex = 0;
+            this.grbDieuKienLoc.TabIndex = 13;
             this.grbDieuKienLoc.TabStop = false;
             this.grbDieuKienLoc.Text = "Conditional option (Điều Kiện Lọc)";
             // 
@@ -206,7 +207,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.panel0.Location = new System.Drawing.Point(0, 14);
             this.panel0.Name = "panel0";
             this.panel0.Size = new System.Drawing.Size(287, 80);
-            this.panel0.TabIndex = 32;
+            this.panel0.TabIndex = 0;
             // 
             // grbNgonNgu
             // 
@@ -218,9 +219,21 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.grbNgonNgu.Location = new System.Drawing.Point(4, 41);
             this.grbNgonNgu.Name = "grbNgonNgu";
             this.grbNgonNgu.Size = new System.Drawing.Size(279, 35);
-            this.grbNgonNgu.TabIndex = 1;
+            this.grbNgonNgu.TabIndex = 0;
             this.grbNgonNgu.TabStop = false;
             this.grbNgonNgu.Text = "Ngôn ngữ bc (Rpt Language)";
+            // 
+            // rCurrent
+            // 
+            this.rCurrent.AccessibleDescription = "REPORTR00007";
+            this.rCurrent.AutoSize = true;
+            this.rCurrent.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rCurrent.Location = new System.Drawing.Point(219, 13);
+            this.rCurrent.Name = "rCurrent";
+            this.rCurrent.Size = new System.Drawing.Size(59, 17);
+            this.rCurrent.TabIndex = 3;
+            this.rCurrent.Text = "Current";
+            this.rCurrent.UseVisualStyleBackColor = true;
             // 
             // rTiengViet
             // 
@@ -232,7 +245,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.rTiengViet.Location = new System.Drawing.Point(6, 13);
             this.rTiengViet.Name = "rTiengViet";
             this.rTiengViet.Size = new System.Drawing.Size(73, 17);
-            this.rTiengViet.TabIndex = 1;
+            this.rTiengViet.TabIndex = 0;
             this.rTiengViet.TabStop = true;
             this.rTiengViet.Text = "Tiếng Việt";
             this.rTiengViet.UseVisualStyleBackColor = true;
@@ -247,7 +260,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.rBothLang.Location = new System.Drawing.Point(142, 13);
             this.rBothLang.Name = "rBothLang";
             this.rBothLang.Size = new System.Drawing.Size(71, 17);
-            this.rBothLang.TabIndex = 0;
+            this.rBothLang.TabIndex = 2;
             this.rBothLang.Text = "Song ngữ";
             this.rBothLang.UseVisualStyleBackColor = true;
             this.rBothLang.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
@@ -261,7 +274,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.rEnglish.Location = new System.Drawing.Point(83, 13);
             this.rEnglish.Name = "rEnglish";
             this.rEnglish.Size = new System.Drawing.Size(59, 17);
-            this.rEnglish.TabIndex = 0;
+            this.rEnglish.TabIndex = 1;
             this.rEnglish.Text = "English";
             this.rEnglish.UseVisualStyleBackColor = true;
             this.rEnglish.CheckedChanged += new System.EventHandler(this.rbtLanguage_CheckedChanged);
@@ -274,7 +287,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.grbTienTe.Location = new System.Drawing.Point(4, 5);
             this.grbTienTe.Name = "grbTienTe";
             this.grbTienTe.Size = new System.Drawing.Size(279, 35);
-            this.grbTienTe.TabIndex = 1;
+            this.grbTienTe.TabIndex = 0;
             this.grbTienTe.TabStop = false;
             this.grbTienTe.Text = "Tiền tệ";
             // 
@@ -316,7 +329,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.panel1.Location = new System.Drawing.Point(288, 14);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(474, 135);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 1;
             this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
             // crystalReportViewer1
@@ -332,7 +345,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.crystalReportViewer1.Name = "crystalReportViewer1";
             this.crystalReportViewer1.ShowLogo = false;
             this.crystalReportViewer1.Size = new System.Drawing.Size(766, 352);
-            this.crystalReportViewer1.TabIndex = 0;
+            this.crystalReportViewer1.TabIndex = 15;
             this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.crystalReportViewer1.DoubleClick += new System.EventHandler(this.crystalReportViewer1_DoubleClick);
             // 
@@ -347,7 +360,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.txtReportTitle.Location = new System.Drawing.Point(101, 5);
             this.txtReportTitle.Name = "txtReportTitle";
             this.txtReportTitle.Size = new System.Drawing.Size(653, 20);
-            this.txtReportTitle.TabIndex = 5;
+            this.txtReportTitle.TabIndex = 1;
             // 
             // label1
             // 
@@ -356,7 +369,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.label1.Location = new System.Drawing.Point(9, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 13);
-            this.label1.TabIndex = 6;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Tiêu đề báo cáo";
             // 
             // txtM_TEN_NLB
@@ -365,7 +378,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.txtM_TEN_NLB.Location = new System.Drawing.Point(101, 27);
             this.txtM_TEN_NLB.Name = "txtM_TEN_NLB";
             this.txtM_TEN_NLB.Size = new System.Drawing.Size(266, 20);
-            this.txtM_TEN_NLB.TabIndex = 5;
+            this.txtM_TEN_NLB.TabIndex = 3;
             // 
             // label2
             // 
@@ -374,7 +387,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.label2.Location = new System.Drawing.Point(9, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 6;
+            this.label2.TabIndex = 2;
             this.label2.Text = "Người lập biểu";
             // 
             // txtM_TEN_NLB2
@@ -394,16 +407,16 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.label3.Location = new System.Drawing.Point(373, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 13);
-            this.label3.TabIndex = 6;
+            this.label3.TabIndex = 4;
             this.label3.Text = "Người lập biểu 2";
             // 
             // btnSuaMau
             // 
             this.btnSuaMau.AccessibleDescription = "REPORTB00003";
-            this.btnSuaMau.Location = new System.Drawing.Point(448, 47);
+            this.btnSuaMau.Location = new System.Drawing.Point(508, 47);
             this.btnSuaMau.Name = "btnSuaMau";
             this.btnSuaMau.Size = new System.Drawing.Size(56, 23);
-            this.btnSuaMau.TabIndex = 15;
+            this.btnSuaMau.TabIndex = 11;
             this.btnSuaMau.Text = "Sửa";
             this.btnSuaMau.UseVisualStyleBackColor = true;
             this.btnSuaMau.Click += new System.EventHandler(this.btnSuaMau_Click);
@@ -411,10 +424,10 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             // btnSuaTTMauBC
             // 
             this.btnSuaTTMauBC.AccessibleDescription = "REPORTB00001";
-            this.btnSuaTTMauBC.Location = new System.Drawing.Point(307, 47);
+            this.btnSuaTTMauBC.Location = new System.Drawing.Point(374, 47);
             this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
             this.btnSuaTTMauBC.Size = new System.Drawing.Size(66, 23);
-            this.btnSuaTTMauBC.TabIndex = 13;
+            this.btnSuaTTMauBC.TabIndex = 9;
             this.btnSuaTTMauBC.Text = "Sửa t.tin";
             this.btnSuaTTMauBC.UseVisualStyleBackColor = true;
             this.btnSuaTTMauBC.Click += new System.EventHandler(this.btnSuaTTMauBC_Click);
@@ -422,10 +435,10 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             // btnThemMauBC
             // 
             this.btnThemMauBC.AccessibleDescription = "REPORTB00002";
-            this.btnThemMauBC.Location = new System.Drawing.Point(379, 47);
+            this.btnThemMauBC.Location = new System.Drawing.Point(441, 47);
             this.btnThemMauBC.Name = "btnThemMauBC";
             this.btnThemMauBC.Size = new System.Drawing.Size(66, 23);
-            this.btnThemMauBC.TabIndex = 14;
+            this.btnThemMauBC.TabIndex = 10;
             this.btnThemMauBC.Text = "Thêm mẫu";
             this.btnThemMauBC.UseVisualStyleBackColor = true;
             this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
@@ -440,7 +453,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.cboMauIn.Location = new System.Drawing.Point(101, 49);
             this.cboMauIn.Name = "cboMauIn";
             this.cboMauIn.Size = new System.Drawing.Size(200, 21);
-            this.cboMauIn.TabIndex = 12;
+            this.cboMauIn.TabIndex = 7;
             this.cboMauIn.SelectedIndexChanged += new System.EventHandler(this.cboMauIn_SelectedIndexChanged);
             // 
             // label4
@@ -450,32 +463,33 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.label4.Location = new System.Drawing.Point(9, 52);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 13);
-            this.label4.TabIndex = 16;
+            this.label4.TabIndex = 6;
             this.label4.Text = "Mẫu in báo cáo";
             // 
             // chkHienTatCa
             // 
             this.chkHienTatCa.AccessibleDescription = "REPORTC00001";
             this.chkHienTatCa.AutoSize = true;
-            this.chkHienTatCa.Location = new System.Drawing.Point(510, 51);
+            this.chkHienTatCa.Location = new System.Drawing.Point(307, 52);
             this.chkHienTatCa.Name = "chkHienTatCa";
             this.chkHienTatCa.Size = new System.Drawing.Size(37, 17);
-            this.chkHienTatCa.TabIndex = 36;
+            this.chkHienTatCa.TabIndex = 8;
             this.chkHienTatCa.Text = "All";
             this.chkHienTatCa.UseVisualStyleBackColor = true;
             this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
             // 
-            // rCurrent
+            // btnExport2
             // 
-            this.rCurrent.AccessibleDescription = "REPORTR00007";
-            this.rCurrent.AutoSize = true;
-            this.rCurrent.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.rCurrent.Location = new System.Drawing.Point(219, 13);
-            this.rCurrent.Name = "rCurrent";
-            this.rCurrent.Size = new System.Drawing.Size(59, 17);
-            this.rCurrent.TabIndex = 2;
-            this.rCurrent.Text = "Current";
-            this.rCurrent.UseVisualStyleBackColor = true;
+            this.btnExport2.Location = new System.Drawing.Point(565, 47);
+            this.btnExport2.Menu = this.contextMenuStrip1;
+            this.btnExport2.Name = "btnExport2";
+            this.btnExport2.Size = new System.Drawing.Size(60, 23);
+            this.btnExport2.TabIndex = 12;
+            this.btnExport2.TabStop = false;
+            this.btnExport2.Tag = "cancel";
+            this.btnExport2.Text = "&Export";
+            this.btnExport2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport2.UseVisualStyleBackColor = true;
             // 
             // SoDuReportForm
             // 
@@ -484,6 +498,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnHuy;
             this.ClientSize = new System.Drawing.Size(766, 654);
+            this.Controls.Add(this.btnExport2);
             this.Controls.Add(this.chkHienTatCa);
             this.Controls.Add(this.btnSuaMau);
             this.Controls.Add(this.btnSuaTTMauBC);
@@ -522,6 +537,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.Controls.SetChildIndex(this.btnSuaTTMauBC, 0);
             this.Controls.SetChildIndex(this.btnSuaMau, 0);
             this.Controls.SetChildIndex(this.chkHienTatCa, 0);
+            this.Controls.SetChildIndex(this.btnExport2, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.grbDieuKienLoc.ResumeLayout(false);
@@ -573,6 +589,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         private System.Windows.Forms.ToolStripMenuItem exportToXmlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToPdfToolStripMenuItem;
         private System.Windows.Forms.RadioButton rCurrent;
+        private DropDownButton btnExport2;
 
 
 
