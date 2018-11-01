@@ -1510,7 +1510,7 @@ namespace V6Controls.Forms
             //fields = "," + fields.ToLower() + ",";
             try
             {
-                if (row == null) return;
+                //if (row == null) return;
                 Control parent = control.Parent;
                 if (parent != null)
                 {
@@ -1522,7 +1522,7 @@ namespace V6Controls.Forms
                         if (!neighbor_field.ContainsKey(aNAME)) continue;
                         var fieldName = neighbor_field[aNAME];
 
-                        if (row.Table.Columns.Contains(fieldName))
+                        if (row != null && row.Table.Columns.Contains(fieldName))
                         {
                             SetControlValue(c, row[fieldName]);
                         }
@@ -1542,13 +1542,9 @@ namespace V6Controls.Forms
 
         public static void SetNeighborDataProc(Control control, IDictionary<string, object> row, IDictionary<string, string> neighbor_field)
         {
-            //if (string.IsNullOrEmpty(fields)) return;
-            //if (string.IsNullOrEmpty(fields2)) return;
-
-            //fields = "," + fields.ToLower() + ",";
             try
             {
-                if (row == null) return;
+                //if (row == null) return;
                 Control parent = control.Parent;
                 if (parent != null)
                 {
@@ -1560,7 +1556,7 @@ namespace V6Controls.Forms
                         if (!neighbor_field.ContainsKey(aNAME)) continue;
                         var FIELD_NAME = neighbor_field[aNAME].ToUpper();
 
-                        if (row.ContainsKey(FIELD_NAME))
+                        if (row != null && row.ContainsKey(FIELD_NAME))
                         {
                             SetControlValue(c, row[FIELD_NAME]);
                         }
@@ -5215,9 +5211,9 @@ namespace V6Controls.Forms
             var filter = InitFilter;
             if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
             var parentData = new SortedDictionary<string, object>();
-            var fStand = new V6LookupTextboxForm(parentData, txtApplyLookup.Text, Aldm_config, " 1=1 " + filter, LookupInfo_F_NAME, multi, FilterStart);
+            var lookup = new V6LookupTextboxForm(parentData, txtApplyLookup.Text, Aldm_config, " 1=1 " + filter, LookupInfo_F_NAME, multi, FilterStart);
             Looking = true;
-            fStand.ShowDialog(owner);
+            lookup.ShowDialog(owner);
         }
 
         private static void Lookup(IWin32Window owner, LookupMode multi = LookupMode.Single)

@@ -776,9 +776,9 @@ namespace V6Controls
         {
             var filter = InitFilter;
             if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
-            var fStand = new V6VvarTextBoxForm(this, LookupInfo, " 1=1 " + filter, lookupMode, FilterStart);
+            var lookup = new V6VvarTextBoxForm(this, LookupInfo, " 1=1 " + filter, lookupMode, FilterStart);
             Looking = true;
-            fStand.ShowDialog(this);
+            lookup.ShowDialog(this);
         }
 
         public void Lookup(LookupMode lookupMode = LookupMode.Single)

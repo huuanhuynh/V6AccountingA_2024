@@ -134,7 +134,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
 
                 OnAfterInitControl();
-                FormControl.MyInit(_tableName, _mode, _keys, _data);
+                FormControl.InitValues(_tableName, _mode, _keys, _data);
 
                 panel1.Controls.Add(FormControl);
 

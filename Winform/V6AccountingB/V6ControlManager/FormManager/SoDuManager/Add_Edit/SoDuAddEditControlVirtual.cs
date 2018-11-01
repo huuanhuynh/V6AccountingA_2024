@@ -231,6 +231,23 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                 ShowTextField = defineInfo.Field2, //Trường text hiển thị
                                 CheckOnLeave = true,
                                 CheckNotEmpty = defineInfo.NotEmpty,
+                                F2 = defineInfo.F2,
+                            };
+                        }
+                        else if (defineInfo.ControlType.ToUpper() == "V6LOOKUPPROC")
+                        {
+                            input = new V6LookupProc()
+                            {
+                                MA_CT = TableName.ToString(),
+                                Name = "txt" + defineInfo.Field,
+                                Ma_dm = defineInfo.MA_DM, //Mã danh mục trong Aldm
+                                AccessibleName = defineInfo.AccessibleName, //Trường get dữ liệu
+                                AccessibleName2 = defineInfo.AccessibleName2, //Trường get text hiển thị
+                                ValueField = defineInfo.Field, //Trường dữ liệu
+                                ShowTextField = defineInfo.Field2, //Trường text hiển thị
+                                CheckOnLeave = true,
+                                CheckNotEmpty = defineInfo.NotEmpty,
+                                F2 = defineInfo.F2,
                             };
                         }
                         else if (defineInfo.ControlType.ToUpper() == "LABEL")

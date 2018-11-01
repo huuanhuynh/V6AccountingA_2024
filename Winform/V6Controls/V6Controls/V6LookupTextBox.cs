@@ -805,7 +805,7 @@ namespace V6Controls
             else CallDoV6LostFocusNoChange();
         }
 
-        protected void DoLookup(LookupMode multi = LookupMode.Single)
+        protected void DoLookup(LookupMode lookupMode = LookupMode.Single)
         {
             if (V6Setting.IsDesignTime) return;
 
@@ -815,19 +815,19 @@ namespace V6Controls
                 //_frm = FindForm();
                 var filter = InitFilter;
                 if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
-                var fStand = new V6LookupTextboxForm(ParentData, this.Text, LookupInfo, " 1=1 " + filter, LookupInfo_F_NAME, multi, FilterStart);
+                var lookup = new V6LookupTextboxForm(ParentData, this.Text, LookupInfo, " 1=1 " + filter, LookupInfo_F_NAME, lookupMode, FilterStart);
                 Looking = true;
-                DialogResult dsr = fStand.ShowDialog(this);
+                DialogResult dsr = lookup.ShowDialog(this);
                 Looking = false;
                 if (dsr == DialogResult.OK)
                 {
-                    Text = fStand._senderText;
-                    if (multi == LookupMode.Single) Data = fStand.selectedDataRow;
+                    Text = lookup._senderText;
+                    if (lookupMode == LookupMode.Single) Data = lookup.selectedDataRow;
                 }
                 else
                 {
                     //Kiem tra neu gia tri khong hop le thi xoa            
-                    if (multi == LookupMode.Single && !ExistRowInTable())
+                    if (lookupMode == LookupMode.Single && !ExistRowInTable())
                     {
                         Clear();
                         if (CheckNotEmpty || CheckOnLeave)

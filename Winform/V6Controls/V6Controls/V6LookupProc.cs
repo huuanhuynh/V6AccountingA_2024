@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Init;
+using V6ReportControls;
 using V6Tools;
 using V6Tools.V6Convert;
 
@@ -93,6 +94,8 @@ namespace V6Controls
                 SetNeighborValues();
             }
         }
+
+        public List<IDictionary<string, object>> Datas;
 
         private AldmConfig _lki;
         public AldmConfig LookupInfo
@@ -229,7 +232,21 @@ namespace V6Controls
         [Description("Dữ liệu theo valueField.")]
         public object Value
         {
-            get { return Data == null ? null : Data[ValueField]; }
+            get
+            {
+                if (Text.Contains(",") && Datas != null)
+                {
+                    string values = "";
+                    foreach (IDictionary<string, object> data in Datas)
+                    {
+                        values += Data == null ? null : "," + data[ValueField];
+                    }
+                    if (values.Length > 0) values = values.Substring(1);
+                    return values;
+                }
+                
+                return Data == null ? null : Data[ValueField];
+            }
         }
 
         public void SetValue(object value)
@@ -462,6 +479,8 @@ namespace V6Controls
 
         private void Do_CheckOnLeave(EventArgs e)
         {
+            if (F2 && Text.Contains(",")) return;
+
             if (_checkOnLeave && !ReadOnly && Visible)
             {
                 if (Text.Trim() != "")
@@ -604,13 +623,7 @@ namespace V6Controls
                     plist.Add(new SqlParameter("@user_id", V6Login.UserId));
                     plist.Add(new SqlParameter("@advance", LookupInfo_F_NAME + "='"+text+"'" + filter));
                     var tbl = V6BusinessHelper.ExecuteProcedure(LookupInfo.TABLE_NAME, plist.ToArray()).Tables[0];
-
-                    //SqlParameter[] plist =
-                    //{
-                    //    new SqlParameter("@text", text)
-                    //};
-                    //var tbl = V6BusinessHelper.Select(tableName, "*", LookupInfo_F_NAME + "=@text " + filter, "", "", plist).Data;
-
+                    
                     if (tbl != null && tbl.Rows.Count >= 1)
                     {
                         var oneRow = tbl.Rows[0];
@@ -635,27 +648,62 @@ namespace V6Controls
             return false;
         }
         
-        private bool ExistRowInTableID(object id)
+        private bool ExistRowInTableID(object id_s)
         {
             if (V6Setting.IsDesignTime) return false;
             try
             {
                 if (!string.IsNullOrEmpty(LookupInfo_F_NAME))
                 {
-                    string tableName = LookupInfo.TABLE_NAME;
                     var filter = InitFilter;
                     if (!string.IsNullOrEmpty(filter)) filter = " and (" + filter + ")";
 
-                    SqlParameter[] plist =
+                    string where = "";
+                    if (id_s.ToString().Contains(","))
                     {
-                        new SqlParameter("@id", id)
-                    };
-                    var tbl = V6BusinessHelper.Select(tableName, "*", ValueField + "=@id " + filter, "", "", plist).Data;
+                        string[] sss = id_s.ToString().Split(',');
+                        foreach (string s in sss)
+                        {
+                            where += string.Format(" or {3}{0} {1} {2}", ValueField, "=", "'" + s.Trim().Replace("'", "''") + "'", null);
+                        }
+                        if (where.Length > 4)
+                        {
+                            where = "(" + where.Substring(4) + ")";
+                        }
+                        where += filter;
+                    }
+                    else
+                    {
+                        where = ValueField + "='" + id_s + "'" + filter;
+                    }
 
-                    if (tbl != null && tbl.Rows.Count >= 1)
+                    List<SqlParameter> plist = new List<SqlParameter>();
+                    plist.Add(new SqlParameter("@ma_ct", this.MA_CT));
+                    plist.Add(new SqlParameter("@user_id", V6Login.UserId));
+                    plist.Add(new SqlParameter("@advance", where));
+                    var tbl = V6BusinessHelper.ExecuteProcedure(LookupInfo.TABLE_NAME, plist.ToArray()).Tables[0];
+                    
+                    //tbl = V6BusinessHelper.Select(tableName, "*", ValueField + "=@id " + filter, "", "", plist0).Data;
+
+                    if (tbl != null && tbl.Rows.Count == 1)
                     {
                         var oneRow = tbl.Rows[0];
                         _data = oneRow.ToDataDictionary();
+                        Datas = null;
+                        FixText();
+                        V6ControlFormHelper.SetBrotherDataProc(this, _data, BrotherFields, BrotherFields2);
+                        SetNeighborValues();
+                        return true;
+                    }
+                    else if (tbl != null && tbl.Rows.Count > 1)
+                    {
+                        _data = null;
+                        List<IDictionary<string,object>> dataList = new List<IDictionary<string, object>>();
+                        foreach (DataRow row in tbl.Rows)
+                        {
+                            dataList.Add(row.ToDataDictionary());
+                        }
+                        Datas = dataList;
                         FixText();
                         V6ControlFormHelper.SetBrotherDataProc(this, _data, BrotherFields, BrotherFields2);
                         SetNeighborValues();
@@ -685,6 +733,18 @@ namespace V6Controls
             {
                 Text = Data[LookupInfo_F_NAME.ToUpper()].ToString().Trim();
                 _text_data = Text;
+            }
+            else if (Datas != null)
+            {
+                string text = "";
+                foreach (IDictionary<string, object> data in Datas)
+                {
+                    if (data != null && data.ContainsKey(LookupInfo_F_NAME.ToUpper()))
+                        text += "," + data[LookupInfo_F_NAME.ToUpper()].ToString().Trim();
+                }
+                if (text.Length > 0) text = text.Substring(1);
+                Text = text;
+                _text_data = "";
             }
             else
             {
@@ -807,7 +867,7 @@ namespace V6Controls
             else CallDoV6LostFocusNoChange();
         }
 
-        protected void DoLookup(LookupMode multi = LookupMode.Single)
+        protected void DoLookup(LookupMode lookupMode = LookupMode.Single)
         {
             if (V6Setting.IsDesignTime) return;
 
@@ -817,19 +877,20 @@ namespace V6Controls
                 //_frm = FindForm();
                 var filter = InitFilter;
                 if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
-                var fStand = new V6LookupProcForm(this, ParentData, this.Text, LookupInfo, " 1=1 " + filter, LookupInfo_F_NAME, multi, FilterStart);
+                var lookup = new V6LookupProcForm(this, ParentData, this.Text, LookupInfo, " 1=1 " + filter, LookupInfo_F_NAME, lookupMode, FilterStart);
                 Looking = true;
-                DialogResult dsr = fStand.ShowDialog(this);
+                DialogResult dsr = lookup.ShowDialog(this);
                 Looking = false;
                 if (dsr == DialogResult.OK)
                 {
-                    Text = fStand._senderText;
-                    if (multi == LookupMode.Single) Data = fStand._selectedData;
+                    Text = lookup._senderText;
+                    if (lookupMode == LookupMode.Single) Data = lookup._selectedData;
+                    else if (lookupMode == LookupMode.Multi) Datas = lookup._selectedDataList;
                 }
                 else
                 {
                     //Kiem tra neu gia tri khong hop le thi xoa            
-                    if (multi == LookupMode.Single && !ExistRowInTable())
+                    if (lookupMode == LookupMode.Single && !ExistRowInTable())
                     {
                         Clear();
                         if (CheckNotEmpty || CheckOnLeave)

@@ -182,15 +182,6 @@ namespace V6Controls.Controls
         {
             try
             {
-                //object value = V6ControlFormHelper.GetControlValue(_refControl);
-                //if (_refControl is V6VvarTextBox)
-                //{
-                //    var vVarTextBox = _refControl as V6VvarTextBox;
-                //    var vVar = vVarTextBox.VVar;
-                //}
-                //this.ShowMessage(string.Format("Value: " + ObjectAndString.ObjectToString(value)));
-
-                //
                 SqlParameter[] plist =
                 {
                     new SqlParameter("@R_DataType", R_DataType),

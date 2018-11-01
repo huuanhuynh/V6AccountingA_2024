@@ -196,6 +196,7 @@ namespace V6Controls
                             }
                         }
                         //Gọi sự kiện AcceptData
+                        //_selectedDataList = datalist;
                         OnAccepSelectedtData("idlist", datalist);
                         Close();
                     }

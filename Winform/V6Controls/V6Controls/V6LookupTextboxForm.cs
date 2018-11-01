@@ -23,6 +23,7 @@ namespace V6Controls
         public string _senderText { get; set; }
         private readonly IDictionary<string, object> _senderParentData; 
         public DataRow selectedDataRow;
+        public List<IDictionary<string,object>> _selectedDataList;
         public AldmConfig LookupInfo;
         //private string _table_name, _ma_dm;
         private readonly string LookupInfo_F_NAME;
@@ -451,6 +452,7 @@ namespace V6Controls
                             }
                         }
                         //Gọi sự kiện AcceptData
+                        _selectedDataList = datalist;
                         OnAccepSelectedtData("idlist", datalist);
                         DialogResult = DialogResult.OK;
                     }

@@ -125,7 +125,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <param name="mode">Add/Edit/View</param>
         /// <param name="keys">Nếu data null thì load bằng keys</param>
         /// <param name="data">Gán dữ liệu này lên form</param>
-        public virtual void MyInit(V6TableName tableName, V6Mode mode,
+        public virtual void InitValues(V6TableName tableName, V6Mode mode,
             SortedDictionary<string, object> keys, SortedDictionary<string, object> data)
         {
             TableName = tableName;
@@ -136,16 +136,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             LoadAdvanceControls(TableName);
             if (Mode == V6Mode.View) V6ControlFormHelper.SetFormControlsReadOnly(this, true);
             
+            All_Objects["thisForm"] = this;
+            CreateFormProgram();
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+            InvokeFormEvent(FormDynamicEvent.INIT);
+            
             LoadAll();
             //virtual
             LoadDetails();
             
             LoadTag(2, "", TableName.ToString(), ItemID);
-
-            All_Objects["thisForm"] = this;
-            CreateFormProgram();
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
-            InvokeFormEvent(FormDynamicEvent.INIT);
         }
 
         private void LoadAdvanceControls(V6TableName tableName)

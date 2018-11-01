@@ -24,6 +24,7 @@ namespace V6Controls
         public string _senderText { get; set; }
         private readonly IDictionary<string, object> _senderParentData;
         public IDictionary<string, object> _selectedData;
+        public List<IDictionary<string, object>> _selectedDataList;
         public AldmConfig LookupInfo;
         //private string _table_name, _ma_dm;
         private readonly string LookupInfo_F_NAME;
@@ -448,32 +449,33 @@ namespace V6Controls
                     else if (_lookupMode == LookupMode.Multi)
                     {
                         var selectedValues = "";
+                        _selectedDataList = new List<IDictionary<string, object>>();
                         foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
                             if (row.IsSelect())
                             {
+                                _selectedDataList.Add(row.ToDataDictionary());
                                 selectedValues += "," + row.Cells[LookupInfo_F_NAME].Value.ToString().Trim();
                             }
                         }
 
                         if (selectedValues.Length > 0) selectedValues = selectedValues.Substring(1);
-
                         _senderText = selectedValues;
                         DialogResult = DialogResult.OK;
                     }
                     else if (_lookupMode == LookupMode.Data)
                     {
                         //Gom Data
-                        List<IDictionary<string, object>> datalist = new List<IDictionary<string, object>>();
+                        _selectedDataList = new List<IDictionary<string, object>>();
                         foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
                             if (row.IsSelect())
                             {
-                                datalist.Add(row.ToDataDictionary());
+                                _selectedDataList.Add(row.ToDataDictionary());
                             }
                         }
                         //Gọi sự kiện AcceptData
-                        OnAccepSelectedtData("idlist", datalist);
+                        OnAccepSelectedtData("idlist", _selectedDataList);
                         DialogResult = DialogResult.OK;
                     }
                 }

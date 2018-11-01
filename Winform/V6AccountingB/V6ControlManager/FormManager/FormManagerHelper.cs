@@ -179,6 +179,7 @@ namespace V6ControlManager.FormManager
                             ShowTextField = defineInfo.Field2, //Trường text hiển thị
                             CheckOnLeave = true,
                             CheckNotEmpty = defineInfo.NotEmpty,
+                            F2 = defineInfo.F2,
                         };
                     }
                     else if (defineInfo.ControlType.ToUpper() == "V6LOOKUPPROC")
@@ -194,6 +195,7 @@ namespace V6ControlManager.FormManager
                             ShowTextField = defineInfo.Field2, //Trường text hiển thị
                             CheckOnLeave = true,
                             CheckNotEmpty = defineInfo.NotEmpty,
+                            F2 = defineInfo.F2,
                         };
                     }
                     else if (defineInfo.ControlType.ToUpper() == "LABEL")
