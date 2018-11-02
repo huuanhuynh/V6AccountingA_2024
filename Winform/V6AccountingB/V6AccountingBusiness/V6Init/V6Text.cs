@@ -340,6 +340,7 @@
         public static string ExecuteConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn thực hiện hay không?" : "Are you sure want to proceed?"; } }
         public static string ExportFinish { get { return V6Setting.Language == "V" ? "Xuất hoàn tất." : "Export finish."; } }
         public static string ExportFail { get { return V6Setting.Language == "V" ? "Xuất lỗi." : "Export fail."; } }
+        public static string Exporting { get { return V6Setting.Language == "V" ? "Đang xuất..." : "Exporting..."; } }
         public static string Exist { get { return V6Setting.Language == "V" ? "Đã tồn tại." : "Exist."; } }
         public static string ExistData { get { return V6Setting.Language == "V" ? "Dữ liệu đã tồn tại." : "Data Exist."; } }
         public static string Fail { get { return V6Setting.Language == "V" ? "Hỏng." : "Fail."; } }

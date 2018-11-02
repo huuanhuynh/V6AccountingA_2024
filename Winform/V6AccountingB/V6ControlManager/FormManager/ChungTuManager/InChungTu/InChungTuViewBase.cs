@@ -2491,10 +2491,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                if (V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc, ReportTitle))
-                {
-                    ShowMainMessage(V6Text.ExportFinish);
-                }
+                V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc, ReportTitle);
             }
             catch (Exception ex)
             {

@@ -3189,6 +3189,9 @@ namespace V6Controls.Forms
             ReorderDataGridViewColumns(dgv, orderList.ToArray(), i);
         }
 
+
+        #region ==== EXPORT EXCEL TEMPLATE ====
+
         /// <summary>
         /// Xuất Excel ra file theo file mẫu.
         /// </summary>
@@ -3205,7 +3208,6 @@ namespace V6Controls.Forms
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string defaultSaveName)
         {
-            
             if (data == null)
             {
                 //ShowTopMessage(V6Text.NoData);
@@ -3221,14 +3223,19 @@ namespace V6Controls.Forms
                 };
                 if (save.ShowDialog(owner) == DialogResult.OK)
                 {
-                    ExportExcelTemplate(owner, data, tbl2, ReportDocumentParameters, MAU, LAN, ReportFile, ExcelTemplateFileFull, save.FileName);
+                    ExportExcelTemplate(owner, data, tbl2,
+                        ReportDocumentParameters, MAU, LAN,
+                        ReportFile, ExcelTemplateFileFull, save.FileName);
                 }
             }
             catch (Exception ex)
             {
                 var methodInfo = MethodBase.GetCurrentMethod();
-                var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                ShowErrorException(address, ex);
+                if (methodInfo.DeclaringType != null)
+                {
+                    var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                    ShowErrorException(address, ex);
+                }
             }
         }
         
@@ -3237,17 +3244,62 @@ namespace V6Controls.Forms
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string saveFileName)
         {
-            
-            if (data == null)
+            ExportExcelTemplate_owner = owner;
+            ExportExcelTemplate_data = data;
+            ExportExcelTemplate_tbl2 = tbl2;
+            ExportExcelTemplate_ReportDocumentParameters = ReportDocumentParameters;
+            ExportExcelTemplate_MAU = MAU;
+            ExportExcelTemplate_LAN = LAN;
+            ExportExcelTemplate_ReportFile = ReportFile;
+            ExportExcelTemplate_ExcelTemplateFileFull = ExcelTemplateFileFull;
+            ExportExcelTemplate_saveFileName = saveFileName;
+            ExportExcelTemplate_running = false;
+            var thread1 = new Thread(ExportExcelTemplate_Thread);
+            ExportExcelTemplate_running = true;
+            thread1.Start();
+            Timer timer = new Timer();
+            timer.Interval = 1000;
+            timer.Tick += timer1_Tick;
+            time_count1 = 0;
+            timer.Start();
+        }
+
+        static void timer1_Tick(object sender, EventArgs e)
+        {
+            if (ExportExcelTemplate_running)
             {
-                //ShowTopMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.Exporting + ++time_count1);
+            }
+            else
+            {
+                ((Timer)sender).Stop();
+                ShowMainMessage(V6Text.ExportFinish + ++time_count1);
+            }
+        }
+
+        private static IWin32Window ExportExcelTemplate_owner;
+        private static DataTable ExportExcelTemplate_data;
+        private static DataTable ExportExcelTemplate_tbl2;
+        private static IDictionary<string, object> ExportExcelTemplate_ReportDocumentParameters;
+        private static string ExportExcelTemplate_MAU;
+        private static string ExportExcelTemplate_LAN;
+        private static string ExportExcelTemplate_ReportFile;
+        private static string ExportExcelTemplate_ExcelTemplateFileFull;
+        private static string ExportExcelTemplate_saveFileName;
+        private static bool ExportExcelTemplate_running;
+        private static int time_count1;
+        private static void ExportExcelTemplate_Thread()
+        {
+            if (ExportExcelTemplate_data == null)
+            {
+                ShowMainMessage(V6Text.ExportFail + "\n" + V6Text.NoData);
                 return;
             }
             try
             {
                 try
                 {
-                    var albc_row = Albc.GetRow(MAU, LAN, ReportFile);
+                    var albc_row = Albc.GetRow(ExportExcelTemplate_MAU, ExportExcelTemplate_LAN, ExportExcelTemplate_ReportFile);
                     if (albc_row != null)
                     {
                         var firstCell = "A4"; //auto
@@ -3278,7 +3330,7 @@ namespace V6Controls.Forms
                                 }
                                 else if (type == "1") //Lay value trong parameter
                                 {
-                                    if (ReportDocumentParameters == null) continue;
+                                    if (ExportExcelTemplate_ReportDocumentParameters == null) continue;
                                     // 1 Nhóm ký tự giữa hai dấu ngoặc móc.
                                     // Nếu không có ? sẽ lấy 1 nhóm từ đầu đến cuối.
                                     // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
@@ -3288,25 +3340,25 @@ namespace V6Controls.Forms
                                         foreach (Match match in regex.Matches(content))
                                         {
                                             var MATCH_KEY = match.Groups[1].Value.ToUpper();
-                                            if (ReportDocumentParameters.ContainsKey(MATCH_KEY))
+                                            if (ExportExcelTemplate_ReportDocumentParameters.ContainsKey(MATCH_KEY))
                                                 content = content.Replace(match.Groups[0].Value,
                                                     ObjectAndString.ObjectToString(
-                                                        ReportDocumentParameters[MATCH_KEY]));
+                                                        ExportExcelTemplate_ReportDocumentParameters[MATCH_KEY]));
                                         }
                                         parameters.Add(KEY, content);
                                     }
                                     else
                                     {
                                         var P_KEY = content.ToUpper();
-                                        if (ReportDocumentParameters.ContainsKey(P_KEY))
+                                        if (ExportExcelTemplate_ReportDocumentParameters.ContainsKey(P_KEY))
                                         {
-                                            parameters.Add(KEY, ReportDocumentParameters[P_KEY]);
+                                            parameters.Add(KEY, ExportExcelTemplate_ReportDocumentParameters[P_KEY]);
                                         }
                                     }
                                 }
-                                else if (type == "2" && tbl2 != null && tbl2.Rows.Count > 0) //Lay value trong tbl2
+                                else if (type == "2" && ExportExcelTemplate_tbl2 != null && ExportExcelTemplate_tbl2.Rows.Count > 0) //Lay value trong tbl2
                                 {
-                                    var tbl2_row = tbl2.Rows[0];
+                                    var tbl2_row = ExportExcelTemplate_tbl2.Rows[0];
 
                                     if (content.Contains("{") && content.Contains("}"))
                                     {
@@ -3314,7 +3366,7 @@ namespace V6Controls.Forms
                                         foreach (Match match in regex.Matches(content))
                                         {
                                             var matchKey = match.Groups[1].Value;
-                                            if (tbl2.Columns.Contains(matchKey))
+                                            if (ExportExcelTemplate_tbl2.Columns.Contains(matchKey))
                                             {
                                                 content = content.Replace(match.Groups[0].Value,
                                                     ObjectAndString.ObjectToString(tbl2_row[matchKey]));
@@ -3329,7 +3381,7 @@ namespace V6Controls.Forms
                                     }
                                     else
                                     {
-                                        if (tbl2.Columns.Contains(content))
+                                        if (ExportExcelTemplate_tbl2.Columns.Contains(content))
                                         {
                                             parameters.Add(KEY, tbl2_row[content]);
                                         }
@@ -3340,7 +3392,7 @@ namespace V6Controls.Forms
                                     if (content.Contains("{") && content.Contains("}"))
                                     {
                                         var regex = new Regex("{(.+?)}");
-                
+
                                         foreach (Match match in regex.Matches(content))
                                         {
                                             var MATCH_KEY = match.Groups[1].Value.ToUpper();
@@ -3367,14 +3419,14 @@ namespace V6Controls.Forms
                         }
 
                         if (ExportData.ToExcelTemplate(
-                            ExcelTemplateFileFull, data, saveFileName, firstCell,
+                            ExportExcelTemplate_ExcelTemplateFileFull, ExportExcelTemplate_data, ExportExcelTemplate_saveFileName, firstCell,
                             excelColumns.Replace("[", "").Replace("]", "").Split(excelColumns.Contains(";") ? ';' : ','),
                             parameters, V6Setting.V6_number_format_info,
                             insertRow, drawLine))
                         {
                             if (V6Options.AutoOpenExcel)
                             {
-                                OpenFileProcess(saveFileName);
+                                OpenFileProcess(ExportExcelTemplate_saveFileName);
                             }
                             else
                             {
@@ -3404,7 +3456,257 @@ namespace V6Controls.Forms
                 var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
                 ShowErrorException(address, ex);
             }
+            ExportExcelTemplate_running = false;
         }
+
+        #endregion EXPORT EXCEL TEMPLATE
+
+
+        #region ==== EXPORT EXCEL TEMPLATE D ====
+
+        /// <summary>
+        /// Xuất Excel ra file theo file mẫu Động.
+        /// </summary>
+        /// <param name="owner">Form hoặc control chủ đang gọi hàm này.</param>
+        /// <param name="data">Dữ liệu xuất ra.</param>
+        /// <param name="tbl2">Dữ liệu phụ khi type = 2.</param>
+        /// <param name="MODE">"V" ? "EXCEL2_VIEW" : "EXCEL2"</param>
+        /// <param name="ReportDocumentParameters">Các tham số gửi vào report, dùng để xuất lên các vị trí được cấu hình xml.</param>
+        /// <param name="MAU">key albc</param>
+        /// <param name="LAN">key albc</param>
+        /// <param name="ReportFile">key albc</param>
+        /// <param name="ExcelTemplateFileFull">File excel mẫu.</param>
+        /// <param name="defaultSaveName">Tên file lưu gợi ý.</param>
+        /// <param name="excelColumns">Các cột ,,</param>
+        /// <param name="excelHeaders">Điền tên các cột ,,</param>
+        public static void ExportExcelTemplateD(IWin32Window owner, DataTable data, DataTable tbl2, string MODE,
+            IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
+            string ReportFile, string ExcelTemplateFileFull, string defaultSaveName, string excelColumns, string excelHeaders)
+        {
+            ExportExcelTemplateD_owner = owner;
+            ExportExcelTemplateD_data = data;
+            ExportExcelTemplateD_tbl2 = tbl2;
+            ExportExcelTemplateD_MODE = MODE;
+            ExportExcelTemplateD_ReportDocumentParameters = ReportDocumentParameters;
+            ExportExcelTemplateD_MAU = MAU;
+            ExportExcelTemplateD_LAN = LAN;
+            ExportExcelTemplateD_ReportFile = ReportFile;
+            ExportExcelTemplateD_ExcelTemplateFileFull = ExcelTemplateFileFull;
+            ExportExcelTemplateD_defaultSaveName = defaultSaveName;
+            ExportExcelTemplateD_excelColumns = excelColumns;
+            ExportExcelTemplateD_excelHeaders = excelHeaders;
+            var thread1 = new Thread(ExportExcelTemplateD_Thread);
+            ExportExcelTemplateD_running = true;
+            thread1.Start();
+            Timer timer = new Timer();
+            timer.Interval = 1000;
+            timer.Tick += timer3_Tick;
+            time_count3 = 0;
+            timer.Start();
+        }
+
+        static void timer3_Tick(object sender, EventArgs e)
+        {
+            if (ExportExcelTemplateD_running)
+            {
+                ShowMainMessage(V6Text.Exporting + ++time_count3);
+            }
+            else
+            {
+                ((Timer)sender).Stop();
+                ShowMainMessage(V6Text.ExportFinish + ++time_count3);
+            }
+        }
+
+        private static IWin32Window ExportExcelTemplateD_owner;
+        private static DataTable ExportExcelTemplateD_data;
+        private static DataTable ExportExcelTemplateD_tbl2;
+        private static string ExportExcelTemplateD_MODE;
+        private static IDictionary<string, object> ExportExcelTemplateD_ReportDocumentParameters;
+        private static string ExportExcelTemplateD_MAU;
+        private static string ExportExcelTemplateD_LAN;
+        private static string ExportExcelTemplateD_ReportFile;
+        private static string ExportExcelTemplateD_ExcelTemplateFileFull;
+        private static string ExportExcelTemplateD_defaultSaveName;
+        private static string ExportExcelTemplateD_excelColumns;
+        private static string ExportExcelTemplateD_excelHeaders;
+        private static bool ExportExcelTemplateD_running;
+        private static int time_count3 = 0;
+
+        public static void ExportExcelTemplateD_Thread()
+        {
+            if (ExportExcelTemplateD_data == null)
+            {
+                //ShowTopMessage(V6Text.NoData);
+                return;
+            }
+            try
+            {
+                var save = new SaveFileDialog
+                {
+                    Filter = "Excel files (*.xls)|*.xls|Xlsx|*.xlsx",
+                    Title = "Xuất excel.",
+                    FileName = ChuyenMaTiengViet.ToUnSign(ExportExcelTemplateD_defaultSaveName)
+                };
+                if (save.ShowDialog(ExportExcelTemplateD_owner) == DialogResult.OK)
+                {
+                    try
+                    {
+                        var albc_row = Albc.GetRow(ExportExcelTemplateD_MAU, ExportExcelTemplateD_LAN, ExportExcelTemplateD_ReportFile);
+                        if (albc_row != null)
+                        {
+                            var firstCell = "A4"; //auto
+                            bool drawLine = true, insertRow = true;
+                            var xml_field = ExportExcelTemplateD_MODE == "V" ? "EXCEL2_VIEW" : "EXCEL2";
+                            var xlm = albc_row[xml_field].ToString().Trim();
+                            //var excelColumns = albc_row["EXCEL1"].ToString().Trim();
+                            DataSet ds = new DataSet();
+                            StringReader sReader = new StringReader(xlm);
+                            ds.ReadXml(sReader);
+
+                            var parameters = new SortedDictionary<string, object>();
+                            if (ds.Tables.Count > 0)
+                            {
+                                var paramTable = ds.Tables[0];
+                                foreach (DataRow row in paramTable.Rows)
+                                {
+                                    var type = row["type"].ToString().Trim();
+                                    var KEY = row["key"].ToString().Trim().ToUpper();
+                                    var content = row["content"].ToString().Trim();
+                                    if (type == "0")
+                                    {
+                                        if (KEY == "FIRSTCELL")
+                                            firstCell = content;
+                                        else if (KEY == "DRAWLINE")
+                                            drawLine = content == "1";
+                                        else if (KEY == "INSERTROW")
+                                            insertRow = content == "1";
+                                    }
+                                    else if (type == "1")//Lay value trong parameter
+                                    {
+                                        // 1 Nhóm ký tự giữa hai dấu ngoặc móc.
+                                        // Nếu không có ? sẽ lấy 1 nhóm từ đầu đến cuối.
+                                        // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
+                                        if (content.Contains("{") && content.Contains("}"))
+                                        {
+                                            var regex = new Regex("{(.+?)}");
+                                            foreach (Match match in regex.Matches(content))
+                                            {
+                                                var MATCH_KEY = match.Groups[1].Value.ToUpper();
+                                                if (ExportExcelTemplateD_ReportDocumentParameters.ContainsKey(MATCH_KEY))
+                                                    content = content.Replace(
+                                                        match.Groups[0].Value,
+                                                        ObjectAndString.ObjectToString(ExportExcelTemplateD_ReportDocumentParameters[MATCH_KEY]));
+                                            }
+                                            parameters.Add(KEY, content);
+                                        }
+                                        else
+                                        {
+                                            var P_KEY = content.ToUpper();
+                                            if (ExportExcelTemplateD_ReportDocumentParameters.ContainsKey(P_KEY))
+                                            {
+                                                parameters.Add(KEY, ExportExcelTemplateD_ReportDocumentParameters[P_KEY]);
+                                            }
+                                        }
+                                    }
+                                    else if (type == "2" && ExportExcelTemplateD_tbl2 != null && ExportExcelTemplateD_tbl2.Rows.Count > 0)//Lay value trong tbl2
+                                    {
+                                        var tbl2_row = ExportExcelTemplateD_tbl2.Rows[0];
+
+                                        if (content.Contains("{") && content.Contains("}"))
+                                        {
+                                            var regex = new Regex("{(.+?)}");
+                                            foreach (Match match in regex.Matches(content))
+                                            {
+                                                var matchKey = match.Groups[1].Value;
+                                                if (ExportExcelTemplateD_tbl2.Columns.Contains(matchKey))
+                                                {
+                                                    content = content.Replace(match.Groups[0].Value,
+                                                        ObjectAndString.ObjectToString(tbl2_row[matchKey]));
+
+                                                }
+                                            }
+                                            if (parameters.ContainsKey(KEY))
+                                            {
+                                                ShowWarningMessage("Trùng khóa cấu hình excel: key=" + KEY);
+                                                continue;
+                                            }
+                                            parameters.Add(KEY, content);
+                                        }
+                                        else
+                                        {
+                                            if (ExportExcelTemplateD_tbl2.Columns.Contains(content))
+                                            {
+                                                parameters.Add(KEY, tbl2_row[content]);
+                                            }
+                                        }
+                                    }
+                                }
+
+                                // Add parameter for Excel Columns Name
+                                var firstCellRowIndex = Excel_File.GetExcelRow(firstCell);
+                                var firstCellColIndex = Excel_File.GetExcelColumn(firstCell);
+                                var headers = ExportExcelTemplateD_excelHeaders.Split(ExportExcelTemplateD_excelHeaders.Contains(";") ? ';' : ',');
+                                for (int i = 0; i < headers.Length; i++)
+                                {
+                                    var key = "" + Excel_File.ToExcelColumnString(firstCellColIndex + i + 1) + firstCellRowIndex;
+                                    parameters.Add(key, headers[i]);
+                                }
+
+                            }
+                            else
+                            {
+                                //Không có thông tin xml
+                            }
+
+                            if (ExportData.ToExcelTemplate(
+                                ExportExcelTemplateD_ExcelTemplateFileFull, ExportExcelTemplateD_data, save.FileName, firstCell,
+                                ExportExcelTemplateD_excelColumns.Replace("[", "").Replace("]", "").Split(ExportExcelTemplateD_excelColumns.Contains(";") ? ';' : ','),
+                                parameters, V6Setting.V6_number_format_info,
+                                insertRow, drawLine))
+                            {
+                                if (V6Options.AutoOpenExcel)
+                                {
+                                    OpenFileProcess(save.FileName);
+                                }
+                                else
+                                {
+                                    ShowInfoMessage(V6Text.ExportFinish, 500);
+                                }
+                            }
+                            else
+                            {
+                                ShowInfoMessage(V6Text.ExportFail + ExportData.Message);
+                            }
+
+                        }
+                        else
+                        {
+                            ShowWarningMessage("Không lấy được thông tin cấu hình!");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        var methodInfo = MethodBase.GetCurrentMethod();
+                        var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                        ShowErrorException(address, ex);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                var methodInfo = MethodBase.GetCurrentMethod();
+                var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                ShowErrorException(address, ex);
+            }
+            ExportExcelTemplateD_running = false;
+        }
+
+        #endregion EXPORT EXCEL TEMPLATE D
+
+
+        #region ==== EXPORT EXCEL GROUP ====
 
         /// <summary>
         /// Xuất Excel ra file theo file mẫu.
@@ -3423,10 +3725,9 @@ namespace V6Controls.Forms
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string defaultSaveName)
         {
-
             if (data == null)
             {
-                //ShowTopMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.ExportFail + "\n" + V6Text.NoData);
                 return;
             }
             try
@@ -3439,14 +3740,20 @@ namespace V6Controls.Forms
                 };
                 if (save.ShowDialog(owner) == DialogResult.OK)
                 {
-                    ExportExcelGroup(owner, data, data2, tbl3, ReportDocumentParameters, MAU, LAN, ReportFile, ExcelTemplateFileFull, save.FileName);
+                    ExportExcelGroup(owner, data, data2,
+                        tbl3, ReportDocumentParameters,
+                        MAU, LAN, ReportFile,
+                        ExcelTemplateFileFull, save.FileName);
                 }
             }
             catch (Exception ex)
             {
                 var methodInfo = MethodBase.GetCurrentMethod();
-                var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                ShowErrorException(address, ex);
+                if (methodInfo.DeclaringType != null)
+                {
+                    var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                    ShowErrorException(address, ex);
+                }
             }
         }
 
@@ -3467,17 +3774,63 @@ namespace V6Controls.Forms
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string saveFileName)
         {
-            
-            if (data == null)
+            ExportExcelGroup_owner = owner;
+            ExportExcelGroup_data = data;
+            ExportExcelGroup_data2 = data2;
+            ExportExcelGroup_tbl3 = tbl3;
+            ExportExcelGroup_ReportDocumentParameters = ReportDocumentParameters;
+            ExportExcelGroup_MAU = MAU;
+            ExportExcelGroup_LAN = LAN;
+            ExportExcelGroup_ReportFile = ReportFile;
+            ExportExcelGroup_ExcelTemplateFileFull = ExcelTemplateFileFull;
+            ExportExcelGroup_saveFileName = saveFileName;
+            var thread1 = new Thread(ExportExcelGroup_Thread);
+            ExportExcelGroup_running = true;
+            thread1.Start();
+            Timer timer = new Timer();
+            timer.Interval = 1000;
+            timer.Tick += timer2_Tick;
+            time_count2 = 0;
+            timer.Start();
+        }
+
+        static void timer2_Tick(object sender, EventArgs e)
+        {
+            if (ExportExcelGroup_running)
             {
-                //ShowTopMessage(V6Text.NoData);
+                ShowMainMessage(V6Text.Exporting + ++time_count2);
+            }
+            else
+            {
+                ((Timer)sender).Stop();
+                ShowMainMessage(V6Text.ExportFinish + ++time_count2);
+            }
+        }
+
+        private static IWin32Window ExportExcelGroup_owner;
+        private static DataTable ExportExcelGroup_data;
+        private static DataTable ExportExcelGroup_data2;
+        private static DataTable ExportExcelGroup_tbl3;
+        private static IDictionary<string, object> ExportExcelGroup_ReportDocumentParameters;
+        private static string ExportExcelGroup_MAU;
+        private static string ExportExcelGroup_LAN;
+        private static string ExportExcelGroup_ReportFile;
+        private static string ExportExcelGroup_ExcelTemplateFileFull;
+        private static string ExportExcelGroup_saveFileName;
+        private static bool ExportExcelGroup_running;
+        private static int time_count2 = 0;
+        private static void ExportExcelGroup_Thread()
+        {
+            if (ExportExcelGroup_data == null)
+            {
+                ShowMainMessage(V6Text.ExportFail + "\n" + V6Text.NoData);
                 return;
             }
             try
             {
                 try
                 {
-                    var albc_row = Albc.GetRow(MAU, LAN, ReportFile);
+                    var albc_row = Albc.GetRow(ExportExcelGroup_MAU, ExportExcelGroup_LAN, ExportExcelGroup_ReportFile);
                     if (albc_row != null)
                     {
                         var firstCell = "A4"; //auto
@@ -3510,7 +3863,7 @@ namespace V6Controls.Forms
                                 }
                                 else if (type == "1") //Lay value trong parameter
                                 {
-                                    if (ReportDocumentParameters == null) continue;
+                                    if (ExportExcelGroup_ReportDocumentParameters == null) continue;
                                     // 1 Nhóm ký tự giữa hai dấu ngoặc móc.
                                     // Nếu không có ? sẽ lấy 1 nhóm từ đầu đến cuối.
                                     // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
@@ -3520,25 +3873,25 @@ namespace V6Controls.Forms
                                         foreach (Match match in regex.Matches(content))
                                         {
                                             var MATCH_KEY = match.Groups[1].Value.ToUpper();
-                                            if (ReportDocumentParameters.ContainsKey(MATCH_KEY))
+                                            if (ExportExcelGroup_ReportDocumentParameters.ContainsKey(MATCH_KEY))
                                                 content = content.Replace(match.Groups[0].Value,
                                                     ObjectAndString.ObjectToString(
-                                                        ReportDocumentParameters[MATCH_KEY]));
+                                                        ExportExcelGroup_ReportDocumentParameters[MATCH_KEY]));
                                         }
                                         parameters.Add(KEY, content);
                                     }
                                     else
                                     {
                                         var P_KEY = content.ToUpper();
-                                        if (ReportDocumentParameters.ContainsKey(P_KEY))
+                                        if (ExportExcelGroup_ReportDocumentParameters.ContainsKey(P_KEY))
                                         {
-                                            parameters.Add(KEY, ReportDocumentParameters[P_KEY]);
+                                            parameters.Add(KEY, ExportExcelGroup_ReportDocumentParameters[P_KEY]);
                                         }
                                     }
                                 }
-                                else if (type == "2" && tbl3 != null && tbl3.Rows.Count > 0) //Lay value trong tbl2
+                                else if (type == "2" && ExportExcelGroup_tbl3 != null && ExportExcelGroup_tbl3.Rows.Count > 0) //Lay value trong tbl2
                                 {
-                                    var tbl2_row = tbl3.Rows[0];
+                                    var tbl2_row = ExportExcelGroup_tbl3.Rows[0];
 
                                     if (content.Contains("{") && content.Contains("}"))
                                     {
@@ -3546,7 +3899,7 @@ namespace V6Controls.Forms
                                         foreach (Match match in regex.Matches(content))
                                         {
                                             var matchKey = match.Groups[1].Value;
-                                            if (tbl3.Columns.Contains(matchKey))
+                                            if (ExportExcelGroup_tbl3.Columns.Contains(matchKey))
                                             {
                                                 content = content.Replace(match.Groups[0].Value,
                                                     ObjectAndString.ObjectToString(tbl2_row[matchKey]));
@@ -3561,7 +3914,7 @@ namespace V6Controls.Forms
                                     }
                                     else
                                     {
-                                        if (tbl3.Columns.Contains(content))
+                                        if (ExportExcelGroup_tbl3.Columns.Contains(content))
                                         {
                                             parameters.Add(KEY, tbl2_row[content]);
                                         }
@@ -3572,7 +3925,7 @@ namespace V6Controls.Forms
                                     if (content.Contains("{") && content.Contains("}"))
                                     {
                                         var regex = new Regex("{(.+?)}");
-                
+
                                         foreach (Match match in regex.Matches(content))
                                         {
                                             var MATCH_KEY = match.Groups[1].Value.ToUpper();
@@ -3628,7 +3981,7 @@ namespace V6Controls.Forms
                         }
 
                         if (ExportData.ToExcelTemplateGroup(
-                            ExcelTemplateFileFull, data, data2, ObjectAndString.SplitString(ref_key), saveFileName, firstCell,
+                            ExportExcelGroup_ExcelTemplateFileFull, ExportExcelGroup_data, ExportExcelGroup_data2, ObjectAndString.SplitString(ref_key), ExportExcelGroup_saveFileName, firstCell,
                             column_config,
                             null,//Headers
                             parameters, V6Setting.V6_number_format_info,
@@ -3636,7 +3989,7 @@ namespace V6Controls.Forms
                         {
                             if (V6Options.AutoOpenExcel)
                             {
-                                OpenFileProcess(saveFileName);
+                                OpenFileProcess(ExportExcelGroup_saveFileName);
                             }
                             else
                             {
@@ -3666,218 +4019,83 @@ namespace V6Controls.Forms
                 var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
                 ShowErrorException(address, ex);
             }
+            ExportExcelGroup_running = false;
         }
-        
-        /// <summary>
-        /// Xuất Excel ra file theo file mẫu Động.
-        /// </summary>
-        /// <param name="owner">Form hoặc control chủ đang gọi hàm này.</param>
-        /// <param name="data">Dữ liệu xuất ra.</param>
-        /// <param name="tbl2">Dữ liệu phụ khi type = 2.</param>
-        /// <param name="MODE">"V" ? "EXCEL2_VIEW" : "EXCEL2"</param>
-        /// <param name="ReportDocumentParameters">Các tham số gửi vào report, dùng để xuất lên các vị trí được cấu hình xml.</param>
-        /// <param name="MAU">key albc</param>
-        /// <param name="LAN">key albc</param>
-        /// <param name="ReportFile">key albc</param>
-        /// <param name="ExcelTemplateFileFull">File excel mẫu.</param>
-        /// <param name="defaultSaveName">Tên file lưu gợi ý.</param>
-        /// <param name="excelColumns">Các cột ,,</param>
-        /// <param name="excelHeaders">Điền tên các cột ,,</param>
-        public static void ExportExcelTemplateD(IWin32Window owner, DataTable data, DataTable tbl2, string MODE,
-            IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
-            string ReportFile, string ExcelTemplateFileFull, string defaultSaveName, string excelColumns, string excelHeaders)
-        {
-            
-            if (data == null)
-            {
-                //ShowTopMessage(V6Text.NoData);
-                return;
-            }
-            try
-            {
-                var save = new SaveFileDialog
-                {
-                    Filter = "Excel files (*.xls)|*.xls|Xlsx|*.xlsx",
-                    Title = "Xuất excel.",
-                    FileName = ChuyenMaTiengViet.ToUnSign(defaultSaveName)
-                };
-                if (save.ShowDialog(owner) == DialogResult.OK)
-                {
-                    try
-                    {
-                        var albc_row = Albc.GetRow(MAU, LAN, ReportFile);
-                        if (albc_row != null)
-                        {
-                            var firstCell = "A4"; //auto
-                            bool drawLine = true, insertRow = true;
-                            var xml_field = MODE == "V" ? "EXCEL2_VIEW" : "EXCEL2";
-                            var xlm = albc_row[xml_field].ToString().Trim();
-                            //var excelColumns = albc_row["EXCEL1"].ToString().Trim();
-                            DataSet ds = new DataSet();
-                            StringReader sReader = new StringReader(xlm);
-                            ds.ReadXml(sReader);
 
-                            var parameters = new SortedDictionary<string, object>();
-                            if (ds.Tables.Count > 0)
-                            {
-                                var paramTable = ds.Tables[0];
-                                foreach (DataRow row in paramTable.Rows)
-                                {
-                                    var type = row["type"].ToString().Trim();
-                                    var KEY = row["key"].ToString().Trim().ToUpper();
-                                    var content = row["content"].ToString().Trim();
-                                    if (type == "0")
-                                    {
-                                        if (KEY == "FIRSTCELL")
-                                            firstCell = content;
-                                        else if (KEY == "DRAWLINE")
-                                            drawLine = content == "1";
-                                        else if (KEY == "INSERTROW")
-                                            insertRow = content == "1";
-                                    }
-                                    else if (type == "1")//Lay value trong parameter
-                                    {
-                                        // 1 Nhóm ký tự giữa hai dấu ngoặc móc.
-                                        // Nếu không có ? sẽ lấy 1 nhóm từ đầu đến cuối.
-                                        // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
-                                        if (content.Contains("{") && content.Contains("}"))
-                                        {
-                                            var regex = new Regex("{(.+?)}");
-                                            foreach (Match match in regex.Matches(content))
-                                            {
-                                                var MATCH_KEY = match.Groups[1].Value.ToUpper();
-                                                if (ReportDocumentParameters.ContainsKey(MATCH_KEY))
-                                                    content = content.Replace(match.Groups[0].Value,
-                                                        ObjectAndString.ObjectToString(
-                                                            ReportDocumentParameters[MATCH_KEY]));
-                                            }
-                                            parameters.Add(KEY, content);
-                                        }
-                                        else
-                                        {
-                                            var P_KEY = content.ToUpper();
-                                            if (ReportDocumentParameters.ContainsKey(P_KEY))
-                                            {
-                                                parameters.Add(KEY, ReportDocumentParameters[P_KEY]);
-                                            }
-                                        }
-                                    }
-                                    else if (type == "2" && tbl2 != null && tbl2.Rows.Count > 0)//Lay value trong tbl2
-                                    {
-                                        var tbl2_row = tbl2.Rows[0];
+        #endregion EXPORT EXCEL GROUP
 
-                                        if (content.Contains("{") && content.Contains("}"))
-                                        {
-                                            var regex = new Regex("{(.+?)}");
-                                            foreach (Match match in regex.Matches(content))
-                                            {
-                                                var matchKey = match.Groups[1].Value;
-                                                if (tbl2.Columns.Contains(matchKey))
-                                                {
-                                                    content = content.Replace(match.Groups[0].Value,
-                                                        ObjectAndString.ObjectToString(tbl2_row[matchKey]));
 
-                                                }
-                                            }
-                                            if (parameters.ContainsKey(KEY))
-                                            {
-                                                ShowWarningMessage("Trùng khóa cấu hình excel: key=" + KEY);
-                                                continue;
-                                            }
-                                            parameters.Add(KEY, content);
-                                        }
-                                        else
-                                        {
-                                            if (tbl2.Columns.Contains(content))
-                                            {
-                                                parameters.Add(KEY, tbl2_row[content]);
-                                            }
-                                        }
-                                    }
-                                }
+        #region ==== ExportExcelTemplateHTKK ====
 
-                                // Add parameter for Excel Columns Name
-                                var firstCellRowIndex = Excel_File.GetExcelRow(firstCell);
-                                var firstCellColIndex = Excel_File.GetExcelColumn(firstCell);
-                                var headers = excelHeaders.Split(excelHeaders.Contains(";") ? ';' : ',');
-                                for (int i = 0; i < headers.Length; i++)
-                                {
-                                    var key = "" + Excel_File.ToExcelColumnString(firstCellColIndex + i + 1) + firstCellRowIndex;
-                                    parameters.Add(key,headers[i]);
-                                }
-
-                            }
-                            else
-                            {
-                                //Không có thông tin xml
-                            }
-
-                            if (ExportData.ToExcelTemplate(
-                                ExcelTemplateFileFull, data, save.FileName, firstCell,
-                                excelColumns.Replace("[", "").Replace("]", "").Split(excelColumns.Contains(";") ? ';' : ','),
-                                parameters, V6Setting.V6_number_format_info,
-                                insertRow, drawLine))
-                            {
-                                if (V6Options.AutoOpenExcel)
-                                {
-                                    OpenFileProcess(save.FileName);
-                                }
-                                else
-                                {
-                                    ShowInfoMessage(V6Text.ExportFinish, 500);
-                                }
-                            }
-                            else
-                            {
-                                ShowInfoMessage(V6Text.ExportFail + ExportData.Message);
-                            }
-
-                        }
-                        else
-                        {
-                            ShowWarningMessage("Không lấy được thông tin cấu hình!");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        var methodInfo = MethodBase.GetCurrentMethod();
-                        var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                        ShowErrorException(address, ex);
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                var methodInfo = MethodBase.GetCurrentMethod();
-                var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                ShowErrorException(address, ex);
-            }
-        }
-        
         public static void ExportExcelTemplateHTKK(DataTable data, DataTable tbl2,
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string excelTemplateFile, string saveFileName)
         {
-            
-            if (data == null)
+            //ExportExcelTemplateHTKK_owner = owner;
+            ExportExcelTemplateHTKK_data = data;
+            ExportExcelTemplateHTKK_tbl2 = tbl2;
+            ExportExcelTemplateHTKK_ReportDocumentParameters = ReportDocumentParameters;
+            ExportExcelTemplateHTKK_MAU = MAU;
+            ExportExcelTemplateHTKK_LAN = LAN;
+            ExportExcelTemplateHTKK_ReportFile = ReportFile;
+            ExportExcelTemplateHTKK_excelTemplateFile = excelTemplateFile;
+            ExportExcelTemplateHTKK_saveFileName = saveFileName;
+            ExportExcelTemplateHTKK_running = false;
+            var thread1 = new Thread(ExportExcelTemplateHTKK_Thread);
+            ExportExcelTemplateHTKK_running = true;
+            thread1.Start();
+            Timer timer = new Timer();
+            timer.Interval = 1000;
+            timer.Tick += timerHTKK_Tick;
+            time_countHTKK = 0;
+            timer.Start();
+        }
+        
+        static void timerHTKK_Tick(object sender, EventArgs e)
+        {
+            if (ExportExcelTemplateHTKK_running)
             {
+                ShowMainMessage(V6Text.Exporting + ++time_countHTKK);
+            }
+            else
+            {
+                ((Timer)sender).Stop();
+                ShowMainMessage(V6Text.ExportFinish + ++time_countHTKK);
+            }
+        }
+
+        //private static IWin32Window ExportExcelTemplateHTKK_owner;
+        private static DataTable ExportExcelTemplateHTKK_data;
+        private static DataTable ExportExcelTemplateHTKK_tbl2;
+        private static IDictionary<string, object> ExportExcelTemplateHTKK_ReportDocumentParameters;
+        private static string ExportExcelTemplateHTKK_MAU;
+        private static string ExportExcelTemplateHTKK_LAN;
+        private static string ExportExcelTemplateHTKK_ReportFile;
+        private static string ExportExcelTemplateHTKK_excelTemplateFile;
+        private static string ExportExcelTemplateHTKK_saveFileName;
+        private static bool ExportExcelTemplateHTKK_running;
+        private static int time_countHTKK;
+        private static void ExportExcelTemplateHTKK_Thread()
+        {
+            if (ExportExcelTemplateHTKK_data == null)
+            {
+                ShowMainMessage(V6Text.ExportFail + "\n" + V6Text.NoData);
                 return;
             }
-            if (!File.Exists(excelTemplateFile))
+            if (!File.Exists(ExportExcelTemplateHTKK_excelTemplateFile))
             {
-                ShowWarningMessage("Không có file mẫu: " + excelTemplateFile);
+                ShowWarningMessage("Không có file mẫu: " + ExportExcelTemplateHTKK_excelTemplateFile);
                 //return;
             }
             try
             {
                 SortedDictionary<string, DataTable> datas = new SortedDictionary<string, DataTable>();
-                
-                if (!string.IsNullOrEmpty(saveFileName))
+
+                if (!string.IsNullOrEmpty(ExportExcelTemplateHTKK_saveFileName))
                 {
                     try
                     {
-                        var albc_row = Albc.GetRow(MAU, LAN, ReportFile);
+                        var albc_row = Albc.GetRow(ExportExcelTemplateHTKK_MAU, ExportExcelTemplateHTKK_LAN, ExportExcelTemplateHTKK_ReportFile);
                         if (albc_row != null)
                         {
                             var firstCell = "A4";                           //auto, không dùng, đã có config riêng type 7
@@ -3918,22 +4136,22 @@ namespace V6Controls.Forms
                                         {
                                             //var irstCell = content;//B18
                                             //GetData for C1 filter ma_nh = '1'
-                                            DataTable newData1 = data.Filter("ma_nh='1'");
+                                            DataTable newData1 = ExportExcelTemplateHTKK_data.Filter("ma_nh='1'");
                                             datas.Add(content, newData1);
                                         }
                                         else if (KEY == "C2")
                                         {
-                                            DataTable newData2 = data.Filter("ma_nh='2'");
+                                            DataTable newData2 = ExportExcelTemplateHTKK_data.Filter("ma_nh='2'");
                                             datas.Add(content, newData2);
                                         }
                                         else if (KEY == "C3")
                                         {
-                                            DataTable newData3 = data.Filter("ma_nh='3'");
+                                            DataTable newData3 = ExportExcelTemplateHTKK_data.Filter("ma_nh='3'");
                                             datas.Add(content, newData3);
                                         }
                                         else if (KEY == "C4")
                                         {
-                                            DataTable newData4 = data.Filter("ma_nh='4'");
+                                            DataTable newData4 = ExportExcelTemplateHTKK_data.Filter("ma_nh='4'");
                                             datas.Add(content, newData4);
                                         }
                                     }
@@ -3948,25 +4166,25 @@ namespace V6Controls.Forms
                                             foreach (Match match in regex.Matches(content))
                                             {
                                                 var MATCH_KEY = match.Groups[1].Value.ToUpper();
-                                                if (ReportDocumentParameters.ContainsKey(MATCH_KEY))
+                                                if (ExportExcelTemplateHTKK_ReportDocumentParameters.ContainsKey(MATCH_KEY))
                                                     content = content.Replace(match.Groups[0].Value,
                                                         ObjectAndString.ObjectToString(
-                                                            ReportDocumentParameters[MATCH_KEY]));
+                                                            ExportExcelTemplateHTKK_ReportDocumentParameters[MATCH_KEY]));
                                             }
                                             parameters.Add(KEY, content);
                                         }
                                         else
                                         {
                                             var P_KEY = content.ToUpper();
-                                            if (ReportDocumentParameters.ContainsKey(P_KEY))
+                                            if (ExportExcelTemplateHTKK_ReportDocumentParameters.ContainsKey(P_KEY))
                                             {
-                                                parameters.Add(KEY, ReportDocumentParameters[P_KEY]);
+                                                parameters.Add(KEY, ExportExcelTemplateHTKK_ReportDocumentParameters[P_KEY]);
                                             }
                                         }
                                     }
-                                    else if (type == "2" && tbl2 != null && tbl2.Rows.Count > 0)//Lay value trong tbl2
+                                    else if (type == "2" && ExportExcelTemplateHTKK_tbl2 != null && ExportExcelTemplateHTKK_tbl2.Rows.Count > 0)//Lay value trong tbl2
                                     {
-                                        var tbl2_row = tbl2.Rows[0];
+                                        var tbl2_row = ExportExcelTemplateHTKK_tbl2.Rows[0];
 
                                         if (content.Contains("{") && content.Contains("}"))
                                         {
@@ -3974,7 +4192,7 @@ namespace V6Controls.Forms
                                             foreach (Match match in regex.Matches(content))
                                             {
                                                 var matchKey = match.Groups[1].Value;
-                                                if (tbl2.Columns.Contains(matchKey))
+                                                if (ExportExcelTemplateHTKK_tbl2.Columns.Contains(matchKey))
                                                 {
                                                     content = content.Replace(match.Groups[0].Value,
                                                         ObjectAndString.ObjectToString(tbl2_row[matchKey]));
@@ -3990,7 +4208,7 @@ namespace V6Controls.Forms
                                         }
                                         else
                                         {
-                                            if (tbl2.Columns.Contains(content))
+                                            if (ExportExcelTemplateHTKK_tbl2.Columns.Contains(content))
                                             {
                                                 parameters.Add(KEY, tbl2_row[content]);
                                             }
@@ -4004,14 +4222,14 @@ namespace V6Controls.Forms
                                 //Không có thông tin xml
                             }
 
-                            
+
                             if (ExportData.ToExcelTemplateHTKK(
-                                excelTemplateFile, parameters, datas, excelColumnsHTKK.Split(','),
-                                saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
+                                ExportExcelTemplateHTKK_excelTemplateFile, parameters, datas, excelColumnsHTKK.Split(','),
+                                ExportExcelTemplateHTKK_saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
                             {
                                 if (V6Options.AutoOpenExcel)
                                 {
-                                    OpenFileProcess(saveFileName);
+                                    OpenFileProcess(ExportExcelTemplateHTKK_saveFileName);
                                 }
                                 else
                                 {
@@ -4033,39 +4251,87 @@ namespace V6Controls.Forms
                     {
                         ShowErrorMessage("ExportFail: " + ex.Message);
                     }
-
                 }
             }
             catch (Exception ex)
             {
                 ShowErrorMessage("Error!\n" + ex.Message);
             }
+            ExportExcelTemplateHTKK_running = false;
         }
         
-        
+        #endregion ExportExcelTemplateHTKK
+
+
+        #region ==== ExportExcelTemplateONLINE ====
+
         public static void ExportExcelTemplateONLINE(DataTable data, DataTable tbl2,
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string excelTemplateFile, string saveFileName)
         {
-            
-            if (data == null)
+            ExportExcelTemplateONLINE_data = data;
+            ExportExcelTemplateONLINE_tbl2 = tbl2;
+            ExportExcelTemplateONLINE_ReportDocumentParameters = ReportDocumentParameters;
+            ExportExcelTemplateONLINE_MAU = MAU;
+            ExportExcelTemplateONLINE_LAN = LAN;
+            ExportExcelTemplateONLINE_ReportFile = ReportFile;
+            ExportExcelTemplateONLINE_excelTemplateFile = excelTemplateFile;
+            ExportExcelTemplateONLINE_saveFileName = saveFileName;
+            ExportExcelTemplateONLINE_running = false;
+            var thread1 = new Thread(ExportExcelTemplateONLINE_Thread);
+            ExportExcelTemplateONLINE_running = true;
+            thread1.Start();
+            Timer timer = new Timer();
+            timer.Interval = 1000;
+            timer.Tick += timerONLINE_Tick;
+            time_countONLINE = 0;
+            timer.Start();
+        }
+
+        static void timerONLINE_Tick(object sender, EventArgs e)
+        {
+            if (ExportExcelTemplateONLINE_running)
             {
+                ShowMainMessage(V6Text.Exporting + ++time_countONLINE);
+            }
+            else
+            {
+                ((Timer)sender).Stop();
+                ShowMainMessage(V6Text.ExportFinish + ++time_countONLINE);
+            }
+        }
+
+        private static DataTable ExportExcelTemplateONLINE_data;
+        private static DataTable ExportExcelTemplateONLINE_tbl2;
+        private static IDictionary<string, object> ExportExcelTemplateONLINE_ReportDocumentParameters;
+        private static string ExportExcelTemplateONLINE_MAU;
+        private static string ExportExcelTemplateONLINE_LAN;
+        private static string ExportExcelTemplateONLINE_ReportFile;
+        private static string ExportExcelTemplateONLINE_excelTemplateFile;
+        private static string ExportExcelTemplateONLINE_saveFileName;
+        private static bool ExportExcelTemplateONLINE_running;
+        private static int time_countONLINE;
+        private static void ExportExcelTemplateONLINE_Thread()
+        {
+            if (ExportExcelTemplateONLINE_data == null)
+            {
+                ShowMainMessage(V6Text.ExportFail + "\n" + V6Text.NoData);
                 return;
             }
-            if (!File.Exists(excelTemplateFile))
+            if (!File.Exists(ExportExcelTemplateONLINE_excelTemplateFile))
             {
-                ShowWarningMessage("Không có file mẫu: " + excelTemplateFile);
+                ShowWarningMessage("Không có file mẫu: " + ExportExcelTemplateONLINE_excelTemplateFile);
                 //return;
             }
             try
             {
                 SortedDictionary<string, DataTable> datas = new SortedDictionary<string, DataTable>();
-                
-                if (!string.IsNullOrEmpty(saveFileName))
+
+                if (!string.IsNullOrEmpty(ExportExcelTemplateONLINE_saveFileName))
                 {
                     try
                     {
-                        var albc_row = Albc.GetRow(MAU, LAN, ReportFile);
+                        var albc_row = Albc.GetRow(ExportExcelTemplateONLINE_MAU, ExportExcelTemplateONLINE_LAN, ExportExcelTemplateONLINE_ReportFile);
                         if (albc_row != null)
                         {
                             var firstCell = "A4";                           //auto, không dùng, đã có config riêng type 7
@@ -4106,22 +4372,22 @@ namespace V6Controls.Forms
                                         {
                                             //var irstCell = content;//B18
                                             //GetData for C1 filter ma_nh = '1'
-                                            DataTable newData1 = data.Filter("ma_nh='1'");
+                                            DataTable newData1 = ExportExcelTemplateONLINE_data.Filter("ma_nh='1'");
                                             datas.Add(content, newData1);
                                         }
                                         else if (KEY == "C2")
                                         {
-                                            DataTable newData2 = data.Filter("ma_nh='2'");
+                                            DataTable newData2 = ExportExcelTemplateONLINE_data.Filter("ma_nh='2'");
                                             datas.Add(content, newData2);
                                         }
                                         else if (KEY == "C3")
                                         {
-                                            DataTable newData3 = data.Filter("ma_nh='3'");
+                                            DataTable newData3 = ExportExcelTemplateONLINE_data.Filter("ma_nh='3'");
                                             datas.Add(content, newData3);
                                         }
                                         else if (KEY == "C4")
                                         {
-                                            DataTable newData4 = data.Filter("ma_nh='4'");
+                                            DataTable newData4 = ExportExcelTemplateONLINE_data.Filter("ma_nh='4'");
                                             datas.Add(content, newData4);
                                         }
                                     }
@@ -4136,25 +4402,25 @@ namespace V6Controls.Forms
                                             foreach (Match match in regex.Matches(content))
                                             {
                                                 var MATCH_KEY = match.Groups[1].Value.ToUpper();
-                                                if (ReportDocumentParameters.ContainsKey(MATCH_KEY))
+                                                if (ExportExcelTemplateONLINE_ReportDocumentParameters.ContainsKey(MATCH_KEY))
                                                     content = content.Replace(match.Groups[0].Value,
                                                         ObjectAndString.ObjectToString(
-                                                            ReportDocumentParameters[MATCH_KEY]));
+                                                            ExportExcelTemplateONLINE_ReportDocumentParameters[MATCH_KEY]));
                                             }
                                             parameters.Add(KEY, content);
                                         }
                                         else
                                         {
                                             var P_KEY = content.ToUpper();
-                                            if (ReportDocumentParameters.ContainsKey(P_KEY))
+                                            if (ExportExcelTemplateONLINE_ReportDocumentParameters.ContainsKey(P_KEY))
                                             {
-                                                parameters.Add(KEY, ReportDocumentParameters[P_KEY]);
+                                                parameters.Add(KEY, ExportExcelTemplateONLINE_ReportDocumentParameters[P_KEY]);
                                             }
                                         }
                                     }
-                                    else if (type == "2" && tbl2 != null && tbl2.Rows.Count > 0)//Lay value trong tbl2
+                                    else if (type == "2" && ExportExcelTemplateONLINE_tbl2 != null && ExportExcelTemplateONLINE_tbl2.Rows.Count > 0)//Lay value trong tbl2
                                     {
-                                        var tbl2_row = tbl2.Rows[0];
+                                        var tbl2_row = ExportExcelTemplateONLINE_tbl2.Rows[0];
 
                                         if (content.Contains("{") && content.Contains("}"))
                                         {
@@ -4162,7 +4428,7 @@ namespace V6Controls.Forms
                                             foreach (Match match in regex.Matches(content))
                                             {
                                                 var matchKey = match.Groups[1].Value;
-                                                if (tbl2.Columns.Contains(matchKey))
+                                                if (ExportExcelTemplateONLINE_tbl2.Columns.Contains(matchKey))
                                                 {
                                                     content = content.Replace(match.Groups[0].Value,
                                                         ObjectAndString.ObjectToString(tbl2_row[matchKey]));
@@ -4178,7 +4444,7 @@ namespace V6Controls.Forms
                                         }
                                         else
                                         {
-                                            if (tbl2.Columns.Contains(content))
+                                            if (ExportExcelTemplateONLINE_tbl2.Columns.Contains(content))
                                             {
                                                 parameters.Add(KEY, tbl2_row[content]);
                                             }
@@ -4192,14 +4458,13 @@ namespace V6Controls.Forms
                                 //Không có thông tin xml
                             }
 
-                            
                             if (ExportData.ToExcelTemplateHTKK(
-                                excelTemplateFile, parameters, datas, excelColumnsONLINE.Split(','),
-                                saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
+                                ExportExcelTemplateONLINE_excelTemplateFile, parameters, datas, excelColumnsONLINE.Split(','),
+                                ExportExcelTemplateONLINE_saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
                             {
                                 if (V6Options.AutoOpenExcel)
                                 {
-                                    OpenFileProcess(saveFileName);
+                                    OpenFileProcess(ExportExcelTemplateONLINE_saveFileName);
                                 }
                                 else
                                 {
@@ -4210,7 +4475,6 @@ namespace V6Controls.Forms
                             {
                                 ShowInfoMessage(V6Text.ExportFail + ExportData.Message);
                             }
-
                         }
                         else
                         {
@@ -4221,14 +4485,17 @@ namespace V6Controls.Forms
                     {
                         ShowErrorMessage("ExportFail: " + ex.Message);
                     }
-
                 }
             }
             catch (Exception ex)
             {
                 ShowErrorMessage("Error!\n" + ex.Message);
             }
+            ExportExcelTemplateONLINE_running = false;
         }
+
+        #endregion ExportExcelTemplateONLINE
+
 
         /// <summary>
         /// Mở ra 1 bản copy của file mấu
@@ -4265,12 +4532,11 @@ namespace V6Controls.Forms
         }
 
 
-        public static bool ExportRptToPdf_As(IWin32Window owner, ReportDocument rpt, string defaultSaveName = "")
+        public static void ExportRptToPdf_As(IWin32Window owner, ReportDocument rpt, string defaultSaveName = "")
         {
-
             if (rpt == null)
             {
-                return false;
+                return;
             }
             try
             {
@@ -4282,43 +4548,82 @@ namespace V6Controls.Forms
                 };
                 if (save.ShowDialog(owner) == DialogResult.OK)
                 {
-                    return ExportRptToPdf(owner, rpt, save.FileName);
+                    ExportRptToPdf(owner, rpt, save.FileName);
                 }
             }
             catch (Exception ex)
             {
                 var methodInfo = MethodBase.GetCurrentMethod();
-                var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                ShowErrorException(address, ex);
+                if (methodInfo.DeclaringType != null)
+                {
+                    var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                    ShowErrorException(address, ex);
+                }
             }
-            return false;
         }
 
-        public static bool ExportRptToPdf(IWin32Window owner, ReportDocument rpt, string fileName)
+        public static void ExportRptToPdf(IWin32Window owner, ReportDocument rpt, string fileName)
+        {
+            ExportRptToPdf_owner = owner;
+            ExportRptToPdf_rpt = rpt;
+            ExportRptToPdf_fileName = fileName;
+            var thread1 = new Thread(ExportRptToPdf_Thread);
+            ExportRptToPdf_running = true;
+            thread1.Start();
+            Timer timer = new Timer();
+            timer.Interval = 1000;
+            timer.Tick += timer4_Tick;
+            time_count4 = 0;
+            timer.Start();
+        }
+
+        static void timer4_Tick(object sender, EventArgs e)
+        {
+            if (ExportRptToPdf_running)
+            {
+                ShowMainMessage(V6Text.Exporting + ++time_count4);
+            }
+            else
+            {
+                ((Timer)sender).Stop();
+                ShowMainMessage(V6Text.ExportFinish + ++time_count4);
+            }
+        }
+
+        private static IWin32Window ExportRptToPdf_owner;
+        private static ReportDocument ExportRptToPdf_rpt;
+        private static string ExportRptToPdf_fileName;
+        private static bool ExportRptToPdf_running;
+        private static int time_count4 = 0;
+        public static void ExportRptToPdf_Thread()
         {
             try
             {
                 ExportOptions CrExportOptions;
                 DiskFileDestinationOptions CrDiskFileDestinationOptions = new DiskFileDestinationOptions();
                 PdfRtfWordFormatOptions CrFormatTypeOptions = new PdfRtfWordFormatOptions();
-                CrDiskFileDestinationOptions.DiskFileName = fileName;
-                CrExportOptions = rpt.ExportOptions;
-                
+                CrDiskFileDestinationOptions.DiskFileName = ExportRptToPdf_fileName;
+                CrExportOptions = ExportRptToPdf_rpt.ExportOptions;
+
                 CrExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
                 CrExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
                 CrExportOptions.DestinationOptions = CrDiskFileDestinationOptions;
                 CrExportOptions.FormatOptions = CrFormatTypeOptions;
-                
-                rpt.Export();
-                return true;
+
+                ExportRptToPdf_rpt.Export();
+                //return true;
             }
             catch (Exception ex)
             {
                 var methodInfo = MethodBase.GetCurrentMethod();
-                var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
-                ShowErrorException(address, ex);
+                if (methodInfo.DeclaringType != null)
+                {
+                    var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                    ShowErrorException(address, ex);
+                }
             }
-            return false;
+            //return false;
+            ExportRptToPdf_running = false;
         }
 
         /// <summary>
@@ -5362,6 +5667,8 @@ namespace V6Controls.Forms
             Filter = "All file|*.*",
             Title = V6Setting.IsVietnamese ? "Chọn file lưu" : "Choose save file"
         };
+
+        
 
         /// <summary>
         /// Chọn một file để mở. Nếu không chọn trả về rỗng.
