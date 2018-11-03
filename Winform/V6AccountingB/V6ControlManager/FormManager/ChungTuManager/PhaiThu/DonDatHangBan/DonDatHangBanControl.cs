@@ -1758,7 +1758,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             try
             {
                 ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
-                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+                if (NotAddEdit) return;
                 //Tính tổng thanh toán.//Tính ck xong tính ttt lại.
             
                 HienThiTongSoDong(lblTongSoDong);
@@ -3292,7 +3292,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private bool XuLyThemDetail(IDictionary<string, object> data)
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.AddDenied + "\nMode: " + Mode);
                 return true;
@@ -3348,7 +3348,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         
         private bool XuLySuaDetail(SortedDictionary<string, object> data)
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.EditDenied + " Mode: " + Mode);
                 return true;
@@ -3409,7 +3409,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private void XuLyXoaDetail()
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
                 return;
@@ -4763,7 +4763,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private void XoaChietKhau()
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 return;
             }
@@ -4832,6 +4832,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private void txtManx_Leave(object sender, EventArgs e)
         {
+            if (NotAddEdit) return;
+
             if (chkSuaTkThue.Checked)
             {
                 if (txtTkThueNo.Text.Trim() == "") txtTkThueNo.Text = txtManx.Text;
@@ -4861,7 +4863,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
-                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+                if (NotAddEdit) return;
 
                 var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMadvcs.Text.Trim();

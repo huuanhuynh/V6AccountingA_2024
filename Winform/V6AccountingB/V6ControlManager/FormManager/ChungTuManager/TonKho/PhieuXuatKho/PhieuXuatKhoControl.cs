@@ -569,7 +569,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
         private void CheckMaLoTon()
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+            if (NotAddEdit) return;
             if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
             if (!_maVt.LO_YN) return;
             //Fix Tuanmh 15/11/2017
@@ -749,7 +749,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
         private void CheckMaVitriTon()
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+            if (NotAddEdit) return;
             if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
             if (!_maVt.VITRI_YN) return;
 
@@ -2566,7 +2566,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             try
             {
                 ChungTu.ViewMoney(lblDocSoTien, txtTongTienNt.Value, _maNt);
-                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+                if (NotAddEdit) return;
                 //Tính tổng thanh toán.//con phan nt va tien viet chua ro rang.
             
                 HienThiTongSoDong(lblTongSoDong);
@@ -3868,7 +3868,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
         private bool XuLyThemDetail(SortedDictionary<string, object> data)
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.AddDenied + "\nMode: " + Mode);
                 return true;
@@ -3924,7 +3924,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         
         private bool XuLySuaDetail(SortedDictionary<string, object> data)
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.EditDenied + " Mode: " + Mode);
                 return true;
@@ -3985,7 +3985,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
         private void XuLyXoaDetail()
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
                 return;

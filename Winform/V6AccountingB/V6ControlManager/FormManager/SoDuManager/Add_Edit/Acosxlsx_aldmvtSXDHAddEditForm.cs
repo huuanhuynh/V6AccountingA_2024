@@ -24,7 +24,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public Acosxlsx_aldmvtSXDHAddEditForm()
         {
             InitializeComponent();
-            
             MyInit();
         }
 
@@ -389,7 +388,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private bool XuLyThemDetail(SortedDictionary<string, object> data)
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.AddDenied + "\nMode: " + Mode);
                 return true;
@@ -443,7 +442,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         
         private bool XuLySuaDetail(SortedDictionary<string, object> data)
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.EditDenied + " Mode: " + Mode);
                 return true;
@@ -498,7 +497,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void XuLyXoaDetail()
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
                 return;

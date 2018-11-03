@@ -2191,7 +2191,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             try
             {
                 ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
-                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+                if (NotAddEdit) return;
                 //Tính tổng thanh toán.//con phan nt va tien viet chua ro rang.
             
                 HienThiTongSoDong(lblTongSoDong);
@@ -2335,7 +2335,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             Txtma_nk.Text = Invoice.Alct["M_MA_NK"].ToString().Trim();
             TxtMa_gd.Text = "3";
             //
-            txtManx.Text = Invoice.Alct["TK_NO"].ToString().Trim();
+            txtManx.Text = Invoice.Alct["TK_CO"].ToString().Trim();
+            txtTkThueCo.Text = txtManx.Text;
             try
             {
                 cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
@@ -3668,7 +3669,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         private bool XuLyThemDetail(SortedDictionary<string, object> data)
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.AddDenied + "\nMode: " + Mode);
                 return true;
@@ -3726,7 +3727,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         
         private bool XuLySuaDetail(SortedDictionary<string, object> data)
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.EditDenied + " Mode: " + Mode);
                 return true;
@@ -3787,7 +3788,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         private void XuLyXoaDetail()
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
                 return;
@@ -4518,6 +4519,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         private void txtManx_Leave(object sender, EventArgs e)
         {
+            if (NotAddEdit) return;
+
             if (chkSuaTkThue.Checked)
             {
                 if (txtTkThueCo.Text.Trim() == "") txtTkThueCo.Text = txtManx.Text;

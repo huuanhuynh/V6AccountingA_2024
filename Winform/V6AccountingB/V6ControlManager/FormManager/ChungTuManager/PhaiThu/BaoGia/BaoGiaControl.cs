@@ -1803,7 +1803,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             try
             {
                 ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
-                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+                if (NotAddEdit) return;
                 //Tính tổng thanh toán.//Tính ck xong tính ttt lại.
             
                 HienThiTongSoDong(lblTongSoDong);
@@ -3294,7 +3294,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         private bool XuLyThemDetail(SortedDictionary<string, object> data)
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.AddDenied + "\nMode: " + Mode);
                 return true;
@@ -3350,7 +3350,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         
         private bool XuLySuaDetail(SortedDictionary<string, object> data)
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.EditDenied + " Mode: " + Mode);
                 return true;
@@ -3411,7 +3411,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         private void XuLyXoaDetail()
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
                 return;

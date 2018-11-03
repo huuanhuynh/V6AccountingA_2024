@@ -25,6 +25,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         protected string _table2Name, _table3Name, _table4Name, _table5Name;
         protected V6TableStruct _TableStruct;
         public V6Mode Mode = V6Mode.Add;
+        /// <summary>
+        /// Mode != V6Mode.Add && Mode != V6Mode.Edit
+        /// </summary>
+        public bool NotAddEdit
+        {
+            get
+            {
+                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return true;
+                return false;
+            }
+        }
         protected DataTable data3, data4, data5;
         /// <summary>
         /// Data đưa vào để edit.

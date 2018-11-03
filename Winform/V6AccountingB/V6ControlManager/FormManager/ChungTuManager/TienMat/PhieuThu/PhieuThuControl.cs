@@ -574,7 +574,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         }
         private bool XuLySuaDetail3(SortedDictionary<string, object> data)
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.EditDenied + " Mode: " + Mode);
                 return true;
@@ -636,7 +636,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         private bool XuLyThemDetail3(SortedDictionary<string, object> data)
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.AddDenied + "\nMode: " + Mode);
                 return true;
@@ -732,7 +732,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         }
         private void XuLyDeleteDetail3()
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
                 return;
@@ -1530,7 +1530,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             try
             {
                 ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
-                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+                if (NotAddEdit) return;
 
                 HienThiTongSoDong(lblTongSoDong);
                 //XuLyThayDoiTyGia();
@@ -3273,7 +3273,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         private bool XuLyThemDetail(SortedDictionary<string,object> dic)
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.AddDenied + "\nMode: " + Mode);
                 return true;
@@ -3346,7 +3346,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         
         private bool XuLySuaDetail(SortedDictionary<string, object> data)
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.EditDenied + " Mode: " + Mode);
                 return true;
@@ -3408,7 +3408,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         private void XuLyXoaDetail()
         {
-            if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
+            if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.EditDenied + " Mode: " + Mode);
                 return;

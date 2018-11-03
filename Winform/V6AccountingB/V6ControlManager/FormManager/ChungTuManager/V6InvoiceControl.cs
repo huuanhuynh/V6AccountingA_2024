@@ -201,6 +201,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        /// <summary>
+        /// Mode != V6Mode.Add && Mode != V6Mode.Edit
+        /// </summary>
+        public bool NotAddEdit
+        {
+            get
+            {
+                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return true;
+                return false;
+            }
+        }
+
         public event EventHandler BillChanged;
         /// <summary>
         /// Gây ra sự kiện để cập nhập thông tin lên button
