@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Data;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Linq;
 using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Init;
@@ -479,7 +480,12 @@ namespace V6Controls
 
         private void Do_CheckOnLeave(EventArgs e)
         {
-            if (F2 && Text.Contains(",")) return;
+            if (F2 && Text.Contains(","))
+            {
+                ExistRowInTableID(Text);
+                //var sss = ObjectAndString.SplitString(Text);
+                return;
+            }
 
             if (_checkOnLeave && !ReadOnly && Visible)
             {
@@ -736,14 +742,45 @@ namespace V6Controls
             }
             else if (Datas != null)
             {
-                string text = "";
+                //var delete_list = ObjectAndString.SplitString(Text).ToList();
+                //string new_text = Text.Length>0 ? "," + Text + "," : "";
+                //foreach (IDictionary<string, object> data in Datas)
+                //{
+                //    if (data != null && data.ContainsKey(LookupInfo_F_NAME.ToUpper()))
+                //    {
+                //        string ID = data[LookupInfo_F_NAME.ToUpper()].ToString().Trim();
+                //        delete_list.Remove(ID);
+                //        delete_list.Remove(ID);
+                //        delete_list.Remove(ID);
+                //        if (!new_text.Contains("," + ID + ","))
+                //        {
+                //            new_text = new_text + ID + ",";
+                //        }
+                //    }
+                //}
+
+                //foreach (string ID in delete_list)
+                //{
+                //    if (new_text.Contains("," + ID + ","))
+                //    {
+                //        new_text = new_text.Replace("," + ID, "");
+                //    }
+                //}
+
+                //if (new_text.StartsWith(",")) new_text = new_text.Substring(1);
+                //if (new_text.EndsWith(",")) new_text = new_text.Substring(0, new_text.Length-1);
+
+                var new_text = "";
                 foreach (IDictionary<string, object> data in Datas)
                 {
                     if (data != null && data.ContainsKey(LookupInfo_F_NAME.ToUpper()))
-                        text += "," + data[LookupInfo_F_NAME.ToUpper()].ToString().Trim();
+                    {
+                        string ID = data[LookupInfo_F_NAME.ToUpper()].ToString().Trim();
+                        new_text += "," + ID;
+                    }
                 }
-                if (text.Length > 0) text = text.Substring(1);
-                Text = text;
+                if (new_text.Length > 0) new_text = new_text.Substring(1);
+                Text = new_text;
                 _text_data = "";
             }
             else
