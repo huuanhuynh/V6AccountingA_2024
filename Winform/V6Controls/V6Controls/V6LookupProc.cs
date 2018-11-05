@@ -4,18 +4,16 @@ using System.Windows.Forms;
 using System.Data;
 using System.ComponentModel;
 using System.Data.SqlClient;
-using System.Linq;
 using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Init;
-using V6ReportControls;
 using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6Controls
 {
     /// <summary>
-    /// Lookup textBox, Dữ liệu khác với hiển thị.
+    /// Lookup textBox, Dữ liệu (value) khác với hiển thị (text). Khác với lookupTextBox, dữ liệu được tải bằng procedure.
     /// </summary>
     public class V6LookupProc : V6ColorTextBox
     {
@@ -255,7 +253,6 @@ namespace V6Controls
             try
             {
                 ExistRowInTableID(value);
-                //this.WriteToLog("V6LookupProc", "Chưa viết SetValue");
             }
             catch (Exception ex)
             {
@@ -297,14 +294,6 @@ namespace V6Controls
             }
         }
         
-        //[Description("Tên trường .")]
-        //[DefaultValue(null)]
-        //public string NameField
-        //{
-        //    get { return _name_field; }
-        //    set { _name_field = value; }
-        //}
-
         private string _initFilter;
         public string InitFilter
         {
@@ -368,51 +357,6 @@ namespace V6Controls
                     //Send Tab
                     SendKeys.Send("{TAB}");
                 }
-
-                //if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
-                //{
-                //    DoCharacterCasing();
-                //    if (_checkOnLeave && !ReadOnly && Visible)
-                //    {
-                //        if (Text.Trim() != "")
-                //        {
-                //            if (!string.IsNullOrEmpty(LookupInfo_F_NAME))
-                //            {
-                //                if (ExistRowInTable(Text.Trim()))
-                //                {
-                //                    if (!Looking && gotfocustext != Text) CallDoV6LostFocus();
-                //                    else CallDoV6LostFocusNoChange();
-                //                    if (e.KeyCode == Keys.Enter)
-                //                    {
-                //                        e.SuppressKeyPress = true;
-                //                        //SendKeys.Send("{TAB}");
-                //                    }
-                //                }
-                //                else
-                //                {
-                //                    DoLookup();
-                //                }
-
-                //            }
-                //        }
-                //        else if (_checkNotEmpty && !string.IsNullOrEmpty(LookupInfo_F_NAME))
-                //        {
-                //            DoLookup();
-                //        }
-                //        else
-                //        {
-                //            base.V6ColorTextBox_KeyDown(this, e);
-                //        }
-                //    }
-                //    else
-                //    {
-                //        if (e.KeyCode == Keys.Enter)
-                //        {
-                //            e.SuppressKeyPress = true;
-                //            //SendKeys.Send("{TAB}");
-                //        }
-                //    }
-                //}
                 else if (F5 && !ReadOnly && e.KeyCode == Keys.F5 && !string.IsNullOrEmpty(LookupInfo_F_NAME))
                 {
                     LoadAutoCompleteSource();
@@ -483,7 +427,6 @@ namespace V6Controls
             if (F2 && Text.Contains(","))
             {
                 ExistRowInTableID(Text);
-                //var sss = ObjectAndString.SplitString(Text);
                 return;
             }
 
@@ -689,8 +632,6 @@ namespace V6Controls
                     plist.Add(new SqlParameter("@advance", where));
                     var tbl = V6BusinessHelper.ExecuteProcedure(LookupInfo.TABLE_NAME, plist.ToArray()).Tables[0];
                     
-                    //tbl = V6BusinessHelper.Select(tableName, "*", ValueField + "=@id " + filter, "", "", plist0).Data;
-
                     if (tbl != null && tbl.Rows.Count == 1)
                     {
                         var oneRow = tbl.Rows[0];

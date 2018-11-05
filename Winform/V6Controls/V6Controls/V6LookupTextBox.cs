@@ -13,7 +13,7 @@ using V6Tools.V6Convert;
 namespace V6Controls
 {
     /// <summary>
-    /// Lookup textBox, Dữ liệu khác với hiển thị.
+    /// Lookup textBox, Dữ liệu (value) khác với hiển thị (text).
     /// </summary>
     public class V6LookupTextBox : V6ColorTextBox
     {
@@ -64,12 +64,12 @@ namespace V6Controls
         [DefaultValue(false)]
         [Description("Bật hiển thị tên khi vào.")]
         public bool ShowName { get { return _showName; } set { _showName = value; } }
-        
+
         private bool _f5 = true, _f2;
         private string _ma_dm = "";
         private string _text_data = "";
         private DataRow _data;
-        
+
         /// <summary>
         /// Dữ liệu liên quan khi chọn mã
         /// </summary>
@@ -92,6 +92,8 @@ namespace V6Controls
                 SetNeighborValues();
             }
         }
+
+        public List<IDictionary<string, object>> Datas;
 
         private AldmConfig _lki;
         public AldmConfig LookupInfo
@@ -116,7 +118,7 @@ namespace V6Controls
         [Description("Lọc start trong sql (like 'abc%'")]
         [DefaultValue(false)]
         public bool FilterStart { get; set; }
-        
+
         public void SetDataRow(DataRow data)
         {
             Data = data;
@@ -228,7 +230,21 @@ namespace V6Controls
         [Description("Dữ liệu theo valueField.")]
         public object Value
         {
-            get { return Data == null ? null : Data[ValueField]; }
+            get
+            {
+                if (Text.Contains(",") && Datas != null)
+                {
+                    string values = "";
+                    foreach (IDictionary<string, object> data in Datas)
+                    {
+                        values += Data == null ? null : "," + data[ValueField];
+                    }
+                    if (values.Length > 0) values = values.Substring(1);
+                    return values;
+                }
+
+                return Data == null ? null : Data[ValueField];
+            }
         }
 
         public void SetValue(object value)
@@ -236,7 +252,6 @@ namespace V6Controls
             try
             {
                 ExistRowInTableID(value);
-                //this.WriteToLog("V6LookupTextBox", "Chưa viết SetValue");
             }
             catch (Exception ex)
             {
@@ -277,14 +292,6 @@ namespace V6Controls
                 return null;
             }
         }
-        
-        //[Description("Tên trường .")]
-        //[DefaultValue(null)]
-        //public string NameField
-        //{
-        //    get { return _name_field; }
-        //    set { _name_field = value; }
-        //}
 
         private string _initFilter;
         public string InitFilter
@@ -333,7 +340,7 @@ namespace V6Controls
             }
             else
             {
-                if (e.KeyData == (Keys.Control|Keys.Q))
+                if (e.KeyData == (Keys.Control | Keys.Q))
                 {
                     V6ControlsHelper.DisableLookup = true;
                     SwitchAutoCompleteMode();
@@ -349,51 +356,6 @@ namespace V6Controls
                     //Send Tab
                     SendKeys.Send("{TAB}");
                 }
-
-                //if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
-                //{
-                //    DoCharacterCasing();
-                //    if (_checkOnLeave && !ReadOnly && Visible)
-                //    {
-                //        if (Text.Trim() != "")
-                //        {
-                //            if (!string.IsNullOrEmpty(LookupInfo_F_NAME))
-                //            {
-                //                if (ExistRowInTable(Text.Trim()))
-                //                {
-                //                    if (!Looking && gotfocustext != Text) CallDoV6LostFocus();
-                //                    else CallDoV6LostFocusNoChange();
-                //                    if (e.KeyCode == Keys.Enter)
-                //                    {
-                //                        e.SuppressKeyPress = true;
-                //                        //SendKeys.Send("{TAB}");
-                //                    }
-                //                }
-                //                else
-                //                {
-                //                    DoLookup();
-                //                }
-
-                //            }
-                //        }
-                //        else if (_checkNotEmpty && !string.IsNullOrEmpty(LookupInfo_F_NAME))
-                //        {
-                //            DoLookup();
-                //        }
-                //        else
-                //        {
-                //            base.V6ColorTextBox_KeyDown(this, e);
-                //        }
-                //    }
-                //    else
-                //    {
-                //        if (e.KeyCode == Keys.Enter)
-                //        {
-                //            e.SuppressKeyPress = true;
-                //            //SendKeys.Send("{TAB}");
-                //        }
-                //    }
-                //}
                 else if (F5 && !ReadOnly && e.KeyCode == Keys.F5 && !string.IsNullOrEmpty(LookupInfo_F_NAME))
                 {
                     LoadAutoCompleteSource();
@@ -461,6 +423,12 @@ namespace V6Controls
 
         private void Do_CheckOnLeave(EventArgs e)
         {
+            if (F2 && Text.Contains(","))
+            {
+                ExistRowInTableID(Text);
+                return;
+            }
+
             if (_checkOnLeave && !ReadOnly && Visible)
             {
                 if (Text.Trim() != "")
@@ -495,7 +463,7 @@ namespace V6Controls
                 ExistRowInTable(Text.Trim());
             }
         }
-        
+
         #endregion event
 
         protected AutoCompleteStringCollection auto1;
@@ -545,7 +513,7 @@ namespace V6Controls
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".LoadAutoCompleteSource" + LookupInfo.TABLE_NAME
-                    + string.Format(" LookupInfo:{0}, LookupInfo_F_NAME:{1}", LookupInfo==null?"null":"", LookupInfo_F_NAME??"null"), ex);
+                    + string.Format(" LookupInfo:{0}, LookupInfo_F_NAME:{1}", LookupInfo == null ? "null" : "", LookupInfo_F_NAME ?? "null"), ex);
                 V6ControlsHelper.DisableLookup = false;
             }
         }
@@ -632,7 +600,7 @@ namespace V6Controls
             }
             return false;
         }
-        
+
         private bool ExistRowInTableID(object id)
         {
             if (V6Setting.IsDesignTime) return false;
@@ -650,10 +618,25 @@ namespace V6Controls
                     };
                     var tbl = V6BusinessHelper.Select(tableName, "*", ValueField + "=@id " + filter, "", "", plist).Data;
 
-                    if (tbl != null && tbl.Rows.Count >= 1)
+                    if (tbl != null && tbl.Rows.Count == 1)
                     {
                         var oneRow = tbl.Rows[0];
                         _data = oneRow;
+                        Datas = null;
+                        FixText();
+                        V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
+                        SetNeighborValues();
+                        return true;
+                    }
+                    else if (tbl != null && tbl.Rows.Count > 1)
+                    {
+                        _data = null;
+                        List<IDictionary<string, object>> dataList = new List<IDictionary<string, object>>();
+                        foreach (DataRow row in tbl.Rows)
+                        {
+                            dataList.Add(row.ToDataDictionary());
+                        }
+                        Datas = dataList;
                         FixText();
                         V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
                         SetNeighborValues();
@@ -683,6 +666,21 @@ namespace V6Controls
             {
                 Text = Data[LookupInfo_F_NAME].ToString().Trim();
                 _text_data = Text;
+            }
+            else if (Datas != null)
+            {
+                var new_text = "";
+                foreach (IDictionary<string, object> data in Datas)
+                {
+                    if (data != null && data.ContainsKey(LookupInfo_F_NAME.ToUpper()))
+                    {
+                        string ID = data[LookupInfo_F_NAME.ToUpper()].ToString().Trim();
+                        new_text += "," + ID;
+                    }
+                }
+                if (new_text.Length > 0) new_text = new_text.Substring(1);
+                Text = new_text;
+                _text_data = "";
             }
             else
             {
@@ -789,7 +787,7 @@ namespace V6Controls
             }
         }
 
-        public IDictionary<string, object> ParentData {get; set; }
+        public IDictionary<string, object> ParentData { get; set; }
 
         /// <summary>
         /// Gán text bằng hàm này để xảy ra sự kiện V6LostFocus
