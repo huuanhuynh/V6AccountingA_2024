@@ -14,19 +14,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
         public CDH_HoaDonDichVuCoSLKetQua()
         {
             InitializeComponent();
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
         }
 
         public CDH_HoaDonDichVuCoSLKetQua(V6InvoiceBase invoice)
         {
             InitializeComponent();
             _invoice = invoice;
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
-        }
-
-        void dataGridView1_DataSourceChanged(object sender, EventArgs e)
-        {
-            CurrentIndex = -1;
         }
 
         public void SetAM(DataTable am)
@@ -60,7 +53,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
-            
+            Refresh0(dataGridView1);
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)

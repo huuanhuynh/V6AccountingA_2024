@@ -12,23 +12,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
         public LocKetQuaPhieuNhapMua()
         {
             InitializeComponent();
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
         }
         
         public LocKetQuaPhieuNhapMua(V6InvoiceBase invoice, DataTable AM, DataTable AD)
         {
             InitializeComponent();
             _invoice = invoice;
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
             MyInitBase(dataGridView1, dataGridView2, AM, AD);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3, _invoice.Mact);
-        }
-
-        void dataGridView1_DataSourceChanged(object sender, EventArgs e)
-        {
-            CurrentIndex = -1;
-            dataGridView2.DataSource = null;
-            dataGridView3.DataSource = null;
         }
 
         public void SetAM(DataTable am)
@@ -38,9 +29,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
 
         public void SetAD(DataTable ad, DataTable ad2)
         {
-            dataGridView2.DataSource = ad;
-
-            dataGridView3.DataSource = ad2;
+            dataGridView2.TableSource = ad.Copy();
+            dataGridView3.DataSource = ad2.Copy();
             FormatGridView3();
         }
         

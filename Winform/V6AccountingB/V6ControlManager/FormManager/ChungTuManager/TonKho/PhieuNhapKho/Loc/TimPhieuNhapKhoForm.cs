@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading;
@@ -76,9 +76,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc
         {
             _locKetQua.SetAM(tempAM);
             ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _formChungTu.Invoice.Mact, _formChungTu.MA_NT);
-            Refresh0();
-            _locKetQua.SetAD(_formChungTu.AD);
-
+            //Refresh0();
+            //_locKetQua.SetAD(_formChungTu.AD);
             ShowLocKetQua();
         }
         private void ShowLocKetQua()

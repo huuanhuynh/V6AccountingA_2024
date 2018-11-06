@@ -13,22 +13,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
         public LocKetQuaPhieuChi()
         {
             InitializeComponent();
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
         }
         
         public LocKetQuaPhieuChi(V6InvoiceBase invoice, DataTable AM, DataTable AD)
         {
             InitializeComponent();
             _invoice = invoice;
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
             MyInitBase(dataGridView1, dataGridView2, AM, AD);
         }
 
-        void dataGridView1_DataSourceChanged(object sender, EventArgs e)
-        {
-            CurrentIndex = -1;
-        }
-        
         public void SetAM(DataTable am)
         {
             dataGridView1.DataSource = am.Copy();
@@ -36,9 +29,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
         
         public void SetAD(DataTable ad, DataTable ad2, List<string> orderListAD2)
         {
-            dataGridView2.DataSource = ad;
-            
-            dataGridView3.DataSource = ad2;
+            dataGridView2.TableSource = ad.Copy();
+            dataGridView3.DataSource = ad2.Copy();
             FormatGridView3();
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView3, orderListAD2, 3);
         }

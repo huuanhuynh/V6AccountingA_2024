@@ -14,20 +14,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         public CPNKetQuaPhieuXuatTraLaiNCC()
         {
             InitializeComponent();
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
         }
         
         public CPNKetQuaPhieuXuatTraLaiNCC(V6InvoiceBase invoice)
         {
             InitializeComponent();
             _invoice = invoice;
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
             //MyInitBase(dataGridView1, null, AM, AD);
-        }
-
-        void dataGridView1_DataSourceChanged(object sender, EventArgs e)
-        {
-            CurrentIndex = -1;
         }
 
         public void SetAM(DataTable am)

@@ -72,9 +72,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             if (OnSelectAMRow != null)
             {
-                if (grid1.SelectedCells.Count > 0)
+                if (grid1.CurrentCell != null)
                 {
-                    var index = grid1.SelectedCells[0].RowIndex;
+                    var index = grid1.CurrentCell.RowIndex;
                     CurrentIndex = index;
                     
                     var ma_ct = grid1.Rows[index].Cells["Ma_ct"].Value.ToString();

@@ -17,7 +17,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
         public CPXKetQuaHangTraLai()
         {
             InitializeComponent();
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
         }
         
         public CPXKetQuaHangTraLai(V6InvoiceBase invoice, DataTable AM, DataTable AD)
@@ -26,7 +25,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             _ad = AD;
             _invoice = invoice;
             InitializeComponent();
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
             //MyInitBase(dataGridView1, null, AM, AD);//Bỏ qua vì không đúng AM, AD
         }
         

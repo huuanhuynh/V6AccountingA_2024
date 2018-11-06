@@ -14,20 +14,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNh
         public CPN_KetQua_HoaDon()
         {
             InitializeComponent();
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
         }
         
         public CPN_KetQua_HoaDon(V6InvoiceBase invoice)
         {
             InitializeComponent();
             _invoice = invoice;
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
             //MyInitBase(dataGridView1, null, AM, AD);
-        }
-
-        void dataGridView1_DataSourceChanged(object sender, EventArgs e)
-        {
-            CurrentIndex = -1;
         }
 
         public void SetAM(DataTable am)

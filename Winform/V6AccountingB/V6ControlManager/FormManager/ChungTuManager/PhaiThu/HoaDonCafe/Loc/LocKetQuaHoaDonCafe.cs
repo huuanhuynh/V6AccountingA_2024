@@ -10,14 +10,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
         public LocKetQuaHoaDonCafe()
         {
             InitializeComponent();
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
         }
         
         public LocKetQuaHoaDonCafe(V6InvoiceBase invoice, DataTable AM, DataTable AD)
         {
             InitializeComponent();
             _invoice = invoice;
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
             MyInitBase(dataGridView1, dataGridView2, AM, AD);
         }
         
@@ -34,7 +32,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
 
         public void SetAD(DataTable ad)
         {
-            dataGridView2.TableSource = ad;
+            dataGridView2.TableSource = ad.Copy();
         }
         
         

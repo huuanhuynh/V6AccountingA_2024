@@ -5,7 +5,6 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
-using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -20,7 +19,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
     {
         private readonly HoaDonCafeControl _formChungTu;
         private readonly V6Invoice83 _invoice;
-        private LocKetQuaHoaDon _locKetQua;
+        private LocKetQuaHoaDonCafe _locKetQua;
         //private bool __ready = false;
         private bool _viewMode;
         
@@ -74,7 +73,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
         {
             try
             {
-                _locKetQua =  new LocKetQuaHoaDon(_invoice, _formChungTu.AM, _formChungTu.AD)
+                _locKetQua =  new LocKetQuaHoaDonCafe(_invoice, _formChungTu.AM, _formChungTu.AD)
                 { Dock = DockStyle.Fill, Visible = false };
                 
                 panel1.Controls.Add(_locKetQua);
@@ -102,9 +101,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
         {
             _locKetQua.SetAM(tempAM);
             ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _formChungTu.Invoice.Mact, _formChungTu.MA_NT);
-            Refresh0();
-            _locKetQua.SetAD(_formChungTu.AD);
-
+            //Refresh0();
+            //_locKetQua.SetAD(_formChungTu.AD);
             ShowLocKetQua();
         }
 

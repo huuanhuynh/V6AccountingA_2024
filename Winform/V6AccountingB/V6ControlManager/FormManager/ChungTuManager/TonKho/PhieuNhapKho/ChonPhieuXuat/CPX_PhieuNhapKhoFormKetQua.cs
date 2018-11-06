@@ -14,19 +14,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPh
         public CPX_PhieuNhapKhoKetQua()
         {
             InitializeComponent();
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
         }
 
         public CPX_PhieuNhapKhoKetQua(V6InvoiceBase invoice)
         {
             InitializeComponent();
             _invoice = invoice;
-            dataGridView1.DataSourceChanged += dataGridView1_DataSourceChanged;
-        }
-
-        void dataGridView1_DataSourceChanged(object sender, EventArgs e)
-        {
-            CurrentIndex = -1;
         }
 
         public void SetAM(DataTable am)
@@ -34,7 +27,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPh
             dataGridView1.DataSource = am.Copy();
             FormatGridView();
         }
-
 
         private void FormatGridView()
         {
@@ -51,7 +43,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPh
                 }
 
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, grd_show, grd_format, grd_header);
-
             }
             catch (Exception ex)
             {
@@ -61,7 +52,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPh
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
-            
+            Refresh0(dataGridView1);
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
