@@ -12,6 +12,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public string MAU
         {
             get { return rTienViet.Checked ? "VN" : "FC"; }
+            set { rTienViet.Checked = value == "VN"; }
         }
 
         public AAPPR_SOA2()

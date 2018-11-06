@@ -203,11 +203,30 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         public string MAU
         {
             get { return rTienViet.Checked ? "VN" : "FC"; }
+            set { rTienViet.Checked = value == "VN"; }
         }
 
         public string LAN
         {
             get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : rBothLang.Checked ? "B" : V6Login.SelectedLanguage; }
+            set
+            {
+                switch (value)
+                {
+                    case "V":
+                        rTiengViet.Checked = true;
+                        break;
+                    case "E":
+                        rEnglish.Checked = true;
+                        break;
+                    case "B":
+                        rBothLang.Checked = true;
+                        break;
+                    default:
+                        rCurrent.Checked = true;
+                        break;
+                }
+            }
         }
 
         private DataRow MauInSelectedRow
@@ -1416,6 +1435,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     FilterControl.ReportTitle2F5??_reportTitle2F5,
                     (FilterControl.ReportFileF5 ?? _reportFileF5) + "F5",
                     "", "");
+                view.MAU = MAU;
+                view.LAN = LAN;
                 view.CodeForm = CodeForm;
                 view.Advance = FilterControl.Advance;
                 view.FilterControl.String1 = FilterControl.String1;

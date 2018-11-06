@@ -59,14 +59,33 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             }
         }
 
-        private string MAU
+        public string MAU
         {
             get { return rTienViet.Checked ? "VN" : "FC"; }
+            set { rTienViet.Checked = value == "VN"; }
         }
 
-        private string LAN
+        public string LAN
         {
             get { return rTiengViet.Checked ? "V" : rEnglish.Checked ? "E" : rBothLang.Checked ? "B" : V6Login.SelectedLanguage; }
+            set
+            {
+                switch (value)
+                {
+                    case "V":
+                        rTiengViet.Checked = true;
+                        break;
+                    case "E":
+                        rEnglish.Checked = true;
+                        break;
+                    case "B":
+                        rBothLang.Checked = true;
+                        break;
+                    default:
+                        rCurrent.Checked = true;
+                        break;
+                }
+            }
         }
 
         private DataRow MauInSelectedRow

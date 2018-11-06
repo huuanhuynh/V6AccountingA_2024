@@ -6065,7 +6065,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     }
                     detail1.ChangeToEditMode();
                     SetControlReadOnlyHide(detail1, Invoice, V6Mode.Edit);
-
+                    
                     _maVt.RefreshLoDateYnValue();
                     _maKhoI.RefreshLoDateYnValue();
                     XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
