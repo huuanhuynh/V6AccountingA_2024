@@ -1045,7 +1045,7 @@ namespace V6ControlManager.FormManager.SoDuManager
             }
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             LoadAD();
         }

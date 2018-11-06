@@ -161,7 +161,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txttong_ng = new V6Controls.V6NumberTextBox();
             this.label33 = new System.Windows.Forms.Label();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
-            this.gView1 = new V6Controls.V6ColorDataGridView();
+            this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.cMA_NV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT_REC = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -188,7 +188,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPageThongTinPhu.SuspendLayout();
             this.tabDetails.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabDetailPhuTung.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gView3)).BeginInit();
             this.tabDetailChiTietChiPhi.SuspendLayout();
@@ -2258,7 +2258,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabChiTiet.Controls.Add(this.txttong_ng);
             this.tabChiTiet.Controls.Add(this.label33);
             this.tabChiTiet.Controls.Add(this.detail1);
-            this.tabChiTiet.Controls.Add(this.gView1);
+            this.tabChiTiet.Controls.Add(this.dataGridView1);
             this.tabChiTiet.Location = new System.Drawing.Point(4, 25);
             this.tabChiTiet.Name = "tabChiTiet";
             this.tabChiTiet.Padding = new System.Windows.Forms.Padding(3);
@@ -2409,14 +2409,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // gView1
             // 
-            this.gView1.AllowUserToAddRows = false;
-            this.gView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.gView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.gView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2424,25 +2424,25 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.gView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cMA_NV,
             this.UID,
             this.STT_REC,
             this.STT_REC0});
-            this.gView1.Location = new System.Drawing.Point(2, 53);
-            this.gView1.MultiSelect = false;
-            this.gView1.Name = "gView1";
-            this.gView1.ReadOnly = true;
+            this.dataGridView1.Location = new System.Drawing.Point(2, 53);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.gView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.gView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gView1.Size = new System.Drawing.Size(887, 131);
-            this.gView1.TabIndex = 1;
-            this.gView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            this.gView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.gView2_ColumnAdded);
-            this.gView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(887, 131);
+            this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
+            this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.gView2_ColumnAdded);
+            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
             // cMA_NV
             // 
@@ -2725,7 +2725,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabDetails.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);
             this.tabChiTiet.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabDetailPhuTung.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gView3)).EndInit();
             this.tabDetailChiTietChiPhi.ResumeLayout(false);
@@ -2752,7 +2752,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.TabControl tabDetails;
         private System.Windows.Forms.TabPage tabChiTiet;
         private ChungTuManager.HD_Detail detail1;
-        private V6ColorDataGridView gView1;
+        private V6ColorDataGridView dataGridView1;
         private System.Windows.Forms.TabPage tabDetailPhuTung;
         private V6ColorTextBox txtTenTaiSan;
         private V6ColorTextBox txtMaTaiSan;

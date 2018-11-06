@@ -646,7 +646,7 @@ namespace V6ControlManager.FormManager.Map
             
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {

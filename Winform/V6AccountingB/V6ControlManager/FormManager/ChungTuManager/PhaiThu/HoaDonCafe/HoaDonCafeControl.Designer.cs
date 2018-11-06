@@ -378,10 +378,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.dataGridView1.Size = new System.Drawing.Size(875, 226);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.Tag = "cancelall;readonly";
-            this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
             // MA_VT
             // 

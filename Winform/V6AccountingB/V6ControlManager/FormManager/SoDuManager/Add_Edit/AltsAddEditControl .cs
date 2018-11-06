@@ -713,9 +713,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
                         AD = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist)
                             .Tables[0];
-                        gView1.DataSource = AD;
-                        gView1.HideColumnsAldm(_table2Name);
-                        gView1.SetCorplan2();
+                        dataGridView1.DataSource = AD;
+                        dataGridView1.HideColumnsAldm(_table2Name);
+                        dataGridView1.SetCorplan2();
                     }
 
                     //Data3
@@ -751,9 +751,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         SqlParameter[] plist = { new SqlParameter("@rec", sttRec) };
                         AD = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist)
                             .Tables[0];
-                        gView1.DataSource = AD;
-                        gView1.HideColumnsAldm(_table2Name);
-                        gView1.SetCorplan2();
+                        dataGridView1.DataSource = AD;
+                        dataGridView1.HideColumnsAldm(_table2Name);
+                        dataGridView1.SetCorplan2();
                     }
 
                     //Data3
@@ -858,12 +858,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     }
                     //Them du lieu chung
                     AD.Rows.Add(newRow);
-                    gView1.DataSource = AD;
+                    dataGridView1.DataSource = AD;
                     //TinhTongThanhToan(GetType() + "." + MethodBase.GetCurrentMethod().Name);
 
                     if (AD.Rows.Count > 0)
                     {
-                        gView1.Rows[AD.Rows.Count - 1].Selected = true;
+                        dataGridView1.Rows[AD.Rows.Count - 1].Selected = true;
                     }
                 }
                 else
@@ -1016,7 +1016,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                                     currentRow[key] = value;
                                 }
                             }
-                            gView1.DataSource = AD;
+                            dataGridView1.DataSource = AD;
                             //TinhTongThanhToan("xy ly sua detail");
                         }
                         else
@@ -1161,9 +1161,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             try
             {
-                if (gView1.CurrentRow != null)
+                if (dataGridView1.CurrentRow != null)
                 {
-                    var cIndex = gView1.CurrentRow.Index;
+                    var cIndex = dataGridView1.CurrentRow.Index;
                     if (cIndex >= 0 && cIndex < AD.Rows.Count)
                     {
                         var currentRow = AD.Rows[cIndex];
@@ -1172,7 +1172,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                             == DialogResult.Yes)
                         {
                             AD.Rows.Remove(currentRow);
-                            gView1.DataSource = AD;
+                            dataGridView1.DataSource = AD;
                             detail1.SetData(null);
                         }
                     }
@@ -1328,10 +1328,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             try
             {
-                if (AD != null && AD.Rows.Count > 0 && gView1.DataSource != null)
+                if (AD != null && AD.Rows.Count > 0 && dataGridView1.DataSource != null)
                 {
                     detail1.ChangeToEditMode();
-                    _sttRec0_11 = ChungTu.ViewSelectedDetailToDetailForm(gView1, detail1, out _gv1EditingRow);
+                    _sttRec0_11 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
                     
                     ma_nv.Focus();
                 }
@@ -1467,10 +1467,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 // ignored
             }
         }
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             if (detail1.IsViewOrLock)
-                detail1.SetData(gView1.CurrentRow.ToDataDictionary());
+            {
+                detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
+            }
         }
 
         private void detail3_AddHandle(SortedDictionary<string, object> data)

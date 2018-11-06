@@ -1241,11 +1241,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             txtMaDvcs.Focus();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             if (detail1.IsViewOrLock)
             {
-                detail1.SetData(dataGridView1.GetCurrentRowData());
+                detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
                 GetThongTinVt();
             }
         }

@@ -57,7 +57,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private int _oldIndex;
         //private string _oldSttrec;
         private bool _lockChange = false;
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             if (_lockChange) return;
             if (dataGridView1.CurrentRow != null && dataGridView1.CurrentRow.Index != _oldIndex)

@@ -1169,8 +1169,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridView1.Size = new System.Drawing.Size(883, 146);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.Tag = "cancelall";
-            this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
+            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
             // MA_VT
             // 

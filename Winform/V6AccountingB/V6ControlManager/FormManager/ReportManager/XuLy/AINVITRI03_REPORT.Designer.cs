@@ -107,7 +107,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(262, 343);
             this.dataGridView1.TabIndex = 5;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grid_KeyDown);
             // 
             // groupBox1

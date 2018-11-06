@@ -5794,7 +5794,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             if (ValidateData_Detail(data))
             {
-                if (XuLyThemDetail(data)) return;
+                if (XuLyThemDetail(data))
+                {
+                    return;
+                }
                 throw new Exception(V6Text.AddFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -5835,7 +5838,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             Huy();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             if (detail1.IsViewOrLock)
             {

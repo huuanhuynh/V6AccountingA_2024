@@ -44,7 +44,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView3, orderListAD2, 3);
         }
         
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             if (_cancel_SelectionChange)
             {

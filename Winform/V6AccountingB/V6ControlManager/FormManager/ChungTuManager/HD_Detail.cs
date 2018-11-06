@@ -172,6 +172,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 ClickHandle handler = ClickAdd;
                 if (handler != null) handler(this);
+
+                //Set Carry
+                V6ControlFormHelper.UseCarryValues(this);
             }
         }
 
@@ -193,7 +196,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 MODE = V6Mode.Add;
                 
                 //Set Carry
-                V6ControlFormHelper.UseCarryValues(this);
+                //V6ControlFormHelper.UseCarryValues(this);
             }
         }
         
@@ -251,6 +254,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public virtual void OnNhanClick()
         {
             if(!btnNhan.Focused) btnNhan.Focus();
+            //Carry values
+            V6ControlFormHelper.SetCarryValues(this);
+
             bool ok = false;
             var Old_mode = MODE;
             if (MODE == V6Mode.Add)
@@ -280,7 +286,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             if (ok)
             {
                 //Carry values
-                V6ControlFormHelper.SetCarryValues(this);
+                //V6ControlFormHelper.SetCarryValues(this);
                 //MODE = V6Mode.View;
                 btnMoi.Focus();
             }

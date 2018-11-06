@@ -1067,7 +1067,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// </summary>
         protected bool _Ctrl_U = true;
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             try
             {

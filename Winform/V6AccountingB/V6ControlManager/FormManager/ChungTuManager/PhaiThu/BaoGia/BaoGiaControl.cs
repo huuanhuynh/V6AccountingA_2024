@@ -3572,7 +3572,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             Huy();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             if (detail1.IsViewOrLock)
             {

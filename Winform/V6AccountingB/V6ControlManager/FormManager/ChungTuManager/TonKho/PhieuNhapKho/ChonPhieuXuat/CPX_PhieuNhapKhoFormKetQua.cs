@@ -59,7 +59,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPh
             }
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             
         }

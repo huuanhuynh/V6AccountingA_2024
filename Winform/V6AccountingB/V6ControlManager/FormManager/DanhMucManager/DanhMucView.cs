@@ -1887,7 +1887,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             return InitFilter;
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             
         }

@@ -5222,7 +5222,10 @@ namespace V6Controls.Forms
                         }
                     }
 
-                    if (temp_cell != null && temp_cell.Visible) gview.CurrentCell = temp_cell;
+                    if (temp_cell != null && temp_cell.Visible)
+                    {
+                        gview.CurrentCell = temp_cell;
+                    }
                 }
             }
             catch (Exception ex)

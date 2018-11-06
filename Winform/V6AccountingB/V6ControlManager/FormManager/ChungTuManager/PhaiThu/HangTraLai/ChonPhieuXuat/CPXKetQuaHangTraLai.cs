@@ -63,7 +63,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             }
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             //if (OnSelectAMRow != null)
             //{

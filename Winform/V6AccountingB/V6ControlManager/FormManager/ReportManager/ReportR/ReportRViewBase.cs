@@ -1816,12 +1816,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             SelectedRowData = dataGridView1.CurrentRow.ToDataDictionary();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridView1.CurrentRow != null && dataGridView1.CurrentRow.Index >= 0)
-            SelectedRowData = dataGridView1.CurrentRow.ToDataDictionary();
-        }
-
         private void panel1_Leave(object sender, EventArgs e)
         {
             btnNhan.Focus();
