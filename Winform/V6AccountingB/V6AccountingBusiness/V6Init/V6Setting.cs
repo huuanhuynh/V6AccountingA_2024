@@ -49,6 +49,10 @@ namespace V6Init
         {
             get { return V6Options.M_ROUND_NT; }
         }
+        public static int RoundSL
+        {
+            get { return V6Options.M_ROUND_SL; }
+        }
 
         public static int RoundTien
         {

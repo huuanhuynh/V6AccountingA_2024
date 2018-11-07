@@ -238,6 +238,15 @@ namespace V6Init
                 return Convert.ToInt32(GetValue("M_ROUND_NT"));
             }
         }
+        
+        public static int M_ROUND_SL
+        {
+            get
+            {
+                if (V6OptionValues == null) return 3;
+                return Convert.ToInt32(GetValue("M_ROUND_SL"));
+            }
+        }
 
         public static int M_ROUND_NT0
         {

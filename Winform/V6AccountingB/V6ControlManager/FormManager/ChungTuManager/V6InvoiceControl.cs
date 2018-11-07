@@ -57,6 +57,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 M_ROUND_NUM = V6Setting.RoundNum;
                 M_ROUND = V6Setting.RoundTien;
                 M_ROUND_NT = V6Setting.RoundTienNt;
+                M_ROUND_SL = V6Setting.RoundSL;
                 M_ROUND_GIA = V6Setting.RoundGia;
                 M_ROUND_GIA_NT = V6Setting.RoundGiaNt;
                 M_SOA_HT_KM_CK = V6Options.GetValue("M_SOA_HT_KM_CK");
@@ -162,6 +163,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         protected int M_ROUND_NUM;
         protected int M_ROUND;
         protected int M_ROUND_NT;
+        protected int M_ROUND_SL;
         protected int M_ROUND_GIA;
         protected int M_ROUND_GIA_NT;
         public string M_SOA_HT_KM_CK;
@@ -853,7 +855,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 if (M_CAL_SL_QD_ALL == "0")
                 {
                     //Phần nguyên, (ví dụ 1.5 thùng)
-                    _sl_qd.Value = _soLuong1.Value*_hs_qd1.Value;
+                    var sl_qd = _soLuong1.Value * _hs_qd1.Value;
+                    _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
                     //Phần lẻ (ví dụ 50 viên = 0.5 thùng bên trên)
                     var tong = _sl_qd.Value*_hs_qd2.Value;
                     var sl_nguyen_thung = ((int) _sl_qd.Value)*_hs_qd2.Value;

@@ -165,7 +165,7 @@ namespace V6Controls
             get
             {
                 decimal d;
-                decimal.TryParse(StringValue, out d);
+                decimal.TryParse(_stringValue, out d);
                 if (_isNegative) d = -d;
                 return d;
             }
