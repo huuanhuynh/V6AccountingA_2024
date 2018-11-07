@@ -1142,6 +1142,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 
                 if (config != null && config.HaveInfo)
                 {
+                    //Trường bắt buột nhập dữ liệu.
                     var a_fields = ObjectAndString.SplitString(config.A_field);
                     foreach (string field in a_fields)
                     {
@@ -1156,17 +1157,30 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         object value = data[FIELD];
                         if (ObjectAndString.IsDateTimeType(columnS.DataType))
                         {
-                            if (value == null) error += "Chưa nhập giá trị: [" + FIELD + "]\n";
+                            if (value == null) error += V6Text.NoInput + " [" + FIELD + "]\n";
                         }
                         else if (ObjectAndString.IsNumberType(columnS.DataType))
                         {
-                            if (ObjectAndString.ObjectToDecimal(value) == 0) error += "Chưa nhập giá trị: [" + FIELD + "]\n";
+                            if (ObjectAndString.ObjectToDecimal(value) == 0) error += V6Text.NoInput + " [" + FIELD + "]\n";
                         }
                         else // string
                         {
-                            if (string.IsNullOrEmpty("" + value)) error += "Chưa nhập giá trị: [" + FIELD + "]\n";
+                            if (("" + value).Trim() == "") error += V6Text.NoInput + " [" + FIELD + "]\n";
                         }
+                    }
 
+                    //Trường vvar
+                    var a_field2s = ObjectAndString.SplitString(config.A_field2);
+                    foreach (string field2 in a_field2s)
+                    {
+                        var vvar = GetControlByAccessibleName(field2) as V6VvarTextBox;
+                        if (vvar != null)
+                        {
+                            if (vvar.Data == null)
+                            {
+                                error += V6Text.Wrong + " [" + field2 + "]\n";
+                            }
+                        }
                     }
                 }
                 else
