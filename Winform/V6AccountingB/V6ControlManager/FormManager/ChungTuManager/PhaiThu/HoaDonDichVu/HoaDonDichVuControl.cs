@@ -2653,13 +2653,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     break;
             }
         }
-
         
-
         private void Huy()
         {
             try
             {
+                dataGridView1.UnLock();
                 if (Mode == V6Mode.Edit)
                 {
                     if (this.ShowConfirmMessage(V6Text.DiscardConfirm) == DialogResult.Yes)
@@ -2987,6 +2986,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         }
         private void HoaDonDichVuDetail1_EditHandle(SortedDictionary<string,object> data)
         {
+            dataGridView1.UnLock();
             if (ValidateData_Detail(data))
             {
                 if (XuLySuaDetail(data)) return;
@@ -3000,15 +3000,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         }
         private void HoaDonDichVuDetail1_ClickCancelEdit(object sender)
         {
+            dataGridView1.UnLock();
             detail1.SetData(_gv1EditingRow.ToDataDictionary());
         }
 
 #endregion hoadoen detail event
-
-        /// <summary>
-        /// Thêm chi tiết hóa đơn
-        /// </summary>
-        
 
         private void dateNgayCT_ValueChanged(object sender, EventArgs e)
         {
@@ -3153,6 +3149,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 if (AD != null && AD.Rows.Count > 0 && dataGridView1.DataSource != null)
                 {
                     _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+                    if (_gv1EditingRow == null)
+                    {
+                        this.ShowWarningMessage(V6Text.NoSelection);
+                        return;
+                    }
+                    dataGridView1.Lock();
                     detail1.ChangeToEditMode();
                     SetControlReadOnlyHide(detail1, Invoice, V6Mode.Edit);
                     

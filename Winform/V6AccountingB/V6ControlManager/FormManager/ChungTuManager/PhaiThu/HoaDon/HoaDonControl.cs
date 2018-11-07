@@ -2769,7 +2769,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 if (_maNt == _mMaNt0)
                 {
                     _tien2.Value = _tienNt2.Value;
-
                 }
 
                 TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt2, _pt_cki);
@@ -5411,6 +5410,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
+                dataGridView1.UnLock();
                 if (Mode == V6Mode.Edit)
                 {
                     if (this.ShowConfirmMessage(V6Text.DiscardConfirm) == DialogResult.Yes)
@@ -5582,10 +5582,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
             return true;
         }
-
         
-
-
         private bool XuLySuaDetail(SortedDictionary<string, object> data)
         {
             if (NotAddEdit)
@@ -5805,6 +5802,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void hoaDonDetail1_EditHandle(SortedDictionary<string,object> data)
         {
+            dataGridView1.UnLock();
             if (ValidateData_Detail(data))
             {
                 if (XuLySuaDetail(data)) return;
@@ -5818,15 +5816,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         }
         private void hoaDonDetail1_ClickCancelEdit(object sender)
         {
+            dataGridView1.UnLock();
             detail1.SetData(_gv1EditingRow.ToDataDictionary());
         }
 
         #endregion hoadoen detail event
-
-        /// <summary>
-        /// Thêm chi tiết hóa đơn
-        /// </summary>
-        
 
         private void dateNgayCT_ValueChanged(object sender, EventArgs e)
         {
@@ -6063,6 +6057,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         this.ShowWarningMessage(V6Text.NoSelection);
                         return;
                     }
+                    dataGridView1.Lock();
                     detail1.ChangeToEditMode();
                     SetControlReadOnlyHide(detail1, Invoice, V6Mode.Edit);
                     

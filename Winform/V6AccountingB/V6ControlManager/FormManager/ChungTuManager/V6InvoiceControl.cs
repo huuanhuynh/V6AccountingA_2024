@@ -876,7 +876,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 if (M_CAL_SL_QD_ALL == "1")
                 {
-                    _soLuong1.Value = _sl_qd.Value*_hs_qd1.Value;
+                    var soLuong1 = _sl_qd.Value*_hs_qd1.Value;
+                    _soLuong1.Value = V6BusinessHelper.Vround(soLuong1, M_ROUND_SL);
                 }
             }
             catch (Exception ex)

@@ -75,7 +75,23 @@ namespace V6Controls
             //this.WriteExLog(GetType() + ".OnDataError", e.Exception);
             V6ControlFormHelper.AddLastError(GetType() + ".OnDataError " + e.Exception.Message);
         }
-        
+
+        /// <summary>
+        /// Khóa sự kiện.
+        /// </summary>
+        private bool LockGridView = false;
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            if (LockGridView) return;
+            base.OnMouseDown(e);
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            if (LockGridView) e.Handled = true;
+            base.OnKeyDown(e);
+        }
+
         void V6ColorDataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             var textBox = e.Control as TextBox;
@@ -1299,6 +1315,15 @@ namespace V6Controls
                     column.Frozen = false;
                 }
             }
+        }
+
+        public void Lock()
+        {
+            LockGridView = true;
+        }
+        public void UnLock()
+        {
+            LockGridView = false;
         }
     }
 }

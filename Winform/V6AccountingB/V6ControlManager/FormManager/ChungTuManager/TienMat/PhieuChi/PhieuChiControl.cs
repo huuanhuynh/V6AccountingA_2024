@@ -3475,6 +3475,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             try
             {
+                dataGridView1.UnLock();
                 if (Mode == V6Mode.Edit)
                 {
                     if (this.ShowConfirmMessage(V6Text.DiscardConfirm) == DialogResult.Yes)
@@ -4112,6 +4113,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void hoaDonDetail1_EditHandle(SortedDictionary<string, object> data)
         {
+            dataGridView1.UnLock();
             if (ValidateData_Detail(data))
             {
                 if (XuLySuaDetail(data)) return;
@@ -4125,6 +4127,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         }
         private void phieuThuDetail1_ClickCancelEdit(object sender)
         {
+            dataGridView1.UnLock();
             detail1.SetData(_gv1EditingRow.ToDataDictionary());
         }
 
@@ -4312,7 +4315,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         this.ShowWarningMessage(V6Text.NoSelection);
                         return;
                     }
-
+                    dataGridView1.Lock();
                     detail1.ChangeToEditMode();
                     SetControlReadOnlyHide(detail1, Invoice, V6Mode.Edit);
 
