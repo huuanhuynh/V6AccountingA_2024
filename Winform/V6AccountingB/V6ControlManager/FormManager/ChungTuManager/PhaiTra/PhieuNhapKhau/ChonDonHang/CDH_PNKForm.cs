@@ -55,9 +55,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Chon
         private void MyInit()
         {
             InitTuyChon();
-            _locKetQua =  new CDH_PNKKetQua(Invoice)
-            { Dock = DockStyle.Fill, Visible = false };
-            panel1.Controls.Add(_locKetQua);
+            InitLocKetQua();
 
             //locThongTin1.CreateDynamicFilter(_HangTraLaiForm.Invoice.AMStruct, _HangTraLaiForm.Invoice.ADV_AM);
             panelFilter1.AddMultiFilterLine(Invoice.AMStruct, Invoice.ADV_AM);
@@ -74,6 +72,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Chon
             v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
             v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
             Ready();
+        }
+
+        private void InitLocKetQua()
+        {
+            try
+            {
+                _locKetQua = new CDH_PNKKetQua(Invoice)
+                {Dock = DockStyle.Fill, Visible = false};
+                panel1.Controls.Add(_locKetQua);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".InitLocKetQua", ex);
+            }
         }
 
         private void InitTuyChon()

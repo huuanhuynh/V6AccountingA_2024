@@ -48,15 +48,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc
         private void MyInit()
         {
             InitTuyChon();
-            _locKetQua =  new LocKetQuaPhieuNhapKho(_formChungTu.Invoice, _formChungTu.AM, _formChungTu.AD)
-            {Dock = DockStyle.Fill, Visible = false};
-            panel1.Controls.Add(_locKetQua);
+            InitLocKetQua();
 
             locThongTin1.CreateDynamicFilter(_formChungTu.Invoice.AMStruct, _formChungTu.Invoice.ADV_AM);
             locThongTinChiTiet1.CreateDynamicFilter2(_formChungTu.Invoice.ADStruct, _formChungTu.Invoice.ADV_AD);
-            
-            _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
-            _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+        }
+
+        private void InitLocKetQua()
+        {
+            try
+            {
+                _locKetQua = new LocKetQuaPhieuNhapKho(_formChungTu.Invoice, _formChungTu.AM, _formChungTu.AD)
+                {Dock = DockStyle.Fill, Visible = false};
+                panel1.Controls.Add(_locKetQua);
+                _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
+                _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".InitLocKetQua", ex);
+            }
         }
 
         void locKetQua_OnSelectAMRow(int index, string mact, string sttrec, decimal ttt_nt, decimal ttt, string mant)

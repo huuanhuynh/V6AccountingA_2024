@@ -79,7 +79,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".InitLocKetQua: " + ex.Message);
+                this.WriteExLog(GetType() + ".InitLocKetQua", ex);
             }
         }
 

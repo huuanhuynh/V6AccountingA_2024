@@ -80,7 +80,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".InitLocKetQua: " + ex.Message);
+                this.WriteExLog(GetType() + ".InitLocKetQua", ex);
             }
         }
 

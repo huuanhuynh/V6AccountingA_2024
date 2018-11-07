@@ -61,8 +61,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
 
         private void InitLocKetQua()
         {
-            _locKetQua = new LocKetQuaPhieuNhapMua(_formChungTu.Invoice, _formChungTu.AM, _formChungTu.AD) { Dock = DockStyle.Fill, Visible = false };
-            panel1.Controls.Add(_locKetQua);
+            try
+            {
+                _locKetQua = new LocKetQuaPhieuNhapMua(_formChungTu.Invoice, _formChungTu.AM, _formChungTu.AD)
+                {
+                    Dock = DockStyle.Fill,
+                    Visible = false
+                };
+                panel1.Controls.Add(_locKetQua);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".InitLocKetQua", ex);
+            }
         }
 
 

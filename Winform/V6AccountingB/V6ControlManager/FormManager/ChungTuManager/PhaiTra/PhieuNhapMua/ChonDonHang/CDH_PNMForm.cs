@@ -58,22 +58,31 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
         private void MyInit()
         {
             InitTuyChon();
-            _locKetQua =  new CDH_PNMKetQua(Invoice)
-            { Dock = DockStyle.Fill, Visible = false };
-            panel1.Controls.Add(_locKetQua);
+            InitLocKetQua();
 
             panelFilter1.AddMultiFilterLine(Invoice.AMStruct, Invoice.ADV_AM);
             panelFilter2.AddMultiFilterLine(Invoice.ADStruct, Invoice.ADV_AD);
-
             maKhach.Text = _ma_kh;
             txtMaDVCS.Text = _ma_dvcs;
-
-            //_locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
-            _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
-
             v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
             v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
             Ready();
+        }
+
+        private void InitLocKetQua()
+        {
+            try
+            {
+                _locKetQua = new CDH_PNMKetQua(Invoice)
+                {Dock = DockStyle.Fill, Visible = false};
+                panel1.Controls.Add(_locKetQua);
+                //_locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
+                _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".InitLocKetQua", ex);
+            }
         }
 
         private void InitTuyChon()

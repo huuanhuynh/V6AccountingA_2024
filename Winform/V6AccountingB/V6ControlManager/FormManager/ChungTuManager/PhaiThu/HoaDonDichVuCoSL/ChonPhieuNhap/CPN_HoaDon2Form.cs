@@ -57,18 +57,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
         private void MyInit()
         {
             InitTuyChon();
-            _locKetQua =  new CPN_KetQua_HoaDonDichVuCoSL(Invoice)
-            { Dock = DockStyle.Fill, Visible = false };
-            panel1.Controls.Add(_locKetQua);
+            InitLocKetQua();
 
             locThongTin1.CreateDynamicFilter(Invoice.AMStruct, Invoice.ADV_AM);
             locThongTinChiTiet1.CreateDynamicFilter2(Invoice.ADStruct, Invoice.ADV_AD);
-
             locThongTin1.maKhach.Text = _ma_kh;
             txtMaDVCS.Text = _ma_dvcs;
-
-            _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+            
             Ready();
+        }
+
+        private void InitLocKetQua()
+        {
+            try
+            {
+                _locKetQua = new CPN_KetQua_HoaDonDichVuCoSL(Invoice)
+                {Dock = DockStyle.Fill, Visible = false};
+                panel1.Controls.Add(_locKetQua);
+                _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".InitLocKetQua", ex);
+            }
         }
 
         private void SetValueAndShowLocKetQua()

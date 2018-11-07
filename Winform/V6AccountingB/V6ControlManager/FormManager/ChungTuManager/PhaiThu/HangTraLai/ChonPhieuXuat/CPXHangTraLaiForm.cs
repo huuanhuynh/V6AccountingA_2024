@@ -53,18 +53,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
         private void MyInit()
         {
             InitTuyChon();
-
-            _locKetQua =  new CPXKetQuaHangTraLai(_HangTraLaiForm.Invoice, _HangTraLaiForm.AM, _HangTraLaiForm.AD)
-            { Dock = DockStyle.Fill, Visible = false };
-            panel1.Controls.Add(_locKetQua);
+            InitLocKetQua();
 
             locThongTin1.CreateDynamicFilter(_HangTraLaiForm.Invoice.AMStruct, _HangTraLaiForm.Invoice.ADV_AM);
             locThongTinChiTiet1.CreateDynamicFilter2(_HangTraLaiForm.Invoice.ADStruct, _HangTraLaiForm.Invoice.ADV_AD);
 
             locThongTin1.maKhach.Text = _ma_kh;
             txtMaDVCS.Text = _ma_dvcs;
+        }
 
-            _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+        private void InitLocKetQua()
+        {
+            try
+            {
+                _locKetQua = new CPXKetQuaHangTraLai(_HangTraLaiForm.Invoice, _HangTraLaiForm.AM, _HangTraLaiForm.AD)
+                {Dock = DockStyle.Fill, Visible = false};
+                panel1.Controls.Add(_locKetQua);
+                _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".InitLocKetQua", ex);
+            }
         }
 
         private void SetValueAndShowLocKetQua()

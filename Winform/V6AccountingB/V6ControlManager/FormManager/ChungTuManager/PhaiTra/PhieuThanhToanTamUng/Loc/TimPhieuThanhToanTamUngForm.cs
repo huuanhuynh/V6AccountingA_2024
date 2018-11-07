@@ -61,12 +61,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         {
             try
             {
-                _locKetQua = new LocKetQuaPhieuThanhToanTamUng(_formChungTu.Invoice, _formChungTu.AM, _formChungTu.AD) { Dock = DockStyle.Fill, Visible = false };
+                _locKetQua = new LocKetQuaPhieuThanhToanTamUng(_formChungTu.Invoice, _formChungTu.AM, _formChungTu.AD)
+                {
+                    Dock = DockStyle.Fill,
+                    Visible = false
+                };
                 panel1.Controls.Add(_locKetQua);
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".InitLocKetQua: " + ex.Message);
+                this.WriteExLog(GetType() + ".InitLocKetQua", ex);
             }
         }
 

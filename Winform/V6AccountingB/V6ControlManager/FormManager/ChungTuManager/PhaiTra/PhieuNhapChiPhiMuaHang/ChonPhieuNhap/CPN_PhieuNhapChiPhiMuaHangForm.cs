@@ -57,15 +57,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
         private void MyInit()
         {
-            _locKetQua =  new CPNKetQuaPhieuNhapMua(_hoaDonForm.Invoice, _hoaDonForm.AM, _hoaDonForm.AD)
-            {Dock = DockStyle.Fill, Visible = false};
-            panel1.Controls.Add(_locKetQua);
+            InitLocKetQua();
             _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
             _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
             _locKetQua.MultiSelect = _multiSelect;
 
             v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
             v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
+        }
+
+        private void InitLocKetQua()
+        {
+            try
+            {
+                _locKetQua = new CPNKetQuaPhieuNhapMua(_hoaDonForm.Invoice, _hoaDonForm.AM, _hoaDonForm.AD)
+                {Dock = DockStyle.Fill, Visible = false};
+                panel1.Controls.Add(_locKetQua);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".InitLocKetQua", ex);
+            }
         }
 
         void locKetQua_OnSelectAMRow(int index, string mact, string sttrec, decimal ttt_nt, decimal ttt, string mant)
