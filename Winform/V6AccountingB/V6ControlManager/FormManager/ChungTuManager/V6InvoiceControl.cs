@@ -868,6 +868,27 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi_0 " + _sttRec, ex);
             }
         }
+        protected void TinhSoluongQuyDoi_2(V6NumberTextBox _soLuong1
+            , V6NumberTextBox _sl_qd, V6NumberTextBox _sl_qd2
+            , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2)
+        {
+            try
+            {
+                if (M_CAL_SL_QD_ALL == "2")
+                {
+                    //Quy đổi chia
+                    if (_hs_qd1.Value != 0)
+                    {
+                        var sl_qd = _soLuong1.Value/_hs_qd1.Value;
+                        _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi_0 " + _sttRec, ex);
+            }
+        }
         protected void TinhSoluongQuyDoi_1(V6NumberTextBox _soLuong1
             , V6NumberTextBox _sl_qd, V6NumberTextBox _sl_qd2
             , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2)

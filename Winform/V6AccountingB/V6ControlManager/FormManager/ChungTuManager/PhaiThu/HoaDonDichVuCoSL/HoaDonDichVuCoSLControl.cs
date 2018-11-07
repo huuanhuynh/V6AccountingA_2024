@@ -376,6 +376,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                                     _soLuong.Value = _soLuong1.Value * _heSo1.Value;
                                     TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
                                 }
+                                else if (M_CAL_SL_QD_ALL == "2")
+                                {
+                                    _soLuong.Value = _soLuong1.Value * _heSo1.Value;
+                                    TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                }
                             }
                         };
                         break;
@@ -2787,6 +2792,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             try
             {
                 if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
                 var so_ngay = _soNgay == null ? 1m : _soNgay.Value;
                 if (so_ngay == 0) so_ngay = 1;
