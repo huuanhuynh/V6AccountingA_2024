@@ -12,6 +12,7 @@ using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
@@ -252,8 +253,31 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-
                     result = MauInSelectedRow["GRDHE_V2"].ToString().Trim();
+                }
+                return result;
+            }
+        }
+        private string Report_GRDT_V1
+        {
+            get
+            {
+                var result = "";
+                if (MauInData != null && MauInData.Rows.Count > 0)
+                {
+                    result = MauInSelectedRow["GRDT_V1"].ToString().Trim();
+                }
+                return result;
+            }
+        }
+        private string Report_GRDT_V2
+        {
+            get
+            {
+                var result = "";
+                if (MauInData != null && MauInData.Rows.Count > 0)
+                {
+                    result = MauInSelectedRow["GRDT_V2"].ToString().Trim();
                 }
                 return result;
             }
@@ -345,7 +369,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (!ViewDetail) dataGridView1.Height = Height - 10;
+                if (!ViewDetail) dataGridView1.Height = Height - 30;
                 dataGridView1.Width = Width - dataGridView1.Left - 3;
                 dataGridView2.Width = dataGridView1.Width;
             }
@@ -367,7 +391,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 dataGridView2.Height = Height/2 - 10;
                 dataGridView2.Top = Height / 2 + 10;
                 dataGridView2.Visible = true;
-                dataGridView1.Height = Height / 2;
+                dataGridView1.Height = Height / 2 - 20;
             }
             catch (Exception)
             {
@@ -380,8 +404,29 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             LoadDefaultData(4, "", _program, m_itemId, "");
             LoadTag(4, "", _program, m_itemId, "");
             InvokeFormEvent(FormDynamicEvent.INIT2);
+            GetSumCondition();
         }
 
+        private void GetSumCondition()
+        {
+            try
+            {
+                gridViewSummary1.NoSumColumns = Report_GRDT_V1;
+                if (MauInSelectedRow != null)
+                {
+                    gridViewSummary1.SumCondition = new Condition()
+                    {
+                        FIELD = MauInSelectedRow["FIELD_S"].ToString().Trim(),
+                        OPER = MauInSelectedRow["OPER_S"].ToString().Trim(),
+                        VALUE = MauInSelectedRow["VALUE_S"].ToString().Trim()
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GetSumCondition", ex);
+            }
+        }
         
         public FilterBase FilterControl { get; set; }
         protected void AddFilterControl(string program)

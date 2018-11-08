@@ -748,6 +748,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
+                gridViewSummary1.NoSumColumns = Report_GRDT_V1;
                 if (MauInSelectedRow != null)
                 {
                     gridViewSummary1.SumCondition = new Condition()
@@ -1322,7 +1323,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     Print(PrinterName);
                     Dispose();
                 }
-                gridViewSummary1.NoSumColumns = Report_GRDT_V1;
+                
                 dataGridView1.Focus();
             }
             catch (Exception ex)

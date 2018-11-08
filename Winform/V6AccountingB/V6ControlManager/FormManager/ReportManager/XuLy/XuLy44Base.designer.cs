@@ -48,6 +48,7 @@
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
+            this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -106,7 +107,7 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(662, 642);
+            this.dataGridView1.Size = new System.Drawing.Size(662, 625);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_DataSourceChanged);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
@@ -223,10 +224,21 @@
             this.btnThemMauBC.UseVisualStyleBackColor = true;
             this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
             // 
+            // gridViewSummary1
+            // 
+            this.gridViewSummary1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridViewSummary1.DataGridView = this.dataGridView1;
+            this.gridViewSummary1.Location = new System.Drawing.Point(307, 628);
+            this.gridViewSummary1.Name = "gridViewSummary1";
+            this.gridViewSummary1.Size = new System.Drawing.Size(662, 23);
+            this.gridViewSummary1.SumCondition = null;
+            this.gridViewSummary1.TabIndex = 0;
+            // 
             // XuLy44Base
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gridViewSummary1);
             this.Controls.Add(this.btnThemMauBC);
             this.Controls.Add(this.btnSuaTTMauBC);
             this.Controls.Add(this.btnHuy);
@@ -263,6 +275,7 @@
         protected V6Controls.V6ColorDataGridView dataGridView2;
         private V6Controls.Controls.V6FormButton btnSuaTTMauBC;
         private V6Controls.Controls.V6FormButton btnThemMauBC;
+        private V6Controls.Controls.GridViewSummary gridViewSummary1;
 
 
 
