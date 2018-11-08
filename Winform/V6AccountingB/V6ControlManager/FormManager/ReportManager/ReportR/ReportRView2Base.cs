@@ -948,7 +948,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
                         object VALUEV;
                         V6BusinessHelper.GetFormatGridView(CodeForm.Substring(1), "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);
-                        V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", Color.FromName(COLORV));
+                        V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", ObjectAndString.StringToColor(COLORV));
                     }
                     catch
                     {

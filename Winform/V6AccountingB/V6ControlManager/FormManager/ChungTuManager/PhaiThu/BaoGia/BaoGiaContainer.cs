@@ -9,6 +9,7 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 {
@@ -148,7 +149,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     var color_name = row["ColorV"].ToString().Trim();
                     if (color_name != "")
                     {
-                        var color = Color.FromName(color_name);
+                        var color = ObjectAndString.StringToColor(color_name);
                         colorList[kieu_post] = color;
                     }
                 }

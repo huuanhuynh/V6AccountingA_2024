@@ -799,6 +799,9 @@ namespace HuuanTetris
                     if (timer1.Enabled) timer1.Stop();
                     else timer1.Start();
                     break;
+                case Keys.Escape:
+                    Dispose();
+                    break;
                 default:
                     break;
             }

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Data;
 using System.Threading;
 using System.Windows.Forms;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Controls.Label
 {
@@ -44,6 +46,7 @@ namespace V6Controls.Controls.Label
             }
         }
 
+        
         private void ShowControlInfo()
         {
             try
@@ -52,11 +55,11 @@ namespace V6Controls.Controls.Label
                 listView1.Items.Add(new ListViewItem(new[] {V6Setting.IsVietnamese ? "Thiết kế" : "Design text", _label.Text}));
                 listView1.Items.Add(new ListViewItem(new[] {"AccessibleDescription", _label.AccessibleDescription}));
 
-                var row = CorpLan.GetRow(_label.AccessibleDescription);
+                row = CorpLan.GetRow(_label.AccessibleDescription);
                 if (row != null)
                 {
                     listView1.Items.Add(new ListViewItem(new[] {"DefaultText", row["D"].ToString()}));
-                    listView1.Items.Add(new ListViewItem(new[] {"VietText", row["V"].ToString()}));
+                    listView1.Items.Add(new ListViewItem(new[] { "VietText", string.Format("{0} ({1})", row["V"], ObjectAndString.ObjectToBool(row["CHANGE_V"]) ? "✓" : "  ") }));
                     listView1.Items.Add(new ListViewItem(new[] {"EngText", row["E"].ToString()}));
                     if(row.Table.Columns.Contains(V6Setting.Language))
                     listView1.Items.Add(new ListViewItem(new[] {"SelectedLang", row[V6Setting.Language].ToString()}));
@@ -64,6 +67,10 @@ namespace V6Controls.Controls.Label
                 else
                 {
                     listView1.Items.Add(new ListViewItem(new[] { "Error", "No CorpLan info." }));
+
+                    var parent = V6ControlFormHelper.FindParent<V6Control>(_label) ?? V6ControlFormHelper.FindParent<V6Form>(_label);
+                    this.WriteToLog((parent == null ? "" : parent.GetType() + ".") + _label.Name,
+                        "No CorpLan info: " + _label.AccessibleDescription);
                 }
             }
             catch (Exception ex)
@@ -76,13 +83,29 @@ namespace V6Controls.Controls.Label
         {
             try
             {
-                _label.Text = NewText;
-                updateText = NewText;
-                change_v = checkBox1.Checked ? "1" : "0";
-                updateId = _label.AccessibleDescription;
-                var T = new Thread(UpdateDatabase);
-                T.IsBackground = true;
-                T.Start();
+                if (row != null)
+                {
+                    change_v = checkBox1.Checked ? "1" : "0";
+                    updateText = NewText;
+                    updateId = _label.AccessibleDescription;
+
+                    if (V6Setting.IsVietnamese && !checkBox1.Checked)
+                    {
+                        _label.Text = row["V"].ToString();
+                    }
+                    else
+                    {
+                        _label.Text = updateText;
+                    }
+                    
+                    var T = new Thread(UpdateDatabase);
+                    T.IsBackground = true;
+                    T.Start();
+                }
+                else
+                {
+                    
+                }
             }
             catch (Exception ex)
             {
@@ -90,6 +113,7 @@ namespace V6Controls.Controls.Label
             }
         }
 
+        private DataRow row;
         private string updateText, updateId, change_v;
 
 

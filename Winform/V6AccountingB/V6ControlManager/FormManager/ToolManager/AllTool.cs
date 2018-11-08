@@ -50,11 +50,7 @@ namespace V6ControlManager.FormManager.ToolManager
 
         public override void V6F3Execute()
         {
-            if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
-            {
-                V6ControlFormHelper.ShowMainMessage("V6 Confirm ......OK....");
-                grbTools.Visible = true;
-            }
+            grbTools.Visible = true;
         }
 
         private void btnTestInvoice_Click(object sender, EventArgs e)
@@ -229,6 +225,20 @@ namespace V6ControlManager.FormManager.ToolManager
             catch (Exception ex)
             {
                 this.ShowErrorException("AllTool.SendToV6", ex);
+            }
+        }
+
+        private void btnQuayRa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var p = Parent;
+                Dispose();
+                if (p is Form) p.Dispose();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".Close " + ex.Message);
             }
         }
 

@@ -382,8 +382,9 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 {
                     V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, aldm_config.GRDS_V1, aldm_config.GRDF_V1,
                         V6Setting.IsVietnamese ? aldm_config.GRDHV_V1 : aldm_config.GRDHE_V1);
-                    V6ControlFormHelper.FormatGridView(dataGridView1, aldm_config.FIELDV, aldm_config.OPERV, aldm_config.VALUEV, aldm_config.BOLD_YN,
-                        aldm_config.COLOR_YN, Color.FromName(aldm_config.COLORV));
+                    var conditionColor = ObjectAndString.StringToColor(aldm_config.COLORV);
+                    V6ControlFormHelper.FormatGridView(dataGridView1, aldm_config.FIELDV, aldm_config.OPERV, aldm_config.VALUEV,
+                        aldm_config.BOLD_YN, aldm_config.COLOR_YN, conditionColor);
 
                     int frozen = ObjectAndString.ObjectToInt(aldm_config.FROZENV);
                     dataGridView1.SetFrozen(frozen);
@@ -394,8 +395,9 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     string formatStrings = v6lookup_config.GRDF_V1;
                     string headerString = V6Setting.IsVietnamese ? v6lookup_config.GRDHV_V1 : v6lookup_config.GRDHE_V1;
                     V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
-                    V6ControlFormHelper.FormatGridView(dataGridView1, v6lookup_config.FIELDV, v6lookup_config.OPERV, v6lookup_config.VALUEV, v6lookup_config.BOLD_YN,
-                        v6lookup_config.COLOR_YN, Color.FromName(v6lookup_config.COLORV));
+                    var conditionColor = ObjectAndString.StringToColor(v6lookup_config.COLORV);
+                    V6ControlFormHelper.FormatGridView(dataGridView1, v6lookup_config.FIELDV, v6lookup_config.OPERV, v6lookup_config.VALUEV,
+                        v6lookup_config.BOLD_YN, v6lookup_config.COLOR_YN, conditionColor);
 
                     int frozen = ObjectAndString.ObjectToInt(v6lookup_config.FROZENV);
                     dataGridView1.SetFrozen(frozen);

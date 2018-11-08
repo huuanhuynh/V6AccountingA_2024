@@ -513,7 +513,7 @@ namespace V6AccountingB
                     var sss = ObjectAndString.SplitString(colorRGB);
                     if (sss.Length >= 3)
                     {
-                        color = ObjectAndString.RGBStringToColor(colorRGB);
+                        color = ObjectAndString.StringToColor(colorRGB);
                     }
                     lblV6Message.ForeColor = color;
                     lblV6Message.Text = (row["Mess1"] ?? "").ToString().Trim()

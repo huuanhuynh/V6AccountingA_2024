@@ -365,7 +365,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     out COLOR_YN, out COLORV);
                 //Color.MediumAquamarine
                 V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1",
-                    Color.FromName(COLORV));
+                    ObjectAndString.StringToColor(COLORV));
 
                 DataGridViewCell cell = null;
                 if (dataGridView1.RowCount > 0)

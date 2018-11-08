@@ -1672,23 +1672,13 @@ namespace V6Controls.Forms
         {
             try
             {
-                var tagString = string.Format(";{0};", control.Tag ?? "");
-                var canceldata = tagString != "" && tagString.Contains(";canceldata;");
-                if (canceldata) goto CANCELALL;
-
+                var box = control as V6ColorTextBox;
+                if (box != null)
                 {
-                    #region === Gán giá trị ===
-
-                    var box = control as V6ColorTextBox;
-                    if (box != null)
-                    {
-                        //Gồm cả vvar, number va date (override)
-                        box.CarryValue();
-                    }
-                    #endregion gán giá trị
+                    //Gồm cả vvar, number va date (override)
+                    box.CarryValue();
                 }
 
-                //CANCEL:
                 if (control.Controls.Count > 0)
                 {
                     foreach (Control c in control.Controls)
@@ -1696,7 +1686,6 @@ namespace V6Controls.Forms
                         SetCarryValuesRecursive(c);
                     }
                 }
-            CANCELALL: ;
             }
             catch (Exception ex)
             {
@@ -4847,7 +4836,7 @@ namespace V6Controls.Forms
                         {
                             row.DefaultCellStyle.Font = new Font(grid.Font, FontStyle.Bold);
                         }
-                        if (back_color)
+                        if (back_color && color != Color.Empty)
                         {
                             row.DefaultCellStyle.BackColor = color;
                         }
@@ -4860,7 +4849,7 @@ namespace V6Controls.Forms
                         {
                             try
                             {
-                                row.DefaultCellStyle.BackColor = ObjectAndString.RGBStringToColor(colorRGB);
+                                row.DefaultCellStyle.BackColor = ObjectAndString.StringToColor(colorRGB);
                             }
                             catch (Exception ex2)
                             {

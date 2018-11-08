@@ -8,6 +8,9 @@ namespace V6Controls.Forms.Viewer
 {
     public partial class CalculatorForm : V6Form
     {
+        /// <summary>
+        /// Phép toán hoặc tính kq.
+        /// </summary>
         enum Operation
         {
             Cong,
@@ -19,17 +22,52 @@ namespace V6Controls.Forms.Viewer
         };
 
         private string monitorData {get { return _monitor; } set { _monitor = value;
-            ViewToScreen();
+            ViewMonitorDataToScreen();
         }}
         private string _monitor = "0";
 
-        private void ViewToScreen()
+        private void ViewMonitorDataToScreen()
         {
-            decimal value = ObjectAndString.StringToDecimal(monitorData);
-            int decimals = value.ToString(CultureInfo.InvariantCulture).Split('.').Length > 1
-              ? value.ToString(CultureInfo.InvariantCulture).Split('.')[1].Length
-              : 0;
-            txtScreen.Text = ObjectAndString.NumberToString(value, decimals, ",");
+            toolTipV6FormControl.SetToolTip(txtScreen, _monitor);
+            //decimal value = ObjectAndString.StringToDecimal(monitorData);
+            //int decimals = value.ToString(CultureInfo.InvariantCulture).Split('.').Length > 1
+            //  ? value.ToString(CultureInfo.InvariantCulture).Split('.')[1].Length
+            //  : 0;
+            //txtScreen.Text = ObjectAndString.NumberToString(value, decimals, ",");
+
+            //return;
+
+            string comma_monitor = _monitor.Replace(".", ",");
+
+            if (comma_monitor.Length > 25)
+            {
+                int dot_index = comma_monitor.IndexOf(',');
+                if (dot_index > 0 && dot_index < 25)
+                {
+                    txtScreen.Text = comma_monitor.Substring(0, 25);
+                    return;
+                    //Có thể làm thêm màn hình phụ.
+                    string new_text = comma_monitor.Replace(",", "");
+                    new_text = new_text[0] + "," + new_text.Substring(1);
+                    txtScreen.Text = new_text.Substring(0, 25) + "E+" + (dot_index - 1);
+                }
+                else if (dot_index >= 25)
+                {
+                    txtScreen.Text = comma_monitor;
+                }
+                else
+                {
+                    txtScreen.Text = comma_monitor;
+                    return;
+                    string new_text = comma_monitor;
+                    new_text = new_text[0] + "," + new_text.Substring(1);
+                    txtScreen.Text = new_text.Substring(0, 25) + "E+" + (comma_monitor.Length - 1);
+                }
+            }
+            else
+            {
+                txtScreen.Text = comma_monitor;
+            }
         }
 
         decimal _memory;
@@ -48,6 +86,7 @@ namespace V6Controls.Forms.Viewer
             lblMemory.Text = "";
         }
 
+        private bool _error = false;
         /// <summary>
         /// Trong dòng tính toán.
         /// </summary>
@@ -86,6 +125,7 @@ namespace V6Controls.Forms.Viewer
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
+            if (_error) return;
             Button currentButton = (Button)sender;
             string number = currentButton.AccessibleName;
             if (_inInput)
@@ -107,6 +147,7 @@ namespace V6Controls.Forms.Viewer
         {
             if (monitorData.Length >= 25)
             {
+                txtScreen.Alert();
                 return;
             }
             monitorData += text;
@@ -114,11 +155,8 @@ namespace V6Controls.Forms.Viewer
 
         void SetStringToMonitorData(string text)
         {
-            if (text.Length > 25)
-            {
-                return;
-            }
             monitorData = text;
+            return;
         }
 
         public override bool DoHotKey0(Keys keyData)
@@ -280,6 +318,8 @@ namespace V6Controls.Forms.Viewer
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
+            if (_error) return;
+
             Operation newOperation = Operation.None;
             Button currentButton = (Button) sender;
 
@@ -355,6 +395,8 @@ namespace V6Controls.Forms.Viewer
             }
             catch (Exception ex)
             {
+                _error = true;
+                txtScreen.Text = "Error";
                 this.WriteExLog(GetType() + ".CalculateResult", ex);
             }
 
@@ -370,6 +412,7 @@ namespace V6Controls.Forms.Viewer
 
         void RefershAll(bool resetScreen = true)
         {
+            _error = false;
             _resultValue = 0;
             so_hang_2 = 0;
             _inInput = false;
@@ -381,6 +424,7 @@ namespace V6Controls.Forms.Viewer
 
         private void btnDot_Click(object sender, EventArgs e)
         {
+            if (_error) return;
             if (!_dotPressed)
             {
                 if (_inInput)
@@ -401,6 +445,7 @@ namespace V6Controls.Forms.Viewer
 
         private void btnOver_Click(object sender, EventArgs e)
         {
+            if (_error) return;
             decimal screen_value = ObjectAndString.StringToDecimal(monitorData);
             if (screen_value != 0)
             {
@@ -412,6 +457,7 @@ namespace V6Controls.Forms.Viewer
 
         private void btnSqrt_Click(object sender, EventArgs e)
         {
+            if (_error) return;
             decimal screen_value = ObjectAndString.StringToDecimal(monitorData);
             screen_value = (decimal) Math.Sqrt((double) screen_value);
             RefershAll(false);
@@ -420,6 +466,7 @@ namespace V6Controls.Forms.Viewer
 
         private void btnInvert_Click(object sender, EventArgs e)
         {
+            if (_error) return;
             if (_inInput && !string.IsNullOrEmpty(monitorData) && monitorData != "0")
             {
                 if (monitorData[0] == '-')
@@ -431,35 +478,41 @@ namespace V6Controls.Forms.Viewer
 
         private void btnMPlus_Click(object sender, EventArgs e)
         {
+            if (_error) return;
             _memory += ObjectAndString.StringToDecimal(monitorData);
             ViewMemoryToScreen();
         }
 
         private void btnMMinus_Click(object sender, EventArgs e)
         {
+            if (_error) return;
             _memory -= ObjectAndString.StringToDecimal(monitorData);
             ViewMemoryToScreen();
         }
 
         private void btnMR_Click(object sender, EventArgs e)
         {
+            if (_error) return;
             monitorData = _memory.ToString(CultureInfo.InvariantCulture);
             _inInput = true;
         }
 
         private void btnMC_Click(object sender, EventArgs e)
         {
+            if (_error) return;
             ClearMemory();
         }
 
         private void btnMS_Click(object sender, EventArgs e)
         {
+            if (_error) return;
             _memory = ObjectAndString.StringToDecimal(monitorData);
             ViewMemoryToScreen();
         }
 
         private void btnBackSpace_Click(object sender, EventArgs e)
         {
+            if (_error) return;
             if (_inInput)
             {
                 if (monitorData == "")
@@ -475,6 +528,7 @@ namespace V6Controls.Forms.Viewer
 
         private void btnCE_Click(object sender, EventArgs e)
         {
+            if (_error) return;
             SetStringToMonitorData("0");
             _inInput = true;
             _dotPressed = false;
@@ -487,11 +541,13 @@ namespace V6Controls.Forms.Viewer
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (_error) return;
             Copy();
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (_error) return;
             Paste();
         }
 

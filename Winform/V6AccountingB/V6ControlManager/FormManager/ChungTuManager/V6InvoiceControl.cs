@@ -882,6 +882,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         var sl_qd = _soLuong1.Value/_hs_qd1.Value;
                         _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
                     }
+                    //Phần lẻ (ví dụ 50 viên = 0.5 thùng bên trên)
+                    var tong = _sl_qd.Value * _hs_qd2.Value;
+                    var sl_nguyen_thung = ((int)_sl_qd.Value) * _hs_qd2.Value;
+                    _sl_qd2.Value = V6BusinessHelper.Vround(tong - sl_nguyen_thung, 1);
                 }
             }
             catch (Exception ex)
@@ -1176,7 +1180,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         var vvar = GetControlByAccessibleName(field2) as V6VvarTextBox;
                         if (vvar != null)
                         {
-                            if (vvar.Data == null)
+                            if (vvar.CheckNotEmpty && vvar.CheckOnLeave && !vvar.ExistRowInTable(true))
                             {
                                 error += V6Text.Wrong + " [" + field2 + "]\n";
                             }
@@ -2308,7 +2312,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 var color_name = selectedRow["ColorV"].ToString().Trim();
                 if (color_name != "")
                 {
-                    var color = Color.FromName(color_name);
+                    var color = ObjectAndString.StringToColor(color_name);
                     lblKieuPostColor.ForeColor = color;
                 }
                 else

@@ -107,7 +107,12 @@ namespace V6Controls.Forms
 
         private void lblMessage_ClientSizeChanged(object sender, System.EventArgs e)
         {
-            Width = lblMessage.Width + 6;
+            Width = lblMessage.Width;
+        }
+
+        private void lblMessage_Click(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

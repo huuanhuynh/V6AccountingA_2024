@@ -101,7 +101,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     Day = i,
                     Detail1 = rowData[string.Format(FIELD_format, i)].ToString().Trim(),
                     Detail2 = rowData2[string.Format("CONG_{0:00}", i)].ToString().Trim(),
-                    Detail2Color = ObjectAndString.RGBStringToColor(rowData2[string.Format("MAU_{0:00}",i)].ToString())
+                    Detail2Color = ObjectAndString.StringToColor(rowData2[string.Format("MAU_{0:00}",i)].ToString())
                     //Detail3 = "???",
                 };
                 lichViewdata[i] = cellData;

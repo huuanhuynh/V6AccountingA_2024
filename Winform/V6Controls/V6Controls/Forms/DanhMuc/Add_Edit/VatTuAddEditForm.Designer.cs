@@ -30,7 +30,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VatTuAddEditForm));
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
@@ -262,7 +261,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label2 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.lblMagnet = new LookupButton();
             this.label1 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1605,7 +1603,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox4
             // 
@@ -1627,7 +1625,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6ColorTextBox42
             // 
@@ -1931,7 +1929,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox39
             // 
@@ -1953,7 +1951,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox38
             // 
@@ -1975,7 +1973,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6ColorTextBox62
             // 
@@ -2022,7 +2020,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox12
             // 
@@ -2044,7 +2042,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox11
             // 
@@ -2066,7 +2064,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label93
             // 
@@ -2343,7 +2341,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox9
             // 
@@ -2365,7 +2363,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox8
             // 
@@ -2387,7 +2385,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox7
             // 
@@ -2409,7 +2407,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox6
             // 
@@ -2431,7 +2429,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label84
             // 
@@ -2904,7 +2902,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox2
             // 
@@ -2927,7 +2925,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox1
             // 
@@ -2950,7 +2948,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // tabPage7
             // 
@@ -3067,7 +3065,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label50
             // 
@@ -3099,7 +3097,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label49
             // 
@@ -3131,7 +3129,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label47
             // 
@@ -3163,7 +3161,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label46
             // 
@@ -3327,7 +3325,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox20
             // 
@@ -3349,7 +3347,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox19
             // 
@@ -3371,7 +3369,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox18
             // 
@@ -3393,7 +3391,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox17
             // 
@@ -3415,7 +3413,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox16
             // 
@@ -3437,7 +3435,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox15
             // 
@@ -3459,7 +3457,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox14
             // 
@@ -3481,7 +3479,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6ColorTextBox61
             // 
@@ -3657,7 +3655,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.lblMagnet);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(3, -3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
@@ -3867,24 +3864,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label16.Size = new System.Drawing.Size(69, 17);
             this.label16.TabIndex = 2;
             this.label16.Text = "Tên ngắn";
-            // 
-            // lblMagnet
-            // 
-            this.lblMagnet.Image = ((System.Drawing.Image)(resources.GetObject("lblMagnet.Image")));
-            this.lblMagnet.Location = new System.Drawing.Point(339, 17);
-            this.lblMagnet.M_DataType = "c";
-            this.lblMagnet.M_Ma_ct = null;
-            this.lblMagnet.M_Stt_Rec = null;
-            this.lblMagnet.M_Type = "2";
-            this.lblMagnet.M_Value = null;
-            this.lblMagnet.M_Vvar = null;
-            this.lblMagnet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMagnet.Name = "lblMagnet";
-            this.lblMagnet.R_DataType = "c";
-            this.lblMagnet.R_Ma_ct = null;
-            this.lblMagnet.ReferenceControl = this.txtMaVT;
-            this.lblMagnet.Size = new System.Drawing.Size(25, 25);
-            this.lblMagnet.TabIndex = 0;
             // 
             // label1
             // 
@@ -4164,6 +4143,5 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label41;
-        private LookupButton lblMagnet;
     }
 }

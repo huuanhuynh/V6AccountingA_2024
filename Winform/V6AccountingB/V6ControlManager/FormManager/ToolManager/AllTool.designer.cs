@@ -55,6 +55,7 @@
             this.btnHDSD2 = new System.Windows.Forms.Button();
             this.btnHDSDDT = new System.Windows.Forms.Button();
             this.btnChuyenMa = new System.Windows.Forms.Button();
+            this.btnQuayRa = new System.Windows.Forms.Button();
             this.grbOptions.SuspendLayout();
             this.grbTools.SuspendLayout();
             this.grbFunctions.SuspendLayout();
@@ -304,6 +305,7 @@
             // 
             this.grbFunctions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.grbFunctions.Controls.Add(this.btnQuayRa);
             this.grbFunctions.Controls.Add(this.btnTeamViewer);
             this.grbFunctions.Controls.Add(this.btnHDSD2);
             this.grbFunctions.Controls.Add(this.btnHDSDDT);
@@ -362,6 +364,21 @@
             this.btnChuyenMa.UseVisualStyleBackColor = true;
             this.btnChuyenMa.Click += new System.EventHandler(this.btnChuyenMa_Click);
             // 
+            // btnQuayRa
+            // 
+            this.btnQuayRa.AccessibleDescription = "CORPMODUB00008";
+            this.btnQuayRa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuayRa.Image = global::V6ControlManager.Properties.Resources.BackArrow24;
+            this.btnQuayRa.Location = new System.Drawing.Point(8, 515);
+            this.btnQuayRa.Name = "btnQuayRa";
+            this.btnQuayRa.Size = new System.Drawing.Size(118, 41);
+            this.btnQuayRa.TabIndex = 17;
+            this.btnQuayRa.Tag = "Escape";
+            this.btnQuayRa.Text = "&Quay ra";
+            this.btnQuayRa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnQuayRa.UseVisualStyleBackColor = true;
+            this.btnQuayRa.Click += new System.EventHandler(this.btnQuayRa_Click);
+            // 
             // AllTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,5 +426,6 @@
         private System.Windows.Forms.Button btnHDSD2;
         private System.Windows.Forms.Button btnChuyenMa;
         private System.Windows.Forms.CheckBox chkWriteExtraLog;
+        private System.Windows.Forms.Button btnQuayRa;
     }
 }

@@ -1192,7 +1192,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     out COLOR_YN, out COLORV);
                 //Color.MediumAquamarine
                 V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1",
-                    Color.FromName(COLORV));
+                    ObjectAndString.StringToColor(COLORV));
 
                 //Header
                 var fieldList = (from DataColumn column in _tbl1.Columns select column.ColumnName).ToList();

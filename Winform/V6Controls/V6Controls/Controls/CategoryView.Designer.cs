@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoryView));
             this.comboBox1 = new V6Controls.V6ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -108,21 +108,21 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.LightCyan;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UID});
@@ -130,9 +130,9 @@
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.LightYellow;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(788, 277);
             this.dataGridView1.TabIndex = 11;
@@ -197,7 +197,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.AccessibleDescription = "ALF80002";
+            this.btnXoa.AccessibleDescription = "DANHMUCVIEWB00003";
             this.btnXoa.Image = global::V6Controls.Properties.Resources.Delete32;
             this.btnXoa.Location = new System.Drawing.Point(127, 3);
             this.btnXoa.Name = "btnXoa";
@@ -211,7 +211,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.AccessibleDescription = "ALF30001";
+            this.btnSua.AccessibleDescription = "DANHMUCVIEWB00002";
             this.btnSua.Image = global::V6Controls.Properties.Resources.EditPage;
             this.btnSua.Location = new System.Drawing.Point(65, 3);
             this.btnSua.Name = "btnSua";
@@ -225,6 +225,7 @@
             // 
             // btnBack
             // 
+            this.btnBack.AccessibleDescription = "DANHMUCVIEWB00012";
             this.btnBack.Image = global::V6Controls.Properties.Resources.Back21;
             this.btnBack.Location = new System.Drawing.Point(499, 3);
             this.btnBack.Name = "btnBack";
@@ -238,6 +239,7 @@
             // 
             // btnAll
             // 
+            this.btnAll.AccessibleDescription = "DANHMUCVIEWB00010";
             this.btnAll.Image = global::V6Controls.Properties.Resources.Refresh;
             this.btnAll.Location = new System.Drawing.Point(375, 3);
             this.btnAll.Name = "btnAll";
@@ -251,6 +253,7 @@
             // 
             // btnXem
             // 
+            this.btnXem.AccessibleDescription = "DANHMUCVIEWB00007";
             this.btnXem.Image = global::V6Controls.Properties.Resources.CriticalDetails;
             this.btnXem.Location = new System.Drawing.Point(313, 3);
             this.btnXem.Name = "btnXem";
@@ -264,6 +267,7 @@
             // 
             // btnFind
             // 
+            this.btnFind.AccessibleDescription = "DANHMUCVIEWB00006";
             this.btnFind.Image = global::V6Controls.Properties.Resources.Search;
             this.btnFind.Location = new System.Drawing.Point(251, 3);
             this.btnFind.Name = "btnFind";
@@ -277,6 +281,7 @@
             // 
             // btnCopy
             // 
+            this.btnCopy.AccessibleDescription = "DANHMUCVIEWB00004";
             this.btnCopy.Image = global::V6Controls.Properties.Resources.Copy;
             this.btnCopy.Location = new System.Drawing.Point(189, 3);
             this.btnCopy.Name = "btnCopy";
@@ -289,7 +294,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.AccessibleDescription = "ALF40001";
+            this.btnThem.AccessibleDescription = "DANHMUCVIEWB00001";
             this.btnThem.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.Image")));
             this.btnThem.Location = new System.Drawing.Point(3, 3);
             this.btnThem.Name = "btnThem";

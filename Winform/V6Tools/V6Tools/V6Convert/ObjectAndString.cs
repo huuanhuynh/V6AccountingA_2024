@@ -486,11 +486,11 @@ namespace V6Tools.V6Convert
         }
 
         /// <summary>
-        /// Chuyển chuỗi R,G,B hoặc #FFFFFF thành màu.
+        /// Chuyển chuỗi R,G,B hoặc #FFFFFF hoặc ColorName(ex:Red) thành màu.
         /// </summary>
-        /// <param name="rgb">R,G,B hoặc #XXXXXX</param>
+        /// <param name="rgb">R,G,B hoặc #XXXXXX hoặc Red</param>
         /// <returns></returns>
-        public static Color RGBStringToColor(string rgb)
+        public static Color StringToColor(string rgb)
         {
             int r = 0, g = 0, b = 0;
             if (rgb != null && rgb.Contains(","))
@@ -509,12 +509,24 @@ namespace V6Tools.V6Convert
                     return color;
                 }
             }
+            else
+            {
+                try
+                {
+                    if (rgb != null) return Color.FromName(rgb);
+                    else return Color.Empty;
+                }
+                catch (Exception)
+                {
+                    //
+                }
+            }
             if (r > 255) r = 255;
             if (g > 255) g = 255;
             if (b > 255) b = 255;
             return Color.FromArgb(r, g, b);
         }
-
+        
         public static DataSet XmlStringToDataSet(string xml)
         {
             try

@@ -340,7 +340,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 object VALUEV;
                 V6BusinessHelper.GetFormatGridView(_program, "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);
                 //Color.MediumAquamarine
-                V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", Color.FromName(COLORV));
+                V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", ObjectAndString.StringToColor(COLORV));
 
                 //Header
                 var fieldList = (from DataColumn column in _tbl.Columns select column.ColumnName).ToList();

@@ -40,13 +40,14 @@
             this.lblMessage.AutoSize = true;
             this.lblMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.Location = new System.Drawing.Point(3, 3);
+            this.lblMessage.Location = new System.Drawing.Point(0, 0);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(74, 15);
             this.lblMessage.TabIndex = 0;
             this.lblMessage.Text = "Thông báo.";
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblMessage.ClientSizeChanged += new System.EventHandler(this.lblMessage_ClientSizeChanged);
+            this.lblMessage.Click += new System.EventHandler(this.lblMessage_Click);
             this.lblMessage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.V6VvarNameForm_MouseDown);
             this.lblMessage.MouseMove += new System.Windows.Forms.MouseEventHandler(this.V6VvarNameForm_MouseMove);
             // 
@@ -69,16 +70,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ClientSize = new System.Drawing.Size(80, 20);
+            this.ClientSize = new System.Drawing.Size(74, 15);
             this.Controls.Add(this.lblHole);
             this.Controls.Add(this.lblMessage);
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(500, 20);
+            this.MaximumSize = new System.Drawing.Size(500, 15);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(0, 20);
+            this.MinimumSize = new System.Drawing.Size(0, 15);
             this.Name = "FlyLabelForm";
             this.Opacity = 0D;
             this.ShowInTaskbar = false;

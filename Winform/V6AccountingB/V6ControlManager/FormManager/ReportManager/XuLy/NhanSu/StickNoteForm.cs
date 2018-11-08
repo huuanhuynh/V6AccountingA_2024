@@ -119,7 +119,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     Day = i,
                     Detail1 = rowData2[string.Format("TYPE_{0:00}", i)].ToString().Trim(),
                     Detail2 = rowData2[string.Format("NOTE_{0:00}", i)].ToString().Trim(),
-                    Detail2Color = ObjectAndString.RGBStringToColor(rowData2[string.Format("MAU_{0:00}", i)].ToString()),
+                    Detail2Color = ObjectAndString.StringToColor(rowData2[string.Format("MAU_{0:00}", i)].ToString()),
                     Detail3 = rowData2[string.Format("NOTE1_{0:00}", i)].ToString().Trim(),
                     Detail4 = rowData2[string.Format("NOTE2_{0:00}", i)].ToString().Trim(),
                 };
