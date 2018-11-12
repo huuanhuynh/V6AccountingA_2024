@@ -648,15 +648,8 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             }
         }
         #endregion ==== LoadData MakeReport ====
-
         
-        
-        
-        
-
-         #region Linh tinh        
-
-        
+        #region Linh tinh        
         private void FormBaoCaoHangTonKho_V2_FormClosing(object sender, FormClosingEventArgs e)
         {
             
@@ -699,8 +692,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
-
-
+        
         private void rbtTienTe_CheckedChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
@@ -762,7 +754,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         {
             
         }
-        
 
         private bool SetupThePrinting()
         {

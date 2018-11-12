@@ -32,12 +32,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhieuKeToanControl));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
@@ -90,6 +91,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.v6Label23 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.lblKieuPostColor = new V6Controls.V6Label();
             this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
             this.btnChucNang = new V6Controls.Controls.DropDownButton();
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -121,6 +123,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.Txtma_kh_i = new V6Controls.V6VvarTextBox();
             this.group2 = new System.Windows.Forms.GroupBox();
             this.group1 = new System.Windows.Forms.GroupBox();
+            this.lbtSoPhieu = new V6Controls.Controls.LookupButton();
+            this.txtSoPhieu = new V6Controls.V6ColorTextBox();
             this.txtMa_sonb = new V6Controls.V6VvarTextBox();
             this.v6Label2 = new V6Controls.V6Label();
             this.dateNgayLCT = new V6Controls.V6DateTimePick();
@@ -128,7 +132,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
-            this.txtSoPhieu = new V6Controls.V6ColorTextBox();
             this.txtMa_ct = new V6Controls.V6ColorTextBox();
             this.txtLoaiCt = new V6Controls.V6ColorTextBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -138,6 +141,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblDocSoTien = new V6Controls.V6Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.Txtma_nk = new V6Controls.V6ColorTextBox();
+            this.txtTongTien = new V6Controls.NumberTienNt();
+            this.txtTongTienNt = new V6Controls.NumberTienNt();
+            this.lblNameT = new V6Controls.V6Label();
+            this.btnViewInfoData = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnFirst = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
@@ -152,12 +160,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.btnMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
-            this.Txtma_nk = new V6Controls.V6ColorTextBox();
-            this.btnViewInfoData = new System.Windows.Forms.Button();
-            this.txtTongTien = new V6Controls.NumberTienNt();
-            this.txtTongTienNt = new V6Controls.NumberTienNt();
-            this.lblNameT = new V6Controls.V6Label();
-            this.lblKieuPostColor = new V6Controls.V6Label();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -232,20 +234,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TK_I,
@@ -257,15 +259,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 207);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
-            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
+            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             // 
             // TK_I
             // 
@@ -348,27 +350,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(2, 52);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView2.Size = new System.Drawing.Size(875, 207);
             this.dataGridView2.TabIndex = 3;
@@ -615,7 +617,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSL_UD2
             // 
@@ -640,7 +642,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSL_UD1
             // 
@@ -665,7 +667,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label16
             // 
@@ -961,7 +963,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtTongPsNo
             // 
@@ -989,7 +991,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // panelNT
             // 
@@ -1100,6 +1102,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.group4.Size = new System.Drawing.Size(413, 108);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
+            // 
+            // lblKieuPostColor
+            // 
+            this.lblKieuPostColor.AutoSize = true;
+            this.lblKieuPostColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKieuPostColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblKieuPostColor.Location = new System.Drawing.Point(65, 10);
+            this.lblKieuPostColor.Name = "lblKieuPostColor";
+            this.lblKieuPostColor.Size = new System.Drawing.Size(57, 13);
+            this.lblKieuPostColor.TabIndex = 36;
+            this.lblKieuPostColor.Text = "KieuPost";
             // 
             // cboChuyenData
             // 
@@ -1360,7 +1373,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             0,
             0,
             0,
-            196608});
+            0});
             this.txtTyGia.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTyGia_V6LostFocus);
             // 
             // cboMaNt
@@ -1514,12 +1527,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.group2.Controls.Add(this.v6Label8);
             this.group2.Location = new System.Drawing.Point(425, -5);
             this.group2.Name = "group2";
-            this.group2.Size = new System.Drawing.Size(474, 54);
+            this.group2.Size = new System.Drawing.Size(474, 57);
             this.group2.TabIndex = 1;
             this.group2.TabStop = false;
             // 
             // group1
             // 
+            this.group1.Controls.Add(this.lbtSoPhieu);
             this.group1.Controls.Add(this.txtMa_sonb);
             this.group1.Controls.Add(this.v6Label2);
             this.group1.Controls.Add(this.dateNgayLCT);
@@ -1533,6 +1547,48 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.group1.Size = new System.Drawing.Size(413, 57);
             this.group1.TabIndex = 0;
             this.group1.TabStop = false;
+            // 
+            // lbtSoPhieu
+            // 
+            this.lbtSoPhieu.Image = ((System.Drawing.Image)(resources.GetObject("lbtSoPhieu.Image")));
+            this.lbtSoPhieu.Location = new System.Drawing.Point(192, 31);
+            this.lbtSoPhieu.M_DataType = null;
+            this.lbtSoPhieu.M_Ma_ct = null;
+            this.lbtSoPhieu.M_Stt_Rec = null;
+            this.lbtSoPhieu.M_Type = null;
+            this.lbtSoPhieu.M_Value = null;
+            this.lbtSoPhieu.M_Vvar = null;
+            this.lbtSoPhieu.Name = "lbtSoPhieu";
+            this.lbtSoPhieu.R_DataType = null;
+            this.lbtSoPhieu.R_DataType2 = null;
+            this.lbtSoPhieu.R_Ma_ct = null;
+            this.lbtSoPhieu.R_Ma_ct2 = null;
+            this.lbtSoPhieu.R_Stt_rec = null;
+            this.lbtSoPhieu.R_Stt_rec2 = null;
+            this.lbtSoPhieu.R_Value2 = null;
+            this.lbtSoPhieu.R_Vvar2 = null;
+            this.lbtSoPhieu.ReferenceControl = this.txtSoPhieu;
+            this.lbtSoPhieu.Size = new System.Drawing.Size(21, 21);
+            this.lbtSoPhieu.TabIndex = 8;
+            this.lbtSoPhieu.Click0 += new System.EventHandler(this.lookupButton1_Click0);
+            this.lbtSoPhieu.LookupButtonF3Event += new V6Controls.LookupButtonEventHandler(this.lookupButton1_LookupButtonF3Event);
+            // 
+            // txtSoPhieu
+            // 
+            this.txtSoPhieu.AccessibleName = "so_ct";
+            this.txtSoPhieu.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSoPhieu.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSoPhieu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSoPhieu.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSoPhieu.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSoPhieu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSoPhieu.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSoPhieu.LeaveColor = System.Drawing.Color.White;
+            this.txtSoPhieu.Location = new System.Drawing.Point(92, 31);
+            this.txtSoPhieu.Name = "txtSoPhieu";
+            this.txtSoPhieu.Size = new System.Drawing.Size(100, 20);
+            this.txtSoPhieu.TabIndex = 1;
+            this.txtSoPhieu.TextChanged += new System.EventHandler(this.txtSoPhieu_TextChanged);
             // 
             // txtMa_sonb
             // 
@@ -1627,23 +1683,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.v6Label1.TabIndex = 0;
             this.v6Label1.Text = "Số phiếu";
             // 
-            // txtSoPhieu
-            // 
-            this.txtSoPhieu.AccessibleName = "so_ct";
-            this.txtSoPhieu.BackColor = System.Drawing.SystemColors.Window;
-            this.txtSoPhieu.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtSoPhieu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSoPhieu.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtSoPhieu.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtSoPhieu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtSoPhieu.HoverColor = System.Drawing.Color.Yellow;
-            this.txtSoPhieu.LeaveColor = System.Drawing.Color.White;
-            this.txtSoPhieu.Location = new System.Drawing.Point(92, 31);
-            this.txtSoPhieu.Name = "txtSoPhieu";
-            this.txtSoPhieu.Size = new System.Drawing.Size(100, 20);
-            this.txtSoPhieu.TabIndex = 1;
-            this.txtSoPhieu.TextChanged += new System.EventHandler(this.txtSoPhieu_TextChanged);
-            // 
             // txtMa_ct
             // 
             this.txtMa_ct.AccessibleName = "Ma_ct";
@@ -1727,6 +1766,103 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // 
             this.toolTip1.AutomaticDelay = 300;
             this.toolTip1.ShowAlways = true;
+            // 
+            // Txtma_nk
+            // 
+            this.Txtma_nk.AccessibleName = "MA_NK";
+            this.Txtma_nk.BackColor = System.Drawing.Color.White;
+            this.Txtma_nk.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.Txtma_nk.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Txtma_nk.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtma_nk.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtma_nk.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.Txtma_nk.HoverColor = System.Drawing.Color.Yellow;
+            this.Txtma_nk.LeaveColor = System.Drawing.Color.White;
+            this.Txtma_nk.Location = new System.Drawing.Point(711, 520);
+            this.Txtma_nk.Name = "Txtma_nk";
+            this.Txtma_nk.Size = new System.Drawing.Size(11, 20);
+            this.Txtma_nk.TabIndex = 23;
+            this.Txtma_nk.Visible = false;
+            // 
+            // txtTongTien
+            // 
+            this.txtTongTien.AccessibleDescription = "";
+            this.txtTongTien.AccessibleName = "T_TIEN";
+            this.txtTongTien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTongTien.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTongTien.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTongTien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTongTien.DecimalPlaces = 0;
+            this.txtTongTien.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTongTien.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTongTien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTongTien.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTongTien.LeaveColor = System.Drawing.Color.White;
+            this.txtTongTien.Location = new System.Drawing.Point(580, 520);
+            this.txtTongTien.Name = "txtTongTien";
+            this.txtTongTien.NumberFormatName = "M_IP_TIEN_NT";
+            this.txtTongTien.Size = new System.Drawing.Size(15, 20);
+            this.txtTongTien.TabIndex = 1;
+            this.txtTongTien.Tag = "hide";
+            this.txtTongTien.Text = "0";
+            this.txtTongTien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTongTien.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtTongTien.Visible = false;
+            // 
+            // txtTongTienNt
+            // 
+            this.txtTongTienNt.AccessibleDescription = "";
+            this.txtTongTienNt.AccessibleName = "T_TIEN_NT";
+            this.txtTongTienNt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTongTienNt.BackColor = System.Drawing.Color.White;
+            this.txtTongTienNt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTongTienNt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTongTienNt.DecimalPlaces = 0;
+            this.txtTongTienNt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTongTienNt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTongTienNt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTongTienNt.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTongTienNt.LeaveColor = System.Drawing.Color.White;
+            this.txtTongTienNt.Location = new System.Drawing.Point(601, 520);
+            this.txtTongTienNt.Name = "txtTongTienNt";
+            this.txtTongTienNt.NumberFormatName = "M_IP_TIEN_NT";
+            this.txtTongTienNt.Size = new System.Drawing.Size(15, 20);
+            this.txtTongTienNt.TabIndex = 1;
+            this.txtTongTienNt.Tag = "hide";
+            this.txtTongTienNt.Text = "0";
+            this.txtTongTienNt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTongTienNt.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtTongTienNt.Visible = false;
+            // 
+            // lblNameT
+            // 
+            this.lblNameT.AccessibleDescription = "";
+            this.lblNameT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNameT.Location = new System.Drawing.Point(176, 125);
+            this.lblNameT.Name = "lblNameT";
+            this.lblNameT.Size = new System.Drawing.Size(719, 18);
+            this.lblNameT.TabIndex = 29;
+            this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnViewInfoData
+            // 
+            this.btnViewInfoData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnViewInfoData.Image = global::V6ControlManager.Properties.Resources.Help;
+            this.btnViewInfoData.Location = new System.Drawing.Point(867, 557);
+            this.btnViewInfoData.Name = "btnViewInfoData";
+            this.btnViewInfoData.Size = new System.Drawing.Size(30, 23);
+            this.btnViewInfoData.TabIndex = 28;
+            this.btnViewInfoData.UseVisualStyleBackColor = true;
+            this.btnViewInfoData.Click += new System.EventHandler(this.btnViewInfoData_Click);
             // 
             // btnHuy
             // 
@@ -1922,114 +2058,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.btnTim.UseVisualStyleBackColor = true;
             this.btnTim.Click += new System.EventHandler(this.btnTim_Click);
             // 
-            // Txtma_nk
-            // 
-            this.Txtma_nk.AccessibleName = "MA_NK";
-            this.Txtma_nk.BackColor = System.Drawing.Color.White;
-            this.Txtma_nk.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.Txtma_nk.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Txtma_nk.EnterColor = System.Drawing.Color.PaleGreen;
-            this.Txtma_nk.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.Txtma_nk.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.Txtma_nk.HoverColor = System.Drawing.Color.Yellow;
-            this.Txtma_nk.LeaveColor = System.Drawing.Color.White;
-            this.Txtma_nk.Location = new System.Drawing.Point(711, 520);
-            this.Txtma_nk.Name = "Txtma_nk";
-            this.Txtma_nk.Size = new System.Drawing.Size(11, 20);
-            this.Txtma_nk.TabIndex = 23;
-            this.Txtma_nk.Visible = false;
-            // 
-            // btnViewInfoData
-            // 
-            this.btnViewInfoData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnViewInfoData.Image = global::V6ControlManager.Properties.Resources.Help;
-            this.btnViewInfoData.Location = new System.Drawing.Point(867, 557);
-            this.btnViewInfoData.Name = "btnViewInfoData";
-            this.btnViewInfoData.Size = new System.Drawing.Size(30, 23);
-            this.btnViewInfoData.TabIndex = 28;
-            this.btnViewInfoData.UseVisualStyleBackColor = true;
-            this.btnViewInfoData.Click += new System.EventHandler(this.btnViewInfoData_Click);
-            // 
-            // txtTongTien
-            // 
-            this.txtTongTien.AccessibleDescription = "";
-            this.txtTongTien.AccessibleName = "T_TIEN";
-            this.txtTongTien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTongTien.BackColor = System.Drawing.SystemColors.Window;
-            this.txtTongTien.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTongTien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTongTien.DecimalPlaces = 0;
-            this.txtTongTien.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtTongTien.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtTongTien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtTongTien.HoverColor = System.Drawing.Color.Yellow;
-            this.txtTongTien.LeaveColor = System.Drawing.Color.White;
-            this.txtTongTien.Location = new System.Drawing.Point(580, 520);
-            this.txtTongTien.Name = "txtTongTien";
-            this.txtTongTien.NumberFormatName = "M_IP_TIEN_NT";
-            this.txtTongTien.Size = new System.Drawing.Size(15, 20);
-            this.txtTongTien.TabIndex = 1;
-            this.txtTongTien.Tag = "hide";
-            this.txtTongTien.Text = "0";
-            this.txtTongTien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtTongTien.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.txtTongTien.Visible = false;
-            // 
-            // txtTongTienNt
-            // 
-            this.txtTongTienNt.AccessibleDescription = "";
-            this.txtTongTienNt.AccessibleName = "T_TIEN_NT";
-            this.txtTongTienNt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTongTienNt.BackColor = System.Drawing.Color.White;
-            this.txtTongTienNt.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTongTienNt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTongTienNt.DecimalPlaces = 0;
-            this.txtTongTienNt.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtTongTienNt.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtTongTienNt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtTongTienNt.HoverColor = System.Drawing.Color.Yellow;
-            this.txtTongTienNt.LeaveColor = System.Drawing.Color.White;
-            this.txtTongTienNt.Location = new System.Drawing.Point(601, 520);
-            this.txtTongTienNt.Name = "txtTongTienNt";
-            this.txtTongTienNt.NumberFormatName = "M_IP_TIEN_NT";
-            this.txtTongTienNt.Size = new System.Drawing.Size(15, 20);
-            this.txtTongTienNt.TabIndex = 1;
-            this.txtTongTienNt.Tag = "hide";
-            this.txtTongTienNt.Text = "0";
-            this.txtTongTienNt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtTongTienNt.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.txtTongTienNt.Visible = false;
-            // 
-            // lblNameT
-            // 
-            this.lblNameT.AccessibleDescription = "";
-            this.lblNameT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNameT.Location = new System.Drawing.Point(176, 125);
-            this.lblNameT.Name = "lblNameT";
-            this.lblNameT.Size = new System.Drawing.Size(719, 18);
-            this.lblNameT.TabIndex = 29;
-            this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblKieuPostColor
-            // 
-            this.lblKieuPostColor.AutoSize = true;
-            this.lblKieuPostColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKieuPostColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblKieuPostColor.Location = new System.Drawing.Point(65, 10);
-            this.lblKieuPostColor.Name = "lblKieuPostColor";
-            this.lblKieuPostColor.Size = new System.Drawing.Size(57, 13);
-            this.lblKieuPostColor.TabIndex = 36;
-            this.lblKieuPostColor.Text = "KieuPost";
-            // 
             // PhieuKeToanControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2217,5 +2245,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         private System.Windows.Forms.ToolStripMenuItem thayTheToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thayThe2toolStripMenuItem;
         private V6Label lblKieuPostColor;
+        private LookupButton lbtSoPhieu;
     }
 }

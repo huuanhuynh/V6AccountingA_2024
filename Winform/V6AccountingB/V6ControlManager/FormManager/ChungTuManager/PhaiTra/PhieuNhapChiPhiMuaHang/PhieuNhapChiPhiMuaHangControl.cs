@@ -11,6 +11,7 @@ using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMuaHang.ChonPhieuNhap;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMuaHang.Loc;
 using V6Controls;
+using V6Controls.Controls.GridView;
 using V6Controls.Forms;
 using V6Init;
 using V6Structs;
@@ -90,6 +91,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             dataGridViewColumn = dataGridView1.Columns["STT_REC0"];
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
 
+            
             cboKieuPost.SelectedIndex = 0;
             cboLoai_pb.SelectedIndex = 0;
 
@@ -1184,6 +1186,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     _dvt1.Enabled = true;
 
                     dateNgayLCT.Enabled = Invoice.M_NGAY_CT;
+
+                    cboLoai_pb_SelectedIndexChanged(cboLoai_pb, EventArgs.Empty);
                 }
 
                 //Cac truong hop khac
@@ -2011,16 +2015,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 Mode = V6Mode.View;
                 var row = AM.Rows[CurrentIndex];
                 V6ControlFormHelper.SetFormDataRow(this, row);
-                    txtMadvcs.ExistRowInTable();
-                    txtMaKh.ExistRowInTable();
-                    TxtMa_kh_i_ao.Text = row["Ma_kh_i"].ToString().Trim();
-                    TxtT_cp_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp"]);
-                    TxtTk_i_ao.Text = row["Tk_i"].ToString().Trim();
-                    TxtT_cp_nt_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp_nt"]);
+                txtMadvcs.ExistRowInTable();
+                txtMaKh.ExistRowInTable();
+                TxtMa_kh_i_ao.Text = row["Ma_kh_i"].ToString().Trim();
+                TxtT_cp_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp"]);
+                TxtTk_i_ao.Text = row["Tk_i"].ToString().Trim();
+                TxtT_cp_nt_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp_nt"]);
 
-                    XuLyThayDoiMaDVCS();
+                XuLyThayDoiMaDVCS();
                 //Tuanmh 20/02/2016
-                   XuLyThayDoiMaNt();
+                XuLyThayDoiMaNt();
 
                 SetGridViewData();
                 Mode = V6Mode.View;
@@ -2386,7 +2390,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             try
             {
-                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit ||
+                if (//detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit ||
                     detail2.MODE == V6Mode.Add || detail2.MODE == V6Mode.Edit )
                 {
                     this.ShowWarningMessage(V6Text.DetailNotComplete);
@@ -3821,11 +3825,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             else if (cboLoai_pb.SelectedIndex == 2)
                 loai_pb = "2";
 
-            SetGridViewChiPhiEditAble(TxtLoai_pb.Text, chkSuaTien.Checked, dataGridView3ChiPhi);
+            SetGridViewChiPhiEditAble(loai_pb, chkSuaTien.Checked, dataGridView3ChiPhi);
 
             if (loai_pb == "1" || loai_pb == "2")
             {
-                TinhPhanBoChiPhi(TxtLoai_pb.Text.Trim());
+                TinhPhanBoChiPhi(loai_pb);
             }
             //Đổi giá trị textbox
             TxtLoai_pb.Text = loai_pb;
@@ -3944,6 +3948,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             {
                 TinhPhanBoChiPhi(TxtLoai_pb.Text.Trim());
             }
+            TinhTongThanhToan("TxtT_cp_nt_ao_V6LostFocus");
         }
 
         private void TinhT_CpNt()
@@ -4293,6 +4298,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             lblNameT.Text = ((Label)sender).Text;
         }
 
+        private decimal _con_lai;
         private void dataGridView3_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             try
@@ -4321,6 +4327,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         }
                     }
                 }
+                _con_lai = num;
                 var text = "Còn lại: " + ObjectAndString.NumberToString(num, 2, V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR);
                 V6ControlFormHelper.SetStatusText(text);
                 ShowParentMessage(text);
@@ -4339,12 +4346,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 if (dataGridView3ChiPhi.EditingColumn.DataPropertyName.ToUpper() == "CP_NT")
                 {
                     var cp_nt = ObjectAndString.ObjectToDecimal(dataGridView3ChiPhi.EditingCell.Value);
+                    if (cp_nt > _con_lai)
+                    {
+                        ShowParentMessage("Số nhập > Còn lại: " + _con_lai);
+                        cp_nt = _con_lai;
+                        dataGridView3ChiPhi.EditingCell.Value = cp_nt;
+                    }
                     var cp = cp_nt * txtTyGia.Value;
                     dataGridView3ChiPhi.EditingRow.Cells["CP"].Value = cp;
                 }
                 else
                 {
                     var cp = ObjectAndString.ObjectToDecimal(dataGridView3ChiPhi.EditingCell.Value);
+                    if (cp > _con_lai)
+                    {
+                        ShowParentMessage("Số nhập > Còn lại: " + _con_lai);
+                        cp = _con_lai;
+                        dataGridView3ChiPhi.EditingCell.Value = cp;
+                    }
                     if (cp == 0)
                     {
                         dataGridView3ChiPhi.EditingRow.Cells["CP_NT"].Value = cp;
@@ -4364,7 +4383,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
         private void dataGridView3_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-
+            try
+            {
+                // Thử nghiệm MyTextBoxCell
+                //var column_cp_nt = dataGridView1.Columns["CP_NT"];
+                //if (column_cp_nt != null)
+                //    column_cp_nt.CellTemplate = new MyTextBoxCell();
+                //var column_cp = dataGridView1.Columns["CP"];
+                //if (column_cp != null)
+                //    column_cp.CellTemplate = new MyTextBoxCell();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".dataGridView3_CellEnter " + _sttRec, ex);
+            }
         }
 
         private void dataGridView3_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -4419,6 +4451,65 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             else
             {
                 lblKieuPostColor.Visible = false;
+            }
+        }
+
+        private void dataGridView3ChiPhi_CurrentCellChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var currentCell = dataGridView3ChiPhi.CurrentCell;
+                if (currentCell == null) return;
+                var COLUMN_NAME = currentCell.OwningColumn.DataPropertyName.ToUpper();
+                
+                if ((COLUMN_NAME == "CP_NT" ||
+                     COLUMN_NAME == "CP")
+                    && ObjectAndString.ObjectToDecimal(currentCell.Value) == 0)
+                {
+                    // Tính số cần nhập dựa theo TxtT_cp_nt_ao
+                    decimal num;
+                    if (COLUMN_NAME == "CP_NT")
+                    {
+                        num = TxtT_cp_nt_ao.Value;
+                        foreach (DataGridViewRow row in dataGridView3ChiPhi.Rows)
+                        {
+                            if (row != currentCell.OwningRow)
+                            {
+                                num -= ObjectAndString.ObjectToDecimal(row.Cells["CP_NT"].Value);
+                            }
+                        }
+
+                        currentCell.Value = num;
+                        var cp = num * txtTyGia.Value;
+                        currentCell.OwningRow.Cells["CP"].Value = cp;
+                    }
+                    else // (COLUMN_NAME == "CP")
+                    {
+                        num = TxtT_cp_ao.Value;
+                        foreach (DataGridViewRow row in dataGridView3ChiPhi.Rows)
+                        {
+                            if (row != currentCell.OwningRow)
+                            {
+                                num -= ObjectAndString.ObjectToDecimal(row.Cells["CP"].Value);
+                            }
+                        }
+
+                        currentCell.Value = num;
+                        if (num == 0)
+                        {
+                            currentCell.OwningRow.Cells["CP_NT"].Value = num;
+                        }
+                        else
+                        {
+                            var cp_nt = num / txtTyGia.Value;
+                            currentCell.OwningRow.Cells["CP_NT"].Value = cp_nt;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".dataGridView3ChiPhi_CurrentCellChanged " + _sttRec, ex);
             }
         }
 

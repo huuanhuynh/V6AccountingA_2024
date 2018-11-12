@@ -539,6 +539,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             // btnExport2
             // 
+            this.btnExport2.AccessibleDescription = "REPORTB00011";
             this.btnExport2.Location = new System.Drawing.Point(525, 36);
             this.btnExport2.Menu = this.contextMenuStrip1;
             this.btnExport2.Name = "btnExport2";

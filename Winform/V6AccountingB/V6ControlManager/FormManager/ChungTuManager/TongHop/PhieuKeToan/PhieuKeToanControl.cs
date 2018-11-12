@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -10,6 +11,7 @@ using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Structs;
@@ -3287,5 +3289,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 lblKieuPostColor.Visible = false;
             }
         }
+
+        private void lookupButton1_Click0(object sender, EventArgs e)
+        {
+            //lookupButton1.R_Vvar = "";
+
+            lbtSoPhieu.R_Value2 = txtMa_sonb.Text;
+            lbtSoPhieu.R_Vvar2 = "MA_SONB";
+            lbtSoPhieu.R_Stt_rec2 = _sttRec;
+            lbtSoPhieu.R_Ma_ct2 = Invoice.Mact;
+
+            lbtSoPhieu.M_Type = "1";
+            lbtSoPhieu.M_Ma_ct = Invoice.Mact;
+
+        }
+
+        private void lookupButton1_LookupButtonF3Event(object sender, LookupEventArgs e)
+        {
+            string title = "Chứng từ " + e.MaCt;
+            var alct = V6BusinessHelper.Select("Alct", "*", "ma_ct=@mact", "", "", new SqlParameter("@mact", e.MaCt)).Data;
+            if (alct != null && alct.Rows.Count == 1)
+            {
+                title = alct.Rows[0][V6Setting.IsVietnamese ? "Ten_ct" : "Ten_ct2"].ToString();
+            }
+            var hoaDonForm = ChungTuF3.GetChungTuControl(e.MaCt, "Name", e.Stt_rec);
+
+            hoaDonForm.ShowToForm(this, title, true, true, true);
+        }
+
     }
 }

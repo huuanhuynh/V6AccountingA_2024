@@ -44,9 +44,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     grd_format = row["GRDF_V1"].ToString().Trim();
                     grd_header = V6Setting.IsVietnamese ? row["GRDHV_V1"].ToString().Trim() : row["GRDHE_V1"].ToString().Trim();
                 }
-
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, grd_show, grd_format, grd_header);
 
+                FormatGridViewAD();
             }
             catch (Exception)
             {
@@ -57,8 +57,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         public void SetAD(DataTable ad)
         {
             dataGridView2.TableSource = ad.Copy();
+            FormatGridViewAD();
         }
-        
+
+        private void FormatGridViewAD()
+        {
+            try
+            {
+                string grd_show = "", grd_format = "", grd_header = "";
+                var data = V6BusinessHelper.Select("ALDM", "*", "ma_dm='AMAD73ACT'").Data;
+                if (data.Rows.Count > 0)
+                {
+                    var row = data.Rows[0];
+                    grd_show = row["GRDS_V1"].ToString().Trim();
+                    grd_format = row["GRDF_V1"].ToString().Trim();
+                    grd_header = V6Setting.IsVietnamese ? row["GRDHV_V1"].ToString().Trim() : row["GRDHE_V1"].ToString().Trim();
+                }
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, grd_show, grd_format, grd_header);
+            }
+            catch (Exception)
+            {
+                
+            }
+        }
+
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             if (_cancel_SelectionChange)

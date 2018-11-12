@@ -85,8 +85,8 @@ namespace V6Controls.Controls
                 refControl.Parent.Controls.Add(this);
             Left = refControl.Right;
             Top = refControl.Top;
-            Width = 25;
-            Height = 25;
+            Width = 21;
+            Height = 21;
             Text = "";
         }
 
@@ -132,9 +132,22 @@ namespace V6Controls.Controls
             }
         }
         [Category("V6")]
-        public string R_Stt_rec { get; private set; }
+        public string R_Stt_rec { get; set; }
         [Category("V6")]
         public string R_Ma_ct { get; set; }
+
+        public string R_DataType2 { get; set; }
+        [Category("V6")]
+        public string R_Value2 { get; set; }
+        /// <summary>
+        /// Vvar của control tham chiếu.
+        /// </summary>
+        [Category("V6")]
+        public string R_Vvar2 { get; set; }
+        [Category("V6")]
+        public string R_Stt_rec2 { get; set; }
+        [Category("V6")]
+        public string R_Ma_ct2 { get; set; }
 
         [Category("V6")]
         public string M_DataType { get; set; }
@@ -171,15 +184,23 @@ namespace V6Controls.Controls
             // 
             // LookupButton
             // 
-            this.Image = global::V6Controls.Properties.Resources.Search24;
-            this.Size = new System.Drawing.Size(25, 25);
+            this.Image = global::V6Controls.Properties.Resources.Zoom20;
+            this.Size = new System.Drawing.Size(21, 21);
             this.Click += new System.EventHandler(this.LookupButton_Click);
             this.ResumeLayout(false);
 
         }
 
+        [Description("Sự kiện xảy ra trước khi xử lý Click gốc.")]
+        public event EventHandler Click0;
+        protected virtual void OnClick0()
+        {
+            var handler = Click0;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
         private void LookupButton_Click(object sender, EventArgs e)
         {
+            OnClick0();
             try
             {
                 SqlParameter[] plist =
@@ -189,6 +210,12 @@ namespace V6Controls.Controls
                     new SqlParameter("@R_Vvar", R_Vvar),
                     new SqlParameter("@R_Stt_rec", R_Stt_rec),
                     new SqlParameter("@R_Ma_ct", R_Ma_ct),
+                    
+                    new SqlParameter("@R_DataType2", R_DataType2),
+                    new SqlParameter("@R_Value2", R_Value2.Trim()),
+                    new SqlParameter("@R_Vvar2", R_Vvar2),
+                    new SqlParameter("@R_Stt_rec2", R_Stt_rec2),
+                    new SqlParameter("@R_Ma_ct2", R_Ma_ct2),
 
                     new SqlParameter("@M_DataType", M_DataType),
                     new SqlParameter("@M_Value", M_Value),
@@ -203,6 +230,7 @@ namespace V6Controls.Controls
                 var ds = V6BusinessHelper.ExecuteProcedure("V6LOOKUPCONTROL", plist);
 
                 LookupButtonDataViewForm f = new LookupButtonDataViewForm(ds);
+                f.Text = V6Setting.IsVietnamese ? "Tham chiếu dữ liệu" : "Reference viewer";
                 f.LookupButtonF3Event += f_LookupButtonF3Event;
                 f.ShowDialog(this);
             }
@@ -223,5 +251,6 @@ namespace V6Controls.Controls
         {
             OnLookupButtonEvent(this, e);
         }
+
     }
 }

@@ -232,9 +232,9 @@
             // 
             this.locThongTinChiTiet1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.locThongTinChiTiet1.Location = new System.Drawing.Point(3, 274);
+            this.locThongTinChiTiet1.Location = new System.Drawing.Point(3, 255);
             this.locThongTinChiTiet1.Name = "locThongTinChiTiet1";
-            this.locThongTinChiTiet1.Size = new System.Drawing.Size(759, 224);
+            this.locThongTinChiTiet1.Size = new System.Drawing.Size(759, 245);
             this.locThongTinChiTiet1.TabIndex = 2;
             // 
             // locThongTin1
@@ -243,7 +243,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.locThongTin1.Location = new System.Drawing.Point(3, 54);
             this.locThongTin1.Name = "locThongTin1";
-            this.locThongTin1.Size = new System.Drawing.Size(759, 216);
+            this.locThongTin1.Size = new System.Drawing.Size(759, 197);
             this.locThongTin1.TabIndex = 1;
             // 
             // locThoiGian1
@@ -314,6 +314,7 @@
             this.Activated += new System.EventHandler(this.TimPhieuKeToanForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TimPhieuKeToanForm_FormClosing);
             this.Load += new System.EventHandler(this.TimHoaDonForm_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.panel1, 0);

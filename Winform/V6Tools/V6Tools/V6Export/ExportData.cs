@@ -108,7 +108,38 @@ namespace V6Tools.V6Export
                 foreach (string column in columns)
                 {
                     if (data.Columns.Contains(column))
+                    {
                         arrColumns.Add(data.Columns[column]);
+                    }
+                    else
+                    {
+                        string[] ss = column.Split(':');//"ColumnName:Type:DefaultValue ex GhiChu:C:abc ex2 ExtraDate:D:20/11/2018
+                        if (ss.Length > 1)
+                        {
+                            object value = DBNull.Value;
+                            if (ss[1].ToUpper() == "N")
+                            {
+                                if(!data.Columns.Contains(ss[0])) data.Columns.Add(ss[0], typeof(decimal));
+                                if(ss.Length>2) value = ObjectAndString.StringToDecimal(ss[2]);
+                            }
+                            else if (ss[1].ToUpper() == "D")
+                            {
+                                if (!data.Columns.Contains(ss[0])) data.Columns.Add(ss[0], typeof(DateTime));
+                                if (ss.Length > 2) value = ObjectAndString.StringToDate(ss[2]);
+                            }
+                            else
+                            {
+                                if (!data.Columns.Contains(ss[0])) data.Columns.Add(ss[0], typeof(string));
+                                if (ss.Length > 2) value = ss[2];
+                            }
+                            arrColumns.Add(data.Columns[ss[0]]);
+
+                            foreach (DataRow row in data.Rows)
+                            {
+                                row[ss[0]] = value;
+                            }
+                        }
+                    }
                 }
                 //var arrayCols = Cols.ToArray();
             }

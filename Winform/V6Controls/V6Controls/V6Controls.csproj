@@ -88,6 +88,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\GridView\MyTextBoxCell.cs" />
     <Compile Include="Controls\Lookup\LookupButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2368,6 +2369,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Excel16.png" />
+    <None Include="Resources\Zoom20.png" />
     <Content Include="x86\pdfium.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
