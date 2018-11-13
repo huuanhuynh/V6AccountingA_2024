@@ -648,8 +648,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //Header
             if (_tbl != null)
             {
-                var fieldList = (from DataColumn column in _tbl.Columns select column.ColumnName).ToList();
+                string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
+                object VALUEV;
+                V6BusinessHelper.GetFormatGridView(_program, "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN,
+                    out COLOR_YN, out COLORV);
+                //Color.MediumAquamarine
+                V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1",
+                    ObjectAndString.StringToColor(COLORV));
 
+                var fieldList = (from DataColumn column in _tbl.Columns select column.ColumnName).ToList();
                 var fieldDic = CorpLan2.GetFieldsHeader(fieldList);
                 for (int i = 0; i < dataGridView1.ColumnCount; i++)
                 {

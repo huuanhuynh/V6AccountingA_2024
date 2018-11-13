@@ -904,7 +904,17 @@ namespace V6Controls
                     DoCodeEditor();
                 }
 
-                if (e.KeyData == (Keys.Control | Keys.F))
+                if (e.KeyData == (Keys.Control | Keys.Shift | Keys.C))
+                {
+                    object o = GetClipboardContent() ?? (object) "";
+                    Clipboard.SetDataObject(o, true);
+                }
+                else if (CurrentCell != null && e.KeyData == (Keys.Control | Keys.C))
+                {
+                    e.Handled = true;
+                    Clipboard.SetText(ObjectAndString.ObjectToString(CurrentCell.Value));
+                }
+                else if (e.KeyData == (Keys.Control | Keys.F))
                 {
                     var f = new FindForm();
                     f.Find += f_Find;

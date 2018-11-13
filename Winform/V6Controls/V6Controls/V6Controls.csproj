@@ -88,7 +88,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\GridView\MyTextBoxCell.cs" />
+    <Compile Include="Controls\GridView\CalendarColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\GridView\MyNumberTextBoxCell.cs" />
     <Compile Include="Controls\Lookup\LookupButton.cs">
       <SubType>Component</SubType>
     </Compile>

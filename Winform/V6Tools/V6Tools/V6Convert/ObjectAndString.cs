@@ -276,11 +276,22 @@ namespace V6Tools.V6Convert
         {
             if (o == null || o == DBNull.Value) return "";
             string result = "";
-            if (IsNumberType(o.GetType()))
-            {
-                //Chua xu ly.
-            }
-            switch (o.GetType().ToString())
+            Type t = o.GetType();
+            //if (IsNumberType(t))
+            //{
+            //    //Chua xu ly.
+            //    if (t == typeof(decimal) || t == typeof(double) || t == typeof(float))
+            //    {
+            //        result = NumberToString(ObjectToDecimal(o), 2, ",", " ");
+            //    }
+            //    else
+            //    {
+            //        result = o.ToString();
+            //    }
+            //}
+            //if (result != "") return result;
+
+            switch (t.ToString())
             {
                 case "System.DateTime":
                     result = ((DateTime) o).ToString(dateFormat);

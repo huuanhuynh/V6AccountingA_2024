@@ -5350,9 +5350,26 @@ namespace V6Controls.Forms
         {
             //var textBox = control as TextBox;
             //if (textBox == null) return;
+            //control.KeyDown += (sender, e) =>
+            //{
+            //    if (e.KeyCode == Keys.Enter)
+            //    {
+            //        control.Text = control.Text.Replace(" ", "");
+            //        return;
+            //    }
+            //};
+
             control.KeyPress += (sender, e) =>
             {
                 //if (textBox.ReadOnly) return;
+
+                //if (e.KeyChar == ' ')
+                //{
+                //    control.Text = ObjectAndString.NumberToString(ObjectAndString.ObjectToDecimal(control.Text), 2, ".", " ");
+                //    e.Handled = true;
+                //}
+
+
 
                 if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '-')
                 {
@@ -5369,8 +5386,185 @@ namespace V6Controls.Forms
                 {
                     e.Handled = true;
                 }
+
+                //TextBox txt = control as TextBox;
+                //if (txt != null)
+                //{
+                //    int sls = txt.SelectionStart;
+                //    control.Text = ObjectAndString.NumberToString(ObjectAndString.ObjectToDecimal(control.Text), 2, ".", " ");
+                //    txt.SelectionStart = sls;
+                //}
+
+                // ==================================================================================================================
+            //    if (txt == null) return;
+            //    if (txt.ReadOnly) return;
+            //    string StringValue = txt.Text.Replace(" ", "");
+            //    bool _isNegative = StringValue.StartsWith("-");
+            //    char _decimalSymbol = '.';
+            //    string _system_decimal_symbol = ".";
+
+            //    string t = e.KeyChar.ToString();
+            //    if (Char.IsDigit(e.KeyChar))
+            //    {
+            //        e.Handled = true;
+                    
+            //        InsertStringValue(txt, e.KeyChar);
+            //    }
+            //    else if (e.KeyChar == '.' || e.KeyChar == ',' || e.KeyChar == _decimalSymbol || e.KeyChar == _system_decimal_symbol[0])
+            //    {
+            //        e.Handled = true;
+            //        if (!StringValue.Contains(_system_decimal_symbol))
+            //        {
+            //            InsertStringValue(txt, _system_decimal_symbol[0]);
+            //        }
+            //        txt.SelectionStart = txt.Text.IndexOf(_decimalSymbol) + 1;
+            //    }
+            //    else if (e.KeyChar == '-')
+            //    {
+            //        e.Handled = true;
+            //        if (_isNegative && txt.SelectionStart == 0)
+            //            txt.SelectionStart = 1;
+            //        _isNegative = !_isNegative;
+            //        //txt.Write();                  // ========== xử lý âm.
+            //    }
+            //    else if (e.KeyChar != 3 && e.KeyChar != 22)
+            //    {
+            //        e.Handled = true;
+            //    }
             };
+
+            //control.LostFocus += (sender, e) =>
+            //{
+            //    control.Text = control.Text.Replace(" ", "");
+            //};
         }
+
+        private static void InsertStringValue(TextBox txt, char s)
+        {
+            string StringValue = txt.Text.Replace(" ", "");
+            //if (true || StringValue.Length < MaxLength || (MaxLength == 1 && !string.IsNullOrEmpty(LimitCharacters)))
+            {
+                int dotIndex = StringValue.IndexOf(".", StringComparison.Ordinal);
+                //int sls = SelectionStart;
+                int right = txt.TextLength - txt.SelectionStart;
+                int i = GetRealSelectionIndex(txt);
+                int l = GetRealSelectionLength(txt);
+
+                if (txt.MaxLength == 1)// && !string.IsNullOrEmpty(LimitCharacters))
+                {
+                    StringValue = "";
+                }
+                else if (txt.TextLength >= txt.MaxLength && dotIndex < 0)
+                {
+                    if (i <= StringValue.Length)
+                    {
+                        if (l > 0)//có bôi đen thì xử lý
+                        {
+                            StringValue = StringValue.Remove(i, l);
+                            txt.Text = ObjectAndString.NumberToString(ObjectAndString.ObjectToDecimal(StringValue), 2, ".", " ");
+                            right = StringValue.Length - i;
+
+                            if ((i == 0 || i == 1) && StringValue.StartsWith("0"))
+                            {
+                                StringValue = s + StringValue.Substring(1);
+                                txt.Text = ObjectAndString.NumberToString(ObjectAndString.ObjectToDecimal(StringValue), 2, ".", " ");
+                                //if (right > 0) right--;
+                            }
+                            else
+                            {
+                                StringValue = StringValue.Insert(i, s.ToString());
+                                txt.Text = ObjectAndString.NumberToString(ObjectAndString.ObjectToDecimal(StringValue), 2, ".", " ");
+                            }
+
+                            var sls = txt.TextLength - right + ((dotIndex > 0 && i > dotIndex) ? 1 : 0);
+                            if (sls <= 0) sls = 1;
+                            txt.SelectionStart = sls;
+                        }
+                    }
+                    return;
+                }
+                else if (dotIndex > 0 && ((txt.TextLength >= txt.MaxLength && i <= dotIndex) || txt.SelectionStart == txt.TextLength))
+                {
+                    return;
+                }
+
+
+                try
+                {
+                    if (i <= StringValue.Length)
+                    {
+                        if (l > 0)//có bôi đen
+                        {
+                            StringValue = StringValue.Remove(i, l);
+                            txt.Text = ObjectAndString.NumberToString(ObjectAndString.ObjectToDecimal(StringValue), 2, ".", " ");
+                            right = StringValue.Length - i;
+                        }
+
+                        if ((i == 0 || i == 1) && StringValue.StartsWith("0"))
+                        {
+                            StringValue = s + StringValue.Substring(1);
+                            txt.Text = ObjectAndString.NumberToString(ObjectAndString.ObjectToDecimal(StringValue), 2, ".", " ");
+                            //if (right > 0) right--;
+                        }
+                        else
+                        {
+                            StringValue = StringValue.Insert(i, s.ToString());
+                            txt.Text = ObjectAndString.NumberToString(ObjectAndString.ObjectToDecimal(StringValue), 2, ".", " ");
+                        }
+                    }
+
+                    var sls = txt.TextLength - right + ((dotIndex > 0 && i > dotIndex) ? 1 : 0);
+                    if (sls <= 0) sls = 1;
+                    txt.SelectionStart = sls;
+                }
+                catch { }
+
+                
+            }
+        }
+
+        private static int GetRealSelectionIndex(TextBox txt, int i = -1)
+        {
+            string StringValue = txt.Text.Replace(" ", "");
+            if (i == -1) i = txt.SelectionStart;
+
+            int returnInt = 0;
+            //Lấy chuỗi tạm đến vị trí con trỏ
+            string s = txt.Text.Substring(0, i);
+            //Xử lý bỏ những thứ không cần thiết trong chuỗi
+            //ký hiệu tiền tệ, dấu cách phần ngàn, khoảng trắng)
+            //if (CurrencySymbolAtFirst && _currencySymbol.Length > 0 && s.Length >= _currencySymbol.Length)            
+            //    s = s.Substring(_currencySymbol.Length);// .Replace(mCSymbol, "");
+            if (s.Length > 0 && " ".Length > 0)
+                s = s.Replace(" ", "");
+            if (s.Length > 0)
+                s = s.Replace(" ", "");
+            if (s.Length > 0)
+                s = s.Replace("-", "");
+
+            returnInt = s.Length;
+            if (returnInt > StringValue.Length) returnInt = StringValue.Length;
+            return returnInt;
+        }
+
+        private static int GetRealSelectionLength(TextBox txt)
+        {
+            int i = txt.SelectionStart;
+            int l = txt.SelectionLength;
+            if (l == 0) return 0;
+            int r = 0;
+            string s = txt.Text.Substring(i, l);
+
+            if (s.Length > 0)
+                s = s.Replace(" ", "");
+            if (s.Length > 0)
+                s = s.Replace("-", "");
+
+            r = s.Length;
+            return r;
+        }
+
+
 
         private static void RemoveLookupResource()
         {

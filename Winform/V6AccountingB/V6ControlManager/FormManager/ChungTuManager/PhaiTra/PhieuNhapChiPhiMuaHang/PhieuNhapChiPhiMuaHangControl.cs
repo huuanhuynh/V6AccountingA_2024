@@ -4328,7 +4328,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     }
                 }
                 _con_lai = num;
-                var text = "Còn lại: " + ObjectAndString.NumberToString(num, 2, V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR);
+                var text = V6Text.CheckData + ": " + ObjectAndString.NumberToString(num, 2, V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR);
                 V6ControlFormHelper.SetStatusText(text);
                 ShowParentMessage(text);
             }
@@ -4348,7 +4348,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     var cp_nt = ObjectAndString.ObjectToDecimal(dataGridView3ChiPhi.EditingCell.Value);
                     if (cp_nt > _con_lai)
                     {
-                        ShowParentMessage("Số nhập > Còn lại: " + _con_lai);
+                        ShowParentMessage(V6Text.CheckData + ": " + _con_lai);
                         cp_nt = _con_lai;
                         dataGridView3ChiPhi.EditingCell.Value = cp_nt;
                     }
@@ -4360,7 +4360,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     var cp = ObjectAndString.ObjectToDecimal(dataGridView3ChiPhi.EditingCell.Value);
                     if (cp > _con_lai)
                     {
-                        ShowParentMessage("Số nhập > Còn lại: " + _con_lai);
+                        ShowParentMessage(V6Text.CheckData + ": " + _con_lai);
                         cp = _con_lai;
                         dataGridView3ChiPhi.EditingCell.Value = cp;
                     }
@@ -4388,10 +4388,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 // Thử nghiệm MyTextBoxCell
                 //var column_cp_nt = dataGridView1.Columns["CP_NT"];
                 //if (column_cp_nt != null)
-                //    column_cp_nt.CellTemplate = new MyTextBoxCell();
+                //    column_cp_nt.CellTemplate = new MyNumberTextBoxCell();
                 //var column_cp = dataGridView1.Columns["CP"];
                 //if (column_cp != null)
-                //    column_cp.CellTemplate = new MyTextBoxCell();
+                //    column_cp.CellTemplate = new MyNumberTextBoxCell();
             }
             catch (Exception ex)
             {
