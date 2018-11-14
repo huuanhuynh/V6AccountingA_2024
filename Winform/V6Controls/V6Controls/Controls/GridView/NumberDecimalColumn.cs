@@ -1,13 +1,20 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Controls.GridView
 {
-    public class CalendarColumn : DataGridViewColumn
+    public class NumberDecimalColumn : DataGridViewTextBoxColumn// : DataGridViewColumn
     {
-        public CalendarColumn()
-            : base(new CalendarCell())
+        public NumberDecimalColumn()
         {
+            NumberDecimalCell cell = new NumberDecimalCell();
+            base.CellTemplate = cell;
+
+            base.SortMode = DataGridViewColumnSortMode.Automatic;
+            base.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //base.DefaultCellStyle.Format = "F" + this.DecimalLength.ToString();
         }
 
         public override DataGridViewCell CellTemplate
@@ -18,25 +25,25 @@ namespace V6Controls.Controls.GridView
             }
             set
             {
-                // Ensure that the cell used for the template is a CalendarCell.
+                // Ensure that the cell used for the template is a NumberDecimalCell.
                 if (value != null &&
-                    !value.GetType().IsAssignableFrom(typeof(CalendarCell)))
+                    !value.GetType().IsAssignableFrom(typeof(NumberDecimalCell)))
                 {
-                    throw new InvalidCastException("Must be a CalendarCell");
+                    throw new InvalidCastException("Must be a NumberDecimalCell");
                 }
                 base.CellTemplate = value;
             }
         }
     }
 
-    public class CalendarCell : DataGridViewTextBoxCell
+    public class NumberDecimalCell : DataGridViewTextBoxCell
     {
 
-        public CalendarCell()
+        public NumberDecimalCell()
             : base()
         {
             // Use the short date format.
-            this.Style.Format = "d";
+            //this.Style.Format = "d";
         }
 
         public override void InitializeEditingControl(int rowIndex, object
@@ -45,16 +52,16 @@ namespace V6Controls.Controls.GridView
             // Set the value of the editing control to the current cell value.
             base.InitializeEditingControl(rowIndex, initialFormattedValue,
                 dataGridViewCellStyle);
-            CalendarEditingControl ctl =
-                DataGridView.EditingControl as CalendarEditingControl;
+            NumberDecimalEditingControl ctl =
+                DataGridView.EditingControl as NumberDecimalEditingControl;
             // Use the default row value when Value property is null.
             if (this.Value == null)
             {
-                ctl.Value = (DateTime)this.DefaultNewRowValue;
+                ctl.Value = (Decimal)this.DefaultNewRowValue;
             }
             else
             {
-                ctl.Value = (DateTime)this.Value;
+                ctl.Value = (Decimal)this.Value;
             }
         }
 
@@ -62,8 +69,8 @@ namespace V6Controls.Controls.GridView
         {
             get
             {
-                // Return the type of the editing control that CalendarCell uses.
-                return typeof(CalendarEditingControl);
+                // Return the type of the editing control that NumberDecimalCell uses.
+                return typeof(NumberDecimalEditingControl);
             }
         }
 
@@ -71,9 +78,9 @@ namespace V6Controls.Controls.GridView
         {
             get
             {
-                // Return the type of the value that CalendarCell contains.
+                // Return the type of the value that NumberDecimalCell contains.
 
-                return typeof(DateTime);
+                return typeof(Decimal);
             }
         }
 
@@ -82,20 +89,20 @@ namespace V6Controls.Controls.GridView
             get
             {
                 // Use the current date and time as the default value.
-                return DateTime.Now;
+                return 0m;
             }
         }
     }
 
-    class CalendarEditingControl : DateTimePicker, IDataGridViewEditingControl
+    class NumberDecimalEditingControl : V6NumberTextBox, IDataGridViewEditingControl
     {
         DataGridView dataGridView;
         private bool valueChanged = false;
         int rowIndex;
 
-        public CalendarEditingControl()
+        public NumberDecimalEditingControl()
         {
-            this.Format = DateTimePickerFormat.Short;
+            //this.Format = DateTimePickerFormat.Short;
         }
 
         // Implements the IDataGridViewEditingControl.EditingControlFormattedValue 
@@ -104,7 +111,7 @@ namespace V6Controls.Controls.GridView
         {
             get
             {
-                return this.Value.ToShortDateString();
+                return this.Value.ToString(CultureInfo.CurrentCulture);
             }
             set
             {
@@ -114,14 +121,14 @@ namespace V6Controls.Controls.GridView
                     {
                         // This will throw an exception of the string is 
                         // null, empty, or not in the format of a date.
-                        this.Value = DateTime.Parse((String)value);
+                        this.Value = ObjectAndString.StringToDecimal(value.ToString());
                     }
                     catch
                     {
                         // In the case of an exception, just use the 
                         // default value so we're not left with a null
                         // value.
-                        this.Value = DateTime.Now;
+                        this.Value = 0m;
                     }
                 }
             }
@@ -141,8 +148,10 @@ namespace V6Controls.Controls.GridView
             DataGridViewCellStyle dataGridViewCellStyle)
         {
             this.Font = dataGridViewCellStyle.Font;
-            this.CalendarForeColor = dataGridViewCellStyle.ForeColor;
-            this.CalendarMonthBackground = dataGridViewCellStyle.BackColor;
+            //this.CalendarForeColor = dataGridViewCellStyle.ForeColor;
+            //this.CalendarMonthBackground = dataGridViewCellStyle.BackColor;
+            if (dataGridViewCellStyle.Format != null && dataGridViewCellStyle.Format.StartsWith("N"))
+                this.DecimalPlaces = ObjectAndString.ObjectToInt(dataGridViewCellStyle.Format.Substring(1));
         }
 
         // Implements the IDataGridViewEditingControl.EditingControlRowIndex 
@@ -236,40 +245,21 @@ namespace V6Controls.Controls.GridView
             }
         }
 
-        protected override void OnValueChanged(EventArgs eventargs)
+        protected override void OnTextChanged(EventArgs e)
         {
-            // Notify the DataGridView that the contents of the cell
-            // have changed.
             valueChanged = true;
             this.EditingControlDataGridView.NotifyCurrentCellDirty(true);
-            base.OnValueChanged(eventargs);
+            base.OnTextChanged(e);
         }
+
+        //protected override void OnValueChanged(EventArgs eventargs)
+        //{
+        //    // Notify the DataGridView that the contents of the cell
+        //    // have changed.
+        //    valueChanged = true;
+        //    this.EditingControlDataGridView.NotifyCurrentCellDirty(true);
+        //    base.OnValueChanged(eventargs);
+        //}
     }
 
-    //public class Form1 : Form
-    //{
-    //    private DataGridView dataGridView1 = new DataGridView();
-    //    [STAThread()]
-    //    public static void Main()
-    //    {
-    //        Application.Run(new Form1());
-    //    }
-    //    public Form1()
-    //    {
-    //        this.dataGridView1.Dock = DockStyle.Fill;
-    //        this.Controls.Add(this.dataGridView1);
-    //        this.Load += new EventHandler(Form1_Load);
-    //        this.Text = "DataGridView calendar column demo";
-    //    }
-    //    private void Form1_Load(object sender, EventArgs e)
-    //    {
-    //        CalendarColumn col = new CalendarColumn();
-    //        this.dataGridView1.Columns.Add(col);
-    //        this.dataGridView1.RowCount = 5;
-    //        foreach (DataGridViewRow row in this.dataGridView1.Rows)
-    //        {
-    //            row.Cells[0].Value = DateTime.Now;
-    //        }
-    //    }
-    //}
 }

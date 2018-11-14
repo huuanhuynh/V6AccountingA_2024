@@ -88,10 +88,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\GridView\NumberDecimalColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\GridView\CalendarColumn.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\GridView\MyNumberTextBoxCell.cs" />
+    <Compile Include="TNumEditBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\GridView\V6NumberTextBoxDataGridViewColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\GridView\TNumEditDataGridViewElements.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\Lookup\LookupButton.cs">
       <SubType>Component</SubType>
     </Compile>

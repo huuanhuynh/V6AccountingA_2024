@@ -315,7 +315,7 @@ namespace V6Controls
         /// <summary>
         /// Cập nhập hiển thị lên textBox
         /// </summary>
-        private void Write()
+        public void Write()
         {
             var writeText = AddThousandMark(LayChuoiPhanNguyen()) + GetDecimalTextValue();
             //Loại bỏ phần lẽ
@@ -477,7 +477,7 @@ namespace V6Controls
                     }                    
                     return;
                 }
-                else if (dotIndex > 0 && ((TextLength >= MaxLength && i<=dotIndex) || SelectionStart == TextLength))
+                else if ((dotIndex > 0 && DecimalPlaces > 0) && ((TextLength >= MaxLength && i<=dotIndex) || SelectionStart == TextLength))
                 {
                     return;
                 }
