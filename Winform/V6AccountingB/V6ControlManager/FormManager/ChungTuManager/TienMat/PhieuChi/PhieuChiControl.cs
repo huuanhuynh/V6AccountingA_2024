@@ -2005,7 +2005,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     }
                 }
 
-                GridViewFormat();
+                FormatGridView();
                 
                 foreach (DataGridViewColumn column in dataGridView1.Columns)
                 {
@@ -2325,7 +2325,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             dataGridView2.DataSource = AD2;
             dataGridView3.DataSource = AD3;
             //ReorderDataGridViewColumns();
-            GridViewFormat();
+            FormatGridView();
         }
 
         private void ReorderDataGridViewColumns()
@@ -2372,7 +2372,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView3, _orderList3);
         }
 
-        private void GridViewFormat()
+        private void FormatGridView()
         {
             //GridView1 !!!!!
 
@@ -2610,9 +2610,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 Mode = V6Mode.View;
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
                 
-                //Tuanmh 20/02/2016
-                XuLyThayDoiMaNt();
-
                 //txtMadvcs.ExistRowInTable();
                 if (V6Setting.Language.Trim() == "V")
                 {
@@ -2652,6 +2649,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 txtTk.ExistRowInTable();
 
                 SetGridViewData();
+                XuLyThayDoiMaNt();
                 XuLyThayDoiLoaiPhieuThu();
                 Mode = V6Mode.View;
                 //btnSua.Focus();
@@ -4168,6 +4166,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 _maNt = cboMaNt.SelectedValue.ToString().Trim();
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
+                FormatGridView();
                 XuLyThayDoiMaNt();
             }
 

@@ -1418,14 +1418,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             HienThiTongSoDong(lblTongSoDong);
             dataGridView1.DataSource = AD;
             ReorderDataGridViewColumns();
-            GridViewFormat();
+            FormatGridView();
         }
         private void ReorderDataGridViewColumns()
         {
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView1, _orderList);
         }
 
-        private void GridViewFormat()
+        private void FormatGridView()
         {
             var f = dataGridView1.Columns["so_luong"];
             if (f != null)
@@ -2390,11 +2390,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 txtMaKh.ExistRowInTable();
 
                 XuLyThayDoiMaDVCS();
-                //{Tuanmh 20/02/2016
-                XuLyThayDoiMaNt();
-                //}
-
                 SetGridViewData();
+                XuLyThayDoiMaNt();
                 Mode = V6Mode.View;
 
                 FormatNumberControl();
@@ -3615,6 +3612,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             {
                 _maNt = cboMaNt.SelectedValue.ToString().Trim();
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
+                FormatGridView();
                 XuLyThayDoiMaNt();
             }
 

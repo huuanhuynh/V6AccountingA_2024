@@ -1239,7 +1239,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             dataGridView3.DataSource = AD3;
             
             ReorderDataGridViewColumns();
-            GridViewFormat();
+            FormatGridView();
         }
         private void ReorderDataGridViewColumns()
         {
@@ -1247,7 +1247,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView2, _orderList2);
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView3, _orderList3);
         }
-        private void GridViewFormat()
+        private void FormatGridView()
         {
             var f = dataGridView1.Columns["so_luong"];
             if (f != null)
@@ -1409,6 +1409,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Invoice.GRDS_AD, Invoice.GRDF_AD,
                         V6Setting.IsVietnamese ? Invoice.GRDHV_AD : Invoice.GRDHE_AD);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
+            V6ControlFormHelper.FormatGridViewHideColumns(dataGridView2, Invoice.Mact);
         }
         #endregion datagridview
 
@@ -2045,10 +2046,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                 txtMadvcs.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
 
-                //Tuanmh 20/02/2016
+                SetGridViewData();
                 XuLyThayDoiMaNt();
 
-                SetGridViewData();
                 Mode = V6Mode.View;
                 //btnSua.Focus();
                 FormatNumberControl();
@@ -3621,6 +3621,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             {
                 _maNt = cboMaNt.SelectedValue.ToString().Trim();
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
+
+                FormatGridView();
                 XuLyThayDoiMaNt();
             }
 

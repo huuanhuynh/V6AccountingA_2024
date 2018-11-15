@@ -1218,14 +1218,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             dataGridView2.DataSource = AD2;
             
             ReorderDataGridViewColumns();
-            GridViewFormat();
+            FormatGridView();
         }
         private void ReorderDataGridViewColumns()
         {
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView1, _orderList);
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView2, _orderList2);
         }
-        private void GridViewFormat()
+        private void FormatGridView()
         {
             var f = dataGridView1.Columns["so_luong"];
             if (f != null)
@@ -1743,12 +1743,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     TxtT_cp_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                     
-                    column = dataGridView3ChiPhi.Columns["CP_NT"];
-                    if (column != null)
-                    {
-                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN_NT;
-                    }
-                    
                     _t_tien22.Visible = true;
                     _t_thue22.Visible = true;
 
@@ -1786,12 +1780,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     TxtT_cp_nt.DecimalPlaces = V6Options.M_IP_TIEN;
                     TxtT_cp_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN;
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN;
-
-                    column = dataGridView3ChiPhi.Columns["CP_NT"];
-                    if (column != null)
-                    {
-                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
-                    }                    
 
                     _t_tien22.Visible = false;
                     _t_thue22.Visible = false;
@@ -1852,6 +1840,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 if (column != null)
                 {
                     column.DefaultCellStyle.Format = "N" + decimalPlaces;
+                }
+
+                if (_maNt != _mMaNt0)
+                {
+                    column = dataGridView3ChiPhi.Columns["CP_NT"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN_NT;
+                    }
+                    column = dataGridView3ChiPhi.Columns["CP"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
+                    }
+                }
+                else
+                {
+                    column = dataGridView3ChiPhi.Columns["CP_NT"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
+                    }
+                    column = dataGridView3ChiPhi.Columns["CP"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
+                    }
                 }
             }
             catch (Exception ex)
@@ -3615,7 +3630,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             {
                 _maNt = cboMaNt.SelectedValue.ToString().Trim();
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
-                GridViewFormat();
+                FormatGridView();
                 XuLyThayDoiMaNt();
             }
 

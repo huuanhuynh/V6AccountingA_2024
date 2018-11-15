@@ -1739,7 +1739,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     }
                 }
 
-                GridViewFormat();
+                FormatGridView();
 
                 foreach (DataGridViewColumn column in dataGridView1.Columns)
                 {
@@ -2037,7 +2037,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             dataGridView3.DataSource = AD3;
             
             //ReorderDataGridViewColumns();
-            GridViewFormat();
+            FormatGridView();
         }
 
         private void ReorderDataGridViewColumns()
@@ -2106,7 +2106,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             }
         }
 
-        private void GridViewFormat()
+        private void FormatGridView()
         {
             //GridView1 !!!!!
 
@@ -2335,12 +2335,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 Mode = V6Mode.View;
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
 
-                //Tuanmh 20/02/2016
-                XuLyThayDoiMaNt();
-
-               
-
-
                 //txtMadvcs.ExistRowInTable();
                 if (V6Setting.Language.Trim() == "V")
                 {
@@ -2384,6 +2378,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 txtTk.ExistRowInTable();
 
                 SetGridViewData();
+                XuLyThayDoiMaNt();
                 XuLyThayDoiLoaiPhieuThu();
                 Mode = V6Mode.View;
                 //btnSua.Focus();
@@ -3805,6 +3800,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 _maNt = cboMaNt.SelectedValue.ToString().Trim();
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
+                FormatGridView();
                 XuLyThayDoiMaNt();
             }
 

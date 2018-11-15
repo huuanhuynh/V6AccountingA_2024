@@ -554,11 +554,17 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="loai_pb"></param>
         /// <param name="sua_tien"></param>
         /// <param name="dataGridView3ChiPhi"></param>
-        protected void SetGridViewChiPhiEditAble(string loai_pb, bool sua_tien, V6ColorDataGridView dataGridView3ChiPhi)
+        /// <param name="columnsNgoaiTe">Các cột được edit trường hợp dùng Ngoại tệ.</param>
+        /// <param name="columnsNguyenTe">Các cột được edit trường hợp không dùng Ngoại tệ.</param>
+        protected void SetGridViewChiPhiEditAble(string loai_pb, bool sua_tien, V6ColorDataGridView dataGridView3ChiPhi,
+            string columnsNgoaiTe = "CP,CP_NT", string columnsNguyenTe = "CP_NT")
         {
             if (loai_pb == "0" && (Mode == V6Mode.Add || Mode == V6Mode.Edit))
             {
-                dataGridView3ChiPhi.SetEditColumn(sua_tien ? "CP,CP_NT".Split(',') : "CP_NT".Split(','));
+                if(MA_NT != _mMaNt0)
+                    dataGridView3ChiPhi.SetEditColumn(sua_tien ? columnsNgoaiTe.Split(',') : columnsNguyenTe.Split(','));
+                else
+                    dataGridView3ChiPhi.SetEditColumn(columnsNguyenTe.Split(','));
             }
             else
             {

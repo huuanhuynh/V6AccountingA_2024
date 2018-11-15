@@ -2139,7 +2139,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             dataGridView3.DataSource = AD3;
 
             ReorderDataGridViewColumns();
-            GridViewFormat();
+            FormatGridView();
             HienThiTongSoDong(lblTongSoDong);
         }
 
@@ -2149,7 +2149,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView2, _orderList2);
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView3, _orderList3);
         }
-        private void GridViewFormat()
+        private void FormatGridView()
         {
             var f = dataGridView1.Columns["so_luong"];
             if (f != null)
@@ -3222,6 +3222,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 {
                     column.DefaultCellStyle.Format = "N" + decimalPlaces;
                 }
+
+                if (_maNt != _mMaNt0)
+                {
+                    column = dataGridView3ChiPhi.Columns["CP_NT"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN_NT;
+                    }
+                    column = dataGridView3ChiPhi.Columns["CP"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
+                    }
+                }
+                else
+                {
+                    column = dataGridView3ChiPhi.Columns["CP_NT"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
+                    }
+                    column = dataGridView3ChiPhi.Columns["CP"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -3410,10 +3437,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 TxtT_cp_nt_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp_nt"]);
 
                 XuLyThayDoiMaDVCS();
-                //Tuanmh 20/02/2016
-                XuLyThayDoiMaNt();
-
                 SetGridViewData();
+                XuLyThayDoiMaNt();
                 Mode = V6Mode.View;
                 //btnSua.Focus();
                 FormatNumberControl();
@@ -5023,6 +5048,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             {
                 _maNt = cboMaNt.SelectedValue.ToString().Trim();
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
+                FormatGridView();
                 XuLyThayDoiMaNt();
             }
 
@@ -5932,11 +5958,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             else if (cboLoai_pb.SelectedIndex == 2)
                 loai_pb = "2";
 
-            SetGridViewChiPhiEditAble(TxtLoai_pb.Text, chkSuaTien.Checked, dataGridView3ChiPhi);
+            SetGridViewChiPhiEditAble(loai_pb, chkSuaTien.Checked, dataGridView3ChiPhi);
 
             if (loai_pb == "1" || loai_pb == "2")
             {
-                TinhPhanBoChiPhi(TxtLoai_pb.Text.Trim());
+                TinhPhanBoChiPhi(loai_pb);
             }
             //Đổi giá trị textbox
             TxtLoai_pb.Text = loai_pb;

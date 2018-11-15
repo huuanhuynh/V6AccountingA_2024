@@ -887,14 +887,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             dataGridView2.DataSource = AD2;
             
             ReorderDataGridViewColumns();
-            GridViewFormat();
+            FormatGridView();
         }
         private void ReorderDataGridViewColumns()
         {
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView1, _orderList);
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView2, _orderList2);
         }
-        private void GridViewFormat()
+        private void FormatGridView()
         {
             var f = dataGridView1.Columns["so_luong"];
             if (f != null)
@@ -1585,13 +1585,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 Mode = V6Mode.View;
                 var row = AM.Rows[CurrentIndex];
                 V6ControlFormHelper.SetFormDataRow(this, row);
-                    txtMadvcs.ExistRowInTable();
-                    txtMaKh.ExistRowInTable();
-                    
-                //Tuanmh 20/02/2016
-                   XuLyThayDoiMaNt();
+                txtMadvcs.ExistRowInTable();
+                txtMaKh.ExistRowInTable();
 
                 SetGridViewData();
+                XuLyThayDoiMaNt();
                 Mode = V6Mode.View;
                 //btnSua.Focus();
                 FormatNumberControl();
@@ -3152,6 +3150,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             {
                 _maNt = cboMaNt.SelectedValue.ToString().Trim();
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
+                FormatGridView();
                 XuLyThayDoiMaNt();
             }
 

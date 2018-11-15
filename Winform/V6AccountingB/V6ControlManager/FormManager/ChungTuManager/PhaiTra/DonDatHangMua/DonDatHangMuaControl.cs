@@ -1075,14 +1075,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             dataGridView2.DataSource = AD2;
             
             ReorderDataGridViewColumns();
-            GridViewFormat();
+            FormatGridView();
         }
         private void ReorderDataGridViewColumns()
         {
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView1, _orderList);
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView2, _orderList2);
         }
-        private void GridViewFormat()
+        private void FormatGridView()
         {
             var f = dataGridView1.Columns["so_luong"];
             if (f != null)
@@ -1926,18 +1926,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 Mode = V6Mode.View;
                 var row = AM.Rows[CurrentIndex];
                 V6ControlFormHelper.SetFormDataRow(this, row);
-                    txtMadvcs.ExistRowInTable();
-                    txtMaKh.ExistRowInTable();
-                    TxtMa_kh_i_ao.Text = row["Ma_kh_i"].ToString().Trim();
-                    TxtT_cp_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp"]);
-                    TxtTk_i_ao.Text = row["Tk_i"].ToString().Trim();
-                    TxtT_cp_nt_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp_nt"]);
+                txtMadvcs.ExistRowInTable();
+                txtMaKh.ExistRowInTable();
+                TxtMa_kh_i_ao.Text = row["Ma_kh_i"].ToString().Trim();
+                TxtT_cp_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp"]);
+                TxtTk_i_ao.Text = row["Tk_i"].ToString().Trim();
+                TxtT_cp_nt_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp_nt"]);
 
-                    XuLyThayDoiMaDVCS();
-                //Tuanmh 20/02/2016
-                   XuLyThayDoiMaNt();
-
+                XuLyThayDoiMaDVCS();
                 SetGridViewData();
+                XuLyThayDoiMaNt();
                 Mode = V6Mode.View;
                 //btnSua.Focus();
                 FormatNumberControl();
@@ -3425,6 +3423,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             {
                 _maNt = cboMaNt.SelectedValue.ToString().Trim();
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
+                FormatGridView();
                 XuLyThayDoiMaNt();
             }
 

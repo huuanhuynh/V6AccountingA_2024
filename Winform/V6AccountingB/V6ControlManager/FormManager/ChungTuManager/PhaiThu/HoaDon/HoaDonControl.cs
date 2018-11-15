@@ -3102,7 +3102,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             dataGridView1.TableSource = AD;
             dataGridView3.TableSource = AD3;
             ReorderDataGridViewColumns();
-            GridViewFormat();
+            FormatGridView();
         }
         private void ReorderDataGridViewColumns()
         {
@@ -3110,7 +3110,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView3, _orderList3);
         }
 
-        private void GridViewFormat()
+        private void FormatGridView()
         {
             var f = dataGridView1.Columns["so_luong"];
             if (f != null)
@@ -5890,6 +5890,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 _maNt = cboMaNt.SelectedValue.ToString().Trim();
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit) GetTyGia();
+                FormatGridView();
                 XuLyThayDoiMaNt();
             }
 
