@@ -1741,6 +1741,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     
                     TxtT_cp_nt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                     TxtT_cp_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN_NT;
+                    TxtT_cp.DecimalPlaces = V6Options.M_IP_TIEN;
+                    TxtT_cp_ao.DecimalPlaces = V6Options.M_IP_TIEN;
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                     
                     _t_tien22.Visible = true;
@@ -1779,6 +1781,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     
                     TxtT_cp_nt.DecimalPlaces = V6Options.M_IP_TIEN;
                     TxtT_cp_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN;
+                    TxtT_cp.DecimalPlaces = V6Options.M_IP_TIEN;
+                    TxtT_cp_ao.DecimalPlaces = V6Options.M_IP_TIEN;
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN;
 
                     _t_tien22.Visible = false;
@@ -3853,10 +3857,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
             SetGridViewChiPhiEditAble(loai_pb, chkSuaTien.Checked, dataGridView3ChiPhi);
 
-            if (loai_pb == "1" || loai_pb == "2")
-            {
-                TinhPhanBoChiPhi(loai_pb);
-            }
+            //if (loai_pb == "1" || loai_pb == "2")
+            //{
+            //    TinhPhanBoChiPhi(loai_pb);
+            //}
             //Đổi giá trị textbox
             TxtLoai_pb.Text = loai_pb;
         }
@@ -3892,6 +3896,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             try
             {
+                if (loai_pb.Length > 1) loai_pb = loai_pb.Left(1);
                 var t_tien_nt0 = TinhTong(AD, "TIEN_NT0");
                 
                 var t_he_so = loai_pb == "1" ? t_tien_nt0 : txtTongSoLuong1.Value;
@@ -3937,6 +3942,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
                 }
 
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void XoaPhanBoChiPhi()
+        {
+            try
+            {
+                for (var i = 0; i < AD.Rows.Count; i++)
+                {
+                    AD.Rows[i]["Cp_nt"] = 0;
+                    AD.Rows[i]["Cp"] = 0;
+                }
+                dataGridView1.DataSource = AD;
+                dataGridView3ChiPhi.DataSource = AD;
+                //SetDataGridView3ChiPhiReadOnly();
             }
             catch (Exception ex)
             {
@@ -4590,24 +4614,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
         }
 
-        private void hoaDonDetail2_AddHandle()
+        private void btnTinhPB_Click(object sender, EventArgs e)
         {
-
+            TinhPhanBoChiPhi(TxtLoai_pb.Text.Trim());
         }
 
-        private void hoaDonDetail2_EditHandle()
+        private void btnXoaPB_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void hoaDonDetail1_AddHandle()
-        {
-
-        }
-
-        private void hoaDonDetail1_EditHandle()
-        {
-
+            XoaPhanBoChiPhi();
         }
 
     }
