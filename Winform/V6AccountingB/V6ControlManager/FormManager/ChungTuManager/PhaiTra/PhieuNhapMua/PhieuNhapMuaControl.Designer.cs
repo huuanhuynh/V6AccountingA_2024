@@ -77,8 +77,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CP_NT = new V6Controls.Controls.GridView.V6NumberTextBoxDataGridViewColumn();
-            this.CP = new V6Controls.Controls.GridView.V6NumberTextBoxDataGridViewColumn();
+            this.CP_NT = new V6Controls.Controls.GridView.V6NumberDataGridViewColumn();
+            this.CP = new V6Controls.Controls.GridView.V6NumberDataGridViewColumn();
             this.btnXoaPB = new V6Controls.Controls.V6FormButton();
             this.btnTinhPB = new V6Controls.Controls.V6FormButton();
             this.tabKhac = new System.Windows.Forms.TabPage();
@@ -3915,7 +3915,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private V6Controls.Controls.GridView.V6NumberTextBoxDataGridViewColumn CP_NT;
-        private V6Controls.Controls.GridView.V6NumberTextBoxDataGridViewColumn CP;
+        private V6Controls.Controls.GridView.V6NumberDataGridViewColumn CP_NT;
+        private V6Controls.Controls.GridView.V6NumberDataGridViewColumn CP;
     }
 }

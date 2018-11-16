@@ -94,14 +94,18 @@ namespace V6Controls
 
         void V6ColorDataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            var textBox = e.Control as TextBox;
-            if (textBox != null)
+            if (ObjectAndString.IsNumberType(EditingColumn.ValueType) && !(EditingColumn is V6NumberDataGridViewColumn))
             {
-                if (ObjectAndString.IsNumberType(CurrentCell.OwningColumn.ValueType))
-                {
-                    textBox.Text = "" + CurrentCell.Value;
-                }
+                V6ControlFormHelper.ApplyNumberTextBox(e.Control);
             }
+            //var textBox = e.Control as TextBox;
+            //if (textBox != null)
+            //{
+            //    if (ObjectAndString.IsNumberType(CurrentCell.OwningColumn.ValueType))
+            //    {
+            //        textBox.Text = "" + CurrentCell.Value;
+            //    }
+            //}
         }
 
         void V6ColorDataGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -509,6 +513,65 @@ namespace V6Controls
         /// </summary>
         public DataGridViewRow EditingRow { get; private set; }
         public DataGridViewCell EditingCell { get; private set; }
+
+
+        /// <summary>
+        /// Đổi kiểu cột DataGridView.
+        /// </summary>
+        /// <param name="columnName">Tên cột.</param>
+        /// <param name="columnType">typeof(DataGridViewColumn)</param>
+        /// <param name="newFormat">bỏ qua hoặc mặc định nếu null.</param>
+        /// <returns></returns>
+        public DataGridViewColumn ChangeColumnType(string columnName, Type columnType, string newFormat)
+        {
+            var oldTypeColumn = Columns[columnName];
+            if (oldTypeColumn == null) return null;
+
+            DataGridViewColumn newTypeColumn = null;
+            if (columnType == typeof(V6NumberDataGridViewColumn))
+            {
+                newTypeColumn = new V6NumberDataGridViewColumn();
+            }
+            else if (columnType == typeof (V6VvarDataGridViewColumn))
+            {
+                newTypeColumn = new V6VvarDataGridViewColumn();
+            }
+            //else if (columnType == typeof(V6DateDataGridViewColumn))
+            //{
+            //    newTypeColumn = new V6DateDataGridViewColumn();
+            //}
+            else if (columnType == typeof (DataGridViewTextBoxColumn))
+            {
+                newTypeColumn = new DataGridViewTextBoxColumn();
+            }
+
+            if (newTypeColumn == null) return null;
+            newTypeColumn.Name = columnName;
+            newTypeColumn.DataPropertyName = columnName;
+            if (!string.IsNullOrEmpty(newFormat))
+            {
+                newTypeColumn.DefaultCellStyle.Format = newFormat;
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(oldTypeColumn.DefaultCellStyle.Format))
+                {
+                    newTypeColumn.DefaultCellStyle.Format = oldTypeColumn.DefaultCellStyle.Format;
+                }
+                else
+                {
+                    if (columnType == typeof (V6NumberDataGridViewColumn))
+                    {
+                        newTypeColumn.DefaultCellStyle.Format = "N2";
+                    }
+                }
+            }
+
+            Columns.Remove(oldTypeColumn);
+            Columns.Add(newTypeColumn);
+            newTypeColumn.DisplayIndex = oldTypeColumn.DisplayIndex;
+            return newTypeColumn;
+        }
 
         /// <summary>
         /// Ẩn tất cả các trường được chỉ định, các trường khác để nguyên.

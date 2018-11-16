@@ -3809,7 +3809,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
             if (!dataGridView3ChiPhi.ReadOnly)
             {
-                dataGridView3ChiPhi.SetEditColumn(chkSuaTien.Checked ? "CP,CP_NT".Split(',') : "CP_NT".Split(','));
+                if (_maNt != _mMaNt0)
+                {
+
+                    dataGridView3ChiPhi.SetEditColumn(chkSuaTien.Checked ? "CP,CP_NT".Split(',') : "CP_NT".Split(','));
+                }
+                else
+                {
+                    dataGridView3ChiPhi.SetEditColumn("CP_NT".Split(','));
+                }
+
             }
         }
 
@@ -3897,6 +3906,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             try
             {
                 if (loai_pb.Length > 1) loai_pb = loai_pb.Left(1);
+                if (loai_pb != "1" && loai_pb != "2") return;
                 var t_tien_nt0 = TinhTong(AD, "TIEN_NT0");
                 
                 var t_he_so = loai_pb == "1" ? t_tien_nt0 : txtTongSoLuong1.Value;
@@ -3994,10 +4004,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             TinhT_CpNt();
             var loai_pb = TxtLoai_pb.Text.Trim();
-            if (loai_pb == "1" || loai_pb == "2")
-            {
-                TinhPhanBoChiPhi(TxtLoai_pb.Text.Trim());
-            }
+            TinhPhanBoChiPhi(loai_pb);
             TinhTongThanhToan("TxtT_cp_nt_ao_V6LostFocus");
         }
 
@@ -4402,7 +4409,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         cp_nt = _con_lai;
                         dataGridView3ChiPhi.EditingCell.Value = cp_nt;
                     }
-                    var cp = cp_nt * txtTyGia.Value;
+                    var cp = V6BusinessHelper.Vround(cp_nt * txtTyGia.Value,M_ROUND);
                     dataGridView3ChiPhi.EditingRow.Cells["CP"].Value = cp;
                 }
                 else
@@ -4414,15 +4421,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         cp = _con_lai;
                         dataGridView3ChiPhi.EditingCell.Value = cp;
                     }
-                    if (cp == 0)
-                    {
-                        dataGridView3ChiPhi.EditingRow.Cells["CP_NT"].Value = cp;
-                    }
-                    else
-                    {
-                        var cp_nt = cp / txtTyGia.Value;
-                        dataGridView3ChiPhi.EditingRow.Cells["CP_NT"].Value = cp_nt;
-                    }
+                    // Tuanmh 16/11/2018 Không tính lại CP_NT
+                    //if (cp == 0)
+                    //{
+                    //    dataGridView3ChiPhi.EditingRow.Cells["CP_NT"].Value = cp;
+                    //}
+                    //else
+                    //{
+                    //    var cp_nt = cp / txtTyGia.Value;
+                    //    dataGridView3ChiPhi.EditingRow.Cells["CP_NT"].Value = cp_nt;
+                    //}
                 }
             }
             catch (Exception ex)
@@ -4533,7 +4541,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     }
 
                     ccell.Value = num;
-                    var cp = num * txtTyGia.Value;
+                    var cp = V6BusinessHelper.Vround(num * txtTyGia.Value,M_ROUND);
                     crow.Cells["CP"].Value = cp;
                 }
                 else if (ccolumn.DataPropertyName.ToUpper() == "CP")
@@ -4548,15 +4556,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     }
 
                     ccell.Value = num;
-                    if (num == 0)
-                    {
-                        crow.Cells["CP_NT"].Value = num;
-                    }
-                    else
-                    {
-                        var cp_nt = num / txtTyGia.Value;
-                        crow.Cells["CP_NT"].Value = cp_nt;
-                    }
+                    //if (num == 0)
+                    //{
+                    //    crow.Cells["CP_NT"].Value = num;
+                    //}
+                    //else
+                    //{
+                    //    var cp_nt = num / txtTyGia.Value;
+                    //    crow.Cells["CP_NT"].Value = cp_nt;
+                    //}
                 }
                 return;
                 var currentCell = dataGridView3ChiPhi.CurrentCell;

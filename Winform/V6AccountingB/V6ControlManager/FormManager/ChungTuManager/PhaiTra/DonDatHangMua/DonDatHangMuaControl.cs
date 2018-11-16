@@ -3658,6 +3658,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         {
             try
             {
+                if (loai_pb.Length > 1) loai_pb = loai_pb.Left(1);
+                if (loai_pb != "1" && loai_pb != "2") return;
                 var t_he_so = loai_pb == "1"? txtTongTienNt0.Value : txtTongSoLuong1.Value;
                 var t_cp_nt_check = 0m;
                 var t_cp_check = 0m;

@@ -64,8 +64,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CP_NT = new V6Controls.Controls.GridView.V6NumberTextBoxDataGridViewColumn();
-            this.CP = new V6Controls.Controls.GridView.V6NumberTextBoxDataGridViewColumn();
+            this.CP_NT = new V6Controls.Controls.GridView.V6NumberDataGridViewColumn();
+            this.CP = new V6Controls.Controls.GridView.V6NumberDataGridViewColumn();
             this.tabVAT = new System.Windows.Forms.TabPage();
             this.detail2 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
@@ -3284,8 +3284,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private V6NumberTextBoxDataGridViewColumn CP_NT;
-        private V6NumberTextBoxDataGridViewColumn CP;
+        private V6NumberDataGridViewColumn CP_NT;
+        private V6NumberDataGridViewColumn CP;
         private V6FormButton btnXoaPB;
         private V6FormButton btnTinhPB;
     }

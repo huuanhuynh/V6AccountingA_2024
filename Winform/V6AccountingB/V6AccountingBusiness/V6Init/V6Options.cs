@@ -71,6 +71,22 @@ namespace V6Init
                 throw new Exception(name + " " + ex.Message);
             }
         }
+        /// <summary>
+        /// Lấy giá trị không gây lỗi, không có trả về null;
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static string GetValueNull(string name)
+        {
+            try
+            {
+                return V6OptionValues[name.ToUpper()];
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
         
         public static void SetValue(string name, string value)
         {

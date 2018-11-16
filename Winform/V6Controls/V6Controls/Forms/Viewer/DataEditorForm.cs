@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6Controls.Controls.GridView;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6Structs;
@@ -661,6 +662,51 @@ namespace V6Controls.Forms.Viewer
                         }
                     }
                 }
+            }
+        }
+
+        private void dataGridView1_DataSourceChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_showFields != null)
+                {
+                    var showFieldSplit = ObjectAndString.SplitString(_showFields);
+                    foreach (string field in showFieldSplit)
+                    {
+                        if (field.Contains(":"))
+                        {
+                            var ss = field.Split(':');
+                            DataGridViewColumn column = null;
+                            
+                            if (ss.Length > 2)
+                            {
+                                string NM_IP = ss[2].ToUpper(); // N2 hoac NM_IP_SL
+                                if (NM_IP.StartsWith("N"))
+                                {
+                                    string newFormat = NM_IP.Length == 2 ? NM_IP : V6Options.GetValueNull(NM_IP.Substring(1));
+                                    column = dataGridView1.ChangeColumnType(ss[0], typeof(V6NumberDataGridViewColumn), newFormat);
+                                }
+                                else if (NM_IP.StartsWith("C")) // CVvar
+                                {
+                                    column = dataGridView1.ChangeColumnType(ss[0], typeof(V6VvarDataGridViewColumn), null);
+                                    ((V6VvarDataGridViewColumn)column).Vvar = NM_IP.Substring(1);
+                                    //((V6VvarDataGridViewColumn)column).DecimalLength = NM_IP.Substring(1);
+                                    ((V6VvarDataGridViewColumn)column).Tag = NM_IP.Substring(1);
+                                }
+                            }
+                            
+                            if (ss[1].ToUpper() == "R" && column != null)
+                            {
+                                column.ReadOnly = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".dataGridView1_DataSourceChanged", ex);
             }
         }
 

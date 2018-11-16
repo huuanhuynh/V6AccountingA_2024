@@ -92,10 +92,13 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\GridView\MyNumberTextBoxCell.cs" />
+    <Compile Include="Controls\GridView\V6VvarDataGridViewColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="TNumEditBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\GridView\V6NumberTextBoxDataGridViewColumn.cs">
+    <Compile Include="Controls\GridView\V6NumberDataGridViewColumn.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Lookup\LookupButton.cs">
