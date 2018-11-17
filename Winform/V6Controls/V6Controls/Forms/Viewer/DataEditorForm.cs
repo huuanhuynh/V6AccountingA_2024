@@ -692,7 +692,7 @@ namespace V6Controls.Forms.Viewer
                                     column = dataGridView1.ChangeColumnType(ss[0], typeof(V6VvarDataGridViewColumn), null);
                                     ((V6VvarDataGridViewColumn)column).Vvar = NM_IP.Substring(1);
                                     //((V6VvarDataGridViewColumn)column).DecimalLength = NM_IP.Substring(1);
-                                    ((V6VvarDataGridViewColumn)column).Tag = NM_IP.Substring(1);
+                                    //((V6VvarDataGridViewColumn)column).Tag = NM_IP.Substring(1);
                                 }
                             }
                             

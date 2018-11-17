@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
@@ -550,6 +551,44 @@ namespace V6Tools.V6Convert
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Cash về IDictionary, không null.
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public static IDictionary<string, object> ObjectToDictionary(object tag)
+        {
+            try
+            {
+                if (tag is IDictionary<string, object>) return (IDictionary<string, object>) tag;
+                if (tag is string) return StringToDictionary(tag.ToString());
+            }
+            catch (Exception)
+            {
+                
+            }
+            return new Dictionary<string, object>();
+        }
+
+        private static IDictionary<string, object> StringToDictionary(string tag, char group_char = ';', char element_char = ':')
+        {
+            Dictionary<string,object> result = new Dictionary<string, object>();
+            string[] sss = string.IsNullOrEmpty(tag) ? new string[]{} : tag.Split(new []{group_char}, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string s in sss)
+            {
+                string[] ss = s.Split(new[] { element_char }, StringSplitOptions.RemoveEmptyEntries);
+                if (ss.Length == 1)
+                {
+                    result.Add("VALUE", ss[0]);
+                }
+                else if (ss.Length > 1)
+                {
+                    result.Add(ss[0].Trim().ToUpper(), ss[1]);
+                }
+            }
+            return result;
         }
     }
 }
