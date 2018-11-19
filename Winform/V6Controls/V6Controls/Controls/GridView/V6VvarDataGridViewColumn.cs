@@ -183,33 +183,33 @@ namespace V6Controls.Controls.GridView
             base.OnKeyPress(e);
             
             // The value changes when a digit, the decimal separator or the negative sign is pressed.
-            bool notifyValueChange = false;
+            //bool notifyValueChange = false;
 
-            if (char.IsDigit(e.KeyChar))
-            {
-                notifyValueChange = true;
-            }
-            else
-            {
-                System.Globalization.NumberFormatInfo numberFormatInfo = System.Globalization.CultureInfo.CurrentCulture.NumberFormat;
-                string decimalSeparatorStr = numberFormatInfo.NumberDecimalSeparator;
-                string groupSeparatorStr = numberFormatInfo.NumberGroupSeparator;
-                string negativeSignStr = numberFormatInfo.NegativeSign;
-                if (!string.IsNullOrEmpty(decimalSeparatorStr) && decimalSeparatorStr.Length == 1)
-                {
-                    notifyValueChange = decimalSeparatorStr[0] == e.KeyChar;
-                }
-                if (!notifyValueChange && !string.IsNullOrEmpty(groupSeparatorStr) && groupSeparatorStr.Length == 1)
-                {
-                    notifyValueChange = groupSeparatorStr[0] == e.KeyChar;
-                }
-                if (!notifyValueChange && !string.IsNullOrEmpty(negativeSignStr) && negativeSignStr.Length == 1)
-                {
-                    notifyValueChange = negativeSignStr[0] == e.KeyChar;
-                }
-            }
+            //if (char.IsDigit(e.KeyChar))
+            //{
+            //    notifyValueChange = true;
+            //}
+            //else
+            //{
+            //    System.Globalization.NumberFormatInfo numberFormatInfo = System.Globalization.CultureInfo.CurrentCulture.NumberFormat;
+            //    string decimalSeparatorStr = numberFormatInfo.NumberDecimalSeparator;
+            //    string groupSeparatorStr = numberFormatInfo.NumberGroupSeparator;
+            //    string negativeSignStr = numberFormatInfo.NegativeSign;
+            //    if (!string.IsNullOrEmpty(decimalSeparatorStr) && decimalSeparatorStr.Length == 1)
+            //    {
+            //        notifyValueChange = decimalSeparatorStr[0] == e.KeyChar;
+            //    }
+            //    if (!notifyValueChange && !string.IsNullOrEmpty(groupSeparatorStr) && groupSeparatorStr.Length == 1)
+            //    {
+            //        notifyValueChange = groupSeparatorStr[0] == e.KeyChar;
+            //    }
+            //    if (!notifyValueChange && !string.IsNullOrEmpty(negativeSignStr) && negativeSignStr.Length == 1)
+            //    {
+            //        notifyValueChange = negativeSignStr[0] == e.KeyChar;
+            //    }
+            //}
 
-            if (notifyValueChange)
+            //if (notifyValueChange)
             {
                 // Let the DataGridView know about the value change
                 NotifyDataGridViewOfValueChange();
@@ -222,7 +222,7 @@ namespace V6Controls.Controls.GridView
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
-
+            dataGridView.CurrentCell.Value = Text;
             //if (this.Focused)
             {
                 // Let the DataGridView know about the value change
