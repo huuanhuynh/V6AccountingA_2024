@@ -40,7 +40,7 @@
             this.txtma_vt = new V6ReportControls.FilterLineVvarTextBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.cbbLoaiBaoCao = new V6Controls.V6ComboBox();
@@ -384,7 +384,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radOr;
         private System.Windows.Forms.RadioButton radAnd;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lblKhoHangGuiBan;

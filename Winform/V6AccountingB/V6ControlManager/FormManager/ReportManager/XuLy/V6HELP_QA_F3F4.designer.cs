@@ -42,7 +42,7 @@
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label6 = new V6Controls.V6Label();
             this.v6Label2 = new V6Controls.V6Label();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
@@ -315,7 +315,7 @@
         private V6Controls.V6Label v6Label5;
         private V6Controls.V6Label v6Label6;
         private V6Controls.V6Label v6Label2;
-        private V6Controls.V6DateTimePick dateNgay_ct1;
+        private V6Controls.V6DateTimePicker dateNgay_ct1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.RichTextBox richTextBox3;

@@ -39,7 +39,7 @@
             this.txtdien_giai = new V6Controls.V6ColorTextBox();
             this.txtSoCt = new V6Controls.V6ColorTextBox();
             this.v6Label7 = new V6Controls.V6Label();
-            this.dateNgayCT = new V6Controls.V6DateTimePick();
+            this.dateNgayCT = new V6Controls.V6DateTimePicker();
             this.v6Label3 = new V6Controls.V6Label();
             this.txtNam = new V6Controls.V6NumberTextBox();
             this.txtThang1 = new V6Controls.V6NumberTextBox();
@@ -60,7 +60,7 @@
             this.txtgt_cl = new V6Controls.NumberTien();
             this.v6Label13 = new V6Controls.V6Label();
             this.v6Label14 = new V6Controls.V6Label();
-            this.DateNgay_tg = new V6Controls.V6DateTimePick();
+            this.DateNgay_tg = new V6Controls.V6DateTimePicker();
             this.v6Label15 = new V6Controls.V6Label();
             this.Txtgt_pb_ky = new V6Controls.NumberTien();
             this.txtMaCt = new V6Controls.V6ColorTextBox();
@@ -714,7 +714,7 @@
         public V6Controls.V6ColorTextBox txtSoCt;
         public V6Controls.V6ColorTextBox txtdien_giai;
         private V6Controls.V6Label v6Label7;
-        private V6Controls.V6DateTimePick dateNgayCT;
+        private V6Controls.V6DateTimePicker dateNgayCT;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6NumberTextBox txtNam;
         private V6Controls.V6NumberTextBox txtThang1;
@@ -735,7 +735,7 @@
         private V6Controls.NumberTien txtgt_cl;
         private V6Controls.V6Label v6Label13;
         private V6Controls.V6Label v6Label14;
-        private V6Controls.V6DateTimePick DateNgay_tg;
+        private V6Controls.V6DateTimePicker DateNgay_tg;
         private V6Controls.V6Label v6Label15;
         private V6Controls.NumberTien Txtgt_pb_ky;
         private V6Controls.V6ColorTextBox txtMaCt;

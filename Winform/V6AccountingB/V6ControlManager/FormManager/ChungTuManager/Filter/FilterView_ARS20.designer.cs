@@ -49,10 +49,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.v6Label8 = new V6Controls.V6Label();
             this.txtMadvcs = new V6Controls.V6VvarTextBox();
             this.v6Label2 = new V6Controls.V6Label();
-            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePick();
+            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePicker();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
-            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePick();
+            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePicker();
             this.btnESC = new System.Windows.Forms.Button();
             this.btnVSearch = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -432,10 +432,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
         private ToolStripStatusLabel toolStripStatusLabel1;
         internal Button btnESC;
         private V6Controls.V6Label v6Label2;
-        private V6Controls.V6DateTimePick v6ColorDateTimePick2;
+        private V6Controls.V6DateTimePicker v6ColorDateTimePick2;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label1;
-        private V6Controls.V6DateTimePick v6ColorDateTimePick1;
+        private V6Controls.V6DateTimePicker v6ColorDateTimePick1;
         private V6Controls.V6VvarTextBox txtMadvcs;
         private V6Controls.V6VvarTextBox Txtma_nvien;
         private V6Controls.V6VvarTextBox TxtMa_bp;

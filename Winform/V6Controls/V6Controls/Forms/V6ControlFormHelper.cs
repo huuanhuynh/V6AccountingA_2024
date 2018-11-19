@@ -1600,9 +1600,9 @@ namespace V6Controls.Forms
                 if (disable) txt.Enabled = false;
                 if (enable) txt.Enabled = true;
             }
-            else if (control is V6DateTimePick)
+            else if (control is V6DateTimePicker)
             {
-                var dat = control as V6DateTimePick;
+                var dat = control as V6DateTimePicker;
                 dat.ReadOnly = (readOnly || readonl2);
                 if (disable) dat.Enabled = false;
                 if (enable) dat.Enabled = true;
@@ -2518,9 +2518,9 @@ namespace V6Controls.Forms
             
             return a;
         }
-        public static V6DateTimePick CreateDateTimePick(string accessibleName, string caption, int width, bool visible, bool carry = false)
+        public static V6DateTimePicker CreateDateTimePick(string accessibleName, string caption, int width, bool visible, bool carry = false)
         {
-            return new V6DateTimePick
+            return new V6DateTimePicker
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
@@ -5959,9 +5959,9 @@ namespace V6Controls.Forms
                     var txt = control as TextBox;
                     txt.ReadOnly = readOnly;
                 }
-                else if (control is V6DateTimePick)
+                else if (control is V6DateTimePicker)
                 {
-                    var dat = control as V6DateTimePick;
+                    var dat = control as V6DateTimePicker;
                     dat.ReadOnly = readOnly;
                     //dat.Enabled = !readOnly;
                 }
@@ -6118,10 +6118,10 @@ namespace V6Controls.Forms
             {
                 ((V6LookupProc)control).SetValue(value);
             }
-            else if (control is V6DateTimePick)
+            else if (control is V6DateTimePicker)
             {
                 var object_to_date = ObjectAndString.ObjectToFullDateTime(value);
-                ((V6DateTimePick)control).SetValue(object_to_date);
+                ((V6DateTimePicker)control).SetValue(object_to_date);
             }
             else if (control is DateTimePicker)
             {
@@ -6228,9 +6228,9 @@ namespace V6Controls.Forms
                 //return color.Value;
                 return;
             }
-            else if (control is V6DateTimePick)
+            else if (control is V6DateTimePicker)
             {
-                d[cNAME] = ((V6DateTimePick)control).Date;
+                d[cNAME] = ((V6DateTimePicker)control).Date;
                 //return ((V6DateTimePick)control).Value;
                 return;
             }
@@ -6345,9 +6345,9 @@ namespace V6Controls.Forms
                 var color = control as V6DateTimeColor;
                 return color.Value;
             }
-            else if (control is V6DateTimePick)
+            else if (control is V6DateTimePicker)
             {
-                return ((V6DateTimePick)control).Date;
+                return ((V6DateTimePicker)control).Date;
             }
             else if (control is DateTimePicker)
             {

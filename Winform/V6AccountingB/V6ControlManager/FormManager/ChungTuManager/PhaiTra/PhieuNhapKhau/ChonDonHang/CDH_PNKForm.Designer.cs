@@ -114,9 +114,9 @@
             this.v6Label4 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label2 = new V6Controls.V6Label();
-            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePick();
+            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePicker();
             this.v6Label1 = new V6Controls.V6Label();
-            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePick();
+            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePicker();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.lblDocSoTien = new V6Controls.V6Label();
@@ -1423,9 +1423,9 @@
         private V6Controls.V6Label v6Label4;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label2;
-        private V6Controls.V6DateTimePick v6ColorDateTimePick2;
+        private V6Controls.V6DateTimePicker v6ColorDateTimePick2;
         private V6Controls.V6Label v6Label1;
-        private V6Controls.V6DateTimePick v6ColorDateTimePick1;
+        private V6Controls.V6DateTimePicker v6ColorDateTimePick1;
         private System.Windows.Forms.GroupBox grbThongTin;
         private V6ReportControls.PanelFilter panelFilter1;
         private V6Controls.V6CheckBox chkLike;

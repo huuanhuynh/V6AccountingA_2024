@@ -32,9 +32,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
@@ -290,9 +290,9 @@
         #endregion
 
         private System.Windows.Forms.Label label3;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
         private System.Windows.Forms.Label label2;
-        private V6Controls.V6DateTimePick dateNgay_ct1;
+        private V6Controls.V6DateTimePicker dateNgay_ct1;
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.RichTextBox richTextBox1;

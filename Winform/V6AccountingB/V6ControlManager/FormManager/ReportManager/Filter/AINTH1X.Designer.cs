@@ -35,8 +35,8 @@
             this.v6Label8 = new V6Controls.V6Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.chkGiamTru = new V6Controls.V6CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.v6Label3 = new V6Controls.V6Label();
@@ -648,8 +648,8 @@
         private System.Windows.Forms.RadioButton radOr;
         private System.Windows.Forms.RadioButton radAnd;
         private V6Controls.V6CheckBox chkGiamTru;
-        private V6Controls.V6DateTimePick dateNgay_ct1;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct1;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox8;

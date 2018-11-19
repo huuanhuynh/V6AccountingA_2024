@@ -54,8 +54,8 @@
             this.Chk_Tinh_dc = new V6Controls.V6CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.v6Label4 = new V6Controls.V6Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -476,8 +476,8 @@
         private V6Controls.V6CheckBox Chk_Tinh_dc;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
-        private V6Controls.V6DateTimePick dateNgay_ct1;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct1;
         private V6ReportControls.FilterLineVvarTextBox Txtma_qg;
         private V6ReportControls.FilterLineVvarTextBox Txtma_nsx;
         private V6ReportControls.FilterLineVvarTextBox Txttk_vt;

@@ -55,7 +55,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label1 = new V6Controls.V6Label();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
-            this.txtngay_ct = new V6Controls.V6DateTimePick();
+            this.txtngay_ct = new V6Controls.V6DateTimePicker();
             this.txtdien_giai = new V6Controls.V6VvarTextBox();
             this.txtma_nt = new V6Controls.V6VvarTextBox();
             this.txtten_nt = new V6Controls.V6LabelTextBox();
@@ -752,7 +752,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private V6Controls.V6Label v6Label1;
         protected System.Windows.Forms.Button btnThoat;
         protected System.Windows.Forms.Button btnNhan;
-        private V6Controls.V6DateTimePick txtngay_ct;
+        private V6Controls.V6DateTimePicker txtngay_ct;
         private V6Controls.V6VvarTextBox txtdien_giai;
         private V6Controls.V6VvarTextBox txtma_nt;
         private V6Controls.V6LabelTextBox txtten_nt;

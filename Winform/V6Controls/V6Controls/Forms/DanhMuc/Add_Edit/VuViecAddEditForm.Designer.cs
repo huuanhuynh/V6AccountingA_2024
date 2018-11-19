@@ -43,8 +43,8 @@
             this.TxtMa_vv_me = new V6Controls.V6VvarTextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.TxtMa_nt = new V6Controls.V6VvarTextBox();
-            this.txtNgay_vv2 = new V6Controls.V6DateTimePick();
-            this.TxtNgay_vv1 = new V6Controls.V6DateTimePick();
+            this.txtNgay_vv2 = new V6Controls.V6DateTimePicker();
+            this.TxtNgay_vv1 = new V6Controls.V6DateTimePicker();
             this.TxtNh_vv3 = new V6Controls.V6VvarTextBox();
             this.TxtNh_vv2 = new V6Controls.V6VvarTextBox();
             this.TxtNh_vv1 = new V6Controls.V6VvarTextBox();
@@ -1476,8 +1476,8 @@
         private System.Windows.Forms.Label label18;
         private V6VvarTextBox TxtMa_kh;
         private V6ColorTextBox v6ColorTextBox2;
-        private V6DateTimePick txtNgay_vv2;
-        private V6DateTimePick TxtNgay_vv1;
+        private V6DateTimePicker txtNgay_vv2;
+        private V6DateTimePicker TxtNgay_vv1;
         private V6DateTimeColor v6DateTimeColor1;
         private V6DateTimeColor v6DateTimeColor2;
         private V6DateTimeColor v6DateTimeColor3;

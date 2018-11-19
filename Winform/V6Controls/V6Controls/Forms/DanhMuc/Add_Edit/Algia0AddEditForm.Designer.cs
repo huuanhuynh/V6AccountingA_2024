@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dateNgay_mua = new V6Controls.V6DateTimePick();
+            this.dateNgay_mua = new V6Controls.V6DateTimePicker();
             this.txtGiaMua = new V6Controls.NumberGiaNt();
             this.dateNgayHetHieuLuc = new V6Controls.V6DateTimeColor();
             this.txtMaNT = new V6Controls.V6VvarTextBox();
@@ -369,7 +369,7 @@
         private V6DateTimeColor dateNgayHetHieuLuc;
         private System.Windows.Forms.Label label6;
         private NumberGiaNt txtGiaMua;
-        private V6DateTimePick dateNgay_mua;
+        private V6DateTimePicker dateNgay_mua;
         private V6VvarTextBox txtMaNT;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;

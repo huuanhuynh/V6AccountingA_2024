@@ -31,9 +31,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.grbThoiGian = new System.Windows.Forms.GroupBox();
             this.lblDenNgay = new V6Controls.V6Label();
-            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePick();
+            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePicker();
             this.lblTuNgay = new V6Controls.V6Label();
-            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePick();
+            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePicker();
             this.grbTuyChon = new System.Windows.Forms.GroupBox();
             this.txtNhomVT6 = new V6Controls.V6VvarTextBox();
             this.txtNhomVT5 = new V6Controls.V6VvarTextBox();
@@ -525,8 +525,8 @@
         private V6Controls.V6Label v6Label1;
         private System.Windows.Forms.GroupBox grbThoiGian;
         private V6Controls.V6Label lblDenNgay;
-        private V6Controls.V6DateTimePick v6ColorDateTimePick2;
+        private V6Controls.V6DateTimePicker v6ColorDateTimePick2;
         private V6Controls.V6Label lblTuNgay;
-        private V6Controls.V6DateTimePick v6ColorDateTimePick1;
+        private V6Controls.V6DateTimePicker v6ColorDateTimePick1;
     }
 }

@@ -32,12 +32,12 @@
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.chk_Luy_ke = new V6Controls.V6CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtNgay_ct2 = new V6Controls.V6DateTimePick();
-            this.txtNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.txtNgay_ct2 = new V6Controls.V6DateTimePicker();
+            this.txtNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -190,12 +190,12 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radOr;
         private System.Windows.Forms.RadioButton radAnd;
-        private V6Controls.V6DateTimePick dateNgay_ct1;
+        private V6Controls.V6DateTimePicker dateNgay_ct1;
         private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
         private V6Controls.V6CheckBox chk_Luy_ke;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private V6Controls.V6DateTimePick txtNgay_ct2;
-        private V6Controls.V6DateTimePick txtNgay_ct1;
+        private V6Controls.V6DateTimePicker txtNgay_ct2;
+        private V6Controls.V6DateTimePicker txtNgay_ct1;
     }
 }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label2 = new System.Windows.Forms.Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
             this.txtma_gia = new V6ReportControls.FilterLineVvarTextBox();
             this.SuspendLayout();
             // 
@@ -84,7 +84,7 @@
 
         #endregion
         private System.Windows.Forms.Label label2;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
         private V6ReportControls.FilterLineVvarTextBox txtma_gia;
     }
 }

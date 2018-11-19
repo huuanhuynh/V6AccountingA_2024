@@ -32,7 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.txtMaKho = new V6Controls.V6VvarTextBox();
-            this.dateCuoiNgay = new V6Controls.V6DateTimePick();
+            this.dateCuoiNgay = new V6Controls.V6DateTimePicker();
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.txtMavt = new V6Controls.V6VvarTextBox();
@@ -199,7 +199,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         public V6Controls.V6VvarTextBox txtMaKho;
-        private V6Controls.V6DateTimePick dateCuoiNgay;
+        private V6Controls.V6DateTimePicker dateCuoiNgay;
         private V6Controls.Controls.V6FormButton btnSuaTTMauBC;
         private V6Controls.Controls.V6FormButton btnThemMauBC;
         private V6Controls.V6VvarTextBox txtMavt;

@@ -30,8 +30,8 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.txtMa_bpht = new V6ReportControls.FilterLineVvarTextBox();
             this.chkdc_ck = new V6Controls.V6CheckBox();
             this.SuspendLayout();
@@ -127,8 +127,8 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
-        private V6Controls.V6DateTimePick dateNgay_ct1;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct1;
         private V6ReportControls.FilterLineVvarTextBox txtMa_bpht;
         private V6Controls.V6CheckBox chkdc_ck;
 

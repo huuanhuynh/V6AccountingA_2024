@@ -37,7 +37,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.v6Label9 = new V6Controls.V6Label();
             this.txtMaNVien = new V6Controls.V6VvarTextBox();
             this.v6Label4 = new V6Controls.V6Label();
-            this.dateNgay = new V6Controls.V6DateTimePick();
+            this.dateNgay = new V6Controls.V6DateTimePicker();
             this.Txtten_ns = new V6Controls.V6ColorTextBox();
             this.Txtgio_vao = new V6Controls.V6NumberTextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -1288,7 +1288,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         private V6Controls.V6Label v6Label9;
         private V6Controls.V6VvarTextBox txtMaNVien;
         private V6Controls.V6Label v6Label4;
-        private V6Controls.V6DateTimePick dateNgay;
+        private V6Controls.V6DateTimePicker dateNgay;
         private V6Controls.V6ColorTextBox Txtten_ns;
         private V6Controls.V6NumberTextBox Txtgio_vao;
         private System.Windows.Forms.Label label2;

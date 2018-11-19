@@ -34,8 +34,8 @@
             this.txtValue = new V6Controls.V6VvarTextBox();
             this.numValue = new V6Controls.V6NumberTextBox();
             this.numValue2 = new V6Controls.V6NumberTextBox();
-            this.dateValue = new V6Controls.V6DateTimePick();
-            this.dateValue2 = new V6Controls.V6DateTimePick();
+            this.dateValue = new V6Controls.V6DateTimePicker();
+            this.dateValue2 = new V6Controls.V6DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblField = new System.Windows.Forms.Label();
@@ -283,8 +283,8 @@
         private V6VvarTextBox txtValue;
         private V6NumberTextBox numValue;
         private V6NumberTextBox numValue2;
-        private V6DateTimePick dateValue;
-        private V6DateTimePick dateValue2;
+        private V6DateTimePicker dateValue;
+        private V6DateTimePicker dateValue2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblField;

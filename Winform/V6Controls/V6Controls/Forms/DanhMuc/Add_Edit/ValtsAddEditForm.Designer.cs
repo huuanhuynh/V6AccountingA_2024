@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.DateNgay_khc = new V6Controls.V6DateTimePick();
+            this.DateNgay_khc = new V6Controls.V6DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.TxtTang_giam = new V6Controls.V6NumberTextBox();
-            this.dateNgayGiam = new V6Controls.V6DateTimePick();
+            this.dateNgayGiam = new V6Controls.V6DateTimePicker();
             this.txtLyDo = new V6Controls.V6ColorTextBox();
             this.txtSoCt = new V6Controls.V6VvarTextBox();
             this.txtMaGiamTS = new V6Controls.V6VvarTextBox();
@@ -306,9 +306,9 @@
         private System.Windows.Forms.Label label1;
         private V6ColorTextBox txtLyDo;
         private System.Windows.Forms.Label label7;
-        private V6DateTimePick dateNgayGiam;
+        private V6DateTimePicker dateNgayGiam;
         private V6NumberTextBox TxtTang_giam;
-        private V6DateTimePick DateNgay_khc;
+        private V6DateTimePicker DateNgay_khc;
         private System.Windows.Forms.Label label4;
         private V6LabelTextBox txtTenTS;
     }

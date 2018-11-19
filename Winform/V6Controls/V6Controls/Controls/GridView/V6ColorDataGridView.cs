@@ -536,10 +536,14 @@ namespace V6Controls
             {
                 newTypeColumn = new V6VvarDataGridViewColumn();
             }
-            //else if (columnType == typeof(V6DateDataGridViewColumn))
-            //{
-            //    newTypeColumn = new V6DateDataGridViewColumn();
-            //}
+            else if (columnType == typeof(V6DateTimeColorGridViewColumn))
+            {
+                newTypeColumn = new V6DateTimeColorGridViewColumn();
+            }
+            else if (columnType == typeof(V6DateTimePickerGridViewColumn))
+            {
+                newTypeColumn = new V6DateTimePickerGridViewColumn();
+            }
             else if (columnType == typeof (DataGridViewTextBoxColumn))
             {
                 newTypeColumn = new DataGridViewTextBoxColumn();

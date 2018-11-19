@@ -34,9 +34,9 @@
             this.txtMaVV = new V6Controls.V6VvarTextBox();
             this.txtTkVay = new V6Controls.V6VvarTextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtNgay_ku2 = new V6Controls.V6DateTimePick();
+            this.txtNgay_ku2 = new V6Controls.V6DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
-            this.TxtNgay_ku1 = new V6Controls.V6DateTimePick();
+            this.TxtNgay_ku1 = new V6Controls.V6DateTimePicker();
             this.Txtnh_ku3 = new V6Controls.V6VvarTextBox();
             this.Txtnh_ku2 = new V6Controls.V6VvarTextBox();
             this.Txtnh_ku1 = new V6Controls.V6VvarTextBox();
@@ -1329,8 +1329,8 @@
         private V6VvarTextBox Txtnh_ku3;
         private V6VvarTextBox Txtnh_ku2;
         private V6VvarTextBox Txtnh_ku1;
-        private V6DateTimePick txtNgay_ku2;
-        private V6DateTimePick TxtNgay_ku1;
+        private V6DateTimePicker txtNgay_ku2;
+        private V6DateTimePicker TxtNgay_ku1;
         private V6VvarTextBox txtMaVV;
         private V6VvarTextBox txtTkVay;
         private System.Windows.Forms.Label label13;

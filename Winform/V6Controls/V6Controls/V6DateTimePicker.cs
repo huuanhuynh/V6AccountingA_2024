@@ -17,7 +17,7 @@ namespace V6Controls
     /// <para>Thuộc tính ReadOnly.</para>
     /// <para>Khi ReadOnly chỉ có thể dùng hàm SetData để thay đổi giá trị.</para>
     /// </summary>
-    public class V6DateTimePick:DateTimePicker
+    public class V6DateTimePicker:DateTimePicker
     {
         ///// <summary>
         ///// Thuộc tính che, chỉ cả ngày và giờ khi UseTime=true.
@@ -190,7 +190,7 @@ namespace V6Controls
         /// <summary>
         /// Hàm khởi tạo
         /// </summary>
-        public V6DateTimePick()
+        public V6DateTimePicker()
         {
             InitializeComponent();
             MyInit();

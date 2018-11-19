@@ -34,8 +34,8 @@
             this.v6NumberTextBox5 = new V6Controls.V6NumberTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.txtNgay_ku2 = new V6Controls.V6DateTimePick();
-            this.TxtNgay_ku1 = new V6Controls.V6DateTimePick();
+            this.txtNgay_ku2 = new V6Controls.V6DateTimePicker();
+            this.TxtNgay_ku1 = new V6Controls.V6DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.checkBox1 = new V6Controls.V6CheckBox();
@@ -861,8 +861,8 @@
         private System.Windows.Forms.Label label28;
         private V6VvarTextBox txtMaKu;
         private System.Windows.Forms.Label label1;
-        private V6DateTimePick txtNgay_ku2;
-        private V6DateTimePick TxtNgay_ku1;
+        private V6DateTimePicker txtNgay_ku2;
+        private V6DateTimePicker TxtNgay_ku1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label9;
         private V6NumberTextBox v6NumberTextBox6;

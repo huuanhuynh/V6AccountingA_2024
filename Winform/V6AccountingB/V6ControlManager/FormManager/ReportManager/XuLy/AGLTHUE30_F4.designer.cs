@@ -54,7 +54,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label1 = new V6Controls.V6Label();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
-            this.txtngay_ct = new V6Controls.V6DateTimePick();
+            this.txtngay_ct = new V6Controls.V6DateTimePicker();
             this.txtdia_chi = new V6Controls.V6VvarTextBox();
             this.txtma_so_thue = new V6Controls.V6VvarTextBox();
             this.txtten_dvcs = new V6Controls.V6LabelTextBox();
@@ -63,7 +63,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.lbT_Tt_NT0 = new V6Controls.V6Label();
             this.txtt_tien_nt = new V6Controls.NumberTienNt();
             this.txtthue_suat = new V6Controls.NumberTienNt();
-            this.txtngay_ct0 = new V6Controls.V6DateTimePick();
+            this.txtngay_ct0 = new V6Controls.V6DateTimePicker();
             this.v6Label10 = new V6Controls.V6Label();
             this.v6Label13 = new V6Controls.V6Label();
             this.txtso_ct0 = new V6Controls.V6VvarTextBox();
@@ -945,7 +945,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private V6Controls.V6Label v6Label1;
         protected System.Windows.Forms.Button btnThoat;
         protected System.Windows.Forms.Button btnNhan;
-        private V6Controls.V6DateTimePick txtngay_ct;
+        private V6Controls.V6DateTimePicker txtngay_ct;
         private V6Controls.V6VvarTextBox txtdia_chi;
         private V6Controls.V6VvarTextBox txtma_so_thue;
         private V6Controls.V6LabelTextBox txtten_dvcs;
@@ -954,7 +954,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private V6Controls.V6Label lbT_Tt_NT0;
         private V6Controls.NumberTienNt txtt_tien_nt;
         private V6Controls.NumberTienNt txtthue_suat;
-        private V6Controls.V6DateTimePick txtngay_ct0;
+        private V6Controls.V6DateTimePicker txtngay_ct0;
         private V6Controls.V6Label v6Label10;
         private V6Controls.V6Label v6Label13;
         private V6Controls.V6VvarTextBox txtso_ct0;

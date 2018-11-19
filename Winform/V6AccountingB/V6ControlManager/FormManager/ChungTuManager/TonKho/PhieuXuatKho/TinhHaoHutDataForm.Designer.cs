@@ -41,7 +41,7 @@
             this.txtKieuIn = new V6Controls.V6VvarTextBox();
             this.TxtVttonkho = new V6Controls.V6VvarTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtma_lo = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_vt6 = new V6ReportControls.FilterLineVvarTextBox();
@@ -62,7 +62,7 @@
             this.chkSoluong = new System.Windows.Forms.CheckBox();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -523,7 +523,7 @@
         private V6Controls.V6VvarTextBox txtKieuIn;
         private V6Controls.V6VvarTextBox TxtVttonkho;
         private System.Windows.Forms.Label label2;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
         private System.Windows.Forms.GroupBox groupBox1;
         private V6ReportControls.FilterLineVvarTextBox txtma_lo;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_vt6;
@@ -544,6 +544,6 @@
         private System.Windows.Forms.CheckBox chkSoluong;
         private System.Windows.Forms.Timer timerViewReport;
         private System.Windows.Forms.Label label1;
-        private V6Controls.V6DateTimePick dateNgay_ct1;
+        private V6Controls.V6DateTimePicker dateNgay_ct1;
     }
 }

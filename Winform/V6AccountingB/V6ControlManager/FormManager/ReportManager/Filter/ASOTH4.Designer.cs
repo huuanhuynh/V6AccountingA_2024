@@ -54,12 +54,12 @@
             this.filterLineVvarTextBox10 = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox7 = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox5 = new V6ReportControls.FilterLineVvarTextBox();
-            this.dateNgay_ct0 = new V6Controls.V6DateTimePick();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct0 = new V6Controls.V6DateTimePicker();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
             this.chkGiamTru = new V6Controls.V6CheckBox();
             this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
             this.lineNH_KH8 = new V6ReportControls.FilterLineVvarTextBox();
@@ -553,8 +553,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radOr;
         private System.Windows.Forms.RadioButton radAnd;
-        private V6Controls.V6DateTimePick dateNgay_ct0;
-        private V6Controls.V6DateTimePick dateNgay_ct1;
+        private V6Controls.V6DateTimePicker dateNgay_ct0;
+        private V6Controls.V6DateTimePicker dateNgay_ct1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox8;
@@ -566,7 +566,7 @@
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox10;
         private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
         private System.Windows.Forms.Label label4;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox2;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_vt6;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_vt4;

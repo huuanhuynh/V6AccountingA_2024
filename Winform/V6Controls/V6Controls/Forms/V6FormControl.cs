@@ -456,11 +456,11 @@ namespace V6Controls.Forms
                     V6ControlFormHelper.SetStatusText(s);
                 };
             }
-            else if (control is V6DateTimePick)
+            else if (control is V6DateTimePicker)
             {
                 control.Enter += delegate(object sender, EventArgs e)
                 {
-                    V6DateTimePick mtb = (V6DateTimePick)sender;
+                    V6DateTimePicker mtb = (V6DateTimePicker)sender;
                     var s = string.Format("{0}:{1} ({2})", mtb.AccessibleName, mtb.TextTitle, mtb.Text);
                     V6ControlFormHelper.SetStatusText(s);
                 };

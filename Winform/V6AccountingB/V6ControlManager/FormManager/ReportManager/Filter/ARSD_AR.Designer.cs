@@ -30,8 +30,8 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.txtma_ct = new V6ReportControls.FilterLineVvarTextBox();
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.radOr = new System.Windows.Forms.RadioButton();
@@ -316,8 +316,8 @@
         #endregion
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
-        private V6Controls.V6DateTimePick dateNgay_ct1;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct1;
         private V6ReportControls.FilterLineVvarTextBox txtma_ct;
         private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
         private System.Windows.Forms.RadioButton radOr;

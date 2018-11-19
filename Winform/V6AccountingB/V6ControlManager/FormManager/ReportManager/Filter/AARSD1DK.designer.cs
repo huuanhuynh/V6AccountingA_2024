@@ -43,7 +43,7 @@
             this.txtTk = new V6ReportControls.FilterLineVvarTextBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
-            this.dateNgay_ct0 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct0 = new V6Controls.V6DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxNhom = new System.Windows.Forms.GroupBox();
             this.NH_KH1 = new V6Controls.V6ColorTextBox();
@@ -449,7 +449,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radOr;
         private System.Windows.Forms.RadioButton radAnd;
-        private V6Controls.V6DateTimePick dateNgay_ct0;
+        private V6Controls.V6DateTimePicker dateNgay_ct0;
         private System.Windows.Forms.Label label1;
         private V6ReportControls.FilterLineVvarTextBox txtTk;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh6;

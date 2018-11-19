@@ -160,8 +160,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.group1 = new System.Windows.Forms.GroupBox();
             this.txtMa_sonb = new V6Controls.V6VvarTextBox();
             this.v6Label2 = new V6Controls.V6Label();
-            this.dateNgayLCT = new V6Controls.V6DateTimePick();
-            this.dateNgayCT = new V6Controls.V6DateTimePick();
+            this.dateNgayLCT = new V6Controls.V6DateTimePicker();
+            this.dateNgayCT = new V6Controls.V6DateTimePicker();
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
@@ -2655,12 +2655,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabChiTiet;
         private System.Windows.Forms.TabPage tabVAT;
-        private V6DateTimePick dateNgayCT;
+        private V6DateTimePicker dateNgayCT;
         private V6Controls.V6ColorDataGridView dataGridView1;
         private V6Label v6Label4;
         private NumberTienNt txtTongTienNt;
         private System.Windows.Forms.Button btnTim;
-        private V6DateTimePick dateNgayLCT;
+        private V6DateTimePicker dateNgayLCT;
         private V6Label v6Label5;
         private System.Windows.Forms.GroupBox group2;
         private V6Label v6Label6;

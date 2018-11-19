@@ -41,9 +41,9 @@
             this.v6Label2 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
-            this.dateNam = new V6Controls.V6DateTimePick();
-            this.dateThang1 = new V6Controls.V6DateTimePick();
-            this.dateThang2 = new V6Controls.V6DateTimePick();
+            this.dateNam = new V6Controls.V6DateTimePicker();
+            this.dateThang1 = new V6Controls.V6DateTimePicker();
+            this.dateThang2 = new V6Controls.V6DateTimePicker();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -231,9 +231,9 @@
         private V6Controls.V6Label v6Label2;
         private V6Controls.V6Label v6Label3;
         private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;
-        private V6Controls.V6DateTimePick dateNam;
-        private V6Controls.V6DateTimePick dateThang1;
-        private V6Controls.V6DateTimePick dateThang2;
+        private V6Controls.V6DateTimePicker dateNam;
+        private V6Controls.V6DateTimePicker dateThang1;
+        private V6Controls.V6DateTimePicker dateThang2;
 
 
 

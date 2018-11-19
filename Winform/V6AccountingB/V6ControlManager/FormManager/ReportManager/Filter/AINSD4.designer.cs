@@ -41,7 +41,7 @@
             this.Txtnh_vt1 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_vt2 = new V6ReportControls.FilterLineVvarTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -250,7 +250,7 @@
         private System.Windows.Forms.RadioButton radAnd;
         private V6ReportControls.FilterLineVvarTextBox TxtMakho;
         private System.Windows.Forms.Label label2;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_vt6;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_vt4;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_vt5;

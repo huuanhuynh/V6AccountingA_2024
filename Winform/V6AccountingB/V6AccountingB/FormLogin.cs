@@ -125,8 +125,7 @@ namespace V6AccountingB
                 else
                 {
                     lblStatus.Text = "___________ / _";
-                    V6Message.Show("Kiểm tra lại kết nối và cấu hình!\n" + exMessage);
-                    
+                    V6Message.Show("Kiểm tra lại kết nối và cấu hình!\n" + exMessage, 0, this);
                 }
 
                 ((Timer)sender).Dispose();

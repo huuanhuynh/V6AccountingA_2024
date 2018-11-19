@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateYear = new V6Controls.V6DateTimePick();
-            this.dateMonth = new V6Controls.V6DateTimePick();
+            this.dateYear = new V6Controls.V6DateTimePicker();
+            this.dateMonth = new V6Controls.V6DateTimePicker();
             this.txtMaKh = new V6Controls.V6VvarTextBox();
             this.v6Label10 = new V6Controls.V6Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -218,8 +218,8 @@
 
         #endregion
 
-        private V6Controls.V6DateTimePick dateYear;
-        private V6Controls.V6DateTimePick dateMonth;
+        private V6Controls.V6DateTimePicker dateYear;
+        private V6Controls.V6DateTimePicker dateMonth;
         private V6Controls.V6VvarTextBox txtMaKh;
         private V6Controls.V6Label v6Label10;
         private System.Windows.Forms.GroupBox groupBox1;

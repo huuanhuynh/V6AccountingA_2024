@@ -42,7 +42,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label55 = new System.Windows.Forms.Label();
             this.txtMaDvcs = new V6Controls.V6VvarTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateNgayCt = new V6Controls.V6DateTimePick();
+            this.dateNgayCt = new V6Controls.V6DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.TxtNam = new V6Controls.V6NumberTextBox();
@@ -455,7 +455,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label8;
         private V6NumberTextBox TxtNam;
-        private V6DateTimePick dateNgayCt;
+        private V6DateTimePicker dateNgayCt;
         private V6VvarTextBox txtSoCt;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;

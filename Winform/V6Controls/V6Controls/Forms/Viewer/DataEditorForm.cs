@@ -691,8 +691,14 @@ namespace V6Controls.Forms.Viewer
                                 {
                                     column = dataGridView1.ChangeColumnType(ss[0], typeof(V6VvarDataGridViewColumn), null);
                                     ((V6VvarDataGridViewColumn)column).Vvar = NM_IP.Substring(1);
-                                    //((V6VvarDataGridViewColumn)column).DecimalLength = NM_IP.Substring(1);
-                                    //((V6VvarDataGridViewColumn)column).Tag = NM_IP.Substring(1);
+                                }
+                                else if (NM_IP.StartsWith("D0")) // ColorDateTime
+                                {
+                                    column = dataGridView1.ChangeColumnType(ss[0], typeof(V6DateTimeColorGridViewColumn), null);
+                                }
+                                else if (NM_IP.StartsWith("D1")) // DateTimePicker
+                                {
+                                    column = dataGridView1.ChangeColumnType(ss[0], typeof(V6DateTimePickerGridViewColumn), null);
                                 }
                             }
                             
@@ -708,6 +714,11 @@ namespace V6Controls.Forms.Viewer
             {
                 this.WriteExLog(GetType() + ".dataGridView1_DataSourceChanged", ex);
             }
+        }
+
+        private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
         

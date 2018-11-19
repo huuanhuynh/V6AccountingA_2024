@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.v6DateTimeTextBox1 = new V6Controls.V6DateTimePick();
+            this.v6DateTimeTextBox1 = new V6Controls.V6DateTimePicker();
             this.SuspendLayout();
             // 
             // v6DateTimeTextBox1
@@ -62,6 +62,6 @@
 
         #endregion
 
-        private V6Controls.V6DateTimePick v6DateTimeTextBox1;
+        private V6Controls.V6DateTimePicker v6DateTimeTextBox1;
     }
 }

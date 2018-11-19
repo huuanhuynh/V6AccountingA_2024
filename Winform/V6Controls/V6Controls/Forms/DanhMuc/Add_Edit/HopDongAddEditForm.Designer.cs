@@ -31,9 +31,9 @@
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.chkCT = new V6Controls.V6CheckBox();
-            this.dateNgayHD3 = new V6Controls.V6DateTimePick();
-            this.dateNgayHD2 = new V6Controls.V6DateTimePick();
-            this.dateNgayHD1 = new V6Controls.V6DateTimePick();
+            this.dateNgayHD3 = new V6Controls.V6DateTimePicker();
+            this.dateNgayHD2 = new V6Controls.V6DateTimePicker();
+            this.dateNgayHD1 = new V6Controls.V6DateTimePicker();
             this.txtMaHD = new V6Controls.V6VvarTextBox();
             this.txtMA_NT = new V6Controls.V6VvarTextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -1201,9 +1201,9 @@
         private V6DateTimeColor v6ColorDateTimePick3;
         private V6DateTimeColor v6ColorDateTimePick2;
         private V6DateTimeColor v6ColorDateTimePick1;
-        private V6DateTimePick dateNgayHD3;
-        private V6DateTimePick dateNgayHD2;
-        private V6DateTimePick dateNgayHD1;
+        private V6DateTimePicker dateNgayHD3;
+        private V6DateTimePicker dateNgayHD2;
+        private V6DateTimePicker dateNgayHD1;
         private V6CheckBox chkCT;
         private System.Windows.Forms.TabPage tabChiTiet;
         private System.Windows.Forms.GroupBox groupBox1;

@@ -104,7 +104,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.Txtten_vtthue = new V6Controls.V6ColorTextBox();
             this.v6Label34 = new V6Controls.V6Label();
             this.txtMadvcs = new V6Controls.V6VvarTextBox();
-            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePick();
+            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePicker();
             this.TxtTen_khoN = new V6Controls.V6ColorTextBox();
             this.TxtTen_kho = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
@@ -146,8 +146,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtMa_sonb = new V6Controls.V6VvarTextBox();
             this.v6Label2 = new V6Controls.V6Label();
             this.TxtSo_ct = new V6Controls.V6ColorTextBox();
-            this.dateNgayLCT = new V6Controls.V6DateTimePick();
-            this.dateNgayCT = new V6Controls.V6DateTimePick();
+            this.dateNgayLCT = new V6Controls.V6DateTimePicker();
+            this.dateNgayCT = new V6Controls.V6DateTimePicker();
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
@@ -2416,12 +2416,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabChiTiet;
         private System.Windows.Forms.TabPage tabKhac;
-        private V6DateTimePick dateNgayCT;
+        private V6DateTimePicker dateNgayCT;
         private V6Controls.V6ColorDataGridView dataGridView1;
         private V6Label v6Label4;
         private NumberTienNt txtTongTienNt;
         private System.Windows.Forms.Button btnTim;
-        private V6DateTimePick dateNgayLCT;
+        private V6DateTimePicker dateNgayLCT;
         private V6Label v6Label5;
         private System.Windows.Forms.GroupBox group2;
         private V6Label v6Label7;
@@ -2485,7 +2485,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private System.Windows.Forms.Button btnViewInfoData;
         private V6ColorTextBox Txtten_vtthue;
         private V6Label v6Label34;
-        private V6DateTimePick v6ColorDateTimePick1;
+        private V6DateTimePicker v6ColorDateTimePick1;
         private V6ColorTextBox TxtTen_khoN;
         private V6ColorTextBox TxtTen_kho;
         private V6VvarTextBox txtMaKhoN;

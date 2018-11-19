@@ -65,7 +65,7 @@
             this.v6IndexComboBox1 = new V6Controls.Controls.V6IndexComboBox();
             this.TXTkieu_ctgs = new V6Controls.V6ColorTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateNgayLo = new V6Controls.V6DateTimePick();
+            this.dateNgayLo = new V6Controls.V6DateTimePicker();
             this.SuspendLayout();
             // 
             // btnHuy
@@ -724,7 +724,7 @@
         private V6Controls.Controls.V6IndexComboBox v6IndexComboBox1;
         public V6Controls.V6ColorTextBox TXTkieu_ctgs;
         private System.Windows.Forms.Label label2;
-        private V6Controls.V6DateTimePick dateNgayLo;
+        private V6Controls.V6DateTimePicker dateNgayLo;
 
 
 

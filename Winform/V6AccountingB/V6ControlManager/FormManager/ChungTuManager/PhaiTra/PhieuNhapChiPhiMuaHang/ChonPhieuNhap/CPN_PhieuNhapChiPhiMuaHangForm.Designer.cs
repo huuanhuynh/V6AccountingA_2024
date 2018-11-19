@@ -33,9 +33,9 @@
             this.lblDocSoTien = new V6Controls.V6Label();
             this.locThoiGian1 = new System.Windows.Forms.GroupBox();
             this.v6Label2 = new V6Controls.V6Label();
-            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePick();
+            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePicker();
             this.v6Label1 = new V6Controls.V6Label();
-            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePick();
+            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePicker();
             this.locThongTin1 = new System.Windows.Forms.GroupBox();
             this.chkLike = new V6Controls.V6CheckBox();
             this.maThanhToan = new V6Controls.V6VvarTextBox();
@@ -711,9 +711,9 @@
         private V6Controls.V6Label lblDocSoTien;
         private System.Windows.Forms.GroupBox locThoiGian1;
         private V6Controls.V6Label v6Label2;
-        private V6Controls.V6DateTimePick v6ColorDateTimePick2;
+        private V6Controls.V6DateTimePicker v6ColorDateTimePick2;
         private V6Controls.V6Label v6Label1;
-        private V6Controls.V6DateTimePick v6ColorDateTimePick1;
+        private V6Controls.V6DateTimePicker v6ColorDateTimePick1;
         private System.Windows.Forms.GroupBox locThongTin1;
         private V6Controls.V6CheckBox chkLike;
         private V6Controls.V6VvarTextBox maThanhToan;

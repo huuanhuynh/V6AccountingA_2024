@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.DateNGAY2 = new V6Controls.V6DateTimePick();
-            this.DateNGAY1 = new V6Controls.V6DateTimePick();
+            this.DateNGAY2 = new V6Controls.V6DateTimePicker();
+            this.DateNGAY1 = new V6Controls.V6DateTimePicker();
             this.txtMaTg = new V6Controls.V6VvarTextBox();
             this.txttenTg = new V6Controls.V6LabelTextBox();
             this.txtSoNgay = new V6Controls.V6NumberTextBox();
@@ -386,7 +386,7 @@
         private V6Label v6Label1;
         private V6Label v6Label17;
         private System.Windows.Forms.Label label5;
-        private V6DateTimePick DateNGAY2;
-        private V6DateTimePick DateNGAY1;
+        private V6DateTimePicker DateNGAY2;
+        private V6DateTimePicker DateNGAY1;
     }
 }

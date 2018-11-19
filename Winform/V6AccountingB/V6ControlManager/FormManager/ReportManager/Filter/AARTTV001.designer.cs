@@ -53,14 +53,14 @@
             this.Txtnh_kh1 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_kh2 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_kh3 = new V6ReportControls.FilterLineVvarTextBox();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.rdo_intattoan = new System.Windows.Forms.RadioButton();
             this.rdo_khongintattoan = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateNgay_ct2_ptt = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2_ptt = new V6Controls.V6DateTimePicker();
             this.v6Label1 = new V6Controls.V6Label();
             this.v6Label9 = new V6Controls.V6Label();
             this.TxtLoai = new V6Controls.V6VvarTextBox();
@@ -571,8 +571,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radOr;
         private System.Windows.Forms.RadioButton radAnd;
-        private V6Controls.V6DateTimePick dateNgay_ct1;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct1;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh1;
@@ -581,7 +581,7 @@
         private System.Windows.Forms.RadioButton rdo_intattoan;
         private System.Windows.Forms.RadioButton rdo_khongintattoan;
         private System.Windows.Forms.Label label3;
-        private V6Controls.V6DateTimePick dateNgay_ct2_ptt;
+        private V6Controls.V6DateTimePicker dateNgay_ct2_ptt;
         private V6ReportControls.FilterLineVvarTextBox txtTk;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh6;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh5;

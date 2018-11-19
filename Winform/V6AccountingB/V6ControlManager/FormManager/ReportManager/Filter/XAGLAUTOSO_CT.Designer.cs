@@ -45,9 +45,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtMaSoNB = new V6Controls.V6VvarTextBox();
             this.v6Label2 = new V6Controls.V6Label();
-            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePick();
+            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePicker();
             this.v6Label1 = new V6Controls.V6Label();
-            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePick();
+            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePicker();
             this.filterMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radOr = new System.Windows.Forms.RadioButton();
@@ -451,9 +451,9 @@
         private System.Windows.Forms.Label label8;
         private V6Controls.V6VvarTextBox txtMaSoNB;
         private V6Controls.V6Label v6Label2;
-        private V6Controls.V6DateTimePick v6ColorDateTimePick2;
+        private V6Controls.V6DateTimePicker v6ColorDateTimePick2;
         private V6Controls.V6Label v6Label1;
-        private V6Controls.V6DateTimePick v6ColorDateTimePick1;
+        private V6Controls.V6DateTimePicker v6ColorDateTimePick1;
         private V6ReportControls.FilterLineVvarTextBox filterMaDvcs;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radOr;

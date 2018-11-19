@@ -42,7 +42,7 @@
             this.txtten_nt = new V6Controls.V6LabelTextBox();
             this.txtma_nt = new V6Controls.V6VvarTextBox();
             this.txtdien_giai = new V6Controls.V6VvarTextBox();
-            this.txtngay_ct = new V6Controls.V6DateTimePick();
+            this.txtngay_ct = new V6Controls.V6DateTimePicker();
             this.v6Label8 = new V6Controls.V6Label();
             this.Txtt_tien = new V6Controls.NumberTien();
             this.v6Label6 = new V6Controls.V6Label();
@@ -860,7 +860,7 @@
         private V6Controls.V6LabelTextBox txtten_nt;
         private V6Controls.V6VvarTextBox txtma_nt;
         private V6Controls.V6VvarTextBox txtdien_giai;
-        private V6Controls.V6DateTimePick txtngay_ct;
+        private V6Controls.V6DateTimePicker txtngay_ct;
         private V6Controls.V6Label v6Label8;
         private V6Controls.NumberTien Txtt_tien;
         private V6Controls.V6Label v6Label6;

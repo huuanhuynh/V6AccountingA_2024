@@ -86,12 +86,22 @@
       <HintPath>..\..\TreeListView\TreeListView\TreeListView\bin\Debug\System.Windows.Forms.TreeListView.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\GridView\CalendarColumn.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\GridView\MyNumberTextBoxCell.cs" />
+    <Compile Include="Controls\GridView\V6DateTimePickerGridViewColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\GridView\V6DateTimeColorGridViewColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\GridView\V6LookupGridViewColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\GridView\V6VvarDataGridViewColumn.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1379,7 +1389,7 @@
     <Compile Include="V6DateTimeColor.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="V6DateTimePick.cs">
+    <Compile Include="V6DateTimePicker.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="V6ColorTextBox.cs">
@@ -2073,8 +2083,8 @@
     <EmbeddedResource Include="V6DateTimeColor.resx">
       <DependentUpon>V6DateTimeColor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="V6DateTimePick.resx">
-      <DependentUpon>V6DateTimePick.cs</DependentUpon>
+    <EmbeddedResource Include="V6DateTimePicker.resx">
+      <DependentUpon>V6DateTimePicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="V6ColorTextBox.resx">
       <DependentUpon>V6ColorTextBox.cs</DependentUpon>

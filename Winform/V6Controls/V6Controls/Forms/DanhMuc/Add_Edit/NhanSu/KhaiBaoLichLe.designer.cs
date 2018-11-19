@@ -31,7 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtghi_chu = new V6Controls.V6ColorTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtNgay = new V6Controls.V6DateTimePick();
+            this.txtNgay = new V6Controls.V6DateTimePicker();
             this.txtten_kh = new V6Controls.V6LabelTextBox();
             this.txtMaCong = new V6Controls.V6VvarTextBox();
             this.TXTSO_GIO = new V6Controls.V6NumberTextBox();
@@ -242,7 +242,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private V6LabelTextBox txtten_kh;
-        private V6DateTimePick txtNgay;
+        private V6DateTimePicker txtNgay;
         private System.Windows.Forms.Label label2;
         private V6ColorTextBox txtghi_chu;
     }

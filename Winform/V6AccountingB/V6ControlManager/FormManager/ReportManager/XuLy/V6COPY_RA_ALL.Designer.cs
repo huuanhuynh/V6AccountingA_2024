@@ -33,9 +33,9 @@
             this.chkDanhMuc = new V6Controls.V6CheckBox();
             this.txtFileName = new V6Controls.V6ColorTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.btnSaveAs = new System.Windows.Forms.Button();
             this.btnChonDanhSachDonVi = new System.Windows.Forms.Button();
             this.txtDanhSachDonVi = new V6Controls.V6VvarTextBox();
@@ -227,9 +227,9 @@
         private V6Controls.V6CheckBox chkDanhMuc;
         private V6Controls.V6ColorTextBox txtFileName;
         private System.Windows.Forms.Label label3;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
         private System.Windows.Forms.Label label2;
-        private V6Controls.V6DateTimePick dateNgay_ct1;
+        private V6Controls.V6DateTimePicker dateNgay_ct1;
         private System.Windows.Forms.Button btnSaveAs;
         private System.Windows.Forms.Button btnChonDanhSachDonVi;
         private V6Controls.V6VvarTextBox txtDanhSachDonVi;

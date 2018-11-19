@@ -36,7 +36,7 @@
             this.filterLineVvarTextBox1 = new V6ReportControls.FilterLineVvarTextBox();
             this.lineMaVitri = new V6ReportControls.FilterLineVvarTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateCuoiNgay = new V6Controls.V6DateTimePick();
+            this.dateCuoiNgay = new V6Controls.V6DateTimePicker();
             this.v6Label9 = new V6Controls.V6Label();
             this.txtVtTonKho = new V6Controls.V6ColorTextBox();
             this.txtKieuIn = new V6Controls.V6ColorTextBox();
@@ -252,7 +252,7 @@
         private System.Windows.Forms.RadioButton radAnd;
         private V6ReportControls.FilterLineVvarTextBox lineMakho;
         private System.Windows.Forms.Label label2;
-        private V6Controls.V6DateTimePick dateCuoiNgay;
+        private V6Controls.V6DateTimePicker dateCuoiNgay;
         private V6ReportControls.FilterLineVvarTextBox lineMaVitri;
         private V6Controls.V6Label v6Label9;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox1;

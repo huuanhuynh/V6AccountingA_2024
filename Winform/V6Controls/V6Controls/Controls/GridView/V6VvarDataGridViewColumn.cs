@@ -174,47 +174,14 @@ namespace V6Controls.Controls.GridView
             }
         }
 
-        /// <summary>
-        /// Listen to the KeyPress notification to know when the value changed, and 
-        /// notify the grid of the change.
-        /// </summary>
-        protected override void OnKeyPress(KeyPressEventArgs e)
-        {
-            base.OnKeyPress(e);
-            
-            // The value changes when a digit, the decimal separator or the negative sign is pressed.
-            //bool notifyValueChange = false;
-
-            //if (char.IsDigit(e.KeyChar))
-            //{
-            //    notifyValueChange = true;
-            //}
-            //else
-            //{
-            //    System.Globalization.NumberFormatInfo numberFormatInfo = System.Globalization.CultureInfo.CurrentCulture.NumberFormat;
-            //    string decimalSeparatorStr = numberFormatInfo.NumberDecimalSeparator;
-            //    string groupSeparatorStr = numberFormatInfo.NumberGroupSeparator;
-            //    string negativeSignStr = numberFormatInfo.NegativeSign;
-            //    if (!string.IsNullOrEmpty(decimalSeparatorStr) && decimalSeparatorStr.Length == 1)
-            //    {
-            //        notifyValueChange = decimalSeparatorStr[0] == e.KeyChar;
-            //    }
-            //    if (!notifyValueChange && !string.IsNullOrEmpty(groupSeparatorStr) && groupSeparatorStr.Length == 1)
-            //    {
-            //        notifyValueChange = groupSeparatorStr[0] == e.KeyChar;
-            //    }
-            //    if (!notifyValueChange && !string.IsNullOrEmpty(negativeSignStr) && negativeSignStr.Length == 1)
-            //    {
-            //        notifyValueChange = negativeSignStr[0] == e.KeyChar;
-            //    }
-            //}
-
-            //if (notifyValueChange)
-            {
-                // Let the DataGridView know about the value change
-                NotifyDataGridViewOfValueChange();
-            }
-        }
+        ///// <summary>
+        ///// Listen to the KeyPress notification to know when the value changed, and 
+        ///// notify the grid of the change.
+        ///// </summary>
+        //protected override void OnKeyPress(KeyPressEventArgs e)
+        //{
+        //    base.OnKeyPress(e);
+        //}
 
         /// <summary>
         /// Listen to the ValueChanged notification to forward the change to the grid.
@@ -236,8 +203,6 @@ namespace V6Controls.Controls.GridView
     #region V6VvarDataGridViewColumn
     public class V6VvarDataGridViewColumn : DataGridViewTextBoxColumn//DataGridViewColumn//
     {
-        private const int m_allowMaxDecimalLength = 6;
-        
         public V6VvarDataGridViewColumn()
         {
             V6VvarDataGridViewCell cell = new V6VvarDataGridViewCell();
@@ -314,23 +279,10 @@ namespace V6Controls.Controls.GridView
 
     public class V6VvarDataGridViewCell : DataGridViewTextBoxCell
     {
-        private string m_decimalLength = null;
-
         private static Type defaultEditType = typeof(V6VvarDataGridViewEditingControl);
         private static Type defaultValueType = typeof(System.String);
 
         public V6VvarDataGridViewCell(){}
-
-        [DefaultValue(null)]
-        public string DecimalLength
-        {
-            get { return m_decimalLength; }
-            set
-            {
-                m_decimalLength = value;
-                //OnCommonChange();  // Assure that the cell/column gets repainted and autosized if needed
-            }
-        }
         
         private V6VvarDataGridViewEditingControl EditingControl
         {
@@ -406,7 +358,7 @@ namespace V6Controls.Controls.GridView
                 //numEditBox.DecimalLength = this.DecimalLength;
                 //numEditBox.AllowNegative = this.AllowNegative;
 
-                string initialFormattedValueStr = initialFormattedValue as string;
+                //string initialFormattedValueStr = initialFormattedValue as string;
 
                 //if (string.IsNullOrEmpty(initialFormattedValueStr))
                 //{

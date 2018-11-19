@@ -8,9 +8,7 @@ using V6Tools.V6Convert;
 namespace V6Controls.Controls.GridView
 {
     /// <summary>
-    /// design by: csust.hulihui(mailto: ehulh@163.com, home at: http://blog.csdn.net/hulihui)
-    /// creation date: 2008-11-01
-    /// modified date: 2008-11-25
+    /// 2018
     /// </summary>
 
     #region V6NumberGridViewEditingControl
@@ -236,9 +234,7 @@ namespace V6Controls.Controls.GridView
 
     #region V6NumberDataGridViewColumn
     public class V6NumberDataGridViewColumn : DataGridViewTextBoxColumn//DataGridViewColumn//
-    {
-        private const int m_allowMaxDecimalLength = 6;
-        
+    {   
         public V6NumberDataGridViewColumn()
         {
             V6NumberTextBoxDataGridViewCell cell = new V6NumberTextBoxDataGridViewCell();

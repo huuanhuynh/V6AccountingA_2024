@@ -45,7 +45,7 @@
             this.Txtnh_vv1 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_vv2 = new V6ReportControls.FilterLineVvarTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
             this.rdo_khonggoptk = new System.Windows.Forms.RadioButton();
             this.rdo_goptk = new System.Windows.Forms.RadioButton();
             this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
@@ -384,7 +384,7 @@
         private V6ReportControls.FilterLineVvarTextBox Txtnh_vv1;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_vv2;
         private System.Windows.Forms.Label label1;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
         private System.Windows.Forms.RadioButton rdo_khonggoptk;
         private System.Windows.Forms.RadioButton rdo_goptk;
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH9;

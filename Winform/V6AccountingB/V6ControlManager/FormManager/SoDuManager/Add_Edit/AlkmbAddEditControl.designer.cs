@@ -58,7 +58,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtOper0 = new V6Controls.V6ColorTextBox();
             this.txtGhiChu = new V6Controls.V6ColorTextBox();
             this.dateNgayHL2 = new V6Controls.V6DateTimeColor();
-            this.dateNgayHL = new V6Controls.V6DateTimePick();
+            this.dateNgayHL = new V6Controls.V6DateTimePicker();
             this.txtMaCt = new V6Controls.V6ColorTextBox();
             this.txtSttRec = new V6Controls.V6ColorTextBox();
             this.lblTenDvcs = new System.Windows.Forms.Label();
@@ -2771,7 +2771,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.TabPage tabChiTiet2;
         private V6ColorTextBox txtSttRec;
         private V6ColorTextBox txtMaCt;
-        private V6DateTimePick dateNgayHL;
+        private V6DateTimePicker dateNgayHL;
         private System.Windows.Forms.Label lblTenDvcs;
         private System.Windows.Forms.Label label2;
         private V6DateTimeColor dateNgayHL2;

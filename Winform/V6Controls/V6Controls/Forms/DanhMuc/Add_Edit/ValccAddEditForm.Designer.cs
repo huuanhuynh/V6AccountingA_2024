@@ -30,7 +30,7 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtTang_giam = new V6Controls.V6NumberTextBox();
-            this.dateNgayGiam = new V6Controls.V6DateTimePick();
+            this.dateNgayGiam = new V6Controls.V6DateTimePicker();
             this.txtLyDo = new V6Controls.V6ColorTextBox();
             this.txtSoCt = new V6Controls.V6VvarTextBox();
             this.txtMaGiamCC = new V6Controls.V6VvarTextBox();
@@ -40,7 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.DateNgay_pbc = new V6Controls.V6DateTimePick();
+            this.DateNgay_pbc = new V6Controls.V6DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -302,9 +302,9 @@
         private System.Windows.Forms.Label label1;
         private V6ColorTextBox txtLyDo;
         private System.Windows.Forms.Label label7;
-        private V6DateTimePick dateNgayGiam;
+        private V6DateTimePicker dateNgayGiam;
         private V6NumberTextBox TxtTang_giam;
-        private V6DateTimePick DateNgay_pbc;
+        private V6DateTimePicker DateNgay_pbc;
         private System.Windows.Forms.Label label4;
     }
 }

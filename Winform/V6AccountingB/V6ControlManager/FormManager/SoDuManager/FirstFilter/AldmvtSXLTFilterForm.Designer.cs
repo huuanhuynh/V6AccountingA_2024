@@ -34,7 +34,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateTuNgay = new V6Controls.V6DateTimeColor();
-            this.dateDenNgay = new V6Controls.V6DateTimePick();
+            this.dateDenNgay = new V6Controls.V6DateTimePicker();
             this.btnCopyDinhMuc = new System.Windows.Forms.Button();
             this.lblTo = new System.Windows.Forms.Label();
             this.lblFrom = new System.Windows.Forms.Label();
@@ -348,7 +348,7 @@
         private V6Controls.V6VvarTextBox txtNhomVt2;
         private V6Controls.V6VvarTextBox txtNhomVt1;
         private System.Windows.Forms.Button btnCopyDinhMuc;
-        private V6Controls.V6DateTimePick dateDenNgay;
+        private V6Controls.V6DateTimePicker dateDenNgay;
         private System.Windows.Forms.GroupBox groupBox1;
         private V6Controls.V6DateTimeColor dateTuNgay;
         private System.Windows.Forms.Label lblTo;

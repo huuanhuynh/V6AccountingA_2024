@@ -36,8 +36,8 @@
             this.txtMa_sonb = new V6Controls.V6VvarTextBox();
             this.v6Label2 = new V6Controls.V6Label();
             this.TxtSo_ct = new V6Controls.V6ColorTextBox();
-            this.dateNgayLCT = new V6Controls.V6DateTimePick();
-            this.dateNgayCT = new V6Controls.V6DateTimePick();
+            this.dateNgayLCT = new V6Controls.V6DateTimePicker();
+            this.dateNgayCT = new V6Controls.V6DateTimePicker();
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
@@ -511,8 +511,8 @@
         private V6Controls.V6VvarTextBox txtMa_sonb;
         private V6Controls.V6Label v6Label2;
         private V6Controls.V6ColorTextBox TxtSo_ct;
-        private V6Controls.V6DateTimePick dateNgayLCT;
-        private V6Controls.V6DateTimePick dateNgayCT;
+        private V6Controls.V6DateTimePicker dateNgayLCT;
+        private V6Controls.V6DateTimePicker dateNgayCT;
         private V6Controls.V6Label v6Label5;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label1;

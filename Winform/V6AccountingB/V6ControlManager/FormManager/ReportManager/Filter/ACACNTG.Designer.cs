@@ -52,8 +52,8 @@
             this.txtLoai_cl = new V6Controls.V6NumberTextBox();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -520,7 +520,7 @@
         private V6Controls.V6NumberTextBox txtLoai_cl;
         private V6Controls.V6Label v6Label7;
         private V6Controls.V6Label v6Label8;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
-        private V6Controls.V6DateTimePick dateNgay_ct1;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct1;
     }
 }

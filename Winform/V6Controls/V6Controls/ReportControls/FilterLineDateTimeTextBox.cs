@@ -36,7 +36,7 @@ namespace V6ReportControls
             }
         }
 
-        public V6DateTimePick DateTimeTextBox
+        public V6DateTimePicker DateTimeTextBox
         {
             get { return v6DateTimeTextBox1; }
         }

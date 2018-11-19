@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.lblDenNgay = new System.Windows.Forms.Label();
-            this.dateNgay_ct2 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
             this.lblTuNgay = new System.Windows.Forms.Label();
-            this.dateNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -115,9 +115,9 @@
         #endregion
 
         private System.Windows.Forms.Label lblDenNgay;
-        private V6Controls.V6DateTimePick dateNgay_ct2;
+        private V6Controls.V6DateTimePicker dateNgay_ct2;
         private System.Windows.Forms.Label lblTuNgay;
-        private V6Controls.V6DateTimePick dateNgay_ct1;
+        private V6Controls.V6DateTimePicker dateNgay_ct1;
         private System.Windows.Forms.TabControl tabControl1;
     }
 }

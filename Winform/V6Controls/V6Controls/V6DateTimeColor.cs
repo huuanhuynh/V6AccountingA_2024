@@ -174,7 +174,7 @@ namespace V6Controls
             }
         }
 
-        private void Write()
+        protected void Write()
         {
             //stringValue[0] = 'a';
             Text = StringValue;

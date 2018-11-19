@@ -433,9 +433,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             }
                         };
                     }
-                    else if (c is V6DateTimePick)
+                    else if (c is V6DateTimePicker)
                     {
-                        var vc = c as V6DateTimePick;
+                        var vc = c as V6DateTimePicker;
                         Label l = new Label();
                         l.Name = "lbl" + c.AccessibleName;
                         l.Left = vc.Left;
@@ -547,9 +547,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         l.Visible = vc.Visible;
                     };
                 }
-                else if (c is V6DateTimePick)
+                else if (c is V6DateTimePicker)
                 {
-                    var vc = c as V6DateTimePick;
+                    var vc = c as V6DateTimePicker;
                     Label l = new Label();
                     l.Name = "lbl" + c.AccessibleName;
                     l.Left = vc.Left;

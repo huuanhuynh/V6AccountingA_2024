@@ -36,9 +36,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             this.v6Label4 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label2 = new V6Controls.V6Label();
-            this.dateDenNgay = new V6Controls.V6DateTimePick();
+            this.dateDenNgay = new V6Controls.V6DateTimePicker();
             this.v6Label1 = new V6Controls.V6Label();
-            this.dateTuNgay = new V6Controls.V6DateTimePick();
+            this.dateTuNgay = new V6Controls.V6DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -182,8 +182,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
         private V6Label v6Label4;
         private V6Label v6Label3;
         private V6Label v6Label2;
-        private V6DateTimePick dateDenNgay;
+        private V6DateTimePicker dateDenNgay;
         private V6Label v6Label1;
-        private V6DateTimePick dateTuNgay;
+        private V6DateTimePicker dateTuNgay;
     }
 }

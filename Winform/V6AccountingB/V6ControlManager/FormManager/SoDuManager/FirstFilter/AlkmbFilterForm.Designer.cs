@@ -33,9 +33,9 @@
             this.btnFilter = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.v6Label2 = new V6Controls.V6Label();
-            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePick();
+            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePicker();
             this.v6Label1 = new V6Controls.V6Label();
-            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePick();
+            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.txtMaDvcs = new V6Controls.V6VvarTextBox();
             this.panel1.SuspendLayout();
@@ -198,8 +198,8 @@
         private V6Controls.V6VvarTextBox txtMaDvcs;
         private System.Windows.Forms.Label label1;
         private V6Controls.V6Label v6Label2;
-        private V6Controls.V6DateTimePick v6ColorDateTimePick2;
+        private V6Controls.V6DateTimePicker v6ColorDateTimePick2;
         private V6Controls.V6Label v6Label1;
-        private V6Controls.V6DateTimePick v6ColorDateTimePick1;
+        private V6Controls.V6DateTimePicker v6ColorDateTimePick1;
     }
 }

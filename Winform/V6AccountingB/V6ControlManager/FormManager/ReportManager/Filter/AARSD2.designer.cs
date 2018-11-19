@@ -32,7 +32,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
-            this.dateNgay_ct0 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct0 = new V6Controls.V6DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.v6Label1 = new V6Controls.V6Label();
             this.TxtMa_kh = new V6Controls.V6VvarTextBox();
@@ -231,7 +231,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radOr;
         private System.Windows.Forms.RadioButton radAnd;
-        private V6Controls.V6DateTimePick dateNgay_ct0;
+        private V6Controls.V6DateTimePicker dateNgay_ct0;
         private System.Windows.Forms.Label label1;
         private V6Controls.V6Label v6Label1;
         private V6Controls.V6VvarTextBox TxtMa_kh;

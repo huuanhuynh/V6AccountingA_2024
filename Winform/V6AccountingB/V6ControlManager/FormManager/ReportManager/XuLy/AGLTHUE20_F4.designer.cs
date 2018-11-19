@@ -57,7 +57,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label16 = new V6Controls.V6Label();
             this.txtma_bp = new V6Controls.V6VvarTextBox();
             this.lbma_bp = new V6Controls.V6Label();
-            this.txtngay_lct = new V6Controls.V6DateTimePick();
+            this.txtngay_lct = new V6Controls.V6DateTimePicker();
             this.lbngay_lct = new V6Controls.V6Label();
             this.txttk_du = new V6Controls.V6VvarTextBox();
             this.txttk_thue_co = new V6Controls.V6VvarTextBox();
@@ -76,7 +76,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtten_dvcs = new V6Controls.V6LabelTextBox();
             this.txtma_so_thue = new V6Controls.V6VvarTextBox();
             this.txtdia_chi = new V6Controls.V6VvarTextBox();
-            this.txtngay_ct = new V6Controls.V6DateTimePick();
+            this.txtngay_ct = new V6Controls.V6DateTimePicker();
             this.lbTxtT_CL_NT = new V6Controls.V6Label();
             this.lbT_Tt_NT0 = new V6Controls.V6Label();
             this.v6Label5 = new V6Controls.V6Label();
@@ -984,7 +984,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private V6Controls.V6Label v6Label1;
         protected System.Windows.Forms.Button btnHuy;
         protected System.Windows.Forms.Button btnNhan;
-        private V6Controls.V6DateTimePick txtngay_ct;
+        private V6Controls.V6DateTimePicker txtngay_ct;
         private V6Controls.V6VvarTextBox txtdia_chi;
         private V6Controls.V6VvarTextBox txtma_so_thue;
         private V6Controls.V6LabelTextBox txtten_dvcs;
@@ -1002,7 +1002,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private V6Controls.V6Label v6Label12;
         private V6Controls.V6VvarTextBox txttk_thue_co;
         private V6Controls.V6VvarTextBox txttk_du;
-        private V6Controls.V6DateTimePick txtngay_lct;
+        private V6Controls.V6DateTimePicker txtngay_lct;
         private V6Controls.V6Label lbngay_lct;
         private V6Controls.V6VvarTextBox txtma_bp;
         private V6Controls.V6Label lbma_bp;

@@ -32,8 +32,8 @@
             this.btnLoc = new V6Controls.Controls.V6FormButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateNgay_ct = new V6Controls.V6DateTimePick();
-            this.dateNgay_td1 = new V6Controls.V6DateTimePick();
+            this.dateNgay_ct = new V6Controls.V6DateTimePicker();
+            this.dateNgay_td1 = new V6Controls.V6DateTimePicker();
             this.chkAutoF9 = new System.Windows.Forms.CheckBox();
             this.lblStatus1 = new System.Windows.Forms.Label();
             this.txtSL_TD2 = new V6Controls.V6NumberTextBox();
@@ -481,7 +481,7 @@
         private V6Controls.Controls.V6FormButton btnLoc;
         public V6Controls.V6VvarTextBox txtMalo;
         private System.Windows.Forms.Label label2;
-        public V6Controls.V6DateTimePick dateNgay_ct;
-        public V6Controls.V6DateTimePick dateNgay_td1;
+        public V6Controls.V6DateTimePicker dateNgay_ct;
+        public V6Controls.V6DateTimePicker dateNgay_td1;
     }
 }

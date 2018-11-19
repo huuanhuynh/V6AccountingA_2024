@@ -40,12 +40,12 @@
             this.filterLineVvarTextBox10 = new V6ReportControls.FilterLineVvarTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtNgay_ct4 = new V6Controls.V6DateTimePick();
-            this.txtNgay_ct3 = new V6Controls.V6DateTimePick();
+            this.txtNgay_ct4 = new V6Controls.V6DateTimePicker();
+            this.txtNgay_ct3 = new V6Controls.V6DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtNgay_ct2 = new V6Controls.V6DateTimePick();
-            this.txtNgay_ct1 = new V6Controls.V6DateTimePick();
+            this.txtNgay_ct2 = new V6Controls.V6DateTimePicker();
+            this.txtNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -303,12 +303,12 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private V6Controls.V6DateTimePick txtNgay_ct4;
-        private V6Controls.V6DateTimePick txtNgay_ct3;
+        private V6Controls.V6DateTimePicker txtNgay_ct4;
+        private V6Controls.V6DateTimePicker txtNgay_ct3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private V6Controls.V6DateTimePick txtNgay_ct2;
-        private V6Controls.V6DateTimePick txtNgay_ct1;
+        private V6Controls.V6DateTimePicker txtNgay_ct2;
+        private V6Controls.V6DateTimePicker txtNgay_ct1;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox10;
         private V6ReportControls.FilterLineVvarTextBox Tk_filterLine;
         private V6ReportControls.FilterLineVvarTextBox txtMaDvcs;

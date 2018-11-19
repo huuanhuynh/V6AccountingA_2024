@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TxtNgay_ct = new V6Controls.V6DateTimePick();
+            this.TxtNgay_ct = new V6Controls.V6DateTimePicker();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -218,7 +218,7 @@
         private V6NumberTextBox TxtTy_gia;
         private V6VvarTextBox txtTenNt;
         private System.Windows.Forms.Label label2;
-        private V6DateTimePick TxtNgay_ct;
+        private V6DateTimePicker TxtNgay_ct;
 
 
 

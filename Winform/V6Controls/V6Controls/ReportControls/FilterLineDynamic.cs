@@ -19,7 +19,7 @@ namespace V6ReportControls
         public V6LookupProc _lookupProc;
         public V6NumberTextBox _numberTextBox;
         public V6DateTimeColor _dateTimeColor;
-        public V6DateTimePick _dateTimePick;
+        public V6DateTimePicker _dateTimePick;
         public V6CheckBox _checkBox;
         public V6FormButton _button;
         public bool CheckNotEmpty;
@@ -386,7 +386,7 @@ namespace V6ReportControls
 
         public void AddDateTimePick()
         {
-            _dateTimePick = new V6DateTimePick();
+            _dateTimePick = new V6DateTimePicker();
             _dateTimePick.Format = DateTimePickerFormat.Custom;
             _dateTimePick.CustomFormat = @"dd/MM/yyyy";
             _dateTimePick.Location = new Point(comboBox1.Right + 5, 1);
