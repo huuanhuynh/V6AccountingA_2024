@@ -909,11 +909,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <summary>
         /// Kiểm tra dữ liệu để thêm hoặc sửa, Trả về chuỗi lỗi, nếu hợp lệ trả về null hoặc rỗng.
         /// </summary>
-        protected string CheckValid(string tableName, IList<string> KEY_LIST)
+        protected string CheckValid(string tableName, IList<string> key_list)
         {
             var keys_new = new SortedDictionary<string, object>();
-            foreach (string KEY in KEY_LIST)
+            foreach (string key in key_list)
             {
+                string KEY = key.ToUpper();
                 keys_new.Add(KEY, DataDic[KEY]);
             }
 
@@ -925,8 +926,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (Mode == V6Mode.Edit)
             {
                 SortedDictionary<string, object> keys_old = new SortedDictionary<string, object>();
-                foreach (string KEY in KEY_LIST)
+                foreach (string key in key_list)
                 {
+                    string KEY = key.ToUpper();
                     keys_old.Add(KEY, DataOld[KEY]);
                 }
                 string where_old = SqlGenerator.GenWhere(V6BusinessHelper.GetTableStruct(tableName), keys_old);

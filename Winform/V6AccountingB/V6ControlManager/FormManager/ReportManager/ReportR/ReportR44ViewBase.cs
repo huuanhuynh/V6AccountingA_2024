@@ -1851,7 +1851,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
                 else
                 {
-                    V6ControlFormHelper.ExportExcelTemplateD(this, _tbl1, _tbl2, "V", ReportDocumentParameters,
+                    DataTable data = _tbl1;
+                    if (dataGridView1.DataSource is DataView)
+                    {
+                        data = ((DataView)dataGridView1.DataSource).ToTable();
+                    }
+                    V6ControlFormHelper.ExportExcelTemplateD(this, data, _tbl2, "V", ReportDocumentParameters,
                         MAU, LAN, ReportFile, ExcelTemplateFileView, ReportTitle, excelColumns, excelHeaders);
                 }
             }

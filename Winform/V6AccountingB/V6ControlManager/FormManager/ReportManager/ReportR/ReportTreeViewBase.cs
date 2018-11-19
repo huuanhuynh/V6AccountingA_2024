@@ -148,7 +148,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         }
 
         private DataSet _ds;
-        private DataTable _tbl, _tbl2, _tbl3;
+        private DataTable _tbl1, _tbl2, _tbl3;
         //private V6TableStruct _tStruct;
         /// <summary>
         /// Dùng cho procedure chính (program?)
@@ -976,8 +976,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 _ds = V6BusinessHelper.ExecuteProcedure(proc, _pList.ToArray());
                 if (_ds.Tables.Count > 0)
                 {
-                    _tbl = _ds.Tables[0];
-                    _tbl.TableName = "DataTable1";
+                    _tbl1 = _ds.Tables[0];
+                    _tbl1.TableName = "DataTable1";
                 }
                 if (_ds.Tables.Count > 1)
                 {
@@ -1005,7 +1005,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             catch (Exception ex)
             {
                 _message = "Query Error!\n"+ex.Message;
-                _tbl = null;
+                _tbl1 = null;
                 _tbl2 = null;
                 _ds = null;
                 Data_Loading = false;
@@ -1173,7 +1173,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void exportToExcel_Click(object sender, EventArgs e)
         {
-            if (_tbl == null)
+            if (_tbl1 == null)
             {
                 ShowTopLeftMessage(V6Text.NoData);
                 return;
@@ -1189,7 +1189,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 {
                     try
                     {   
-                        V6Tools.V6Export.ExportData.ToExcel(_tbl, save.FileName, txtReportTitle.Text, true);
+                        V6Tools.V6Export.ExportData.ToExcel(_tbl1, save.FileName, txtReportTitle.Text, true);
                     }
                     catch (Exception ex)
                     {
@@ -1421,7 +1421,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                new ChartReportForm(FilterControl, ReportFileFullF7, _tbl, _tbl2.Copy(), ReportDocumentParameters)
+                new ChartReportForm(FilterControl, ReportFileFullF7, _tbl1, _tbl2.Copy(), ReportDocumentParameters)
                     .ShowDialog(this);
                 SetStatus2Text();
             }
@@ -1636,13 +1636,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void exportToExcelTemplate_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl, _tbl2, ReportDocumentParameters,
+            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl1, _tbl2, ReportDocumentParameters,
                 MAU, LAN, ReportFile, ExcelTemplateFileFull, ReportTitle);
         }
 
         private void exportToXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_tbl == null)
+            if (_tbl1 == null)
             {
                 ShowTopLeftMessage(V6Text.NoData);
                 return;
@@ -1658,7 +1658,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 {
                     try
                     {
-                        V6Tools.V6Export.ExportData.ToXmlFile(_tbl, save.FileName);
+                        V6Tools.V6Export.ExportData.ToXmlFile(_tbl1, save.FileName);
                     }
                     catch (Exception ex)
                     {
@@ -1696,7 +1696,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
                 else
                 {
-                    V6ControlFormHelper.ExportExcelTemplateD(this, _tbl, _tbl2, "V", ReportDocumentParameters,
+                    DataTable data = _tbl1;
+                    //if (dataGridView1.DataSource is DataView)
+                    //{
+                    //    data = ((DataView)dataGridView1.DataSource).ToTable();
+                    //}
+                    V6ControlFormHelper.ExportExcelTemplateD(this, data, _tbl2, "V", ReportDocumentParameters,
                         MAU, LAN, ReportFile, ExcelTemplateFileView, ReportTitle, excelColumns, excelHeaders);
                 }
             }

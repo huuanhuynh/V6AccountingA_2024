@@ -155,7 +155,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         }
 
         private DataSet _ds;
-        private DataTable _tbl, _tbl2, _tblv;
+        private DataTable _tbl1, _tbl2, _tblv;
         private DataTable[] _tbls;
         //private V6TableStruct _tStruct;
         /// <summary>
@@ -944,9 +944,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 _ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, _pList.ToArray());
                 if (_ds.Tables.Count > 0)
                 {
-                    _tbl = _ds.Tables[0];
-                    _tbl.TableName = "DataTable1";
-                    _tbls = TachBang(_tbl, F_START, F_FIXCOLUMN);
+                    _tbl1 = _ds.Tables[0];
+                    _tbl1.TableName = "DataTable1";
+                    _tbls = TachBang(_tbl1, F_START, F_FIXCOLUMN);
                 }
                 if (_ds.Tables.Count > 1)
                 {
@@ -963,7 +963,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             catch (Exception ex)
             {
                 _message = "Query Error!\n"+ex.Message;
-                _tbl = null;
+                _tbl1 = null;
                 _tbl2 = null;
                 _ds = null;
                 _load_data_success = false;
@@ -1079,7 +1079,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     All_Objects["_ds"] = _ds;
                     InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
 
-                    dataGridView1.TableSource = _tbl;
+                    dataGridView1.TableSource = _tbl1;
 
                     try
                     {
@@ -1121,7 +1121,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             try
             {
                 //Header
-                var fieldList = (from DataColumn column in _tbl.Columns select column.ColumnName).ToList();
+                var fieldList = (from DataColumn column in _tbl1.Columns select column.ColumnName).ToList();
 
                 var fieldDic = CorpLan2.GetFieldsHeader(fieldList);
                 for (int i = 0; i < dataGridView1.ColumnCount; i++)
@@ -1262,7 +1262,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         }
         private void printGrid_Click(object sender, EventArgs e)
         {
-            if (_tbl == null)
+            if (_tbl1 == null)
             {
                 ShowTopLeftMessage(V6Text.NoData);
                 return;
@@ -1666,7 +1666,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             try
             {
-                new ChartReportForm(FilterControl, ReportFileFullF7, _tbl, _tbl2.Copy(), ReportDocumentParameters)
+                new ChartReportForm(FilterControl, ReportFileFullF7, _tbl1, _tbl2.Copy(), ReportDocumentParameters)
                     .ShowDialog(this);
                 SetStatus2Text();
             }
@@ -1821,7 +1821,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
         private void exportToExcel_Click(object sender, EventArgs e)
         {
-            if (_tbl == null)
+            if (_tbl1 == null)
             {
                 ShowTopLeftMessage(V6Text.NoData);
                 return;
@@ -1837,7 +1837,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 {
                     try
                     {
-                        V6Tools.V6Export.ExportData.ToExcel(_tbl, save.FileName, txtReportTitle.Text, true);
+                        V6Tools.V6Export.ExportData.ToExcel(_tbl1, save.FileName, txtReportTitle.Text, true);
                     }
                     catch (Exception ex)
                     {
@@ -1870,13 +1870,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 var f = V6Setting.IsVietnamese ? "GRDHV_V1" : "GRDHE_V1";
                 if (_tbl2.Columns.Contains(f)) excelHeaders = _tbl2.Rows[0][f].ToString();
             }
-            V6ControlFormHelper.ExportExcelTemplateD(this, _tbl, _tbl2, "R", ReportDocumentParameters,
+            V6ControlFormHelper.ExportExcelTemplateD(this, _tbl1, _tbl2, "R", ReportDocumentParameters,
                 MAU, LAN, ReportFile, ExcelTemplateFileFull, ReportTitle, excelColumns, excelHeaders);
         }
 
         private void exportToXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_tbl == null)
+            if (_tbl1 == null)
             {
                 ShowTopLeftMessage(V6Text.NoData);
                 return;
@@ -1892,7 +1892,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 {
                     try
                     {
-                        V6Tools.V6Export.ExportData.ToXmlFile(_tbl, save.FileName);
+                        V6Tools.V6Export.ExportData.ToXmlFile(_tbl1, save.FileName);
                     }
                     catch (Exception ex)
                     {
@@ -1940,7 +1940,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 }
                 else
                 {
-                    V6ControlFormHelper.ExportExcelTemplateD(this, _tbl, _tbl2, "V", ReportDocumentParameters,
+                    DataTable data = _tbl1;
+                    if (dataGridView1.DataSource is DataView)
+                    {
+                        data = ((DataView)dataGridView1.DataSource).ToTable();
+                    }
+                    V6ControlFormHelper.ExportExcelTemplateD(this, data, _tbl2, "V", ReportDocumentParameters,
                      MAU, LAN, ReportFile, ExcelTemplateFileView, ReportTitle, showFields, headerString);
                 }
             }
