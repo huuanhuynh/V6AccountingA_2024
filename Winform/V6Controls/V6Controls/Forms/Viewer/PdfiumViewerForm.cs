@@ -86,6 +86,19 @@ namespace V6Controls.Forms.Viewer
                     };
                     ff.Show(this);
                 }
+                else if (keyData == (Keys.Control | Keys.P))
+                {
+                    PrintDialog printDialog = new PrintDialog();
+                    printDialog.AllowSomePages = true;
+                    printDialog.AllowSelection = true;
+                    if (printDialog.ShowDialog(this) == DialogResult.OK)
+                    {
+                        var pd = pdfViewer1.Document.CreatePrintDocument();
+                        var ps = printDialog.PrinterSettings;
+                        pd.PrinterSettings = ps;
+                        pd.Print();
+                    }
+                }
                 else if (keyData == Keys.OemMinus || (int) keyData == 109)
                 {
                     pdfViewer1.Renderer.ZoomOut();

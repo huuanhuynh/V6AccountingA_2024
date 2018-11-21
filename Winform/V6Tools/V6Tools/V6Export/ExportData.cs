@@ -105,8 +105,9 @@ namespace V6Tools.V6Export
             var arrColumns = new List<DataColumn>();
             if (use_arr_cols)
             {
-                foreach (string column in columns)
+                foreach (string column0 in columns)
                 {
+                    string column = column0.Trim();
                     if (data.Columns.Contains(column))
                     {
                         arrColumns.Add(data.Columns[column]);

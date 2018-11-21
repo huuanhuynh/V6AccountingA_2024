@@ -1219,6 +1219,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 {
                     txtReportTitle.Text = ReportTitle;
                 }
+
                 if (ReloadData == "1")
                     MakeReport();
                 else
@@ -1317,9 +1318,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 V6ControlFormHelper.ShowMessage(V6Text.NoData, this);
                 return;
             }
-            if (ReloadData == "1")
-                MakeReport();
-            else
+            //if (ReloadData == "1")
+            //    MakeReport();
+            //else
                 ViewReport();
 
             txtNumber.Text = (current_report_index +1).ToString();
@@ -1607,25 +1608,43 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             //    cbbLoaiBaoCao.SelectedIndex = 0;
             //else
             //    cbbLoaiBaoCao.SelectedIndex = 1;
-            ViewReportIndex(current_report_index);
+            if (ReloadData == "1")
+                MakeReport();
+            else
+                ViewReportIndex(current_report_index);
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
             if(current_report_index>0)
-            ViewReportIndex(current_report_index-1);
+            {
+                if (ReloadData == "1")
+                    MakeReport();
+                else
+                    ViewReportIndex(current_report_index - 1);
+            }
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
             if (current_report_index < sobangtach)
-                ViewReportIndex(current_report_index + 1);
+            {
+                if (ReloadData == "1")
+                    MakeReport();
+                else
+                    ViewReportIndex(current_report_index + 1);
+            }
         }
 
         private void btnLast_Click(object sender, EventArgs e)
         {
-            if (current_report_index != sobangtach-1)
-                ViewReportIndex(sobangtach-1);
+            if (current_report_index != sobangtach - 1)
+            {
+                if (ReloadData == "1")
+                    MakeReport();
+                else
+                    ViewReportIndex(sobangtach - 1);
+            }
         }
 
         private void txtNumber_KeyDown(object sender, KeyEventArgs e)
@@ -1635,11 +1654,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 var num = Convert.ToInt32(txtNumber.Text)-1;
                 if (num != current_report_index && num >= 0 && num < sobangtach)
                 {
-                    ViewReportIndex(num);
+                    if (ReloadData == "1")
+                        MakeReport();
+                    else
+                        ViewReportIndex(num);
                 }
                 else
                 {
-                    ViewReportIndex(current_report_index);
+                    if (ReloadData == "1")
+                        MakeReport();
+                    else
+                        ViewReportIndex(current_report_index);
                 }
             }
         }
@@ -1654,11 +1679,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             var num = Convert.ToInt32(txtNumber.Text);
             if (num != current_report_index && num >= 0 && num < sobangtach)
             {
-                ViewReportIndex(num - 1);
+                if (ReloadData == "1")
+                    MakeReport();
+                else
+                    ViewReportIndex(num - 1);
             }
             else
             {
-                ViewReportIndex(current_report_index);
+                if (ReloadData == "1")
+                    MakeReport();
+                else
+                    ViewReportIndex(current_report_index);
             }
         }
 
