@@ -5102,6 +5102,7 @@ namespace V6Controls.Forms
         /// <summary>
         /// Hiển thị Form chỉnh sửa dữ liệu trực tiếp.
         /// </summary>
+        /// <param name="owner">Form đang gọi để chống chìm dialog.</param>
         /// <param name="data">Dữ liệu.</param>
         /// <param name="tableName">Tên bảng trong csdl.</param>
         /// <param name="showFields">Các trường hiển thị, đánh dấu Readonly FIELD:R</param>
@@ -5111,11 +5112,10 @@ namespace V6Controls.Forms
         /// <param name="showSum">Hiện phần tổng.</param>
         /// <param name="updateDatabase">Cập nhập trực tiếp database.</param>
         /// <param name="defaultData">Dữ liệu mặc định khi thêm dòng mới.</param>
-        /// <param name="owner">Form đang gọi để chống chìm dialog.</param>
-        public static void ShowDataEditorForm(DataTable data, string tableName, string showFields, string keys,
-            bool allowAdd, bool allowDelete, bool showSum = true, bool updateDatabase = true, IDictionary<string, object> defaultData = null, IWin32Window owner = null)
+        public static void ShowDataEditorForm(Control owner, DataTable data, string tableName, string showFields, string keys,
+            bool allowAdd, bool allowDelete, bool showSum = true, bool updateDatabase = true, IDictionary<string, object> defaultData = null)
         {
-            var f = new DataEditorForm(data, tableName, showFields, keys, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language),
+            var f = new DataEditorForm(owner, data, tableName, showFields, keys, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language),
                 allowAdd, allowDelete, showSum, updateDatabase, defaultData);
             f.ShowDialog(owner);
         }
@@ -5123,6 +5123,7 @@ namespace V6Controls.Forms
         /// <summary>
         /// Khởi tạo form chỉnh sửa dữ liệu trực tiếp.
         /// </summary>
+        /// <param name="owner">Control chủ.</param>
         /// <param name="data">Dữ liệu.</param>
         /// <param name="tableName">Tên bảng trong csdl.</param>
         /// <param name="showFields">Các trường hiển thị, đánh dấu Readonly FIELD:R</param>
@@ -5133,10 +5134,10 @@ namespace V6Controls.Forms
         /// <param name="updateDatabase">Cập nhập trực tiếp database.</param>
         /// <param name="defaultData">Dữ liệu mặc định khi thêm dòng mới.</param>
         /// <returns>DataEditorForm</returns>
-        public static DataEditorForm MakeDataEditorForm(DataTable data, string tableName, string showFields, string keys,
+        public static DataEditorForm MakeDataEditorForm(Control owner, DataTable data, string tableName, string showFields, string keys,
             bool allowAdd, bool allowDelete, bool showSum = true, bool updateDatabase = true, IDictionary<string, object> defaultData = null)
         {
-            var f = new DataEditorForm(data, tableName, showFields, keys, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), allowAdd, allowDelete, showSum, updateDatabase, defaultData);
+            var f = new DataEditorForm(owner, data, tableName, showFields, keys, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), allowAdd, allowDelete, showSum, updateDatabase, defaultData);
             return f;
         }
 

@@ -10,6 +10,65 @@ namespace V6Controls.Controls.GridView
     /// <summary>
     /// 2018
     /// </summary>
+    
+    #region V6NumberDataGridViewColumn
+    public class V6NumberDataGridViewColumn : DataGridViewTextBoxColumn//DataGridViewColumn//
+    {   
+        public V6NumberDataGridViewColumn()
+        {
+            V6NumberTextBoxDataGridViewCell cell = new V6NumberTextBoxDataGridViewCell();
+            base.CellTemplate = cell;
+
+            base.SortMode = DataGridViewColumnSortMode.Automatic;
+            base.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //base.DefaultCellStyle.Format = "F" + this.DecimalLength.ToString();
+        }
+
+        public V6NumberTextBoxDataGridViewCell NumEditCellTemplate
+        {
+            get
+            {
+                V6NumberTextBoxDataGridViewCell cell = this.CellTemplate as V6NumberTextBoxDataGridViewCell;
+                if (cell == null)
+                {
+                    throw new InvalidOperationException("V6NumberTextBoxDataGridViewEditingControl does not have a CellTemplate.");
+                }
+                return cell;
+            }
+        }
+
+        [
+            Browsable(false),
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)
+        ]
+        public override DataGridViewCell CellTemplate
+        {
+            get { return base.CellTemplate; }
+            set
+            {
+                V6NumberTextBoxDataGridViewCell cell = value as V6NumberTextBoxDataGridViewCell;
+                if (value != null && cell == null)
+                {
+                    throw new InvalidCastException("Value provided for CellTemplate must be of type V6NumberTextBoxDataGridViewCell or derive from it.");
+                }
+                base.CellTemplate = value;
+            }
+        }
+
+        
+        public override string ToString()
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder(100);
+            sb.Append("V6NumberTextBoxDataGridViewColumn { Name=");
+            sb.Append(this.Name);
+            sb.Append(", Index=");
+            sb.Append(this.Index.ToString(CultureInfo.CurrentCulture));
+            sb.Append(" }");
+            return sb.ToString();
+        }
+    }
+
+    #endregion
 
     #region V6NumberGridViewEditingControl
 
@@ -35,8 +94,16 @@ namespace V6Controls.Controls.GridView
             {
                 var cell = dataGridView.CurrentCell;
                 Value = ObjectAndString.ObjectToDecimal(cell.Value);
-                if (cell.OwningColumn.DefaultCellStyle.Format != null && cell.OwningColumn.DefaultCellStyle.Format.StartsWith("N"))
-                    this.DecimalPlaces = ObjectAndString.ObjectToInt(cell.OwningColumn.DefaultCellStyle.Format.Substring(1));
+                if (cell.OwningColumn.DefaultCellStyle.Format != null &&
+                    cell.OwningColumn.DefaultCellStyle.Format.StartsWith("N"))
+                    this.DecimalPlaces =
+                        ObjectAndString.ObjectToInt(cell.OwningColumn.DefaultCellStyle.Format.Substring(1));
+            }
+            else
+            {
+                // Gây sự kiện lên V6ColorDataGridView để Refresh form nếu cần thiết
+                if (dataGridView is V6ColorDataGridView)
+                    ((V6ColorDataGridView)dataGridView).OnV6Changed();
             }
         }
 
@@ -221,7 +288,6 @@ namespace V6Controls.Controls.GridView
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
-
             if (this.Focused)
             {
                 // Let the DataGridView know about the value change
@@ -232,162 +298,7 @@ namespace V6Controls.Controls.GridView
 
     #endregion
 
-    #region V6NumberDataGridViewColumn
-    public class V6NumberDataGridViewColumn : DataGridViewTextBoxColumn//DataGridViewColumn//
-    {   
-        public V6NumberDataGridViewColumn()
-        {
-            V6NumberTextBoxDataGridViewCell cell = new V6NumberTextBoxDataGridViewCell();
-            base.CellTemplate = cell;
-
-            base.SortMode = DataGridViewColumnSortMode.Automatic;
-            base.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            //base.DefaultCellStyle.Format = "F" + this.DecimalLength.ToString();
-        }
-
-        private V6NumberTextBoxDataGridViewCell NumEditCellTemplate
-        {
-            get
-            {
-                V6NumberTextBoxDataGridViewCell cell = this.CellTemplate as V6NumberTextBoxDataGridViewCell;
-                if (cell == null)
-                {
-                    throw new InvalidOperationException("V6NumberTextBoxDataGridViewEditingControl does not have a CellTemplate.");
-                }
-                return cell;
-            }
-        }
-
-        [
-            Browsable(false),
-            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)
-        ]
-        public override DataGridViewCell CellTemplate
-        {
-            get { return base.CellTemplate; }
-            set
-            {
-                V6NumberTextBoxDataGridViewCell cell = value as V6NumberTextBoxDataGridViewCell;
-                if (value != null && cell == null)
-                {
-                    throw new InvalidCastException("Value provided for CellTemplate must be of type V6NumberTextBoxDataGridViewCell or derive from it.");
-                }
-                base.CellTemplate = value;
-            }
-        }
-
-        //[
-        //    Category("Appearance"),
-        //    DefaultValue(0),
-        //    Description("The decimal length of cell value.")
-        //]
-        //public int DecimalLength
-        //{
-        //    get { return this.NumEditCellTemplate.DecimalLength; }
-        //    set
-        //    {
-        //        if (value < 0 || value > m_allowMaxDecimalLength)
-        //        {
-        //            throw new ArgumentOutOfRangeException("The DecimalLength must be between 0 and " + m_allowMaxDecimalLength.ToString() + ".");
-        //        }
-
-        //        base.DefaultCellStyle.Format = "F" + value.ToString();
-
-        //        this.NumEditCellTemplate.DecimalLength = value;
-        //        if (this.DataGridView != null)
-        //        {
-        //            // Update all the existing DataGridViewNumericUpDownCell cells in the column accordingly.
-        //            DataGridViewRowCollection dataGridViewRows = this.DataGridView.Rows;
-        //            int rowCount = dataGridViewRows.Count;
-        //            for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
-        //            {
-        //                // Be careful not to unshare rows unnecessarily. 
-        //                // This could have severe performance repercussions.
-        //                DataGridViewRow dataGridViewRow = dataGridViewRows.SharedRow(rowIndex);
-        //                V6NumberTextBoxDataGridViewCell dataGridViewCell = dataGridViewRow.Cells[this.Index] as V6NumberTextBoxDataGridViewCell;
-        //                if (dataGridViewCell != null)
-        //                {
-        //                    // Call the internal SetDecimalPlaces method instead of the property to avoid invalidation 
-        //                    // of each cell. The whole column is invalidated later in a single operation for better performance.
-        //                    dataGridViewCell.SetDecimalLength(rowIndex, value);
-        //                }
-        //            }
-        //            this.DataGridView.InvalidateColumn(this.Index);
-        //            // TODO: Call the grid's autosizing methods to autosize the column, rows, column headers / row headers as needed.
-        //        }
-        //    }
-        //}
-
-        //[
-        //    Category("Appearance"),
-        //    DefaultValue(true),
-        //    Description("Whether negative sign is allowed or not.")
-        //]
-        //public bool AllowNegative
-        //{
-        //    get { return this.NumEditCellTemplate.AllowNegative; }
-        //    set
-        //    {
-        //        this.NumEditCellTemplate.AllowNegative = value;
-        //        if (this.DataGridView != null)
-        //        {
-        //            DataGridViewRowCollection dataGridViewRows = this.DataGridView.Rows;
-        //            int rowCount = dataGridViewRows.Count;
-        //            for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
-        //            {
-        //                DataGridViewRow dataGridViewRow = dataGridViewRows.SharedRow(rowIndex);
-        //                V6NumberTextBoxDataGridViewCell dataGridViewCell = dataGridViewRow.Cells[this.Index] as V6NumberTextBoxDataGridViewCell;
-        //                if (dataGridViewCell != null)
-        //                {
-        //                    dataGridViewCell.EnableNegative(rowIndex, value);
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
-        //[
-        //    Category("Appearance"),
-        //    DefaultValue(false),
-        //    Description("Whether show null when value is zero or not.")
-        //]
-        //public bool ShowNullWhenZero
-        //{
-        //    get { return this.NumEditCellTemplate.ShowNullWhenZero; }
-        //    set
-        //    {
-        //        this.NumEditCellTemplate.ShowNullWhenZero = value;
-        //        if (this.DataGridView != null)
-        //        {
-        //            DataGridViewRowCollection dataGridViewRows = this.DataGridView.Rows;
-        //            int rowCount = dataGridViewRows.Count;
-        //            for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
-        //            {
-        //                DataGridViewRow dataGridViewRow = dataGridViewRows.SharedRow(rowIndex);
-        //                V6NumberTextBoxDataGridViewCell dataGridViewCell = dataGridViewRow.Cells[this.Index] as V6NumberTextBoxDataGridViewCell;
-        //                if (dataGridViewCell != null)
-        //                {
-        //                    dataGridViewCell.EnableShowNullWhenZero(rowIndex, value);
-        //                }
-        //            }
-        //            this.DataGridView.InvalidateColumn(this.Index);
-        //        }
-        //    }
-        //}
-
-        public override string ToString()
-        {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder(100);
-            sb.Append("V6NumberTextBoxDataGridViewColumn { Name=");
-            sb.Append(this.Name);
-            sb.Append(", Index=");
-            sb.Append(this.Index.ToString(CultureInfo.CurrentCulture));
-            sb.Append(" }");
-            return sb.ToString();
-        }
-    }
-
-    #endregion
+    
 
     #region V6NumberTextBoxDataGridViewCell
 

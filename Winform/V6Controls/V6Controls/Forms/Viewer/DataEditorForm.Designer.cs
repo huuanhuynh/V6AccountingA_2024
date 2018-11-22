@@ -110,6 +110,7 @@
             this.Controls.Add(this.gridViewSummary1);
             this.Name = "DataEditorForm";
             this.Text = "DataEditorForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DataEditorForm_FormClosing);
             this.Controls.SetChildIndex(this.gridViewSummary1, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.Controls.SetChildIndex(this.statusStrip1, 0);

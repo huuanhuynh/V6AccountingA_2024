@@ -156,7 +156,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     
                     var data = V6BusinessHelper.ExecuteProcedure(KhoParams.Program + "A", plist).Tables[0];
                     string keys = "UID";
-                    var f = V6ControlFormHelper.MakeDataEditorForm(data, V6TableName.Abnghi.ToString(), null, keys, false, false);
+                    var f = V6ControlFormHelper.MakeDataEditorForm(this, data, V6TableName.Abnghi.ToString(), null, keys, false, false);
                     f.HotKeyAction += keyData =>
                     {
                         if (keyData == Keys.F7)

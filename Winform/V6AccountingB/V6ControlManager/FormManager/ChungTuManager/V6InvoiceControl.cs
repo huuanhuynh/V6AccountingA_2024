@@ -2181,7 +2181,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 string adFields = invoice.EXTRA_INFOR.ContainsKey("ADFIELDS") ? invoice.EXTRA_INFOR["ADFIELDS"] : "";
                 //V6ControlFormHelper.ShowDataEditorForm(AD, invoice.Mact + "_REPLACE", adFields, null, false, false, true, false);
                 string tableName = invoice.Mact + "_REPLACE";
-                var f = new DataEditorForm(AD, tableName, adFields, null, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), false, false, true, false);
+                var f = new DataEditorForm(this, AD, tableName, adFields, null, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), false, false, true, false);
                 All_Objects["dataGridView"] = f.DataGridView;
                 InvokeFormEvent(FormDynamicEvent.SUANHIEUDONG);
                 f.ShowDialog(this);

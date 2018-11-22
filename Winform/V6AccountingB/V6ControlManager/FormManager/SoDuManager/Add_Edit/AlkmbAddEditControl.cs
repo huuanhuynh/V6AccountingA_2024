@@ -1504,7 +1504,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void DoEditTable()
         {
-            //V6ControlFormHelper.ShowDataEditorForm(data, );
+            //V6ControlFormHelper.ShowDataEditorForm(this, data, );
         }
 
         private void v6FormButton1_Click(object sender, EventArgs e)

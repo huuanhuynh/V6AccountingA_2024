@@ -9,7 +9,7 @@ using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class ASOTH8: FilterBase
+    public partial class ASOTH8 : FilterBase
     {
         public ASOTH8()
         {

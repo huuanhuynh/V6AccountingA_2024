@@ -19,6 +19,7 @@ namespace V6Controls.Forms.Viewer
         }
 
         public V6ColorDataGridView DataGridView { get { return dataGridView1; } }
+        private Control _owner;
         private object _data;
         private string _tableName, _showFields;
         private string[] _keyFields;
@@ -26,7 +27,21 @@ namespace V6Controls.Forms.Viewer
         private bool newRowNeeded;
         private bool _updateDatabase;
 
-        public DataEditorForm(object data, string tableName, string showFields, string keyFields, string title,
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="owner">Control hoặc form đang đứng.</param>
+        /// <param name="data"></param>
+        /// <param name="tableName"></param>
+        /// <param name="showFields"></param>
+        /// <param name="keyFields"></param>
+        /// <param name="title"></param>
+        /// <param name="allowAdd"></param>
+        /// <param name="allowDelete"></param>
+        /// <param name="showSum"></param>
+        /// <param name="updateDatabase"></param>
+        /// <param name="defaultData">Dữ liệu mặc định khi dùng chức năng thêm.</param>
+        public DataEditorForm(Control owner, object data, string tableName, string showFields, string keyFields, string title,
             bool allowAdd, bool allowDelete, bool showSum = true, bool updateDatabase = true, IDictionary<string, object> defaultData = null)
         {
             InitializeComponent();
@@ -38,14 +53,21 @@ namespace V6Controls.Forms.Viewer
             }
             dataGridView1.AllowUserToAddRows = allowAdd;
             dataGridView1.AllowUserToDeleteRows = allowDelete;
+            dataGridView1.V6Changed += dataGridView1_V6Changed;
             _defaultData = defaultData;
             Text = title;
+            _owner = owner;
             _data = data;
             _tableName = tableName;
             _showFields = showFields;
             _keyFields = ObjectAndString.SplitString(keyFields);
             
             MyInit();
+        }
+
+        void dataGridView1_V6Changed(object sender, EventArgs e)
+        {
+            RefreshOwner();
         }
 
         public sealed override string Text
@@ -628,6 +650,13 @@ namespace V6Controls.Forms.Viewer
             return false;
         }
 
+        /// <summary>
+        /// Làm mới form chủ.
+        /// </summary>
+        private void RefreshOwner()
+        {
+            if (_owner != null) _owner.Refresh();
+        }
 
         private void dataGridView1_NewRowNeeded(object sender, DataGridViewRowEventArgs e)
         {
@@ -721,6 +750,10 @@ namespace V6Controls.Forms.Viewer
             e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
-        
+        private void DataEditorForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            RefreshOwner();
+        }
+
     }
 }

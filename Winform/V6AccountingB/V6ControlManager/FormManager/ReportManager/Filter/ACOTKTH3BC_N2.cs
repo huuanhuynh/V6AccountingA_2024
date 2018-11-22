@@ -159,7 +159,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             string tableName = "COTKTH3";
             string keys = "NHOM_BC,TK";
             var data = V6BusinessHelper.Select(tableName, "*", "NHOM_BC = '2'").Data;
-            V6ControlFormHelper.ShowDataEditorForm(data, tableName, null, keys, true, true);
+            V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, true, true);
         }
     }
 }

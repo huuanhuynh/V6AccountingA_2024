@@ -92,7 +92,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             string tableName = "ALIM2XLS";
             string keys = "MA_CT";
             var data = V6BusinessHelper.Select(tableName, "*", "MA_CT = 'SOA'").Data;
-            V6ControlFormHelper.ShowDataEditorForm(data, tableName, null, keys, true, true);
+            V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, true, true);
         }
 
         private void btnXemMauExcel_Click(object sender, EventArgs e)

@@ -39,6 +39,12 @@ namespace V6Controls.Controls.GridView
                 //if (cell.OwningColumn.DefaultCellStyle.Format != null && cell.OwningColumn.DefaultCellStyle.Format.StartsWith("N"))
                 //    this.DecimalPlaces = ObjectAndString.ObjectToInt(cell.OwningColumn.DefaultCellStyle.Format.Substring(1));
             }
+            else
+            {
+                // Gây sự kiện lên V6ColorDataGridView để Refresh form nếu cần thiết
+                if (dataGridView is V6ColorDataGridView)
+                    ((V6ColorDataGridView)dataGridView).OnV6Changed();
+            }
         }
 
         public virtual DataGridView EditingControlDataGridView
@@ -190,6 +196,8 @@ namespace V6Controls.Controls.GridView
         {
             base.OnTextChanged(e);
             dataGridView.CurrentCell.Value = Text;
+            if (dataGridView is V6ColorDataGridView)
+                ((V6ColorDataGridView)dataGridView).OnV6Changed();
             //if (this.Focused)
             {
                 // Let the DataGridView know about the value change
