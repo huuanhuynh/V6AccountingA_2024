@@ -2187,6 +2187,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 Invoice.PostErrorLog(_sttRec, "M " + _sttRec, ex);
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+
+            if (_print_flag == V6PrintMode.AutoClickPrint)
+                Thread.Sleep(2000);
             flagAddFinish = true;
         }
 #endregion add
@@ -2305,6 +2308,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 editErrorMessage = ex.Message;
                 Invoice.PostErrorLog(_sttRec, "S " + _sttRec, ex);
             }
+
+            if (_print_flag == V6PrintMode.AutoClickPrint)
+                Thread.Sleep(2000);
             flagEditFinish = true;
         }
         #endregion edit

@@ -2576,6 +2576,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     MethodBase.GetCurrentMethod().Name, _sttRec, ex.Message);
                 Invoice.PostErrorLog(_sttRec, "M", message);
             }
+
+            if (_print_flag == V6PrintMode.AutoClickPrint)
+                Thread.Sleep(2000);
             flagAddFinish = true;
         }
 #endregion add
@@ -2694,6 +2697,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                 editErrorMessage = ex.Message;
                 Invoice.PostErrorLog(_sttRec, "S " + _sttRec, ex);
             }
+
+            if (_print_flag == V6PrintMode.AutoClickPrint)
+                Thread.Sleep(2000);
             flagEditFinish = true;
         }
         #endregion edit

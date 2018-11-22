@@ -440,6 +440,10 @@ namespace V6Controls
                 {
                     return APCONGTHUC_VARS[bieu_thuc];
                 }
+                else if (bieu_thuc.StartsWith("M_ROUND"))
+                {
+                    return ObjectAndString.ObjectToInt(V6Options.V6OptionValues[bieu_thuc.ToUpper()]);
+                }
                 return ObjectAndString.ObjectToDecimal(bieu_thuc);
             }
         }

@@ -368,6 +368,7 @@ namespace V6Controls.Forms.Viewer
                         {
                             var ss = field.Split(':');
                             showFieldList.Add(ss[0]);
+                            GetHeader(ss[0]);
                             var column = dataGridView1.Columns[ss[0]];
                             if (ss[1].ToUpper() == "R" && column != null)
                             {
@@ -377,6 +378,7 @@ namespace V6Controls.Forms.Viewer
                         else
                         {
                             showFieldList.Add(field);
+                            GetHeader(field);
                         }
                     }
 
@@ -386,6 +388,15 @@ namespace V6Controls.Forms.Viewer
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".FormatGridView " + ex.Message);
+            }
+        }
+
+        private void GetHeader(string field)
+        {
+            var column = dataGridView1.Columns[field];
+            if (column != null)
+            {
+                column.HeaderText = CorpLan2.GetFieldHeader(field);
             }
         }
 

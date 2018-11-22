@@ -2510,6 +2510,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 addErrorMessage = ex.Message;
                 Invoice.PostErrorLog(_sttRec, "M", string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, ex.Message));
             }
+
+            if (_print_flag == V6PrintMode.AutoClickPrint)
+                Thread.Sleep(2000);
             flagAddFinish = true;
         }
 #endregion add
@@ -2628,6 +2631,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 editErrorMessage = ex.Message;
                 Invoice.PostErrorLog(_sttRec, "S " + _sttRec, ex);
             }
+
+            if (_print_flag == V6PrintMode.AutoClickPrint)
+                Thread.Sleep(2000);
             flagEditFinish = true;
         }
         #endregion edit
