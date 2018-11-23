@@ -209,6 +209,16 @@ namespace V6Controls.Controls.GridView
         /// </summary>
         public virtual void PrepareEditingControlForEdit(bool selectAll)
         {
+            if (dataGridView is V6ColorDataGridView)
+                ((V6ColorDataGridView)dataGridView).OnDateColorEditingPrepare(new V6ColorDataGridView.DateColorEventArgs()
+                {
+                    CurrentCell = dataGridView.CurrentCell,
+                    CurrentColumn = dataGridView.CurrentCell.OwningColumn,
+                    CurrentRow = dataGridView.CurrentRow,
+                    DataGridView = dataGridView,
+                    Control = this
+                });
+
             if (selectAll)
             {
                 var cell = dataGridView.CurrentCell;

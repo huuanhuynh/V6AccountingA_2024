@@ -319,7 +319,6 @@
             this.v6Label26.Size = new System.Drawing.Size(55, 13);
             this.v6Label26.TabIndex = 0;
             this.v6Label26.Text = "Mã đơn vị";
-            this.v6Label26.Visible = false;
             // 
             // v6Label7
             // 

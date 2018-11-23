@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.filterBaseToolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // FilterBase
@@ -41,5 +43,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.ToolTip filterBaseToolTip1;
     }
 }

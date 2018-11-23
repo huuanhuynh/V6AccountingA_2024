@@ -150,7 +150,10 @@ namespace V6Controls
         /// Thêm công thức tính toán, cộng dồn công thức nếu đã có.
         /// </summary>
         /// <param name="FIELD">Trường gây sự kiện khi CellEndEdit.</param>
-        /// <param name="congThuc">Danh sách công thức tính toán, cách nhau bằng dấu ;</param>
+        /// <param name="congThuc">
+        /// <para>Danh sách công thức tính toán, cách nhau bằng dấu ;</para>
+        /// <para>Dạng công thức: Field=Bieu_thuc</para>
+        /// <para>Trong đó biểu thức là các phép toán +-*/!^Round(,)Int()[Sqrt()]</para></param>
         public void ThemCongThuc(string FIELD, string congThuc)
         {
             FIELD = FIELD.ToUpper();
@@ -400,9 +403,9 @@ namespace V6Controls
             if (bieu_thuc.IndexOf('/', 0) >= 0)
             {
 
-                var sp = bieu_thuc.LastIndexOf('/') > bieu_thuc.LastIndexOf("/-")
+                var sp = bieu_thuc.LastIndexOf('/') > bieu_thuc.LastIndexOf("/-", StringComparison.InvariantCulture)
                     ? bieu_thuc.LastIndexOf('/')
-                    : bieu_thuc.LastIndexOf("/-");
+                    : bieu_thuc.LastIndexOf("/-", StringComparison.InvariantCulture);
 
                 var values1 = bieu_thuc.Substring(0, sp);
                 var values2 = bieu_thuc.Substring(sp + 1);
@@ -410,9 +413,9 @@ namespace V6Controls
             }
             if (bieu_thuc.IndexOf('^', 0) >= 0)
             {
-                var sp = bieu_thuc.LastIndexOf('^') < bieu_thuc.LastIndexOf("^-")
+                var sp = bieu_thuc.LastIndexOf('^') < bieu_thuc.LastIndexOf("^-", StringComparison.InvariantCulture)
                     ? bieu_thuc.LastIndexOf('^')
-                    : bieu_thuc.LastIndexOf("^-");
+                    : bieu_thuc.LastIndexOf("^-", StringComparison.InvariantCulture);
 
                 var values1 = bieu_thuc.Substring(0, sp);
                 var values2 = bieu_thuc.Substring(sp + 1);
@@ -747,6 +750,70 @@ namespace V6Controls
         {
             var handler = V6Changed;
             if (handler != null) handler(this, EventArgs.Empty);
+        }
+
+        public delegate void NumberEventHandler(object sender, NumberEventArgs e);
+        public delegate void VvarEventHandler(object sender, VvarEventArgs e);
+        public delegate void LookupEventHandler(object sender, LookupEventArgs e);
+        public delegate void DateColorEventHandler(object sender, DateColorEventArgs e);
+        public delegate void DatePickerEventHandler(object sender, DatePickerEventArgs e);
+        public event NumberEventHandler NumberEditingPrepare;
+        public event VvarEventHandler VvarEditingPrepare;
+        public event LookupEventHandler LookupEditingPrepare;
+        public event DateColorEventHandler DateColorEditingPrepare;
+        public event DatePickerEventHandler DatePickerEditingPrepare;
+
+        public class NumberEventArgs : ColorGridViewEventArgs
+        {
+            public V6NumberTextBox Control { get; set; }
+        }
+        public class VvarEventArgs : ColorGridViewEventArgs
+        {
+            public V6VvarTextBox Control { get; set; }
+        }
+        public class LookupEventArgs : ColorGridViewEventArgs
+        {
+            public V6LookupTextBox Control { get; set; }
+        }
+        public class DateColorEventArgs : ColorGridViewEventArgs
+        {
+            public V6DateTimeColor Control { get; set; } 
+        }
+        public class DatePickerEventArgs : ColorGridViewEventArgs
+        {
+            public V6DateTimePicker Control { get; set; } 
+        }
+        public class ColorGridViewEventArgs : EventArgs
+        {
+            public DataGridView DataGridView { get; set; }
+            public DataGridViewRow CurrentRow { get; set; }
+            public DataGridViewCell CurrentCell { get; set; }
+            public DataGridViewColumn CurrentColumn { get; set; }
+        }
+        public virtual void OnNumberEditingPrepare(NumberEventArgs e)
+        {
+            var handler = NumberEditingPrepare;
+            if (handler != null) handler(this, e);
+        }
+        public virtual void OnVvarEditingPrepare(VvarEventArgs e)
+        {
+            var handler = VvarEditingPrepare;
+            if (handler != null) handler(this, e);
+        }
+        public virtual void OnLookupEditingPrepare(LookupEventArgs e)
+        {
+            var handler = LookupEditingPrepare;
+            if (handler != null) handler(this, e);
+        }
+        public virtual void OnDateColorEditingPrepare(DateColorEventArgs e)
+        {
+            var handler = DateColorEditingPrepare;
+            if (handler != null) handler(this, e);
+        }
+        public virtual void OnDatePickerEditingPrepare(DatePickerEventArgs e)
+        {
+            var handler = DatePickerEditingPrepare;
+            if (handler != null) handler(this, e);
         }
 
         private void V6ColorDataGridView_SelectionChanged(object sender, EventArgs e)

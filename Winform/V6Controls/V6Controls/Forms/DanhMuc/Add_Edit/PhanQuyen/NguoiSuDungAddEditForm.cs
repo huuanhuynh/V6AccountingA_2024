@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using V6AccountingBusiness;
-using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
@@ -384,13 +384,26 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
 
                 var data = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
 
-                //V6ControlFormHelper.ShowDataEditorForm(data, "AlctCt", "Ten_ct:R,Ma_ct:R,GRD_HIDE", "Ma_ct,User_id_ct", false, false, this);
-                V6ControlFormHelper.ShowDataEditorForm(this, data, "AlctCt", null, "Ma_ct,User_id_ct", false, false, false, true, null);
+                DataEditorForm editorForm = new DataEditorForm(this, data, "AlctCt", null, "Ma_ct,User_id_ct", V6Text.Edit + " " + V6TableHelper.V6TableCaption("AlctCt", V6Setting.Language), false, false, false, true, null);
+                editorForm.DataGridView.VvarEditingPrepare += DataGridView_VvarEditingPrepare;
+                editorForm.ShowDialog(this);
+                //V6ControlFormHelper.ShowDataEditorForm(this, data, "AlctCt", null, "Ma_ct,User_id_ct", false, false, false, true, null);
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + "PhanQuyenCtct", ex);
             }
+        }
+
+        void DataGridView_VvarEditingPrepare(object sender, V6ColorDataGridView.VvarEventArgs e)
+        {
+            All_Objects["e"] = e;
+            InvokeFormEvent(e.CurrentColumn.DataPropertyName.ToUpper());
+            //if (e.CurrentColumn.DataPropertyName.ToUpper() == "R_")
+            //{
+            //    e.VvarControl.F2 = true;
+            //    e.VvarControl.SetInitFilter("MA_CT='" + e.CurrentRow.Cells["MA_CT"].Value + "'");
+            //}
         }
 
         private void v6chk_set_vattu_ketoan_banhang_CheckedChanged(object sender, EventArgs e)

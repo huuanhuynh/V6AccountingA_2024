@@ -212,7 +212,7 @@ namespace V6Controls.Controls
                     new SqlParameter("@R_Ma_ct", R_Ma_ct),
                     
                     new SqlParameter("@R_DataType2", R_DataType2),
-                    new SqlParameter("@R_Value2", R_Value2.Trim()),
+                    new SqlParameter("@R_Value2", (R_Value2??"").Trim()),
                     new SqlParameter("@R_Vvar2", R_Vvar2),
                     new SqlParameter("@R_Stt_rec2", R_Stt_rec2),
                     new SqlParameter("@R_Ma_ct2", R_Ma_ct2),

@@ -4619,7 +4619,7 @@ namespace V6Controls.Forms
         /// Sắp xếp thứ tự và gán formatString.
         /// </summary>
         /// <param name="dgv"></param>
-        /// <param name="showColumns">Các cột sẽ hiện ra theo thứ tự</param>
+        /// <param name="showColumns">Các cột sẽ hiện ra theo thứ tự, chỉ tên cột không chứa thông tin khác.</param>
         /// <param name="formatStrings">N2:100:R</param>
         /// <param name="headerStrings"></param>
         public static void FormatGridViewColumnsShowOrder(DataGridView dgv, string[] showColumns, string[] formatStrings, string[] headerStrings)
@@ -4772,8 +4772,8 @@ namespace V6Controls.Forms
         /// <para>Nếu không có showFields thì chạy format mặc định của V6ColorDataGridView.</para>
         /// </summary>
         /// <param name="dgv"></param>
-        /// <param name="showFields">cách nhau bởi (,) hoặc (;)</param>
-        /// <param name="formatStrings"></param>
+        /// <param name="showFields">cách nhau bởi (,) hoặc (;), Chấp nhận (:) bên trong các phần tử.</param>
+        /// <param name="formatStrings">C100,N2:R,D:R</param>
         /// <param name="headerString"></param>
         public static void FormatGridViewAndHeader(DataGridView dgv, string showFields, string formatStrings, string headerString)
         {
@@ -4785,12 +4785,18 @@ namespace V6Controls.Forms
             {
                 return;
             }
-            //dgv.AutoGenerateColumns = true;//gây lỗi lặp ở tìm hóa đơn.
-            var fieldList = showFields.Replace("[", "").Replace("]", "").Split(showFields.Contains(";") ? ';' : ',');
+            
+            var fieldList0 = showFields.Replace("[", "").Replace("]", "").Split(showFields.Contains(";") ? ';' : ',');
+            List<string> fieldList = new List<string>();
+            foreach (string sss in fieldList0)
+            {
+                var ss = sss.Split(':');
+                fieldList.Add(ss[0]);
+            }
             var formatList = formatStrings.Split(formatStrings.Contains(";") ? ';' : ',');
             var headerList = headerString.Split(headerString.Contains(";") ? ';' : ',');
 
-            FormatGridViewColumnsShowOrder(dgv, fieldList, formatList, headerList);
+            FormatGridViewColumnsShowOrder(dgv, fieldList.ToArray(), formatList, headerList);
 
             //return;// <<<< Bỏ qua CorpLan2 >>>>
             if (!string.IsNullOrEmpty(headerString)) return;
@@ -5126,7 +5132,7 @@ namespace V6Controls.Forms
         /// <param name="owner">Control chủ.</param>
         /// <param name="data">Dữ liệu.</param>
         /// <param name="tableName">Tên bảng trong csdl.</param>
-        /// <param name="showFields">Các trường hiển thị, đánh dấu Readonly FIELD:R</param>
+        /// <param name="showFields">Các trường hiển thị, đánh dấu Readonly hoặc Edit, đánh dấu loại control => FIELD:R:CVvar</param>
         /// <param name="keys">Các trường khóa để update, delete. Cách nhau bởi dấu (,) Vd: "STT_REC,STT_REC0"</param>
         /// <param name="allowAdd">Cho phép thêm dòng.</param>
         /// <param name="allowDelete">Cho phép xóa dòng.</param>
@@ -5322,13 +5328,13 @@ namespace V6Controls.Forms
         #region ==== APPLY LOOKUP ====
 
         private static TextBox txtApplyLookup;
-        private static AldmConfig Aldm_config = null;
+        private static AldmConfig Aldm_config;
         private static AutoCompleteStringCollection auto1;
         private static string InitFilter = "";
         private static string LookupInfo_F_NAME;
         private static bool F2 = false;
         private static bool FilterStart = false;
-        private static bool Looking = false;
+        private static bool ApplyLookup_Looking;
         
         public static void ApplyLookup(TextBox textBox, string tablename, string fieldvalue)
         {
@@ -5704,7 +5710,7 @@ namespace V6Controls.Forms
             if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
             var parentData = new SortedDictionary<string, object>();
             var lookup = new V6LookupTextboxForm(parentData, txtApplyLookup.Text, Aldm_config, " 1=1 " + filter, LookupInfo_F_NAME, multi, FilterStart);
-            Looking = true;
+            ApplyLookup_Looking = true;
             lookup.ShowDialog(owner);
         }
 

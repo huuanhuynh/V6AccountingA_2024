@@ -19,6 +19,7 @@ namespace V6Controls.Forms.Viewer
         }
 
         public V6ColorDataGridView DataGridView { get { return dataGridView1; } }
+        private AldmConfig _config;
         private Control _owner;
         private object _data;
         private string _tableName, _showFields;
@@ -28,18 +29,18 @@ namespace V6Controls.Forms.Viewer
         private bool _updateDatabase;
 
         /// <summary>
-        /// 
+        /// Khởi tạo from chỉnh sữa dữ liệu.
         /// </summary>
         /// <param name="owner">Control hoặc form đang đứng.</param>
-        /// <param name="data"></param>
-        /// <param name="tableName"></param>
-        /// <param name="showFields"></param>
-        /// <param name="keyFields"></param>
-        /// <param name="title"></param>
-        /// <param name="allowAdd"></param>
-        /// <param name="allowDelete"></param>
-        /// <param name="showSum"></param>
-        /// <param name="updateDatabase"></param>
+        /// <param name="data">Dữ liệu cần chỉnh sửa.</param>
+        /// <param name="tableName">Tên bảng, MA_DM trong Aldm.</param>
+        /// <param name="showFields">Field:ER:CVvar,Field:E:N2,Field,E:D0...<para>Nếu để null sẽ dùng GRDS_V1 trong Aldm.</para></param>
+        /// <param name="keyFields">Các trường khóa để update vào csdl, vd:MA_VT,MA_KHO</param>
+        /// <param name="title">Tiêu đề của form hiện ra.</param>
+        /// <param name="allowAdd">Cho phép thêm dòng mới.</param>
+        /// <param name="allowDelete">Cho phép xóa dòng.</param>
+        /// <param name="showSum">Hiển thị dòng tổng.</param>
+        /// <param name="updateDatabase">Có cập nhập vào csdl hay không?</param>
         /// <param name="defaultData">Dữ liệu mặc định khi dùng chức năng thêm.</param>
         public DataEditorForm(Control owner, object data, string tableName, string showFields, string keyFields, string title,
             bool allowAdd, bool allowDelete, bool showSum = true, bool updateDatabase = true, IDictionary<string, object> defaultData = null)
@@ -80,6 +81,12 @@ namespace V6Controls.Forms.Viewer
         {
             try
             {
+                _config = ConfigManager.GetAldmConfig(_tableName);
+                if (string.IsNullOrEmpty(_showFields) && _config.HaveInfo)
+                {
+                    _showFields = _config.GRDS_V1;
+                }
+
                 dataGridView1.DataSource = _data;
                 FormatGridView();
                 GetCongThuc();
@@ -149,13 +156,14 @@ namespace V6Controls.Forms.Viewer
                 var bieu_thuc = ss[1].Trim();
 
                 var cRow = dataGridView1.CurrentRow;
-                cRow.Cells[field].Value = GiaTriBieuThuc(bieu_thuc);
+                if (cRow != null) cRow.Cells[field].Value = GiaTriBieuThuc(bieu_thuc);
             }
         }
 
         private decimal GiaTriBieuThuc(string bieu_thuc)
         {
-
+            var cRow = dataGridView1.CurrentRow;
+            if (cRow == null) return 0;
             //alert(bieu_thuc);
             bieu_thuc = bieu_thuc.Replace(" ", ""); //Bỏ hết khoảng trắng
             bieu_thuc = bieu_thuc.Replace("--", "+"); //loại bỏ lặp dấu -
@@ -168,7 +176,7 @@ namespace V6Controls.Forms.Viewer
 
             //xử lý Round();
             bieu_thuc = bieu_thuc.ToUpper();
-            int roundOpenIndex = bieu_thuc.IndexOf("ROUND(", StringComparison.Ordinal);
+            int roundOpenIndex = bieu_thuc.IndexOf("ROUND(", StringComparison.InvariantCulture);
             if (roundOpenIndex >= 0)
             {
                 var iopen = bieu_thuc.IndexOf('(', 0);
@@ -296,9 +304,9 @@ namespace V6Controls.Forms.Viewer
             if (bieu_thuc.IndexOf('/', 0) >= 0)
             {
 
-                var sp = bieu_thuc.LastIndexOf('/') > bieu_thuc.LastIndexOf("/-")
+                var sp = bieu_thuc.LastIndexOf('/') > bieu_thuc.LastIndexOf("/-", StringComparison.InvariantCulture)
                     ? bieu_thuc.LastIndexOf('/')
-                    : bieu_thuc.LastIndexOf("/-");
+                    : bieu_thuc.LastIndexOf("/-", StringComparison.InvariantCulture);
 
                 var values1 = bieu_thuc.Substring(0, sp);
                 var values2 = bieu_thuc.Substring(sp + 1);
@@ -306,9 +314,9 @@ namespace V6Controls.Forms.Viewer
             }
             if (bieu_thuc.IndexOf('^', 0) >= 0)
             {
-                var sp = bieu_thuc.LastIndexOf('^') < bieu_thuc.LastIndexOf("^-")
+                var sp = bieu_thuc.LastIndexOf('^') < bieu_thuc.LastIndexOf("^-", StringComparison.InvariantCulture)
                     ? bieu_thuc.LastIndexOf('^')
-                    : bieu_thuc.LastIndexOf("^-");
+                    : bieu_thuc.LastIndexOf("^-", StringComparison.InvariantCulture);
 
                 var values1 = bieu_thuc.Substring(0, sp);
                 var values2 = bieu_thuc.Substring(sp + 1);
@@ -324,9 +332,9 @@ namespace V6Controls.Forms.Viewer
             else if (bieu_thuc.Trim() == "") return 0;
             else
             {
-                // Bieu thuc luc nay la 1 so cu the.
+                // Bieu thuc luc nay la 1 truong, 1 so cu the.
                 if (dataGridView1.Columns.Contains(bieu_thuc))
-                    return ObjectAndString.ObjectToDecimal(dataGridView1.CurrentRow.Cells[bieu_thuc].Value);
+                    return ObjectAndString.ObjectToDecimal(cRow.Cells[bieu_thuc].Value);
                 return ObjectAndString.ObjectToDecimal(bieu_thuc);
             }
         }
@@ -346,19 +354,12 @@ namespace V6Controls.Forms.Viewer
         {
             try
             {
-                SortedDictionary<string, object> keys = new SortedDictionary<string, object>();
-                keys.Add("MA_DM", _tableName);
-                var data_aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
-                if (data_aldm.Rows.Count == 1)
+                if (_config.HaveInfo)
                 {
-                    var row_data = data_aldm.Rows[0];
-                    var showFields = row_data["GRDS_V1"].ToString().Trim();
-                    var formatStrings = row_data["GRDF_V1"].ToString().Trim();
-                    var headerString = row_data[V6Setting.IsVietnamese?"GRDHV_V1":"GRDHE_V1"].ToString().Trim();
-                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
+                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _config.GRDS_V1, _config.GRDF_V1, V6Setting.IsVietnamese ? _config.GRDHV_V1 : _config.GRDHE_V1);
                 }
-
-                if (_showFields != null)
+                
+                if (!string.IsNullOrEmpty(_showFields))
                 {
                     var showFieldSplit = ObjectAndString.SplitString(_showFields);
                     var showFieldList = new List<string>();

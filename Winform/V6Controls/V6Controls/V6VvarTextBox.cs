@@ -392,7 +392,7 @@ namespace V6Controls
 
         private void Do_CheckOnLeave(EventArgs e)
         {
-            if (_checkOnLeave && !ReadOnly && Visible && Enabled)
+            if (_checkOnLeave && !F2 && !ReadOnly && Visible && Enabled)
             {
                 CheckForBarcode();
                 if (Text.Trim() != "")

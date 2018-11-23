@@ -494,6 +494,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     }
                 };
             }
+
+            string description = lineControl.DefineInfo.DescriptionLang(V6Setting.IsVietnamese);
+            if (!string.IsNullOrEmpty(description))
+            {
+                filterBaseToolTip1.SetToolTip(lineControl, description);
+                foreach (Control control in lineControl.Controls)
+                {
+                    filterBaseToolTip1.SetToolTip(control, description);
+                }
+            }
         }
 
         public void AddLineGroupControls(FilterGroup lineControl)
