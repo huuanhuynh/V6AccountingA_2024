@@ -752,70 +752,45 @@ namespace V6Controls
             if (handler != null) handler(this, EventArgs.Empty);
         }
 
-        public delegate void NumberEventHandler(object sender, NumberEventArgs e);
-        public delegate void VvarEventHandler(object sender, VvarEventArgs e);
-        public delegate void LookupEventHandler(object sender, LookupEventArgs e);
-        public delegate void DateColorEventHandler(object sender, DateColorEventArgs e);
-        public delegate void DatePickerEventHandler(object sender, DatePickerEventArgs e);
-        public event NumberEventHandler NumberEditingPrepare;
-        public event VvarEventHandler VvarEditingPrepare;
-        public event LookupEventHandler LookupEditingPrepare;
-        public event DateColorEventHandler DateColorEditingPrepare;
-        public event DatePickerEventHandler DatePickerEditingPrepare;
+        public delegate void EditingEventHandler(object sender, EditingEventArgs e);
+        public event EditingEventHandler EditingPrepare;
 
-        public class NumberEventArgs : ColorGridViewEventArgs
+        public class EditingEventArgs : EventArgs
         {
-            public V6NumberTextBox Control { get; set; }
-        }
-        public class VvarEventArgs : ColorGridViewEventArgs
-        {
-            public V6VvarTextBox Control { get; set; }
-        }
-        public class LookupEventArgs : ColorGridViewEventArgs
-        {
-            public V6LookupTextBox Control { get; set; }
-        }
-        public class DateColorEventArgs : ColorGridViewEventArgs
-        {
-            public V6DateTimeColor Control { get; set; } 
-        }
-        public class DatePickerEventArgs : ColorGridViewEventArgs
-        {
-            public V6DateTimePicker Control { get; set; } 
-        }
-        public class ColorGridViewEventArgs : EventArgs
-        {
+            public Control Control { get; set; }
+            public V6NumberTextBox V6NumberTextBox
+            {
+                get { return Control as V6NumberTextBox; }
+            }
+            public V6VvarTextBox V6VvarTextBox
+            {
+                get { return Control as V6VvarTextBox; }
+            }
+            public V6LookupTextBox V6LookupTextBox
+            {
+                get { return Control as V6LookupTextBox; }
+            }
+            public V6DateTimeColor V6DateTimeColor
+            {
+                get { return Control as V6DateTimeColor; }
+            }
+            public V6DateTimePicker V6DateTimePicker
+            {
+                get { return Control as V6DateTimePicker; }
+            }
+
             public DataGridView DataGridView { get; set; }
             public DataGridViewRow CurrentRow { get; set; }
             public DataGridViewCell CurrentCell { get; set; }
             public DataGridViewColumn CurrentColumn { get; set; }
         }
-        public virtual void OnNumberEditingPrepare(NumberEventArgs e)
+        
+        public virtual void OnEditingPrepare(EditingEventArgs e)
         {
-            var handler = NumberEditingPrepare;
+            var handler = EditingPrepare;
             if (handler != null) handler(this, e);
         }
-        public virtual void OnVvarEditingPrepare(VvarEventArgs e)
-        {
-            var handler = VvarEditingPrepare;
-            if (handler != null) handler(this, e);
-        }
-        public virtual void OnLookupEditingPrepare(LookupEventArgs e)
-        {
-            var handler = LookupEditingPrepare;
-            if (handler != null) handler(this, e);
-        }
-        public virtual void OnDateColorEditingPrepare(DateColorEventArgs e)
-        {
-            var handler = DateColorEditingPrepare;
-            if (handler != null) handler(this, e);
-        }
-        public virtual void OnDatePickerEditingPrepare(DatePickerEventArgs e)
-        {
-            var handler = DatePickerEditingPrepare;
-            if (handler != null) handler(this, e);
-        }
-
+        
         private void V6ColorDataGridView_SelectionChanged(object sender, EventArgs e)
         {
             if (CurrentRow!=null && CurrentRow.IsSelect())

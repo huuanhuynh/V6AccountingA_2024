@@ -212,7 +212,7 @@ namespace V6Controls.Controls.GridView
         public virtual void PrepareEditingControlForEdit(bool selectAll)
         {
             if (dataGridView is V6ColorDataGridView)
-                ((V6ColorDataGridView)dataGridView).OnNumberEditingPrepare(new V6ColorDataGridView.NumberEventArgs()
+                ((V6ColorDataGridView)dataGridView).OnEditingPrepare(new V6ColorDataGridView.EditingEventArgs()
                 {
                     CurrentCell = dataGridView.CurrentCell,
                     CurrentColumn = dataGridView.CurrentCell.OwningColumn,

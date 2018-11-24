@@ -185,7 +185,15 @@ namespace V6Controls.Controls.GridView
         // method.
         public void PrepareEditingControlForEdit(bool selectAll)
         {
-            // No preparation needs to be done.
+            if (dataGridView is V6ColorDataGridView)
+                ((V6ColorDataGridView)dataGridView).OnEditingPrepare(new V6ColorDataGridView.EditingEventArgs()
+                {
+                    CurrentCell = dataGridView.CurrentCell,
+                    CurrentColumn = dataGridView.CurrentCell.OwningColumn,
+                    CurrentRow = dataGridView.CurrentRow,
+                    DataGridView = dataGridView,
+                    Control = this
+                });
         }
 
         // Implements the IDataGridViewEditingControl

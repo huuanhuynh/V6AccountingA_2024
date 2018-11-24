@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using System.Xml;
 using V6AccountingBusiness;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6Structs;
 using V6Tools;
@@ -122,27 +125,48 @@ namespace V6Controls.Forms
         {
             try
             {
-                if (keyData == Keys.F3)
+                if (keyData == Keys.F3 || keyData == Keys.F4)
                 {
-                    if(++f3count == 3)
+                    if (keyData == Keys.F3)
                     {
-                        var method_info = GetType().GetMethod("V6F3Execute");
-                        if (method_info != null && method_info.DeclaringType == GetType() &&
-                            new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                        if (++f3count == 3)
                         {
-                            V6F3Execute();
-                            f3count = 0;
+                            var method_info = GetType().GetMethod("V6F3Execute");
+                            if (method_info != null && method_info.DeclaringType == GetType() && //Kiem tra co method override
+                                new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                            {
+                                V6F3Execute();
+                                f3count = 0;
+                            }
+                            else
+                            {
+                                f3count = 0;
+                                V6F3ExecuteUndo();
+                            }
                         }
-                        else
+                    }
+                    else if (keyData == Keys.F4)
+                    {
+                        if (++f4count == 3)
                         {
-                            f3count = 0;
-                            V6F3ExecuteUndo();
+                            var method_info = GetType().GetMethod("V6F4Execute");
+                            if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                            {
+                                V6F4Execute();
+                                f4count = 0;
+                            }
+                            else
+                            {
+                                f4count = 0;
+                                //V6F4ExecuteUndo();
+                            }
                         }
                     }
                 }
                 else
                 {
                     f3count = 0;
+                    f4count = 0;
                 }
 
                 if (do_hot_key)
@@ -187,12 +211,58 @@ namespace V6Controls.Forms
         }
 
         protected int f3count;
+        protected int f4count;
         /// <summary>
         /// Hàm thực hiện sau khi xác nhận mật khẩu V6 thành công.
         /// </summary>
         public virtual void V6F3Execute()
         {
             
+        }
+        public virtual void V6F4Execute()
+        {
+            try
+            {
+                string fileName = Path.Combine(V6Login.StartupPath, "V6HELP\\V6F4.xml");
+                XmlDocument xml = new XmlDocument();
+                if (!File.Exists(fileName))
+                {
+                    var fs = new FileStream(fileName, FileMode.Create);
+                    StreamWriter sw = new StreamWriter(fs);
+                    sw.Write("<V6F4>\r\n</V6F4>");
+                    sw.Close();
+                    fs.Close();
+                }
+                xml.Load(fileName);
+                var documentElement = xml.DocumentElement;
+                if (documentElement == null)
+                {
+                    this.ShowWarningMessage("Không có nội dung");
+                    return;
+                }
+
+                var element = documentElement.GetElementsByTagName(ItemID)[0];
+                if (element == null)
+                {
+                    element = xml.CreateElement(ItemID);
+                    documentElement.AppendChild(element);
+                }
+
+                TextEditorForm editor = new TextEditorForm(element.InnerText);
+                editor.Show(this);
+                editor.FormClosing += (sender, e) =>
+                {
+                    if (editor.HaveChanged)
+                    {
+                        element.InnerText = editor.Content;
+                        xml.Save(fileName);
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException("V6F4", ex);
+            }
         }
         /// <summary>
         /// Hàm thực hiện sau khi xác nhận mật khẩu V6 sai.

@@ -385,7 +385,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                 var data = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
 
                 DataEditorForm editorForm = new DataEditorForm(this, data, "AlctCt", null, "Ma_ct,User_id_ct", V6Text.Edit + " " + V6TableHelper.V6TableCaption("AlctCt", V6Setting.Language), false, false, false, true, null);
-                editorForm.DataGridView.VvarEditingPrepare += DataGridView_VvarEditingPrepare;
+                editorForm.DataGridView.EditingPrepare += DataGridView_EditingPrepare;
                 editorForm.ShowDialog(this);
                 //V6ControlFormHelper.ShowDataEditorForm(this, data, "AlctCt", null, "Ma_ct,User_id_ct", false, false, false, true, null);
             }
@@ -395,14 +395,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             }
         }
 
-        void DataGridView_VvarEditingPrepare(object sender, V6ColorDataGridView.VvarEventArgs e)
+        void DataGridView_EditingPrepare(object sender, V6ColorDataGridView.EditingEventArgs e)
         {
             All_Objects["e"] = e;
             InvokeFormEvent(e.CurrentColumn.DataPropertyName.ToUpper());
-            //if (e.CurrentColumn.DataPropertyName.ToUpper() == "R_")
+            //if (e.CurrentColumn.DataPropertyName.ToUpper() == "R_" && e.V6VvarTextBox != null)
             //{
-            //    e.VvarControl.F2 = true;
-            //    e.VvarControl.SetInitFilter("MA_CT='" + e.CurrentRow.Cells["MA_CT"].Value + "'");
+            //    e.V6VvarTextBox.F2 = true;
+            //    e.V6VvarTextBox.SetInitFilter("MA_CT='" + e.CurrentRow.Cells["MA_CT"].Value + "'");
             //}
         }
 
