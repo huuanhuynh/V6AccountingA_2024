@@ -103,6 +103,8 @@ namespace V6Controls
             }
         }
 
+        public List<IDictionary<string, object>> Datas;
+
         private V6lookupConfig _lki;
         public V6lookupConfig LookupInfo
         {
@@ -392,6 +394,12 @@ namespace V6Controls
 
         private void Do_CheckOnLeave(EventArgs e)
         {
+            if (F2 && Text.Contains(","))
+            {
+                ExistRowInTableID(Text);
+                return;
+            }
+
             if (_checkOnLeave && !F2 && !ReadOnly && Visible && Enabled)
             {
                 CheckForBarcode();
@@ -401,6 +409,7 @@ namespace V6Controls
                     {
                         if (ExistRowInTable(Text.Trim()))
                         {
+                            FixText();
                             if (!Looking && gotfocustext != Text)
                             {
                                 CallDoV6LostFocus();
@@ -658,6 +667,128 @@ namespace V6Controls
                 return false;
             }
             return false;
+        }
+
+        private bool ExistRowInTableID(object id)
+        {
+            if (V6Setting.IsDesignTime) return false;
+            try
+            {
+                if (!string.IsNullOrEmpty(LookupInfo.vValue))
+                {
+                    string tableName = LookupInfo.TableName;
+                    var filter = InitFilter;
+                    if (!string.IsNullOrEmpty(filter)) filter = " and (" + filter + ")";
+
+                    string where = "";
+                    if (id.ToString().Contains(","))
+                    {
+                        string[] sss = id.ToString().Split(',');
+                        foreach (string s in sss)
+                        {
+                            where += string.Format(" or {3}{0} {1} {2}", LookupInfo.vValue, "=", "'" + s.Trim().Replace("'", "''") + "'", null);
+                        }
+                        if (where.Length > 4)
+                        {
+                            where = "(" + where.Substring(4) + ")";
+                        }
+                        where += filter;
+                    }
+                    else
+                    {
+                        where = LookupInfo.vValue + "='" + id + "'" + filter;
+                    }
+
+                    //SqlParameter[] plist =
+                    //{
+                    //    new SqlParameter("@id", id)
+                    //};
+                    var tbl = V6BusinessHelper.Select(tableName, "*", where, "", "").Data;
+
+                    if (tbl != null && tbl.Rows.Count == 1)
+                    {
+                        var oneRow = tbl.Rows[0];
+                        _data = oneRow;
+                        Datas = null;
+                        FixText();
+                        V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
+                        SetNeighborValues();
+                        return true;
+                    }
+                    else if (tbl != null && tbl.Rows.Count > 1)
+                    {
+                        _data = null;
+                        List<IDictionary<string, object>> dataList = new List<IDictionary<string, object>>();
+                        foreach (DataRow row in tbl.Rows)
+                        {
+                            dataList.Add(row.ToDataDictionary());
+                        }
+                        Datas = dataList;
+                        FixText();
+                        V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
+                        SetNeighborValues();
+                        return true;
+                    }
+                    else
+                    {
+                        _data = null;
+                        FixText();
+                        V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
+                        SetNeighborValues();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ExistRowInTable", ex);
+                return false;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Sửa lại giá trị, bỏ bớt phần tử sai khi chọn nhiều mã.
+        /// </summary>
+        private void FixText()
+        {
+            //Fix text
+            if (Data != null)
+            {
+                Text = Data[LookupInfo.vValue].ToString().Trim();
+                _text_data = Text;
+            }
+            else if (Datas != null)
+            {
+                var new_text = "";
+                foreach (IDictionary<string, object> data in Datas)
+                {
+                    if (data != null && data.ContainsKey(LookupInfo.vValue.ToUpper()))
+                    {
+                        string ID = data[LookupInfo.vValue.ToUpper()].ToString().Trim();
+                        new_text += "," + ID;
+                    }
+                }
+                if (new_text.Length > 0) new_text = new_text.Substring(1);
+                Text = new_text;
+                _text_data = "";
+            }
+            else
+            {
+                Text = "";
+                _text_data = "";
+            }
+        }
+
+        public void SetValue(object value)
+        {
+            try
+            {
+                ExistRowInTableID(value);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".SetValue", ex);
+            }
         }
 
         public void RefreshLoDateYnValue()

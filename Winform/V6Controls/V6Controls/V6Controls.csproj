@@ -111,6 +111,7 @@
     <Compile Include="Forms\Viewer\TextEditorForm.Designer.cs">
       <DependentUpon>TextEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Structs\AlctControls.cs" />
     <Compile Include="TNumEditBox.cs">
       <SubType>Component</SubType>
     </Compile>

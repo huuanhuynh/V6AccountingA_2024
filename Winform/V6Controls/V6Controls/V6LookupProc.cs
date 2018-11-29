@@ -430,7 +430,7 @@ namespace V6Controls
                 return;
             }
 
-            if (_checkOnLeave && !ReadOnly && Visible)
+            if (_checkOnLeave && !ReadOnly && Visible && Enabled)
             {
                 if (Text.Trim() != "")
                 {
@@ -673,6 +673,9 @@ namespace V6Controls
             return false;
         }
 
+        /// <summary>
+        /// Sửa lại giá trị, bỏ bớt phần tử sai khi chọn nhiều mã.
+        /// </summary>
         private void FixText()
         {
             //Fix text

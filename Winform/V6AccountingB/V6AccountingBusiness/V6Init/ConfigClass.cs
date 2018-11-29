@@ -39,7 +39,7 @@ namespace V6Init
         }
 
         /// <summary>
-        /// Lấy thông tin theo trường
+        /// Lấy thông tin theo trường, Trim().
         /// </summary>
         /// <param name="name">Tên trường dữ liệu</param>
         /// <returns></returns>

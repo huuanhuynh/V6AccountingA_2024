@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
+using V6Controls.Forms.DanhMuc.Add_Edit.Alreport;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
@@ -56,6 +57,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             txtDmethod.Visible = true;
             lblXML.Visible = true;
             btnEditXml.Visible = true;
+
+            lblFilterM.Visible = true;
+            txtFilter_M.Visible = true;
+            btnEditFilterM.Visible = true;
+            lblDmethodM.Visible = true;
+            txtDmethod_M.Visible = true;
+            btnEditXmlM.Visible = true;
         }
 
         public override void V6F3ExecuteUndo()
@@ -78,9 +86,48 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        private void DoEditFilter_M()
+        {
+            try
+            {
+                DefineInfoEditorForm f = new DefineInfoEditorForm(txtFilter_M.Text);
+                if (f.ShowDialog(this) == DialogResult.OK)
+                {
+                    txtFilter_M.Text = f.FILTER_DEFINE;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoEditFilter_M", ex);
+            }
+        }
+
+        private void DoEditXml_M()
+        {
+            try
+            {
+                var file_xml = TxtFcolumn.Text.Trim().ToUpper() + "_M.xml";
+                new XmlEditorForm(txtDmethod_M, file_xml, "Table0", "event,using,method,content".Split(',')).ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoEditXml_M", ex);
+            }
+        }
+
         private void btnEditXml_Click(object sender, System.EventArgs e)
         {
             DoEditXml();
+        }
+
+        private void btnEditFilterM_Click(object sender, EventArgs e)
+        {
+            DoEditFilter_M();
+        }
+
+        private void btnEditXmlM_Click(object sender, EventArgs e)
+        {
+            DoEditXml_M();
         }
     }
 }

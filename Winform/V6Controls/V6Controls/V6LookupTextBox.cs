@@ -429,7 +429,7 @@ namespace V6Controls
                 return;
             }
 
-            if (_checkOnLeave && !ReadOnly && Visible)
+            if (_checkOnLeave && !ReadOnly && Visible && Enabled)
             {
                 if (Text.Trim() != "")
                 {
@@ -601,7 +601,7 @@ namespace V6Controls
             return false;
         }
 
-        private bool ExistRowInTableID(object id)
+        private bool ExistRowInTableID(object id_s)
         {
             if (V6Setting.IsDesignTime) return false;
             try
@@ -612,11 +612,30 @@ namespace V6Controls
                     var filter = InitFilter;
                     if (!string.IsNullOrEmpty(filter)) filter = " and (" + filter + ")";
 
-                    SqlParameter[] plist =
+                    string where = "";
+                    if (id_s.ToString().Contains(","))
                     {
-                        new SqlParameter("@id", id)
-                    };
-                    var tbl = V6BusinessHelper.Select(tableName, "*", ValueField + "=@id " + filter, "", "", plist).Data;
+                        string[] sss = id_s.ToString().Split(',');
+                        foreach (string s in sss)
+                        {
+                            where += string.Format(" or {3}{0} {1} {2}", ValueField, "=", "'" + s.Trim().Replace("'", "''") + "'", null);
+                        }
+                        if (where.Length > 4)
+                        {
+                            where = "(" + where.Substring(4) + ")";
+                        }
+                        where += filter;
+                    }
+                    else
+                    {
+                        where = ValueField + "='" + id_s + "'" + filter;
+                    }
+
+                    //SqlParameter[] plist =
+                    //{
+                    //    new SqlParameter("@id", id_s)
+                    //};
+                    var tbl = V6BusinessHelper.Select(tableName, "*", where, "", "").Data;
 
                     if (tbl != null && tbl.Rows.Count == 1)
                     {
@@ -659,6 +678,9 @@ namespace V6Controls
             return false;
         }
 
+        /// <summary>
+        /// Sửa lại giá trị, bỏ bớt phần tử sai khi chọn nhiều mã.
+        /// </summary>
         private void FixText()
         {
             //Fix text

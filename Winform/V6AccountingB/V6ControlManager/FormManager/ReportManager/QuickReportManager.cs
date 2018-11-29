@@ -125,6 +125,8 @@ namespace V6ControlManager.FormManager.ReportManager
                                 lButton.M_Type = defineInfo_M.M_Type;
                                 //lButton.M_User_id = defineInfo_M.M_User_id;
                                 //lButton.M_Lan = defineInfo_M.V6Login.SelectedLanguage;
+
+                                lButton.Visible = defineInfo_M.Visible;
                             }
 
                             //Giữ lại control ngày.

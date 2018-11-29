@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -17,7 +18,9 @@ using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNhap;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuXuat;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc;
 using V6Controls;
+using V6Controls.Controls;
 using V6Controls.Forms;
+using V6Controls.Structs;
 using V6Init;
 using V6Structs;
 using V6Tools;
@@ -155,12 +158,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void LoadDetailControls()
         {
             //Lấy các control động
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
+            var dynamicControlList = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
             
             //Thêm các control động vào danh sách
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<int, AlctControls> item in dynamicControlList)
             {
-                var control = item.Value;
+                var control = item.Value.DetailControl;
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
@@ -762,10 +765,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
+
+            //LookupButton lbt_mavt = new LookupButton();
+            //lbt_mavt.ReferenceControl = _maVt;
             
-            foreach (Control control in dynamicControlList.Values)
+            foreach (AlctControls item in dynamicControlList.Values)
             {
-                detail1.AddControl(control);
+                detail1.AddControl(item);
+                //if (item.LookupButton != null)
+                //{
+                //    item.DetailControl.Parent.Controls.Add(item.LookupButton);
+                //    //detail1.Update_p(new Point(item.DetailControl.Right + 25, 0));
+                //    //detail1._panel1Controls.Add(item.LookupButton);
+                //}
             }
             
             detail1.SetStruct(Invoice.ADStruct);

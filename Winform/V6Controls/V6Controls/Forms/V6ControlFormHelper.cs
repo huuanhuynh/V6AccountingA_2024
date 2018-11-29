@@ -19,6 +19,7 @@ using V6Controls.Controls;
 using V6Controls.Controls.Label;
 using V6Controls.Forms.DanhMuc.Add_Edit.ThongTinDinhNghia;
 using V6Controls.Forms.Viewer;
+using V6Controls.Structs;
 using V6Init;
 using V6ReportControls;
 using V6Structs;
@@ -621,7 +622,6 @@ namespace V6Controls.Forms
         /// <returns></returns>
         public static SortedDictionary<int, Control> GetDynamicControlsAlct(DataTable alct1,
             out List<string> orderList, out SortedDictionary<string, DataRow> alct1Dic)
-            //out List<Control> carryList)
         {
             //exec [VPA_GET_AUTO_COLULMN] 'SOA','','','','';//08/12/2015
             var result = new SortedDictionary<int, Control>();
@@ -734,13 +734,185 @@ namespace V6Controls.Forms
                         c = CreateDateTimeColor(fcolumn, fcaption, width, fstatus, carry);
                         break;
                     case "D1": // Not null
-                        c = CreateDateTimePick(fcolumn, fcaption, width, fstatus, carry);
+                        c = CreateDateTimePicker(fcolumn, fcaption, width, fstatus, carry);
                         break;
                     #endregion
                 }
                 if (c != temp_control)
                 {
                     result.Add(fOrder, c);
+                    if (carry)
+                    {
+                        _carryList.Add(c);
+                    }
+                }
+            }
+            orderList = _orderList;
+            alct1Dic = _alct1Dic;
+            //carryList = _carryList;
+            return result;
+        }
+
+        /// <summary>
+        /// Lấy động danh sách control (textbox) từ bảng Alct
+        /// </summary>
+        /// <param name="alct1"></param>
+        /// <param name="orderList">Dùng để xắp xếp lại gridview_columns khi cần.</param>
+        /// <param name="alct1Dic">Dùng để lấy thông tin field khi cần.</param>
+        /// <returns></returns>
+        public static SortedDictionary<int, AlctControls> GetDynamicControlStructsAlct(DataTable alct1,
+            out List<string> orderList, out SortedDictionary<string, DataRow> alct1Dic)
+        {
+            //exec [VPA_GET_AUTO_COLULMN] 'SOA','','','','';//08/12/2015
+            var result = new SortedDictionary<int, AlctControls>();
+
+            //var alct1 = Invoice.Alct1;
+            var _orderList = new List<string>();
+            var _carryList = new List<Control>();
+            var _alct1Dic = new SortedDictionary<string, DataRow>();
+
+            Control temp_control = new Control();
+            foreach (DataRow row in alct1.Rows)
+            {
+                //var visible = 1 == Convert.ToInt32(row["visible"]);
+                //if (!visible) continue;
+                Config config = new Config(row.ToDataDictionary());
+                var filter_m = config.GetString("FILTER_M");
+                var fcolumn = config.GetString("fcolumn").ToUpper();
+                _orderList.Add(fcolumn);
+                _alct1Dic.Add(fcolumn, row);
+
+                var fcaption = row[V6Setting.Language == "V" ? "caption" : "caption2"].ToString().Trim();
+                var fvvar = row["fvvar"].ToString().Trim();
+                var fstatus = Convert.ToBoolean(row["fstatus"]);
+
+                var width = Convert.ToInt32(row["width"]);
+                var ftype = row["ftype"].ToString().Trim();
+                var fOrder = Convert.ToInt32(row["forder"]);
+                var carry = Convert.ToInt32(row["carry"]) == 1;
+
+                int decimals;
+
+                Control c = temp_control;
+                switch (ftype)
+                {
+                    #region Create controls
+                    case "A0":
+                        if (fcolumn == "TANG")
+                        {
+                            c = CreateCheckTextBox(fcolumn, "a", fcaption, width, fstatus, carry);
+                        }
+                        else if (fcolumn == "PX_GIA_DDI")
+                        {
+                            c = CreateCheckTextBox(fcolumn, "a", fcaption, width, fstatus, carry);
+                        }
+                        else if (fcolumn == "PN_GIA_TBI")
+                        {
+                            c = CreateCheckTextBox(fcolumn, "a", fcaption, width, fstatus, carry);
+                        }
+                        break;
+                    case "A1":
+                        c = CreateCheckTextBox(fcolumn, "a", fcaption, width, fstatus, carry);
+                        break;
+                    case "C0":
+                        if (fvvar != "")
+                        {
+                            var checkvvar = Convert.ToBoolean(row["checkvvar"]);
+                            var notempty = Convert.ToBoolean(row["notempty"]);
+                            c = CreateVvarTextBox(fcolumn, fvvar, fcaption, width, fstatus, checkvvar, notempty, carry);
+                        }
+                        else
+                        {
+                            c = CreateColorTextBox(fcolumn, fcaption, width, fstatus, carry);
+                        }
+                        break;
+                    case "N9"://Kieu so bat ky
+                        decimals = row["fdecimal"] == null ? V6Setting.DecimalsNumber : Convert.ToInt32(row["fdecimal"]);
+                        c = CreateNumberTextBox(fcolumn, fcaption, decimals, width, fstatus, carry);
+
+                        break;
+
+                    case "N0"://Tien
+                        decimals = V6Options.M_IP_TIEN;// row["fdecimal"] == null ? V6Setting.DecilalsNumber : Convert.ToInt32(row["fdecimal"]);
+                        c = CreateNumberTien(fcolumn, fcaption, decimals, width, fstatus, carry);
+
+                        break;
+
+                    case "N1"://Ngoai te
+                        decimals = V6Options.M_IP_TIEN_NT;
+
+                        c = CreateNumberTienNt(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        break;
+                    case "N2"://so luong
+
+                        decimals = V6Options.M_IP_SL;
+
+                        c = CreateNumberSoLuong(fcolumn, fcaption, decimals, width, fstatus, carry);
+
+                        break;
+                    case "N3"://GIA
+
+                        decimals = V6Options.M_IP_GIA;
+                        //Tuanmh 06/08/2017 - loi CreateNumberSoLuong
+                        c = CreateNumberGia(fcolumn, fcaption, decimals, width, fstatus, carry);
+
+
+                        break;
+                    case "N4"://Gia nt
+
+                        decimals = V6Options.M_IP_GIA_NT;
+                        //Tuanmh 06/08/2017 - loi CreateNumberSoLuong
+                        c = CreateNumberGiaNt(fcolumn, fcaption, decimals, width, fstatus, carry);
+
+                        break;
+                    case "N5"://Ty gia
+                        decimals = V6Options.M_IP_TY_GIA;
+
+                        c = CreateNumberTyGia(fcolumn, fcaption, decimals, width, fstatus, carry);
+
+                        break;
+                    case "D0": // Allow null
+                        c = CreateDateTimeColor(fcolumn, fcaption, width, fstatus, carry);
+                        break;
+                    case "D1": // Not null
+                        c = CreateDateTimePicker(fcolumn, fcaption, width, fstatus, carry);
+                        break;
+                    #endregion
+                }
+
+                
+
+                if (c != temp_control)
+                {
+                    LookupButton lButton = null;
+                    if (!string.IsNullOrEmpty(filter_m))
+                    {
+                        DefineInfo defineInfo_M = new DefineInfo(filter_m);
+                        lButton = new LookupButton();
+                        lButton.ReferenceControl = c;
+
+                        lButton.Name = "lbt" + fcolumn;
+
+                        lButton.R_DataType = defineInfo_M.R_DataType;
+                        //lButton.R_Value = defineInfo_M.R_Value;
+                        //lButton.R_Vvar = defineInfo_M.R_Vvar;
+                        //lButton.R_Stt_rec = defineInfo_M.R_Stt_rec;
+                        lButton.R_Ma_ct = defineInfo_M.R_Ma_ct;
+
+                        lButton.M_DataType = defineInfo_M.M_DataType;
+                        lButton.M_Value = defineInfo_M.M_Value;
+                        lButton.M_Vvar = defineInfo_M.M_Vvar;
+                        lButton.M_Stt_Rec = defineInfo_M.M_Stt_Rec;
+                        lButton.M_Ma_ct = defineInfo_M.M_Ma_ct;
+
+                        lButton.M_Type = defineInfo_M.M_Type;
+                        //lButton.M_User_id = defineInfo_M.M_User_id;
+                        //lButton.M_Lan = defineInfo_M.V6Login.SelectedLanguage;
+
+                        lButton.Visible = defineInfo_M.Visible;
+                    }
+
+                    result.Add(fOrder, new AlctControls {DetailControl = c, LookupButton = lButton});
                     if (carry)
                     {
                         _carryList.Add(c);
@@ -2518,7 +2690,7 @@ namespace V6Controls.Forms
             
             return a;
         }
-        public static V6DateTimePicker CreateDateTimePick(string accessibleName, string caption, int width, bool visible, bool carry = false)
+        public static V6DateTimePicker CreateDateTimePicker(string accessibleName, string caption, int width, bool visible, bool carry = false)
         {
             return new V6DateTimePicker
             {
@@ -6734,6 +6906,8 @@ namespace V6Controls.Forms
                         lButton.M_Type = defineInfo_M.M_Type;
                         //lButton.M_User_id = defineInfo_M.M_User_id;
                         //lButton.M_Lan = defineInfo_M.V6Login.SelectedLanguage;
+
+                        lButton.Visible = defineInfo_M.Visible;
 
                         //lButton.LookupButtonF3Event += (sender, e) =>
                         //{

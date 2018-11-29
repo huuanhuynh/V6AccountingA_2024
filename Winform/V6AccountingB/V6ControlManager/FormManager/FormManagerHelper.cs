@@ -315,6 +315,8 @@ namespace V6ControlManager.FormManager
                         //lButton.M_User_id = defineInfo_M.M_User_id;
                         //lButton.M_Lan = defineInfo_M.V6Login.SelectedLanguage;
 
+                        lButton.Visible = defineInfo_M.Visible;
+
                         lButton.LookupButtonF3Event += (sender, e) =>
                         {
                             string title = "Chứng từ " + e.MaCt;
