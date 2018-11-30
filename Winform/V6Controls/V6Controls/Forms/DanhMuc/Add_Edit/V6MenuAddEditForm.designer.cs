@@ -71,14 +71,15 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.chkQuickRun = new V6Controls.V6CheckBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.txtKey3 = new V6Controls.V6ColorTextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.txtPicture = new V6Controls.V6ColorTextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.txtKey1 = new V6Controls.V6ColorTextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtKey3 = new V6Controls.V6ColorTextBox();
+            this.btnMenuHide = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -297,11 +298,11 @@
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.txttitle);
             this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(742, 342);
+            this.tabPage1.Size = new System.Drawing.Size(742, 339);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
@@ -728,6 +729,7 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage3.Controls.Add(this.btnMenuHide);
             this.tabPage3.Controls.Add(this.chkQuickRun);
             this.tabPage3.Controls.Add(this.label19);
             this.tabPage3.Controls.Add(this.txtKey3);
@@ -736,11 +738,11 @@
             this.tabPage3.Controls.Add(this.label22);
             this.tabPage3.Controls.Add(this.txtKey1);
             this.tabPage3.Controls.Add(this.label18);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(742, 342);
+            this.tabPage3.Size = new System.Drawing.Size(742, 339);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Các tùy chọn";
             // 
@@ -766,6 +768,35 @@
             this.label19.Size = new System.Drawing.Size(75, 17);
             this.label19.TabIndex = 2;
             this.label19.Text = "Tìm nhanh";
+            // 
+            // txtKey3
+            // 
+            this.txtKey3.AccessibleName = "KEY3";
+            this.txtKey3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtKey3.BackColor = System.Drawing.Color.White;
+            this.txtKey3.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtKey3.Enabled = false;
+            this.txtKey3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtKey3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtKey3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtKey3.HoverColor = System.Drawing.Color.Yellow;
+            this.txtKey3.LeaveColor = System.Drawing.Color.White;
+            this.txtKey3.Location = new System.Drawing.Point(175, 101);
+            this.txtKey3.Margin = new System.Windows.Forms.Padding(4);
+            this.txtKey3.Name = "txtKey3";
+            this.txtKey3.Size = new System.Drawing.Size(545, 23);
+            this.txtKey3.TabIndex = 5;
+            // 
+            // label23
+            // 
+            this.label23.AccessibleDescription = "";
+            this.label23.Location = new System.Drawing.Point(2, 105);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(165, 37);
+            this.label23.TabIndex = 4;
+            this.label23.Text = "Key3 (Phân quyền\r\nclick phải report)";
             // 
             // txtPicture
             // 
@@ -835,6 +866,8 @@
             this.v6TabControl1.Controls.Add(this.tabPage1);
             this.v6TabControl1.Controls.Add(this.tabPage2);
             this.v6TabControl1.Controls.Add(this.tabPage3);
+            this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(6, 108);
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.v6TabControl1.Name = "v6TabControl1";
@@ -847,42 +880,26 @@
             this.tabPage2.AccessibleDescription = "thong_tin_cong_no";
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(742, 342);
+            this.tabPage2.Size = new System.Drawing.Size(742, 339);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
             // 
-            // label23
+            // btnMenuHide
             // 
-            this.label23.AccessibleDescription = "";
-            this.label23.Location = new System.Drawing.Point(2, 105);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(165, 37);
-            this.label23.TabIndex = 4;
-            this.label23.Text = "Key3 (Phân quyền\r\nclick phải report)";
-            // 
-            // txtKey3
-            // 
-            this.txtKey3.AccessibleName = "KEY3";
-            this.txtKey3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtKey3.BackColor = System.Drawing.Color.White;
-            this.txtKey3.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtKey3.Enabled = false;
-            this.txtKey3.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtKey3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtKey3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtKey3.HoverColor = System.Drawing.Color.Yellow;
-            this.txtKey3.LeaveColor = System.Drawing.Color.White;
-            this.txtKey3.Location = new System.Drawing.Point(175, 101);
-            this.txtKey3.Margin = new System.Windows.Forms.Padding(4);
-            this.txtKey3.Name = "txtKey3";
-            this.txtKey3.Size = new System.Drawing.Size(545, 23);
-            this.txtKey3.TabIndex = 5;
+            this.btnMenuHide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMenuHide.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuHide.Location = new System.Drawing.Point(524, 309);
+            this.btnMenuHide.Name = "btnMenuHide";
+            this.btnMenuHide.Size = new System.Drawing.Size(211, 25);
+            this.btnMenuHide.TabIndex = 9;
+            this.btnMenuHide.Text = "Menu hide_yn";
+            this.btnMenuHide.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnMenuHide.UseVisualStyleBackColor = true;
+            this.btnMenuHide.Click += new System.EventHandler(this.btnMenuHide_Click);
             // 
             // V6MenuAddEditForm
             // 
@@ -959,6 +976,7 @@
         private System.Windows.Forms.Label label22;
         private V6ColorTextBox txtKey3;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button btnMenuHide;
 
     }
 }

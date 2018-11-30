@@ -543,12 +543,14 @@ namespace V6Tools.V6Convert
         {
             try
             {
+                if (string.IsNullOrEmpty(xml)) return null;
                 DataSet ds = new DataSet();
                 ds.ReadXml(new StringReader(xml));
                 return ds;
             }
             catch (Exception ex)
             {
+                Logger.WriteExLog("XmlStringToDataSet: " + xml, ex);
                 return null;
             }
         }

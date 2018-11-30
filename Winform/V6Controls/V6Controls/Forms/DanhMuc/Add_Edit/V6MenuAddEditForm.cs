@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
+using V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -84,6 +86,34 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             txtKey1.Enabled = false;
             txtPicture.Enabled = false;
             txtKey3.Enabled = false;
+        }
+
+        private void btnMenuHide_Click(object sender, System.EventArgs e)
+        {
+            try
+            {
+                V6MenuHideYN form = new V6MenuHideYN(Mode);
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    UpdateV6Menu_Hide_yn(form.Vrights_Hide_yn);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnMenuHide_Click", ex);
+            }
+        }
+
+        private void UpdateV6Menu_Hide_yn(string vrightsHideYn)
+        {
+            try
+            {
+                this.ShowMessage(vrightsHideYn);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnMenuHide_Click", ex);
+            }
         }
     }
 }

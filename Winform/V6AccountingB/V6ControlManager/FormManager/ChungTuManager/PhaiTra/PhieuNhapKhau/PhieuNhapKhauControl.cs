@@ -1942,7 +1942,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     chonTuExcelToolStripMenuItem.Enabled = true;
 
                     XuLyKhoaThongTinKhachHang();
-                    SetGridViewChiPhiEditAble(TxtLoai_pb.Text, chkSuaTien.Checked, dataGridView3ChiPhi, "CP,CP_NT,NK,NK_NT", "CP_NT,NK_NT");
+                    SetGridViewChiPhiEditAble(txtLoai_pb.Text, chkSuaTien.Checked, dataGridView3ChiPhi, "CP,CP_NT,NK,NK_NT", "CP_NT,NK_NT");
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;
 
@@ -2280,8 +2280,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             var tTien0 = TinhTong(AD, "TIEN0");
             txtTongTien0.Value = V6BusinessHelper.Vround(tTien0, M_ROUND);
 
-            TxtT_nk_nt.Value = TinhTong(AD, "NK_NT");
-            TxtT_nk.Value = TinhTong(AD, "NK");
+            txtT_nk_nt.Value = TinhTong(AD, "NK_NT");
+            txtT_nk_nt_ao.Value = txtT_nk_nt.Value;
+            txtT_nk.Value = TinhTong(AD, "NK");
+            txtT_nk_ao.Value = txtT_nk.Value;
 
             var tPsNoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_NO_NT", "OPER_TT");
             var tPsCoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_CO_NT", "OPER_TT");
@@ -2651,8 +2653,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 var t_gg_nt = txtTongGiamNt.Value;
                 var t_ck_nt = txtTongCkNt.Value;
                 var t_thue_nt = txtTongThueNt.Value;
-                var T_nk_nt = TxtT_nk_nt.Value;
-                var t_cp_nt = TxtT_cp_nt.Value;
+                var T_nk_nt = txtT_nk_nt.Value;
+                var t_cp_nt = txtT_cp_nt.Value;
                 var t_tt_nt = t_tien_nt2 - t_gg_nt - t_ck_nt ;
                 var t_tc_nt = t_tt_nt + t_cp_nt+T_nk_nt;
 
@@ -2660,12 +2662,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 var t_gg = txtTongGiam.Value;
                 var t_ck = txtTongCk.Value;
                 var t_thue = txtTongThue.Value;
-                var T_nk = TxtT_nk.Value;
-                var t_cp = TxtT_cp.Value;
+                var T_nk = txtT_nk.Value;
+                var t_cp = txtT_cp.Value;
                 var t_tt = t_tien2 - t_gg - t_ck;
                 var t_tc = t_tt + t_cp + T_nk;
 
-                if (TxtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
+                if (txtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
                 {
                     t_tt_nt = t_tt_nt + t_cp_nt;
                     t_tt = t_tt + t_cp;
@@ -2695,8 +2697,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             var t_gg_nt = txtTongGiamNt.Value;
             var t_ck_nt = txtTongCkNt.Value;
             var t_thue_nt = txtTongThueNt.Value;
-            var T_nk_nt = TxtT_nk_nt.Value;
-            var t_cp_nt = TxtT_cp_nt.Value;
+            var T_nk_nt = txtT_nk_nt.Value;
+            var t_cp_nt = txtT_cp_nt.Value;
             var t_tt_nt = t_tien_nt2 - t_gg_nt - t_ck_nt;
             var t_tc_nt = t_tt_nt + t_cp_nt + T_nk_nt;
 
@@ -2704,12 +2706,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             var t_gg = txtTongGiam.Value;
             var t_ck = txtTongCk.Value;
             var t_thue = txtTongThue.Value;
-            var T_nk = TxtT_nk.Value;
-            var t_cp = TxtT_cp.Value;
+            var T_nk = txtT_nk.Value;
+            var t_cp = txtT_cp.Value;
             var t_tt = t_tien2 - t_gg - t_ck;
             var t_tc = t_tt + t_cp + T_nk;
 
-            if (TxtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
+            if (txtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
             {
                 t_tt_nt = t_tt_nt + t_cp_nt;
                 t_tt = t_tt + t_cp;
@@ -2779,8 +2781,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             _mMaNt0 = V6Options.M_MA_NT0;
             //cboMaNt.SelectedValue = _mMaNt0;
             panelVND.Visible = false;
-            TxtT_cp_ao.Visible = false;
-            TxtT_cp.Visible = false;
+            txtT_cp_ao.Visible = false;
+            txtT_cp.Visible = false;
         }
 
         private void GetTyGiaDefault()
@@ -2821,7 +2823,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             //
             txtManx.Text = Invoice.Alct["TK_CO"].ToString().Trim();
             cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
-            TxtTk_i_ao.Text = txtManx.Text;
+            txtTk_i_ao.Text = txtManx.Text;
 
         }
 
@@ -2902,8 +2904,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         panelVND.Visible = false;
                         lblDocSoTien.Visible = false;
                     }
-                    TxtT_cp_ao.Visible = true;
-                    TxtT_cp.Visible = true;
+                    txtT_cp_ao.Visible = true;
+                    txtT_cp.Visible = true;
 
                     var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA01");
                     if (c != null) c.Visible = true;
@@ -2914,10 +2916,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     if (gridViewColumn != null) gridViewColumn.Visible = true;
 
                     txtTongCkNt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
-                    TxtT_cp_nt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
-                    TxtT_cp_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN_NT;
-                    TxtT_cp.DecimalPlaces = V6Options.M_IP_TIEN;
-                    TxtT_cp_ao.DecimalPlaces = V6Options.M_IP_TIEN;
+                    txtT_cp_nt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
+                    txtT_cp_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN_NT;
+                    txtT_cp.DecimalPlaces = V6Options.M_IP_TIEN;
+                    txtT_cp_ao.DecimalPlaces = V6Options.M_IP_TIEN;
 
                     txtT_nk_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                     txtT_nk_ao.DecimalPlaces = V6Options.M_IP_TIEN;
@@ -2960,8 +2962,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         panelVND.Visible = false;
                         lblDocSoTien.Visible = false;
                     }
-                    TxtT_cp_ao.Visible = false;
-                    TxtT_cp.Visible = false;
+                    txtT_cp_ao.Visible = false;
+                    txtT_cp.Visible = false;
                     txtT_nk_ao.Visible = false;
 
                     //SetColsVisible(_GridID, ["GIA21", "TIEN2"], false); //An di
@@ -2971,10 +2973,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     if (gridViewColumn != null) gridViewColumn.Visible = false;
 
                     txtTongCkNt.DecimalPlaces = V6Options.M_IP_TIEN;
-                    TxtT_cp_nt.DecimalPlaces = V6Options.M_IP_TIEN;
-                    TxtT_cp_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN;
-                    TxtT_cp.DecimalPlaces = V6Options.M_IP_TIEN;
-                    TxtT_cp_ao.DecimalPlaces = V6Options.M_IP_TIEN;
+                    txtT_cp_nt.DecimalPlaces = V6Options.M_IP_TIEN;
+                    txtT_cp_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN;
+                    txtT_cp.DecimalPlaces = V6Options.M_IP_TIEN;
+                    txtT_cp_ao.DecimalPlaces = V6Options.M_IP_TIEN;
 
                     txtT_nk_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN;
                     txtT_nk_ao.DecimalPlaces = V6Options.M_IP_TIEN;
@@ -3068,7 +3070,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     {
                         column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN_NT;
                     }
+                    column = dataGridView3ChiPhi.Columns["NK_NT"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN_NT;
+                    }
+
                     column = dataGridView3ChiPhi.Columns["CP"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
+                    }
+                    column = dataGridView3ChiPhi.Columns["NK"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
+                    }
+
+                    column = dataGridView3ChiPhi.Columns["TIEN_NT0"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN_NT;
+                    }
+                    column = dataGridView3ChiPhi.Columns["TIEN0"];
                     if (column != null)
                     {
                         column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
@@ -3081,7 +3105,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     {
                         column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
                     }
+                    column = dataGridView3ChiPhi.Columns["NK_NT"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
+                    }
                     column = dataGridView3ChiPhi.Columns["CP"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
+                    }
+                    column = dataGridView3ChiPhi.Columns["NK"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
+                    }
+                    column = dataGridView3ChiPhi.Columns["TIEN_NT0"];
+                    if (column != null)
+                    {
+                        column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
+                    }
+                    column = dataGridView3ChiPhi.Columns["TIEN0"];
                     if (column != null)
                     {
                         column.DefaultCellStyle.Format = "N" + V6Options.M_IP_TIEN;
@@ -3277,15 +3321,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 V6ControlFormHelper.SetFormDataRow(this, row);
                 txtMadvcs.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
-                TxtMa_kh_i_ao.Text = row["Ma_kh_i"].ToString().Trim();
-                TxtT_cp_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp"]);
-                TxtTk_i_ao.Text = row["Tk_i"].ToString().Trim();
-                TxtT_cp_nt_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp_nt"]);
+                txtMa_kh_i_ao.Text = row["Ma_kh_i"].ToString().Trim();
+                txtT_cp_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp"]);
+                txtTk_i_ao.Text = row["Tk_i"].ToString().Trim();
+                txtT_cp_nt_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp_nt"]);
 
                 txtT_nk_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Nk"]);
                 txtT_nk_nt_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Nk_nt"]);
-
-
+                
                 XuLyThayDoiMaDVCS();
                 SetGridViewData();
                 XuLyThayDoiMaNt();
@@ -4184,7 +4227,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             chkLoaiChietKhau.Checked = true;//loai ck chung
             cboKieuPost.SelectedIndex = 1;
-            TxtLoai_pb.Text = "0";
+            txtLoai_pb.Text = "0";
             switch (Mode)
             {
                 case V6Mode.Init:
@@ -4310,7 +4353,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     _ten_kh22.Text = txtTenKh.Text;
                     _dia_chi22.Text = txtDiaChi.Text;
                     _ma_so_thue22.Text = txtMaSoThue.Text;
-                    _t_tien22.Value = txtTongTien0.Value + TxtT_nk.Value;
+                    _t_tien22.Value = txtTongTien0.Value + txtT_nk.Value;
                     _t_tien_nt22.Value = txtTongTienNt0.Value;
                     _thue_suat22.Value = txtThueSuat.Value;
                     _tk_thue_no22.Text = txtTkThueNo.Text.Trim();
@@ -5121,21 +5164,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                if (sender == TxtMa_kh_i_ao)
+                if (sender == txtMa_kh_i_ao)
                 {
-                    Txtma_kh_i.Text = TxtMa_kh_i_ao.Text;
+                    Txtma_kh_i.Text = txtMa_kh_i_ao.Text;
                 }
-                else if (sender == TxtTk_i_ao)
+                else if (sender == txtTk_i_ao)
                 {
-                    TxtTk_i.Text = TxtTk_i_ao.Text;
+                    TxtTk_i.Text = txtTk_i_ao.Text;
                 }
-                else if (sender == TxtT_cp_nt_ao)
+                else if (sender == txtT_cp_nt_ao)
                 {
-                    TxtT_cp_nt.Value = TxtT_cp_nt_ao.Value;
+                    txtT_cp_nt.Value = txtT_cp_nt_ao.Value;
                 }
-                else if (sender == TxtT_cp_ao)
+                else if (sender == txtT_cp_ao)
                 {
-                    TxtT_cp.Value = TxtT_cp_ao.Value;
+                    txtT_cp.Value = txtT_cp_ao.Value;
                 }
             }
             catch // (Exception)
@@ -5148,21 +5191,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                if (sender == TxtMa_kh_i_ao)
+                if (sender == txtMa_kh_i_ao)
                 {
-                    Txtma_kh_i.Text = TxtMa_kh_i_ao.Text;
+                    Txtma_kh_i.Text = txtMa_kh_i_ao.Text;
                 }
-                else if (sender == TxtTk_i_ao)
+                else if (sender == txtTk_i_ao)
                 {
-                    TxtTk_i.Text = TxtTk_i_ao.Text;
+                    TxtTk_i.Text = txtTk_i_ao.Text;
                 }
                 else if (sender == txtT_nk_nt_ao)
                 {
-                    TxtT_nk_nt.Value = txtT_nk_nt_ao.Value;
+                    txtT_nk_nt.Value = txtT_nk_nt_ao.Value;
                 }
                 else if (sender == txtT_nk_ao)
                 {
-                    TxtT_nk.Value = txtT_nk_ao.Value;
+                    txtT_nk.Value = txtT_nk_ao.Value;
                 }
             }
             catch // (Exception)
@@ -5189,7 +5232,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             //    TinhPhanBoChiPhi(loai_pb);
             //}
             //Đổi giá trị textbox
-            TxtLoai_pb.Text = loai_pb;
+            txtLoai_pb.Text = loai_pb;
         }
 
         
@@ -5203,18 +5246,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 return;
             }
             //Lấy giá trị
-            var loai_bp = TxtLoai_pb.Text.Trim();
+            var loai_bp = txtLoai_pb.Text.Trim();
             if ("012".Contains(loai_bp))
             {
                 pb_changed = true;
             }
 
             //Đổi cbo
-            if (TxtLoai_pb.Text == "1")
+            if (txtLoai_pb.Text == "1")
                 cboLoai_pb.SelectedIndex = 1;
-            else if (TxtLoai_pb.Text == "2")
+            else if (txtLoai_pb.Text == "2")
                 cboLoai_pb.SelectedIndex = 2;
-            else if (TxtLoai_pb.Text == "0")
+            else if (txtLoai_pb.Text == "0")
                 cboLoai_pb.SelectedIndex = 0;
             else cboLoai_pb.SelectedIndex = -1;
         }
@@ -5224,7 +5267,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             try
             {
                 if (loai_pb.Length > 1) loai_pb = loai_pb.Left(1);
-                //var loai_pb = TxtLoai_pb.Text.Trim();
+                if (loai_pb == "0") return;
+
                 var t_he_so = loai_pb == "1"? txtTongTienNt0.Value : txtTongSoLuong1.Value;
                 var t_cp_nt_check = 0m;
                 var t_cp_check = 0m;
@@ -5232,30 +5276,36 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 
                 if (t_he_so != 0)
                 {
-
                     for (var i = 0; i < AD.Rows.Count; i++)
                     {
                         var heso_01 = ObjectAndString.ObjectToDecimal(AD.Rows[i][loai_pb == "1" ? "TIEN_NT0" : "SO_LUONG1"]);
-
-                        var cp_nt = V6BusinessHelper.Vround((heso_01 / t_he_so) * TxtT_cp_nt.Value, M_ROUND_NT);
-
+                        var cp_nt = V6BusinessHelper.Vround((heso_01 / t_he_so) * txtT_cp_nt.Value, M_ROUND_NT);
                         t_cp_nt_check = t_cp_nt_check + cp_nt;
+                        var cp = V6BusinessHelper.Vround(cp_nt*txtTyGia.Value, M_ROUND);
+                        if (txtT_cp_nt.Value == 0)
+                            cp = V6BusinessHelper.Vround((heso_01 / t_he_so) * txtT_cp.Value, M_ROUND);
+                        
 
-                        var cp = V6BusinessHelper.Vround(cp_nt * txtTyGia.Value, M_ROUND);
-
-                        if (_maNt == _mMaNt0)
+                        if (_maNt == _mMaNt0 && txtT_cp_nt.Value != 0)
                             cp = cp_nt;
 
                         t_cp_check = t_cp_check + cp;
 
-                        if (cp_nt != 0 && index == -1)
-                            index = i;
+                        if (index == -1)
+                        {
+                            if (cp_nt != 0) index = i;
+                            else if (cp != 0) index = i;
+                        }
+                        //if (cp_nt != 0 && index == -1)
+                        //    index = i;
+                        //else if (cp_nt == 0 && index == -1 && cp != 0)
+                        //    index = i;
 
                         AD.Rows[i]["Cp_nt"] = cp_nt;
                         AD.Rows[i]["Cp"] = cp;
 
                         //tuanmh 14/10/2016
-                        if (TxtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
+                        if (txtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
                         {
                             AD.Rows[i]["Tien_nt"] = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien_nt0"])
                                                 + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Cp_nt"])
@@ -5275,13 +5325,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 // Tìm dòng có số tiền
                 if (index != -1)
                 {
-                    decimal _cp_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Cp_nt"]) + (TxtT_cp_nt.Value - t_cp_nt_check);
-                    decimal _cp = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Cp"]) + (TxtT_cp.Value - t_cp_check);
+                    decimal cp_nt_value = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Cp_nt"]) + (txtT_cp_nt.Value - t_cp_nt_check);
+                    decimal cp_value = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Cp"]) + (txtT_cp.Value - t_cp_check);
 
-                    AD.Rows[index]["Cp_nt"] = _cp_nt;
-                    AD.Rows[index]["Cp"] = _cp;
+                    AD.Rows[index]["Cp_nt"] = cp_nt_value;
+                    AD.Rows[index]["Cp"] = cp_value;
 
-                    if (TxtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
+                    if (txtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
                     {
                         AD.Rows[index]["Tien_nt"] = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Tien_nt0"])
                                                     + ObjectAndString.ObjectToDecimal(AD.Rows[index]["Cp_nt"])
@@ -5312,7 +5362,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             try
             {
                 if (loai_pb.Length > 1) loai_pb = loai_pb.Left(1);
-                //var loai_pb = TxtLoai_pb.Text.Trim();
+                if (loai_pb == "0") return;
+
                 var t_he_so = loai_pb == "1" ? txtTongTienNt0.Value : txtTongSoLuong1.Value;
                 var t_nk_nt_check = 0m;
                 var t_nk_check = 0m;
@@ -5325,19 +5376,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     {
                         var heso_01 = ObjectAndString.ObjectToDecimal(AD.Rows[i][loai_pb == "1" ? "TIEN_NT0" : "SO_LUONG1"]);
 
-                        var nk_nt = V6BusinessHelper.Vround((heso_01 / t_he_so) * txtT_nk_ao.Value, M_ROUND_NT);
+                        var nk_nt = V6BusinessHelper.Vround((heso_01 / t_he_so) * txtT_nk_nt.Value, M_ROUND_NT);
 
                         t_nk_nt_check = t_nk_nt_check + nk_nt;
 
+                        //var nk = V6BusinessHelper.Vround(nk_nt * txtTyGia.Value, M_ROUND);
                         var nk = V6BusinessHelper.Vround(nk_nt * txtTyGia.Value, M_ROUND);
+                        if (txtT_nk_nt.Value == 0)
+                            nk = V6BusinessHelper.Vround((heso_01 / t_he_so) * txtT_nk.Value, M_ROUND);
 
-                        if (_maNt == _mMaNt0)
+                        if (_maNt == _mMaNt0 && txtT_nk_nt.Value != 0)
                             nk = nk_nt;
 
                         t_nk_check = t_nk_check + nk;
 
-                        if (nk_nt != 0 && index == -1)
-                            index = i;
+                        if (index == -1)
+                        {
+                            if (nk_nt != 0) index = i;
+                            else if (nk != 0) index = i;
+                        }
 
                         AD.Rows[i]["Nk_nt"] = nk_nt;
                         AD.Rows[i]["Nk"] = nk;
@@ -5364,7 +5421,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 if (index != -1)
                 {
                     decimal _nk_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Nk_nt"]) + (txtT_nk_ao.Value - t_nk_nt_check);
-                    decimal _nk = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Nk"]) + (TxtT_nk.Value - t_nk_check);
+                    decimal _nk = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Nk"]) + (txtT_nk.Value - t_nk_check);
 
                     AD.Rows[index]["Nk_nt"] = _nk_nt;
                     AD.Rows[index]["Nk"] = _nk;
@@ -5476,14 +5533,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private void TxtT_cp_nt_ao_V6LostFocus(object sender)
         {
             TinhT_CpNt();
-            var loai_pb = TxtLoai_pb.Text.Trim();
+            var loai_pb = txtLoai_pb.Text.Trim();
             TinhPhanBoChiPhi(loai_pb);
         }
         
         private void TxtT_nk_nt_ao_V6LostFocus(object sender)
         {
             TinhT_NkNt();
-            var loai_pb = TxtLoai_pb.Text.Trim();
+            var loai_pb = txtLoai_pb.Text.Trim();
             TinhPhanBoNhapKhau(loai_pb);
         }
 
@@ -5491,11 +5548,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                
-                TxtT_cp_ao.Value = V6BusinessHelper.Vround((TxtT_cp_nt_ao.Value * txtTyGia.Value), M_ROUND);
-                if (_maNt == _mMaNt0)
-                    TxtT_cp_ao.Value = TxtT_cp_nt_ao.Value;
-                
+                if (txtT_cp_nt_ao.Value != 0)
+                {
+                    txtT_cp_ao.Value = V6BusinessHelper.Vround((txtT_cp_nt_ao.Value * txtTyGia.Value), M_ROUND);
+                }
+                if (_maNt == _mMaNt0 && txtT_cp_nt_ao.Value != 0)
+                {
+                    txtT_cp_ao.Value = txtT_cp_nt_ao.Value;
+                }
             }
             catch (Exception ex)
             {
@@ -5507,11 +5567,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                
-                txtT_nk_ao.Value = V6BusinessHelper.Vround((txtT_nk_nt_ao.Value * txtTyGia.Value), M_ROUND);
-                if (_maNt == _mMaNt0)
+                if (txtT_nk_nt_ao.Value != 0)
+                {
+                    txtT_nk_ao.Value = V6BusinessHelper.Vround((txtT_nk_nt_ao.Value * txtTyGia.Value), M_ROUND);
+                }
+                if (_maNt == _mMaNt0 && txtT_nk_nt_ao.Value != 0)
+                {
                     txtT_nk_ao.Value = txtT_nk_nt_ao.Value;
-                
+                }
             }
             catch (Exception ex)
             {
@@ -5521,16 +5584,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         private void txtMaKh_V6LostFocus(object sender)
         {
-            if (TxtMa_kh_i_ao.Text.Trim() == "") TxtMa_kh_i_ao.Text = txtMaKh.Text;
+            if (txtMa_kh_i_ao.Text.Trim() == "") txtMa_kh_i_ao.Text = txtMaKh.Text;
             XuLyChonMaKhachHang();
         }
 
         private void txtManx_V6LostFocus(object sender)
         {
             //Tuanmh 09/09/2017 Loi Tk_i
-            if (TxtTk_i_ao.Text.Trim() == "" || TxtT_cp_nt_ao.Value + TxtT_cp_ao.Value == 0)
+            if (txtTk_i_ao.Text.Trim() == "" || txtT_cp_nt_ao.Value + txtT_cp_ao.Value == 0)
             {
-                TxtTk_i_ao.Text = txtManx.Text;
+                txtTk_i_ao.Text = txtManx.Text;
             }
         }
 
@@ -5584,7 +5647,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     this.ShowWarningMessage("Chưa nhập chi tiết!");
                     return false;
                 }
-                if (!CheckPhanBo(dataGridView3ChiPhi, TxtT_cp_nt.Value))
+                if (!CheckPhanBo(dataGridView3ChiPhi, txtT_cp_nt.Value))
                 {
                     this.ShowWarningMessage("Kiểm tra lại số tiền phân bổ chưa đúng!");
                     return false;
@@ -5797,8 +5860,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
 
-            if(shift_is_down) TinhPhanBoNhapKhau(TxtLoai_pb.Text);
-            else TinhPhanBoChiPhi(TxtLoai_pb.Text.Trim());
+            if(shift_is_down) TinhPhanBoNhapKhau(txtLoai_pb.Text);
+            else TinhPhanBoChiPhi(txtLoai_pb.Text.Trim());
         }
 
         private void btnXoaPB_Click(object sender, EventArgs e)
@@ -6025,6 +6088,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             ChucNang_ChonTuExcel();
         }
 
+        private decimal _num;
         private decimal _con_lai;
         private void dataGridView3ChiPhi_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
@@ -6035,11 +6099,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 string FIELD = dataGridView3ChiPhi.EditingColumn.DataPropertyName.ToUpper();
                 if (FIELD == "CP_NT" || FIELD == "CP" || FIELD == "NK_NT" || FIELD == "NK")
                 {
-                    if (FIELD == "CP_NT") num = TxtT_cp_nt_ao.Value;
-                    else if (FIELD == "CP") num = TxtT_cp_ao.Value;
+                    if (FIELD == "CP_NT") num = txtT_cp_nt_ao.Value;
+                    else if (FIELD == "CP") num = txtT_cp_ao.Value;
                     else if (FIELD == "NK_NT") num = txtT_nk_nt_ao.Value;
                     else if (FIELD == "NK") num = txtT_nk_ao.Value;
-
+                    _num = num;
+                    if (_num == 0) return;
                     foreach (DataGridViewRow row in dataGridView3ChiPhi.Rows)
                     {
                         if (row != dataGridView3ChiPhi.EditingRow)
@@ -6064,6 +6129,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
+                if (_num == 0) return;
                 // Cập nhập cột đang sửa không được lớn hơn giá trị còn lại.
                 string FIELD = dataGridView3ChiPhi.EditingColumn.DataPropertyName.ToUpper();
                 if (FIELD == "CP_NT" || FIELD == "NK_NT" || FIELD == "CP" || FIELD == "NK")
@@ -6081,30 +6147,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         dataGridView3ChiPhi.EditingRow.Cells[FIELD.Substring(0, FIELD.Length - 3)].Value = foreignValue;
                     }
                 }
-
-
-                //if (dataGridView3ChiPhi.EditingColumn.DataPropertyName.ToUpper() == "CP_NT")
-                //{
-                //    var cp_nt = ObjectAndString.ObjectToDecimal(dataGridView3ChiPhi.EditingCell.Value);
-                //    if (cp_nt > _con_lai)
-                //    {
-                //        ShowParentMessage(V6Text.CheckData + ": " + _con_lai);
-                //        cp_nt = _con_lai;
-                //        dataGridView3ChiPhi.EditingCell.Value = cp_nt;
-                //    }
-                //    var cp = V6BusinessHelper.Vround(cp_nt * txtTyGia.Value,M_ROUND);
-                //    dataGridView3ChiPhi.EditingRow.Cells["CP"].Value = cp;
-                //}
-                //else
-                //{
-                //    var cp = ObjectAndString.ObjectToDecimal(dataGridView3ChiPhi.EditingCell.Value);
-                //    if (cp > _con_lai)
-                //    {
-                //        ShowParentMessage(V6Text.CheckData + ": " + _con_lai);
-                //        cp = _con_lai;
-                //        dataGridView3ChiPhi.EditingCell.Value = cp;
-                //    }
-                //}
             }
             catch (Exception ex)
             {
@@ -6241,9 +6283,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 string FIELD = ccolumn.DataPropertyName.ToUpper();
                 if (FIELD == "CP_NT" || FIELD == "NK_NT" || FIELD == "CP" || FIELD == "NK")
                 {
-                    if (FIELD == "CP_NT") num = TxtT_cp_nt_ao.Value;
+                    if (FIELD == "CP_NT") num = txtT_cp_nt_ao.Value;
                     else if (FIELD == "NK_NT") num = txtT_nk_nt_ao.Value;
-                    else if (FIELD == "CP") num = TxtT_cp_ao.Value;
+                    else if (FIELD == "CP") num = txtT_cp_ao.Value;
                     else if (FIELD == "NK") num = txtT_nk_ao.Value;
 
                     foreach (DataGridViewRow row in dataGridView3ChiPhi.Rows)

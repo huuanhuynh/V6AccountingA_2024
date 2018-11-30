@@ -105,6 +105,12 @@
     <Compile Include="Controls\GridView\V6VvarDataGridViewColumn.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\V6MenuHideYN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\V6MenuHideYN.Designer.cs">
+      <DependentUpon>V6MenuHideYN.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Viewer\TextEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1820,6 +1826,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\NguoiSuDungAddEditForm.resx">
       <DependentUpon>NguoiSuDungAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\V6MenuHideYN.resx">
+      <DependentUpon>V6MenuHideYN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\PhanQuyen\PhanQuyen.resx">
       <DependentUpon>PhanQuyen.cs</DependentUpon>

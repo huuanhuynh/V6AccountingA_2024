@@ -1990,10 +1990,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 foreach (DataRow dataRow in Invoice.Alct1.Rows)
                 {
                     var xml = dataRow["DMETHOD"].ToString().Trim();
-                    if (xml == "") continue;
-                    DataSet ds = new DataSet();
-                    ds.ReadXml(new StringReader(xml));
-                    if (ds.Tables.Count <= 0) continue;
+                    DataSet ds = ObjectAndString.XmlStringToDataSet(xml);
+                    if (ds == null || ds.Tables.Count <= 0) continue;
+
                     var data = ds.Tables[0];
                     foreach (DataRow event_row in data.Rows)
                     {
@@ -2010,9 +2009,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 {
                     var xml = Invoice.Alct["MMETHOD"].ToString().Trim();
                     if (xml == "") goto Build;
-                    DataSet ds = new DataSet();
-                    ds.ReadXml(new StringReader(xml));
-                    if (ds.Tables.Count <= 0) goto Build;
+                    DataSet ds = ObjectAndString.XmlStringToDataSet(xml);
+                    //ds.ReadXml(new StringReader(xml));
+                    if (ds == null || ds.Tables.Count <= 0) goto Build;
                     var data = ds.Tables[0];
                     foreach (DataRow event_row in data.Rows)
                     {

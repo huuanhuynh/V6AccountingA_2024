@@ -344,7 +344,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.locThongTin1.Location = new System.Drawing.Point(3, 52);
             this.locThongTin1.Name = "locThongTin1";
-            this.locThongTin1.Size = new System.Drawing.Size(759, 223);
+            this.locThongTin1.Size = new System.Drawing.Size(759, 238);
             this.locThongTin1.TabIndex = 1;
             // 
             // locThoiGian1
@@ -360,9 +360,9 @@
             // 
             this.locThongTinChiTiet1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.locThongTinChiTiet1.Location = new System.Drawing.Point(3, 277);
+            this.locThongTinChiTiet1.Location = new System.Drawing.Point(3, 292);
             this.locThongTinChiTiet1.Name = "locThongTinChiTiet1";
-            this.locThongTinChiTiet1.Size = new System.Drawing.Size(759, 222);
+            this.locThongTinChiTiet1.Size = new System.Drawing.Size(759, 207);
             this.locThongTinChiTiet1.TabIndex = 2;
             // 
             // btnHuy

@@ -185,7 +185,7 @@ namespace V6Structs
         public string Key2;
         public string Key3;
         public string Key4;
-        public bool Visible = true;
+        public bool Visible;
         public string ShowName = "";
         public bool Enabled = true;
 

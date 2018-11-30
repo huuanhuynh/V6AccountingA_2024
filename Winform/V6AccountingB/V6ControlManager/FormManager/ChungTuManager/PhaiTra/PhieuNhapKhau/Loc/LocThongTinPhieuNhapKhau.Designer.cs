@@ -282,7 +282,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
             // 
             this.v6Label3.AccessibleDescription = "SEARCHF00014";
             this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(4, 213);
+            this.v6Label3.Location = new System.Drawing.Point(4, 211);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(74, 13);
             this.v6Label3.TabIndex = 35;
@@ -292,7 +292,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
             // 
             this.v6Label2.AccessibleDescription = "SEARCHF00013";
             this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(4, 194);
+            this.v6Label2.Location = new System.Drawing.Point(4, 192);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(74, 13);
             this.v6Label2.TabIndex = 31;
@@ -302,7 +302,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
             // 
             this.v6Label4.AccessibleDescription = "SEARCHF00012";
             this.v6Label4.AutoSize = true;
-            this.v6Label4.Location = new System.Drawing.Point(4, 175);
+            this.v6Label4.Location = new System.Drawing.Point(4, 173);
             this.v6Label4.Name = "v6Label4";
             this.v6Label4.Size = new System.Drawing.Size(74, 13);
             this.v6Label4.TabIndex = 27;
@@ -327,7 +327,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // soTienTu
             // 
@@ -348,7 +348,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // panelFilter1
             // 
