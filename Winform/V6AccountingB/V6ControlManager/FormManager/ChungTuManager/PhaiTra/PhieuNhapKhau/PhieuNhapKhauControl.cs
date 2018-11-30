@@ -12,6 +12,7 @@ using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.ChonDonH
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc;
 using V6Controls;
 using V6Controls.Forms;
+using V6Controls.Structs;
 using V6Init;
 using V6Structs;
 using V6Tools;
@@ -154,12 +155,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private void LoadDetailControls()
         {
             //Lấy các control động
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
+            var dynamicControlList = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
             
             //Thêm các control động vào danh sách
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<int, AlctControls> item in dynamicControlList)
             {
-                var control = item.Value;
+                var control = item.Value.DetailControl;
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
@@ -590,9 +591,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
-            foreach (Control control in dynamicControlList.Values)
+            foreach (AlctControls item in dynamicControlList.Values)
             {
-                detail1.AddControl(control);
+                detail1.AddControl(item);
             }
             
             detail1.SetStruct(Invoice.ADStruct);
@@ -1941,7 +1942,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     chonTuExcelToolStripMenuItem.Enabled = true;
 
                     XuLyKhoaThongTinKhachHang();
-                    SetGridViewChiPhiEditAble(TxtLoai_pb.Text, chkSuaTien.Checked, dataGridView3ChiPhi);
+                    SetGridViewChiPhiEditAble(TxtLoai_pb.Text, chkSuaTien.Checked, dataGridView3ChiPhi, "CP,CP_NT,NK,NK_NT", "CP_NT,NK_NT");
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;
 
@@ -2917,6 +2918,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     TxtT_cp_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                     TxtT_cp.DecimalPlaces = V6Options.M_IP_TIEN;
                     TxtT_cp_ao.DecimalPlaces = V6Options.M_IP_TIEN;
+
+                    txtT_nk_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN_NT;
+                    txtT_nk_ao.DecimalPlaces = V6Options.M_IP_TIEN;
+                    
+
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                     txtTongTienNt0.DecimalPlaces = V6Options.M_IP_TIEN_NT;
 
@@ -2956,6 +2962,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     }
                     TxtT_cp_ao.Visible = false;
                     TxtT_cp.Visible = false;
+                    txtT_nk_ao.Visible = false;
 
                     //SetColsVisible(_GridID, ["GIA21", "TIEN2"], false); //An di
                     var dataGridViewColumn = dataGridView1.Columns["GIA01"];
@@ -2968,6 +2975,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     TxtT_cp_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN;
                     TxtT_cp.DecimalPlaces = V6Options.M_IP_TIEN;
                     TxtT_cp_ao.DecimalPlaces = V6Options.M_IP_TIEN;
+
+                    txtT_nk_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN;
+                    txtT_nk_ao.DecimalPlaces = V6Options.M_IP_TIEN;
+
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN;
                     txtTongTienNt0.DecimalPlaces = V6Options.M_IP_TIEN;
 
@@ -3270,6 +3281,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 TxtT_cp_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp"]);
                 TxtTk_i_ao.Text = row["Tk_i"].ToString().Trim();
                 TxtT_cp_nt_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp_nt"]);
+
+                txtT_nk_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Nk"]);
+                txtT_nk_nt_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Nk_nt"]);
+
 
                 XuLyThayDoiMaDVCS();
                 SetGridViewData();
@@ -5077,11 +5092,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 if (_maNt != _mMaNt0)
                 {
 
-                    dataGridView3ChiPhi.SetEditColumn(chkSuaTien.Checked ? "CP,CP_NT".Split(',') : "CP_NT".Split(','));
+                    dataGridView3ChiPhi.SetEditColumn(chkSuaTien.Checked ? "CP,CP_NT,NK,NK_NT".Split(',') : "CP_NT,NK_NT".Split(','));
                 }
                 else
                 {
-                    dataGridView3ChiPhi.SetEditColumn("CP_NT".Split(','));
+                    dataGridView3ChiPhi.SetEditColumn("CP_NT,NK_NT".Split(','));
                 }
 
             }
@@ -5102,7 +5117,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         }
 
-        private void Txt_ao_TextChanged(object sender, EventArgs e)
+        private void Txt_cp_ao_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -5121,6 +5136,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 else if (sender == TxtT_cp_ao)
                 {
                     TxtT_cp.Value = TxtT_cp_ao.Value;
+                }
+            }
+            catch // (Exception)
+            {
+                // ignored
+            }
+        }
+        
+        private void txtT_nk_ao_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (sender == TxtMa_kh_i_ao)
+                {
+                    Txtma_kh_i.Text = TxtMa_kh_i_ao.Text;
+                }
+                else if (sender == TxtTk_i_ao)
+                {
+                    TxtTk_i.Text = TxtTk_i_ao.Text;
+                }
+                else if (sender == txtT_nk_nt_ao)
+                {
+                    TxtT_nk_nt.Value = txtT_nk_nt_ao.Value;
+                }
+                else if (sender == txtT_nk_ao)
+                {
+                    TxtT_nk.Value = txtT_nk_ao.Value;
                 }
             }
             catch // (Exception)
@@ -5265,6 +5307,94 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             }
         }
 
+        private void TinhPhanBoNhapKhau(string loai_pb)
+        {
+            try
+            {
+                if (loai_pb.Length > 1) loai_pb = loai_pb.Left(1);
+                //var loai_pb = TxtLoai_pb.Text.Trim();
+                var t_he_so = loai_pb == "1" ? txtTongTienNt0.Value : txtTongSoLuong1.Value;
+                var t_nk_nt_check = 0m;
+                var t_nk_check = 0m;
+                var index = -1;
+
+                if (t_he_so != 0)
+                {
+
+                    for (var i = 0; i < AD.Rows.Count; i++)
+                    {
+                        var heso_01 = ObjectAndString.ObjectToDecimal(AD.Rows[i][loai_pb == "1" ? "TIEN_NT0" : "SO_LUONG1"]);
+
+                        var nk_nt = V6BusinessHelper.Vround((heso_01 / t_he_so) * txtT_nk_ao.Value, M_ROUND_NT);
+
+                        t_nk_nt_check = t_nk_nt_check + nk_nt;
+
+                        var nk = V6BusinessHelper.Vround(nk_nt * txtTyGia.Value, M_ROUND);
+
+                        if (_maNt == _mMaNt0)
+                            nk = nk_nt;
+
+                        t_nk_check = t_nk_check + nk;
+
+                        if (nk_nt != 0 && index == -1)
+                            index = i;
+
+                        AD.Rows[i]["Nk_nt"] = nk_nt;
+                        AD.Rows[i]["Nk"] = nk;
+
+                        //tuanmh 14/10/2016
+                        //if (TxtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
+                        {
+                            AD.Rows[i]["Tien_nt"] = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien_nt0"])
+                                                + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Cp_nt"])
+                                                + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Nk_nt"])
+                                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Ck_nt"])
+                                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Gg_nt"]);
+                            AD.Rows[i]["Tien"] = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien0"])
+                                                + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Cp"])
+                                                + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Nk"])
+                                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Ck"])
+                                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Gg"]);
+                        }
+                    }
+                }
+
+                // Xu ly chenh lech
+                // Tìm dòng có số tiền
+                if (index != -1)
+                {
+                    decimal _nk_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Nk_nt"]) + (txtT_nk_ao.Value - t_nk_nt_check);
+                    decimal _nk = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Nk"]) + (TxtT_nk.Value - t_nk_check);
+
+                    AD.Rows[index]["Nk_nt"] = _nk_nt;
+                    AD.Rows[index]["Nk"] = _nk;
+
+                    //if (TxtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
+                    {
+                        AD.Rows[index]["Tien_nt"] = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Tien_nt0"])
+                                                    + ObjectAndString.ObjectToDecimal(AD.Rows[index]["Cp_nt"])
+                                                    + ObjectAndString.ObjectToDecimal(AD.Rows[index]["Nk_nt"])
+                                                    - ObjectAndString.ObjectToDecimal(AD.Rows[index]["Ck_nt"])
+                                                    - ObjectAndString.ObjectToDecimal(AD.Rows[index]["Gg_nt"]);
+                        AD.Rows[index]["Tien"] = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Tien0"])
+                                                    + ObjectAndString.ObjectToDecimal(AD.Rows[index]["Cp"])
+                                                    + ObjectAndString.ObjectToDecimal(AD.Rows[index]["Nk"])
+                                                    - ObjectAndString.ObjectToDecimal(AD.Rows[index]["Ck"])
+                                                    - ObjectAndString.ObjectToDecimal(AD.Rows[index]["Gg"]);
+                    }
+                }
+
+                dataGridView1.DataSource = AD;
+                dataGridView3ChiPhi.DataSource = AD;
+                //SetDataGridView3ChiPhiReadOnly();
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
         private void XoaPhanBoChiPhi()
         {
             try
@@ -5273,6 +5403,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 {
                     AD.Rows[i]["Cp_nt"] = 0;
                     AD.Rows[i]["Cp"] = 0;
+                }
+                dataGridView1.DataSource = AD;
+                dataGridView3ChiPhi.DataSource = AD;
+                //SetDataGridView3ChiPhiReadOnly();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void XoaPhanBoNhapKhau()
+        {
+            try
+            {
+                for (var i = 0; i < AD.Rows.Count; i++)
+                {
+                    AD.Rows[i]["Nk_nt"] = 0;
+                    AD.Rows[i]["Nk"] = 0;
                 }
                 dataGridView1.DataSource = AD;
                 dataGridView3ChiPhi.DataSource = AD;
@@ -5302,7 +5451,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         //    }
         //}
 
-        List<string> gridView3ChiPhiFields = new List<string>() { "MA_VT", "TEN_VT", "DVT1", "SO_LUONG1", "CP_NT", "CP", "TIEN_NT0", "TIEN0" };
+        List<string> gridView3ChiPhiFields = new List<string>() { "MA_VT", "TEN_VT", "DVT1", "SO_LUONG1", "CP_NT", "CP", "NK_NT", "NK", "TIEN_NT0", "TIEN0" };
         private void dataGridView3ChiPhi_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
             e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -5330,6 +5479,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             var loai_pb = TxtLoai_pb.Text.Trim();
             TinhPhanBoChiPhi(loai_pb);
         }
+        
+        private void TxtT_nk_nt_ao_V6LostFocus(object sender)
+        {
+            TinhT_NkNt();
+            var loai_pb = TxtLoai_pb.Text.Trim();
+            TinhPhanBoNhapKhau(loai_pb);
+        }
 
         private void TinhT_CpNt()
         {
@@ -5339,6 +5495,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 TxtT_cp_ao.Value = V6BusinessHelper.Vround((TxtT_cp_nt_ao.Value * txtTyGia.Value), M_ROUND);
                 if (_maNt == _mMaNt0)
                     TxtT_cp_ao.Value = TxtT_cp_nt_ao.Value;
+                
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void TinhT_NkNt()
+        {
+            try
+            {
+                
+                txtT_nk_ao.Value = V6BusinessHelper.Vround((txtT_nk_nt_ao.Value * txtTyGia.Value), M_ROUND);
+                if (_maNt == _mMaNt0)
+                    txtT_nk_ao.Value = txtT_nk_nt_ao.Value;
                 
             }
             catch (Exception ex)
@@ -5623,12 +5795,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         private void btnTinhPB_Click(object sender, EventArgs e)
         {
-            TinhPhanBoChiPhi(TxtLoai_pb.Text.Trim());
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+
+            if(shift_is_down) TinhPhanBoNhapKhau(TxtLoai_pb.Text);
+            else TinhPhanBoChiPhi(TxtLoai_pb.Text.Trim());
         }
 
         private void btnXoaPB_Click(object sender, EventArgs e)
         {
-            XoaPhanBoChiPhi();
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+
+            if (shift_is_down) XoaPhanBoNhapKhau();
+            else XoaPhanBoChiPhi();
         }
 
         private void txtMadvcs_TextChanged(object sender, EventArgs e)
@@ -5853,29 +6031,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             try
             {
                 // Tính số cần nhập dựa theo TxtT_cp_nt_ao
-                decimal num;
-                if (dataGridView3ChiPhi.EditingColumn.DataPropertyName.ToUpper() == "CP_NT")
+                decimal num = 0;
+                string FIELD = dataGridView3ChiPhi.EditingColumn.DataPropertyName.ToUpper();
+                if (FIELD == "CP_NT" || FIELD == "CP" || FIELD == "NK_NT" || FIELD == "NK")
                 {
-                    num = TxtT_cp_nt_ao.Value;
+                    if (FIELD == "CP_NT") num = TxtT_cp_nt_ao.Value;
+                    else if (FIELD == "CP") num = TxtT_cp_ao.Value;
+                    else if (FIELD == "NK_NT") num = txtT_nk_nt_ao.Value;
+                    else if (FIELD == "NK") num = txtT_nk_ao.Value;
+
                     foreach (DataGridViewRow row in dataGridView3ChiPhi.Rows)
                     {
                         if (row != dataGridView3ChiPhi.EditingRow)
                         {
-                            num -= ObjectAndString.ObjectToDecimal(row.Cells["CP_NT"].Value);
+                            num -= ObjectAndString.ObjectToDecimal(row.Cells[FIELD].Value);
                         }
                     }
                 }
-                else
-                {
-                    num = TxtT_cp_ao.Value;
-                    foreach (DataGridViewRow row in dataGridView3ChiPhi.Rows)
-                    {
-                        if (row != dataGridView3ChiPhi.EditingRow)
-                        {
-                            num -= ObjectAndString.ObjectToDecimal(row.Cells["CP"].Value);
-                        }
-                    }
-                }
+
                 _con_lai = num;
                 var text = V6Text.CheckData + ": " + ObjectAndString.NumberToString(num, 2, V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR);
                 V6ControlFormHelper.SetStatusText(text);
@@ -5891,39 +6064,47 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                // Cập nhập cột cp (hoặc cp_nt)
-                if (dataGridView3ChiPhi.EditingColumn.DataPropertyName.ToUpper() == "CP_NT")
+                // Cập nhập cột đang sửa không được lớn hơn giá trị còn lại.
+                string FIELD = dataGridView3ChiPhi.EditingColumn.DataPropertyName.ToUpper();
+                if (FIELD == "CP_NT" || FIELD == "NK_NT" || FIELD == "CP" || FIELD == "NK")
                 {
-                    var cp_nt = ObjectAndString.ObjectToDecimal(dataGridView3ChiPhi.EditingCell.Value);
-                    if (cp_nt > _con_lai)
+                    var inputValue = ObjectAndString.ObjectToDecimal(dataGridView3ChiPhi.EditingCell.Value);
+                    if (inputValue > _con_lai)
                     {
                         ShowParentMessage(V6Text.CheckData + ": " + _con_lai);
-                        cp_nt = _con_lai;
-                        dataGridView3ChiPhi.EditingCell.Value = cp_nt;
+                        inputValue = _con_lai;
+                        dataGridView3ChiPhi.EditingCell.Value = inputValue;
                     }
-                    var cp = V6BusinessHelper.Vround(cp_nt * txtTyGia.Value,M_ROUND);
-                    dataGridView3ChiPhi.EditingRow.Cells["CP"].Value = cp;
-                }
-                else
-                {
-                    var cp = ObjectAndString.ObjectToDecimal(dataGridView3ChiPhi.EditingCell.Value);
-                    if (cp > _con_lai)
+                    if (FIELD == "CP_NT" || FIELD == "NK_NT")
                     {
-                        ShowParentMessage(V6Text.CheckData + ": " + _con_lai);
-                        cp = _con_lai;
-                        dataGridView3ChiPhi.EditingCell.Value = cp;
+                        var foreignValue = V6BusinessHelper.Vround(inputValue*txtTyGia.Value, M_ROUND);
+                        dataGridView3ChiPhi.EditingRow.Cells[FIELD.Substring(0, FIELD.Length - 3)].Value = foreignValue;
                     }
-                    // Tuanmh 16/11/2018 KHông tính lại CP_NT
-                    //if (cp == 0)
-                    //{
-                    //    dataGridView3ChiPhi.EditingRow.Cells["CP_NT"].Value = cp;
-                    //}
-                    //else
-                    //{
-                    //    var cp_nt = cp / txtTyGia.Value;
-                    //    dataGridView3ChiPhi.EditingRow.Cells["CP_NT"].Value = cp_nt;
-                    //}
                 }
+
+
+                //if (dataGridView3ChiPhi.EditingColumn.DataPropertyName.ToUpper() == "CP_NT")
+                //{
+                //    var cp_nt = ObjectAndString.ObjectToDecimal(dataGridView3ChiPhi.EditingCell.Value);
+                //    if (cp_nt > _con_lai)
+                //    {
+                //        ShowParentMessage(V6Text.CheckData + ": " + _con_lai);
+                //        cp_nt = _con_lai;
+                //        dataGridView3ChiPhi.EditingCell.Value = cp_nt;
+                //    }
+                //    var cp = V6BusinessHelper.Vround(cp_nt * txtTyGia.Value,M_ROUND);
+                //    dataGridView3ChiPhi.EditingRow.Cells["CP"].Value = cp;
+                //}
+                //else
+                //{
+                //    var cp = ObjectAndString.ObjectToDecimal(dataGridView3ChiPhi.EditingCell.Value);
+                //    if (cp > _con_lai)
+                //    {
+                //        ShowParentMessage(V6Text.CheckData + ": " + _con_lai);
+                //        cp = _con_lai;
+                //        dataGridView3ChiPhi.EditingCell.Value = cp;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -5933,7 +6114,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         private void dataGridView3ChiPhi_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            V6ControlFormHelper.ApplyNumberTextBox(e.Control);
+            //V6ControlFormHelper.ApplyNumberTextBox(e.Control);
             //e.Control.KeyPress += (sender1, e1) =>
             //{
             //    if (!char.IsControl(e1.KeyChar) && !char.IsDigit(e1.KeyChar) && e1.KeyChar != '.')
@@ -6056,44 +6237,42 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 decimal currentCellValue = ObjectAndString.ObjectToDecimal(ccell.Value);
                 if (currentCellValue != 0) return;
 
-                decimal num;
-                if (ccolumn.DataPropertyName.ToUpper() == "CP_NT")
+                decimal num = 0;
+                string FIELD = ccolumn.DataPropertyName.ToUpper();
+                if (FIELD == "CP_NT" || FIELD == "NK_NT" || FIELD == "CP" || FIELD == "NK")
                 {
-                    num = TxtT_cp_nt_ao.Value;
+                    if (FIELD == "CP_NT") num = TxtT_cp_nt_ao.Value;
+                    else if (FIELD == "NK_NT") num = txtT_nk_nt_ao.Value;
+                    else if (FIELD == "CP") num = TxtT_cp_ao.Value;
+                    else if (FIELD == "NK") num = txtT_nk_ao.Value;
+
                     foreach (DataGridViewRow row in dataGridView3ChiPhi.Rows)
                     {
                         if (row != crow)
                         {
-                            num -= ObjectAndString.ObjectToDecimal(row.Cells["CP_NT"].Value);
+                            num -= ObjectAndString.ObjectToDecimal(row.Cells[FIELD].Value);
                         }
                     }
 
                     ccell.Value = num;
-                    var cp = V6BusinessHelper.Vround(num * txtTyGia.Value,M_ROUND);
-                    crow.Cells["CP"].Value = cp;
-                }
-                else if (ccolumn.DataPropertyName.ToUpper() == "CP")
-                {
-                    num = TxtT_cp_ao.Value;
-                    foreach (DataGridViewRow row in dataGridView3ChiPhi.Rows)
+                    if (FIELD == "CP_NT" || FIELD == "NK_NT")
                     {
-                        if (row != crow)
-                        {
-                            num -= ObjectAndString.ObjectToDecimal(row.Cells["CP"].Value);
-                        }
+                        var foreignValue = V6BusinessHelper.Vround(num*txtTyGia.Value, M_ROUND);
+                        crow.Cells[FIELD.Substring(0, FIELD.Length - 3)].Value = foreignValue;
                     }
-
-                    ccell.Value = num;
-                    //if (num == 0)
-                    //{
-                    //    crow.Cells["CP_NT"].Value = num;
-                    //}
-                    //else
-                    //{
-                    //    var cp_nt = num / txtTyGia.Value;
-                    //    crow.Cells["CP_NT"].Value = cp_nt;
-                    //}
                 }
+                //else if (FIELD == "CP")
+                //{
+                //    num = TxtT_cp_ao.Value;
+                //    foreach (DataGridViewRow row in dataGridView3ChiPhi.Rows)
+                //    {
+                //        if (row != crow)
+                //        {
+                //            num -= ObjectAndString.ObjectToDecimal(row.Cells["CP"].Value);
+                //        }
+                //    }
+                //    ccell.Value = num;
+                //}
             }
             catch (Exception ex)
             {

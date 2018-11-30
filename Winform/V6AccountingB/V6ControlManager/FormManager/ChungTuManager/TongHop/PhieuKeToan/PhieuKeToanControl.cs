@@ -13,6 +13,7 @@ using V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc;
 using V6Controls;
 using V6Controls.Controls;
 using V6Controls.Forms;
+using V6Controls.Structs;
 using V6Init;
 using V6Structs;
 using V6Tools;
@@ -134,11 +135,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         {
             detail1.lblName.AccessibleName = "TEN_TK";
             //Lấy các control động
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
+            var dynamicControlList = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
             //Thêm các control động vào danh sách
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<int, AlctControls> item in dynamicControlList)
             {
-                var control = item.Value;
+                var control = item.Value.DetailControl;
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
@@ -211,9 +212,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
-            foreach (Control control in dynamicControlList.Values)
+            foreach (AlctControls item in dynamicControlList.Values)
             {
-                detail1.AddControl(control);
+                detail1.AddControl(item);
             }
             
             detail1.SetStruct(Invoice.ADStruct);

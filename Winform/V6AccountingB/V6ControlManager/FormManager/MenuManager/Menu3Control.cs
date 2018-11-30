@@ -139,6 +139,7 @@ namespace V6ControlManager.FormManager.MenuManager
             _have_alt_change_menu = false;
             _currentMenuButton = e.SelectedButton;
             string item_id = e.SelectedButton.ItemID;
+            V6ControlFormHelper.CurrentItemID = item_id;
             string codeform = e.SelectedButton.CodeForm;
             try
             {

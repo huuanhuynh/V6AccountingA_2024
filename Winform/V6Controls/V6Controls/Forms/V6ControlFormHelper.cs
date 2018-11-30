@@ -41,6 +41,10 @@ namespace V6Controls.Forms
         public static object TagHelp { get; set; }
 
         #region ==== ACTION LIST ====
+        /// <summary>
+        /// ItemID trong menu3 hiện tại.
+        /// </summary>
+        public static string CurrentItemID;
         public static List<string> LastActionList = new List<string>();
         public static List<string> LastErrorList = new List<string>();
         public static int MaxActionListCount = 100;

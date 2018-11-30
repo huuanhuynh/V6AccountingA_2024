@@ -9,7 +9,6 @@ using V6AccountingBusiness;
 using V6Controls.Forms.Viewer;
 using V6Init;
 using V6Structs;
-using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6Controls.Forms
@@ -125,7 +124,7 @@ namespace V6Controls.Forms
         {
             try
             {
-                if (keyData == Keys.F3 || keyData == Keys.F4)
+                if (keyData == Keys.F3 || keyData == Keys.F12)
                 {
                     if (keyData == Keys.F3)
                     {
@@ -145,20 +144,20 @@ namespace V6Controls.Forms
                             }
                         }
                     }
-                    else if (keyData == Keys.F4)
+                    else if (keyData == Keys.F12)
                     {
-                        if (++f4count == 3)
+                        if (++f12count == 3)
                         {
-                            var method_info = GetType().GetMethod("V6F4Execute");
+                            //var method_info = GetType().GetMethod("V6F12Execute");
                             if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                             {
-                                V6F4Execute();
-                                f4count = 0;
+                                V6F12Execute();
+                                f12count = 0;
                             }
                             else
                             {
-                                f4count = 0;
-                                //V6F4ExecuteUndo();
+                                f12count = 0;
+                                //V6F12ExecuteUndo();
                             }
                         }
                     }
@@ -166,7 +165,7 @@ namespace V6Controls.Forms
                 else
                 {
                     f3count = 0;
-                    f4count = 0;
+                    f12count = 0;
                 }
 
                 if (do_hot_key)
@@ -211,7 +210,7 @@ namespace V6Controls.Forms
         }
 
         protected int f3count;
-        protected int f4count;
+        protected int f12count;
         /// <summary>
         /// Hàm thực hiện sau khi xác nhận mật khẩu V6 thành công.
         /// </summary>
@@ -219,17 +218,17 @@ namespace V6Controls.Forms
         {
             
         }
-        public virtual void V6F4Execute()
+        public virtual void V6F12Execute()
         {
             try
             {
-                string fileName = Path.Combine(V6Login.StartupPath, "V6HELP\\V6F4.xml");
+                string fileName = Path.Combine(V6Login.StartupPath, "V6HELP\\V6HELP.xml");
                 XmlDocument xml = new XmlDocument();
                 if (!File.Exists(fileName))
                 {
                     var fs = new FileStream(fileName, FileMode.Create);
                     StreamWriter sw = new StreamWriter(fs);
-                    sw.Write("<V6F4>\r\n</V6F4>");
+                    sw.Write("<V6HELP>\r\n</V6HELP>");
                     sw.Close();
                     fs.Close();
                 }
@@ -241,10 +240,10 @@ namespace V6Controls.Forms
                     return;
                 }
 
-                var element = documentElement.GetElementsByTagName(ItemID)[0];
+                var element = documentElement.GetElementsByTagName(V6ControlFormHelper.CurrentItemID)[0];
                 if (element == null)
                 {
-                    element = xml.CreateElement(ItemID);
+                    element = xml.CreateElement(V6ControlFormHelper.CurrentItemID);
                     documentElement.AppendChild(element);
                 }
 
@@ -261,7 +260,7 @@ namespace V6Controls.Forms
             }
             catch (Exception ex)
             {
-                this.ShowErrorException("V6F4", ex);
+                this.ShowErrorException("V6F12", ex);
             }
         }
         /// <summary>

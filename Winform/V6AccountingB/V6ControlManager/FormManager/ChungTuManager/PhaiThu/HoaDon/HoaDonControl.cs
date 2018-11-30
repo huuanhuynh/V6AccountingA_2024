@@ -766,18 +766,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
-            //LookupButton lbt_mavt = new LookupButton();
-            //lbt_mavt.ReferenceControl = _maVt;
-            
             foreach (AlctControls item in dynamicControlList.Values)
             {
                 detail1.AddControl(item);
-                //if (item.LookupButton != null)
-                //{
-                //    item.DetailControl.Parent.Controls.Add(item.LookupButton);
-                //    //detail1.Update_p(new Point(item.DetailControl.Right + 25, 0));
-                //    //detail1._panel1Controls.Add(item.LookupButton);
-                //}
             }
             
             detail1.SetStruct(Invoice.ADStruct);

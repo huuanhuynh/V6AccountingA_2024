@@ -11,6 +11,7 @@ using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc;
 using V6Controls;
 using V6Controls.Forms;
+using V6Controls.Structs;
 using V6Init;
 using V6Structs;
 using V6Tools;
@@ -175,14 +176,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 }
                 
                 //Lấy các control động
-                var dynamicControlList =GetDynamicControlsAlct(MAGD);
-                dynamicControlList.Add(9999, _sttRecTt);
-                dynamicControlList.Add(9998, _soSeri0);
+                var dynamicControlList = GetDynamicControlsAlct(MAGD);
+                dynamicControlList.Add(9999, new AlctControls {DetailControl = _sttRecTt});
+                dynamicControlList.Add(9998, new AlctControls {DetailControl = _soSeri0});
 
                 #region ----//Thêm các control động vào danh sách, thêm sự kiện cho control động
-                foreach (KeyValuePair<int, Control> item in dynamicControlList)
+                foreach (KeyValuePair<int, AlctControls> item in dynamicControlList)
                 {
-                    var control = item.Value;
+                    var control = item.Value.DetailControl;
                     ApplyControlEnterStatus(control);
 
                     var NAME = control.AccessibleName.ToUpper();
@@ -301,35 +302,35 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 if (_check_f_tien_nt == false)
                 {
                     _tienNt = V6ControlFormHelper.CreateNumberTienNt("TIEN_NT", "tiennt", M_ROUND_NT,10, false,false);
-                    dynamicControlList.Add(9997, _tienNt);
+                    dynamicControlList.Add(9997, new AlctControls {DetailControl = _tienNt});
                 }
                 if (_check_f_tien == false)
                 {
                     _tien = V6ControlFormHelper.CreateNumberTien("TIEN", "tien", M_ROUND, 10, false, false);
-                    dynamicControlList.Add(9996, _tien);
+                    dynamicControlList.Add(9996, new AlctControls {DetailControl = _tien});
                 }
                 if (_check_f_ps_co_nt == false)
                 {
                     _pscoNt = V6ControlFormHelper.CreateNumberTienNt("PS_CO_NT", "pscont", M_ROUND_NT, 10, false, false);
-                    dynamicControlList.Add(9995, _pscoNt);
+                    dynamicControlList.Add(9995, new AlctControls {DetailControl = _pscoNt});
                 }
                 if (_check_f_ps_co == false)
                 {
                     _psCo = V6ControlFormHelper.CreateNumberTien("PS_CO", "psco", M_ROUND, 10, false, false);
-                    dynamicControlList.Add(9994, _psCo);
+                    dynamicControlList.Add(9994, new AlctControls {DetailControl = _psCo});
                 }
                 if (_check_f_tien_tt == false)
                 {
                     _tientt = V6ControlFormHelper.CreateNumberTien("TIEN_TT", "tientt", M_ROUND, 10, false, false);
-                    dynamicControlList.Add(9993, _tientt);
+                    dynamicControlList.Add(9993, new AlctControls {DetailControl = _tientt});
                 }
 
                 
                 detail1.RemoveControls();
 
-                foreach (Control control in dynamicControlList.Values)
+                foreach (AlctControls item in dynamicControlList.Values)
                 {
-                    detail1.AddControl(control);
+                    detail1.AddControl(item);
                 }
 
                 detail1.SetStruct(Invoice.ADStruct);
@@ -904,7 +905,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         /// </summary>
         /// <param name="maGd"></param>
         /// <returns></returns>
-        public SortedDictionary<int, Control> GetDynamicControlsAlct(string maGd)
+        public SortedDictionary<int, AlctControls> GetDynamicControlsAlct(string maGd)
         {
             DataTable alct1;
 
@@ -950,7 +951,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 throw new Exception("Chọn lại ma_gd");
             }
 
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(alct1, out _orderList, out _alct1Dic);
+            var dynamicControlList = V6ControlFormHelper.GetDynamicControlStructsAlct(alct1, out _orderList, out _alct1Dic);
             if (maGd != "1")
                 _orderList.Insert(1, "TEN_TK_I");
             return dynamicControlList;
