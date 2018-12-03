@@ -28,7 +28,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
 
         private void AddItems()
         {
-            L_Aldvcs = V6BusinessHelper.Select("Aldvcs", "Ma_dvcs,Ten_dvcs,Ten_dvcs2", "1=1").Data;
+            L_Aldvcs = V6BusinessHelper.Select("Aldvcs", "Ma_dvcs,Ten_dvcs,Ten_dvcs2", "1=1", "", "MA_DVCS").Data;
             var data1 = GetDvcs1();
             foreach (DataRow row in data1.Rows)
             {
@@ -66,6 +66,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         private DataTable GetDvcs1()
         {
             DataView v = new DataView(L_Aldvcs);
+            v.Sort = "MA_DVCS";
             return v.ToTable();
         }
 

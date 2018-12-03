@@ -61,7 +61,7 @@
             this.columnName,
             this.columnHeader1});
             treeListViewItemCollectionComparer1.Column = 0;
-            treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+            treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.None;
             this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
             this.treeListView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeListView1.GridLines = true;
@@ -70,6 +70,7 @@
             this.treeListView1.Name = "treeListView1";
             this.treeListView1.Size = new System.Drawing.Size(760, 492);
             this.treeListView1.SmallImageList = this.imageList1;
+            this.treeListView1.Sorting = System.Windows.Forms.SortOrder.None;
             this.treeListView1.TabIndex = 1;
             this.treeListView1.UseCompatibleStateImageBehavior = false;
             this.treeListView1.BeforeLabelEdit += new System.Windows.Forms.TreeListViewBeforeLabelEditEventHandler(this.treeListView1_BeforeLabelEdit);

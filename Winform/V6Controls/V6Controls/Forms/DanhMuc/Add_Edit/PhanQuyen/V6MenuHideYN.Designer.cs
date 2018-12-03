@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(V6MenuHideYN));
-            System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer2 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
-            this.imageList1 = new System.Windows.Forms.ImageList();
+            System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer treeListViewItemCollectionComparer1 = new System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.treeListView1 = new System.Windows.Forms.TreeListView();
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnHuy = new System.Windows.Forms.Button();
@@ -54,9 +55,9 @@
             this.treeListView1.CheckBoxes = System.Windows.Forms.CheckBoxesTypes.Simple;
             this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnName});
-            treeListViewItemCollectionComparer2.Column = 0;
-            treeListViewItemCollectionComparer2.SortOrder = System.Windows.Forms.SortOrder.Ascending;
-            this.treeListView1.Comparer = treeListViewItemCollectionComparer2;
+            treeListViewItemCollectionComparer1.Column = 0;
+            treeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.None;
+            this.treeListView1.Comparer = treeListViewItemCollectionComparer1;
             this.treeListView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeListView1.GridLines = true;
             this.treeListView1.HideSelection = false;
@@ -64,6 +65,7 @@
             this.treeListView1.Name = "treeListView1";
             this.treeListView1.Size = new System.Drawing.Size(666, 392);
             this.treeListView1.SmallImageList = this.imageList1;
+            this.treeListView1.Sorting = System.Windows.Forms.SortOrder.None;
             this.treeListView1.TabIndex = 1;
             this.treeListView1.UseCompatibleStateImageBehavior = false;
             this.treeListView1.BeforeExpand += new System.Windows.Forms.TreeListViewCancelEventHandler(this.treeListView1_BeforeExpand);

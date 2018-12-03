@@ -24,7 +24,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         private void AddItems()
         {
             var where = "1=1";
-            data = V6BusinessHelper.Select("V6User", "User_name,User_id,Comment",where).Data;
+            data = V6BusinessHelper.Select("V6User", "User_name,User_id,Comment",where, "", "USER_NAME").Data;
             var data1 = Filter();
             foreach (DataRow row in data1.Rows)
             {
@@ -54,6 +54,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         private DataTable Filter()
         {
             DataView v = new DataView(data);
+            v.Sort = "USER_NAME";
             return v.ToTable();
         }
 

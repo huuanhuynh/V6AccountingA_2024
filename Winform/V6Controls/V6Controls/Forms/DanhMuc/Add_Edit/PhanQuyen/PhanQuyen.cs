@@ -53,7 +53,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         {
             try
             {
-                string select = "v2id,jobid,vbar,vbar2,Basicright";
+                string select = "v2id,jobid,STT_BOX,vbar,vbar2,Basicright";
                 select += ",CASE WHEN CODE<>'' THEN (LTRIM(RTRIM(ITEMID))+'/'+LTRIM(RTRIM(code))) ELSE ITEMID END AS ITEMID ";
                 string where = "Module_id= '" + V6Options.MODULE_ID + "' And (HIDE_YN<>1 or Basicright=1)";
 
@@ -186,6 +186,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         {
             DataView v = new DataView(v6Menu);
             v.RowFilter = "Itemid='A0000000'";
+            v.Sort = "STT_BOX";
             return v.ToTable();
 
             //var sql = "SELECT v2id,max(vbar) vbar, max(vbar2) vbar2"
@@ -206,6 +207,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         {
             DataView v = new DataView(v6Menu);
             v.RowFilter = "Itemid='B0000000' AND V2ID = '"+v2ID+"' AND  JOBID<>'B099'";
+            v.Sort = "STT_BOX";
             return v.ToTable();
 
             //var sql = "SELECT v2id,jobid,max(vbar) vbar, max(vbar2) vbar2"
@@ -225,6 +227,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         {
             DataView v = new DataView(v6Menu);
             v.RowFilter = "V2ID = '"+v2ID+"'  AND JOBID = '"+jobID+"' AND Itemid NOT IN('A0000000','B0000000')";
+            v.Sort = "STT_BOX";
             return v.ToTable();
 
         }

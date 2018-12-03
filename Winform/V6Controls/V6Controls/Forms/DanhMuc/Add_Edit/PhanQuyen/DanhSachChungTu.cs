@@ -27,7 +27,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             var where = "";
             where = "1=1";
             
-            L_Alct = V6BusinessHelper.Select("ALCT", "Ma_ct,Ten_ct,Ten_ct2",where).Data;
+            L_Alct = V6BusinessHelper.Select("ALCT", "Ma_ct,Ten_ct,Ten_ct2",where, "", "MA_CT").Data;
             var data1 = GetAlct1();
             foreach (DataRow row in data1.Rows)
             {
@@ -55,6 +55,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         private DataTable GetAlct1()
         {
             DataView v = new DataView(L_Alct);
+            v.Sort = "MA_CT";
             return v.ToTable();
         }
 

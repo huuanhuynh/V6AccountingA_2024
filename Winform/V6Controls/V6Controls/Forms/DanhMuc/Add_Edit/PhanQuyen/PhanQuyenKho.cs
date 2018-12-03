@@ -38,7 +38,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                 //where = "1=1";
             }
 
-            L_Alkho = V6BusinessHelper.Select("Alkho", "Ma_kho,Ten_kho,Ten_kho2",where).Data;
+            L_Alkho = V6BusinessHelper.Select("Alkho", "Ma_kho,Ten_kho,Ten_kho2",where, "", "MA_KHO").Data;
             var data1 = GetKho1();
             foreach (DataRow row in data1.Rows)
             {
@@ -73,6 +73,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         private DataTable GetKho1()
         {
             DataView v = new DataView(L_Alkho);
+            v.Sort = "MA_KHO";
             return v.ToTable();
         }
 

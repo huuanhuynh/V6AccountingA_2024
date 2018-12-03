@@ -38,7 +38,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                 //where = "1=1";
             }
 
-            Alsonb = V6BusinessHelper.Select("Alsonb", "Ma_sonb,Ten_sonb,Ten_sonb2",where).Data;
+            Alsonb = V6BusinessHelper.Select("Alsonb", "Ma_sonb,Ten_sonb,Ten_sonb2",where, "", "MA_SONB").Data;
             var data1 = Filter();
             foreach (DataRow row in data1.Rows)
             {
@@ -73,6 +73,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         private DataTable Filter()
         {
             DataView v = new DataView(Alsonb);
+            v.Sort = "MA_SONB";
             return v.ToTable();
         }
 
