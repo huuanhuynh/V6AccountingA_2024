@@ -152,7 +152,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private V6VvarTextBox _maVt, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _maViTri,_maTdi, _ma_thue_i, _tk_thue_i;
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt2, _giaNt21,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
         private V6NumberTextBox _ton13, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
-        private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4,_ggNt,_gg;
+        private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _ggNt, _gg;
         private V6DateTimeColor _hanSd;
         
         private void LoadDetailControls()
@@ -324,7 +324,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         }
                         _ton13.StringValueChange += (sender, args) =>
                         {
-                            //CheckSoLuong1();
+                            
                         };
                         break;
                     //_ton13.V6LostFocus += Ton13_V6LostFocus;
@@ -1248,19 +1248,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             e.ThrowException = false;
         }
-
-        private void CheckMaLo()
-        {
-            if (_maVt.Text != "")
-            {
-                _maLo.SetInitFilter("Ma_vt='" + _maVt.Text.Trim()+"'");
-            }
-            XuLyLayThongTinKhiChonMaLo();
-            GetTon13();
-            GetLoDate13();
-            CheckSoLuong1();
-        }
-
+        
         private void CheckMaLoTon()
         {
             if (NotAddEdit) return;
@@ -1836,7 +1824,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 _gia21.Value = 0;
                 _gg.Value = 0;
                 _ggNt.Value = 0;
-                
             }
             catch (Exception ex)
             {
@@ -4110,7 +4097,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     _gia21.VisibleTag();
                     _tien2.VisibleTag();
                     _thue.VisibleTag();
-                    _gia21.VisibleTag();
                     _ck.VisibleTag();
                     _tien_vc.VisibleTag();
                     _gg.VisibleTag();
@@ -4124,7 +4110,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     gridViewColumn = dataGridView3.Columns["PS_CO"];
                     if (gridViewColumn != null) gridViewColumn.Visible = true;
 
-                    // Show Dynamic control
                     if (_PsNoNt_33 != null) _PsNo_33.VisibleTag();
                     if (_PsCo_33 != null) _PsCo_33.VisibleTag();
                 }
@@ -4180,7 +4165,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN;
                     txtTongTienNt2.DecimalPlaces = V6Options.M_IP_TIEN;
 
-                    ////Hide Dynamic control
+                    //Hide Dynamic control
                     _gia2.InvisibleTag();
                     _gia21.InvisibleTag();
                     _tien2.InvisibleTag();
@@ -5957,7 +5942,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         _thue_nt.Enabled = true;
                         txtTongThueNt.ReadOnly = true;
                     }
-                    else _thue_nt.Enabled = false;
+                    else
+                    {
+                        _thue_nt.Enabled = false;
+                    }
                 }
 
                 TinhTongThanhToan("ckhSuaTienThue");

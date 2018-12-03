@@ -32,9 +32,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
@@ -89,7 +89,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.txtTongCkNt = new V6Controls.V6NumberTextBox();
             this.v6Label22 = new V6Controls.V6Label();
             this.txtTongThueNt = new V6Controls.NumberTienNt();
-            this.chkSuaTienThue = new V6Controls.V6CheckBox();
+            this.chkT_THUE_NT = new V6Controls.V6CheckBox();
             this.chkSuaTienCk = new V6Controls.V6CheckBox();
             this.v6Label21 = new V6Controls.V6Label();
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
@@ -236,6 +236,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.v6Label50 = new V6Controls.V6Label();
             this.v6Label49 = new V6Controls.V6Label();
             this.v6Label48 = new V6Controls.V6Label();
+            this.TxtT_TIENVC = new V6Controls.V6NumberTextBox();
+            this.TxtT_TIENVCNT = new V6Controls.V6NumberTextBox();
+            this.v6Label26 = new V6Controls.V6Label();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -308,20 +311,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle28.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MA_VT,
@@ -333,8 +336,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle30.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 95);
             this.dataGridView1.TabIndex = 1;
@@ -388,6 +391,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             // 
             this.tabKhac.AccessibleDescription = "ASOCTSORP00078";
             this.tabKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabKhac.Controls.Add(this.TxtT_TIENVC);
+            this.tabKhac.Controls.Add(this.TxtT_TIENVCNT);
+            this.tabKhac.Controls.Add(this.v6Label26);
             this.tabKhac.Controls.Add(this.txtGhiChuChung);
             this.tabKhac.Controls.Add(this.txtSoCtKemt);
             this.tabKhac.Controls.Add(this.label2);
@@ -491,7 +497,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             // btnInfos
             // 
             this.btnInfos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInfos.Location = new System.Drawing.Point(673, 9);
+            this.btnInfos.Location = new System.Drawing.Point(673, 4);
             this.btnInfos.Name = "btnInfos";
             this.btnInfos.Size = new System.Drawing.Size(197, 29);
             this.btnInfos.TabIndex = 126;
@@ -1083,7 +1089,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.panelNT.Controls.Add(this.txtTongCkNt);
             this.panelNT.Controls.Add(this.v6Label22);
             this.panelNT.Controls.Add(this.txtTongThueNt);
-            this.panelNT.Controls.Add(this.chkSuaTienThue);
+            this.panelNT.Controls.Add(this.chkT_THUE_NT);
             this.panelNT.Controls.Add(this.chkSuaTienCk);
             this.panelNT.Controls.Add(this.v6Label21);
             this.panelNT.Controls.Add(this.txtTongThanhToanNt);
@@ -1221,18 +1227,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             0});
             this.txtTongThueNt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTongThueNt_V6LostFocus);
             // 
-            // chkSuaTienThue
+            // chkT_THUE_NT
             // 
-            this.chkSuaTienThue.AccessibleName = "sua_thue";
-            this.chkSuaTienThue.AutoSize = true;
-            this.chkSuaTienThue.Location = new System.Drawing.Point(63, 73);
-            this.chkSuaTienThue.Name = "chkSuaTienThue";
-            this.chkSuaTienThue.Size = new System.Drawing.Size(43, 17);
-            this.chkSuaTienThue.TabIndex = 8;
-            this.chkSuaTienThue.TabStop = false;
-            this.chkSuaTienThue.Text = "sửa";
-            this.chkSuaTienThue.UseVisualStyleBackColor = true;
-            this.chkSuaTienThue.CheckedChanged += new System.EventHandler(this.chkSuaTienThue_CheckedChanged);
+            this.chkT_THUE_NT.AccessibleName = "sua_thue";
+            this.chkT_THUE_NT.AutoSize = true;
+            this.chkT_THUE_NT.Location = new System.Drawing.Point(63, 73);
+            this.chkT_THUE_NT.Name = "chkT_THUE_NT";
+            this.chkT_THUE_NT.Size = new System.Drawing.Size(43, 17);
+            this.chkT_THUE_NT.TabIndex = 8;
+            this.chkT_THUE_NT.TabStop = false;
+            this.chkT_THUE_NT.Text = "sửa";
+            this.chkT_THUE_NT.UseVisualStyleBackColor = true;
+            this.chkT_THUE_NT.CheckedChanged += new System.EventHandler(this.chkSuaTienThue_CheckedChanged);
             // 
             // chkSuaTienCk
             // 
@@ -3392,6 +3398,66 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.v6Label48.TabIndex = 25;
             this.v6Label48.Text = "T.gian nhận";
             // 
+            // TxtT_TIENVC
+            // 
+            this.TxtT_TIENVC.AccessibleDescription = "";
+            this.TxtT_TIENVC.AccessibleName = "T_TIENVC";
+            this.TxtT_TIENVC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtT_TIENVC.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtT_TIENVC.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtT_TIENVC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtT_TIENVC.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtT_TIENVC.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtT_TIENVC.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtT_TIENVC.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtT_TIENVC.LeaveColor = System.Drawing.Color.White;
+            this.TxtT_TIENVC.Location = new System.Drawing.Point(761, 40);
+            this.TxtT_TIENVC.Name = "TxtT_TIENVC";
+            this.TxtT_TIENVC.Size = new System.Drawing.Size(107, 20);
+            this.TxtT_TIENVC.TabIndex = 133;
+            this.TxtT_TIENVC.Text = "0,000";
+            this.TxtT_TIENVC.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TxtT_TIENVC.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // TxtT_TIENVCNT
+            // 
+            this.TxtT_TIENVCNT.AccessibleDescription = "";
+            this.TxtT_TIENVCNT.AccessibleName = "T_TIENVCNT";
+            this.TxtT_TIENVCNT.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtT_TIENVCNT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtT_TIENVCNT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtT_TIENVCNT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtT_TIENVCNT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtT_TIENVCNT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtT_TIENVCNT.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtT_TIENVCNT.LeaveColor = System.Drawing.Color.White;
+            this.TxtT_TIENVCNT.Location = new System.Drawing.Point(652, 40);
+            this.TxtT_TIENVCNT.Name = "TxtT_TIENVCNT";
+            this.TxtT_TIENVCNT.Size = new System.Drawing.Size(107, 20);
+            this.TxtT_TIENVCNT.TabIndex = 132;
+            this.TxtT_TIENVCNT.Tag = "readonly";
+            this.TxtT_TIENVCNT.Text = "0,000";
+            this.TxtT_TIENVCNT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TxtT_TIENVCNT.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // v6Label26
+            // 
+            this.v6Label26.AccessibleDescription = "ASOCTSOAL00110";
+            this.v6Label26.AutoSize = true;
+            this.v6Label26.Location = new System.Drawing.Point(586, 43);
+            this.v6Label26.Name = "v6Label26";
+            this.v6Label26.Size = new System.Drawing.Size(64, 13);
+            this.v6Label26.TabIndex = 131;
+            this.v6Label26.Text = "Vận chuyển";
+            // 
             // BaoGiaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3552,7 +3618,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private V6Controls.V6ComboBox cboMaNt;
         private V6NumberTextBox txtTyGia;
         private V6Controls.V6CheckBox chkSuaTienCk;
-        private V6Controls.V6CheckBox chkSuaTienThue;
+        private V6Controls.V6CheckBox chkT_THUE_NT;
         private NumberSoluong txtTongSoLuong1;
         private V6Label lblDocSoTien;
         private V6ColorTextBox txtMa_ct;
@@ -3657,5 +3723,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private System.Windows.Forms.ToolStripMenuItem thayTheToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thayThe2toolStripMenuItem;
         private NumberSoluong txtTongSoLuong;
+        private V6NumberTextBox TxtT_TIENVC;
+        private V6NumberTextBox TxtT_TIENVCNT;
+        private V6Label v6Label26;
     }
 }
