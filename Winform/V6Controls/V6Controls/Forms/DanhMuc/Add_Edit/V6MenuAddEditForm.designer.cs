@@ -69,6 +69,7 @@
             this.txttitle = new V6Controls.V6ColorTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnMenuHide = new System.Windows.Forms.Button();
             this.chkQuickRun = new V6Controls.V6CheckBox();
             this.label19 = new System.Windows.Forms.Label();
             this.txtKey3 = new V6Controls.V6ColorTextBox();
@@ -79,7 +80,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnMenuHide = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -746,6 +746,21 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Các tùy chọn";
             // 
+            // btnMenuHide
+            // 
+            this.btnMenuHide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMenuHide.Enabled = false;
+            this.btnMenuHide.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuHide.Location = new System.Drawing.Point(524, 309);
+            this.btnMenuHide.Name = "btnMenuHide";
+            this.btnMenuHide.Size = new System.Drawing.Size(211, 25);
+            this.btnMenuHide.TabIndex = 9;
+            this.btnMenuHide.Text = "Menu hide_yn";
+            this.btnMenuHide.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnMenuHide.UseVisualStyleBackColor = true;
+            this.btnMenuHide.Visible = false;
+            this.btnMenuHide.Click += new System.EventHandler(this.btnMenuHide_Click);
+            // 
             // chkQuickRun
             // 
             this.chkQuickRun.AccessibleName = "QUICK_RUN";
@@ -887,19 +902,6 @@
             this.tabPage2.Size = new System.Drawing.Size(742, 339);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
-            // 
-            // btnMenuHide
-            // 
-            this.btnMenuHide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMenuHide.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenuHide.Location = new System.Drawing.Point(524, 309);
-            this.btnMenuHide.Name = "btnMenuHide";
-            this.btnMenuHide.Size = new System.Drawing.Size(211, 25);
-            this.btnMenuHide.TabIndex = 9;
-            this.btnMenuHide.Text = "Menu hide_yn";
-            this.btnMenuHide.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnMenuHide.UseVisualStyleBackColor = true;
-            this.btnMenuHide.Click += new System.EventHandler(this.btnMenuHide_Click);
             // 
             // V6MenuAddEditForm
             // 

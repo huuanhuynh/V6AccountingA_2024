@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen;
+using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -55,6 +59,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             txtKey1.Enabled = true;
             txtPicture.Enabled = true;
             txtKey3.Enabled = true;
+
+            btnMenuHide.Enabled = true;
+            btnMenuHide.Visible = true;
         }
 
         public override void V6F3ExecuteUndo()
@@ -93,10 +100,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 V6MenuHideYN form = new V6MenuHideYN(Mode);
-                if (form.ShowDialog(this) == DialogResult.OK)
-                {
-                    UpdateV6Menu_Hide_yn(form.Vrights_Hide_yn);
-                }
+                form.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -104,16 +108,5 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        private void UpdateV6Menu_Hide_yn(string vrightsHideYn)
-        {
-            try
-            {
-                this.ShowMessage(vrightsHideYn);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".btnMenuHide_Click", ex);
-            }
-        }
     }
 }
