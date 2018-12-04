@@ -58,6 +58,40 @@ namespace V6Controls.Forms
             LoadLanguage();
         }
 
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            ClearAll();
+            base.OnHandleDestroyed(e);
+        }
+
+        /// <summary>
+        /// Hãy override hàm này để tối ưu bộ nhớ.
+        /// <para>Xóa biến, tối ưu bộ nhớ.</para>
+        /// <para>Tối ưu Crystal Report.</para>
+        /// </summary>
+        protected virtual void Clear()
+        {
+
+        }
+
+        /// <summary>
+        /// <para>Xóa biến, tối ưu bộ nhớ.</para>
+        /// <para>Tối ưu Crystal Report.</para>
+        /// </summary>
+        private void ClearAll()
+        {
+            string methodLog = null;
+            try
+            {
+                methodLog = "Clear();";
+                Clear();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ClearAll " + methodLog, ex);
+            }
+        }
+
         protected virtual void LoadLanguage()
         {
             V6ControlFormHelper.SetFormText(this);

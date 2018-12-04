@@ -1380,6 +1380,21 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
+        protected override void Clear()
+        {
+            List<ReportDocument> list = new List<ReportDocument>() { _rpDoc };
+            foreach (ReportDocument rpDoc in list)
+            {
+                if (rpDoc != null)
+                {
+                    rpDoc.Close();
+                    rpDoc.Dispose();
+                }
+            }
+
+            GC.Collect();
+        }
+
         public override void SetStatus2Text()
         {
             FilterControl.SetStatus2Text();

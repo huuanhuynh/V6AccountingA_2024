@@ -1316,6 +1316,21 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             crystalReportViewer1.PrintReport();
         }
+
+        protected override void Clear()
+        {
+            List<ReportDocument> list = new List<ReportDocument>() { _rpDoc };
+            foreach (ReportDocument rpDoc in list)
+            {
+                if (rpDoc != null)
+                {
+                    rpDoc.Close();
+                    rpDoc.Dispose();
+                }
+            }
+
+            GC.Collect();
+        }
         
         public override bool DoHotKey0(Keys keyData)
         {

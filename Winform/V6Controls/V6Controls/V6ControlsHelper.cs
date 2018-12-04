@@ -67,6 +67,10 @@ namespace V6Controls
             }
         }
 
+        /// <summary>
+        /// <para>Temp rpt file causes the Load Report Failed Error.</para>
+        /// <para>https://archive.sap.com/discussions/thread/996568</para>
+        /// </summary>
         public static void DeleteAllRptTempFiles()
         {
             try
