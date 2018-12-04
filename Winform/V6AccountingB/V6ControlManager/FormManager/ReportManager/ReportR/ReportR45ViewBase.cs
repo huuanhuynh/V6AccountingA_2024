@@ -1253,30 +1253,38 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private bool _radioChange = false;
-
+        private bool _radioChange;
+        private bool _radioRunning;
         private void rbtLanguage_CheckedChanged(object sender, EventArgs e)
         {
-            if (!IsReady) return;
-            if (((RadioButton)sender).Checked)
+            try
             {
-                _radioChange = true;
-                txtReportTitle.Text = rTiengViet.Checked ? _reportTitle : rEnglish.Checked ? _reportTitle2 : _reportTitle + "/" + _reportTitle2;
-                SetFormReportFilter();
-                if (MauInView.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                if (!IsReady) return;
+                if (((RadioButton) sender).Checked)
                 {
-                    txtReportTitle.Text = ReportTitle;
-                }
-            
-                if (ReloadData == "1")
-                    MakeReport2();
-                //else
-                //    ViewReport();
-            }
-        }
+                    _radioRunning = true;
+                    _radioChange = true;
+                    txtReportTitle.Text = rTiengViet.Checked
+                        ? _reportTitle
+                        : rEnglish.Checked ? _reportTitle2 : _reportTitle + "/" + _reportTitle2;
+                    SetFormReportFilter();
+                    if (MauInView.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                    {
+                        txtReportTitle.Text = ReportTitle;
+                    }
 
-        
-        
+                    if (ReloadData == "1")
+                        MakeReport2();
+                    //else
+                    //    ViewReport();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".rbtLanguage_CheckedChanged", ex);
+            }
+            _radioRunning = false;
+        }
 
         private bool SetupThePrinting()
         {
@@ -1551,6 +1559,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void cboMauIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
+            if (_radioRunning) return;
 
             GetSumCondition();
 

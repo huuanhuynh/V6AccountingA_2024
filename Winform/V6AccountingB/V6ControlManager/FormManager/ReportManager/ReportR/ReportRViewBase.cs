@@ -31,7 +31,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
     {
         #region Biến toàn cục
         DataGridViewPrinter _myDataGridViewPrinter;
-        private ReportDocument _rpDoc;
+        private ReportDocument _rpDoc0;
 
         private string _reportProcedure;
         //private string _program, _reportFile, _reportTitle, _reportTitle2;
@@ -900,7 +900,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         /// <summary>
         /// Lưu ý: chạy sau khi add dataSource để tránh lỗi nhập parameter value
         /// </summary>
-        private void SetAllReportParams()
+        private void SetAllReportParams(ReportDocument rpDoc)
         {
             ReportDocumentParameters = new SortedDictionary<string, object>
             {
@@ -964,7 +964,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 try
                 {
-                    _rpDoc.SetParameterValue(item.Key, item.Value);
+                    rpDoc.SetParameterValue(item.Key, item.Value);
                 }
                 catch (Exception ex)
                 {
@@ -1094,7 +1094,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private void Print(string printerName)
+        private void Print(string printerName, ReportDocument rpDoc)
         {
             int intDaGuiDenMayIn = 0;
             bool printerOnline = PrinterStatus.CheckPrinterOnline(printerName);
@@ -1105,7 +1105,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 try
                 {
-                    _rpDoc.PrintToPrinter(_printCopy, false, 0, 0);
+                    rpDoc.PrintToPrinter(_printCopy, false, 0, 0);
 
                     //if (!xemMau)
                     //    timer1.Start();
@@ -1227,26 +1227,35 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         }
 
         private bool _radioChange = false;
-
+        private bool _radioRunning;
         private void rbtLanguage_CheckedChanged(object sender, EventArgs e)
         {
-            if (!IsReady) return;
-
-            if (((RadioButton) sender).Checked)
+            try
             {
-                _radioChange = true;
-                txtReportTitle.Text = rTiengViet.Checked ? _reportTitle : rEnglish.Checked ? _reportTitle2 : _reportTitle + "/" + _reportTitle2;
-                SetFormReportFilter();
-                if (MauInView.Count > 0 && cboMauIn.SelectedIndex >= 0)
-                {
-                    txtReportTitle.Text = ReportTitle;
-                }
+                if (!IsReady) return;
 
-                if (ReloadData == "1")
-                    MakeReport2();
-                else
-                    ViewReport();
+                if (((RadioButton)sender).Checked)
+                {
+                    _radioRunning = true;
+                    _radioChange = true;
+                    txtReportTitle.Text = rTiengViet.Checked ? _reportTitle : rEnglish.Checked ? _reportTitle2 : _reportTitle + "/" + _reportTitle2;
+                    SetFormReportFilter();
+                    if (MauInView.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                    {
+                        txtReportTitle.Text = ReportTitle;
+                    }
+
+                    if (ReloadData == "1")
+                        MakeReport2();
+                    else
+                        ViewReport();
+                }
             }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".rbtLanguage_CheckedChanged", ex);
+            }
+            _radioRunning = false;
         }
 
         
@@ -1320,7 +1329,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 ViewReport();
                 if (AutoPrint)
                 {
-                    Print(PrinterName);
+                    Print(PrinterName, _rpDoc0);
                     Dispose();
                 }
                 
@@ -1339,14 +1348,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (_ds == null) return;
             try
             {
-                _rpDoc = new ReportDocument();
-                _rpDoc.Load(ReportFileFull);
+                ClearReportDocumentBase();
+                var rpDoc = new ReportDocument();
+                rpDoc.Load(ReportFileFull);
 
-                _rpDoc.SetDataSource(_ds);
+                rpDoc.SetDataSource(_ds);
 
-                SetAllReportParams();
+                SetAllReportParams(rpDoc);
 
-                crystalReportViewer1.ReportSource = _rpDoc;
+                crystalReportViewer1.ReportSource = rpDoc;
+                _rpDoc0 = rpDoc;
                 crystalReportViewer1.Show();
                 crystalReportViewer1.Zoom(1);
             }
@@ -1520,6 +1531,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             FilterControl.SetStatus2Text();
         }
 
+        protected override void ClearReportDocument()
+        {
+            List<ReportDocument> list = new List<ReportDocument>() { _rpDoc0 };
+            foreach (ReportDocument rpDoc in list)
+            {
+                if (rpDoc != null)
+                {
+                    rpDoc.Close();
+                    rpDoc.Dispose();
+                }
+            }
+        }
+
         public override bool DoHotKey0(Keys keyData)
         {
             if (keyData == Keys.Escape)
@@ -1587,7 +1611,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 //in có kiểm soát.
                 var dfp = DefaultPrinter;
-                var selectedPrinter = V6ControlFormHelper.PrintRpt(this, _rpDoc, dfp);
+                var selectedPrinter = V6ControlFormHelper.PrintRpt(this, _rpDoc0, dfp);
                 if (!string.IsNullOrEmpty(selectedPrinter))
                 {
                     print_one = true;
@@ -1609,6 +1633,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private void cboMauIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
+            if (_radioRunning) return;
 
             GetSumCondition();
 
@@ -1861,12 +1886,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
-                if (_rpDoc == null)
+                if (_rpDoc0 == null)
                 {
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc, ReportTitle);
+                V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc0, ReportTitle);
             }
             catch (Exception ex)
             {

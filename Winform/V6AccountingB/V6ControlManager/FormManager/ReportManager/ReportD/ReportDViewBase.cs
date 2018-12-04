@@ -35,7 +35,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
     {
         #region Biến toàn cục
         DataGridViewPrinter _myDataGridViewPrinter;
-        private ReportDocument _rpDoc;
+        private ReportDocument _rpDoc0;
 
         private string _reportProcedure;
         private string _program, _Ma_File, _reportTitle, _reportTitle2;
@@ -801,7 +801,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         /// <summary>
         /// Lưu ý: chạy sau khi add dataSource để tránh lỗi nhập parameter value
         /// </summary>
-        private void SetAllReportParams()
+        private void SetAllReportParams(ReportDocument rpDoc)
         {
             ReportDocumentParameters = new SortedDictionary<string, object>
             {
@@ -900,7 +900,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             {
                 try
                 {
-                    _rpDoc.SetParameterValue(item.Key, item.Value);
+                    rpDoc.SetParameterValue(item.Key, item.Value);
                 }
                 catch (Exception ex)
                 {
@@ -915,14 +915,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             //SetReportParams2();
         }
 
-        private void SetReportParams2()
-        {
-            if (FilterControl.RptExtraParameters != null)
-            foreach (KeyValuePair<string, object> key_value_pair in FilterControl.RptExtraParameters)
-            {
-                _rpDoc.SetParameterValue(key_value_pair.Key, key_value_pair.Value);
-            }
-        }
+        //private void SetReportParams2()
+        //{
+        //    if (FilterControl.RptExtraParameters != null)
+        //    foreach (KeyValuePair<string, object> key_value_pair in FilterControl.RptExtraParameters)
+        //    {
+        //        _rpDoc.SetParameterValue(key_value_pair.Key, key_value_pair.Value);
+        //    }
+        //}
 
         #region ==== LoadData MakeReport ====
         
@@ -1205,30 +1205,36 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             }
         }
         
-        private bool _radioChange = false;
-
+        private bool _radioChange;
+        private bool _radioRunning;
         private void rbtLanguage_CheckedChanged(object sender, EventArgs e)
         {
-            if (!IsReady) return;
-            if (((RadioButton)sender).Checked)
+            try
             {
-                _radioChange = true;
-                txtReportTitle.Text = rTiengViet.Checked ? _reportTitle : rEnglish.Checked ? _reportTitle2 : _reportTitle + "/" + _reportTitle2;
-                SetFormReportFilter();
-                if (MauInView.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                if (!IsReady) return;
+                if (((RadioButton)sender).Checked)
                 {
-                    txtReportTitle.Text = ReportTitle;
+                    _radioRunning = true;
+                    _radioChange = true;
+                    txtReportTitle.Text = rTiengViet.Checked ? _reportTitle : rEnglish.Checked ? _reportTitle2 : _reportTitle + "/" + _reportTitle2;
+                    SetFormReportFilter();
+                    if (MauInView.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                    {
+                        txtReportTitle.Text = ReportTitle;
+                    }
+
+                    if (ReloadData == "1")
+                        MakeReport();
+                    else
+                        ViewReport();
                 }
-
-                if (ReloadData == "1")
-                    MakeReport();
-                else
-                    ViewReport();
             }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".rbtLanguage_CheckedChanged", ex);
+            }
+            _radioRunning = false;
         }
-
-        
-        
 
         private bool SetupThePrinting()
         {
@@ -1288,19 +1294,21 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             if (_ds == null) return;
             try
             {
-                _rpDoc = new ReportDocument();
-                _rpDoc.Load(ReportFileFull);
+                ClearReportDocumentBase();
+                var rpDoc = new ReportDocument();
+                rpDoc.Load(ReportFileFull);
 
                 _tblv = ConvertTable(_tbls[current_report_index], F_START, F_FIXCOLUMN);
                 var new_ds = new DataSet();
                 _tblv.TableName = "DataTable1";
                 new_ds.Tables.Add(_tblv);
                 new_ds.Tables.Add(_tbl2.Copy());
-                _rpDoc.SetDataSource(new_ds);
+                rpDoc.SetDataSource(new_ds);
 
-                SetAllReportParams();
+                SetAllReportParams(rpDoc);
 
-                crystalReportViewer1.ReportSource = _rpDoc;
+                crystalReportViewer1.ReportSource = rpDoc;
+                _rpDoc0 = rpDoc;
                 crystalReportViewer1.Show();
                 crystalReportViewer1.Zoom(1);
             }
@@ -1550,9 +1558,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             }
         }
 
-        protected override void Clear()
+        protected override void ClearReportDocument()
         {
-            List<ReportDocument> list = new List<ReportDocument>() { _rpDoc };
+            List<ReportDocument> list = new List<ReportDocument>() { _rpDoc0 };
             foreach (ReportDocument rpDoc in list)
             {
                 if (rpDoc != null)
@@ -1561,8 +1569,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     rpDoc.Dispose();
                 }
             }
-
-            GC.Collect();
         }
 
         public override void SetStatus2Text()
@@ -1597,15 +1603,15 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 }
 
                 crystalReportViewer1.PrintReport();
-                return;
+                //return;
 
-                var dfp = DefaultPrinter;
-                var selectedPrinter = V6ControlFormHelper.PrintRpt(this, _rpDoc, dfp);
-                if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != dfp)
-                {
-                    print_one = true;
-                    DefaultPrinter = selectedPrinter;
-                }
+                //var dfp = DefaultPrinter;
+                //var selectedPrinter = V6ControlFormHelper.PrintRpt(this, _rpDoc, dfp);
+                //if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != dfp)
+                //{
+                //    print_one = true;
+                //    DefaultPrinter = selectedPrinter;
+                //}
             }
             catch (Exception ex)
             {
@@ -1746,6 +1752,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private void cboMauIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
+            if (_radioRunning) return;
 
             GetSumCondition();
 
@@ -2010,12 +2017,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             try
             {
-                if (_rpDoc == null)
+                if (_rpDoc0 == null)
                 {
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc, ReportTitle);
+                V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc0, ReportTitle);
             }
             catch (Exception ex)
             {
