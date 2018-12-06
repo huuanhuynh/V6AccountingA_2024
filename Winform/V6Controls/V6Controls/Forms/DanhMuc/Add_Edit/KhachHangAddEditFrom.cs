@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Controls;
@@ -63,7 +64,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                Logger.WriteToLog("KhachHang DisableWhenEdit " + ex.Message);
+                this.WriteExLog(GetType() + ".DoBeforeEdit", ex);
             }
         }
 
@@ -249,7 +250,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".ChonHinh " + ex.Message);
+                this.WriteExLog(GetType() + ".ChonHinh", ex);
             }
         }
         
@@ -282,7 +283,36 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".ChonHinhS " + ex.Message);
+                this.WriteExLog(GetType() + ".ChonHinhS", ex);
+            }
+        }
+
+        private void ChonPDF()
+        {
+            try
+            {
+                var filePath = V6ControlFormHelper.ChooseOpenFile(this, "All file|*.PDF");
+                if (filePath == null) return;
+
+                //var photo = ;
+                byte[] fileBytes = File.ReadAllBytes(filePath);
+                //DataOld là chỗ chứa tạm.
+                if (DataOld == null) DataOld = new SortedDictionary<string, object>();
+                DataOld["PDF1"] = fileBytes;
+                //var sign = Picture.ToJpegByteArray(pictureBox2.Image);
+                var data = new SortedDictionary<string, object> { { "PDF1", fileBytes } };
+                var keys = new SortedDictionary<string, object> { { "MA_KH", txtMaKH.Text } };
+
+                var result = V6BusinessHelper.UpdateTable(V6TableName.Alkhct1.ToString(), data, keys);
+
+                if (result == 1)
+                {
+                    ShowTopLeftMessage(V6Text.Updated + "PHOTOGRAPH");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ChonPDF", ex);
             }
         }
         
@@ -328,7 +358,39 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".XoaHinhS " + ex.Message);
+                this.WriteExLog(GetType() + ".XoaHinhS", ex);
+            }
+        }
+        
+        private void XoaPDF()
+        {
+            try
+            {
+                var data = new SortedDictionary<string, object> { { "PDF1", null } };
+                var keys = new SortedDictionary<string, object> { { "MA_KH", txtMaKH.Text } };
+                var result = V6BusinessHelper.UpdateTable(V6TableName.Alkhct1.ToString(), data, keys);
+
+                if (result == 1)
+                {
+                    ShowTopLeftMessage(V6Text.Updated + "PDF1");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XoaPDF", ex);
+            }
+        }
+
+        private void XemPDF()
+        {
+            try
+            {
+                //DataOld là chỗ chứa tạm.
+                V6ControlFormHelper.OpenFileBytes((byte[])DataOld["PDF1"], "pdf");
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XemPDF", ex);
             }
         }
 
@@ -361,5 +423,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             v6TabControl1.SelectedTab = tabChiTiet;
         }
 
+        private void btnChonPDF_Click(object sender, EventArgs e)
+        {
+            ChonPDF();
+        }
+
+        private void btnXoaPDF_Click(object sender, EventArgs e)
+        {
+            XoaPDF();
+        }
+
+        private void btnXemPDF_Click(object sender, EventArgs e)
+        {
+            XemPDF();
+        }
+        
     }
 }

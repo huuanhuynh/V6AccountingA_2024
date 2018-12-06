@@ -7129,5 +7129,12 @@ namespace V6Controls.Forms
                 ShowMainMessage(V6Text.NotExist + " " + file);
             }
         }
+
+        public static void OpenFileBytes(byte[] bytes, string ext = "bin")
+        {
+            var tempFile = Path.Combine(V6ControlsHelper.V6SoftLocalAppData_Directory, "temp." + ext);
+            File.WriteAllBytes(tempFile, bytes);
+            Process.Start(tempFile);
+        }
     }
 }

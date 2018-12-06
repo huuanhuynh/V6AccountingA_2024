@@ -4,16 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
 using System.Text;
 using Microsoft.CSharp;
-using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Init;
-using V6Structs;
-using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6Controls
@@ -22,8 +18,8 @@ namespace V6Controls
     {
         public static bool DisableLookup { get; set; }
 
-        private static readonly string V6SoftLocalAppData_Directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "V6Soft");
-        private static readonly string SystemUserAppdataLocalTemp_Directory = Path.GetTempPath();
+        public static readonly string V6SoftLocalAppData_Directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "V6Soft");
+        public static readonly string SystemUserAppDataLocalTemp_Directory = Path.GetTempPath();
         /// <summary>
         /// Tạo thư mục tạm cho chương trình.
         /// </summary>
@@ -75,7 +71,7 @@ namespace V6Controls
         {
             try
             {
-                DirectoryInfo di = new DirectoryInfo(SystemUserAppdataLocalTemp_Directory);
+                DirectoryInfo di = new DirectoryInfo(SystemUserAppDataLocalTemp_Directory);
 
                 foreach (FileInfo file in di.GetFiles("*.rpt"))
                 {
@@ -92,7 +88,7 @@ namespace V6Controls
         {
             try
             {
-                DirectoryInfo di = new DirectoryInfo(SystemUserAppdataLocalTemp_Directory);
+                DirectoryInfo di = new DirectoryInfo(SystemUserAppDataLocalTemp_Directory);
 
                 foreach (DirectoryInfo dir in di.GetDirectories())
                 {

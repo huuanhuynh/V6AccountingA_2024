@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Init;
@@ -96,6 +98,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if (data != null && data.Rows.Count > 0)
                 {
                     var rowData = data.Rows[0].ToDataDictionary();
+                    DataOld["PHOTOGRAPH"] = rowData["PHOTOGRAPH"];
                     SetSomeData(new SortedDictionary<string, object>()
                     {
                         {"PHOTOGRAPH", rowData["PHOTOGRAPH"]},
@@ -191,6 +194,34 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
         
+        private void ChonFile()
+        {
+            try
+            {
+                var filePath = V6ControlFormHelper.ChooseOpenFile(this, "All file|*.*");
+                if (filePath == null) return;
+
+                //var photo = ;
+                byte[] fileBytes = File.ReadAllBytes(filePath);
+                //var sign = Picture.ToJpegByteArray(pictureBox2.Image);
+                var data = new SortedDictionary<string, object> { { "PHOTOGRAPH", fileBytes } };//, {"SIGNATURE", sign}};
+                var keys = new SortedDictionary<string, object> { { "MA_VT", txtMaVT.Text } };
+
+                var result = V6BusinessHelper.UpdateTable(V6TableName.Alvtct1.ToString(), data, keys);
+
+                if (result == 1)
+                {
+                    ShowTopLeftMessage(V6Text.Updated + "PHOTOGRAPH");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".ChonHinh " + ex.Message);
+            }
+        }
+
+        
+        
         private void XoaHinh()
         {
             try
@@ -214,9 +245,50 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        private void XoaPDF()
+        {
+            try
+            {
+                var data = new SortedDictionary<string, object> { { "PDF1", null } };
+                var keys = new SortedDictionary<string, object> { { "MA_VT", txtMaVT.Text } };
+                var result = V6BusinessHelper.UpdateTable(V6TableName.Alvtct1.ToString(), data, keys);
+
+                if (result == 1)
+                {
+                    ShowTopLeftMessage(V6Text.Updated + "PDF1");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XoaPDF", ex);
+            }
+        }
+
         private void btnXoahinh_Click(object sender, EventArgs e)
         {
             XoaHinh();
+        }
+
+        private void btnChonFile_Click(object sender, EventArgs e)
+        {
+            ChonFile();
+        }
+
+        private void btnMoFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                V6ControlFormHelper.OpenFileBytes((byte[])DataOld["PHOTOGRAPH"], "pdf");
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".MoFile", ex);
+            }
+        }
+
+        private void btnXoaFile_Click(object sender, EventArgs e)
+        {
+            XoaPDF();
         }
     }
 }

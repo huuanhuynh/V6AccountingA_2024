@@ -206,6 +206,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.ptbPHOTOGRAPH = new System.Windows.Forms.PictureBox();
             this.btnXoahinh = new System.Windows.Forms.Button();
+            this.btnMoFile = new System.Windows.Forms.Button();
+            this.btnChonFile = new System.Windows.Forms.Button();
             this.btnChonhinh = new System.Windows.Forms.Button();
             this.txths_qd4 = new V6Controls.V6NumberTextBox();
             this.label50 = new System.Windows.Forms.Label();
@@ -262,6 +264,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnXoaFile = new System.Windows.Forms.Button();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -2954,8 +2957,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.tabPage7.AccessibleDescription = "ADDEDITT00004";
             this.tabPage7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage7.Controls.Add(this.btnChonFile);
             this.tabPage7.Controls.Add(this.ptbPHOTOGRAPH);
             this.tabPage7.Controls.Add(this.btnXoahinh);
+            this.tabPage7.Controls.Add(this.btnXoaFile);
+            this.tabPage7.Controls.Add(this.btnMoFile);
             this.tabPage7.Controls.Add(this.btnChonhinh);
             this.tabPage7.Controls.Add(this.txths_qd4);
             this.tabPage7.Controls.Add(this.label50);
@@ -3029,6 +3035,34 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.btnXoahinh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnXoahinh.UseVisualStyleBackColor = true;
             this.btnXoahinh.Click += new System.EventHandler(this.btnXoahinh_Click);
+            // 
+            // btnMoFile
+            // 
+            this.btnMoFile.AccessibleName = "";
+            this.btnMoFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMoFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnMoFile.Location = new System.Drawing.Point(419, 78);
+            this.btnMoFile.Name = "btnMoFile";
+            this.btnMoFile.Size = new System.Drawing.Size(54, 29);
+            this.btnMoFile.TabIndex = 40;
+            this.btnMoFile.Text = "Mở";
+            this.btnMoFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnMoFile.UseVisualStyleBackColor = true;
+            this.btnMoFile.Click += new System.EventHandler(this.btnMoFile_Click);
+            // 
+            // btnChonFile
+            // 
+            this.btnChonFile.AccessibleName = "";
+            this.btnChonFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonFile.Location = new System.Drawing.Point(272, 78);
+            this.btnChonFile.Name = "btnChonFile";
+            this.btnChonFile.Size = new System.Drawing.Size(91, 29);
+            this.btnChonFile.TabIndex = 40;
+            this.btnChonFile.Text = "Chọn file";
+            this.btnChonFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonFile.UseVisualStyleBackColor = true;
+            this.btnChonFile.Click += new System.EventHandler(this.btnChonFile_Click);
             // 
             // btnChonhinh
             // 
@@ -3876,6 +3910,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã vật tư";
             // 
+            // btnXoaFile
+            // 
+            this.btnXoaFile.AccessibleName = "";
+            this.btnXoaFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXoaFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXoaFile.Location = new System.Drawing.Point(364, 78);
+            this.btnXoaFile.Name = "btnXoaFile";
+            this.btnXoaFile.Size = new System.Drawing.Size(54, 29);
+            this.btnXoaFile.TabIndex = 40;
+            this.btnXoaFile.Text = "Xóa";
+            this.btnXoaFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoaFile.UseVisualStyleBackColor = true;
+            this.btnXoaFile.Click += new System.EventHandler(this.btnXoaFile_Click);
+            // 
             // VatTuAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -4143,5 +4191,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label41;
+        protected System.Windows.Forms.Button btnMoFile;
+        protected System.Windows.Forms.Button btnChonFile;
+        protected System.Windows.Forms.Button btnXoaFile;
     }
 }
