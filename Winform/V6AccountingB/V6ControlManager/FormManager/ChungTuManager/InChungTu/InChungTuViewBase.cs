@@ -1762,7 +1762,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             if (_ds == null) return;
             
-            ClearReportDocumentBase();
+            CleanUp();
             ReportDocument rpDoc = null, rpDoc2 = null, rpDoc3 = null, rpDoc4 = null;
             crystalReportViewer1.DisplayToolbar = false;
             crystalReportViewer2.DisplayToolbar = false;
@@ -2098,7 +2098,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             
         }
 
-        protected override void ClearReportDocument()
+        protected override void ClearMyVars()
         {
             List<ReportDocument> list = new List<ReportDocument>() {_rpDoc0, _rpDoc20, _rpDoc30, _rpDoc40};
             foreach (ReportDocument rpDoc in list)
@@ -2199,7 +2199,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     {
                         //printting = false;
                     }
-
                 }
                 else
                 {
@@ -2544,6 +2543,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     return;
                 }
                 V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc0, ReportTitle);
+                if (MauTuIn == 1)
+                {
+                    if (_soLienIn >= 2 && _rpDoc20 != null)
+                    {
+                        V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc20, ReportTitle);
+                    }
+                    if (_soLienIn >= 3 && _rpDoc30 != null)
+                    {
+                        V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc30, ReportTitle);
+                    }
+                    if (_soLienIn >= 4 && _rpDoc40 != null)
+                    {
+                        V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc40, ReportTitle);
+                    }
+                }
             }
             catch (Exception ex)
             {

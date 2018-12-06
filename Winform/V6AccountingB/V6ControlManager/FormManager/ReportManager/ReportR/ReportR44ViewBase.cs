@@ -736,7 +736,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        protected override void ClearReportDocument()
+        protected override void ClearMyVars()
         {
             List<ReportDocument> list = new List<ReportDocument>() { _rpDoc0 };
             foreach (ReportDocument rpDoc in list)
@@ -1408,7 +1408,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (_ds == null) return;
             try
             {
-                ClearReportDocumentBase();
+                CleanUp();
                 var rpDoc = new ReportDocument();
                 rpDoc.Load(ReportFileFull);
                 rpDoc.SetDataSource(_ds);

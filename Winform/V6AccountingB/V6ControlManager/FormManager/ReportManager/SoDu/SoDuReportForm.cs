@@ -25,7 +25,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
     {
         #region Biến toàn cục
         DataGridViewPrinter MyDataGridViewPrinter;
-        private ReportDocument _rpDoc;
+        private ReportDocument _rpDoc0;
         private string _tableName, _ma_File, _reportTitle, _reportTitle2, _inifilter;
         private V6TableStruct _tStruct;
         private List<SqlParameter> pList;
@@ -504,7 +504,8 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         /// <summary>
         /// Lưu ý: chạy sau khi add dataSource để tránh lỗi nhập parameter value
         /// </summary>
-        private void SetAllReportParams()
+        /// <param name="rpDoc"></param>
+        private void SetAllReportParams(ReportDocument rpDoc)
         {
             ReportDocumentParameters = new SortedDictionary<string, object>
             {
@@ -553,7 +554,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             {
                 try
                 {
-                    _rpDoc.SetParameterValue(item.Key, item.Value);
+                    rpDoc.SetParameterValue(item.Key, item.Value);
                 }
                 catch (Exception ex)
                 {
@@ -717,7 +718,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             }
         }
 
-        private bool _radioChange = false;
         private string ReloadData
         {
             get
@@ -730,24 +730,36 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 return result;
             }
         }
+
+        private bool _radioChange;
+        private bool _radioRunning;
         private void rbtLanguage_CheckedChanged(object sender, EventArgs e)
         {
-            if (!IsReady) return;
-            if (((RadioButton) sender).Checked)
+            try
             {
-                _radioChange = true;
-                txtReportTitle.Text = rTiengViet.Checked ? _reportTitle : rEnglish.Checked ? _reportTitle2 : _reportTitle + "/" + _reportTitle2;
-                SetFormReportFilter();
-                if (MauInView.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                if (!IsReady) return;
+                if (((RadioButton)sender).Checked)
                 {
-                    txtReportTitle.Text = ReportTitle;
-                }
+                    _radioRunning = true;
+                    _radioChange = true;
+                    txtReportTitle.Text = rTiengViet.Checked ? _reportTitle : rEnglish.Checked ? _reportTitle2 : _reportTitle + "/" + _reportTitle2;
+                    SetFormReportFilter();
+                    if (MauInView.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                    {
+                        txtReportTitle.Text = ReportTitle;
+                    }
 
-                if (ReloadData == "1")
-                    MakeReport2();
-                else
-                    ViewReport();
+                    if (ReloadData == "1")
+                        MakeReport2();
+                    else
+                        ViewReport();
+                }
             }
+            catch (Exception ex)
+            {
+                
+            }
+            _radioRunning = false;
         }
 
         private void crystalReportViewer1_DoubleClick(object sender, EventArgs e)
@@ -808,19 +820,33 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
-        
+
+        protected override void ClearMyVars()
+        {
+            List<ReportDocument> list = new List<ReportDocument>() { _rpDoc0 };
+            foreach (ReportDocument rpDoc in list)
+            {
+                if (rpDoc != null)
+                {
+                    rpDoc.Close();
+                    rpDoc.Dispose();
+                }
+            }
+        }
+
         void ViewReport()
         {
             try
             {
-                _rpDoc = new ReportDocument();
-                _rpDoc.Load(ReportFileFull);
+                CleanUp();
+                var rpDoc = new ReportDocument();
+                rpDoc.Load(ReportFileFull);
+                rpDoc.SetDataSource(_ds);
 
-                _rpDoc.SetDataSource(_ds);
+                SetAllReportParams(rpDoc);
 
-                SetAllReportParams();
-
-                crystalReportViewer1.ReportSource = _rpDoc;
+                crystalReportViewer1.ReportSource = rpDoc;
+                _rpDoc0 = rpDoc;
                 crystalReportViewer1.Show();
             }
             catch (Exception ex)
@@ -832,7 +858,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         private void F_FormClosed(object sender, FormClosedEventArgs e)
         {
             _tbl = null;
-            _rpDoc = null;
             GC.Collect();
         }
 
@@ -999,6 +1024,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         private void cboMauIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
+            if (_radioRunning) return;
 
             txtReportTitle.Text = ReportTitle;
             ViewReport();
@@ -1013,12 +1039,12 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         {
             try
             {
-                if (_rpDoc == null)
+                if (_rpDoc0 == null)
                 {
                     ShowMainMessage(V6Text.NoData);
                     return;
                 }
-                V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc, ReportTitle);
+                V6ControlFormHelper.ExportRptToPdf_As(this, _rpDoc0, ReportTitle);
             }
             catch (Exception ex)
             {

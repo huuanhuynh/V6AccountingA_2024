@@ -61,7 +61,6 @@ namespace V6Controls.Forms
         protected override void OnHandleDestroyed(EventArgs e)
         {
             ClearAll();
-            GC.Collect();
             base.OnHandleDestroyed(e);
         }
 
@@ -70,15 +69,19 @@ namespace V6Controls.Forms
         /// <para>Xóa biến, tối ưu bộ nhớ.</para>
         /// <para>Tối ưu Crystal Report.</para>
         /// </summary>
-        protected virtual void ClearReportDocument()
+        protected virtual void ClearMyVars()
         {
 
         }
-        public void ClearReportDocumentBase()
+        /// <summary>
+        /// Xóa các biến tối ưu bộ nhớ. Code xóa được viết override trong hàm ClearMyVar.
+        /// </summary>
+        public void CleanUp()
         {
             try
             {
-                ClearReportDocument();
+                ClearMyVars();
+                GC.Collect();
             }
             catch (Exception ex)
             {
@@ -96,7 +99,8 @@ namespace V6Controls.Forms
             try
             {
                 methodLog = "Clear();";
-                ClearReportDocumentBase();
+                CleanUp();
+                GC.Collect();
             }
             catch (Exception ex)
             {

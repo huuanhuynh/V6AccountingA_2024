@@ -1289,7 +1289,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             try
             {
-                ClearReportDocumentBase();
+                CleanUp();
                 var rpDoc = new ReportDocument();
                 rpDoc.Load(ReportFileFull);
                 rpDoc.SetDataSource(_ds);
@@ -1325,7 +1325,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             crystalReportViewer1.PrintReport();
         }
 
-        protected override void ClearReportDocument()
+        protected override void ClearMyVars()
         {
             List<ReportDocument> list = new List<ReportDocument>() { _rpDoc0 };
             foreach (ReportDocument rpDoc in list)
