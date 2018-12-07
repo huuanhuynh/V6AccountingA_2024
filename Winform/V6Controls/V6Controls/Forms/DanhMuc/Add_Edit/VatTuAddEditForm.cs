@@ -157,10 +157,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        private void btnChonhinh_Click(object sender, EventArgs e)
-        {
-            ChonHinh();
-        }
         private void ChonHinh()
         {
             try
@@ -194,34 +190,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
         
-        private void ChonFile()
-        {
-            try
-            {
-                var filePath = V6ControlFormHelper.ChooseOpenFile(this, "All file|*.*");
-                if (filePath == null) return;
-
-                //var photo = ;
-                byte[] fileBytes = File.ReadAllBytes(filePath);
-                //var sign = Picture.ToJpegByteArray(pictureBox2.Image);
-                var data = new SortedDictionary<string, object> { { "PHOTOGRAPH", fileBytes } };//, {"SIGNATURE", sign}};
-                var keys = new SortedDictionary<string, object> { { "MA_VT", txtMaVT.Text } };
-
-                var result = V6BusinessHelper.UpdateTable(V6TableName.Alvtct1.ToString(), data, keys);
-
-                if (result == 1)
-                {
-                    ShowTopLeftMessage(V6Text.Updated + "PHOTOGRAPH");
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".ChonHinh " + ex.Message);
-            }
-        }
-
-        
-        
         private void XoaHinh()
         {
             try
@@ -245,23 +213,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        private void XoaPDF()
+        private void btnChonhinh_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var data = new SortedDictionary<string, object> { { "PDF1", null } };
-                var keys = new SortedDictionary<string, object> { { "MA_VT", txtMaVT.Text } };
-                var result = V6BusinessHelper.UpdateTable(V6TableName.Alvtct1.ToString(), data, keys);
-
-                if (result == 1)
-                {
-                    ShowTopLeftMessage(V6Text.Updated + "PDF1");
-                }
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".XoaPDF", ex);
-            }
+            ChonHinh();
         }
 
         private void btnXoahinh_Click(object sender, EventArgs e)
@@ -269,26 +223,201 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             XoaHinh();
         }
 
-        private void btnChonFile_Click(object sender, EventArgs e)
-        {
-            ChonFile();
-        }
 
-        private void btnMoFile_Click(object sender, EventArgs e)
+        private void ChonPDF(string FIELD, string fileFilter)
         {
             try
             {
-                V6ControlFormHelper.OpenFileBytes((byte[])DataOld["PHOTOGRAPH"], "pdf");
+                var filePath = V6ControlFormHelper.ChooseOpenFile(this, fileFilter);
+                if (filePath == null) return;
+
+                //var photo = ;
+                byte[] fileBytes = File.ReadAllBytes(filePath);
+                //DataOld là chỗ chứa tạm.
+                if (DataOld == null) DataOld = new SortedDictionary<string, object>();
+                DataOld[FIELD] = fileBytes;
+                //var sign = Picture.ToJpegByteArray(pictureBox2.Image);
+                var data = new SortedDictionary<string, object> { { FIELD, fileBytes } };
+                var keys = new SortedDictionary<string, object> { { "MA_VT", txtMaVT.Text } };
+
+                var result = V6BusinessHelper.UpdateTable(V6TableName.Alkhct1.ToString(), data, keys);
+
+                if (result == 1)
+                {
+                    ShowTopLeftMessage(V6Text.Updated + "PHOTOGRAPH");
+                }
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".MoFile", ex);
+                this.WriteExLog(GetType() + ".ChonPDF " + FIELD, ex);
             }
+        }
+
+        private void ChonFile(string fileFilter, string FIELD, TextBox txtFileName)
+        {
+            try
+            {
+                var filePath = V6ControlFormHelper.ChooseOpenFile(this, fileFilter);
+                if (filePath == null) return;
+
+                var _setting = new H.Setting(Path.Combine(V6Login.StartupPath, "Setting.ini"));
+                var info = new V6IOInfo()
+                {
+                    FileName = filePath,
+                    FTP_IP = _setting.GetSetting("FTP_IP"),
+                    FTP_USER = _setting.GetSetting("FTP_USER"),
+                    FTP_EPASS = _setting.GetSetting("FTP_EPASS"),
+                    FTP_SUBFOLDER = _setting.GetSetting("FTP_V6DOCSFOLDER"),
+                };
+                V6FileIO.CopyToVPN(info);
+
+                txtFileName.Text = Path.GetFileName(filePath);
+                var data = new SortedDictionary<string, object> { { FIELD, txtFileName1.Text } };
+                var keys = new SortedDictionary<string, object> { { "MA_VT", txtMaVT.Text } };
+
+                var result = V6BusinessHelper.UpdateTable(V6TableName.Alkhct1.ToString(), data, keys);
+
+                if (result == 1)
+                {
+                    ShowTopLeftMessage(V6Text.Updated + FIELD);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ChonPDF " + FIELD, ex);
+            }
+        }
+
+        private void XoaPDF(string FIELD)
+        {
+            try
+            {
+                var data = new SortedDictionary<string, object> { { FIELD, null } };
+                var keys = new SortedDictionary<string, object> { { "MA_VT", txtMaVT.Text } };
+                var result = V6BusinessHelper.UpdateTable(V6TableName.Alkhct1.ToString(), data, keys);
+
+                if (result == 1)
+                {
+                    ShowTopLeftMessage(V6Text.Updated + FIELD);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XoaPDF " + FIELD, ex);
+            }
+        }
+
+        private void XemPDF(string FIELD)
+        {
+            try
+            {
+                //DataOld là chỗ chứa tạm.
+                if (DataOld != null && DataOld.ContainsKey(FIELD))
+                {
+                    V6ControlFormHelper.OpenFileBytes((byte[])DataOld[FIELD], "pdf");
+                }
+                else
+                {
+                    ShowTopLeftMessage(V6Text.NoData);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XemPDF", ex);
+            }
+        }
+
+        private void XemFile(string fileName)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(fileName)) return;
+
+                var _setting = new H.Setting(Path.Combine(V6Login.StartupPath, "Setting.ini"));
+                V6IOInfo info = new V6IOInfo()
+                {
+                    FileName = fileName,
+                    FTP_IP = _setting.GetSetting("FTP_IP"),
+                    FTP_USER = _setting.GetSetting("FTP_USER"),
+                    FTP_EPASS = _setting.GetSetting("FTP_EPASS"),
+                    FTP_SUBFOLDER = _setting.GetSetting("FTP_V6DOCSFOLDER"),
+                    LOCAL_FOLDER = V6ControlsHelper.V6SoftLocalAppData_Directory,
+                };
+                if (V6FileIO.CopyFromVPN(info))
+                {
+                    string tempFile = Path.Combine(V6ControlsHelper.V6SoftLocalAppData_Directory, fileName);
+                    Process.Start(tempFile);
+                }
+                else
+                {
+                    ShowTopLeftMessage(V6Text.NotFound);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".XemFile " + fileName, ex);
+            }
+        }
+
+
+        private void btnChonPDF_Click(object sender, EventArgs e)
+        {
+            ChonPDF("PDF1", "PDF files|*.PDF");
+        }
+
+        private void btnChonPDF2_Click(object sender, EventArgs e)
+        {
+            ChonPDF("PDF2", "PDF files|*.PDF");
+        }
+
+        private void btnChonFile_Click(object sender, EventArgs e)
+        {
+            ChonFile("All files|*.*", "FILE_NAME1", txtFileName1);
+        }
+
+        private void btnChonFile2_Click(object sender, EventArgs e)
+        {
+            ChonFile("All files|*.*", "FILE_NAME2", txtFileName2);
+        }
+
+        private void btnXoaPDF_Click(object sender, EventArgs e)
+        {
+            XoaPDF("PDF1");
+        }
+
+        private void btnXoaPDF2_Click(object sender, EventArgs e)
+        {
+            XoaPDF("PDF2");
         }
 
         private void btnXoaFile_Click(object sender, EventArgs e)
         {
-            XoaPDF();
+            txtFileName1.Clear();
+        }
+
+        private void btnXoaFile2_Click(object sender, EventArgs e)
+        {
+            txtFileName2.Clear();
+        }
+
+        private void btnXemPDF_Click(object sender, EventArgs e)
+        {
+            XemPDF("PDF1");
+        }
+
+        private void btnXemPDF2_Click(object sender, EventArgs e)
+        {
+            XemPDF("PDF2");
+        }
+
+        private void btnXemFile_Click(object sender, EventArgs e)
+        {
+            XemFile(txtFileName1.Text);
+        }
+
+        private void btnXemFile2_Click(object sender, EventArgs e)
+        {
+            XemFile(txtFileName2.Text);
         }
     }
 }

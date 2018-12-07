@@ -65,7 +65,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             var VPN_USER = _setting.GetSetting("VPN_USER");
                             var VPN_EPASS = _setting.GetSetting("VPN_EPASS");
                             var VPN_SUBFOLDER = _setting.GetSetting("VPN_SUBFOLDER");
-                            V6FileIO.CopyToVPN(zipFilePath, VPN_IP, VPN_USER, VPN_EPASS, VPN_SUBFOLDER);
+                            V6FileIO.CopyToVPN(zipFilePath, VPN_SUBFOLDER, VPN_IP, VPN_USER, VPN_EPASS);
                         }
                     }
                 }

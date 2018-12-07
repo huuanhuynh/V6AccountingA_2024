@@ -204,10 +204,22 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox2 = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox1 = new V6Controls.V6NumberTextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.txtFileName2 = new V6Controls.V6ColorTextBox();
+            this.txtFileName1 = new V6Controls.V6ColorTextBox();
+            this.btnXemFile2 = new V6Controls.Controls.V6FormButton();
+            this.btnXemPDF2 = new V6Controls.Controls.V6FormButton();
+            this.btnXemFile = new V6Controls.Controls.V6FormButton();
+            this.btnXemPDF = new V6Controls.Controls.V6FormButton();
+            this.btnXoaFile2 = new V6Controls.Controls.V6FormButton();
+            this.btnXoaPDF2 = new V6Controls.Controls.V6FormButton();
+            this.btnXoaFile = new V6Controls.Controls.V6FormButton();
+            this.btnXoaPDF = new V6Controls.Controls.V6FormButton();
+            this.btnChonFile2 = new V6Controls.Controls.V6FormButton();
+            this.btnChonPDF2 = new V6Controls.Controls.V6FormButton();
+            this.btnChonFile = new V6Controls.Controls.V6FormButton();
+            this.btnChonPDF = new V6Controls.Controls.V6FormButton();
             this.ptbPHOTOGRAPH = new System.Windows.Forms.PictureBox();
             this.btnXoahinh = new System.Windows.Forms.Button();
-            this.btnMoFile = new System.Windows.Forms.Button();
-            this.btnChonFile = new System.Windows.Forms.Button();
             this.btnChonhinh = new System.Windows.Forms.Button();
             this.txths_qd4 = new V6Controls.V6NumberTextBox();
             this.label50 = new System.Windows.Forms.Label();
@@ -264,7 +276,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnXoaFile = new System.Windows.Forms.Button();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -291,11 +302,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6TabControl1.Controls.Add(this.tabPage7);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
-            this.v6TabControl1.Location = new System.Drawing.Point(1, 155);
+            this.v6TabControl1.Location = new System.Drawing.Point(1, 146);
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(743, 384);
+            this.v6TabControl1.Size = new System.Drawing.Size(743, 394);
             this.v6TabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -344,7 +355,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(735, 352);
+            this.tabPage1.Size = new System.Drawing.Size(735, 362);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
@@ -890,7 +901,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(735, 352);
+            this.tabPage2.Size = new System.Drawing.Size(735, 362);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tài khoản";
             // 
@@ -1303,7 +1314,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(735, 352);
+            this.tabPage3.Size = new System.Drawing.Size(735, 362);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Tồn kho";
             // 
@@ -1867,7 +1878,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Size = new System.Drawing.Size(735, 352);
+            this.tabPage4.Size = new System.Drawing.Size(735, 362);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "TT đặt hàng";
             // 
@@ -2171,7 +2182,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage5.Size = new System.Drawing.Size(735, 352);
+            this.tabPage5.Size = new System.Drawing.Size(735, 362);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Mua hàng";
             // 
@@ -2556,7 +2567,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage6.Size = new System.Drawing.Size(735, 352);
+            this.tabPage6.Size = new System.Drawing.Size(735, 362);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Tự định nghĩa";
             // 
@@ -2957,11 +2968,22 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.tabPage7.AccessibleDescription = "ADDEDITT00004";
             this.tabPage7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage7.Controls.Add(this.txtFileName2);
+            this.tabPage7.Controls.Add(this.txtFileName1);
+            this.tabPage7.Controls.Add(this.btnXemFile2);
+            this.tabPage7.Controls.Add(this.btnXemPDF2);
+            this.tabPage7.Controls.Add(this.btnXemFile);
+            this.tabPage7.Controls.Add(this.btnXemPDF);
+            this.tabPage7.Controls.Add(this.btnXoaFile2);
+            this.tabPage7.Controls.Add(this.btnXoaPDF2);
+            this.tabPage7.Controls.Add(this.btnXoaFile);
+            this.tabPage7.Controls.Add(this.btnXoaPDF);
+            this.tabPage7.Controls.Add(this.btnChonFile2);
+            this.tabPage7.Controls.Add(this.btnChonPDF2);
             this.tabPage7.Controls.Add(this.btnChonFile);
+            this.tabPage7.Controls.Add(this.btnChonPDF);
             this.tabPage7.Controls.Add(this.ptbPHOTOGRAPH);
             this.tabPage7.Controls.Add(this.btnXoahinh);
-            this.tabPage7.Controls.Add(this.btnXoaFile);
-            this.tabPage7.Controls.Add(this.btnMoFile);
             this.tabPage7.Controls.Add(this.btnChonhinh);
             this.tabPage7.Controls.Add(this.txths_qd4);
             this.tabPage7.Controls.Add(this.label50);
@@ -3006,9 +3028,213 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabPage7.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage7.Size = new System.Drawing.Size(735, 352);
+            this.tabPage7.Size = new System.Drawing.Size(735, 362);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Thông tin khác";
+            // 
+            // txtFileName2
+            // 
+            this.txtFileName2.AccessibleName = "FILE_NAME2";
+            this.txtFileName2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtFileName2.BackColor = System.Drawing.Color.White;
+            this.txtFileName2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFileName2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFileName2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFileName2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFileName2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFileName2.LeaveColor = System.Drawing.Color.White;
+            this.txtFileName2.Location = new System.Drawing.Point(295, 332);
+            this.txtFileName2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFileName2.Name = "txtFileName2";
+            this.txtFileName2.Size = new System.Drawing.Size(20, 23);
+            this.txtFileName2.TabIndex = 59;
+            this.txtFileName2.Visible = false;
+            // 
+            // txtFileName1
+            // 
+            this.txtFileName1.AccessibleName = "FILE_NAME1";
+            this.txtFileName1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtFileName1.BackColor = System.Drawing.Color.White;
+            this.txtFileName1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFileName1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFileName1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFileName1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFileName1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFileName1.LeaveColor = System.Drawing.Color.White;
+            this.txtFileName1.Location = new System.Drawing.Point(295, 311);
+            this.txtFileName1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFileName1.Name = "txtFileName1";
+            this.txtFileName1.Size = new System.Drawing.Size(20, 23);
+            this.txtFileName1.TabIndex = 60;
+            this.txtFileName1.Visible = false;
+            // 
+            // btnXemFile2
+            // 
+            this.btnXemFile2.AccessibleName = "";
+            this.btnXemFile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXemFile2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXemFile2.Location = new System.Drawing.Point(200, 335);
+            this.btnXemFile2.Name = "btnXemFile2";
+            this.btnXemFile2.Size = new System.Drawing.Size(90, 24);
+            this.btnXemFile2.TabIndex = 51;
+            this.btnXemFile2.Text = "Xem file2";
+            this.btnXemFile2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXemFile2.UseVisualStyleBackColor = true;
+            this.btnXemFile2.Click += new System.EventHandler(this.btnXemFile2_Click);
+            // 
+            // btnXemPDF2
+            // 
+            this.btnXemPDF2.AccessibleName = "";
+            this.btnXemPDF2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXemPDF2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXemPDF2.Location = new System.Drawing.Point(200, 287);
+            this.btnXemPDF2.Name = "btnXemPDF2";
+            this.btnXemPDF2.Size = new System.Drawing.Size(90, 24);
+            this.btnXemPDF2.TabIndex = 52;
+            this.btnXemPDF2.Text = "Xem PDF2";
+            this.btnXemPDF2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXemPDF2.UseVisualStyleBackColor = true;
+            this.btnXemPDF2.Click += new System.EventHandler(this.btnXemPDF2_Click);
+            // 
+            // btnXemFile
+            // 
+            this.btnXemFile.AccessibleName = "";
+            this.btnXemFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXemFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXemFile.Location = new System.Drawing.Point(200, 311);
+            this.btnXemFile.Name = "btnXemFile";
+            this.btnXemFile.Size = new System.Drawing.Size(90, 24);
+            this.btnXemFile.TabIndex = 53;
+            this.btnXemFile.Text = "Xem file";
+            this.btnXemFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXemFile.UseVisualStyleBackColor = true;
+            this.btnXemFile.Click += new System.EventHandler(this.btnXemFile_Click);
+            // 
+            // btnXemPDF
+            // 
+            this.btnXemPDF.AccessibleName = "";
+            this.btnXemPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXemPDF.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXemPDF.Location = new System.Drawing.Point(200, 263);
+            this.btnXemPDF.Name = "btnXemPDF";
+            this.btnXemPDF.Size = new System.Drawing.Size(90, 24);
+            this.btnXemPDF.TabIndex = 54;
+            this.btnXemPDF.Text = "Xem PDF";
+            this.btnXemPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXemPDF.UseVisualStyleBackColor = true;
+            this.btnXemPDF.Click += new System.EventHandler(this.btnXemPDF_Click);
+            // 
+            // btnXoaFile2
+            // 
+            this.btnXoaFile2.AccessibleName = "";
+            this.btnXoaFile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXoaFile2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXoaFile2.Location = new System.Drawing.Point(104, 335);
+            this.btnXoaFile2.Name = "btnXoaFile2";
+            this.btnXoaFile2.Size = new System.Drawing.Size(90, 24);
+            this.btnXoaFile2.TabIndex = 55;
+            this.btnXoaFile2.Text = "Xóa file2";
+            this.btnXoaFile2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoaFile2.UseVisualStyleBackColor = true;
+            this.btnXoaFile2.Click += new System.EventHandler(this.btnXoaFile2_Click);
+            // 
+            // btnXoaPDF2
+            // 
+            this.btnXoaPDF2.AccessibleName = "";
+            this.btnXoaPDF2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXoaPDF2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXoaPDF2.Location = new System.Drawing.Point(104, 287);
+            this.btnXoaPDF2.Name = "btnXoaPDF2";
+            this.btnXoaPDF2.Size = new System.Drawing.Size(90, 24);
+            this.btnXoaPDF2.TabIndex = 56;
+            this.btnXoaPDF2.Text = "Xóa PDF2";
+            this.btnXoaPDF2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoaPDF2.UseVisualStyleBackColor = true;
+            this.btnXoaPDF2.Click += new System.EventHandler(this.btnXoaPDF2_Click);
+            // 
+            // btnXoaFile
+            // 
+            this.btnXoaFile.AccessibleName = "";
+            this.btnXoaFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXoaFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXoaFile.Location = new System.Drawing.Point(104, 311);
+            this.btnXoaFile.Name = "btnXoaFile";
+            this.btnXoaFile.Size = new System.Drawing.Size(90, 24);
+            this.btnXoaFile.TabIndex = 57;
+            this.btnXoaFile.Text = "Xóa file";
+            this.btnXoaFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoaFile.UseVisualStyleBackColor = true;
+            this.btnXoaFile.Click += new System.EventHandler(this.btnXoaFile_Click);
+            // 
+            // btnXoaPDF
+            // 
+            this.btnXoaPDF.AccessibleName = "";
+            this.btnXoaPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXoaPDF.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXoaPDF.Location = new System.Drawing.Point(104, 263);
+            this.btnXoaPDF.Name = "btnXoaPDF";
+            this.btnXoaPDF.Size = new System.Drawing.Size(90, 24);
+            this.btnXoaPDF.TabIndex = 58;
+            this.btnXoaPDF.Text = "Xóa PDF";
+            this.btnXoaPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoaPDF.UseVisualStyleBackColor = true;
+            this.btnXoaPDF.Click += new System.EventHandler(this.btnXoaPDF_Click);
+            // 
+            // btnChonFile2
+            // 
+            this.btnChonFile2.AccessibleName = "";
+            this.btnChonFile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonFile2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonFile2.Location = new System.Drawing.Point(8, 335);
+            this.btnChonFile2.Name = "btnChonFile2";
+            this.btnChonFile2.Size = new System.Drawing.Size(90, 24);
+            this.btnChonFile2.TabIndex = 47;
+            this.btnChonFile2.Text = "Chọn file2";
+            this.btnChonFile2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonFile2.UseVisualStyleBackColor = true;
+            this.btnChonFile2.Click += new System.EventHandler(this.btnChonFile2_Click);
+            // 
+            // btnChonPDF2
+            // 
+            this.btnChonPDF2.AccessibleName = "";
+            this.btnChonPDF2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonPDF2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonPDF2.Location = new System.Drawing.Point(8, 287);
+            this.btnChonPDF2.Name = "btnChonPDF2";
+            this.btnChonPDF2.Size = new System.Drawing.Size(90, 24);
+            this.btnChonPDF2.TabIndex = 48;
+            this.btnChonPDF2.Text = "Chọn PDF2";
+            this.btnChonPDF2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonPDF2.UseVisualStyleBackColor = true;
+            this.btnChonPDF2.Click += new System.EventHandler(this.btnChonPDF2_Click);
+            // 
+            // btnChonFile
+            // 
+            this.btnChonFile.AccessibleName = "";
+            this.btnChonFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonFile.Location = new System.Drawing.Point(8, 311);
+            this.btnChonFile.Name = "btnChonFile";
+            this.btnChonFile.Size = new System.Drawing.Size(90, 24);
+            this.btnChonFile.TabIndex = 49;
+            this.btnChonFile.Text = "Chọn file";
+            this.btnChonFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonFile.UseVisualStyleBackColor = true;
+            this.btnChonFile.Click += new System.EventHandler(this.btnChonFile_Click);
+            // 
+            // btnChonPDF
+            // 
+            this.btnChonPDF.AccessibleName = "";
+            this.btnChonPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonPDF.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonPDF.Location = new System.Drawing.Point(8, 263);
+            this.btnChonPDF.Name = "btnChonPDF";
+            this.btnChonPDF.Size = new System.Drawing.Size(90, 24);
+            this.btnChonPDF.TabIndex = 50;
+            this.btnChonPDF.Text = "Chọn PDF";
+            this.btnChonPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonPDF.UseVisualStyleBackColor = true;
+            this.btnChonPDF.Click += new System.EventHandler(this.btnChonPDF_Click);
             // 
             // ptbPHOTOGRAPH
             // 
@@ -3027,7 +3253,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.btnXoahinh.AccessibleName = "";
             this.btnXoahinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnXoahinh.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnXoahinh.Location = new System.Drawing.Point(380, 46);
+            this.btnXoahinh.Location = new System.Drawing.Point(390, 38);
             this.btnXoahinh.Name = "btnXoahinh";
             this.btnXoahinh.Size = new System.Drawing.Size(91, 29);
             this.btnXoahinh.TabIndex = 41;
@@ -3036,41 +3262,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.btnXoahinh.UseVisualStyleBackColor = true;
             this.btnXoahinh.Click += new System.EventHandler(this.btnXoahinh_Click);
             // 
-            // btnMoFile
-            // 
-            this.btnMoFile.AccessibleName = "";
-            this.btnMoFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnMoFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMoFile.Location = new System.Drawing.Point(419, 78);
-            this.btnMoFile.Name = "btnMoFile";
-            this.btnMoFile.Size = new System.Drawing.Size(54, 29);
-            this.btnMoFile.TabIndex = 40;
-            this.btnMoFile.Text = "Mở";
-            this.btnMoFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnMoFile.UseVisualStyleBackColor = true;
-            this.btnMoFile.Click += new System.EventHandler(this.btnMoFile_Click);
-            // 
-            // btnChonFile
-            // 
-            this.btnChonFile.AccessibleName = "";
-            this.btnChonFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnChonFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnChonFile.Location = new System.Drawing.Point(272, 78);
-            this.btnChonFile.Name = "btnChonFile";
-            this.btnChonFile.Size = new System.Drawing.Size(91, 29);
-            this.btnChonFile.TabIndex = 40;
-            this.btnChonFile.Text = "Chọn file";
-            this.btnChonFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnChonFile.UseVisualStyleBackColor = true;
-            this.btnChonFile.Click += new System.EventHandler(this.btnChonFile_Click);
-            // 
             // btnChonhinh
             // 
             this.btnChonhinh.AccessibleDescription = "ADDEDITB00004";
             this.btnChonhinh.AccessibleName = "";
             this.btnChonhinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnChonhinh.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnChonhinh.Location = new System.Drawing.Point(380, 11);
+            this.btnChonhinh.Location = new System.Drawing.Point(390, 7);
             this.btnChonhinh.Name = "btnChonhinh";
             this.btnChonhinh.Size = new System.Drawing.Size(91, 29);
             this.btnChonhinh.TabIndex = 40;
@@ -3089,7 +3287,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txths_qd4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txths_qd4.HoverColor = System.Drawing.Color.Yellow;
             this.txths_qd4.LeaveColor = System.Drawing.Color.White;
-            this.txths_qd4.Location = new System.Drawing.Point(542, 321);
+            this.txths_qd4.Location = new System.Drawing.Point(542, 302);
             this.txths_qd4.Name = "txths_qd4";
             this.txths_qd4.Size = new System.Drawing.Size(184, 23);
             this.txths_qd4.TabIndex = 38;
@@ -3105,7 +3303,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label50.AccessibleDescription = "ADDEDITL00114";
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(447, 323);
+            this.label50.Location = new System.Drawing.Point(448, 305);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(57, 17);
             this.label50.TabIndex = 37;
@@ -3121,7 +3319,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txths_qd3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txths_qd3.HoverColor = System.Drawing.Color.Yellow;
             this.txths_qd3.LeaveColor = System.Drawing.Color.White;
-            this.txths_qd3.Location = new System.Drawing.Point(542, 292);
+            this.txths_qd3.Location = new System.Drawing.Point(542, 279);
             this.txths_qd3.Name = "txths_qd3";
             this.txths_qd3.Size = new System.Drawing.Size(184, 23);
             this.txths_qd3.TabIndex = 36;
@@ -3137,7 +3335,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label49.AccessibleDescription = "ADDEDITL00113";
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(447, 293);
+            this.label49.Location = new System.Drawing.Point(448, 282);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(57, 17);
             this.label49.TabIndex = 35;
@@ -3153,7 +3351,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txths_qd2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txths_qd2.HoverColor = System.Drawing.Color.Yellow;
             this.txths_qd2.LeaveColor = System.Drawing.Color.White;
-            this.txths_qd2.Location = new System.Drawing.Point(542, 260);
+            this.txths_qd2.Location = new System.Drawing.Point(542, 256);
             this.txths_qd2.Name = "txths_qd2";
             this.txths_qd2.Size = new System.Drawing.Size(184, 23);
             this.txths_qd2.TabIndex = 34;
@@ -3169,7 +3367,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label47.AccessibleDescription = "ADDEDITL00112";
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(447, 264);
+            this.label47.Location = new System.Drawing.Point(448, 259);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(57, 17);
             this.label47.TabIndex = 33;
@@ -3185,7 +3383,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txths_qd1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txths_qd1.HoverColor = System.Drawing.Color.Yellow;
             this.txths_qd1.LeaveColor = System.Drawing.Color.White;
-            this.txths_qd1.Location = new System.Drawing.Point(542, 230);
+            this.txths_qd1.Location = new System.Drawing.Point(542, 233);
             this.txths_qd1.Name = "txths_qd1";
             this.txths_qd1.Size = new System.Drawing.Size(184, 23);
             this.txths_qd1.TabIndex = 32;
@@ -3201,7 +3399,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label46.AccessibleDescription = "ADDEDITL00111";
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(447, 234);
+            this.label46.Location = new System.Drawing.Point(448, 236);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(57, 17);
             this.label46.TabIndex = 31;
@@ -3217,7 +3415,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txtdvt_qd1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtdvt_qd1.HoverColor = System.Drawing.Color.Yellow;
             this.txtdvt_qd1.LeaveColor = System.Drawing.Color.White;
-            this.txtdvt_qd1.Location = new System.Drawing.Point(542, 202);
+            this.txtdvt_qd1.Location = new System.Drawing.Point(542, 210);
             this.txtdvt_qd1.Name = "txtdvt_qd1";
             this.txtdvt_qd1.Size = new System.Drawing.Size(184, 23);
             this.txtdvt_qd1.TabIndex = 30;
@@ -3227,7 +3425,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label14.AccessibleDescription = "ADDEDITL00109";
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(447, 205);
+            this.label14.Location = new System.Drawing.Point(448, 213);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(61, 17);
@@ -3244,7 +3442,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.dvtWidth.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.dvtWidth.HoverColor = System.Drawing.Color.Yellow;
             this.dvtWidth.LeaveColor = System.Drawing.Color.White;
-            this.dvtWidth.Location = new System.Drawing.Point(340, 201);
+            this.dvtWidth.Location = new System.Drawing.Point(339, 143);
             this.dvtWidth.Name = "dvtWidth";
             this.dvtWidth.Size = new System.Drawing.Size(100, 23);
             this.dvtWidth.TabIndex = 17;
@@ -3259,7 +3457,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.dvtHeight.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.dvtHeight.HoverColor = System.Drawing.Color.Yellow;
             this.dvtHeight.LeaveColor = System.Drawing.Color.White;
-            this.dvtHeight.Location = new System.Drawing.Point(340, 231);
+            this.dvtHeight.Location = new System.Drawing.Point(339, 166);
             this.dvtHeight.Name = "dvtHeight";
             this.dvtHeight.Size = new System.Drawing.Size(100, 23);
             this.dvtHeight.TabIndex = 20;
@@ -3274,7 +3472,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.dvtPacks.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.dvtPacks.HoverColor = System.Drawing.Color.Yellow;
             this.dvtPacks.LeaveColor = System.Drawing.Color.White;
-            this.dvtPacks.Location = new System.Drawing.Point(340, 291);
+            this.dvtPacks.Location = new System.Drawing.Point(339, 212);
             this.dvtPacks.Name = "dvtPacks";
             this.dvtPacks.Size = new System.Drawing.Size(100, 23);
             this.dvtPacks.TabIndex = 26;
@@ -3289,7 +3487,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.dvtDiamet.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.dvtDiamet.HoverColor = System.Drawing.Color.Yellow;
             this.dvtDiamet.LeaveColor = System.Drawing.Color.White;
-            this.dvtDiamet.Location = new System.Drawing.Point(340, 261);
+            this.dvtDiamet.Location = new System.Drawing.Point(339, 189);
             this.dvtDiamet.Name = "dvtDiamet";
             this.dvtDiamet.Size = new System.Drawing.Size(100, 23);
             this.dvtDiamet.TabIndex = 23;
@@ -3304,7 +3502,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.dvtLength.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.dvtLength.HoverColor = System.Drawing.Color.Yellow;
             this.dvtLength.LeaveColor = System.Drawing.Color.White;
-            this.dvtLength.Location = new System.Drawing.Point(340, 173);
+            this.dvtLength.Location = new System.Drawing.Point(339, 120);
             this.dvtLength.Name = "dvtLength";
             this.dvtLength.Size = new System.Drawing.Size(100, 23);
             this.dvtLength.TabIndex = 14;
@@ -3319,7 +3517,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.dvtWeight0.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.dvtWeight0.HoverColor = System.Drawing.Color.Yellow;
             this.dvtWeight0.LeaveColor = System.Drawing.Color.White;
-            this.dvtWeight0.Location = new System.Drawing.Point(340, 142);
+            this.dvtWeight0.Location = new System.Drawing.Point(339, 97);
             this.dvtWeight0.Name = "dvtWeight0";
             this.dvtWeight0.Size = new System.Drawing.Size(100, 23);
             this.dvtWeight0.TabIndex = 11;
@@ -3334,7 +3532,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.dvtWeight.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.dvtWeight.HoverColor = System.Drawing.Color.Yellow;
             this.dvtWeight.LeaveColor = System.Drawing.Color.White;
-            this.dvtWeight.Location = new System.Drawing.Point(340, 113);
+            this.dvtWeight.Location = new System.Drawing.Point(339, 74);
             this.dvtWeight.Name = "dvtWeight";
             this.dvtWeight.Size = new System.Drawing.Size(100, 23);
             this.dvtWeight.TabIndex = 8;
@@ -3349,7 +3547,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox21.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox21.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox21.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox21.Location = new System.Drawing.Point(150, 321);
+            this.v6NumberTextBox21.Location = new System.Drawing.Point(150, 235);
             this.v6NumberTextBox21.Name = "v6NumberTextBox21";
             this.v6NumberTextBox21.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox21.TabIndex = 28;
@@ -3371,7 +3569,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox20.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox20.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox20.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox20.Location = new System.Drawing.Point(150, 291);
+            this.v6NumberTextBox20.Location = new System.Drawing.Point(150, 212);
             this.v6NumberTextBox20.Name = "v6NumberTextBox20";
             this.v6NumberTextBox20.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox20.TabIndex = 25;
@@ -3393,7 +3591,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox19.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox19.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox19.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox19.Location = new System.Drawing.Point(150, 261);
+            this.v6NumberTextBox19.Location = new System.Drawing.Point(150, 189);
             this.v6NumberTextBox19.Name = "v6NumberTextBox19";
             this.v6NumberTextBox19.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox19.TabIndex = 22;
@@ -3415,7 +3613,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox18.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox18.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox18.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox18.Location = new System.Drawing.Point(150, 231);
+            this.v6NumberTextBox18.Location = new System.Drawing.Point(150, 166);
             this.v6NumberTextBox18.Name = "v6NumberTextBox18";
             this.v6NumberTextBox18.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox18.TabIndex = 19;
@@ -3437,7 +3635,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox17.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox17.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox17.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox17.Location = new System.Drawing.Point(150, 201);
+            this.v6NumberTextBox17.Location = new System.Drawing.Point(150, 143);
             this.v6NumberTextBox17.Name = "v6NumberTextBox17";
             this.v6NumberTextBox17.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox17.TabIndex = 16;
@@ -3459,7 +3657,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox16.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox16.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox16.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox16.Location = new System.Drawing.Point(150, 172);
+            this.v6NumberTextBox16.Location = new System.Drawing.Point(150, 120);
             this.v6NumberTextBox16.Name = "v6NumberTextBox16";
             this.v6NumberTextBox16.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox16.TabIndex = 13;
@@ -3481,7 +3679,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox15.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox15.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox15.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox15.Location = new System.Drawing.Point(150, 142);
+            this.v6NumberTextBox15.Location = new System.Drawing.Point(150, 97);
             this.v6NumberTextBox15.Name = "v6NumberTextBox15";
             this.v6NumberTextBox15.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox15.TabIndex = 10;
@@ -3503,7 +3701,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox14.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox14.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox14.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox14.Location = new System.Drawing.Point(150, 113);
+            this.v6NumberTextBox14.Location = new System.Drawing.Point(150, 74);
             this.v6NumberTextBox14.Name = "v6NumberTextBox14";
             this.v6NumberTextBox14.Size = new System.Drawing.Size(184, 23);
             this.v6NumberTextBox14.TabIndex = 7;
@@ -3525,7 +3723,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox61.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox61.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox61.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox61.Location = new System.Drawing.Point(150, 69);
+            this.v6ColorTextBox61.Location = new System.Drawing.Point(150, 51);
             this.v6ColorTextBox61.Name = "v6ColorTextBox61";
             this.v6ColorTextBox61.Size = new System.Drawing.Size(184, 23);
             this.v6ColorTextBox61.TabIndex = 5;
@@ -3540,7 +3738,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox60.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox60.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox60.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox60.Location = new System.Drawing.Point(150, 40);
+            this.v6ColorTextBox60.Location = new System.Drawing.Point(150, 28);
             this.v6ColorTextBox60.Name = "v6ColorTextBox60";
             this.v6ColorTextBox60.Size = new System.Drawing.Size(184, 23);
             this.v6ColorTextBox60.TabIndex = 3;
@@ -3555,7 +3753,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox59.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox59.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox59.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox59.Location = new System.Drawing.Point(150, 11);
+            this.v6ColorTextBox59.Location = new System.Drawing.Point(150, 5);
             this.v6ColorTextBox59.Name = "v6ColorTextBox59";
             this.v6ColorTextBox59.Size = new System.Drawing.Size(184, 23);
             this.v6ColorTextBox59.TabIndex = 1;
@@ -3564,7 +3762,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label103.AccessibleDescription = "ADDEDITL00108";
             this.label103.AutoSize = true;
-            this.label103.Location = new System.Drawing.Point(9, 324);
+            this.label103.Location = new System.Drawing.Point(9, 236);
             this.label103.Name = "label103";
             this.label103.Size = new System.Drawing.Size(131, 17);
             this.label103.TabIndex = 27;
@@ -3574,7 +3772,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label102.AccessibleDescription = "ADDEDITL00103";
             this.label102.AutoSize = true;
-            this.label102.Location = new System.Drawing.Point(9, 175);
+            this.label102.Location = new System.Drawing.Point(9, 121);
             this.label102.Name = "label102";
             this.label102.Size = new System.Drawing.Size(29, 17);
             this.label102.TabIndex = 12;
@@ -3584,7 +3782,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label101.AccessibleDescription = "ADDEDITL00101";
             this.label101.AutoSize = true;
-            this.label101.Location = new System.Drawing.Point(9, 116);
+            this.label101.Location = new System.Drawing.Point(9, 75);
             this.label101.Name = "label101";
             this.label101.Size = new System.Drawing.Size(85, 17);
             this.label101.TabIndex = 6;
@@ -3594,7 +3792,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label100.AccessibleDescription = "ADDEDITL00099";
             this.label100.AutoSize = true;
-            this.label100.Location = new System.Drawing.Point(9, 43);
+            this.label100.Location = new System.Drawing.Point(9, 29);
             this.label100.Name = "label100";
             this.label100.Size = new System.Drawing.Size(36, 17);
             this.label100.TabIndex = 2;
@@ -3604,7 +3802,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label99.AccessibleDescription = "ADDEDITL00107";
             this.label99.AutoSize = true;
-            this.label99.Location = new System.Drawing.Point(9, 294);
+            this.label99.Location = new System.Drawing.Point(9, 213);
             this.label99.Name = "label99";
             this.label99.Size = new System.Drawing.Size(123, 17);
             this.label99.TabIndex = 24;
@@ -3614,7 +3812,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label98.AccessibleDescription = "ADDEDITL00106";
             this.label98.AutoSize = true;
-            this.label98.Location = new System.Drawing.Point(9, 264);
+            this.label98.Location = new System.Drawing.Point(9, 190);
             this.label98.Name = "label98";
             this.label98.Size = new System.Drawing.Size(84, 17);
             this.label98.TabIndex = 21;
@@ -3624,7 +3822,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label97.AccessibleDescription = "ADDEDITL00105";
             this.label97.AutoSize = true;
-            this.label97.Location = new System.Drawing.Point(9, 235);
+            this.label97.Location = new System.Drawing.Point(9, 167);
             this.label97.Name = "label97";
             this.label97.Size = new System.Drawing.Size(33, 17);
             this.label97.TabIndex = 18;
@@ -3634,7 +3832,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label96.AccessibleDescription = "ADDEDITL00104";
             this.label96.AutoSize = true;
-            this.label96.Location = new System.Drawing.Point(9, 204);
+            this.label96.Location = new System.Drawing.Point(9, 144);
             this.label96.Name = "label96";
             this.label96.Size = new System.Drawing.Size(42, 17);
             this.label96.TabIndex = 15;
@@ -3644,7 +3842,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label95.AccessibleDescription = "ADDEDITL00102";
             this.label95.AutoSize = true;
-            this.label95.Location = new System.Drawing.Point(9, 147);
+            this.label95.Location = new System.Drawing.Point(9, 98);
             this.label95.Name = "label95";
             this.label95.Size = new System.Drawing.Size(75, 17);
             this.label95.TabIndex = 9;
@@ -3654,7 +3852,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label107.AccessibleDescription = "ADDEDITL00100";
             this.label107.AutoSize = true;
-            this.label107.Location = new System.Drawing.Point(9, 72);
+            this.label107.Location = new System.Drawing.Point(9, 52);
             this.label107.Name = "label107";
             this.label107.Size = new System.Drawing.Size(61, 17);
             this.label107.TabIndex = 4;
@@ -3664,7 +3862,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label108.AccessibleDescription = "ADDEDITL00098";
             this.label108.AutoSize = true;
-            this.label108.Location = new System.Drawing.Point(9, 14);
+            this.label108.Location = new System.Drawing.Point(9, 6);
             this.label108.Name = "label108";
             this.label108.Size = new System.Drawing.Size(54, 17);
             this.label108.TabIndex = 0;
@@ -3694,7 +3892,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(739, 154);
+            this.groupBox1.Size = new System.Drawing.Size(739, 146);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -3709,7 +3907,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.TxtTen_qg.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtTen_qg.HoverColor = System.Drawing.Color.Yellow;
             this.TxtTen_qg.LeaveColor = System.Drawing.Color.White;
-            this.TxtTen_qg.Location = new System.Drawing.Point(358, 100);
+            this.TxtTen_qg.Location = new System.Drawing.Point(358, 93);
             this.TxtTen_qg.Margin = new System.Windows.Forms.Padding(4);
             this.TxtTen_qg.Name = "TxtTen_qg";
             this.TxtTen_qg.Size = new System.Drawing.Size(188, 23);
@@ -3725,7 +3923,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6VvarTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox4.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBox4.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox4.Location = new System.Drawing.Point(155, 126);
+            this.v6VvarTextBox4.Location = new System.Drawing.Point(155, 119);
             this.v6VvarTextBox4.Name = "v6VvarTextBox4";
             this.v6VvarTextBox4.Size = new System.Drawing.Size(184, 23);
             this.v6VvarTextBox4.TabIndex = 14;
@@ -3742,7 +3940,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6VvarTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox3.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBox3.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox3.Location = new System.Drawing.Point(155, 100);
+            this.v6VvarTextBox3.Location = new System.Drawing.Point(155, 93);
             this.v6VvarTextBox3.Name = "v6VvarTextBox3";
             this.v6VvarTextBox3.Size = new System.Drawing.Size(183, 23);
             this.v6VvarTextBox3.TabIndex = 9;
@@ -3760,7 +3958,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txtMaVT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaVT.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaVT.LeaveColor = System.Drawing.Color.White;
-            this.txtMaVT.Location = new System.Drawing.Point(155, 17);
+            this.txtMaVT.Location = new System.Drawing.Point(155, 15);
             this.txtMaVT.Name = "txtMaVT";
             this.txtMaVT.Size = new System.Drawing.Size(184, 23);
             this.txtMaVT.TabIndex = 1;
@@ -3777,7 +3975,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox3.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox3.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox3.Location = new System.Drawing.Point(155, 72);
+            this.v6ColorTextBox3.Location = new System.Drawing.Point(155, 67);
             this.v6ColorTextBox3.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox3.Name = "v6ColorTextBox3";
             this.v6ColorTextBox3.Size = new System.Drawing.Size(553, 23);
@@ -3793,7 +3991,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox16.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox16.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox16.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox16.Location = new System.Drawing.Point(638, 100);
+            this.v6ColorTextBox16.Location = new System.Drawing.Point(638, 93);
             this.v6ColorTextBox16.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox16.Name = "v6ColorTextBox16";
             this.v6ColorTextBox16.Size = new System.Drawing.Size(70, 23);
@@ -3810,7 +4008,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.TxtTenVT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtTenVT.HoverColor = System.Drawing.Color.Yellow;
             this.TxtTenVT.LeaveColor = System.Drawing.Color.White;
-            this.TxtTenVT.Location = new System.Drawing.Point(155, 44);
+            this.TxtTenVT.Location = new System.Drawing.Point(155, 41);
             this.TxtTenVT.Margin = new System.Windows.Forms.Padding(4);
             this.TxtTenVT.Name = "TxtTenVT";
             this.TxtTenVT.Size = new System.Drawing.Size(553, 23);
@@ -3826,7 +4024,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox1.Location = new System.Drawing.Point(453, 17);
+            this.v6ColorTextBox1.Location = new System.Drawing.Point(453, 15);
             this.v6ColorTextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
             this.v6ColorTextBox1.Size = new System.Drawing.Size(255, 23);
@@ -3836,7 +4034,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label40.AccessibleDescription = "ADDEDITL00041";
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(13, 129);
+            this.label40.Location = new System.Drawing.Point(13, 119);
             this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(129, 17);
@@ -3847,7 +4045,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label22.AccessibleDescription = "FILTERL00107";
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(558, 103);
+            this.label22.Location = new System.Drawing.Point(558, 93);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(72, 17);
@@ -3859,7 +4057,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label3.AccessibleDescription = "ADDEDITL00039";
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 76);
+            this.label3.Location = new System.Drawing.Point(13, 67);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 17);
@@ -3870,7 +4068,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label2.AccessibleDescription = "ADDEDITL00037";
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 48);
+            this.label2.Location = new System.Drawing.Point(13, 41);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 17);
@@ -3881,7 +4079,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label17.AccessibleDescription = "ADDEDITL00040";
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(13, 103);
+            this.label17.Location = new System.Drawing.Point(13, 93);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(98, 17);
@@ -3892,7 +4090,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label16.AccessibleDescription = "ADDEDITL00038";
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(376, 20);
+            this.label16.Location = new System.Drawing.Point(376, 15);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(69, 17);
@@ -3903,26 +4101,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.label1.AccessibleDescription = "ADDEDITL00195";
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 20);
+            this.label1.Location = new System.Drawing.Point(13, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã vật tư";
-            // 
-            // btnXoaFile
-            // 
-            this.btnXoaFile.AccessibleName = "";
-            this.btnXoaFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnXoaFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnXoaFile.Location = new System.Drawing.Point(364, 78);
-            this.btnXoaFile.Name = "btnXoaFile";
-            this.btnXoaFile.Size = new System.Drawing.Size(54, 29);
-            this.btnXoaFile.TabIndex = 40;
-            this.btnXoaFile.Text = "Xóa";
-            this.btnXoaFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXoaFile.UseVisualStyleBackColor = true;
-            this.btnXoaFile.Click += new System.EventHandler(this.btnXoaFile_Click);
             // 
             // VatTuAddEditForm
             // 
@@ -4191,8 +4375,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label41;
-        protected System.Windows.Forms.Button btnMoFile;
-        protected System.Windows.Forms.Button btnChonFile;
-        protected System.Windows.Forms.Button btnXoaFile;
+        private V6ColorTextBox txtFileName2;
+        private V6ColorTextBox txtFileName1;
+        protected V6FormButton btnXemFile2;
+        protected V6FormButton btnXemPDF2;
+        protected V6FormButton btnXemFile;
+        protected V6FormButton btnXemPDF;
+        protected V6FormButton btnXoaFile2;
+        protected V6FormButton btnXoaPDF2;
+        protected V6FormButton btnXoaFile;
+        protected V6FormButton btnXoaPDF;
+        protected V6FormButton btnChonFile2;
+        protected V6FormButton btnChonPDF2;
+        protected V6FormButton btnChonFile;
+        protected V6FormButton btnChonPDF;
     }
 }

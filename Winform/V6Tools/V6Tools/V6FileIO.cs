@@ -6,13 +6,29 @@ namespace V6Tools
 {
     public class V6FileIO
     {
-        public static void CopyToVPN(string file, string ip, string user, string ePass, string subfolder = null)
+        /// <summary>
+        /// Upload file từ máy lên máy chủ chỉ định.
+        /// </summary>
+        /// <param name="info"></param>
+        public static void CopyToVPN(V6IOInfo info)
+        {
+            CopyToVPN(info.FileName, info.FTP_SUBFOLDER, info.FTP_IP, info.FTP_USER, info.FTP_EPASS);
+        }
+        /// <summary>
+        /// Upload file từ máy lên máy chủ chỉ định.
+        /// </summary>
+        /// <param name="fileName">Tên file sẽ upload.</param>
+        /// <param name="subfolder">Thư mục con trên máy chủ. Vd Documents, hoặc Documents/Excels</param>
+        /// <param name="ip">Địa chỉ máy chủ.</param>
+        /// <param name="user"></param>
+        /// <param name="ePass"></param>
+        public static void CopyToVPN(string fileName, string subfolder, string ip, string user, string ePass)
         {
             try
             {
                 Thread t = new Thread(o =>
                     {
-                        FileInfo fi = new FileInfo(file);
+                        FileInfo fi = new FileInfo(fileName);
                         var s = 0;
                         while (IsFileLocked(fi))
                         {
@@ -24,11 +40,11 @@ namespace V6Tools
                         try
                         {
                             UploadDownloadFTP du = new UploadDownloadFTP(ip, user, ePass);
-                            du.Upload(file, subfolder);
+                            du.Upload(fileName, subfolder);
                         }
                         catch (Exception ex)
                         {
-                            Logger.WriteToLog(string.Format("CopyToVPN {0} error: {1}", file, ex.Message), "V6Tools");
+                            Logger.WriteToLog(string.Format("CopyToVPN {0} error: {1}", fileName, ex.Message), "V6Tools");
                         }
                     });
                 t.IsBackground = true;
@@ -36,10 +52,51 @@ namespace V6Tools
             }
             catch (Exception ex)
             {
-                Logger.WriteToLog(string.Format("CopyToVPN {0} error: {1}", file, ex.Message), "V6Tools");
+                Logger.WriteToLog(string.Format("CopyToVPN {0} error: {1}", fileName, ex.Message), "V6Tools");
             }
         }
 
+        /// <summary>
+        /// Download file từ server chỉ định về máy.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        public static bool CopyFromVPN(V6IOInfo info)
+        {
+            return CopyFromVPN(info.FileName, info.FTP_SUBFOLDER, info.LOCAL_FOLDER, info.FTP_IP, info.FTP_USER, info.FTP_EPASS);
+        }
+        /// <summary>
+        /// Download file từ server chỉ định về máy.
+        /// </summary>
+        /// <param name="fileName">Tên file sẽ download.</param>
+        /// <param name="vpnSubFolder">Thư mục con trên máy chủ. Vd Documents, hoặc Documents/Excels</param>
+        /// <param name="localFolder">Thư mục để lưu file. Vd: D:\\Documents</param>
+        /// <param name="ip">Địa chỉ máy chủ.</param>
+        /// <param name="user"></param>
+        /// <param name="ePass"></param>
+        /// <returns></returns>
+        public static bool CopyFromVPN(string fileName, string vpnSubFolder, string localFolder, string ip, string user, string ePass)
+        {
+            try
+            {
+                UploadDownloadFTP du = new UploadDownloadFTP(ip, user, ePass);
+                du.Download(fileName, vpnSubFolder, localFolder);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog(string.Format("CopyFromVPN {0} error: {1}", fileName, ex.Message), "V6Tools");
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Hàm hỗ trợ copy tất cả các file trong 1 thư mục vào vị trí mới.
+        /// </summary>
+        /// <param name="sourceDirName"></param>
+        /// <param name="destDirName"></param>
+        /// <param name="copySubDirs"></param>
         public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
             // Get the subdirectories for the specified directory.
@@ -78,6 +135,14 @@ namespace V6Tools
             }
         }
 
+        public static void DirectoryCopyWithParentFolder(string sourceDirName, string destDirName, bool copySubDirs)
+        {
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+            string newFolderPath = destDirName;
+            if(dir.Parent == null) newFolderPath = Path.Combine(destDirName, dir.Name);
+            DirectoryCopy(sourceDirName, newFolderPath, copySubDirs);
+        }
+
         /// <summary>
         /// Kiểm tra một file đang bị khóa, sử dụng bởi chương trình khác hoặc không tồn tại.
         /// </summary>
@@ -108,5 +173,18 @@ namespace V6Tools
             //file is not locked
             return false;
         }
+
+        
+    }
+
+    public class V6IOInfo
+    {
+        public string FileName { get; set; }
+
+        public string FTP_EPASS;
+        public string FTP_USER;
+        public string FTP_IP;
+        public string FTP_SUBFOLDER;
+        public string LOCAL_FOLDER;
     }
 }

@@ -181,12 +181,27 @@ namespace V6Tools
             }
         }
 
-        public void Download(string filePath, string fileName)
+        /// <summary>
+        /// Lưu file từ FTP folder về local.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="subFolder">Thư mục con trong thư mục FTP</param>
+        /// <param name="localFolder"></param>
+        public void Download(string fileName, string subFolder, string localFolder)
         {
+            FileStream fileStream = null;
+            string localSaveFile = Path.Combine(localFolder, fileName);
             try
             {
-                FileStream fileStream = new FileStream(filePath + "\\" + fileName, FileMode.Create);
-                FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + ftpServerIP + "/" + fileName));
+                
+                if (File.Exists(localSaveFile)) File.Delete(localSaveFile);
+                fileStream = new FileStream(localSaveFile, FileMode.Create); // đường dẫn dấu nối \
+                if (subFolder != null)
+                {
+                    while (subFolder.StartsWith("/")) subFolder = subFolder.Substring(1);
+                    while (subFolder.EndsWith("/")) subFolder = subFolder.Substring(0, subFolder.Length - 1);
+                }
+                FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + ftpServerIP + "/" + subFolder + "/" + fileName));
                 ftpWebRequest.Method = "RETR";
                 ftpWebRequest.UseBinary = true;
                 ftpWebRequest.Credentials = new NetworkCredential(ftpUserID, ftpPassword);
@@ -207,6 +222,11 @@ namespace V6Tools
             }
             catch (Exception ex)
             {
+                if (fileStream != null)
+                {
+                    fileStream.Close();
+                    if (File.Exists(localSaveFile)) File.Delete(localSaveFile); 
+                }
                 throw new Exception("FTP_Upload_Download.Download : " + ex.Message);
             }
         }
