@@ -89,6 +89,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\FileButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\GridView\CalendarColumn.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -116,6 +119,11 @@
     </Compile>
     <Compile Include="Forms\Viewer\TextEditorForm.Designer.cs">
       <DependentUpon>TextEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Structs\AlctControls.cs" />
     <Compile Include="TNumEditBox.cs">
@@ -1321,11 +1329,6 @@
     <Compile Include="NumberTienNt.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="ReportControls\DataGridViewPrinter.cs" />
     <Compile Include="ReportControls\FilterGroup.cs">
       <SubType>UserControl</SubType>
@@ -1460,6 +1463,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\FileButton.resx">
+      <DependentUpon>FileButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Lookup\LookupButton.resx">
       <DependentUpon>LookupButton.cs</DependentUpon>
     </EmbeddedResource>
@@ -2038,6 +2044,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportControls\FilterGroup.resx">
       <DependentUpon>FilterGroup.cs</DependentUpon>
@@ -2411,6 +2418,21 @@
   <ItemGroup>
     <None Include="Resources\Excel16.png" />
     <None Include="Resources\Zoom20.png" />
+    <None Include="Resources\image16.png" />
+    <None Include="Resources\pdf16.png" />
+    <None Include="Resources\excel161.png" />
+    <None Include="Resources\word16.png" />
+    <None Include="Resources\unknow16.png" />
+    <None Include="Resources\newfile24.png" />
+    <None Include="Resources\word24.png" />
+    <None Include="Resources\excel24.png" />
+    <None Include="Resources\powerpoint24.png" />
+    <None Include="Resources\unknow24.png" />
+    <None Include="Resources\image24.png" />
+    <None Include="Resources\pdf24.png" />
+    <None Include="Resources\excel241.png" />
+    <None Include="Resources\excel242.png" />
+    <None Include="Resources\Excel162.png" />
     <Content Include="x86\pdfium.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

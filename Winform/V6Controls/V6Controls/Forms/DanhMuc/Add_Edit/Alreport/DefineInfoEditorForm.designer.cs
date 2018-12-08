@@ -821,7 +821,8 @@
             "DateTimeColor",
             "MauBC",
             "MAUALL",
-            "DSNS"});
+            "DSNS",
+            "FileButton"});
             this.cboControlType.Location = new System.Drawing.Point(640, 8);
             this.cboControlType.Name = "cboControlType";
             this.cboControlType.Size = new System.Drawing.Size(121, 24);

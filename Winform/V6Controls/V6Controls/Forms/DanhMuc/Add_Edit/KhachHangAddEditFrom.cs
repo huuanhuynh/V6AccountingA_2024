@@ -80,7 +80,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 SetSomeData(new SortedDictionary<string, object>()
                 {
                     {"PHOTOGRAPH", rowData["PHOTOGRAPH"] },
-                    {"SIGNATURE", rowData["SIGNATURE"] }
+                    {"SIGNATURE", rowData["SIGNATURE"] },
+                    {"PDF1", rowData["PDF1"] },
+                    {"PDF2", rowData["PDF2"] },
+                    {"FILE_NAME1", rowData["FILE_NAME1"] },
+                    {"FILE_NAME2", rowData["FILE_NAME2"] },
                 });
             }
         }
@@ -434,12 +438,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if (string.IsNullOrEmpty(fileName)) return;
 
                 var _setting = new H.Setting(Path.Combine(V6Login.StartupPath, "Setting.ini"));
-                var FTP_IP = _setting.GetSetting("FTP_IP");
-                var FTP_USER = _setting.GetSetting("FTP_USER");
-                var FTP_EPASS = _setting.GetSetting("FTP_EPASS");
-                var FTP_V6DOCSFOLDER = _setting.GetSetting("FTP_V6DOCSFOLDER");
-                if (V6FileIO.CopyFromVPN(txtFileName1.Text, FTP_V6DOCSFOLDER,
-                    V6ControlsHelper.V6SoftLocalAppData_Directory, FTP_IP, FTP_USER, FTP_EPASS))
+                V6IOInfo info = new V6IOInfo()
+                {
+                    FileName = fileName,
+                    FTP_IP = _setting.GetSetting("FTP_IP"),
+                    FTP_USER = _setting.GetSetting("FTP_USER"),
+                    FTP_EPASS = _setting.GetSetting("FTP_EPASS"),
+                    FTP_SUBFOLDER = _setting.GetSetting("FTP_V6DOCSFOLDER"),
+                    LOCAL_FOLDER = V6ControlsHelper.V6SoftLocalAppData_Directory,
+                };
+                if (V6FileIO.CopyFromVPN(info))
                 {
                     string tempFile = Path.Combine(V6ControlsHelper.V6SoftLocalAppData_Directory, fileName);
                     Process.Start(tempFile);
@@ -553,6 +561,68 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void btnXemFile2_Click(object sender, EventArgs e)
         {
             XemFile(txtFileName2.Text);
+        }
+
+        private void btnChonFile0_AfterProcess(object sender, FileButton.Event_Args e)
+        {
+            try
+            {
+                string FIELD = e.Sender.AccessibleName.Trim().ToUpper();
+                if (e.Mode == FileButton.FileButtonMode.ChooseFile)
+                {
+                    try
+                    {
+                        if (string.IsNullOrEmpty(e.Sender.FileName)) return;
+                        
+                        
+                        var data = new SortedDictionary<string, object> { { FIELD, e.Sender.FileName } };
+                        var keys = new SortedDictionary<string, object> { { "MA_KH", txtMaKH.Text } };
+
+                        var result = V6BusinessHelper.UpdateTable(V6TableName.Alkhct1.ToString(), data, keys);
+
+                        if (result == 1)
+                        {
+                            ShowTopLeftMessage(V6Text.Updated + FIELD);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("ChooseFile: " + ex.Message);
+                    }
+                }
+                else if (e.Mode == FileButton.FileButtonMode.Clear)
+                {
+                    try
+                    {
+                        var data = new SortedDictionary<string, object> { { FIELD, null } };
+                        var keys = new SortedDictionary<string, object> { { "MA_KH", txtMaKH.Text } };
+                        var result = V6BusinessHelper.UpdateTable(V6TableName.Alkhct1.ToString(), data, keys);
+
+                        if (result == 1)
+                        {
+                            ShowTopLeftMessage(V6Text.Updated + FIELD);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Clear:" + FIELD + ex.Message);
+                    }
+                }
+                else if (e.Mode == FileButton.FileButtonMode.OpenFile)
+                {
+                    string openFile = e.OpenFile;
+                    //File.Delete(openFile);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnChonFile_AfterProcess", ex);
+            }
+        }
+
+        private void btnChonFile0_FileNameChanged(object sender, FileButton.Event_Args e)
+        {
+            toolTipV6FormControl.SetToolTip(e.Sender, e.NewFileName);
         }
 
     }

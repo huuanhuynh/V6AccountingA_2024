@@ -6349,6 +6349,11 @@ namespace V6Controls.Forms
                     text_box.ChangeText(text);
                 else text_box.Text = text;
             }
+            else if (control is FileButton)
+            {
+                var file_button = control as FileButton;
+                file_button.FileName = ObjectAndString.ObjectToString(value).Trim();
+            }
             else if (control is CheckBox)
             {
                 string value1 = value.ToString().Trim();
@@ -6467,6 +6472,10 @@ namespace V6Controls.Forms
                 //return ((V6CheckTextBox)control).StringValue;
                 return;
             }
+            else if (control is FileButton)
+            {
+                d[cNAME] = ((FileButton) control).FileName;
+            }
             else if (control is CheckBox)
             {
                 d[cNAME] = ((CheckBox)control).Checked ? 1 : 0;
@@ -6573,6 +6582,10 @@ namespace V6Controls.Forms
             else if (control is V6CheckTextBox)
             {
                 return ((V6CheckTextBox)control).StringValue;
+            }
+            else if (control is FileButton)
+            {
+                return ((FileButton)control).FileName;
             }
             else if (control is CheckBox)
             {
@@ -6769,6 +6782,16 @@ namespace V6Controls.Forms
                         {
                             Name = "btn" + defineInfo.Field,
                             AccessibleName = "",
+                            Text = defineInfo.TextLang(V6Setting.IsVietnamese),
+                            UseVisualStyleBackColor = true
+                        };
+                    }
+                    else if (defineInfo.ControlType.ToUpper() == "FILEBUTTON")
+                    {
+                        input = new FileButton()
+                        {
+                            Name = "fbt" + defineInfo.Field,
+                            AccessibleName = defineInfo.AccessibleName,
                             Text = defineInfo.TextLang(V6Setting.IsVietnamese),
                             UseVisualStyleBackColor = true
                         };
