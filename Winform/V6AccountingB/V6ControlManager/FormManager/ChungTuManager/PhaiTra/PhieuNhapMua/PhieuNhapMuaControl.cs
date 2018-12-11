@@ -1607,6 +1607,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 txtDiaChi.Text = (data["dia_chi"] ?? "").ToString().Trim();
                 SetControlValue(txtMaGia, data["MA_GIA"], Invoice.GetTemplateSettingAM("MA_GIA"));
 
+                SetDefaultDataReference(Invoice, ItemID, "TXTMAKH", data);
             }
             catch (Exception ex)
             {

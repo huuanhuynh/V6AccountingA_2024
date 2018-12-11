@@ -26,6 +26,7 @@ namespace V6Tools
         {
             try
             {
+                if (string.IsNullOrEmpty(fileName)) return;
                 Thread t = new Thread(o =>
                     {
                         FileInfo fi = new FileInfo(fileName);

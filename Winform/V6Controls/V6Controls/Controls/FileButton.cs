@@ -27,7 +27,8 @@ namespace V6Controls.Controls
             // 
             // FileButton
             // 
-            this.Image = global::V6Controls.Properties.Resources.Excel16;
+            this.Image = global::V6Controls.Properties.Resources.unknow16;
+            this.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.Click += new System.EventHandler(this.FileButton_Click);
             this.ResumeLayout(false);
@@ -58,6 +59,8 @@ namespace V6Controls.Controls
             } }
         private string _fileName = null;
 
+        public bool ReadOnly { get; set; }
+
         private void ChangeViewText()
         {
             if (string.IsNullOrEmpty(_fileName))
@@ -77,29 +80,35 @@ namespace V6Controls.Controls
             {
                 case ".doc":
                 case ".docx":
-                    Image = Properties.Resources.word24;
+                    Image = Properties.Resources.word16;
                     break;
                 case ".xls":
                 case ".xlsx":
-                    Image = Properties.Resources.excel24;
+                    Image = Properties.Resources.Excel16;
                     break;
                 case ".ppt":
-                case ".pptx":
                 case ".pps":
+                    Image = Properties.Resources.ppt16;
+                    break;
+                case ".pptx":
                 case ".ppsx":
-                    Image = Properties.Resources.powerpoint24;
+                    Image = Properties.Resources.pptx16;
                     break;
                 case ".jpg":
+                    Image = Properties.Resources.jpg16;
+                    break;
                 case ".png":
+                    Image = Properties.Resources.png16;
+                    break;
                 case ".gif":
                 case ".bmp":
-                    Image = Properties.Resources.image24;
+                    Image = Properties.Resources.image16;
                     break;
                 case ".pdf":
-                    Image = Properties.Resources.pdf24;
+                    Image = Properties.Resources.pdf16;
                     break;
                 default:
-                    Image = Properties.Resources.unknow24;
+                    Image = Properties.Resources.unknow16;
                     break;
             }
         }
@@ -127,6 +136,7 @@ namespace V6Controls.Controls
         public event EventHandler<Event_Args> AfterProcess;
         protected virtual void OnAfterProcess(Event_Args e)
         {
+            if (ReadOnly) return;
             var handler = AfterProcess;
             if (handler != null) handler(this, e);
         }
@@ -191,11 +201,13 @@ namespace V6Controls.Controls
 
         public void ClearFileName()
         {
+            if (ReadOnly) return;
             FileName = null;
         }
 
         public void ChooseFileName()
         {
+            if (ReadOnly) return;
             try
             {
                 var filePath = V6ControlFormHelper.ChooseOpenFile(this, "All files|*.*");

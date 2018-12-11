@@ -1237,6 +1237,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        /// <summary>
+        /// //Lay thong tin gan du lieu 20170320
+        /// </summary>
+        /// <param name="invoice"></param>
+        /// <param name="itemID"></param>
+        /// <param name="controlName"></param>
+        /// <param name="controlData"></param>
         protected void SetDefaultDataReference(V6InvoiceBase invoice, string itemID, string controlName, DataRow controlData)
         {
             //Lay thong tin gan du lieu 20161129
@@ -1259,7 +1266,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     if (!string.IsNullOrEmpty(fValue)) continue;
                 }
 
-                if (item.Value.StartsWith(controlName + "."))//Lấy dữ liệu theo trường nào đó trong txtMaHttt.Data
+                if (item.Value.StartsWith(controlName + "."))//Lấy dữ liệu theo trường nào đó trong Data
                 {
                     var getField = item.Value.Split('.')[1].Trim();
                     if (controlData.Table.Columns.Contains(getField))

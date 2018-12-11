@@ -2038,7 +2038,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 //txtMaGia.Text = (data["MA_GIA"] ?? "").ToString().Trim();
                 SetControlValue(txtMaGia, data["MA_GIA"], Invoice.GetTemplateSettingAM("MA_GIA"));
 
-                //Lay thong tin gan du lieu 20170320
                 SetDefaultDataReference(Invoice, ItemID, "TXTMAKH", data);
                 
                 ////Lay thong tin gan du lieu 20161129
@@ -2783,8 +2782,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 if (V6Options.GetValue("M_GIAVC_GIAGIAM_CT") == "2" ||
                     V6Options.GetValue("M_GIAVC_GIAGIAM_CT") == "3")
                 {
-                    _ggNt.Value = V6BusinessHelper.Vround((_soLuong1.Value*_hs_qd4.Value), M_ROUND_NT);
-                    _gg.Value = V6BusinessHelper.Vround((_ggNt.Value*txtTyGia.Value), M_ROUND);
+                    _ggNt.Value = V6BusinessHelper.Vround((_soLuong1.Value * _hs_qd4.Value), M_ROUND_NT);
+                    _gg.Value = V6BusinessHelper.Vround((_ggNt.Value * txtTyGia.Value), M_ROUND);
 
                     if (_maNt == _mMaNt0)
                     {
@@ -3629,8 +3628,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 t_thue_nt = txtTongThueNt.Value;
                 t_thue = V6BusinessHelper.Vround(t_thue_nt * ty_gia, M_ROUND);
-
-
+                
                 if (_maNt == _mMaNt0)
                     t_thue = t_thue_nt;
             }
@@ -3638,10 +3636,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 thue_suat = txtThueSuat.Value;
                 //tiền thuế = (tiền hàng - tiền giảm - chiết khấu) * thuế suất
-                t_thue_nt = t_tien_truocthue*thue_suat/100;
+                t_thue_nt = t_tien_truocthue * thue_suat / 100;
                 t_thue_nt = V6BusinessHelper.Vround(t_thue_nt, M_ROUND_NT);
                 //sV("T_THUE_NT", t_thue_nt);
-                
                 
                 t_thue = V6BusinessHelper.Vround(t_thue_nt * ty_gia, M_ROUND);
                 if (_maNt == _mMaNt0)
@@ -3773,20 +3770,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-
-        private void TinhTongThue_ct()
-        {
-            var t_thue_nt = TinhTong(AD, "THUE_NT");
-            var t_thue = TinhTong(AD, "THUE");
-
-            txtTongThueNt.Value = V6BusinessHelper.Vround(t_thue_nt, M_ROUND_NT);
-            txtTongThue.Value = V6BusinessHelper.Vround(t_thue, M_ROUND);
-
-            txtMa_thue.ReadOnly = true;
-            txtTongThueNt.ReadOnly = true;
-            txtTongThue.ReadOnly = true;
-        }
-
         public override void TinhTongThanhToan(string debug)
         {
             try
@@ -3830,6 +3813,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, "TTTT(" + debug + ")"), ex);
             }
+        }
+
+        private void TinhTongThue_ct()
+        {
+            var t_thue_nt = TinhTong(AD, "THUE_NT");
+            var t_thue = TinhTong(AD, "THUE");
+
+            txtTongThueNt.Value = V6BusinessHelper.Vround(t_thue_nt, M_ROUND_NT);
+            txtTongThue.Value = V6BusinessHelper.Vround(t_thue, M_ROUND);
+
+            txtMa_thue.ReadOnly = true;
+            txtTongThueNt.ReadOnly = true;
+            txtTongThue.ReadOnly = true;
         }
 
         #endregion tính toán
@@ -6870,7 +6866,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         }
                     }
 
-                    //TinhSoluongQuyDoi(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);//Nouse
                     //====================
 
                     if (dvt.ToUpper().Trim() == dvt1.ToUpper().Trim())

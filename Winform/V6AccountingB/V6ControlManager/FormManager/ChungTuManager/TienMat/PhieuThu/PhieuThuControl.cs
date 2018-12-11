@@ -1182,6 +1182,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 txtMaSoThue.Text = mst;
                 txtDiaChi.Text = (data["dia_chi"] ?? "").ToString().Trim();
                 txtTenKh.Text = V6Setting.Language.Trim() == "V" ? (data["ten_kh"] ?? "").ToString().Trim() : (data["ten_kh2"] ?? "").ToString().Trim();
+
+                SetDefaultDataReference(Invoice, ItemID, "TXTMAKH", data);
             }
             catch (Exception ex)
             {
@@ -4406,7 +4408,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 lblKieuPostColor.Visible = false;
             }
         }
-        
          
     }
 }

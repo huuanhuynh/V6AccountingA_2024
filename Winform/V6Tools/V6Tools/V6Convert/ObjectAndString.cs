@@ -296,6 +296,10 @@ namespace V6Tools.V6Convert
             {
                 case "System.DateTime":
                     result = ((DateTime) o).ToString(dateFormat);
+                    if (!dateFormat.Contains(" "))
+                    {
+                        result = result.Replace(" ", "");
+                    }
                     break;
                 default:
                     result = o.ToString();

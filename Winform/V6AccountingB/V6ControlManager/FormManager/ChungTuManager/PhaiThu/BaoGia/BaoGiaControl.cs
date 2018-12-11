@@ -985,6 +985,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 txtTenKh.Text = (data["ten_kh"] ?? "").ToString().Trim();
                 txtDiaChi.Text = (data["dia_chi"] ?? "").ToString().Trim();
                 txtdien_thoai.Text = (data["dien_thoai"] ?? "").ToString().Trim();
+
+                SetDefaultDataReference(Invoice, ItemID, "TXTMAKH", data);
             }
             catch (Exception ex)
             {

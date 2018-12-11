@@ -637,7 +637,7 @@ namespace V6Init
         {
             try
             {
-                var checkCode = SqlConnect.GetServerDateTime().ToString("yyyyMMddHH:mm:ss");
+                var checkCode = ObjectAndString.ObjectToString(SqlConnect.GetServerDateTime(), "yyyyMMddHH:mm:ss");
                 var data = new SortedDictionary<string, object>
                 {
                     {"NAME", NAME},

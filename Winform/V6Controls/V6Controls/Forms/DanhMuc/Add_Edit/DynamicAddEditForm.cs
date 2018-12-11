@@ -143,6 +143,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                 UseVisualStyleBackColor = true
                             };
                         }
+                        else if (defineInfo.ControlType.ToUpper() == "FILEBUTTON")
+                        {
+                            input = new FileButton()
+                            {
+                                Name = "fbt" + defineInfo.Field,
+                                AccessibleName = defineInfo.AccessibleName,
+                                Text = defineInfo.TextLang(V6Setting.IsVietnamese),
+                                UseVisualStyleBackColor = true,
+                                Height = 25,
+                            };
+                        }
                         else if (defineInfo.ControlType.ToUpper() == "VVARTEXTBOX" || defineInfo.ControlType.ToUpper() == "V6VVARTEXTBOX")
                         {
                             input = new V6VvarTextBox()

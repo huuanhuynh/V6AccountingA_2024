@@ -443,6 +443,16 @@ namespace V6Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap image16 {
+            get {
+                object obj = ResourceManager.GetObject("image16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap image24 {
             get {
                 object obj = ResourceManager.GetObject("image24", resourceCulture);
@@ -466,6 +476,16 @@ namespace V6Controls.Properties {
         internal static System.Drawing.Bitmap Information {
             get {
                 object obj = ResourceManager.GetObject("Information", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap jpg16 {
+            get {
+                object obj = ResourceManager.GetObject("jpg16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -533,6 +553,16 @@ namespace V6Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pdf16 {
+            get {
+                object obj = ResourceManager.GetObject("pdf16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pdf24 {
             get {
                 object obj = ResourceManager.GetObject("pdf24", resourceCulture);
@@ -593,9 +623,39 @@ namespace V6Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap png16 {
+            get {
+                object obj = ResourceManager.GetObject("png16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap powerpoint24 {
             get {
                 object obj = ResourceManager.GetObject("powerpoint24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ppt16 {
+            get {
+                object obj = ResourceManager.GetObject("ppt16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pptx16 {
+            get {
+                object obj = ResourceManager.GetObject("pptx16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -646,6 +706,16 @@ namespace V6Controls.Properties {
         internal static System.Drawing.Bitmap questionwhite {
             get {
                 object obj = ResourceManager.GetObject("questionwhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rar16 {
+            get {
+                object obj = ResourceManager.GetObject("rar16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -796,6 +866,16 @@ namespace V6Controls.Properties {
         internal static System.Drawing.Bitmap Warning_48x48_72 {
             get {
                 object obj = ResourceManager.GetObject("Warning_48x48_72", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap word16 {
+            get {
+                object obj = ResourceManager.GetObject("word16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

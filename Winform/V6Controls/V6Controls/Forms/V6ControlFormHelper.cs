@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -1335,6 +1336,17 @@ namespace V6Controls.Forms
                     bT.Width = bT_width;
                 }
             }
+            else if (CONTROL_TYPE == "FILEBUTTON")
+            {
+                ShowInfoMessage("MadeLineDynamicControl: " + CONTROL_TYPE);
+                //bT = lineControl.AddFileButton(lineInfo.TextLang(V6Setting.IsVietnamese));
+                //int bT_width = ObjectAndString.ObjectToInt(lineInfo.Width);
+                //if (bT_width > 0)
+                //{
+                //    bT.AutoSize = false;
+                //    bT.Width = bT_width;
+                //}
+            }
             else if (CONTROL_TYPE == "DATETIME")
             {
                 lineControl.AddDateTimePick();
@@ -1792,6 +1804,12 @@ namespace V6Controls.Forms
                 )
             {
                 control.Enabled = !(readOnly || readonl2);
+                if (disable) control.Enabled = false;
+                if (enable) control.Enabled = true;
+            }
+            else if (control is FileButton)
+            {
+                ((FileButton)control).ReadOnly = readOnly;
                 if (disable) control.Enabled = false;
                 if (enable) control.Enabled = true;
             }
@@ -6158,6 +6176,10 @@ namespace V6Controls.Forms
                 {
                     control.Enabled = !(readOnly);
                 }
+                else if (control is FileButton)
+                {
+                    ((FileButton)control).ReadOnly = readOnly;
+                }
                 else if (control is DataGridView)
                 {
                     var dgv = (DataGridView)control;
@@ -6793,7 +6815,8 @@ namespace V6Controls.Forms
                             Name = "fbt" + defineInfo.Field,
                             AccessibleName = defineInfo.AccessibleName,
                             Text = defineInfo.TextLang(V6Setting.IsVietnamese),
-                            UseVisualStyleBackColor = true
+                            UseVisualStyleBackColor = true,
+                            Height = 25
                         };
                     }
                     else if (defineInfo.ControlType.ToUpper() == "V6VVARTEXTBOX")

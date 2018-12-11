@@ -2433,6 +2433,11 @@
     <None Include="Resources\excel241.png" />
     <None Include="Resources\excel242.png" />
     <None Include="Resources\Excel162.png" />
+    <None Include="Resources\ppt16.png" />
+    <None Include="Resources\pptx16.png" />
+    <None Include="Resources\rar16.png" />
+    <None Include="Resources\jpg16.png" />
+    <None Include="Resources\png16.png" />
     <Content Include="x86\pdfium.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
